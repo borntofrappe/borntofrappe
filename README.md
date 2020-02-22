@@ -67,7 +67,3 @@ fs.readdirSync("content/blog").map(file => {
 ```
 
 Effectively replacing the hard coded array with the markdown files.
-
-### Frontmatter
-
-The issue comes then how to identify the front matter and separate the rest of the article. The front-matter might provide helpful information regarding a title, date, even a series of tags or the technology being used.
