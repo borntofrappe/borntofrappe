@@ -1,5 +1,7 @@
 <script>
   import Navigation from "../components/Navigation.svelte"
+  import {fade} from "svelte/transition"
+  let navigation = false;
 
   const links = [
   {
@@ -43,16 +45,14 @@
       }
     },
   ];
-
-
   const items = links.map(({name}) => name);
-
 </script>
 <style>
-
-
-:global(html) {
+  :global(html) {
     scroll-behavior: smooth;
+  }
+  :global(body) {
+    overflow-y: scroll;
   }
   section {
     min-height: 100vh;
@@ -107,6 +107,11 @@
     transform: scale(1);
   }
 
+  @media screen and (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: initial;
+    }
+  }
 
 </style>
 
@@ -114,9 +119,10 @@
   <title>Borntofrappe</title>
 </svelte:head>
 
-<Navigation id="navigation" {items} />
+<Navigation on:animation="{() => {navigation = true;}}" id="navigation" {items} />
 
-<div>
+{#if navigation}
+<div in:fade>
   <a href="#navigation">
     <svg viewBox="-65 -65 130 130" width="100" height="100">
       <defs>
@@ -151,3 +157,4 @@
     </section>
   {/each}
 </div>
+{/if}

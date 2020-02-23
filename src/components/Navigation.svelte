@@ -1,5 +1,8 @@
 <script>
   import Icons from "./Icons.svelte";
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
   export let items;
   export let id = "navigation";
   const { length } = items;
@@ -86,7 +89,7 @@
     </g>
 
     <!-- icons -->
-    <g class="loaded">
+    <g class="loaded" on:animationend="{() => {dispatch("animation") }}">
       {#each items as item, i}
       <g transform="rotate({360 / length * i}) translate(0 -{Math.floor(size / 3)}) rotate({360 / length * i * -1})">
         <a href="#{item}" aria-labelledby="label-{item}">
@@ -123,9 +126,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    --duration: 5s;
     --jump: 0.35s;
+    --pop: 0.5s;
     --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   svg {
     max-width: 600px;
@@ -135,7 +142,6 @@
     margin: auto;
   }
 
-  /* for the hover/focus transition, update the color and scale of the icon */
   a {
     color: inherit;
     transform: scale(0.85);
@@ -149,7 +155,6 @@
     color: hsl(340, 80%, 55%);
     transform: scale(1);
   }
-  /* scale the group wrapping the text element to also show the label on hover/focus */
   a .text {
     transform: scale(0.5);
     transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -160,4 +165,74 @@
   a:focus .text {
     transform: scale(1);
   }
+
+  svg .loading {
+    animation: scale-back 5s 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: scale-back var(--duration) var(--jump) var(--ease-out-back);
+  }
+  svg .loading circle,
+  svg .loading path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  svg .loading circle {
+    animation: remove-offset 5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+    animation: remove-offset var(--duration) var(--ease-in-cubic) forwards;
+  }
+  svg .loading path {
+    animation: remove-offset 0.35s 5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    animation: remove-offset var(--jump) var(--duration) var(--ease-out-cubic) forwards;
+  }
+  svg .loaded {
+    animation: scale-up 0.5s 5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    animation: scale-up var(--pop) var(--duration) var(--ease-out-back) both;
+  }
+
+  @keyframes scale-up {
+    from {
+      transform: scale(0);
+      opacity: 0;
+      visibility: hidden;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @keyframes scale-back {
+    90%,
+    92% {
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes remove-offset {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    svg .loading {
+      animation: none;
+    }
+    svg .loading circle,
+    svg .loading path {
+      stroke-dasharray: initial;
+      stroke-dashoffset: initial;
+    }
+
+    svg .loading circle {
+      animation: none;
+    }
+    svg .loading path {
+      animation: none;
+    }
+    svg .loaded {
+      animation: scale-back;
+    }
+  }
+
 </style>
