@@ -48,12 +48,6 @@
   const items = links.map(({name}) => name);
 </script>
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-  :global(body) {
-    overflow-y: scroll;
-  }
   section {
     min-height: 100vh;
     display: flex;
@@ -106,13 +100,6 @@
   div > a:focus svg .text {
     transform: scale(1);
   }
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    :global(html) {
-      scroll-behavior: initial;
-    }
-  }
-
 </style>
 
 <svelte:head>
