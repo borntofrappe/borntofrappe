@@ -2,6 +2,7 @@
 title: CSS Animation Paused
 date: 2020-3-8
 tags: css, svg
+brief: A lovely article on a single CSS property
 ---
 
 This article is mostly about a single property, but I always appreciate it when I have the chance to leverage a CSS feature I rarely use.

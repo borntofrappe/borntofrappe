@@ -15,7 +15,7 @@
     color: var(--grey-0);
     text-align: center;
     padding: 6rem 1.5rem;
-    margin: 0 0 4rem;
+    margin: 0 0 2rem;
     position: relative;
   }
   header h1 {
