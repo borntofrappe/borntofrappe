@@ -37,7 +37,8 @@
   --grey-7: hsl(0, 0%, 25%);
   --grey-8: hsl(0, 0%, 15%);
 
-  --link-transition-duration: 0.25s;
+  --transition-duration: 0.25s;
+  --heart-animation-duration: 2s;
   --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
@@ -50,4 +51,16 @@ body {
   color: var(--grey-8);
   background: var(--grey-0);
   font-family: "Source Sans Pro", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 0.8rem;
+}
+body::-webkit-scrollbar-track {
+  background: currentColor;
+}
+body::-webkit-scrollbar-thumb {
+  border: 0.2rem solid currentColor;
+  border-radius: 0.5rem;
+  background: var(--accent-4);
 }

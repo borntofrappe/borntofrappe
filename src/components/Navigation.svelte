@@ -4,6 +4,12 @@
 </script>
 
 <style>
+  nav {
+    max-width: 40em;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
   a {
     font-family: "Catamaran", sans-serif;
     font-size: 1rem;
