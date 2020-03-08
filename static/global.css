@@ -52,6 +52,11 @@ body {
   background: var(--grey-0);
   font-family: "Source Sans Pro", sans-serif;
 }
+#sapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 body::-webkit-scrollbar {
   width: 0.8rem;

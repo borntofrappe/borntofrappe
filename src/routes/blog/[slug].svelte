@@ -32,7 +32,7 @@
     width: 90vw;
     max-width: 32em;
     line-height: 2;
-    margin: 2rem auto;
+    margin: 0 auto 7rem;
   }
   main :global(p + p) {
     margin-top: 1rem;
