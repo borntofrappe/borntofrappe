@@ -1,36 +1,53 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primary-0: hsl(205, 100%, 90%);
+  --primary-1: hsl(205, 90%, 80%);
+  --primary-2: hsl(210, 80%, 70%);
+  --primary-3: hsl(220, 75%, 60%);
+  --primary-4: hsl(222, 60%, 50%);
+  --primary-5: hsl(225, 55%, 45%);
+  --primary-6: hsl(225, 50%, 30%);
+  --primary-7: hsl(225, 40%, 20%);
+  --primary-8: hsl(230, 30%, 10%);
+
+  --accent-0: hsl(325, 100%, 90%);
+  --accent-1: hsl(332, 95%, 80%);
+  --accent-2: hsl(335, 95%, 70%);
+  --accent-3: hsl(337, 92%, 65%);
+  --accent-4: hsl(340, 90%, 55%);
+  --accent-5: hsl(342, 80%, 50%);
+  --accent-6: hsl(340, 75%, 45%);
+  --accent-7: hsl(340, 70%, 30%);
+  --accent-8: hsl(340, 65%, 20%);
+
+  --grey-0: hsl(0, 0%, 97%);
+  --grey-1: hsl(0, 0%, 85%);
+  --grey-2: hsl(0, 0%, 75%);
+  --grey-3: hsl(0, 0%, 65%);
+  --grey-4: hsl(0, 0%, 55%);
+  --grey-5: hsl(0, 0%, 45%);
+  --grey-6: hsl(0, 0%, 35%);
+  --grey-7: hsl(0, 0%, 25%);
+  --grey-8: hsl(0, 0%, 15%);
+
+  --link-transition-duration: 0.25s;
+  --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+::selection {
+  background: var(--accent-4);
+  color: var(--grey-0);
+}
+
 body {
-	margin: 0;
-	font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	color: #333;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 0.5em 0;
-	font-weight: 400;
-	line-height: 1.2;
-}
-
-h1 {
-	font-size: 2em;
-}
-
-a {
-	color: inherit;
-}
-
-code {
-	font-family: menlo, inconsolata, monospace;
-	font-size: calc(1em - 2px);
-	color: #555;
-	background-color: #f0f0f0;
-	padding: 0.2em 0.4em;
-	border-radius: 2px;
-}
-
-@media (min-width: 400px) {
-	body {
-		font-size: 16px;
-	}
+  color: var(--grey-8);
+  background: var(--grey-0);
+  font-family: "Source Sans Pro", sans-serif;
 }
