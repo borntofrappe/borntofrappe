@@ -1,10 +1,7 @@
 ---
 title: CSS Animation Paused
-tags: blog
-permalink: blog/css-animation/
+date: 2020-04-20
+brief: A specific use case for a specific CSS property
 ---
 
-The title of this page is **{{title}}**
-
-{% for item in list %} - {{item | crazycase }}
-{% endfor %}
+This article is mostly about a single property, but I always appreciate it when I have the chance to leverage a CSS feature I rarely use.

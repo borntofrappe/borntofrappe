@@ -1,4 +1,3 @@
-
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("crazycase", function (text) {
     return text

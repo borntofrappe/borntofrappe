@@ -1,3 +1,4 @@
 {
-  "layout": "layout.liquid"
+  "layout": "blog-post.njk",
+  "tags": "blog"
 }
