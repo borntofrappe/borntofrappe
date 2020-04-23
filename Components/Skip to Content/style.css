@@ -1,0 +1,53 @@
+/* liberal CSS to push the content below the viewport */
+#content {
+  max-width: 42em;
+  width: 90vw;
+  margin: 150vh auto 100vh;
+}
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+#skip-to-content {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  font-size: 2rem;
+  position: absolute;
+  text-align: center;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 0.5rem 1rem;
+  border: 0.2rem dashed currentColor;
+  background: hsl(330, 100%, 92%);
+  background: var(--accent-10);
+  z-index: 5;
+}
+
+/* Breadcrumbs component */
+nav {
+  max-width: 42em;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+nav a {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+nav a svg {
+  margin: 0 0.2rem 0 0.4rem;
+  width: 1.5em;
+  height: auto;
+  display: block;
+}
