@@ -3,18 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>borntofrappe / blog / css-animation-paused</title>
+    <title>skip-to-content</title>
     <link rel="stylesheet" href="../global.css" />
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro:500,600,700|Fira+Code|Hind+Madurai:400,400i,700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <a href="#content" class="sr-only" id="skip-to-content">Skip to Content</a>
+    <a href="#content" class="screen-reader-only" id="skip-to-content">
+      Skip to Content
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="40" height="40">
+        <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />
+          <path d="M -45 -20 h 28" />
+          <path d="M -45 0 h 28" />
+          <path d="M -45 20 h 28" />
+        </g>
+      </svg>
+    </a>
     <nav aria-label="Breadcrumb navigation">
       <a href="/">
         borntofrappe
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="20" height="20">
-          <g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" fill="none">
+          <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
             <g transform="rotate(45)">
               <path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" />
               <g stroke-width="7">
@@ -30,7 +40,7 @@
       <a href="/blog">
         / blog
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="20" height="20">
-          <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <g stroke-width="8">
               <path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" />
               <path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" />
@@ -51,7 +61,10 @@
 
     <main id="content">
       <h1>Filler Content</h1>
-      <p>I couldn't think of anything, so I figured I could write about nothing.</p>
+      <p>The <code>main</code> element has a ridiculous value for the <code>margin</code> property so to push the content below the viewport</p>
+      <p>
+        <strong><code>margin: 150vh auto 100vh;</code></strong>
+      </p>
     </main>
   </body>
 </html>

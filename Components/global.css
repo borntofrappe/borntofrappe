@@ -102,7 +102,7 @@ a {
   text-decoration: none;
   color: inherit;
   font-family: inherit;
-  border-bottom: 0.2rem dashed transparent;
+  border: 0.15rem dashed transparent;
 
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--transition-timing-function);
@@ -110,7 +110,7 @@ a {
 
 a:focus {
   outline: none;
-  border-bottom-color: currentColor;
+  border-color: currentColor;
   background: hsl(330, 100%, 92%);
   background: var(--accent-10);
 }
@@ -127,4 +127,14 @@ h2 {
 
 code {
   font-family: "Fira Code", monospace;
+}
+
+.screen-reader-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
 }

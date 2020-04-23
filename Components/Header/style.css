@@ -1,0 +1,98 @@
+/* liberal CSS to push the header elements apart */
+header {
+  margin: 10vh 0 20vh;
+}
+header {
+  background: hsl(220, 100%, 5%);
+  background: var(--body-color);
+  color: hsl(215, 10%, 97%);
+  color: var(--body-background);
+  background-image: url("data:image/svg+xml,%3Csvg opacity='0.3' xmlns='http://www.w3.org/2000/svg' viewBox='-5 -7.5 10 10' width='20' height='20'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Ccircle r='1' /%3E%3Ccircle r='1' cx='5' cy='-5' /%3E%3Ccircle r='1' cx='5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='-5' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: -5px 0;
+  text-align: center;
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+}
+
+header:after {
+  background: hsl(220, 100%, 5%);
+  background: var(--body-color);
+  background-image: url("data:image/svg+xml,%3Csvg opacity='0.3' xmlns='http://www.w3.org/2000/svg' viewBox='-5 -2 10 10' width='20' height='20'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Ccircle r='1' /%3E%3Ccircle r='1' cx='5' cy='-5' /%3E%3Ccircle r='1' cx='5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='-5' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  /* 2.5 to avoid cropping, 1.5 to match the 1px offset */
+  background-position: -5px -1.5px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg stroke='none' fill='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: 50% 0%;
+  mask-position: 50% 0%;
+  position: absolute;
+  left: 0%;
+  top: 100%;
+  width: 100%;
+  height: 20px;
+  transform: translateY(-1px) scaleY(-1);
+}
+
+header h1 {
+  text-transform: uppercase;
+  font-size: 2.25rem;
+  line-height: 1.25;
+  max-width: 15em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+header section {
+  z-index: 5;
+  margin-top: 10px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+header section p {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  color: hsl(220, 100%, 5%);
+  color: var(--body-color);
+  background: hsl(215, 10%, 97%);
+  background: var(--body-background);
+  box-shadow: 0 0 0 0.4rem currentColor;
+  margin: 8px 26.5px;
+  border-radius: 50%;
+  padding: 10px;
+  transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--transition-timing-function);
+  display: inline-block;
+}
+
+header section p svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+header section p:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--accent-color);
+}
+
+header section::-webkit-scrollbar {
+  height: 0.2rem;
+  transform: rotate(0.5turn);
+}
+header section::-webkit-scrollbar-track {
+  background: currentColor;
+}
+header section::-webkit-scrollbar-thumb {
+  background: hsl(340, 90%, 55%);
+  background: var(--accent-color);
+}

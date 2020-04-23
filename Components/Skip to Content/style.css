@@ -4,30 +4,27 @@
   width: 90vw;
   margin: 150vh auto 100vh;
 }
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
+
 #skip-to-content {
-  font-family: "Maven Pro", sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
   font-size: 2rem;
+  display: flex;
+  align-items: center;
   position: absolute;
   text-align: center;
   top: 0.5rem;
   left: 50%;
   transform: translate(-50%, 0%);
   padding: 0.5rem 1rem;
-  border: 0.2rem dashed currentColor;
-  background: hsl(330, 100%, 92%);
-  background: var(--accent-10);
   z-index: 5;
+}
+#skip-to-content svg {
+  width: 1em;
+  height: auto;
+  display: block;
+  margin-left: 0.5rem;
 }
 
 /* Breadcrumbs component */
