@@ -109,3 +109,7 @@ The last header includes more icons than practically useful, but this is to show
 - permalink icon
 
 - match the id of the heading with the href of the nested anchor link
+
+## Blockquote
+
+- center with flex
