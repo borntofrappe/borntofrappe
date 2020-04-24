@@ -1,12 +1,14 @@
 # Components
 
-And a few instructions on how to use them.
+> And a few instructions on how to use them.
+
+For every page.
 
 ## Breadcrumbs
 
 - at the top of every page
 
-- matching the title of the page (sans icons)
+- match the title of the page (sans icons)
 
 - adding an icon next to the anchor link when an icon is available
 
@@ -64,9 +66,21 @@ Blog post(s): borntofrappe / blog / dash-separated-title
 
 - referencing the element with an `id` of `#content`
 
+## Footer
+
+- background image repeating an SVG element
+
+- mask creating a wave-like pattern
+
+- vertically the mirrored version of header
+
+---
+
+For the blog specifically.
+
 ## Header
 
-- introducing blog post
+- introduce blog post
 
 - heading
 
@@ -88,10 +102,10 @@ The icons are added in a list item, and are tentatively separated using `display
 
 The last header includes more icons than practically useful, but this is to show how the list overflows horizontally.
 
-## Footer
+## Heading
 
-- background image repeating an SVG element
+- permalink class
 
-- mask creating a wave-like pattern
+- permalink icon
 
-- vertically the mirrored version of header
+- match the id of the heading with the href of the nested anchor link
