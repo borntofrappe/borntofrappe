@@ -74,6 +74,8 @@ Blog post(s): borntofrappe / blog / dash-separated-title
 
 - background-image repeating an SVG element
 
+- mask creating a wave-like pattern
+
 ### visually-hidden
 
 The project uses the same class created for **Skip to Content**, to add a heading and labels for the different tags. These are ultimately shown with SVG syntax.
@@ -85,3 +87,11 @@ The icons are added in a list item, and are tentatively separated using `display
 ### overflow
 
 The last header includes more icons than practically useful, but this is to show how the list overflows horizontally.
+
+## Footer
+
+- background image repeating an SVG element
+
+- mask creating a wave-like pattern
+
+- vertically the mirrored version of header

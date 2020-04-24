@@ -99,7 +99,7 @@ html {
 body {
   text-rendering: optimizeSpeed;
   font-family: "Hind Madurai", sans-serif;
-  color: hsl(220, 100%, 5%);
+  color: hsl(215, 22%, 5%);
   color: var(--body-color);
   background: hsl(215, 10%, 97%);
   background: var(--body-background);
