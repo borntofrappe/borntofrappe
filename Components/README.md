@@ -10,8 +10,6 @@ And a few instructions on how to use them.
 
 - adding an icon next to the anchor link when an icon is available
 
-- default size of `20px` (presentational attributes for the `width` and `height`)
-
 ### For instance
 
 Landing page: borntofrappe

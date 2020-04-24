@@ -1,9 +1,27 @@
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
 }
 
 html {
@@ -61,7 +79,7 @@ html {
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  --body-color: var(--primary-0);
+  --body-color: var(--grey-0);
   --body-background: var(--grey-10);
   --accent-color: var(--accent-6);
   --accent-background: var(--accent-9);
@@ -78,6 +96,7 @@ html {
 }
 
 body {
+  text-rendering: optimizeSpeed;
   font-family: "Hind Madurai", sans-serif;
   color: hsl(220, 100%, 5%);
   color: var(--body-color);
@@ -99,7 +118,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 a {
-  text-decoration: none;
+  text-decoration-skip-ink: auto;
   color: inherit;
   font-family: inherit;
   border: 0.15rem dashed transparent;
@@ -120,16 +139,29 @@ a:hover {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-family: "Maven Pro", sans-serif;
+}
+h1,
+h2 {
   font-weight: 700;
+}
+h3,
+h4 {
+  font-weight: 600;
 }
 
 code {
   font-family: "Fira Code", monospace;
 }
 
-.screen-reader-only:not(:focus):not(:active) {
+svg {
+  display: block;
+}
+
+.visually-hidden:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
