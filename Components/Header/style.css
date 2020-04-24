@@ -1,7 +1,8 @@
 /* liberal CSS to push the header elements apart */
-header {
+header + header {
   margin: 10vh 0 20vh;
 }
+
 header {
   background: hsl(220, 100%, 5%);
   background: var(--body-color);
@@ -46,52 +47,70 @@ header h1 {
   margin: 0 auto;
 }
 
-header section {
+header ul {
+  /* necessary to overlap header::after */
   z-index: 5;
   margin-top: 10px;
   position: absolute;
-  left: 50%;
   top: 100%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  max-width: 100%;
+  overflow-x: auto;
   display: flex;
   align-items: center;
-  overflow-x: auto;
 }
 
-header section p {
+header ul li {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   color: hsl(220, 100%, 5%);
   color: var(--body-color);
   background: hsl(215, 10%, 97%);
   background: var(--body-background);
-  box-shadow: 0 0 0 0.4rem currentColor;
-  margin: 8px 26px;
+  border: 0.3rem solid currentColor;
+  margin: 0px 24px;
   border-radius: 50%;
   padding: 10px;
   transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--transition-timing-function);
-  display: inline-block;
 }
 
-header section p svg {
-  width: 100%;
-  height: auto;
+@supports (display: grid) {
+  header ul {
+    display: grid;
+    grid-auto-columns: 100px;
+    justify-items: center;
+    align-items: initial;
+    grid-auto-flow: column;
+  }
+  header ul li {
+    margin: 0px;
+    flex-shrink: initial;
+  }
 }
-header section p:hover {
+
+header ul li svg {
+  height: 100%;
+  width: auto;
+}
+
+header ul li:hover {
   color: hsl(340, 90%, 55%);
   color: var(--accent-color);
 }
 
-header section::-webkit-scrollbar {
+header ul::-webkit-scrollbar {
   height: 0.2rem;
   transform: rotate(0.5turn);
 }
-header section::-webkit-scrollbar-track {
+
+header ul::-webkit-scrollbar-track {
   background: currentColor;
 }
-header section::-webkit-scrollbar-thumb {
+
+header ul::-webkit-scrollbar-thumb {
   background: hsl(340, 90%, 55%);
   background: var(--accent-color);
 }

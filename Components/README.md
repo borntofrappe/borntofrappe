@@ -74,6 +74,14 @@ Blog post(s): borntofrappe / blog / dash-separated-title
 
 - background-image repeating an SVG element
 
-### screen-readers-only
+### visually-hidden
 
 The project uses the same class created for **Skip to Content**, to add a heading and labels for the different tags. These are ultimately shown with SVG syntax.
+
+### supports grid
+
+The icons are added in a list item, and are tentatively separated using `display: flex` and liberal horizontal margin. If grid is supported, the layout becomes much easier, as the icons are slotted in columns `100px` wide. `100px` as in the width of a wave in the pattern.
+
+### overflow
+
+The last header includes more icons than practically useful, but this is to show how the list overflows horizontally.
