@@ -137,3 +137,7 @@ pre
     span lang
   //- actual code
 ```
+
+## List
+
+- margin to compensate the pseudo elements
