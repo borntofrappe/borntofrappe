@@ -2,7 +2,7 @@ main {
   width: 90vw;
   max-width: 35em;
   line-height: 2;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 table {
@@ -70,6 +70,7 @@ table thead tr th {
 
 table tbody tr td {
   padding: 0.5rem 1rem;
+  font-size: 0.95rem;
 }
 
 table tbody tr:nth-last-of-type(even) td {

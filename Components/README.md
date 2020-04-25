@@ -119,3 +119,21 @@ Find if it's possible to center the element without setting `flex` on the parent
 - add enough margin to offset the height of the `::before` pseudo element (`margin-top`)
 
 - compensate height of the pseudo element when adding `padding` to the first table row
+
+## Code Snippet
+
+- use the `>` selector to target the parent `pre` element only
+
+- remove the margin on the pre element `.shiki`
+
+- add a `div` element describing the language of the snippet
+
+The structure is the output of a script using `shiki`. Try to replicate the HTML with whatever syntax highlighting is most appropriate for 11ty.
+
+```pug
+pre
+  div.language
+    svg.lang
+    span lang
+  //- actual code
+```
