@@ -112,4 +112,10 @@ The last header includes more icons than practically useful, but this is to show
 
 ## Blockquote
 
-- center with flex
+Find if it's possible to center the element without setting `flex` on the parent container
+
+## Table
+
+- add enough margin to offset the height of the `::before` pseudo element (`margin-top`)
+
+- compensate height of the pseudo element when adding `padding` to the first table row
