@@ -141,3 +141,9 @@ pre
 ## List
 
 - margin to compensate the pseudo elements
+
+## Blog Grid
+
+- add sparkles.svg for the first article
+
+- format date output to show the month's name, day's number and finally year four digit code
