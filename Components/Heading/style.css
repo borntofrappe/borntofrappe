@@ -41,7 +41,7 @@ h4 {
 .permalink a:hover {
   opacity: 1;
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
 }
 
 .permalink a svg {

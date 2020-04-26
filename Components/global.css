@@ -36,29 +36,29 @@ html {
 }
 
 :root {
-  --primary-0: hsl(220, 100%, 8%);
-  --primary-1: hsl(218, 100%, 15%);
-  --primary-2: hsl(215, 97%, 25%);
-  --primary-3: hsl(215, 96%, 32%);
-  --primary-4: hsl(213, 95%, 38%);
-  --primary-5: hsl(212, 92%, 45%);
-  --primary-6: hsl(210, 85%, 55%);
-  --primary-7: hsl(210, 90%, 62%);
-  --primary-8: hsl(208, 95%, 75%);
-  --primary-9: hsl(205, 100%, 85%);
-  --primary-10: hsl(205, 100%, 92%);
+  --primary-0: hsl(350, 100%, 8%);
+  --primary-1: hsl(347, 100%, 19%);
+  --primary-2: hsl(345, 95%, 27%);
+  --primary-3: hsl(345, 96%, 33%);
+  --primary-4: hsl(342, 92%, 39%);
+  --primary-5: hsl(340, 85%, 46%);
+  --primary-6: hsl(340, 90%, 55%);
+  --primary-7: hsl(339, 90%, 67%);
+  --primary-8: hsl(336, 93%, 77%);
+  --primary-9: hsl(335, 100%, 86%);
+  --primary-10: hsl(330, 100%, 92%);
 
-  --accent-0: hsl(350, 100%, 8%);
-  --accent-1: hsl(347, 100%, 19%);
-  --accent-2: hsl(345, 95%, 27%);
-  --accent-3: hsl(345, 96%, 33%);
-  --accent-4: hsl(342, 92%, 39%);
-  --accent-5: hsl(340, 85%, 46%);
-  --accent-6: hsl(340, 90%, 55%);
-  --accent-7: hsl(339, 90%, 67%);
-  --accent-8: hsl(336, 93%, 77%);
-  --accent-9: hsl(335, 100%, 86%);
-  --accent-10: hsl(330, 100%, 92%);
+  --secondary-0: hsl(220, 100%, 8%);
+  --secondary-1: hsl(218, 100%, 15%);
+  --secondary-2: hsl(215, 97%, 25%);
+  --secondary-3: hsl(215, 96%, 32%);
+  --secondary-4: hsl(213, 95%, 38%);
+  --secondary-5: hsl(212, 92%, 45%);
+  --secondary-6: hsl(210, 85%, 55%);
+  --secondary-7: hsl(210, 90%, 62%);
+  --secondary-8: hsl(208, 95%, 75%);
+  --secondary-9: hsl(205, 100%, 85%);
+  --secondary-10: hsl(205, 100%, 92%);
 
   --grey-0: hsl(215, 22%, 5%);
   --grey-1: hsl(210, 20%, 12%);
@@ -80,11 +80,6 @@ html {
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  --body-color: var(--grey-0);
-  --body-background: var(--grey-10);
-  --accent-color: var(--accent-6);
-  --accent-background: var(--accent-9);
-
   --transition-duration: 0.25s;
   --transition-timing-function: var(--ease-in-out-sine);
 }
@@ -93,16 +88,16 @@ html {
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
   background: hsl(340, 90%, 55%);
-  background: var(--accent-color);
+  background: var(--primary-6);
 }
 
 body {
   text-rendering: optimizeSpeed;
-  font-family: "Hind Madurai", sans-serif;
+  font-family: "Crimson Pro", serif;
   color: hsl(215, 22%, 5%);
-  color: var(--body-color);
+  color: var(--grey-0);
   background: hsl(215, 10%, 97%);
-  background: var(--body-background);
+  background: var(--grey-10);
 }
 
 body::-webkit-scrollbar {
@@ -115,7 +110,7 @@ body::-webkit-scrollbar-thumb {
   border: 0.2rem solid currentColor;
   border-radius: 0.5rem;
   background: hsl(340, 90%, 55%);
-  background: var(--accent-color);
+  background: var(--primary-6);
 }
 
 a {
@@ -132,11 +127,11 @@ a:focus {
   outline: none;
   border-color: currentColor;
   background: hsl(330, 100%, 92%);
-  background: var(--accent-10);
+  background: var(--primary-10);
 }
 a:hover {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
 }
 
 h1,
@@ -155,7 +150,7 @@ h4 {
 }
 
 code {
-  font-family: "Fira Code", monospace;
+  font-family: "Source Code Pro", monospace;
 }
 
 svg {

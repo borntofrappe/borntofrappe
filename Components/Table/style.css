@@ -48,7 +48,7 @@ table thead tr th {
 
 table thead tr th:hover {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-6);
+  color: var(--primary-6);
 }
 
 table thead tr {
@@ -70,7 +70,8 @@ table thead tr th {
 
 table tbody tr td {
   padding: 0.5rem 1rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-family: "Source Code Pro", monospace;
 }
 
 table tbody tr:nth-last-of-type(even) td {

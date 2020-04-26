@@ -5,9 +5,9 @@ header + header {
 
 header {
   background: hsl(215, 22%, 5%);
-  background: var(--body-color);
+  background: var(--grey-0);
   color: hsl(215, 10%, 97%);
-  color: var(--body-background);
+  color: var(--grey-10);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: -5px 0;
@@ -18,7 +18,7 @@ header {
 
 header::after {
   background: hsl(215, 22%, 5%);
-  background: var(--body-color);
+  background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   /* 2.5 to avoid cropping, 1.5 to match the 1px offset */
@@ -66,9 +66,9 @@ header ul li {
   width: 52px;
   height: 52px;
   color: hsl(215, 22%, 5%);
-  color: var(--body-color);
+  color: var(--grey-0);
   background: hsl(215, 10%, 97%);
-  background: var(--body-background);
+  background: var(--grey-10);
   border: 0.3rem solid currentColor;
   margin: 0px 24px;
   border-radius: 50%;
@@ -98,7 +98,7 @@ header ul li svg {
 
 header ul li:hover {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
 }
 
 header ul::-webkit-scrollbar {
@@ -112,5 +112,5 @@ header ul::-webkit-scrollbar-track {
 
 header ul::-webkit-scrollbar-thumb {
   background: hsl(340, 90%, 55%);
-  background: var(--accent-color);
+  background: var(--primary-6);
 }

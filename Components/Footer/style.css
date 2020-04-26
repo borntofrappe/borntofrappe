@@ -10,9 +10,9 @@ footer {
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);
   color: hsl(215, 10%, 97%);
-  color: var(--body-background);
+  color: var(--grey-10);
   background: hsl(215, 22%, 5%);
-  background: var(--body-color);
+  background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: -5px -5px;
@@ -24,7 +24,7 @@ footer {
 footer::before {
   content: "";
   background: hsl(215, 22%, 5%);
-  background: var(--body-color);
+  background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: -5px -6px;
@@ -50,12 +50,12 @@ footer a {
   font-size: 0.95rem;
   font-weight: 600;
   border-bottom: 0.1rem solid hsl(340, 90%, 55%);
-  border-bottom: 0.1rem solid var(--accent-color);
+  border-bottom: 0.1rem solid var(--primary-6);
 }
 
 footer a:focus {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
   background: none;
 }
 
@@ -71,9 +71,9 @@ footer span {
   margin-top: -8px;
 
   color: hsl(215, 22%, 5%);
-  color: var(--body-color);
+  color: var(--grey-0);
   background: hsl(215, 10%, 97%);
-  background: var(--body-background);
+  background: var(--grey-10);
 
   border: 0.4rem solid currentColor;
   border-radius: 50%;
@@ -105,7 +105,7 @@ footer svg g {
 footer a:hover + span,
 footer a:focus + span {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
 }
 footer a:hover + span svg g,
 footer a:focus + span svg g {
@@ -114,7 +114,7 @@ footer a:focus + span svg g {
 
 footer span:hover {
   color: hsl(340, 90%, 55%);
-  color: var(--accent-color);
+  color: var(--primary-6);
 }
 
 @media (prefers-reduced-motion: reduce) {

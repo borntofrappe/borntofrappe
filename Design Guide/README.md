@@ -61,3 +61,9 @@ When creating an icon:
 - specify a default size of `1em`
 
 - add `aria-hidden: true` and `aria-focusable: false`
+
+## Static
+
+<!-- for lack of a better word -->
+
+`.png`, `.svg` files used statically throughout the website.
