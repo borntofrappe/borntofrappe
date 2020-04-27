@@ -1,11 +1,13 @@
 /* liberal CSS to push the content below the viewport */
 #content {
   max-width: 42em;
+  font-size: 1.2rem;
   width: 90vw;
   margin: 150vh auto 100vh;
 }
 
 #skip-to-content {
+  font-family: "Maven Pro", sans-serif;
   font-weight: 700;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;

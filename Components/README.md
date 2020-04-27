@@ -147,3 +147,11 @@ pre
 - add sparkles.svg for the first article
 
 - format date output to show the month's name, day's number and finally year four digit code
+
+## Hero Section
+
+- add label and description to anchor links
+
+- resize width and height through presentational arguments
+
+- use list component, update CSS where needed

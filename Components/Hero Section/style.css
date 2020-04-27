@@ -1,0 +1,85 @@
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+main {
+  display: flex;
+  align-items: center;
+}
+svg {
+  margin-right: 1rem;
+  max-width: 32.5rem;
+  width: 90vw;
+  height: auto;
+  --transition-duration: 0.4s;
+}
+@media (max-width: 50rem) {
+  main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  svg {
+    margin-right: initial;
+  }
+}
+
+a {
+  transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55), color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform var(--transition-duration) var(--ease-in-out-back), color var(--transition-duration) var(--ease-in-out-sine);
+  transform: scale(0.85);
+}
+a .text {
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform var(--transition-duration) var(--ease-out-back);
+}
+a:hover,
+a:focus,
+a:hover .text,
+a:focus .text {
+  transform: scale(1);
+}
+a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+ul {
+  display: block;
+  margin-left: 2em;
+  font-size: 2rem;
+  font-family: "Maven Pro", sans-serif;
+  letter-spacing: -1px;
+  font-weight: 700;
+  list-style: none;
+  text-transform: capitalize;
+}
+li {
+  line-height: 1.5;
+}
+ul > * + * {
+  margin-top: 1.25rem;
+}
+
+/* from list component */
+ul li {
+  position: relative;
+}
+ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  font-size: 0.9em;
+  left: -0.35em;
+  width: 1.7em;
+  height: 1.7em;
+  transform: translate(-100%, 0%);
+  background: var(--primary-6);
+  mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
+  mask-size: 100%;
+  -webkit-mask-size: 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
