@@ -11,34 +11,31 @@ function readFiles(folder = '.') {
     const { name } = file;
     if (file.isDirectory()) {
       readFiles(`${folder}/${name}`);
-    } else {
+    } else if (path.extname(name) === extname) {
+      const key = path
+        .basename(name, extname)
+        .split('-')
+        .map((v, i) => (i === 0 ? v : `${v[0].toUpperCase()}${v.slice(1)}`))
+        .join('');
 
-      if (path.extname(name) === extname) {
-        const key = path
-          .basename(name, extname)
-          .split('-')
-          .map((v, i) => (i === 0 ? v : `${v[0].toUpperCase()}${v.slice(1)}`))
-          .join('');
+      const value = fs.readFileSync(`${folder}/${name}`, {
+        encoding: 'utf-8',
+      });
 
-        const value = fs.readFileSync(`${folder}/${name}`, {
-          encoding: 'utf-8',
-        });
+      if (!icons[key]) {
+        const syntax = value.replace(/[\r\n]/g, '').replace(/\>\s+\</g, '><');
+        const location = `${folder}/${name}`;
 
-        if (!icons[key]) {
-          const syntax = value.replace(/[\r\n]/g, '').replace(/\>\s+\</g, '><');
-          const location = `${folder}/${name}`;
-
-          icons[key] = {
-            syntax,
-            location,
-          };
-        } else {
-          console.log(
-            `Duplicate icon: \x1b[33m${
-              icons[key].location
-            }\x1b[0m and \x1b[33m${folder}/${name}\x1b[0m`
-          );
-        }
+        icons[key] = {
+          syntax,
+          location,
+        };
+      } else {
+        console.log(
+          `Duplicate icon: \x1b[33m${
+            icons[key].location
+          }\x1b[0m and \x1b[33m${folder}/${name}\x1b[0m`
+        );
       }
     }
   });
@@ -48,6 +45,7 @@ readFiles();
 const entries = Object.entries(icons);
 
 // icons.js
+console.log('Creating icons object...see icons.js');
 fs.writeFileSync(
   'icons.js',
   `const icons = {${entries
@@ -56,6 +54,7 @@ fs.writeFileSync(
   'utf-8'
 );
 
+console.log('Creating demo...see index.html0');
 // index.html
 const markup = `
 <!DOCTYPE html>
@@ -91,12 +90,16 @@ const markup = `
   </head>
   <body>
       <main>
-        ${entries.map(([name, {syntax}]) => `
+        ${entries
+          .map(
+            ([name, { syntax }]) => `
           <article>
             <h2>${name}</h2>
             ${syntax}
           </article>
-        `).join("")}
+        `
+          )
+          .join('')}
       </main>
   </body>
 </html>

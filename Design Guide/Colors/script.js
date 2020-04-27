@@ -51,11 +51,19 @@ const picks = [
 
 const { body } = document;
 
-body.innerHTML = picks.map(({name, colors}) => `
+body.innerHTML = picks
+  .map(
+    ({ name, colors }) => `
   <article>
     <h2>${name}</h2>
-    ${colors.map((color, index) => `
+    ${colors
+      .map(
+        (color, index) => `
       <div title="${name}-${index}" style="background: ${color}"></div>
-    `).join("")}
+    `
+      )
+      .join('')}
   </article>
-`).join();
+`
+  )
+  .join();
