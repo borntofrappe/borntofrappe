@@ -1,0 +1,7 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+  <g transform="scale(-1 1)">
+    <g fill="currentColor" stroke="none">
+      <path d="M -17 -30 h 12 a 2 2 0 0 0 2 -2 v -5 a 13 13 0 0 1 26 0 v 5 a 2 2 0 0 0 2 2 h 12 a 13 13 0 0 1 13 13 v 12 a 2 2 0 0 1 -2 2 h -5 a 13 13 0 0 0 0 26 h 5 a 2 2 0 0 1 2 2 v 12 a 13 13 0 0 1 -13 13 h -12 a 2 2 0 0 1 -2 -2 v -5 a 13 13 0 0 0 -26 0 v 5 a 2 2 0 0 1 -2 2  h -12 a 13 13 0 0 1 -13 -13 v -12 a 2 2 0 0 0 -2 -2 h -5 a 13 13 0 0 1 0 -26 h 5 a 2 2 0 0 0 2 -2 v -12 a 13 13 0 0 1 13 -13" />
+    </g>
+  </g>
+</svg>

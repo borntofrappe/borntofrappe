@@ -71,7 +71,7 @@ const getIcon = (icon, size = 42) =>
         `width="${size}" height="${size}"`
       )
     : icons.bug.replace(
-        /width="\d+"\s+height="\d+"/,
+        /width=".+"\s+height=".+"/,
         `width="${size}" height="${size}"`
       );
 
@@ -129,7 +129,7 @@ const particles = Array(rounds)
   });
 
 document.body.innerHTML = `
-  <main>
+  <section>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
       <defs>
@@ -240,5 +240,5 @@ document.body.innerHTML = `
       <li>long-distance runner</li>
     </ul>
 
-  </main>
+  </section>
   `;

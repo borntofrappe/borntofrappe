@@ -155,3 +155,9 @@ pre
 - resize width and height through presentational arguments
 
 - use list component, update CSS where needed
+
+## About Section
+
+- animate through intersection observer API
+
+- layout not finalized
