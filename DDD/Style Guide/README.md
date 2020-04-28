@@ -62,8 +62,10 @@ When creating an icon:
 
 - add `aria-hidden: true` and `aria-focusable: false`
 
-## Static
+## Patterns
 
-<!-- for lack of a better word -->
+`.svg` files and other assets repeated throughout the website.
 
-`.png`, `.svg` files used statically throughout the website.
+## Meta Tags
+
+Static assets and markup filling the `<head>` of the documents.

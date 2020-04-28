@@ -72,7 +72,7 @@ const markup = `
         text-align: center;
       }
       article {
-        display: inline-flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         margin: 1rem;
@@ -80,11 +80,21 @@ const markup = `
       article h2 {
         font-family: monospace;
         margin-bottom: 0.5rem;
+        font-weight: 400;
+        font-size: 1rem;
       }
       article svg {
         width: 3rem;
         height: auto;
         display: block:
+      }
+      @supports (display: grid) {
+        main {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, 5rem);
+          gap: 0.5rem;
+          justify-content: center;
+        }
       }
     </style>
   </head>

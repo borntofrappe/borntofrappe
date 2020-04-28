@@ -2,6 +2,24 @@
 
 A personal website
 
-## v1
+## 2020-05-04 deadline
 
-Three pages: home, blog, blog post. This last one responsible for the markup produced by the markdown files in the **blog** folder
+- deploy three pages:
+
+  1. landing page
+
+  1. blog
+
+  1. blog post
+
+- use 11ty
+
+- deploy on netlify
+
+## Design & Development & Deploy
+
+In the DDD folder I document the building blocks making up the website. I might change its name as soon as I find a better descriptor.
+
+### Style Guide
+
+Systems, patterns and assets used in the website.
