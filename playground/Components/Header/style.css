@@ -1,0 +1,114 @@
+/* liberal CSS to push the header elements apart */
+header + header {
+  margin: 10vh 0 20vh;
+}
+
+header {
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: -5px 0;
+  text-align: center;
+  padding: 6rem 1.5rem 5rem;
+  position: relative;
+}
+
+header::after {
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: -5px -1.5px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg stroke='none' fill='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: 50% 0%;
+  mask-position: 50% 0%;
+  position: absolute;
+  left: 0%;
+  top: 100%;
+  width: 100%;
+  height: 20px;
+  transform: translateY(-1px) scaleY(-1);
+}
+
+header h1 {
+  text-transform: uppercase;
+  font-size: 2.25rem;
+  line-height: 1.25;
+  max-width: 15em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+header ul {
+  z-index: 5;
+  margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+}
+
+header ul li {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+  border: 0.3rem solid currentColor;
+  margin: 0px 24px;
+  border-radius: 50%;
+  padding: 10px;
+  transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--transition-timing-function);
+}
+
+@supports (display: grid) {
+  header ul {
+    display: grid;
+    grid-auto-columns: 100px;
+    justify-items: center;
+    align-items: initial;
+    grid-auto-flow: column;
+  }
+  header ul li {
+    margin: 0px;
+    flex-shrink: initial;
+  }
+}
+
+header ul li svg {
+  height: 100%;
+  width: auto;
+}
+
+header ul li:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+header ul::-webkit-scrollbar {
+  height: 0.2rem;
+  transform: rotate(0.5turn);
+}
+
+header ul::-webkit-scrollbar-track {
+  background: currentColor;
+}
+
+header ul::-webkit-scrollbar-thumb {
+  background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
+}

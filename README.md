@@ -16,10 +16,6 @@ A personal website
 
 - deploy on netlify
 
-## Design & Development & Deploy
+## playground
 
-In the DDD folder I document the building blocks making up the website. I might change its name as soon as I find a better descriptor.
-
-### Style Guide
-
-Systems, patterns and assets used in the website.
+In this folder I document the building blocks making up the website. Consider it a step further from a branch; a place in which to tinker and experiment freely.

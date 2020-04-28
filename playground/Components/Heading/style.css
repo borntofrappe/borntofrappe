@@ -1,0 +1,49 @@
+main {
+  width: 90vw;
+  max-width: 35em;
+  margin: 1rem auto;
+}
+main > * + * {
+  margin-top: 1.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.8rem;
+}
+h4 {
+  font-size: 1.6rem;
+}
+
+.permalink {
+  display: flex;
+  align-items: center;
+}
+
+.permalink a {
+  opacity: 0.25;
+  margin-left: 0.5rem;
+  width: 1em;
+  height: 1em;
+  transition-property: opacity, color;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition-timing-function: var(--ease-in-out-sine);
+}
+
+.permalink a:focus {
+  opacity: 1;
+}
+
+.permalink a:hover {
+  opacity: 1;
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+.permalink a svg {
+  transform: rotate(-45deg);
+  width: 100%;
+  height: auto;
+}
