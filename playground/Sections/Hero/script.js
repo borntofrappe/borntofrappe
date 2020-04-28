@@ -44,33 +44,10 @@ const icons = {
       <path stroke-width="7" d="M -40.5 -30.5 q -5 20 14 26 -9 0 -18 -5 0 20 23 18 -10 4 -22 0 0 12 28 14 -10 6 -23.5 8" />
     </g>
   </svg>`,
-  bug: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
-  <g stroke="currentColor"  stroke-linejoin="round" stroke-linecap="round">
-    <g transform="scale(0.8)">
-      <g fill="none" stroke-width="16">
-        <g transform="translate(0 13.5)">
-          <path d="M 34 0 h -68"/>
-          <path transform="rotate(45)" d="M 40 0 h -80"/>
-          <path transform="rotate(-45)" d="M 40 0 h -80"/>
-        </g>
-      </g>
-      <g fill="currentColor" stroke-width="8">
-        <path  d="M -0 -46 a 17 17 0 0 1 17 17 h -34 a 17 17 0 0 1 17 -17" />
-        <path  d="M -0 -10 h 25 v 25 a 25 25 0 0 1 -50 0 v -25 z" />
-      </g>
-    </g>
-  </g>
-  </svg>`,
 };
 
 // necessary to update the default size
-const getIcon = (icon, size = 42) =>
-  icons[icon]
-    ? icons[icon].replace(
-        /width=".+"\s+height=".+"/,
-        `width="${size}" height="${size}"`
-      )
-    : icons.bug.replace(
+const getIcon = (icon, size = 42) => icons[icon].replace(
         /width=".+"\s+height=".+"/,
         `width="${size}" height="${size}"`
       );
@@ -128,7 +105,8 @@ const particles = Array(rounds)
     };
   });
 
-document.body.innerHTML = `
+const section = document.querySelector('section');
+section.innerHTML = `
   <section>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
@@ -232,7 +210,6 @@ document.body.innerHTML = `
         )
         .join('')}
     </svg>
-
 
     <ul>
       <li>aspiring developer</li>
