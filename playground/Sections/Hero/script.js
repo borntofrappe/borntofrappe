@@ -156,8 +156,3 @@ section.innerHTML = `
   <li>long-distance runner</li>
 </ul>
 `;
-
-
-window.addEventListener('click', () => {
-  document.body.classList.toggle('no-nav');
-})

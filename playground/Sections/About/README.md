@@ -8,24 +8,12 @@
 
 ### min-height
 
-The demo extends past the viewport to show how the intersection observer API works. Have the illustration outside of sight, and the animation does not run.
+The demo extends past the viewport to show how the intersection observer API works. The animation plays only as the section is scrolled into view.
 
-### .no-footer
+## em
 
-One alternative layout sees the SVG illustration hidden behind the footer, at least partially. The markup includes the footer, but this is ultimately hidden using a class on the body.
+The `<p>` and `<h2>` elements use the `em` unit to scale the content according to the `font-size` of the closes element upstream. This is the wrapping `<section>` element.
 
-```css
-body.no-footer footer {
-  display: none;
-}
-```
+### Fluid typography
 
-This class is toggled following a click event on the window object.
-
-```js
-window.addEventListener("click", () => {
-  document.body.classList.toggle("no-footer");
-});
-```
-
-This code is most assuredly not meant to be repeated in the final version.
+The project implements fluid typography for the wrapping section element, much similarly to the hero section.

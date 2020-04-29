@@ -69,22 +69,6 @@ section {
 }
 ```
 
-### Navigation
-
-The hero section is meant to follow the navigation component. To this end, I've included the `<nav>` element in the markup. I've also removed the element with CSS and using a `.no-nav` class. This one is then toggled in JavaScript, following a click event on the window object.
-
-```css
-body.no-nav nav {
-  display: none;
-}
-```
-
-```js
-window.addEventListener("click", () => {
-  document.body.classList.toggle("no-nav");
-});
-```
-
 ### rem & em
 
 The size of the SVG element caps at `100%` to consider the viewport width using the `max-width` property.
