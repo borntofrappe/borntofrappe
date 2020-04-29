@@ -81,84 +81,81 @@ const iconSize = 100;
 
 const section = document.querySelector('section');
 section.innerHTML = `
-  <section>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
-      <defs>
-        <path id="path" d="M 0 -32 a 32 32 0 0 1 0 64 32 32 0 0 1 0 -64" />
-        <path id="path-c" d="M 0 39 a 39 39 0 0 1 0 -78 39 39 0 0 1 0 78" />
-        <path id="path-cc" d="M 0 47 a 47 47 0 0 0 0 -94 47 47 0 0 0 0 94" />
+  <defs>
+    <path id="path" d="M 0 -32 a 32 32 0 0 1 0 64 32 32 0 0 1 0 -64" />
+    <path id="path-c" d="M 0 39 a 39 39 0 0 1 0 -78 39 39 0 0 1 0 78" />
+    <path id="path-cc" d="M 0 47 a 47 47 0 0 0 0 -94 47 47 0 0 0 0 94" />
 
-        <mask id="mask-text">
-          <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
-          <use href="#path" fill="hsl(0, 0%, 0%)" />
-        </mask>
-      </defs>
+    <mask id="mask-text">
+      <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
+      <use href="#path" fill="hsl(0, 0%, 0%)" />
+    </mask>
+  </defs>
 
-      <g class="borntofrappe">
-        <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-          <circle r="46" />
-          <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
-          <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
+  <g class="borntofrappe">
+    <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <circle r="46" />
+      <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
+      <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
+    </g>
+    <circle r="50" opacity="0" />
+  </g>
+
+  ${links
+    .map(
+      ({ name, desc }, index) => `
+    <g transform="rotate(${(360 / links.length) *
+      index}) translate(0 -${Math.floor(size / 3)}) rotate(${(360 /
+        links.length) *
+        index *
+        -1})">
+      <a href="#" aria-labelledby="title-${name}" aria-describedby="desc-${name}">
+        <title id="title-${name}">${name}</title>
+        <desc id="desc-${name}">${desc}</desc>
+        <g transform="translate(-${size / 6} -${size / 6})">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${iconSize /
+            2} -${iconSize / 2} ${iconSize} ${iconSize}" width="${size /
+        3}" height="${size / 3}">
+              <use href="#path" stroke="currentColor" stroke-width="6" fill="none" />
+              <!-- rotate the text around the center -->
+              <g transform="rotate(${(360 / links.length) *
+                index})" mask="url(#mask-text)">
+                <g class="text">
+                  <text fill="currentColor" font-weight="bold" letter-spacing="1" text-anchor="middle" font-size="12" font-family="monospace">
+                    <textPath href="${
+                      (360 / links.length) * index > 90 &&
+                      (360 / links.length) * index < 270
+                        ? '#path-cc'
+                        : '#path-c'
+                    }" startOffset="50%">
+                      ${name}
+                    </textPath>
+                  </text>
+                </g>
+              </g>
+
+              <g transform="translate(-${iconSize / 6} -${iconSize / 6})">
+                ${getIcon(name, iconSize / 3)}
+              </g>
+
+              <circle r="50" opacity="0" />
+          </svg>
         </g>
-        <circle r="50" opacity="0" />
-      </g>
+      </a>
+    </g>
+  `
+    )
+    .join('')}
+</svg>
 
-      ${links
-        .map(
-          ({ name, desc }, index) => `
-        <g transform="rotate(${(360 / links.length) *
-          index}) translate(0 -${Math.floor(size / 3)}) rotate(${(360 /
-            links.length) *
-            index *
-            -1})">
-          <a href="#" aria-labelledby="title-${name}" aria-describedby="desc-${name}">
-            <title id="title-${name}">${name}</title>
-            <desc id="desc-${name}">${desc}</desc>
-            <g transform="translate(-${size / 6} -${size / 6})">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${iconSize /
-                2} -${iconSize / 2} ${iconSize} ${iconSize}" width="${size /
-            3}" height="${size / 3}">
-                  <use href="#path" stroke="currentColor" stroke-width="6" fill="none" />
-                  <!-- rotate the text around the center -->
-                  <g transform="rotate(${(360 / links.length) *
-                    index})" mask="url(#mask-text)">
-                    <g class="text">
-                      <text fill="currentColor" font-weight="bold" letter-spacing="1" text-anchor="middle" font-size="12" font-family="monospace">
-                        <textPath href="${
-                          (360 / links.length) * index > 90 &&
-                          (360 / links.length) * index < 270
-                            ? '#path-cc'
-                            : '#path-c'
-                        }" startOffset="50%">
-                          ${name}
-                        </textPath>
-                      </text>
-                    </g>
-                  </g>
-
-                  <g transform="translate(-${iconSize / 6} -${iconSize / 6})">
-                    ${getIcon(name, iconSize / 3)}
-                  </g>
-
-                  <circle r="50" opacity="0" />
-              </svg>
-            </g>
-          </a>
-        </g>
-      `
-        )
-        .join('')}
-    </svg>
-
-    <ul>
-      <li>aspiring developer</li>
-      <li>fledging designer</li>
-      <li>long-distance runner</li>
-    </ul>
-
-  </section>
-  `;
+<ul>
+  <li>aspiring developer</li>
+  <li>fledging designer</li>
+  <li>long-distance runner</li>
+</ul>
+`;
 
 
 window.addEventListener('click', () => {
