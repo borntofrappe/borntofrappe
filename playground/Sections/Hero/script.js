@@ -79,32 +79,6 @@ const links = [
 const size = 450;
 const iconSize = 100;
 
-const { length } = links;
-
-const round = length + 1;
-const rounds = length + 1;
-const particles = Array(rounds)
-  .fill('')
-  .map((v, indexRounds) => {
-    const translate = (size / 2.5 / rounds) * (indexRounds + 1);
-    const scale = (indexRounds + 1) ** 0.2;
-
-    const numberRounds = round * (indexRounds + 1);
-    const rotation = Array(numberRounds)
-      .fill('')
-      .map((v, indexRound) =>
-        round % 2 === 0
-          ? 360 / round / 2 + (360 / numberRounds) * indexRound
-          : (360 / numberRounds) * indexRound
-      );
-
-    return {
-      translate,
-      scale,
-      rotation,
-    };
-  });
-
 const section = document.querySelector('section');
 section.innerHTML = `
   <section>
@@ -119,49 +93,15 @@ section.innerHTML = `
           <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
           <use href="#path" fill="hsl(0, 0%, 0%)" />
         </mask>
-
-        <mask id="mask-icons">
-          <rect x="-${size / 2}" y="-${size /
-  2}" width="${size}" height="${size}" fill="hsl(0, 0%, 100%)" />
-          <circle r="46" fill="hsl(0, 0%, 0%)" />
-
-          ${links
-            .map(
-              (link, index) => `
-            <g transform="rotate(${(360 / links.length) *
-              index}) translate(0 -${Math.floor(size / 3)}) rotate(${(360 /
-                links.length) *
-                index *
-                -1})">
-              <use href="#path" transform="scale(1.5)" fill="hsl(0, 0%, 0%)" />
-            </g>
-          `
-            )
-            .join('')}
-        </mask>
       </defs>
 
-      <g mask="url(#mask-icons)">
-        ${particles
-          .map(({ translate, scale, rotation }) =>
-            rotation
-              .map(
-                rotate => `
-        <g transform="rotate(${rotate}) translate(0 ${translate}) rotate(-${rotate})">
-        <circle r="1" transform="scale(${scale})" />
-          </g>
-          `
-              )
-              .join('')
-          )
-          .join('')}
-      </g>
-
-
-      <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-        <circle r="46" />
-        <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
-        <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
+      <g class="borntofrappe">
+        <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+          <circle r="46" />
+          <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
+          <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
+        </g>
+        <circle r="50" opacity="0" />
       </g>
 
       ${links
@@ -219,3 +159,8 @@ section.innerHTML = `
 
   </section>
   `;
+
+
+window.addEventListener('click', () => {
+  document.body.classList.toggle('no-nav');
+})
