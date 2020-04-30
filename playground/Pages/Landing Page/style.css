@@ -221,8 +221,23 @@ section p {
 }
 
 section mark {
+  background: hsl(330, 100%, 92%);
   background: var(--primary-10);
 }
+
+section p {
+  font-size: 1em;
+  text-align: flex-start;
+  line-height: 1.75;
+  color: hsl(210, 20%, 12%);
+  color: var(--grey-1);
+}
+
+section mark {
+  background: hsl(330, 100%, 92%);
+  background: var(--primary-10);
+}
+
 section svg {
   width: 90%;
   height: auto;

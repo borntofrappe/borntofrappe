@@ -48,8 +48,10 @@ section p {
 }
 
 section mark {
+  background: hsl(330, 100%, 92%);
   background: var(--primary-10);
 }
+
 section svg {
   width: 90%;
   height: auto;

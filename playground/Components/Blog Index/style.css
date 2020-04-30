@@ -2,7 +2,6 @@ main {
   max-width: 35em;
   width: 90vw;
   margin: 1rem auto;
-  font-size: 1.2rem;
 }
 main > * + * {
   margin-top: 1.25rem;
@@ -49,9 +48,7 @@ article h2 a svg {
 }
 
 article time {
-  font-family: "Maven Pro";
   font-size: 0.95rem;
-  font-weight: 500;
   letter-spacing: -0.5px;
   padding: 0.25rem 0.4rem;
   display: inline-block;

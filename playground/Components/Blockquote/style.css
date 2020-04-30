@@ -9,7 +9,6 @@ main > * + * {
 
 blockquote {
   line-height: 2;
-  font-size: 1.25rem;
   align-self: center;
   display: inline-block;
   border-radius: 0.4rem;

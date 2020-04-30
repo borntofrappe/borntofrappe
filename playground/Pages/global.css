@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 /* soft reset */
 *,
 *::before,
@@ -92,7 +94,7 @@ html {
 
 body {
   text-rendering: optimizeSpeed;
-  font-family: "Crimson Pro", serif;
+  font-family: "Ubuntu", sans-serif;
   color: hsl(215, 22%, 5%);
   color: var(--grey-0);
   background: hsl(215, 10%, 97%);
