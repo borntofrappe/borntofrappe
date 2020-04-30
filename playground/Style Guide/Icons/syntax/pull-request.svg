@@ -1,0 +1,11 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <circle r="15" cx="-24" cy="-31" />
+    <circle r="15" cx="-24" cy="31" />
+    <circle r="15" cx="24" cy="31" />
+    <path d="M -24 16 V -16"/>
+    <path d="M 24 16 V -16 q 0 -15 -20 -20"/>
+    <path transform="translate(4 -36) rotate(-20)" d="M 0 0 h 18"/>
+    <path transform="translate(4 -36) rotate(70)" d="M 0 0 h 18"/>
+  </g>
+</svg>

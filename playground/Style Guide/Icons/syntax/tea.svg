@@ -1,6 +1,6 @@
 <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
   <g transform="scale(0.9)">
-    <g fill="currentColor">
+    <g fill="currentColor" stroke="none">
       <path d="M-22.023-45.028a2 2 0 00-.284.027h.614a2 2 0 00-.33-.027zm5 0a2 2 0 00-.284.027h.642a2 2 0 00-.358-.027zM-42-45.001a8 8 0 00-7.998 8.003v46a20 20 0 0020 20.001H7.005a20 20 0 0020-20V-1.995h2c11.526 0 21-9.474 21-21 0-11.527-9.474-21-21-21H22.87a8 8 0 00-3.864-1h-34.001v16.173l9.417 9.412a2 2 0 01.586 1.414V.007a2 2 0 01-2 2h-25a2 2 0 01-2-2v-18.003a2 2 0 01.586-1.414l9.412-9.412v-16.174h-18.003zm69.002 13.003h2c5.04 0 9.002 3.957 9.002 8.998 0 5.04-3.962 8.998-9.003 8.998h-2V-32z"/>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="square">

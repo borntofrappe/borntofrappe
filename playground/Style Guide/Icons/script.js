@@ -54,7 +54,7 @@ fs.writeFileSync(
   'utf-8'
 );
 
-console.log('Creating demo...see index.html0');
+console.log('Creating demo...see index.html');
 // index.html
 const markup = `
 <!DOCTYPE html>
@@ -66,7 +66,7 @@ const markup = `
     <style>
       main {
         width: 90vw;
-        max-width: 30rem;
+        max-width: 40rem;
         margin: 1rem auto;
         color: hsl(0, 0%, 5%);
         text-align: center;
@@ -79,6 +79,7 @@ const markup = `
       }
       article h2 {
         font-family: monospace;
+        white-space: nowrap;
         margin-bottom: 0.5rem;
         font-weight: 400;
         font-size: 1rem;
@@ -91,7 +92,7 @@ const markup = `
       @supports (display: grid) {
         main {
           display: grid;
-          grid-template-columns: repeat(auto-fit, 5rem);
+          grid-template-columns: repeat(auto-fit, 5.5rem);
           gap: 0.5rem;
           justify-content: center;
         }
@@ -104,7 +105,7 @@ const markup = `
           .map(
             ([name, { syntax }]) => `
           <article>
-            <h2>${name}</h2>
+            <h2>${name.replace(/[A-Z]/, (d) => `-${d.toLowerCase()}`)}</h2>
             ${syntax}
           </article>
         `

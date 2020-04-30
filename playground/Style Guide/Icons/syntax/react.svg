@@ -4,5 +4,8 @@
     <ellipse transform="rotate(-30)" rx="18" ry="46" />
     <ellipse transform="rotate(90)" rx="18" ry="46" />
   </g>
-  <circle r="8" fill="currentColor" />
+  <g fill="currentColor" stroke="none">
+    <circle r="8" />
+  </g>
+
 </svg>

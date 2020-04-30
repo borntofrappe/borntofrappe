@@ -1,0 +1,9 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+  <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+    <path stroke-width="8" d="M 0 -26 l -46 16 46 16 46 -16 z" />
+    <g stroke-width="7">
+      <path d="M -26 -1 v 20 a 52 52 0 0 0 52 0 v -20" />
+      <path fill="currentColor" d="M 40 -4 v 25 l 5 5 a 10 10 0 0 1 -10 0 l 5 -5" />
+    </g>
+  </g>
+</svg>
