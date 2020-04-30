@@ -8,6 +8,8 @@
 
 - add heart icon in the center and on top of the pattern
 
+- change the default focus state to modify only the color
+
 ## Usage notes
 
 ### Patterns

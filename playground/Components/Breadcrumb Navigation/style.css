@@ -4,7 +4,9 @@ nav {
   margin: 0 auto;
   padding: 0.5rem 0;
 }
+
 nav a {
+  border: initial;
   text-decoration: none;
   font-family: "Maven Pro", sans-serif;
   font-weight: 700;
@@ -13,8 +15,15 @@ nav a {
   display: inline-flex;
   align-items: center;
 }
+
+nav a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  background: none;
+}
+
 nav a svg {
-  margin-left: 0.4rem;
+  margin: 0 0.2rem 0 0.4rem;
   width: 1.5em;
   height: auto;
 }

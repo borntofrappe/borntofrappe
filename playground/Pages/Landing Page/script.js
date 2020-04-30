@@ -228,7 +228,7 @@ section.innerHTML = `
 <section>
   <h2>Almost forgot</h2>
   <p>My name is <mark>Gabriele Corti</mark>.<br/>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. <br/>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
-  <svg style="color: ${colors[5]};" viewBox="-50 -50 100 100" width="200" height="200">
+  <svg style="color: ${colors[5]};" viewBox="-50 -50 100 50" width="200" height="100">
     <defs>
       <clipPath id="clip-planet">
         <circle r="30" />
@@ -284,13 +284,18 @@ section.innerHTML = `
 `;
 
 
+const illustration = section.querySelector('svg');
 if(window.IntersectionObserver) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        entry.target.className = entry.isIntersecting ? 'observed' : '';
+        if(entry.isIntersecting) {
+          entry.target.classList.add('observed');
+        } else {
+          entry.target.classList.remove('observed');
+        }
       })
     }
   );
-  observer.observe(section);
+  observer.observe(illustration);
 }

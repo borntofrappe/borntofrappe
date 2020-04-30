@@ -1,12 +1,12 @@
 # Breadcrumb Navigation
 
-- at the top of every page
-
 - match the title of the page
 
 - add `aria-label` to describe the navigation
 
 - (optional) add an icon next to the anchor links
+
+- change the default focus state to modify only the color
 
 ## Usage notes
 
