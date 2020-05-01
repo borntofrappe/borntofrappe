@@ -1,0 +1,5 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-lienjoin="round">
+    <path d="M 20 0 a 20 20 0 0 1 -40 0 20 20 0 0 1 40 0 v 5 a 12.5 12.5 0 0 0 25 0 v -5 a 45 45 0 0 0 -90 0 45 45 0 0 0 90 0" stroke-dasharray="404 46" />
+  </g>
+</svg>

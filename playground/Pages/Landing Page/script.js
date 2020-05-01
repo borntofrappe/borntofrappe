@@ -197,6 +197,9 @@ header.innerHTML = `
     .join('')}
 </svg>
 
+<h1 class="visually-hidden">
+  borntofrappe
+</h1>
 <ul>
   <li>aspiring developer</li>
   <li>fledging designer</li>
