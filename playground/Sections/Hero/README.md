@@ -1,4 +1,4 @@
-# Hero section
+# Hero
 
 - add `aria-*` attributes to describe the anchor link elements
 
