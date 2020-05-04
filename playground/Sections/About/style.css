@@ -1,10 +1,6 @@
-/* flex properties to push the elements below the viewport
-margin-top: auto on the section as well
-*/
+/* force vertical scroll */
 body {
-  min-height: 200vh;
-  display: flex;
-  flex-direction: column;
+  padding-top: 150vh;
 }
 
 section {
@@ -52,16 +48,16 @@ section mark {
   background: var(--primary-10);
 }
 
-section svg {
+section > svg {
   width: 90%;
   height: auto;
 }
 
-section svg .rotate {
+section > svg .rotate {
   animation: rotate 200s linear infinite;
   animation-play-state: paused;
 }
-section.observed svg .rotate {
+section > svg.observed .rotate {
   animation-play-state: running;
 }
 

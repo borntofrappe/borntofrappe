@@ -1,4 +1,4 @@
-const header = document.querySelector('header');
+const hero = document.querySelector('#hero');
 
 const icons = {
   blog: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
@@ -127,7 +127,7 @@ const links = [
 const size = 450;
 const iconSize = 100;
 
-header.innerHTML = `
+hero.innerHTML = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
   <defs>
@@ -209,7 +209,7 @@ header.innerHTML = `
 
 
 
-const section = document.querySelector('section');
+const about = document.querySelector('#about');
 
 const satellites = ['world', 'editor', 'running', 'tea', 'gaming'];
 
@@ -227,11 +227,10 @@ const colors = [
   'hsl(330, 100%, 92%)',
 ];
 
-section.innerHTML = `
-<section>
+about.innerHTML = `
   <h2>Almost forgot</h2>
   <p>My name is <mark>Gabriele Corti</mark>.<br/>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. <br/>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
-  <svg style="color: ${colors[5]};" viewBox="-50 -50 100 50" width="200" height="100">
+  <svg class="illustration style="color: ${colors[5]};" viewBox="-50 -50 100 50" width="200" height="100">
     <defs>
       <clipPath id="clip-planet">
         <circle r="30" />
@@ -283,22 +282,24 @@ section.innerHTML = `
       `).join("")}
     </g>
   </svg>
-</section>
 `;
 
 
-const illustration = section.querySelector('svg');
+const svgIntroduction = document.querySelector('#introduction svg');
+const svgAbout = document.querySelector('#about svg');
+
 if(window.IntersectionObserver) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if(entry.isIntersecting) {
-          entry.target.classList.add('observed');
+          entry.target.setAttribute('class', 'observed');
         } else {
-          entry.target.classList.remove('observed');
+          entry.target.removeAttribute('class');
         }
       })
     }
   );
-  observer.observe(illustration);
+  observer.observe(svgIntroduction);
+  observer.observe(svgAbout);
 }

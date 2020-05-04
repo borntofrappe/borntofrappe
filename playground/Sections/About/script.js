@@ -48,10 +48,11 @@ const icons = {
 };
 
 // necessary to update the default size
-const getIcon = (icon, size = 42) => icons[icon].replace(
-        /width=".+"\s+height=".+"/,
-        `width="${size}" height="${size}"`
-      );
+const getIcon = (icon, size = 42) =>
+  icons[icon].replace(
+    /width=".+"\s+height=".+"/,
+    `width="${size}" height="${size}"`
+  );
 
 const satellites = ['world', 'editor', 'running', 'tea', 'gaming'];
 
@@ -74,7 +75,9 @@ const section = document.querySelector('section');
 section.innerHTML = `
 <h2>Almost forgot</h2>
 <p>My name is <mark>Gabriele Corti</mark>.<br/>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. <br/>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
-<svg style="color: ${colors[5]};" viewBox="-50 -50 100 100" width="200" height="200">
+<svg style="color: ${
+  colors[5]
+};" viewBox="-50 -50 100 100" width="200" height="200">
   <defs>
     <clipPath id="clip-planet">
       <circle r="30" />
@@ -84,11 +87,15 @@ section.innerHTML = `
       <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
       <g fill="hsl(0, 0%, 0%)">
         <g class="rotate">
-          ${satellites.map((satellite, index, {length}) => `
-            <g transform="rotate(${360 / length * index}) translate(0 -42)">
+          ${satellites
+            .map(
+              (satellite, index, { length }) => `
+            <g transform="rotate(${(360 / length) * index}) translate(0 -42)">
               <circle r="7.5" />
             </g>
-          `).join("")}
+          `
+            )
+            .join('')}
         </g>
       </g>
     </mask>
@@ -96,12 +103,20 @@ section.innerHTML = `
 
   <g clip-path="url(#clip-planet)">
     <g transform="translate(0 -70)">
-      ${colors.map((color, index, {length}) => `
-      <ellipse fill="${color}" stroke="none" cx="0" cy="70" rx="${35 + (15 / length * index)}" ry="33" transform="scale(${1 - (0.65 / length * index)})" />
-      `).join("")}
+      ${colors
+        .map(
+          (color, index, { length }) => `
+      <ellipse fill="${color}" stroke="none" cx="0" cy="70" rx="${35 +
+            (15 / length) * index}" ry="33" transform="scale(${1 -
+            (0.65 / length) * index})" />
+      `
+        )
+        .join('')}
     </g>
   </g>
-  <circle r="30" fill="none" stroke="${colors[colors.length - 1]}" stroke-width="0.2" />
+  <circle r="30" fill="none" stroke="${
+    colors[colors.length - 1]
+  }" stroke-width="0.2" />
 
   <!-- orbit -->
   <g mask="url(#mask-satellites)">
@@ -110,8 +125,11 @@ section.innerHTML = `
 
   <!-- satellites -->
   <g class="rotate">
-    ${satellites.map((satellite, index, {length}) => `
-      <g transform="rotate(${360 / length * index}) translate(0 -42) rotate(${360 / length * index * -1})">
+    ${satellites
+      .map(
+        (satellite, index, { length }) => `
+      <g transform="rotate(${(360 / length) *
+        index}) translate(0 -42) rotate(${(360 / length) * index * -1})">
         <g transform="scale(-1 1)">
           <g class="rotate">
             <g transform="scale(-1 1)">
@@ -123,20 +141,23 @@ section.innerHTML = `
           </g>
         </g>
       </g>
-    `).join("")}
+    `
+      )
+      .join('')}
   </g>
 </svg>
 `;
 
-
-if(window.IntersectionObserver) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        entry.target.className = entry.isIntersecting ? 'observed' : '';
-      })
-    }
-  );
-  observer.observe(section);
+const illustration = section.querySelector('svg');
+if (window.IntersectionObserver) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.setAttribute('class', 'observed');
+      } else {
+        entry.target.removeAttribute('class');
+      }
+    });
+  });
+  observer.observe(illustration);
 }
-

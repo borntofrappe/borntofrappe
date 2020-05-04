@@ -47,10 +47,11 @@ const icons = {
 };
 
 // necessary to update the default size
-const getIcon = (icon, size = 42) => icons[icon].replace(
-        /width=".+"\s+height=".+"/,
-        `width="${size}" height="${size}"`
-      );
+const getIcon = (icon, size = 42) =>
+  icons[icon].replace(
+    /width=".+"\s+height=".+"/,
+    `width="${size}" height="${size}"`
+  );
 
 const links = [
   {
