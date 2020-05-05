@@ -4,11 +4,54 @@
 
 - animate illustration when visible
 
+- float when shape-outside is supported
+
 ## Notes
 
 ### Illustration
 
-For the illustration the SVG syntax created in the style guide, under the name of `telescope.icons`, is used as a starting point. Alongside the text I figured the stroke and the scale of the icon was excessive, distracting from the content instead of supporting it, and therefore I decided to modify the syntax a bit.
+For the illustration the SVG syntax created in the style guide is used as a starting point. In the context of the section element I figured the stroke and the scale of the icons was excessive, distracting from the content instead of supporting it, and therefore I decided to modify the syntax a bit.
+
+### Layout
+
+By default, apply a negative margin on the SVG element, so to avoid excessive whitespace between the illustration and the text.
+
+```css
+section > svg {
+  margin-bottom: -18%;
+}
+```
+
+`-18%` as in roughly `80/440`. `80` in the translation applied on the `.telescope` group element, `440` as in the width of the `viewBox`. It might sound convoluted, but the idea is to translate the telescope up by 80, and have the following content closer by roughly the same measure.
+
+```css
+section > svg .telescope {
+  transform: translateY(-80px);
+}
+```
+
+This by default.
+
+If `shape-outside` is supported, remove these quirky property value pairs, and instead rely on a `float` property:
+
+- float the illustration to the left
+
+- carve out the area between the telescope and the icons
+
+```css
+@supports (shape-outside: polygon(0% 0%)) {
+  section > svg {
+    float: left;
+    margin-bottom: initial;
+    shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
+  }
+  section > svg .telescope {
+    transform: initial;
+  }
+}
+```
+
+Remember to reset the values set earlier in the stylesheet (`margin` and `transform`).
 
 ### Animation
 

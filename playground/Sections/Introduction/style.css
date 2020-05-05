@@ -3,7 +3,7 @@ body {
   padding-top: 120vh;
 }
 section {
-  max-width: 40rem;
+  max-width: 42rem;
   margin: 1rem auto;
   margin-top: auto;
   width: 90vw;
@@ -42,7 +42,23 @@ section p {
 section > svg {
   height: auto;
   width: 100%;
+  margin-bottom: -18%;
 }
+section > svg .telescope {
+  transform: translateY(-80px);
+}
+
+@supports (shape-outside: polygon(0% 0%)) {
+  section > svg {
+    float: left;
+    margin-bottom: initial;
+    shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
+  }
+  section > svg .telescope {
+    transform: initial;
+  }
+}
+
 section > svg .rotate {
   transform: rotate(0deg);
   animation: rotate 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
@@ -68,13 +84,14 @@ section > svg.observed .color {
   animation-play-state: running;
 }
 @keyframes rotate {
-  45% {
-    transform: rotate(45deg);
-  }
+  10%,
   35%,
   55%,
-  100% {
-    transform: rotate(0deg);
+  90% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(50deg);
   }
 }
 @keyframes scale {
@@ -105,11 +122,11 @@ section a {
   --transition-duration: 0.5s;
   font-family: "Maven Pro", sans-serif;
   font-weight: 600;
-  font-size: 1.25em;
+  font-size: 1.2em;
   text-decoration: none;
 }
 
-@supports (mask-image: url()) or (-webkit-mask-image: url()) {
+@supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
   section a {
     display: inline-block;
     position: relative;
