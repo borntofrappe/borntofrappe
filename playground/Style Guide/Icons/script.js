@@ -32,7 +32,7 @@ function readFiles(folder = '.') {
         };
       } else {
         console.log(
-          `Duplicate icon: \x1b[33m${
+          `\tduplicate icon: \x1b[33m${
             icons[key].location
           }\x1b[0m and \x1b[33m${folder}/${name}\x1b[0m`
         );
@@ -40,12 +40,14 @@ function readFiles(folder = '.') {
     }
   });
 }
+
+console.log('Reading files...');
 readFiles();
 
 const entries = Object.entries(icons);
 
 // icons.js
-console.log('Creating icons object...see icons.js');
+console.log('\nCreating icons object...');
 fs.writeFileSync(
   'icons.js',
   `const icons = {${entries
@@ -53,8 +55,10 @@ fs.writeFileSync(
     .join('')}\n}`,
   'utf-8'
 );
+console.log('\tsee \x1b[32micons.js\x1b[0m');
 
-console.log('Creating demo...see index.html');
+
+console.log('\nCreating visual...');
 // index.html
 const markup = `
 <!DOCTYPE html>
@@ -87,7 +91,7 @@ const markup = `
       article svg {
         width: 3rem;
         height: auto;
-        display: block:
+        display: block;
       }
       @supports (display: grid) {
         main {
@@ -117,3 +121,4 @@ const markup = `
 `.trim();
 
 fs.writeFileSync('index.html', markup);
+console.log('\tsee \x1b[32mindex.html\x1b[0m');

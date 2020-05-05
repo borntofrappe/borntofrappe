@@ -14,15 +14,11 @@ main {
   margin: 1rem auto;
 }
 
-main > * + * {
-  margin-top: 1rem;
-}
-
 div {
   padding: 3.5rem 2rem;
   background: hsl(0, 0%, 80%);
   font-size: 1.2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 5rem;
 }
 
 div p {
@@ -43,7 +39,7 @@ div.waves {
 div.waves::after {
   content: "";
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 0;
   width: 100%;
   height: 20px;
@@ -52,7 +48,6 @@ div.waves::after {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
   -webkit-mask-position: 50% 0;
   mask-position: 50% 0;
-  transform: translateY(-1px) scaleY(-1);
 }
 
 div.dots.waves,
@@ -62,12 +57,8 @@ div.dots.waves::after {
   background-position: 5px 5px;
 }
 
-div.dots.waves.above {
-  margin-top: 40px;
-}
-
-div.dots.waves.above::after {
-  transform: translateY(1px);
-  top: initial;
-  bottom: 100%;
+div.dots.waves.below::after {
+  transform: translateY(-1px) scaleY(-1);
+  top: 100%;
+  bottom: initial;
 }

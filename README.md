@@ -2,20 +2,22 @@
 
 A personal website
 
-## 2020-05-04 deadline
+## Step 1: Deploy
 
-- deploy three pages:
+- start with three pages
 
   1. landing page
 
-  1. blog
+  2. blog
 
-  1. blog post
+  3. blog post
 
 - use 11ty
 
-- deploy on netlify
+- template with nunjucks
+
+- deploy on Netlify
 
 ## playground
 
-In this folder I document the building blocks making up the website. Consider it a step further from a branch; a place in which to tinker and experiment freely.
+A more distant abstraction than a branch. A place in which I freely develop the building blocks making up the website; HTML, CSS, and JavaScript where needed.

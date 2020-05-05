@@ -3,7 +3,10 @@
   padding: 0;
   margin: 0;
 }
-article {
+body {
+  font-family: monospace;
+}
+main {
   width: 90vw;
   max-width: 30rem;
   margin: 1rem auto;
@@ -11,7 +14,6 @@ article {
 h2 {
   text-transform: capitalize;
   text-align: center;
-  font-family: monospace;
   margin-bottom: 0.5rem;
 }
 div {

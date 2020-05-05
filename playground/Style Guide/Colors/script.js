@@ -1,4 +1,4 @@
-const picks = [
+const palette = [
   {
     name: 'primary',
     colors: [
@@ -49,9 +49,9 @@ const picks = [
   },
 ];
 
-const { body } = document;
+const main = document.querySelector('main');
 
-body.innerHTML = picks
+main.innerHTML = palette
   .map(
     ({ name, colors }) => `
   <article>
