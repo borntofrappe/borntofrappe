@@ -24,6 +24,8 @@ As you scale to `0.95` you start to see the line thinner, and at around `0.9` th
 
 Another annoying, edge-related issue, is that the shape provided by the mask is blurry. This is even worsened as the icon is scaled back. I have no solution to this mishap, and no plan to address the situation in the foreseeable future.
 
+**Update**: the line is still rendered as the window changes in width.
+
 ### em
 
 The size of the mask makes use of `em` values, so that the visual scales with the `font-size` set on the closest parent element – in this instance the anchor link. Half the size is also used in the padding/margin properties in order to:

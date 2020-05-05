@@ -8,6 +8,7 @@ section {
   margin-top: auto;
   width: 90vw;
 }
+
 section {
   font-size: 1.2rem;
   font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
@@ -43,19 +44,59 @@ section > svg {
   width: 100%;
 }
 section > svg .rotate {
-  transform: rotate(5deg);
+  transform: rotate(0deg);
+  animation: rotate 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   animation: rotate 20s var(--ease-in-out-sine) infinite;
   animation-play-state: paused;
 }
-section > svg.observed .rotate {
+section > svg .scale {
+  transform: scale(0.8);
+  animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
+  animation: scale 20s var(--ease-in-out-back) infinite;
+  animation-play-state: paused;
+}
+
+section > svg .color {
+  color: currentColor;
+  animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: color 20s var(--ease-in-out-sine) infinite;
+  animation-play-state: paused;
+}
+section > svg.observed .rotate,
+section > svg.observed .scale,
+section > svg.observed .color {
   animation-play-state: running;
 }
 @keyframes rotate {
-  20% {
-    transform: rotate(35deg);
+  45% {
+    transform: rotate(45deg);
   }
+  35%,
+  55%,
   100% {
-    transform: rotate(5deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes scale {
+  10%,
+  85% {
+    transform: scale(1);
+  }
+  5%,
+  95%,
+  100% {
+    transform: scale(0.8);
+  }
+}
+@keyframes color {
+  10%,
+  85% {
+    color: hsl(340, 85%, 46%);
+  }
+  5%,
+  95%,
+  100% {
+    color: inherit;
   }
 }
 
@@ -68,7 +109,7 @@ section a {
   text-decoration: none;
 }
 
-@supports (mask-size: 28px) or (-webkit-mask-size: 28px) {
+@supports (mask-image: url()) or (-webkit-mask-image: url()) {
   section a {
     display: inline-block;
     position: relative;

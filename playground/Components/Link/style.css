@@ -16,7 +16,7 @@ main a {
   font-size: 1.5rem;
 }
 
-@supports (mask-size: 28px) or (-webkit-mask-size: 28px) {
+@supports (mask-image: url()) or (-webkit-mask-image: url()) {
   main a {
     display: inline-block;
     position: relative;
