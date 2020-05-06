@@ -1,52 +1,52 @@
 # Breadcrumb Navigation
 
-- match the title of the page
+## Markup
 
-- add `aria-label` to describe the navigation
+The markup changes according to the title of the body:
 
-- (optional) add an icon next to the anchor links
+- borntofrappe by default
 
-- change the default focus state to modify only the color
+- `/` + `path` for every additional route
 
-## Usage notes
+Add an icon when one is available.
 
-The format changes according to the title. Consider the following for-instances.
+For instance:
 
-### Landing page
+- landing page
 
-```html
-<nav aria-label="Breadcrumb navigation">
-  <a href="/">
-    borntofrappe {{ icons.rocket }}
-  </a>
-</nav>
-```
+  ```html
+  <nav aria-label="Breadcrumb navigation">
+    <a href="/">
+      borntofrappe {{ icons.rocket }}
+    </a>
+  </nav>
+  ```
 
-### Blog
+- blog
 
-```html
-<nav aria-label="Breadcrumb navigation">
-  <a href="/">
-    borntofrappe {{ icons.rocket }}
-  </a>
-  <a href="/blog">
-    / blog {{ icons.blog }}
-  </a>
-</nav>
-```
+  ```html
+  <nav aria-label="Breadcrumb navigation">
+    <a href="/">
+      borntofrappe {{ icons.rocket }}
+    </a>
+    <a href="/blog">
+      / blog {{ icons.blog }}
+    </a>
+  </nav>
+  ```
 
-### Blog post
+- blog post
 
-```html
-<nav aria-label="Breadcrumb navigation">
-  <a href="/">
-    borntofrappe {{ icons.rocket }}
-  </a>
-  <a href="/blog">
-    / blog {{ icons.blog }}
-  </a>
-  <a href="/blog/dash-separated-title">
-    / blog / dash-separated-title
-  </a>
-</nav>
-```
+  ```html
+  <nav aria-label="Breadcrumb navigation">
+    <a href="/">
+      borntofrappe {{ icons.rocket }}
+    </a>
+    <a href="/blog">
+      / blog {{ icons.blog }}
+    </a>
+    <a href="/blog/dash-separated-title">
+      / blog / dash-separated-title
+    </a>
+  </nav>
+  ```

@@ -1,7 +1,11 @@
 # Skip to Content
 
-- add as first element in the body
+## href
 
-## Usage notes
+Link to the element with an `id` of `content`.
 
-Remember to specify a container element with an `id` attribute of `#content`, so that the anchor link connects to it.
+## visually-hidden
+
+Hide the element from sight, but not from assistive technologies.
+
+Refer to [this article](https://css-tricks.com/inclusively-hidden/) for the property value pairs.

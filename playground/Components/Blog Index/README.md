@@ -1,30 +1,53 @@
 # Blog Index
 
-- add sparkles.svg for the first article
+## Markdown
 
-- format date output to show the name of the month, followed by the number of the day, followed by the full year
+The script populates the `main` element with the frontmatter presumed from a series of articles.
 
-## Usage notes
+## Date
 
-### text-decoration
+Follow the convention described by the [living standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) and specifically [the part on a valid month string](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-month-string).
 
-Consider commenting out the following line:
+With this convention a value of `1` for the month corresponds to January: `2020-1-20` for the 20th of January.
+
+Use an array detailing the months to format the date in a more readable form: `2020-1-20` to `January 20, 2020`
+
+## Sparkles
+
+Add the icon behind `sparkles.svg` next to the first article.
+
+The first article is also highlighted with a more prominent size and accent color.
+
+## Grid
+
+By default, have the articles follow one another in a single column layout.
+
+If grid is supported, create a two-column layout, and have the first article spread to cover the entirety of its row.
 
 ```css
-article h2 a {
-  text-decoration: none;
+@supports (display: grid) {
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    grid-gap: 1.25rem 1.75rem;
+  }
 }
 ```
 
-### Markdown
+Two columns which become one as the viewport has no longer space to occupy two `15em` sized columns.
 
-This is mostly for the `.md` documents, but remember to add the dates in the format described by the [living standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) and specifically [the part on a valid month string](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-month-string).
+If subgrid is supported, line up the heading+time+paragraph elements across columns.
 
-```md
----
-date: 2020-1-20
-date: 2020-2-25
----
+```css
+@supports (grid-template-columns: subgrid) {
+  article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+  }
+}
 ```
 
-Following this convention, the month value starts at `1`.
+## v2
+
+Consider adding the icon of a calendar in place of the solid border alongside the `time` element.

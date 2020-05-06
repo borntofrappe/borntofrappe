@@ -48,12 +48,15 @@ footer a {
   font-weight: 600;
   border-bottom: 0.1rem solid hsl(340, 90%, 55%);
   border-bottom: 0.1rem solid var(--primary-6);
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color 0.25s var(--ease-in-out-sine);
 }
 
 footer a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
   background: none;
+  border-bottom-color: hsl(340, 90%, 55%);
 }
 
 footer span {

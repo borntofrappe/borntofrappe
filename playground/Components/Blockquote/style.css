@@ -1,7 +1,10 @@
 main {
   width: 90vw;
-  max-width: 35em;
-  margin: 2rem auto 4rem;
+  max-width: 40em;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 main > * + * {
   margin-top: 2rem;
@@ -9,11 +12,10 @@ main > * + * {
 
 blockquote {
   line-height: 2;
-  align-self: center;
   display: inline-block;
   border-radius: 0.4rem;
   font-style: italic;
-  padding: 0.5rem 2.5rem;
+  padding: 1rem 2.5rem;
   color: hsl(350, 100%, 8%);
   color: var(--primary-0);
   background: hsl(330, 100%, 92%);
@@ -33,10 +35,10 @@ blockquote::after {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   position: absolute;
-  width: 1.5em;
-  height: 1.5em;
   left: 0%;
   top: 0%;
+  width: 1.5em;
+  height: 1.5em;
   transform: translate(-50%, -50%);
 }
 

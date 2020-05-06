@@ -1,19 +1,19 @@
 # Blockquote
 
-- add the graphic behind `quote.svg` at the beginning/end of the quote
+## Pseudo Elements
 
-## Usage notes
+The pseudo elements use the SVG syntax described in `quote.svg`. This is included in the `url()` function of the `mask-image` property, so that the graphic is tinted with the background's own color.
 
-### Centering
-
-Consider using flex properties on the parent container to center the element:
+Flip the graphic for one of the pseudo element using a negative scale, **or** half a rotation.
 
 ```css
-main {
-  display: flex;
-  flex-direction: column;
-}
-blockquote {
-  align-self: center;
+/* equivalent */
+blockquote::after {
+  transform: translate(-50%, -50%) scale(-1);
+  transform: translate(-50%, -50%) rotation(0.5turn);
 }
 ```
+
+## Mask
+
+For each `mask` property add a `-webkit` prefixed version

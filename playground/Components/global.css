@@ -87,9 +87,7 @@ html {
 
 ::selection {
   color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
   background: hsl(340, 90%, 55%);
-  background: var(--primary-6);
 }
 
 body {

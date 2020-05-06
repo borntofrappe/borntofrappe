@@ -79,10 +79,10 @@ table tbody tr:nth-last-of-type(even) td {
   background: var(--grey-1);
 }
 
-[align="right"] {
+table [align="right"] {
   text-align: right;
 }
 
-[align="center"] {
+table [align="center"] {
   text-align: center;
 }

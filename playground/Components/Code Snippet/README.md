@@ -1,41 +1,19 @@
 # Code Snippet
 
-- use the `>` selector to target the parent `pre` element only
-
-- remove the margin on the pre element `.shiki`
-
-- add a `div` element describing the language
-
-## Usage Notes
-
-### Markup
+## Markup
 
 The structure described in `index.html` comes from a script using `shiki`. Try to replicate the HTML with whatever syntax highlighting is most appropriate for 11ty.
 
-```html
-<pre>
-  <div>
-    {{icons.lang}}
-    {{name.lang}}
-  </div>
-</pre>
-```
+## div
 
-For instance:
+Inside the code snippet, add a `div` element describing the icon and the language used for the script.
 
-```html
-<pre>
-  <div>
-    <svg><!-- ... --></svg>
-    index.html
-  </div>
-</pre>
-```
+For the text, consider one of two variants:
 
-### Width
+- language `js`
 
-Consider resizing the element to occupy a smaller width.
+- title.language: `script.js`
 
-### Scrollbar
+## scrollbar
 
-Repeat the same style specified for the vertical scrollbar of the document. Intuitively, style the `height` instead of the `width`.
+Style the horizontal scrollbar of the unordered list to match the vertical scrollbar of the document.

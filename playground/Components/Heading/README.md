@@ -1,29 +1,29 @@
 # Heading
 
-- match the `id` attribute of the heading to the `href` attribute of the nested anchor link
-
 - add a span to describe the anchor link element to assistive technologies
 
-## Usage notes
+## Markup
 
-### Anchor links
+```pug
+h2#link
+  a href="#link"
+    span.visually-hidden permalink
+    svg.permalink
 
-On top of the styles specified for anchor link elements, globally, style the opacity to reduce the weight of the permalink icon.
+```
 
-Beside the opacity, the change in color is included in the transition properties, as transitioning only the opacity would override the previous transition for the color.
+Have the `id` attribute of the heading match the `href` attribute of the nested anchor link.
+
+With the `span` element describe the purpose of the link.
+
+## Opacity
+
+Style the opacity to reduce the weight of the permalink icon.
+
+Transition the opacity _and_ color on hover.
 
 ```css
 .permalink {
   transition-property: opacity, color;
-}
-```
-
-It is superfluous, but the color is also repeated for the `:hover` pseudo selector. Superfluous, but allows to link the transition properties to the matching change.
-
-```css
-.permalink a:hover {
-  opacity: 1;
-  color: hsl(340, 90%, 55%);
-  color: var(--primary-6);
 }
 ```

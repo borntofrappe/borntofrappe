@@ -1,20 +1,26 @@
 # Table
 
-- add enough margin to offset the height of the `::before` pseudo element (`margin-top`)
+The markup of the table is obtained by processing a markdown table with `marked.js`.
 
-- compensate height of the pseudo element when adding `padding` to the first table row
-
-## Usage notes
+## align
 
 The `align` attribute is included by `marked.js`, but it's also and apparently deprecated.
 
 Change the alignment of the text using CSS as well.
 
 ```css
-[align="right"] {
+table [align="right"] {
   text-align: right;
 }
-[align="center"] {
+table [align="center"] {
   text-align: center;
 }
 ```
+
+## Pseudo
+
+Use a pseudo element to make rounded borders at the top of the table.
+
+## Style
+
+Replicate the design created for the code snippet.
