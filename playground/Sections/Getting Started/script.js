@@ -1,4 +1,4 @@
-const illustration = document.querySelector('section > svg');
+const illustration = document.querySelector('article > svg');
 if (window.IntersectionObserver) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

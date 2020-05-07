@@ -2,85 +2,85 @@
 body {
   padding-top: 120vh;
 }
-section {
+article {
   max-width: 42rem;
   margin: 1rem auto;
   margin-top: auto;
   width: 90vw;
 }
 
-section {
+article {
   font-size: 1.2rem;
   font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
 }
 
 @media (min-width: 75rem) {
-  section {
+  article {
     font-size: 1.2rem;
   }
 }
 
 @media (max-width: 40rem) {
-  section {
+  article {
     font-size: 1rem;
   }
 }
 
-section > * + * {
+article > * + * {
   margin-top: 1rem;
 }
-section h2 {
+article h2 {
   font-size: 2em;
 }
-section p {
+article p {
   font-size: 1em;
   text-align: flex-start;
   line-height: 1.75;
   font-family: "Source Code Pro", monospace;
 }
 
-section > svg {
+article > svg {
   height: auto;
   width: 100%;
   margin-bottom: -18%;
 }
-section > svg .telescope {
+article > svg .telescope {
   transform: translateY(-80px);
 }
 
 @supports (shape-outside: polygon(0% 0%)) {
-  section > svg {
+  article > svg {
     float: left;
     margin-bottom: initial;
     shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
   }
-  section > svg .telescope {
+  article > svg .telescope {
     transform: initial;
   }
 }
 
-section > svg .rotate {
+article > svg .rotate {
   transform: rotate(0deg);
   animation: rotate 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   animation: rotate 20s var(--ease-in-out-sine) infinite;
   animation-play-state: paused;
 }
-section > svg .scale {
+article > svg .scale {
   transform: scale(0.8);
   animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
   animation: scale 20s var(--ease-in-out-back) infinite;
   animation-play-state: paused;
 }
 
-section > svg .color {
+article > svg .color {
   color: currentColor;
   animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   animation: color 20s var(--ease-in-out-sine) infinite;
   animation-play-state: paused;
 }
-section > svg.observed .rotate,
-section > svg.observed .scale,
-section > svg.observed .color {
+article > svg.observed .rotate,
+article > svg.observed .scale,
+article > svg.observed .color {
   animation-play-state: running;
 }
 @keyframes rotate {
@@ -118,7 +118,7 @@ section > svg.observed .color {
 }
 
 /* link component */
-section a {
+article a {
   --transition-duration: 0.5s;
   font-family: "Maven Pro", sans-serif;
   font-weight: 600;
@@ -127,7 +127,7 @@ section a {
 }
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
-  section a {
+  article a {
     display: inline-block;
     position: relative;
     --transition-duration: 0.5s;
@@ -135,11 +135,11 @@ section a {
     margin-bottom: 0.75em;
     border: none;
   }
-  section a:focus {
+  article a:focus {
     background: none;
   }
-  section a::before,
-  section a::after {
+  article a::before,
+  article a::after {
     pointer-events: none;
     z-index: -5;
     content: "";
@@ -150,7 +150,7 @@ section a {
     transition: transform var(--transition-duration) var(--ease-in-out-sine);
   }
 
-  section a::before {
+  article a::before {
     left: 0%;
     width: 100%;
     height: 2px;
@@ -158,12 +158,12 @@ section a {
     transform: translate(0%, -50%) scaleX(0);
   }
 
-  section a:hover::before,
-  section a:focus::before {
+  article a:hover::before,
+  article a:focus::before {
     transform: translate(0%, -50%) scaleX(1);
   }
 
-  section a::after {
+  article a::after {
     left: 50%;
     width: 100%;
     height: 1.5em;
@@ -177,8 +177,8 @@ section a {
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
   }
-  section a:hover::after,
-  section a:focus::after {
+  article a:hover::after,
+  article a:focus::after {
     transform: translate(50%, -50%);
   }
 }

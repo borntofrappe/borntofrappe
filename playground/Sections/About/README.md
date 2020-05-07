@@ -1,19 +1,37 @@
 # About
 
-- use the following icons: world, editor, running, tea, gaming
+An article in the `main` container of the landing page.
 
-- animate the illustration only when visible
+## Fluid typography
 
-## Usage notes
-
-### min-height
-
-The demo extends past the viewport to show how the intersection observer API works. The animation plays only as the section is scrolled into view.
+Implements fluid typography similarly to the hero header.
 
 ### em
 
-The `<p>` and `<h2>` elements use the `em` unit to scale the content according to the `font-size` of the closes element upstream. This is the wrapping `<section>` element.
+The `<p>` and `<h2>` elements use the `em` unit to scale the content according to the `font-size` of the closest element upstream. This is the wrapping `<article>` element.
 
-### Fluid typography
+## Animation
 
-The project implements fluid typography for the wrapping section element, much similarly to the hero section.
+The SVG is animated to have the satellites and orbit rotate around the center.
+
+Use the intersection observer API to rotate the elements only when the illustration is visible. This explains the `padding-top` property, to force vertical scroll.
+
+```css
+body {
+  padding-top: 150vh;
+}
+```
+
+## setAttribute
+
+In the script a class of `observed` is added using `setAttribute`, and removed using `removeAttribute`, You can achieve a similar feature using only `setAttribute` and a ternary operator:
+
+```js
+entry.target.setAttribute("class", entry.isIntersecting ? "observed" : "");
+```
+
+But in this instance the class attribute is still present. It doesn't specify a value, but it exist in the element's own markup.
+
+```html
+<svg class></svg>
+```

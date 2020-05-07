@@ -1,41 +1,28 @@
 # Hero
 
-- add `aria-*` attributes to describe the anchor link elements
+A header for the landing page.
 
-## Usage notes
+## Markup
 
-### stylesheet
+Create an illustration with SVG syntax which includes a series of anchor link elements. Redirect to the different places on which I spend/intend to spend most of my time:
 
-In the stylesheet, I repeated some of the property value pairs specified for the **List** component. Consider having these in the global stylesheet, and change only the values associated with a larger `font-size`, like the spacing between items.
+- blog <!-- hopefully soon -->
 
-### borntofrappe
+- codepen
 
-The center of the SVG illustration draws the logo for the website. This is not wrapped in an anchor link element and cannot be selected with keyboard focus. However, I decided to change its `color` and `transform` properties following the `:hover` state still.
+- freecodecamp
 
-To this end, the SVG syntax is slightly modified:
+- github
 
-- add a class to target the group element:
+- twitter
 
-  ```html
-  <g class="borntofrappe">
-    <!-- svg syntax -->
-  </g>
-  ```
+Next to the illustration, include a bulleted list to describe my current persona.
 
-- add a transparent circle as the last element of the `<g>` element:
+Include additional elements for assistive technologies and extra context.
 
-  ```html
-  <g class="borntofrappe">
-    <!-- svg syntax -->
-    <circle r="50" opacity="0" />
-  </g>
-  ```
+## Fluid typography
 
-  This is essential to make sure that the change in CSS properties happen everywhere on the circle element, and not just where the stroke of the path element is drawn.
-
-### Fluid typography
-
-The `font-size` of the `<section>` element changes in the `[1.5, 2]rem` range, and considering a viewport in the `[40, 75]rem` interval.
+The `font-size` of the `<header>` element changes in the `[1.5, 2]rem` range, and considering a viewport in the `[40, 75]rem` interval.
 
 The formula is straight from [this CSS tricks article](https://css-tricks.com/snippets/css/fluid-typography/).
 
@@ -88,3 +75,7 @@ svg {
 ```
 
 This value should provide a semblance of alignment with the `<nav>` element.
+
+## List
+
+In the stylesheet, I repeated some of the property value pairs specified for the **List** component. Consider having these in the global stylesheet, and change only the values associated with a larger `font-size`, like the spacing between items.

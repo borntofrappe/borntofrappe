@@ -3,7 +3,7 @@ body {
   padding-top: 150vh;
 }
 
-section {
+article {
   max-width: 32rem;
   margin: 1rem auto;
   margin-top: auto;
@@ -13,51 +13,54 @@ section {
   align-items: center;
 }
 
-section {
+article {
   font-size: 1.2rem;
   font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
 }
 
 @media (min-width: 75rem) {
-  section {
+  article {
     font-size: 1.2rem;
   }
 }
 
 @media (max-width: 40rem) {
-  section {
+  article {
     font-size: 1rem;
   }
 }
 
-section > * + * {
+article > * + * {
   margin-top: 1rem;
 }
-section h2 {
+article h2 {
   font-size: 2em;
 }
-section p {
+article p {
   font-size: 1em;
   text-align: flex-start;
   line-height: 1.75;
   font-family: "Source Code Pro", monospace;
 }
 
-section mark {
+article mark {
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  /* display: inline-block; */
 }
 
-section > svg {
+article > svg {
   width: 90%;
   height: auto;
 }
 
-section > svg .rotate {
+article > svg .rotate {
   animation: rotate 200s linear infinite;
   animation-play-state: paused;
 }
-section > svg.observed .rotate {
+article > svg.observed .rotate {
   animation-play-state: running;
 }
 
