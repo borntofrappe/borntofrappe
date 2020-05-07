@@ -1,39 +1,43 @@
 # Landing page
 
-- nav
+## Markup
 
-- hero section
+Include the code from the following projects:
 
-- about section
+- components/skip to content
 
-- footer
+- components/breadcrumb navigation
 
-## Notes
+- sections/hero
 
-### About
+- sections/about
 
-The section describing a few words of context and the SVG illustration has been updated to show only half the illustration.
+- components/footer
+
+## About
+
+Update the article element to show only half the illustration.
 
 ```diff
 -<svg viewBox="-50 -50 100 100" width="200" height="200">
 +<svg viewBox="-50 -50 100 50" width="200" height="100">
 ```
 
-For the same reason, the `margin` at the bottom of the section has been reset.
+For the same reason, reset the `margin` at the bottom of the container.
 
 ```css
-section {
+#about {
   margin-bottom: 0px;
 }
 ```
 
-So to set up the illusion that the SVG is behind the footer which follows.
+This sets up the illusion that the SVG is behind the footer which follows.
 
-Since only half the element is shown, and the animation occurs clockwise, I've also decided to map the icons counter-clockwise. This to have the icons described in the paragraph follow each other in order.
+### Clock
+
+Since only half the element is shown, and the animation occurs clockwise, flip the order of the icons. This to have the visuals described in the paragraph follow each other in order.
 
 ```diff
 -<g transform="rotate(${360 / length * index}) translate(0 -42) rotate(${360 / length * index * -1})">
 +<g transform="rotate(${360 / length * index * -1}) translate(0 -42) rotate(${360 / length * index})">
 ```
-
-Finally, I've also decided to associate the intersection observer API with the `<svg>` element instead of the parent `<section>`. Seemed frivolous to animate the entire element in the moment the section, and not the element was visible.

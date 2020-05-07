@@ -1,3 +1,30 @@
+body {
+  overflow-x: hidden;
+}
+/* skip to content */
+#skip-to-content {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  font-size: 2rem;
+  display: flex;
+  width: max-content;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 0.5rem 1rem;
+  z-index: 5;
+}
+#skip-to-content svg {
+  width: 1em;
+  height: auto;
+  margin-left: 0.5rem;
+}
+
 /* breadcrumb navigation */
 nav {
   max-width: 50em;
@@ -7,7 +34,6 @@ nav {
 }
 
 nav a {
-  border: initial;
   text-decoration: none;
   font-family: "Maven Pro", sans-serif;
   font-weight: 700;
@@ -17,58 +43,46 @@ nav a {
   align-items: center;
 }
 
-nav a:focus {
-  color: hsl(340, 90%, 55%);
-  color: var(--primary-6);
-  background: none;
-}
-
 nav a svg {
   margin: 0 0.2rem 0 0.4rem;
   width: 1.5em;
   height: auto;
 }
 
-/* hero */
-#hero {
-  margin-bottom: 3rem;
+/* header */
+header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   grid-column-gap: 2rem;
-  padding: 2.5rem 1rem;
-  background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
+  padding: 2rem 1rem;
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: 5px 5px;
   position: relative;
 }
-/*
-viewport: [40,75]rem
-font-size: [1.5,2]rem
-*/
-#hero {
+
+header {
   font-size: 1.8rem;
   font-size: calc(1.5rem + (1.8 - 1.5) * (100vw - 40rem) / (75 - 40));
 }
-
 @media (min-width: 75rem) {
-  #hero {
+  header {
     font-size: 1.8rem;
   }
 }
-
 @media (max-width: 40rem) {
-  #hero {
+  header {
     font-size: 1.5rem;
   }
 }
 
-#hero::after {
+header::after {
   background: hsl(215, 22%, 5%);
   background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -80,56 +94,56 @@ font-size: [1.5,2]rem
   -webkit-mask-position: 50% 0;
   mask-position: 50% 0;
   position: absolute;
-  left: 0%;
   top: 100%;
+  left: 0%;
   width: 100%;
   height: 20px;
   transform: translateY(-1px) scaleY(-1);
 }
 
-#hero svg {
+header > svg {
   width: 18em;
   max-width: 90vw;
   height: auto;
   --transition-duration: 0.4s;
 }
 
-#hero svg .borntofrappe {
+header > svg .borntofrappe {
   transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55), color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-back), color var(--transition-duration) var(--ease-in-out-sine);
 }
 
-#hero svg .borntofrappe:hover {
+header > svg .borntofrappe:hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
   transform: scale(1.25) rotate(-10deg);
 }
 
-#hero svg a {
+header > svg a {
   transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55), color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-back), color var(--transition-duration) var(--ease-in-out-sine);
   transform: scale(0.85);
 }
 
-#hero svg a .text {
+header > svg a .text {
   transform: scale(0);
   transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: transform var(--transition-duration) var(--ease-out-cubic);
 }
 
-#hero svg a:hover,
-#hero svg a:focus,
-#hero svg a:hover .text,
-#hero svg a:focus .text {
+header > svg a:hover,
+header > svg a:focus,
+header > svg a:hover .text,
+header > svg a:focus .text {
   transform: scale(1);
 }
 
-#hero svg a:focus {
+header > svg a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
 
-#hero ul {
+header ul {
   display: block;
   margin-left: 2em;
   font-family: "Maven Pro", sans-serif;
@@ -140,31 +154,30 @@ font-size: [1.5,2]rem
 }
 
 @media (max-width: 40rem) {
-  #hero ul {
+  header ul {
     letter-spacing: 0px;
   }
 }
 
-#hero ul li {
+header ul li {
   line-height: 1.5;
 }
-#hero ul > * + * {
+header ul > * + * {
   margin-top: 1.25rem;
 }
 
-/* from list component */
-#hero ul li {
+header ul li {
   position: relative;
 }
 
-#hero ul li::before {
+header ul li::before {
   content: "";
   position: absolute;
   top: 0;
-  font-size: 0.9em;
   left: -0.35em;
   width: 1.7em;
   height: 1.7em;
+  font-size: 0.9em;
   transform: translate(-100%, 0%);
   background: var(--primary-6);
   mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
@@ -173,210 +186,6 @@ font-size: [1.5,2]rem
   -webkit-mask-size: 100%;
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
-}
-
-/* introduction */
-#introduction {
-  max-width: 40rem;
-  margin: 2.5rem auto 5rem;
-  width: 90vw;
-}
-#introduction {
-  font-size: 1.2rem;
-  font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
-}
-
-@media (min-width: 75rem) {
-  #introduction {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 40rem) {
-  #introduction {
-    font-size: 1rem;
-  }
-}
-
-#introduction > * + * {
-  margin-top: 1rem;
-}
-#introduction h2 {
-  font-size: 2em;
-}
-#introduction p {
-  font-size: 1em;
-  text-align: flex-start;
-  line-height: 1.75;
-  font-family: "Source Code Pro", monospace;
-}
-
-#introduction > svg {
-  width: 100%;
-  height: auto;
-}
-#introduction > svg .rotate {
-  transform: rotate(5deg);
-  animation: tilt 20s var(--ease-in-out-sine) infinite;
-  animation-play-state: paused;
-}
-#introduction > svg.observed .rotate {
-  animation-play-state: running;
-}
-@keyframes tilt {
-  20% {
-    transform: rotate(35deg);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
-}
-
-/* link component */
-#introduction a {
-  --transition-duration: 0.5s;
-  font-family: "Maven Pro", sans-serif;
-  font-weight: 600;
-  font-size: 1.25em;
-  text-decoration: none;
-}
-
-@supports (mask-size: 28px) or (-webkit-mask-size: 28px) {
-  #introduction a {
-    display: inline-block;
-    position: relative;
-    --transition-duration: 0.5s;
-    padding-bottom: 0.75em;
-    margin-bottom: 0.75em;
-    border: none;
-  }
-  #introduction a:focus {
-    background: none;
-  }
-  #introduction a::before,
-  #introduction a::after {
-    pointer-events: none;
-    z-index: -5;
-    content: "";
-    position: absolute;
-    top: 100%;
-    background: currentColor;
-    transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    transition: transform var(--transition-duration) var(--ease-in-out-sine);
-  }
-
-  #introduction a::before {
-    left: 0%;
-    width: 100%;
-    height: 2px;
-    transform-origin: 0% 50%;
-    transform: translate(0%, -50%) scaleX(0);
-  }
-
-  #introduction a:hover::before,
-  #introduction a:focus::before {
-    transform: translate(0%, -50%) scaleX(1);
-  }
-
-  #introduction a::after {
-    left: 50%;
-    width: 100%;
-    height: 1.5em;
-    transform: translate(-50%, -50%);
-    mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.9)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.9)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    mask-position: 0% 50%;
-    -webkit-mask-position: 0% 50%;
-    mask-size: 1.5em;
-    -webkit-mask-size: 1.5em;
-    mask-repeat: no-repeat;
-    -webkit-mask-repeat: no-repeat;
-  }
-  #introduction a:hover::after,
-  #introduction a:focus::after {
-    transform: translate(50%, -50%);
-  }
-}
-
-/* about */
-#about {
-  max-width: 32rem;
-  margin: 1rem auto;
-  margin-bottom: 0px;
-  width: 90vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/*
-viewport: [40,75]rem
-font-size: [1, 1.2]rem
-*/
-#about {
-  font-size: 1.2rem;
-  font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
-}
-
-@media (min-width: 75rem) {
-  #about {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 40rem) {
-  #about {
-    font-size: 1rem;
-  }
-}
-
-#about > * + * {
-  margin-top: 1rem;
-}
-#about h2 {
-  font-size: 2em;
-}
-#about p {
-  font-size: 1em;
-  text-align: flex-start;
-  line-height: 1.75;
-  font-family: "Source Code Pro", monospace;
-}
-
-#about mark {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-}
-
-#about p {
-  font-size: 1em;
-  text-align: flex-start;
-  line-height: 1.75;
-  color: hsl(210, 20%, 12%);
-  color: var(--grey-1);
-}
-
-#about mark {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-}
-
-#about > svg {
-  width: 90%;
-  height: auto;
-}
-#about > svg .rotate {
-  animation: rotate 200s linear infinite;
-  animation-play-state: paused;
-}
-#about > svg.observed .rotate {
-  animation-play-state: running;
-}
-
-@keyframes rotate {
-  to {
-    transform: rotate(1turn);
-  }
 }
 
 /* footer */
@@ -393,6 +202,7 @@ footer {
   padding: 2.25rem 1rem 2rem;
   text-align: center;
   position: relative;
+  margin-top: -10px;
 }
 
 footer::before {
@@ -422,16 +232,18 @@ footer a {
   font-weight: 600;
   border-bottom: 0.1rem solid hsl(340, 90%, 55%);
   border-bottom: 0.1rem solid var(--primary-6);
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color 0.25s var(--ease-in-out-sine);
 }
 
 footer a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
   background: none;
+  border-bottom-color: hsl(340, 90%, 55%);
 }
 
 footer span {
-  z-index: 5;
   position: absolute;
   top: 0%;
   left: 50%;
@@ -494,5 +306,283 @@ footer span:hover {
   footer a:focus + span svg g,
   footer span svg:hover g {
     animation-play-state: paused;
+  }
+}
+
+/* content */
+main#content {
+  width: 90vw;
+  max-width: 42rem;
+  margin: 1rem auto;
+}
+
+main#content {
+  font-size: 1.2rem;
+  font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
+}
+
+@media (min-width: 75rem) {
+  main#content {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  main#content {
+    font-size: 1rem;
+  }
+}
+
+article#getting-started > * + * {
+  margin-top: 1rem;
+}
+article#getting-started h2 {
+  font-size: 2em;
+}
+article#getting-started p {
+  font-size: 1em;
+  text-align: flex-start;
+  line-height: 1.75;
+  font-family: "Source Code Pro", monospace;
+}
+
+article#getting-started > svg {
+  height: auto;
+  width: 100%;
+  margin-bottom: -18%;
+}
+article#getting-started > svg .telescope {
+  transform: translateY(-80px);
+}
+
+@supports (shape-outside: polygon(0% 0%)) {
+  article#getting-started > svg {
+    float: left;
+    margin-bottom: initial;
+    shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
+  }
+  article#getting-started > svg .telescope {
+    transform: initial;
+  }
+}
+
+article#getting-started > svg .rotate {
+  transform: rotate(0deg);
+  animation: tilt 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: tilt 20s var(--ease-in-out-sine) infinite;
+  animation-play-state: paused;
+}
+article#getting-started > svg .scale {
+  transform: scale(0.8);
+  animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
+  animation: scale 20s var(--ease-in-out-back) infinite;
+  animation-play-state: paused;
+}
+
+article#getting-started > svg .color {
+  color: currentColor;
+  animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: color 20s var(--ease-in-out-sine) infinite;
+  animation-play-state: paused;
+}
+article#getting-started > svg.observed .rotate,
+article#getting-started > svg.observed .scale,
+article#getting-started > svg.observed .color {
+  animation-play-state: running;
+}
+@keyframes tilt {
+  10%,
+  35%,
+  55%,
+  90% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(50deg);
+  }
+}
+@keyframes scale {
+  10%,
+  85% {
+    transform: scale(1);
+  }
+  5%,
+  95%,
+  100% {
+    transform: scale(0.8);
+  }
+}
+@keyframes color {
+  10%,
+  85% {
+    color: hsl(340, 85%, 46%);
+  }
+  5%,
+  95%,
+  100% {
+    color: inherit;
+  }
+}
+
+article#getting-started a {
+  --transition-duration: 0.5s;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+@supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
+  article#getting-started a {
+    display: inline-block;
+    position: relative;
+    --transition-duration: 0.5s;
+    padding-bottom: 0.75em;
+    margin-bottom: 0.75em;
+    border: none;
+  }
+  article#getting-started a:focus {
+    background: none;
+  }
+  article#getting-started a::before,
+  article#getting-started a::after {
+    pointer-events: none;
+    z-index: -5;
+    content: "";
+    position: absolute;
+    top: 100%;
+    background: currentColor;
+    transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: transform var(--transition-duration) var(--ease-in-out-sine);
+  }
+
+  article#getting-started a::before {
+    left: 0%;
+    width: 100%;
+    height: 2px;
+    transform-origin: 0% 50%;
+    transform: translate(0%, -50%) scaleX(0);
+  }
+
+  article#getting-started a:hover::before,
+  article#getting-started a:focus::before {
+    transform: translate(0%, -50%) scaleX(1);
+  }
+
+  article#getting-started a::after {
+    left: 50%;
+    width: 100%;
+    height: 1.5em;
+    transform: translate(-50%, -50%);
+    mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.9)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.9)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    mask-position: 0% 50%;
+    -webkit-mask-position: 0% 50%;
+    mask-size: 1.5em;
+    -webkit-mask-size: 1.5em;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+  article#getting-started a:hover::after,
+  article#getting-started a:focus::after {
+    transform: translate(50%, -50%);
+  }
+}
+
+article#about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+article#about > * + * {
+  margin-top: 1.5rem;
+}
+article#about h2 {
+  font-size: 2em;
+}
+article#about p {
+  font-size: 1em;
+  text-align: flex-start;
+  line-height: 1.75;
+  font-family: "Source Code Pro", monospace;
+}
+
+article#about mark {
+  background: hsl(330, 100%, 92%);
+  background: var(--primary-10);
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+}
+
+article#about > svg {
+  max-width: 30rem;
+  width: 90%;
+  height: auto;
+}
+
+article#about > svg .rotate {
+  animation: rotate 200s linear infinite;
+  animation-play-state: paused;
+}
+article#about > svg.observed .rotate {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+main#content article:first-of-type {
+  margin-top: 3rem;
+}
+
+main#content article + article::before {
+  content: "";
+  width: 100vw;
+  height: 4em;
+  margin: 4rem 0;
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 0;
+  mask-position: 50% 0;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+}
+
+@supports (display: grid) {
+  body {
+    overflow-x: initial;
+  }
+  main#content {
+    width: initial;
+    max-width: initial;
+  }
+  main#content article {
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 45rem) 1fr;
+    grid-column-gap: 5vw;
+  }
+  main#content article#about h2 {
+    text-align: center;
+  }
+  main#content article#about svg {
+    margin: 0 auto;
+  }
+  main#content article > * {
+    grid-column: 2;
+  }
+  article#getting-started a {
+    justify-self: start;
+  }
+  main#content article + article::before {
+    grid-column: 1/-1;
+    width: 100%;
   }
 }
