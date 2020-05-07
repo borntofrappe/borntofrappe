@@ -11,15 +11,15 @@ main > * + * {
 }
 
 blockquote {
-  line-height: 2;
   display: inline-block;
-  border-radius: 0.4rem;
+  line-height: 2;
   font-style: italic;
   padding: 1rem 2.5rem;
   color: hsl(350, 100%, 8%);
   color: var(--primary-0);
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
+  border-radius: 0.4rem;
   position: relative;
 }
 

@@ -2,11 +2,11 @@
 
 ## Breakout
 
-The idea is to have the header background and pattern extend to the left and right of the element.
+The idea is to have the background and the wave-pattern extend to the left and right of the header element. This is achieved with `vw` units, and `grid` properties where these are supported.
 
 ### vw
 
-By default, use `vw` units to have the pseudo element(s) stretch across the viewport.
+Stretch the width of the pseudo element to `100vw` and center the visual horizontally.
 
 ```css
 header::before {
@@ -20,7 +20,7 @@ header::before {
 }
 ```
 
-Remove horizontal overflow caused by having `::before` occupy the entirety of the viewport.
+This causes horizontal scroll, so remove overflow on the x axis.
 
 ```css
 body {
@@ -30,7 +30,7 @@ body {
 
 ### Grid
 
-When grid is supported, the effect becomes more intuitive.
+Create three columns, center the content in the second one.
 
 ```css
 @supports (display: grid) {
@@ -45,9 +45,17 @@ When grid is supported, the effect becomes more intuitive.
 }
 ```
 
-The header sets up a three column grid. Every direct child element occupies the second.
+Reset the property-value pairs set up in the `vw` solution.
 
-It requires a few properties, but allows to make due without the `::before` pseudo element.
+```css
+@supports (display: grid) {
+  body {
+    overflow-x: initial;
+  }
+}
+```
+
+Hide the pseudo element setting up the background.
 
 ```css
 @supports (display: grid) {
@@ -57,8 +65,14 @@ It requires a few properties, but allows to make due without the `::before` pseu
 }
 ```
 
-Remember to reset the properties necessary to create the effect with `vw` units: the overflow on the body, the size of the pseudo elements.
+## Waves
 
-## ::after
+Use the `::after` pseudo to add a wave-like pattern. Stretch its width to cover the viewport, with similar considerations to the `::before` counterpart:
 
-Beside the `::before` pseudo element, used if grid is not supported to recreate the background, use `::after` to add a wave-like pattern. This pseudo element too stretches to consider the viewport, with viewport units or percentage values if grid is supported.
+- `100vw` by default
+
+- `100%` if grid is supported
+
+## Redundancies
+
+The `::before` and `::after` pseudo elements share a few properties. Prefer to repeat the syntax given the different purpose.

@@ -1,5 +1,7 @@
 # Table
 
+## Markup
+
 The markup of the table is obtained by processing a markdown table with `marked.js`.
 
 ## align
@@ -17,10 +19,6 @@ table [align="center"] {
 }
 ```
 
-## Pseudo
+## Pseudo element
 
 Use a pseudo element to make rounded borders at the top of the table.
-
-## Style
-
-Replicate the design created for the code snippet.

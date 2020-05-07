@@ -76,6 +76,5 @@ main.innerHTML = articles
       </p>
     </article>
   `;
-    document.body.querySelector('main').innerHTML += markup;
   })
   .join('');

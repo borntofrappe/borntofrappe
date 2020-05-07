@@ -2,7 +2,7 @@
 
 ## Pseudo Elements
 
-The pseudo elements use the SVG syntax described in `quote.svg`. This is included in the `url()` function of the `mask-image` property, so that the graphic is tinted with the background's own color.
+In the pseudo elements use the SVG syntax described in `quote.svg`. This is included in the `url()` function of the `mask-image` property, so that the graphic is tinted with the background's color.
 
 Flip the graphic for one of the pseudo element using a negative scale, **or** half a rotation.
 

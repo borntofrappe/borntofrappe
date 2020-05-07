@@ -2,13 +2,9 @@
 
 ## Markup
 
-Ultimately, the markup is generated on the basis of the frontmatter for individual articles. When tags are provided, add the `h2` element and a `ul` list to display the matching icon.
+The script populates the body of the document from the frontmatter presumed from a series of articles.
 
-## visually-hidden
-
-Add a series of HTML elements to declare the tags to assistive tech.
-
-## Grid
+## Icons
 
 By default, display the icons in a flex row, and separate them horizontally with liberal margin.
 

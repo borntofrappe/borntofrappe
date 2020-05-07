@@ -1,26 +1,20 @@
 # Heading
 
-- add a span to describe the anchor link element to assistive technologies
-
 ## Markup
 
-```pug
-h2#link
-  a href="#link"
-    span.visually-hidden permalink
-    svg.permalink
+The script populates the body with a series of headings: h2, h3 and h4.
 
-```
+Remember to:
 
-Have the `id` attribute of the heading match the `href` attribute of the nested anchor link.
+- have the `id` attribute of the heading match the `href` attribute of the nested anchor link.
 
-With the `span` element describe the purpose of the link.
+- describe the purpose of the link to assistive technologies
 
 ## Opacity
 
 Style the opacity to reduce the weight of the permalink icon.
 
-Transition the opacity _and_ color on hover.
+Transition the opacity _and_ color.
 
 ```css
 .permalink {

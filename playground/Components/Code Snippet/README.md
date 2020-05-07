@@ -2,18 +2,12 @@
 
 ## Markup
 
-The structure described in `index.html` comes from a script using `shiki`. Try to replicate the HTML with whatever syntax highlighting is most appropriate for 11ty.
+The structure described in `index.html` comes from a script using `shiki`.
 
-## div
-
-Inside the code snippet, add a `div` element describing the icon and the language used for the script.
+Modify the renderer to include a `div` as the first child element of the code snippet. Use this container to describe the language of the code.
 
 For the text, consider one of two variants:
 
-- language `js`
+- language: `js`
 
 - title.language: `script.js`
-
-## scrollbar
-
-Style the horizontal scrollbar of the unordered list to match the vertical scrollbar of the document.
