@@ -12,7 +12,7 @@ The `<p>` and `<h2>` elements use the `em` unit to scale the content according t
 
 ## Animation
 
-The SVG is animated to have the satellites and orbit rotate around the center.
+Animate the SVG to have the satellites and orbit rotate around the center.
 
 Use the intersection observer API to rotate the elements only when the illustration is visible. This explains the `padding-top` property, to force vertical scroll.
 
@@ -24,13 +24,15 @@ body {
 
 ## setAttribute
 
-In the script a class of `observed` is added using `setAttribute`, and removed using `removeAttribute`, You can achieve a similar feature using only `setAttribute` and a ternary operator:
+To set up the animation with the intersection observer API, add/remove a class with `setAttribute` and `removeAttribute`,
+
+You can achieve a similar feature using only `setAttribute` and a ternary operator:
 
 ```js
 entry.target.setAttribute("class", entry.isIntersecting ? "observed" : "");
 ```
 
-But in this instance the class attribute is still present. It doesn't specify a value, but it exist in the element's own markup.
+However, in this instance the class attribute is still present. It just doesn't refer to anything.
 
 ```html
 <svg class></svg>

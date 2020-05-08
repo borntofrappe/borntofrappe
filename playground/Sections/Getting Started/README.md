@@ -2,79 +2,51 @@
 
 An article in the `main` container of the landing page.
 
-## Illustration
+## SVG
 
-Use `telescope-icons.svg` as a starting point.
+Include two `<svg>` elements for the telescope and icons separately.
+
+In this folder you find the static version. In the script recreate the syntax with a variable input. Experiment with coordinates and icons.
 
 ## Layout
 
-The idea is to display the text in the whitespace to the right the telescope, to the bottom of the icons.
+By default, have the SVG elements side by side, with the rest of the HTML elements right beneath.
 
-Use the `float` and the `shape-outside` property to achieve this effect.
+With a large enough viewport **and** If grid is supported, place the elements as follows:
 
-```css
-@supports (shape-outside: polygon(0% 0%)) {
-  article > svg {
-    float: left;
-    margin-bottom: initial;
-    shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
-  }
-  article > svg .telescope {
-    transform: initial;
-  }
-}
 ```
-
-As a fallback, force an overlap between the illustration and the content which follows, applying a negative margin on the SVG.
-
-```css
-article > svg {
-  margin-bottom: -18%;
-}
-```
-
-`-18%` as in roughly `80/440`. `80` in the translation applied on the `.telescope` group element, `440` as in the width of the `viewBox`. It might sound convoluted, but the idea is to translate the telescope up by 80, and have the following content closer by roughly the same measure.
-
-```css
-article > svg .telescope {
-  transform: translateY(-80px);
-}
+.           icons
+telescope   paragraph
+.           link
 ```
 
 ## Animation
 
 There are three animations:
 
-- change in scale for the circles and the icons. The circles of the mask are also modified so to avoid showing/hiding the stroke of the path element
+- scale for the circles and the icons. The circles of the mask are also modified so to hide the relevant area of the path element
 
-- change in color for the circles, the icons and the path element. To this end, the path is broken down in three segments, to reconcile the delay set up on the connecting elements
+- color for the circles, the icons and the path element. To this end, the path is broken down in three segments, to reconcile the delay set up on the connecting elements
 
-- change in rotation for the telescope and its hinge.
+- the telescope and its hinge.
 
-I've tried to use the same `animation-duration` value, so to have successive iterations match in timing. Pay attention that this value – 20s – considers the delays set up in the markup.
+The markup is modified to target the elements with the `:nth-of-type()` selector.
 
-## color
+### Rotation
 
-The change in color provides a nugget of entertainment when testing the animation on Microsoft Edge: instead of adding color, the browser completely hides the shape. I believe it is not a matter of opacity, but color itself. Changing the value from `currentColor` to `inherit` fixes the issue.
-
-```diff
-5%,
-95%,
-100% {
--  color: currentColor;
-+  color: inherit;
-}
-```
+If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope more tilted.
 
 ## setAttribute
 
-In the script a class of `observed` is added using `setAttribute`, and removed using `removeAttribute`, You can achieve a similar feature using only `setAttribute` and a ternary operator:
+To set up the animation with the intersection observer API, add/remove a class with `setAttribute` and `removeAttribute`,
+
+You can achieve a similar feature using only `setAttribute` and a ternary operator:
 
 ```js
 entry.target.setAttribute("class", entry.isIntersecting ? "observed" : "");
 ```
 
-But in this instance the class attribute is still present. It doesn't specify a value, but it exist in the element's own markup.
+However, in this instance the class attribute is still present. It just doesn't refer to anything.
 
 ```html
 <svg class></svg>

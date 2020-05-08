@@ -2,8 +2,9 @@
 body {
   padding-top: 120vh;
 }
+
 article {
-  max-width: 42rem;
+  max-width: 40rem;
   margin: 1rem auto;
   width: 90vw;
 }
@@ -25,103 +26,40 @@ article {
   }
 }
 
+article {
+  display: flex;
+  flex-wrap: wrap;
+}
 article > * + * {
   margin-top: 1rem;
 }
+article > svg:nth-of-type(1) {
+  align-self: flex-end;
+  width: 20%;
+  height: auto;
+}
+article > svg:nth-of-type(2) {
+  align-self: flex-start;
+  width: 70%;
+  height: auto;
+  margin-left: auto;
+}
+
 article h2 {
   font-size: 2em;
 }
+
 article p {
   font-size: 1em;
-  text-align: flex-start;
   line-height: 1.75;
   font-family: "Source Code Pro", monospace;
 }
 
-article > svg {
-  height: auto;
-  width: 100%;
-  margin-bottom: -18%;
-}
-article > svg .telescope {
-  transform: translateY(-80px);
-}
-
-@supports (shape-outside: polygon(0% 0%)) {
-  article > svg {
-    float: left;
-    margin-bottom: initial;
-    shape-outside: polygon(0% 0%, 100% 0%, 100% 58%, 28% 58%, 28% 100%, 0% 100%);
-  }
-  article > svg .telescope {
-    transform: initial;
-  }
-}
-
-article > svg .rotate {
-  transform: rotate(0deg);
-  animation: rotate 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
-  animation: rotate 20s var(--ease-in-out-sine) infinite;
-  animation-play-state: paused;
-}
-article > svg .scale {
-  transform: scale(0.8);
-  animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
-  animation: scale 20s var(--ease-in-out-back) infinite;
-  animation-play-state: paused;
-}
-
-article > svg .color {
-  color: currentColor;
-  animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
-  animation: color 20s var(--ease-in-out-sine) infinite;
-  animation-play-state: paused;
-}
-article > svg.observed .rotate,
-article > svg.observed .scale,
-article > svg.observed .color {
-  animation-play-state: running;
-}
-@keyframes rotate {
-  10%,
-  35%,
-  55%,
-  90% {
-    transform: rotate(-10deg);
-  }
-  45% {
-    transform: rotate(50deg);
-  }
-}
-@keyframes scale {
-  10%,
-  85% {
-    transform: scale(1);
-  }
-  5%,
-  95%,
-  100% {
-    transform: scale(0.8);
-  }
-}
-@keyframes color {
-  10%,
-  85% {
-    color: hsl(340, 85%, 46%);
-  }
-  5%,
-  95%,
-  100% {
-    color: inherit;
-  }
-}
-
-/* link component */
 article a {
   --transition-duration: 0.5s;
   font-family: "Maven Pro", sans-serif;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-decoration: none;
 }
 
@@ -179,5 +117,110 @@ article a {
   article a:hover::after,
   article a:focus::after {
     transform: translate(50%, -50%);
+  }
+}
+
+article > svg:nth-of-type(1) .rotate {
+  transform: rotate(15deg);
+  animation: rotate 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+  animation: rotate 10s var(--ease-in-out-sine) infinite alternate;
+  animation-play-state: paused;
+}
+
+article > svg:nth-of-type(2) .icon .scale {
+  transform: scale(0.7);
+  animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
+  animation: scale 20s var(--ease-in-out-back) infinite;
+  animation-play-state: paused;
+}
+
+article > svg:nth-of-type(2) .icon .color,
+article > svg:nth-of-type(2) .path .color {
+  color: currentColor;
+  animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: color 20s var(--ease-in-out-sine) infinite;
+  animation-play-state: paused;
+}
+
+article > svg:nth-of-type(2) .icon:nth-of-type(2) .scale,
+article > svg:nth-of-type(2) .icon:nth-of-type(2) .color,
+article > svg:nth-of-type(2) .path:nth-of-type(1) .color {
+  animation-delay: 0.5s;
+}
+article > svg:nth-of-type(2) .icon:nth-of-type(3) .scale,
+article > svg:nth-of-type(2) .icon:nth-of-type(3) .color,
+article > svg:nth-of-type(2) .path:nth-of-type(2) .color {
+  animation-delay: 0.25s;
+}
+article > svg:nth-of-type(2) .icon:nth-of-type(4) .scale,
+article > svg:nth-of-type(2) .icon:nth-of-type(4) .color,
+article > svg:nth-of-type(2) .path:nth-of-type(3) .color {
+  animation-delay: 0.75s;
+}
+
+article > svg:nth-of-type(1).observed .rotate,
+article > svg:nth-of-type(2).observed .icon .scale,
+article > svg:nth-of-type(2).observed .icon .color,
+article > svg:nth-of-type(2).observed .path .color {
+  animation-play-state: running;
+}
+
+@media (min-width: 40rem) {
+  @supports (display: grid) {
+    article {
+      display: grid;
+      flex-wrap: initial;
+      grid-template-columns: 1fr 4fr;
+      grid-column-gap: 2rem;
+      grid-row-gap: 0.5rem;
+    }
+    article > * + * {
+      margin-top: initial;
+    }
+    article > svg:nth-of-type(1) {
+      grid-row: 2;
+      align-self: end;
+      width: 100%;
+      height: auto;
+    }
+    article > svg:nth-of-type(2) {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      align-self: initial;
+      margin-left: initial;
+      width: 100%;
+      height: auto;
+      max-width: 30rem;
+    }
+
+    article p,
+    article a {
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    article > svg:nth-of-type(1) .rotate {
+      transform: rotate(30deg);
+    }
+  }
+}
+
+@keyframes rotate {
+  30%,
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+@keyframes scale {
+  10%,
+  90% {
+    transform: scale(1);
+  }
+}
+@keyframes color {
+  10%,
+  90% {
+    color: hsl(340, 85%, 46%);
   }
 }

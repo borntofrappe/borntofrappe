@@ -431,6 +431,11 @@ article#getting-started a {
   font-size: 1.2em;
   text-decoration: none;
 }
+article#getting-started a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  background: none;
+}
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
   article#getting-started a {
@@ -515,7 +520,7 @@ article#about mark {
 }
 
 article#about > svg {
-  max-width: 30rem;
+  max-width: 32rem;
   width: 90%;
   height: auto;
 }
@@ -542,7 +547,7 @@ main#content article + article::before {
   content: "";
   width: 100vw;
   height: 4em;
-  margin: 4rem 0;
+  margin: 3rem 0;
   background: hsl(215, 22%, 5%);
   background: var(--grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -556,7 +561,7 @@ main#content article + article::before {
   mask-size: auto 100%;
 }
 
-@supports (display: grid) {
+/* @supports (display: grid) {
   body {
     overflow-x: initial;
   }
@@ -566,7 +571,7 @@ main#content article + article::before {
   }
   main#content article {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 45rem) 1fr;
+    grid-template-columns: 1fr minmax(auto, 40rem) 1fr;
     grid-column-gap: 5vw;
   }
   main#content article#about h2 {
@@ -585,4 +590,4 @@ main#content article + article::before {
     grid-column: 1/-1;
     width: 100%;
   }
-}
+} */
