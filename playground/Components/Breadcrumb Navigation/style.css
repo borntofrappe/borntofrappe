@@ -3,7 +3,7 @@ nav + nav {
 }
 
 nav {
-  max-width: 40em;
+  max-width: 40rem;
   width: 90vw;
   margin: 0 auto;
   padding: 0.5rem 0;

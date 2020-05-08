@@ -1,6 +1,6 @@
 /* liberal CSS to push the content below the viewport */
 #content {
-  max-width: 42em;
+  max-width: 40rem;
   font-size: 1.2rem;
   width: 90vw;
   margin: 150vh auto 100vh;
@@ -31,7 +31,7 @@
 
 /* breadcrumb navigation */
 nav {
-  max-width: 40em;
+  max-width: 40rem;
   width: 90vw;
   margin: 0 auto;
   padding: 0.5rem 0;
