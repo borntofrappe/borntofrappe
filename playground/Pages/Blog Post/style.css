@@ -174,7 +174,7 @@ main h2 {
 }
 
 main > pre {
-  margin: 1.25rem 0;
+  margin: 1rem 0;
   padding: 0rem;
 }
 
@@ -319,7 +319,7 @@ main ol ol {
 }
 
 main li {
-  line-height: 1.5;
+  line-height: 2;
 }
 
 main ol {
@@ -389,6 +389,7 @@ main ul li::before {
 }
 
 main blockquote {
+  margin: 1rem 0;
   align-self: center;
   line-height: 2;
   padding: 1rem 2.5rem;
@@ -427,8 +428,9 @@ main blockquote::after {
 }
 
 main table {
+  margin: 1rem 0;
+  margin-top: 1.7rem;
   line-height: 2;
-  margin-top: 0.7rem;
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
