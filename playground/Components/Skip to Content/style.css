@@ -23,13 +23,14 @@
   padding: 0.5rem 1rem;
   z-index: 5;
 }
+
 #skip-to-content svg {
   width: 1em;
   height: auto;
   margin-left: 0.5rem;
 }
 
-/* breadcrumb navigation */
+/* components/breadcrumb navigation */
 nav {
   max-width: 40rem;
   width: 90vw;

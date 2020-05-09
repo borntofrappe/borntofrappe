@@ -276,19 +276,24 @@ header ul::-webkit-scrollbar-thumb {
 }
 
 main {
-  color: var(--grey-1);
   width: 90vw;
   max-width: 35em;
   line-height: 2;
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin: 4.25rem auto 5rem;
+}
+main p {
+  color: var(--grey-1);
 }
 main > * + * {
   margin-top: 0.5rem;
 }
+main h2 {
+  margin-top: 1.25rem;
+}
 
 main > pre {
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
   padding: 0rem;
 }
 
@@ -405,6 +410,7 @@ main h4 {
 
 main ol,
 main ul {
+  margin: 1rem 0;
   list-style: none;
   margin-left: 1.7em;
 }

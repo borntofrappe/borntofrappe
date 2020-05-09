@@ -3,12 +3,15 @@ main {
   max-width: 35em;
   margin: 1rem auto;
 }
+
 main h2 {
   font-size: 2rem;
 }
+
 main > * + * {
   margin-top: 0.5rem;
 }
+
 main a {
   text-decoration: none;
   font-family: "Maven Pro", sans-serif;
@@ -25,9 +28,11 @@ main a {
     margin-bottom: 0.75em;
     border: none;
   }
+
   main a:focus {
     background: none;
   }
+
   main a::before,
   main a::after {
     pointer-events: none;
@@ -67,6 +72,7 @@ main a {
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
   }
+
   main a:hover::after,
   main a:focus::after {
     transform: translate(50%, -50%);

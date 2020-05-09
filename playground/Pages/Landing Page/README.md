@@ -33,7 +33,7 @@ For the same reason, reset the `margin` at the bottom of the container.
 
 This sets up the illusion that the SVG is behind the footer which follows.
 
-### Clock
+### Clockwise
 
 Since only half the element is shown, and the animation occurs clockwise, flip the order of the icons. This to have the visuals described in the paragraph follow each other in order.
 

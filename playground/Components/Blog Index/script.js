@@ -47,7 +47,7 @@ main.innerHTML = articles
     return `
     <article>
       <h2>
-        <a href="/${slug}">
+        <a href="/blog/${slug}">
           ${title}
           ${
             index === 0

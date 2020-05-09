@@ -60,8 +60,8 @@
           </g>
         </svg>
       </a>
-      <a href="/blog/markdown-parser">
-        / markdown-parser
+      <a href="/blog/from-markdown-to-html">
+        / from-markdown-to-html
       </a>
     </nav>
 
@@ -71,7 +71,18 @@
     <main id="content">
       <p>Using the <code>fs</code> module and the <code>marked</code> package, I set out to take this markdown file, consider the front matter and then spit out the matching markup.</p>
       <p>Bonus points if I manage to add syntax highlighting <a href="https://github.com/octref/shiki">shiki</a>.</p>
-      <h2 id="fs--path">fs &amp;&amp; path</h2>
+      <h2 class="permalink" id="fs--path">
+        fs &amp;&amp; path
+        <a href="#fs--path">
+          <span class="visually-hidden">permalink</span>
+          <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+            <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">
+              <path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />
+              <path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />
+            </g>
+          </svg>
+        </a>
+      </h2>
       <p>To find the actual file, it seems I need the <code>path</code> module as well.</p>
       <pre><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="32" height="32"><path fill="currentColor" d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></svg><span>js</span></div><pre class="shiki" style="background-color: #292D3E"><code><span style="color: #C792EA">const</span><span style="color: #FFFFFF"> </span><span style="color: #A6ACCD">fs</span><span style="color: #FFFFFF"> </span><span style="color: #C792EA">=</span><span style="color: #FFFFFF"> </span><span style="color: #82AAFF">require</span><span style="color: #FFFFFF">(</span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">fs</span><span style="color: #89DDFF">"</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span>
       <span style="color: #C792EA">const</span><span style="color: #FFFFFF"> </span><span style="color: #A6ACCD">path</span><span style="color: #FFFFFF"> </span><span style="color: #C792EA">=</span><span style="color: #FFFFFF"> </span><span style="color: #82AAFF">require</span><span style="color: #FFFFFF">(</span><span style="color: #89DDFF">"</span><span style="color: #C3E88D">path</span><span style="color: #89DDFF">"</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span></code></pre></pre>
@@ -104,7 +115,18 @@
       <span style="color: #FFFFFF">  </span><span style="color: #FFCB6B">console</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">log</span><span style="color: #FFFFFF">(</span><span style="color: #A6ACCD">markdown</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span>
       <span style="color: #89DDFF">}</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span></code></pre></pre>
       <p>I used the <code>filter</code> method to consider only the markdown files. <code>markdown</code> describes now the actual content. A string.</p>
-      <h2 id="marked--front-matter">marked &amp;&amp; front matter</h2>
+      <h2 class="permalink" id="marked--front-matter">
+        marked &amp;&amp; front matter
+        <a href="#marked--front-matter">
+          <span class="visually-hidden">permalink</span>
+          <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+            <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">
+              <path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />
+              <path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />
+            </g>
+          </svg>
+        </a>
+      </h2>
       <p>The <code>markdown</code> string can be processed with the <code>marked</code> module.</p>
       <pre><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="32" height="32"><path fill="currentColor" d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></svg><span>js</span></div><pre class="shiki" style="background-color: #292D3E"><code><span style="color: #676E95">// assuming you installed & required marked</span>
       <span style="color: #FFCB6B">console</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">log</span><span style="color: #FFFFFF">(</span><span style="color: #82AAFF">marked</span><span style="color: #FFFFFF">(</span><span style="color: #A6ACCD">markdown</span><span style="color: #FFFFFF">))</span><span style="color: #89DDFF">;</span></code></pre></pre>

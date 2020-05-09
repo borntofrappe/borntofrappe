@@ -5,7 +5,7 @@ const icons = {
 };
 
 const article = {
-  title: 'Markdown Parser',
+  title: 'From markdown to HTML',
   icons: ['html', 'js', 'node'],
 }
 

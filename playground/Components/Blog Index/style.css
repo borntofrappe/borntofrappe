@@ -1,8 +1,9 @@
 main {
-  max-width: 35em;
+  max-width: 40rem;
   width: 90vw;
   margin: 1rem auto;
 }
+
 main > * + * {
   margin-top: 1.25rem;
 }
@@ -39,6 +40,7 @@ article h2 a:focus {
   background: hsl(205, 100%, 92%);
   background: var(--secondary-10);
 }
+
 article:first-of-type h2 a:focus {
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
@@ -59,6 +61,7 @@ article time {
   border-left: 0.2rem solid hsl(212, 92%, 45%);
   border-left: 0.2rem solid var(--secondary-5);
 }
+
 article:first-of-type time {
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
@@ -74,12 +77,14 @@ article p {
 @supports (display: grid) {
   main {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     grid-gap: 1.25rem 1.75rem;
   }
+
   main > * + * {
     margin-top: initial;
   }
+
   article:first-of-type {
     grid-column: 1/-1;
   }

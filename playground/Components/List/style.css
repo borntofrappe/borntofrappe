@@ -1,42 +1,43 @@
 main {
   width: 90vw;
-  max-width: 32em;
+  max-width: 40rem;
   margin: 1rem auto;
 }
+
 main > * + * {
   margin-top: 2rem;
 }
 
-ol,
-ul {
+main ol,
+main ul {
   list-style: none;
   margin-left: 1.7em;
 }
 
-ul > * + *,
-ol > * + * {
+main ul > * + *,
+main ol > * + * {
   margin-top: 0.6rem;
 }
 
-ul ul,
-ol ol {
+main ul ul,
+main ol ol {
   margin-top: 0.6rem;
   margin-left: 1.7em;
 }
 
-li {
+main li {
   line-height: 1.5;
 }
 
-/* ol */
-ol {
+main ol {
   counter-reset: custom-counter;
 }
-ol li {
+
+main ol li {
   position: relative;
 }
 
-ol li::before {
+main ol li::before {
   content: counter(custom-counter);
   counter-increment: custom-counter;
   color: var(--primary-6);
@@ -53,15 +54,15 @@ ol li::before {
   font-weight: 700;
 }
 
-ol li::after {
+main ol li::after {
   content: "";
+  font-size: 0.9em;
+  line-height: 1.7em;
   position: absolute;
   top: 0;
-  font-size: 0.9em;
   left: -0.35em;
   width: 1.7em;
   height: 1.7em;
-  line-height: 1.7em;
   transform: translate(-100%, 0%);
   background: var(--primary-6);
   mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3C/g%3E%3C/svg%3E");
@@ -72,15 +73,15 @@ ol li::after {
   -webkit-mask-repeat: no-repeat;
 }
 
-/* ul */
-ul li {
+main ul li {
   position: relative;
 }
-ul li::before {
+
+main ul li::before {
   content: "";
+  font-size: 0.9em;
   position: absolute;
   top: 0;
-  font-size: 0.9em;
   left: -0.35em;
   width: 1.7em;
   height: 1.7em;
