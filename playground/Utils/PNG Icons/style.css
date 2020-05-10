@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(0, 0%, 95%);
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body > * {
+  margin: 1rem 0;
+}
+
+article > * + * {
+  margin-top: 1rem;
+}
+
+article {
+  padding: 1.5rem;
+  background: hsl(0, 0%, 100%);
+}
+
+a {
+  font-size: 1.5rem;
+}
