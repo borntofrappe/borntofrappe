@@ -1,26 +1,26 @@
 /* liberal CSS to push the content below the viewport */
 #content {
   max-width: 40rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 90vw;
   margin: 150vh auto 100vh;
+  line-height: 2;
 }
 
 #skip-to-content {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
   font-family: "Maven Pro", sans-serif;
   font-weight: 700;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;
   font-size: 2rem;
+  padding: 0.5rem 1rem;
   display: flex;
   width: max-content;
   align-items: center;
-  position: absolute;
-  text-align: center;
-  top: 0.5rem;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  padding: 0.5rem 1rem;
   z-index: 5;
 }
 

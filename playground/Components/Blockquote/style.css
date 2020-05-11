@@ -4,7 +4,6 @@ main {
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 main > * + * {
@@ -12,8 +11,9 @@ main > * + * {
 }
 
 blockquote {
-  line-height: 2;
+  align-self: center;
   padding: 1rem 2.5rem;
+  line-height: 2;
   font-style: italic;
   color: hsl(350, 100%, 8%);
   color: var(--primary-0);

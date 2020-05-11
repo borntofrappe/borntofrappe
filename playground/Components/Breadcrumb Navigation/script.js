@@ -10,8 +10,7 @@ body.innerHTML = urls
   .map(
     url => `
   <nav aria-label="Breadcrumb navigation">
-    <a href="/">borntofrappe ${icons.rocket}</a>
-    ${url
+    <a href="/">borntofrappe ${icons.rocket}</a>${url
       .split('/')
       .slice(1)
       .reduce(

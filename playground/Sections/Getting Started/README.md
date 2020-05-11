@@ -36,18 +36,7 @@ The markup is modified to target the elements with the `:nth-of-type()` selector
 
 If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope more tilted.
 
-## setAttribute
-
-To set up the animation with the intersection observer API, add/remove a class with `setAttribute` and `removeAttribute`,
-
-You can achieve a similar feature using only `setAttribute` and a ternary operator:
-
-```js
-entry.target.setAttribute("class", entry.isIntersecting ? "observed" : "");
-```
-
-However, in this instance the class attribute is still present. It just doesn't refer to anything.
-
-```html
-<svg class></svg>
+```diff
+- transform: rotate(15deg);
++ transform: rotate(30deg);
 ```

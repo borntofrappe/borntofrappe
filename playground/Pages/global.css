@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-/* soft reset */
 *,
 *::before,
 *::after {
@@ -28,7 +27,6 @@ ol {
   list-style: none;
 }
 
-/* consider prefers-reduced-motion */
 html {
   scroll-behavior: smooth;
 }
@@ -83,6 +81,8 @@ html {
   --ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  --transition-duration: 0.25s;
 }
 
 ::selection {
@@ -102,9 +102,12 @@ body {
 body::-webkit-scrollbar {
   width: 0.8rem;
 }
+
 body::-webkit-scrollbar-track {
-  background: currentColor;
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
 }
+
 body::-webkit-scrollbar-thumb {
   border: 0.2rem solid currentColor;
   border-radius: 0.5rem;
@@ -119,7 +122,7 @@ a {
   border: 0.15rem dashed transparent;
 
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color 0.25s var(--ease-in-out-sine);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 a:focus {
@@ -139,10 +142,12 @@ h3,
 h4 {
   font-family: "Maven Pro", sans-serif;
 }
+
 h1,
 h2 {
   font-weight: 700;
 }
+
 h3,
 h4 {
   font-weight: 600;
@@ -156,9 +161,6 @@ svg {
   display: block;
 }
 
-/* class to hide content only visually
-accessible through screen reader/keyboard focus
-*/
 .visually-hidden:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

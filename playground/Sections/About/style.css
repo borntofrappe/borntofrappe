@@ -9,6 +9,10 @@ article {
   width: 90vw;
 }
 
+/*
+  [40 - 75]rem width
+  [1 - 1.2]rem font-size
+*/
 article {
   font-size: 1.2rem;
   font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));

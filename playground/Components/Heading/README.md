@@ -4,11 +4,19 @@
 
 The script populates the body with a series of headings: h2, h3 and h4.
 
-Remember to:
+In each heading add an anchor link using the heading's id as a reference.
 
-- have the `id` attribute of the heading match the `href` attribute of the nested anchor link.
+Add a span for assistive tech.
 
-- describe the purpose of the link to assistive technologies
+```njk
+<h2 id="{id}">
+  {text}
+  <a href="#{}id">
+    <span class="visually-hidden">permalink</span>
+    {icon}
+  </a>
+</h2>
+```
 
 ## Opacity
 

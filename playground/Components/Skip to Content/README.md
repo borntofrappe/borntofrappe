@@ -1,5 +1,5 @@
 # Skip to Content
 
-## Content
+## Href
 
-Link to the element with an `id` of `content`. Remember to have one.
+Use the anchor link element to point toward the element with an `id` of `content`.

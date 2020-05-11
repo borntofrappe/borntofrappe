@@ -2,8 +2,12 @@
 
 ## Pseudo Elements
 
-In the pseudo elements use the SVG syntax described in `badge-check` and `badge-outline`. This is included in the `url()` function of the `mask-image` property, so that the graphic is tinted with the background's color.
+In the pseudo elements use the SVG syntax described by the badge graphic:
 
-## Mask
+- `badge-check` for `<ul>` elements
 
-For each `mask` property add a `-webkit` prefixed version
+- `badge-outline` for `<ol>` elements
+
+## ol
+
+For `ol` elements, add a custom counter to position the integer in the frame of the SVG icon.

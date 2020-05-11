@@ -43,7 +43,7 @@ table thead tr {
 
 table thead tr th {
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color 0.25s var(--ease-in-out-sine);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 table thead tr th:hover {
@@ -74,11 +74,13 @@ table tbody tr td {
   font-family: "Source Code Pro", monospace;
 }
 
+/* zebra stripes starting from the bottom */
 table tbody tr:nth-last-of-type(even) td {
   background: hsl(210, 20%, 12%);
   background: var(--grey-1);
 }
 
+/* align text for deprecated attributes */
 table [align="right"] {
   text-align: right;
 }

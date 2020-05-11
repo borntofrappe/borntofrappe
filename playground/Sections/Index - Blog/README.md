@@ -4,6 +4,25 @@
 
 The script populates the `main` element from the frontmatter presumed from a series of articles.
 
+```njk
+<article>
+  <h2>
+    <a href="{link}">
+      {title}
+      {icon}
+    </a>
+  </h2>
+
+  <time datetime="{date}">
+    {formattedDate}
+  </time>
+
+  <p>
+    {brief}
+  </p>
+</article>
+```
+
 ## Date
 
 Follow the convention described by the [living standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) and specifically [the part on a valid month string](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-month-string).

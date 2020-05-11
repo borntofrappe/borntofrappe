@@ -2,7 +2,7 @@
 
 ## Markup
 
-The markup of the table is obtained by processing a markdown table with `marked.js`.
+The structure described in `index.html` comes from a node script using `marked` to parse `.md` files. See the **Utils** folder.
 
 ## align
 
@@ -21,4 +21,4 @@ table [align="center"] {
 
 ## Pseudo element
 
-Use a pseudo element to make rounded borders at the top of the table.
+Use a pseudo element to add a rectangle with rounded borders at the top of the table.

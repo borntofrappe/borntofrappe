@@ -1,5 +1,7 @@
 # Blog Header
 
+Header for the blog page.
+
 ## Breakout
 
 The idea is to have the background and the wave-pattern extend to the left and right of the header element. This is achieved with `vw` units, and `grid` properties where these are supported.

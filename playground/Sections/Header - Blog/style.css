@@ -1,3 +1,4 @@
+/* necessary with a ::before pseudo element 100vw wide */
 body {
   overflow-x: hidden;
 }
@@ -57,6 +58,10 @@ header p:first-of-type {
 }
 
 @supports (display: grid) {
+  /*
+  center the header in a grid of three columns
+  | | header | |
+  */
   body {
     overflow-x: initial;
   }

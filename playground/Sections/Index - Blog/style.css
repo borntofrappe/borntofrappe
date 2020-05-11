@@ -75,6 +75,13 @@ article p {
 }
 
 @supports (display: grid) {
+  /* grid
+  columns with a min width
+
+  | first article         |
+  | article    | article  |
+
+  */
   main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
@@ -90,6 +97,14 @@ article p {
   }
 }
 
+/* subgrid
+line up articles' content
+
+|h2     | h2    |
+|time   | time  |
+|p      | p     |
+
+*/
 @supports (grid-template-columns: subgrid) {
   article {
     grid-gap: 0;

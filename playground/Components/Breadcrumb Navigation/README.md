@@ -2,10 +2,10 @@
 
 ## Markup
 
-The script creates different navigation elements on the basis of arbitrary URLs.
+The `<nav>` element includes anchor link elements according to the URL
 
 - borntofrappe by default
 
-- `/ ${path}` for every additional route
+- `/ {path}` for every additional route
 
-- `/ ${path} ${icon}` when one available
+- `/ {path} {icon}` when one available

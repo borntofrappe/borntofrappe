@@ -69,8 +69,8 @@ header ul li {
   background: hsl(215, 10%, 97%);
   background: var(--grey-10);
   border: 0.3rem solid currentColor;
-  transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color 0.3s var(--ease-in-out-sine);
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 @supports (display: grid) {
@@ -101,12 +101,13 @@ header ul li:hover {
 header ul::-webkit-scrollbar {
   height: 0.2rem;
 }
+
 header ul::-webkit-scrollbar-track {
   background: hsl(215, 22%, 5%);
   background: var(--grey-0);
 }
+
 header ul::-webkit-scrollbar-thumb {
-  /* border: 0.2rem solid currentColor; */
   border-radius: 0.5rem;
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);

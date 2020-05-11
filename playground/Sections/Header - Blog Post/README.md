@@ -1,5 +1,7 @@
 # Blog Post Header
 
+Header for blog post pages.
+
 ## Markup
 
 The script populates the body of the document from the frontmatter presumed from a series of articles.
@@ -9,22 +11,6 @@ The script populates the body of the document from the frontmatter presumed from
 By default, display the icons in a flex row, and separate them horizontally with liberal margin.
 
 If grid is supported, center the graphics in `100px` wide columns – 100 being the width of a wave in the SVG pattern.
-
-## scrollbar
-
-Style the horizontal scrollbar of the unordered list to match the vertical scrollbar of the document.
-
-## 1px
-
-Specify a 1px translation on the pseudo element describing the wave pattern.
-
-```css
-header::after {
-  transform: translateY(-1px) scaleY(-1);
-}
-```
-
-Without this — at least on mobile devices — there is often an annoying gap between the pseudo element and the footer. Enough to break the illusion of having a contiguous shape.
 
 ## z-index
 
