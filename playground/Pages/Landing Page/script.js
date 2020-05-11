@@ -346,7 +346,6 @@ about.innerHTML = `
 </svg>
 `;
 
-
 const illustrations = document.querySelectorAll('article > svg');
 if (window.IntersectionObserver) {
   const observer = new IntersectionObserver(entries => {

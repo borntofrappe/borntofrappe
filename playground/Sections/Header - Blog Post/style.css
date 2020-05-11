@@ -59,9 +59,9 @@ header ul {
 
 header ul li {
   flex-shrink: 0;
-  margin: 0px 22.5px;
   padding: 10px;
   border-radius: 50%;
+  margin: 0px 22.5px;
   width: 55px;
   height: 55px;
   color: hsl(215, 22%, 5%);

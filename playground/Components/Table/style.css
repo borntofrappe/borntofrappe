@@ -5,8 +5,8 @@ main {
 }
 
 table {
-  line-height: 2;
   margin-top: 0.7rem;
+  line-height: 2;
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
@@ -74,7 +74,6 @@ table tbody tr td {
   font-family: "Source Code Pro", monospace;
 }
 
-/* zebra stripes starting from the bottom */
 table tbody tr:nth-last-of-type(even) td {
   background: hsl(210, 20%, 12%);
   background: var(--grey-1);

@@ -11,8 +11,8 @@ main {
 footer {
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);
-  padding: 2.25rem 1rem 2rem;
   text-align: center;
+  padding: 2.25rem 1rem 2rem;
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
   background: hsl(215, 22%, 5%);
@@ -58,7 +58,9 @@ footer a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
   background: none;
+  /* repeat to avoid transition */
   border-bottom-color: hsl(340, 90%, 55%);
+  border-bottom-color: var(--primary-6);
 }
 
 footer span {
@@ -78,7 +80,7 @@ footer span {
   border: 0.4rem solid currentColor;
   border-radius: 50%;
   transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color 0.3s var(--ease-in-out-sine);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 footer span svg {

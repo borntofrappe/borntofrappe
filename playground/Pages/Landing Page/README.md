@@ -10,6 +10,8 @@ Include the code from the following projects:
 
 - sections/hero
 
+- sections/getting started
+
 - sections/about
 
 - components/footer
@@ -23,14 +25,6 @@ Update the article element to show only half the illustration.
 +<svg viewBox="-50 -50 100 50" width="200" height="100">
 ```
 
-For the same reason, reset the `margin` at the bottom of the container.
-
-```css
-#about {
-  margin-bottom: 0px;
-}
-```
-
 This sets up the illusion that the SVG is behind the footer which follows.
 
 ### Clockwise
@@ -41,3 +35,7 @@ Since only half the element is shown, and the animation occurs clockwise, flip t
 -<g transform="rotate(${360 / length * index}) translate(0 -42) rotate(${360 / length * index * -1})">
 +<g transform="rotate(${360 / length * index * -1}) translate(0 -42) rotate(${360 / length * index})">
 ```
+
+## Intersection observer
+
+Observe both illustrations included in the article elements.

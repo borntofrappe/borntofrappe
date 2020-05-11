@@ -237,5 +237,6 @@ article > svg:nth-of-type(2).observed .path .color {
   10%,
   90% {
     color: hsl(340, 85%, 46%);
+    color: var(--primary-6);
   }
 }

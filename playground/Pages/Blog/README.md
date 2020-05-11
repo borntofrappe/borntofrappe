@@ -8,9 +8,9 @@ Include the code from the following projects:
 
 - components/breadcrumb navigation
 
-- components/blog header
+- sections/header blog
 
-- components/blog index
+- sections/index
 
 - components/footer
 

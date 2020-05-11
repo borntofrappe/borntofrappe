@@ -14,6 +14,10 @@ header {
   position: relative;
 }
 
+/*
+  [40 - 75]rem width
+  [1.5 - 1.8]rem font-size
+*/
 header {
   font-size: 1.8rem;
   font-size: calc(1.5rem + (1.8 - 1.5) * (100vw - 40rem) / (75 - 40));
@@ -129,6 +133,7 @@ header ul li::before {
   width: 1.7em;
   height: 1.7em;
   transform: translate(-100%, 0%);
+  background: hsl(340, 90%, 55%);
   background: var(--primary-6);
   mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");

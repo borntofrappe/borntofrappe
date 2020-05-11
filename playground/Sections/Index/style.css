@@ -71,6 +71,7 @@ article:first-of-type time {
 
 article p {
   line-height: 1.75;
+  color: hsl(210, 20%, 12%);
   color: var(--grey-1);
 }
 

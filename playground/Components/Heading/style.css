@@ -32,6 +32,7 @@ h4 {
   height: 1em;
   transition-property: opacity, color;
   transition-duration: 0.25s;
+  transition-duration: var(--transition-duration);
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition-timing-function: var(--ease-in-out-sine);
 }
