@@ -4,14 +4,18 @@
   "description": "A personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx eleventy",
+    "serve": "npx eleventy --serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/borntofrappe/borntofrappe.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "borntofrappe",
+    "blog"
+  ],
+  "author": "borntofrappe",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/borntofrappe/borntofrappe/issues"
