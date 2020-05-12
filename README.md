@@ -17,3 +17,19 @@ A personal website
 - template with nunjucks
 
 - deploy on Netlify
+
+## Notes
+
+```bash
+npm init -y
+npm install --save-dev @11ty/eleventy
+```
+
+```bash
+touch .gitignore
+# node_modules
+
+touch .eleventyignore
+# playground
+# README.md
+```
