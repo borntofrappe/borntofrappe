@@ -195,7 +195,7 @@ const markup = marked(markdown, { renderer });
 
 And that takes care of producing the desired, custom markup.
 
-## script
+## script-syntax
 
 Add syntax highlighting with `shiki`.
 
@@ -238,3 +238,13 @@ npm install shiki
        renderer.code = (code, lang) => `<pre><div>${icons[lang]}<span>${lang}</span></div>${highlighter.codeToHtml(code, lang)}</pre>`;
      });
    ```
+
+## script
+
+Replace the logic assuming the frontmatter using regular expressions with [`gray-matter`](https://www.npmjs.com/package/gray-matter).
+
+This package allows for a concise and robust way to destructure the frontmatter and data out of an input string.
+
+```js
+const { content, data: frontmatter } = matter(markdown);
+```

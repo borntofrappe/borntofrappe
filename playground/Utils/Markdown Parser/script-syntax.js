@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const shiki = require('shiki');
-const matter = require('gray-matter');
 
 const input = 'blog';
 const output = 'pages';
@@ -61,8 +60,19 @@ shiki
         encoding: 'utf-8',
       });
 
-      const { content, data: frontmatter } = matter(markdown);
+      // frontmatter object
+      const frontmatter = {};
+      const match = markdown.match(/---\r\n(\w+:\s.+\r\n)+---\r\n/);
+      const string = match ? match[0] : '';
+      if (string) {
+        string.match(/\w+:\s.+/g).forEach(match => {
+          const [key, value] = match.split(': ');
+          frontmatter[key] = value;
+        });
+      }
 
+      // parse the content past the frontmatter
+      const content = markdown.slice(string.length);
       const markup = marked(content, { renderer });
       fs.writeFileSync(`${output}/${slug}${extnameOutput}`, markup);
     });
