@@ -1,6 +1,8 @@
-module.exports = {
-  dir: {
-    input: 'src',
-    output: 'dist'
-  }
-}
+module.exports = (eleventyConfig) => {
+  return {
+    dir: {
+      input: 'src',
+      output: 'dist'
+    }
+  };
+};

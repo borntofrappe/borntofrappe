@@ -90,3 +90,17 @@ With the templating engine, include the icons within two sets of brackets.
 ```
 
 The `safe` filter is necessary to avoid including the syntax as text.
+
+## filters
+
+`safe` is one of the [built-in filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) provided by nunjucks.
+
+Another useful one, for the specific website, is `replace`. This one allows me to change the default width and height by modifying the `1em` value.
+
+```njk
+<p>Almost ready to launch {{icons.rocket | replace("1em", "42") | safe }}</p>
+```
+
+The order doesn't seem to matter, as the size is updated either way.
+
+At first I thought of creating my own filter, and this explains the changes introduced to `eleventy.js`. See the [configuration API](https://www.11ty.dev/docs/config/#using-the-configuration-api) for more.
