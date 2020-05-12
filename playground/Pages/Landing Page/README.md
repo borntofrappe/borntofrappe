@@ -39,3 +39,7 @@ Since only half the element is shown, and the animation occurs clockwise, flip t
 ## Intersection observer
 
 Observe both illustrations included in the article elements.
+
+## Article(s)
+
+The two article elements share a few properties, like vertical spacing between the child elements and size of the heading, paragraph elements. In light of this, use a more general selector to avoid duplicating the values.

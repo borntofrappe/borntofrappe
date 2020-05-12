@@ -224,14 +224,24 @@ main#content {
   }
 }
 
+/* sections/ getting started & about */
+article > * + * {
+  margin-top: 1.5rem;
+}
+
+article h2 {
+  font-size: 2em;
+}
+article p {
+  font-size: 1em;
+  line-height: 1.75;
+  font-family: "Source Code Pro", monospace;
+}
+
 /* sections/getting started */
 article#getting-started {
   display: flex;
   flex-wrap: wrap;
-}
-
-article#getting-started > * + * {
-  margin-top: 1rem;
 }
 
 article#getting-started > svg:nth-of-type(1) {
@@ -247,16 +257,6 @@ article#getting-started > svg:nth-of-type(2) {
   margin-left: auto;
 }
 
-article#getting-started h2 {
-  font-size: 2em;
-}
-
-article#getting-started p {
-  font-size: 1em;
-  line-height: 1.75;
-  font-family: "Source Code Pro", monospace;
-}
-
 article#getting-started a {
   text-decoration: none;
   font-family: "Maven Pro", sans-serif;
@@ -265,7 +265,7 @@ article#getting-started a {
 }
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
-  article a {
+  article#getting-started a {
     --transition-duration: 0.5s;
     display: inline-block;
     position: relative;
@@ -274,12 +274,12 @@ article#getting-started a {
     border: none;
   }
 
-  article a:focus {
+  article#getting-started a:focus {
     background: none;
   }
 
-  article a::before,
-  article a::after {
+  article#getting-started a::before,
+  article#getting-started a::after {
     pointer-events: none;
     z-index: -5;
     content: "";
@@ -290,7 +290,7 @@ article#getting-started a {
     transition: transform var(--transition-duration) var(--ease-in-out-sine);
   }
 
-  article a::before {
+  article#getting-started a::before {
     left: 0%;
     width: 100%;
     height: 2px;
@@ -298,12 +298,12 @@ article#getting-started a {
     transform: translate(0%, -50%) scaleX(0);
   }
 
-  article a:hover::before,
-  article a:focus::before {
+  article#getting-started a:hover::before,
+  article#getting-started a:focus::before {
     transform: translate(0%, -50%) scaleX(1);
   }
 
-  article a::after {
+  article#getting-started a::after {
     left: 50%;
     width: 100%;
     height: 1.7em;
@@ -318,8 +318,8 @@ article#getting-started a {
     -webkit-mask-repeat: no-repeat;
   }
 
-  article a:hover::after,
-  article a:focus::after {
+  article#getting-started a:hover::after,
+  article#getting-started a:focus::after {
     transform: translate(50%, -50%);
   }
 }
@@ -444,19 +444,8 @@ article#about {
   align-items: center;
 }
 
-article#about > * + * {
-  margin-top: 1.5rem;
-}
-
-article#about h2 {
-  font-size: 2em;
-}
-
 article#about p {
-  font-size: 1em;
   text-align: flex-start;
-  line-height: 1.75;
-  font-family: "Source Code Pro", monospace;
 }
 
 article#about mark {
