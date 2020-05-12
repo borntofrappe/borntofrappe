@@ -104,3 +104,32 @@ Another useful one, for the specific website, is `replace`. This one allows me t
 The order doesn't seem to matter, as the size is updated either way.
 
 At first I thought of creating my own filter, and this explains the changes introduced to `eleventy.js`. See the [configuration API](https://www.11ty.dev/docs/config/#using-the-configuration-api) for more.
+
+## Hero
+
+In recreating the hero section, a note or two on the transition from JavaScript to Nunjucks.
+
+Set up the variables with the syntax detailed [by nunjucks docs](https://mozilla.github.io/nunjucks/templating.html#set)
+
+```njk
+{% set size = 450 %}
+{% set iconSize = 100 %}
+```
+
+This is helpful to describe the size of the SVG, but also the angle describing which path to use in the `<textPath>` element
+
+```njk
+{% set angle = (360 / loop.length) * loop.index0 %}
+```
+
+It's already shown in the previous snippet, but in the loop, access the index and the length of the array with `loop.length` and `loop.index0`. Again, refer to the [nunjucks docs](https://mozilla.github.io/nunjucks/templating.html#for)
+
+Finally, check for a condition using the if tags.
+
+```njk
+{% if something and somethingElse %}
+{% else %}
+{% endif% }
+```
+
+Use the `and` keyword in place of `&&`
