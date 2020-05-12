@@ -2,23 +2,9 @@
 
 A personal website
 
-## Deploy
-
-- start with three pages
-
-  1. landing page
-
-  2. blog
-
-  3. blog post
-
-- use 11ty
-
-- template with nunjucks
-
-- deploy on Netlify
-
 ## Notes
+
+> setting things up with 11ty
 
 Starting from 11ty own docs: [Getting started](https://www.11ty.dev/docs/getting-started/).
 
@@ -84,3 +70,23 @@ module.export = {
 ```
 
 This makes the `.eleventyignore` file redundant.
+
+## data
+
+In the data folder add the icons as described in the style guide folder, through the property-value pairs of `icons.js`
+
+This makes the object available to every templating file.
+
+See [11ty data cascade](https://www.11ty.dev/docs/data-cascade/).
+
+## index.njk
+
+I've decided to pick up nunjucks, but I might as well use liquid. Just pick one.
+
+With the templating engine, include the icons within two sets of brackets.
+
+```njk
+<p>Almost ready to launch {{icons.rocket | safe }}</p>
+```
+
+The `safe` filter is necessary to avoid including the syntax as text.

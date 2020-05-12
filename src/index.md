@@ -1,3 +1,0 @@
-# borntofrappe
-
-A personal website
