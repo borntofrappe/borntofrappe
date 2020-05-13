@@ -281,3 +281,44 @@ keywords: ["html", "css", "svg"]
 In the template replicate the syntax of the **header - blog post** project
 
 Looping through the keywords and adding the keyword and associated icon.
+
+#### blog
+
+For the blog, the date actually describes the value included in the `datetime` attribute. Change the frontmatter accordingly.
+
+```diff
+-date: 2020-05-10
++datetime: 2020-05-10
+```
+
+Add a filter in the config file to format the date as wanted.
+
+```js
+eleventyConfig.addFilter("formatdate", function(datetime) {
+  const year = datetime,getFullYear();
+  // ...
+
+  return `formatted date`;
+
+}
+```
+
+There's a bit of an issue regarding the order of the markdown files. I wasn't able to use the `| sort` filter, and decided instead to create the `blog` collection from the config file.
+
+```js
+eleventyConfig.addCollection("blog", function (collection) {
+  return collection.getFilteredByGlob("./src/blog/*.md");
+});
+```
+
+In this manner, immediately sort the articles as they are included in the colleciton.
+
+```js
+eleventyConfig.addCollection("blog", function (collection) {
+  return collection.getFilteredByGlob("./src/blog/*.md").sort(function (a, b) {
+    return b.data.datetime - a.data.datetime;
+  });
+});
+```
+
+**Be careful**: 11ty provides a date in `post.date`, and this refers to the date in which the file was created.

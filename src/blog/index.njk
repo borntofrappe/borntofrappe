@@ -1,6 +1,5 @@
 ---
 layout: null
-tags: null
 ---
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
@@ -8,7 +7,9 @@ tags: null
 {% block content %}
 
 <header>
-  <h1>Jotting things down</h1>
+<h1>Jotting things down</h1>
+  <p>I write so I can truly learn something. I write because I tend to forget.</p>
+  <p>If it saves a Google search or two, I figure this a complete success.</p>
 </header>
 
 <main id="content">
@@ -22,6 +23,16 @@ tags: null
         {% endif %}
       </a>
     </h2>
+
+    {% set datetime = post.data.datetime %}
+    {% set date = datetime | formatdate %}
+    <time datetime="{{datetime}}">
+      {{ date }}
+    </time>
+
+    <p>
+    {{ post.data.brief }}
+    </p>
   </article>
   {% endfor %}
 </main>
