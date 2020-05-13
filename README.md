@@ -133,3 +133,69 @@ Finally, check for a condition using the if tags.
 ```
 
 Use the `and` keyword in place of `&&`
+
+## extends
+
+The idea is to have a `base.njk` file which is then extended with content the different pages.
+
+It also allows to have browsersync work to its fullest potential.
+
+1. add a base.njk file in the **\_includes/layouts** folder.
+
+2. describe a template with an html, head and body tags
+
+3. add a footer
+
+The footer is just to show the extends, but ultimately it should be included in every page.
+
+To add content, define a block. This is where njk syntax kicks in
+
+```njk
+{% block content %}
+{% endblock %}
+```
+
+This sets up a template.
+
+To extend said template, at least in njk files:
+
+1. extend
+
+   ```njk
+   {% extends "layouts/base.njk" %}
+   ```
+
+2. describe the content to-be-placed in the block
+
+   ```njk
+   {% block content %}
+     <h1>Hello there</h1>
+   {% endblock %}
+   ```
+
+The header is included before the footer.
+
+### extends if
+
+This is actually nifty and something I was concerned with: it's possible to include an element conditional to a variable which is then set in the extending file.
+
+In most practical terms, it's possible to:
+
+- add the skip to content component at the top of the body, conditional to a variable being true
+
+  ```njk
+  {% if hasContent %}
+    <a href="#content" class="visually-hidden" id="skip-to-content">
+      Skip to Content {{ icons.skip | safe}}
+    </a>
+  {% endif %}
+  ```
+
+- set the boolean in the file using the template
+
+  ```njk
+  {% extends "layouts/base.njk" %}
+  {% set hasContent = true %}
+  ```
+
+If the file doesn't have an element with an `id` of content, the anchor link is superfluous, and this allows to inject the markip only if necessary.
