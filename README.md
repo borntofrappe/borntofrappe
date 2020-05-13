@@ -241,3 +241,23 @@ layout: null
 tags: null
 ---
 ```
+
+## collection
+
+This is where the `tags` field proves its usefulness. By adding the value of `blog`, every markdown file is listed in a collection. `collections.blog` to be precise.
+
+Access this array in the index file, and describe a list of articles.
+
+```njk
+<ul>
+{% for post in collections.blog %}
+  <li>
+    <a href="{{post.url}}">
+      {{ post.data.title }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+```
+
+Ultimately, the markup is different, but the idea remains: eleventy creates a collection using the `tags` field.

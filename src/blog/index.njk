@@ -7,8 +7,23 @@ tags: null
 
 {% block content %}
 
-<main id="content">
+<header>
   <h1>Jotting things down</h1>
-  <a href="/blog/up-and-running">Up and running</a>
+</header>
+
+<main id="content">
+  {% for post in collections.blog %}
+  <article>
+    <h2>
+      <a href="{{post.url}}">
+        {{ post.data.title }}
+        {% if loop.index0 === 0 %}
+          {{ icons.sparkles | safe }}
+        {% endif %}
+      </a>
+    </h2>
+  </article>
+  {% endfor %}
 </main>
+
 {% endblock %}
