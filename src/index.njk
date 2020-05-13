@@ -38,7 +38,7 @@
       <circle r="50" opacity="0" />
     </g>
 
-    {%- for link in links %}
+    {% for link in links %}
     <g transform="rotate({{(360 / loop.length) * loop.index0 }}) translate(0 -{{(size / 3)}}) rotate({{(360 / loop.length) * loop.index0  * -1}})">
         <a href="{{link.href}}" aria-labelledby="title-{{link.name}}" aria-describedby="desc-{{link.name}}">
           <title id="title-{{link.name}}">{{link.name}}</title>
@@ -50,7 +50,7 @@
                   <g class="text">
                     <text fill="currentColor" font-weight="bold" letter-spacing="1" text-anchor="middle" font-size="12" font-family="monospace">
                     {% set angle = (360 / loop.length) * loop.index0 %}
-                    {%- if angle > 90 and angle < 270 %}
+                    {% if angle > 90 and angle < 270 %}
                     <textPath href="#path-cc" startOffset="50%">
                         {{link.name}}
                       </textPath>
@@ -72,7 +72,7 @@
           </g>
         </a>
       </g>
-    {%- endfor %}
+    {% endfor %}
   </svg>
 </header>
 

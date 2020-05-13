@@ -1,14 +1,10 @@
----
-layout: null
-tags: null
----
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
 
 {% block content %}
 
 <main id="content">
-  <h1>Jotting things down</h1>
-  <a href="/blog/up-and-running">Up and running</a>
+  {{content | safe }}
 </main>
+
 {% endblock %}

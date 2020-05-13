@@ -199,3 +199,45 @@ In most practical terms, it's possible to:
   ```
 
 If the file doesn't have an element with an `id` of content, the anchor link is superfluous, and this allows to inject the markip only if necessary.
+
+### extends layout
+
+It's possible to have a layout reference another layout. Case in point: the blog posts. The idea is to extend the template in `base.njk` so to include the content of the markdown files in the desired markup structure.
+
+```njk
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+
+<main id="content">
+  {{content | safe }}
+</main>
+
+{% endblock %}
+```
+
+This layout extends the base layout, and it's then picked up specifying the layout in the frontmatter.
+
+```md
+---
+layout: "layouts/blog.njk"
+---
+```
+
+Since every blog post uses the layout however, specify a `blog.json` which specifies the option.
+
+```njk
+{
+  "layout": "layouts/blog.njk",
+  "tags": "blog"
+}
+```
+
+`tags` will come in handy in a second, but sticking with the data, `blog.json` creates a minor annoyance in applying the layout and tags to `index.njk` as well. To avoid this, remove the options at the top of the index page.
+
+```njk
+---
+layout: null
+tags: null
+---
+```

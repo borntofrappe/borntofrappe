@@ -1,6 +1,6 @@
 ---
 title: Up and running
-date: 2020-05-20
+date: 2020-05-10
 brief: The first article of an aspiring developer, fledging designer, long-distance runner
 ---
 
