@@ -4,7 +4,9 @@ A personal website
 
 ## Notes
 
-> setting things up with 11ty
+**Please note**: what follows is a tentative series of paragraphs, which range between being verbose and senseless. Read is at your own risk.
+
+### 11ty
 
 Starting from 11ty own docs: [Getting started](https://www.11ty.dev/docs/getting-started/).
 
@@ -50,7 +52,7 @@ npm run dev
 npm run serve
 ```
 
-## Config
+### Config
 
 Add a `.eleventy.js` file.
 
@@ -71,7 +73,7 @@ module.export = {
 
 This makes the `.eleventyignore` file redundant.
 
-## data
+### data
 
 In the data folder add the icons as described in the style guide folder, through the property-value pairs of `icons.js`
 
@@ -79,7 +81,7 @@ This makes the object available to every templating file.
 
 See [11ty data cascade](https://www.11ty.dev/docs/data-cascade/).
 
-## index.njk
+### index.njk
 
 I've decided to pick up nunjucks, but I might as well use liquid. Just pick one.
 
@@ -91,7 +93,7 @@ With the templating engine, include the icons within two sets of brackets.
 
 The `safe` filter is necessary to avoid including the syntax as text.
 
-## filters
+### filters
 
 `safe` is one of the [built-in filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) provided by nunjucks.
 
@@ -105,7 +107,7 @@ The order doesn't seem to matter, as the size is updated either way.
 
 At first I thought of creating my own filter, and this explains the changes introduced to `eleventy.js`. See the [configuration API](https://www.11ty.dev/docs/config/#using-the-configuration-api) for more.
 
-## Hero
+### Hero
 
 In recreating the hero section, a note or two on the transition from JavaScript to Nunjucks.
 
@@ -134,7 +136,7 @@ Finally, check for a condition using the if tags.
 
 Use the `and` keyword in place of `&&`
 
-## extends
+### extends
 
 The idea is to have a `base.njk` file which is then extended with content the different pages.
 
@@ -175,7 +177,7 @@ To extend said template, at least in njk files:
 
 The header is included before the footer.
 
-### extends if
+#### extends if
 
 This is actually nifty and something I was concerned with: it's possible to include an element conditional to a variable which is then set in the extending file.
 
@@ -200,7 +202,7 @@ In most practical terms, it's possible to:
 
 If the file doesn't have an element with an `id` of content, the anchor link is superfluous, and this allows to inject the markip only if necessary.
 
-### extends layout
+#### extends layout
 
 It's possible to have a layout reference another layout. Case in point: the blog posts. The idea is to extend the template in `base.njk` so to include the content of the markdown files in the desired markup structure.
 
@@ -242,7 +244,7 @@ tags: null
 ---
 ```
 
-## collection
+### collection
 
 This is where the `tags` field proves its usefulness. By adding the value of `blog`, every markdown file is listed in a collection. `collections.blog` to be precise.
 
@@ -261,3 +263,21 @@ Access this array in the index file, and describe a list of articles.
 ```
 
 Ultimately, the markup is different, but the idea remains: eleventy creates a collection using the `tags` field.
+
+### html
+
+Recreate the markup for the three pages.
+
+#### blog post
+
+Include the icons with a new variables in the frontmatter: `keywords`
+
+```md
+---
+keywords: ["html", "css", "svg"]
+---
+```
+
+In the template replicate the syntax of the **header - blog post** project
+
+Looping through the keywords and adding the keyword and associated icon.

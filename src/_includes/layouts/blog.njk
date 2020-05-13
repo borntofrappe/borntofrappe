@@ -3,6 +3,22 @@
 
 {% block content %}
 
+<header>
+  <h1>{{ title }}</h1>
+  {% if keywords %}
+    <h2 class="visually-hidden">Keywords:</h2>
+    <ul>
+    {% for keyword in keywords %}
+      <li>
+        <span class="visually-hidden">{{keyword}}</span>
+        {{ icons[keyword] | safe }}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</header>
+
+
 <main id="content">
   {{content | safe }}
 </main>
