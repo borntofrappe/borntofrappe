@@ -1,8 +1,12 @@
+{% block style %}
+  {% include "css/index.css" %}
+{% endblock %}
+
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
 
-{% block content %}
 
+{% block content %}
 <header id="hero">
   <div class="visually-hidden">
     <h1>
@@ -196,7 +200,7 @@
 
 
     {% set satellites = ['world', 'editor', 'running', 'tea', 'gaming'] %}
-    <svg style="{{colors.primary[5]}}" viewBox="-50 -50 100 50" width="400" height="200">
+    <svg style="color: {{colors.primary[5]}}" viewBox="-50 -50 100 50" width="400" height="200">
       <defs>
         <clipPath id="clip-planet">
           <circle r="30" />
@@ -250,12 +254,10 @@
     </svg>
   </article>
 </main>
-
 {% endblock %}
 
 
 {% block script %}
-
   <script>
   const illustrations = document.querySelectorAll('article > svg');
   if (window.IntersectionObserver) {
@@ -274,5 +276,4 @@
     })
   }
   </script>
-
 {% endblock %}

@@ -1,6 +1,11 @@
 ---
 layout: null
 ---
+
+{% block style %}
+  {% include "css/blog.css" %}
+{% endblock %}
+
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
 

@@ -391,3 +391,45 @@ Include another block for any JavaScript.
 {% block script %}
 {% endblock %}
 ```
+
+### css
+
+This is but one way to include the property value pairs in the HTML files: in between `<style>` tags.
+
+Organize the stylesheet in a **css** folder alongside the layout files.
+
+```
+_includes
+  css
+  layouts
+```
+
+Add the stylesheet created globally and for the three pages.
+
+```
+_includes
+  css
+    blog.css
+    global.css
+    index.css
+    post.css
+```
+
+In the base layout, include the global stylesheet and a block in which to add other values.
+
+```njk
+ <style>
+{% include "css/global.css" %}
+{% block style %}{% endblock %}
+</style>
+```
+
+In the extending file, add the stylesheet using the blog.
+
+For instance and for the articles in the blog folder.
+
+```njk
+{% block style %}
+  {% include "css/post.css" %}
+{% endblock %}
+```

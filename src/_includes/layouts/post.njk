@@ -1,8 +1,11 @@
+{% block style %}
+  {% include "css/post.css" %}
+{% endblock %}
+
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
 
 {% block content %}
-
 <header>
   <h1>{{ title }}</h1>
   {% if keywords %}
@@ -22,5 +25,4 @@
 <main id="content">
   {{content | safe }}
 </main>
-
 {% endblock %}

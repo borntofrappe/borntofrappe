@@ -4,6 +4,814 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>borntofrappe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <style>
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: initial;
+  }
+}
+
+:root {
+  --primary-0: hsl(350, 100%, 8%);
+  --primary-1: hsl(347, 100%, 19%);
+  --primary-2: hsl(345, 95%, 27%);
+  --primary-3: hsl(345, 96%, 33%);
+  --primary-4: hsl(342, 92%, 39%);
+  --primary-5: hsl(340, 85%, 46%);
+  --primary-6: hsl(340, 90%, 55%);
+  --primary-7: hsl(339, 90%, 67%);
+  --primary-8: hsl(336, 93%, 77%);
+  --primary-9: hsl(335, 100%, 86%);
+  --primary-10: hsl(330, 100%, 92%);
+
+  --secondary-0: hsl(220, 100%, 8%);
+  --secondary-1: hsl(218, 100%, 15%);
+  --secondary-2: hsl(215, 97%, 25%);
+  --secondary-3: hsl(215, 96%, 32%);
+  --secondary-4: hsl(213, 95%, 38%);
+  --secondary-5: hsl(212, 92%, 45%);
+  --secondary-6: hsl(210, 85%, 55%);
+  --secondary-7: hsl(210, 90%, 62%);
+  --secondary-8: hsl(208, 95%, 75%);
+  --secondary-9: hsl(205, 100%, 85%);
+  --secondary-10: hsl(205, 100%, 92%);
+
+  --grey-0: hsl(215, 22%, 5%);
+  --grey-1: hsl(210, 20%, 12%);
+  --grey-2: hsl(210, 18%, 25%);
+  --grey-3: hsl(210, 16%, 32%);
+  --grey-4: hsl(208, 14%, 39%);
+  --grey-5: hsl(212, 12%, 45%);
+  --grey-6: hsl(212, 10%, 54%);
+  --grey-7: hsl(212, 15%, 65%);
+  --grey-8: hsl(213, 16%, 79%);
+  --grey-9: hsl(214, 15%, 88%);
+  --grey-10: hsl(215, 10%, 97%);
+
+  --palenight-theme: hsl(229, 20%, 20%);
+
+  --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  --transition-duration: 0.25s;
+}
+
+::selection {
+  color: hsl(215, 10%, 97%);
+  background: hsl(340, 90%, 55%);
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  font-family: "Ubuntu", sans-serif;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+}
+
+body::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+}
+
+body::-webkit-scrollbar-thumb {
+  border: 0.2rem solid currentColor;
+  border-radius: 0.5rem;
+  background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  font-family: inherit;
+  border: 0.15rem dashed transparent;
+
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+a:focus {
+  outline: none;
+  border-color: currentColor;
+  background: hsl(330, 100%, 92%);
+  background: var(--primary-10);
+}
+a:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Maven Pro", sans-serif;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+}
+
+code {
+  font-family: "Source Code Pro", monospace;
+}
+
+svg {
+  display: block;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+    
+  /* remove horizontal scroll due to the article's ::before pseudo element */
+body {
+  overflow-x: hidden;
+}
+
+/* components/skip to content */
+#skip-to-content {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  width: max-content;
+  align-items: center;
+  z-index: 5;
+}
+
+#skip-to-content svg {
+  width: 1em;
+  height: auto;
+  margin-left: 0.5rem;
+}
+
+/* components/breadcrumb navigation */
+nav {
+  max-width: 40rem;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.25rem 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+nav a svg {
+  margin: 0 0.2rem 0 0.4rem;
+  width: 1.5em;
+  height: auto;
+}
+
+/* sections/hero */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem 2rem;
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  position: relative;
+}
+
+/*
+  [40 - 75]rem width
+  [1.5 - 1.8]rem font-size
+*/
+header {
+  font-size: 1.8rem;
+  font-size: calc(1.5rem + (1.8 - 1.5) * (100vw - 40rem) / (75 - 40));
+}
+
+@media (min-width: 75rem) {
+  header {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  header {
+    font-size: 1.5rem;
+  }
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 100%;
+  height: 20px;
+  transform: translateY(-1px) scaleY(-1);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px -5px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 0;
+  mask-position: 50% 0;
+}
+
+header > svg {
+  order: -1;
+  width: 18em;
+  max-width: 90vw;
+  height: auto;
+  --transition-duration: 0.4s;
+}
+
+header > svg .borntofrappe {
+  transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55), color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform var(--transition-duration) var(--ease-in-out-back), color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+header > svg .borntofrappe:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  transform: scale(1.25) rotate(-10deg);
+}
+
+header > svg a {
+  transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55), color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform var(--transition-duration) var(--ease-in-out-back), color var(--transition-duration) var(--ease-in-out-sine);
+  transform: scale(0.85);
+}
+
+header > svg a .text {
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform var(--transition-duration) var(--ease-out-cubic);
+}
+
+header > svg a:hover,
+header > svg a:focus,
+header > svg a:hover .text,
+header > svg a:focus .text {
+  transform: scale(1);
+}
+
+header > svg a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+header ul {
+  display: block;
+  margin-left: 2em;
+  font-family: "Maven Pro", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  list-style: none;
+  text-transform: capitalize;
+}
+
+@media (max-width: 40rem) {
+  header ul {
+    letter-spacing: 0px;
+  }
+}
+
+header ul li {
+  line-height: 1.75;
+}
+
+header ul > * + * {
+  margin-top: 1.25rem;
+}
+
+header ul li {
+  position: relative;
+}
+
+header ul li::before {
+  content: "";
+  font-size: 0.9em;
+  position: absolute;
+  top: 0;
+  left: -0.35em;
+  width: 1.7em;
+  height: 1.7em;
+  transform: translate(-100%, 0%);
+  background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
+  mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
+  mask-size: 100%;
+  -webkit-mask-size: 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+main#content {
+  width: 90vw;
+  max-width: 40rem;
+  margin: 1rem auto;
+}
+
+/*
+  [40 - 75]rem width
+  [1 - 1.2]rem font-size
+*/
+main#content {
+  font-size: 1.2rem;
+  font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
+}
+
+@media (min-width: 75rem) {
+  main#content {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  main#content {
+    font-size: 1rem;
+  }
+}
+
+/* sections/ getting started & about */
+article > * + * {
+  margin-top: 0.3em;
+}
+article p:first-of-type {
+  margin-top: 1em;
+}
+
+article h2 {
+  font-size: 2em;
+}
+article p {
+  font-size: 1em;
+  word-spacing: -0.2em;
+  letter-spacing: -0.005em;
+  line-height: 1.75;
+  font-family: "Source Code Pro", monospace;
+}
+
+/* sections/getting started */
+article#getting-started {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+article#getting-started > svg:nth-of-type(1) {
+  align-self: flex-end;
+  width: 20%;
+  height: auto;
+}
+
+article#getting-started > svg:nth-of-type(2) {
+  align-self: flex-start;
+  width: 70%;
+  height: auto;
+  margin-left: auto;
+}
+
+article#getting-started a {
+  text-decoration: none;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+@supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
+  article#getting-started a {
+    --transition-duration: 0.5s;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.75em;
+    margin-bottom: 0.75em;
+    border: none;
+  }
+
+  article#getting-started a:focus {
+    background: none;
+  }
+
+  article#getting-started a::before,
+  article#getting-started a::after {
+    pointer-events: none;
+    z-index: -5;
+    content: "";
+    position: absolute;
+    top: 100%;
+    background: currentColor;
+    transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: transform var(--transition-duration) var(--ease-in-out-sine);
+  }
+
+  article#getting-started a::before {
+    left: 0%;
+    width: 100%;
+    height: 2px;
+    transform-origin: 0% 50%;
+    transform: translate(0%, -50%) scaleX(0);
+  }
+
+  article#getting-started a:hover::before,
+  article#getting-started a:focus::before {
+    transform: translate(0%, -50%) scaleX(1);
+  }
+
+  article#getting-started a::after {
+    left: 50%;
+    width: 100%;
+    height: 1.7em;
+    transform: translate(-50%, -50%);
+    mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.8)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' aria-focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='1em' height='1em'%3E%3Cg transform='scale(0.8)'%3E%3Cg fill='none' stroke='currentColor' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg transform='rotate(90)'%3E%3Cpath stroke-width='8' d='M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52' /%3E%3Cg stroke-width='7'%3E%3Cpath d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath transform='scale(-1 1)' d='M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21' /%3E%3Cpath d='M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5' /%3E%3Ccircle r='9' cy='-11' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    mask-position: 0% 50%;
+    -webkit-mask-position: 0% 50%;
+    mask-size: 1.7em;
+    -webkit-mask-size: 1.7em;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+  article#getting-started a:hover::after,
+  article#getting-started a:focus::after {
+    transform: translate(50%, -50%);
+  }
+}
+
+article#getting-started > svg:nth-of-type(1) .rotate {
+  transform: rotate(10deg);
+  animation: tilt 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+  animation: tilt 10s var(--ease-in-out-sine) infinite alternate;
+  animation-play-state: paused;
+}
+
+article#getting-started > svg:nth-of-type(2) .icon .scale {
+  transform: scale(0.7);
+  animation: scale 20s cubic-bezier(0.68, -0.5, 0.265, 1.55) infinite;
+  animation: scale 20s var(--ease-in-out-back) infinite;
+  animation-play-state: paused;
+}
+
+article#getting-started > svg:nth-of-type(2) .icon .color,
+article#getting-started > svg:nth-of-type(2) .path .color {
+  color: currentColor;
+  animation: color 20s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: color 20s var(--ease-in-out-sine) infinite;
+  animation-play-state: paused;
+}
+
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(2) .scale,
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(2) .color,
+article#getting-started > svg:nth-of-type(2) .path:nth-of-type(1) .color {
+  animation-delay: 0.5s;
+}
+
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(3) .scale,
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(3) .color,
+article#getting-started > svg:nth-of-type(2) .path:nth-of-type(2) .color {
+  animation-delay: 0.25s;
+}
+
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(4) .scale,
+article#getting-started > svg:nth-of-type(2) .icon:nth-of-type(4) .color,
+article#getting-started > svg:nth-of-type(2) .path:nth-of-type(3) .color {
+  animation-delay: 0.75s;
+}
+
+article#getting-started > svg:nth-of-type(1).observed .rotate,
+article#getting-started > svg:nth-of-type(2).observed .icon .scale,
+article#getting-started > svg:nth-of-type(2).observed .icon .color,
+article#getting-started > svg:nth-of-type(2).observed .path .color {
+  animation-play-state: running;
+}
+
+@media (min-width: 40rem) {
+  @supports (display: grid) {
+    article#getting-started {
+      display: grid;
+      flex-wrap: initial;
+      grid-template-columns: 1fr 4fr;
+      grid-column-gap: 2rem;
+      grid-row-gap: 0.5rem;
+    }
+
+    article#getting-started > * + *,
+    article#getting-started p:first-of-type {
+      margin-top: initial;
+    }
+
+    article#getting-started > svg:nth-of-type(1) {
+      grid-row: 2;
+      align-self: end;
+      width: 100%;
+      height: auto;
+    }
+
+    article#getting-started > svg:nth-of-type(2) {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      align-self: initial;
+      margin-left: initial;
+      width: 100%;
+      height: auto;
+      max-width: 30rem;
+    }
+
+    article#getting-started p,
+    article#getting-started a {
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    article#getting-started > svg:nth-of-type(1) .rotate {
+      transform: rotate(30deg);
+    }
+  }
+}
+
+@keyframes tilt {
+  30%,
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+@keyframes scale {
+  10%,
+  90% {
+    transform: scale(1);
+  }
+}
+
+@keyframes color {
+  10%,
+  90% {
+    color: hsl(340, 85%, 46%);
+    color: var(--primary-6);
+  }
+}
+
+/* sections/about */
+article#about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+article#about p {
+  align-self: flex-start;
+}
+
+article#about mark {
+  background: hsl(330, 100%, 92%);
+  background: var(--primary-10);
+  padding: 0.2em 0.3em;
+  border-radius: 0.2em;
+}
+
+article#about > svg {
+  max-width: 30rem;
+  width: 90%;
+  height: auto;
+}
+
+article#about > svg .rotate {
+  animation: rotate 200s linear infinite;
+  animation-play-state: paused;
+}
+
+article#about > svg.observed .rotate {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* separator */
+main#content article:first-of-type {
+  margin-top: 4em;
+}
+
+main#content article + article::before {
+  content: "";
+  width: 100vw;
+  height: 3.5em;
+  margin: 4em 0;
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 0;
+  mask-position: 50% 0;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+}
+
+/* components/footer */
+footer {
+  --animation-duration: 2s;
+  --animation-timing-function: var(--ease-in-out-sine);
+  text-align: center;
+  padding: 2.25rem 1rem 2rem;
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  position: relative;
+  /* overlap with previous section */
+  margin-top: -10px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: 0%;
+  bottom: 100%;
+  width: 100%;
+  height: 20px;
+  transform: translateY(1px);
+  background: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 0;
+  mask-position: 50% 0;
+}
+
+footer a {
+  border: initial;
+  text-decoration: none;
+  font-family: "Maven Pro", sans-serif;
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 0.1rem solid hsl(340, 90%, 55%);
+  border-bottom: 0.1rem solid var(--primary-6);
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color 0.25s var(--ease-in-out-sine);
+}
+
+footer a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  background: none;
+  /* repeat to avoid transition */
+  border-bottom-color: hsl(340, 90%, 55%);
+  border-bottom-color: var(--primary-6);
+}
+
+footer span {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  display: block;
+  padding: 12px;
+  margin-top: -8px;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+  border: 0.4rem solid currentColor;
+  border-radius: 50%;
+  transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+footer span svg {
+  width: 100%;
+  height: auto;
+}
+
+footer svg g {
+  animation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: heart-beat var(--animation-duration) var(--animation-timing-function) infinite;
+  animation-play-state: paused;
+}
+
+@keyframes heart-beat {
+  10%,
+  30% {
+    transform: scale(0.8);
+  }
+  0%,
+  20%,
+  40% {
+    transform: scale(1);
+  }
+}
+
+footer a:hover + span,
+footer a:focus + span {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+footer a:hover + span svg g,
+footer a:focus + span svg g {
+  animation-play-state: running;
+}
+
+footer span:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer a:hover + span svg g,
+  footer a:focus + span svg g,
+  footer span svg:hover g {
+    animation-play-state: paused;
+  }
+}
+
+
+    </style>
   </head>
   <body>
   
@@ -17,7 +825,6 @@
   </nav>
 
   
-
 <header id="hero">
   <div class="visually-hidden">
     <h1>
@@ -372,7 +1179,7 @@
 
 
     
-    <svg style="hsl(340, 85%, 46%)" viewBox="-50 -50 100 50" width="400" height="200">
+    <svg style="color: hsl(340, 85%, 46%)" viewBox="-50 -50 100 50" width="400" height="200">
       <defs>
         <clipPath id="clip-planet">
           <circle r="30" />
@@ -537,7 +1344,6 @@
 
 
 
-
   <footer>
     <a href="https://twitter.com/borntofrappe">borntofrappe</a>
     <span>
@@ -550,7 +1356,6 @@
   </footer>
 
   
-
   <script>
   const illustrations = document.querySelectorAll('article > svg');
   if (window.IntersectionObserver) {
@@ -569,7 +1374,6 @@
     })
   }
   </script>
-
 
   </body>
 </html>
