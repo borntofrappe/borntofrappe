@@ -252,3 +252,27 @@
 </main>
 
 {% endblock %}
+
+
+{% block script %}
+
+  <script>
+  const illustrations = document.querySelectorAll('article > svg');
+  if (window.IntersectionObserver) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('class', 'observed');
+        } else {
+          entry.target.removeAttribute('class');
+        }
+      });
+    });
+
+    illustrations.forEach(illustration => {
+      observer.observe(illustration);
+    })
+  }
+  </script>
+
+{% endblock %}

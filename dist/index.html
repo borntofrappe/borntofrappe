@@ -209,7 +209,6 @@
 
 <main id="content">
   <article id="getting-started">
-
     <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="100" height="100">
       <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
         <g stroke-width="4">
@@ -217,7 +216,7 @@
           <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
           <g transform="translate(0 -10)">
             <g transform="scale(1 -1)">
-              <g class="rotate" transform="rotate(22)">
+              <g class="rotate" transform="rotate(20)">
                 <g transform="scale(1 -1)">
                   <path stroke-dasharray="9 35" d="M 0 8 a 8 8 0 0 1 0 -16 8 8 0 0 1 0 16" />
                 </g>
@@ -227,7 +226,7 @@
         </g>
         <g transform="translate(0 -17)">
           <g transform="scale(1 -1)">
-            <g class="rotate" transform="rotate(22)">
+            <g class="rotate" transform="rotate(20)">
               <g transform="translate(26 0)">
                 <path stroke-width="7" transform="translate(-65 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
                 <path stroke-width="6" transform="translate(-52 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
@@ -549,6 +548,28 @@
       </svg>
     </span>
   </footer>
+
+  
+
+  <script>
+  const illustrations = document.querySelectorAll('article > svg');
+  if (window.IntersectionObserver) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute('class', 'observed');
+        } else {
+          entry.target.removeAttribute('class');
+        }
+      });
+    });
+
+    illustrations.forEach(illustration => {
+      observer.observe(illustration);
+    })
+  }
+  </script>
+
 
   </body>
 </html>

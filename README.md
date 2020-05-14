@@ -372,3 +372,22 @@ The following are equivalent
 M 35,30 125,85 225,40 315,95
 M 35,30L125,85L225,40L315,95
 ```
+
+### Intersection observer
+
+To add the JavaScript adding/removing the class of `.observed` with the intersection observer API, include the code in between `<script>` tags.
+
+```html
+<script>
+ // javascript here
+<script>
+```
+
+Including the script in the `content` block causes the logic to precede the footer though.
+
+Include another block for any JavaScript.
+
+```njk
+{% block script %}
+{% endblock %}
+```
