@@ -55,6 +55,7 @@ header::after {
 }
 
 header > svg {
+  order: -1;
   width: 18em;
   max-width: 90vw;
   height: auto;

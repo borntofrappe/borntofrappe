@@ -39,7 +39,7 @@ article.innerHTML = `
         <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
         <g transform="translate(0 -10)">
           <g transform="scale(1 -1)">
-            <g class="rotate" transform="rotate(22)">
+            <g class="rotate" transform="rotate(20)">
               <g transform="scale(1 -1)">
                 <path stroke-dasharray="9 35" d="M 0 8 a 8 8 0 0 1 0 -16 8 8 0 0 1 0 16" />
               </g>
@@ -49,7 +49,7 @@ article.innerHTML = `
       </g>
       <g transform="translate(0 -17)">
         <g transform="scale(1 -1)">
-          <g class="rotate" transform="rotate(22)">
+          <g class="rotate" transform="rotate(20)">
             <g transform="translate(26 0)">
               <path stroke-width="7" transform="translate(-65 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
               <path stroke-width="6" transform="translate(-52 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />

@@ -35,7 +35,10 @@ article {
 }
 
 article > * + * {
-  margin-top: 1rem;
+  margin-top: 0.3em;
+}
+article p:first-of-type {
+  margin-top: 1em;
 }
 
 article > svg:nth-of-type(1) {
@@ -129,7 +132,7 @@ article a {
 }
 
 article > svg:nth-of-type(1) .rotate {
-  transform: rotate(15deg);
+  transform: rotate(10deg);
   animation: tilt 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
   animation: tilt 10s var(--ease-in-out-sine) infinite alternate;
   animation-play-state: paused;
@@ -185,7 +188,8 @@ article > svg:nth-of-type(2).observed .path .color {
       grid-row-gap: 0.5rem;
     }
 
-    article > * + * {
+    article > * + *,
+    article > p:first-of-type {
       margin-top: initial;
     }
 

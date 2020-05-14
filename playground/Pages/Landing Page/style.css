@@ -109,6 +109,7 @@ header::after {
 }
 
 header > svg {
+  order: -1;
   width: 18em;
   max-width: 90vw;
   height: auto;
@@ -226,7 +227,10 @@ main#content {
 
 /* sections/ getting started & about */
 article > * + * {
-  margin-top: 1.5rem;
+  margin-top: 0.3em;
+}
+article p:first-of-type {
+  margin-top: 1em;
 }
 
 article h2 {
@@ -234,6 +238,8 @@ article h2 {
 }
 article p {
   font-size: 1em;
+  word-spacing: -0.2em;
+  letter-spacing: -0.005em;
   line-height: 1.75;
   font-family: "Source Code Pro", monospace;
 }
@@ -325,7 +331,7 @@ article#getting-started a {
 }
 
 article#getting-started > svg:nth-of-type(1) .rotate {
-  transform: rotate(15deg);
+  transform: rotate(10deg);
   animation: tilt 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
   animation: tilt 10s var(--ease-in-out-sine) infinite alternate;
   animation-play-state: paused;
@@ -381,7 +387,8 @@ article#getting-started > svg:nth-of-type(2).observed .path .color {
       grid-row-gap: 0.5rem;
     }
 
-    article#getting-started > * + * {
+    article#getting-started > * + *,
+    article#getting-started p:first-of-type {
       margin-top: initial;
     }
 
@@ -445,14 +452,14 @@ article#about {
 }
 
 article#about p {
-  text-align: flex-start;
+  align-self: flex-start;
 }
 
 article#about mark {
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
-  padding: 0.4rem 0.5rem;
-  border-radius: 5px;
+  padding: 0.2em 0.3em;
+  border-radius: 0.2em;
 }
 
 article#about > svg {

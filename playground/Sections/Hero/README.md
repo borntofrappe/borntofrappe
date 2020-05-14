@@ -22,4 +22,14 @@ Include additional elements for assistive technologies and extra context.
 
 ## SVG
 
-In this folder you find the static version.
+In this folder you find the static version of the illustration.
+
+## Order
+
+The illustration follows the HTML elements introducing the section. This makes sense semantically, but visually, I want to show the illustration first. Add the following CSS.
+
+```css
+header > svg {
+  order: -1;
+}
+```

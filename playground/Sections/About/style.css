@@ -37,25 +37,31 @@ article {
 }
 
 article > * + * {
-  margin-top: 1.5rem;
+  margin-top: 0.3em;
 }
 
 article h2 {
   font-size: 2em;
 }
 
+article p:first-of-type {
+  margin-top: 1em;
+}
+
 article p {
   font-size: 1em;
-  text-align: flex-start;
+  word-spacing: -0.2em;
+  letter-spacing: -0.005em;
   line-height: 1.75;
+  align-self: flex-start;
   font-family: "Source Code Pro", monospace;
 }
 
 article mark {
   background: hsl(330, 100%, 92%);
   background: var(--primary-10);
-  padding: 0.4rem 0.5rem;
-  border-radius: 5px;
+  padding: 0.2em 0.3em;
+  border-radius: 0.2em;
 }
 
 article > svg {

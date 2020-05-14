@@ -58,6 +58,18 @@ const iconSize = 100;
 const hero = document.querySelector('header');
 
 hero.innerHTML = `
+<div class="visually-hidden">
+  <h1>
+    borntofrappe
+  </h1>
+  <p>Welcome to the personal website of an ever changing character:</p>
+</div>
+<ul>
+  <li>aspiring developer</li>
+  <li>fledging designer</li>
+  <li>long-distance runner</li>
+</ul>
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
   <defs>
@@ -124,18 +136,6 @@ hero.innerHTML = `
     )
     .join('')}
 </svg>
-
-<div class="visually-hidden">
-  <h1>
-    borntofrappe
-  </h1>
-  <p>Welcome to the personal website of an ever changing character:</p>
-</div>
-<ul>
-  <li>aspiring developer</li>
-  <li>fledging designer</li>
-  <li>long-distance runner</li>
-</ul>
 `;
 
 const constellations = [
@@ -166,7 +166,7 @@ gettingStarted.innerHTML = `
       <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
       <g transform="translate(0 -10)">
         <g transform="scale(1 -1)">
-          <g class="rotate" transform="rotate(22)">
+          <g class="rotate" transform="rotate(10)">
             <g transform="scale(1 -1)">
               <path stroke-dasharray="9 35" d="M 0 8 a 8 8 0 0 1 0 -16 8 8 0 0 1 0 16" />
             </g>
@@ -176,7 +176,7 @@ gettingStarted.innerHTML = `
     </g>
     <g transform="translate(0 -17)">
       <g transform="scale(1 -1)">
-        <g class="rotate" transform="rotate(22)">
+        <g class="rotate" transform="rotate(10)">
           <g transform="translate(26 0)">
             <path stroke-width="7" transform="translate(-65 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
             <path stroke-width="6" transform="translate(-52 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
@@ -274,7 +274,10 @@ const about = document.querySelector('article#about');
 
 about.innerHTML = `
 <h2>Almost forgot</h2>
-<p>My name is <mark>Gabriele Corti</mark>.<br/>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. <br/>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
+<p>My name is <mark style="background: ${colors[colors.length - 1]};">Gabriele Corti</mark>.</p>
+<p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. </p>
+<p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
+
 <svg style="color: ${
   colors[5]
 };" viewBox="-50 -50 100 50" width="200" height="100">

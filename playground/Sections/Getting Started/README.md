@@ -37,6 +37,6 @@ The markup is modified to target the elements with the `:nth-of-type()` selector
 If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope more tilted.
 
 ```diff
-- transform: rotate(15deg);
+- transform: rotate(10deg);
 + transform: rotate(30deg);
 ```

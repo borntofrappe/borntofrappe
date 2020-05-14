@@ -48,6 +48,18 @@ const iconSize = 100;
 const header = document.querySelector('header');
 
 header.innerHTML = `
+<div class="visually-hidden">
+  <h1>
+    borntofrappe
+  </h1>
+  <p>Welcome to the personal website of an ever changing character:</p>
+</div>
+<ul>
+  <li>aspiring developer</li>
+  <li>fledging designer</li>
+  <li>long-distance runner</li>
+</ul>
+
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
   <defs>
@@ -114,16 +126,4 @@ header.innerHTML = `
     )
     .join('')}
 </svg>
-
-<div class="visually-hidden">
-  <h1>
-    borntofrappe
-  </h1>
-  <p>Welcome to the personal website of an ever changing character:</p>
-</div>
-<ul>
-  <li>aspiring developer</li>
-  <li>fledging designer</li>
-  <li>long-distance runner</li>
-</ul>
 `;
