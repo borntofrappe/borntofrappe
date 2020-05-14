@@ -303,7 +303,7 @@ eleventyConfig.addFilter("formatdate", function(datetime) {
 }
 ```
 
-There's a bit of an issue regarding the order of the markdown files. I wasn't able to use the `| sort` filter, and decided instead to create the `blog` collection from the config file.
+There's a bit of an issue regarding the order of the markdown files. I wasn't able to use the `| sort` filter, and decided instead to create the `blog` collection from the [config file](https://www.11ty.dev/docs/collections/#advanced-custom-filtering-and-sorting).
 
 ```js
 eleventyConfig.addCollection("blog", function (collection) {
@@ -322,3 +322,53 @@ eleventyConfig.addCollection("blog", function (collection) {
 ```
 
 **Be careful**: 11ty provides a date in `post.date`, and this refers to the date in which the file was created.
+
+#### landing page
+
+This page required the biggest adjustment, but truthfully, it's a matter of replacing the mapping functions with for loops.
+
+I've decided to use the variables described in the **landing page** project still, but for the `d` attribute of the `<path>` element connecting the icons, I've found a better implementation using nunjucks's own filters.
+
+Start from an array describing the constellations
+
+```njk
+{% set constellations = [
+    {
+      icon: 'html',
+      coordinates: [35, 30]
+    },
+    {
+      icon: 'css',
+      coordinates: [125, 85]
+    },
+    {
+      icon: 'js',
+      coordinates: [225, 40]
+    },
+    {
+      icon: 'svg',
+      coordinates: [315, 95]
+    }
+  ] %}
+```
+
+Create the path by joining the coordinates in a string
+
+```njk
+{% set d = constellations | join(" ", "coordinates") %}
+```
+
+Prepend the letter `M` to finalize the correct syntax.
+
+```njk
+{% set d = "M " + constellations | join(" ", "coordinates") %}
+```
+
+You could join the pairs with the letter `L`, but SVG is draws the shape as if connecting the points of a line.
+
+The following are equivalent
+
+```
+M 35,30 125,85 225,40 315,95
+M 35,30L125,85L225,40L315,95
+```

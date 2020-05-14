@@ -7,4 +7,4 @@ keywords: ["html", "css", "svg"]
 
 ## Animation
 
-The idea is to...
+The idea is to animate an icon only when the hover or focus state is registered on a neighboring button. And to avoid the abrupt change coming from registering/removing the state.
