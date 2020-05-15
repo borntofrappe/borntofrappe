@@ -558,3 +558,4 @@ Finally, go back to `base.njk` and include the anchor link elements using the `u
   {% endfor %}
 {% endif %}
 ```
+

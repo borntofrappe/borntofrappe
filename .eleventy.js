@@ -1,7 +1,7 @@
 const markdownIt = require('markdown-it');
 const icons = require('./src/_data/icons');
 
-module.exports = (eleventyConfig) => {
+module.exports = function (eleventyConfig) {
   const markdownLibrary = markdownIt();
   markdownLibrary.renderer.rules.heading_open = function(tokens, index) {
     const { tag } = tokens[index];
@@ -68,7 +68,6 @@ module.exports = (eleventyConfig) => {
         href: '/' + items.slice(0, index + 1).join("/")
       }));
   });
-
 
   return {
     dir: {

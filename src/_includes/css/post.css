@@ -143,32 +143,20 @@ main p > code {
 
 main .code {
   margin: 1rem 0;
-  font-size: 0.95rem;
 }
 
-main .code span,
+main .code > span,
 main .code pre {
   border-radius: 0.4rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.8rem;
 }
 
-main .code pre {
-  margin: 0;
-  background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
-  color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
-  line-height: 2;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-main .code span {
+main .code > span {
   font-family: "Maven Pro", sans-serif;
   font-weight: 500;
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
   background: hsl(220, 100%, 5%);
@@ -183,15 +171,27 @@ main .code span {
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
-main .code span svg {
+main .code > span svg {
   width: 1.25em;
   height: auto;
   margin-right: 0.5rem;
 }
 
-main .code:hover span {
+main .code:hover > span {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
+}
+
+main .code pre {
+  font-size: 1rem;
+  margin: 0;
+  background: hsl(229, 20%, 20%);
+  background: var(--palenight-theme);
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  line-height: 2;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 main .code pre {
