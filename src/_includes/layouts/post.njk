@@ -9,21 +9,21 @@
 {% block content %}
 <header>
   <h1>{{ title }}</h1>
-  {% if keywords %}
+  {%- if keywords %}
     <h2 class="visually-hidden">Keywords:</h2>
     <ul>
-    {% for keyword in keywords %}
+    {%- for keyword in keywords %}
       <li>
         <span class="visually-hidden">{{keyword}}</span>
         {{ icons[keyword] | safe }}
       </li>
-    {% endfor %}
+    {% endfor -%}
     </ul>
-  {% endif %}
+  {% endif -%}
 </header>
 
 
 <main id="content">
-  {{content | safe }}
+  {{ content | safe }}
 </main>
 {% endblock %}

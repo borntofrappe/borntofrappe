@@ -12,24 +12,23 @@
     </style>
   </head>
   <body>
-  {% if hasContent %}
+  {%- if hasContent %}
   <a href="#content" class="visually-hidden" id="skip-to-content">
     Skip to Content {{ icons.skip | safe}}
   </a>
-  {% endif %}
+  {% endif -%}
 
   <nav aria-label="Breadcrumb navigation">
     <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
-    {% if url %}
-      {% for path in url | paths %}
+    {%- if url %}
+      {%- for path in url | paths %}
         <a href="{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
-      {% endfor %}
-    {% endif %}
+      {% endfor  -%}
+    {% endif -%}
   </nav>
 
-  {% block content %}
-  {% endblock %}
-
+  {%- block content %}
+  {% endblock -%}
 
   <footer>
     <a href="https://twitter.com/borntofrappe">borntofrappe</a>
@@ -42,7 +41,7 @@
     </span>
   </footer>
 
-  {% block script %}
-  {% endblock %}
+  {%- block script %}
+  {% endblock -%}
   </body>
 </html>

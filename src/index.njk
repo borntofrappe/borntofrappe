@@ -5,7 +5,6 @@
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
 
-
 {% block content %}
 <header id="hero">
   <div class="visually-hidden">
@@ -43,7 +42,7 @@
       <circle r="50" opacity="0" />
     </g>
 
-    {% for link in links %}
+    {%- for link in links %}
     <g transform="rotate({{(360 / loop.length) * loop.index0 }}) translate(0 -{{(size / 3)}}) rotate({{(360 / loop.length) * loop.index0  * -1}})">
         <a href="{{link.href}}" aria-labelledby="title-{{link.name}}" aria-describedby="desc-{{link.name}}">
           <title id="title-{{link.name}}">{{link.name}}</title>
@@ -77,7 +76,7 @@
           </g>
         </a>
       </g>
-    {% endfor %}
+    {% endfor -%}
   </svg>
 </header>
 
@@ -157,7 +156,7 @@
     </defs>
 
     <g fill="none" stroke="currentColor" stroke-width="3">
-      {% for constellation in constellations %}
+      {%- for constellation in constellations %}
         <g class="icon">
           <g transform="translate({{constellation.coordinates[0]}} {{constellation.coordinates[1]}})">
             <g class="scale">
@@ -170,7 +169,7 @@
             </g>
           </g>
         </g>
-      {% endfor %}
+      {% endfor -%}
     </g>
     <g mask="url(#mask-icons)">
       <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 8">
@@ -210,11 +209,11 @@
           <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
           <g fill="hsl(0, 0%, 0%)">
             <g class="rotate">
-              {% for satellite in satellites %}
+              {%- for satellite in satellites %}
                 <g transform="rotate({{(360 / loop.length) * loop.index0}}) translate(0 -42)">
                   <circle r="7.5" />
                 </g>
-              {% endfor %}
+              {% endfor -%}
             </g>
           </g>
         </mask>
@@ -222,11 +221,11 @@
 
       <g clip-path="url(#clip-planet)">
         <g transform="translate(0 -70)">
-          {% for color in colors.primary %}
+          {%- for color in colors.primary %}
             <g transform="scale({{1 - (0.65 / loop.length) * loop.index0}})">
               <ellipse fill="{{color}}" stroke="none" cx="0" cy="70" rx="{{35 + (15 / loop.length) * loop.index0}}" ry="33"  />
             </g>
-          {% endfor %}
+          {% endfor -%}
         </g>
       </g>
       <circle r="30" fill="none" stroke="{{colors.primary[colors.primary.length - 1]}}" stroke-width="0.2" />
@@ -236,7 +235,7 @@
       </g>
 
       <g class="rotate">
-        {% for satellite in satellites %}
+        {%- for satellite in satellites %}
           <g transform="rotate({{(360 / loop.length) * loop.index0 * -1}}) translate(0 -42) rotate({{(360 / loop.length) * loop.index0}})">
             <g transform="scale(-1 1)">
               <g class="rotate">
@@ -249,7 +248,7 @@
               </g>
             </g>
           </g>
-        {% endfor %}
+        {% endfor -%}
       </g>
     </svg>
   </article>

@@ -559,3 +559,20 @@ Finally, go back to `base.njk` and include the anchor link elements using the `u
 {% endif %}
 ```
 
+### whitespace control
+
+I'll refer you to nunjucks and [the docs](https://mozilla.github.io/nunjucks/templating.html#whitespace-control), but the idea is to remove the whitespace introduced in the tags like loops, conditionals and expressions by adding a `-` minus character at the beginning or end of the tag.
+
+Look at the dist folder and the output HTML for a reference.
+
+Remove the space before the tag
+
+```njk
+{%- if hasContent %}
+```
+
+Remove the space following the tag
+
+```njk
+{% endif -%}
+```
