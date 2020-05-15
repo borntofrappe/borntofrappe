@@ -198,7 +198,7 @@ svg {
     display: flex;
     width: max-content;
     align-items: center;
-    z-index: 5;
+    z-index: 10;
   }
   
   #skip-to-content svg {
@@ -226,7 +226,7 @@ svg {
   }
   
   nav a svg {
-    margin: 0 0.2rem 0 0.4rem;
+    margin-left: 0.4rem;
     width: 1.5em;
     height: auto;
   }
@@ -577,8 +577,13 @@ line up articles' content
   </a>
   
 
-  <nav>
-    <a href="/">borntofrappe <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg></a>
+  <nav aria-label="Breadcrumb navigation">
+    <a href="/">borntofrappe<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg></a>
+    
+      
+        <a href="/blog">/ blog<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg></a>
+      
+    
   </nav>
 
   
@@ -601,14 +606,13 @@ line up articles' content
       </a>
     </h2>
 
-    
-    
     <time datetime="Fri May 15 2020 10:36:35 GMT+0200 (Central European Summer Time)">
       May 15, 2020
     </time>
 
-
+    <p>
     
+    </p>
   </article>
   
   <article>
@@ -619,14 +623,13 @@ line up articles' content
       </a>
     </h2>
 
-    
-    
     <time datetime="Wed May 13 2020 02:00:00 GMT+0200 (Central European Summer Time)">
       May 13, 2020
     </time>
 
-
-    
+    <p>
+    A specific article on a specific CSS property
+    </p>
   </article>
   
   <article>
@@ -637,14 +640,13 @@ line up articles' content
       </a>
     </h2>
 
-    
-    
     <time datetime="Sun May 10 2020 02:00:00 GMT+0200 (Central European Summer Time)">
       May 10, 2020
     </time>
 
-
-    
+    <p>
+    The first article of an aspiring developer, fledging designer, long-distance runner
+    </p>
   </article>
   
 </main>

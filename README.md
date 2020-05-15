@@ -453,3 +453,108 @@ Modify the stylesheet as follows:
 ### datetime and date
 
 Modify the template and collection to use the `date` property if `datetime` is not made available. The idea is to account for a wider variety of frontmatter, whereby the date/brief or icons are not specified.
+
+On second thought, I decided to rewrite the templates to use date, and specify such value in the frontmatter.
+
+```md
+---
+date: 2020-05-10
+---
+```
+
+According to [11ty docs](https://www.11ty.dev/docs/dates/), it will override the default date.
+
+### breadcrumb
+
+I wasn't able to find if 11ty provides a variable to describe the relative path of the current page. In lieu of this much needed variable, I set a `url` variable on every page which needs it.
+
+In the blog.
+
+```njk
+{% set url = "/blog" %}
+```
+
+In the template for the blog posts.
+
+```njk
+{% set url = "/blog/" + title | slug %}
+```
+
+To create multiple links, one for each segment in the URL, I add a filter in `.eleventy.js`.
+
+A filter to retrieve the paths from an input URL.
+
+```js
+eleventyConfig.addFilter("paths", function(url) {
+  // []
+});
+```
+
+The idea is to return an array, which values represent the text and the `href` attribute for each segment.
+
+```js
+[
+  {
+    value: 'blog',
+    href: '/blog'
+  },
+  {
+    value: 'css-animation-paused',
+    href: '/blog/css-animation-paused'
+  },
+]
+```
+
+Therefore: 
+
+- split the input string 
+
+    ```js
+    url.split("/")
+    ```
+
+- remove the first item. This is included by default with the rocket icon
+
+    ```js
+    url.split("/").slice(1)
+    ```
+
+    It is actually equivalent to swap these two instructions.
+
+    ```js
+    url.slice(1).split("/")
+    ```
+
+- loop through the items, returning the string in the `value` field
+
+
+    ```js
+    url
+      .slice(1)
+      .split("/")
+      .map((value) => ({
+        value,
+      }))
+    ```
+
+- for the reference, use the current index and the looping array to join the items up to the current one
+
+    ```js
+    url
+      .slice(1)
+      .split("/")
+      .map((value) => ({
+        value,
+        href: items.slice(0, index + 1).join("/")
+      }))
+    ```
+
+Finally, go back to `base.njk` and include the anchor link elements using the `url` variable and the new `paths` filter.
+
+```njk
+{% if url %}
+  {% for path in url | paths %}
+    <a href="/{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
+  {% endfor %}
+{% endif %}
+```

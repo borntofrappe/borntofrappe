@@ -8,6 +8,7 @@ layout: null
 
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
+{% set url = "/blog" %}
 
 {% block content %}
 
@@ -29,18 +30,13 @@ layout: null
       </a>
     </h2>
 
-    {% set datetime = post.data.datetime or post.date %}
-    {% set date = datetime | formatdate %}
-    <time datetime="{{datetime}}">
-      {{ date }}
+    <time datetime="{{post.date}}">
+      {{ post.date | formatdate }}
     </time>
 
-
-    {% if post.data.brif %}
-      <p>
-      {{ post.data.brief }}
-      </p>
-    {% endif %}
+    <p>
+    {{ post.data.brief }}
+    </p>
   </article>
   {% endfor %}
 </main>

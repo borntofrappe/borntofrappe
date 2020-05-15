@@ -4,6 +4,7 @@
 
 {% extends "layouts/base.njk" %}
 {% set hasContent = true %}
+{% set url = "/blog/" + title | slug %}
 
 {% block content %}
 <header>

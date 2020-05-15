@@ -18,8 +18,13 @@
   </a>
   {% endif %}
 
-  <nav>
-    <a href="/">borntofrappe {{ icons.rocket | safe }}</a>
+  <nav aria-label="Breadcrumb navigation">
+    <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
+    {% if url %}
+      {% for path in url | paths %}
+        <a href="{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
+      {% endfor %}
+    {% endif %}
   </nav>
 
   {% block content %}

@@ -34,14 +34,10 @@ module.exports = (eleventyConfig) => {
 
 
   eleventyConfig.addCollection('blog', function(collection) {
-    return collection.getFilteredByGlob('./src/blog/*.md').sort(function(a, b) {
-      const aDate = a.data.datetime || a.date;
-      const bDate = b.data.datetime || b.date;
-      return bDate - aDate;
-    });
+    return collection.getFilteredByGlob('./src/blog/*.md').sort((a, b) => b.date - a.date);
   });
 
-  eleventyConfig.addFilter("formatdate", function(datetime) {
+  eleventyConfig.addFilter("formatdate", function(date) {
     const months = [
       'January',
       'February',
@@ -56,11 +52,21 @@ module.exports = (eleventyConfig) => {
       'November',
       'December',
     ];
-    const year = datetime.getFullYear();
-    const month = datetime.getMonth();
-    const day = datetime.getDate();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
 
     return `${months[month]} ${day}, ${year}`;
+  });
+
+  eleventyConfig.addFilter("paths", function(url) {
+    return url
+      .slice(1)
+      .split("/")
+      .map((value, index, items) => ({
+        value,
+        href: '/' + items.slice(0, index + 1).join("/")
+      }));
   });
 
 
