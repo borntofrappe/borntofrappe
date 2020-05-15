@@ -369,39 +369,34 @@ main p > code {
   line-height: 1.5;
 }
 
-main > pre {
+main .code {
   margin: 1rem 0;
-  padding: 0rem;
+  font-size: 0.95rem;
 }
 
-main > pre code {
-  font-size: 0.8rem;
-}
-
-main > pre .shiki,
-main > pre div {
-  line-height: 2;
-  padding: 0.5rem 0.75rem;
+main .code span,
+main .code pre {
   border-radius: 0.4rem;
+  padding: 0.5rem 0.75rem;
 }
 
-main > pre .shiki {
+main .code pre {
+  margin: 0;
+  background: hsl(229, 20%, 20%);
+  background: var(--palenight-theme);
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  line-height: 2;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  margin: 0;
 }
 
-main > pre div {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-main > pre div {
+main .code span {
   font-family: "Maven Pro", sans-serif;
   font-weight: 500;
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
   background: hsl(220, 100%, 5%);
@@ -409,39 +404,38 @@ main > pre div {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: 5px 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   transform: translateY(1px);
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
-main > pre div svg {
+main .code span svg {
   width: 1.25em;
   height: auto;
+  margin-right: 0.5rem;
 }
 
-main > pre div span {
-  margin-left: 0.4rem;
-}
-
-main > pre:hover div {
+main .code:hover span {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
 
-main pre {
+main .code pre {
   overflow-x: auto;
 }
 
-main pre::-webkit-scrollbar {
+main .code pre::-webkit-scrollbar {
   height: 0.4rem;
 }
 
-main pre::-webkit-scrollbar-track {
+main .code pre::-webkit-scrollbar-track {
   background: hsl(215, 22%, 5%);
   background: var(--grey-0);
 }
 
-main pre::-webkit-scrollbar-thumb {
+main .code pre::-webkit-scrollbar-thumb {
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);
   border-radius: 0.2rem;
@@ -875,8 +869,22 @@ footer span:hover {
 
 
 <main id="content">
-  <h2>Animation</h2>
-<p>The idea is to animate an icon only when the hover or focus state is registered on a neighboring button. And to avoid the abrupt change coming from registering/removing the state.</p>
+  <h2 id="animation" class="permalink">Animation<a href="#animation"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h2><p>The idea is to animate an icon only when the hover or focus state is registered on a neighboring button. And to avoid the abrupt change coming from registering/removing the state.</p>
+<p>This is some <code>code</code> you have.</p>
+<p>Let me try again.</p>
+<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></g></svg> script.js</span><pre><code>let name = "Gabriele";
+name = "Gabrie"; // this is supposed to cause horizontal scroll
+
+name += "le Corti";
+</code></pre></div><div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> style.css</span><pre><code>p {
+  margin-top: 1rem;
+}
+</code></pre></div><p>This is some normal css</p>
+<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> css</span><pre><code>p {
+  margin-top: 1rem;
+}
+</code></pre></div><h2 id="what's-more" class="permalink">What's more<a href="#what's-more"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h2><p>I just need some filler text here.</p>
+<h3 id="another-one" class="permalink">Another one<a href="#another-one"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h3><p>This heading should be smaller, but always have a permalink option.</p>
 
 </main>
 

@@ -239,7 +239,7 @@ npm install shiki
      });
    ```
 
-## script
+## script-marked
 
 Replace the logic assuming the frontmatter using regular expressions with [`gray-matter`](https://www.npmjs.com/package/gray-matter).
 
@@ -248,3 +248,65 @@ This package allows for a concise and robust way to destructure the frontmatter 
 ```js
 const { content, data: frontmatter } = matter(markdown);
 ```
+
+## script-markdown-it
+
+In light of 11ty's own pick for a markdown parser, recreate the script using `markdown-it`.
+
+It takes a bit of adjustment when it comes to the renderer, but it's worth the extra effort.
+
+### Syntax highlighting
+
+I've removed syntax highlighting with shiki. Eventually I plan to tackle the feature with a package that fits nicely in 11ty own config file.
+
+### fence
+
+The syntax for the code included between ``` ticks is modified to create the following markup:
+
+```html
+<div>
+<span>{{icon[lang]}} {{name}}.{{lang}}</span>
+<pre><code>{{code}}</code></pre>
+</div>
+```
+
+The idea of `name.lang` is to support both of the following markdown options
+
+- language only: `css`
+
+  ```css
+  p {
+    margin-top: 1rem;
+  }
+  ```
+
+- language following the name of the file: `style.css`
+
+  ```style.css
+  p {
+    margin-top: 1rem;
+  }
+  ```
+
+### heading
+
+Without direct access to the headings, recreate the permalink option by modifying the opening and closing tag.
+
+Opening the heading, specify a heading based on the text of the inline token which follows.
+
+```html
+<h2 id="dash-separated-text">
+```
+
+Closing the heading, prepend an anchor link element referencing the same value.
+
+```html
+<a href="#dash-separated-text">
+  {{icons.permalink}}
+  <span class="visually-hidden">
+  permalink
+  </span>
+</a></h2>
+```
+
+Rudimentary, will eventually break, but works.

@@ -433,3 +433,11 @@ For instance and for the articles in the blog folder.
   {% include "css/post.css" %}
 {% endblock %}
 ```
+
+### markdown-it
+
+In the markdown parser from the **Utils** folder I use `marked`, but 11ty natively uses `markdown-it`. It requires a bit of adjustment to modify the default markup for the heading and the code snippets:
+
+- heading: add a permalink referencing the heading by `id`
+
+- fence: wrap the code in a `div` container and prepend a `span` highlighting the language.
