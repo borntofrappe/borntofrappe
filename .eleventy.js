@@ -35,7 +35,9 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addCollection('blog', function(collection) {
     return collection.getFilteredByGlob('./src/blog/*.md').sort(function(a, b) {
-      return b.data.datetime - a.data.datetime;
+      const aDate = a.data.datetime || a.date;
+      const bDate = b.data.datetime || b.date;
+      return bDate - aDate;
     });
   });
 

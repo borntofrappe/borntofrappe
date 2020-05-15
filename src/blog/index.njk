@@ -29,15 +29,18 @@ layout: null
       </a>
     </h2>
 
-    {% set datetime = post.data.datetime %}
+    {% set datetime = post.data.datetime or post.date %}
     {% set date = datetime | formatdate %}
     <time datetime="{{datetime}}">
       {{ date }}
     </time>
 
-    <p>
-    {{ post.data.brief }}
-    </p>
+
+    {% if post.data.brif %}
+      <p>
+      {{ post.data.brief }}
+      </p>
+    {% endif %}
   </article>
   {% endfor %}
 </main>

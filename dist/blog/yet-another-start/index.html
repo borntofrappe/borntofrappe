@@ -1,4 +1,361 @@
-/* sections/header blog post */
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>borntofrappe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <style>
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: initial;
+  }
+}
+
+:root {
+  --primary-0: hsl(350, 100%, 8%);
+  --primary-1: hsl(347, 100%, 19%);
+  --primary-2: hsl(345, 95%, 27%);
+  --primary-3: hsl(345, 96%, 33%);
+  --primary-4: hsl(342, 92%, 39%);
+  --primary-5: hsl(340, 85%, 46%);
+  --primary-6: hsl(340, 90%, 55%);
+  --primary-7: hsl(339, 90%, 67%);
+  --primary-8: hsl(336, 93%, 77%);
+  --primary-9: hsl(335, 100%, 86%);
+  --primary-10: hsl(330, 100%, 92%);
+
+  --secondary-0: hsl(220, 100%, 8%);
+  --secondary-1: hsl(218, 100%, 15%);
+  --secondary-2: hsl(215, 97%, 25%);
+  --secondary-3: hsl(215, 96%, 32%);
+  --secondary-4: hsl(213, 95%, 38%);
+  --secondary-5: hsl(212, 92%, 45%);
+  --secondary-6: hsl(210, 85%, 55%);
+  --secondary-7: hsl(210, 90%, 62%);
+  --secondary-8: hsl(208, 95%, 75%);
+  --secondary-9: hsl(205, 100%, 85%);
+  --secondary-10: hsl(205, 100%, 92%);
+
+  --grey-0: hsl(215, 22%, 5%);
+  --grey-1: hsl(210, 20%, 12%);
+  --grey-2: hsl(210, 18%, 25%);
+  --grey-3: hsl(210, 16%, 32%);
+  --grey-4: hsl(208, 14%, 39%);
+  --grey-5: hsl(212, 12%, 45%);
+  --grey-6: hsl(212, 10%, 54%);
+  --grey-7: hsl(212, 15%, 65%);
+  --grey-8: hsl(213, 16%, 79%);
+  --grey-9: hsl(214, 15%, 88%);
+  --grey-10: hsl(215, 10%, 97%);
+
+  --palenight-theme: hsl(229, 20%, 20%);
+
+  --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  --transition-duration: 0.25s;
+}
+
+::selection {
+  color: hsl(215, 10%, 97%);
+  background: hsl(340, 90%, 55%);
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  font-family: "Ubuntu", sans-serif;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+}
+
+body::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+}
+
+body::-webkit-scrollbar-thumb {
+  border: 0.2rem solid currentColor;
+  border-radius: 0.5rem;
+  background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  font-family: inherit;
+  border: 0.15rem dashed transparent;
+
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+a:focus {
+  outline: none;
+  border-color: currentColor;
+  background: hsl(330, 100%, 92%);
+  background: var(--primary-10);
+}
+a:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Maven Pro", sans-serif;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+}
+
+code {
+  font-family: "Source Code Pro", monospace;
+}
+
+svg {
+  display: block;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+    body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* components/skip to content */
+#skip-to-content {
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-family: "Maven Pro", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.1rem;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    width: max-content;
+    align-items: center;
+    z-index: 5;
+  }
+  
+  #skip-to-content svg {
+    width: 1em;
+    height: auto;
+    margin-left: 0.5rem;
+  }
+  
+  /* components/breadcrumb navigation */
+  nav {
+    max-width: 40rem;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+  }
+  
+  nav a {
+    text-decoration: none;
+    font-family: "Maven Pro", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.25rem 0;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  nav a svg {
+    margin: 0 0.2rem 0 0.4rem;
+    width: 1.5em;
+    height: auto;
+  }
+
+  /* components/footer */
+footer {
+    --animation-duration: 2s;
+    --animation-timing-function: var(--ease-in-out-sine);
+    text-align: center;
+    padding: 2.25rem 1rem 2rem;
+    color: hsl(215, 10%, 97%);
+    color: var(--grey-10);
+    background: hsl(215, 22%, 5%);
+    background: var(--grey-0);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 20px;
+    background-position: 5px 5px;
+    position: relative;
+    margin-top: auto;
+  }
+  
+  footer::before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: 100%;
+    width: 100%;
+    height: 20px;
+    transform: translateY(1px);
+    background: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 20px;
+    background-position: 5px 5px;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-position: 50% 0;
+    mask-position: 50% 0;
+  }
+  
+  footer a {
+    border: initial;
+    text-decoration: none;
+    font-family: "Maven Pro", sans-serif;
+    padding: 0.2rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-bottom: 0.1rem solid hsl(340, 90%, 55%);
+    border-bottom: 0.1rem solid var(--primary-6);
+    transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: color 0.25s var(--ease-in-out-sine);
+  }
+  
+  footer a:focus {
+    color: hsl(340, 90%, 55%);
+    color: var(--primary-6);
+    background: none;
+    /* repeat to avoid transition */
+    border-bottom-color: hsl(340, 90%, 55%);
+    border-bottom-color: var(--primary-6);
+  }
+  
+  footer span {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%);
+    display: block;
+    padding: 12px;
+    margin-top: -8px;
+    color: hsl(215, 22%, 5%);
+    color: var(--grey-0);
+    background: hsl(215, 10%, 97%);
+    background: var(--grey-10);
+    border: 0.4rem solid currentColor;
+    border-radius: 50%;
+    transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: color var(--transition-duration) var(--ease-in-out-sine);
+  }
+  
+  footer span svg {
+    width: 100%;
+    height: auto;
+  }
+  
+  footer svg g {
+    animation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+    animation: heart-beat var(--animation-duration) var(--animation-timing-function) infinite;
+    animation-play-state: paused;
+  }
+  
+  @keyframes heart-beat {
+    10%,
+    30% {
+      transform: scale(0.8);
+    }
+    0%,
+    20%,
+    40% {
+      transform: scale(1);
+    }
+  }
+  
+  footer a:hover + span,
+  footer a:focus + span {
+    color: hsl(340, 90%, 55%);
+    color: var(--primary-6);
+  }
+  footer a:hover + span svg g,
+  footer a:focus + span svg g {
+    animation-play-state: running;
+  }
+  
+  footer span:hover {
+    color: hsl(340, 90%, 55%);
+    color: var(--primary-6);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    footer a:hover + span svg g,
+    footer a:focus + span svg g,
+    footer span svg:hover g {
+      animation-play-state: paused;
+    }
+  }
+  
+    
+  /* sections/header blog post */
 header {
   text-align: center;
   padding: 5rem 1.5rem;
@@ -474,3 +831,47 @@ main table [align="right"] {
 main table [align="center"] {
   text-align: center;
 }
+
+
+    </style>
+  </head>
+  <body>
+  
+  <a href="#content" class="visually-hidden" id="skip-to-content">
+    Skip to Content <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" /><path d="M -45 -20 h 28" /><path d="M -45 0 h 28" /><path d="M -45 20 h 28" /></g></svg>
+  </a>
+  
+
+  <nav>
+    <a href="/">borntofrappe <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg></a>
+  </nav>
+
+  
+<header>
+  <h1>Yet another start</h1>
+  
+</header>
+
+
+<main id="content">
+  <h2 id="late" class="permalink">Late<a href="#late"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h2><p>I'm late for a nice jog, but I needed a third article to see the grid in the blog page.</p>
+
+</main>
+
+
+
+  <footer>
+    <a href="https://twitter.com/borntofrappe">borntofrappe</a>
+    <span>
+      <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+        <g fill="currentColor" stroke-width="10" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" />
+        </g>
+      </svg>
+    </span>
+  </footer>
+
+  
+  
+  </body>
+</html>

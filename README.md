@@ -441,3 +441,15 @@ In the markdown parser from the **Utils** folder I use `marked`, but 11ty native
 - heading: add a permalink referencing the heading by `id`
 
 - fence: wrap the code in a `div` container and prepend a `span` highlighting the language.
+
+### css update
+
+Modify the stylesheet as follows:
+
+- create `base.css`, in which to style the elements of the base template. It's redundant to style the skip content, navigation and footer in each page
+
+- in `base.css` modify the body to be a flex column of `100vh` `min-height`. Push the footer at the bottom using `margin-top: auto`.
+
+### datetime and date
+
+Modify the template and collection to use the `date` property if `datetime` is not made available. The idea is to account for a wider variety of frontmatter, whereby the date/brief or icons are not specified.
