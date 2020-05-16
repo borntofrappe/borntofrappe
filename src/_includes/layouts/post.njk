@@ -1,10 +1,11 @@
+{% set staticFolder = '../../static' %}
+{% set hasContent = true %}
+{% set url = "/blog/" + title | slug %}
+{% extends "layouts/base.njk" %}
+
 {% block style %}
   {% include "css/post.css" %}
 {% endblock %}
-
-{% extends "layouts/base.njk" %}
-{% set hasContent = true %}
-{% set url = "/blog/" + title | slug %}
 
 {% block content %}
 <header>
@@ -21,7 +22,6 @@
     </ul>
   {% endif -%}
 </header>
-
 
 <main id="content">
   {{ content | safe }}

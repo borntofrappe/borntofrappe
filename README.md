@@ -576,3 +576,35 @@ Remove the space following the tag
 ```njk
 {% endif -%}
 ```
+
+### meta
+
+Starting with the title, use the relative path to change the text at the top of the document.
+
+```njk
+<title>borntofrappe{{ url | replace("/", " / ") }}</title>
+```
+
+Add liberal whitespace with the `replace` filter.
+
+For the icons, add a `static` folder, and specify how 11ty needs to include its contents in the **dist** output folder.
+
+```js
+config.addPassthroughCopy('./src/static/');
+```
+
+In the base layout, point toward the different icons by referencing a given folder.
+
+```njk
+<link rel="icon" href="{{staticFolder or "static"}}/icon.svg" />
+```
+
+The idea is to poin toward the root folder by specifying a path. The blog is one level nested, and therefore links toward the parent folder
+
+```njk
+{% set staticFolder = '../static' %}
+```
+
+The blog posts are two levels deep, and link to the parent's parent.
+
+For the other meta tags I need more research in the best way to incorporate the page's title, description, or again open graph images.
