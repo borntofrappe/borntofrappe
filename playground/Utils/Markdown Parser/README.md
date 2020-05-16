@@ -239,6 +239,26 @@ npm install shiki
      });
    ```
 
+### async
+
+Instead of chaining the functions, rewrite the logic using async-await syntax. Wrap the code in an async function.
+
+```js
+async function createMarkup() {
+
+}
+createMarkup();
+```
+
+Retrieve the highlighter.
+
+```js
+const highlighter = await shiki.getHighlighter({theme: 'Material-Theme-Palenight-High-Contrast'});
+```
+
+The rest remains untouched.
+
+
 ## script-marked
 
 Replace the logic assuming the frontmatter using regular expressions with [`gray-matter`](https://www.npmjs.com/package/gray-matter).

@@ -12,6 +12,95 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
     <style>
+      code[class*="language-"], pre[class*="language-"] {
+	font-size: 14px;
+	line-height: 1.375;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	background: #272822;
+	color: #f8f8f2;
+}
+pre[class*="language-"] {
+	padding: 1.5em 0;
+	margin: .5em 0;
+	overflow: auto;
+}
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
+	color: #75715e;
+}
+.token.punctuation {
+	color: #f8f8f2;
+}
+.token.namespace {
+	opacity: .7;
+}
+.token.operator, .token.boolean, .token.number {
+	color: #fd971f;
+}
+.token.property {
+	color: #f4bf75;
+}
+.token.tag {
+	color: #66d9ef;
+}
+.token.string {
+	color: #a1efe4;
+}
+.token.selector {
+	color: #ae81ff;
+}
+.token.attr-name {
+	color: #fd971f;
+}
+.token.entity, .token.url, .language-css .token.string, .style .token.string {
+	color: #a1efe4;
+}
+.token.attr-value, .token.keyword, .token.control, .token.directive, .token.unit {
+	color: #a6e22e;
+}
+.token.statement, .token.regex, .token.atrule {
+	color: #a1efe4;
+}
+.token.placeholder, .token.variable {
+	color: #66d9ef;
+}
+.token.deleted {
+	text-decoration: line-through;
+}
+.token.inserted {
+	border-bottom: 1px dotted #f9f8f5;
+	text-decoration: none;
+}
+.token.italic {
+	font-style: italic;
+}
+.token.important, .token.bold {
+	font-weight: bold;
+}
+.token.important {
+	color: #f92672;
+}
+.token.entity {
+	cursor: help;
+}
+pre > code.highlight {
+	outline: 0.4em solid #f92672;
+	outline-offset: .4em;
+}
     *,
 *::before,
 *::after {
@@ -874,15 +963,15 @@ main table [align="center"] {
   <h2 id="animation" class="permalink">Animation<a href="#animation"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h2><p>The idea is to animate an icon only when the hover or focus state is registered on a neighboring button. And to avoid the abrupt change coming from registering/removing the state.</p>
 <p>This is some <code>code</code> you have.</p>
 <p>Let me try again.</p>
-<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></g></svg> script.js</span><pre><code>let name = "Gabriele";
+<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></g></svg> script.js</span><pre class="language-js"><code class="language-js">let name = "Gabriele";
 name = "Gabrie"; // this is supposed to cause horizontal scroll
 
 name += "le Corti";
-</code></pre></div><div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> style.css</span><pre><code>p {
+</code></pre></div><div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> style.css</span><pre class="language-css"><code class="language-css">p {
   margin-top: 1rem;
 }
 </code></pre></div><p>This is some normal css</p>
-<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> css</span><pre><code>p {
+<div class="code"><span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg> css</span><pre class="language-css"><code class="language-css">p {
   margin-top: 1rem;
 }
 </code></pre></div><h2 id="what's-more" class="permalink">What's more<a href="#what's-more"><span class="visually-hidden">permalink</span><svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg></a></h2><p>I just need some filler text here.</p>

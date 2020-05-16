@@ -16,56 +16,56 @@ const icons = {
   permalink: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-18" d="M -24 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></svg>`,
 };
 
-// syntax highlighting
-shiki
-  .getHighlighter({
-    theme: 'Material-Theme-Palenight-High-Contrast',
-  })
-  .then(highlighter => {
-    // check if the output folder exists, create one
-    if (!fs.existsSync(output)) {
-      fs.mkdirSync(output);
-    }
+async function createMarkup() {
+  // syntax highlighting
+  const highlighter = await shiki.getHighlighter({theme: 'Material-Theme-Palenight-High-Contrast'});
+  
+  // check if the output folder exists, create one
+  if (!fs.existsSync(output)) {
+    fs.mkdirSync(output);
+  }
 
-    // modify default renderer
-    const renderer = new marked.Renderer();
+  // modify default renderer
+  const renderer = new marked.Renderer();
 
-    renderer.heading = (text, level) => {
-      const id = text
-        .split(' ')
-        .map(word => word.toLowerCase())
-        .join('-');
+  renderer.heading = (text, level) => {
+    const id = text
+      .split(' ')
+      .map(word => word.toLowerCase())
+      .join('-');
 
-      return `<h${level} id="${id}" class="permalink">${text}<a href="#${id}" aria-label="permalink">${
-        icons.permalink
-      }</a></h${level}>`;
-    };
+    return `<h${level} id="${id}" class="permalink">${text}<a href="#${id}" aria-label="permalink">${
+      icons.permalink
+    }</a></h${level}>`;
+  };
 
-    renderer.code = (code, lang) =>
-      `<pre><div>${
-        icons[lang]
-      }<span>${lang}</span></div>${highlighter.codeToHtml(code, lang)}</pre>`;
+  renderer.code = (code, lang) =>
+    `<pre><div>${
+      icons[lang]
+    }<span>${lang}</span></div>${highlighter.codeToHtml(code, lang)}</pre>`;
 
-    // read input files
-    console.log(`Reading **${extnameInput}** files in **${input}**`);
-    const files = fs.readdirSync(`${input}`, 'utf-8');
-    const markdownFiles = files.filter(
-      file => path.extname(file) === extnameInput
-    );
+  // read input files
+  console.log(`Reading **${extnameInput}** files in **${input}**`);
+  const files = fs.readdirSync(`${input}`, 'utf-8');
+  const markdownFiles = files.filter(
+    file => path.extname(file) === extnameInput
+  );
 
-    // write output file
-    console.log(`Writing **${extnameOutput}** files in **${output}**`);
-    markdownFiles.forEach(markdownFile => {
-      const slug = markdownFile.slice(0, -extnameInput.length);
-      const markdown = fs.readFileSync(`${input}/${markdownFile}`, {
-        encoding: 'utf-8',
-      });
-
-      const { content, data: frontmatter } = matter(markdown);
-
-      const markup = marked(content, { renderer });
-      fs.writeFileSync(`${output}/${slug}${extnameOutput}`, markup);
+  // write output file
+  console.log(`Writing **${extnameOutput}** files in **${output}**`);
+  markdownFiles.forEach(markdownFile => {
+    const slug = markdownFile.slice(0, -extnameInput.length);
+    const markdown = fs.readFileSync(`${input}/${markdownFile}`, {
+      encoding: 'utf-8',
     });
 
-    console.log(`\n**All done**`);
+    const { content, data: frontmatter } = matter(markdown);
+
+    const markup = marked(content, { renderer });
+    fs.writeFileSync(`${output}/${slug}${extnameOutput}`, markup);
   });
+
+  console.log(`\n**All done**`);
+};
+
+createMarkup();

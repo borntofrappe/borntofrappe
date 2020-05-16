@@ -608,3 +608,13 @@ The idea is to poin toward the root folder by specifying a path. The blog is one
 The blog posts are two levels deep, and link to the parent's parent.
 
 For the other meta tags I need more research in the best way to incorporate the page's title, description, or again open graph images.
+
+### syntax highlighting
+
+11ty comes with its own plugin for syntax highlighting, but I am partial to the shiki package.
+
+```bash
+npm install shiki --save-dev
+```
+
+The only issue is that the module works asynchronously.
