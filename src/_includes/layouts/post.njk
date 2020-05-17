@@ -5,6 +5,11 @@
 
 {% block style %}
   {% include "css/post.css" %}
+  {% if not keywords %}
+  main {
+    margin-top: 2rem;
+  }
+  {% endif %}
 {% endblock %}
 
 {% block content %}

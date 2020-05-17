@@ -20,13 +20,14 @@ module.exports = function (eleventyConfig) {
   
   markdownLibrary.renderer.rules.fence = function(tokens, index) {
     const token = tokens[index];
-    const { info, content: code } = token;
+    const { info, content } = token;
     let [name, lang] = info.split('.');
     if (!lang) {
       lang = name;
     }
     const icon = icons[lang] ? icons[lang] : '';
-  
+    const code = content.replace(/</g, "&lt;");
+
     return `<div class="code"><span>${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
   };
 

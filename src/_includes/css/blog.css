@@ -98,11 +98,11 @@ main#content {
   max-width: 40rem;
   width: 90vw;
   margin: 0 auto;
-  padding: 4rem 0 5.5rem;
+  padding: 3.5rem 0 5.5rem;
 }
 
 main#content > * + * {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 main#content article > * + * {
@@ -183,7 +183,7 @@ main#content article p {
   main#content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
-    grid-gap: 1.25rem 1.75rem;
+    grid-gap: 1.5rem 1.75rem;
   }
   main#content > * + * {
     margin-top: initial;

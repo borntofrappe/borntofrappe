@@ -609,12 +609,29 @@ The blog posts are two levels deep, and link to the parent's parent.
 
 For the other meta tags I need more research in the best way to incorporate the page's title, description, or again open graph images.
 
-### syntax highlighting
+### code
 
-11ty comes with its own plugin for syntax highlighting, but I am partial to the shiki package.
+Testing the website with a few articles, I stumbled on a pesky mishap: the code injected through the renderer and the `fence` rule is not escaped. This means that HTML snippets actually fabricate the elements they describe.
 
-```bash
-npm install shiki --save-dev
+```html
+<button>Like</button>
 ```
 
-The only issue is that the module works asynchronously.
+The previous snippet would actually display the button. Interestingly, it is enough to escape the opening tag `<`.
+
+```js
+const { info, content } = token;
+const code = content.replace(/</g, "&lt;");
+```
+
+More research is warranted on which character to actually display though. Ideally, I'd use the nunjuck filter `escape`, but this doesn't seem available in a JS file.
+
+### margin-top
+
+In the post template, update the margin-top property if the post doesn't have keywords.
+
+In this instance there is no section describing the icons, and there's no need to add `4.5rem` of whitespace at the top.
+
+### deploy
+
+I've added an extra article to describe how I intend to publish the website in three days time. I'm also experimenting with netlify, and the post serves as a reminder that the website in under construction.
