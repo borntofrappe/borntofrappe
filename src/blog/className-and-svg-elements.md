@@ -93,4 +93,4 @@ The demo warrants a larger discussion/exploration of `SVGAnimatedString`, but to
 
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) on className. There is a string on SVG syntax to use `getAttribute` and `setAttribute` instead:
 
-  > It is better to get/set the className of an element using Element.getAttribute and Element.setAttribute if you are dealing with SVG elements.
+> It is better to get/set the className of an element using Element.getAttribute and Element.setAttribute if you are dealing with SVG elements.
