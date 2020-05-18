@@ -4,23 +4,25 @@
 
 ## Fonts
 
-| Choice          | Type       | Purpose                             |
+| Pick            | Type       | Purpose                             |
 | --------------- | ---------- | ----------------------------------- |
 | Maven Pro       | sans-serif | navigation, footer, header, heading |
 | Ubuntu          | sans-serif | body                                |
 | Source Code Pro | monospace  | code                                |
 
-Import with HTML:
+**Note**: the purpose is currently not prescriptive. For instance, the monospace variant is used in the body of the landing page and table components.
 
-```html
-<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+Start from [this url](https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap):
+
+```code
+https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap
 ```
 
-Import with CSS:
+From this starting point set up the Latin variants with the `@font-face` rule.
 
-```css
-@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-```
+### Folder
+
+`index.html` provides a visual
 
 ## Colors
 
