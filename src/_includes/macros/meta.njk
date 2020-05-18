@@ -1,4 +1,4 @@
-{%- macro meta(title="borntofrappe", description="", staticFolder="static") %}
+{%- macro meta(title="borntofrappe", description="", staticFolder ="static") %}
     <title>{{title}}</title>
     <meta name="description" content="{{description}}" />
 
@@ -6,4 +6,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{staticFolder}}/icon-16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{staticFolder}}/icon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{staticFolder}}/apple-touch-icon.png" />
+
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="borntofrappe" />
 {% endmacro -%}

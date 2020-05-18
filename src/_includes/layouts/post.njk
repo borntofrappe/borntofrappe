@@ -1,6 +1,9 @@
-{% set staticFolder = '../../static' %}
 {% set hasContent = true %}
-{% set url = "/blog/" + title | slug %}
+
+{% set url = "borntofrappe/blog/" + title | slug %}
+{% set description = brief or "" %}
+{% set staticFolder = "../../static" %}
+
 {% extends "layouts/base.njk" %}
 
 {% block style %}

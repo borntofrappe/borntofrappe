@@ -5,12 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% set pageTitle = "borntofrappe" %}
-    {% if url %}
-      {% set pageTitle = "borntofrappe" + url | replace("/", (" / "))%}
-    {% endif %}
-    {{ meta(pageTitle, description, staticFolder) }}
-
+    {{meta(url | replace("/", " / "), description, staticFolder)}}
+    
     <style>
     {% include "css/font.css" %}
     {% include "css/global.css" %}
@@ -28,7 +24,8 @@
 
   <nav aria-label="Breadcrumb navigation">
     <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
-    {%- if url %}
+    {% set regExp = r/\// %}
+    {%- if regExp.test(url) %}
       {%- for path in url | paths %}
         <a href="{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
       {% endfor  -%}
