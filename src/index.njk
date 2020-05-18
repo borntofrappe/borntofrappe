@@ -1,278 +1,33 @@
-{% set hasContent = true %}
-{% extends "layouts/base.njk" %}
+<head>
+<title>coming soon: 2020-05-20</title>
+</head>
 
-{% block style %}
-  {% include "css/index.css" %}
-{% endblock %}
-
-{% block content %}
-<header id="hero">
-  <div class="visually-hidden">
-    <h1>
-      borntofrappe
-    </h1>
-    <p>Welcome to the personal website of an ever changing character:</p>
-  </div>
-  <ul>
-    <li>aspiring developer</li>
-    <li>fledging designer</li>
-    <li>long-distance runner</li>
-  </ul>
-  {% set size = 450 %}
-  {% set iconSize = 100 %}
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-{{size / 2}} -{{size /
-    2}} {{size}} {{size}}" width="400" height="400">
-    <defs>
-      <path id="path" d="M 0 -32 a 32 32 0 0 1 0 64 32 32 0 0 1 0 -64" />
-      <path id="path-c" d="M 0 39 a 39 39 0 0 1 0 -78 39 39 0 0 1 0 78" />
-      <path id="path-cc" d="M 0 47 a 47 47 0 0 0 0 -94 47 47 0 0 0 0 94" />
-
-      <mask id="mask-text">
-        <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
-        <use href="#path" fill="hsl(0, 0%, 0%)" />
-      </mask>
-    </defs>
-
-    <g class="borntofrappe">
-      <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-        <circle r="46" />
-        <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
-        <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
-      </g>
-      <circle r="50" opacity="0" />
-    </g>
-
-    {%- for link in links %}
-    <g transform="rotate({{(360 / loop.length) * loop.index0 }}) translate(0 -{{(size / 3)}}) rotate({{(360 / loop.length) * loop.index0  * -1}})">
-        <a href="{{link.href}}" aria-labelledby="title-{{link.name}}" aria-describedby="desc-{{link.name}}">
-          <title id="title-{{link.name}}">{{link.name}}</title>
-          <desc id="desc-{{link.name}}">{{link.desc}}</desc>
-          <g transform="translate(-{{size / 6}} -{{size / 6}})">
-            <svg viewBox="-{{iconSize / 2}} -{{iconSize / 2}} {{iconSize}} {{iconSize}}" width="{{size / 3}}" height="{{size / 3}}">
-                <use href="#path" stroke="currentColor" stroke-width="6" fill="none" />
-                <g transform="rotate({{(360 / loop.length) * loop.index0}})" mask="url(#mask-text)">
-                  <g class="text">
-                    <text fill="currentColor" font-weight="bold" letter-spacing="1" text-anchor="middle" font-size="12" font-family="monospace">
-                    {% set angle = (360 / loop.length) * loop.index0 %}
-                    {% if angle > 90 and angle < 270 %}
-                    <textPath href="#path-cc" startOffset="50%">
-                        {{link.name}}
-                      </textPath>
-                    {% else %}
-                      <textPath href="#path-c" startOffset="50%">
-                        {{link.name}}
-                      </textPath>
-                    {% endif %}
-                    </text>
-                  </g>
-                </g>
-
-                <g transform="translate(-{{iconSize / 6}} -{{iconSize / 6}})">
-                  {{icons[link.name] | replace("1em", iconSize / 3) | safe}}
-                </g>
-
-                <circle r="50" opacity="0" />
-            </svg>
-          </g>
+<style>
+    div {
+        min-height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    div > * + * {
+        margin-left: 0.75rem;
+    }
+    a {
+        display: flex;
+        align-items: center;
+        font-family: "Source Code Pro", monospace;
+    }
+    a svg {
+        margin-left: 0.5rem;
+    }
+</style>
+<div>
+{%- for link in links %}
+    {% if loop.index0 %}
+        <a href="{{link.href}}">
+            {{link.name}}{{icons[link.name] | safe}}
         </a>
-      </g>
-    {% endfor -%}
-  </svg>
-</header>
-
-<main id="content">
-  <article id="getting-started">
-    <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="100" height="100">
-      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <g stroke-width="4">
-          <path stroke-dasharray="84 20 84" d="M 0 -2 v 4 l 24 36 a 4 4 0 0 1 -8 8 l -16 -24 -16 24 a 4 4 0 0 1 -8 -8 l 24 -36" />
-          <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
-          <g transform="translate(0 -10)">
-            <g transform="scale(1 -1)">
-              <g class="rotate" transform="rotate(20)">
-                <g transform="scale(1 -1)">
-                  <path stroke-dasharray="9 35" d="M 0 8 a 8 8 0 0 1 0 -16 8 8 0 0 1 0 16" />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-        <g transform="translate(0 -17)">
-          <g transform="scale(1 -1)">
-            <g class="rotate" transform="rotate(20)">
-              <g transform="translate(26 0)">
-                <path stroke-width="7" transform="translate(-65 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="6" transform="translate(-52 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="5" transform="translate(-38 0) scale(0.65)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="4.5" transform="translate(-20 0) scale(0.8)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <g stroke-width="4">
-                  <path d="M 0 -13 l -20 1 v 24 l 20 1" />
-                  <path d="M 12 -14 a 16.5 16.5 0 0 1 0 28" />
-                  <rect y="-17" width="12" height="34" rx="6" />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>
-
-    {% set constellations = [
-      {
-        icon: 'html',
-        coordinates: [35, 30]
-      },
-      {
-        icon: 'css',
-        coordinates: [125, 85]
-      },
-      {
-        icon: 'js',
-        coordinates: [225, 40]
-      },
-      {
-        icon: 'svg',
-        coordinates: [315, 95]
-      }
-    ] %}
-    {% set d = "M " + constellations | join(" ", "coordinates") %}
-
-   <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 125" width="350" height="125">
-    <defs>
-      <mask id="mask-icons">
-        <rect fill="hsl(0, 0%, 100%)" width="350" height="125" />
-        <g fill="hsl(0, 0%, 0%)">
-          {% for constellation in constellations %}
-            <g class="icon">
-              <g transform="translate({{constellation.coordinates[0]}} {{constellation.coordinates[1]}})">
-                <g class="scale">
-                  <circle r="25" />
-                </g>
-              </g>
-            </g>
-          {% endfor %}
-        </g>
-      </mask>
-    </defs>
-
-    <g fill="none" stroke="currentColor" stroke-width="3">
-      {%- for constellation in constellations %}
-        <g class="icon">
-          <g transform="translate({{constellation.coordinates[0]}} {{constellation.coordinates[1]}})">
-            <g class="scale">
-              <g class="color">
-                <circle r="25" />
-                <g transform="translate(-13 -13)">
-                  {{icons[constellation.icon] | replace("1em", 26) | safe }}
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      {% endfor -%}
-    </g>
-    <g mask="url(#mask-icons)">
-      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 8">
-        <g class="path">
-          <g class="color">
-            <path d="{{d}}" />
-          </g>
-        </g>
-      </g>
-    </g>
-  </svg>
-
-    <h2 class="visually-hidden">Getting started</h2>
-    <p>
-      This website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
-    </p>
-    <a href="/blog">Explore articles</a>
-  </article>
-
-
-
-  <article id="about">
-    <h2>Almost forgot</h2>
-    <p>My name is <mark style="background: {{ colors.primary[colors.primary.length - 1] }};">Gabriele Corti</mark>.</p>
-    <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
-    <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
-
-
-    {% set satellites = ['world', 'editor', 'running', 'tea', 'gaming'] %}
-    <svg style="color: {{colors.primary[5]}}" viewBox="-50 -50 100 50" width="400" height="200">
-      <defs>
-        <clipPath id="clip-planet">
-          <circle r="30" />
-        </clipPath>
-
-        <mask id="mask-satellites">
-          <rect x="-50" y="-50" width="100" height="100" fill="hsl(0, 0%, 100%)" />
-          <g fill="hsl(0, 0%, 0%)">
-            <g class="rotate">
-              {%- for satellite in satellites %}
-                <g transform="rotate({{(360 / loop.length) * loop.index0}}) translate(0 -42)">
-                  <circle r="7.5" />
-                </g>
-              {% endfor -%}
-            </g>
-          </g>
-        </mask>
-      </defs>
-
-      <g clip-path="url(#clip-planet)">
-        <g transform="translate(0 -70)">
-          {%- for color in colors.primary %}
-            <g transform="scale({{1 - (0.65 / loop.length) * loop.index0}})">
-              <ellipse fill="{{color}}" stroke="none" cx="0" cy="70" rx="{{35 + (15 / loop.length) * loop.index0}}" ry="33"  />
-            </g>
-          {% endfor -%}
-        </g>
-      </g>
-      <circle r="30" fill="none" stroke="{{colors.primary[colors.primary.length - 1]}}" stroke-width="0.2" />
-
-      <g mask="url(#mask-satellites)">
-        <circle class="rotate" r="42" stroke-dasharray="1 2" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="0.5" />
-      </g>
-
-      <g class="rotate">
-        {%- for satellite in satellites %}
-          <g transform="rotate({{(360 / loop.length) * loop.index0 * -1}}) translate(0 -42) rotate({{(360 / loop.length) * loop.index0}})">
-            <g transform="scale(-1 1)">
-              <g class="rotate">
-                <g transform="scale(-1 1)">
-                  <circle fill="none" stroke="currentColor" stroke-width="1" r="7.5" />
-                  <g transform="translate(-4 -4)">
-                    {{ icons[satellite] | replace("1em", 8) | safe }}
-                  </g>
-                </g>
-              </g>
-            </g>
-          </g>
-        {% endfor -%}
-      </g>
-    </svg>
-  </article>
-</main>
-{% endblock %}
-
-
-{% block script %}
-  <script>
-  const illustrations = document.querySelectorAll('article > svg');
-  if (window.IntersectionObserver) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.setAttribute('class', 'observed');
-        } else {
-          entry.target.removeAttribute('class');
-        }
-      });
-    });
-
-    illustrations.forEach(illustration => {
-      observer.observe(illustration);
-    })
-  }
-  </script>
-{% endblock %}
+    {% endif -%}
+{% endfor -%}
+</div>
