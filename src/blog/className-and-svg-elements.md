@@ -1,7 +1,7 @@
 ---
 title: className and SVG elements
 date: 2020-05-19
-brief: The many ways you can add a class to an SVG element. className is not one of them. 
+brief: The many ways you can add a class to an SVG element. className is not one of them.
 keywords: ["js", "svg"]
 ---
 

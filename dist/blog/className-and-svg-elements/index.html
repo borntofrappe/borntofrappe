@@ -298,175 +298,176 @@ svg {
 
 /* components/skip to content */
 #skip-to-content {
-    position: absolute;
-    top: 0.5rem;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    font-family: "Maven Pro", sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-    word-spacing: 0.1rem;
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-    display: flex;
-    width: max-content;
-    align-items: center;
-    z-index: 10;
-  }
-  
-  #skip-to-content svg {
-    width: 1em;
-    height: auto;
-    margin-left: 0.5rem;
-  }
-  
-  /* components/breadcrumb navigation */
-  nav {
-    max-width: 40rem;
-    width: 90vw;
-    margin: 0 auto;
-    padding: 0.5rem 0;
-  }
-  
-  nav a {
-    text-decoration: none;
-    font-family: "Maven Pro", sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 0.25rem 0;
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  nav a svg {
-    margin-left: 0.4rem;
-    width: 1.5em;
-    height: auto;
-  }
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  width: max-content;
+  align-items: center;
+  z-index: 10;
+}
 
-  /* components/footer */
+#skip-to-content svg {
+  width: 1em;
+  height: auto;
+  margin-left: 0.5rem;
+}
+
+/* components/breadcrumb navigation */
+nav {
+  max-width: 40rem;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.25rem 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+nav a svg {
+  margin-left: 0.4rem;
+  width: 1.5em;
+  height: auto;
+}
+
+/* components/footer */
 footer {
-    --animation-duration: 2s;
-    --animation-timing-function: var(--ease-in-out-sine);
-    text-align: center;
-    padding: 2.25rem 1rem 2rem;
-    color: hsl(215, 10%, 97%);
-    color: var(--grey-10);
-    background: hsl(215, 22%, 5%);
-    background: var(--grey-0);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    background-size: 20px;
-    background-position: 5px 5px;
-    position: relative;
-    margin-top: auto;
+  --animation-duration: 2s;
+  --animation-timing-function: var(--ease-in-out-sine);
+  text-align: center;
+  padding: 2.25rem 1rem 2rem;
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  position: relative;
+  margin-top: auto;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: 0%;
+  bottom: 100%;
+  width: 100%;
+  height: 20px;
+  transform: translateY(1px);
+  background: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px;
+  background-position: 5px 5px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-position: 50% 0;
+  mask-position: 50% 0;
+}
+
+footer a {
+  border: initial;
+  text-decoration: none;
+  font-family: "Maven Pro", sans-serif;
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-bottom: 0.1rem solid hsl(340, 90%, 55%);
+  border-bottom: 0.1rem solid var(--primary-6);
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color 0.25s var(--ease-in-out-sine);
+}
+
+footer a:focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  background: none;
+  /* repeat to avoid transition */
+  border-bottom-color: hsl(340, 90%, 55%);
+  border-bottom-color: var(--primary-6);
+}
+
+footer span {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  display: block;
+  padding: 12px;
+  margin-top: -8px;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+  border: 0.4rem solid currentColor;
+  border-radius: 50%;
+  transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+footer span svg {
+  width: 100%;
+  height: auto;
+}
+
+footer svg g {
+  animation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: heart-beat var(--animation-duration)
+    var(--animation-timing-function) infinite;
+  animation-play-state: paused;
+}
+
+@keyframes heart-beat {
+  10%,
+  30% {
+    transform: scale(0.8);
   }
-  
-  footer::before {
-    content: "";
-    position: absolute;
-    left: 0%;
-    bottom: 100%;
-    width: 100%;
-    height: 20px;
-    transform: translateY(1px);
-    background: inherit;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    background-size: 20px;
-    background-position: 5px 5px;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40' width='100' height='40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
-    -webkit-mask-position: 50% 0;
-    mask-position: 50% 0;
+  0%,
+  20%,
+  40% {
+    transform: scale(1);
   }
-  
-  footer a {
-    border: initial;
-    text-decoration: none;
-    font-family: "Maven Pro", sans-serif;
-    padding: 0.2rem 0;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-bottom: 0.1rem solid hsl(340, 90%, 55%);
-    border-bottom: 0.1rem solid var(--primary-6);
-    transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    transition: color 0.25s var(--ease-in-out-sine);
-  }
-  
-  footer a:focus {
-    color: hsl(340, 90%, 55%);
-    color: var(--primary-6);
-    background: none;
-    /* repeat to avoid transition */
-    border-bottom-color: hsl(340, 90%, 55%);
-    border-bottom-color: var(--primary-6);
-  }
-  
-  footer span {
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    width: 64px;
-    height: 64px;
-    transform: translate(-50%, -50%);
-    display: block;
-    padding: 12px;
-    margin-top: -8px;
-    color: hsl(215, 22%, 5%);
-    color: var(--grey-0);
-    background: hsl(215, 10%, 97%);
-    background: var(--grey-10);
-    border: 0.4rem solid currentColor;
-    border-radius: 50%;
-    transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    transition: color var(--transition-duration) var(--ease-in-out-sine);
-  }
-  
-  footer span svg {
-    width: 100%;
-    height: auto;
-  }
-  
-  footer svg g {
-    animation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
-    animation: heart-beat var(--animation-duration) var(--animation-timing-function) infinite;
+}
+
+footer a:hover + span,
+footer a:focus + span {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+footer a:hover + span svg g,
+footer a:focus + span svg g {
+  animation-play-state: running;
+}
+
+footer span:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer a:hover + span svg g,
+  footer a:focus + span svg g,
+  footer span svg:hover g {
     animation-play-state: paused;
   }
-  
-  @keyframes heart-beat {
-    10%,
-    30% {
-      transform: scale(0.8);
-    }
-    0%,
-    20%,
-    40% {
-      transform: scale(1);
-    }
-  }
-  
-  footer a:hover + span,
-  footer a:focus + span {
-    color: hsl(340, 90%, 55%);
-    color: var(--primary-6);
-  }
-  footer a:hover + span svg g,
-  footer a:focus + span svg g {
-    animation-play-state: running;
-  }
-  
-  footer span:hover {
-    color: hsl(340, 90%, 55%);
-    color: var(--primary-6);
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    footer a:hover + span svg g,
-    footer a:focus + span svg g,
-    footer span svg:hover g {
-      animation-play-state: paused;
-    }
-  }
-  
+}
+
   /* sections/header blog post */
 header {
   text-align: center;
