@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {{meta(url, description, staticFolder, imageName, imageAlt)}}
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{site.name}}" />
+    <meta property="twitter:site" content="{{site.author.handle}}" />
+    <meta property="twitter:creator" content="{{site.author.handle}}" />
     
     <style>
     {% include "css/font.css" %}
