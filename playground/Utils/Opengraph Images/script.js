@@ -1,0 +1,1 @@
+// TODO: consider the markup in the blog folder, take a screenshot for each file using a template

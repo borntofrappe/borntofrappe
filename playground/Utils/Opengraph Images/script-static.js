@@ -1,0 +1,1 @@
+// TODO: consider the markup in the static folder, take a screenshot for each file
