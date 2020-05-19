@@ -2,8 +2,7 @@
 {% set url = site.name + "/blog/" + title | slug %}
 {% set description = brief or "" %}
 {% set staticFolder = "../../static" %}
-{% set imageName = "blog" %}
-{# set imageName = title | slug #}
+{% set imageName = title | slug %}
 {% set imageAlt = "Page image for a blog post on the website " + site.name + ", titled '" + title + "'" %}
 
 {% extends "layouts/base.njk" %}

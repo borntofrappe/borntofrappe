@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx eleventy",
-    "serve": "npx eleventy --serve"
+    "serve": "npx eleventy --serve",
+    "build": "npx eleventy && node puppeteer"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,10 @@
   },
   "homepage": "https://github.com/borntofrappe/borntofrappe#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.0",
-    "shiki": "^0.1.7"
+    "@11ty/eleventy": "^0.11.0"
   },
   "dependencies": {
+    "gray-matter": "^4.0.2",
     "puppeteer": "^3.1.0"
   }
 }
