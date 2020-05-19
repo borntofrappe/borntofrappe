@@ -12,4 +12,4 @@ Create the `.png` images for the landing page and the blog page. These are stati
 
 ## script
 
-Create `.png` images for a series of articles, based on the frontmatter of hypothetical blog posts and a template file.
+Create `.png` images for a series of articles, and based on the frontmatter of hypothetical blog posts. In the `.html` file find the general layout, re-used in the template file.
