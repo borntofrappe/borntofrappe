@@ -1,8 +1,9 @@
 {% set hasContent = true %}
-
-{% set url = "borntofrappe/blog" %}
+{% set url = site.name + "/blog" %}
 {% set description = "A series of articles from a wannabe author. On HTML, CSS, JavaScript, SVG, and hopefully more." %}
 {% set staticFolder = "../static" %}
+{% set imageName = "blog" %}
+{% set imageAlt = "Page image for the " + imageName + " of " + site.name %}
 
 {% extends "layouts/base.njk" %}
 
