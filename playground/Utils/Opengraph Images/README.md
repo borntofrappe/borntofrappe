@@ -6,6 +6,10 @@ A node script to produce the static assets ultimately added in the `<head>` of t
 <meta property="og:image" content="{{image}}" />
 ```
 
-- use the `png` images created with this script for the landing page and the blog
+## script-static
 
-- create `png` images for every blog post when building the project, on the basis of the posts and their frontmatter
+Create the `.png` images for the landing page and the blog page. These are static variants, provided to the website as a given.
+
+## script
+
+Create `.png` images for a series of articles, based on the frontmatter of hypothetical blog posts and a template file.

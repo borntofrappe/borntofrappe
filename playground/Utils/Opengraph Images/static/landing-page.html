@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>landing page</title>
+    <title>Landing page</title>
 
     <style>
       @font-face {
@@ -13,10 +13,9 @@
         font-display: swap;
         src: url(https://fonts.gstatic.com/s/mavenpro/v20/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejog.woff2)
           format("woff2");
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-          U+2212, U+2215, U+FEFF, U+FFFD;
+        unicode-range: U+0000-00FF;
       }
+
       * {
         box-sizing: border-box;
         margin: 0;
@@ -33,14 +32,13 @@
         width: 1000px;
         height: 500px;
         display: grid;
-        grid-template-columns: 430px 1fr;
-        padding: 0 20px;
+        grid-template-columns: 475px 1fr;
         color: var(--color);
         background: var(--background);
-        border: 10px solid var(--color);
+        border: 0.6rem solid var(--color);
         position: relative;
         overflow: hidden;
-        background-image: url("data:image/svg+xml,%3Csvg opacity='0.04' xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 10 10' width='20' height='20'%3E%3Cg stroke='none' fill='hsl(220, 100%25, 8%25)'%3E%3Ccircle r='1' /%3E%3Ccircle r='1' cx='5' cy='-5' /%3E%3Ccircle r='1' cx='5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='-5' /%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.05'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         background-size: 20px;
         background-position: -5px 5px;
       }
@@ -48,14 +46,12 @@
       main:before,
       main:after {
         background: var(--color);
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 10 10' width='20' height='20'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Ccircle r='1' /%3E%3Ccircle r='1' cx='5' cy='-5' /%3E%3Ccircle r='1' cx='5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='5' /%3E%3Ccircle r='1' cx='-5' cy='-5' /%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         background-size: 15px;
         background-position: -5px 5px;
         content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40'%3E%3Cg stroke='none' fill='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40'%3E%3Cg stroke='none' fill='hsl(0, 0%25, 0%25)'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
-        -webkit-mask-repeat: repeat-x;
-        mask-repeat: repeat-x;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='25 -20 100 40'%3E%3Cg fill='currentColor' stroke='none'%3E%3Cpath d='M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0' /%3E%3C/g%3E%3C/svg%3E");
         -webkit-mask-position: 50% 0%;
         mask-position: 50% 0%;
         position: absolute;
@@ -84,233 +80,30 @@
       }
 
       div {
-        margin-left: -3rem;
-        justify-self: center;
+        justify-self: start;
         align-self: center;
-        text-align: center;
+        margin-left: -2rem;
       }
 
       h1 {
         font-family: "Maven Pro", sans-serif;
         font-weight: 700;
-        font-size: 70px;
+        font-size: 4.5rem;
         display: flex;
         align-items: baseline;
       }
 
       h1 svg {
-        margin-right: -0.5rem;
-        width: 1em;
-        height: auto;
+        margin-right: -0.45rem;
+        height: 1em;
+        width: auto;
         display: block;
       }
     </style>
   </head>
   <body>
     <main>
-      <svg viewBox="-50 -50 100 100" width="300" height="300">
-        <defs>
-          <mask id="mask">
-            <rect
-              x="-50"
-              y="-50"
-              width="100"
-              height="100"
-              fill="hsl(0, 0%, 100%)"
-            />
-            <g fill="hsl(0, 0%, 0%)">
-              <circle transform="translate(0 -37)" r="12" />
-              <circle transform="rotate(72) translate(0 -37)" r="12" />
-              <circle transform="rotate(144) translate(0 -37)" r="12" />
-              <circle transform="rotate(216) translate(0 -37)" r="12" />
-              <circle transform="rotate(288) translate(0 -37)" r="12" />
-            </g>
-          </mask>
-        </defs>
-        <g mask="url(#mask)">
-          <g transform="translate(-41 -41)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="82"
-              height="82"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle r="46" stroke-width="8" />
-                <g transform="scale(0.5)">
-                  <g stroke-linejoin="round" stroke-linecap="round">
-                    <g transform="rotate(45)">
-                      <path
-                        stroke-width="8"
-                        d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52"
-                      />
-                      <g stroke-width="7">
-                        <path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" />
-                        <path
-                          transform="scale(-1 1)"
-                          d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21"
-                        />
-                        <path
-                          d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5"
-                        />
-                        <circle r="9" cy="-11" />
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-
-        <g transform="translate(0 -37)">
-          <g transform="translate(-13 -13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="26"
-              height="26"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle stroke-width="10" r="45" />
-                <g transform="scale(0.5)">
-                  <g stroke-linecap="round" stroke-linejoin="round">
-                    <g stroke-width="8">
-                      <path
-                        d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12"
-                      />
-                      <path
-                        d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12"
-                      />
-                    </g>
-                    <g stroke-width="6">
-                      <path d="M -10 -20 h 20" />
-                      <path d="M -10 -8 h 10" />
-                      <path d="M -10 4 h 15" />
-                      <path d="M -10 16 h 5" />
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-
-        <g transform="rotate(72) translate(0 -37) rotate(-72)">
-          <g transform="translate(-13 -13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="26"
-              height="26"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle stroke-width="10" r="45" />
-                <g transform="scale(0.5)">
-                  <g stroke-linecap="round" stroke-linejoin="round">
-                    <g stroke-width="8">
-                      <path d="M 30 -35 c 21 20 21 50 0 70" />
-                      <path
-                        transform="scale(-1 1)"
-                        d="M 30 -35 c 21 20 21 50 0 70"
-                      />
-                      <g transform="translate(0 30)">
-                        <path
-                          d="M 20 -20 a 20 20 0 0 1 -40 0 q 0 -10 10 -20 t 0 -20 q 15 17 12.5 35 q 10 0 12.5 -15 q 5 11.25 5 20"
-                        />
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-
-        <g transform="rotate(144) translate(0 -37) rotate(-144)">
-          <g transform="translate(-13 -13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="26"
-              height="26"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle stroke-width="10" r="45" />
-                <g transform="scale(0.5)">
-                  <g stroke-linecap="round" stroke-linejoin="round">
-                    <g stroke-width="8">
-                      <path d="M 0 -40 l -46 25 46 25 46 -25 z" />
-                      <path d="M 0 -40 v 30" />
-                      <path transform="translate(0 50)" d="M 0 -40 v 30" />
-                      <path transform="translate(46 25)" d="M 0 -40 v 30" />
-                      <path transform="translate(-46 25)" d="M 0 -40 v 30" />
-                      <path
-                        transform="translate(0 30)"
-                        d="M 0 -40 l -46 25 46 25 46 -25 z"
-                      />
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-
-        <g transform="rotate(216) translate(0 -37) rotate(-216)">
-          <g transform="translate(-13 -13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="26"
-              height="26"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle stroke-width="10" r="45" />
-                <g transform="scale(0.5)">
-                  <g stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      stroke-width="8"
-                      d="M -39 30.5 c 40 20 75 0 75 -48 l 8 -8 -12 -2 a 10 10 0 0 0 -32.5 12 q -20 5 -40 -15"
-                    />
-                    <path
-                      stroke-width="7"
-                      d="M -40.5 -30.5 q -5 20 14 26 -9 0 -18 -5 0 20 23 18 -10 4 -22 0 0 12 28 14 -10 6 -23.5 8"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-
-        <g transform="rotate(288) translate(0 -37) rotate(-288)">
-          <g transform="translate(-13 -13)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-50 -50 100 100"
-              width="26"
-              height="26"
-            >
-              <g fill="none" stroke="currentColor">
-                <circle stroke-width="10" r="45" />
-                <g transform="scale(0.5)">
-                  <g stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      stroke-width="8"
-                      d="M 0 11 h -17 a 18 18 0 0 1 -18 -18 q 0 -8 5 -16 q -6 -10 0 -18 q 12 0 18 6 a 24 24 0 0 1 24 0 q 6 -6 18 -6 q 6 8 0 18 q 5 8 5 16 a 18 18 0 0 1 -18 18 h -17"
-                    />
-                    <path
-                      stroke-width="6"
-                      d="M -12 11 q -10 0 -10 14 q 0 8 -8 14 q 20 0 20 -16 v 4 q 0 10 -6 16 q 16 0 16 -15 v -4 v 4 q 0 15 16 15 q -6 0 -6 -16 v -4 q 0 16 20 16 q -8 0 -8 -14 q 0 -14 -10 -14"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </g>
-        </g>
-      </svg>
+      <svg viewBox="-50 -50 100 100" width="300" height="300"></svg>
 
       <div>
         <h1>
@@ -343,5 +136,62 @@
         </h1>
       </div>
     </main>
+
+    <script>
+      const icons = [
+        '<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg>',
+        '<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 0 -40 l -46 25 46 25 46 -25 z" /><path d="M 0 -40 v 30" /><path transform="translate(0 50)" d="M 0 -40 v 30" /><path transform="translate(46 25)" d="M 0 -40 v 30" /><path transform="translate(-46 25)" d="M 0 -40 v 30" /><path transform="translate(0 30)" d="M 0 -40 l -46 25 46 25 46 -25 z" /></g></svg>',
+        '<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><path d="M 30 -35 c 21 20 21 50 0 70" /><path transform="scale(-1 1)" d="M 30 -35 c 21 20 21 50 0 70" /><g transform="translate(0 30)" stroke-linejoin="round"><path d="M 20 -20 a 20 20 0 0 1 -40 0 q 0 -10 10 -20 t 0 -20 q 15 17 12.5 35 q 10 0 12.5 -15 q 5 11.25 5 20" /></g></g></svg>',
+        '<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M 0 11 h -17 a 18 18 0 0 1 -18 -18 q 0 -8 5 -16 q -6 -10 0 -18 q 12 0 18 6 a 24 24 0 0 1 24 0 q 6 -6 18 -6 q 6 8 0 18 q 5 8 5 16 a 18 18 0 0 1 -18 18 h -17" /><path stroke-width="6" d="M -12 11 q -10 0 -10 14 q 0 8 -8 14 q 20 0 20 -16 v 4 q 0 10 -6 16 q 16 0 16 -15 v -4 v 4 q 0 15 16 15 q -6 0 -6 -16 v -4 q 0 16 20 16 q -8 0 -8 -14 q 0 -14 -10 -14" /></g></svg>',
+        '<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M -39 30.5 c 40 20 75 0 75 -48 l 8 -8 -12 -2 a 10 10 0 0 0 -32.5 12 q -20 5 -40 -15" /><path stroke-width="7" d="M -40.5 -30.5 q -5 20 14 26 -9 0 -18 -5 0 20 23 18 -10 4 -22 0 0 12 28 14 -10 6 -23.5 8" /></g></svg>',
+      ];
+
+      const illustration = document.querySelector("svg");
+      illustration.innerHTML = `
+      <defs>
+        <mask id="mask">
+          <rect
+            x="-50"
+            y="-50"
+            width="100"
+            height="100"
+            fill="hsl(0, 0%, 100%)"
+          />
+          <g fill="hsl(0, 0%, 0%)">
+            ${icons
+              .map(
+                (icon, index, { length }) => `<circle transform="rotate(${
+                  (360 / length) * index
+                }) translate(0 -37)" r="12" />
+              `
+              )
+              .join("")}
+          </g>
+        </mask>
+      </defs>
+      
+      <g mask="url(#mask)">
+        <circle r="37" fill="none" stroke="currentColor" stroke-width="6" />
+        <g transform="translate(-20 -20)">
+          <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="40" height="40"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg>
+        </g>
+        </g>
+        ${icons
+          .map(
+            (icon, index, { length }) => `
+            <g transform="rotate(${
+              (360 / length) * index
+            }) translate(0 -37) rotate(${(360 / length) * index * -1})">
+
+              <circle stroke-width="3" r="11.5" fill="none" stroke="currentColor" />
+              <g transform="translate(-6 -6)">
+                ${icon.replace(/1em/g, "12")}
+              </g>
+            </g>
+          `
+          )
+          .join("")}
+        `;
+    </script>
   </body>
 </html>
