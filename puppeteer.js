@@ -4,24 +4,35 @@ const matter = require("gray-matter");
 const puppeteer = require("puppeteer");
 const template = require("./src/utils/template");
 
-const folder = "./src/blog";
-const extension = ".md";
+console.log('');
+const input = {
+  path: './src/blog/',
+  extension: '.md',
+}
+const output = {
+  path: 'dist/static/',
+  extension: '.png',
+}
+const files = fs.readdirSync(input.path);
 
-const files = fs.readdirSync(folder);
-const frontmatter = files
-  .filter((file) => path.extname(file) === extension)
+const posts = files
+  .filter((file) => {
+    const name = file.slice(0, -input.extension.length);
+    const hasImage = fs.existsSync(`${output.path}${name}${output.extension}`);
+    return path.extname(file) === input.extension && !hasImage;
+  })
   .map((file) => {
-    const markdown = fs.readFileSync(`${folder}/${file}`);
+    const markdown = fs.readFileSync(`${input.path}/${file}`);
     const { data } = matter(markdown);
     const { title, keywords } = data;
     return {
-      name: file.slice(0, -extension.length),
+      name: file.slice(0, -input.extension.length),
       title,
       keywords,
     };
   });
 
-const headless = false;
+const headless = true;
 (async () => {
   const browser = await puppeteer.launch({ headless });
   const page = await browser.newPage();
@@ -30,10 +41,13 @@ const headless = false;
     height: 500,
   });
 
-  for (const { name, title, keywords } of frontmatter) {
+  for (const { name, title, keywords } of posts) {
+    console.log(`Writing ${output.path}${name}${output.extension} from ${input.path}${name}${input.extension}`)
+
     const html = template(title, keywords);
     await page.setContent(html, { waitUntil: "networkidle0" });
-    await page.screenshot({ path: `dist/static/${name}.png` });
+    await page.screenshot({ path: `${output.path}${name}${output.extension}` });
   }
   await browser.close();
+  console.log(`Wrote ${posts.length} files`)
 })();
