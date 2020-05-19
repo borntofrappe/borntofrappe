@@ -1,7 +1,6 @@
 {% set hasContent = true %}
-
-{% set url = "borntofrappe" %}
-{% set description = "Personal website of an ever changing character: aspiring developer, fledging designer, long-distance runner." %}
+{% set url = site.name %}
+{% set description = site.description %}
 {% set staticFolder = "static" %}
 
 {% extends "layouts/base.njk" %}
@@ -47,7 +46,7 @@
       <circle r="50" opacity="0" />
     </g>
 
-    {%- for link in links %}
+    {%- for link in site.links %}
     <g transform="rotate({{(360 / loop.length) * loop.index0 }}) translate(0 -{{(size / 3)}}) rotate({{(360 / loop.length) * loop.index0  * -1}})">
         <a href="{{link.href}}" aria-labelledby="title-{{link.name}}" aria-describedby="desc-{{link.name}}">
           <title id="title-{{link.name}}">{{link.name}}</title>

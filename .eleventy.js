@@ -1,6 +1,9 @@
 const markdownIt = require("markdown-it");
 const icons = require("./src/_data/icons");
 
+const dateFilter = require("./src/filters/date-filter");
+const urlFilter = require("./src/filters/url-filter");
+
 module.exports = function (eleventyConfig) {
   const markdownLibrary = markdownIt();
   markdownLibrary.renderer.rules.heading_open = function (tokens, index) {
@@ -30,7 +33,6 @@ module.exports = function (eleventyConfig) {
 
     return `<div class="code"><span>${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
   };
-
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   eleventyConfig.addCollection("blog", function (collection) {
@@ -39,37 +41,8 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
-  eleventyConfig.addFilter("formatdate", function (date) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-
-    return `${months[month]} ${day}, ${year}`;
-  });
-
-  eleventyConfig.addFilter("paths", function (url) {
-    return url
-      .split("/")
-      .slice(1)
-      .map((value, index, items) => ({
-        value,
-        href: "/" + items.slice(0, index + 1).join("/"),
-      }));
-  });
+  eleventyConfig.addFilter("dateFilter", dateFilter);
+  eleventyConfig.addFilter("urlFilter", urlFilter);
 
   eleventyConfig.addPassthroughCopy("./src/static/");
 

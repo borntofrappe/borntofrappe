@@ -1,5 +1,5 @@
-{%- macro meta(title="borntofrappe", description="", staticFolder ="static") %}
-    <title>{{title}}</title>
+{%- macro meta(title, description, staticFolder) %}
+    <title>{{title | replace("/", " / ")}}</title>
     <meta name="description" content="{{description}}" />
 
     <link rel="icon" href="{{staticFolder}}/icon.svg" />

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {{meta(url | replace("/", " / "), description, staticFolder)}}
+    {{meta(url, description, staticFolder)}}
     
     <style>
     {% include "css/font.css" %}
@@ -26,7 +26,7 @@
     <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
     {% set regExp = r/\// %}
     {%- if regExp.test(url) %}
-      {%- for path in url | paths %}
+      {%- for path in url | urlFilter %}
         <a href="{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
       {% endfor  -%}
     {% endif -%}
