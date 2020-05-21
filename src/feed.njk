@@ -1,0 +1,29 @@
+---
+permalink: '/feed.xml'
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.name }}</title>
+  <subtitle>{{ site.description }}</subtitle>
+  <link href="{{ site.url }}{{ permalink }}" rel="self"/>
+  <link href="{{ site.url }}/"/>
+  <id>{{ site.url }}</id>
+  <author>
+    <name>{{ site.author.name }}</name>
+    <email>{{ site.author.email }}</email>
+  </author>
+  {% for post in collections.blog %}
+    <entry>
+      <title>{{ post.data.title }}</title>
+      <link href="{{site.url}}/blog/{{ post.data.title | slug }}"/>
+      <id>{{ post.data.title | slug }}</id>
+      {% for keyword in post.data.keywords %}
+        <category>{{ keyword }}</category>
+      {% endfor %}
+      <summary>{{ post.data.brief }}</summary>
+      <content type="html"><![CDATA[
+      {{ post.templateContent | safe }}
+    ]]></content>
+    </entry>
+  {% endfor %}
+</feed>
