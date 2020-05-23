@@ -1,4 +1,4 @@
-const template = require('./blog/template');
+const template = require('./blog/template-multi');
 const puppeteer = require('puppeteer');
 
 const posts = [
@@ -30,25 +30,20 @@ const headless = false;
     const page = await browser.newPage();
       await page.setViewport({
       width,
-      height: height * length
+      height
     });
   
-    const html = template(posts);
-    await page.setContent(html, { waitUntil: 'networkidle0'});
     console.log('Posts:')
-    for(const [index, post] of posts.entries()) {
-      const { title } = post;
-      console.log(`  ${title}`);
-      
+    for(const {title, keywords} of posts) {
+      const html = template(title, keywords);
       const name = title.toLowerCase().replace(/ /g, "-");
       const path = `blog/${name}.png`;
-      
-      const x = 0;
-      const y = index * height;
-      
-      await page.screenshot({path, clip: { x, y , width, height}});
-    }
 
+      await page.setContent(html, { waitUntil: 'networkidle0'});
+      console.log(`  ${title}`);
+
+      await page.screenshot({path});
+    }
     await browser.close();
     console.log(`\n**All done**`);
     console.log(`See **./blog** for the png files.`);
