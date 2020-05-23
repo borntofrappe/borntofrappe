@@ -4,24 +4,24 @@ const matter = require("gray-matter");
 const puppeteer = require("puppeteer");
 const template = require("./src/utils/template");
 
-console.log('');
+console.log("");
 const input = {
-  path: './src/blog/',
-  extension: '.md',
-}
+  path: "./src/blog/",
+  extension: ".md",
+};
 const output = {
-  path: 'dist/static/',
-  extension: '.png',
-}
+  path: "dist/static/",
+  extension: ".png",
+};
 const files = fs.readdirSync(input.path);
 
 const posts = files
-  .filter((file) => {
+  .filter(file => {
     const name = file.slice(0, -input.extension.length);
     const hasImage = fs.existsSync(`${output.path}${name}${output.extension}`);
     return path.extname(file) === input.extension && !hasImage;
   })
-  .map((file) => {
+  .map(file => {
     const markdown = fs.readFileSync(`${input.path}/${file}`);
     const { data } = matter(markdown);
     const { title, keywords } = data;
@@ -32,22 +32,33 @@ const posts = files
     };
   });
 
+const width = 1000;
+const height = 500;
+const { length } = posts;
+
 const headless = true;
 (async () => {
   const browser = await puppeteer.launch({ headless });
   const page = await browser.newPage();
   await page.setViewport({
-    width: 1000,
-    height: 500,
+    width,
+    height: height * length,
   });
 
-  for (const { name, title, keywords } of posts) {
-    console.log(`Writing ${output.path}${name}${output.extension} from ${input.path}${name}${input.extension}`)
+  const html = template(posts);
+  await page.setContent(html, { waitUntil: "networkidle0" });
 
-    const html = template(title, keywords);
-    await page.setContent(html, { waitUntil: "networkidle0" });
-    await page.screenshot({ path: `${output.path}${name}${output.extension}` });
+  for (const [index, post] of posts.entries()) {
+    const { name } = post;
+    const x = 0;
+    const y = index * height;
+
+    const outputPath = `${output.path}${name}${output.extension}`;
+    console.log(
+      `Writing ${outputPath} from ${input.path}${name}${input.extension}`
+    );
+    await page.screenshot({ path: outputPath, clip: { x, y, width, height } });
   }
   await browser.close();
-  console.log(`Wrote ${posts.length} files`)
+  console.log(`Wrote ${posts.length} files`);
 })();

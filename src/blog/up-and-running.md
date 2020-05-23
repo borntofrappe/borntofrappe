@@ -1,12 +1,20 @@
 ---
 title: Up and running
-date: 2020-05-17
+date: 2020-05-21
 brief: The first article of an aspiring developer, fledging designer, long-distance runner
 ---
 
 ## Briefly
 
 In late April 2020, I went through a bit of a rough patch. In light of this, I abandoned twitter, the #100daysofcode challenge, and decided to refocus my efforts on one single project: this very website. I'm quite proud of the end result, and hopefully, it'll get better from here on out.
+
+## Origin
+
+- React & Gatsby
+- Svelte & Sapper
+- Eleventy
+
+Eleventy, HTML, CSS, a single JS script and a ton of SVG syntax.
 
 ## What to expect
 

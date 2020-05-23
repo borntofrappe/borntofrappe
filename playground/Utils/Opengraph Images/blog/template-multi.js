@@ -1,5 +1,6 @@
 const icons = require('./icons');
-module.exports = (title, keywords=[]) => `
+
+module.exports = (title, keywords = []) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -157,11 +158,15 @@ module.exports = (title, keywords=[]) => `
           ${title}
         </h1>
         <section>
-        ${keywords.map(keyword => `
+        ${keywords
+          .map(
+            keyword => `
             <span>
                 ${icons[keyword] ? icons[keyword] : icons.bug}
             </span>
-        `).join('')}
+        `
+          )
+          .join('')}
         </section>
       </div>
     </main>

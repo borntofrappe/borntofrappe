@@ -24,7 +24,7 @@ const height = 500;
 const { length } = posts;
 
 console.log(`Launching **puppeteer** for ${length} posts`);
-const headless = false;
+const headless = true;
 (async () => {
     const browser = await puppeteer.launch({headless});
     const page = await browser.newPage();

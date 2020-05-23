@@ -1,5 +1,6 @@
 const icons = require('./icons');
-module.exports = (posts) => `
+
+module.exports = posts => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -122,7 +123,8 @@ module.exports = (posts) => `
   </head>
   <body>
       ${posts
-        .map(({title, keywords = []}) => `
+        .map(
+          ({ title, keywords = [] }) => `
           <article>
             <svg viewBox="-50 -50 100 100" width="300" height="300">
               <defs>
@@ -159,15 +161,20 @@ module.exports = (posts) => `
                 ${title}
               </h1>
               <section>
-              ${keywords.map(keyword => `
+              ${keywords
+                .map(
+                  keyword => `
                   <span>
                       ${icons[keyword] ? icons[keyword] : icons.bug}
                   </span>
-              `).join('')}
+              `
+                )
+                .join('')}
               </section>
             </div>
           </article>
-        `)
+        `
+        )
         .join('')}
   </body>
 </html>
