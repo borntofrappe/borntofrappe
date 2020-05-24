@@ -10,7 +10,7 @@ const input = {
   extension: ".md",
 };
 const output = {
-  path: "dist/static/",
+  path: "dist/static/images/",
   extension: ".png",
 };
 const files = fs.readdirSync(input.path);
