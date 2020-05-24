@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 const shiki = require('shiki');
-const { create } = require('domain');
 
 const input = 'blog';
 const output = 'pages';

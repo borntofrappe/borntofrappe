@@ -1,0 +1,32 @@
+{
+  "name": "utils-markdown-parser",
+  "version": "1.0.0",
+  "description": "Parse .md markdown content into .html markup syntax.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node script-markdown-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borntofrappe/borntofrappe.git"
+  },
+  "keywords": [
+    "borntofrappe",
+    "utility",
+    "markdown parser",
+    "md",
+    "html"
+  ],
+  "author": "borntofrappe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/borntofrappe/borntofrappe/issues"
+  },
+  "homepage": "https://github.com/borntofrappe/borntofrappe#readme",
+  "dependencies": {
+    "gray-matter": "^4.0.2",
+    "markdown-it": "^11.0.0",
+    "marked": "^1.1.0",
+    "shiki": "^0.1.7"
+  }
+}
