@@ -19,6 +19,7 @@ main p > code {
   font-weight: 700;
   font-family: inherit;
   padding: 0.25rem 0.4rem;
+  white-space: nowrap;
 }
 
 /* code snippet */

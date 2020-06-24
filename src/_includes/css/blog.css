@@ -21,7 +21,7 @@ header {
 }
 
 header::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0%;
   left: 50%;
@@ -33,7 +33,7 @@ header::before {
 }
 
 header::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;

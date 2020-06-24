@@ -10,7 +10,7 @@ body {
   top: 0.5rem;
   left: 50%;
   transform: translate(-50%, 0%);
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   font-weight: 700;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;
@@ -38,7 +38,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   padding: 0.25rem 0;
@@ -70,7 +70,7 @@ footer {
 }
 
 footer::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0%;
   bottom: 100%;
@@ -90,7 +90,7 @@ footer::before {
 footer a {
   border: initial;
   text-decoration: none;
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   padding: 0.2rem 0;
   font-size: 0.95rem;
   font-weight: 600;
