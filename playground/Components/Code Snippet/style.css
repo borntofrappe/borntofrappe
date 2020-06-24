@@ -9,9 +9,16 @@ main p {
 
 /* inline code */
 main p > code {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-  padding: 0.2rem 0.25rem;
+  background: hsl(214, 15%, 88%);
+  background: var(--grey-9);
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  box-shadow: 0 0.15rem hsl(213, 16%, 79%);
+  box-shadow: 0 0.15rem var(--grey-8);
+  border-radius: 0.25rem;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 0.25rem 0.4rem;
 }
 
 /* code snippet */
@@ -26,7 +33,7 @@ main .code pre {
 }
 
 main .code > span {
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   font-weight: 500;
   display: flex;
   align-items: center;
