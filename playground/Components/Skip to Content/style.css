@@ -7,12 +7,13 @@
   line-height: 2;
 }
 
+/* SKIP COMPONENT */
 #skip-to-content {
   position: absolute;
   top: 0.5rem;
   left: 50%;
   transform: translate(-50%, 0%);
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   font-weight: 700;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;
@@ -30,7 +31,7 @@
   margin-left: 0.5rem;
 }
 
-/* components/breadcrumb navigation */
+/* NAV COMPONENT */
 nav {
   max-width: 40rem;
   width: 90vw;
@@ -40,16 +41,16 @@ nav {
 
 nav a {
   text-decoration: none;
-  font-family: "Maven Pro", sans-serif;
-  font-weight: 700;
+  font-family: 'Maven Pro', sans-serif;
   font-size: 1rem;
+  font-weight: 700;
   padding: 0.25rem 0;
   display: inline-flex;
   align-items: center;
 }
 
 nav a svg {
-  margin: 0 0.2rem 0 0.4rem;
+  margin-left: 0.4rem;
   width: 1.5em;
   height: auto;
 }

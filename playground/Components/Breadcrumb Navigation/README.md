@@ -8,4 +8,6 @@ The `<nav>` element includes anchor link elements according to the URL
 
 - `/ {path}` for every additional route
 
-- `/ {path} {icon}` when one available
+## SVG Icons
+
+When an icon is available, it is positioned next to the path `/ {path} {icon}`.

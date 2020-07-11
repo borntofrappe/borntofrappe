@@ -2,7 +2,7 @@
 
 ## Markup
 
-The structure described in `index.html` comes from a node script using `marked` to parse `.md` files. See the **Utils** folder.
+The structure described in `index.html` comes from a node script using `marked`. The **Utils** folder and the **Markdown Parser** project describe how to create this markup.
 
 ## align
 
@@ -11,10 +11,10 @@ The `align` attribute is included by `marked.js`, but it's also and apparently d
 Change the alignment of the text using CSS as well.
 
 ```css
-table [align="right"] {
+table [align='right'] {
   text-align: right;
 }
-table [align="center"] {
+table [align='center'] {
   text-align: center;
 }
 ```

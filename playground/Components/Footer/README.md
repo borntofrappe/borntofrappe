@@ -2,7 +2,7 @@
 
 ## Markup
 
-Include the icon for `heart.svg` after the anchor link element redirecting toward twitter.
+Include the icon for `heart.svg` after the anchor link element describing the twitter profile.
 
 ```njk
 <footer>

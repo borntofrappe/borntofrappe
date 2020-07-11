@@ -2,11 +2,7 @@
 
 ## Markup
 
-The script populates the body with a series of headings: h2, h3 and h4.
-
-In each heading add an anchor link using the heading's id as a reference.
-
-Add a span for assistive tech.
+The script populates the body with a series of headings: h2, h3 and h4. In each heading, add an anchor link using the heading's id as a reference. Before the icon describing the permalink, include a `<span>` element for accessibility.
 
 ```njk
 <h2 id="{id}">

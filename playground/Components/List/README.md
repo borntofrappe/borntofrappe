@@ -10,4 +10,4 @@ In the pseudo elements use the SVG syntax described by the badge graphic:
 
 ## ol
 
-For `ol` elements, add a custom counter to position the integer in the frame of the SVG icon.
+For `ol` elements, add a custom counter in the frame of the SVG icon.

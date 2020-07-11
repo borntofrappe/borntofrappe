@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="20" height="20">
-  <g opacity="1">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+  <g opacity="0.5">
     <g fill="currentColor" stroke="none">
-      <circle r="10" />
-      <circle r="10" transform="translate(50 -50)" />
-      <circle r="10" transform="translate(50 50)" />
-      <circle r="10" transform="translate(-50 50)" />
-      <circle r="10" transform="translate(-50 -50)" />
+      <circle r="12" />
+      <circle r="12" transform="translate(50 -50)" />
+      <circle r="12" transform="translate(50 50)" />
+      <circle r="12" transform="translate(-50 50)" />
+      <circle r="12" transform="translate(-50 -50)" />
     </g>
   </g>
 </svg>

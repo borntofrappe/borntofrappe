@@ -20,6 +20,7 @@ h4 {
   font-size: 1.6rem;
 }
 
+/* HEADING COMPONENT */
 .permalink {
   display: flex;
   align-items: center;
@@ -48,7 +49,6 @@ h4 {
 }
 
 .permalink a svg {
-  transform: rotate(-45deg);
   width: 100%;
   height: auto;
 }

@@ -3,11 +3,14 @@ main {
   max-width: 40rem;
   margin: 1rem auto;
 }
+main > * + * {
+  margin-top: 2rem;
+}
+
+/* INLINE CODE */
 main p {
   line-height: 2;
 }
-
-/* inline code */
 main p > code {
   background: hsl(214, 15%, 88%);
   background: var(--grey-9);
@@ -22,35 +25,33 @@ main p > code {
   white-space: nowrap;
 }
 
-/* code snippet */
+/* BLOCK CODE */
 main .code {
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 main .code > span,
 main .code pre {
   border-radius: 0.4rem;
-  padding: 0.6rem 0.8rem;
+  padding: 0.8rem 1rem;
 }
 
 main .code > span {
   font-family: 'Maven Pro', sans-serif;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
   color: hsl(215, 10%, 97%);
   color: var(--grey-10);
   background: hsl(220, 100%, 5%);
   background: var(--grey-0);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100' width='20' height='20'%3E%3Cg opacity='0.4'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='10' /%3E%3Ccircle r='10' transform='translate(50 -50)' /%3E%3Ccircle r='10' transform='translate(50 50)' /%3E%3Ccircle r='10' transform='translate(-50 50)' /%3E%3Ccircle r='10' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
-  background-position: 5px 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   transform: translateY(1px);
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
+  display: flex;
+  align-items: center;
 }
 
 main .code > span svg {
