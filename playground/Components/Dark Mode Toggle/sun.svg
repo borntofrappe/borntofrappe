@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+    <g fill="currentColor">
+        <circle r="22" />
+        <circle transform="rotate(0) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(45) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(90) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(135) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(180) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(225) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(270) translate(0 41.2)" r="8.8" />
+        <circle transform="rotate(315) translate(0 41.2)" r="8.8" />
+    </g>
+</svg>
