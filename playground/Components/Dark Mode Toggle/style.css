@@ -1,0 +1,87 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  width: 3rem;
+  height: 3rem;
+  color: inherit;
+  background: none;
+  border-radius: 50%;
+  border: 0.3rem solid currentColor;
+  display: block;
+  padding: 0;
+  --transition-duration: 0.2s;
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+button:not(:disabled):focus {
+  outline: 0.2rem dashed currentColor;
+}
+
+button:not(:disabled):hover,
+button:not(:disabled):focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+button svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([color-mode]) {
+    color: hsl(214, 15%, 88%);
+    color: var(--grey-9);
+    background: hsl(215, 22%, 5%);
+    background: var(--grey-0);
+  }
+
+  body:not([color-mode]) button svg .rotate {
+    transform: rotate(180deg);
+  }
+
+  body:not([color-mode]) button svg .scale {
+    transform: scaleX(-1);
+  }
+}
+
+body[color-mode] {
+  --transition-duration: 1.5s;
+  transition: color 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    background 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine),
+    background var(--transition-duration) var(--ease-in-out-sine);
+}
+
+body[color-mode] button svg .rotate {
+  transition: transform 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform var(--transition-duration) var(--ease-in-out-sine);
+}
+
+body[color-mode] button svg .scale {
+  transition: transform 1.5s step-end;
+  transition: transform var(--transition-duration) step-end;
+}
+
+body[color-mode='dark'] {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+}
+
+body[color-mode='dark'] button svg .rotate {
+  transform: rotate(180deg);
+}
+
+body[color-mode='dark'] button svg .scale {
+  transform: scaleX(-1);
+}
