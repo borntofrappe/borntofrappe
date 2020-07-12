@@ -98,7 +98,7 @@ With a negative scale, the rotation back to `0` is once again clockwise, giving 
 The negative scale mentioned in the last section is included when the rotation to `180` degrees is complete. In the stylesheet, you can achieve this effect by applying a `transition-delay` equal to the duration of the first transition.
 
 ```css
-body[color-mode] button svg .scale {
+body[color-preference] button svg .scale {
   transition: transform 0s;
   transition-delay: var(--transition-duration);
 }
@@ -107,14 +107,14 @@ body[color-mode] button svg .scale {
 Alternatively, you can use the `step-end` easing function, which allows to change the `transform` property after the same amount of time.
 
 ```css
-body[color-mode] button svg .scale {
+body[color-preference] button svg .scale {
   transition: transform var(--transition-duration) step-end;
 }
 ```
 
 ## HTML, CSS and JavaScript
 
-The project needs to consider a plethora of possibilities: is CSS available? is JavaScript available? Is there a preference set in the media query `prefers-color-scheme`, or again through `localStorage`?
+The toggle needs to consider a plethora of possibilities: is CSS available? is JavaScript available? Is there a preference set in the media query `prefers-color-scheme`, or again through `localStorage`?
 
 In increments, consider the markup, then the stylesheet, and only finally the script.
 
@@ -132,37 +132,37 @@ Moreover, respect the `prefers-color-scheme` media query, if this is set to `dar
 
 ```css
 @media (prefers-color-scheme: dark) {
-  body:not([color-mode]) {
+  body:not([color-preference]) {
     color: var(--grey-9);
     background: var(--grey-0);
   }
 
-  body:not([color-mode]) button svg .rotate {
+  body:not([color-preference]) button svg .rotate {
     transform: rotate(180deg);
   }
 
-  body:not([color-mode]) button svg .scale {
+  body:not([color-preference]) button svg .scale {
     transform: scaleX(-1);
   }
 }
 ```
 
-Notice the `:not([color-mode])` part of the selector. The attribute `color-mode` is added through the script, and considering the value from `localStorage`. This to ensure the preference overrides the media query.
+Notice the `:not([color-preference])` part of the selector. The attribute `color-preference` is added through the script, and considering the value from `localStorage`. This to ensure the preference overrides the media query.
 
-If there is a `color-mode` attribute include the necessary `transition` properties.
+If there is a `color-preference` attribute include the necessary `transition` properties.
 
 ```css
-body[color-mode] {
+body[color-preference] {
   --transition-duration: 1.5s;
   transition: color var(--transition-duration) ease-in-out, background var(
         --transition-duration
       ) ease-in-out;
 }
 
-body[color-mode] button svg .rotate {
+body[color-preference] button svg .rotate {
   transition: transform var(--transition-duration) var(--ease-in-out-sine);
 }
-body[color-mode] button svg .scale {
+body[color-preference] button svg .scale {
   transition: transform var(--transition-duration) step-end;
 }
 ```
@@ -170,23 +170,21 @@ body[color-mode] button svg .scale {
 If the attribute describes a preference for the `dark` color scheme, update the necessary properties.
 
 ```css
-body[color-mode='dark'] {
+body[color-preference='dark'] {
   color: var(--grey-9);
   background: var(--grey-0);
 }
 
-body[color-mode='dark'] button svg .rotate {
+body[color-preference='dark'] button svg .rotate {
   transform: rotate(180deg);
 }
 
-body[color-mode='dark'] button svg .scale {
+body[color-preference='dark'] button svg .scale {
   transform: scaleX(-1);
 }
 ```
 
 ### Script
-
-Beside the media query, the property value pairs set in the stylesheet are included to match the instructions of the script.
 
 Remove the `disabled` attribute from the button.
 
@@ -194,76 +192,24 @@ Remove the `disabled` attribute from the button.
 button.removeAttribute('disabled');
 ```
 
-If a preference is included in `localStorage`, add a `color-mode` attribute with said preference.
+For the logic of the color scheme, consider the interplay between `localStorage` and the `prefers-color-scheme` media query:
 
-```js
-const colorMode = window.localStorage.getItem('color-mode');
+- retrieve the preference from local storage
 
-if (colorMode) {
-  document.body.setAttribute('color-mode', colorMode);
-  window.localStorage.setItem('color-mode', colorMode);
-}
-```
+  - there is a preference -> include it in the `color-preference` attribute
 
-I specified a function to wrap both lines of code, but it doesn't change the functionality.
+  - there is no prefrence
 
-```js
-function setColorMode(colorMode) {
-  document.body.setAttribute('color-mode', colorMode);
-  window.localStorage.setItem('color-mode', colorMode);
-}
-```
+    - consider the media query
 
-Following this "setup" phase, update the preference according to two possible prompts:
+      - query matches -> include a `dark` color scheme
 
-1. the user clicks on the `button` element
+      - query does not match -> include a `light` color scheme
 
-   ```js
-   button.addEventListener('click', ???);
-   ```
+When using the value of the media query, be sure to update the value in `localStorage` to match.
 
-2. the user changes the preference in the media query
+This covers the "setup" phase, but it is also necessary to consider a change to the preference:
 
-   ```js
-   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+- when the button is clicked, consider the current preference and set the opposite
 
-   mediaQuery.addListener(???);
-   ```
-
-#### Button click
-
-When the button is clicked, consider the preference set up in local storage.
-
-```js
-let currentColorMode = window.localStorage.getItem('color-mode');
-```
-
-If one is not available, update the variable with the preference from the media query
-
-```js
-if (!currentColorMode) {
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  currentColorMode = mediaQuery.matches ? 'dark' : 'light';
-}
-```
-
-Then proceed to set the attribute and local storage key to the opposite value.
-
-```js
-const colorMode = currentColorMode === 'light' ? 'dark' : 'light';
-setColorMode(colorMode);
-```
-
-#### Media query change
-
-When a change is detected in the preference of the media query, set the value from the media query itself.
-
-```js
-mediaQuery.addListener(({ matches }) => {
-  const colorMode = matches ? 'dark' : 'light';
-
-  setColorMode(colorMode);
-});
-```
-
-No need to consider the current preference (although this means the script has the possibility to set the same preference twice in a row).
+- when the media query changes, consider the preferred value

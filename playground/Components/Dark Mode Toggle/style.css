@@ -14,13 +14,12 @@ button {
   border: 0.3rem solid currentColor;
   display: block;
   padding: 0;
-  --transition-duration: 0.2s;
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color var(--transition-duration) var(--ease-in-out-sine);
+  transition: color 0.25s var(--ease-in-out-sine);
 }
 
 button:not(:disabled):focus {
-  outline: 0.2rem dashed currentColor;
+  outline: 0.1rem dashed currentColor;
 }
 
 button:not(:disabled):hover,
@@ -37,51 +36,51 @@ button svg {
 }
 
 @media (prefers-color-scheme: dark) {
-  body:not([color-mode]) {
+  body:not([color-preference]) {
     color: hsl(214, 15%, 88%);
     color: var(--grey-9);
     background: hsl(215, 22%, 5%);
     background: var(--grey-0);
   }
 
-  body:not([color-mode]) button svg .rotate {
+  body:not([color-preference]) button svg .rotate {
     transform: rotate(180deg);
   }
 
-  body:not([color-mode]) button svg .scale {
+  body:not([color-preference]) button svg .scale {
     transform: scaleX(-1);
   }
 }
 
-body[color-mode] {
-  --transition-duration: 1.5s;
+body[color-preference] {
+  --transition-duration: 1s;
   transition: color 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     background 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine),
     background var(--transition-duration) var(--ease-in-out-sine);
 }
 
-body[color-mode] button svg .rotate {
+body[color-preference] button svg .rotate {
   transition: transform 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-sine);
 }
 
-body[color-mode] button svg .scale {
+body[color-preference] button svg .scale {
   transition: transform 1.5s step-end;
   transition: transform var(--transition-duration) step-end;
 }
 
-body[color-mode='dark'] {
+body[color-preference='dark'] {
   color: hsl(214, 15%, 88%);
   color: var(--grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--grey-0);
 }
 
-body[color-mode='dark'] button svg .rotate {
+body[color-preference='dark'] button svg .rotate {
   transform: rotate(180deg);
 }
 
-body[color-mode='dark'] button svg .scale {
+body[color-preference='dark'] button svg .scale {
   transform: scaleX(-1);
 }
