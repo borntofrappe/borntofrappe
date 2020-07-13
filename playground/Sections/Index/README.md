@@ -1,8 +1,10 @@
 # Blog Index
 
+Articles populating the blog page.
+
 ## Markdown
 
-The script populates the `main` element from the frontmatter presumed from a series of articles.
+The script populates the `<main>` element from the frontmatter presumed from a series of articles, describing the title, date and brief description.
 
 ```njk
 <article>
@@ -25,9 +27,9 @@ The script populates the `main` element from the frontmatter presumed from a ser
 
 ## Date
 
-Follow the convention described by the [living standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) and specifically [the part on a valid month string](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-month-string).
+Follow the convention described in the [living standard](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) and specifically [the part on a valid month string](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-month-string).
 
-Use an array detailing the months to format the date in a more readable form: `2020-1-20` to `January 20, 2020`
+Use an array detailing the months to format the date in a more readable form: `2020-1-20` to `January 20, 2020`. Full month name, followed by the integer describing the day, followed by the four digit years.
 
 ## First article
 

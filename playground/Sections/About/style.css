@@ -37,7 +37,7 @@ article {
 }
 
 article > * + * {
-  margin-top: 0.3em;
+  margin-top: 0.4em;
 }
 
 article h2 {
@@ -49,19 +49,21 @@ article p:first-of-type {
 }
 
 article p {
+  font-family: 'Source Code Pro', monospace;
   font-size: 1em;
-  word-spacing: -0.2em;
-  letter-spacing: -0.005em;
   line-height: 1.75;
+  word-spacing: -0.2em;
+  letter-spacing: -0.03em;
   align-self: flex-start;
-  font-family: "Source Code Pro", monospace;
 }
 
 article mark {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-  padding: 0.2em 0.3em;
-  border-radius: 0.2em;
+  background: none;
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  letter-spacing: initial;
 }
 
 article > svg {

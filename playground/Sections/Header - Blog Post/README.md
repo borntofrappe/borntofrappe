@@ -4,7 +4,23 @@ Header for blog post pages.
 
 ## Markup
 
-The script populates the body of the document from the frontmatter presumed from a series of articles.
+Consider data from the (presumed) frontmatter for a series of articles, describing the title and optionally icons associated with the post.
+
+```njk
+<header>
+  <h1>{title}</h1>
+
+  <h2>Icons</h2>
+  <ul>
+    <li>
+      <span>{icon name}</span>
+      {icon syntax}
+    </li>
+  </ul>
+</header>
+```
+
+Hide the `<h2>` and `<span>` elements from sight, but not screen readers.
 
 ## Icons
 

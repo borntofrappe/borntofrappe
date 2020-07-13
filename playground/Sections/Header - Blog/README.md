@@ -4,7 +4,7 @@ Header for the blog page.
 
 ## Breakout
 
-The idea is to have the background and the wave-pattern extend to the left and right of the header element. This is achieved with `vw` units, and `grid` properties where these are supported.
+The idea is to have the background and the wave-pattern extend to the left and right of the header element. This is achieved with `vw` units, and `grid` properties if supported.
 
 ### vw
 
@@ -18,6 +18,7 @@ header::before {
   width: 100vw;
   height: 100%;
   transform: translateX(-50%);
+  z-index: -5;
   /* background properties */
 }
 ```
@@ -77,4 +78,4 @@ Use the `::after` pseudo to add a wave-like pattern. Stretch its width to cover 
 
 ## Redundancies
 
-The `::before` and `::after` pseudo elements share a few properties. Prefer to repeat the syntax given the different purpose.
+The `::before` and `::after` pseudo elements share a few properties, but I prefer to repeat the syntax. The two have a different purpose, and the two change independently of one another.

@@ -1,35 +1,9 @@
 # Hero
 
-A header for the landing page.
+The header for the landing page.
 
-## Markup
+## SVG Syntax
 
-Create an illustration with SVG syntax which includes a series of anchor link elements. Redirect to the different places on which I spend/intend to spend most of my time:
+The document includes an illustration where a series of icons are included around the center. Refer to `hero.svg` for the static version.
 
-- blog <!-- hopefully soon -->
-
-- codepen
-
-- freecodecamp
-
-- github
-
-- twitter
-
-Next to the illustration, include a bulleted list to describe my current persona.
-
-Include additional elements for assistive technologies and extra context.
-
-## SVG
-
-In this folder you find the static version of the illustration.
-
-## Order
-
-The illustration follows the HTML elements introducing the section. This makes sense semantically, but visually, I want to show the illustration first. Add the following CSS.
-
-```css
-header > svg {
-  order: -1;
-}
-```
+Wrap the these icons in anchor link elements to have the visual click-able/focus-able.

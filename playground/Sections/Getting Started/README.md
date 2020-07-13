@@ -1,12 +1,12 @@
 # Getting Started
 
-An article in the `main` container of the landing page.
+An article in the `<main>` container of the landing page.
 
 ## SVG
 
 Include two `<svg>` elements for the telescope and icons separately.
 
-In this folder you find the static version. In the script recreate the syntax with a variable input. Experiment with coordinates and icons.
+Refer to `telescope.svg` and `icons.svg` fir static version. In the script recreate the syntax with hard-coded coordinates.
 
 ## Layout
 
@@ -34,7 +34,7 @@ The markup is modified to target the elements with the `:nth-of-type()` selector
 
 ### Rotation
 
-If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope more tilted.
+If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope rotate in a wider range.
 
 ```diff
 - transform: rotate(10deg);

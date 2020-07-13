@@ -1,12 +1,12 @@
 # About
 
-An article in the `main` container of the landing page.
+An article in the `<main>` container of the landing page.
 
 ## SVG
 
-Include an `<svg>` illustration describing a planet surrounded by satellites.
+Include the illustration describing a planet surrounded by satellites.
 
-In this folder you find the static version.
+Refer to `world.svg` for the static version.
 
 ## Animation
 
