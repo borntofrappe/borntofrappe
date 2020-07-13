@@ -274,7 +274,7 @@ const about = document.querySelector('article#about');
 
 about.innerHTML = `
 <h2>Almost forgot</h2>
-<p>My name is <mark style="background: ${colors[colors.length - 1]};">Gabriele Corti</mark>.</p>
+<p>Name's <mark>Gabriele</mark>.</p>
 <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. </p>
 <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
 

@@ -12,6 +12,8 @@ Include the code from the following projects:
 
 - sections/getting started
 
+- ???
+
 - sections/about
 
 - components/footer
@@ -36,10 +38,18 @@ Since only half the element is shown, and the animation occurs clockwise, flip t
 +<g transform="rotate(${360 / length * index * -1}) translate(0 -42) rotate(${360 / length * index})">
 ```
 
+## Getting started & About
+
+Wrap both article elements in a `<main>` container with an `id` of `content`.
+
+The article elements actually share a few properties, like vertical spacing between the child elements and size of the heading, paragraph elements. In light of this consider a more general selector to avoid duplicating the values. For instance: use the wrapping `<main>` element to set the font-size, use the general selector `article > * + *` to have the properties applied to both elements.
+
 ## Intersection observer
 
 Observe both illustrations included in the article elements.
 
-## Article(s)
+### ???
 
-The two article elements share a few properties, like vertical spacing between the child elements and size of the heading, paragraph elements. In light of this, use a more general selector to avoid duplicating the values.
+In between the article elements, include a visual to separate the distinct sections of the page.
+
+This visual repeats the wave-like pattern specified for the hero section and the footer, but at a smaller scale.

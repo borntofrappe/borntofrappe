@@ -16,4 +16,4 @@ Include the code from the following projects:
 
 ## Spacing
 
-Update the values of the margin and padding properties to have the content breathe more.
+The whitespace included through margin/padding/line height properties is insufficient when the individual projects are included in the same page. Update the stylesheet to have the content breathe more.
