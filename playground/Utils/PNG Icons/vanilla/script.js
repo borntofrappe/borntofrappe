@@ -1,55 +1,56 @@
-const width = 100;
-const height = 100;
+// change width and height to change the dimensions of the raster image
+const color = 'hsl(220, 100%, 8%)';
+const size = 100;
 
+// CANVAS
 const canvas = document.createElement('canvas');
-canvas.width = width;
-canvas.height = height;
+canvas.width = size;
+canvas.height = size;
 
 const article = document.createElement('article');
 const heading = document.createElement('h2');
-heading.textContent = 'Canvas';
+const paragraph = document.createElement('p');
+heading.textContent = 'icon <canvas>';
+paragraph.innerHTML = `width: ${size}<br/>height: ${size}<br/>color: ${color}`;
 
 article.appendChild(heading);
+article.appendChild(paragraph);
 article.appendChild(canvas);
 document.body.appendChild(article);
 
+// recreate icon.svg
 const context = canvas.getContext('2d');
 
-/* recreate SVG syntax
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="100" height="100">
-  <g transform="scale(1.85)" fill="none" stroke="hsl(220, 100%, 8%)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M -10 -13 q 0 -8 -8 -10" stroke-dasharray="14.01 18.5" stroke-dashoffset="-4.5" />
-    <path d="M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36" stroke-dasharray="114.2 146.28" stroke-dashoffset="-9.145" />
-  </g>
-</svg>
-*/
-context.translate(width / 2, height / 2);
-context.scale(1.85 * (width / 100), 1.85 * (height / 100));
+context.translate(size / 2, size / 2);
+context.rotate(Math.PI / 4);
 
+context.strokeStyle = color;
 context.lineWidth = 8;
-context.strokeStyle = 'hsl(220, 100%, 8%)';
 context.lineCap = 'round';
 context.lineJoin = 'round';
 
-const accent = new Path2D('M -10 -13 q 0 -8 -8 -10');
-context.setLineDash([14.01, 18.5]);
-context.lineDashOffset = -4.5;
-context.stroke(accent);
+const rocket = new Path2D("M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52");
+context.stroke(rocket);
 
-const b = new Path2D(
-  'M -10 -13 h 15 a 8 8 0 0 1 0 16 h -4 h 4 a 10 10 0 0 1 0 20 h -15 v -36'
-);
-context.setLineDash([114.2, 146.28]);
-context.lineDashOffset = -9.145;
-context.stroke(b);
+context.lineWidth = 7;
+const exhaustOne = new Path2D("M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21");
+context.stroke(exhaustOne);
+context.scale(-1, 1);
+const exhaustTwo = new Path2D("M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21");
+context.stroke(exhaustTwo);
+context.scale(-1, 1);
+const exhaustThree = new Path2D("M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5");
+context.stroke(exhaustThree);
 
-// data for the png image
-const data = canvas.toDataURL('image/png');
+const rocketWindow = new Path2D("M 0 -11 a 9 9 0 0 1 0 18 9 9 0 0 1 0 -18");
+context.stroke(rocketWindow);
 
-// add a link to download the data
+// PNG IMAGE
+const dataImage = canvas.toDataURL('image/png');
+
 const a = document.createElement('a');
-a.setAttribute('download', `icon-${width}-${height}`);
-a.href = data;
-a.textContent = `Download icon-${width}-${height}`;
+a.setAttribute('download', 'icon.png');
+a.href = dataImage;
+a.textContent = `Download icon.png`;
 
 document.body.appendChild(a);

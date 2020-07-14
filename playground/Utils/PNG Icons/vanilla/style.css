@@ -6,26 +6,34 @@
 
 body {
   min-height: 100vh;
-  background: hsl(0, 0%, 95%);
+  color: hsl(220, 100%, 8%);
+  background: hsl(0, 0%, 100%);
   font-family: monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-body > * {
-  margin: 1rem 0;
+article {
+  display: contents;
 }
 
-article > * + * {
+body > * {
+  margin-top: 2rem;
+}
+
+article > * {
   margin-top: 1rem;
 }
 
-article {
-  padding: 1.5rem;
-  background: hsl(0, 0%, 100%);
+h2,
+a {
+  font-size: 2rem;
+  font-family: monospace;
 }
 
-a {
-  font-size: 1.5rem;
+svg {
+  display: block;
+  width: 100px;
+  height: auto;
 }

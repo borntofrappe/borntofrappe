@@ -1,11 +1,23 @@
 # PNG Icons
 
-Create `.png` icons for the website.
+In creating the website, I found myself with the following issue: having a well designed icon in SVG syntax, and needing the visual in a `.png` format.
 
-## vanilla
+With this demo I try to solve this problem through the canvas API.
 
-Using vanilla JavaScript, recreate the syntax behind the letter `b` icon with the canvas API. Use then an anchor link element to download the associated data and obtain the static asset.
+- recreate the icon in a `canvas` element
 
-## svelte-app
+- save the canvas as an image
 
-Consider this an update from the vanilla version. Here I focus on the syntax for the rocket icon, and allow to change the size and or color of the soon-to-be static asset.
+Refer to **vanilla** for the proof of concept behind the project.
+
+Use **svelte-app** to create an icon at different sizes/colors.
+
+## Icon sizes
+
+Following the suggestions from the meta tags folder, consider at least three sizes:
+
+- 16px
+
+- 32px
+
+- 180px

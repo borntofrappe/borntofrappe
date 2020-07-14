@@ -1,8 +1,6 @@
 # Markdown Parser
 
-A tentative script to parse markdown to HTML code.
-
-11ty considers the `.md` extension natively, but I figured I'd learn a thing or two by running my own version.
+With this project I try to create a script to parse markdown to HTML code. 11ty considers the `.md` extension natively, but the effort is still useful to consider the desired output.
 
 ## script-parser
 
@@ -27,10 +25,10 @@ npm install marked
 Add four variables to describe the input and output folder, as well as the extension for the files in either one.
 
 ```js
-const input = "blog";
-const output = "pages";
-const extnameInput = ".md";
-const extnameOutput = ".html";
+const input = 'blog';
+const output = 'pages';
+const extnameInput = '.md';
+const extnameOutput = '.html';
 ```
 
 ### Read
@@ -48,20 +46,24 @@ I'm using the `sync` variant of the `fs` functions, so that the code proceeds in
 To read, use the `readdirSync` function.
 
 ```js
-const files = fs.readdirSync(`${input}`, "utf-8");
+const files = fs.readdirSync(`${input}`, 'utf-8');
 ```
 
 The blog folder is populated by markdown files only, but just to be safe, I use a `filter` function to exclude files not matching the given value.
 
 ```js
-const markdownFiles = files.filter((file) => path.extname(file) === extnameInput);
+const markdownFiles = files.filter(
+  (file) => path.extname(file) === extnameInput
+);
 ```
 
 To read into the files, use `readFileSync`. Loop through the array of files, and apply the function on each individual one.
 
 ```js
 markdownFiles.forEach((markdownFile) => {
-  const markdown = fs.readFileSync(`${input}/${markdownFile}`, { encoding: "utf-8" });
+  const markdown = fs.readFileSync(`${input}/${markdownFile}`, {
+    encoding: 'utf-8',
+  });
 });
 ```
 
@@ -126,7 +128,7 @@ I've toyed around with the syntax, and realized that `\r` and `\n` were needed t
 If a match is found, add the value to another variable.
 
 ```js
-const string = match ? match[0] : "";
+const string = match ? match[0] : '';
 ```
 
 Based on the length of the string finally, use the `marked` function on the file excluding the frontmatter.
@@ -152,14 +154,14 @@ Loop then through the newfound matches, and destructure the desired information 
 
 ```js
 string.match(/\w+:\s.+/g).forEach((match) => {
-  const [key, value] = match.split(": ");
+  const [key, value] = match.split(': ');
 });
 ```
 
 Finally, use both to populate the object.
 
 ```js
-const [key, value] = match.split(": ");
+const [key, value] = match.split(': ');
 frontmatter[key] = value;
 ```
 
@@ -209,7 +211,7 @@ npm install shiki
 
    ```js
    shiki.getHighlighter({
-     theme: "Material-Theme-Palenight-High-Contrast",
+     theme: 'Material-Theme-Palenight-High-Contrast',
    });
    ```
 
@@ -218,7 +220,7 @@ npm install shiki
    ```js
    shiki
      .getHighlighter({
-       theme: "Material-Theme-Palenight-High-Contrast",
+       theme: 'Material-Theme-Palenight-High-Contrast',
      })
      .then((highlighter) => {
        // here!
@@ -230,12 +232,18 @@ npm install shiki
    ```js
    shiki
      .getHighlighter({
-       theme: "Material-Theme-Palenight-High-Contrast",
+       theme: 'Material-Theme-Palenight-High-Contrast',
      })
      .then((highlighter) => {
        // ...
 
-       renderer.code = (code, lang) => `<pre><div>${icons[lang]}<span>${lang}</span></div>${highlighter.codeToHtml(code, lang)}</pre>`;
+       renderer.code = (code, lang) =>
+         `<pre><div>${
+           icons[lang]
+         }<span>${lang}</span></div>${highlighter.codeToHtml(
+           code,
+           lang
+         )}</pre>`;
      });
    ```
 
@@ -244,20 +252,19 @@ npm install shiki
 Instead of chaining the functions, rewrite the logic using async-await syntax. Wrap the code in an async function.
 
 ```js
-async function createMarkup() {
-
-}
+async function createMarkup() {}
 createMarkup();
 ```
 
 Retrieve the highlighter.
 
 ```js
-const highlighter = await shiki.getHighlighter({theme: 'Material-Theme-Palenight-High-Contrast'});
+const highlighter = await shiki.getHighlighter({
+  theme: 'Material-Theme-Palenight-High-Contrast',
+});
 ```
 
 The rest remains untouched.
-
 
 ## script-marked
 
@@ -281,8 +288,8 @@ The syntax for the code included between ``` ticks is modified to create the fol
 
 ```html
 <div>
-<span>{{icon[lang]}} {{name}}.{{lang}}</span>
-<pre><code>{{code}}</code></pre>
+  <span>{{icon[lang]}} {{name}}.{{lang}}</span>
+  <pre><code>{{code}}</code></pre>
 </div>
 ```
 
@@ -311,7 +318,7 @@ Without direct access to the headings, recreate the permalink option by modifyin
 Opening the heading, specify a heading based on the text of the inline token which follows.
 
 ```html
-<h2 id="dash-separated-text">
+<h2 id="dash-separated-text"></h2>
 ```
 
 Closing the heading, prepend an anchor link element referencing the same value.

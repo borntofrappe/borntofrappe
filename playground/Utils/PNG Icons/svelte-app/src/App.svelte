@@ -1,28 +1,22 @@
 <script>
   import Canvas from "./Canvas.svelte";
 
-  let size = 200;
-  let color = "rgb(10, 12, 16)";
-  $: download = `icon-${size}`;
+  let size = 180;
+  let color = "hsl(220, 100%, 8%)";
+  $: download = `icon-${size}.png`;
 
   let href;
 </script>
 
 <style>
-  :global(body) {
-    text-align: center;
-  }
   form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 30rem;
+    margin: 1rem auto;
     line-height: 2;
-    margin: 1rem 0;
   }
   label {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     font-size: 1.5rem;
     margin-top: 1rem;
   }
@@ -37,8 +31,8 @@
   }
 
   a {
-    font-size: 1.5rem;
-    display: block;
+    font-size: 2rem;
+    font-family: monospace;
   }
 </style>
 
@@ -56,5 +50,5 @@
 <Canvas on:draw="{(e) => href = e.detail}" {size} {color} />
 
 {#if href}
-<a {href} {download}>Download <strong>{download}</strong></a>
+<a {href} {download}>{download}</a>
 {/if}

@@ -1,17 +1,21 @@
 # Opengraph Images
 
-A node script to produce the static assets ultimately added in the `<head>` of the document. These are created as screenshot using puppeteer.
+This projects sets out to create images for the opengraph standard. The images are referenced in the `<head>` of the document, and shown when the specific page is shared on platforms like twitter.
 
 ## script-static
 
-Create the `.png` images for the landing page and the blog page. These are meant to be included by default in the static folder.
+`script-static` creates the images for the landing page and blog page. For both of these pages, the design of the image does not change, which means the images can be included directly in the website.
 
-## script-multi
+Puppeteer launches chromium, loads the markup for the `.html` files in the **static** folder, and takes a screenshot for the pages it finds.
 
-Create `.png` images starting from the presumed frontmatter from a series of blog posts. In the **blog** folder you find the script creating the necessary markup with a template file. `index.html` is included to describe the layout and style of the would-be images.
+## script-multi & script
 
-**Important note**: this script is considerably inefficient. For every article, puppeteer injects the page with the necessary markup, which means the browser needs to render as many pages as there are posts. This realization leads to the next script.
+Both `script-multi` and `script` create a series of images for a series of presumed articles. Since the articles are not known in their number/title/description, it is necessary to have the script run every time the website is built, so the scripts are more of a proof of concept for what is ultimately included in the website.
 
-## script
+The difference between the two boils down to efficiency:
 
-Create `.png` images from a single page. Puppeteer renders the page, and then takes a series of screenshot modifying the `y` coordinate.
+- in `script-multi` puppeteer launches chromium, loads a web page for the first article, takes a screenshot, and repeats the same sequence for every article. Load, screenshot, load screenshot. This is considerably inefficient, as the pages share a considerable amount of code – think for instance about the fonts being loaded at every iteration – which leads to the next script
+
+- in `script` puppeteer launches chromium, populates one page with the information for every article, and then takes a screenshot of each one by modifying the `y` coordinate
+
+In most practical terms: **use the code described in `script.js`**
