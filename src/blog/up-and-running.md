@@ -1,26 +1,18 @@
 ---
 title: 'Up and Running'
-date: 2020-05-24
+date: 2020-07-15
 brief: 'The first article of an aspiring developer, fledging designer, long-distance runner.'
 keywords: ['writing']
 ---
 
-## Skeleton
+## What to expect
 
-- describe the late April 2020 rough patch
+- HTML, CSS, JS
 
-- introduce website, explaining the evolution of the stack
+- SVG, D3, Svelte
 
-  - react and gatsby
+Everything else connected to web development, plus a musing or two about other technologies:
 
-  - svelte and sapper
+- lua and love2d for 2d game development
 
-  - 11ty, back to html and css
-
-- detail what to expect
-
-  - articles about things I learned building the website
-
-  - articles on SVG, D3, Svelte...
-
-- conclude discussing missing features (404, syntax highlighting), and how this is but a starting point for hopefully something great
+- python as an alternative language, specifically in the context of data munging
