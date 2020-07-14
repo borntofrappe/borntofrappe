@@ -257,7 +257,6 @@ main .permalink a:hover {
 }
 
 main .permalink a svg {
-  transform: rotate(-45deg);
   width: 100%;
   height: auto;
 }

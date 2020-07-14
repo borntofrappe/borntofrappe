@@ -1,4 +1,4 @@
-const icons = require('./icons');
+const icons = require('./_data/icons');
 
 module.exports = posts => `
 <!DOCTYPE html>
