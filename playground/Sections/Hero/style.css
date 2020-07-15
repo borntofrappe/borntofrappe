@@ -84,6 +84,7 @@ header > svg a {
   transition: transform var(--transition-duration) var(--ease-in-out-back),
     color var(--transition-duration) var(--ease-in-out-sine);
   transform: scale(0.85);
+  outline: none;
 }
 
 header > svg a .text {

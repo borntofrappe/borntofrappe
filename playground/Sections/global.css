@@ -119,18 +119,16 @@ a {
   text-decoration-skip-ink: auto;
   color: inherit;
   font-family: inherit;
-  border: 0.15rem dashed transparent;
+  outline: 0.15rem dashed transparent;
 
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 a:focus {
-  outline: none;
-  border-color: currentColor;
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
+  outline-color: currentColor;
 }
+
 a:hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);

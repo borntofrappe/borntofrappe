@@ -10,6 +10,10 @@ nav {
   padding: 0.5rem 0;
 }
 
+nav > * + * {
+  margin-left: 0.3rem;
+}
+
 nav a {
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
@@ -21,7 +25,7 @@ nav a {
 }
 
 nav a svg {
-  margin-left: 0.4rem;
+  margin-left: 0.3rem;
   width: 1.5em;
   height: auto;
 }

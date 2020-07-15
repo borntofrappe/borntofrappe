@@ -1,0 +1,109 @@
+/* NAV COMPONENT */
+nav {
+  max-width: 40rem;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+nav > * + * {
+  margin-left: 0.3rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.25rem 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+nav a svg {
+  margin-left: 0.3rem;
+  width: 1.5em;
+  height: auto;
+}
+
+nav button {
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  color: inherit;
+  background: none;
+  border-radius: 50%;
+  border: 0.2rem solid currentColor;
+  display: block;
+  padding: 0;
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+nav button svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+nav button:not(:disabled):focus {
+  outline: 0.15rem dashed currentColor;
+}
+
+nav button:not(:disabled):hover,
+nav button:not(:disabled):focus {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* properties for the alternative color palette */
+  body:not([data-preference]) {
+    color: hsl(214, 15%, 88%);
+    color: var(--grey-9);
+    background: hsl(215, 22%, 5%);
+    background: var(--grey-0);
+  }
+
+  body:not([data-preference]) nav button svg .rotate {
+    transform: rotate(180deg);
+  }
+
+  body:not([data-preference]) nav button svg .scale {
+    transform: scaleX(-1);
+  }
+}
+
+/* properties for the alternative color palette */
+body[data-preference='dark'] {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-8);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+}
+
+body[data-preference='dark'] nav button svg .rotate {
+  transform: rotate(180deg);
+}
+
+body[data-preference='dark'] nav button svg .scale {
+  transform: scaleX(-1);
+}
+
+body[data-transition] {
+  transition: color 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    background 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine),
+    background var(--transition-duration) var(--ease-in-out-sine);
+}
+
+body[data-transition] nav button svg .rotate {
+  transition: transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform var(--transition-duration) var(--ease-in-out-sine);
+}
+
+body[data-transition] nav button svg .scale {
+  transition: transform 0.5s step-end;
+  transition: transform var(--transition-duration) step-end;
+}

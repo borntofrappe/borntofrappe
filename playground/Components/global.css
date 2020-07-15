@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 *,
 *::before,
@@ -92,7 +92,7 @@ html {
 
 body {
   text-rendering: optimizeSpeed;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   color: hsl(215, 22%, 5%);
   color: var(--grey-0);
   background: hsl(215, 10%, 97%);
@@ -119,18 +119,16 @@ a {
   text-decoration-skip-ink: auto;
   color: inherit;
   font-family: inherit;
-  border: 0.15rem dashed transparent;
+  outline: 0.15rem dashed transparent;
 
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 a:focus {
-  outline: none;
-  border-color: currentColor;
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
+  outline-color: currentColor;
 }
+
 a:hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
@@ -140,7 +138,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 h1,
@@ -154,7 +152,7 @@ h4 {
 }
 
 code {
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
 }
 
 svg {

@@ -18,6 +18,13 @@ button {
   transition: color 0.25s var(--ease-in-out-sine);
 }
 
+button svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
 button:not(:disabled):focus {
   outline: 0.1rem dashed currentColor;
 }
@@ -26,13 +33,6 @@ button:not(:disabled):hover,
 button:not(:disabled):focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
-}
-
-button svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: inherit;
 }
 
 @media (prefers-color-scheme: dark) {
