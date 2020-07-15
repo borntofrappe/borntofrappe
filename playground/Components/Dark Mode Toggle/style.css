@@ -36,23 +36,40 @@ button svg {
 }
 
 @media (prefers-color-scheme: dark) {
-  body:not([color-preference]) {
+  /* properties for the alternative color palette */
+  body:not([data-preference]) {
     color: hsl(214, 15%, 88%);
     color: var(--grey-9);
     background: hsl(215, 22%, 5%);
     background: var(--grey-0);
   }
 
-  body:not([color-preference]) button svg .rotate {
+  body:not([data-preference]) button svg .rotate {
     transform: rotate(180deg);
   }
 
-  body:not([color-preference]) button svg .scale {
+  body:not([data-preference]) button svg .scale {
     transform: scaleX(-1);
   }
 }
 
-body[color-preference] {
+/* properties for the alternative color palette */
+body[data-preference='dark'] {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-0);
+}
+
+body[data-preference='dark'] button svg .rotate {
+  transform: rotate(180deg);
+}
+
+body[data-preference='dark'] button svg .scale {
+  transform: scaleX(-1);
+}
+
+body[data-transition] {
   --transition-duration: 1s;
   transition: color 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     background 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -60,27 +77,12 @@ body[color-preference] {
     background var(--transition-duration) var(--ease-in-out-sine);
 }
 
-body[color-preference] button svg .rotate {
+body[data-transition] button svg .rotate {
   transition: transform 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-sine);
 }
 
-body[color-preference] button svg .scale {
+body[data-transition] button svg .scale {
   transition: transform 1.5s step-end;
   transition: transform var(--transition-duration) step-end;
-}
-
-body[color-preference='dark'] {
-  color: hsl(214, 15%, 88%);
-  color: var(--grey-9);
-  background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
-}
-
-body[color-preference='dark'] button svg .rotate {
-  transform: rotate(180deg);
-}
-
-body[color-preference='dark'] button svg .scale {
-  transform: scaleX(-1);
 }

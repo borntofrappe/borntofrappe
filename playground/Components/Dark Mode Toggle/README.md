@@ -1,215 +1,76 @@
 # Dark Mode Toggle
 
-## SVG Syntax
+This is a tentative implementation of a toggle to switch between two color palette.
 
-The markup includes the syntax behind `sun.svg` and `moon.svg` with a series of additional group elements.
+The focus of the demo is actually split in several areas:
 
-### Moon
+- the SVG syntax describing the two states of the toggle
 
-`moon.svg` was originally designed with a `<mask>` element.
+- the CSS properties transitioning the toggle between the two states, and applying the styling for the different preference
 
-```html
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="-50 -50 100 100"
-  width="1em"
-  height="1em"
->
-  <defs>
-    <mask id="mask-moon">
-      <path
-        fill="hsl(0, 0%, 100%)"
-        d="M 0 -28 a 28 28 0 0 1 0 56 28 28 0 0 1 0 -56"
-      />
-      <path
-        fill="hsl(0, 0%, 0%)"
-        d="M 22 -50 a 28 28 0 0 1 0 56 28 28 0 0 1 0 -56"
-      />
-    </mask>
-  </defs>
-  <g fill="currentColor">
-    <g mask="url(#mask-moon)">
-      <path d="M 0 -28 a 28 28 0 0 1 0 56 28 28 0 0 1 0 -56" />
-    </g>
-  </g>
-</svg>
-```
+- the JavaScript logic considering the preference set through the prefers-color-scheme media query or a previous choice through localStorage
 
-The syntax is however processed through inkscape, and later through SVGOMG, so that the icon is described by a single `<path>` element.
+In increments, consider the markup, stylesheet and then script.
 
-### Groups
+## HTML
 
-The idea is to have the sun and moon opposite to one another, and show either one by rotating the graphic from the bottom center. To achieve this result, the syntax for both icons is nested in `<g>` group elements, and the groups are pushed away from the desired point of origin.
+Refer to `sun.svg` and `moon.svg` for the two states of the toggle. `moon-defs.svg` describes a previous version for the moon, where the icon is created with a `mask` element. Ultimately, I decided to process the syntax through inkscape and SVGOMG to dispose of the `defs` block. This to have an SVG element based on a single `path` element. Both would work, but one requires considerably more code.
 
-```html
-<g class="rotate">
-  <g transform="translate(0 -80)">
-    <!-- sun -->
-  </g>
+In the HTML, the elements drawing the sun and the moon are wrapped together in the same SVG element. Additional group elements are included to also make it possible to show either visual through the `transform` property. By translating the shapes around the bottom center of the SVG element, it is possible to have the two rotate using the `rotate()` value.
 
-  <g transform="translate(0 80)">
-    <!-- moon -->
-  </g>
-</g>
-```
+Wrap the SVG syntax in a `button` element, and by default, specify an attribute to disable said element. The idea is to have the interaction enabled only when the script is available. In the script therefore, remember to remove the `disabled` attribute.
 
-To keep the graphics straight while the rotation occurs, include additional group elements to rotate the sun and moon in the opposite direction.
+## CSS
 
-```html
-<g transform="translate(0 80)">
-  <g transform="scale(-1 1)">
-    <g class="rotate">
-      <g transform="scale(-1 1)">
-        <!-- moon -->
-      </g>
-    </g>
-  </g>
-</g>
-```
-
-The groups using a negative scale are included to ensure that the same rotation applied to the wrapping group element has an opposite effect.
-
-### Group
-
-One last group element wraps the entire body of the svg element
-
-```html
-<g class="scale">
-  <!-- groups, sun and moon -->
-</g>
-```
-
-The idea is to here apply a negative scale on the entire graphic when the rotation occurs.
-
-```html
-<g class="scale" transform="scale(-1 1)">
-  <!-- groups, sun -->
-  <g transform="rotate(180)"> </g>
-
-  <!-- groups, moon -->
-  <g transform="rotate(180)"> </g>
-</g>
-```
-
-With a negative scale, the rotation back to `0` is once again clockwise, giving the illusion that the graphic is making a full rotation.
-
-## transition
-
-The negative scale mentioned in the last section is included when the rotation to `180` degrees is complete. In the stylesheet, you can achieve this effect by applying a `transition-delay` equal to the duration of the first transition.
-
-```css
-body[color-preference] button svg .scale {
-  transition: transform 0s;
-  transition-delay: var(--transition-duration);
-}
-```
-
-Alternatively, you can use the `step-end` easing function, which allows to change the `transform` property after the same amount of time.
-
-```css
-body[color-preference] button svg .scale {
-  transition: transform var(--transition-duration) step-end;
-}
-```
-
-## HTML, CSS and JavaScript
-
-The toggle needs to consider a plethora of possibilities: is CSS available? is JavaScript available? Is there a preference set in the media query `prefers-color-scheme`, or again through `localStorage`?
-
-In increments, consider the markup, then the stylesheet, and only finally the script.
-
-### Markup
-
-By default disable the button.
-
-This is perhaps controversial, but it comes from the following consideration: even if it's not possible to change the color scheme, the SVG syntax provides a visual for the current color scheme. Purely aesthetic.
-
-### Stylesheet
-
-When the button is not disabled, change its appearance on `:hover` and on `focus`.
-
-Moreover, respect the `prefers-color-scheme` media query, if this is set to `dark`.
+Consider first a situation in which the script is not available. In this situation the button cannot be clicked, but the color palette should still respect the preference set at system level. For this, specify the necessary properties in the `prefers-color-scheme` media query.
 
 ```css
 @media (prefers-color-scheme: dark) {
-  body:not([color-preference]) {
-    color: var(--grey-9);
-    background: var(--grey-0);
-  }
-
-  body:not([color-preference]) button svg .rotate {
-    transform: rotate(180deg);
-  }
-
-  body:not([color-preference]) button svg .scale {
-    transform: scaleX(-1);
+  body {
+    /*  */
   }
 }
 ```
 
-Notice the `:not([color-preference])` part of the selector. The attribute `color-preference` is added through the script, and considering the value from `localStorage`. This to ensure the preference overrides the media query.
-
-If there is a `color-preference` attribute include the necessary `transition` properties.
+One change for the selector however: do not target just the `body` element, but the `body` element without a `data-` attribute.
 
 ```css
-body[color-preference] {
-  --transition-duration: 1.5s;
-  transition: color var(--transition-duration) ease-in-out, background var(
-        --transition-duration
-      ) ease-in-out;
-}
-
-body[color-preference] button svg .rotate {
-  transition: transform var(--transition-duration) var(--ease-in-out-sine);
-}
-body[color-preference] button svg .scale {
-  transition: transform var(--transition-duration) step-end;
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) {
+    /*  */
+  }
 }
 ```
 
-If the attribute describes a preference for the `dark` color scheme, update the necessary properties.
+Once the attribute is included in the script, the idea is to override the preference with the one chosen through said script.
+
+Assuming a `data-preference` attribute then, repeat the properties for the alternative color palette when the attribute matches the decided value.
 
 ```css
-body[color-preference='dark'] {
-  color: var(--grey-9);
-  background: var(--grey-0);
-}
-
-body[color-preference='dark'] button svg .rotate {
-  transform: rotate(180deg);
-}
-
-body[color-preference='dark'] button svg .scale {
-  transform: scaleX(-1);
+body[data-preference='dark'] {
 }
 ```
 
-### Script
+This means that the dark preference is applied:
 
-Remove the `disabled` attribute from the button.
+- if there is no script, but the media query matches
 
-```js
-button.removeAttribute('disabled');
-```
+- if there is a script, and this one describe a preference for said choice
 
-For the logic of the color scheme, consider the interplay between `localStorage` and the `prefers-color-scheme` media query:
+Past the selectors using the `data-preference` attribute I also added a `data-transition` attribute. This is to have the `transition` properties applied after the preference is set, conditional to the `data-transition` attribute applied on the `body` element.
 
-- retrieve the preference from local storage
+## JS
 
-  - there is a preference -> include it in the `color-preference` attribute
+The script removes the `disabled` attribute from the button, allowing the user to click on the element. It then proceeds to consider the media query and the preference set on local storage, with the following logic:
 
-  - there is no prefrence
+- if there is a preference set on local storage, include it in the `data-preference` attribute of the `body` element
 
-    - consider the media query
+- if there is no preference, use the one specified (or not specified, by exclusion) by the media query
 
-      - query matches -> include a `dark` color scheme
+Following user interaction then:
 
-      - query does not match -> include a `light` color scheme
+- when the button is clicked, set the preference opposite to the one available in localStorage
 
-When using the value of the media query, be sure to update the value in `localStorage` to match.
+- when the media query changes, respect the value it specifies
 
-This covers the "setup" phase, but it is also necessary to consider a change to the preference:
-
-- when the button is clicked, consider the current preference and set the opposite
-
-- when the media query changes, consider the preferred value
+Finally, add the `data-transition` attribute to have the change in preference occur smoothly. I've included the instruction in a `setTimeout()` function because at least one browser, Firefox, applies the transition properties immediately, even if these follow the color scheme being set earlier.

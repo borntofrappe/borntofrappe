@@ -2,18 +2,23 @@ const button = document.querySelector('button');
 button.removeAttribute('disabled');
 
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const preference = window.localStorage.getItem('color-preference');
+const colorScheme = window.localStorage.getItem('color-scheme');
 
-function setColorPreference(colorPreference) {
-  document.body.setAttribute('color-preference', colorPreference);
-  window.localStorage.setItem('color-preference', colorPreference);
+function setPreference(preference) {
+  document.body.setAttribute('data-preference', preference);
+  window.localStorage.setItem('color-scheme', preference);
 }
 
-if (preference) {
-  setColorPreference(preference);
+if (colorScheme) {
+  setPreference(colorScheme);
 } else {
-  setColorPreference(mediaQuery.matches ? 'dark' : 'light');
+  setPreference(mediaQuery.matches ? 'dark' : 'light');
 }
 
-button.addEventListener('click', () => setColorPreference(window.localStorage.getItem('color-preference') === 'dark' ? 'light' : 'dark'));
-mediaQuery.addListener(({ matches }) => setColorPreference(matches ? 'dark' : 'light'));
+button.addEventListener('click', () => setPreference(window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'));
+mediaQuery.addListener(({ matches }) => setPreference(matches ? 'dark' : 'light'));
+
+const timeout = setTimeout(() => {
+  document.body.setAttribute('data-transition', 'true');
+  clearTimeout(timeout);
+}, 0)
