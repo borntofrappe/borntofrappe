@@ -21,6 +21,11 @@ header {
   position: relative;
 }
 
+body[data-preference='dark'] header {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+}
+
 /*
   [40 - 75]rem width
   [1.5 - 1.8]rem font-size
@@ -90,6 +95,7 @@ header > svg a {
   transition: transform var(--transition-duration) var(--ease-in-out-back),
     color var(--transition-duration) var(--ease-in-out-sine);
   transform: scale(0.85);
+  outline: none;
 }
 
 header > svg a .text {
@@ -236,7 +242,7 @@ article#getting-started a {
     position: relative;
     padding-bottom: 0.75em;
     margin-bottom: 0.75em;
-    border: none;
+    outline: none;
   }
 
   article#getting-started a:focus {

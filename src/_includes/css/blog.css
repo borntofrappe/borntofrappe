@@ -20,6 +20,11 @@ header {
   z-index: 5;
 }
 
+body[data-preference='dark'] header {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+}
+
 header::before {
   content: '';
   position: absolute;
@@ -135,16 +140,6 @@ main#content article:first-of-type h2 a:hover {
   color: var(--primary-6);
 }
 
-main#content article h2 a:focus {
-  background: hsl(205, 100%, 92%);
-  background: var(--secondary-10);
-}
-
-main#content article:first-of-type h2 a:focus {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-}
-
 main#content article h2 a svg {
   width: 1.5em;
   height: auto;
@@ -172,6 +167,26 @@ main#content article p {
   line-height: 1.75;
   color: hsl(210, 20%, 12%);
   color: var(--grey-1);
+}
+
+body[data-preference='dark'] main#content article:first-of-type time {
+  color: hsl(210, 20%, 12%);
+  color: var(--grey-1);
+  background: hsl(336, 93%, 77%);
+  background: var(--primary-8);
+}
+
+body[data-preference='dark'] main#content article time {
+  color: hsl(210, 20%, 12%);
+  color: var(--grey-1);
+  background: hsl(208, 95%, 75%);
+  background: var(--secondary-8);
+}
+
+body[data-preference='dark'] main#content article h2,
+body[data-preference='dark'] main#content article p {
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
 }
 
 @supports (display: grid) {

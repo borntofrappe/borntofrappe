@@ -13,6 +13,11 @@ header {
   position: relative;
 }
 
+body[data-preference='dark'] header {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+}
+
 header::after {
   content: '';
   position: absolute;
@@ -122,6 +127,11 @@ main {
 
 main p {
   color: var(--grey-1);
+}
+
+body[data-preference='dark'] main p {
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
 }
 
 main > * + * {

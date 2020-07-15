@@ -34,14 +34,12 @@ nav button {
   background: none;
   border-radius: 50%;
   border: 0.2rem solid currentColor;
-  display: block;
   padding: 0;
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 nav button svg {
-  display: block;
   width: 100%;
   height: auto;
   border-radius: inherit;

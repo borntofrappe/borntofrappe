@@ -15,10 +15,16 @@ if (colorScheme) {
   setPreference(mediaQuery.matches ? 'dark' : 'light');
 }
 
-button.addEventListener('click', () => setPreference(window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'));
-mediaQuery.addListener(({ matches }) => setPreference(matches ? 'dark' : 'light'));
+button.addEventListener('click', () =>
+  setPreference(
+    window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
+  )
+);
+mediaQuery.addListener(({ matches }) =>
+  setPreference(matches ? 'dark' : 'light')
+);
 
 const timeout = setTimeout(() => {
   document.body.setAttribute('data-transition', 'true');
   clearTimeout(timeout);
-}, 0)
+}, 0);
