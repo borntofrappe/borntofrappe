@@ -38,6 +38,7 @@ nav {
   padding: 0.5rem 0;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 nav > * + * {
@@ -217,6 +218,13 @@ footer span {
   border-radius: 50%;
   transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+body[data-preference='dark'] footer span {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-1);
 }
 
 footer span svg {

@@ -77,6 +77,13 @@ header ul li {
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
+body[data-preference='dark'] ul li {
+  color: hsl(214, 15%, 88%);
+  color: var(--grey-9);
+  background: hsl(215, 22%, 5%);
+  background: var(--grey-1);
+}
+
 @supports (display: grid) {
   header ul {
     display: grid;
