@@ -99,7 +99,9 @@ html {
 
 ::selection {
   color: hsl(215, 10%, 97%);
+  color: var(--grey-0);
   background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
 }
 
 body {
@@ -175,10 +177,12 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
   background: hsl(215, 22%, 5%);
+  background: var(--frappe-grey-0);
 }
 
 body::-webkit-scrollbar-thumb {
   border: 0.2rem solid hsl(215, 22%, 5%);
+  border: 0.2rem solid var(--frappe-grey-0);
   border-radius: 0.5rem;
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);

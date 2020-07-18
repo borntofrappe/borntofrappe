@@ -37,6 +37,7 @@ article {
 article > * + * {
   margin-top: 0.3em;
 }
+
 article p:first-of-type {
   margin-top: 1em;
 }
@@ -80,11 +81,10 @@ article a {
     position: relative;
     padding-bottom: 0.75em;
     margin-bottom: 0.75em;
-    outline: none;
   }
 
   article a:focus {
-    background: none;
+    outline: none;
   }
 
   article a::before,

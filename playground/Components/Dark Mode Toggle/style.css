@@ -29,21 +29,12 @@ button:not(:disabled):focus {
   outline: 0.15rem dashed currentColor;
 }
 
-button:not(:disabled):hover,
-button:not(:disabled):focus {
+button:not(:disabled):hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
 
 @media (prefers-color-scheme: dark) {
-  /* properties for the alternative color palette */
-  body:not([data-preference]) {
-    color: hsl(214, 15%, 88%);
-    color: var(--grey-9);
-    background: hsl(215, 22%, 5%);
-    background: var(--grey-0);
-  }
-
   body:not([data-preference]) button svg .rotate {
     transform: rotate(180deg);
   }

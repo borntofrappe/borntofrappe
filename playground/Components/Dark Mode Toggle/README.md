@@ -59,6 +59,10 @@ This means that the dark preference is applied:
 
 Past the selectors using the `data-preference` attribute I also added a `data-transition` attribute. This is to have the `transition` properties applied after the preference is set, conditional to the `data-transition` attribute applied on the `body` element.
 
+### Update
+
+Considering how the color scheme is implemented, by changing the custom properties to different sets of values, the change is introduced in the global stylesheet. In `style.css` implement the changes relative to the project at hand, which means the properties modifying the rotation of the visuals in the SVG icon.
+
 ## JS
 
 The script checks if custom properties are supported, and if so, it proceeds to consider the color preference. Following this checkup, remove the `disabled` attribute from the button, allowing the user to click on the element.

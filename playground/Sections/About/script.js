@@ -36,9 +36,7 @@ article.innerHTML = `
 <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
 <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
 
-<svg style="color: ${
-  colors[5]
-};" viewBox="-50 -50 100 100" width="200" height="200">
+<svg viewBox="-50 -50 100 100" width="200" height="200">
   <defs>
     <clipPath id="clip-planet">
       <circle r="30" />
@@ -67,7 +65,7 @@ article.innerHTML = `
       ${colors
         .map(
           (color, index, { length }) => `
-      <ellipse fill="${color}" stroke="none" cx="0" cy="70" rx="${35 +
+      <ellipse style="color: ${color}; color: var(--primary-${index});" fill="currentColor" stroke="none" cx="0" cy="70" rx="${35 +
             (15 / length) * index}" ry="33" transform="scale(${1 -
             (0.65 / length) * index})" />
       `
@@ -75,9 +73,7 @@ article.innerHTML = `
         .join('')}
     </g>
   </g>
-  <circle r="30" fill="none" stroke="${
-    colors[colors.length - 1]
-  }" stroke-width="0.2" />
+  <circle r="30" style="color: ${colors[colors.length - 1]}; color: var(--grey-10);" fill="none" stroke="currentColor" stroke-width="0.2" />
 
   <g mask="url(#mask-satellites)">
     <circle class="rotate" r="42" stroke-dasharray="1 2" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="0.5" />

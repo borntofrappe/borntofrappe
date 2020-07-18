@@ -67,6 +67,8 @@ article mark {
 }
 
 article > svg {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
   max-width: 30rem;
   width: 90%;
   height: auto;

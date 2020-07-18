@@ -22,13 +22,11 @@ Refer to `Fonts/index.html` for a visual
 
 ## Colors
 
-Color palette for the website.
+In `Colors/index.html` I describe four different sets of colors. `frappe` and `frappe-grey` are used by default, while `twilight` and `twilight-grey` for the dark color scheme.
 
-Refer to `Colors/index.html` for the sets of colors.
+Refer to `Colors/global.css` to see how the variables are set up. Include the sets in the `:root` element, and the variables actually using these values in tge `body` element, using `--primary-*` and `--grey-*` labels.
 
-In the stylesheet, set up the colors in the `:root` element. Include the scheme in the `body` element, using `--primary-*` and `--grey-*` labels.
-
-Refer to `Colors/global.css` to see how the variables are set up.
+**Be warned**: in the design of a few components, like the footer, the elements use the colors from a fixed scheme. The idea is to have "fixtures", elements which do not change even if the preference changes.
 
 ## Icons
 
