@@ -61,7 +61,9 @@ Past the selectors using the `data-preference` attribute I also added a `data-tr
 
 ## JS
 
-The script removes the `disabled` attribute from the button, allowing the user to click on the element. It then proceeds to consider the media query and the preference set on local storage, with the following logic:
+The script checks if custom properties are supported, and if so, it proceeds to consider the color preference. Following this checkup, remove the `disabled` attribute from the button, allowing the user to click on the element.
+
+Then continue by considering the media query and the preference set on local storage:
 
 - if there is a preference set on local storage, include it in the `data-preference` attribute of the `body` element
 

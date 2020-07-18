@@ -19,8 +19,10 @@
   word-spacing: 0.1rem;
   font-size: 2rem;
   padding: 0.5rem 1rem;
-  background: hsl(335, 100%, 86%);
-  background: var(--primary-9);
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-10);
+  background: hsl(210, 20%, 12%);
+  background: var(--grey-1);
   display: flex;
   width: max-content;
   align-items: center;

@@ -26,7 +26,7 @@ button svg {
 }
 
 button:not(:disabled):focus {
-  outline: 0.1rem dashed currentColor;
+  outline: 0.15rem dashed currentColor;
 }
 
 button:not(:disabled):hover,
@@ -53,28 +53,12 @@ button:not(:disabled):focus {
   }
 }
 
-/* properties for the alternative color palette */
-body[data-preference='dark'] {
-  color: hsl(214, 15%, 88%);
-  color: var(--grey-9);
-  background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
-}
-
 body[data-preference='dark'] button svg .rotate {
   transform: rotate(180deg);
 }
 
 body[data-preference='dark'] button svg .scale {
   transform: scaleX(-1);
-}
-
-body[data-transition] {
-  --transition-duration: 1s;
-  transition: color 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
-    background 1.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color var(--transition-duration) var(--ease-in-out-sine),
-    background var(--transition-duration) var(--ease-in-out-sine);
 }
 
 body[data-transition] button svg .rotate {
