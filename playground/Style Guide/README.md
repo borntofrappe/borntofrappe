@@ -22,15 +22,13 @@ Refer to `Fonts/index.html` for a visual
 
 ## Colors
 
-- primary
+Color palette for the website.
 
-- secondary
+Refer to `Colors/index.html` for the sets of colors.
 
-- grey
+In the stylesheet, set up the colors in the `:root` element. Include the scheme in the `body` element, using `--primary-*` and `--grey-*` labels.
 
-Set up with custom properties: `--primary-0`, `--primary-1`, where greater index values correspond to greater lightness.
-
-Refer to `Colors/index.html` for a visual
+Refer to `Colors/global.css` to see how the variables are set up.
 
 ## Icons
 
