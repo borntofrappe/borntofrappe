@@ -57,9 +57,15 @@ footer a {
   transition: color 0.25s var(--ease-in-out-sine);
 }
 
+footer a:hover,
 footer a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
+  outline: none;
+}
+
+footer a:focus {
+  outline: none;
 }
 
 footer span {

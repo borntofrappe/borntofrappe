@@ -68,10 +68,10 @@ main .code:hover > span {
 main .code pre {
   font-size: 1rem;
   margin: 0;
-  background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
   color: hsl(215, 10%, 97%);
   color: var(--frappe-gray-10);
+  background: hsl(229, 20%, 20%);
+  background: var(--palenight-theme);
   line-height: 2;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

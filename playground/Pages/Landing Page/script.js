@@ -1,3 +1,4 @@
+// markup
 const icons = {
   blog: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg>`,
   codepen: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 0 -40 l -46 25 46 25 46 -25 z" /><path d="M 0 -40 v 30" /><path transform="translate(0 50)" d="M 0 -40 v 30" /><path transform="translate(46 25)" d="M 0 -40 v 30" /><path transform="translate(-46 25)" d="M 0 -40 v 30" /><path transform="translate(0 30)" d="M 0 -40 l -46 25 46 25 46 -25 z" /></g></svg>`,
@@ -278,9 +279,7 @@ about.innerHTML = `
 <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. </p>
 <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
 
-<svg style="color: ${
-  colors[5]
-};" viewBox="-50 -50 100 50" width="200" height="100">
+<svg viewBox="-50 -50 100 50" width="200" height="100">
   <defs>
     <clipPath id="clip-planet">
       <circle r="30" />
@@ -309,7 +308,7 @@ about.innerHTML = `
       ${colors
         .map(
           (color, index, { length }) => `
-      <ellipse fill="${color}" stroke="none" cx="0" cy="70" rx="${35 +
+      <ellipse style="color: ${color}; color: var(--primary-${index});" fill="currentColor" stroke="none" cx="0" cy="70" rx="${35 +
             (15 / length) * index}" ry="33" transform="scale(${1 -
             (0.65 / length) * index})" />
       `
@@ -317,9 +316,7 @@ about.innerHTML = `
         .join('')}
     </g>
   </g>
-  <circle r="30" fill="none" stroke="${
-    colors[colors.length - 1]
-  }" stroke-width="0.2" />
+  <circle r="30" style="color: ${colors[colors.length - 1]}; color: var(--grey-10);" fill="none" stroke="currentColor" stroke-width="0.2" />
 
   <g mask="url(#mask-satellites)">
     <circle class="rotate" r="42" stroke-dasharray="1 2" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="0.5" />
@@ -364,4 +361,39 @@ if (window.IntersectionObserver) {
   illustrations.forEach(illustration => {
     observer.observe(illustration);
   })
+}
+
+
+// toggle
+function setPreference(preference) {
+  document.body.setAttribute('data-preference', preference);
+  window.localStorage.setItem('color-scheme', preference);
+}
+
+if (window.CSS && CSS.supports('--primary-6: hotpink')) {
+  const button = document.querySelector('button');
+  button.removeAttribute('disabled');
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const colorScheme = window.localStorage.getItem('color-scheme');
+
+  if (colorScheme) {
+    setPreference(colorScheme);
+  } else {
+    setPreference(mediaQuery.matches ? 'dark' : 'light');
+  }
+
+  button.addEventListener('click', () =>
+    setPreference(
+      window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
+    )
+  );
+  mediaQuery.addListener(({ matches }) =>
+    setPreference(matches ? 'dark' : 'light')
+  );
+
+  const timeout = setTimeout(() => {
+    document.body.setAttribute('data-transition', 'true');
+    clearTimeout(timeout);
+  }, 0);
 }

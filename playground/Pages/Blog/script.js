@@ -1,3 +1,4 @@
+// populate main element
 const icons = {
 	sparkles: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/></g></svg>`,
 }
@@ -92,3 +93,38 @@ main.innerHTML = articles
   `;
   })
   .join('');
+
+
+// allow to toggle between color schemes
+function setPreference(preference) {
+  document.body.setAttribute('data-preference', preference);
+  window.localStorage.setItem('color-scheme', preference);
+}
+
+if (window.CSS && CSS.supports('--primary-6: hotpink')) {
+  const button = document.querySelector('button');
+  button.removeAttribute('disabled');
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const colorScheme = window.localStorage.getItem('color-scheme');
+
+  if (colorScheme) {
+    setPreference(colorScheme);
+  } else {
+    setPreference(mediaQuery.matches ? 'dark' : 'light');
+  }
+
+  button.addEventListener('click', () =>
+    setPreference(
+      window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
+    )
+  );
+  mediaQuery.addListener(({ matches }) =>
+    setPreference(matches ? 'dark' : 'light')
+  );
+
+  const timeout = setTimeout(() => {
+    document.body.setAttribute('data-transition', 'true');
+    clearTimeout(timeout);
+  }, 0);
+}
