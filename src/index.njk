@@ -196,16 +196,27 @@
   </article>
 
 
-
   <article id="about">
     <h2>Almost forgot</h2>
     <p>Name's <mark>Gabriele</mark>.</p>
     <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
     <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
 
-
+    {% set colors = [
+      'hsl(350, 100%, 8%)',
+      'hsl(347, 100%, 19%)',
+      'hsl(345, 95%, 27%)',
+      'hsl(345, 96%, 33%)',
+      'hsl(342, 92%, 39%)',
+      'hsl(340, 85%, 46%)',
+      'hsl(340, 90%, 55%)',
+      'hsl(339, 90%, 67%)',
+      'hsl(336, 93%, 77%)',
+      'hsl(335, 100%, 86%)',
+      'hsl(330, 100%, 92%)'
+    ] %}
     {% set satellites = ['world', 'editor', 'running', 'tea', 'gaming'] %}
-    <svg style="color: {{colors.primary[6]}}" viewBox="-50 -50 100 50" width="400" height="200">
+    <svg viewBox="-50 -50 100 50" width="400" height="200">
       <defs>
         <clipPath id="clip-planet">
           <circle r="30" />
@@ -227,15 +238,15 @@
 
       <g clip-path="url(#clip-planet)">
         <g transform="translate(0 -70)">
-          {%- for color in colors.primary %}
+          {%- for color in colors %}
             <g transform="scale({{1 - (0.65 / loop.length) * loop.index0}})">
-              <ellipse fill="{{color}}" stroke="none" cx="0" cy="70" rx="{{35 + (15 / loop.length) * loop.index0}}" ry="33"  />
+              <ellipse style="color: {{color}}; color: var(--primary-{{loop.index0}});" fill="currentColor" stroke="none" cx="0" cy="70" rx="{{35 + (15 / loop.length) * loop.index0}}" ry="33"  />
             </g>
           {% endfor -%}
         </g>
       </g>
       
-      <circle r="30" fill="none" stroke="currentColor" stroke-width="0.1" />
+      <circle style="color: {{colors[loop.length - 1]}}; color: var(--grey-10);" fill="none" stroke="currentColor" stroke-width="0.2" r="30" />
 
       <g mask="url(#mask-satellites)">
         <circle class="rotate" r="42" stroke-dasharray="1 2" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="0.5" />
