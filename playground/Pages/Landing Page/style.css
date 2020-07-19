@@ -15,9 +15,9 @@ body {
   font-size: 2rem;
   padding: 0.5rem 1rem;
   color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
-  background: hsl(210, 20%, 12%);
-  background: var(--grey-1);
+  color: var(--frappe-grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--frappe-grey-0);
   display: flex;
   width: max-content;
   align-items: center;
