@@ -10,19 +10,14 @@ header {
   margin: 0rem auto;
   padding: 3rem 0 2.5rem;
   color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
+  color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
+  background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: 5px 10px;
   position: relative;
   z-index: 5;
-}
-
-body[data-preference='dark'] header {
-  color: hsl(214, 15%, 88%);
-  color: var(--grey-9);
 }
 
 header::before {
@@ -34,6 +29,7 @@ header::before {
   height: 100%;
   transform: translateX(-50%);
   background: inherit;
+  background-position: 6px 0;
   z-index: -5;
 }
 
@@ -46,7 +42,7 @@ header::after {
   height: 20px;
   transform: translateX(-50%) translateY(-1px) scaleY(-1);
   background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
+  background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: 16px 3px;
@@ -97,6 +93,7 @@ header p:first-of-type {
     left: 0%;
     width: 100%;
     transform: translateY(-1px) scaleY(-1);
+    background-position: 5px 4px;
   }
 }
 
@@ -109,7 +106,7 @@ main#content {
 }
 
 main#content > * + * {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 main#content article > * + * {
@@ -131,11 +128,6 @@ main#content article h2 a {
 }
 
 main#content article h2 a:hover {
-  color: hsl(210, 85%, 55%);
-  color: var(--secondary-6);
-}
-
-main#content article:first-of-type h2 a:hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
@@ -146,47 +138,21 @@ main#content article h2 a svg {
 }
 
 main#content article time {
-  font-size: 0.95rem;
-  letter-spacing: -0.5px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  letter-spacing: -1px;
   padding: 0.25rem 0.4rem;
   display: inline-block;
-  background: hsl(205, 100%, 92%);
-  background: var(--secondary-10);
-  border-left: 0.2rem solid hsl(212, 92%, 45%);
-  border-left: 0.2rem solid var(--secondary-5);
-}
-
-main#content article:first-of-type time {
-  background: hsl(330, 100%, 92%);
-  background: var(--primary-10);
-  border-left-color: hsl(340, 90%, 55%);
-  border-left-color: var(--primary-6);
+  color: hsl(347, 100%, 19%);
+  color: var(--primary-1);
+  background: hsl(335, 100%, 86%);
+  background: var(--primary-9);
+  border-left: 0.2rem solid hsl(340, 90%, 55%);
+  border-left: 0.2rem solid var(--primary-6);
 }
 
 main#content article p {
   line-height: 1.75;
-  color: hsl(210, 20%, 12%);
-  color: var(--grey-1);
-}
-
-body[data-preference='dark'] main#content article:first-of-type time {
-  color: hsl(210, 20%, 12%);
-  color: var(--grey-1);
-  background: hsl(336, 93%, 77%);
-  background: var(--primary-8);
-}
-
-body[data-preference='dark'] main#content article time {
-  color: hsl(210, 20%, 12%);
-  color: var(--grey-1);
-  background: hsl(208, 95%, 75%);
-  background: var(--secondary-8);
-}
-
-body[data-preference='dark'] main#content article h2,
-body[data-preference='dark'] main#content article p {
-  color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
 }
 
 @supports (display: grid) {

@@ -76,7 +76,7 @@ article a {
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
   article a {
-    --transition-duration: 0.5s;
+    --transition-duration: 0.4s;
     display: inline-block;
     position: relative;
     padding-bottom: 0.75em;
@@ -95,7 +95,7 @@ article a {
     position: absolute;
     top: 100%;
     background: currentColor;
-    transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transition: transform var(--transition-duration) var(--ease-in-out-sine);
   }
 

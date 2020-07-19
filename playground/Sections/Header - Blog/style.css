@@ -7,7 +7,7 @@ header {
   max-width: 40rem;
   width: 90vw;
   margin: 0rem auto;
-  padding: 3rem 0;
+  padding: 3rem 0 2.5rem;
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);

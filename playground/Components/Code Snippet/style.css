@@ -69,7 +69,7 @@ main .code pre {
   font-size: 1rem;
   margin: 0;
   color: hsl(215, 10%, 97%);
-  color: var(--frappe-gray-10);
+  color: var(--frappe-grey-10);
   background: hsl(229, 20%, 20%);
   background: var(--palenight-theme);
   line-height: 2;

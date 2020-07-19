@@ -16,3 +16,5 @@ Everything else connected to web development, plus a musing or two about other t
 - lua and love2d for 2d game development
 
 - python as an alternative language, specifically in the context of data munging
+
+**Be warned**: the other blog post is a test, to see how the project styles tables, code snippets and a full-feature article.

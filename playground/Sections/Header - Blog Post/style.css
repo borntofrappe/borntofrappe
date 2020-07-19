@@ -5,7 +5,7 @@ header + header {
 
 header {
   text-align: center;
-  padding: 4.5rem 0;
+  padding: 4.5rem 1rem;
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
@@ -42,7 +42,7 @@ header h1 {
   text-transform: uppercase;
   font-size: 2.25rem;
   line-height: 1.25;
-  max-width: 15rem;
+  max-width: 40rem;
   text-align: center;
   margin: 0 auto;
 }

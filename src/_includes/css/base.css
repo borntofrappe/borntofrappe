@@ -16,8 +16,10 @@ body {
   word-spacing: 0.1rem;
   font-size: 2rem;
   padding: 0.5rem 1rem;
-  background: hsl(335, 100%, 86%);
-  background: var(--primary-9);
+  color: hsl(215, 10%, 97%);
+  color: var(--frappe-grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--frappe-grey-0);
   display: flex;
   width: max-content;
   align-items: center;
@@ -91,14 +93,6 @@ nav button:not(:disabled):focus {
 }
 
 @media (prefers-color-scheme: dark) {
-  /* properties for the alternative color palette */
-  body:not([data-preference]) {
-    color: hsl(214, 15%, 88%);
-    color: var(--grey-9);
-    background: hsl(215, 22%, 5%);
-    background: var(--grey-0);
-  }
-
   body:not([data-preference]) nav button svg .rotate {
     transform: rotate(180deg);
   }
@@ -106,14 +100,6 @@ nav button:not(:disabled):focus {
   body:not([data-preference]) nav button svg .scale {
     transform: scaleX(-1);
   }
-}
-
-/* properties for the alternative color palette */
-body[data-preference='dark'] {
-  color: hsl(214, 15%, 88%);
-  color: var(--grey-9);
-  background: hsl(215, 22%, 5%);
-  background: var(--grey-1);
 }
 
 body[data-preference='dark'] nav button svg .rotate {
@@ -124,38 +110,31 @@ body[data-preference='dark'] nav button svg .scale {
   transform: scaleX(-1);
 }
 
-body[data-transition] {
-  transition: color 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95),
-    background 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color var(--transition-duration) var(--ease-in-out-sine),
-    background var(--transition-duration) var(--ease-in-out-sine);
-}
-
 body[data-transition] nav button svg .rotate {
-  transition: transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-sine);
 }
 
 body[data-transition] nav button svg .scale {
-  transition: transform 0.5s step-end;
+  transition: transform 0.25s step-end;
   transition: transform var(--transition-duration) step-end;
 }
 
 /* components/footer */
 footer {
+  margin-top: auto;
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);
   text-align: center;
   padding: 2.25rem 1rem 2rem;
   color: hsl(215, 10%, 97%);
-  color: var(--grey-10);
+  color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
-  background: var(--grey-0);
+  background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 20px;
   background-position: 0 5px;
   position: relative;
-  margin-top: auto;
 }
 
 footer::before {
@@ -191,13 +170,15 @@ footer a {
   transition: color 0.25s var(--ease-in-out-sine);
 }
 
+footer a:hover,
 footer a:focus {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
-  background: none;
-  /* repeat to avoid transition */
-  border-bottom-color: hsl(340, 90%, 55%);
-  border-bottom-color: var(--primary-6);
+  outline: none;
+}
+
+footer a:focus {
+  outline: none;
 }
 
 footer span {
@@ -218,13 +199,6 @@ footer span {
   border-radius: 50%;
   transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
-}
-
-body[data-preference='dark'] footer span {
-  color: hsl(214, 15%, 88%);
-  color: var(--grey-9);
-  background: hsl(215, 22%, 5%);
-  background: var(--grey-1);
 }
 
 footer span svg {

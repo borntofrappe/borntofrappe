@@ -123,7 +123,7 @@ header {
   max-width: 40rem;
   width: 90vw;
   margin: 0rem auto;
-  padding: 3rem 0;
+  padding: 3rem 0 2.5rem;
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
@@ -215,7 +215,8 @@ header p:first-of-type {
 main#content {
   max-width: 40rem;
   width: 90vw;
-  margin: 4rem auto 5.5rem;
+  margin: 0 auto;
+  padding: 3.5rem 0 5.5rem;
 }
 
 main#content > * + * {
