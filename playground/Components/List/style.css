@@ -43,7 +43,7 @@ main ol li::before {
   counter-increment: custom-counter;
   position: absolute;
   top: 0;
-  left: -0.2em;
+  left: -0.25em;
   width: 1.6em;
   height: 1.6em;
   transform: translate(-100%, 0%);
@@ -53,6 +53,16 @@ main ol li::before {
   font-weight: 700;
   text-align: center;
   line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main ol li::before {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] main ol li::before {
+  font-weight: 600;
 }
 
 main ol li::after {

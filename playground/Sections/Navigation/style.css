@@ -23,6 +23,10 @@ nav a {
   align-items: center;
 }
 
+body[data-preference='dark'] nav button a {
+  font-weight: 600;
+}
+
 nav a svg {
   margin-left: 0.3rem;
   width: 1.5em;

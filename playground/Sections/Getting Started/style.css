@@ -55,13 +55,9 @@ article > svg:nth-of-type(2) {
   margin-left: auto;
 }
 
-article h2 {
-  font-size: 2em;
-}
-
 article p {
   font-family: 'Source Code Pro', monospace;
-  font-size: 1em;
+  font-size: 0.95em;
   line-height: 1.75;
   word-spacing: -0.2em;
   letter-spacing: -0.03em;
@@ -71,7 +67,7 @@ article a {
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {

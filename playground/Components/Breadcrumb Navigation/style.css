@@ -24,6 +24,16 @@ nav a {
   align-items: center;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) nav a {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] nav a {
+  font-weight: 600;
+}
+
 nav a svg {
   margin-left: 0.3rem;
   width: 1.5em;

@@ -41,7 +41,7 @@ article > * + * {
 }
 
 article h2 {
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 article p:first-of-type {
@@ -50,7 +50,7 @@ article p:first-of-type {
 
 article p {
   font-family: 'Source Code Pro', monospace;
-  font-size: 1em;
+  font-size: 0.95em;
   line-height: 1.75;
   word-spacing: -0.2em;
   letter-spacing: -0.03em;

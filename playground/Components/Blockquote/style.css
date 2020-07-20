@@ -24,6 +24,11 @@ blockquote {
   position: relative;
 }
 
+blockquote p {
+  color: hsl(350, 100%, 8%);
+  color: var(--primary-0);
+}
+
 blockquote::before,
 blockquote::after {
   content: '';

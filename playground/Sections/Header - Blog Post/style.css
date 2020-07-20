@@ -6,8 +6,8 @@ header + header {
 header {
   text-align: center;
   padding: 4.5rem 1rem;
-  color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");

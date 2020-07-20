@@ -55,6 +55,10 @@ nav a {
   align-items: center;
 }
 
+body[data-preference='dark'] nav a {
+  font-weight: 600;
+}
+
 nav a svg {
   margin-left: 0.3rem;
   width: 1.5em;
@@ -124,8 +128,8 @@ header {
   justify-content: center;
   align-items: center;
   padding: 2.5rem 1rem 2rem;
-  color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -235,6 +239,10 @@ header ul {
   text-transform: capitalize;
 }
 
+body[data-preference='dark'] header ul {
+  font-weight: 600;
+}
+
 @media (max-width: 40rem) {
   header ul {
     letter-spacing: 0px;
@@ -308,11 +316,12 @@ article p:first-of-type {
 }
 
 article h2 {
-  font-size: 2em;
+  font-size: 1.8em;
 }
+
 article p {
   font-family: 'Source Code Pro', monospace;
-  font-size: 1em;
+  font-size: 0.95em;
   line-height: 1.75;
   word-spacing: -0.2em;
   letter-spacing: -0.03em;
@@ -341,7 +350,7 @@ article#getting-started a {
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
@@ -538,6 +547,10 @@ article#about mark {
   letter-spacing: initial;
 }
 
+body[data-preference='dark'] article#about mark {
+  font-weight: 600;
+}
+
 article#about > svg {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
@@ -590,8 +603,8 @@ footer {
   --animation-timing-function: var(--ease-in-out-sine);
   text-align: center;
   padding: 2.25rem 1rem 2rem;
-  color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");

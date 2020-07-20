@@ -104,45 +104,13 @@ html {
   background: var(--primary-6);
 }
 
-body {
-  --primary-0: var(--frappe-0);
-  --primary-1: var(--frappe-1);
-  --primary-2: var(--frappe-2);
-  --primary-3: var(--frappe-3);
-  --primary-4: var(--frappe-4);
-  --primary-5: var(--frappe-5);
-  --primary-6: var(--frappe-6);
-  --primary-7: var(--frappe-7);
-  --primary-8: var(--frappe-8);
-  --primary-9: var(--frappe-9);
-  --primary-10: var(--frappe-10);
-
-  --grey-0: var(--frappe-grey-0);
-  --grey-1: var(--frappe-grey-1);
-  --grey-2: var(--frappe-grey-2);
-  --grey-3: var(--frappe-grey-3);
-  --grey-4: var(--frappe-grey-4);
-  --grey-5: var(--frappe-grey-5);
-  --grey-6: var(--frappe-grey-6);
-  --grey-7: var(--frappe-grey-7);
-  --grey-8: var(--frappe-grey-8);
-  --grey-9: var(--frappe-grey-9);
-  --grey-10: var(--frappe-grey-10);
-
-  text-rendering: optimizeSpeed;
-  font-family: 'Ubuntu', sans-serif;
-  color: hsl(215, 22%, 5%);
-  color: var(--grey-0);
-  background: hsl(215, 10%, 97%);
-  background: var(--grey-10);
-}
-
 body[data-transition] {
   --transition-duration: 0.25s;
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine),
     background var(--transition-duration) var(--ease-in-out-sine);
+  transition-delay: 0.15s;
 }
 
 body[data-preference='dark'] {
@@ -186,6 +154,39 @@ body::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);
+}
+
+body {
+  --primary-0: var(--frappe-0);
+  --primary-1: var(--frappe-1);
+  --primary-2: var(--frappe-2);
+  --primary-3: var(--frappe-3);
+  --primary-4: var(--frappe-4);
+  --primary-5: var(--frappe-5);
+  --primary-6: var(--frappe-6);
+  --primary-7: var(--frappe-7);
+  --primary-8: var(--frappe-8);
+  --primary-9: var(--frappe-9);
+  --primary-10: var(--frappe-10);
+
+  --grey-0: var(--frappe-grey-0);
+  --grey-1: var(--frappe-grey-1);
+  --grey-2: var(--frappe-grey-2);
+  --grey-3: var(--frappe-grey-3);
+  --grey-4: var(--frappe-grey-4);
+  --grey-5: var(--frappe-grey-5);
+  --grey-6: var(--frappe-grey-6);
+  --grey-7: var(--frappe-grey-7);
+  --grey-8: var(--frappe-grey-8);
+  --grey-9: var(--frappe-grey-9);
+  --grey-10: var(--frappe-grey-10);
+
+  text-rendering: optimizeSpeed;
+  font-family: 'Ubuntu', sans-serif;
+  color: hsl(210, 20%, 12%);
+  color: var(--grey-1);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
 }
 
 a {

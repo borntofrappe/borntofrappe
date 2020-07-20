@@ -56,6 +56,10 @@ nav a {
   align-items: center;
 }
 
+body[data-preference='dark'] nav a {
+  font-weight: 600;
+}
+
 nav a svg {
   margin-left: 0.3rem;
   width: 1.5em;
@@ -124,8 +128,8 @@ header {
   width: 90vw;
   margin: 0rem auto;
   padding: 3rem 0 2.5rem;
-  color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -257,8 +261,8 @@ main#content article time {
   letter-spacing: -1px;
   padding: 0.25rem 0.4rem;
   display: inline-block;
-  color: hsl(347, 100%, 19%);
-  color: var(--primary-1);
+  color: hsl(350, 100%, 8%);
+  color: var(--primary-0);
   background: hsl(335, 100%, 86%);
   background: var(--primary-9);
   border-left: 0.2rem solid hsl(340, 90%, 55%);
@@ -314,8 +318,8 @@ footer {
   --animation-timing-function: var(--ease-in-out-sine);
   text-align: center;
   padding: 2.25rem 1rem 2rem;
-  color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg opacity='0.5'%3E%3Cg fill='currentColor' stroke='none'%3E%3Ccircle r='12' /%3E%3Ccircle r='12' transform='translate(50 -50)' /%3E%3Ccircle r='12' transform='translate(50 50)' /%3E%3Ccircle r='12' transform='translate(-50 50)' /%3E%3Ccircle r='12' transform='translate(-50 -50)' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
