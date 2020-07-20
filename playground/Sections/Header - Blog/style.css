@@ -72,7 +72,7 @@ header p:first-of-type {
   }
 
   header {
-    width: initial;
+    width: 100%;
     max-width: initial;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 40rem) 1fr;

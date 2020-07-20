@@ -127,7 +127,7 @@ body[data-transition] nav button svg .scale {
 /* sections/header blog post */
 header {
   text-align: center;
-  padding: 4.5rem 1rem;
+  padding: 5rem 1rem;
   color: hsl(214, 15%, 88%);
   color: var(--frappe-grey-9);
   background: hsl(215, 22%, 5%);

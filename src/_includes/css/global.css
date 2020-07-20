@@ -95,13 +95,6 @@ html {
   --transition-duration: 0.25s;
 }
 
-::selection {
-  color: hsl(215, 10%, 97%);
-  color: var(--grey-0);
-  background: hsl(340, 90%, 55%);
-  background: var(--primary-6);
-}
-
 body {
   --primary-0: var(--frappe-0);
   --primary-1: var(--frappe-1);
@@ -126,21 +119,34 @@ body {
   --grey-8: var(--frappe-grey-8);
   --grey-9: var(--frappe-grey-9);
   --grey-10: var(--frappe-grey-10);
-
-  text-rendering: optimizeSpeed;
-  font-family: 'Ubuntu', sans-serif;
-  color: hsl(215, 22%, 5%);
-  color: var(--grey-0);
-  background: hsl(215, 10%, 97%);
-  background: var(--grey-10);
 }
 
-body[data-transition] {
-  --transition-duration: 0.25s;
-  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95),
-    background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color var(--transition-duration) var(--ease-in-out-sine),
-    background var(--transition-duration) var(--ease-in-out-sine);
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) {
+    --primary-0: var(--twilight-0);
+    --primary-1: var(--twilight-1);
+    --primary-2: var(--twilight-2);
+    --primary-3: var(--twilight-3);
+    --primary-4: var(--twilight-4);
+    --primary-5: var(--twilight-5);
+    --primary-6: var(--twilight-6);
+    --primary-7: var(--twilight-7);
+    --primary-8: var(--twilight-8);
+    --primary-9: var(--twilight-9);
+    --primary-10: var(--twilight-10);
+
+    --grey-0: var(--twilight-grey-10);
+    --grey-1: var(--twilight-grey-9);
+    --grey-2: var(--twilight-grey-8);
+    --grey-3: var(--twilight-grey-7);
+    --grey-4: var(--twilight-grey-6);
+    --grey-5: var(--twilight-grey-5);
+    --grey-6: var(--twilight-grey-4);
+    --grey-7: var(--twilight-grey-3);
+    --grey-8: var(--twilight-grey-2);
+    --grey-9: var(--twilight-grey-1);
+    --grey-10: var(--twilight-grey-0);
+  }
 }
 
 body[data-preference='dark'] {
@@ -169,6 +175,30 @@ body[data-preference='dark'] {
   --grey-10: var(--twilight-grey-0);
 }
 
+body[data-transition] {
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine),
+    background var(--transition-duration) var(--ease-in-out-sine);
+  transition-delay: 0.1s;
+}
+
+::selection {
+  color: hsl(215, 10%, 97%);
+  color: var(--grey-0);
+  background: hsl(340, 90%, 55%);
+  background: var(--primary-6);
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: hsl(210, 20%, 12%);
+  color: var(--grey-1);
+  background: hsl(215, 10%, 97%);
+  background: var(--grey-10);
+  text-rendering: optimizeSpeed;
+}
+
 body::-webkit-scrollbar {
   width: 0.8rem;
 }
@@ -186,24 +216,6 @@ body::-webkit-scrollbar-thumb {
   background: var(--primary-6);
 }
 
-a {
-  text-decoration-skip-ink: auto;
-  color: inherit;
-  font-family: inherit;
-
-  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: color var(--transition-duration) var(--ease-in-out-sine);
-}
-
-a:focus {
-  outline: 0.15rem dashed currentColor;
-}
-
-a:hover {
-  color: hsl(340, 90%, 55%);
-  color: var(--primary-6);
-}
-
 h1,
 h2,
 h3,
@@ -219,6 +231,24 @@ h2 {
 h3,
 h4 {
   font-weight: 600;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  font-family: inherit;
+
+  transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+a:hover {
+  color: hsl(340, 90%, 55%);
+  color: var(--primary-6);
+}
+
+a:focus {
+  outline: 0.15rem dashed currentColor;
 }
 
 code {
