@@ -50,6 +50,7 @@ header::after {
   mask-size: 100px 40px;
   -webkit-mask-position: 50% 0;
   mask-position: 50% 0;
+  z-index: -5;
 }
 
 header p {

@@ -63,6 +63,7 @@ article p {
   letter-spacing: -0.03em;
 }
 
+/* components/ special link */
 article a {
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;

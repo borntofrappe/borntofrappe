@@ -2,7 +2,7 @@ body {
   overflow-x: hidden;
 }
 
-/* SKIP COMPONENT */
+/* components/skip to content */
 #skip-to-content {
   position: absolute;
   top: 0.5rem;
@@ -21,7 +21,7 @@ body {
   display: flex;
   width: max-content;
   align-items: center;
-  z-index: 5;
+  z-index: 10;
 }
 
 #skip-to-content svg {
@@ -30,7 +30,7 @@ body {
   margin-left: 0.5rem;
 }
 
-/* NAV COMPONENT */
+/* components/breadcrumb navigation */
 nav {
   max-width: 40rem;
   width: 90vw;
@@ -55,6 +55,12 @@ nav a {
   align-items: center;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) nav a {
+    font-weight: 600;
+  }
+}
+
 body[data-preference='dark'] nav a {
   font-weight: 600;
 }
@@ -65,6 +71,7 @@ nav a svg {
   height: auto;
 }
 
+/* components/dark mode toggle */
 nav button {
   margin-left: auto;
   width: 2rem;
@@ -239,6 +246,12 @@ header ul {
   text-transform: capitalize;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) header ul {
+    font-weight: 600;
+  }
+}
+
 body[data-preference='dark'] header ul {
   font-weight: 600;
 }
@@ -279,7 +292,7 @@ header ul li::before {
   -webkit-mask-repeat: no-repeat;
 }
 
-/* CONTENT */
+/* content */
 main#content {
   width: 90vw;
   max-width: 40rem;
@@ -311,6 +324,7 @@ main#content {
 article > * + * {
   margin-top: 0.3em;
 }
+
 article p:first-of-type {
   margin-top: 1em;
 }
@@ -360,11 +374,10 @@ article#getting-started a {
     position: relative;
     padding-bottom: 0.75em;
     margin-bottom: 0.75em;
-    outline: none;
   }
 
   article#getting-started a:focus {
-    background: none;
+    outline: none;
   }
 
   article#getting-started a::before,
@@ -547,6 +560,12 @@ article#about mark {
   letter-spacing: initial;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) article#about mark {
+    font-weight: 600;
+  }
+}
+
 body[data-preference='dark'] article#about mark {
   font-weight: 600;
 }
@@ -597,7 +616,7 @@ main#content article + article::before {
   mask-position: 50% 0;
 }
 
-/* FOOTER COMPONENT */
+/* components/footer */
 footer {
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);

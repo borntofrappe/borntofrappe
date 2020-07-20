@@ -8,7 +8,6 @@ main > * + * {
   margin-top: 2rem;
 }
 
-/* INLINE CODE */
 main p {
   line-height: 2;
 }
@@ -16,18 +15,27 @@ main p {
 main p > code {
   font-weight: 700;
   font-family: inherit;
-  color: hsl(340, 90%, 55%);
-  color: var(--primary-6);
-  background: hsl(214, 15%, 88%);
-  background: var(--grey-9);
-  box-shadow: 0 0.15rem hsl(213, 16%, 79%);
-  box-shadow: 0 0.15rem var(--grey-7);
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
+  background: hsl(229, 20%, 20%);
+  background: var(--palenight-theme);
+  box-shadow: 0 0.2rem hsl(212, 12%, 45%);
+  box-shadow: 0 0.2rem var(--frappe-grey-5);
   border-radius: 0.25rem;
   padding: 0.25rem 0.4rem;
   white-space: nowrap;
 }
 
-/* BLOCK CODE */
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main p > code {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] main p > code {
+  font-weight: 600;
+}
+
 main .code {
   margin: 1rem 0;
 }

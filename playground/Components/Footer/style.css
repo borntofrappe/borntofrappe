@@ -9,7 +9,6 @@ main {
   flex-grow: 1;
 }
 
-/* FOOTER COMPONENT */
 footer {
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);

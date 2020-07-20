@@ -1,4 +1,4 @@
-/* SKIP COMPONENT */
+/* components/skip to content */
 #skip-to-content {
   position: absolute;
   top: 0.5rem;
@@ -17,7 +17,7 @@
   display: flex;
   width: max-content;
   align-items: center;
-  z-index: 5;
+  z-index: 10;
 }
 
 #skip-to-content svg {
@@ -26,7 +26,7 @@
   margin-left: 0.5rem;
 }
 
-/* NAV COMPONENT */
+/* components/breadcrumb navigation */
 nav {
   max-width: 40rem;
   width: 90vw;
@@ -51,6 +51,12 @@ nav a {
   align-items: center;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) nav a {
+    font-weight: 600;
+  }
+}
+
 body[data-preference='dark'] nav a {
   font-weight: 600;
 }
@@ -61,6 +67,7 @@ nav a svg {
   height: auto;
 }
 
+/* components/dark mode toggle */
 nav button {
   margin-left: auto;
   width: 2rem;
@@ -155,7 +162,7 @@ header::after {
 
 header h1 {
   text-transform: uppercase;
-  font-size: 2.25 rem;
+  font-size: 2.25rem;
   line-height: 1.25;
   max-width: 40rem;
   text-align: center;
@@ -231,6 +238,7 @@ header ul::-webkit-scrollbar-thumb {
   background: var(--primary-6);
 }
 
+/* content */
 main {
   display: flex;
   flex-direction: column;
@@ -251,17 +259,23 @@ main h2 {
 
 /* components/ code snippet */
 main p > code {
-  color: hsl(340, 90%, 55%);
-  color: var(--primary-6);
-  background: hsl(214, 15%, 88%);
-  background: var(--grey-9);
-  box-shadow: 0 0.15rem hsl(213, 16%, 79%);
-  box-shadow: 0 0.15rem var(--grey-7);
-  border-radius: 0.25rem;
   font-weight: 700;
   font-family: inherit;
+  color: hsl(214, 15%, 88%);
+  color: var(--frappe-grey-9);
+  background: hsl(229, 20%, 20%);
+  background: var(--palenight-theme);
+  box-shadow: 0 0.2rem hsl(212, 12%, 45%);
+  box-shadow: 0 0.2rem var(--frappe-grey-5);
+  border-radius: 0.25rem;
   padding: 0.25rem 0.4rem;
   white-space: nowrap;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main p > code {
+    font-weight: 600;
+  }
 }
 
 body[data-preference='dark'] main p > code {
@@ -429,6 +443,12 @@ main ol li::before {
   line-height: 1.5;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main ol li::before {
+    font-weight: 600;
+  }
+}
+
 body[data-preference='dark'] main ol li::before {
   font-weight: 600;
 }
@@ -479,7 +499,7 @@ main blockquote {
   align-self: center;
   font-style: italic;
   line-height: 2;
-  background: hsl(330, 13%, 18%);
+  background: hsl(330, 100%, 92%);
   background: var(--primary-10);
   border-radius: 0.4rem;
   padding: 1rem 2.5rem;
@@ -576,16 +596,16 @@ main table thead tr {
 }
 
 main table thead tr th {
-  padding: 0 1rem 0.7rem;
   font-family: 'Maven Pro', sans-serif;
+  font-size: 0.95rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  padding: 0 1rem 0.7rem;
 }
 
 main table tbody tr td {
-  padding: 0.5rem 1rem;
-  font-size: 0.95rem;
   font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 main table tbody tr:nth-last-of-type(even) td {
@@ -602,7 +622,7 @@ main table [align='center'] {
   text-align: center;
 }
 
-/* FOOTER COMPONENT */
+/* components/footer */
 footer {
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);

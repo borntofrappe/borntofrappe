@@ -1,4 +1,32 @@
-/* NAV COMPONENT */
+/* components/skip to content */
+#skip-to-content {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  color: hsl(215, 10%, 97%);
+  color: var(--frappe-grey-10);
+  background: hsl(215, 22%, 5%);
+  background: var(--frappe-grey-0);
+  display: flex;
+  width: max-content;
+  align-items: center;
+  z-index: 10;
+}
+
+#skip-to-content svg {
+  width: 1em;
+  height: auto;
+  margin-left: 0.5rem;
+}
+
+/* components/breadcrumb navigation */
 nav {
   max-width: 40rem;
   width: 90vw;
@@ -23,7 +51,13 @@ nav a {
   align-items: center;
 }
 
-body[data-preference='dark'] nav button a {
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) nav a {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] nav a {
   font-weight: 600;
 }
 
@@ -33,6 +67,7 @@ nav a svg {
   height: auto;
 }
 
+/* components/dark mode toggle */
 nav button {
   margin-left: auto;
   width: 2rem;

@@ -66,6 +66,16 @@ article mark {
   letter-spacing: initial;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) article mark {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] article mark {
+  font-weight: 600;
+}
+
 article > svg {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
