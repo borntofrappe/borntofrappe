@@ -59,17 +59,17 @@ const iconSize = 100;
 const hero = document.querySelector('header');
 
 hero.innerHTML = `
-<div class="visually-hidden">
-  <h1>
+<div>
+  <h1 class="visually-hidden">
     borntofrappe
   </h1>
-  <p>Welcome to the personal website of an ever changing character:</p>
+  <p>Welcome to my small corner on the web.<br/>This is where I save my journey as a:</p>
+  <ul>
+    <li>hopeful developer</li>
+    <li>fledging designer</li>
+    <li>long-distance runner</li>
+  </ul>
 </div>
-<ul>
-  <li>aspiring developer</li>
-  <li>fledging designer</li>
-  <li>long-distance runner</li>
-</ul>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">
@@ -249,7 +249,7 @@ gettingStarted.innerHTML = `
 
 <h2 class="visually-hidden">Getting started</h2>
 <p>
-  This website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
+  The website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
 </p>
 <a href="/blog">Explore articles</a>
 `;
