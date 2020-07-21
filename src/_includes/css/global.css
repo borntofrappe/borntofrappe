@@ -81,7 +81,7 @@ html {
   --twilight-grey-6: hsl(212, 28%, 54%);
   --twilight-grey-7: hsl(212, 25%, 65%);
   --twilight-grey-8: hsl(213, 30%, 79%);
-  --twilight-grey-9: hsl(214, 32%, 88%);
+  --twilight-grey-9: hsl(214, 32%, 90%);
   --twilight-grey-10: hsl(215, 30%, 97%);
 
   --palenight-theme: hsl(229, 20%, 20%);
@@ -221,6 +221,8 @@ h2,
 h3,
 h4 {
   font-family: 'Maven Pro', sans-serif;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
 }
 
 h1,
