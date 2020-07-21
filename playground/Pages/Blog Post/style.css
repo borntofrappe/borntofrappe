@@ -167,6 +167,7 @@ header h1 {
   max-width: 40rem;
   text-align: center;
   margin: 0 auto;
+  color: inherit;
 }
 
 header ul {

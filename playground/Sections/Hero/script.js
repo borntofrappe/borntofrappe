@@ -48,17 +48,17 @@ const iconSize = 100;
 const header = document.querySelector('header');
 
 header.innerHTML = `
-<div class="visually-hidden">
-  <h1>
+<div>
+  <h1 class="visually-hidden">
     borntofrappe
   </h1>
-  <p>Welcome to the personal website of an ever changing character:</p>
+  <p>Welcome to my small corner on the web.<br/>This is where I save my journey as a:</p>
+  <ul>
+    <li>hopeful developer</li>
+    <li>fledging designer</li>
+    <li>long-distance runner</li>
+  </ul>
 </div>
-<ul>
-  <li>aspiring developer</li>
-  <li>fledging designer</li>
-  <li>long-distance runner</li>
-</ul>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
   2} ${size} ${size}" width="${size}" height="${size}">

@@ -182,7 +182,7 @@ body[data-transition] {
     background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine),
     background var(--transition-duration) var(--ease-in-out-sine);
-  transition-delay: 0.15s;
+  transition-delay: 0.1s;
 }
 
 ::selection {
@@ -223,6 +223,8 @@ h2,
 h3,
 h4 {
   font-family: 'Maven Pro', sans-serif;
+  color: hsl(215, 22%, 5%);
+  color: var(--grey-0);
 }
 
 h1,
