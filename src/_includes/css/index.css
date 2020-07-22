@@ -219,7 +219,7 @@ article h2 {
 }
 
 article p {
-  font-size: 1em;
+  font-size: 0.9em;
   line-height: 1.75;
 }
 
@@ -478,13 +478,13 @@ article#about > svg.observed .rotate {
 
 /* separator */
 main#content article:first-of-type {
-  margin-top: 4em;
+  margin-top: 3em;
 }
 
 main#content article + article::before {
   content: '';
   width: 100vw;
-  height: 3.5em;
+  height: 3em;
   margin: 4em 0;
   background: hsl(215, 22%, 5%);
   background: var(--frappe-grey-0);
