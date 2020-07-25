@@ -334,6 +334,7 @@ line up articles' content
 
 /* components/footer */
 footer {
+  margin-top: auto;
   --animation-duration: 2s;
   --animation-timing-function: var(--ease-in-out-sine);
   text-align: center;
