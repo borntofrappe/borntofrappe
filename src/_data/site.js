@@ -1,6 +1,6 @@
 module.exports = {
     name: 'borntofrappe',
-    url: 'https://borntofrappe.netlify.app/',
+    url: 'https://borntofrappe.netlify.app',
     description: 'Personal website of an ever changing character: aspiring developer, fledging designer, long-distance runner.',
     author: {
         name: 'Gabriele Corti',

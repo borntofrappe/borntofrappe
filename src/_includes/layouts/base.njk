@@ -1,36 +1,28 @@
 {% from "macros/meta.njk" import meta %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml" />
+    {{meta(site, url, title, description, staticFolder, imageName, imageAlt)}}
+
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    {{meta(url, description, staticFolder, imageName, imageAlt)}}
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="{{site.name}}" />
-    <meta property="twitter:site" content="{{site.author.handle}}" />
-    <meta property="twitter:creator" content="{{site.author.handle}}" />
-
-
     <style>
-    {% include "css/global.css" %}
-    {% include "css/base.css" %}
-    {%- block style %}
-    {% endblock -%}
+      {% include "css/global.css" %}
+      {% include "css/base.css" %}
+      
+      {%- block style %}{% endblock -%}
     </style>
   </head>
   <body>
   {%- if hasContent %}
-  <a href="#content" class="visually-hidden" id="skip-to-content">
-    Skip to Content {{ icons.skip | safe}}
-  </a>
+    <a href="#content" class="visually-hidden" id="skip-to-content">
+      Skip to Content {{ icons.skip | safe}}
+    </a>
   {% endif -%}
 
   <nav aria-label="Breadcrumb navigation">
     <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
+    
     {% set regExp = r/\// %}
     {%- if regExp.test(url) %}
       {%- for path in url | urlFilter %}
@@ -105,8 +97,7 @@
     </button>
   </nav>
 
-  {%- block content %}
-  {% endblock -%}
+  {%- block content %}{% endblock -%}
 
   <footer>
     <a href="https://twitter.com/borntofrappe">borntofrappe</a>
@@ -119,8 +110,7 @@
     </span>
   </footer>
 
-  {%- block script %}
-  {% endblock -%}
+  {%- block script %}{% endblock -%}
 
   <script>
     const button = document.querySelector('nav button');

@@ -1,5 +1,11 @@
-{%- macro meta(title, description, staticFolder, imageName, imageAlt) %}
+{%- macro meta(site, url, title, description, staticFolder, imageName, imageAlt) %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>{{title | replace("/", " / ")}}</title>
+
+    <link rel="canonical" href="{{site.url}}/{{url}}" />
+    <link rel="alternate" type="application/rss+xml" title="{{site.name}}" href="{{site.url}}/feed.xml" />
 
     <link rel="icon" href="{{staticFolder}}/icon.svg" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{staticFolder}}/icon-16.png" />
@@ -10,12 +16,18 @@
     <meta property="og:title" content="{{title}}" />
     <meta property="og:description" content="{{description}}" />
     
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{site.name}}" />
     <meta property="og:image" content="{{staticFolder}}/images/{{imageName}}.png" />
     <meta property="og:image:alt" content="{{imageAlt}}" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="{{title}}" />
     <meta property="twitter:description" content="{{description}}" />
+    <meta property="twitter:site" content="{{site.author.handle}}" />
+    <meta property="twitter:creator" content="{{site.author.handle}}" />
     <meta property="twitter:image" content="{{staticFolder}}/images/{{imageName}}.png" />
-    <meta property="twitter:image:alt" content="{{imageAlt}}" />
+    <meta property="twitter:image:alt" content="{{imageAlt}}" />   
+    
 {% endmacro -%}
