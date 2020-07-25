@@ -1,7 +1,7 @@
 ---
 title: 'Up and Running'
 date: 2020-07-15
-brief: 'The first article of an aspiring developer, fledging designer, long-distance runner.'
+description: 'The first article of an aspiring developer, fledging designer, long-distance runner.'
 keywords: ['writing']
 ---
 

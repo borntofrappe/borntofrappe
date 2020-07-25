@@ -1,7 +1,7 @@
 ---
 title: From markdown to HTML
 date: 2020-07-19
-brief: A rambling explanation behind a script that could have used a few more packages.
+description: A rambling explanation behind a script that could have used a few more packages.
 tags: html, js, node
 ---
 

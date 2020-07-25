@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    {{meta(site, url, title, description, staticFolder, imageName, imageAlt)}}
+    {{meta(site, title, description, staticFolder, imageName, imageAlt)}}
 
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
@@ -24,8 +24,8 @@
     <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
     
     {% set regExp = r/\// %}
-    {%- if regExp.test(url) %}
-      {%- for path in url | urlFilter %}
+    {%- if regExp.test(title) %}
+      {%- for path in title | urlFilter %}
         <a href="{{path.href}}">/ {{path.value}}{{ icons[path.value] | safe }}</a>
       {% endfor  -%}
     {% endif -%}

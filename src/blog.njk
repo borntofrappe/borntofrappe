@@ -1,5 +1,5 @@
 {% set hasContent = true %}
-{% set url = site.name + "/blog" %}
+{% set title = site.name + "/blog" %}
 {% set description = "A series of articles from a wannabe author. On HTML, CSS, JavaScript, SVG, and hopefully more." %}
 {% set staticFolder = "../static" %}
 {% set imageName = "blog" %}
@@ -35,7 +35,7 @@
     </time>
 
     <p>
-    {{- post.data.brief -}}
+    {{- post.data.description -}}
     </p>
   </article>
   {% endfor -%}
