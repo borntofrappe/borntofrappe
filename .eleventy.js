@@ -2,7 +2,9 @@ const markdownIt = require('markdown-it');
 const icons = require('./src/_data/icons');
 
 const dateFilter = require('./src/filters/date-filter');
-const urlFilter = require('./src/filters/url-filter');
+const breadcrumbFilter = require('./src/filters/breadcrumb-filter');
+const titleFilter = require('./src/filters/title-filter');
+const fileNameFilter = require('./src/filters/file-name-filter');
 
 module.exports = function (eleventyConfig) {
   const markdownLibrary = markdownIt();
@@ -42,7 +44,9 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter('dateFilter', dateFilter);
-  eleventyConfig.addFilter('urlFilter', urlFilter);
+  eleventyConfig.addFilter('breadcrumbFilter', breadcrumbFilter);
+  eleventyConfig.addFilter('titleFilter', titleFilter);
+  eleventyConfig.addFilter('fileNameFilter', fileNameFilter);
 
   eleventyConfig.addPassthroughCopy('./src/static/');
 

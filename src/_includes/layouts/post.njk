@@ -1,10 +1,8 @@
 {% set hasContent = true %}
+{% set heading = title %}
 {% set slug = title | slug %}
 {% set title = site.name + "/blog/" + slug %}
 {% set description = description or "" %}
-{% set staticFolder = "../../static" %}
-{% set imageName = slug %}
-{% set imageAlt = "Page image for a blog post on the website " + site.name + ", titled '" + title + "'" %}
 
 {% extends "layouts/base.njk" %}
 
@@ -19,7 +17,7 @@
 
 {% block content %}
 <header>
-  <h1>{{ slug }}</h1>
+  <h1>{{ heading }}</h1>
   {%- if keywords %}
     <h2 class="visually-hidden">Keywords:</h2>
     <ul>

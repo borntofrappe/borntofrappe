@@ -1,34 +1,32 @@
-{%- macro meta(site, title, description, staticFolder, imageName, imageAlt) %}
-    
+{%- macro meta(site, title, description) %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>{{title | replace("/", " / ")}}</title>
+    <title>{{title | titleFilter }}</title>
+    <meta name="description" content="{{description}}" />
 
-    <link rel="canonical" href="{{site.url}}/{{title | replace("borntofrappe", "")}}" />
+    <link rel="canonical" href="{{site.url}}/{{title | replace("borntofrappe/", "")}}" />
     <link rel="alternate" type="application/rss+xml" title="{{site.name}}" href="{{site.url}}/feed.xml" />
 
-    <link rel="icon" href="{{site.url}}/{{staticFolder}}/icon.svg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{site.url}}/{{staticFolder}}/icon-16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{site.url}}/{{staticFolder}}/icon-32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{site.url}}/{{staticFolder}}/apple-touch-icon.png" />
-
-    <meta name="description" content="{{description}}" />
-    <meta property="og:title" content="{{title}}" />
-    <meta property="og:description" content="{{description}}" />
+    <link rel="icon" href="{{site.url}}/static/icon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{site.url}}/static/icon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{site.url}}/static/icon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{site.url}}/static/apple-touch-icon.png" />
     
+    <meta property="og:title" content="{{title | titleFilter}}" />
+    <meta property="og:description" content="{{description}}" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{site.name}}" />
-    <meta property="og:image" content="{{site.url}}/{{staticFolder}}/images/{{imageName}}.png" />
-    <meta property="og:image:alt" content="{{imageAlt}}" />
+    <meta property="og:image" content="{{site.url}}/static/images/{{title | fileNameFilter}}.png" />
+    <meta property="og:image:alt" content="Page image for {{site.name}}: {{title | fileNameFilter}}. {{description}}" />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="{{title}}" />
+    <meta property="twitter:title" content="{{title | titleFilter}}" />
     <meta property="twitter:description" content="{{description}}" />
     <meta property="twitter:site" content="{{site.author.handle}}" />
     <meta property="twitter:creator" content="{{site.author.handle}}" />
-    <meta property="twitter:image" content="{{site.url}}/{{staticFolder}}/images/{{imageName}}.png" />
-    <meta property="twitter:image:alt" content="{{imageAlt}}" />   
+    <meta property="twitter:image" content="{{site.url}}/static/images/{{title | fileNameFilter}}.png" />
+    <meta property="twitter:image:alt" content="Page image for {{site.name}}: {{title | fileNameFilter}}. {{description}}" />   
     
 {% endmacro -%}
