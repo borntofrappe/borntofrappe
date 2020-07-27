@@ -8,7 +8,7 @@ Include the code from the following projects:
 
 - components/breadcrumb navigation
 
-- sections/header blog
+- sections/header page
 
 - sections/index
 

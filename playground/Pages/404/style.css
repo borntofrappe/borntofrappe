@@ -133,7 +133,7 @@ body[data-transition] nav button svg .scale {
   transition: transform var(--transition-duration) step-end;
 }
 
-/* sections/header blog */
+/* sections/header page */
 header {
   max-width: 40rem;
   width: 90vw;
@@ -241,8 +241,6 @@ main#content p {
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
   main#content a.relative {
-    align-self: flex-start;
-    font-size: 1.1em;
     text-decoration: none;
     --transition-duration: 0.4s;
     display: inline-block;

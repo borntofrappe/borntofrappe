@@ -7,7 +7,8 @@ header {
   max-width: 40rem;
   width: 90vw;
   margin: 0rem auto;
-  padding: 3rem 0 2.5rem;
+  padding: 3.25rem 0 2.75rem;
+  line-height: 1.75;
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
@@ -16,6 +17,7 @@ header {
   background-size: 20px;
   background-position: 5px 10px;
   position: relative;
+  z-index: 5;
 }
 
 header::before {
@@ -55,15 +57,6 @@ header::after {
 
 header h1 {
   color: inherit;
-}
-
-header p {
-  line-height: 1.75;
-  margin-top: 0.25rem;
-}
-
-header p:first-of-type {
-  margin-top: 1.25rem;
 }
 
 @supports (display: grid) {

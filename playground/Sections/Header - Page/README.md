@@ -1,6 +1,6 @@
-# Blog Header
+# Page Header
 
-Header for the blog page.
+Header for any page which is one level in reach of the landing page. Case in point: `/blog`, `/404`.
 
 ## Breakout
 

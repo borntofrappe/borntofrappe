@@ -8,7 +8,7 @@ Include the code from the following projects:
 
 - components/breadcrumb navigation
 
-- sections/header blog
+- sections/header page
 
 - ???
 
@@ -16,8 +16,8 @@ Include the code from the following projects:
 
 ## ???
 
-In a `<main>` container include a paragraph describing the missing page. Moreover, include a `<dl>` description list with a short FAQ section. In this section, describe:
+In a `<main>` container include a paragraph describing the missing page. Moreover, include two anchor link elements to:
 
-- what to do if there should be a page
+1. send an email to the web master <!-- hey, that's me -->
 
-- where to go from the missing page
+2. go to the homepage
