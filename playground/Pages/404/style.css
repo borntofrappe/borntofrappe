@@ -240,21 +240,21 @@ main#content p {
 }
 
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
-  main#content a.relative {
-    text-decoration: none;
+  a.relative {
     --transition-duration: 0.4s;
+    text-decoration: none;
     display: inline-block;
     position: relative;
     padding-bottom: 0.75em;
     margin-bottom: 1em;
   }
 
-  main#content a.relative:focus {
+  a.relative:focus {
     outline: none;
   }
 
-  main#content a.relative::before,
-  main#content a.relative::after {
+  a.relative::before,
+  a.relative::after {
     pointer-events: none;
     z-index: -5;
     content: '';
@@ -265,7 +265,7 @@ main#content p {
     transition: transform var(--transition-duration) var(--ease-in-out-sine);
   }
 
-  main#content a.relative::before {
+  a.relative::before {
     left: 0%;
     width: 100%;
     height: 2px;
@@ -273,12 +273,12 @@ main#content p {
     transform: translate(0%, -50%) scaleX(0);
   }
 
-  main#content a.relative:hover::before,
-  main#content a.relative:focus::before {
+  a.relative:hover::before,
+  a.relative:focus::before {
     transform: translate(0%, -50%) scaleX(1);
   }
 
-  main#content a.relative::after {
+  a.relative::after {
     left: 50%;
     width: 100%;
     height: 1.7em;
@@ -293,8 +293,8 @@ main#content p {
     -webkit-mask-repeat: no-repeat;
   }
 
-  main#content a.relative:hover::after,
-  main#content a.relative:focus::after {
+  a.relative:hover::after,
+  a.relative:focus::after {
     transform: translate(50%, -50%);
   }
 }

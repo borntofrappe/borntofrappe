@@ -123,7 +123,7 @@ article.innerHTML = `
   <p>
     This website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
   </p>
-  <a href="/blog">Explore articles</a>
+  <a href="/blog" class="relative">Explore articles</a>
 `;
 
 
