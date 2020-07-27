@@ -1,0 +1,34 @@
+{% set hasContent = true %}
+{% set title = site.name + "/404" %}
+{% set description = "HTTP Status Code 404 — Page not found" %}
+
+{% extends "layouts/base.njk" %}
+
+{% block style %}
+  {% include "css/404.css" %}
+{% endblock %}
+
+{% block content %}
+<header>
+  <h1>Page not found</h1>
+  <p>I've looked for it carefully. Promise.</p>
+</header>
+
+<main id="content">
+  <p>
+    It seems you've stumbled upon a missing page. If you think there should
+    be one, please
+    <a
+      target="_blank"
+      href="mailto:borntofrappe@gmail.com?subject=Missing%20Page"
+      >send me an email</a
+    >
+    at borntofrappe@gmail.com.
+  </p>
+  <p>
+    If you need some guidance,
+    <cite>home is always a good place to start</cite>.
+  </p>
+  <a href="/" class="relative">Go to landing page</a>
+</main>
+{% endblock %}
