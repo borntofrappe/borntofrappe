@@ -193,7 +193,7 @@ header::after {
 
 header > svg {
   order: -1;
-  width: 18em;
+  width: 20em;
   max-width: 90vw;
   height: auto;
   margin: 1em;
@@ -370,12 +370,6 @@ article#getting-started > svg:nth-of-type(2) {
   margin-left: auto;
 }
 
-article#getting-started a {
-  font-family: 'Maven Pro', sans-serif;
-  font-weight: 600;
-  font-size: 1em;
-}
-
 article#getting-started > svg:nth-of-type(1) .rotate {
   transform: rotate(10deg);
   animation: tilt 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
@@ -542,6 +536,7 @@ article#about > svg.observed .rotate {
   }
 }
 
+/* components/relative link */
 @supports (mask-size: 1.5em) or (-webkit-mask-size: 1.5em) {
   a.relative {
     --transition-duration: 0.4s;

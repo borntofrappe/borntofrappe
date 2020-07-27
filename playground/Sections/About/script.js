@@ -34,7 +34,7 @@ article.innerHTML = `
 <h2>Almost forgot</h2>
 <p>Name's <mark>Gabriele</mark>.</p>
 <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
-<p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Roughly in that order.</p>
+<p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Depends on the season.</p>
 
 <svg viewBox="-50 -50 100 100" width="200" height="200">
   <defs>
