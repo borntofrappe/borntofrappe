@@ -56,11 +56,8 @@ article > svg:nth-of-type(2) {
 }
 
 article p {
-  font-family: 'Source Code Pro', monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   line-height: 1.75;
-  word-spacing: -0.2em;
-  letter-spacing: -0.01em;
 }
 
 article > svg:nth-of-type(1) .rotate {

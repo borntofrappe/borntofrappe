@@ -41,7 +41,7 @@ body[data-preference='dark'] mark::after {
 @supports (clip-path: polygon(100% 0%, 100% 100%, 100% 100%)) {
   mark::after {
     transform: translate(50%, 50%) rotate(0deg);
-    animation: rotate 10s ease-in-out infinite alternate;
+    animation: rotate-ufo 10s ease-in-out infinite alternate;
   }
 
   mark::before {
@@ -72,7 +72,7 @@ body[data-preference='dark'] mark::after {
       clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
     }
   }
-  @keyframes rotate {
+  @keyframes rotate-ufo {
     10% {
       transform: translate(50%, 50%) rotate(40deg);
     }

@@ -111,11 +111,8 @@ header div > * + * {
 }
 
 header p {
-  font-family: 'Source Code Pro', monospace;
-  font-size: 0.7em;
+  font-size: 0.8em;
   line-height: 1.75;
-  word-spacing: -0.2em;
-  letter-spacing: -0.01em;
 }
 
 header ul {
