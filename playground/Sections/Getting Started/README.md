@@ -21,4 +21,4 @@ Be sure to remove the `width` and `height` attributes or have the two match the 
 
 ## Animation
 
-The SVG syntax includes a `<style>` block to animate the top of the telescope with CSS.
+The SVG syntax includes a `<style>` block to animate the top of the telescope with CSS. Include a variant without the animation in the media query checking for `prefers-reduced-motion`.

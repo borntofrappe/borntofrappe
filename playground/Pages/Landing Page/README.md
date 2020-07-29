@@ -46,7 +46,7 @@ The article elements actually share a few properties, like vertical spacing betw
 
 ## Intersection observer
 
-Observe both illustrations included in the article elements.
+Observe both article elements to enable the animation of the vector graphics.
 
 ### ???
 

@@ -17,22 +17,22 @@ header {
 
 /*
   [40 - 75]rem width
-  [1.4 - 1.7]rem font-size
+  [1.25 - 1.6]rem font-size
 */
 header {
-  font-size: 1.7rem;
-  font-size: calc(1.4rem + (1.7 - 1.4) * (100vw - 40rem) / (75 - 40));
+  font-size: 1.6rem;
+  font-size: calc(1.25rem + (1.6 - 1.25) * (100vw - 40rem) / (75 - 40));
 }
 
 @media (min-width: 75rem) {
   header {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 40rem) {
   header {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
 }
 

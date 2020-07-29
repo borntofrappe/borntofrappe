@@ -95,11 +95,6 @@ body[data-preference='dark'] article mark::after {
 }
 
 @supports (clip-path: polygon(100% 0%, 100% 100%, 100% 100%)) {
-  article mark::after {
-    transform: translate(50%, 50%) rotate(0deg);
-    animation: rotate-ufo 10s ease-in-out infinite alternate;
-  }
-
   article mark::before {
     content: '';
     position: absolute;
@@ -121,6 +116,11 @@ body[data-preference='dark'] article mark::after {
     }
   }
 
+  article mark::after {
+    transform: translate(50%, 50%) rotate(0deg);
+    animation: rotate-ufo 10s ease-in-out infinite alternate;
+  }
+
   body[data-preference='dark'] article mark::before {
     opacity: 0.15;
   }
@@ -140,6 +140,19 @@ body[data-preference='dark'] article mark::after {
     }
     20%,
     100% {
+      transform: translate(50%, 50%) rotate(25deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    article mark::before,
+    article mark::after {
+      animation-play-state: paused;
+    }
+    article mark::before {
+      clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
+    }
+    article mark::after {
       transform: translate(50%, 50%) rotate(25deg);
     }
   }

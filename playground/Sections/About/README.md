@@ -4,7 +4,7 @@ An article in the `<main>` container of the landing page.
 
 ## SVG
 
-Include the illustration describing a planet surrounded by satellites.
+Include the illustration describing a planet surrounded by satellites. The idea is ultimately include as many icons and whichever icons as needed, and have the graphic adjust.
 
 Refer to `world.svg` for the static version.
 
@@ -19,32 +19,3 @@ body {
   padding-top: 150vh;
 }
 ```
-
-## Spacing
-
-By default, add vertical spacing in the form of the `margin-top` property.
-
-```css
-article > * + * {
-  margin-top: 0.4em;
-}
-```
-
-Add more space atop the first paragraph element as well.
-
-```css
-article > p:first-of-type {
-  margin-top: 1em;
-}
-```
-
-For the text of the paragraphs, reduce the spacing between words, and to a smaller degree, between the letters.
-
-```css
-article p {
-  word-spacing: -0.2em;
-  letter-spacing: -0.005em;
-}
-```
-
-The monospace font, especially at larger sizes, has too much space between both.

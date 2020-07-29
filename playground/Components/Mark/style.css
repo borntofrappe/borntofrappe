@@ -39,11 +39,6 @@ body[data-preference='dark'] mark::after {
 }
 
 @supports (clip-path: polygon(100% 0%, 100% 100%, 100% 100%)) {
-  mark::after {
-    transform: translate(50%, 50%) rotate(0deg);
-    animation: rotate-ufo 10s ease-in-out infinite alternate;
-  }
-
   mark::before {
     content: '';
     position: absolute;
@@ -63,6 +58,11 @@ body[data-preference='dark'] mark::after {
     opacity: 0.2;
   }
 
+  mark::after {
+    transform: translate(50%, 50%) rotate(0deg);
+    animation: rotate-ufo 10s ease-in-out infinite alternate;
+  }
+
   @keyframes clip-polygon {
     10% {
       clip-path: polygon(100% 0%, 70% 100%, 0% 100%);
@@ -78,6 +78,19 @@ body[data-preference='dark'] mark::after {
     }
     20%,
     100% {
+      transform: translate(50%, 50%) rotate(25deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    mark::before,
+    mark::after {
+      animation-play-state: paused;
+    }
+    mark::before {
+      clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
+    }
+    mark::after {
       transform: translate(50%, 50%) rotate(25deg);
     }
   }
