@@ -4,39 +4,21 @@ An article in the `<main>` container of the landing page.
 
 ## SVG
 
-Include two `<svg>` elements for the telescope and icons separately.
+Refer to `telescope.svg` and `telescope-dark.svg` for the visual included next to the actual content. The syntax is repeated with different colors for the dark variant.
 
-Refer to `telescope.svg` and `icons.svg` fir static version. In the script recreate the syntax with hard-coded coordinates.
-
-## Layout
-
-By default, have the SVG elements side by side, with the rest of the HTML elements right beneath.
-
-With a large enough viewport **and** If grid is supported, place the elements as follows:
-
+```css
+/* light variant */
+article::before {
+  content: url();
+}
+/* dark variant */
+body[data-preference='dark'] article::before {
+  content: url();
+}
 ```
-.           icons
-telescope   paragraph
-.           link
-```
+
+Be sure to remove the `width` and `height` attributes or have the two match the width and height of the pseudo element.
 
 ## Animation
 
-There are three animations:
-
-- scale for the circles and the icons. The circles of the mask are also modified so to hide the relevant area of the path element
-
-- color for the circles, the icons and the path element. To this end, the path is broken down in three segments, to reconcile the delay set up on the connecting elements
-
-- the telescope and its hinge.
-
-The markup is modified to target the elements with the `:nth-of-type()` selector.
-
-### Rotation
-
-If grid is supported, the telescope is to the bottom left of the icons. In this instance, change the initial rotation to have the telescope rotate in a wider range.
-
-```diff
-- transform: rotate(10deg);
-+ transform: rotate(30deg);
-```
+The SVG syntax includes a `<style>` block to animate the top of the telescope with CSS.

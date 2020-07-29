@@ -4,15 +4,13 @@
       animation: tilt 10s ease-in-out infinite alternate;
       transform: rotate(-20deg);
     }
-
-    
     @keyframes tilt {
       20%, 100% {
         transform: rotate(25deg);
       }
     }
   </style>
-  <g fill="hsl(339, 90%, 67%)" stroke="hsl(350, 100%, 8%)" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="hsl(210, 90%, 62%)" stroke="hsl(220, 100%, 8%)" stroke-linecap="round" stroke-linejoin="round">
     <g stroke-width="3">
       <path stroke-dasharray="84 20 84" d="M 0 -2 v 4 l 24 36 a 4 4 0 0 1 -8 8 l -16 -24 -16 24 a 4 4 0 0 1 -8 -8 l 24 -36" />
       <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
@@ -22,7 +20,7 @@
     <g transform="translate(0 -17)">
       <g class="tilt">
         <g transform="translate(26 0)">
-          <g fill="hsl(336, 93%, 77%)">
+          <g fill="hsl(208, 95%, 75%)">
             <path stroke-width="7.5" transform="translate(-63 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
             <path stroke-width="5.45" transform="translate(-51 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
             <path stroke-width="4.6" transform="translate(-37 0) scale(0.65)" d="M 0 -13 l -20 1 v 24 l 20 1" />
@@ -30,7 +28,7 @@
             <g stroke-width="3">
               <path d="M 0 -13 l -20 1 v 24 l 20 1" />
               <path d="M 12 -14 a 16.5 16.5 0 0 1 0 28" />
-              <rect fill="hsl(339, 90%, 67%)" y="-17" width="12" height="34" rx="6" />
+              <rect fill="hsl(210, 90%, 62%)" y="-17" width="12" height="34" rx="6" />
             </g>
           </g>
         </g>
