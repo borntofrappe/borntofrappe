@@ -439,11 +439,6 @@ body[data-preference='dark'] article#about mark::after {
 }
 
 @supports (clip-path: polygon(100% 0%, 100% 100%, 100% 100%)) {
-  article#about mark::after {
-    transform: translate(50%, 50%) rotate(0deg);
-    animation: rotate-ufo 10s ease-in-out infinite alternate paused;
-  }
-
   article#about mark::before {
     content: '';
     position: absolute;
@@ -459,19 +454,24 @@ body[data-preference='dark'] article#about mark::after {
     animation: clip-polygon 10s ease-in-out infinite alternate paused;
   }
 
-  article#about.observed mark::before,
-  article#about.observed mark::after {
-    animation-play-state: running;
-  }
-
   @media (prefers-color-scheme: dark) {
     body:not([data-preference='dark']) article#about mark::before {
-      opacity: 0.2;
+      opacity: 0.15;
     }
   }
 
   body[data-preference='dark'] article#about mark::before {
     opacity: 0.15;
+  }
+
+  article#about mark::after {
+    transform: translate(50%, 50%) rotate(0deg);
+    animation: rotate-ufo 10s ease-in-out infinite alternate paused;
+  }
+
+  article#about.observed mark::before,
+  article#about.observed mark::after {
+    animation-play-state: running;
   }
 
   @keyframes clip-polygon {

@@ -85,106 +85,6 @@
 
 <main id="content">
   <article id="getting-started">
-    <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="100" height="100">
-      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <g stroke-width="4">
-          <path stroke-dasharray="84 20 84" d="M 0 -2 v 4 l 24 36 a 4 4 0 0 1 -8 8 l -16 -24 -16 24 a 4 4 0 0 1 -8 -8 l 24 -36" />
-          <path d="M 5 19 v 24 a 5 5 0 0 1 -10 0 v -24" />
-          <g transform="translate(0 -10)">
-            <g transform="scale(1 -1)">
-              <g class="rotate" transform="rotate(20)">
-                <g transform="scale(1 -1)">
-                  <path stroke-dasharray="9 35" d="M 0 8 a 8 8 0 0 1 0 -16 8 8 0 0 1 0 16" />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-        <g transform="translate(0 -17)">
-          <g transform="scale(1 -1)">
-            <g class="rotate" transform="rotate(20)">
-              <g transform="translate(26 0)">
-                <path stroke-width="7" transform="translate(-65 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="6" transform="translate(-52 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="5" transform="translate(-38 0) scale(0.65)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <path stroke-width="4.5" transform="translate(-20 0) scale(0.8)" d="M 0 -13 l -20 1 v 24 l 20 1" />
-                <g stroke-width="4">
-                  <path d="M 0 -13 l -20 1 v 24 l 20 1" />
-                  <path d="M 12 -14 a 16.5 16.5 0 0 1 0 28" />
-                  <rect y="-17" width="12" height="34" rx="6" />
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>
-
-    {% set constellations = [
-      {
-        icon: 'html',
-        coordinates: [35, 30]
-      },
-      {
-        icon: 'css',
-        coordinates: [125, 85]
-      },
-      {
-        icon: 'js',
-        coordinates: [225, 40]
-      },
-      {
-        icon: 'svg',
-        coordinates: [315, 95]
-      }
-    ] %}
-    {% set d = "M " + constellations | join(" ", "coordinates") %}
-
-   <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 125" width="350" height="125">
-    <defs>
-      <mask id="mask-icons">
-        <rect fill="hsl(0, 0%, 100%)" width="350" height="125" />
-        <g fill="hsl(0, 0%, 0%)">
-          {% for constellation in constellations %}
-            <g class="icon">
-              <g transform="translate({{constellation.coordinates[0]}} {{constellation.coordinates[1]}})">
-                <g class="scale">
-                  <circle r="25" />
-                </g>
-              </g>
-            </g>
-          {% endfor %}
-        </g>
-      </mask>
-    </defs>
-
-    <g fill="none" stroke="currentColor" stroke-width="3">
-      {%- for constellation in constellations %}
-        <g class="icon">
-          <g transform="translate({{constellation.coordinates[0]}} {{constellation.coordinates[1]}})">
-            <g class="scale">
-              <g class="color">
-                <circle r="25" />
-                <g transform="translate(-13 -13)">
-                  {{icons[constellation.icon] | replace("1em", 26) | safe }}
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      {% endfor -%}
-    </g>
-    <g mask="url(#mask-icons)">
-      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 8">
-        <g class="path">
-          <g class="color">
-            <path d="{{d}}" />
-          </g>
-        </g>
-      </g>
-    </g>
-  </svg>
-
     <h2 class="visually-hidden">Getting started</h2>
     <p>
       The website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
@@ -273,20 +173,20 @@
 
 {% block script %}
   <script>
-  const illustrations = document.querySelectorAll('article > svg');
+  const articles = document.querySelectorAll('article');
   if (window.IntersectionObserver) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.setAttribute('class', 'observed');
+          entry.target.classList.add('observed');
         } else {
-          entry.target.removeAttribute('class');
+          entry.target.classList.remove('observed');
         }
       });
     });
 
-    illustrations.forEach(illustration => {
-      observer.observe(illustration);
+    articles.forEach(article => {
+      observer.observe(article);
     })
   }
   </script>
