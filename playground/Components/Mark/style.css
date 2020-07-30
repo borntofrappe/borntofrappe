@@ -1,16 +1,21 @@
 body {
   max-width: 40rem;
   margin: 1rem auto;
+  --elevation: 2em;
 }
 
 h2 {
   font-size: 1.8rem;
-  margin-bottom: 2.5rem;
 }
 
 p {
   line-height: 1.75;
   font-size: 1.2rem;
+}
+
+p:first-of-type {
+  margin-top: 2em;
+  margin-top: var(--elevation);
 }
 
 mark {
@@ -19,7 +24,6 @@ mark {
   font-weight: 700;
   position: relative;
   z-index: 5;
-  --elevation: 2em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,6 +77,7 @@ body[data-preference='dark'] mark::after {
       opacity: 0.2;
     }
   }
+
   body[data-preference='dark'] mark::before {
     opacity: 0.2;
   }

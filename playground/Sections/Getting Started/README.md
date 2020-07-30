@@ -1,6 +1,4 @@
-# Getting Started
-
-An article in the `<main>` container of the landing page.
+Section for the the `<main>` container of the landing page.
 
 ## SVG
 
@@ -17,8 +15,8 @@ body[data-preference='dark'] article::before {
 }
 ```
 
-Be sure to remove the `width` and `height` attributes or have the two match the width and height of the pseudo element.
-
 ## Animation
 
-The SVG syntax includes a `<style>` block to animate the top of the telescope with CSS. Include a variant without the animation in the media query checking for `prefers-reduced-motion`.
+Similarly to the _Sections/About_, it is necessary to consider the `prefers-reduced-motion` media query. Moreover, I choose to show the animation only as the parent `<article>` element is visible, using the intersection observer API.
+
+Unlike the mentioned project however, it is not possible to pause the animation directly and with CSS. `telescope.svg` and `telescope-dark.svg` include a `<style>` block with the animation, and the solution is to include the static variant described in `telescope-reduced-motion.svg` and `telescope-reduced-motion-dark.svg` instead.

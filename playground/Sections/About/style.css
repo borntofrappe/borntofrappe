@@ -33,7 +33,6 @@ article {
 article {
   display: flex;
   flex-direction: column;
-  align-items: center;
   --elevation: 2em;
 }
 
@@ -43,17 +42,18 @@ article > * + * {
 
 article h2 {
   font-size: 1.8em;
-}
-
-article p:first-of-type {
-  margin-top: 2em;
-  margin-top: var(--elevation);
+  text-align: center;
 }
 
 article p {
   font-size: 1em;
   line-height: 1.75;
   align-self: flex-start;
+}
+
+article p:first-of-type {
+  margin-top: 2em;
+  margin-top: var(--elevation);
 }
 
 article mark {
@@ -64,8 +64,18 @@ article mark {
   z-index: 5;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) article mark {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] article mark {
+  font-weight: 600;
+}
+
 article mark::after {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg stroke='hsl(350, 100%25, 8%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cellipse fill='hsl(339, 90%25, 67%25)' rx='45' ry='20' /%3E%3Cpath fill='hsl(336, 93%25, 77%25)' d='M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0' /%3E%3Cpath transform='scale(0.85)' stroke-width='2.5' fill='none' d='M -28 -5 a 28 28 0 0 1 56 0' stroke-dasharray='20 80' stroke-dashoffset='48' /%3E%3C/g%3E%3C/svg%3E");
+  content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(350, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(339, 90%25, 67%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(336, 93%25, 77%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
   position: absolute;
   bottom: 2em;
   bottom: var(--elevation);
@@ -77,52 +87,52 @@ article mark::after {
 }
 
 @media (prefers-color-scheme: dark) {
-  body:not([data-preference]) article mark {
-    font-weight: 600;
+  body:not([data-preference]) article mark::after {
+    content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(220, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(210, 90%25, 62%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(208, 95%25, 75%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
   }
-
-  body:not([data-preference='dark']) article mark::after {
-    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg stroke='hsl(220, 100%25, 8%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cellipse fill='hsl(210, 90%25, 62%25)' rx='45' ry='20' /%3E%3Cpath fill='hsl(208, 95%25, 75%25)' d='M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0' /%3E%3Cpath transform='scale(0.85)' stroke-width='2.5' fill='none' d='M -28 -5 a 28 28 0 0 1 56 0' stroke-dasharray='20 80' stroke-dashoffset='48' /%3E%3C/g%3E%3C/svg%3E");
-  }
-}
-
-body[data-preference='dark'] article mark {
-  font-weight: 600;
 }
 
 body[data-preference='dark'] article mark::after {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg stroke='hsl(220, 100%25, 8%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cellipse fill='hsl(210, 90%25, 62%25)' rx='45' ry='20' /%3E%3Cpath fill='hsl(208, 95%25, 75%25)' d='M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0' /%3E%3Cpath transform='scale(0.85)' stroke-width='2.5' fill='none' d='M -28 -5 a 28 28 0 0 1 56 0' stroke-dasharray='20 80' stroke-dashoffset='48' /%3E%3C/g%3E%3C/svg%3E");
+  content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(220, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(210, 90%25, 62%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(208, 95%25, 75%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
 }
 
 @supports (clip-path: polygon(100% 0%, 100% 100%, 100% 100%)) {
   article mark::before {
     content: '';
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     right: 0;
     width: 3em;
     height: 2em;
     height: var(--elevation);
     background: hsl(330, 100%, 92%);
     background: var(--primary-10);
-    clip-path: polygon(100% 0%, 100% 100%, 100% 100%);
     z-index: -5;
-    animation: clip-polygon 10s ease-in-out infinite alternate;
   }
 
   @media (prefers-color-scheme: dark) {
-    body:not([data-preference='dark']) article mark::before {
+    body:not([data-preference]) article mark::before {
       opacity: 0.2;
     }
   }
 
-  article mark::after {
-    transform: translate(50%, 50%) rotate(0deg);
-    animation: rotate-ufo 10s ease-in-out infinite alternate;
+  body[data-preference='dark'] article mark::before {
+    opacity: 0.2;
   }
 
-  body[data-preference='dark'] article mark::before {
-    opacity: 0.15;
+  article mark::before {
+    clip-path: polygon(100% 0%, 100% 100%, 100% 100%);
+    animation: clip-polygon 10s ease-in-out infinite alternate paused;
+  }
+
+  article mark::after {
+    transform: translate(50%, 50%) rotate(0deg);
+    animation: rotate-ufo 10s ease-in-out infinite alternate paused;
+  }
+
+  article.observed mark::before,
+  article.observed mark::after {
+    animation-play-state: running;
   }
 
   @keyframes clip-polygon {
@@ -145,20 +155,21 @@ body[data-preference='dark'] article mark::after {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    article mark::before,
-    article mark::after {
+    article.observed mark::before,
+    article.observed mark::after {
       animation-play-state: paused;
     }
-    article mark::before {
+    article.observed mark::before {
       clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
     }
-    article mark::after {
+    article.observed mark::after {
       transform: translate(50%, 50%) rotate(25deg);
     }
   }
 }
 
 article > svg {
+  align-self: center;
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
   max-width: 30rem;
@@ -171,12 +182,18 @@ article > svg .rotate {
   animation-play-state: paused;
 }
 
-article > svg.observed .rotate {
+article.observed > svg .rotate {
   animation-play-state: running;
 }
 
 @keyframes rotate {
   to {
     transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  article.observed > svg .rotate {
+    animation-play-state: paused;
   }
 }

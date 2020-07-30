@@ -26,7 +26,7 @@ main a {
     display: inline-block;
     position: relative;
     padding-bottom: 0.75em;
-    margin-bottom: 0.75em;
+    margin: 1em 0;
     z-index: 5;
   }
 
