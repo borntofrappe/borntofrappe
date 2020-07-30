@@ -1,10 +1,10 @@
-# Code Snippet
+Review `index-syntax.html` to see how the component manages a code block with syntax highlighting. The markup is included through the script `script-markdown-it` found in _Utils/Markdown Parser_.
 
-The structure described in `index.html` comes from a node script using `shiki`. The **Utils** folder and the **Markdown Parser** project describe how to create this markup, but regardless of the parser/syntax highlighter, the idea is to include code in one of two variants.
+Regardless of syntax highlighting, change the markup of code as included between code fences.
 
-## Block
+## Markup
 
-In a a `<div>` container, a code block is preceded by a `<span>` element providing additional information.
+In a `<div>` container, introduce the code with a `<span>` element providing additional information.
 
 ```njk
 <div>
@@ -16,16 +16,12 @@ In a a `<div>` container, a code block is preceded by a `<span>` element providi
 </div>
 ```
 
-In place of `{{text}}`, the idea is to incorporate one of the following strings:
+## prefers-color-scheme
 
-- the language of the snippet: `html`, `css`
+For the dark preference, reduce the weight of the code included inline.
 
-- the name of the file, extension included: `index.html`, `style.css`
-
-## Inline
-
-In a `<p>` paragraph element, code is inlined directly in a `<code>` element.
+Update the attribute on the `body` element to review the change.
 
 ```html
-<p>In JavaScript, use <code>console.log()</code> to display text</p>
+<body data-preference="dark"></body>
 ```

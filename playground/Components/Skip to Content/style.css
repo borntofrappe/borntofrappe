@@ -1,4 +1,4 @@
-/* liberal CSS to push the content below the viewport */
+/* liberal CSS to push content below the viewport */
 #content {
   max-width: 40rem;
   font-size: 1rem;
@@ -13,6 +13,7 @@
   left: 0.5rem;
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;
@@ -26,7 +27,6 @@
   box-shadow: 0 0 0.5rem -0.4rem hsl(215, 22%, 5%);
   box-shadow: 0 0 0.5rem -0.4rem var(--grey-0);
   display: flex;
-  width: max-content;
   align-items: center;
   z-index: 10;
 }

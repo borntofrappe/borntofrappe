@@ -1,13 +1,9 @@
-# Heading Permalink
+In the script I include the markup for several levels of headings. In each heading, the idea is to include an anchor link using the heading's id as a reference. Before the icon describing the permalink, include a `<span>` element for accessibility.
 
-## Markup
-
-The script populates the body with a series of headings: h2, h3 and h4. In each heading, add an anchor link using the heading's id as a reference. Before the icon describing the permalink, include a `<span>` element for accessibility.
-
-```njk
+```html
 <h2 id="{id}">
   {text}
-  <a href="#{}id">
+  <a href="#{id}">
     <span class="visually-hidden">permalink</span>
     {icon}
   </a>
@@ -16,9 +12,7 @@ The script populates the body with a series of headings: h2, h3 and h4. In each 
 
 ## Opacity
 
-Style the opacity to reduce the weight of the permalink icon.
-
-Transition the opacity _and_ color.
+The stylesheet reduces the weight of the permalink icon through its opacity. Include the property in the `transition` rule to smoothly change both the opacity and the color.
 
 ```css
 .permalink {

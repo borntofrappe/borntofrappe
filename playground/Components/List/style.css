@@ -11,7 +11,9 @@ main > * + * {
 main ol,
 main ul {
   list-style: none;
-  margin-left: 1.6em;
+  --badge-size: 1.3em;
+  margin-left: 1.3em;
+  margin-left: var(--badge-size);
 }
 
 main ul > * + *,
@@ -22,7 +24,8 @@ main ol > * + * {
 main ul ul,
 main ol ol {
   margin-top: 0.6rem;
-  margin-left: 1.6em;
+  margin-left: 1.3em;
+  margin-left: var(--badge-size);
 }
 
 main li {
@@ -42,44 +45,32 @@ main ol li::before {
   counter-increment: custom-counter;
   position: absolute;
   top: 0;
-  left: -0.25em;
-  width: 1.6em;
-  height: 1.6em;
-  transform: translate(-100%, 0%);
+  right: 100%;
+  width: 1.3em;
+  width: var(--badge-size);
+  height: 1.3em;
+  height: var(--badge-size);
+  transform: translate(-0.25em, 0%);
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
-  font-family: 'Maven Pro';
   font-weight: 700;
   text-align: center;
-  line-height: 1.5;
-}
-
-@media (prefers-color-scheme: dark) {
-  body:not([data-preference]) main ol li::before {
-    font-weight: 600;
-  }
-}
-
-body[data-preference='dark'] main ol li::before {
-  font-weight: 600;
+  line-height: 1.25;
 }
 
 main ol li::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -0.2em;
-  width: 1.6em;
-  height: 1.6em;
-  transform: translate(-100%, 0%);
-  background: hsl(340, 90%, 55%);
-  background: var(--primary-6);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10z' /%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10z' /%3E%3C/g%3E%3C/svg%3E");
-  mask-size: 100%;
-  -webkit-mask-size: 100%;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
+  right: 100%;
+  width: 1.3em;
+  width: var(--badge-size);
+  height: 1.3em;
+  height: var(--badge-size);
+  transform: translate(-0.25em, 0%);
+  border-radius: 50%;
+  border: 0.15rem solid hsl(340, 90%, 55%);
+  border: 0.15rem solid var(--primary-6);
 }
 
 main ul li {
@@ -90,16 +81,76 @@ main ul li::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -0.2em;
-  width: 1.6em;
-  height: 1.6em;
-  transform: translate(-100%, 0%);
+  right: 100%;
+  width: 0.8em;
+  height: 0.8em;
+  transform: translate(-0.25em, 0%);
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10z' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='currentColor' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 35 25 c 15 -5 27 -10 35 -25 v -55 q -18 0 -36 -10z' /%3E%3Cpath d='M -17 -0 l 12 12 21 -21' /%3E%3C/g%3E%3C/svg%3E");
-  mask-size: 100%;
-  -webkit-mask-size: 100%;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+@supports ((mask-image: url()) or (-webkit-mask-image: url())) {
+  main ol,
+  main ul {
+    --badge-size: 1.6em;
+    margin-left: 1.6em;
+    margin-left: var(--badge-size);
+  }
+
+  main ul ul,
+  main ol ol {
+    margin-left: 1.6em;
+    margin-left: var(--badge-size);
+  }
+
+  main ol li::before {
+    right: initial;
+    left: -0.25em;
+    width: 1.6em;
+    width: var(--badge-size);
+    height: 1.6em;
+    height: var(--badge-size);
+    transform: translate(-100%, 0%);
+    line-height: 1.5;
+  }
+
+  main ol li::after {
+    border: initial;
+    border-radius: initial;
+    right: initial;
+    left: -0.25em;
+    width: 1.6em;
+    width: var(--badge-size);
+    height: 1.6em;
+    height: var(--badge-size);
+    transform: translate(-100%, 0%);
+    background: hsl(340, 90%, 55%);
+    background: var(--primary-6);
+    mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+    -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+  }
+
+  main ul li::before {
+    border-radius: initial;
+    right: initial;
+    left: -0.25em;
+    width: 1.6em;
+    width: var(--badge-size);
+    height: 1.6em;
+    height: var(--badge-size);
+    transform: translate(-100%, 0%);
+    mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+    -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main ol li::before {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] main ol li::before {
+  font-weight: 600;
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dark Mode Toggle</title>
+    <title>Color Scheme Toggle</title>
     <link rel="stylesheet" href="../global.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -11,6 +11,8 @@
     <button disabled>
       <span class="visually-hidden">Toggle color scheme</span>
       <svg
+        aria-hidden="true"
+        aria-focusable="false"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-80 -160 160 160"
         width="1em"
@@ -23,7 +25,7 @@
                 <g class="rotate" transform="rotate(0)">
                   <g transform="scale(-1 1)">
                     <circle r="22" />
-                    <circle transform="rotate(0) translate(0 41.2)" r="8.8" />
+                    <circle transform="translate(0 41.2)" r="8.8" />
                     <circle transform="rotate(45) translate(0 41.2)" r="8.8" />
                     <circle transform="rotate(90) translate(0 41.2)" r="8.8" />
                     <circle transform="rotate(135) translate(0 41.2)" r="8.8" />

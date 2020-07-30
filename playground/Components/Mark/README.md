@@ -1,23 +1,4 @@
-# Mark
-
-Design for the `<mark>` element as included in the landing page. Landing page only.
-
-## SVG
-
-Refer to `ufo.svg` and `ufo-dark.svg` for the visual included through one of the pseudo elements. The syntax is repeated with different colors for the dark variant.
-
-```css
-/* light variant */
-mark::after {
-  content: url();
-}
-/* dark variant */
-body[data-preference='dark'] mark::after {
-  content: url();
-}
-```
-
-Be sure to remove the `width` and `height` attributes or have the two match the width and height of the pseudo element.
+Use the syntax described in `ufo.svg` and `ufo-dark`.
 
 ## elevation
 
@@ -25,6 +6,26 @@ The custom property `--elevation` is included to describe how the `bottom` prope
 
 The distance of the SVG asset from the bottom needs to match the height of the beam of light,
 
-## Media query
+## supports
 
 Include the `::before` pseudo element and the animation in a media query checking the support for the `clip-path` property. If the property is not supported, the rectangle shown through the pseudo element makes for a less than pleasing fallback.
+
+## prefers-color-scheme
+
+For the dark preference:
+
+- reduce the weight of the `<mark>` element
+
+- use `ufo-dark.svg` instead of the default `ufo.svg`
+
+- reduce the opacity of the `::before` pseudo element
+
+Update the attribute on the `body` element to review the changes.
+
+```html
+<body data-preference="dark"></body>
+```
+
+## prefers-reduced-motion
+
+If the media query matches, pause the animation and change the properties to have the pseudo elements in their final state.

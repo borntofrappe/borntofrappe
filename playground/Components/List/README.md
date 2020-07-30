@@ -1,13 +1,15 @@
-# List
+Use the syntax described in `badge-check.svg` and `badge-outline`, for `<ul>` and `<ol>` elements respectively.
 
-## Pseudo Elements
+## Mask
 
-In the pseudo elements use the SVG syntax described by the badge graphic:
+If mask properties are not supported, provide a sensible fallback. This means including a small circle for `<ul>` elements, and a border around the custom counter for `<ol>` elements.
 
-- `badge-check` for `<ul>` elements
+## prefers-color-scheme
 
-- `badge-outline` for `<ol>` elements
+For the dark preference, reduce the weight of the custom counter in the `<ol>` elements.
 
-## ol
+Update the attribute on the `body` element to review the change.
 
-For `ol` elements, add a custom counter in the frame of the SVG icon.
+```html
+<body data-preference="dark"></body>
+```
