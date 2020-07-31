@@ -1,17 +1,1 @@
-# borntofrappe
-
-A personal website
-
-## scripts
-
-Following the syntax described in `package.json`:
-
-- `npm run dev`: runs 11ty once, producing the **dist** folder with the necessary `html` static files
-
-- `npm run serve`: runs 11ty by setting up a _hot-reloading web server_. The utility is run again if a file in the **src** input folder is modified
-
-- `npm run build`: runs 11ty and then a puppeteer script to create `.png` static images for the markdown files in the **blog** folder
-
-## playground
-
-The folder describes the different parts and features ultimately included in **src**
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 400 100" ><style>@keyframes translate { 50% { transform: translate(10px, 0); } } @keyframes scale { 50% { transform: scale(1); } }</style><g style="animation: 10s translate infinite alternate ease-in-out; transform: translate(0, 0)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(90)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><g transform="translate(0 24)"><path style="animation: 10s -2.5s scale infinite alternate ease-in-out; transform: scale(0.8);" d="M 0 0 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /></g><circle r="9" cy="-11" /></g></g></g><g><text x="75" y="-10" textLength="260" font-size="36" font-weight="bold" dominant-baseline="middle">borntofrappe</text><text x="75" y="25" style="text-transform: uppercase;" textLength="260" font-size="12" dominant-baseline="middle">ready to launch</text></g></svg>
