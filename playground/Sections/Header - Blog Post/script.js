@@ -1,6 +1,6 @@
 const articles = [
   {
-    title: 'Sans extra',
+    title: 'Icons Optional',
   },
   {
     title: 'CSS Animation Paused',
@@ -54,7 +54,6 @@ body.innerHTML = articles
           <span class="visually-hidden">${icon}</span>
           ${icons[icon]}
         </li>
-
       `
         )
         .join('')}

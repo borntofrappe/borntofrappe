@@ -1,12 +1,10 @@
-# Blog Post Header
-
-Header for blog post pages.
+Header for the articles in the blog.
 
 ## Markup
 
-Consider data from the (presumed) frontmatter for a series of articles, describing the title and optionally icons associated with the post.
+Consider the frontmatter presumed by a series of articles, describing the title and optionally icons associated with the post.
 
-```njk
+```html
 <header>
   <h1>{title}</h1>
 
@@ -20,7 +18,7 @@ Consider data from the (presumed) frontmatter for a series of articles, describi
 </header>
 ```
 
-Hide the `<h2>` and `<span>` elements from sight, but not screen readers.
+Hide the `<h2>` and `<span>` elements from sight, but not for assistive technology. This means using the `.visually-hidden` class.
 
 ## Icons
 
@@ -38,4 +36,4 @@ header ul {
 }
 ```
 
-This is to make sure the icons are shown above the wave pattern. When included through the `::after` pseudo element, the pattern is effectively on top.
+This is to make sure the icons are shown above the wave pattern. When included through the `::after` pseudo element, the pattern would effectively be on top.

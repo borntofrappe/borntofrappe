@@ -1,13 +1,12 @@
-# Navigation
+At the top of every page, the idea is to include the navigation component described in _Components/Breadcrumb Navigation_ alongside the toggle detailed in _Components/Color Scheme Toggle_.
 
-The component **Breadcrumb navigation** completes much of the logic behind the navigation included at the top of every page.
+## Markup
 
-Following the **Dark mode toggle** component however, it is necessary to incorporate the two next to one another.
+Wrap both components in a `<div>` container to align the two in a flex row.
 
-## SVG syntax
-
-The `viewBox` attribute is modified to have the sun and moon visuals featured more prominently in the wrapping SVG element. Consider it a zoom-in operation.
-
-## CSS transition
-
-The duration is considerably decreased to match value set for the `:hover` and `:focus` state on the anchor link elements.
+```html
+<div class="navigation">
+  <nav></nav>
+  <button></button>
+</div>
+```

@@ -17,7 +17,7 @@ const links = [
     name: 'blog',
     href: '/blog',
     desc:
-      'Take a look at the articles I wrote wrote on my way to become a full-fledged web developer.',
+      'Take a look at the articles I wrote on my way to become a full-fledged web developer.',
   },
   {
     name: 'codepen',

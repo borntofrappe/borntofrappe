@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 -225 450 450" width="450" height="450" style="width: 70vmin; height: auto; max-width: 500px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-225 -225 450 450" width="450" height="450">
   <defs>
     <path id="path" d="M 0 -32 a 32 32 0 0 1 0 64 32 32 0 0 1 0 -64" />
     <path id="path-c" d="M 0 39 a 39 39 0 0 1 0 -78 39 39 0 0 1 0 78" />

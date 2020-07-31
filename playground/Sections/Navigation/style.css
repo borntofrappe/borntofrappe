@@ -2,20 +2,23 @@
 #skip-to-content {
   position: absolute;
   top: 0.5rem;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  left: 0.5rem;
+  text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 1rem;
   letter-spacing: 0.1rem;
   word-spacing: 0.1rem;
-  font-size: 2rem;
+  border-radius: 1rem;
+  border: none;
   padding: 0.5rem 1rem;
   color: hsl(215, 10%, 97%);
-  color: var(--frappe-grey-10);
+  color: var(--grey-10);
   background: hsl(215, 22%, 5%);
-  background: var(--frappe-grey-0);
+  background: var(--grey-0);
+  box-shadow: 0 0 0.5rem -0.4rem hsl(215, 22%, 5%);
+  box-shadow: 0 0 0.5rem -0.4rem var(--grey-0);
   display: flex;
-  width: max-content;
   align-items: center;
   z-index: 10;
 }
@@ -26,8 +29,7 @@
   margin-left: 0.5rem;
 }
 
-/* components/breadcrumb navigation */
-nav {
+.navigation {
   max-width: 40rem;
   width: 90vw;
   margin: 0 auto;
@@ -37,11 +39,16 @@ nav {
   flex-wrap: wrap;
 }
 
-nav > * + * {
+.navigation > *:last-child {
+  margin-left: auto;
+}
+
+/* components/breadcrumb navigation */
+.navigation nav > * + * {
   margin-left: 0.3rem;
 }
 
-nav a {
+.navigation nav a {
   text-decoration: none;
   font-family: 'Maven Pro', sans-serif;
   font-size: 1rem;
@@ -51,25 +58,24 @@ nav a {
   align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  body:not([data-preference]) nav a {
-    font-weight: 600;
-  }
-}
-
-body[data-preference='dark'] nav a {
-  font-weight: 600;
-}
-
-nav a svg {
+.navigation nav a svg {
   margin-left: 0.3rem;
   width: 1.5em;
   height: auto;
 }
 
-/* components/dark mode toggle */
-nav button {
-  margin-left: auto;
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) .navigation nav a {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] .navigation nav a {
+  font-weight: 600;
+}
+
+/* components/color scheme toggle */
+.navigation button {
   width: 2rem;
   height: 2rem;
   color: inherit;
@@ -81,45 +87,45 @@ nav button {
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
-nav button svg {
+.navigation button svg {
   width: 100%;
   height: auto;
   border-radius: inherit;
 }
 
-nav button:not(:disabled):focus {
+.navigation button:not(:disabled):focus {
   outline: 0.15rem dashed currentColor;
 }
 
-nav button:not(:disabled):hover {
+.navigation button:not(:disabled):hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
 
 @media (prefers-color-scheme: dark) {
-  body:not([data-preference]) nav button svg .rotate {
+  body:not([data-preference]) .navigation button svg .rotate {
     transform: rotate(180deg);
   }
 
-  body:not([data-preference]) nav button svg .scale {
+  body:not([data-preference]) .navigation button svg .scale {
     transform: scaleX(-1);
   }
 }
 
-body[data-preference='dark'] nav button svg .rotate {
+body[data-preference='dark'] .navigation button svg .rotate {
   transform: rotate(180deg);
 }
 
-body[data-preference='dark'] nav button svg .scale {
+body[data-preference='dark'] .navigation button svg .scale {
   transform: scaleX(-1);
 }
 
-body[data-transition] nav button svg .rotate {
+body[data-transition] .navigation button svg .rotate {
   transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform var(--transition-duration) var(--ease-in-out-sine);
 }
 
-body[data-transition] nav button svg .scale {
+body[data-transition] .navigation button svg .scale {
   transition: transform 0.25s step-end;
   transition: transform var(--transition-duration) step-end;
 }

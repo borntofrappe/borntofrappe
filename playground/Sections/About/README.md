@@ -2,7 +2,7 @@ Section for the the `<main>` container of the landing page.
 
 ## SVG
 
-Include the illustration describing a planet surrounded by satellites. The idea is ultimately include as many icons and whichever icons as needed, and have the graphic adjust.
+Include the illustration describing a planet surrounded by satellites. The idea is to add as many icons and whichever icons as needed, and have the graphic adjust.
 
 Refer to `world.svg` for the static version.
 

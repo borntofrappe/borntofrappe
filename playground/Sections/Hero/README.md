@@ -1,13 +1,5 @@
-# Hero
+Header for the landing page.
 
-The header for the landing page.
+## SVG
 
-## SVG Syntax
-
-The document includes an illustration where a series of icons are made interactive by wrapping the visuals in anchor link elements. Refer to `hero.svg` for the static version.
-
-## Layout
-
-Aside from the vector illustration, the header includes additional information in the form of a `<div>` container, with a heading, paragraph and unordered list.
-
-These two elements are laid side by side, capping the width of the illustration to a maximum value. Moreover,
+Include the syntax described in `hero.svg`. The idea is to add as many icons and whichever icons as needed, and have the graphic adjust. Moreover, the idea is to wrap each icon in an anchor link element, to have the illustration clickable/focusable.

@@ -73,11 +73,6 @@ main.innerHTML = articles
       <h2>
         <a href="/blog/${slug}">
           ${title}
-          ${
-            index === 0
-              ? icons.sparkles
-              : ''
-          }
         </a>
       </h2>
 

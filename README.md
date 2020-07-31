@@ -15,3 +15,6 @@ Following the syntax described in `package.json`:
 ## playground
 
 The folder describes the different parts and features ultimately included in **src**
+
+- review sections
+- include pattern with single quotes: url('')

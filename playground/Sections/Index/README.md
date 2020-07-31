@@ -1,17 +1,14 @@
-# Blog Index
+List of articles included in the blog page.
 
-Articles populating the blog page.
+## Markup
 
-## Markdown
+Consider the frontmatter presumed by a series of articles, describing the title, date and brief description.
 
-The script populates the `<main>` element from the frontmatter presumed from a series of articles, describing the title, date and brief description.
-
-```njk
+```html
 <article>
   <h2>
     <a href="{link}">
       {title}
-      {icon}
     </a>
   </h2>
 
@@ -34,6 +31,8 @@ Use an array detailing the months to format the date in a more readable form: `2
 ## First article
 
 Highlight the first element in the main container with a larger size, different accent color, and the SVG syntax behind `sparkles.svg`.
+
+Include the vector graphic in the stylesheet through `mark` properties.
 
 ## Grid
 
@@ -65,4 +64,12 @@ If subgrid is supported, line up the heading+time+paragraph elements across colu
     grid-row: span 3;
   }
 }
+```
+
+## prefers-color-scheme
+
+For the dark preference reduce the weight of the `<h2>` elements. Update the attribute on the `body` element to review the changes.
+
+```html
+<body data-preference="dark"></body>
 ```

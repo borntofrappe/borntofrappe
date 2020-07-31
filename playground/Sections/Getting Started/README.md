@@ -17,6 +17,10 @@ body[data-preference='dark'] article::before {
 
 ## Animation
 
-Similarly to the _Sections/About_, it is necessary to consider the `prefers-reduced-motion` media query. Moreover, I choose to show the animation only as the parent `<article>` element is visible, using the intersection observer API.
+Similarly to the _Sections/About_, the demo considers the `prefers-reduced-motion` media query and the intersection observer API. Since the animation is included directly with SVG syntax however, the logic in the stylesheet is different:
 
-Unlike the mentioned project however, it is not possible to pause the animation directly and with CSS. `telescope.svg` and `telescope-dark.svg` include a `<style>` block with the animation, and the solution is to include the static variant described in `telescope-reduced-motion.svg` and `telescope-reduced-motion-dark.svg` instead.
+- by default, include the syntax described in `telescope-reduced-motion.svg` and `telescope-reduced-motion-dark.svg`
+
+- if the `<article>` element has a class of `.observed`, include the syntax described in `telescope.svg` and `telescope-dark.svg`. This pair has a `<style>` block which animates the telescope to have its main tube rotate up and down
+
+- if the media query describes a preference for reduced motion, revert to use the static syntax once more

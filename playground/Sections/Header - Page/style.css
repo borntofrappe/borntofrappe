@@ -3,6 +3,13 @@ body {
   overflow-x: hidden;
 }
 
+/* liberal CSS to push the header elements apart
+! pay attention that the header itself has a margin property
+*/
+header + header {
+  margin-top: 5rem;
+}
+
 header {
   max-width: 40rem;
   width: 90vw;
@@ -71,6 +78,7 @@ header h1 {
   header {
     width: 100%;
     max-width: initial;
+    margin: initial;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 40rem) 1fr;
     grid-column-gap: 5vw;
