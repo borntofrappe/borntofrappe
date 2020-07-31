@@ -1,6 +1,6 @@
 # Style Guide
 
-> refer to the different folders for more detail
+Refer to the different folders for more detail
 
 ## Fonts
 
@@ -10,13 +10,20 @@
 | Ubuntu          | sans-serif | body                                |
 | Source Code Pro | monospace  | code                                |
 
-Consider [this url](https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap):
+The purpose is not prescriptive, but more of a guideline. Maven Pro is slightly bulkier than Ubuntu, and used sparingly throughout the interface.
 
-```code
-https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap
+From Google Fonts, include the fonts in the markup or in the stylesheet.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>
 ```
 
-From this starting point set up the Latin variants with the `@font-face` rule.
+```css
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+```
 
 Refer to _Fonts/index.html_ for a visual.
 
@@ -26,7 +33,16 @@ In _Colors/index.html_ I describe four different sets of colors. `frappe` and `f
 
 Refer to _Colors/global.css_ to see how the variables are set up. Include the sets in the `:root` element, and the variables actually using these values in the `body` element, using `--primary-*` and `--grey-*` labels. For the dark color scheme, refer to the logic described in _Components/Dark Mode Toggle_.
 
-**Be warned**: in the design of a few components, like the footer, the elements use the colors from a fixed scheme. The idea is to have "fixtures", elements which do not change even if the preference changes.
+**Be warned**: in the design of a few components, like the footer, the elements use the colors from a one scheme only.
+
+```css
+footer {
+  color: var(--frappe-grey-10);
+  background: var(--frappe-grey-0);
+}
+```
+
+The idea is to have "fixtures", elements which do not change even if the preference changes.
 
 ## Icons
 
@@ -36,7 +52,7 @@ Refer to _Colors/global.css_ to see how the variables are set up. Include the se
 
 - add `aria-hidden: true` and `aria-focusable: false`
 
-Copy-paste the following markup if need be:
+When designing a new icon, the following syntax provides a solid starting point.
 
 ```html
 <svg
