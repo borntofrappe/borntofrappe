@@ -2,7 +2,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 #skip-to-content {
@@ -375,12 +374,6 @@ body[data-preference='dark'] header ul li {
 }
 
 main {
-  width: 90vw;
-  max-width: 40rem;
-  margin: 4em auto 0;
-}
-
-main {
   font-size: 1.2rem;
   font-size: calc(1rem + (1.2 - 1) * (100vw - 40rem) / (75 - 40));
 }
@@ -394,6 +387,53 @@ main {
 @media (max-width: 40rem) {
   main {
     font-size: 1rem;
+  }
+}
+
+main {
+  overflow-x: hidden;
+}
+
+article {
+  width: 90vw;
+  max-width: 40rem;
+  margin: 4.5em auto;
+}
+
+article + article {
+  position: relative;
+}
+
+article + article::before {
+  content: '';
+  position: absolute;
+  margin-bottom: 1.5em;
+  bottom: 100%;
+  left: 50%;
+  width: 100vw;
+  height: 0.5rem;
+  transform: translate(-50%, -50%);
+  background: hsl(215, 22%, 5%);
+  background: var(--frappe-grey-0);
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  background-size: 20px;
+}
+
+@supports ((mask-image: url()) or (-webkit-mask-image: url())) {
+  article + article {
+    margin-top: 6.5em;
+  }
+  article + article::before {
+    margin-bottom: initial;
+    height: 3.25em;
+    -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
+    mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
+    -webkit-mask-size: auto 2.5em;
+    mask-size: auto 2.5em;
+    -webkit-mask-position: 50% 50%;
+    mask-position: 50% 50%;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
   }
 }
 
@@ -468,6 +508,7 @@ body[data-preference='dark'] article#getting-started.observed::before {
 article#about {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
   --elevation: 2em;
 }
 
@@ -623,24 +664,6 @@ article#about.observed > svg .rotate {
   article.observed > svg .rotate {
     animation-play-state: paused;
   }
-}
-
-main article + article::before {
-  align-self: center;
-  content: '';
-  width: 100vw;
-  height: 2.5em;
-  margin: 4em 0;
-  background: hsl(215, 22%, 5%);
-  background: var(--frappe-grey-0);
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-  background-size: 20px;
-  -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
-  mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
-  -webkit-mask-size: auto 100%;
-  mask-size: auto 100%;
-  -webkit-mask-position: 50% 0;
-  mask-position: 50% 0;
 }
 
 footer {

@@ -36,16 +36,14 @@ Since only half the element is shown, and the animation occurs clockwise, flip t
 +<g transform="rotate(${360 / length * index * -1}) translate(0 -42) rotate(${360 / length * index})">
 ```
 
-## Getting started & About
+## Getting started and About
 
 Wrap both article elements in a `<main>` container with an `id` of `content`.
 
-The article elements actually share a few properties, like vertical spacing between the child elements and size of the heading, paragraph elements. In light of this consider a more general selector to avoid duplicating the values. For instance: use the wrapping `<main>` element to set the font-size, use the general selector `article > * + *` to have the properties applied to both elements.
+Consider a more general selector to avoid duplicating the values. For instance: use the wrapping `<main>` element to set the font-size, use the selector `article` to size the containers.
 
-### Separator
+## Separator
 
-In between the article elements, include a visual to separate the distinct sections of the page.
+Include a visual to separate each successive `article`, and through the `article + article::before` selector. The solution is less than ideal, but requires additional whitespace between the elements.
 
-This visual repeats the wave-like pattern specified for the hero section and the footer, but at a smaller scale.
-
-!! the separator is included in the stylesheet, and depends on the connected element being a flex container
+If mask properties are not supported, the resulting separator would be excessive, and it is better to accommodate this instance by reducing the height of the pseudo element.
