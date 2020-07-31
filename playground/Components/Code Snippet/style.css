@@ -26,6 +26,16 @@ main p > code {
   white-space: nowrap;
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main p > code {
+    font-weight: 600;
+  }
+}
+
+body[data-preference='dark'] main p > code {
+  font-weight: 600;
+}
+
 main .code {
   margin: 1rem 0;
 }
@@ -94,14 +104,4 @@ main .code pre::-webkit-scrollbar-thumb {
   background: hsl(340, 90%, 55%);
   background: var(--primary-6);
   border-radius: 0.2rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  body:not([data-preference]) main p > code {
-    font-weight: 600;
-  }
-}
-
-body[data-preference='dark'] main p > code {
-  font-weight: 600;
 }

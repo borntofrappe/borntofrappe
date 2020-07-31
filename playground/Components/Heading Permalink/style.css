@@ -8,15 +8,15 @@ main > * + * {
   margin-top: 1.5rem;
 }
 
-h2 {
+main h2 {
   font-size: 2rem;
 }
 
-h3 {
+main h3 {
   font-size: 1.8rem;
 }
 
-h4 {
+main h4 {
   font-size: 1.6rem;
 }
 

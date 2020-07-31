@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- skip to content -->
     <a href="#content" class="visually-hidden" id="skip-to-content">
       Skip to Content
       <svg
+        aria-hidden="true"
+        aria-focusable="false"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-50 -50 100 100"
-        width="40"
-        height="40"
+        width="1em"
+        height="1em"
       >
         <g
           fill="none"
@@ -34,96 +35,98 @@
       </svg>
     </a>
 
-    <!-- breadcrumb navigation -->
-    <nav aria-label="Breadcrumb navigation">
-      <a href="/">
-        borntofrappe
-        <svg
-          aria-hidden="true"
-          aria-focusable="false"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-50 -50 100 100"
-          width="1em"
-          height="1em"
-        >
-          <g
-            fill="none"
-            stroke="currentColor"
-            stroke-linejoin="round"
-            stroke-linecap="round"
+    <div class="navigation">
+      <nav aria-label="Breadcrumb navigation">
+        <a href="/">
+          borntofrappe
+          <svg
+            aria-hidden="true"
+            aria-focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-50 -50 100 100"
+            width="1em"
+            height="1em"
           >
-            <g transform="rotate(45)">
-              <path
-                stroke-width="8"
-                d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52"
-              />
-              <g stroke-width="7">
-                <path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" />
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            >
+              <g transform="rotate(45)">
                 <path
-                  transform="scale(-1 1)"
-                  d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21"
+                  stroke-width="8"
+                  d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52"
                 />
-                <path
-                  d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5"
-                />
-                <circle r="9" cy="-11" />
+                <g stroke-width="7">
+                  <path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" />
+                  <path
+                    transform="scale(-1 1)"
+                    d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21"
+                  />
+                  <path
+                    d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5"
+                  />
+                  <circle r="9" cy="-11" />
+                </g>
               </g>
             </g>
-          </g>
-        </svg>
-      </a>
-      <a href="/blog">
-        / blog
-        <svg
-          aria-hidden="true"
-          aria-focusable="false"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-50 -50 100 100"
-          width="1em"
-          height="1em"
-        >
-          <g
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          </svg>
+        </a>
+        <a href="/">
+          / blog
+          <svg
+            aria-hidden="true"
+            aria-focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-50 -50 100 100"
+            width="1em"
+            height="1em"
           >
-            <g stroke-width="8">
-              <path
-                d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12"
-              />
-              <path
-                d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12"
-              />
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <g stroke-width="8">
+                <path
+                  d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12"
+                />
+                <path
+                  d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12"
+                />
+              </g>
+              <g stroke-width="6">
+                <path d="M -10 -20 h 20" />
+                <path d="M -10 -8 h 10" />
+                <path d="M -10 4 h 15" />
+                <path d="M -10 16 h 5" />
+              </g>
             </g>
-            <g stroke-width="6">
-              <path d="M -10 -20 h 20" />
-              <path d="M -10 -8 h 10" />
-              <path d="M -10 4 h 15" />
-              <path d="M -10 16 h 5" />
-            </g>
-          </g>
-        </svg>
-      </a>
-      <a href="/blog/up-and-running">
-        / up-and-running
-      </a>
+          </svg>
+        </a>
+        <a href="/blog/up-and-running">
+          up-and-running
+        </a>
+      </nav>
+
       <button disabled>
         <span class="visually-hidden">Toggle color scheme</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="-80 -160 160 160"
+          viewBox="-75 -150 150 150"
           width="1em"
           height="1em"
         >
           <g class="scale">
-            <g class="rotate" fill="currentColor" transform="rotate(0)">
-              <g transform="translate(0 -80)">
+            <g class="rotate" fill="currentColor">
+              <g transform="translate(0 -75)">
                 <g transform="scale(-1 1)">
-                  <g class="rotate" transform="rotate(0)">
+                  <g class="rotate">
                     <g transform="scale(-1 1)">
                       <circle r="22" />
-                      <circle transform="rotate(0) translate(0 41.2)" r="8.8" />
+                      <circle transform="translate(0 41.2)" r="8.8" />
                       <circle
                         transform="rotate(45) translate(0 41.2)"
                         r="8.8"
@@ -156,9 +159,9 @@
                   </g>
                 </g>
               </g>
-              <g transform="translate(0 80)">
+              <g transform="translate(0 75)">
                 <g transform="scale(-1 1)">
-                  <g class="rotate" transform="rotate(0)">
+                  <g class="rotate">
                     <g transform="scale(-1 1)">
                       <g class="scale">
                         <path
@@ -173,13 +176,12 @@
           </g>
         </svg>
       </button>
-    </nav>
+    </div>
 
     <header>
-      <h1>Up and running</h1>
+      <h1>Up and Running</h1>
     </header>
 
-    <!-- content  -->
     <main id="content">
       <p>Single line quote</p>
       <blockquote>
@@ -228,34 +230,96 @@
         </tbody>
       </table>
       <p>I've tweaked the alignment to see what marked.js produces</p>
+      <hr />
+      <p>Here's a few code snippets.</p>
+      <div class="code">
+        <span
+          ><svg
+            aria-hidden="true"
+            aria-focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-50 -50 100 100"
+            width="1em"
+            height="1em"
+          >
+            <g fill="currentColor" stroke="none">
+              <path
+                d="M-40.002-50l5.004 85L.001 50.001l34.998-15.003L40.003-50h-80.007zm14.003 17.5h52l-.65 11.049h-39.649l.651 11.054H24.7L22.751 22.75 0 32.503l-22.75-9.752-.65-11.05h11.049l.325 5.525 12.026 5.2 12.026-5.2.977-16.574H-24.05L-25.998-32.5z"
+              />
+            </g></svg
+          >html</span
+        >
+        <pre
+          class="shiki"
+          style="background-color: #292d3e;"
+        ><code><span style="color: #89DDFF">&lt;</span><span style="color: #F07178">body</span><span style="color: #89DDFF">&gt;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #89DDFF">&lt;</span><span style="color: #F07178">blockquote</span><span style="color: #89DDFF">&gt;</span>
+<span style="color: #FFFFFF">    </span><span style="color: #89DDFF">&lt;</span><span style="color: #F07178">p</span><span style="color: #89DDFF">&gt;</span><span style="color: #FFFFFF">there's no better time than now</span><span style="color: #89DDFF">&lt;/</span><span style="color: #F07178">p</span><span style="color: #89DDFF">&gt;</span>
+<span style="color: #FFFFFF">    </span><span style="color: #89DDFF">&lt;</span><span style="color: #F07178">p</span><span style="color: #89DDFF">&gt;</span><span style="color: #FFFFFF">there was, but it was yesterday</span><span style="color: #89DDFF">&lt;/</span><span style="color: #F07178">p</span><span style="color: #89DDFF">&gt;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #89DDFF">&lt;/</span><span style="color: #F07178">blockquote</span><span style="color: #89DDFF">&gt;</span>
+<span style="color: #89DDFF">&lt;/</span><span style="color: #F07178">body</span><span style="color: #89DDFF">&gt;</span></code></pre>
+      </div>
+      <div class="code">
+        <span
+          ><svg
+            aria-hidden="true"
+            aria-focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-50 -50 100 100"
+            width="1em"
+            height="1em"
+          >
+            <g fill="currentColor" stroke="none">
+              <path
+                d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"
+              />
+            </g></svg
+          >css</span
+        >
+        <pre
+          class="shiki"
+          style="background-color: #292d3e;"
+        ><code><span style="color: #89DDFF">.</span><span style="color: #FFCB6B">visually-hidden</span><span style="color: #89DDFF">:</span><span style="color: #C792EA">not</span><span style="color: #89DDFF">(:</span><span style="color: #C792EA">focus</span><span style="color: #89DDFF">):</span><span style="color: #C792EA">not</span><span style="color: #89DDFF">(:</span><span style="color: #C792EA">active</span><span style="color: #89DDFF">)</span><span style="color: #FFFFFF"> </span><span style="color: #89DDFF">{</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">clip</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #82AAFF">rect</span><span style="color: #FFFFFF">(</span><span style="color: #F78C6C">0</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">0</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">0</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">0</span><span style="color: #89DDFF">);</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">clip-path</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">inset</span><span style="color: #FFFFFF">(</span><span style="color: #F78C6C">50%</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">height</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">1px</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">width</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">1px</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">overflow</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">hidden</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">position</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">absolute</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  </span><span style="color: #B2CCD6">white-space</span><span style="color: #89DDFF">:</span><span style="color: #FFFFFF"> </span><span style="color: #F78C6C">nowrap</span><span style="color: #89DDFF">;</span>
+<span style="color: #89DDFF">}</span></code></pre>
+      </div>
+      <div class="code">
+        <span
+          ><svg
+            aria-hidden="true"
+            aria-focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-50 -50 100 100"
+            width="1em"
+            height="1em"
+          >
+            <g fill="currentColor" stroke="none">
+              <path
+                d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"
+              />
+            </g></svg
+          >js</span
+        >
+        <pre
+          class="shiki"
+          style="background-color: #292d3e;"
+        ><code><span style="color: #C792EA">function</span><span style="color: #FFFFFF"> </span><span style="color: #82AAFF">setPreference</span><span style="color: #89DDFF">(</span><span style="color: #FF5370">preference</span><span style="color: #89DDFF">)</span><span style="color: #FFFFFF"> </span><span style="color: #89DDFF">{</span>
+<span style="color: #FFFFFF">  document</span><span style="color: #89DDFF">.</span><span style="color: #FFFFFF">body</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">setAttribute</span><span style="color: #FFFFFF">(</span><span style="color: #89DDFF">'</span><span style="color: #C3E88D">data-preference</span><span style="color: #89DDFF">'</span><span style="color: #89DDFF">,</span><span style="color: #FFFFFF"> </span><span style="color: #A6ACCD">preference</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span>
+<span style="color: #FFFFFF">  window</span><span style="color: #89DDFF">.</span><span style="color: #A6ACCD">localStorage</span><span style="color: #89DDFF">.</span><span style="color: #82AAFF">setItem</span><span style="color: #FFFFFF">(</span><span style="color: #89DDFF">'</span><span style="color: #C3E88D">color-scheme</span><span style="color: #89DDFF">'</span><span style="color: #89DDFF">,</span><span style="color: #FFFFFF"> </span><span style="color: #A6ACCD">preference</span><span style="color: #FFFFFF">)</span><span style="color: #89DDFF">;</span>
+<span style="color: #89DDFF">}</span></code></pre>
+      </div>
     </main>
 
-    <!-- footer -->
     <footer>
       <a href="https://twitter.com/borntofrappe">borntofrappe</a>
-      <span>
-        <svg
-          aria-hidden="true"
-          aria-focusable="false"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-50 -50 100 100"
-          width="1em"
-          height="1em"
-        >
-          <g
-            fill="currentColor"
-            stroke-width="10"
-            stroke="currentColor"
-            stroke-linejoin="round"
-            stroke-linecap="round"
-          >
-            <path
-              d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0"
-            />
-          </g>
-        </svg>
-      </span>
     </footer>
+
     <script src="script.js"></script>
   </body>
 </html>

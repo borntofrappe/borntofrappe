@@ -4,7 +4,7 @@ main {
   margin: 1rem auto;
 }
 
-table {
+main table {
   margin-top: 0.7rem;
   line-height: 2;
   table-layout: fixed;
@@ -19,7 +19,7 @@ table {
   position: relative;
 }
 
-table::before {
+main table::before {
   content: '';
   position: absolute;
   bottom: 100%;
@@ -37,21 +37,21 @@ table::before {
   background-position: -5px 5px;
 }
 
-table thead tr {
+main table thead tr {
   text-align: left;
 }
 
-table thead tr th {
+main table thead tr th {
   transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
-table thead tr th:hover {
+main table thead tr th:hover {
   color: hsl(340, 90%, 55%);
   color: var(--primary-6);
 }
 
-table thead tr {
+main table thead tr {
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(215, 22%, 5%);
@@ -61,28 +61,28 @@ table thead tr {
   background-position: 5px 5px;
 }
 
-table thead tr th {
+main table thead tr th {
   font-family: 'Maven Pro', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0 1rem 0.7rem;
 }
 
-table tbody tr td {
+main table tbody tr td {
   font-family: 'Source Code Pro', monospace;
   font-size: 1rem;
   padding: 0.5rem 1rem;
 }
 
-table tbody tr:nth-last-of-type(even) td {
+main table tbody tr:nth-last-of-type(even) td {
   background: hsl(210, 20%, 12%);
   background: var(--frappe-grey-1);
 }
 
-table [align='right'] {
+main table [align='right'] {
   text-align: right;
 }
 
-table [align='center'] {
+main table [align='center'] {
   text-align: center;
 }
