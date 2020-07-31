@@ -1,7 +1,7 @@
 module.exports = {
     name: 'borntofrappe',
     url: 'https://borntofrappe.netlify.app',
-    description: 'Personal website of an ever changing character: aspiring developer, fledging designer, long-distance runner.',
+    description: 'Welcome to my small corner on the web. This is where I save my journey as a hopeful developer, fledging designer, long-distance runner.',
     author: {
         name: 'Gabriele Corti',
         handle: '@borntofrappe',
@@ -11,7 +11,7 @@ module.exports = {
         {
           name: 'blog',
           href: '/blog',
-          desc: 'Take a look at the articles I wrote wrote on my way to become a full-fledged web developer.',
+          desc: 'Take a look at the articles I wrote on my way to become a full-fledged web developer.',
         },
         {
           name: 'codepen',

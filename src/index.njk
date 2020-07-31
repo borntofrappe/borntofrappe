@@ -21,6 +21,7 @@
       <li>long-distance runner</li>
     </ul>
   </div>
+
   {% set size = 450 %}
   {% set iconSize = 100 %}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-{{size / 2}} -{{size /
@@ -87,11 +88,12 @@
   <article id="getting-started">
     <h2 class="visually-hidden">Getting started</h2>
     <p>
-      The website is in its infancy, but I hope you'll find something of value still. If you haven't checked it out already, might I suggest a visit to the blog?
+      This website is in its infancy, but I hope you'll find something of
+      value still. If you haven't checked it out already, might I suggest a
+      visit to the blog?
     </p>
     <a href="/blog" class="relative">Explore articles</a>
   </article>
-
 
   <article id="about">
     <h2>Almost forgot</h2>
@@ -173,21 +175,37 @@
 
 {% block script %}
   <script>
-  const articles = document.querySelectorAll('article');
-  if (window.IntersectionObserver) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('observed');
+    if (window.IntersectionObserver) {
+      const articles = document.querySelectorAll('article');
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      );
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('observed');
+          } else {
+            entry.target.classList.remove('observed');
+          }
+        });
+      });
+
+      if (!prefersReducedMotion.matches) {
+        articles.forEach(article => {
+          observer.observe(article);
+        });
+      }
+      prefersReducedMotion.addListener(({ matches }) => {
+        if (matches) {
+          articles.forEach(article => {
+            observer.unobserve(article);
+          });
         } else {
-          entry.target.classList.remove('observed');
+          articles.forEach(article => {
+            observer.observe(article);
+          });
         }
       });
-    });
-
-    articles.forEach(article => {
-      observer.observe(article);
-    })
-  }
+    }
   </script>
 {% endblock %}

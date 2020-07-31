@@ -35,11 +35,11 @@
   padding: 0.5rem 0;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .navigation > *:last-child {
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .navigation nav > * + * {

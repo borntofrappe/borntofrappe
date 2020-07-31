@@ -2,24 +2,19 @@
 {% set heading = title %}
 {% set slug = title | slug %}
 {% set title = site.name + "/blog/" + slug %}
-{% set description = description or "" %}
+{% set description = description or "Description not found — feel free to report this issue @borntofrappe" %}
 
 {% extends "layouts/base.njk" %}
 
 {% block style %}
   {% include "css/post.css" %}
-  {% if not keywords %}
-  main {
-    margin-top: 2rem;
-  }
-  {% endif %}
 {% endblock %}
 
 {% block content %}
 <header>
   <h1>{{ heading }}</h1>
   {%- if keywords %}
-    <h2 class="visually-hidden">Keywords:</h2>
+    <h2 class="visually-hidden">Keywords</h2>
     <ul>
     {%- for keyword in keywords %}
       <li>

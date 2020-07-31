@@ -157,7 +157,7 @@ about.innerHTML = `
 <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
 <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Depends on the season.</p>
 
-<svg viewBox="-50 -50 100 50" width="200" height="100">
+<svg viewBox="-50 -50 100 50" width="400" height="200">
   <defs>
     <clipPath id="clip-planet">
       <circle r="30" />

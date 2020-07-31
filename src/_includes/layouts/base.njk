@@ -20,12 +20,14 @@
     </a>
   {% endif -%}
 
-  <nav aria-label="Breadcrumb navigation">
-    <a href="/">borntofrappe{{ icons.rocket | safe }}</a>
-    
-    {%- for breadcrumb in title | breadcrumbFilter %}
-      <a href="{{breadcrumb.href}}">/ {{breadcrumb.value}}{{ icons[breadcrumb.value] | safe }}</a>
-    {% endfor  -%}
+  <div class="navigation">
+    <nav aria-label="Breadcrumb navigation">
+      <a href="/">borntofrappe {{ icons.rocket | safe }}</a>
+      
+      {%- for breadcrumb in title | breadcrumbFilter %}
+        <a href="{{breadcrumb.href}}">/ {{breadcrumb.value}} {{ icons[breadcrumb.value] | safe }}</a>
+      {% endfor  -%}
+    </nav>
 
     <button disabled>
       <span class="visually-hidden">Toggle color scheme</span>
@@ -33,16 +35,15 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-75 -150 150 150"
         width="1em"
-        height="1em"
-      >
+        height="1em">
         <g class="scale">
-          <g class="rotate" fill="currentColor" transform="rotate(0)">
+          <g class="rotate" fill="currentColor">
             <g transform="translate(0 -75)">
               <g transform="scale(-1 1)">
-                <g class="rotate" transform="rotate(0)">
+                <g class="rotate">
                   <g transform="scale(-1 1)">
                     <circle r="22" />
-                    <circle transform="rotate(0) translate(0 41.2)" r="8.8" />
+                    <circle transform="translate(0 41.2)" r="8.8" />
                     <circle
                       transform="rotate(45) translate(0 41.2)"
                       r="8.8"
@@ -77,7 +78,7 @@
             </g>
             <g transform="translate(0 75)">
               <g transform="scale(-1 1)">
-                <g class="rotate" transform="rotate(0)">
+                <g class="rotate">
                   <g transform="scale(-1 1)">
                     <g class="scale">
                       <path
@@ -92,54 +93,49 @@
         </g>
       </svg>
     </button>
-  </nav>
+  </div>
 
   {%- block content %}{% endblock -%}
 
   <footer>
     <a href="https://twitter.com/borntofrappe">borntofrappe</a>
-    <span>
-      <svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
-        <g fill="currentColor" stroke-width="10" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
-          <path d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" />
-        </g>
-      </svg>
-    </span>
   </footer>
 
   {%- block script %}{% endblock -%}
 
   <script>
-    const button = document.querySelector('nav button');
-    button.removeAttribute('disabled');
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const colorScheme = window.localStorage.getItem('color-scheme');
-
     function setPreference(preference) {
       document.body.setAttribute('data-preference', preference);
       window.localStorage.setItem('color-scheme', preference);
     }
 
-    if (colorScheme) {
-      setPreference(colorScheme);
-    } else {
-      setPreference(mediaQuery.matches ? 'dark' : 'light');
+    if (window.CSS && CSS.supports('--primary-6: hotpink')) {
+      const button = document.querySelector('button');
+      button.removeAttribute('disabled');
+
+      const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const colorScheme = window.localStorage.getItem('color-scheme');
+
+      if (colorScheme) {
+        setPreference(colorScheme);
+      } else {
+        setPreference(prefersColorScheme.matches ? 'dark' : 'light');
+      }
+
+      button.addEventListener('click', () =>
+        setPreference(
+          window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
+        )
+      );
+      prefersColorScheme.addListener(({ matches }) =>
+        setPreference(matches ? 'dark' : 'light')
+      );
+
+      const timeout = setTimeout(() => {
+        document.body.setAttribute('data-transition', 'true');
+        clearTimeout(timeout);
+      }, 0);
     }
-
-    button.addEventListener('click', () =>
-      setPreference(
-        window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
-      )
-    );
-    mediaQuery.addListener(({ matches }) =>
-      setPreference(matches ? 'dark' : 'light')
-    );
-
-    const timeout = setTimeout(() => {
-      document.body.setAttribute('data-transition', 'true');
-      clearTimeout(timeout);
-    }, 0);
   </script>
   </body>
 </html>
