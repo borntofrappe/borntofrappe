@@ -1,3 +1,7 @@
+Update the size of the button to fit the element alongside the breadcrumb navigation.
+
+## Notes
+
 The focus of the demo is split in several areas:
 
 - the SVG syntax describing the two states of the toggle

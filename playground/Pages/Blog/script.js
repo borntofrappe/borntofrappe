@@ -1,8 +1,3 @@
-// populate main element
-const icons = {
-	sparkles: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/></g></svg>`,
-}
-
 const articles = [
   {
     title: 'From markdown to HTML',
@@ -41,26 +36,6 @@ const months = [
   'December',
 ];
 
-/* markup for each article
-
-<article>
-  <h2>
-    <a href="{link}">
-      {title}
-      {icon}                  <--- only for the first article
-    </a>
-  </h2>
-
-  <time datetime="{date}">
-    {formattedDate}           <--- May 10, 2020
-  </time>
-
-  <p>
-    {brief}
-  </p>
-</article>
-
-*/
 const main = document.querySelector('main');
 main.innerHTML = articles
   .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
@@ -74,11 +49,6 @@ main.innerHTML = articles
       <h2>
         <a href="/blog/${slug}">
           ${title}
-          ${
-            index === 0
-              ? icons.sparkles
-              : ''
-          }
         </a>
       </h2>
 
@@ -94,8 +64,6 @@ main.innerHTML = articles
   })
   .join('');
 
-
-// allow to toggle between color schemes
 function setPreference(preference) {
   document.body.setAttribute('data-preference', preference);
   window.localStorage.setItem('color-scheme', preference);
@@ -105,13 +73,13 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
   const button = document.querySelector('button');
   button.removeAttribute('disabled');
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
   const colorScheme = window.localStorage.getItem('color-scheme');
 
   if (colorScheme) {
     setPreference(colorScheme);
   } else {
-    setPreference(mediaQuery.matches ? 'dark' : 'light');
+    setPreference(prefersColorScheme.matches ? 'dark' : 'light');
   }
 
   button.addEventListener('click', () =>
@@ -119,7 +87,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  mediaQuery.addListener(({ matches }) =>
+  prefersColorScheme.addListener(({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

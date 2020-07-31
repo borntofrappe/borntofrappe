@@ -7,13 +7,13 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
   const button = document.querySelector('button');
   button.removeAttribute('disabled');
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
   const colorScheme = window.localStorage.getItem('color-scheme');
 
   if (colorScheme) {
     setPreference(colorScheme);
   } else {
-    setPreference(mediaQuery.matches ? 'dark' : 'light');
+    setPreference(prefersColorScheme.matches ? 'dark' : 'light');
   }
 
   button.addEventListener('click', () =>
@@ -21,7 +21,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  mediaQuery.addListener(({ matches }) =>
+  prefersColorScheme.addListener(({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

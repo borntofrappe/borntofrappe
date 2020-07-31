@@ -1,4 +1,4 @@
-# 404
+Page shown for the `/404` path and any other path not matching an existing route.
 
 ## Markup
 
@@ -6,18 +6,16 @@ Include the code from the following projects:
 
 - components/skip to content
 
-- components/breadcrumb navigation
+- sections/navigation
 
-- sections/header page
+- sections/header pages
 
-- ???
+- content
 
 - components/footer
 
-## ???
+## content
 
-In a `<main>` container include a paragraph describing the missing page. Moreover, include two anchor link elements to:
+Include a paragraph describing the missing page, as well as how to proceed from the page.
 
-1. send an email to the web master <!-- hey, that's me -->
-
-2. go to the homepage
+Include as well the property value pairs to style one of the anchor link as per the _Components/Relative Link_ component.
