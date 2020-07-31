@@ -1,4 +1,4 @@
-# Landing page
+Page shown for `/` root path.
 
 ## Markup
 
@@ -6,13 +6,11 @@ Include the code from the following projects:
 
 - components/skip to content
 
-- components/breadcrumb navigation
+- sections/navigation
 
 - sections/hero
 
 - sections/getting started
-
-- ???
 
 - sections/about
 
@@ -44,12 +42,10 @@ Wrap both article elements in a `<main>` container with an `id` of `content`.
 
 The article elements actually share a few properties, like vertical spacing between the child elements and size of the heading, paragraph elements. In light of this consider a more general selector to avoid duplicating the values. For instance: use the wrapping `<main>` element to set the font-size, use the general selector `article > * + *` to have the properties applied to both elements.
 
-## Intersection observer
-
-Observe both article elements to enable the animation of the vector graphics.
-
-### ???
+### Separator
 
 In between the article elements, include a visual to separate the distinct sections of the page.
 
 This visual repeats the wave-like pattern specified for the hero section and the footer, but at a smaller scale.
+
+!! the separator is included in the stylesheet, and depends on the connected element being a flex container

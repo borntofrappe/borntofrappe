@@ -1,4 +1,3 @@
-// markup
 const icons = {
   blog: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg>`,
   codepen: `<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 0 -40 l -46 25 46 25 46 -25 z" /><path d="M 0 -40 v 30" /><path transform="translate(0 50)" d="M 0 -40 v 30" /><path transform="translate(46 25)" d="M 0 -40 v 30" /><path transform="translate(-46 25)" d="M 0 -40 v 30" /><path transform="translate(0 30)" d="M 0 -40 l -46 25 46 25 46 -25 z" /></g></svg>`,
@@ -18,13 +17,12 @@ const getIcon = (icon, size = 42) =>
     `width="${size}" height="${size}"`
   );
 
-
 const links = [
   {
     name: 'blog',
     href: '/blog',
     desc:
-      'Take a look at the articles I wrote wrote on my way to become a full-fledged web developer.',
+      'Take a look at the articles I wrote on my way to become a full-fledged web developer.',
   },
   {
     name: 'codepen',
@@ -156,7 +154,7 @@ const about = document.querySelector('article#about');
 about.innerHTML = `
 <h2>Almost forgot</h2>
 <p>Name's <mark>Gabriele</mark>.</p>
-<p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language. </p>
+<p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
 <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Depends on the season.</p>
 
 <svg viewBox="-50 -50 100 50" width="200" height="100">
@@ -226,25 +224,40 @@ about.innerHTML = `
 </svg>
 `;
 
-const articles = document.querySelectorAll('article');
 if (window.IntersectionObserver) {
+  const articles = document.querySelectorAll('article');
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('observed')
+      if (entry.isIntersecting) {
+        entry.target.classList.add('observed');
       } else {
-        entry.target.classList.remove('observed')
+        entry.target.classList.remove('observed');
       }
     });
   });
 
-  articles.forEach(article => {
-    observer.observe(article);
-  })
+  if (!prefersReducedMotion.matches) {
+    articles.forEach(article => {
+      observer.observe(article);
+    });
+  }
+  prefersReducedMotion.addListener(({ matches }) => {
+    if (matches) {
+      articles.forEach(article => {
+        observer.unobserve(article);
+      });
+    } else {
+      articles.forEach(article => {
+        observer.observe(article);
+      });
+    }
+  });
 }
 
 
-// toggle
 function setPreference(preference) {
   document.body.setAttribute('data-preference', preference);
   window.localStorage.setItem('color-scheme', preference);
@@ -254,13 +267,13 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
   const button = document.querySelector('button');
   button.removeAttribute('disabled');
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
   const colorScheme = window.localStorage.getItem('color-scheme');
 
   if (colorScheme) {
     setPreference(colorScheme);
   } else {
-    setPreference(mediaQuery.matches ? 'dark' : 'light');
+    setPreference(prefersColorScheme.matches ? 'dark' : 'light');
   }
 
   button.addEventListener('click', () =>
@@ -268,7 +281,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  mediaQuery.addListener(({ matches }) =>
+  prefersColorScheme.addListener(({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

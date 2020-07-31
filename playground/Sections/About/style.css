@@ -3,10 +3,9 @@ body {
 }
 
 article {
+  width: 90vw;
   max-width: 40rem;
   margin: 1rem auto;
-  margin-top: auto;
-  width: 90vw;
 }
 
 /*
@@ -40,6 +39,11 @@ article > * + * {
   margin-top: 0.4em;
 }
 
+article p:first-of-type {
+  margin-top: 2em;
+  margin-top: var(--elevation);
+}
+
 article h2 {
   font-size: 1.8em;
   text-align: center;
@@ -49,11 +53,6 @@ article p {
   font-size: 1em;
   line-height: 1.75;
   align-self: flex-start;
-}
-
-article p:first-of-type {
-  margin-top: 2em;
-  margin-top: var(--elevation);
 }
 
 article mark {
@@ -144,6 +143,7 @@ body[data-preference='dark'] article mark::after {
       clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
     }
   }
+
   @keyframes rotate-ufo {
     10% {
       transform: translate(50%, 50%) rotate(40deg);
@@ -159,9 +159,11 @@ body[data-preference='dark'] article mark::after {
     article.observed mark::after {
       animation-play-state: paused;
     }
+
     article.observed mark::before {
       clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
     }
+
     article.observed mark::after {
       transform: translate(50%, 50%) rotate(25deg);
     }
