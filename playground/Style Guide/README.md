@@ -61,7 +61,7 @@ The script _Icons/script.js_ creates two files:
 
 ## Patterns
 
-Process the syntax through [this website](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax
+Process the syntax through [yoksel.github.io](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax
 
 Include the syntax in the `url()` function for one of the following properties
 
