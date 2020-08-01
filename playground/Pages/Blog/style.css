@@ -247,7 +247,13 @@ main article:first-of-type h2 {
 }
 
 @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
+  main article:first-of-type h2 a {
+    display: inline-flex;
+    align-items: center;
+  }
+
   main article:first-of-type h2 a::after {
+    flex-shrink: 0;
     content: '';
     width: 1.5em;
     height: 1.5em;
