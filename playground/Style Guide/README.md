@@ -88,3 +88,7 @@ Include the syntax in the `url()` function for one of the following properties
 - `mask-image`
 
 Refer to _Patterns/index.html_ for a visual
+
+## Illustrations
+
+Include the graphics in the dedicated pages and sections. Consider changing the `viewBox` attribute to crop the visuals as needed.
