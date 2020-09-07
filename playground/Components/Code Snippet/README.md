@@ -16,6 +16,8 @@ In a `<div>` container, introduce the code with a `<span>` element providing add
 </div>
 ```
 
+Add aria roles to the span so that assistive technologies are informed of the text's own purpose.
+
 ## prefers-color-scheme
 
 For the dark preference, reduce the weight of the code included inline.

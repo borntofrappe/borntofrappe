@@ -33,7 +33,7 @@ module.exports = function (eleventyConfig) {
     const icon = icons[lang] ? icons[lang] : '';
     const code = content.replace(/</g, '&lt;');
 
-    return `<div class="code"><span>${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
+    return `<div class="code"><span aria-label="Language">${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
   };
   eleventyConfig.setLibrary('md', markdownLibrary);
 
