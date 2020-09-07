@@ -49,15 +49,10 @@ const header = document.querySelector('header');
 
 header.innerHTML = `
 <div>
-  <h1 class="visually-hidden">
-    borntofrappe
+  <h1>
+    Hello, World
   </h1>
-  <p>Welcome to my small corner on the web.<br/>This is where I save my journey as a:</p>
-  <ul>
-    <li>hopeful developer</li>
-    <li>fledging designer</li>
-    <li>long-distance runner</li>
-  </ul>
+  <p>I build stuff with code.</p>
 </div>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-${size / 2} -${size /
