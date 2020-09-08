@@ -11,3 +11,7 @@
 - feature: icons page showcasing the vector graphics designed for the website
 
 - design: illustration for the 404 page
+
+## Research
+
+- deprecation notice: `window.matchMedia().addListener`

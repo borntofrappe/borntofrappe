@@ -75,3 +75,7 @@ Use the `::after` pseudo to add a wave-like pattern. Stretch its width to cover 
 ## Redundancy
 
 The `::before` and `::after` pseudo elements share a few properties, but I prefer to repeat the syntax. The two have a different purpose, and the two change independently of one another.
+
+## Header blog
+
+For the first page, the header includes an additional illustration in one of the pseudo elements of the paragraph.

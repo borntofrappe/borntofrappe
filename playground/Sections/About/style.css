@@ -1,5 +1,5 @@
 body {
-  padding-top: 150vh;
+  min-height: 300vh;
 }
 
 article {

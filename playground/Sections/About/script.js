@@ -31,10 +31,9 @@ const colors = [
 const article = document.querySelector('article');
 
 article.innerHTML = `
-<h2>Almost forgot</h2>
-<p>Name's <mark>Gabriele</mark>.</p>
-<p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
-<p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Depends on the season.</p>
+<h2>What else?</h2>
+<p>I'm <mark>Gabriele Corti</mark>, coming to you from Europe, and one hour after Greenwhich time.</p>
+<p>Outside of VsCode, you'll find me running, watching an F1 race, or enjoying a dated video game. Depends on the season.</p>
 
 <svg viewBox="-50 -50 100 100" width="200" height="200">
   <defs>

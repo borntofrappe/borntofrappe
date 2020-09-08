@@ -122,3 +122,29 @@ header.innerHTML = `
     .join('')}
 </svg>
 `;
+
+if (window.IntersectionObserver) {
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('observed');
+      } else {
+        entry.target.classList.remove('observed');
+      }
+    });
+  });
+
+  if (!prefersReducedMotion.matches) {
+    observer.observe(header);
+  }
+  prefersReducedMotion.addListener(({ matches }) => {
+    if (matches) {
+      observer.unobserve(header);
+    } else {
+      observer.observe(header);
+    }
+  });
+}
