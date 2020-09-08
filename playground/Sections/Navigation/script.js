@@ -21,7 +21,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  mediaQuery.addListener(({ matches }) =>
+  mediaQuery.addEventListener('change', ({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

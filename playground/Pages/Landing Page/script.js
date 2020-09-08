@@ -244,7 +244,7 @@ if (window.IntersectionObserver) {
       observer.observe(article);
     });
   }
-  prefersReducedMotion.addListener(({ matches }) => {
+  prefersReducedMotion.addEventListener('change', ({ matches }) => {
     if (matches) {
       articles.forEach(article => {
         observer.unobserve(article);
@@ -281,7 +281,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  prefersColorScheme.addListener(({ matches }) =>
+  prefersColorScheme.addEventListener('change', ({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

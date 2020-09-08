@@ -195,7 +195,7 @@
           observer.observe(article);
         });
       }
-      prefersReducedMotion.addListener(({ matches }) => {
+      prefersReducedMotion.addEventListener('change', ({ matches }) =>
         if (matches) {
           articles.forEach(article => {
             observer.unobserve(article);

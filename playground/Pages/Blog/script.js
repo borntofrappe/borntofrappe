@@ -87,7 +87,7 @@ if (window.CSS && CSS.supports('--primary-6: hotpink')) {
       window.localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark'
     )
   );
-  prefersColorScheme.addListener(({ matches }) =>
+  prefersColorScheme.addEventListener('change', ({ matches }) =>
     setPreference(matches ? 'dark' : 'light')
   );
 

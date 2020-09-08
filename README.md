@@ -11,5 +11,3 @@
 - feature: icons page showcasing the vector graphics designed for the website
 
 - update: include illustrations in pages
-
-- update: use `addEventListener` to detect a change in the preference of a media query — this instead of `addListener`
