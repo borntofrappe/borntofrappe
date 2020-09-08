@@ -2,8 +2,8 @@
 
 ## Roadmap
 
-- update: incorporate changes in src folder
-
 - feature: syntax highlighting for code fences
 
 - feature: icons page showcasing the vector graphics designed for the website
+
+- redesign: break telescope.svg into two graphics, animate with CSS

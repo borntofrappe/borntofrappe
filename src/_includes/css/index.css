@@ -106,78 +106,48 @@ header div > * + * {
   margin-top: 1.25rem;
 }
 
-header p {
+header div {
+  margin: 0 1em;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+header div::after {
+  z-index: 20;
+  content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="150" height="150"%3E%3Cg stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cg fill="hsl(215, 10%25, 97%25)" stroke="none"%3E%3Cpath d="M 20 -2.5 c 10 -5 15 5 5 10 a 8 8 0 0 0 -5 -10" /%3E%3Cpath transform="scale(-1 1)" d="M 20 -2.5 c 10 -5 15 5 5 10 a 8 8 0 0 0 -5 -10" /%3E%3Cpath d="M 20 41.5 c 2.5 10 -10 10 -16 -5 a 16 16 0 0 0 16 5" /%3E%3Cpath transform="scale(-1 1)" d="M 20 41.5 c 2.5 10 -10 10 -16 -5 a 16 16 0 0 0 16 5" /%3E%3C/g%3E%3Cg stroke="none"%3E%3Ccircle fill="none" r="25" cy="-24"/%3E%3Cg fill="hsl(215, 10%25, 97%25)"%3E%3Cpath d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath transform="scale(-1 1)" d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath d="M -25 -24 a 25 25 0 0 1 50 0 26 26 0 0 0 -50 0" /%3E%3Cpath d="M -25 -24 a 25 25 0 0 0 50 0 25.2 25.2 0 0 1 -50 0" /%3E%3Cpath d="M -8 -35 a 12.5 12.5 0 0 0 5 27.5 27.5 27.5 0 0 1 -5 -27.5" /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  margin-top: -50px;
+  transform: rotate(30deg);
+  animation: rotate 100s var(--ease-in-out-sine) alternate infinite;
+  animation: rotate 100s cubic-bezier(0.445, 0.05, 0.55, 0.95) alternate
+    infinite;
+  animation-play-state: paused;
+}
+
+header div h1 {
+  color: inherit;
+}
+
+header div p {
   font-size: 0.8em;
   line-height: 1.75;
 }
 
-header ul {
-  list-style: none;
-  --badge-size: 1.3em;
-  margin-left: 1.3em;
-  margin-left: var(--badge-size);
+header.observed div::after {
+  animation-play-state: running;
 }
 
-header ul > * + * {
-  margin-top: 0.75em;
-}
-
-header ul li {
-  font-family: 'Maven Pro', sans-serif;
-  text-transform: capitalize;
-  font-size: 1em;
-  letter-spacing: -0.5px;
-  font-weight: 700;
-  line-height: 1.75;
-  position: relative;
-}
-
-header ul li::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 100%;
-  width: 0.8em;
-  height: 0.8em;
-  transform: translate(-0.25em, 0%);
-  background: hsl(340, 90%, 55%);
-  background: var(--primary-6);
-  border-radius: 50%;
-}
-
-@supports ((mask-image: url()) or (-webkit-mask-image: url())) {
-  header ul {
-    --badge-size: 1.6em;
-    margin-left: 1.6em;
-    margin-left: var(--badge-size);
-  }
-  header ul li::before {
-    border-radius: initial;
-    right: initial;
-    left: -0.25em;
-    width: 1.6em;
-    width: var(--badge-size);
-    height: 1.6em;
-    height: var(--badge-size);
-    transform: translate(-100%, 0%);
-    mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
-    -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+@keyframes rotate {
+  to {
+    transform: rotate(-30deg);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body:not([data-preference]) header ul li {
-    font-weight: 600;
-  }
-}
-
-body[data-preference='dark'] header ul li {
-  font-weight: 600;
-}
-
-@media (max-width: 40rem) {
-  header ul li {
-    letter-spacing: 0px;
+@media (prefers-reduced-motion: reduce) {
+  header.observed div::after {
+    animation-play-state: paused;
   }
 }
 
@@ -262,7 +232,7 @@ main {
 article {
   width: 90vw;
   max-width: 40rem;
-  margin: 4.5em auto;
+  margin: 5em auto;
 }
 
 article + article {
@@ -286,7 +256,7 @@ article + article::before {
 
 @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
   article + article {
-    margin-top: 6.5em;
+    margin-top: 7em;
   }
   article + article::before {
     margin-bottom: initial;

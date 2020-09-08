@@ -9,17 +9,12 @@
 {% endblock %}
 
 {% block content %}
-<header id="hero">
+<header id="hero" class="observable">
   <div>
-    <h1 class="visually-hidden">
-      borntofrappe
+    <h1>
+      Hello, World
     </h1>
-    <p>Welcome to my small corner on the web.<br/>This is where I save my journey as a:</p>
-    <ul>
-      <li>hopeful developer</li>
-      <li>fledging designer</li>
-      <li>long-distance runner</li>
-    </ul>
+    <p>I build stuff with code.</p>
   </div>
 
   {% set size = 450 %}
@@ -85,7 +80,7 @@
 </header>
 
 <main id="content">
-  <article id="getting-started">
+  <article id="getting-started" class="observable">
     <h2 class="visually-hidden">Getting started</h2>
     <p>
       This website is in its infancy, but I hope you'll find something of
@@ -95,11 +90,10 @@
     <a href="/blog" class="relative">Explore articles</a>
   </article>
 
-  <article id="about">
-    <h2>Almost forgot</h2>
-    <p>Name's <mark>Gabriele</mark>.</p>
-    <p>Born and raised in Italy, I enjoyed a year in Germany, where I developed a lasting appreciation of the French language.</p>
-    <p>Outside of VsCode, you'll find me running, nursing a cup of tea, or enjoying a dated video game.<br/>Depends on the season.</p>
+  <article id="about" class="observable">
+   <h2>Almost forgot</h2>
+    <p>I'm <mark>Gabriele Corti</mark>, coming to you from Europe, and a couple of hours after Greenwich time.</p>
+    <p>Outside of VsCode, you'll find me running, watching an F1 race, or enjoying a dated video game. Depends on the season.</p>
 
     {% set colors = [
       'hsl(350, 100%, 8%)',
@@ -114,7 +108,7 @@
       'hsl(335, 100%, 86%)',
       'hsl(330, 100%, 92%)'
     ] %}
-    {% set satellites = ['world', 'editor', 'running', 'tea', 'gaming'] %}
+    {% set satellites = ['world', 'editor', 'running', 'flag', 'gaming'] %}
     <svg viewBox="-50 -50 100 50" width="400" height="200">
       <defs>
         <clipPath id="clip-planet">
@@ -176,7 +170,7 @@
 {% block script %}
   <script>
     if (window.IntersectionObserver) {
-      const articles = document.querySelectorAll('article');
+      const observables = document.querySelectorAll('.observable');
       const prefersReducedMotion = window.matchMedia(
         '(prefers-reduced-motion: reduce)'
       );
@@ -191,18 +185,18 @@
       });
 
       if (!prefersReducedMotion.matches) {
-        articles.forEach(article => {
-          observer.observe(article);
+        observables.forEach(observable => {
+          observer.observe(observable);
         });
       }
-      prefersReducedMotion.addEventListener('change', ({ matches }) =>
+      prefersReducedMotion.addEventListener('change', ({ matches }) => {
         if (matches) {
-          articles.forEach(article => {
-            observer.unobserve(article);
+          observables.forEach(observable => {
+            observer.unobserve(observable);
           });
         } else {
-          articles.forEach(article => {
-            observer.observe(article);
+          observables.forEach(observable => {
+            observer.observe(observable);
           });
         }
       });
