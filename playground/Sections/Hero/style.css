@@ -133,9 +133,11 @@ header div::after {
     infinite;
   animation-play-state: paused;
 }
+
 header div h1 {
   color: inherit;
 }
+
 header div p {
   font-size: 0.8em;
   line-height: 1.75;

@@ -141,6 +141,15 @@ header {
   position: relative;
 }
 
+header::before {
+  position: absolute;
+  top: 0;
+  width: 8rem;
+  right: 50%;
+  transform: translate(-50%, 0);
+  content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-55 -35 110 60"%3E%3Cg transform="rotate(180)"%3E%3Cg fill="hsl(215, 10%25, 97%25)" stroke="hsl(215, 10%25, 97%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"%3E%3Cpath transform="translate(0 -10)" d="M -4 0 a 4 4 0 0 0 4 -4 4 4 0 0 0 4 4 4 4 0 0 0 -4 4 4 4 0 0 0 -4 -4" /%3E%3Cpath transform="rotate(90) translate(0 -35) scale(0.8)" d="M -4 0 a 4 4 0 0 0 4 -4 4 4 0 0 0 4 4 4 4 0 0 0 -4 4 4 4 0 0 0 -4 -4" /%3E%3Cpath transform="rotate(-90) translate(0 -35) scale(0.8)" d="M -4 0 a 4 4 0 0 0 4 -4 4 4 0 0 0 4 4 4 4 0 0 0 -4 4 4 4 0 0 0 -4 -4" /%3E%3C/g%3E%3Cg transform="translate(0 54)"%3E%3Cg stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cg stroke="none"%3E%3Ccircle fill="none" r="25" cy="-24"/%3E%3Cg fill="hsl(215, 10%25, 97%25)"%3E%3Cpath d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath transform="scale(-1 1)" d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath d="M -25 -24 a 25 25 0 0 1 50 0 26 26 0 0 0 -50 0" /%3E%3Cpath d="M -25 -24 a 25 25 0 0 0 50 0 25.2 25.2 0 0 1 -50 0" /%3E%3Cpath d="M -8 -35 a 12.5 12.5 0 0 0 5 27.5 27.5 27.5 0 0 1 -5 -27.5" /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
 header::after {
   content: '';
   position: absolute;

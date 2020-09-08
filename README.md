@@ -2,12 +2,8 @@
 
 ## Roadmap
 
-- feature: include illustrations in the different pages
-
-- review: text introducing the website
+- update: incorporate changes in src folder
 
 - feature: syntax highlighting for code fences
 
 - feature: icons page showcasing the vector graphics designed for the website
-
-- update: include illustrations in pages

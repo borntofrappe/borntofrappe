@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -55 120 110" width="240" height="220" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -45 120 80" width="240" height="160" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
       <g transform="rotate(-80) translate(0 -45) rotate(80) scale(0.25)">      
         <path fill="currentColor" stroke="none" d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"/>

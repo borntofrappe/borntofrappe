@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-55 -55 110 75" width="220" height="150" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-55 -35 110 60" width="220" height="120" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
   <g transform="rotate(180)">
     <g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
       <path transform="translate(0 -10)" d="M -4 0 a 4 4 0 0 0 4 -4 4 4 0 0 0 4 4 4 4 0 0 0 -4 4 4 4 0 0 0 -4 -4" />

@@ -31,7 +31,7 @@ const colors = [
 const article = document.querySelector('article');
 
 article.innerHTML = `
-<h2>What else?</h2>
+<h2>Almost forgot</h2>
 <p>I'm <mark>Gabriele Corti</mark>, coming to you from Europe, and a couple of hours after Greenwich time.</p>
 <p>Outside of VsCode, you'll find me running, watching an F1 race, or enjoying a dated video game. Depends on the season.</p>
 
