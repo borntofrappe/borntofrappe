@@ -12,8 +12,8 @@
 
 - design: illustration for the 404 page
 
-## Research
+- update: include illustrations in pages
 
-- deprecation notice: `window.matchMedia().addListener`
+- update: use `addEventListener` to detect a change in the preference of a media query — this instead of `addListener`
 
 - design: flag icon, representing an F1 race

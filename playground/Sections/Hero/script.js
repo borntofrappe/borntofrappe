@@ -140,7 +140,7 @@ if (window.IntersectionObserver) {
   if (!prefersReducedMotion.matches) {
     observer.observe(header);
   }
-  prefersReducedMotion.addListener(({ matches }) => {
+  prefersReducedMotion.addEventListener('change', ({ matches }) => {
     if (matches) {
       observer.unobserve(header);
     } else {
