@@ -15,3 +15,5 @@
 ## Research
 
 - deprecation notice: `window.matchMedia().addListener`
+
+- design: flag icon, representing an F1 race

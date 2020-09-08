@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -55 120 110" width="240" height="220" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="rotate(-80) translate(0 -45) rotate(80) scale(0.25)">      
+        <g transform="scale(0.8)">
+          <g fill="none" stroke-width="16">
+            <g transform="translate(0 13.5)">
+              <path d="M 34 0 h -68"/>
+              <path transform="rotate(45)" d="M 40 0 h -80"/>
+              <path transform="rotate(-45)" d="M 40 0 h -80"/>
+            </g>
+          </g>
+          <g fill="currentColor" stroke-width="8">
+            <path  d="M -0 -46 a 17 17 0 0 1 17 17 h -34 a 17 17 0 0 1 17 -17" />
+            <path  d="M -0 -10 h 25 v 25 a 25 25 0 0 1 -50 0 v -25 z" />
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(0 54)">
+      <g stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <g stroke="none">
+          <circle fill="none" r="25" cy="-24"/>
+          <g fill="hsl(215, 10%, 97%)">
+            <path d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/>
+            <path transform="scale(-1 1)" d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/>
+            
+            <path d="M -25 -24 a 25 25 0 0 1 50 0 26 26 0 0 0 -50 0" />
+            <path d="M -25 -24 a 25 25 0 0 0 50 0 25.2 25.2 0 0 1 -50 0" />
+            <path d="M -8 -35 a 12.5 12.5 0 0 0 5 27.5 27.5 27.5 0 0 1 -5 -27.5" />
+          </g>
+        </g>
+      </g>
+    </g>
+</svg>

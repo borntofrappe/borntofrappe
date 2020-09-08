@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -55 120 110" width="240" height="220" style="background: hsl(215, 22%, 5%); color:  hsl(215, 10%, 97%);">
-  <g transform="rotate(180)">
     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <g transform="rotate(-80) translate(0 -45) rotate(80) scale(0.25) rotate(180)">      
+      <g transform="rotate(-80) translate(0 -45) rotate(80) scale(0.25)">      
         <path fill="currentColor" stroke="none" d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"/>
         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M-45-37.5h90v75h-90z" stroke-width="10"/>
@@ -10,7 +9,7 @@
           </g>
         </g>      
       </g>
-      <g transform="translate(0 -25) scale(0.35) rotate(180)">
+      <g transform="translate(0 -25) scale(0.35)">
         <path stroke-width="8" d="M -10.5 12 a 21 21 0 1 1 21 0 v 5 a 4 4 0 0 1 -4 4 h -13 a 4 4 0 0 1 -4 -4 v -5"/>
         <g stroke-width="7">
           <path d="M -8 31 h 16"/>
@@ -27,7 +26,7 @@
           <path transform="rotate(-135) translate(0 -35.5)" d="M 0 0 v -5.5" />
         </g>
       </g>
-      <g transform="rotate(80) translate(0 -45) rotate(-80) scale(0.25) rotate(180)">
+      <g transform="rotate(80) translate(0 -45) rotate(-80) scale(0.25)">
         <g stroke-width="8">
           <path d="M 16.5 -44 h -52.5 a 10 10 0 0 0 -10 10 v 68 a 10 10 0 0 0 10 10 h 54 a 10 10 0 0 0 10 -10 v -17.5"/>
           <path d="M 29 -37.5 l 17 17 -38 38 h -17 v -17 l 38 -38"/>
@@ -56,5 +55,4 @@
         </g>
       </g>
     </g>
-  </g>
 </svg>
