@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+  <g fill="hsl(339, 90%, 67%)" stroke="hsl(350, 100%, 8%)" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(0 -17)">
+      <g class="tilt">
+        <g transform="translate(26 0)">
+          <g fill="hsl(336, 93%, 77%)">
+            <path stroke-width="5" transform="translate(-63 0) scale(0.4)" d="M 0 -13 l -20 1 v 24 l 20 1" />
+            <path stroke-width="3.6" transform="translate(-51 0) scale(0.55)" d="M 0 -13 l -20 1 v 24 l 20 1" />
+            <path stroke-width="3" transform="translate(-37 0) scale(0.65)" d="M 0 -13 l -20 1 v 24 l 20 1" />
+            <path stroke-width="2.5" transform="translate(-20 0) scale(0.8)" d="M 0 -13 l -20 1 v 24 l 20 1" />
+            <g stroke-width="2">
+              <path d="M 0 -13 l -20 1 v 24 l 20 1" />
+              <path d="M 12 -14 a 15 15 0 0 1 0 28" />
+              <path fill="none" stroke-width="3" stroke-dasharray="0 8 12 20" transform="translate(12 0) scale(0.65)" d="M 0 -14 a 15 15 0 0 1 0 28" />
+              <rect fill="hsl(339, 90%, 67%)" y="-17" width="12" height="34" rx="6" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

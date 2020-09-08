@@ -6,4 +6,4 @@
 
 - feature: icons page showcasing the vector graphics designed for the website
 
-- redesign: break telescope.svg into two graphics, animate with CSS
+- bug: rename rotate animation to avoid duplication
