@@ -1,0 +1,18 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -90 100 100" width="1em" height="1em">
+  <g transform="rotate(10)">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <g>
+        <path d="M 0 0 v -80" stroke-width="8"/>
+        <path d="M 0 -80.5 h 70 v 52 h -70" stroke-width="7"/>
+      </g>
+    </g>
+    <g fill="currentColor">
+      <rect x="19" y="-77.5" width="16" height="16" rx="1" />
+      <rect x="51" y="-77.5" width="16" height="16" rx="1" />
+      <rect x="3" y="-61.5" width="16" height="16" rx="1" />
+      <rect x="35" y="-61.5" width="16" height="16" rx="1" />
+      <rect x="19" y="-45.5" width="16" height="16" rx="1" />
+      <rect x="51" y="-45.5" width="16" height="16" rx="1" />
+    </g>
+  </g>
+</svg>
