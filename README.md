@@ -6,4 +6,4 @@
 
 - feature: icons page showcasing the vector graphics designed for the website
 
-- bug: rename rotate animation to avoid duplication
+- refactor: svg syntax describing telescope — no need to include a class
