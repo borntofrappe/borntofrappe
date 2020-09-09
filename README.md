@@ -5,5 +5,3 @@
 - feature: syntax highlighting for code fences
 
 - feature: icons page showcasing the vector graphics designed for the website
-
-- refactor: svg syntax describing telescope — no need to include a class
