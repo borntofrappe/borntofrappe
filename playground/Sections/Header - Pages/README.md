@@ -76,6 +76,8 @@ Use the `::after` pseudo to add a wave-like pattern. Stretch its width to cover 
 
 The `::before` and `::after` pseudo elements share a few properties, but I prefer to repeat the syntax. The two have a different purpose, and the two change independently of one another.
 
-## Header blog
+## SVG
 
-For the first page, the header includes an additional illustration in one of the pseudo elements of the paragraph.
+The `<h1>` element introducing the page includes an additional illustration in the `::before` pseudo element. The idea is to use the astronaut graphic to introduce the route with an icon or two.
+
+The syntax from the "Illustration" folder is modified to have the icons rotate an additional `180` degrees. In this manner, even if the graphic is flipped, the icons are rightside-up.
