@@ -78,6 +78,4 @@ The `::before` and `::after` pseudo elements share a few properties, but I prefe
 
 ## SVG
 
-The `<h1>` element introducing the page includes an additional illustration in the `::before` pseudo element. The idea is to use the astronaut graphic to introduce the route with an icon or two.
-
-The syntax from the "Illustration" folder is modified to have the icons rotate an additional `180` degrees. In this manner, even if the graphic is flipped, the icons are rightside-up.
+The `<p>` element closing the header includes an additional illustration in the `::after` pseudo element. The idea is to use the astronaut graphic to introduce the route with an icon or two. In the final design, consider adding the illustration on the `::before` pseudo element on the element which follows the header.
