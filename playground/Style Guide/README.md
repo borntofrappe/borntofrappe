@@ -1,18 +1,18 @@
 # Style Guide
 
-Refer to the different folders for more detail
+Refer to the different folders for more detail.
 
 ## Fonts
 
-| Pick            | Type       | Purpose                             |
+Consider the following table as a quick reference.
+
+| Choice          | Type       | Purpose                             |
 | --------------- | ---------- | ----------------------------------- |
 | Maven Pro       | sans-serif | navigation, footer, header, heading |
 | Ubuntu          | sans-serif | body                                |
 | Source Code Pro | monospace  | code                                |
 
-The purpose is not prescriptive, but more of a guideline. Maven Pro is slightly bulkier than Ubuntu, and used sparingly throughout the interface.
-
-From Google Fonts, include the fonts in the markup or in the stylesheet.
+From Google Fonts, include the fonts in the markup.
 
 ```html
 <link
@@ -21,19 +21,21 @@ From Google Fonts, include the fonts in the markup or in the stylesheet.
 />
 ```
 
+Or, alternatively, in the stylesheet.
+
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500;600;700&family=Source+Code+Pro&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 ```
 
-Refer to _Fonts/index.html_ for a visual.
-
 ## Colors
 
-In _Colors/index.html_ I describe four different sets of colors. `frappe` and `frappe-grey` are used by default, while `twilight` and `twilight-grey` for a dark color scheme.
+In the global stylesheet, I describe four different sets of colors. `frappe` and `frappe-grey`, included by default, and `twilight` and `twilight-grey` for the alternative color palette. dark color scheme.
 
-Refer to _Colors/global.css_ to see how the variables are set up. Include the sets in the `:root` element, and the variables actually using these values in the `body` element, using `--primary-*` and `--grey-*` labels. For the dark color scheme, refer to the logic described in _Components/Dark Mode Toggle_.
+The idea is to include the sets in the `:root` selector, and the variables actually using these values in the `body` selector, with `--primary-*` and `--grey-*` labels.
 
-**Be warned**: in the design of a few components, like the footer, the elements use the colors from a one scheme only.
+In the `Colors` folder, you find a node script which looks at the global stylesheet to provide a visual representation of the possible colors in a markup file.
+
+In terms of design, it is worth mentioning how in the design of a few components, like the footer, the elements use the colors from a one color scheme only.
 
 ```css
 footer {
@@ -42,9 +44,11 @@ footer {
 }
 ```
 
-The idea is to have "fixtures", elements which do not change even if the preference changes.
+The idea is to here have "fixtures", elements which do not change even if the preference changes.
 
 ## Icons
+
+In creating the vector graphics, I try to adhere to a few guidelines:
 
 - set up a viewBox of `-50 -50 100 100`
 
@@ -52,7 +56,7 @@ The idea is to have "fixtures", elements which do not change even if the prefere
 
 - add `aria-hidden: true` and `aria-focusable: false`
 
-When designing a new icon, the following syntax provides a solid starting point.
+The following syntax provides a solid starting point.
 
 ```html
 <svg
@@ -69,26 +73,26 @@ When designing a new icon, the following syntax provides a solid starting point.
 </svg>
 ```
 
-The script _Icons/script.js_ creates two files:
+In the `Icons` folder, you find a node script which looks for SVG files to create two files:
 
-- _icons.js_; an object detailing the icons in property value pairs
+- `icons.js`, with an object detailing the icons in key-value pairs
 
-- _index.html_; a visual
+- `index.html`, with a visual representation of the possible icons
+
+## Illustrations
+
+Illustrations are meant to describe one-off visuals for specific sections or pages.
 
 ## Patterns
 
-Process the syntax through [yoksel.github.io](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax
+Patterns are included in the sections/pages of the website to add more variety to the background/edges of different elements.
 
-Include the syntax in the `url()` function for one of the following properties
+The vector graphics are processed through [yoksel.github.io/url-encoder](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax.
+
+The syntax is finally included in the `url()` function for one of the following properties:
 
 - `content`
 
 - `background-image`
 
 - `mask-image`
-
-Refer to _Patterns/index.html_ for a visual
-
-## Illustrations
-
-Include the graphics in the dedicated pages and sections. Consider changing the `viewBox` attribute to crop the visuals as needed.
