@@ -20,7 +20,7 @@ module.exports = function (eleventyConfig) {
     const { content } = tokens[index - 1];
     const id = content.toLowerCase().replace(/ /g, '-');
 
-    return `<a href="#${id}"><span class="visually-hidden">permalink</span>${icons.permalink}</a></${tag}>`;
+    return `<a href="#${id}"><span class="visually-hidden">Permalink</span>${icons.permalink}</a></${tag}>`;
   };
 
   markdownLibrary.renderer.rules.fence = function (tokens, index) {
