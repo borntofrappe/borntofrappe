@@ -1,4 +1,6 @@
-Use the syntax described in `rocket.svg`. The icon is tweaked to have the rocket tilted on its right side. Moreover, its scale is reduced to `0.8` the natural size.
+# Relative Link
+
+Use the syntax described in `rocket.svg`. The icon is tweaked to have the rocket tilted on its right side. Moreover, its scale is reduced to `0.8` the natural size. This last choice allows to have a small, but visible gap between the rocket and the trail which follows.
 
 ## relative
 

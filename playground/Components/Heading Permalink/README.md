@@ -1,4 +1,6 @@
-In the script I include the markup for several levels of headings. In each heading, the idea is to include an anchor link using the heading's id as a reference. Before the icon describing the permalink, include a `<span>` element for accessibility.
+# Heading Permalink
+
+In the script I include the markup for several levels of headings. Fpr each heading, the idea is to include an anchor link using the heading's id as a reference. Before the icon describing the permalink, the idea is to also add a `<span>` element for accessibility.
 
 ```html
 <h2 id="{id}">

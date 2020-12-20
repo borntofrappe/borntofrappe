@@ -1,3 +1,5 @@
+# Mark
+
 Use the syntax described in `ufo.svg` and `ufo-dark`.
 
 ## elevation
@@ -16,15 +18,45 @@ For the dark preference:
 
 - reduce the weight of the `<mark>` element
 
+  ```css
+  @media (prefers-color-scheme: dark) {
+    body:not([data-preference]) mark {
+      font-weight: 600;
+    }
+  }
+
+  body[data-preference='dark'] mark {
+    font-weight: 600;
+  }
+  ```
+
 - use `ufo-dark.svg` instead of the default `ufo.svg`
+
+  ```css
+  @media (prefers-color-scheme: dark) {
+    body[data-preference='dark'] mark::after {
+      content: url('ufo-dark-syntax');
+    }
+  }
+
+  body[data-preference='dark'] mark::after {
+    content: url('ufo-dark-syntax');
+  }
+  ```
 
 - reduce the opacity of the `::before` pseudo element
 
-Update the attribute on the `body` element to review the changes.
+  ```css
+  @media (prefers-color-scheme: dark) {
+    body:not([data-preference]) mark::before {
+      opacity: 0.2;
+    }
+  }
 
-```html
-<body data-preference="dark"></body>
-```
+  body[data-preference='dark'] mark::before {
+    opacity: 0.2;
+  }
+  ```
 
 ## prefers-reduced-motion
 

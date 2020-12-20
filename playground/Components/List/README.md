@@ -1,3 +1,5 @@
+# List
+
 Use the syntax described in `badge-check.svg` and `badge-outline`, for `<ul>` and `<ol>` elements respectively.
 
 ## Mask
@@ -6,10 +8,16 @@ If mask properties are not supported, provide a sensible fallback. This means in
 
 ## prefers-color-scheme
 
-For the dark preference, reduce the weight of the custom counter in the `<ol>` elements.
+For the dark preference, reduce the weight of the custom counter for the `<ol>` elements.
 
-Update the attribute on the `body` element to review the change.
+```css
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) main ol li::before {
+    font-weight: 600;
+  }
+}
 
-```html
-<body data-preference="dark"></body>
+body[data-preference='dark'] main ol li::before {
+  font-weight: 600;
+}
 ```

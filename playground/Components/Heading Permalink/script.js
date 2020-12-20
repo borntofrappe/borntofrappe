@@ -12,7 +12,7 @@ main.innerHTML = Array(3)
   <h${level} class="permalink" id="heading-${level}">
     heading-${level}
     <a href="#heading-${level}">
-      <span class="visually-hidden">permalink</span>
+      <span class="visually-hidden">Permalink</span>
       ${icons.permalink}
     </a>
   </h${level}>

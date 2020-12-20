@@ -1,18 +1,22 @@
-In the script I experiment with different URLs. With JavaScript I include the necessary elements and `href` attributes.
+# Breadcrumb Navigation
+
+At the top of every page, the idea is to show the routes building the current URL. In the specific demo, the necessary markup is created with a few lines of JavaScript and a few example links.
 
 ## Markup
 
-- for the homepage include the string _borntofrappe_ followed by the icon of a rocket
+The individual crumbs are built as follows:
 
-- for any additional route include the string detailing the path and an icon, if available
+- for the homepage, include the string _borntofrappe_ followed by the icon of a rocket
 
-Separate each route with a slash `/`
+- for any additional route, include the string detailing the path and an icon, if available
 
-### For instance
+- separate each route with a slash `/`
+
+For instance:
 
 ```html
 <nav>
-  <a href="/">borntofrappe {rocket}</a>
+  <a href="/">borntofrappe {rocket icon}</a>
 </nav>
 ```
 
@@ -27,16 +31,22 @@ Separate each route with a slash `/`
 <nav>
   <a href="/">borntofrappe {rocket icon}</a>
   <a href="/blog">/ blog {blog icon}</a>
-  <a href="/blog/up-and-running">/ up-and-running</a>
+  <a href="/blog/1st-January-2021">/ 1st-January-2021</a>
 </nav>
 ```
 
 ## prefers-color-scheme
 
-For the dark preference, reduce the weight of the text describing the links.
+If the media query highlights the dark preference, reduce the weight of the text describing the links.
 
-Update the attribute on the `body` element to review the change.
+```css
+@media (prefers-color-scheme: dark) {
+  body:not([data-preference]) nav a {
+    font-weight: 600;
+  }
+}
 
-```html
-<body data-preference="dark"></body>
+body[data-preference='dark'] nav a {
+  font-weight: 600;
+}
 ```

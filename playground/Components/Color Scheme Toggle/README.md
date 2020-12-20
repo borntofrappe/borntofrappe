@@ -1,6 +1,4 @@
-Update the size of the button to fit the element alongside the breadcrumb navigation.
-
-## Notes
+# Color Scheme Toggle
 
 The focus of the demo is split in several areas:
 

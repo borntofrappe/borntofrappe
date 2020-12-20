@@ -1,4 +1,6 @@
-Use the syntax described in `heart.svg`.
+# Footer
+
+The idea is to include the visual described in `heart.svg` above a single anchor link element. By hovering/focusing on the anchor link then, the idea is to animate the icon.
 
 ## Mask
 
