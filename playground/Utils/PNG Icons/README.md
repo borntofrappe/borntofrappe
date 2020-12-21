@@ -4,9 +4,9 @@ In creating the website, I found myself with the following issue: having a well 
 
 With this demo I try to solve this problem through the canvas API.
 
-- recreate the icon in a `canvas` element
+- recreate the `.svg` icon in a `canvas` element
 
-- save the canvas as an image
+- save the canvas as a `.png` image
 
 Refer to **vanilla** for the proof of concept behind the project.
 

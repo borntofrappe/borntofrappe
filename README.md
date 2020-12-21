@@ -33,7 +33,6 @@ The folder has also an illustration in `borntofrappe.svg` which describes the ba
 `1st January 2021` is the arbitrary deadline I gave myself to finally share the website. Netlify already uses the `src` folder to build a websited at borntofrappe.netlify.app, but I am not confident/brave enough to share this work with the world at large. By this date, I hope to muster enough courage to change that.
 
 <!-- ## What was changed
-document style guide
 review utils
 write a script to create icons.js at build time
   -->
