@@ -1,11 +1,11 @@
 ---
-title: 'Opengraph Images'
+title: 'OpenGraph Images'
 date: 2020-12-21
 description: 'A few useful node packages'
 keywords: ['js', 'node']
 ---
 
-Opengraph images are created with a few useful libraries:
+OpenGraph images are created with a few useful libraries:
 
 1. `gray-matter` extracts title and keywords from the available articles
 
