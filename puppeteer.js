@@ -62,6 +62,6 @@ if(length > 0) {
       await page.screenshot({ path: outputPath, clip: { x, y, width, height } });
     }
     await browser.close();
-    console.log(`Wrote ${posts.length} files`);
+    console.log(`Wrote ${posts.length} files\n`);
   })();
 }

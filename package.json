@@ -4,9 +4,9 @@
   "description": "A personal website",
   "main": "index.js",
   "scripts": {
-    "dev": "npx eleventy",
-    "serve": "npx eleventy --serve",
-    "build": "npx eleventy && node puppeteer"
+    "dev": "node icons && npx eleventy",
+    "serve": "node icons && npx eleventy --serve",
+    "build": "node icons && npx eleventy && node puppeteer"
   },
   "repository": {
     "type": "git",

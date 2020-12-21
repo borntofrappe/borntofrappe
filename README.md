@@ -16,6 +16,8 @@ In `package.json` I accommodate for a few instructions:
 
 - `npm run build` runs 11ty as in `npm run dev`, but follows the instruction by executing the code in `puppeteer.js`. In this manner, it creates social graph images for every blog post in the `blog` folder.
 
+_Update_: before running 11ty, each instruction executes the code described in `icons.js`, in order to read the contents of the `utils/icons` folder and create the object detailing the syntax of the SVG icons in key-valye pairs.
+
 ## What's `playground`?
 
 In the context of this repository, `playground` is a folder dedicated to small, independent demos which are meant to provide the basis for the final website. 11ty is instructed to disregard this folder, and look at the code housed in the `src` folder.

@@ -1,0 +1,9 @@
+<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+    <path d="M 30 -35 c 21 20 21 50 0 70" />
+    <path transform="scale(-1 1)" d="M 30 -35 c 21 20 21 50 0 70" />
+    <g transform="translate(0 30)" stroke-linejoin="round">
+      <path d="M 20 -20 a 20 20 0 0 1 -40 0 q 0 -10 10 -20 t 0 -20 q 15 17 12.5 35 q 10 0 12.5 -15 q 5 11.25 5 20" />
+    </g>
+  </g>
+</svg>
