@@ -1,6 +1,6 @@
 ---
 title: Up and Running
-date: 2020-2-20
+date: 2020-11-20
 brief: The first article of this very website, and hopefully not the last.
 ---
 

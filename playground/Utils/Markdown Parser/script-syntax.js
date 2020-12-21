@@ -17,7 +17,7 @@ const icons = {
 
 async function createMarkup() {
   // syntax highlighting
-  const highlighter = await shiki.getHighlighter({theme: 'Material-Theme-Palenight-High-Contrast'});
+  const highlighter = await shiki.getHighlighter({theme: 'material-theme-palenight'});
  
   // check if the output folder exists, create one
   if (!fs.existsSync(output)) {

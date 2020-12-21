@@ -1,6 +1,6 @@
 ---
 title: Syntax Highlighting
-date: 2020-3-1
+date: 2020-12-1
 brief: Adding syntax highlighting with shiki and async syntax.
 tags: css, js
 ---
@@ -8,10 +8,10 @@ tags: css, js
 Following the instructions detailed in the mardkwon file **From Markdown to HTML**, I set out to include syntax highlighting with the aforementioned `shiki` module.
 
 ```js
-const path = require("path");
-const fs = require("fs");
-const marked = require("marked");
-const shiki = require("shiki");
+const path = require('path');
+const fs = require('fs');
+const marked = require('marked');
+const shiki = require('shiki');
 ```
 
 Looking at [the website for the shiki module](https://shiki.matsu.io/), I tried to replicate the example provided for the `markedown-it` package, just with `marked` instead.
@@ -35,7 +35,7 @@ I also tried to include a different theme, using night owl, and while I ended up
 - use the `loadTheme` function and pipe the theme directly in the script
 
 ```js
-const theme = shiki.loadTheme("./Night-Owl-color-theme.json");
+const theme = shiki.loadTheme('./Night-Owl-color-theme.json');
 
 shiki
   .getHighlighter({

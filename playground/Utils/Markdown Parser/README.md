@@ -1,6 +1,6 @@
 # Markdown Parser
 
-With this project I try to create a script to parse markdown to HTML code. 11ty considers the `.md` extension natively, but the effort is still useful to consider the desired output.
+With this project I try to create a script to parse markdown to HTML code. 11ty considers the `.md` extension natively, but the effort is still useful to consider the structure of the HTML markup.
 
 ## script-parser
 
@@ -14,7 +14,7 @@ In its "simplest" rendition, the script needs to read `.md` files, create the ma
 
 - `marked`, to actually parse the contents of the markdown files
 
-`marked` is actually the only modules which needs to be installed, as the first two are provided natively by node.
+`marked` is actually the only module which needs to be installed, as the first two are provided natively by node.
 
 ```bash
 npm install marked
@@ -98,7 +98,7 @@ Leveling up from the first version, the script considers the frontmatter include
 ```md
 ---
 title: Up and running
-date: 2020-5-10
+date: 2020-11-20
 ---
 ```
 
@@ -113,7 +113,7 @@ The idea is to have the data in key-value pairs, and populate the object as foll
 ```js
 {
   title: 'Up and running',
-  date: '2020-5-10',
+  date: '2020-11-20',
 }
 ```
 
@@ -211,7 +211,7 @@ npm install shiki
 
    ```js
    shiki.getHighlighter({
-     theme: 'Material-Theme-Palenight-High-Contrast',
+     theme: 'material-theme-palenight',
    });
    ```
 
@@ -220,7 +220,7 @@ npm install shiki
    ```js
    shiki
      .getHighlighter({
-       theme: 'Material-Theme-Palenight-High-Contrast',
+       theme: 'material-theme-palenight',
      })
      .then((highlighter) => {
        // here!
@@ -232,7 +232,7 @@ npm install shiki
    ```js
    shiki
      .getHighlighter({
-       theme: 'Material-Theme-Palenight-High-Contrast',
+       theme: 'material-theme-palenight',
      })
      .then((highlighter) => {
        // ...
@@ -260,11 +260,15 @@ Retrieve the highlighter.
 
 ```js
 const highlighter = await shiki.getHighlighter({
-  theme: 'Material-Theme-Palenight-High-Contrast',
+  theme: 'material-theme-palenight',
 });
 ```
 
 The rest remains untouched.
+
+### theme
+
+It is possible to use a different theme, loading a specific file or referencing a theme from the one made available by the `shiki` library in the [literal values section](https://github.com/shikijs/shiki/blob/master/packages/themes/README.md#literal-values).
 
 ## script-marked
 
@@ -331,5 +335,3 @@ Closing the heading, prepend an anchor link element referencing the same value.
   </span>
 </a></h2>
 ```
-
-Rudimentary, will eventually break, but works.

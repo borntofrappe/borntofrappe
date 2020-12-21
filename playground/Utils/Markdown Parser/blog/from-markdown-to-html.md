@@ -1,6 +1,6 @@
 ---
 title: From markdown to HTML
-date: 2020-2-24
+date: 2020-11-24
 brief: A rambling explanation behind a script that could have used a few more packages.
 tags: html, js, node
 ---
@@ -14,8 +14,8 @@ Bonus points if I manage to add syntax highlighting [shiki](https://github.com/o
 To find the actual file, it seems I need the `path` module as well.
 
 ```js
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 ```
 
 In the current folder, I'm able to read the files with two variants.
@@ -23,9 +23,9 @@ In the current folder, I'm able to read the files with two variants.
 - async
 
 ```js
-fs.readdir("./", (err, files) => {
+fs.readdir('./', (err, files) => {
   files.forEach((file) => {
-    if (path.extname(file) === ".md") {
+    if (path.extname(file) === '.md') {
       console.log(file);
     }
   });
@@ -35,9 +35,9 @@ fs.readdir("./", (err, files) => {
 - sync
 
 ```js
-const files = fs.readdirSync("./", "utf-8");
+const files = fs.readdirSync('./', 'utf-8');
 files.forEach((file) => {
-  if (path.extname(file) === ".md") {
+  if (path.extname(file) === '.md') {
     console.log(file);
   }
 });
@@ -50,9 +50,9 @@ Let's stick with the latter for the time being.
 To read the content of the actual file, once again, there's an async and sync variant.
 
 ```js
-const markdownFiles = files.filter((file) => path.extname(file) === ".md");
+const markdownFiles = files.filter((file) => path.extname(file) === '.md');
 markdownFiles.forEach((file) => {
-  const markdown = fs.readFileSync(`./${file}`, { encoding: "utf-8" });
+  const markdown = fs.readFileSync(`./${file}`, { encoding: 'utf-8' });
   console.log(markdown);
 });
 ```
@@ -87,7 +87,7 @@ This portion in particular should improved to identify the entire lines
 A word, a colon, a white space character, anything else before the carriage return and the new line character. With this, I am already able to strip out the front matter to use the `marked` function only on the actual content of the document.
 
 ```js
-const markdown = fs.readFileSync(`./${file}`, { encoding: "utf-8" });
+const markdown = fs.readFileSync(`./${file}`, { encoding: 'utf-8' });
 const frontmatter = markdown.match(/---\r\n(\w+:\s.+\r\n)+---\r\n/)[0];
 const content = markdown.slice(frontmatter.length).trim();
 ```
@@ -109,7 +109,7 @@ const keyValue = frontmatter
   // array of strings
   .match(/\w+:\s.+/g)
   // 2d array describing the key-value pairs
-  .map((pair) => pair.split(": "));
+  .map((pair) => pair.split(': '));
 ```
 
 And then create an object describing the different pairs in the desired schema.
@@ -119,7 +119,7 @@ const keyValue = frontmatter
   // array of strings
   .match(/\w+:\s.+/g)
   // 2d array describing the key-value pairs
-  .map((pair) => pair.split(": "))
+  .map((pair) => pair.split(': '))
   // object separating the pairs
   .reduce((acc, curr) => {
     acc[curr[0]] = curr[1];
@@ -152,7 +152,7 @@ This is what is ultimately picked up by sapper, but already I can create `.html`
 
 ```js
 posts.forEach(({ title, html }) => {
-  fs.writeFileSync(`${title.replace(/ /g, "-").toLowerCase()}.html`, html);
+  fs.writeFileSync(`${title.replace(/ /g, '-').toLowerCase()}.html`, html);
 });
 ```
 
