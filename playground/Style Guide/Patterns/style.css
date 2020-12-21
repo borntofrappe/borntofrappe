@@ -62,7 +62,7 @@ div.dots.waves.below {
 }
 
 div.dots.waves.below::after {
-  transform: translateY(0px) scaleY(-1);
+  transform: scaleY(-1);
   top: 100%;
   bottom: initial;
 }
