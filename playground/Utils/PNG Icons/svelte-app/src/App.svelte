@@ -16,14 +16,16 @@
 		margin: 1rem auto;
 		line-height: 2;
 	}
+
 	label {
 		display: flex;
 		flex-direction: column;
 		font-size: 1.5rem;
 		margin-top: 1rem;
 	}
+
 	input {
-		font-size: 1.25rem;
+		font-size: 1.5rem;
 		font-size: inherit;
 		margin-left: 0.5rem;
 		font-family: inherit;
@@ -34,7 +36,7 @@
 
 	a {
 		font-size: 2rem;
-		font-family: monospace;
+		font-family: inherit;
 	}
 </style>
 

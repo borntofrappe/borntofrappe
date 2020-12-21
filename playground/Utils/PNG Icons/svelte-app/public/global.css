@@ -6,34 +6,10 @@
 
 body {
   min-height: 100vh;
-  color: hsl(220, 100%, 8%);
-  background: hsl(0, 0%, 100%);
+  color: hsl(215, 22%, 5%);
+  background: hsl(215, 10%, 97%);
   font-family: monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-article {
-  display: contents;
-}
-
-body > * {
-  margin-top: 2rem;
-}
-
-article > * {
-  margin-top: 1rem;
-}
-
-h2,
-a {
-  font-size: 2rem;
-  font-family: monospace;
-}
-
-svg {
-  display: block;
-  width: 100px;
-  height: auto;
 }
