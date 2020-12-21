@@ -1,10 +1,8 @@
 # Style Guide
 
-Refer to the different folders for more detail.
-
 ## Fonts
 
-Consider the following table as a quick reference.
+The dedicated folder shows the different choices with an arbitrary HTML structure. That being said, consider the following table as a quick reference.
 
 | Choice          | Type       | Purpose                             |
 | --------------- | ---------- | ----------------------------------- |
@@ -29,13 +27,11 @@ Or, alternatively, in the stylesheet.
 
 ## Colors
 
-In the global stylesheet, I describe four different sets of colors. `frappe` and `frappe-grey`, included by default, and `twilight` and `twilight-grey` for the alternative color palette. dark color scheme.
+In the dedicated folder and in the global stylesheet, I describe four different sets of colors. `frappe` and `frappe-grey`, included by default, `twilight` and `twilight-grey` for the alternative color palette. dark color scheme. The idea is to include the sets in the `:root` selector, and the chosen color palette in the `body` selector, with `--primary-*` and `--grey-*` labels.
 
-The idea is to include the sets in the `:root` selector, and the variables actually using these values in the `body` selector, with `--primary-*` and `--grey-*` labels.
+The script is used to populate `index.html` with a series of `<div>` elements colored with the chosen hsl combinations.
 
-In the `Colors` folder, you find a node script which looks at the global stylesheet to provide a visual representation of the possible colors in a markup file.
-
-In terms of design, it is worth mentioning how in the design of a few components, like the footer, the elements use the colors from a one color scheme only.
+In terms of design, it is worth mentioning that a few components, like the footer, use to colors from a one color scheme only.
 
 ```css
 footer {
@@ -48,7 +44,7 @@ The idea is to here have "fixtures", elements which do not change even if the pr
 
 ## Icons
 
-In creating the vector graphics, I try to adhere to a few guidelines:
+In the dedicated folder you find a `syntax` folder, where I design the vector graphics. In creating these visuals, I try to adhere to a few guidelines:
 
 - set up a viewBox of `-50 -50 100 100`
 
@@ -73,26 +69,27 @@ The following syntax provides a solid starting point.
 </svg>
 ```
 
-In the `Icons` folder, you find a node script which looks for SVG files to create two files:
+Past this folder, you find a node script which creates two files:
 
-- `icons.js`, with an object detailing the icons in key-value pairs
+- `icons.js`, to show the SVG syntax in an object
 
-- `index.html`, with a visual representation of the possible icons
+  The key-value pairs are meant to highlight the name and syntax of each icon.
+
+  ```js
+  const icons = {
+    abacus: `<svg></svg>`,
+    at: `<svg></svg>`,
+  };
+  ```
+
+- `index.html`, to show every icon in a grid and a series of `<article>` elements
 
 ## Illustrations
 
-Illustrations are meant to describe one-off visuals for specific sections or pages.
+In the folder I designed a series of vector graphics which work as one-off for specific sections or pages. `astronaut-*` graphics, for instance, are meant to introduce the pages of the website. `telescope-*` graphics instead describe the visual included in the landing page for the rotating telescope.
 
 ## Patterns
 
-Patterns are included in the sections/pages of the website to add more variety to the background/edges of different elements.
+In the folder you find a couple of vector graphics which are meant to change the background/edges of different elements. The markup file `index.html` then showcases how the visuals are incorporated in a few examples.
 
-The vector graphics are processed through [yoksel.github.io/url-encoder](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax.
-
-The syntax is finally included in the `url()` function for one of the following properties:
-
-- `content`
-
-- `background-image`
-
-- `mask-image`
+_Please note_: the vector graphics are processed through [yoksel.github.io/url-encoder](http://yoksel.github.io/url-encoder/) to escape the necessary characters and inline the syntax. The syntax is finally included in the `url()` function for the `content`, `background-image`, or again `mask-image` property.
