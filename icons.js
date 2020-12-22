@@ -47,9 +47,7 @@ function readFiles(folder) {
   });
 }
 
-console.log('Reading files...');
 readFiles(input.path);
-
 const entries = Object.entries(icons);
 
 // icons.js
