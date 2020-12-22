@@ -33,6 +33,3 @@ The folder has also an illustration in `borntofrappe.svg` which describes the ba
 ## What happens on the 1st of January?
 
 `1st January 2021` is the arbitrary deadline I gave myself to finally share the website. Netlify already uses the `src` folder to build a websited at borntofrappe.netlify.app, but I am not confident/brave enough to share this work with the world at large. By this date, I hope to muster enough courage to change that.
-
-<!-- https://github.com/atom/atom-dark-syntax
-https://github.com/PrismJS/prism-themes/blob/master/themes/prism-atom-dark.css -->

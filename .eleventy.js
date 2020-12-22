@@ -1,6 +1,5 @@
 const markdownIt = require('markdown-it');
 const icons = require('./src/_data/icons');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const dateFilter = require('./src/filters/date-filter');
 const breadcrumbFilter = require('./src/filters/breadcrumb-filter');
@@ -8,7 +7,6 @@ const titleFilter = require('./src/filters/title-filter');
 const fileNameFilter = require('./src/filters/file-name-filter');
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(syntaxHighlight);
 
   const markdownLibrary = markdownIt();
   markdownLibrary.renderer.rules.heading_open = function (tokens, index) {
@@ -26,15 +24,15 @@ module.exports = function (eleventyConfig) {
     return `<a href="#${id}"><span class="visually-hidden">Permalink</span>${icons.permalink}</a></${tag}>`;
   };
 
-  // markdownLibrary.renderer.rules.fence = function (tokens, index) {
-  //   const token = tokens[index];
-  //   const { info, content } = token;
-  //   const lang = info;
-  //   const icon = icons[lang] ? icons[lang] : '';
-  //   const code = content.replace(/</g, '&lt;');
+  markdownLibrary.renderer.rules.fence = function (tokens, index) {
+    const token = tokens[index];
+    const { info, content } = token;
+    const lang = info;
+    const icon = icons[lang] ? icons[lang] : '';
+    const code = content.replace(/</g, '&lt;');
 
-  //   return `<div class="code"><span aria-label="Language">${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
-  // };
+    return `<div class="code"><span aria-label="Language">${icon} ${info}</span><pre><code>${code}</code></pre></div>`;
+  };
 
   eleventyConfig.setLibrary('md', markdownLibrary);
 
