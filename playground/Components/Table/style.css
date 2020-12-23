@@ -14,7 +14,7 @@ main table {
   color: hsl(214, 15%, 88%);
   color: var(--frappe-grey-9);
   background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
+  background: var(--frappe-grey-1);
   font-feature-settings: 'tnum';
   position: relative;
 }

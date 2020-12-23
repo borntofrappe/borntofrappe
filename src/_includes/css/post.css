@@ -141,7 +141,7 @@ main p > code {
   color: hsl(215, 10%, 97%);
   color: var(--frappe-grey-10);
   background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
+  background: var(--frappe-grey-1);
   box-shadow: 0 0.2rem hsl(212, 12%, 45%);
   box-shadow: 0 0.2rem var(--frappe-grey-5);
   border-radius: 0.25rem;
@@ -203,7 +203,7 @@ main .code pre {
   color: hsl(214, 15%, 88%);
   color: var(--frappe-grey-9);
   background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
+  background: var(--frappe-grey-1);
   line-height: 2;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -464,7 +464,7 @@ main table {
   color: hsl(214, 15%, 88%);
   color: var(--frappe-grey-9);
   background: hsl(229, 20%, 20%);
-  background: var(--palenight-theme);
+  background: var(--frappe-grey-1);
   font-feature-settings: 'tnum';
   position: relative;
 }
