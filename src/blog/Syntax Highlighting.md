@@ -3,7 +3,22 @@ title: 'Syntax Highlighting'
 date: 2020-12-22
 description: ''
 keywords: ['editor', 'js', 'node']
+hasCode: true
 ---
+
+After many trials and tribulations, I've finally settled on a solution for syntax highlighting. Instead of using the plugin provided by 11ty, I use `highlight.js` to wrap the code in a series of `<span>` elements with specific classes. These classes allow to then change the color of dedicated elements.
+
+```html
+<span class="hljs-name"></span>
+```
+
+A stylesheet is then included with a specific flag.
+
+```md
+hasCode: true
+```
+
+Here's a few code snippets to test the feature out.
 
 ```html
 <body>
@@ -38,3 +53,7 @@ function setPreference(preference) {
   window.localStorage.setItem('color-scheme', preference);
 }
 ```
+
+What is left is customizing the colors according to a specific theme.
+
+Work-in-progress indeed.

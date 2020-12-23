@@ -8,7 +8,10 @@
 
 {% block style %}
   {% include "css/post.css" %}
-  {% include "css/syntax-highlighting.css" %}
+
+  {%- if hasCode %}
+    {% include "css/syntax-highlighting.css" %}
+  {% endif -%}
 {% endblock %}
 
 {% block content %}
