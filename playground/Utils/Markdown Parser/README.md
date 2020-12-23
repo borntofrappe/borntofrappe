@@ -2,6 +2,10 @@
 
 With this project I try to create a script to parse markdown to HTML code. 11ty considers the `.md` extension natively, but the effort is still useful to consider the structure of the HTML markup.
 
+_Please note_: the markdown in the `blog` folder doesn't have a particular mearning, and works as filler content to test out the different libraries.
+
+_Please note_: the `pages` folder is not tracked by git, but created instead when running the node scripts.
+
 ## script-parser
 
 In its "simplest" rendition, the script needs to read `.md` files, create the matching markup, and write the result in `.html` files.
@@ -335,3 +339,9 @@ Closing the heading, prepend an anchor link element referencing the same value.
   </span>
 </a></h2>
 ```
+
+## script-markdown-highlight
+
+In light of the syntax library chosen for the 11ty config file, recreate the previous demo with `highlight.js` instead of `shiki`,
+
+The new library requires an extra step in the form of a stylesheet, as instead of adding a series of attributes individually changing the color of `<span>` element, it includes a specific class, like `hljs-function` or `hljs-keyword`. The demo is however and solely interested in creating the necessary markup.
