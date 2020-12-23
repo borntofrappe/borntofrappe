@@ -42,6 +42,12 @@ footer {
 
 The idea is to here have "fixtures", elements which do not change even if the preference changes.
 
+### Update
+
+Beside `global.css` housing the color sets and `style.css` showcasing the individual colors through the `index.html` demo, you find a stylesheet devoted to the syntax highlighter. This stylesheet couples with the `highlight.js` library, which modifies the markup for code fences with a series of `<span>` elements and a dedicated classes. The classes are in the form `hljs-*` to consider a variety of styling. Consider, for instance, how the `function` keyword has its own color, or again a selector introduced with a tag (`selector-tag`) or one introduced by ID (`selector-id`).
+
+For the theme, I decided to rely on the colors introduced by the shiki library and considering the `material-theme-ocean` theme.
+
 ## Icons
 
 In the dedicated folder you find a `syntax` folder, where I design the vector graphics. In creating these visuals, I try to adhere to a few guidelines:
