@@ -1,48 +1,86 @@
-.hljs-comment {
-  color: hsl(227, 14%, 32%);
-}
-
+/* General purpose */
 .hljs-keyword,
-.hljs-subst,
-.hljs-tag {
-  color: hsl(197, 100%, 77%);
+.hljs-literal,
+.hljs-subst .hljs-class,
+.hljs-function {
+  color: hsl(210, 34%, 63%);
 }
-
-.hljs-string {
-  color: hsl(84, 66%, 73%);
-}
-
-.hljs-regexp,
-.hljs-number,
-.hljs-selector-id {
-  color: hsl(14, 90%, 70%);
-}
-
-.hljs-function,
-.hljs-attr,
-.hljs-selector-pseudo,
-.hljs-selector-attr,
-.hljs-meta-keyword {
-  color: hsl(276, 68%, 75%);
-}
-
-.hljs-built_in {
-  color: hsl(221, 100%, 75%);
-}
-
-.hljs-selector-tag,
-.hljs-selector-class {
-  color: hsl(39, 100%, 71%);
-}
-
-.hljs-name,
-.hljs-meta {
-  color: hsl(357, 81%, 69%);
-}
-
-.hljs-attribute {
-  color: hsl(197, 31%, 77%);
-}
+.hljs-built_in,
 .hljs-params {
-  color: hsl(231, 28%, 73%);
+  color: hsl(219, 28%, 88%);
+}
+.hljs-number {
+  color: hsl(311, 20%, 63%);
+}
+.hljs-regexp {
+  color: hsl(40, 71%, 73%);
+}
+.hljs-string {
+  color: hsl(92, 28%, 65%);
+}
+.hljs-symbol,
+.hljs-title {
+  color: hsl(193, 43%, 67%);
+}
+
+.hljs-comment {
+  color: hsl(220, 17%, 46%);
+}
+
+/* Meta */
+.hljs-meta {
+  color: hsl(210, 34%, 63%);
+}
+.hljs-meta-keyword {
+  color: hsl(179, 25%, 65%);
+}
+
+/* Tags, attributes, configs */
+.hljs-section {
+  color: hsl(193, 43%, 67%);
+}
+.hljs-tag,
+.hljs-name {
+  color: hsl(210, 34%, 63%);
+}
+.hljs-attr {
+  color: hsl(179, 25%, 65%);
+}
+.hljs-attribute {
+  color: hsl(219, 28%, 88%);
+}
+
+/* Text Markup */
+.hljs-bullet {
+  color: hsl(218, 27%, 94%);
+}
+.hljs-code {
+  color: hsl(40, 71%, 73%);
+}
+.hljs-emphasis,
+.hljs-strong {
+  color: hsl(219, 28%, 88%);
+}
+.hljs-link {
+  color: hsl(193, 43%, 67%);
+}
+.hljs-quote {
+  color: hsl(220, 17%, 46%);
+}
+
+/* CSS */
+.hljs-selector-tag,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-pseudo {
+  color: hsl(210, 34%, 63%);
+}
+
+/* diff */
+.hljs-addition {
+  color: #a3be8c;
+}
+.hljs-deletion {
+  color: #bf616a;
 }

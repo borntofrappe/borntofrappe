@@ -27,9 +27,7 @@ Or, alternatively, in the stylesheet.
 
 ## Colors
 
-In the dedicated folder and in the global stylesheet, I describe four different sets of colors. `frappe` and `frappe-grey`, included by default, `twilight` and `twilight-grey` for the alternative color palette. dark color scheme. The idea is to include the sets in the `:root` selector, and the chosen color palette in the `body` selector, with `--primary-*` and `--grey-*` labels.
-
-The script is used to populate `index.html` with a series of `<div>` elements colored with the chosen hsl combinations.
+In the website, the goal is to have four different sets of colors: `frappe-*` and `frappe-grey-*`, included by default, `twilight` and `twilight-grey` for the alternative, dark color palette.
 
 In terms of design, it is worth mentioning that a few components, like the footer, use to colors from a one color scheme only.
 
@@ -42,11 +40,21 @@ footer {
 
 The idea is to here have "fixtures", elements which do not change even if the preference changes.
 
-### Update
+In terms of implementation, the sets are defined in the `:root` selector of the global stylesheet, `global.css`, and then use one of the two sets by setting additional properties in the `body` selector: `--primary-*` and `--grey-*`.
 
-Beside `global.css` housing the color sets and `style.css` showcasing the individual colors through the `index.html` demo, you find a stylesheet devoted to the syntax highlighter. This stylesheet couples with the `highlight.js` library, which modifies the markup for code fences with a series of `<span>` elements and a dedicated classes. The classes are in the form `hljs-*` to consider a variety of styling. Consider, for instance, how the `function` keyword has its own color, or again a selector introduced with a tag (`selector-tag`) or one introduced by ID (`selector-id`).
+```css
+:root {
+  --frappe-0: hsl(350, 100%, 8%);
+  --frappe-1: hsl(347, 100%, 19%);
+}
 
-For the theme, I decided to rely on the colors introduced by the shiki library and considering the `material-theme-ocean` theme.
+body {
+  --primary-0: var(--frappe-0);
+  --primary-1: var(--frappe-1);
+}
+```
+
+The `Colors` folder includes the global stylesheet, `global.css`, as well as a demo showcasing the different hsl combination and a stylesheet devoted to syntax highlighting, `syntax-highlighting.css`. This last stylesheet is necessary to customize the appearance of code fences, marked by the `highlight.js` library to have a series of `<span>` elements and specific `hljs-` classes.
 
 ## Icons
 

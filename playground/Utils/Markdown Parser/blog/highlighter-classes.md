@@ -5,91 +5,85 @@ brief: Testing out the many classes added with highlight.js
 tags: node, js
 ---
 
-```js
-const path = require('path');
+What follows is a series of code snippets uniquely designed to create `.hljs` classes from the `highlight` library. The goal is to consider these classes and to then color the different elements with specific hsl colors, inspired by a theme like `nord`, or `atom-dark`, or again `material-theme-ocean`.
 
-// check if the output folder exists, create one
-if (!fs.existsSync(output)) {
-  fs.mkdirSync(output);
+```js
+/* let us begin
+_hello world_
+*/
+const something = 'hello world';
+
+
+class doesExist = {}
+
+function sayHi(name) {
+  console.log('hello ' + name);
+  return false;
 }
 
-// modify default renderer
-const markdownLibrary = markdownIt();
-markdownLibrary.renderer.rules.heading_open = function (tokens, index) {
-  const { tag } = tokens[index];
-  const { content } = tokens[index + 1];
-  const id = content.toLowerCase().replace(/ /g, '-');
+const num = Math.random()
+if (num > 0.5 + 0) {
+  console.log(`${num} is greater than 0.5`);
+}
 
-  return `<${tag} id="${id}" class="permalink">`;
-};
-markdownLibrary.renderer.rules.heading_close = function (tokens, index) {
-  const { tag } = tokens[index];
-  const { content } = tokens[index - 1];
-  const id = content.toLowerCase().replace(/ /g, '-');
+if something || somethingElse {
+  const regexp = / /gi
+}
+```
 
-  return `<a href="#${id}"><span class="visually-hidden">permalink</span>${icons.permalink}</a></${tag}>`;
-};
-
-markdownLibrary.options.highlight = function (str, lang) {
-  const icon = icons[lang] ? icons[lang] : '';
-  return `<div class="code"><span aria-label="Language">${icon} ${lang}</span><pre><code>${
-    highlighter.highlight(lang, str).value
-  }</code></pre></div>`;
-};
+```c
+int number = 1;
+goto somewhere
 ```
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Footer</title>
-    <link rel="stylesheet" href="../global.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <!-- switch to "light" or "dark" for a different color palette -->
-  <body data-preference="light">
-    <main></main>
-    <footer>
-      <a href="https://twitter.com/borntofrappe">borntofrappe</a>
-    </footer>
-  </body>
-</html>
+<meta charset="UTF-8" />
+<body direction="rtl"></body>
+```
+
+```md
+# Hello world
+
+- there is
+- a nice list
+
+\`\`\`
+const hello = 'world';
+\`\`\`
+
+_okay_
+**not okay**
+
+[This is a link](www.somethingneat.abcdy)
+[This is a separate link](1)
+
+> goodbye
+
+[1]: http://example.com
 ```
 
 ```css
-#content {
-  max-width: 40rem;
-  font-size: 1rem;
-  width: 90vw;
-  margin: 150vh auto 100vh;
-  line-height: 2;
-}
-
-@media (prefers-color-scheme: dark) {
-  body:not([data-preference]) nav a {
-    font-weight: 600;
-  }
-}
-
-body[data-preference='dark'] nav a {
+nav {
   font-weight: 600;
 }
 
-nav a {
-  text-decoration: none;
-  font-family: 'Maven Pro', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.25rem 0;
-  display: inline-flex;
-  align-items: center;
+#content[data-preference] {
+  content: '';
+  margin: 150vh auto 100vh;
 }
 
-a.relative:hover::after,
-a.relative:focus::after {
+a.relative:hover::after {
   color: hsl(20, 22%, 12%);
   content: url('');
 }
+
+@media (prefers-color-scheme: dark) {
+  /* comment */
+}
+```
+
+```diff
++ addition
+- deletion
 ```
