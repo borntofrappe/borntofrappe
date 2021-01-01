@@ -230,7 +230,7 @@ main {
 article {
   width: 90vw;
   max-width: 40rem;
-  margin: 5em auto;
+  margin: 5.5em auto;
 }
 
 article + article {
@@ -254,7 +254,7 @@ article + article::before {
 
 @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
   article + article {
-    margin-top: 7em;
+    margin-top: 7.5em;
   }
   article + article::before {
     margin-bottom: initial;

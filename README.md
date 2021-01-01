@@ -1,8 +1,8 @@
-![borntofrappe — 1st January 2021](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/playground/borntofrappe.svg)
+[![borntofrappe](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.svg)](http://borntofrappe.netlify.app/)
 
 ## What's this?
 
-This is meant to be my personal website. Built with 11ty, hosted on netlify, it works as my little corner on the web to shown that I can work as a developer. A front-end web developer, but one that is interested in code beyond HTML, CSS and JavaScript. At the time of writing, for instance, a developer interested in Python, mainly for data analysis, and Lua, mainly for 2D game development.
+This is meant to be my personal website. Built with 11ty, hosted on netlify, it works as my little corner on the web to shown that I can work as a developer. A front-end web developer, but one that is interested in code beyond HTML, CSS and JavaScript. At the time of writing, for instance, a developer interested in Lua, mainly for 2D game development, and Python, mainly for data analysis.
 
 ## How to run?
 
@@ -28,8 +28,8 @@ In `Style Guide` I document the choices made in terms of color, fonts, and I sav
 
 Finally and in `Utils` I create a few scripts for different utilities. These are included in some shape or form in the actual website.
 
-The folder has also an illustration in `borntofrappe.svg` which describes the banner for this repository. It should be the first visual introducing this very the markdown file.
+## What's next?
 
-## What happens on the 1st of January?
+A blog.
 
-`1st January 2021` is the arbitrary deadline I gave myself to finally share the website. Netlify already uses the `src` folder to build a websited at borntofrappe.netlify.app, but I am not confident/brave enough to share this work with the world at large. By this date, I hope to muster enough courage to change that.
+All I need is the courage to add markdown files to the blog folder. And update `.eleventyignore`.
