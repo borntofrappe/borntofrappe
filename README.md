@@ -30,6 +30,4 @@ Finally and in `Utils` I create a few scripts for different utilities. These are
 
 ## What's next?
 
-A blog.
-
-All I need is the courage to add markdown files to the blog folder. And update `.eleventyignore`.
+A blog. All I need is the courage to actually write about my coding challenges.
