@@ -8,11 +8,11 @@ module.exports = {
         email: 'borntofrappe@gmail.com',
     },
     links: [
-        // {
-        //   name: 'blog',
-        //   href: '/blog',
-        //   desc: 'Take a look at the articles I wrote on my way to become a full-fledged web developer.',
-        // },
+        {
+          name: 'blog',
+          href: '/blog',
+          desc: 'Take a look at the articles I wrote on my way to become a full-fledged web developer.',
+        },
         {
           name: 'codepen',
           href: 'https://codepen.io/borntofrappe',
