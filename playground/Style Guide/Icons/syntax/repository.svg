@@ -1,9 +1,0 @@
-<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
-  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M -30 -46 h 60 a 8 8 0 0 1 8 8 v 70 a 8 8 0 0 1 -8 8 h -21 m -27 0 h -12 a 8 8 0 0 1 -8 -8 v -70 a 8 8 0 0 1 8 -8 v 65 h 68"/>
-    <path d="M -15 -30 h 2"/>
-    <path d="M -15 -15 h 2"/>
-    <path d="M -15 0 h 2"/>
-    <path stroke-width="7" d="M -15 30 v 16.5 l 10 -5 10 5 v -16.5 z"/>
-  </g>
-</svg>

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
-  <g stroke="hsl(350, 100%, 8%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <ellipse fill="hsl(339, 90%, 67%)" rx="45" ry="20" />
-    <path fill="hsl(336, 93%, 77%)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" />
-    <path transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" />
-  </g>
-</svg>

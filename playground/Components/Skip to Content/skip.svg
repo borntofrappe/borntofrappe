@@ -1,8 +1,0 @@
-<svg aria-hidden="true" aria-focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em">
-  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />
-    <path d="M -45 -20 h 28" />
-    <path d="M -45 0 h 28" />
-    <path d="M -45 20 h 28" />
-  </g>
-</svg>
