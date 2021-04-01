@@ -10,6 +10,8 @@ This is my personal website, built with:
 
 - [SvelteKit Docs](https://kit.svelte.dev/docs)
 
+- [Rich Harris: Futuristic Web Development](https://youtu.be/qSfdtmcZ4d0)
+
 ## Getting Started
 
 ```bash
@@ -53,4 +55,79 @@ npm run dev
 
 ```bash
 npm run dev -- --open
+```
+
+## Deploy Homepage
+
+Removing `Counter.svelte`, the idea is to first deploy a homepage through `src/routes/index.svelte`. Here I include a simple heading and an informative paragraph.
+
+SvelteKit seems to have a concept of [_adapters_](https://kit.svelte.dev/docs#adapters) to fit the application to the deployment environment. In `svelte.config.cjs` the application uses a node adapter, but I personally lean on netlify. The docs point to [an adapter tailored for netlify](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify), which itself dictates a bit of configuration through `netlify.toml`.
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build/"
+```
+
+The docs describes a folder for `functions` as well, which I presume to refer to serverless functions. At the time of writing, however, it seems the instruction is superfluous. The `build` folder is already included in `.gitignore`, which meets the recommendation of the docs as well.
+
+Before including the adapter in `svelte.config.cjs`, it is first necessary to install the package.
+
+```bash
+npm i -D @sveltejs/adapter-netlify
+```
+
+In `svelte.config.cjs`, finally, the field describing the adapter is updated to match the new package.
+
+```cjs
+const adapter = require('@sveltejs/adapter-netlify');
+
+module.exports = {
+	// ..,
+	kit: {
+		adapter: adapter()
+	}
+	// ..,
+};
+```
+
+The node adapter seems to become superfluous, so it is removed from the dependency tree and the config file.
+
+```diff
+-const node = require('@sveltejs/adapter-node');
+```
+
+Error: at the time of writing the adapter seems to break the development environment. Running `npm run dev` raises the following message.
+
+```bash
+config.kit.adapter should be an object with an "adapt" method, rather than the name of an adapter. See https://kit.svelte.dev/docs#adapters
+```
+
+It seems this is an issue with the version of the pacakge. By using the latest release, with the `@next` suffix, the project is back up and running.
+
+```bash
+npm i -D @sveltejs/adapter-netlify@next
+```
+
+For reference, and at the time of writing, the adapter has the fòllowing version.
+
+```json
+{
+	"devDependencies": {
+		"@sveltejs/adapter-netlify": "^1.0.0-next.4"
+	}
+}
+```
+
+Error: it seems the `functions` folder wasn't superfluous after all (it doesn't refer to serverless functions either...).
+
+```bash
+You must specify build.publish and build.functions in netlify.toml. Consult https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify#configuration
+```
+
+Uplifting message: with the updated `toml` file, the build is successful.
+
+```bash
+> Using @sveltejs/adapter-netlify
+  ✔ done
 ```
