@@ -185,3 +185,7 @@ A blog is perhaps _the_ most important part of the website, so it is only natura
   ```
 
   It would be possible to achieve the same result with `routes/blog.svelte` _in the routes folder_, but the choice becomes short-lived once you need to include pages for the blog posts. A dedicated folder for dedicated pages.
+
+### [brackets]
+
+The keyword between brackets is included in the page's parameters. Had the file been labeled `[sluggish].svelte` and you would have accessed the value through `page.params`
