@@ -1,0 +1,30 @@
+---
+title: 'Wild oats'
+date: 2020-04-02
+---
+
+<script>
+  let counter = 0;
+</script>
+
+<style>
+  button {
+    background: none;
+    border: 2px solid currentColor;
+    padding: 0.25rem 0.5rem;
+    font-family: inherit;
+    border-radius: 0.2rem;
+  }
+
+</style>
+
+Something something about wild oats.
+
+By the by, this article uses **msvex**, an incredibly neat package to process markdown syntax much similarly to mdx.
+
+What can you do with it? Perhaps a counter.
+
+<button on:click={() => counter = counter - 1}>Decrement</button>
+<button on:click={() => counter = counter + 1}>Increment</button>
+
+{counter}

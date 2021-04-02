@@ -1,19 +1,36 @@
+<script context="module">
+	export async function load() {
+		const posts = await Promise.all(
+			Object.entries(import.meta.glob('/src/blog/*.svx')).map(
+				async ([path, page]) => {
+					const { metadata } = await page();
+					const { title } = metadata;
+					const filename = path.split('/').pop();
+					const slug = filename.toLowerCase().replace(/ /g, '-').slice(0, -4);
+					return { slug, title };
+				}
+			)
+		);
+
+		return {
+			props: {
+				posts
+			}
+		}
+	}
+</script>
+
 <script>
-	const pages = [
-		'apples',
-		'oranges',
-		'wild oats',
-	]
+	export let posts;
 </script>
 
 <main>
-	<h1>It's <em>the</em> blog!</h1>
-	<p>There are no articles (yet), but it's already a step in the right direction</p>
-	<p>There are dynamically generated pages though</p>
+	<h1>Blog!</h1>
+	<p>As a proof of concept, here's a series of articles with some filler text.</p>
 
 	<ul>
-		{#each pages as page}
-		<li><a href="/blog/{page}">{page}</a></li>
-		{/each}
-	</ul>
+    {#each posts as post}
+    <li><a href="/blog/{post.slug}">{post.title}</a></li>
+    {/each}
+  </ul>
 </main>
