@@ -1,10 +1,6 @@
 # Hello World
 
-This is my personal website, built with:
-
-- [Svelte](https://github.com/sveltejs/svelte)
-
-- [SvelteKit](https://github.com/sveltejs/kit)
+This is my personal website. Built with [SvelteKit](https://github.com/sveltejs/kit), deployed through [Netlify](https://www.netlify.com/).
 
 ## Helpful Resources
 
@@ -12,7 +8,11 @@ This is my personal website, built with:
 
 - [Rich Harris: Futuristic Web Development](https://youtu.be/qSfdtmcZ4d0)
 
-## Getting Started
+## Notes
+
+I might incorporate these notes in the blog, once I figure out how to create a blog at all, but for now this markdown file will suffice. Here's a series of verbose sentences jotted down developing the website.
+
+### Getting Started
 
 ```bash
 npm init svelte@next
@@ -57,7 +57,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Deploy Homepage
+### Deploy Homepage
 
 Removing `Counter.svelte`, the idea is to first deploy a homepage through `src/routes/index.svelte`. Here I include a simple heading and an informative paragraph.
 
@@ -131,3 +131,57 @@ Uplifting message: with the updated `toml` file, the build is successful.
 > Using @sveltejs/adapter-netlify
   ✔ done
 ```
+
+**Update**
+
+Error: a familiar message from netlify's build process.
+
+```bash
+notsup Unsupported engine for @sveltejs/kit@1.0.0-next.67: wanted: {"node":">= 12.17.0"} (current: {"node":"10.24.0","npm":"6.14.11"})
+```
+
+It seems that netlify relied on a previous version of node.
+
+```bash
+Downloading and installing node v10.24.0...
+```
+
+It is possible to fix the issue through the netlify interface, but the `toml` config file seems most appropriate.
+
+```toml
+[context.production]
+  environment = { NODE_VERSION = "14.16.0" }
+```
+
+### Blog
+
+A blog is perhaps _the_ most important part of the website, so it is only natural to start by creating the page. This exercise also works to illustrate the structure of the application set up by svelte kit
+
+- in `lib` create a `<Nav>` component to move between two routes: home and blog
+
+- in `routes/$layout.svelte` import and include the component before the `<slot/>` element
+
+  ```html
+  <script>
+  	import Nav from '$lib/Nav.svelte';
+  </script>
+
+  <nav />
+  <slot />
+  ```
+
+  It would possible to include `<Nav>` in `routes/index.svelte`, and again in `routes/blog.svelte` and other pages, but through the layout file works as a convenient alternative. Every route using the layout file will include the `<Nav>` component before its actual content.
+
+- in `routes/blog` add an index file for the page introducing the blog.
+
+  ```text
+  | routes
+  |
+  |_ index.svelte
+  |
+  |_ blog
+  	|
+  	|_ index.svelte
+  ```
+
+  It would be possible to achieve the same result with `routes/blog.svelte` _in the routes folder_, but the choice becomes short-lived once you need to include pages for the blog posts. A dedicated folder for dedicated pages.
