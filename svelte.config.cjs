@@ -1,12 +1,12 @@
-const netlify = require('@sveltejs/adapter-netlify');
+const adapter = require('@sveltejs/adapter-netlify');
 const { mdsvex } = require('mdsvex');
+const mdsvexConfig = require('./mdsvex.config.cjs');
 
-/** @type {import('@sveltejs/kit').Config} */
 module.exports = {
 	extensions: ['.svelte', '.svx'],
-	preprocess: mdsvex(),
+	preprocess: mdsvex(mdsvexConfig),
 	kit: {
-		adapter: netlify(),
+		adapter: adapter(),
 		target: '#svelte',
 	}
 };

@@ -1,6 +1,10 @@
 ---
 title: 'Day Two Example'
-date: 2020-04-02
+date: 2021-04-02
+---
+
+<mark>What follows should raise an error on production website</mark>
+
 ---
 
 <script>
@@ -18,7 +22,9 @@ date: 2020-04-02
 
 </style>
 
-<button on:click={() => counter = counter - 1}>Decrement</button>
-<button on:click={() => counter = counter + 1}>Increment</button>
+- a counter {counter}
 
-Clickity-click: I've reached **{counter}**
+- two buttons
+
+  <button on:click={() => counter = counter - 1}>Decrement</button>
+  <button on:click={() => counter = counter + 1}>Increment</button>

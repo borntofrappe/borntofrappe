@@ -3,15 +3,14 @@ export async function getSession() {
     Object.entries(import.meta.glob('/src/blog/*.svx')).map(
       async ([path, page]) => {
 			  const {metadata} = await page();
-        const {title} = metadata;
         const filename = path.split('/').pop();
         const slug = filename.toLowerCase().replace(/ /g, '-').slice(0, -4);
-        return { slug, title, filename };
+        return { slug, ...metadata };
       }
     )
   );
-
+  
   return {
-    posts
+    posts: posts.sort((a, b) => new Date(b.date) - new Date(a.date))
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: 'Pivot'
-date: 2020-03-31
+date: 2021-03-31
 ---
 
 I destroyed all the progress I made building this website with Eleventy. I really like Svelte, and since SvelteKit recently came out of beta as the preferred way to develop large, Svelte applcations, here we are.
