@@ -5,9 +5,5 @@
 
 <main>
   <h1>{status}</h1>
-  {#if status === 404}
-    <p>Page not found</p>
-  {:else}
-    <pre>{error.stack}</pre>
-  {/if}
+  <pre>{error.stack}</pre>
 </main>

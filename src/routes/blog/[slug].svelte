@@ -1,19 +1,23 @@
 <script context="module">
-  export async function load({page}) {
+  export async function load({page, session}) {
     const { slug } = page.params;
 
-    const posts = Object.fromEntries(await Promise.all(
-        Object.entries(import.meta.glob('/src/blog/*.svx')).map(
-            async ([path, page]) => {
-                const filename = path.split('/').pop();
-                const slug = filename.toLowerCase().replace(/ /g, '-').slice(0, -4);
-                return [slug, page];
-            }
-      )));
+    const post = session.posts.find(d => d.slug === slug);
 
-    if(posts[slug]) {
-      const {default : Module, metadata} = await posts[slug]()
-      const {title} = metadata;
+    if(post) {
+      const posts = Object.fromEntries(await Promise.all(
+        Object.entries(import.meta.glob('/src/blog/*.svx')).map(
+          async ([path, page]) => {
+            const filename = path.split('/').pop();
+            const slug = filename.toLowerCase().replace(/ /g, '-').slice(0, -4);
+            return [slug, page];
+          }
+        )
+      ));
+
+      const { metadata, default: Module } = await posts[slug]();
+			const {title} = metadata;
+
       return {
         props: {
           title,
