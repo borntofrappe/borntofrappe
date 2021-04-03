@@ -6,7 +6,7 @@ export async function getSession() {
         const {title} = metadata;
         const filename = path.split('/').pop();
         const slug = filename.toLowerCase().replace(/ /g, '-').slice(0, -4);
-        return { slug, title };
+        return { slug, title, filename };
       }
     )
   );

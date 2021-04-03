@@ -1,5 +1,5 @@
 ---
-title: 'Wild oats'
+title: 'Day Two Example'
 date: 2020-04-02
 ---
 
@@ -18,13 +18,7 @@ date: 2020-04-02
 
 </style>
 
-Something something about wild oats.
-
-By the by, this article uses [**mdsvex**](https://github.com/pngwn/MDsveX), an incredibly neat package to process markdown syntax much similarly to mdx.
-
-What can you do with it? Perhaps a counter.
-
 <button on:click={() => counter = counter - 1}>Decrement</button>
 <button on:click={() => counter = counter + 1}>Increment</button>
 
-{counter}
+Clickity-click: I've reached **{counter}**

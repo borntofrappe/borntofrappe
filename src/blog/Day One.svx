@@ -1,0 +1,6 @@
+---
+title: 'Day One'
+date: 2020-04-01
+---
+
+Setting up multiple pages, components, layout and error files seems rather straightforward. The most complicated part, for the time being, is creating pages for the blog post. Based on a series of `.svx` files.
