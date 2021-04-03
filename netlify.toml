@@ -5,8 +5,3 @@
 
 [context.production]
   environment = { NODE_VERSION = "14.16.0" }
-  
-[[headers]]
-   for = "/*"
-   [headers.values]
-      Access-Control-Allow-Origin = "*"

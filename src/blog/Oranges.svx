@@ -1,6 +1,0 @@
----
-title: 'Oranges'
-date: 2020-03-31
----
-
-Something something about _oranges_.
