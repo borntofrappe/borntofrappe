@@ -1,4 +1,5 @@
 <script context="module">
+  export const prerender = true;
   export async function load({page, session}) {
     const { slug } = page.params;
 
