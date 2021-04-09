@@ -1,8 +1,0 @@
----
-title: 'Pivot'
-date: 2021-03-31
----
-
-I destroyed all the progress I made building this website with Eleventy. I really like Svelte, and since SvelteKit recently came out of beta as the preferred way to develop large, Svelte applcations, here we are.
-
-A website using [SvelteKit](https://github.com/sveltejs/kit). Deployed through [Netlify](https://www.netlify.com/), if I manage to spell it correctly. Leaning on [`mdsvex`](https://github.com/pngwn/MDsveX) to process markdown files with a bit of flair.
