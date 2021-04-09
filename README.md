@@ -32,3 +32,43 @@ Choices:
 npm install
 npm run dev
 ```
+
+### Routes & Lib
+
+In the `src` folder.
+
+- `index.svelte`
+
+  ```html
+  <main>
+  	<h1>This is the blog</h1>
+  </main>
+  ```
+
+- `blog/index.svelte`
+
+  ```html
+  <main>
+  	<h1>This is the blog</h1>
+  </main>
+  ```
+
+In the `lib` folder: remove `Counter.svelte`, add `Nav.svelte`
+
+```html
+<nav>
+	<a href="/">Home</a>
+	<a href="/blog">Blog</a>
+</nav>
+```
+
+Back in the `src` folder, `layout.svelte`:
+
+```html
+<script>
+	import Nav from '$lib/Nav.svelte';
+</script>
+
+<nav />
+<slot />
+```
