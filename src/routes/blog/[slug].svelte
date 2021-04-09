@@ -4,7 +4,7 @@
   export async function load({ page }) {
     const posts = Object.fromEntries(await Promise.all(Object.entries(import.meta.glob('/src/blog/*.svx')).map(async ([path, post]) => {
       const filename = path.split('/').pop()
-      const slug = filename.toLowerCase().replace(' ', '-').slice(0, -4);
+      const slug = filename.slice(0, -4);
 
       return [slug, post]
     })))
