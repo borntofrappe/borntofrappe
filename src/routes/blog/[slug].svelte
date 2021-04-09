@@ -1,4 +1,6 @@
 <script context="module">
+  export const prerender = true;
+
   export async function load({ page }) {
     const posts = Object.fromEntries(await Promise.all(Object.entries(import.meta.glob('/src/blog/*.svx')).map(async ([path, post]) => {
       const filename = path.split('/').pop()

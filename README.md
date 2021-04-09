@@ -136,7 +136,7 @@ Specify node version.
 
 At the time and writing, and personally, the build fails by using a version older than the least required by the kit.
 
-### Blog post
+### Blog Posts
 
 _Helpful resources:_
 
