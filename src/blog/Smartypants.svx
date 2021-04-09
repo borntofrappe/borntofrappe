@@ -1,0 +1,23 @@
+---
+title: Smartypants
+description: Testing out a few features from by the mdsvex library
+---
+
+<script>
+  let counter = 0;
+</script>
+
+# {title}
+
+## Options
+
+Two dashes -- make a **en** dash. Three of them --- make an **em** dash. 
+
+## Counter
+
+{counter}
+
+<div style="display: flex; flex-wrap: wrap;">
+<button on:click={() => { counter -= 1; }}>Decrement</button>
+<button on:click={() => { counter += 1; }}>Increment</button>
+</div>

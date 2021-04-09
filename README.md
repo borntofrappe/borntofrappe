@@ -135,3 +135,15 @@ Specify node version.
 ```
 
 At the time and writing, and personally, the build fails by using a version older than the least required by the kit.
+
+### Blog post
+
+_Helpful resources:_
+
+- [SvelteKit docs](https://kit.svelte.dev/docs) and [svelte-kit-demo](https://github.com/sveltejs/kit/tree/master/examples/svelte-kit-demo) to acknowledge how to dynamically generate pages (`.js` endpoints)
+
+- [mdsvex](https://github.com/pngwn/MDsveX) as a markdown preprocessor. It allows to work with `.svx` files for a juiced-up version of markdown
+
+- [Unofficial Documentation for @sveltejs/kit](https://github.com/GrygrFlzr/kit-docs) for a real-world example
+
+- [Vite glob import](https://vitejs.dev/guide/features.html#glob-import)
