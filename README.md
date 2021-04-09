@@ -8,7 +8,7 @@ This is my personal website. Built with [SvelteKit](https://github.com/sveltejs/
 
 Here I try to jot down a note or two as I develop the website.
 
-## Day 1 <!-- Reset -->
+## Day 1 Reset <!-- One more time -->
 
 ### Up and Running
 
@@ -72,3 +72,66 @@ Back in the `src` folder, `layout.svelte`:
 <nav />
 <slot />
 ```
+
+### Deploy
+
+Update `favicon.ico`.
+
+Include a title for both pages.
+
+- homepage
+
+  ```html
+  <svelte:head>
+  	<title>borntofrappe</title>
+  </svelte:head>
+  ```
+
+- blog
+
+  ```html
+  <svelte:head>
+  	<title>borntofrappe/blog</title>
+  </svelte:head>
+  ```
+
+Adapt for netlify
+
+```bash
+npm install @sveltejs/adapter-netlify@next --save-dev
+```
+
+At the time of writing use `@next` version.
+
+In `svelte.config.js`
+
+```js
+const adapter = require('@sveltejs/adapter-netlify');
+
+module.exports = {
+	kit: {
+		adapter: adapter()
+		// ...
+	}
+};
+```
+
+`netlify.toml` configuration
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build/"
+  functions = "functions/"
+```
+
+Be sure to have `/build` and `/functions` in `.gitignore`. Thankfully, they are already listed.
+
+Specify node version.
+
+```toml
+[context.production]
+  environment = { NODE_VERSION = "14.16.0" }
+```
+
+At the time and writing, and personally, the build fails by using a version older than the least required by the kit.
