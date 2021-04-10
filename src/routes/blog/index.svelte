@@ -8,9 +8,10 @@
 </svelte:head>
 
 <main>
-	<h1>This is the blog</h1>
-	<p>These are some links which hopefully don't raise an error 500</p>
-
+	<h1>Blog</h1>
+	<p>There is very little to show...I know</p>
+	<p>But here's some filler content to show I'm actually able to generate pages for individual blog posts.</p>
+	
 	{#if posts.length > 0}
 		<ul>
 			{#each posts as post}

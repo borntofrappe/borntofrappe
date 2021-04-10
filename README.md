@@ -274,3 +274,6 @@ On a live website, I stumbled on a rather annoying issue when selecting some pos
 
 I cannot fully explain the issue, but it might be connected with the adapter and/or Netlify. I presume this since the development version of the website doesn't prompt the same error.
 
+## Day 2: playground
+
+With solid foundations, the attention moves to the design of the website. I have a [playground repository](https://github.com/borntofrappe/playground) in which I intend to describe the style and build individual components. The goal is to then include the decisions made in said repo in the structure set up with SvelteKit.

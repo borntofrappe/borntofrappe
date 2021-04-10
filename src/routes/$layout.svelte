@@ -1,6 +1,24 @@
 <script>
-	import Nav from '$lib/Nav.svelte';
+	import '../app.css';
+
+	import Breadcrumb from '$lib/Breadcrumb.svelte';
+	import Footer from '$lib/Footer.svelte';
 </script>
 
-<Nav />
-<slot />
+<div>
+	<Breadcrumb />
+	<slot />
+	<Footer />
+</div>
+
+<style>
+	div {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	div :global(footer) {
+		margin-top: auto;
+	}
+</style>
