@@ -1,0 +1,26 @@
+---
+title: mdsvex
+description: Testing out mdsvex and specifically the rehype field
+---
+
+# {title}
+
+{description}
+
+## Sub-headings
+
+The idea is to add a permalink, an anchor link element next to `<h2>`, `<h3>`, `<h4>` elements.
+
+### For instance
+
+The very heading introducing this section, or the one below.
+
+### Skip 
+
+I wanted to skip the permalink for `<h1>` elements, but at the time of writing, I found a quick fix in literally hiding the element altogether.
+
+```css
+h1 a {
+	display: none;
+}
+```
