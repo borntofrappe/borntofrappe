@@ -19,8 +19,15 @@ The very heading introducing this section, or the one below.
 
 I wanted to skip the permalink for `<h1>` elements, but at the time of writing, I found a quick fix in literally hiding the element altogether.
 
-```css
-h1 a {
-	display: none;
+```html
+<h1>Hello world</h1> 
+```
+
+
+```js
+const permalinkOptions = {
+  behavior: 'append',
+  properties: {},
+  content
 }
 ```

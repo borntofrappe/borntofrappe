@@ -2,4 +2,6 @@
   import './blog.css';
 </script>
 
-<slot />
+<main>
+  <slot />
+</main>
