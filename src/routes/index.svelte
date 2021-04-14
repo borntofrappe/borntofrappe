@@ -1,6 +1,15 @@
-<svelte:head>
-	<title>borntofrappe</title>
-</svelte:head>
+<script>
+	import Meta from '$lib/Meta.svelte';
+	
+	const meta = {
+		title: 'borntofrappe',
+		description: 'Personal website of one Gabriele Corti.',
+		url: '',
+		image: 'borntofrappe'
+	}
+</script>
+
+<Meta {...meta} />
 
 <main>
 	<h1>Hello World</h1>

@@ -1,11 +1,17 @@
 <script>
+	import Meta from '$lib/Meta.svelte';
 	import { session } from '$app/stores';
+
+	const meta = {
+		title: 'borntofrappe / blog',
+		description: 'Blog of borntofrappe, chronicling the journey of an aspiring developer.',
+		url: '/blog',
+		image: 'blog'
+	}
 	const posts = $session;
 </script>
 
-<svelte:head>
-	<title>borntofrappe/blog</title>
-</svelte:head>
+<Meta {...meta} />
 
 <main>
 	<h1>Blog</h1>

@@ -11,10 +11,11 @@
 
     const post = posts[page.params.slug];
     if(post) {
-      const { default: Module } = await post(); 
+      const { metadata, default: Module } = await post(); 
 
       return {
         props: {
+          ...metadata,
           Module,
           slug: page.params.slug
         }
@@ -29,12 +30,19 @@
 </script>
 
 <script>
+	import Meta from '$lib/Meta.svelte';
+
   export let Module;
   export let slug;
+  export let description = '';
+
+  const meta = {
+		title: `borntofrappe / blog / ${slug}`,
+		description: description,
+		url: `/blog/${slug}`,
+		image: 'blog-post'
+	}
 </script>
 
-<svelte:head>
-	<title>borntofrappe/blog/{slug}</title>
-</svelte:head>
-
+<Meta {...meta} />
 <Module />
