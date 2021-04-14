@@ -293,3 +293,5 @@ Following considerable progress in the playground repo, I set out to implement t
 - blog page with `<Article>` component
 
   - include the date as a string to bypass the automatic conversion made on the frontmatter (`2021-04-10` would become `2021-04-10T00:00:00.000Z`)
+
+- blog post stylesheet

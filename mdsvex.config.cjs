@@ -64,7 +64,7 @@ async function highlighter(code, lang) {
 
   return `{@html \`<div class="code"><span>${
     icons[lang] ? icons[lang] : icons.bug
-  } ${lang}</span>${highlightedCode}</div>\` }`;
+  } ${lang}</span>${highlightedCode.replace(/<pre .+?>/, '<pre>')}</div>\` }`;
 }
 
 module.exports = {

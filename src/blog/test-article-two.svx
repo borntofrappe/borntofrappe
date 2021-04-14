@@ -2,6 +2,7 @@
 title: 'Test Article 2'
 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 date: '2021-04-10'
+tags: ['html', 'css', 'js']
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum vitae nisi aperiam placeat magnam. Repudiandae?

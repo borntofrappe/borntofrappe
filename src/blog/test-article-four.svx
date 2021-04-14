@@ -2,26 +2,59 @@
 title: 'Test Article 4'
 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 date: '2021-04-14'
+tags: ['running', 'flag', 'sparkles']
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum vitae nisi aperiam placeat magnam. Repudiandae?
+> there's no better time than now
 
-Dicta quibusdam quidem illum incidunt a reiciendis nostrum ut rem quam rerum? Consequatur, veritatis error?
+## Content
 
-Odio neque dolor officia similique voluptate necessitatibus, magni voluptas animi, eius temporibus maxime quas assumenda.
+Here's some fillter content to test out the parsing logic.
 
-Veniam at eum, commodi praesentium amet est id obcaecati quos voluptates iste, magni, quas exercitationem.
+- a nice
 
-Nostrum omnis odit veniam dolorem blanditiis, ratione, aspernatur voluptates veritatis nam optio voluptatem beatae doloremque?
+- unordered
 
-## More
+- list
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum vitae nisi aperiam placeat magnam. Repudiandae?
+A table for your table needs.
 
-Dicta quibusdam quidem illum incidunt a reiciendis nostrum ut rem quam rerum? Consequatur, veritatis error?
+| Key          | Value | isRandom |
+| ------------ | ----: | -------: |
+| Grapes       |  1.28 |     true |
+| Oranges      |  2.55 |    false |
+| Apples       |  0.98 |    false |
+| Peaches      |  1.85 |     true |
+| Strawberries |  3.12 |     true |
 
-Odio neque dolor officia similique voluptate necessitatibus, magni voluptas animi, eius temporibus maxime quas assumenda.
+## Syntax Highlighting
 
-Veniam at eum, commodi praesentium amet est id obcaecati quos voluptates iste, magni, quas exercitationem.
+A few code snippets to test out syntax highlighting.
 
-Nostrum omnis odit veniam dolorem blanditiis, ratione, aspernatur voluptates veritatis nam optio voluptatem beatae doloremque?
+```html
+<body>
+  <blockquote>
+    <p>there's no better time than now</p>
+    <p>there was, but it was yesterday</p>
+  </blockquote>
+</body>
+```
+
+```css
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+```
+
+```js
+function setPreference(preference) {
+  document.body.setAttribute('data-preference', preference);
+  window.localStorage.setItem('color-scheme', preference);
+}
+```

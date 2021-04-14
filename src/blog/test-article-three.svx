@@ -2,6 +2,7 @@
 title: 'Test Article 3'
 description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 date: '2021-04-11'
+tags: ['writing', 'editing', 'reading', 'publish']
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum vitae nisi aperiam placeat magnam. Repudiandae?
