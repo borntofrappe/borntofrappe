@@ -289,3 +289,7 @@ Following considerable progress in the playground repo, I set out to implement t
   - update the color scheme on the `html` element. Retrieve the preference directly from `app.html`
 
   - consider a more descriptive name for the component introducing the page (top, welcome mat, intro...)
+
+- blog page with `<Article>` component
+
+  - include the date as a string to bypass the automatic conversion made on the frontmatter (`2021-04-10` would become `2021-04-10T00:00:00.000Z`)

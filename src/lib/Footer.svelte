@@ -8,7 +8,7 @@
     --animation-timing-function: var(--ease-in-out-sine);
     text-align: center;
     padding: 2.25rem 1rem 2rem;
-    color: hsl(215, 10%, 97%);
+    color: hsl(215, 10%, 98%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
     background: var(--frappe-grey-0);
@@ -40,7 +40,6 @@
     border: initial;
     text-decoration: none;
     font-family: 'Maven Pro', sans-serif;
-    font-size: 0.95rem;
     font-weight: 600;
     border-bottom: 0.1rem solid hsl(340, 90%, 55%);
     border-bottom: 0.1rem solid var(--primary-6);
@@ -73,7 +72,7 @@
     height: 64px;
     color: hsl(215, 22%, 5%);
     color: var(--grey-0);
-    background: hsl(215, 10%, 97%);
+    background: hsl(215, 10%, 98%);
     background: var(--grey-10);
     border: 0.4rem solid currentColor;
     border-radius: 50%;
