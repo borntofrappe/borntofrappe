@@ -1,12 +1,12 @@
 <script>
 	import '../app.css';
 
-	import Breadcrumb from '$lib/Breadcrumb.svelte';
+	import Navigation from '$lib/Navigation.svelte';
 	import Footer from '$lib/Footer.svelte';
 </script>
 
 <div>
-	<Breadcrumb />
+	<Navigation />
 	<slot />
 	<Footer />
 </div>

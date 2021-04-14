@@ -282,6 +282,10 @@ With solid foundations, the attention moves to the design of the website. I have
 
 Following considerable progress in the playground repo, I set out to implement the changes to the production website.
 
-### Meta
+- `<head>` of the document throug a `<Meta>` component
 
-Starting from the `<head>` of the document.
+- `<Navigation>` component collecting the breadcrumb navigation and a color scheme toggle
+
+  - update the color scheme on the `html` element. Retrieve the preference directly from `app.html`
+
+  - consider a more descriptive name for the component introducing the page (top, welcome mat, intro...)

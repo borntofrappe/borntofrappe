@@ -20,21 +20,13 @@
 </nav>
 
 <style>
-  nav {
-		max-width: 40rem;
-		width: 90vw;
-		margin: 0 auto;
-		padding: 0.5rem 0;
-	}
-
   nav > * + * {
-    margin-left: 0.3rem;
+    margin-left: 0.3em;
   }
 
   nav a {
     text-decoration: none;
     font-family: 'Maven Pro', sans-serif;
-    font-size: 1rem;
     font-weight: 700;
     padding: 0.25rem 0;
     display: inline-flex;
@@ -45,5 +37,15 @@
     margin-left: 0.3rem;
     width: 1.5em;
     height: auto;
-  }    
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-preference]) nav a {
+      font-weight: 600;
+    }
+  }
+
+  html[data-preference='dark'] nav a {
+    font-weight: 600;
+}
 </style>

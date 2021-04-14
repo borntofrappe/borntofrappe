@@ -12,6 +12,28 @@
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="borntofrappe" />
+
+		<script>
+			try {
+				function setPreference(preference) {
+					document.querySelector('html').setAttribute('data-preference', preference);
+					document.querySelector('html').setAttribute('data-transition', 'true');
+					localStorage.setItem('color-scheme', preference);
+				}
+
+				const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)');
+				const colorScheme = localStorage.getItem('color-scheme');
+
+				if (colorScheme) {
+					setPreference(colorScheme);
+				} else {
+					setPreference(prefersColorScheme.matches ? 'dark' : 'light');
+				}
+			} catch (e) {
+				console.error(e);
+			}
+		</script>
+
 		%svelte.head%
 	</head>
 	<body>

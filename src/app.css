@@ -24,7 +24,6 @@ dd {
 ul,
 ol {
 	padding: 0;
-	list-style: none;
 }
 
 html {
@@ -38,6 +37,14 @@ html {
 }
 
 :root {
+	--size-300: 0.83rem;
+	--size-400: 1rem;
+	--size-500: 1.2rem;
+	--size-600: 1.44rem;
+	--size-700: 1.72rem;
+	--size-800: 2.07rem;
+	--size-900: 2.48rem;
+
 	--frappe-0: hsl(350, 100%, 8%);
 	--frappe-1: hsl(347, 100%, 19%);
 	--frappe-2: hsl(345, 95%, 27%);
@@ -60,7 +67,7 @@ html {
 	--frappe-grey-7: hsl(212, 15%, 65%);
 	--frappe-grey-8: hsl(213, 16%, 79%);
 	--frappe-grey-9: hsl(214, 15%, 88%);
-	--frappe-grey-10: hsl(215, 10%, 97%);
+	--frappe-grey-10: hsl(215, 10%, 98%);
 
 	--twilight-0: hsl(220, 100%, 8%);
 	--twilight-1: hsl(218, 100%, 15%);
@@ -95,7 +102,7 @@ html {
 	--transition-duration: 0.25s;
 }
 
-body {
+html {
 	--primary-0: var(--frappe-0);
 	--primary-1: var(--frappe-1);
 	--primary-2: var(--frappe-2);
@@ -121,8 +128,69 @@ body {
 	--grey-10: var(--frappe-grey-10);
 }
 
+@media (prefers-color-scheme: dark) {
+	html:not([data-preference]) {
+		--primary-0: var(--twilight-0);
+		--primary-1: var(--twilight-1);
+		--primary-2: var(--twilight-2);
+		--primary-3: var(--twilight-3);
+		--primary-4: var(--twilight-4);
+		--primary-5: var(--twilight-5);
+		--primary-6: var(--twilight-6);
+		--primary-7: var(--twilight-7);
+		--primary-8: var(--twilight-8);
+		--primary-9: var(--twilight-9);
+		--primary-10: var(--twilight-10);
+
+		--grey-0: var(--twilight-grey-10);
+		--grey-1: var(--twilight-grey-9);
+		--grey-2: var(--twilight-grey-8);
+		--grey-3: var(--twilight-grey-7);
+		--grey-4: var(--twilight-grey-6);
+		--grey-5: var(--twilight-grey-5);
+		--grey-6: var(--twilight-grey-4);
+		--grey-7: var(--twilight-grey-3);
+		--grey-8: var(--twilight-grey-2);
+		--grey-9: var(--twilight-grey-1);
+		--grey-10: var(--twilight-grey-0);
+	}
+}
+
+html[data-preference='dark'] {
+	--primary-0: var(--twilight-0);
+	--primary-1: var(--twilight-1);
+	--primary-2: var(--twilight-2);
+	--primary-3: var(--twilight-3);
+	--primary-4: var(--twilight-4);
+	--primary-5: var(--twilight-5);
+	--primary-6: var(--twilight-6);
+	--primary-7: var(--twilight-7);
+	--primary-8: var(--twilight-8);
+	--primary-9: var(--twilight-9);
+	--primary-10: var(--twilight-10);
+
+	--grey-0: var(--twilight-grey-10);
+	--grey-1: var(--twilight-grey-9);
+	--grey-2: var(--twilight-grey-8);
+	--grey-3: var(--twilight-grey-7);
+	--grey-4: var(--twilight-grey-6);
+	--grey-5: var(--twilight-grey-5);
+	--grey-6: var(--twilight-grey-4);
+	--grey-7: var(--twilight-grey-3);
+	--grey-8: var(--twilight-grey-2);
+	--grey-9: var(--twilight-grey-1);
+	--grey-10: var(--twilight-grey-0);
+}
+
+html[data-transition] body {
+	transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+		background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: color var(--transition-duration) var(--ease-in-out-sine),
+		background var(--transition-duration) var(--ease-in-out-sine);
+}
+
 ::selection {
-	color: hsl(215, 10%, 97%);
+	color: hsl(215, 10%, 98%);
 	color: var(--grey-0);
 	background: hsl(340, 90%, 55%);
 	background: var(--primary-6);
@@ -132,7 +200,7 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	color: hsl(210, 20%, 12%);
 	color: var(--grey-1);
-	background: hsl(215, 10%, 97%);
+	background: hsl(215, 10%, 98%);
 	background: var(--grey-10);
 	text-rendering: optimizeSpeed;
 }
@@ -207,4 +275,62 @@ svg {
 	overflow: hidden;
 	position: absolute;
 	white-space: nowrap;
+}
+
+body {
+	line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 1.3;
+}
+
+h1 {
+	font-size: 1.72rem;
+	font-size: var(--size-700);
+}
+
+h2 {
+	font-size: 1.44rem;
+	font-size: var(--size-600);
+}
+
+h3 {
+	font-size: 1.44rem;
+	font-size: var(--size-600);
+}
+
+h4 {
+	font-size: 1.2rem;
+	font-size: var(--size-500);
+}
+
+@media (min-width: 45rem) {
+	h1 {
+		font-size: 2.48rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 2.07rem;
+		font-size: var(--size-800);
+	}
+
+	h3 {
+		font-size: 1.72rem;
+		font-size: var(--size-700);
+	}
+
+	h4 {
+		font-size: 1.44rem;
+		font-size: var(--size-600);
+	}
+
+	p {
+		font-size: 1.25rem;
+		font-size: var(--size-500);
+	}
 }
