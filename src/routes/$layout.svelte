@@ -1,11 +1,13 @@
 <script>
 	import '../app.css';
 
+	import SkipToContent from '$lib/SkipToContent.svelte';
 	import Navigation from '$lib/Navigation.svelte';
 	import Footer from '$lib/Footer.svelte';
 </script>
 
 <div>
+	<SkipToContent />
 	<Navigation />
 	<slot />
 	<Footer />

@@ -67,7 +67,7 @@
 	{/if}
 </header>
 
-<main>
+<main id="content">
 	<Module />
 </main>
 

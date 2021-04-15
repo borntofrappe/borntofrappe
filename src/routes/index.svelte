@@ -11,7 +11,7 @@
 
 <Meta {...meta} />
 
-<main>
+<main id="content">
 	<h1>Hello World</h1>
 	<p>This is meant to be my personal website, build with SvelteKit and deployed through Netlify.</p>
 	<p>
