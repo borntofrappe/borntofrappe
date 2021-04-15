@@ -5,10 +5,9 @@
 
 	const meta = {
 		title: 'borntofrappe / blog',
-		description:
-			'Blog of borntofrappe, chronicling the journey of an aspiring developer.',
+		description: 'Blog of borntofrappe, chronicling the journey of an aspiring developer.',
 		url: '/blog',
-		image: 'blog',
+		image: 'blog'
 	};
 	const posts = $session;
 </script>

@@ -6,11 +6,10 @@
 </script>
 
 <div>
-  <Navigation />
-  <slot />
-  <Footer />
+	<Navigation />
+	<slot />
+	<Footer />
 </div>
-
 
 <style>
 	div {
