@@ -2,30 +2,35 @@
   export const prerender = true;
 
   export async function load({ page }) {
-    const posts = Object.fromEntries(await Promise.all(Object.entries(import.meta.glob('/src/blog/*.svx')).map(async ([path, post]) => {
-      const filename = path.split('/').pop()
-      const slug = filename.slice(0, -4);
+    const posts = Object.fromEntries(
+      await Promise.all(
+        Object.entries(import.meta.glob('/src/blog/*.svx')).map(
+          async ([path, post]) => {
+            const filename = path.split('/').pop();
+            const slug = filename.slice(0, -4);
 
-      return [slug, post]
-    })))
+            return [slug, post];
+          }
+        )
+      )
+    );
 
     const post = posts[page.params.slug];
-    if(post) {
-      const { metadata, default: Module } = await post(); 
+    if (post) {
+      const { metadata, default: Module } = await post();
 
       return {
         props: {
           ...metadata,
           Module,
-          slug: page.params.slug
-        }
-      }
-
+          slug: page.params.slug,
+        },
+      };
     }
     return {
       status: 404,
-      error: 'Post not found'
-    }
+      error: 'Post not found',
+    };
   }
 </script>
 
@@ -84,6 +89,7 @@
   }
 
   header::before {
+    line-height: 0;
     position: absolute;
     top: 0;
     width: 8rem;
@@ -221,12 +227,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference]) main :global(p > code) {
+    :global(html:not([data-preference]) main p > code) {
       font-weight: 600;
     }
   }
 
-  html[data-preference='dark'] main :global(p > code) {
+  :global(html[data-preference='dark'] main p > code) {
     font-weight: 600;
   }
 
@@ -329,13 +335,13 @@
   }
 
   main :global(h2 a:focus),
-main :global(h3 a:focus),
+  main :global(h3 a:focus),
   main :global(h4 a:focus) {
     opacity: 1;
   }
 
   main :global(h2 a:hover),
-main :global(h3 a:hover),
+  main :global(h3 a:hover),
   main :global(h4 a:hover) {
     opacity: 1;
     color: hsl(340, 90%, 55%);
@@ -343,7 +349,7 @@ main :global(h3 a:hover),
   }
 
   main :global(h2 a svg),
-main :global(h3 a svg),
+  main :global(h3 a svg),
   main :global(h4 a svg) {
     width: 100%;
     height: auto;
@@ -394,7 +400,7 @@ main :global(h3 a svg),
     main :global(ul li::before) {
       content: '';
       position: absolute;
-      top: 1em;
+      top: 0.85em;
       right: 100%;
       width: 1.5em;
       width: var(--badge-size);
@@ -426,7 +432,7 @@ main :global(h3 a svg),
       color: var(--primary-6);
       font-weight: 700;
       position: absolute;
-      top: 1em;
+      top: 0.85em;
       right: 100%;
       width: 1.5em;
       width: var(--badge-size);
@@ -439,7 +445,7 @@ main :global(h3 a svg),
     main :global(ol li::after) {
       content: '';
       position: absolute;
-      top: 1em;
+      top: 0.85em;
       right: 100%;
       width: 1.5em;
       width: var(--badge-size);
@@ -454,14 +460,14 @@ main :global(h3 a svg),
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference]) main :global(ol li::marker),
-    html:not([data-preference]) main :global(ol li::before) {
+    :global(html:not([data-preference]) main ol li::marker),
+    :global(html:not([data-preference]) main ol li::before) {
       font-weight: 600;
     }
   }
 
-  html[data-preference='dark'] main :global(ol li::marker),
-  html[data-preference='dark'] main :global(ol li::before) {
+  :global(html[data-preference='dark'] main ol li::marker),
+  :global(html[data-preference='dark'] main ol li::before) {
     font-weight: 600;
   }
 
@@ -588,4 +594,6 @@ main :global(h3 a svg),
   main :global(table [align='center']) {
     text-align: center;
   }
+
+  
 </style>

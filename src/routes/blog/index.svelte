@@ -5,15 +5,15 @@
 
 	const meta = {
 		title: 'borntofrappe / blog',
-		description: 'Blog of borntofrappe, chronicling the journey of an aspiring developer.',
+		description:
+			'Blog of borntofrappe, chronicling the journey of an aspiring developer.',
 		url: '/blog',
-		image: 'blog'
-	}
+		image: 'blog',
+	};
 	const posts = $session;
 </script>
 
 <Meta {...meta} />
-
 
 <header>
 	<h1>Jotting things down</h1>
@@ -27,7 +27,6 @@
 		{/each}
 	{/if}
 </main>
-
 
 <style>
 	:global(body) {
@@ -135,7 +134,7 @@
 		}
 	}
 
-		main {
+	main {
 		max-width: 40rem;
 		width: 90vw;
 		margin: 4rem auto 5rem;
@@ -144,7 +143,6 @@
 	main > :global(* + *) {
 		margin-top: 1.25rem;
 	}
-
 
 	@supports ((mask-image: url()) or (-webkit-mask-image: url())) {
 		main :global(article:first-of-type h2 a) {
@@ -188,5 +186,4 @@
 			justify-items: start;
 		}
 	}
-
 </style>

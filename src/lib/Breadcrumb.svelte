@@ -1,6 +1,6 @@
 <script>
   import icons from './_icons.js';
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
 </script>
 
 <nav>
@@ -40,12 +40,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference]) nav a {
+    :global(html:not([data-preference]) nav a) {
       font-weight: 600;
     }
   }
 
-  html[data-preference='dark'] nav a {
+  :global(html[data-preference='dark'] nav a) {
     font-weight: 600;
-}
+  }
 </style>

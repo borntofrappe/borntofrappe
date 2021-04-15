@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
 
   let button;
 
@@ -141,29 +141,29 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference])  button svg .rotate {
+    :global(html:not([data-preference]) button svg .rotate) {
       transform: rotate(180deg);
     }
 
-    html:not([data-preference])  button svg .scale {
+    :global(html:not([data-preference]) button svg .scale) {
       transform: scaleX(-1);
     }
   }
 
-  html[data-preference='dark']  button svg .rotate {
+  :global(html[data-preference='dark'] button svg .rotate) {
     transform: rotate(180deg);
   }
 
-  html[data-preference='dark']  button svg .scale {
+  :global(html[data-preference='dark'] button svg .scale) {
     transform: scaleX(-1);
   }
 
-  html[data-transition]  button svg .rotate {
+  :global(html[data-transition] button svg .rotate) {
     transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transition: transform var(--transition-duration) var(--ease-in-out-sine);
   }
 
-  html[data-transition]  button svg .scale {
+  :global(html[data-transition] button svg .scale) {
     transition: transform 0.25s step-end;
     transition: transform var(--transition-duration) step-end;
   }

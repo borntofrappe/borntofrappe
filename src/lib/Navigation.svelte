@@ -1,6 +1,6 @@
 <script>
-	import Breadcrumb from '$lib/Breadcrumb.svelte';
-	import ColorSchemeToggle from '$lib/ColorSchemeToggle.svelte';
+  import Breadcrumb from '$lib/Breadcrumb.svelte';
+  import ColorSchemeToggle from '$lib/ColorSchemeToggle.svelte';
 </script>
 
 <div>

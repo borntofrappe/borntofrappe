@@ -1,28 +1,28 @@
 <script>
+  import '../app.css';
+  
   import Meta from '$lib/Meta.svelte';
   import icons from '$lib/_icons.js';
-	
+
   export let status;
   export let error;
 
-  console.log(error)
-
-	const meta = {
-		title: `borntofrappe / ${status}`,
-		description: 'Error page for borntofrappe.',
-		url: '',
-		image: status === 404 ? '404' : 'borntofrappe'
-	}
+  const meta = {
+    title: `borntofrappe / ${status}`,
+    description: 'Error page for borntofrappe.',
+    url: '',
+    image: status === 404 ? '404' : 'borntofrappe',
+  };
 </script>
 
 <Meta {...meta} />
 
 <header>
   <h1>
-    {status === 404 ? 'Page not found' : error.message} 
+    {status === 404 ? 'Page not found' : error.message}
   </h1>
   <p>
-    {status === 404 ? 'I\'ve looked for it carefully. Promise.' : 'Something entirely unexpected happened'} 
+    {status === 404 ? 'I\'ve looked for it carefully. Promise.' : 'Something entirely unexpected happened'}
   </p>
 </header>
 
@@ -47,6 +47,7 @@
   </p>
   <a href="/" class="relative">Go to home page</a>
 </main>
+
 
 <style>
   header {
