@@ -1,45 +1,32 @@
 <script>
-  import '../app.css';
-  
   import Meta from '$lib/Meta.svelte';
   import icons from '$lib/_icons.js';
 
-  export let status;
-  export let error;
-
   const meta = {
-    title: `borntofrappe / ${status}`,
-    description: 'Error page for borntofrappe.',
-    url: '',
-    image: status === 404 ? '404' : 'borntofrappe',
+    title: `borntofrappe / 404`,
+    description: 'Missing Page',
+    url: '/404',
+    image: '404',
   };
 </script>
 
 <Meta {...meta} />
 
 <header>
-  <h1>
-    {status === 404 ? 'Page not found' : error.message}
-  </h1>
-  <p>
-    {status === 404 ? 'I\'ve looked for it carefully. Promise.' : 'Something entirely unexpected happened'}
-  </p>
+  <h1>Page not found</h1>
+  <p>I've looked for it carefully. Promise.</p>
 </header>
 
 <main id="content">
   <div class="code">
     <span aria-label="Language">{@html icons.editor} code</span>
-    <pre><code>{error.stack}</code></pre>
+    <pre><code>Error: Not found</code></pre>
   </div>
 
   <p>
-    If you think there is a mistake, please
-    <a
-      target="_blank"
-      href="mailto:borntofrappe@gmail.com?subject=404%20—%20Page%20not%20found"
-      >send me an email</a
-    >
-    at borntofrappe@gmail.com.
+    If you think there is a mistake, please consider
+    <a href="https://github.com/borntofrappe/borntofrappe/issues">creating a new issue on Github</a
+    >.
   </p>
   <p>
     If you need some guidance,

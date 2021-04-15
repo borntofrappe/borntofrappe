@@ -5,3 +5,8 @@
 
 [context.production]
   environment = { NODE_VERSION = "14.16.0" }
+
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
