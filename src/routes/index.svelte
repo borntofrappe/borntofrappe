@@ -17,5 +17,5 @@
 	<p><strong>Be warned</strong>: I'm actively working on the website. Expect changes and error messages.</p>
 
 	<p><a href="https://github.com/borntofrappe/borntofrappe">Link to repo</a></p>
-	<p><a href="/blog">Link to blog</a> with hypothetical content</p>
+	<p><a href="/blog" class="relative">Link to blog</a> with hypothetical content</p>
 </main>
