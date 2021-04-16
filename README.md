@@ -231,3 +231,32 @@ Include a `<script>` tag in the `<head>` of `app.html` so that the page includes
 ```
 
 This works to avoid the potential flash of style resulting from loading the page and then applying the color scheme.
+
+### !important
+
+The `!important` suffix in the styles for the homepage is necessary due to the `:global` selector being less specific than the previous statement.
+
+```css
+section#getting-started::after {
+	content: '';
+}
+:global(html:not([data-preference]) section#getting-started::after) {
+	content: url('') !important;
+}
+```
+
+This is actually something relevant to every use of the `:global` syntax to have the dark preference influence the appearance of the pages.
+
+Consider a rewrite, perhaps moving any and all declarations depending on the color preference in the global stylesheet.
+
+### class:observed
+
+A workaround to retain the styling for the class of `.observed`, even if the class is not present in the starting DOM tree.
+
+```html
+<header bind:this="{hero}" class:observed="{false}"></header>
+```
+
+The class is added conditionally to the `<header>` element being observed through the intersection observer API.
+
+Consider a rewrite acknowledging [this issue](https://github.com/sveltejs/svelte/issues/1594#issuecomment-405269805).
