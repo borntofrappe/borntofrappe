@@ -264,16 +264,11 @@
 	
 	header > svg {
 		order: -1;
-		max-width: 24rem;
+		max-width: 31rem;
+		width: 90%;
 		height: auto;
 		margin: 1rem;
 		--transition-duration: 0.4s;
-	}
-	
-	@media (min-width: 50rem) {
-		header > svg {
-			max-width: 28rem;
-		}
 	}
 	
 	header > svg #borntofrappe {
@@ -415,7 +410,7 @@
 		margin-top: 1em;
 	}
 	
-	@media (min-width: 50rem) {
+	@media (min-width: 45rem) {
 		section#getting-started a {
 			font-size: 1.2rem;
 			font-size: var(--size-500);
