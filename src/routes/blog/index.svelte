@@ -9,7 +9,7 @@
 		url: '/blog',
 		image: 'blog'
 	};
-	const posts = $session;
+	const { posts } = $session;
 </script>
 
 <Meta {...meta} />

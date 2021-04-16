@@ -12,5 +12,7 @@ export async function getSession() {
     })
   );
 
-  return posts;
+  return {
+    posts: posts.sort((a, b) => new Date(...b.date.split(' ').map(d => parseInt(d, 10))) - new Date(...a.date.split(' ').map(d => parseInt(d, 10))))
+  }
 }

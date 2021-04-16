@@ -1,8 +1,8 @@
 ---
-title: 'Test Article 4'
-description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-date: '2021-04-14'
-tags: ['running', 'flag', 'sparkles']
+title: Test Article 4
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+date: 2021 4 14
+tags: running, flag, sparkles
 ---
 
 > there's no better time than now

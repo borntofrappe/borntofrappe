@@ -4,7 +4,7 @@
 	export let description;
 	export let date;
 
-	const [year, month, day] = date.split('-');
+	const [year, month, day] = date.split(' ').map(d => parseInt(d, 10));
 
 	const months = [
 		'January',
