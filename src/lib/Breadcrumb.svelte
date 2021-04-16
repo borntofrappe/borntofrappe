@@ -10,7 +10,7 @@
 			.split('/')
 			.slice(1)
 			.reduce((acc, curr, index) => [...acc, { href: acc[index - 1] ? `${acc[index - 1].href}/${curr}` : `/${curr}`, path: curr }], []) as { href, path }}
-			<a {href}
+			<a sveltekit:prefetch {href}
 				>/ {path}
 				{#if icons[path]}{@html icons[path]}{/if}</a
 			>

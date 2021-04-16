@@ -21,6 +21,6 @@
 
 	<p><a href="https://github.com/borntofrappe/borntofrappe">Link to repo</a></p>
 	<p>
-		<a href="/blog" class="relative">Link to blog</a> with hypothetical content
+		<a sveltekit:prefetch href="/blog" class="relative">Link to blog</a> with hypothetical content
 	</p>
 </main>

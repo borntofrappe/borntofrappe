@@ -24,7 +24,7 @@
 
 <article>
 	<h2>
-		<a href="/blog/{slug}">
+		<a sveltekit:prefetch href="/blog/{slug}">
 			{title}
 		</a>
 	</h2>
