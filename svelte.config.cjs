@@ -5,7 +5,7 @@ const mdsvexConfig = require('./mdsvex.config.cjs')
 
 /** @type {import('@sveltejs/kit').Config} */
 module.exports = {
-	extensions: ['.svelte', '.svx'],
+	extensions: ['.svelte', ...mdsvexConfig.extensions],
 	preprocess: [mdsvex(mdsvexConfig)],
 	kit: {
 		adapter: adapter(),

@@ -68,6 +68,7 @@ async function highlighter(code, lang) {
 }
 
 module.exports = {
+  extensions: ['.md', '.svx'],
   smartypants: {
     dashes: 'oldschool',
   },

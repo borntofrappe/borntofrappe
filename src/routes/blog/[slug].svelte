@@ -4,9 +4,10 @@
 	export async function load({ page, session }) {
 		const posts = Object.fromEntries(
 			await Promise.all(
-				Object.entries(import.meta.glob('/src/blog/*.svx')).map(async ([path, post]) => {
+				Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, post]) => {
 					const filename = path.split('/').pop();
-					const slug = filename.slice(0, -4);
+					const extension = filename.split('.').pop();
+					const slug = filename.slice(0, (extension.length + 1) * -1);
 
 					return [slug, post];
 				})
