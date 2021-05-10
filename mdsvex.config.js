@@ -1,9 +1,11 @@
-const h = require('hastscript');
-const s = require('hastscript/svg');
-const slug = require('rehype-slug');
-const permalink = require('rehype-autolink-headings');
-const shiki = require('shiki');
-const icons = require('./icons.cjs');
+import { h, s } from 'hastscript';
+import pkgSlug from 'rehype-slug';
+import pkgAutolinkHeadings from 'rehype-autolink-headings';
+import shiki from 'shiki';
+import icons from './icons.js';
+
+const { slug } = pkgSlug;
+const { permalink } = pkgAutolinkHeadings;
 
 const permalinkOptions = {
   behavior: 'append',
@@ -67,7 +69,7 @@ async function highlighter(code, lang) {
   } ${lang}</span>${highlightedCode.replace(/<pre .+?>/, '<pre>')}</div>\` }`;
 }
 
-module.exports = {
+const mdsvexConfig = {
   extensions: ['.md', '.svx'],
   smartypants: {
     dashes: 'oldschool',
@@ -77,3 +79,5 @@ module.exports = {
     highlighter,
   },
 };
+
+export default mdsvexConfig;

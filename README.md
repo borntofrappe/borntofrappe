@@ -6,6 +6,4 @@
 
 This is my personal website. Built with [SvelteKit](https://github.com/sveltejs/kit), deployed through [Netlify](https://www.netlify.com/).
 
-> **Be warned**: the project is a definite work in progress. Expect a lack of polish and a few error messages as I try my luck with the kit.
->
-> 08th April 2021
+> **Be warned**: the project is a definite work in progress. Expect a lack of polish and a few error messages. SvelteKit is also prone to breaking changes as it sprints toward version 1.0.
