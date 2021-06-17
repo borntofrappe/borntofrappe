@@ -71,4 +71,29 @@ My personal website. Built with [SvelteKit](https://kit.svelte.dev/), deployed t
     functions = "functions/"
   ```
 
-- the status badge provided by Netlify is included in `index.svelte`
+## Looking for success
+
+> dated 17th of July, 2021
+
+- Netlify build fails citing unsupported engine
+
+  ```bash
+  npm ERR! notsup Unsupported engine for @sveltejs/kit@1.0.0-next.115: wanted: {"node":"^12.20 || ^14.13.1 || >= 16"} (current: {"node":"10.24.1","npm":"6.14.12"})
+  ```
+
+  Two lines below the error message the issue, and solution, is repeated directly
+
+  ```bash
+  Required: {"node":"^12.20 || ^14.13.1 || >= 16"}
+  ```
+
+  Netlify shows how to set a specific node version through [configuration variables](https://docs.netlify.com/configure-builds/environment-variables/#netlify-configuration-variables)
+
+- `netlify.toml` is updated to specify which node version to use in production
+
+  ```toml
+  [context.production]
+    environment = { NODE_VERSION = "14.16.0" }
+  ```
+
+  `16.3.0` seems to be the latest version of [the package](https://www.npmjs.com/package/node), but locally I am still working with `v14.16.0`. Might update in the future.
