@@ -117,3 +117,11 @@ _What follows?_ Hopefully more than a fresh start. In practical terms, however, 
   For the title I chose to use the status code
 
 - the `<svelte:head>` component allows to change the title
+
+## Icons and manifest
+
+> dated June 18th, 2021
+
+- the static folder is updated to include icons in several formats and sizes: `.svg` and `.favicon` as two general solutions for web browsers, `apple-touch-icon` for apple devices, `android-chrome-*` for android devices and chrome
+
+- `manifest.json` highlights the icons, and additional information, for android devices
