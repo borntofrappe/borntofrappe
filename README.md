@@ -1,12 +1,12 @@
 # borntofrappe
 
-My personal website. Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
+_What's this?_ My personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/) (fingers crossed [![Netlify Status](https://api.netlify.com/api/v1/badges/4e7278de-b395-4b4c-a54c-4c12fbd57fc9/deploy-status)](https://app.netlify.com/sites/borntofrappe/deploys)).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4e7278de-b395-4b4c-a54c-4c12fbd57fc9/deploy-status)](https://app.netlify.com/sites/borntofrappe/deploys)
+_What follows?_ Hopefully more than a fresh start. In practical terms, however, a series of notes I jot down while developing the project.
 
-## A fresh start
+## Getting started
 
-> dated 17th of July, 2021
+> dated June 17th, 2021
 
 - SvelteKit is installed its `next` iteration, which currently means [version 1.0.0-next.115](https://www.npmjs.com/package/@sveltejs/kit/v/1.0.0-next.115).
 
@@ -41,7 +41,7 @@ My personal website. Built with [SvelteKit](https://kit.svelte.dev/), deployed t
 
 ## A quick deploy
 
-> dated 17th of July, 2021
+> dated June 17th, 2021
 
 - SvelteKit adapter for Netlify is installed in [version 1.0.0-next.17](https://www.npmjs.com/package/@sveltejs/adapter-netlify/v/1.0.0-next.17)
 
@@ -73,7 +73,7 @@ My personal website. Built with [SvelteKit](https://kit.svelte.dev/), deployed t
 
 ## Looking for success
 
-> dated 17th of July, 2021
+> dated June 17th, 2021
 
 - Netlify build fails citing unsupported engine
 
@@ -97,3 +97,23 @@ My personal website. Built with [SvelteKit](https://kit.svelte.dev/), deployed t
   ```
 
   `16.3.0` seems to be the latest version of [the package](https://www.npmjs.com/package/node), but locally I am still working with `v14.16.0`. Might update in the future.
+
+## Pages, layouts and errors
+
+> dated June 18th, 2021
+
+- `src/routes/blog/index.svelte` adds a blog page. `src/routes/blog.svelte` would work, but it is better to plan ahead and consider when the blog will include dedicated articles, to serve from the `/blog` root
+
+- `src/routes/__layout.svelte` provides a `nav` and `footer` for each page. The content of the pages is included in place of the `<slot>` element
+
+- `src/routes/__error.svelte` handles when a page fails to load. In a `<script>` with a `context` of type `module`, the component has access to the error and status code. The information is passed through props and displayed with additional information
+
+- in the error page the idea is to suggest filing an issue on Github. A specific URL helps to prepopulate the issue with additional information
+
+  ```text
+  https://github.com/borntofrappe/borntofrappe/issues/new?title=ADD_TITLE_HERE&labels=bug
+  ```
+
+  For the title I chose to use the status code
+
+- the `<svelte:head>` component allows to change the title
