@@ -28,3 +28,34 @@
     {/each}
   {/if}
 </nav>
+
+<style>
+  nav > * + * {
+    margin-left: 0.3em;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 700;
+    padding: 0.25rem 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  nav a :global(svg) {
+    margin-left: 0.3rem;
+    width: 1.5em;
+    height: auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-preference]) nav a) {
+      font-weight: 600;
+    }
+  }
+
+  :global(html[data-preference='dark'] nav a) {
+    font-weight: 600;
+  }
+</style>

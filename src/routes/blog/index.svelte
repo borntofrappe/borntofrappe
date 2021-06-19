@@ -1,2 +1,7 @@
-<h1>Blog</h1>
-<p>This is where I'll have the courage to include a few articles</p>
+<main>
+  <h1>Blog</h1>
+  <p>
+    What's a blog without blog posts? In all honesty, I hope to write one before
+    finding a quippy reply.
+  </p>
+</main>

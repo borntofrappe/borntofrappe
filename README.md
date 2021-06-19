@@ -143,3 +143,15 @@ _What follows?_ Hopefully more than a fresh start. In practical terms, however, 
 - `<svelte:head>` is moved from the individual pages to the `<Breadcrumbs>` component. The idea is to keep the title and the text in the breadcrumb navigation consistent
 
   Note that if a page were to specify its own `<svelte:head>` element it would override the default
+
+## Style, sheet and tags
+
+> dated June 19th, 2021
+
+- considering the solution of [sveltekit own website](https://github.com/sveltejs/kit/blob/master/examples/hn.svelte.dev/src/routes/__layout.svelte#L6) `app.css` is imported as a global stylesheet from the layout file `__layout.svelte`
+
+- the fonts are included in `app.html` and through the `<link>` tag provided by Google fonts
+
+- the layout is updated so that the footer is always pushed at the bottom of the page
+
+- `<Breadcrumbs>` and `<Footer>` begin the styling of the components in between `<style>` tags
