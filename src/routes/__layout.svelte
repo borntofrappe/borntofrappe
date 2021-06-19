@@ -1,12 +1,10 @@
-<nav>
-  <a href="/">borntofrappe</a>
-</nav>
+<script>
+  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+  import Footer from '$lib/components/Footer.svelte';
+</script>
+
+<Breadcrumbs />
 
 <slot />
 
-<footer>
-  <p>
-    Follow me
-    <a href="https://twitter.com/borntofrappe">@borntofrappe</a>
-  </p>
-</footer>
+<Footer />

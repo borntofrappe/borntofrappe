@@ -14,10 +14,6 @@
   export let status;
 </script>
 
-<svelte:head>
-  <title>borntofrappe / __error</title>
-</svelte:head>
-
 <h1>{status}</h1>
 
 <p>Something bad happened. Here's the error message for context.</p>

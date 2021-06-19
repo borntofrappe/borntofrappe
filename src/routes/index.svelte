@@ -1,7 +1,3 @@
-<svelte:head>
-  <title>borntofrappe</title>
-</svelte:head>
-
 <h1>Hello world!</h1>
 <p>I enjoy writing code</p>
 <p>

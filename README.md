@@ -125,3 +125,21 @@ _What follows?_ Hopefully more than a fresh start. In practical terms, however, 
 - the static folder is updated to include icons in several formats and sizes: `.svg` and `.favicon` as two general solutions for web browsers, `apple-touch-icon` for apple devices, `android-chrome-*` for android devices and chrome
 
 - `manifest.json` highlights the icons, and additional information, for android devices
+
+## lib, components and icons
+
+> dated June 19th, 2021
+
+- the `src/lib` folder is created to contain `.svelte` components and a javascript file exporting a series of icons through SVG syntax
+
+- in place of a standard navigation bar, `<Breadcrumbs>` highlights the paths relative to the current page. The `$app/stores` module helps to retrieve the path from the `$page` store
+
+  ```svelte
+  import { page } from '$app/stores';
+  ```
+
+  Since `page` is a store, every time the value is updated, the elements using its value are updated as well
+
+- `<svelte:head>` is moved from the individual pages to the `<Breadcrumbs>` component. The idea is to keep the title and the text in the breadcrumb navigation consistent
+
+  Note that if a page were to specify its own `<svelte:head>` element it would override the default
