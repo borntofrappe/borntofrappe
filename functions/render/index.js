@@ -281,8 +281,8 @@ var Body = class {
     this.size = size;
     if (body instanceof import_stream.default) {
       body.on("error", (err) => {
-        const error3 = err instanceof FetchBaseError ? err : new FetchError(`Invalid response body while trying to fetch ${this.url}: ${err.message}`, "system", err);
-        this[INTERNALS$2].error = error3;
+        const error2 = err instanceof FetchBaseError ? err : new FetchError(`Invalid response body while trying to fetch ${this.url}: ${err.message}`, "system", err);
+        this[INTERNALS$2].error = error2;
       });
     }
   }
@@ -356,11 +356,11 @@ async function consumeBody(data) {
       accumBytes += chunk.length;
       accum.push(chunk);
     }
-  } catch (error3) {
-    if (error3 instanceof FetchBaseError) {
-      throw error3;
+  } catch (error2) {
+    if (error2 instanceof FetchBaseError) {
+      throw error2;
     } else {
-      throw new FetchError(`Invalid response body while trying to fetch ${data.url}: ${error3.message}`, "system", error3);
+      throw new FetchError(`Invalid response body while trying to fetch ${data.url}: ${error2.message}`, "system", error2);
     }
   }
   if (body.readableEnded === true || body._readableState.ended === true) {
@@ -369,8 +369,8 @@ async function consumeBody(data) {
         return Buffer.from(accum.join(""));
       }
       return Buffer.concat(accum, accumBytes);
-    } catch (error3) {
-      throw new FetchError(`Could not create Buffer from response body for ${data.url}: ${error3.message}`, "system", error3);
+    } catch (error2) {
+      throw new FetchError(`Could not create Buffer from response body for ${data.url}: ${error2.message}`, "system", error2);
     }
   } else {
     throw new FetchError(`Premature close of server response while trying to fetch ${data.url}`);
@@ -847,15 +847,15 @@ async function fetch2(url, options_) {
     const { signal } = request;
     let response = null;
     const abort = () => {
-      const error3 = new AbortError("The operation was aborted.");
-      reject(error3);
+      const error2 = new AbortError("The operation was aborted.");
+      reject(error2);
       if (request.body && request.body instanceof import_stream.default.Readable) {
-        request.body.destroy(error3);
+        request.body.destroy(error2);
       }
       if (!response || !response.body) {
         return;
       }
-      response.body.emit("error", error3);
+      response.body.emit("error", error2);
     };
     if (signal && signal.aborted) {
       abort();
@@ -894,8 +894,8 @@ async function fetch2(url, options_) {
             if (locationURL !== null) {
               try {
                 headers.set("Location", locationURL);
-              } catch (error3) {
-                reject(error3);
+              } catch (error2) {
+                reject(error2);
               }
             }
             break;
@@ -940,8 +940,8 @@ async function fetch2(url, options_) {
           signal.removeEventListener("abort", abortAndFinalize);
         }
       });
-      let body = (0, import_stream.pipeline)(response_, new import_stream.PassThrough(), (error3) => {
-        reject(error3);
+      let body = (0, import_stream.pipeline)(response_, new import_stream.PassThrough(), (error2) => {
+        reject(error2);
       });
       if (process.version < "v12.10") {
         response_.on("aborted", abortAndFinalize);
@@ -966,25 +966,25 @@ async function fetch2(url, options_) {
         finishFlush: import_zlib.default.Z_SYNC_FLUSH
       };
       if (codings === "gzip" || codings === "x-gzip") {
-        body = (0, import_stream.pipeline)(body, import_zlib.default.createGunzip(zlibOptions), (error3) => {
-          reject(error3);
+        body = (0, import_stream.pipeline)(body, import_zlib.default.createGunzip(zlibOptions), (error2) => {
+          reject(error2);
         });
         response = new Response2(body, responseOptions);
         resolve2(response);
         return;
       }
       if (codings === "deflate" || codings === "x-deflate") {
-        const raw = (0, import_stream.pipeline)(response_, new import_stream.PassThrough(), (error3) => {
-          reject(error3);
+        const raw = (0, import_stream.pipeline)(response_, new import_stream.PassThrough(), (error2) => {
+          reject(error2);
         });
         raw.once("data", (chunk) => {
           if ((chunk[0] & 15) === 8) {
-            body = (0, import_stream.pipeline)(body, import_zlib.default.createInflate(), (error3) => {
-              reject(error3);
+            body = (0, import_stream.pipeline)(body, import_zlib.default.createInflate(), (error2) => {
+              reject(error2);
             });
           } else {
-            body = (0, import_stream.pipeline)(body, import_zlib.default.createInflateRaw(), (error3) => {
-              reject(error3);
+            body = (0, import_stream.pipeline)(body, import_zlib.default.createInflateRaw(), (error2) => {
+              reject(error2);
             });
           }
           response = new Response2(body, responseOptions);
@@ -993,8 +993,8 @@ async function fetch2(url, options_) {
         return;
       }
       if (codings === "br") {
-        body = (0, import_stream.pipeline)(body, import_zlib.default.createBrotliDecompress(), (error3) => {
-          reject(error3);
+        body = (0, import_stream.pipeline)(body, import_zlib.default.createBrotliDecompress(), (error2) => {
+          reject(error2);
         });
         response = new Response2(body, responseOptions);
         resolve2(response);
@@ -1265,7 +1265,7 @@ function writable(value, start = noop) {
   function update(fn) {
     set(fn(value));
   }
-  function subscribe(run2, invalidate = noop) {
+  function subscribe2(run2, invalidate = noop) {
     const subscriber = [run2, invalidate];
     subscribers.push(subscriber);
     if (subscribers.length === 1) {
@@ -1283,7 +1283,7 @@ function writable(value, start = noop) {
       }
     };
   }
-  return { set, update, subscribe };
+  return { set, update, subscribe: subscribe2 };
 }
 function hash(value) {
   let hash2 = 5381;
@@ -1303,9 +1303,9 @@ async function render_response({
   $session,
   page_config,
   status,
-  error: error3,
+  error: error2,
   branch,
-  page
+  page: page2
 }) {
   const css2 = new Set(options2.entry.css);
   const js = new Set(options2.entry.js);
@@ -1314,8 +1314,8 @@ async function render_response({
   let rendered;
   let is_private = false;
   let maxage;
-  if (error3) {
-    error3.stack = options2.get_stack(error3);
+  if (error2) {
+    error2.stack = options2.get_stack(error2);
   }
   if (branch) {
     branch.forEach(({ node, loaded, fetched, uses_credentials }) => {
@@ -1338,7 +1338,7 @@ async function render_response({
         navigating: writable(null),
         session
       },
-      page,
+      page: page2,
       components: branch.map(({ node }) => node.module.default)
     };
     for (let i = 0; i < branch.length; i += 1) {
@@ -1377,24 +1377,24 @@ async function render_response({
 			start({
 				target: ${options2.target ? `document.querySelector(${s$1(options2.target)})` : "document.body"},
 				paths: ${s$1(options2.paths)},
-				session: ${try_serialize($session, (error4) => {
-      throw new Error(`Failed to serialize session data: ${error4.message}`);
+				session: ${try_serialize($session, (error3) => {
+      throw new Error(`Failed to serialize session data: ${error3.message}`);
     })},
-				host: ${page && page.host ? s$1(page.host) : "location.host"},
+				host: ${page2 && page2.host ? s$1(page2.host) : "location.host"},
 				route: ${!!page_config.router},
 				spa: ${!page_config.ssr},
 				trailing_slash: ${s$1(options2.trailing_slash)},
 				hydrate: ${page_config.ssr && page_config.hydrate ? `{
 					status: ${status},
-					error: ${serialize_error(error3)},
+					error: ${serialize_error(error2)},
 					nodes: [
 						${branch.map(({ node }) => `import(${s$1(node.entry)})`).join(",\n						")}
 					],
 					page: {
-						host: ${page.host ? s$1(page.host) : "location.host"}, // TODO this is redundant
-						path: ${s$1(page.path)},
-						query: new URLSearchParams(${s$1(page.query.toString())}),
-						params: ${s$1(page.params)}
+						host: ${page2.host ? s$1(page2.host) : "location.host"}, // TODO this is redundant
+						path: ${s$1(page2.path)},
+						query: new URLSearchParams(${s$1(page2.query.toString())}),
+						params: ${s$1(page2.params)}
 					}
 				}` : "null"}
 			});
@@ -1436,12 +1436,12 @@ function try_serialize(data, fail) {
     return null;
   }
 }
-function serialize_error(error3) {
-  if (!error3)
+function serialize_error(error2) {
+  if (!error2)
     return null;
-  let serialized = try_serialize(error3);
+  let serialized = try_serialize(error2);
   if (!serialized) {
-    const { name, message, stack } = error3;
+    const { name, message, stack } = error2;
     serialized = try_serialize({ name, message, stack });
   }
   if (!serialized) {
@@ -1451,19 +1451,19 @@ function serialize_error(error3) {
 }
 function normalize(loaded) {
   if (loaded.error) {
-    const error3 = typeof loaded.error === "string" ? new Error(loaded.error) : loaded.error;
+    const error2 = typeof loaded.error === "string" ? new Error(loaded.error) : loaded.error;
     const status = loaded.status;
-    if (!(error3 instanceof Error)) {
+    if (!(error2 instanceof Error)) {
       return {
         status: 500,
-        error: new Error(`"error" property returned from load() must be a string or instance of Error, received type "${typeof error3}"`)
+        error: new Error(`"error" property returned from load() must be a string or instance of Error, received type "${typeof error2}"`)
       };
     }
     if (!status || status < 400 || status > 599) {
       console.warn('"error" returned from load() without a valid status code \u2014 defaulting to 500');
-      return { status: 500, error: error3 };
+      return { status: 500, error: error2 };
     }
-    return { status, error: error3 };
+    return { status, error: error2 };
   }
   if (loaded.redirect) {
     if (!loaded.status || Math.floor(loaded.status / 100) !== 3) {
@@ -1502,14 +1502,14 @@ async function load_node({
   options: options2,
   state,
   route,
-  page,
+  page: page2,
   node,
   $session,
   context,
   is_leaf,
   is_error,
   status,
-  error: error3
+  error: error2
 }) {
   const { module: module2 } = node;
   let uses_credentials = false;
@@ -1517,7 +1517,7 @@ async function load_node({
   let loaded;
   if (module2.load) {
     const load_input = {
-      page,
+      page: page2,
       get session() {
         uses_credentials = true;
         return $session;
@@ -1564,7 +1564,7 @@ async function load_node({
                 }
               });
             } else {
-              response = await fetch(`http://${page.host}/${asset.file}`, opts);
+              response = await fetch(`http://${page2.host}/${asset.file}`, opts);
             }
           }
           if (!response) {
@@ -1641,7 +1641,7 @@ async function load_node({
     };
     if (is_error) {
       load_input.status = status;
-      load_input.error = error3;
+      load_input.error = error2;
     }
     loaded = await module2.load.call(null, load_input);
   } else {
@@ -1694,10 +1694,10 @@ function escape(str) {
   result += '"';
   return result;
 }
-async function respond_with_error({ request, options: options2, state, $session, status, error: error3 }) {
+async function respond_with_error({ request, options: options2, state, $session, status, error: error2 }) {
   const default_layout = await options2.load_component(options2.manifest.layout);
   const default_error = await options2.load_component(options2.manifest.error);
-  const page = {
+  const page2 = {
     host: request.host,
     path: request.path,
     query: request.query,
@@ -1708,7 +1708,7 @@ async function respond_with_error({ request, options: options2, state, $session,
     options: options2,
     state,
     route: null,
-    page,
+    page: page2,
     node: default_layout,
     $session,
     context: {},
@@ -1722,14 +1722,14 @@ async function respond_with_error({ request, options: options2, state, $session,
       options: options2,
       state,
       route: null,
-      page,
+      page: page2,
       node: default_error,
       $session,
       context: loaded.context,
       is_leaf: false,
       is_error: true,
       status,
-      error: error3
+      error: error2
     })
   ];
   try {
@@ -1742,23 +1742,23 @@ async function respond_with_error({ request, options: options2, state, $session,
         ssr: options2.ssr
       },
       status,
-      error: error3,
+      error: error2,
       branch,
-      page
+      page: page2
     });
-  } catch (error4) {
-    options2.handle_error(error4);
+  } catch (error3) {
+    options2.handle_error(error3);
     return {
       status: 500,
       headers: {},
-      body: error4.stack
+      body: error3.stack
     };
   }
 }
 async function respond$1({ request, options: options2, state, $session, route }) {
   const match = route.pattern.exec(request.path);
   const params = route.params(match);
-  const page = {
+  const page2 = {
     host: request.host,
     path: request.path,
     query: request.query,
@@ -1767,15 +1767,15 @@ async function respond$1({ request, options: options2, state, $session, route })
   let nodes;
   try {
     nodes = await Promise.all(route.a.map((id) => id && options2.load_component(id)));
-  } catch (error4) {
-    options2.handle_error(error4);
+  } catch (error3) {
+    options2.handle_error(error3);
     return await respond_with_error({
       request,
       options: options2,
       state,
       $session,
       status: 500,
-      error: error4
+      error: error3
     });
   }
   const leaf = nodes[nodes.length - 1].module;
@@ -1793,7 +1793,7 @@ async function respond$1({ request, options: options2, state, $session, route })
   }
   let branch;
   let status = 200;
-  let error3;
+  let error2;
   ssr:
     if (page_config.ssr) {
       let context = {};
@@ -1808,7 +1808,7 @@ async function respond$1({ request, options: options2, state, $session, route })
               options: options2,
               state,
               route,
-              page,
+              page: page2,
               node,
               $session,
               context,
@@ -1826,14 +1826,14 @@ async function respond$1({ request, options: options2, state, $session, route })
               };
             }
             if (loaded.loaded.error) {
-              ({ status, error: error3 } = loaded.loaded);
+              ({ status, error: error2 } = loaded.loaded);
             }
           } catch (e) {
             options2.handle_error(e);
             status = 500;
-            error3 = e;
+            error2 = e;
           }
-          if (error3) {
+          if (error2) {
             while (i--) {
               if (route.b[i]) {
                 const error_node = await options2.load_component(route.b[i]);
@@ -1849,14 +1849,14 @@ async function respond$1({ request, options: options2, state, $session, route })
                     options: options2,
                     state,
                     route,
-                    page,
+                    page: page2,
                     node: error_node,
                     $session,
                     context: node_loaded.context,
                     is_leaf: false,
                     is_error: true,
                     status,
-                    error: error3
+                    error: error2
                   });
                   if (error_loaded.loaded.error) {
                     continue;
@@ -1875,7 +1875,7 @@ async function respond$1({ request, options: options2, state, $session, route })
               state,
               $session,
               status,
-              error: error3
+              error: error2
             });
           }
         }
@@ -1894,19 +1894,19 @@ async function respond$1({ request, options: options2, state, $session, route })
       $session,
       page_config,
       status,
-      error: error3,
+      error: error2,
       branch: branch && branch.filter(Boolean),
-      page
+      page: page2
     });
-  } catch (error4) {
-    options2.handle_error(error4);
+  } catch (error3) {
+    options2.handle_error(error3);
     return await respond_with_error({
       request,
       options: options2,
       state,
       $session,
       status: 500,
-      error: error4
+      error: error3
     });
   }
 }
@@ -2210,6 +2210,13 @@ function is_function(thing) {
 function is_empty(obj) {
   return Object.keys(obj).length === 0;
 }
+function subscribe(store, ...callbacks) {
+  if (store == null) {
+    return noop2;
+  }
+  const unsub = store.subscribe(...callbacks);
+  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+}
 var tasks = new Set();
 var active_docs = new Set();
 var current_component;
@@ -2229,6 +2236,9 @@ function afterUpdate(fn) {
 }
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
+}
+function getContext(key) {
+  return get_current_component().$$.context.get(key);
 }
 var resolved_promise = Promise.resolve();
 var seen_callbacks = new Set();
@@ -2269,6 +2279,13 @@ var escaped2 = {
 };
 function escape2(html) {
   return String(html).replace(/["'&<>]/g, (match) => escaped2[match]);
+}
+function each(items, fn) {
+  let str = "";
+  for (let i = 0; i < items.length; i += 1) {
+    str += fn(items[i], i);
+  }
+  return str;
 }
 var missing_component = {
   $$render: () => ""
@@ -2315,6 +2332,11 @@ function create_ssr_component(fn) {
     },
     $$render
   };
+}
+function add_attribute(name, value, boolean) {
+  if (value == null || boolean && !value)
+    return "";
+  return ` ${name}${value === true ? "" : `=${typeof value === "string" ? JSON.stringify(escape2(value)) : `"${value}"`}`}`;
 }
 function destroy_component(component, detaching) {
   const $$ = component.$$;
@@ -2369,13 +2391,13 @@ if (typeof HTMLElement === "function") {
 }
 
 // .svelte-kit/output/server/app.js
-var css = {
+var css$3 = {
   code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
   map: `{"version":3,"file":"root.svelte","sources":["root.svelte"],"sourcesContent":["<!-- This file is generated by @sveltejs/kit \u2014 do not edit it! -->\\n<script>\\n\\timport { setContext, afterUpdate, onMount } from 'svelte';\\n\\n\\t// stores\\n\\texport let stores;\\n\\texport let page;\\n\\n\\texport let components;\\n\\texport let props_0 = null;\\n\\texport let props_1 = null;\\n\\texport let props_2 = null;\\n\\n\\tsetContext('__svelte__', stores);\\n\\n\\t$: stores.page.set(page);\\n\\tafterUpdate(stores.page.notify);\\n\\n\\tlet mounted = false;\\n\\tlet navigated = false;\\n\\tlet title = null;\\n\\n\\tonMount(() => {\\n\\t\\tconst unsubscribe = stores.page.subscribe(() => {\\n\\t\\t\\tif (mounted) {\\n\\t\\t\\t\\tnavigated = true;\\n\\t\\t\\t\\ttitle = document.title || 'untitled page';\\n\\t\\t\\t}\\n\\t\\t});\\n\\n\\t\\tmounted = true;\\n\\t\\treturn unsubscribe;\\n\\t});\\n<\/script>\\n\\n<svelte:component this={components[0]} {...(props_0 || {})}>\\n\\t{#if components[1]}\\n\\t\\t<svelte:component this={components[1]} {...(props_1 || {})}>\\n\\t\\t\\t{#if components[2]}\\n\\t\\t\\t\\t<svelte:component this={components[2]} {...(props_2 || {})}/>\\n\\t\\t\\t{/if}\\n\\t\\t</svelte:component>\\n\\t{/if}\\n</svelte:component>\\n\\n{#if mounted}\\n\\t<div id=\\"svelte-announcer\\" aria-live=\\"assertive\\" aria-atomic=\\"true\\">\\n\\t\\t{#if navigated}\\n\\t\\t\\t{title}\\n\\t\\t{/if}\\n\\t</div>\\n{/if}\\n\\n<style>\\n\\t#svelte-announcer {\\n\\t\\tposition: absolute;\\n\\t\\tleft: 0;\\n\\t\\ttop: 0;\\n\\t\\tclip: rect(0 0 0 0);\\n\\t\\tclip-path: inset(50%);\\n\\t\\toverflow: hidden;\\n\\t\\twhite-space: nowrap;\\n\\t\\twidth: 1px;\\n\\t\\theight: 1px;\\n\\t}\\n</style>"],"names":[],"mappings":"AAsDC,iBAAiB,eAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,IAAI,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACnB,SAAS,CAAE,MAAM,GAAG,CAAC,CACrB,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,AACZ,CAAC"}`
 };
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { stores } = $$props;
-  let { page } = $$props;
+  let { page: page2 } = $$props;
   let { components } = $$props;
   let { props_0 = null } = $$props;
   let { props_1 = null } = $$props;
@@ -2397,8 +2419,8 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   });
   if ($$props.stores === void 0 && $$bindings.stores && stores !== void 0)
     $$bindings.stores(stores);
-  if ($$props.page === void 0 && $$bindings.page && page !== void 0)
-    $$bindings.page(page);
+  if ($$props.page === void 0 && $$bindings.page && page2 !== void 0)
+    $$bindings.page(page2);
   if ($$props.components === void 0 && $$bindings.components && components !== void 0)
     $$bindings.components(components);
   if ($$props.props_0 === void 0 && $$bindings.props_0 && props_0 !== void 0)
@@ -2407,9 +2429,9 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.props_1(props_1);
   if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
     $$bindings.props_2(props_2);
-  $$result.css.add(css);
+  $$result.css.add(css$3);
   {
-    stores.page.set(page);
+    stores.page.set(page2);
   }
   return `
 
@@ -2430,7 +2452,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module"
 });
-var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <link rel="icon" href="/icon.svg" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    ' + head + '\n  </head>\n  <body>\n    <div id="svelte">' + body + "</div>\n  </body>\n</html>\n";
+var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n\n    <link rel="icon" href="/icons/favicon.ico" />\n    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />\n    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />\n    <link rel="manifest" href="/manifest.json" />\n\n    <link\n      rel="preload"\n      href="/fonts/MavenPro-Bold-latin.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin=""\n    />\n\n    <link\n      rel="preload"\n      href="/fonts/MavenPro-Semibold-latin.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin=""\n    />\n\n    <link\n      rel="preload"\n      href="/fonts/MavenPro-Medium-latin.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin=""\n    />\n\n    <link\n      rel="preload"\n      href="/fonts/Cambay-Regular-latin.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin=""\n    />\n\n    ' + head + '\n  </head>\n  <body>\n    <div id="svelte">' + body + "</div>\n  </body>\n</html>\n";
 var options = null;
 function init(settings) {
   set_paths(settings.paths);
@@ -2439,17 +2461,17 @@ function init(settings) {
     amp: false,
     dev: false,
     entry: {
-      file: "/./_app/start-deb7bd6a.js",
+      file: "/./_app/start-66813d20.js",
       css: ["/./_app/assets/start-a8cd1609.css"],
-      js: ["/./_app/start-deb7bd6a.js", "/./_app/chunks/vendor-43cd886a.js"]
+      js: ["/./_app/start-66813d20.js", "/./_app/chunks/vendor-a440c6a6.js"]
     },
     fetched: void 0,
     floc: false,
     get_component_path: (id) => "/./_app/" + entry_lookup[id],
-    get_stack: (error22) => String(error22),
-    handle_error: (error22) => {
-      console.error(error22.stack);
-      error22.stack = options.get_stack(error22);
+    get_stack: (error2) => String(error2),
+    handle_error: (error2) => {
+      console.error(error2.stack);
+      error2.stack = options.get_stack(error2);
     },
     hooks: get_hooks(user_hooks),
     hydrate: true,
@@ -2468,16 +2490,23 @@ function init(settings) {
 }
 var empty = () => ({});
 var manifest = {
-  assets: [{ "file": "icon.svg", "size": 619, "type": "image/svg+xml" }],
-  layout: ".svelte-kit/build/components/layout.svelte",
-  error: ".svelte-kit/build/components/error.svelte",
+  assets: [{ "file": "fonts/Cambay-Bold-Italic-latin.woff", "size": 25536, "type": "font/woff" }, { "file": "fonts/Cambay-Bold-Italic-latin.woff2", "size": 20700, "type": "font/woff2" }, { "file": "fonts/Cambay-Bold-latin.woff", "size": 24788, "type": "font/woff" }, { "file": "fonts/Cambay-Bold-latin.woff2", "size": 20012, "type": "font/woff2" }, { "file": "fonts/Cambay-Regular-Italic-latin.woff", "size": 25128, "type": "font/woff" }, { "file": "fonts/Cambay-Regular-Italic-latin.woff2", "size": 20304, "type": "font/woff2" }, { "file": "fonts/Cambay-Regular-latin.woff", "size": 25236, "type": "font/woff" }, { "file": "fonts/Cambay-Regular-latin.woff2", "size": 20260, "type": "font/woff2" }, { "file": "fonts/MavenPro-Bold-latin.woff", "size": 12716, "type": "font/woff" }, { "file": "fonts/MavenPro-Bold-latin.woff2", "size": 9884, "type": "font/woff2" }, { "file": "fonts/MavenPro-Medium-latin.woff", "size": 12724, "type": "font/woff" }, { "file": "fonts/MavenPro-Medium-latin.woff2", "size": 9880, "type": "font/woff2" }, { "file": "fonts/MavenPro-Semibold-latin.woff", "size": 12696, "type": "font/woff" }, { "file": "fonts/MavenPro-Semibold-latin.woff2", "size": 9900, "type": "font/woff2" }, { "file": "fonts/SourceCodePro-Regular-latin.woff", "size": 17580, "type": "font/woff" }, { "file": "fonts/SourceCodePro-Regular-latin.woff2", "size": 13764, "type": "font/woff2" }, { "file": "icons/android-chrome-192x192.png", "size": 8293, "type": "image/png" }, { "file": "icons/android-chrome-512x512.png", "size": 23681, "type": "image/png" }, { "file": "icons/apple-touch-icon.png", "size": 3490, "type": "image/png" }, { "file": "icons/favicon.ico", "size": 15086, "type": "image/vnd.microsoft.icon" }, { "file": "icons/icon.svg", "size": 619, "type": "image/svg+xml" }, { "file": "manifest.json", "size": 439, "type": "application/json" }],
+  layout: "src/routes/__layout.svelte",
+  error: "src/routes/__error.svelte",
   routes: [
     {
       type: "page",
       pattern: /^\/$/,
       params: empty,
-      a: [".svelte-kit/build/components/layout.svelte", "src/routes/index.svelte"],
-      b: [".svelte-kit/build/components/error.svelte"]
+      a: ["src/routes/__layout.svelte", "src/routes/index.svelte"],
+      b: ["src/routes/__error.svelte"]
+    },
+    {
+      type: "page",
+      pattern: /^\/blog\/?$/,
+      params: empty,
+      a: ["src/routes/__layout.svelte", "src/routes/blog/index.svelte"],
+      b: ["src/routes/__error.svelte"]
     }
   ]
 };
@@ -2486,17 +2515,20 @@ var get_hooks = (hooks) => ({
   handle: hooks.handle || (({ request, resolve: resolve2 }) => resolve2(request))
 });
 var module_lookup = {
-  ".svelte-kit/build/components/layout.svelte": () => Promise.resolve().then(function() {
-    return layout;
+  "src/routes/__layout.svelte": () => Promise.resolve().then(function() {
+    return __layout;
   }),
-  ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(function() {
-    return error2;
+  "src/routes/__error.svelte": () => Promise.resolve().then(function() {
+    return __error;
   }),
   "src/routes/index.svelte": () => Promise.resolve().then(function() {
+    return index$1;
+  }),
+  "src/routes/blog/index.svelte": () => Promise.resolve().then(function() {
     return index;
   })
 };
-var metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "/./_app/layout.svelte-d4cd228d.js", "css": [], "js": ["/./_app/layout.svelte-d4cd228d.js", "/./_app/chunks/vendor-43cd886a.js"], "styles": null }, ".svelte-kit/build/components/error.svelte": { "entry": "/./_app/error.svelte-f649fae9.js", "css": [], "js": ["/./_app/error.svelte-f649fae9.js", "/./_app/chunks/vendor-43cd886a.js"], "styles": null }, "src/routes/index.svelte": { "entry": "/./_app/pages/index.svelte-aa28219e.js", "css": [], "js": ["/./_app/pages/index.svelte-aa28219e.js", "/./_app/chunks/vendor-43cd886a.js"], "styles": null } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "/./_app/pages/__layout.svelte-1ab8e982.js", "css": ["/./_app/assets/pages/__layout.svelte-6bc5b582.css"], "js": ["/./_app/pages/__layout.svelte-1ab8e982.js", "/./_app/chunks/vendor-a440c6a6.js"], "styles": null }, "src/routes/__error.svelte": { "entry": "/./_app/pages/__error.svelte-718b6d7f.js", "css": [], "js": ["/./_app/pages/__error.svelte-718b6d7f.js", "/./_app/chunks/vendor-a440c6a6.js"], "styles": null }, "src/routes/index.svelte": { "entry": "/./_app/pages/index.svelte-20c2a71c.js", "css": [], "js": ["/./_app/pages/index.svelte-20c2a71c.js", "/./_app/chunks/vendor-a440c6a6.js"], "styles": null }, "src/routes/blog/index.svelte": { "entry": "/./_app/pages/blog/index.svelte-04346434.js", "css": [], "js": ["/./_app/pages/blog/index.svelte-04346434.js", "/./_app/chunks/vendor-a440c6a6.js"], "styles": null } };
 async function load_component(file) {
   return {
     module: await module_lookup[file](),
@@ -2510,46 +2542,148 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender });
 }
-var Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${slots.default ? slots.default({}) : ``}`;
+var getStores = () => {
+  const stores = getContext("__svelte__");
+  return {
+    page: {
+      subscribe: stores.page.subscribe
+    },
+    navigating: {
+      subscribe: stores.navigating.subscribe
+    },
+    get preloading() {
+      console.error("stores.preloading is deprecated; use stores.navigating instead");
+      return {
+        subscribe: stores.navigating.subscribe
+      };
+    },
+    session: stores.session
+  };
+};
+var page = {
+  subscribe(fn) {
+    const store = getStores().page;
+    return store.subscribe(fn);
+  }
+};
+var icons = {
+  blog: `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg>`,
+  bug: `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="scale(0.8)"><g fill="none" stroke-width="16"><g transform="translate(0 13.5)"><path d="M 34 0 h -68"/><path transform="rotate(45)" d="M 40 0 h -80"/><path transform="rotate(-45)" d="M 40 0 h -80"/></g></g><g fill="currentColor" stroke-width="8"><path d="M -0 -46 a 17 17 0 0 1 17 17 h -34 a 17 17 0 0 1 17 -17" /><path d="M -0 -10 h 25 v 25 a 25 25 0 0 1 -50 0 v -25 z" /></g></g></g></svg>`,
+  rocket: `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(2 -1.5) rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg>`
+};
+var css$2 = {
+  code: "nav.svelte-wal0qu>.svelte-wal0qu+.svelte-wal0qu{margin-left:0.3em}nav.svelte-wal0qu a.svelte-wal0qu.svelte-wal0qu{text-decoration:none;font-family:'Maven Pro', sans-serif;font-weight:700;padding:0.25rem 0;display:inline-flex;align-items:center}nav.svelte-wal0qu a.svelte-wal0qu svg{margin-left:0.3rem;width:1.5em;height:auto}@media(prefers-color-scheme: dark){html:not([data-preference]) nav a{font-weight:600}}html[data-preference='dark'] nav a{font-weight:600}",
+  map: `{"version":3,"file":"Breadcrumbs.svelte","sources":["Breadcrumbs.svelte"],"sourcesContent":["<script>\\r\\n  import { page } from '$app/stores';\\r\\n  import icons from '$lib/icons';\\r\\n\\r\\n  const root = {\\r\\n    href: '/',\\r\\n    text: 'borntofrappe',\\r\\n    icon: icons.rocket,\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<svelte:head>\\r\\n  <title\\r\\n    >{\`\${root.text}\${$page.path === '/' ? '' : $page.path}\`\\r\\n      .split('/')\\r\\n      .join(' / ')}</title\\r\\n  >\\r\\n</svelte:head>\\r\\n\\r\\n<nav aria-label=\\"Breadcrumb navigation\\">\\r\\n  <a href={root.href}>{root.text} {@html root.icon}</a>\\r\\n  {#if $page.path !== '/'}\\r\\n    {#each $page.path\\r\\n      .split('/')\\r\\n      .slice(1)\\r\\n      .reduce((acc, curr, i) => [...acc, { href: i === 0 ? \`/\${curr}\` : \`\${acc[i - 1].href}/\${curr}\`, text: \`/ \${curr}\`, icon: icons[curr] || '' }], []) as { href, text, icon }}\\r\\n      <a {href}>{text} {@html icon}</a>\\r\\n    {/each}\\r\\n  {/if}\\r\\n</nav>\\r\\n\\r\\n<style>\\r\\n  nav > * + * {\\r\\n    margin-left: 0.3em;\\r\\n  }\\r\\n\\r\\n  nav a {\\r\\n    text-decoration: none;\\r\\n    font-family: 'Maven Pro', sans-serif;\\r\\n    font-weight: 700;\\r\\n    padding: 0.25rem 0;\\r\\n    display: inline-flex;\\r\\n    align-items: center;\\r\\n  }\\r\\n\\r\\n  nav a :global(svg) {\\r\\n    margin-left: 0.3rem;\\r\\n    width: 1.5em;\\r\\n    height: auto;\\r\\n  }\\r\\n\\r\\n  @media (prefers-color-scheme: dark) {\\r\\n    :global(html:not([data-preference]) nav a) {\\r\\n      font-weight: 600;\\r\\n    }\\r\\n  }\\r\\n\\r\\n  :global(html[data-preference='dark'] nav a) {\\r\\n    font-weight: 600;\\r\\n  }\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAgCE,iBAAG,CAAG,cAAC,CAAG,cAAE,CAAC,AACX,WAAW,CAAE,KAAK,AACpB,CAAC,AAED,iBAAG,CAAC,CAAC,4BAAC,CAAC,AACL,eAAe,CAAE,IAAI,CACrB,WAAW,CAAE,WAAW,CAAC,CAAC,UAAU,CACpC,WAAW,CAAE,GAAG,CAChB,OAAO,CAAE,OAAO,CAAC,CAAC,CAClB,OAAO,CAAE,WAAW,CACpB,WAAW,CAAE,MAAM,AACrB,CAAC,AAED,iBAAG,CAAC,eAAC,CAAC,AAAQ,GAAG,AAAE,CAAC,AAClB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,IAAI,AACd,CAAC,AAED,MAAM,AAAC,uBAAuB,IAAI,CAAC,AAAC,CAAC,AAC3B,iCAAiC,AAAE,CAAC,AAC1C,WAAW,CAAE,GAAG,AAClB,CAAC,AACH,CAAC,AAEO,kCAAkC,AAAE,CAAC,AAC3C,WAAW,CAAE,GAAG,AAClB,CAAC"}`
+};
+var Breadcrumbs = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $page, $$unsubscribe_page;
+  $$unsubscribe_page = subscribe(page, (value) => $page = value);
+  const root = {
+    href: "/",
+    text: "borntofrappe",
+    icon: icons.rocket
+  };
+  $$result.css.add(css$2);
+  $$unsubscribe_page();
+  return `${$$result.head += `${$$result.title = `<title>${escape2(`${root.text}${$page.path === "/" ? "" : $page.path}`.split("/").join(" / "))}</title>`, ""}`, ""}
+
+<nav aria-label="${"Breadcrumb navigation"}" class="${"svelte-wal0qu"}"><a${add_attribute("href", root.href, 0)} class="${"svelte-wal0qu"}">${escape2(root.text)} ${root.icon}</a>
+  ${$page.path !== "/" ? `${each($page.path.split("/").slice(1).reduce((acc, curr, i) => [
+    ...acc,
+    {
+      href: i === 0 ? `/${curr}` : `${acc[i - 1].href}/${curr}`,
+      text: `/ ${curr}`,
+      icon: icons[curr] || ""
+    }
+  ], []), ({ href, text, icon }) => `<a${add_attribute("href", href, 0)} class="${"svelte-wal0qu"}">${escape2(text)} ${icon}</a>`)}` : ``}
+</nav>`;
 });
-var layout = /* @__PURE__ */ Object.freeze({
+var css$1 = {
+  code: `footer.svelte-n4ey2i.svelte-n4ey2i{--animation-duration:2s;--animation-timing-function:var(--ease-in-out-sine);text-align:center;padding:2.25rem 1rem 2rem;color:hsl(215, 10%, 98%);color:var(--frappe-grey-10);background:hsl(215, 22%, 5%);background:var(--frappe-grey-0);background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');background-size:20px;position:relative}footer.svelte-n4ey2i.svelte-n4ey2i::before{content:'';position:absolute;left:0%;bottom:100%;width:100%;height:20px;background:inherit;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');background-size:20px;-webkit-mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');-webkit-mask-size:100px 40px;mask-size:100px 40px;-webkit-mask-position:50% 0;mask-position:50% 0}footer.svelte-n4ey2i a.svelte-n4ey2i{padding:0.2rem 0;border:initial;text-decoration:none;font-family:'Maven Pro', sans-serif;font-weight:600;border-bottom:0.1rem solid hsl(340, 90%, 55%);border-bottom:0.1rem solid var(--primary-6);transition:color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:color 0.25s var(--ease-in-out-sine)}footer.svelte-n4ey2i a.svelte-n4ey2i:hover,footer.svelte-n4ey2i a.svelte-n4ey2i:focus{color:hsl(340, 90%, 55%);color:var(--primary-6)}footer.svelte-n4ey2i a.svelte-n4ey2i:focus{outline:none}footer.svelte-n4ey2i a.svelte-n4ey2i::before,footer.svelte-n4ey2i a.svelte-n4ey2i::after{content:'';position:absolute;top:0%;left:50%;transform:translate(-50%, -50%);margin-top:-8px}footer.svelte-n4ey2i a.svelte-n4ey2i::before{width:64px;height:64px;color:hsl(215, 22%, 5%);color:var(--grey-0);background:hsl(215, 10%, 98%);background:var(--grey-10);border:0.4rem solid currentColor;border-radius:50%;transition:color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:color var(--transition-duration) var(--ease-in-out-sine)}footer.svelte-n4ey2i a.svelte-n4ey2i::after{transform:translate(-50%, -50%) scale(1);width:28px;height:28px;background:hsl(215, 22%, 5%);background:var(--grey-0);border-radius:50%;transition:background 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:background var(--transition-duration) var(--ease-in-out-sine)}@supports ((mask-image: url()) or (-webkit-mask-image: url())){footer.svelte-n4ey2i a.svelte-n4ey2i::after{border-radius:initial;mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" /%3E%3C/g%3E%3C/svg%3E');-webkit-mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" /%3E%3C/g%3E%3C/svg%3E')}}footer.svelte-n4ey2i a.svelte-n4ey2i::after{animation:svelte-n4ey2i-heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite\r
+      paused;animation:svelte-n4ey2i-heart-beat var(--animation-duration)\r
+      var(--animation-timing-function) infinite paused}@keyframes svelte-n4ey2i-heart-beat{10%,30%{transform:translate(-50%, -50%) scale(0.7)}0%,20%,40%{transform:translate(-50%, -50%) scale(1)}}footer.svelte-n4ey2i a.svelte-n4ey2i:hover::before,footer.svelte-n4ey2i a.svelte-n4ey2i:focus::before{color:hsl(340, 90%, 55%);color:var(--primary-6)}footer.svelte-n4ey2i a.svelte-n4ey2i:hover::after,footer.svelte-n4ey2i a.svelte-n4ey2i:focus::after{background:currentColor}@media(prefers-reduced-motion: no-preference){footer.svelte-n4ey2i a.svelte-n4ey2i:hover::after,footer.svelte-n4ey2i a.svelte-n4ey2i:focus::after{animation-play-state:running}}`,
+  map: `{"version":3,"file":"Footer.svelte","sources":["Footer.svelte"],"sourcesContent":["<footer>\\r\\n  <a href=\\"https://twitter.com/borntofrappe\\">borntofrappe</a>\\r\\n</footer>\\r\\n\\r\\n<style>\\r\\n  footer {\\r\\n    --animation-duration: 2s;\\r\\n    --animation-timing-function: var(--ease-in-out-sine);\\r\\n    text-align: center;\\r\\n    padding: 2.25rem 1rem 2rem;\\r\\n    color: hsl(215, 10%, 98%);\\r\\n    color: var(--frappe-grey-10);\\r\\n    background: hsl(215, 22%, 5%);\\r\\n    background: var(--frappe-grey-0);\\r\\n    background-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg opacity=\\"0.5\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Ccircle r=\\"12\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 -50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 -50)\\" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');\\r\\n    background-size: 20px;\\r\\n    position: relative;\\r\\n  }\\r\\n\\r\\n  footer::before {\\r\\n    content: '';\\r\\n    position: absolute;\\r\\n    left: 0%;\\r\\n    bottom: 100%;\\r\\n    width: 100%;\\r\\n    height: 20px;\\r\\n    background: inherit;\\r\\n    background-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg opacity=\\"0.5\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Ccircle r=\\"12\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 -50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 -50)\\" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');\\r\\n    background-size: 20px;\\r\\n    -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"25 -20 100 40\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Cpath d=\\"M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n    mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"25 -20 100 40\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Cpath d=\\"M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n    -webkit-mask-size: 100px 40px;\\r\\n    mask-size: 100px 40px;\\r\\n    -webkit-mask-position: 50% 0;\\r\\n    mask-position: 50% 0;\\r\\n  }\\r\\n\\r\\n  footer a {\\r\\n    padding: 0.2rem 0;\\r\\n    border: initial;\\r\\n    text-decoration: none;\\r\\n    font-family: 'Maven Pro', sans-serif;\\r\\n    font-weight: 600;\\r\\n    border-bottom: 0.1rem solid hsl(340, 90%, 55%);\\r\\n    border-bottom: 0.1rem solid var(--primary-6);\\r\\n    transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n    transition: color 0.25s var(--ease-in-out-sine);\\r\\n  }\\r\\n\\r\\n  footer a:hover,\\r\\n  footer a:focus {\\r\\n    color: hsl(340, 90%, 55%);\\r\\n    color: var(--primary-6);\\r\\n  }\\r\\n\\r\\n  footer a:focus {\\r\\n    outline: none;\\r\\n  }\\r\\n\\r\\n  footer a::before,\\r\\n  footer a::after {\\r\\n    content: '';\\r\\n    position: absolute;\\r\\n    top: 0%;\\r\\n    left: 50%;\\r\\n    transform: translate(-50%, -50%);\\r\\n    margin-top: -8px;\\r\\n  }\\r\\n\\r\\n  footer a::before {\\r\\n    width: 64px;\\r\\n    height: 64px;\\r\\n    color: hsl(215, 22%, 5%);\\r\\n    color: var(--grey-0);\\r\\n    background: hsl(215, 10%, 98%);\\r\\n    background: var(--grey-10);\\r\\n    border: 0.4rem solid currentColor;\\r\\n    border-radius: 50%;\\r\\n    transition: color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n    transition: color var(--transition-duration) var(--ease-in-out-sine);\\r\\n  }\\r\\n\\r\\n  footer a::after {\\r\\n    transform: translate(-50%, -50%) scale(1);\\r\\n    width: 28px;\\r\\n    height: 28px;\\r\\n    background: hsl(215, 22%, 5%);\\r\\n    background: var(--grey-0);\\r\\n    border-radius: 50%;\\r\\n    transition: background 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n    transition: background var(--transition-duration) var(--ease-in-out-sine);\\r\\n  }\\r\\n\\r\\n  @supports ((mask-image: url()) or (-webkit-mask-image: url())) {\\r\\n    footer a::after {\\r\\n      border-radius: initial;\\r\\n      mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"currentColor\\" stroke-width=\\"10\\" stroke-linejoin=\\"round\\" stroke-linecap=\\"round\\"%3E%3Cpath d=\\"M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n      -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"currentColor\\" stroke-width=\\"10\\" stroke-linejoin=\\"round\\" stroke-linecap=\\"round\\"%3E%3Cpath d=\\"M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n    }\\r\\n  }\\r\\n\\r\\n  footer a::after {\\r\\n    animation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite\\r\\n      paused;\\r\\n    animation: heart-beat var(--animation-duration)\\r\\n      var(--animation-timing-function) infinite paused;\\r\\n  }\\r\\n\\r\\n  @keyframes heart-beat {\\r\\n    10%,\\r\\n    30% {\\r\\n      transform: translate(-50%, -50%) scale(0.7);\\r\\n    }\\r\\n\\r\\n    0%,\\r\\n    20%,\\r\\n    40% {\\r\\n      transform: translate(-50%, -50%) scale(1);\\r\\n    }\\r\\n  }\\r\\n\\r\\n  footer a:hover::before,\\r\\n  footer a:focus::before {\\r\\n    color: hsl(340, 90%, 55%);\\r\\n    color: var(--primary-6);\\r\\n  }\\r\\n\\r\\n  footer a:hover::after,\\r\\n  footer a:focus::after {\\r\\n    background: currentColor;\\r\\n  }\\r\\n\\r\\n  @media (prefers-reduced-motion: no-preference) {\\r\\n    footer a:hover::after,\\r\\n    footer a:focus::after {\\r\\n      animation-play-state: running;\\r\\n    }\\r\\n  }\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAKE,MAAM,4BAAC,CAAC,AACN,oBAAoB,CAAE,EAAE,CACxB,2BAA2B,CAAE,uBAAuB,CACpD,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,OAAO,CAAC,IAAI,CAAC,IAAI,CAC1B,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,gBAAgB,CAAC,CAC5B,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,EAAE,CAAC,CAC7B,UAAU,CAAE,IAAI,eAAe,CAAC,CAChC,gBAAgB,CAAE,IAAI,oZAAoZ,CAAC,CAC3a,eAAe,CAAE,IAAI,CACrB,QAAQ,CAAE,QAAQ,AACpB,CAAC,AAED,kCAAM,QAAQ,AAAC,CAAC,AACd,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,EAAE,CACR,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,OAAO,CACnB,gBAAgB,CAAE,IAAI,oZAAoZ,CAAC,CAC3a,eAAe,CAAE,IAAI,CACrB,kBAAkB,CAAE,IAAI,2RAA2R,CAAC,CACpT,UAAU,CAAE,IAAI,2RAA2R,CAAC,CAC5S,iBAAiB,CAAE,KAAK,CAAC,IAAI,CAC7B,SAAS,CAAE,KAAK,CAAC,IAAI,CACrB,qBAAqB,CAAE,GAAG,CAAC,CAAC,CAC5B,aAAa,CAAE,GAAG,CAAC,CAAC,AACtB,CAAC,AAED,oBAAM,CAAC,CAAC,cAAC,CAAC,AACR,OAAO,CAAE,MAAM,CAAC,CAAC,CACjB,MAAM,CAAE,OAAO,CACf,eAAe,CAAE,IAAI,CACrB,WAAW,CAAE,WAAW,CAAC,CAAC,UAAU,CACpC,WAAW,CAAE,GAAG,CAChB,aAAa,CAAE,MAAM,CAAC,KAAK,CAAC,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9C,aAAa,CAAE,MAAM,CAAC,KAAK,CAAC,IAAI,WAAW,CAAC,CAC5C,UAAU,CAAE,KAAK,CAAC,KAAK,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAC7D,UAAU,CAAE,KAAK,CAAC,KAAK,CAAC,IAAI,kBAAkB,CAAC,AACjD,CAAC,AAED,oBAAM,CAAC,eAAC,MAAM,CACd,oBAAM,CAAC,eAAC,MAAM,AAAC,CAAC,AACd,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,WAAW,CAAC,AACzB,CAAC,AAED,oBAAM,CAAC,eAAC,MAAM,AAAC,CAAC,AACd,OAAO,CAAE,IAAI,AACf,CAAC,AAED,oBAAM,CAAC,eAAC,QAAQ,CAChB,oBAAM,CAAC,eAAC,OAAO,AAAC,CAAC,AACf,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,EAAE,CACP,IAAI,CAAE,GAAG,CACT,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAChC,UAAU,CAAE,IAAI,AAClB,CAAC,AAED,oBAAM,CAAC,eAAC,QAAQ,AAAC,CAAC,AAChB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,EAAE,CAAC,CACxB,KAAK,CAAE,IAAI,QAAQ,CAAC,CACpB,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9B,UAAU,CAAE,IAAI,SAAS,CAAC,CAC1B,MAAM,CAAE,MAAM,CAAC,KAAK,CAAC,YAAY,CACjC,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,KAAK,CAAC,IAAI,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAC5D,UAAU,CAAE,KAAK,CAAC,IAAI,qBAAqB,CAAC,CAAC,IAAI,kBAAkB,CAAC,AACtE,CAAC,AAED,oBAAM,CAAC,eAAC,OAAO,AAAC,CAAC,AACf,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CACzC,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,EAAE,CAAC,CAC7B,UAAU,CAAE,IAAI,QAAQ,CAAC,CACzB,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,UAAU,CAAC,IAAI,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CACjE,UAAU,CAAE,UAAU,CAAC,IAAI,qBAAqB,CAAC,CAAC,IAAI,kBAAkB,CAAC,AAC3E,CAAC,AAED,UAAU,CAAC,CAAC,YAAY,IAAI,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,oBAAoB,IAAI,CAAC,CAAC,CAAC,AAAC,CAAC,AAC9D,oBAAM,CAAC,eAAC,OAAO,AAAC,CAAC,AACf,aAAa,CAAE,OAAO,CACtB,UAAU,CAAE,IAAI,wUAAwU,CAAC,CACzV,kBAAkB,CAAE,IAAI,wUAAwU,CAAC,AACnW,CAAC,AACH,CAAC,AAED,oBAAM,CAAC,eAAC,OAAO,AAAC,CAAC,AACf,SAAS,CAAE,wBAAU,CAAC,EAAE,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,QAAQ;MACrE,MAAM,CACR,SAAS,CAAE,wBAAU,CAAC,IAAI,oBAAoB,CAAC;MAC7C,IAAI,2BAA2B,CAAC,CAAC,QAAQ,CAAC,MAAM,AACpD,CAAC,AAED,WAAW,wBAAW,CAAC,AACrB,GAAG,CACH,GAAG,AAAC,CAAC,AACH,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,GAAG,CAAC,AAC7C,CAAC,AAED,EAAE,CACF,GAAG,CACH,GAAG,AAAC,CAAC,AACH,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,AAC3C,CAAC,AACH,CAAC,AAED,oBAAM,CAAC,eAAC,MAAM,QAAQ,CACtB,oBAAM,CAAC,eAAC,MAAM,QAAQ,AAAC,CAAC,AACtB,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,WAAW,CAAC,AACzB,CAAC,AAED,oBAAM,CAAC,eAAC,MAAM,OAAO,CACrB,oBAAM,CAAC,eAAC,MAAM,OAAO,AAAC,CAAC,AACrB,UAAU,CAAE,YAAY,AAC1B,CAAC,AAED,MAAM,AAAC,yBAAyB,aAAa,CAAC,AAAC,CAAC,AAC9C,oBAAM,CAAC,eAAC,MAAM,OAAO,CACrB,oBAAM,CAAC,eAAC,MAAM,OAAO,AAAC,CAAC,AACrB,oBAAoB,CAAE,OAAO,AAC/B,CAAC,AACH,CAAC"}`
+};
+var Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  $$result.css.add(css$1);
+  return `<footer class="${"svelte-n4ey2i"}"><a href="${"https://twitter.com/borntofrappe"}" class="${"svelte-n4ey2i"}">borntofrappe</a>
+</footer>`;
+});
+var css = {
+  code: "div.svelte-1eqfirl{min-height:100vh;display:flex;flex-direction:column}div.svelte-1eqfirl nav,div.svelte-1eqfirl main{max-width:700px;width:90vw;margin-left:auto;margin-right:auto}div.svelte-1eqfirl footer{margin-top:auto}",
+  map: `{"version":3,"file":"__layout.svelte","sources":["__layout.svelte"],"sourcesContent":["<script>\\r\\n  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';\\r\\n  import Footer from '$lib/components/Footer.svelte';\\r\\n\\r\\n  import '../app.css';\\r\\n<\/script>\\r\\n\\r\\n<div>\\r\\n  <Breadcrumbs />\\r\\n\\r\\n  <slot />\\r\\n\\r\\n  <Footer />\\r\\n</div>\\r\\n\\r\\n<style>\\r\\n  div {\\r\\n    min-height: 100vh;\\r\\n    display: flex;\\r\\n    flex-direction: column;\\r\\n  }\\r\\n\\r\\n  div :global(nav),\\r\\n  div :global(main) {\\r\\n    max-width: 700px;\\r\\n    width: 90vw;\\r\\n    margin-left: auto;\\r\\n    margin-right: auto;\\r\\n  }\\r\\n\\r\\n  div :global(footer) {\\r\\n    margin-top: auto;\\r\\n  }\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAgBE,GAAG,eAAC,CAAC,AACH,UAAU,CAAE,KAAK,CACjB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,AACxB,CAAC,AAED,kBAAG,CAAC,AAAQ,GAAG,AAAC,CAChB,kBAAG,CAAC,AAAQ,IAAI,AAAE,CAAC,AACjB,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,IAAI,CACjB,YAAY,CAAE,IAAI,AACpB,CAAC,AAED,kBAAG,CAAC,AAAQ,MAAM,AAAE,CAAC,AACnB,UAAU,CAAE,IAAI,AAClB,CAAC"}`
+};
+var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  $$result.css.add(css);
+  return `<div class="${"svelte-1eqfirl"}">${validate_component(Breadcrumbs, "Breadcrumbs").$$render($$result, {}, {}, {})}
+
+  ${slots.default ? slots.default({}) : ``}
+
+  ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}
+</div>`;
+});
+var __layout = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Layout
+  "default": _layout
 });
-function load({ error: error22, status }) {
-  return { props: { error: error22, status } };
+function load({ error: error2, status }) {
+  return { props: { error: error2, status } };
 }
-var Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+var _error = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { error: error2 } = $$props;
   let { status } = $$props;
-  let { error: error22 } = $$props;
+  if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
+    $$bindings.error(error2);
   if ($$props.status === void 0 && $$bindings.status && status !== void 0)
     $$bindings.status(status);
-  if ($$props.error === void 0 && $$bindings.error && error22 !== void 0)
-    $$bindings.error(error22);
-  return `<h1>${escape2(status)}</h1>
+  return `<main><h1>${escape2(status)}</h1>
 
-<p>${escape2(error22.message)}</p>
+  <p>Something bad happened. Here&#39;s the error message for context.</p>
 
+  <pre><code>${escape2(error2.message)}</code></pre>
 
-${error22.stack ? `<pre>${escape2(error22.stack)}</pre>` : ``}`;
+  <p>If you think this is a mistake I could fix, please consider filing an issue <a href="${"https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20" + escape2(status) + "&labels=bug"}">on github</a>.
+  </p>
+
+  <p>If you need some guidance, <a class="${"relative"}" href="${"/"}">home</a> is always a
+    good place to start.
+  </p></main>`;
 });
-var error2 = /* @__PURE__ */ Object.freeze({
+var __error = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Error2,
+  "default": _error,
   load
 });
 var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<h1>borntofrappe</h1>
-<p>My personal website. Built with <a href="${"https://kit.svelte.dev/"}">SvelteKit</a>, deployed through <a href="${"https://www.netlify.com/"}">Netlify</a>.
-</p>`;
+  return `<main><h1>Hello world!</h1>
+  <p>I enjoy writing code</p>
+
+  <p>Right now, I&#39;m enjoying creating this very website, and documenting the
+    process
+    <a href="${"https://github.com/borntofrappe/borntofrappe#readme"}">in the public repo</a>.
+  </p>
+
+  <p>There&#39;s a page for <a href="${"/blog"}">the blog</a>, but it&#39;s just a
+    proof-of-concept for now.
+  </p></main>`;
+});
+var index$1 = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  "default": Routes
+});
+var Blog = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  return `<main><h1>Blog</h1>
+  <p>What&#39;s a blog without blog posts? In all honesty, I hope to write one before
+    finding a quippy reply.
+  </p></main>`;
 });
 var index = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Routes
+  "default": Blog
 });
 
 // .svelte-kit/netlify/entry.js

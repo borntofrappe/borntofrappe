@@ -167,3 +167,7 @@ _What follows?_ Hopefully more than a fresh start. In practical terms, however, 
 - icons moved to a dedicated folder `static/icons` to better organize the resources
 
 _Please note:_ I'm still figuring out the best font loading strategy, evaluating system fonts, web fonts, from google, self-hosted, complete, subsets. I'm also considering different fonts for the body, the latest being [Cambay](https://fonts.google.com/specimen/Cambay)
+
+- fixed the path to the fonts `/fonts/....` in place of `fonts/....`. Fixed a typo in `app.html`, where one of the font was actually mispelled, `SemiBold` in place of `Semibold`
+
+- updated `.gitignore` to remove the `build` and `functions` folder
