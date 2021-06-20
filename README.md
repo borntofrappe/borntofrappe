@@ -155,3 +155,15 @@ _What follows?_ Hopefully more than a fresh start. In practical terms, however, 
 - the layout is updated so that the footer is always pushed at the bottom of the page
 
 - `<Breadcrumbs>` and `<Footer>` begin the styling of the components in between `<style>` tags
+
+## Fonts in the static folder
+
+> dated June 20th, 2021
+
+- in `app.css`, removed the `<link>` element importing the font from Google Fonts, in favor of a series of `@font-face` declarations referring to files stored in `static/fonts`
+
+- in `app.html`, preloaded "critical" fonts, presumed essential for the text
+
+- icons moved to a dedicated folder `static/icons` to better organize the resources
+
+_Please note:_ I'm still figuring out the best font loading strategy, evaluating system fonts, web fonts, from google, self-hosted, complete, subsets. I'm also considering different fonts for the body, the latest being [Cambay](https://fonts.google.com/specimen/Cambay)
