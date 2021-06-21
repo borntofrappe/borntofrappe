@@ -179,3 +179,17 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 - removed the `<link>` elements which tried to preload the fonts before the stylesheet. I need more research to assess why the page doesn't lean on the preloaded assets (warning message in the console)
 
 - updated letter and word spacing for paragraphs and larger viewports. This is a matter of personal preference as I feel the chosen font has too much whitespace with a larger font size
+
+## Markdown blog
+
+> dated June 21st, 2021
+
+- created `src/blog` with two markdown files to make for a makeshift blog
+
+  Note that the files do include information in the form of frontmatter (between two sets of triple hyphen characters `---`)
+
+- added `src/hooks/index.js` to include in the `session` object an array describing the blog posts
+
+  The script reads from the blog folder and looks for markdown files. For each file, the slug describes the name without the `.md` extension
+
+- updated `src/routes/blog/index.svelte` to retrieve the list of blog posts from the `session` object and pass the information to the component through `props`
