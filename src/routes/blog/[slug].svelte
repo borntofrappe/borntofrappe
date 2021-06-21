@@ -18,12 +18,11 @@
           Md,
         },
       };
-    } else {
-      return {
-        status: 404,
-        error: `Not found: blog/${slug}`,
-      };
     }
+    return {
+      status: 404,
+      error: `Not found: blog/${slug}`,
+    };
   }
 </script>
 

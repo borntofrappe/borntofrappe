@@ -11,7 +11,8 @@
   </p>
 
   <p>
-    There's a page for <a href="/blog">the blog</a>, but it's just a
-    proof-of-concept for now.
+    Beside this page, I'd like to create a blog, and have the courage to
+    actually write a few articles there. <a href="/blog">The page</a> is already
+    up and running, and "all" that is missing is the actual content.
   </p>
 </main>

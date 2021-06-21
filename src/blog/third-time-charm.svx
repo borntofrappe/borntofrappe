@@ -1,6 +1,6 @@
 ---
 title: Third Time's The Charm
-date: 2021-6-21
+date: 2021-6-21-16
 ---
 
 It seems the blog is starting to take shape.

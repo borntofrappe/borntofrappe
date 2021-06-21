@@ -278,6 +278,18 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 
 - updated `__error.svelte` to include the error message in the body of the hypothetical github issue
 
-## Cleanup
+## A step back in time
 
-> as soon as I wrap my head around the considerable change introduced with the markdown blog update
+> dated June 21st, 2021
+
+- formatted `.js` scripts with a consistent style
+
+- noted a warning regarding the component including the content of the blog posts
+
+  ```bash
+  [vite-plugin-svelte] PATH_TO_SRC/src/routes/blog/[slug].svelte:36:2 <Md/> will not be reactive if Md changes. Use <svelte:component this={Md}/> if you want this reactivity.
+  ```
+
+- updated `hooks/index.js` to sort the blog posts chronologically. One of the blog posts is updated to show how the chosen format allows to specify additional arguments past the year, month and day
+
+- updated `blog/index.svelte` to format the date with the internationalization API. The date itself is preserved in the `datetime` attribute
