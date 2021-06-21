@@ -24,8 +24,8 @@
   <p>The blog folder contains the following</p>
 
   <ul>
-    {#each posts as { title, date }}
-      <li>{title}, dated <time>{date}</time></li>
+    {#each posts as { title, date, slug }}
+      <li><a href="/blog/{slug}">{title}</a>, dated <time>{date}</time></li>
     {/each}
   </ul>
 </main>

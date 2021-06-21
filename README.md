@@ -244,4 +244,40 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
   };
   ```
 
-- updated `src/routes/blog/index.` to show the title and date of the articles, in place of the slug
+- updated `src/routes/blog/index.svelte` to show the title and date of the articles, in place of the slug
+
+- created `src/routes/blog/[slug].svelte` to capture the parameter from the URL.
+
+  If the parameter doesn't match one of the slug in the `posts` array (once more from the session object), redirect to a `404` page with an arbitrary error message
+
+  ```js
+  return {
+    status: 404,
+    error: `Not found: blog/${slug}`,
+  };
+  ```
+
+  If the parameter matches, use the `import.meta` syntax once more. This time, however, the idea is to process an individual file, the one matching the input.
+
+  ```js
+  return {
+    props: {
+      title,
+      Md,
+    },
+  };
+  ```
+
+  `Md` refers to a Svelte component returned by the function processing the `.md` or `.svx` syntax.
+
+  ```js
+  const { default: Md, metadata } = post;
+  ```
+
+- updated `src/routes/blog/index.svelte` to have the title of the blog post link to the individual pages
+
+- updated `__error.svelte` to include the error message in the body of the hypothetical github issue
+
+## Cleanup
+
+> as soon as I wrap my head around the considerable change introduced with the markdown blog update

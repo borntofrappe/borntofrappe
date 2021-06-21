@@ -25,7 +25,7 @@
 
   <p>
     If you think this is a mistake I could fix, please consider filing an issue <a
-      href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{status}&labels=bug"
+      href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{status}&body={error.message}&labels=bug"
       >on github</a
     >.
   </p>

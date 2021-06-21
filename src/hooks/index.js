@@ -7,6 +7,7 @@ export async function getSession() {
       const slug = filename.slice(0, (extension.length + 1) * -1);
 
       return {
+        path,
         ...metadata,
         slug
       };
