@@ -193,3 +193,28 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
   The script reads from the blog folder and looks for markdown files. For each file, the slug describes the name without the `.md` extension
 
 - updated `src/routes/blog/index.svelte` to retrieve the list of blog posts from the `session` object and pass the information to the component through `props`
+
+- updated `src/hooks/index.js` to retrieve the blog posts with `import.meta.glob` instead of the `fs` and `path` node modules
+
+  This seems a feature of [vite](https://vitejs.dev/guide/features.html#json), working behind the scenes to process the files
+
+  ```JS
+  const posts = import.meta.glob('/src/blog/*.md');
+  ```
+
+  The object returend by the statement provides a path to the file as well as a function to process said file.
+
+  ```JS
+  console.log(posts);
+  /*
+  {
+    '/src/blog/getting-started.md': [Function: /src/blog/getting-started.md]
+  }
+  */
+  ```
+
+  If you were to call the function, however, you'd encounter the following error message
+
+  ```bash
+  Failed to parse source for import analysis because the content contains invalid JS syntax. You may need to install appropriate plugins to handle the .md file format.
+  ```

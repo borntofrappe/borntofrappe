@@ -1,17 +1,15 @@
-import path from 'path';
-import fs from 'fs';
-
 export async function getSession() {
-  const extname = '.md';
+  const posts = await Promise.all(
+    Object.entries(import.meta.glob('/src/blog/*.md')).map(async ([path]) => {
+      const filename = path.split('/').pop();
+      const extension = filename.split('.').pop();
+      const slug = filename.slice(0, (extension.length + 1) * -1);
 
-  const files = fs.readdirSync('src/blog', 'utf-8')
-
-  const markdownFiles = files.filter(file => path.extname(file) === extname);
-
-  const posts = markdownFiles.map(file => {
-    const slug = path.basename(file, extname);
-    return { slug };
-  });
+      return {
+        slug
+      };
+    })
+  );
 
   return {
     posts
