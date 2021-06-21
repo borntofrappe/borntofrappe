@@ -172,10 +172,6 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 
 - updated `.gitignore` to remove the `build` and `functions` folder
 
-## Confusion and style
-
-> dated June 21st, 2021
-
 - removed the `<link>` elements which tried to preload the fonts before the stylesheet. I need more research to assess why the page doesn't lean on the preloaded assets (warning message in the console)
 
 - updated letter and word spacing for paragraphs and larger viewports. This is a matter of personal preference as I feel the chosen font has too much whitespace with a larger font size
@@ -218,3 +214,34 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
   ```bash
   Failed to parse source for import analysis because the content contains invalid JS syntax. You may need to install appropriate plugins to handle the .md file format.
   ```
+
+- installed [mdsvex](https://github.com/pngwn/MDsveX/tree/master/packages/mdsvex) to process the blog posts
+
+  ```bash
+  npm i -D mdsvex
+  ```
+
+  While the primary purpose of mdsvex is to process `.svx` files, more on this later, it is equipped to process markdown files as well
+
+- updated `svelte.config.js` to include `mdsvex`
+
+  ```js
+  import { mdsvex } from 'mdsvex';
+
+  const config = {
+    extensions: ['.svelte', '.md', '.svx'],
+    preprocess: mdsvex({ extensions: ['.md', '.svx'] }),
+    // kit...
+  };
+  ```
+
+- updated `src/hooks/index.js` to process `.md` and `.svx` files to retrieve the information in the frontmatter. The information is included alongside the `slug` for each article.
+
+  ```js
+  return {
+    ...metadata,
+    slug,
+  };
+  ```
+
+- updated `src/routes/blog/index.` to show the title and date of the articles, in place of the slug

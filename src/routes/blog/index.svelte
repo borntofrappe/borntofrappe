@@ -21,11 +21,11 @@
     a proof of concept to see how SvelteKit creates pages dynamically.
   </p>
 
-  <p>The blog folder contains {posts.length} item(s)</p>
+  <p>The blog folder contains the following</p>
 
   <ul>
-    {#each posts as { slug }}
-      <li>{slug}</li>
+    {#each posts as { title, date }}
+      <li>{title}, dated <time>{date}</time></li>
     {/each}
   </ul>
 </main>
