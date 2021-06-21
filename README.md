@@ -171,3 +171,11 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 - fixed the path to the fonts `/fonts/....` in place of `fonts/....`. Fixed a typo in `app.html`, where one of the font was actually mispelled, `SemiBold` in place of `Semibold`
 
 - updated `.gitignore` to remove the `build` and `functions` folder
+
+## Confusion and style
+
+> dated June 21st, 2021
+
+- removed the `<link>` elements which tried to preload the fonts before the stylesheet. I need more research to assess why the page doesn't lean on the preloaded assets (warning message in the console)
+
+- updated letter and word spacing for paragraphs and larger viewports. This is a matter of personal preference as I feel the chosen font has too much whitespace with a larger font size

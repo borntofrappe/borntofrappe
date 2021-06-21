@@ -409,6 +409,9 @@ h4 {
   p {
     font-size: 1.25rem;
     font-size: var(--size-500);
+    /* I have a feeling the Cambay font has too much whitespace at a larger size */
+    word-spacing: -0.5px;
+    letter-spacing: -0.25px;
   }
 }
 
