@@ -325,3 +325,5 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
   The solution is inspired by the example app [hn.svelte.dev](https://github.com/sveltejs/kit/blob/master/examples/hn.svelte.dev/src/app.html#L9)
 
 - updated `__layout.svelte` to include the toggle and breadcrumb navigation side by side. The two are included in a `<div>` and an `Introduction` component <!-- alternative names: foreward, prelude, beginning, launch pad, lead-in -->
+
+- fixed the date included in the `<time>` element. The `datetime` attribute and the label included in between the `<time>` tags were accidentally one and the same. Additionally, the label was off by one month, since the month value starts at `0`; decide whether or not to cope with this in the frontmatter or in `blog/index.svelte`.

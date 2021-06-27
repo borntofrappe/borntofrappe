@@ -1,6 +1,6 @@
 ---
 title: Third Time's The Charm
-date: 2021-6-21-16
+date: 2021-5-21-16
 ---
 
-It seems the blog is starting to take shape.
+It seems the blog is starting to take shape. One component at a time. One error at a time.

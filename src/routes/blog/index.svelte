@@ -20,10 +20,7 @@
   });
 
   posts.forEach((post) => {
-    const date = post.date;
-
-    post.datetime = date;
-    post.date = formatter.format(new Date(...date.split('-')));
+    post.prettyDate = formatter.format(new Date(...post.date.split('-')));
   });
 </script>
 
@@ -37,9 +34,10 @@
   <p>The blog folder contains the, filler content:</p>
 
   <ul>
-    {#each posts as { title, datetime, date, slug }}
+    {#each posts as { title, date, prettyDate, slug }}
       <li>
-        <a href="/blog/{slug}">{title}</a>, dated <time {datetime}>{date}</time>
+        <a href="/blog/{slug}">{title}</a>, dated
+        <time datetime={date}>{prettyDate}</time>
       </li>
     {/each}
   </ul>
