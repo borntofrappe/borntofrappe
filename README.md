@@ -293,3 +293,13 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 - updated `hooks/index.js` to sort the blog posts chronologically. One of the blog posts is updated to show how the chosen format allows to specify additional arguments past the year, month and day
 
 - updated `blog/index.svelte` to format the date with the internationalization API. The date itself is preserved in the `datetime` attribute
+
+## Refresh
+
+> dated June 27th, 2021
+
+- updated packages to the latest version; `@sveltejs/kit` and `svelte` specifically
+
+  ```bash
+  npm update
+  ```
