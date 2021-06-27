@@ -50,12 +50,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :global(html:not([data-preference]) nav a) {
+    html:not([data-preference]) nav a {
       font-weight: 600;
     }
   }
 
-  :global(html[data-preference='dark'] nav a) {
+  html[data-preference='dark'] nav a {
     font-weight: 600;
   }
 </style>

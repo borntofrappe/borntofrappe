@@ -1,12 +1,12 @@
 <script>
-  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+  import Introduction from '$lib/components/Introduction.svelte';
   import Footer from '$lib/components/Footer.svelte';
 
   import '../app.css';
 </script>
 
 <div>
-  <Breadcrumbs />
+  <Introduction />
 
   <slot />
 
@@ -20,15 +20,15 @@
     flex-direction: column;
   }
 
-  div :global(nav),
-  div :global(main) {
-    max-width: 700px;
+  div > :global(div),
+  div > :global(main) {
+    max-width: 42rem;
     width: 90vw;
     margin-left: auto;
     margin-right: auto;
   }
 
-  div :global(footer) {
+  div > :global(footer) {
     margin-top: auto;
   }
 </style>

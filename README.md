@@ -303,3 +303,25 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
   ```bash
   npm update
   ```
+
+- included a button to switch between color preferences. The preference is set on the `html` selector, and is checked immediately in `app.html`, right in the head of the document
+
+  ```html
+  <head>
+    <script>
+      try {
+        const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)');
+        const colorScheme = localStorage.getItem('color-scheme');
+
+        // ...
+
+      }
+    </script>
+  </head>
+
+  <body></body>
+  ```
+
+  The solution is inspired by the example app [hn.svelte.dev](https://github.com/sveltejs/kit/blob/master/examples/hn.svelte.dev/src/app.html#L9)
+
+- updated `__layout.svelte` to include the toggle and breadcrumb navigation side by side. The two are included in a `<div>` and an `Introduction` component <!-- alternative names: foreward, prelude, beginning, launch pad, lead-in -->
