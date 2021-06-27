@@ -33,5 +33,12 @@
 
 <main>
   <h1>{title}</h1>
-  <Md />
+  <svelte:component this={Md} />
 </main>
+
+<style>
+  main {
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+  }
+</style>
