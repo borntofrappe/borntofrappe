@@ -4,14 +4,6 @@ _What's this?_ My personal website! Built with [SvelteKit](https://kit.svelte.de
 
 ## Roadmap
 
-- [ ] Homepage
-
-  - [ ] Hero
-
-  - [ ] Getting started
-
-  - [ ] About
-
 - [ ] Blog
 
   - [ ] Index

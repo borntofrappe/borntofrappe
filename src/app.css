@@ -98,7 +98,6 @@ ol {
 
 html {
   scroll-behavior: smooth;
-  font-size: 15px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -430,8 +429,7 @@ h4 {
 .max-width-container {
   max-width: 42rem;
   max-width: var(--max-width);
-  width: 100%;
-  padding: 0.5rem;
+  width: 95%;
   margin-right: auto;
   margin-left: auto;
 }

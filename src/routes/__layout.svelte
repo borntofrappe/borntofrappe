@@ -26,5 +26,6 @@
 
   div > :global(footer) {
     margin-top: auto;
+    z-index: 20;
   }
 </style>
