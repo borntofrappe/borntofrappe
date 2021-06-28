@@ -10,13 +10,14 @@
 
 <style>
   main {
+    z-index: 5;
+    z-index: var(--z-index-1);
     overflow-x: hidden;
-    z-index: 15;
-    margin-bottom: 0 !important;
   }
 
   main > :global(*) {
     margin-top: 5rem;
+    margin-bottom: 5rem;
   }
 
   main > :global(* + *) {
@@ -39,13 +40,13 @@
   }
 
   @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
-    main > :global(*) {
-      margin-top: 7rem;
+    main > :global(* + *) {
+      margin-top: 7em;
     }
 
     main > :global(* + *::before) {
       margin-bottom: initial;
-      height: 3.25em;
+      height: 3.5em;
       -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
       mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
       -webkit-mask-size: auto 2.5em;

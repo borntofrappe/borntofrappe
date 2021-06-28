@@ -29,7 +29,7 @@
   });
 </script>
 
-<button bind:this={button} disabled>
+<button bind:this={button} disabled id="toggle-color">
   <span class="visually-hidden">Toggle color scheme</span>
 
   <svg
@@ -123,10 +123,6 @@
     transition: color var(--transition-duration) var(--ease-in-out-sine);
   }
 
-  button:focus {
-    outline: 0.15rem dashed currentColor;
-  }
-
   button svg {
     display: block;
     width: 100%;
@@ -153,20 +149,20 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference]) button svg .rotate {
+    :global(html:not([data-preference]) button#toggle-color svg .rotate) {
       transform: rotate(180deg);
     }
 
-    html:not([data-preference]) button svg .scale {
+    :global(html:not([data-preference]) button#toggle-color svg .scale) {
       transform: scaleX(-1);
     }
   }
 
-  html[data-preference='dark'] button svg .rotate {
+  :global(html[data-preference='dark'] button#toggle-color svg .rotate) {
     transform: rotate(180deg);
   }
 
-  html[data-preference='dark'] button svg .scale {
+  :global(html[data-preference='dark'] button#toggle-color svg .scale) {
     transform: scaleX(-1);
   }
 </style>

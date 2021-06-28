@@ -20,12 +20,7 @@
     flex-direction: column;
   }
 
-  div > :global(*:nth-last-child(2)) {
-    margin-bottom: 5rem;
-  }
-
   div > :global(footer) {
     margin-top: auto;
-    z-index: 20;
   }
 </style>

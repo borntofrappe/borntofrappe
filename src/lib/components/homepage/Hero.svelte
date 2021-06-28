@@ -1,36 +1,17 @@
 <script>
   import icons from '$lib/icons.js';
-  const links = [
-    {
-      name: 'codepen',
-      href: 'https://codepen.io/borntofrappe',
-      desc: 'Marvel at the numerous demos I created to master HTML, CSS, JS, SVG, React and much more.',
-    },
-    {
-      name: 'freecodecamp',
-      href: 'https://www.freecodecamp.org/borntofrappe',
-      desc: 'Admire the certifications I earned in the freeCodeCamp curriculum.',
-    },
-    {
-      name: 'github',
-      href: 'https://github.com/borntofrappe',
-      desc: 'Review, fork, and improve the code I publish on Github.',
-    },
-    {
-      name: 'twitter',
-      href: 'https://twitter.com/borntofrappe',
-      desc: 'Remember to follow me @borntofrappe.',
-    },
-  ];
+
+  export let title;
+  export let body;
+  export let links;
 </script>
 
 <header>
   <div>
-    <h1>Hello, World!</h1>
-    <p>I enjoy writing code.</p>
-    <p>
-      With this website, I try to convince you I might be good at it as well.
-    </p>
+    <h1>{title}</h1>
+    {#each body.split('\n') as line}
+      <p>{line}</p>
+    {/each}
   </div>
 
   <nav aria-label="borntofrappe links">
@@ -214,7 +195,6 @@
   }
 
   header nav > svg a .text {
-    z-index: -5;
     transform: scale(0);
     transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: transform var(--transition-duration) var(--ease-out-cubic);
@@ -245,7 +225,8 @@
 
   header > *:nth-last-child(2)::after {
     pointer-events: none;
-    z-index: 10;
+    z-index: 5;
+    z-index: var(--z-index-1);
     content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="150" height="150"%3E%3Cg stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cg fill="hsl(215, 10%25, 97%25)" stroke="none"%3E%3Cpath d="M 20 -2.5 c 10 -5 15 5 5 10 a 8 8 0 0 0 -5 -10" /%3E%3Cpath transform="scale(-1 1)" d="M 20 -2.5 c 10 -5 15 5 5 10 a 8 8 0 0 0 -5 -10" /%3E%3Cpath d="M 20 41.5 c 2.5 10 -10 10 -16 -5 a 16 16 0 0 0 16 5" /%3E%3Cpath transform="scale(-1 1)" d="M 20 41.5 c 2.5 10 -10 10 -16 -5 a 16 16 0 0 0 16 5" /%3E%3C/g%3E%3Cg stroke="none"%3E%3Ccircle fill="none" r="25" cy="-24"/%3E%3Cg fill="hsl(215, 10%25, 97%25)"%3E%3Cpath d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath transform="scale(-1 1)" d="M 23 -30 a 7.5 7.5 0 0 1 0 14 18 18 0 0 0 0 -14"/%3E%3Cpath d="M -25 -24 a 25 25 0 0 1 50 0 26 26 0 0 0 -50 0" /%3E%3Cpath d="M -25 -24 a 25 25 0 0 0 50 0 25.2 25.2 0 0 1 -50 0" /%3E%3Cpath d="M -8 -35 a 12.5 12.5 0 0 0 5 27.5 27.5 27.5 0 0 1 -5 -27.5" /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
     position: absolute;
     top: 100%;

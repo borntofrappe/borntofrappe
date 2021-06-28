@@ -15,7 +15,7 @@
     padding: 0.5rem 0;
   }
 
-  div > :global(button) {
+  div > :global(*:last-child) {
     margin-left: auto;
     flex-shrink: 0;
   }

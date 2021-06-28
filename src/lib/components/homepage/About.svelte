@@ -29,7 +29,7 @@
     race, or enjoying a dated video game. Depends on the season.
   </p>
 
-  <svg viewBox="-50 -50 100 50" width="200" height="100">
+  <svg aria-hidden="true" viewBox="-50 -50 100 50" width="200" height="100">
     <defs>
       <clipPath id="clip-planet">
         <circle r="30" />
@@ -125,7 +125,11 @@
 <style>
   section {
     --elevation: 2em;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
+  }
+
+  section > * + * {
+    margin-top: 0.4em;
   }
 
   section p:first-of-type {
@@ -146,12 +150,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    body:not([data-preference]) section mark {
+    :global(html:not([data-preference]) section#about mark) {
       font-weight: 600;
     }
   }
 
-  body[data-preference='dark'] section mark {
+  :global(html[data-preference='dark'] section#about mark) {
     font-weight: 600;
   }
 
@@ -168,12 +172,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    body:not([data-preference]) section mark::after {
+    :global(html:not([data-preference]) section#about mark::after) {
       content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(220, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(210, 90%25, 62%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(208, 95%25, 75%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
     }
   }
 
-  body[data-preference='dark'] section mark::after {
+  :global(html[data-preference='dark'] section#about mark::after) {
     content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(220, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(210, 90%25, 62%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(208, 95%25, 75%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
   }
 
@@ -192,12 +196,12 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      body:not([data-preference]) section mark::before {
+      :global(html:not([data-preference]) section#about mark::before) {
         opacity: 0.2;
       }
     }
 
-    body[data-preference='dark'] section mark::before {
+    :global(html[data-preference='dark'] section#about mark::before) {
       opacity: 0.2;
     }
 
@@ -208,47 +212,6 @@
 
     section mark::after {
       transform: translate(50%, 50%) rotate(0deg);
-      animation: rotate-ufo 10s ease-in-out infinite alternate paused;
-    }
-
-    section.observed mark::before,
-    section.observed mark::after {
-      animation-play-state: running;
-    }
-
-    @keyframes clip-polygon {
-      10% {
-        clip-path: polygon(100% 0%, 70% 100%, 0% 100%);
-      }
-      20%,
-      100% {
-        clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
-      }
-    }
-
-    @keyframes rotate-ufo {
-      10% {
-        transform: translate(50%, 50%) rotate(40deg);
-      }
-      20%,
-      100% {
-        transform: translate(50%, 50%) rotate(25deg);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      section.observed mark::before,
-      section.observed mark::after {
-        animation-play-state: paused;
-      }
-
-      section.observed mark::before {
-        clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
-      }
-
-      section.observed mark::after {
-        transform: translate(50%, 50%) rotate(25deg);
-      }
     }
   }
 
@@ -260,26 +223,5 @@
     max-width: 29rem;
     width: 90%;
     height: auto;
-  }
-
-  section > svg .rotate {
-    animation: rotate-orbit 200s linear infinite;
-    animation-play-state: paused;
-  }
-
-  section.observed > svg .rotate {
-    animation-play-state: running;
-  }
-
-  @keyframes rotate-orbit {
-    to {
-      transform: rotate(1turn);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    section.observed > svg .rotate {
-      animation-play-state: paused;
-    }
   }
 </style>

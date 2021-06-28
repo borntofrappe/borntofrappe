@@ -109,6 +109,12 @@ html {
 :root {
   --max-width: 42rem;
 
+  --z-index--1: -5;
+  --z-index-0: 0;
+  --z-index-1: 5;
+  --z-index-2: 10;
+  --z-index-3: 15;
+
   --size-300: 0.83rem;
   --size-400: 1rem;
   --size-500: 1.2rem;
@@ -429,7 +435,7 @@ h4 {
 .max-width-container {
   max-width: 42rem;
   max-width: var(--max-width);
-  width: 95%;
+  width: 90vw;
   margin-right: auto;
   margin-left: auto;
 }
@@ -443,6 +449,7 @@ h4 {
     padding-bottom: 0.25em;
     margin: 1em 0;
     z-index: 5;
+    z-index: var(--z-index-1);
   }
 
   a.relative:focus {
@@ -453,6 +460,7 @@ h4 {
   a.relative::after {
     pointer-events: none;
     z-index: -5;
+    z-index: var(--z-index--1);
     content: '';
     position: absolute;
     top: 100%;

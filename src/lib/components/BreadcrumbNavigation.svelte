@@ -17,7 +17,7 @@
   >
 </svelte:head>
 
-<nav aria-label="Breadcrumb navigation">
+<nav aria-label="Breadcrumb navigation" id="breadcrumb">
   <a href={root.href}>{root.text} {@html root.icon}</a>
   {#if $page.path !== '/'}
     {#each $page.path
@@ -50,12 +50,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not([data-preference]) nav a {
+    :global(html:not([data-preference]) nav#breadcrumb a) {
       font-weight: 600;
     }
   }
 
-  html[data-preference='dark'] nav a {
+  :global(html[data-preference='dark'] nav#breadcrumb a) {
     font-weight: 600;
   }
 </style>
