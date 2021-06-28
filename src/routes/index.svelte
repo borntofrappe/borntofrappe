@@ -1,8 +1,8 @@
 <script>
-  import HeaderRoute from '$lib/components/HeaderRoute.svelte';
+  import Header from '$lib/components/Routes/Header.svelte';
 </script>
 
-<HeaderRoute title="Hello, World!" body="I enjoy writing code." />
+<Header title="Hello, World!" body="I enjoy writing code." />
 
 <main class="max-width-container">
   <p>
@@ -14,9 +14,11 @@
   </p>
 
   <p>
-    Beside this page, I'd like to create a blog, and have the courage to
-    actually write a few articles there. The page is already up and running, and
-    "all" that is missing is the actual content.
+    Beside this page, I'd like to create a blog, and have the guts to actually
+    write a few articles there. The page is already up and running, and <em
+      >all</em
+    >
+    that is missing is the actual content.
   </p>
 
   <p>

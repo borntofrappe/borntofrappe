@@ -1,10 +1,10 @@
 <script>
-  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
+  import BreadcrumbNavigation from '$lib/components/BreadcrumbNavigation.svelte';
   import ColorSchemeToggle from '$lib/components/ColorSchemeToggle.svelte';
 </script>
 
 <div class="max-width-container">
-  <Breadcrumbs />
+  <BreadcrumbNavigation />
   <ColorSchemeToggle />
 </div>
 
