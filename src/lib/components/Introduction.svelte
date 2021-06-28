@@ -3,14 +3,13 @@
   import ColorSchemeToggle from '$lib/components/ColorSchemeToggle.svelte';
 </script>
 
-<div>
+<div class="max-width-container">
   <Breadcrumbs />
   <ColorSchemeToggle />
 </div>
 
 <style>
   div {
-    padding: 0.5rem 0;
     display: flex;
     align-items: center;
   }

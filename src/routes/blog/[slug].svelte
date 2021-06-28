@@ -31,14 +31,7 @@
   export let Md;
 </script>
 
-<main>
+<main class="max-width-container">
   <h1>{title}</h1>
   <svelte:component this={Md} />
 </main>
-
-<style>
-  main {
-    margin-top: 1rem;
-    margin-bottom: 5rem;
-  }
-</style>

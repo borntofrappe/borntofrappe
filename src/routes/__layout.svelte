@@ -20,12 +20,8 @@
     flex-direction: column;
   }
 
-  div > :global(div),
-  div > :global(main) {
-    max-width: 42rem;
-    width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+  div > :global(*:nth-last-child(2)) {
+    margin-bottom: 5rem;
   }
 
   div > :global(footer) {

@@ -329,3 +329,25 @@ _Please note:_ I'm still figuring out the best font loading strategy, evaluating
 - fixed the date included in the `<time>` element. The `datetime` attribute and the label included in between the `<time>` tags were accidentally one and the same. Additionally, the label was off by one month, since the month value starts at `0`; decide whether or not to cope with this in the frontmatter or in `blog/index.svelte`.
 
 - updated `[slug].svelte` to include the component in the special element `<svelte:component />`. The articles are also updated to 1. provide a fresh coat of paint and 2. test out mdsvex
+
+## Style and components
+
+> dated June 28th, 2021
+
+- `app.css` is updated to include two classes: `max-width-container` and `a.relative`. The first one helps to maintain the same `max-width` across multiple elements, like the `<div>` element introducing the page, or the `<main>` element describing the content of each route. The second class helps to customize anchor links which redirect to other routes of the website. The custom property `--max-width` helps to have a reference for the width of the container
+
+- `HeaderRoute` is defined for the `<header>` element introducing the routes of the website.
+
+  At the time of writing, it is used in every route, but the ultimate goal is to lean on the component for any route one step from the root level, like `/blog`, or `/icons` in the moment I decide to create `routes/icons.svelte`
+
+  The component receives two strings for the `title`, `body`, which are included in a `<h1>` and `<p>` element respectively. An additional property, `illustration` helps to inject an SVG illustration in one of the pseudo elements of the paragraph. This is achieved with a custom property
+
+  ```svelte
+  <p style="--illustration: {illustration}">{body}</p>
+  ```
+
+  Thankfully, the `content` property is able to display the SVG illustration included through the `url()` function even if this one is contained in a custom property.
+
+  ```css
+  content: var(--illustration);
+  ```

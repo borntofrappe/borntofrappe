@@ -7,7 +7,7 @@
     --animation-duration: 2s;
     --animation-timing-function: var(--ease-in-out-sine);
     text-align: center;
-    padding: 2.25rem 1rem 2rem;
+    padding: 2.5rem 1rem 1rem;
     color: hsl(215, 10%, 98%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
