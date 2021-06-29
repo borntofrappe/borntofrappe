@@ -4,8 +4,6 @@
 
 <style>
   footer {
-    z-index: 5;
-    z-index: var(--z-index-1);
     --animation-duration: 2s;
     --animation-timing-function: var(--ease-in-out-sine);
     text-align: center;

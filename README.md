@@ -2,20 +2,6 @@
 
 _What's this?_ My personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
 
-## Roadmap
-
-- [ ] Blog
-
-  - [ ] Index
-
-  - [ ] Article
-
-- [ ] Blog post
-
-  - [ ] Header
-
-  - [ ] stylesheet
-
 ## Development notes
 
 ### SvelteKit

@@ -125,11 +125,6 @@
 <style>
   section {
     --elevation: 2em;
-    margin-bottom: 0 !important;
-  }
-
-  section > * + * {
-    margin-top: 0.4em;
   }
 
   section p:first-of-type {
@@ -146,7 +141,7 @@
     background: none;
     font-weight: 700;
     position: relative;
-    z-index: 5;
+    z-index: 0;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -220,7 +215,7 @@
     margin-right: auto;
     color: hsl(340, 90%, 55%);
     color: var(--primary-6);
-    max-width: 29rem;
+    max-width: 27rem;
     width: 90%;
     height: auto;
   }

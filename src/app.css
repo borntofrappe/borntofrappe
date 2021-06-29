@@ -107,13 +107,8 @@ html {
 }
 
 :root {
+  --width: 90vw;
   --max-width: 42rem;
-
-  --z-index--1: -5;
-  --z-index-0: 0;
-  --z-index-1: 5;
-  --z-index-2: 10;
-  --z-index-3: 15;
 
   --size-300: 0.83rem;
   --size-400: 1rem;
@@ -354,26 +349,6 @@ svg {
   display: block;
 }
 
-.visually-hidden:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-}
-
-.visually-hidden:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-}
-
 h1,
 h2,
 h3,
@@ -432,12 +407,23 @@ h4 {
   }
 }
 
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
 .max-width-container {
-  max-width: 42rem;
-  max-width: var(--max-width);
   width: 90vw;
-  margin-right: auto;
+  width: var(--width);
+  max-width: 40rem;
+  max-width: var(--max-width);
   margin-left: auto;
+  margin-right: auto;
 }
 
 @supports (mask-image: url()) or (-webkit-mask-image: url()) {
@@ -449,7 +435,6 @@ h4 {
     padding-bottom: 0.25em;
     margin: 1em 0;
     z-index: 5;
-    z-index: var(--z-index-1);
   }
 
   a.relative:focus {
@@ -460,7 +445,6 @@ h4 {
   a.relative::after {
     pointer-events: none;
     z-index: -5;
-    z-index: var(--z-index--1);
     content: '';
     position: absolute;
     top: 100%;
