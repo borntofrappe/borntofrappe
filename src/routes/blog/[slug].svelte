@@ -10,11 +10,12 @@
       const post = await posts[match.path]();
 
       const { default: Md, metadata } = post;
-      const { title } = metadata;
+      const { title, keywords } = metadata;
 
       return {
         props: {
           title,
+          keywords,
           Md,
         },
       };
@@ -27,11 +28,22 @@
 </script>
 
 <script>
+  import Header from '$lib/components/blog/post/Header.svelte';
+
   export let title;
+  export let keywords;
   export let Md;
 </script>
 
+<Header {title} {keywords} />
+
 <main class="max-width-container">
-  <h1>{title}</h1>
   <svelte:component this={Md} />
 </main>
+
+<style>
+  main {
+    margin-top: 3.5rem;
+    margin-bottom: 5rem;
+  }
+</style>

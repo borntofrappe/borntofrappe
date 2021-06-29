@@ -2,6 +2,7 @@
 title: Getting Started
 date: 2021-5-27-15
 brief: A few words chosen without much thinking. The top ten didn't age well.
+keywords: ['rocket']
 ---
 
 I don't have a real blog post to begin this adventure, so I'll just try to round up the top ten for the Styrian grand prix, starting approximately ten minutes from when I hit save.
