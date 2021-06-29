@@ -20,7 +20,6 @@
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 4rem;
     padding: 3rem 1rem;
     color: hsl(215, 10%, 97%);
     color: var(--frappe-grey-10);
@@ -31,6 +30,7 @@
     background-position: 0 100%;
     position: relative;
     z-index: 5;
+    margin-bottom: 20px;
   }
 
   header > * + * {

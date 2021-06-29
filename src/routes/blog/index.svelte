@@ -12,6 +12,7 @@
 
 <script>
   import Header from '$lib/components/routes/Header.svelte';
+  import Post from '$lib/components/blog/Post.svelte';
 
   export let posts = [];
 
@@ -33,19 +34,65 @@
 />
 
 <main class="max-width-container">
-  <p>
-    This blog lacks substance. There are a few articles, but they work as a
-    proof of concept to see how SvelteKit creates pages dynamically.
-  </p>
-
-  <p>The blog folder contains the, filler content:</p>
-
-  <ul>
-    {#each posts as { title, date, prettyDate, slug }}
-      <li>
-        <a href="/blog/{slug}">{title}</a>, dated
-        <time datetime={date}>{prettyDate}</time>
-      </li>
-    {/each}
-  </ul>
+  {#each posts as post}
+    <Post {...post} />
+  {/each}
 </main>
+
+<style>
+  main {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  main > :global(* + *) {
+    margin-top: 1em;
+  }
+
+  main > :global(article > * + *) {
+    margin-top: 0.5em;
+  }
+
+  @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
+    main > :global(article:first-of-type h2 a) {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    main > :global(article:first-of-type h2 a::after) {
+      flex-shrink: 0;
+      content: '';
+      width: 1.5em;
+      height: 1.5em;
+      background: currentColor;
+      mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/%3E%3C/g%3E%3C/svg%3E');
+      -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/%3E%3C/g%3E%3C/svg%3E');
+    }
+  }
+
+  @supports (display: grid) {
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+      grid-gap: 1.25rem 1.75rem;
+    }
+
+    main > :global(* + *) {
+      margin-top: initial;
+    }
+
+    main > :global(article:first-of-type) {
+      grid-column: 1/-1;
+    }
+  }
+
+  @supports (grid-template-columns: subgrid) {
+    main > :global(article) {
+      grid-gap: 0;
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+      justify-items: start;
+    }
+  }
+</style>
