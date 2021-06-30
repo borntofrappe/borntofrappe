@@ -1,4 +1,13 @@
-<section class="max-width-container" id="getting-started">
+<script>
+  import { observe } from '$lib/utils.js';
+</script>
+
+<section
+  class:observed={false}
+  use:observe
+  class="max-width-container"
+  id="getting-started"
+>
   <h2 class="visually-hidden">Getting started</h2>
   <p>
     This website is in its infancy, but I hope you'll find something of value
@@ -34,6 +43,30 @@
     left: 0;
     transform: rotate(-25deg);
     transform-origin: 50% 33%;
+  }
+
+  section::after {
+    animation: tilt-telescope 10s var(--ease-in-out-sine) infinite alternate;
+    animation: tilt-telescope 10s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
+      alternate;
+    animation-play-state: paused;
+  }
+
+  section.observed::after {
+    animation-play-state: running;
+  }
+
+  @keyframes tilt-telescope {
+    20%,
+    100% {
+      transform: rotate(25deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    section.observed::after {
+      animation-play-state: paused;
+    }
   }
 
   @media (prefers-color-scheme: dark) {

@@ -62,6 +62,8 @@
   }
 
   main :global(p > code) {
+    color: hsl(350, 100%, 8%);
+    color: var(--primary-0);
     background: hsl(330, 100%, 92%);
     background: var(--primary-10);
   }

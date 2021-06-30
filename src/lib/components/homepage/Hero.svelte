@@ -1,12 +1,13 @@
 <script>
   import icons from '$lib/icons.js';
+  import { observe } from '$lib/utils.js';
 
   export let title;
   export let body;
   export let links;
 </script>
 
-<header>
+<header class:observed={false} use:observe>
   <div>
     <h1>{title}</h1>
     {#each body.split('\n') as line}
@@ -234,9 +235,29 @@
     height: 8rem;
     transform: translateX(-50%) rotate(45deg);
     z-index: 0;
+    animation: rotate-astronaut 100s var(--ease-in-out-sine) alternate infinite;
+    animation: rotate-astronaut 100s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+      alternate infinite;
+    animation-play-state: paused;
   }
 
   header h1 {
     color: inherit;
+  }
+
+  header.observed > *:nth-last-child(2)::after {
+    animation-play-state: running;
+  }
+
+  @keyframes rotate-astronaut {
+    to {
+      transform: translateX(-50%) rotate(-45deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    header.observed > *:nth-last-child(2)::after {
+      animation-play-state: paused;
+    }
   }
 </style>

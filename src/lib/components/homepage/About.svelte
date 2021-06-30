@@ -1,5 +1,6 @@
 <script>
   import icons from '$lib/icons.js';
+  import { observe } from '$lib/utils.js';
 
   const satellites = ['world', 'editor', 'running', 'flag', 'gaming'];
 
@@ -18,7 +19,12 @@
   ];
 </script>
 
-<section class="max-width-container" id="about">
+<section
+  class:observed={false}
+  use:observe
+  class="max-width-container"
+  id="about"
+>
   <h2>Almost forgot</h2>
   <p>
     I'm <mark>Gabriele Corti</mark>, coming to you from Europe and a couple of
@@ -202,11 +208,57 @@
 
     section mark::before {
       clip-path: polygon(100% 0%, 100% 100%, 100% 100%);
-      animation: clip-polygon 10s ease-in-out infinite alternate paused;
+      animation: clip-polygon 8s var(--ease-in-out-sine) infinite alternate
+        paused;
+      animation: clip-polygon 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
+        alternate paused;
     }
 
     section mark::after {
       transform: translate(50%, 50%) rotate(0deg);
+      animation: rotate-ufo 8s var(--ease-in-out-sine) infinite alternate paused;
+      animation: rotate-ufo 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
+        alternate paused;
+    }
+
+    section.observed mark::before,
+    section.observed mark::after {
+      animation-play-state: running;
+    }
+
+    @keyframes clip-polygon {
+      10% {
+        clip-path: polygon(100% 0%, 70% 100%, 0% 100%);
+      }
+      20%,
+      100% {
+        clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
+      }
+    }
+
+    @keyframes rotate-ufo {
+      10% {
+        transform: translate(50%, 50%) rotate(40deg);
+      }
+      20%,
+      100% {
+        transform: translate(50%, 50%) rotate(25deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      section.observed mark::before,
+      section.observed mark::after {
+        animation-play-state: paused;
+      }
+
+      section.observed mark::before {
+        clip-path: polygon(100% 0%, 90% 100%, 10% 100%);
+      }
+
+      section.observed mark::after {
+        transform: translate(50%, 50%) rotate(25deg);
+      }
     }
   }
 
@@ -218,5 +270,26 @@
     max-width: 27rem;
     width: 90%;
     height: auto;
+  }
+
+  section > svg .rotate {
+    animation: rotate-orbit 200s linear infinite;
+    animation-play-state: paused;
+  }
+
+  section.observed > svg .rotate {
+    animation-play-state: running;
+  }
+
+  @keyframes rotate-orbit {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    section.observed > svg .rotate {
+      animation-play-state: paused;
+    }
   }
 </style>
