@@ -22,7 +22,6 @@
     font-weight: 500;
     font-size: 1rem;
     font-size: var(--size-400);
-    letter-spacing: -1px;
     padding: 0.25rem 0.4rem;
     display: inline-block;
     color: hsl(350, 100%, 8%);

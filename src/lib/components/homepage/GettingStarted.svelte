@@ -2,7 +2,7 @@
   <h2 class="visually-hidden">Getting started</h2>
   <p>
     This website is in its infancy, but I hope you'll find something of value
-    still. If you haven't checked it out already, might I suggest a visit to my
+    still. If you haven't checked it out already, might I suggest a visit to the
     blog?
   </p>
   <a href="/blog" class="relative">Explore articles</a>

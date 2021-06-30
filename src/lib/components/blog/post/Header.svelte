@@ -23,7 +23,9 @@
 <style>
   header {
     text-align: center;
-    padding: 4rem 1rem 3.5rem;
+    padding: 3rem 0;
+    padding: calc(3rem + 1em + 0.125em) 0;
+    margin-bottom: 20px;
     color: hsl(215, 10%, 97%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);

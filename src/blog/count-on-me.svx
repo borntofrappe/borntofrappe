@@ -2,7 +2,7 @@
 title: Count on Me
 date: 2021-5-27-15-5
 brief: A first attempt at injecting Svelte into markdown, thanks to mdsvex of all libraries.
-keywords: ['editor', 'blog']
+keywords: ['svelte']
 ---
 
 <script>

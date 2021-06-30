@@ -2,7 +2,7 @@
 title: Three is company
 date: 2021-5-29
 brief: Because the blog page needed three articles to show the grid. If grid properties are supported that is.
-keywords: ['blog', 'flag']
+keywords: ['flag']
 ---
 
 The Styrian Gran Prix ended up quite differently from what I expected in [the first filler article](/blog/getting-started).

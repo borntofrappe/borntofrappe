@@ -37,13 +37,27 @@
 
 <Header {title} {keywords} />
 
-<main class="max-width-container">
+<main id="content" class="max-width-container">
   <svelte:component this={Md} />
 </main>
 
 <style>
-  main {
-    margin-top: 3.5rem;
-    margin-bottom: 5rem;
+  #content {
+    z-index: 0;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  main > :global(* + *) {
+    margin-top: 0.75em;
+  }
+
+  main > :global(*:first-child) {
+    margin-top: 0;
+  }
+
+  main :global(h2),
+  main :global(h3) {
+    margin-top: 1em;
   }
 </style>

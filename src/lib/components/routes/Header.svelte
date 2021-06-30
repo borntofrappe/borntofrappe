@@ -15,22 +15,20 @@
   }
 
   header {
-    max-width: 42rem;
+    width: 90vw;
+    width: var(--width);
+    max-width: 40rem;
     max-width: var(--max-width);
-    width: 100%;
-    margin-right: auto;
     margin-left: auto;
-    padding: 3rem 1rem;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 3rem 0;
     color: hsl(215, 10%, 97%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
     background: var(--frappe-grey-0);
-    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-    background-size: 20px;
-    background-position: 0 100%;
     position: relative;
-    z-index: 5;
-    margin-bottom: 20px;
+    z-index: 0;
   }
 
   header > * + * {
@@ -46,6 +44,9 @@
     height: 100%;
     transform: translateX(-50%);
     background: inherit;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    background-size: 20px;
+    background-position: 0 100%;
     z-index: -5;
   }
 
@@ -80,7 +81,6 @@
 
   header p::after {
     content: var(--illustration);
-    z-index: 20;
     position: absolute;
     top: 100%;
     right: 0%;
@@ -99,8 +99,12 @@
       margin-left: initial;
       margin-right: initial;
       display: grid;
-      grid-template-columns: 1fr minmax(auto, 42rem) 1fr;
+      grid-template-columns: 1fr minmax(auto, 40rem) 1fr;
       grid-template-columns: 1fr minmax(auto, var(--max-width)) 1fr;
+      gap: 0 5vw;
+      background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      background-size: 20px;
+      background-position: 0 100%;
     }
 
     header > * {
