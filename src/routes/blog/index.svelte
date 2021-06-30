@@ -27,6 +27,13 @@
   });
 </script>
 
+<svelte:head>
+  <meta
+    name="description"
+    content="Blog for borntofrappe, including {posts.length} articles and a few less subjects."
+  />
+</svelte:head>
+
 <Header
   title="Jotting things down"
   body="I build, I learn, I write. Not necessarily in that order."

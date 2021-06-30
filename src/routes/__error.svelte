@@ -17,6 +17,13 @@
   export let status;
 </script>
 
+<svelte:head>
+  <meta
+    name="description"
+    content="Error page for the status code number {status}"
+  />
+</svelte:head>
+
 <Header
   title={status}
   body="Something quite unexpected has happened."

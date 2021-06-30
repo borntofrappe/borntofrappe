@@ -30,5 +30,12 @@
   ];
 </script>
 
+<svelte:head>
+  <meta
+    name="description"
+    content="Personal website of one Gabriele Corti, coding online @borntofrappe"
+  />
+</svelte:head>
+
 <Hero {title} {body} {links} />
 <Content />
