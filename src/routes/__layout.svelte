@@ -1,4 +1,5 @@
 <script>
+  import SkipToContent from '$lib/components/SkipToContent.svelte';
   import Starter from '$lib/components/Starter.svelte';
   import Footer from '$lib/components/Footer.svelte';
 
@@ -6,6 +7,7 @@
 </script>
 
 <div>
+  <SkipToContent />
   <Starter />
 
   <slot />
