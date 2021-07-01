@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'Cambay';
-  font-display: swap;
-  src: url('/fonts/Cambay-Regular-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/Cambay-Regular-latin.woff2') format('woff2'),
     url('/fonts/Cambay-Regular-latin.woff') format('woff');
   font-style: normal;
   font-weight: 400;
@@ -9,8 +8,8 @@
 
 @font-face {
   font-family: 'Cambay';
-  font-display: swap;
-  src: url('/fonts/Cambay-Regular-Italic-latin.woff2') format('woff2'),
+  src: local(''),
+    url('/fonts/Cambay-Regular-Italic-latin.woff2') format('woff2'),
     url('/fonts/Cambay-Regular-Italic-latin.woff') format('woff');
   font-style: italic;
   font-weight: 400;
@@ -18,8 +17,7 @@
 
 @font-face {
   font-family: 'Cambay';
-  font-display: swap;
-  src: url('/fonts/Cambay-Bold-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/Cambay-Bold-latin.woff2') format('woff2'),
     url('/fonts/Cambay-Bold-latin.woff') format('woff');
   font-style: normal;
   font-weight: 700;
@@ -27,8 +25,7 @@
 
 @font-face {
   font-family: 'Cambay';
-  font-display: swap;
-  src: url('/fonts/Cambay-Bold-Italic-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/Cambay-Bold-Italic-latin.woff2') format('woff2'),
     url('/fonts/Cambay-Bold-Italic-latin.woff') format('woff');
   font-style: italic;
   font-weight: 700;
@@ -36,8 +33,7 @@
 
 @font-face {
   font-family: 'Maven Pro';
-  font-display: swap;
-  src: url('/fonts/MavenPro-Bold-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/MavenPro-Bold-latin.woff2') format('woff2'),
     url('/fonts/MavenPro-Bold-latin.woff') format('woff');
   font-style: normal;
   font-weight: 700;
@@ -45,8 +41,7 @@
 
 @font-face {
   font-family: 'Maven Pro';
-  font-display: swap;
-  src: url('/fonts/MavenPro-Semibold-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/MavenPro-Semibold-latin.woff2') format('woff2'),
     url('/fonts/MavenPro-Semibold-latin.woff') format('woff');
   font-style: normal;
   font-weight: 600;
@@ -54,8 +49,7 @@
 
 @font-face {
   font-family: 'Maven Pro';
-  font-display: swap;
-  src: url('/fonts/MavenPro-Medium-latin.woff2') format('woff2'),
+  src: local(''), url('/fonts/MavenPro-Medium-latin.woff2') format('woff2'),
     url('/fonts/MavenPro-Medium-latin.woff') format('woff');
   font-style: normal;
   font-weight: 500;
@@ -63,8 +57,8 @@
 
 @font-face {
   font-family: 'Source Code Pro';
-  font-display: swap;
-  src: url('/fonts/SourceCodePro-Regular-latin.woff2') format('woff2'),
+  src: local(''),
+    url('/fonts/SourceCodePro-Regular-latin.woff2') format('woff2'),
     url('/fonts/SourceCodePro-Regular-latin.woff') format('woff');
   font-style: normal;
   font-weight: 400;
