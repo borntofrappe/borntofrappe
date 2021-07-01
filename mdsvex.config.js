@@ -1,5 +1,18 @@
 import shiki from 'shiki';
 import icons from './src/lib/icons.js';
+import slug from 'rehype-slug';
+import autolink from 'rehype-autolink-headings';
+
+const autolinkOptions = {
+  behavior: 'append',
+  properties: {},
+  content: {
+    type: 'element',
+    tagName: 'span',
+    properties: {className: ['visually-hidden']},
+    children: []
+  }
+}
 
 async function highlighter(code, lang) {
   const shikiHighlighter = await shiki.getHighlighter({ theme:  'material-darker' });
@@ -13,6 +26,13 @@ async function highlighter(code, lang) {
 
 const config = {
   extensions: ['.md', '.svx'],
+  smartypants: {
+    quotes: false,
+    ellipses: false,
+    backticks: false,
+    dashes: 'oldschool'
+  },
+  rehypePlugins: [slug, [autolink, autolinkOptions]],
   highlight: {
     highlighter,
   },

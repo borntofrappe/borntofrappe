@@ -70,6 +70,70 @@
     margin-top: 1em;
   }
 
+  main :global(h2),
+  main:global(h3),
+  main:global(h4) {
+    display: flex;
+    align-items: center;
+  }
+
+  main :global(h2 a),
+  main:global(h3 a),
+  main:global(h4 a) {
+    opacity: 0.2;
+    margin-left: 0.5rem;
+    width: 0.5em;
+    height: 0.5em;
+    transition-property: opacity, color;
+    transition-duration: 0.25s;
+    transition-duration: var(--transition-duration);
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition-timing-function: var(--ease-in-out-sine);
+    background: currentColor;
+    border-radius: 50%;
+  }
+
+  @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
+    main :global(h2 a),
+    main:global(h3 a),
+    main:global(h4 a) {
+      border-radius: initial;
+      background: initial;
+      position: relative;
+      width: 1em;
+      height: 1em;
+      z-index: 0;
+    }
+
+    main :global(h2 a::before),
+    main:global(h3 a::before),
+    main:global(h4 a::before) {
+      z-index: -5;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: currentColor;
+      mask-image: url('data:image/svg+xml,%3Csvg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg transform="rotate(-45)"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3Cpath transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      -webkit-mask-image: url('data:image/svg+xml,%3Csvg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg transform="rotate(-45)"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3Cpath transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    }
+  }
+  main :global(h2 a:focus),
+  main:global(h3 a:focus),
+  main:global(h4 a:focus) {
+    opacity: 1;
+  }
+
+  main :global(h2 a:hover),
+  main:global(h3 a:hover),
+  main:global(h4 a:hover) {
+    opacity: 1;
+    color: hsl(340, 90%, 55%);
+    color: var(--primary-6);
+  }
+
   main :global(p > code) {
     color: hsl(350, 100%, 8%);
     color: var(--primary-0);
