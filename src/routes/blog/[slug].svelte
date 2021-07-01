@@ -28,6 +28,7 @@
 </script>
 
 <script>
+  import Meta from '$lib/components/Meta.svelte';
   import Header from '$lib/components/blog/post/Header.svelte';
 
   export let title;
@@ -35,14 +36,12 @@
   export let Md;
 </script>
 
-<svelte:head>
-  <meta
-    name="description"
-    content="{title}, a blog post from borntofrappe described by the following keywords: {keywords.join(
-      ', '
-    )}."
-  />
-</svelte:head>
+<Meta
+  description="{title}, a blog post from borntofrappe with the following keywords: {keywords.join(
+    ', '
+  )}."
+  image="blog"
+/>
 
 <Header {title} {keywords} />
 

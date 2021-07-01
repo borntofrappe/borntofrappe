@@ -10,6 +10,7 @@
 </script>
 
 <script>
+  import Meta from '$lib/components/Meta.svelte';
   import Header from '$lib/components/routes/Header.svelte';
   import icons from '$lib/icons';
 
@@ -17,12 +18,10 @@
   export let status;
 </script>
 
-<svelte:head>
-  <meta
-    name="description"
-    content="Error page for the status code number {status}"
-  />
-</svelte:head>
+<Meta
+  description="Error page raised with the status code {status}"
+  image="error"
+/>
 
 <Header
   title={status}

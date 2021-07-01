@@ -11,6 +11,7 @@
 </script>
 
 <script>
+  import Meta from '$lib/components/Meta.svelte';
   import Header from '$lib/components/routes/Header.svelte';
   import Post from '$lib/components/blog/Post.svelte';
 
@@ -27,12 +28,10 @@
   });
 </script>
 
-<svelte:head>
-  <meta
-    name="description"
-    content="Blog for borntofrappe, including {posts.length} articles and a few less subjects."
-  />
-</svelte:head>
+<Meta
+  description="Blog for borntofrappe, including {posts.length} articles and a few less subjects."
+  image="blog"
+/>
 
 <Header
   title="Jotting things down"

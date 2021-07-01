@@ -1,4 +1,5 @@
 <script>
+  import Meta from '$lib/components/Meta.svelte';
   import Hero from '$lib/components/homepage/Hero.svelte';
   import Content from '$lib/components/homepage/Content.svelte';
 
@@ -30,12 +31,10 @@
   ];
 </script>
 
-<svelte:head>
-  <meta
-    name="description"
-    content="Personal website of one Gabriele Corti, coding online @borntofrappe"
-  />
-</svelte:head>
+<Meta
+  description="Personal website of one Gabriele Corti, coding online @borntofrappe."
+  image="borntofrappe"
+/>
 
 <Hero {title} {body} {links} />
 <Content />

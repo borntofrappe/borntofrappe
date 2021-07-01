@@ -9,14 +9,6 @@
   };
 </script>
 
-<svelte:head>
-  <title
-    >{`${root.text}${$page.path === '/' ? '' : $page.path}`
-      .split('/')
-      .join(' / ')}</title
-  >
-</svelte:head>
-
 <nav aria-label="Breadcrumb navigation" id="breadcrumb">
   <a href={root.href}>{root.text} {@html root.icon}</a>
   {#if $page.path !== '/'}
