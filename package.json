@@ -7,9 +7,9 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.17",
-    "@sveltejs/kit": "^1.0.0-next.119",
-    "mdsvex": "^0.9.7",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.18",
+    "@sveltejs/kit": "^1.0.0-next.120",
+    "mdsvex": "^0.9.8",
     "rehype-autolink-headings": "^5.1.0",
     "rehype-slug": "^4.0.1",
     "shiki": "^0.9.5",

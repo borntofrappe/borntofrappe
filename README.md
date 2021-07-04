@@ -1,6 +1,6 @@
 # borntofrappe
 
-_What's this?_ My personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
+_What's this?_ A work-in-progress... Also, my personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
 
 ## Development notes
 
