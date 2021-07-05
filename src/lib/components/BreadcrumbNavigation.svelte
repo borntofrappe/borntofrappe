@@ -11,14 +11,11 @@
 
 <nav aria-label="Breadcrumb navigation" id="breadcrumb">
   <ol>
-    <li>
-      <a href={root.href}>{root.text} {@html root.icon}</a>
-    </li>
     {#if $page.path !== '/'}
       {#each $page.path
         .split('/')
-        .slice(1)
-        .reduce((acc, curr, i) => [...acc, { href: i === 0 ? `/${curr}` : `${acc[i - 1].href}/${curr}`, text: `/ ${curr}`, icon: icons[curr] || '' }], []) as { href, text, icon }}
+        .filter((d) => d)
+        .reduce((acc, curr, i) => [...acc, { href: i === 0 ? `/${curr}` : `${acc[acc.length - 1].href}/${curr}`, text: `/ ${curr}`, icon: icons[curr] || '' }], [root]) as { href, text, icon }}
         <li>
           <a {href}>{text} {@html icon}</a>
         </li>
