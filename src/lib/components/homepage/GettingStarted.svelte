@@ -16,7 +16,7 @@
     games with Lua and Love2D. While I try setting up a blog and writing a good
     honest article, I hope to distract you with
     <a href="https://github.com/borntofrappe/game-development/wiki/Practice"
-      >one of them.</a
+      >one of them</a
     >.
   </p>
 </section>
