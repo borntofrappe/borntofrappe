@@ -10,11 +10,15 @@
 >
   <h2 class="visually-hidden">Getting started</h2>
   <p>
-    This website is in its infancy, but I hope you'll find something of value
-    still. If you haven't checked it out already, might I suggest a visit to the
-    blog?
+    I'm building this website with <a href="https://kit.svelte.dev/"
+      >SvelteKit</a
+    >, one tentative step at a time, but I'm also in the process of creating 2D
+    games with Lua and Love2D. While I try setting up a blog and writing a good
+    honest article, I hope to distract you with
+    <a href="https://github.com/borntofrappe/game-development/wiki/Practice"
+      >one of them.</a
+    >.
   </p>
-  <a href="/blog" class="relative">Explore articles</a>
 </section>
 
 <style>

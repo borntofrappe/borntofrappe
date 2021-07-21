@@ -4,8 +4,7 @@
   import Content from '$lib/components/homepage/Content.svelte';
 
   const title = 'Hello, World!';
-  const body =
-    'I enjoy writing code.\nWith this website, I try to convince you I might be good at it as well.';
+  const body = 'I enjoy writing code.';
 
   const links = [
     {
