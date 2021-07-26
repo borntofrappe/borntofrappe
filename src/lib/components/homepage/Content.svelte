@@ -12,17 +12,18 @@
   #content {
     overflow-x: hidden;
     z-index: 0;
-    --section-whitespace: 3.5em;
+    --section-whitespace: 4.5rem;
   }
 
   main > :global(section) {
-    padding-top: 3rem;
+    padding-top: 4rem;
     padding-top: var(--section-whitespace);
   }
 
   main > :global(section:not(:last-of-type)) {
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
     padding-bottom: var(--section-whitespace);
+    padding-bottom: calc(var(--section-whitespace) + 20px);
   }
 
   main > :global(section + section) {

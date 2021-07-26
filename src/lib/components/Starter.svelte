@@ -10,9 +10,9 @@
 
 <style>
   div {
+    padding: 0.5rem 0;
     display: flex;
     align-items: center;
-    padding: 0.5rem 0;
   }
 
   div > :global(*:last-child) {

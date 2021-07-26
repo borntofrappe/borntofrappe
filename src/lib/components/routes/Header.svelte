@@ -84,8 +84,8 @@
     position: absolute;
     top: 100%;
     right: 0%;
-    width: 8rem;
-    height: 8rem;
+    width: 7.5rem;
+    height: 7.5rem;
   }
 
   @supports (disply: grid) {

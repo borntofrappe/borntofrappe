@@ -23,8 +23,7 @@
 <style>
   header {
     text-align: center;
-    padding: 3rem 0;
-    padding: calc(3rem + 1em + 0.125em) 0;
+    padding: 4rem 1rem 3.5rem;
     margin-bottom: 20px;
     color: hsl(215, 10%, 97%);
     color: var(--frappe-grey-10);
@@ -59,6 +58,7 @@
   header h1 {
     color: inherit;
     max-width: 40rem;
+    max-width: var(--max-width);
     text-align: center;
     margin: 0 auto;
   }
@@ -81,9 +81,9 @@
     flex-shrink: 0;
     padding: 10px;
     border-radius: 50%;
-    margin: 0px 22.5px;
-    width: 55px;
-    height: 55px;
+    margin: 0px 25px;
+    width: 50px;
+    height: 50px;
     color: hsl(215, 22%, 5%);
     color: var(--grey-0);
     background: hsl(215, 10%, 97%);

@@ -48,16 +48,21 @@
 <style>
   #content {
     z-index: 0;
-    padding-top: 1.5rem;
+    padding-top: 2.5rem;
     padding-bottom: 5rem;
   }
 
   main > :global(* + *) {
-    margin-top: 1em;
+    margin-top: 1.25em;
   }
 
   main > :global(article > * + *) {
     margin-top: 0.5em;
+  }
+
+  main :global(article:not(:first-of-type) h2) {
+    font-size: 1.44rem;
+    font-size: var(--size-600);
   }
 
   @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
@@ -81,7 +86,7 @@
     main {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-      grid-gap: 1.25rem 1.75rem;
+      gap: 1.25rem 1.75rem;
     }
 
     main > :global(* + *) {
@@ -95,7 +100,7 @@
 
   @supports (grid-template-columns: subgrid) {
     main > :global(article) {
-      grid-gap: 0;
+      gap: 0;
       display: grid;
       grid-row: span 3;
       grid-template-rows: subgrid;

@@ -70,16 +70,16 @@
   }
 
   main :global(h2),
-  main:global(h3),
-  main:global(h4) {
+  main :global(h3),
+  main :global(h4) {
     display: flex;
     align-items: center;
   }
 
   main :global(h2 a),
-  main:global(h3 a),
-  main:global(h4 a) {
-    opacity: 0.2;
+  main :global(h3 a),
+  main :global(h4 a) {
+    opacity: 0.3;
     margin-left: 0.5rem;
     width: 0.5em;
     height: 0.5em;
@@ -94,8 +94,8 @@
 
   @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
     main :global(h2 a),
-    main:global(h3 a),
-    main:global(h4 a) {
+    main :global(h3 a),
+    main :global(h4 a) {
       border-radius: initial;
       background: initial;
       position: relative;
@@ -105,8 +105,8 @@
     }
 
     main :global(h2 a::before),
-    main:global(h3 a::before),
-    main:global(h4 a::before) {
+    main :global(h3 a::before),
+    main :global(h4 a::before) {
       z-index: -5;
       content: '';
       position: absolute;
@@ -119,25 +119,28 @@
       -webkit-mask-image: url('data:image/svg+xml,%3Csvg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg transform="rotate(-45)"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3Cpath transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
     }
   }
+
   main :global(h2 a:focus),
-  main:global(h3 a:focus),
-  main:global(h4 a:focus) {
+  main :global(h3 a:focus),
+  main :global(h4 a:focus) {
     opacity: 1;
   }
 
   main :global(h2 a:hover),
-  main:global(h3 a:hover),
-  main:global(h4 a:hover) {
+  main :global(h3 a:hover),
+  main :global(h4 a:hover) {
     opacity: 1;
     color: hsl(340, 90%, 55%);
     color: var(--primary-6);
   }
 
   main :global(p > code) {
-    color: hsl(350, 100%, 8%);
+    padding: 0 0.2em;
+    font-family: inherit;
+    color: hsl(215, 22%, 5%);
     color: var(--primary-0);
-    background: hsl(330, 100%, 92%);
-    background: var(--primary-10);
+    background: hsl(335, 100%, 86%);
+    background: var(--primary-9);
   }
 
   main :global(.code > span),
@@ -173,7 +176,7 @@
   }
 
   main :global(.code pre) {
-    margin: 0;
+    margin-top: 0;
     color: hsl(214, 15%, 88%);
     color: var(--frappe-grey-9);
     background: hsl(229, 20%, 20%);
@@ -204,7 +207,6 @@
 
   main :global(ul),
   main :global(ol) {
-    line-height: 1.5;
     list-style-position: inside;
   }
 
@@ -216,13 +218,8 @@
 
   main :global(ul ul),
   main :global(ol ol) {
-    margin-top: 0.6em;
-    margin-left: 0.6em;
-  }
-
-  main :global(ul > * + *),
-  main :global(ol > * + *) {
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
   }
 
   main :global(ul li > * + *),
@@ -230,28 +227,32 @@
     margin-top: 0.5em;
   }
 
+  main :global(li) {
+    line-height: 1.5;
+  }
+
   @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
     main :global(ul) {
-      --badge-size: 1.5em;
+      --badge-size: 1.25em;
       list-style: none;
-      margin-left: 1.5em;
+      margin-left: 1.25em;
       margin-left: var(--badge-size);
     }
 
     main :global(ul li) {
       position: relative;
+      padding-left: 0.25em;
     }
 
     main :global(ul li::before) {
       content: '';
       position: absolute;
-      top: 1em;
+      top: 0.25em;
       right: 100%;
-      width: 1.5em;
+      width: 1.25em;
       width: var(--badge-size);
-      height: 1.5em;
+      height: 1.25em;
       height: var(--badge-size);
-      transform: translate(-0.25em, -50%);
       background: hsl(340, 90%, 55%);
       background: var(--primary-6);
       mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath stroke-width="8" d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
@@ -259,15 +260,16 @@
     }
 
     main :global(ol) {
-      --badge-size: 1.5em;
+      --badge-size: 1.25em;
       list-style: none;
-      margin-left: 1.5em;
+      margin-left: 1.25em;
       margin-left: var(--badge-size);
       counter-reset: custom-counter;
     }
 
     main :global(ol li) {
       position: relative;
+      padding-left: 0.25em;
     }
 
     main :global(ol li::before) {
@@ -276,23 +278,28 @@
       color: hsl(340, 90%, 55%);
       color: var(--primary-6);
       position: absolute;
+      top: 0.25em;
       right: 100%;
-      width: 1.5em;
+      width: 1.25em;
       width: var(--badge-size);
-      height: 1.5em;
+      height: 1.25em;
       height: var(--badge-size);
+      transform: scale(0.75);
+      transform-origin: 50% 60%;
       text-align: center;
-      transform: scale(0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     main :global(ol li::after) {
       content: '';
       position: absolute;
-      top: 0.05em;
+      top: 0.25em;
       right: 100%;
-      width: 1.5em;
+      width: 1.25em;
       width: var(--badge-size);
-      height: 1.5em;
+      height: 1.25em;
       height: var(--badge-size);
       background: hsl(340, 90%, 55%);
       background: var(--primary-6);
@@ -307,8 +314,8 @@
     line-height: 2;
     padding: 0.75rem 2rem;
     border-radius: 0.4rem;
-    background: hsl(330, 100%, 92%);
-    background: var(--primary-10);
+    background: hsl(335, 100%, 86%);
+    background: var(--primary-9);
     color: hsl(350, 100%, 8%);
     color: var(--primary-0);
     position: relative;
@@ -390,12 +397,12 @@
   }
 
   main :global(table thead tr th) {
-    font-size: 0.95rem;
     padding: 0 1rem 0.7rem;
   }
 
   main :global(table tbody tr td) {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-size: var(--size-400);
     padding: 0.5rem 1rem;
   }
 

@@ -14,6 +14,8 @@
     top: 0.5rem;
     left: 0.5rem;
     text-decoration: none;
+    font-size: 1rem;
+    font-size: var(--size-400);
     border-radius: 2rem;
     border: none;
     padding: 0.5rem 1rem;
@@ -21,8 +23,10 @@
     color: var(--grey-10);
     background: hsl(215, 22%, 5%);
     background: var(--grey-0);
+    box-shadow: 0 0 0.5rem -0.4rem hsl(215, 22%, 5%);
+    box-shadow: 0 0 0.5rem -0.4rem var(--grey-0);
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     z-index: 10;
   }
 

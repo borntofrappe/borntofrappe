@@ -54,12 +54,12 @@
 <style>
   #content {
     z-index: 0;
-    padding-top: 2rem;
+    padding-top: 2.5rem;
     padding-bottom: 4rem;
   }
 
   main > * + * {
-    margin-top: 0.4em;
+    margin-top: 0.5em;
   }
 
   div > span,
@@ -69,8 +69,8 @@
   }
 
   div > span {
-    color: hsl(214, 15%, 88%);
-    color: var(--frappe-grey-9);
+    color: hsl(215, 10%, 98%);
+    color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
     background: var(--frappe-grey-0);
     background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
@@ -96,6 +96,7 @@
 
   div pre {
     margin-top: 0;
+    line-height: 1.75;
     color: hsl(214, 15%, 88%);
     color: var(--frappe-grey-9);
     background: hsl(229, 20%, 20%);

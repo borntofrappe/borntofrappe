@@ -130,7 +130,8 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 2rem 1rem;
+    padding: 2.5rem 0;
+    margin-bottom: 20px;
     color: hsl(215, 10%, 97%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
@@ -163,12 +164,16 @@
     z-index: -5;
   }
 
+  header > * {
+    width: 90vw;
+    width: var(--width);
+    max-width: 29rem;
+  }
+
   header nav {
     order: -1;
-    max-width: 29rem;
-    width: 90vw;
-    margin: 1rem 2rem;
     --transition-duration: 0.4s;
+    padding: 0.5rem;
   }
 
   header nav > svg {
@@ -214,10 +219,6 @@
     outline: none;
   }
 
-  header div {
-    max-width: 27rem;
-  }
-
   header div > * + * {
     margin-top: 0.5em;
   }
@@ -231,14 +232,14 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    width: 8rem;
-    height: 8rem;
+    width: 7.5em;
+    height: 7.5em;
     transform: translateX(-50%) rotate(45deg);
-    z-index: 0;
     animation: rotate-astronaut 100s var(--ease-in-out-sine) alternate infinite;
     animation: rotate-astronaut 100s cubic-bezier(0.445, 0.05, 0.55, 0.95)
       alternate infinite;
     animation-play-state: paused;
+    z-index: 0;
   }
 
   header h1 {

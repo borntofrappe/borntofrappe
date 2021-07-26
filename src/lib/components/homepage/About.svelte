@@ -130,12 +130,8 @@
 
 <style>
   section {
-    --elevation: 2em;
-  }
-
-  section p:first-of-type {
-    margin-top: 2em;
-    margin-top: var(--elevation);
+    --animation-duration-mark: 8s;
+    --animation-duration-world: 200s;
   }
 
   section h2 {
@@ -143,9 +139,12 @@
   }
 
   section mark {
+    --elevation: 2.5em;
+    display: inline-block;
+    padding-top: 2em;
+    padding-top: var(--elevation);
     color: inherit;
     background: none;
-    font-weight: 700;
     position: relative;
     z-index: 0;
   }
@@ -188,27 +187,28 @@
 
     @media (prefers-color-scheme: dark) {
       :global(html:not([data-preference]) section#about mark::before) {
-        opacity: 0.2;
+        opacity: 0.25;
       }
     }
 
     :global(html[data-preference='dark'] section#about mark::before) {
-      opacity: 0.2;
+      opacity: 0.25;
     }
 
     section mark::before {
       clip-path: polygon(100% 0%, 100% 100%, 100% 100%);
-      animation: clip-polygon 8s var(--ease-in-out-sine) infinite alternate
-        paused;
       animation: clip-polygon 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
         alternate paused;
+      animation: clip-polygon var(--animation-duration-mark)
+        var(--ease-in-out-sine) infinite alternate paused;
     }
 
     section mark::after {
       transform: translate(50%, 50%) rotate(0deg);
-      animation: rotate-ufo 8s var(--ease-in-out-sine) infinite alternate paused;
       animation: rotate-ufo 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
         alternate paused;
+      animation: rotate-ufo var(--animation-duration-mark)
+        var(--ease-in-out-sine) infinite alternate paused;
     }
 
     section.observed mark::before,
@@ -264,6 +264,7 @@
 
   section > svg .rotate {
     animation: rotate-orbit 200s linear infinite;
+    animation: rotate-orbit var(--animation-duration-world) linear infinite;
     animation-play-state: paused;
   }
 

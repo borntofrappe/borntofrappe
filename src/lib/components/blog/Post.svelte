@@ -20,12 +20,13 @@
   article time {
     font-size: 1rem;
     font-size: var(--size-400);
-    padding: 0.25rem 0.4rem;
+    letter-spacing: -0.5px;
     display: inline-block;
-    color: hsl(350, 100%, 8%);
+    padding: 0.25rem 0.4rem;
+    color: hsl(215, 22%, 5%);
     color: var(--primary-0);
-    background: hsl(330, 100%, 92%);
-    background: var(--primary-10);
+    background: hsl(335, 100%, 86%);
+    background: var(--primary-9);
     border-left: 0.2rem solid hsl(340, 90%, 55%);
     border-left: 0.2rem solid var(--primary-6);
   }
