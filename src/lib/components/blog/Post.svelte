@@ -18,8 +18,6 @@
   }
 
   article time {
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 500;
     font-size: 1rem;
     font-size: var(--size-400);
     padding: 0.25rem 0.4rem;
@@ -30,15 +28,5 @@
     background: var(--primary-10);
     border-left: 0.2rem solid hsl(340, 90%, 55%);
     border-left: 0.2rem solid var(--primary-6);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-preference]) main article h2) {
-      font-weight: 600;
-    }
-  }
-
-  :global(html[data-preference='dark'] main article h2) {
-    font-weight: 600;
   }
 </style>

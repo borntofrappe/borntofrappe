@@ -14,8 +14,6 @@
     top: 0.5rem;
     left: 0.5rem;
     text-decoration: none;
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 500;
     border-radius: 2rem;
     border: none;
     padding: 0.5rem 1rem;

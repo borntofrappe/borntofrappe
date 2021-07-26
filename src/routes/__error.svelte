@@ -69,8 +69,6 @@
   }
 
   div > span {
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 500;
     color: hsl(214, 15%, 88%);
     color: var(--frappe-grey-9);
     background: hsl(215, 22%, 5%);

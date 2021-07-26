@@ -150,16 +150,6 @@
     z-index: 0;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-preference]) section#about mark) {
-      font-weight: 600;
-    }
-  }
-
-  :global(html[data-preference='dark'] section#about mark) {
-    font-weight: 600;
-  }
-
   section mark::after {
     content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg stroke="hsl(350, 100%25, 8%25)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"%3E%3Cellipse fill="hsl(339, 90%25, 67%25)" rx="45" ry="20" /%3E%3Cpath fill="hsl(336, 93%25, 77%25)" d="M -28 -5 a 28 28 0 0 1 56 0 48 48 0 0 1 -56 0" /%3E%3Cpath transform="scale(0.85)" stroke-width="2.5" fill="none" d="M -28 -5 a 28 28 0 0 1 56 0" stroke-dasharray="20 80" stroke-dashoffset="48" /%3E%3C/g%3E%3C/svg%3E');
     position: absolute;

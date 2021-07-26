@@ -5,9 +5,7 @@
 
   onMount(() => {
     function setPreference(preference) {
-      document
-        .querySelector('html')
-        .setAttribute('data-preference', preference);
+      document.documentElement.setAttribute('data-preference', preference);
       localStorage.setItem('color-scheme', preference);
     }
 

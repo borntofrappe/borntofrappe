@@ -147,8 +147,6 @@
   }
 
   main :global(.code > span) {
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 500;
     color: hsl(215, 10%, 98%);
     color: var(--frappe-grey-10);
     background: hsl(215, 22%, 5%);
@@ -216,11 +214,6 @@
     color: var(--primary-6);
   }
 
-  main :global(ol li::marker) {
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 700;
-  }
-
   main :global(ul ul),
   main :global(ol ol) {
     margin-top: 0.6em;
@@ -235,16 +228,6 @@
   main :global(ul li > * + *),
   main :global(ol li > * + *) {
     margin-top: 0.5em;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-preference]) #content ol li::marker) {
-      font-weight: 600;
-    }
-  }
-
-  :global(html[data-preference='dark'] #content ol li::marker) {
-    font-weight: 600;
   }
 
   @supports ((mask-image: url()) or (-webkit-mask-image: url())) {
@@ -292,8 +275,6 @@
       counter-increment: custom-counter;
       color: hsl(340, 90%, 55%);
       color: var(--primary-6);
-      font-family: 'Maven Pro', sans-serif;
-      font-weight: 700;
       position: absolute;
       right: 100%;
       width: 1.5em;
@@ -317,16 +298,6 @@
       background: var(--primary-6);
       mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
       -webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body:not([data-preference]) main :global(ol li::before) {
-        font-weight: 600;
-      }
-    }
-
-    body[data-preference='dark'] main :global(ol li::before) {
-      font-weight: 600;
     }
   }
 
@@ -419,9 +390,7 @@
   }
 
   main :global(table thead tr th) {
-    font-family: 'Maven Pro', sans-serif;
     font-size: 0.95rem;
-    font-weight: 600;
     padding: 0 1rem 0.7rem;
   }
 

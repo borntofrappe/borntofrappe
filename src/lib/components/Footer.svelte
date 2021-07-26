@@ -39,8 +39,6 @@
     padding: 0.2rem 0;
     border: initial;
     text-decoration: none;
-    font-family: 'Maven Pro', sans-serif;
-    font-weight: 600;
     border-bottom: 0.1rem solid hsl(340, 90%, 55%);
     border-bottom: 0.1rem solid var(--primary-6);
     transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
