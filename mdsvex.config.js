@@ -10,7 +10,7 @@ const autolinkOptions = {
     type: 'element',
     tagName: 'span',
     properties: { className: ['visually-hidden'] },
-    children: [],
+    children: [{type: 'text', value: 'Permalink'}],
   },
 };
 
