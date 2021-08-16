@@ -1,6 +1,6 @@
 # borntofrappe
 
-_What's this?_ A work-in-progress... Also, my personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
+_What's this?_ my personal website! Built with [SvelteKit](https://kit.svelte.dev/), deployed through [Netlify](https://www.netlify.com/).
 
 ## Development notes
 
@@ -78,11 +78,11 @@ npm i -D mdsvex
 Updated `svelte.config.js` to include the plugin in the `preprocess` field, and expand the extensions processed by vite.
 
 ```js
-import { mdsvex } from 'mdsvex';
+import { mdsvex } from "mdsvex";
 
 const config = {
-  extensions: ['.svelte', '.md', '.svx'],
-  preprocess: mdsvex({ extensions: ['.md', '.svx'] }),
+  extensions: [".svelte", ".md", ".svx"],
+  preprocess: mdsvex({ extensions: [".md", ".svx"] }),
   // kit...
 };
 ```

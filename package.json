@@ -7,13 +7,13 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.25",
-    "@sveltejs/kit": "^1.0.0-next.137",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.27",
+    "@sveltejs/kit": "^1.0.0-next.151",
     "mdsvex": "^0.9.8",
     "rehype-autolink-headings": "^5.1.0",
     "rehype-slug": "^4.0.1",
-    "shiki": "^0.9.5",
-    "svelte": "^3.40.2"
+    "shiki": "^0.9.6",
+    "svelte": "^3.42.1"
   },
   "type": "module"
 }
