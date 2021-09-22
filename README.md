@@ -5,6 +5,7 @@ _What's this?_ my personal website! There's bound to be a homepage and, fingers 
 <details>
 <summary>
 <strong>Development notes</strong>
+</summary>
 
 Following [the documentation](https://kit.svelte.dev/docs) with excessive detail.
 
@@ -16,25 +17,25 @@ npm init svelte@next
 
 Running the code prompts a series of questions to scaffold the project
 
-- Directory not empty. Continue? y
+- Directory not empty. Continue? **y**
 
-- Which Svelte app template? Skeleton project
+- Which Svelte app template? **Skeleton project**
 
-- Use TypeScript? No
+- Use TypeScript? **No**
 
-- Add ESLint for code linting? Yes
+- Add ESLint for code linting? **Yes**
 
-- Add Prettier for code formatting? Yes
+- Add Prettier for code formatting? **Yes**
 
 The command line highlights a few steps to continue
 
 1. `npm install`
 
-2. optional commit (already a git repository)
+2. optional commit (this is already a git & Github repository)
 
 3. `npm run dev -- --open`
 
-This `README.md` is replaced with the documentation for [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte), but the markup is one `Ctrl-Z` key away. The documentation does provide a few helpful notes however:
+The existing `README.md` is replaced with the documentation for [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte), but the markup is one `Ctrl-Z` key away. The documentation does provide a few helpful notes though:
 
 - to create a production version you need to first install an [_adapter_](https://kit.svelte.dev/docs#adapters). Afterwards:
 
@@ -50,7 +51,7 @@ This `README.md` is replaced with the documentation for [`create-svelte`](https:
 
 ## Up and running
 
-I intend to deploy the website on Netlify, and the relevant adapter is [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
+I intend to deploy the website through Netlify, and the relevant adapter is [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
 ```bash
 npm i -D @sveltejs/adapter-netlify@next
@@ -58,13 +59,13 @@ npm i -D @sveltejs/adapter-netlify@next
 
 From the Github repo, the relevant configuration happens in `svelte.config.js`.
 
-Import.
+Import:
 
 ```js
 import adapter from '@sveltejs/adapter-netlify';
 ```
 
-Add the adapter to the field describing the `kit`.
+Add the adapter to the field describing the `kit`:
 
 ```js
 export default {
@@ -86,7 +87,7 @@ Among the [proposed options](https://docs.netlify.com/configure-builds/manage-de
   environment = { NODE_VERSION = "14.16.0" }
 ```
 
-The adapter also asks to add such a config file to specify which command to run on build.
+The config file is also required to specify which command to run on build.
 
 ```toml
 [build]
@@ -94,20 +95,18 @@ The adapter also asks to add such a config file to specify which command to run 
   publish = "build/"
 ```
 
-With this setup, build.
+With this setup, build:
 
 ```bash
 npm run build
 ```
 
-Preview.
+Preview:
 
 ```bash
 npm run preview
 ```
 
 Directing Netlify to the Github repo should then be enough to have the project live.
-
-</summary>
 
 </details>
