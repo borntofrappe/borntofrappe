@@ -1,38 +1,113 @@
-# create-svelte
+![borntofrappe](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/banner.svg)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+_What's this?_ my personal website! There's bound to be a homepage and, fingers crossed, a blog too. Past that, [I'm open to suggestions](https://github.com/borntofrappe/borntofrappe/issues/new?labels=suggestion).
 
-## Creating a project
+<details>
+<summary>
+<strong>Development notes</strong>
 
-If you're seeing this, you've probably already done this step. Congrats!
+Following [the documentation](https://kit.svelte.dev/docs) with excessive detail.
+
+## Getting started
 
 ```bash
-# create a new project in the current directory
 npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
 ```
 
-> Note: the `@next` is temporary
+Running the code prompts a series of questions to scaffold the project
 
-## Developing
+- Directory not empty. Continue? y
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Which Svelte app template? Skeleton project
+
+- Use TypeScript? No
+
+- Add ESLint for code linting? Yes
+
+- Add Prettier for code formatting? Yes
+
+The command line highlights a few steps to continue
+
+1. `npm install`
+
+2. optional commit (already a git repository)
+
+3. `npm run dev -- --open`
+
+This `README.md` is replaced with the documentation for [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte), but the markup is one `Ctrl-Z` key away. The documentation does provide a few helpful notes however:
+
+- to create a production version you need to first install an [_adapter_](https://kit.svelte.dev/docs#adapters). Afterwards:
+
+  ```bash
+  npm run build
+  ```
+
+- to preview the built application:
+
+  ```bash
+  npm run preview
+  ```
+
+## Up and running
+
+I intend to deploy the website on Netlify, and the relevant adapter is [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm i -D @sveltejs/adapter-netlify@next
 ```
 
-## Building
+From the Github repo, the relevant configuration happens in `svelte.config.js`.
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+Import.
+
+```js
+import adapter from '@sveltejs/adapter-netlify';
+```
+
+Add the adapter to the field describing the `kit`.
+
+```js
+export default {
+	kit: {
+		adapter: adapter(),
+		target: '#svelte'
+	}
+};
+```
+
+The project's `README` highlights a couple of warnings, among which one describing the node version.
+
+> Netlify defaults to Node 12.16. SvelteKit requires Node v12.20 to build.
+
+Among the [proposed options](https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript), I decided to require a valid node version with a [`netlify.toml`](https://docs.netlify.com/configure-builds/file-based-configuration/) config file.
+
+```toml
+[context.production]
+  environment = { NODE_VERSION = "14.16.0" }
+```
+
+The adapter also asks to add such a config file to specify which command to run on build.
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build/"
+```
+
+With this setup, build.
 
 ```bash
 npm run build
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+Preview.
+
+```bash
+npm run preview
+```
+
+Directing Netlify to the Github repo should then be enough to have the project live.
+
+</summary>
+
+</details>
