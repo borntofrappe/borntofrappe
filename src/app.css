@@ -1,0 +1,408 @@
+@font-face {
+	font-family: Cantarell;
+	src: url('fonts/cantarell-regular-webfont.woff2') format('woff2'),
+		url('fonts/cantarell-regular-webfont.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: CantarellOblique;
+	src: url('fonts/cantarell-oblique-webfont.woff2') format('woff2'),
+		url('fonts/cantarell-oblique-webfont.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: CantarellBold;
+	src: url('fonts/cantarell-bold-webfont.woff2') format('woff2'),
+		url('fonts/cantarell-bold-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: CantarellBoldOblique;
+	src: url('fonts/cantarell-boldoblique-webfont.woff2') format('woff2'),
+		url('fonts/cantarell-boldoblique-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: JosefinsansBold;
+	src: url('fonts/josefinsans-bold-webfont.woff2') format('woff2'),
+		url('fonts/josefinsans-bold-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: initial;
+	}
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+ul,
+ol {
+	padding: 0;
+}
+
+:root {
+	--width: 90vw;
+	--max-width: 42rem;
+
+	--size-300: 0.83rem;
+	--size-400: 1rem;
+	--size-500: 1.2rem;
+	--size-600: 1.44rem;
+	--size-700: 1.72rem;
+	--size-800: 2.07rem;
+	--size-900: 2.48rem;
+
+	--frappe-0: hsl(350, 100%, 8%);
+	--frappe-1: hsl(347, 100%, 19%);
+	--frappe-2: hsl(345, 95%, 27%);
+	--frappe-3: hsl(345, 96%, 33%);
+	--frappe-4: hsl(342, 92%, 39%);
+	--frappe-5: hsl(340, 85%, 46%);
+	--frappe-6: hsl(340, 90%, 55%);
+	--frappe-7: hsl(339, 90%, 67%);
+	--frappe-8: hsl(336, 93%, 77%);
+	--frappe-9: hsl(335, 100%, 86%);
+	--frappe-10: hsl(330, 100%, 92%);
+
+	--frappe-grey-0: hsl(215, 22%, 5%);
+	--frappe-grey-1: hsl(210, 20%, 12%);
+	--frappe-grey-2: hsl(210, 18%, 25%);
+	--frappe-grey-3: hsl(210, 16%, 32%);
+	--frappe-grey-4: hsl(208, 14%, 39%);
+	--frappe-grey-5: hsl(212, 12%, 45%);
+	--frappe-grey-6: hsl(212, 10%, 54%);
+	--frappe-grey-7: hsl(212, 15%, 65%);
+	--frappe-grey-8: hsl(213, 16%, 79%);
+	--frappe-grey-9: hsl(214, 15%, 88%);
+	--frappe-grey-10: hsl(215, 10%, 98%);
+
+	--twilight-0: hsl(220, 100%, 8%);
+	--twilight-1: hsl(218, 100%, 15%);
+	--twilight-2: hsl(215, 97%, 25%);
+	--twilight-3: hsl(215, 96%, 32%);
+	--twilight-4: hsl(213, 95%, 38%);
+	--twilight-5: hsl(212, 92%, 45%);
+	--twilight-6: hsl(210, 85%, 55%);
+	--twilight-7: hsl(210, 90%, 62%);
+	--twilight-8: hsl(208, 95%, 75%);
+	--twilight-9: hsl(205, 100%, 85%);
+	--twilight-10: hsl(205, 100%, 92%);
+
+	--twilight-grey-0: hsl(215, 30%, 94%);
+	--twilight-grey-1: hsl(214, 32%, 88%);
+	--twilight-grey-2: hsl(213, 30%, 79%);
+	--twilight-grey-3: hsl(212, 25%, 65%);
+	--twilight-grey-4: hsl(212, 28%, 54%);
+	--twilight-grey-5: hsl(212, 25%, 45%);
+	--twilight-grey-6: hsl(215, 22%, 39%);
+	--twilight-grey-7: hsl(215, 35%, 32%);
+	--twilight-grey-8: hsl(218, 40%, 25%);
+	--twilight-grey-9: hsl(218, 50%, 20%);
+	--twilight-grey-10: hsl(220, 60%, 7%);
+
+	--frappe-selection-background: hsla(335, 100%, 86%, 0.8);
+	--twilight-selection-background: hsla(212, 25%, 45%, 0.8);
+
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+	--transition-duration: 0.25s;
+}
+
+body {
+	--primary-0: var(--frappe-0);
+	--primary-1: var(--frappe-1);
+	--primary-2: var(--frappe-2);
+	--primary-3: var(--frappe-3);
+	--primary-4: var(--frappe-4);
+	--primary-5: var(--frappe-5);
+	--primary-6: var(--frappe-6);
+	--primary-7: var(--frappe-7);
+	--primary-8: var(--frappe-8);
+	--primary-9: var(--frappe-9);
+	--primary-10: var(--frappe-10);
+
+	--grey-0: var(--frappe-grey-0);
+	--grey-1: var(--frappe-grey-1);
+	--grey-2: var(--frappe-grey-2);
+	--grey-3: var(--frappe-grey-3);
+	--grey-4: var(--frappe-grey-4);
+	--grey-5: var(--frappe-grey-5);
+	--grey-6: var(--frappe-grey-6);
+	--grey-7: var(--frappe-grey-7);
+	--grey-8: var(--frappe-grey-8);
+	--grey-9: var(--frappe-grey-9);
+	--grey-10: var(--frappe-grey-10);
+
+	--selection-background: var(--frappe-selection-background);
+}
+
+@media (prefers-color-scheme: dark) {
+	body:not([data-preference]) {
+		--primary-0: var(--twilight-0);
+		--primary-1: var(--twilight-1);
+		--primary-2: var(--twilight-2);
+		--primary-3: var(--twilight-3);
+		--primary-4: var(--twilight-4);
+		--primary-5: var(--twilight-5);
+		--primary-6: var(--twilight-6);
+		--primary-7: var(--twilight-7);
+		--primary-8: var(--twilight-8);
+		--primary-9: var(--twilight-9);
+		--primary-10: var(--twilight-10);
+
+		--grey-0: var(--twilight-grey-0);
+		--grey-1: var(--twilight-grey-1);
+		--grey-2: var(--twilight-grey-2);
+		--grey-3: var(--twilight-grey-3);
+		--grey-4: var(--twilight-grey-4);
+		--grey-5: var(--twilight-grey-5);
+		--grey-6: var(--twilight-grey-6);
+		--grey-7: var(--twilight-grey-7);
+		--grey-8: var(--twilight-grey-8);
+		--grey-9: var(--twilight-grey-9);
+		--grey-10: var(--twilight-grey-10);
+
+		--selection-background: var(--twilight-selection-background);
+	}
+}
+
+body[data-preference='dark'] {
+	--primary-0: var(--twilight-0);
+	--primary-1: var(--twilight-1);
+	--primary-2: var(--twilight-2);
+	--primary-3: var(--twilight-3);
+	--primary-4: var(--twilight-4);
+	--primary-5: var(--twilight-5);
+	--primary-6: var(--twilight-6);
+	--primary-7: var(--twilight-7);
+	--primary-8: var(--twilight-8);
+	--primary-9: var(--twilight-9);
+	--primary-10: var(--twilight-10);
+
+	--grey-0: var(--twilight-grey-0);
+	--grey-1: var(--twilight-grey-1);
+	--grey-2: var(--twilight-grey-2);
+	--grey-3: var(--twilight-grey-3);
+	--grey-4: var(--twilight-grey-4);
+	--grey-5: var(--twilight-grey-5);
+	--grey-6: var(--twilight-grey-6);
+	--grey-7: var(--twilight-grey-7);
+	--grey-8: var(--twilight-grey-8);
+	--grey-9: var(--twilight-grey-9);
+	--grey-10: var(--twilight-grey-10);
+
+	--selection-background: var(--twilight-selection-background);
+}
+
+::selection {
+	color: hsl(210, 20%, 12%);
+	color: var(--grey-1);
+	background: hsla(335, 100%, 86%, 0.8);
+	background: var(--selection-background);
+}
+
+body {
+	color: hsl(210, 20%, 12%);
+	color: var(--grey-1);
+	background: hsl(215, 10%, 98%);
+	background: var(--grey-10);
+	text-rendering: optimizeSpeed;
+}
+
+body::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: hsl(215, 22%, 5%);
+	background: var(--grey-0);
+}
+
+body::-webkit-scrollbar-thumb {
+	border: 0.2rem solid hsl(215, 22%, 5%);
+	border: 0.2rem solid var(--grey-0);
+	border-radius: 0.5rem;
+	background: hsl(340, 90%, 55%);
+	background: var(--primary-6);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: hsl(215, 22%, 5%);
+	color: var(--grey-0);
+}
+
+a {
+	text-decoration-skip-ink: auto;
+	color: inherit;
+	font-family: inherit;
+	transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+a:hover {
+	color: hsl(340, 90%, 55%);
+	color: var(--primary-6);
+}
+
+a:focus {
+	outline: 0.15rem dashed currentColor;
+}
+
+a:focus:not(:focus-visible) {
+	outline: none;
+}
+
+svg {
+	display: block;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
+		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+.webfonts body {
+	font-family: Cantarell, sans-serif;
+	letter-spacing: -0.5px;
+}
+
+.webfonts h1,
+.webfonts h2,
+.webfonts h3,
+.webfonts h4 {
+	font-family: JosefinsansBold, sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.webfonts em {
+	font-family: CantarellOblique, sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.webfonts strong {
+	font-family: CantarellBold, sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.webfonts strong em,
+.webfonts em strong {
+	font-family: CantarellBoldOblique, sans-serif;
+	font-weight: 700;
+	font-style: italic;
+}
+
+code {
+	font-family: 'Fira Code', Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 1.3;
+}
+
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 1.72rem;
+	font-size: var(--size-700);
+}
+
+h2 {
+	font-size: 1.44rem;
+	font-size: var(--size-600);
+}
+
+h3 {
+	font-size: 1.44rem;
+	font-size: var(--size-600);
+}
+
+h4 {
+	font-size: 1.2rem;
+	font-size: var(--size-500);
+}
+
+@media (min-width: 42rem) {
+	body {
+		font-size: 1.2rem;
+		font-size: var(--size-500);
+	}
+
+	h1 {
+		font-size: 2.48rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 2.07rem;
+		font-size: var(--size-800);
+	}
+
+	h3 {
+		font-size: 1.72rem;
+		font-size: var(--size-700);
+	}
+
+	h4 {
+		font-size: 1.44rem;
+		font-size: var(--size-600);
+	}
+}
+
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}

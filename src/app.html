@@ -4,6 +4,25 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<script>
+			if (sessionStorage.fontsLoaded) {
+				document.documentElement.classList.add('webfonts');
+			} else {
+				if ('fonts' in document) {
+					Promise.all([
+						document.fonts.load('1em Cantarell'),
+						document.fonts.load('700 1em CantarellBold'),
+						document.fonts.load('italic 1em CantarellOblique'),
+						document.fonts.load('italic 700 1em CantarellBoldOblique'),
+						document.fonts.load('700 1em JosefinsansBold')
+					]).then(() => {
+						sessionStorage.fontsLoaded = true;
+						document.documentElement.classList.add('webfonts');
+					});
+				}
+			}
+		</script>
+
 		<link rel="icon" href="/icons/favicon.ico" />
 		<link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
 		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
