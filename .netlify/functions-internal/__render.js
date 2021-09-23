@@ -2415,7 +2415,37 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module"
 });
-var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
+var template = ({ head, body }) => `<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<script>
+			if (sessionStorage.fontsLoaded) {
+				document.documentElement.classList.add('webfonts');
+			} else {
+				if ('fonts' in document) {
+					Promise.all([
+						document.fonts.load('1em Cantarell'),
+						document.fonts.load('700 1em CantarellBold'),
+						document.fonts.load('italic 1em CantarellOblique'),
+						document.fonts.load('italic 700 1em CantarellBoldOblique'),
+						document.fonts.load('700 1em JosefinsansBold')
+					]).then(() => {
+						sessionStorage.fontsLoaded = true;
+						document.documentElement.classList.add('webfonts');
+					});
+				}
+			}
+		<\/script>
+
+		<link rel="icon" href="/icons/favicon.ico" />
+		<link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.json" />
+
+		` + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
 var options = null;
 var default_settings = { paths: { "base": "", "assets": "" } };
 function init(settings = default_settings) {
@@ -2426,9 +2456,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-3c2281ff.js",
+      file: assets + "/_app/start-7f1432e4.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-3c2281ff.js", assets + "/_app/chunks/vendor-e4a2e6fe.js"]
+      js: [assets + "/_app/start-7f1432e4.js", assets + "/_app/chunks/vendor-e4a2e6fe.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2457,15 +2487,15 @@ function init(settings = default_settings) {
 }
 var empty = () => ({});
 var manifest = {
-  assets: [{ "file": "favicon.png", "size": 1571, "type": "image/png" }],
-  layout: ".svelte-kit/build/components/layout.svelte",
+  assets: [{ "file": "fonts/cantarell-bold-webfont.woff", "size": 26344, "type": "font/woff" }, { "file": "fonts/cantarell-bold-webfont.woff2", "size": 20148, "type": "font/woff2" }, { "file": "fonts/cantarell-boldoblique-webfont.woff", "size": 29968, "type": "font/woff" }, { "file": "fonts/cantarell-boldoblique-webfont.woff2", "size": 22984, "type": "font/woff2" }, { "file": "fonts/cantarell-oblique-webfont.woff", "size": 29540, "type": "font/woff" }, { "file": "fonts/cantarell-oblique-webfont.woff2", "size": 22672, "type": "font/woff2" }, { "file": "fonts/cantarell-regular-webfont.woff", "size": 26604, "type": "font/woff" }, { "file": "fonts/cantarell-regular-webfont.woff2", "size": 20308, "type": "font/woff2" }, { "file": "fonts/josefinsans-bold-webfont.woff", "size": 25172, "type": "font/woff" }, { "file": "fonts/josefinsans-bold-webfont.woff2", "size": 18888, "type": "font/woff2" }, { "file": "icons/android-chrome-192x192.png", "size": 3655, "type": "image/png" }, { "file": "icons/android-chrome-512x512.png", "size": 8364, "type": "image/png" }, { "file": "icons/apple-touch-icon.png", "size": 3449, "type": "image/png" }, { "file": "icons/favicon.ico", "size": 15086, "type": "image/vnd.microsoft.icon" }, { "file": "icons/icon.svg", "size": 625, "type": "image/svg+xml" }, { "file": "manifest.json", "size": 450, "type": "application/json" }],
+  layout: "src/routes/__layout.svelte",
   error: ".svelte-kit/build/components/error.svelte",
   routes: [
     {
       type: "page",
       pattern: /^\/$/,
       params: empty,
-      a: [".svelte-kit/build/components/layout.svelte", "src/routes/index.svelte"],
+      a: ["src/routes/__layout.svelte", "src/routes/index.svelte"],
       b: [".svelte-kit/build/components/error.svelte"]
     }
   ]
@@ -2477,8 +2507,8 @@ var get_hooks = (hooks) => ({
   externalFetch: hooks.externalFetch || fetch
 });
 var module_lookup = {
-  ".svelte-kit/build/components/layout.svelte": () => Promise.resolve().then(function() {
-    return layout;
+  "src/routes/__layout.svelte": () => Promise.resolve().then(function() {
+    return __layout;
   }),
   ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(function() {
     return error;
@@ -2487,7 +2517,7 @@ var module_lookup = {
     return index;
   })
 };
-var metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-a8eb25f6.js", "css": [], "js": ["layout.svelte-a8eb25f6.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-fecbecf5.js", "css": [], "js": ["error.svelte-fecbecf5.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-c80ec962.js", "css": [], "js": ["pages/index.svelte-c80ec962.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-987aca42.js", "css": ["assets/pages/__layout.svelte-d77d50a9.css"], "js": ["pages/__layout.svelte-987aca42.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-fecbecf5.js", "css": [], "js": ["error.svelte-fecbecf5.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-22cb0e1d.js", "css": [], "js": ["pages/index.svelte-22cb0e1d.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2504,13 +2534,13 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender });
 }
-var Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${slots.default ? slots.default({}) : ``}`;
 });
-var layout = /* @__PURE__ */ Object.freeze({
+var __layout = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Layout
+  "default": _layout
 });
 function load({ error: error2, status }) {
   return { props: { error: error2, status } };
@@ -2540,7 +2570,11 @@ var error = /* @__PURE__ */ Object.freeze({
 var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<h1>Hello, World!</h1>
 <p>I&#39;m building this website with <a href="${"https://kit.svelte.dev"}">SvelteKit</a>!</p>
-<p>Fingers crossed, the project is live and deployed through <a href="${"https://www.netlify.com/"}">Netlify</a></p>`;
+<p>Fingers crossed, the project is live and deployed through <a href="${"https://www.netlify.com/"}">Netlify</a></p>
+
+<h2>Fonts</h2>
+<p>This website louds <em>a few</em> fonts, among which <strong>Josefin Sans</strong> and <strong>Cantarell</strong>.</p>
+<p>Code snippets are rendered with <strong>Fira Code</strong>, but only if the browser detects the font locally. Otherwise there&#39;s a quite <strong><em>deep</em></strong> font stack.</p>`;
 });
 var index = /* @__PURE__ */ Object.freeze({
   __proto__: null,

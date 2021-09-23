@@ -1,7 +1,12 @@
 <h1>Hello, World!</h1>
-<p>I'm building this website with <a href="https://kit.svelte.dev">SvelteKit</a>!</p>
-<p>Fingers crossed, the project is live and deployed through <a href="https://www.netlify.com/">Netlify</a></p>
+<p>I enjoy writing code.<br />With this website I try to convince you I might be good at it as well.</p>
 
-<h2>Fonts</h2>
-<p>This website louds <em>a few</em> fonts, among which <strong>Josefin Sans</strong> and <strong>Cantarell</strong>.</p>
-<p>Code snippets are rendered with <strong>Fira Code</strong>, but only if the browser detects the font locally. Otherwise there's a quite <strong><em>deep</em></strong> font stack.</p>
+<h2>Stats</h2>
+<dl>
+    <dt>First build</dt>
+    <dd><time datetime="2021-08-21">September 21st, 2021</time></dd>
+    
+    <dt>Dependencies</dt>
+    <dd><code>sveltejs/kit</code></dd>
+    <dd><code>sveltejs/adapter-netlify</code></dd>
+</dl>
