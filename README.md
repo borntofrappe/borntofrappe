@@ -11,6 +11,8 @@ Following [the documentation](https://kit.svelte.dev/docs) with excessive detail
 
 ## Getting started
 
+> dated September 21st 2021
+
 ```bash
 npm init svelte@next
 ```
@@ -50,6 +52,8 @@ The existing `README.md` is replaced with the documentation for [`create-svelte`
   ```
 
 ## Up and running
+
+> dated September 22nd 2021
 
 I intend to deploy the website through Netlify, and the relevant adapter is [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
