@@ -1,5 +1,5 @@
 <footer>
-	<a href="twitter.com/borntofrappe">borntofrappe</a>
+	<a href="https://twitter.com/borntofrappe">borntofrappe</a>
 </footer>
 
 <style>

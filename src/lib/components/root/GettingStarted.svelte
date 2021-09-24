@@ -11,11 +11,6 @@
 
 <style>
 	section {
-		margin: 7rem auto 3rem;
-		width: 90vw;
-		width: var(--width);
-		max-width: 42rem;
-		max-width: var(--max-width);
 		position: relative;
 		--telescope-size: 6.5em;
 		--animation-duration: 8s;

@@ -112,14 +112,6 @@
 </section>
 
 <style>
-	section {
-		margin: 3rem auto 0;
-		width: 90vw;
-		width: var(--width);
-		max-width: 42rem;
-		max-width: var(--max-width);
-	}
-
 	section > * + * {
 		margin-top: 0.5em;
 	}
