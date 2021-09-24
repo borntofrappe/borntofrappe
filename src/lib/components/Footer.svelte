@@ -35,7 +35,7 @@
 		mask-position: 50% 0;
 	}
 
-	:global(.webfonts footer a) {
+	:global(.webfonts) footer a {
 		font-family: JosefinSansBold, sans-serif;
 	}
 

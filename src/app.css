@@ -146,7 +146,7 @@ ol {
 	--transition-duration: 0.25s;
 }
 
-body {
+html {
 	--primary-0: var(--frappe-0);
 	--primary-1: var(--frappe-1);
 	--primary-2: var(--frappe-2);
@@ -175,7 +175,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-	body:not([data-preference]) {
+	html:not([data-preference]) {
 		--primary-0: var(--twilight-0);
 		--primary-1: var(--twilight-1);
 		--primary-2: var(--twilight-2);
@@ -204,7 +204,7 @@ body {
 	}
 }
 
-body[data-preference='dark'] {
+html[data-preference='dark'] {
 	--primary-0: var(--twilight-0);
 	--primary-1: var(--twilight-1);
 	--primary-2: var(--twilight-2);
@@ -230,6 +230,13 @@ body[data-preference='dark'] {
 	--grey-10: var(--twilight-grey-10);
 
 	--selection-background: var(--twilight-selection-background);
+}
+
+html[data-preference] body {
+	transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+		background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: color var(--transition-duration) var(--ease-in-out-sine),
+		background var(--transition-duration) var(--ease-in-out-sine);
 }
 
 ::selection {

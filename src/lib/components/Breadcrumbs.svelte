@@ -35,7 +35,7 @@
 		margin-left: 0.3rem;
 	}
 
-	:global(.webfonts nav a) {
+	:global(.webfonts) nav a {
 		font-family: JosefinSansBold, sans-serif;
 	}
 

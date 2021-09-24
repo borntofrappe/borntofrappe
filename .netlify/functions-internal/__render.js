@@ -1321,14 +1321,14 @@ function stringifyString(str) {
   result += '"';
   return result;
 }
-function noop() {
+function noop$1() {
 }
 function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
 Promise.resolve();
 var subscriber_queue = [];
-function writable(value, start = noop) {
+function writable(value, start = noop$1) {
   let stop;
   const subscribers = new Set();
   function set(new_value) {
@@ -1352,11 +1352,11 @@ function writable(value, start = noop) {
   function update(fn) {
     set(fn(value));
   }
-  function subscribe(run2, invalidate = noop) {
+  function subscribe2(run2, invalidate = noop$1) {
     const subscriber = [run2, invalidate];
     subscribers.add(subscriber);
     if (subscribers.size === 1) {
-      stop = start(set) || noop;
+      stop = start(set) || noop$1;
     }
     run2(value);
     return () => {
@@ -1367,7 +1367,7 @@ function writable(value, start = noop) {
       }
     };
   }
-  return { set, update, subscribe };
+  return { set, update, subscribe: subscribe2 };
 }
 function hash(value) {
   let hash2 = 5381;
@@ -1389,7 +1389,7 @@ async function render_response({
   page_config,
   status,
   error: error2,
-  page
+  page: page2
 }) {
   const css2 = new Set(options2.entry.css);
   const js = new Set(options2.entry.js);
@@ -1422,7 +1422,7 @@ async function render_response({
         navigating: writable(null),
         session
       },
-      page,
+      page: page2,
       components: branch.map(({ node }) => node.module.default)
     };
     for (let i = 0; i < branch.length; i += 1) {
@@ -1464,7 +1464,7 @@ async function render_response({
 				session: ${try_serialize($session, (error3) => {
       throw new Error(`Failed to serialize session data: ${error3.message}`);
     })},
-				host: ${page && page.host ? s$1(page.host) : "location.host"},
+				host: ${page2 && page2.host ? s$1(page2.host) : "location.host"},
 				route: ${!!page_config.router},
 				spa: ${!page_config.ssr},
 				trailing_slash: ${s$1(options2.trailing_slash)},
@@ -1475,10 +1475,10 @@ async function render_response({
 						${(branch || []).map(({ node }) => `import(${s$1(node.entry)})`).join(",\n						")}
 					],
 					page: {
-						host: ${page && page.host ? s$1(page.host) : "location.host"}, // TODO this is redundant
-						path: ${s$1(page && page.path)},
-						query: new URLSearchParams(${page ? s$1(page.query.toString()) : ""}),
-						params: ${page && s$1(page.params)}
+						host: ${page2 && page2.host ? s$1(page2.host) : "location.host"}, // TODO this is redundant
+						path: ${s$1(page2 && page2.path)},
+						query: new URLSearchParams(${page2 ? s$1(page2.query.toString()) : ""}),
+						params: ${page2 && s$1(page2.params)}
 					}
 				}` : "null"}
 			});
@@ -1588,7 +1588,7 @@ async function load_node({
   options: options2,
   state,
   route,
-  page,
+  page: page2,
   node,
   $session,
   context,
@@ -1603,7 +1603,7 @@ async function load_node({
   const fetched = [];
   let set_cookie_headers = [];
   let loaded;
-  const page_proxy = new Proxy(page, {
+  const page_proxy = new Proxy(page2, {
     get: (target, prop, receiver) => {
       if (prop === "query" && prerender_enabled) {
         throw new Error("Cannot access query on a page with prerendering enabled");
@@ -1645,7 +1645,7 @@ async function load_node({
         if (asset) {
           response = options2.read ? new Response(options2.read(asset.file), {
             headers: asset.type ? { "content-type": asset.type } : {}
-          }) : await fetch(`http://${page.host}/${asset.file}`, opts);
+          }) : await fetch(`http://${page2.host}/${asset.file}`, opts);
         } else if (resolved.startsWith("/") && !resolved.startsWith("//")) {
           const relative = resolved;
           const headers = {
@@ -1825,7 +1825,7 @@ function resolve(base2, path) {
 async function respond_with_error({ request, options: options2, state, $session, status, error: error2 }) {
   const default_layout = await options2.load_component(options2.manifest.layout);
   const default_error = await options2.load_component(options2.manifest.error);
-  const page = {
+  const page2 = {
     host: request.host,
     path: request.path,
     query: request.query,
@@ -1836,7 +1836,7 @@ async function respond_with_error({ request, options: options2, state, $session,
     options: options2,
     state,
     route: null,
-    page,
+    page: page2,
     node: default_layout,
     $session,
     context: {},
@@ -1851,7 +1851,7 @@ async function respond_with_error({ request, options: options2, state, $session,
       options: options2,
       state,
       route: null,
-      page,
+      page: page2,
       node: default_error,
       $session,
       context: loaded ? loaded.context : {},
@@ -1874,7 +1874,7 @@ async function respond_with_error({ request, options: options2, state, $session,
       status,
       error: error2,
       branch,
-      page
+      page: page2
     });
   } catch (err) {
     const error3 = coalesce_to_error(err);
@@ -2049,7 +2049,7 @@ async function render_page(request, route, match, options2, state) {
     };
   }
   const params = route.params(match);
-  const page = {
+  const page2 = {
     host: request.host,
     path: request.path,
     query: request.query,
@@ -2062,7 +2062,7 @@ async function render_page(request, route, match, options2, state) {
     state,
     $session,
     route,
-    page
+    page: page2
   });
   if (response) {
     return response;
@@ -2283,6 +2283,8 @@ async function respond(incoming, options2, state = {}) {
     };
   }
 }
+function noop() {
+}
 function run(fn) {
   return fn();
 }
@@ -2291,6 +2293,13 @@ function blank_object() {
 }
 function run_all(fns) {
   fns.forEach(run);
+}
+function subscribe(store, ...callbacks) {
+  if (store == null) {
+    return noop;
+  }
+  const unsub = store.subscribe(...callbacks);
+  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
 var current_component;
 function set_current_component(component) {
@@ -2304,6 +2313,9 @@ function get_current_component() {
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
 }
+function getContext(key) {
+  return get_current_component().$$.context.get(key);
+}
 Promise.resolve();
 var escaped = {
   '"': "&quot;",
@@ -2314,6 +2326,13 @@ var escaped = {
 };
 function escape(html) {
   return String(html).replace(/["'&<>]/g, (match) => escaped[match]);
+}
+function each(items, fn) {
+  let str = "";
+  for (let i = 0; i < items.length; i += 1) {
+    str += fn(items[i], i);
+  }
+  return str;
 }
 var missing_component = {
   $$render: () => ""
@@ -2361,15 +2380,20 @@ function create_ssr_component(fn) {
     $$render
   };
 }
+function add_attribute(name, value, boolean) {
+  if (value == null || boolean && !value)
+    return "";
+  return ` ${name}${value === true ? "" : `=${typeof value === "string" ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
+}
 function afterUpdate() {
 }
-var css = {
+var css$3 = {
   code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
   map: `{"version":3,"file":"root.svelte","sources":["root.svelte"],"sourcesContent":["<!-- This file is generated by @sveltejs/kit \u2014 do not edit it! -->\\n<script>\\n\\timport { setContext, afterUpdate, onMount } from 'svelte';\\n\\n\\t// stores\\n\\texport let stores;\\n\\texport let page;\\n\\n\\texport let components;\\n\\texport let props_0 = null;\\n\\texport let props_1 = null;\\n\\texport let props_2 = null;\\n\\n\\tsetContext('__svelte__', stores);\\n\\n\\t$: stores.page.set(page);\\n\\tafterUpdate(stores.page.notify);\\n\\n\\tlet mounted = false;\\n\\tlet navigated = false;\\n\\tlet title = null;\\n\\n\\tonMount(() => {\\n\\t\\tconst unsubscribe = stores.page.subscribe(() => {\\n\\t\\t\\tif (mounted) {\\n\\t\\t\\t\\tnavigated = true;\\n\\t\\t\\t\\ttitle = document.title || 'untitled page';\\n\\t\\t\\t}\\n\\t\\t});\\n\\n\\t\\tmounted = true;\\n\\t\\treturn unsubscribe;\\n\\t});\\n<\/script>\\n\\n<svelte:component this={components[0]} {...(props_0 || {})}>\\n\\t{#if components[1]}\\n\\t\\t<svelte:component this={components[1]} {...(props_1 || {})}>\\n\\t\\t\\t{#if components[2]}\\n\\t\\t\\t\\t<svelte:component this={components[2]} {...(props_2 || {})}/>\\n\\t\\t\\t{/if}\\n\\t\\t</svelte:component>\\n\\t{/if}\\n</svelte:component>\\n\\n{#if mounted}\\n\\t<div id=\\"svelte-announcer\\" aria-live=\\"assertive\\" aria-atomic=\\"true\\">\\n\\t\\t{#if navigated}\\n\\t\\t\\t{title}\\n\\t\\t{/if}\\n\\t</div>\\n{/if}\\n\\n<style>\\n\\t#svelte-announcer {\\n\\t\\tposition: absolute;\\n\\t\\tleft: 0;\\n\\t\\ttop: 0;\\n\\t\\tclip: rect(0 0 0 0);\\n\\t\\tclip-path: inset(50%);\\n\\t\\toverflow: hidden;\\n\\t\\twhite-space: nowrap;\\n\\t\\twidth: 1px;\\n\\t\\theight: 1px;\\n\\t}\\n</style>"],"names":[],"mappings":"AAsDC,iBAAiB,eAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,IAAI,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACnB,SAAS,CAAE,MAAM,GAAG,CAAC,CACrB,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,AACZ,CAAC"}`
 };
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { stores } = $$props;
-  let { page } = $$props;
+  let { page: page2 } = $$props;
   let { components } = $$props;
   let { props_0 = null } = $$props;
   let { props_1 = null } = $$props;
@@ -2378,8 +2402,8 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   afterUpdate(stores.page.notify);
   if ($$props.stores === void 0 && $$bindings.stores && stores !== void 0)
     $$bindings.stores(stores);
-  if ($$props.page === void 0 && $$bindings.page && page !== void 0)
-    $$bindings.page(page);
+  if ($$props.page === void 0 && $$bindings.page && page2 !== void 0)
+    $$bindings.page(page2);
   if ($$props.components === void 0 && $$bindings.components && components !== void 0)
     $$bindings.components(components);
   if ($$props.props_0 === void 0 && $$bindings.props_0 && props_0 !== void 0)
@@ -2388,9 +2412,9 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.props_1(props_1);
   if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
     $$bindings.props_2(props_2);
-  $$result.css.add(css);
+  $$result.css.add(css$3);
   {
-    stores.page.set(page);
+    stores.page.set(page2);
   }
   return `
 
@@ -2456,9 +2480,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-7f1432e4.js",
+      file: assets + "/_app/start-230617bc.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-7f1432e4.js", assets + "/_app/chunks/vendor-e4a2e6fe.js"]
+      js: [assets + "/_app/start-230617bc.js", assets + "/_app/chunks/vendor-c6fb3436.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2517,7 +2541,7 @@ var module_lookup = {
     return index;
   })
 };
-var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-987aca42.js", "css": ["assets/pages/__layout.svelte-d77d50a9.css"], "js": ["pages/__layout.svelte-987aca42.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-fecbecf5.js", "css": [], "js": ["error.svelte-fecbecf5.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-22cb0e1d.js", "css": [], "js": ["pages/index.svelte-22cb0e1d.js", "chunks/vendor-e4a2e6fe.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-8c66a553.js", "css": ["assets/pages/__layout.svelte-53d2e434.css"], "js": ["pages/__layout.svelte-8c66a553.js", "chunks/vendor-c6fb3436.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-b843b0cc.js", "css": [], "js": ["error.svelte-b843b0cc.js", "chunks/vendor-c6fb3436.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-97c0c323.js", "css": [], "js": ["pages/index.svelte-97c0c323.js", "chunks/vendor-c6fb3436.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2534,8 +2558,120 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender });
 }
+var getStores = () => {
+  const stores = getContext("__svelte__");
+  return {
+    page: {
+      subscribe: stores.page.subscribe
+    },
+    navigating: {
+      subscribe: stores.navigating.subscribe
+    },
+    get preloading() {
+      console.error("stores.preloading is deprecated; use stores.navigating instead");
+      return {
+        subscribe: stores.navigating.subscribe
+      };
+    },
+    session: stores.session
+  };
+};
+var page = {
+  subscribe(fn) {
+    const store = getStores().page;
+    return store.subscribe(fn);
+  }
+};
+var icons = {
+  backpack: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M -33 0 a 33 33 0 0 1 66 0 v 38 a 8 8 0 0 1 -8 8 h -50 a 8 8 0 0 1 -8 -8 z" /><g stroke-width="7"><path d="M -11 -35.5 a 11 11 0 0 1 22 0" /><path d="M -17 -2 h 34 v 30 h -34 z m 0 18 h 30" /><path d="M -33 5 h -5 q -8 0 -8 20 a 8 8 0 0 0 8 8 h 5" /><path transform="scale(-1 1)" d="M -33 5 h -5 q -8 0 -8 20 a 8 8 0 0 0 8 8 h 5" /></g></g></svg>',
+  badge: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /><path stroke-width="8" d="M -17 -0 l 12 12 21 -21" /></g></svg>',
+  blog: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M -26 -19 h -20 v -6 a 12 12 0 0 1 24 0 v 50 a 12 12 0 0 0 24 0 v -5 h 44 v 5 a 12 12 0 0 1 -12 12 h -44 a 12 12 0 0 1 -12 -12" /><path d="M -34 -37 h 44 a 12 12 0 0 1 12 12 v 45 h -20 v 5 a 12 12 0 0 1 -24 0 v -50 a 12 12 0 0 0 -12 -12" /></g><g stroke-width="6"><path d="M -10 -20 h 20" /><path d="M -10 -8 h 10" /><path d="M -10 4 h 15" /><path d="M -10 16 h 5" /></g></g></svg>',
+  branch: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><circle r="15" cx="-14" cy="-31" /><circle r="15" cx="-14" cy="31" /><circle stroke-width="7" r="12" cx="30" cy="-23" /><path d="M -14 16 V -16"/><path d="M -14 16 a 12 12 0 0 1 12 -12 h 18 a 14 14 0 0 0 14 -14"/></g></svg>',
+  briefcase: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><path stroke-width="8" d="M -46 -20 a 8 8 0 0 1 8 -8 h 76 a 8 8 0 0 1 8 8 v 54 a 8 8 0 0 1 -8 8 h -76 a 8 8 0 0 1 -8 -8 z" /><g stroke-width="7"><path d="M -46 -8 a 80 80 0 0 0 92 0" /><path d="M -20 -28 v -8 a 8 8 0 0 1 8 -8 h 24 a 8 8 0 0 1 8 8 v 8" /><path d="M -8 4 h 16 v 16 h -16 z" /></g></g></svg>',
+  bug: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="scale(0.8)"><g fill="none" stroke-width="16"><g transform="translate(0 13.5)"><path d="M 34 0 h -68"/><path transform="rotate(45)" d="M 40 0 h -80"/><path transform="rotate(-45)" d="M 40 0 h -80"/></g></g><g fill="currentColor" stroke-width="8"><path d="M -0 -46 a 17 17 0 0 1 17 17 h -34 a 17 17 0 0 1 17 -17" /><path d="M -0 -10 h 25 v 25 a 25 25 0 0 1 -50 0 v -25 z" /></g></g></g></svg>',
+  certificate: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><path stroke-width="8" d="M -46 -32 a 8 8 0 0 1 8 -8 h 76 a 8 8 0 0 1 8 8 v 54 a 8 8 0 0 1 -8 8 h -16 m -44 0 h -16 a 8 8 0 0 1 -8 -8 v -54" /><g stroke-width="7"><path d="M -25 -18 h 50" /><circle cx="0" cy="13" r="15" /><path d="M -10 26 v 16.5 l 10 -5 10 5 v -16.5"/></g></g><g fill="currentColor" stroke="none"><circle r="8" cx="-40" cy="-34"/><circle transform="scale(-1 1)" r="8" cx="-40" cy="-34"/><circle r="8" cx="-40" cy="24"/><circle transform="scale(-1 1)" r="8" cx="-40" cy="24"/></g></svg>',
+  codepen: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M 0 -40 l -46 25 46 25 46 -25 z" /><path d="M 0 -40 v 30" /><path transform="translate(0 50)" d="M 0 -40 v 30" /><path transform="translate(46 25)" d="M 0 -40 v 30" /><path transform="translate(-46 25)" d="M 0 -40 v 30" /><path transform="translate(0 30)" d="M 0 -40 l -46 25 46 25 46 -25 z" /></g></svg>',
+  css: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.005 85.002 35 15.002 35.001-15.002L40.01-50h-80.002zM-26-32.5h52.002l-3.25 55.263L0 32.516l-22.75-9.753-.651-11.05h11.05l.325 5.524 12.027 5.2 12.026-5.2.977-16.574h-37.049l-.646-11.05h38.358l.65-11.055h-39.643l-.65-11.05z"/></g></svg>',
+  d3: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="m-15 -50v0.050781a61 61 0 0 1 18.1 19.949h16.9a10 10 0 0 1 10 10 10 10 0 0 1-10 10h-9.8262a61 61 0 0 1 0.82617 10 61 61 0 0 1-0.92969 10h9.9297a10 10 0 0 1 10 10 10 10 0 0 1-10 10h-16.986a61 61 0 0 1-18.014 19.93v0.070312h35a30 30 0 0 0 30-30 30 30 0 0 0-7.6621-20.02 30 30 0 0 0 7.6621-19.98 30 30 0 0 0-30-30h-35z"/><path d="m-50 -50v20a30 30 0 0 1 30 30 30 30 0 0 1-30 30v20a50 50 0 0 0 50-50 50 50 0 0 0-50-50z"/></g></svg>',
+  editing: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M 18 -44 h -54 a 10 10 0 0 0 -10 10 v 68 a 10 10 0 0 0 10 10 h 46 m 18 -54 v -24 a 10 10 0 0 0 -10 -10"/><path d="M 8 -11 l -17 17 38 38 h 17 v -17 l -38 -38"/></g><g stroke-width="7"><path d="M 17 -2 l -17 17"/><path d="M -30 -22 h 40"/><path d="M -30 -7 l 10 10 m -10 0 l 10 -10"/><path d="M -30 18 h 16"/></g></g></svg>',
+  editor: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><path fill="currentColor" stroke="none" d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"/><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M-45-37.5h90v75h-90z" stroke-width="10"/><g stroke-width="8"><path d="M5-4L-5 21M-18 0l-8 8 8 8M18 0l8 8-8 8"/></g></g></svg>',
+  flag: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -90 100 100" width="1em" height="1em"><g transform="rotate(10)"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g><path d="M 0 0 v -80" stroke-width="8"/><path d="M 0 -80.5 h 70 v 52 h -70" stroke-width="7"/></g></g><g fill="currentColor" stroke="none"><rect x="19" y="-77.5" width="16" height="16" rx="1" /><rect x="51" y="-77.5" width="16" height="16" rx="1" /><rect x="3" y="-61.5" width="16" height="16" rx="1" /><rect x="35" y="-61.5" width="16" height="16" rx="1" /><rect x="19" y="-45.5" width="16" height="16" rx="1" /><rect x="51" y="-45.5" width="16" height="16" rx="1" /></g></g></svg>',
+  freecodecamp: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><path d="M 30 -35 c 21 20 21 50 0 70" /><path transform="scale(-1 1)" d="M 30 -35 c 21 20 21 50 0 70" /><g transform="translate(0 30)" stroke-linejoin="round"><path d="M 20 -20 a 20 20 0 0 1 -40 0 q 0 -10 10 -20 t 0 -20 q 15 17 12.5 35 q 10 0 12.5 -15 q 5 11.25 5 20" /></g></g></svg>',
+  gaming: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-27.916-32.012a5 5 0 00-.526.028 5 5 0 00-2.05.614c-5.334 1.568-9.465 6.062-11.282 11.877a5 5 0 00-.111.427l-6.998 32.001c-1.464 5.929-1.671 11.25 1.223 15.593 2.876 4.315 8.265 5.798 13.774 5.46 5.703-.052 9.108-3.662 12.086-6.143 3-2.5 5.576-3.84 5.8-3.84h32c.223 0 2.8 1.34 5.801 3.84 2.979 2.48 6.383 6.09 12.086 6.143 5.51.34 10.898-1.146 13.774-5.46 2.895-4.343 2.688-9.664 1.223-15.593l-.032-.144-6.967-31.858a5 5 0 00-.065-.27c-.983-3.538-2.434-6.595-4.786-8.947-2.351-2.352-5.714-3.717-9.036-3.717h-55.692a5 5 0 00-.213-.014zm7.914 15.013h5c.554 0 1 .445 1 1v8.5h8.5c.554 0 1 .445 1 1v5c0 .554-.446 1-1 1h-8.5V8c0 .554-.446 1-1 1h-5c-.554 0-1-.446-1-1V-.5h-8.5c-.554 0-1-.446-1-1v-5c0-.555.446-1 1-1h8.5V-16c0-.555.446-1 1-1zM17-17a5 5 0 015 5.005 5 5 0 01-5 5 5 5 0 01-5.005-5A5 5 0 0117-17zM24.997-.997a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5z"/></g></svg>',
+  git: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-.07-50a5 5 0 00-3.461 1.465l-11.55 11.55 12.49 12.49a7 7 0 012.604-.506 7 7 0 017 7 7 7 0 01-.51 2.6l8.906 8.906A7 7 0 0118.013-7a7 7 0 017 7 7 7 0 01-7 7 7 7 0 01-7-7 7 7 0 01.508-2.602L2.763-11.36v22.92a7 7 0 014.25 6.436 7 7 0 01-7 7 7 7 0 01-7-7 7 7 0 014.25-6.428v-23.14a7 7 0 01-4.25-6.436 7 7 0 01.508-2.602L-18.97-33.1-48.52-3.55a5 5 0 000 7.07l45 45a5 5 0 007.07 0l45-45a5 5 0 000-7.07l-45-45a5 5 0 00-3.61-1.465z"/></g></svg>',
+  github: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M 0 11 h -17 a 18 18 0 0 1 -18 -18 q 0 -8 5 -16 q -6 -10 0 -18 q 12 0 18 6 a 24 24 0 0 1 24 0 q 6 -6 18 -6 q 6 8 0 18 q 5 8 5 16 a 18 18 0 0 1 -18 18 h -17" /><path stroke-width="6" d="M -12 11 q -10 0 -10 14 q 0 8 -8 14 q 20 0 20 -16 v 4 q 0 10 -6 16 q 16 0 16 -15 v -4 v 4 q 0 15 16 15 q -6 0 -6 -16 v -4 q 0 16 20 16 q -8 0 -8 -14 q 0 -14 -10 -14" /></g></svg>',
+  graduationHat: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><path stroke-width="8" d="M 0 -26 l -46 16 46 16 46 -16 z" /><g stroke-width="7"><path d="M -26 -1 v 20 a 52 52 0 0 0 52 0 v -20" /><path fill="currentColor" d="M 40 -4 v 25 l 5 5 a 10 10 0 0 1 -10 0 l 5 -5" /></g></g></svg>',
+  heart: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" /></g></svg>',
+  html: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-40.002-50l5.004 85L.001 50.001l34.998-15.003L40.003-50h-80.007zm14.003 17.5h52l-.65 11.049h-39.649l.651 11.054H24.7L22.751 22.75 0 32.503l-22.75-9.752-.65-11.05h11.049l.325 5.525 12.026 5.2 12.026-5.2.977-16.574H-24.05L-25.998-32.5z"/></g></svg>',
+  js: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-50-50V50.8h38.4c-8.88 0-16.08-7.2-16.08-16.08v-5.04h10.08v5.04c0 3.36 2.64 6 6 6s6-2.64 6-6V.88H4.48v33.84c0 8.88-7.2 16.08-16.08 16.08H9.52V40.72H24.64c2.88 0 5.04-2.208 5.04-5.04s-2.184-5.04-5.04-5.04c-8.4 0-15.12-6.72-15.12-15.12S16.24.4 24.64.4h13.2v10.08h-13.2c-2.88 0-5.04 2.208-5.04 5.04s2.184 5.04 5.04 5.04c8.4 0 15.12 6.72 15.12 15.12S33.04 50.8 24.64 50.8h24V-50h-100.8z"/></g></svg>',
+  json: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" ><path d="M -17.5 -45 a 20 20 0 0 0 -20 20 v 12.5 a 12.5 12.5 0 0 1 -12.5 12.5 12.5 12.5 0 0 1 12.5 12.5 v 12.5 a 20 20 0 0 0 20 20" /><path transform="scale(-1 1)" d="M -17.5 -45 a 20 20 0 0 0 -20 20 v 12.5 a 12.5 12.5 0 0 1 -12.5 12.5 12.5 12.5 0 0 1 12.5 12.5 v 12.5 a 20 20 0 0 0 20 20" /></g><g fill="currentColor" stroke="none"><circle r="4" /><circle cx="-16" r="4" /><circle cx="16" r="4" /></g></svg>',
+  lightBulb: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M -10.5 12 a 21 21 0 1 1 21 0 v 5 a 4 4 0 0 1 -4 4 h -13 a 4 4 0 0 1 -4 -4 v -5"/><g stroke-width="7"><path d="M -8 31 h 16"/><path d="M -8 40.5 h 16"/><path fill="currentColor" d="M -6 40.5 a 6 6 0 0 0 12 0"/></g><g transform="translate(0 -6)" stroke-width="6"><path transform="rotate(0) translate(0 -34)" d="M 0 0 v -7" /><path transform="rotate(45) translate(0 -34.5)" d="M 0 0 v -6.5" /><path transform="rotate(-45) translate(0 -34.5)" d="M 0 0 v -6.5" /><path transform="rotate(90) translate(0 -35)" d="M 0 0 v -6" /><path transform="rotate(-90) translate(0 -35)" d="M 0 0 v -6" /><path transform="rotate(135) translate(0 -35.5)" d="M 0 0 v -5.5" /><path transform="rotate(-135) translate(0 -35.5)" d="M 0 0 v -5.5" /></g></g></svg>',
+  lua: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="m0 -34a34 34 0 0 0-34 34 34 34 0 0 0 34 34 34 34 0 0 0 34-34 34 34 0 0 0-34-34zm10 12a12 12 0 0 1 12 12 12 12 0 0 1-12 12 12 12 0 0 1-12-12 12 12 0 0 1 12-12z" /><circle cx="36" cy="-36" r="12" /></g><circle r="48.5" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8" stroke-dashoffset="9.5" stroke-linecap="round" /></svg>',
+  moon: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="M-5.435-27.43A28 28 0 000 28.02 28 28 0 0027.435 5.45 28 28 0 0122 6.019a28 28 0 01-27.435-33.43z"/></g></svg>',
+  node: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"><path d="M -25 33 l -18 -9 v -48 l 44 -22 44 22 v 48 l -44 22 -7 -3.5" /><path d="M -14 -19 v 42.5 a 10 10 0 0 1 -10 10" /><path d="M 24 -9 a 10 10 0 0 0 -20 0 10 10 0 0 0 10 10 10 10 0 0 1 10 10 10 10 0 0 1 -20 0" /></g></svg>',
+  permalink: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g transform="rotate(-45)"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /><path transform="scale(-1 -1)" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" /></g></g></svg>',
+  publish: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M 36 -44 h -54 a 10 10 0 0 0 -10 10 v 15 m 30 63 h 34 a 10 10 0 0 0 10 -10 v -68 a 10 10 0 0 0 -10 -10"/></g><g stroke-width="7"><path d="M -32.5 32 h -2 a 12 12 0 0 1 0 -24 a 17 17 0 0 1 34 0 h 2 a 12 12 0 0 1 0 24"/><path d="M -15.5 38 v -20 l -8 8 m 16 0 l -8 -8" /><path d="M -12 -22 h 40"/><path d="M 10 -2 h 18"/><path d="M 24 18 h 4"/></g></g></svg>',
+  pullRequest: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><circle r="15" cx="-24" cy="-31" /><circle r="15" cx="-24" cy="31" /><circle r="15" cx="24" cy="31" /><path d="M -24 16 V -16"/><path d="M 24 16 V -16 q 0 -15 -20 -20"/><path transform="translate(4 -36) rotate(-20)" d="M 0 0 h 18"/><path transform="translate(4 -36) rotate(70)" d="M 0 0 h 18"/></g></svg>',
+  python: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><path d="m-6 -47.5s-25 0-25 12.5v14h30v2.5h-38c-11 0-11 20-11 20s0 20 11 20h17.5v-12.5a10 10 0 0 1 10-10h11.5 9a10 10 0 0 0 10-10v-24c0-12.5-25-12.5-25-12.5zm-13 8.5a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5z" /><path d="m21.5 -21.5v12.5a10 10 0 0 1-10 10h-11.5-9a10 10 0 0 0-10 10v24c0 12.5 25 12.5 25 12.5s25 0 25-12.5v-14h-30v-2.5h38c11 0 11-20 11-20s0-20-11-20h-17.5zm-2.5 50.5a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5z" /></g></svg>',
+  react: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8"><ellipse transform="rotate(30)" rx="18" ry="46" /><ellipse transform="rotate(-30)" rx="18" ry="46" /><ellipse transform="rotate(90)" rx="18" ry="46" /></g><g fill="currentColor" stroke="none"><circle r="8" /></g></svg>',
+  reading: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M 36 -44 h -27 m -37 63 v 15 a 10 10 0 0 0 10 10 h 54 a 10 10 0 0 0 10 -10 v -68 a 10 10 0 0 0 -10 -10"/><circle r="25" cx="-21" cy="-19" /><path d="M 22 24 l -18 -18"/></g><path stroke-width="4" d="M 5 7 l -5 -5"/><g stroke-width="7"><path d="M -12 -22 h 4 m 24 0 h 12"/><path d="M 13 -2 h 15"/><path d="M -12 18 h 12"/></g></g></svg>',
+  repository: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M -30 -46 h 60 a 8 8 0 0 1 8 8 v 70 a 8 8 0 0 1 -8 8 h -21 m -27 0 h -12 a 8 8 0 0 1 -8 -8 v -70 a 8 8 0 0 1 8 -8 v 65 h 68"/><path d="M -15 -30 h 2"/><path d="M -15 -15 h 2"/><path d="M -15 0 h 2"/><path stroke-width="7" d="M -15 30 v 16.5 l 10 -5 10 5 v -16.5 z"/></g></svg>',
+  rocket: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(2 -1.5) rotate(45)"><path stroke-width="8" d="M -0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52" /><g stroke-width="7"><path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" /><path d="M 0 24 c -10 5 -12 16 0 22.5 c 12 -6.5 10 -17.5 0 -22.5" /><circle r="9" cy="-11" /></g></g></g></svg>',
+  running: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"><g transform="scale(-1 1) translate(-7 0) rotate(-35)"><path d="M 46 13.5 a 8 8 0 0 1 -8 8 h -76 a 8 8 0 0 1 -8 -8 v -4 q 0 -8 16 -16 l 34 -15 a 20 20 0 0 0 34 0 8 8 0 0 1 8 8 v 27" /><g stroke-width="6"><path d="M 46 12.5 h -92" /><path d="M -20.5 -5.5 l 10 10" /><path d="M -10.5 -11.5 l 10 10" /></g></g></g></svg>',
+  skip: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" /><path d="M -45 -20 h 28" /><path d="M -45 0 h 28" /><path d="M -45 20 h 28" /></g></svg>',
+  sparkles: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/><path d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/></g></svg>',
+  sun: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="none"><circle r="22" /><circle transform="translate(0 41.2)" r="8.8" /><circle transform="rotate(45) translate(0 41.2)" r="8.8" /><circle transform="rotate(90) translate(0 41.2)" r="8.8" /><circle transform="rotate(135) translate(0 41.2)" r="8.8" /><circle transform="rotate(180) translate(0 41.2)" r="8.8" /><circle transform="rotate(225) translate(0 41.2)" r="8.8" /><circle transform="rotate(270) translate(0 41.2)" r="8.8" /><circle transform="rotate(315) translate(0 41.2)" r="8.8" /></g></svg>',
+  svelte: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g transform="rotate(-30)"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"><path d="M 30 -10 h -30 h 8 a 21 21 0 0 1 0 42 h -37 a 21 21 0 0 1 0 -42" /><path transform="scale(-1 -1)" d="M 30 -10 h -30 h 8 a 21 21 0 0 1 0 42 h -37 a 21 21 0 0 1 0 -42" /></g></g></svg>',
+  svg: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="currentColor" stroke="currentColor" stroke-width="8"><path d="M 0 0 v 36 a 5 5 0 0 1 0 10 5 5 0 0 1 0 -10 v -72 a 5 5 0 0 1 0 -10 5 5 0 0 1 0 10" /><path transform="rotate(45)" d="M 0 0 v 36 a 5 5 0 0 1 0 10 5 5 0 0 1 0 -10 v -72 a 5 5 0 0 1 0 -10 5 5 0 0 1 0 10" /><path transform="rotate(90)" d="M 0 0 v 36 a 5 5 0 0 1 0 10 5 5 0 0 1 0 -10 v -72 a 5 5 0 0 1 0 -10 5 5 0 0 1 0 10" /><path transform="rotate(135)" d="M 0 0 v 36 a 5 5 0 0 1 0 10 5 5 0 0 1 0 -10 v -72 a 5 5 0 0 1 0 -10 5 5 0 0 1 0 10" /></g></svg>',
+  twitter: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M -39 30.5 c 40 20 75 0 75 -48 l 8 -8 -12 -2 a 10 10 0 0 0 -32.5 12 q -20 5 -40 -15" /><path stroke-width="7" d="M -40.5 -30.5 q -5 20 14 26 -9 0 -18 -5 0 20 23 18 -10 4 -22 0 0 12 28 14 -10 6 -23.5 8" /></g></svg>',
+  world: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"><circle r="44" /></g><g fill="currentColor" stroke="none"><path d="M -2 4 h 9 a 8 8 0 0 1 8 8 v 6 a 4 4 0 0 1 4 4 8 8 0 0 1 -8 8 v 6 a 9 9 0 0 1 -18 0 v -6 a 8 8 0 0 0 -4 -4 11 11 0 0 1 0 -22" /><path d="M -18 -26 a 3 3 0 0 1 3 3 v 4 a 3 3 0 0 1 -3 3 h -2 a 3 3 0 0 1 -3 -3 3 3 0 0 1 3 -3 v -1 a 3 3 0 0 1 3 -3" /><path d="M 1 -28 a 4 4 0 0 1 -4 4 a 8 8 0 0 0 -8 8 v 3 a 4 4 0 0 0 -4 4 a 6 6 0 0 0 12 0 a 2 2 0 0 1 4 0 v 5 a 5 5 0 0 0 10 0 v -5 a 2 2 0 0 1 4 0 a 4 4 0 0 0 4 4 v 4 a 10 10 0 0 0 20 0 c 0 -38 -38 -38 -38 -38 a 4 4 0 0 0 -4 4 4 4 0 0 0 -4 4 4 4 0 0 0 4 4 h 4" /></g></svg>',
+  writing: '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="1em" height="1em"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="8"><path d="M 16.5 -44 h -52.5 a 10 10 0 0 0 -10 10 v 68 a 10 10 0 0 0 10 10 h 54 a 10 10 0 0 0 10 -10 v -17.5"/><path d="M 29 -37.5 l 17 17 -38 38 h -17 v -17 l 38 -38"/></g><g stroke-width="7"><path d="M 20 -28.5 l 17 17"/><path d="M -30 -22 h 25"/><path d="M -30 -2 h 10"/><path d="M -30 18 h 10"/></g></g></svg>'
+};
+var css$2 = {
+  code: "nav.svelte-uxric2 ol.svelte-uxric2.svelte-uxric2.svelte-uxric2{list-style:none}nav.svelte-uxric2 ol li.svelte-uxric2.svelte-uxric2.svelte-uxric2{display:inline-block}nav.svelte-uxric2 ol.svelte-uxric2>li.svelte-uxric2+li.svelte-uxric2{margin-left:0.3rem}.webfonts nav a{font-family:JosefinSansBold, sans-serif}nav.svelte-uxric2 a.svelte-uxric2.svelte-uxric2.svelte-uxric2{text-decoration:none;font-weight:700;padding:0.25rem 0;display:inline-flex;align-items:center}nav.svelte-uxric2 a.svelte-uxric2 svg{margin-left:0.3rem;width:1.5em;height:auto}",
+  map: `{"version":3,"file":"Breadcrumbs.svelte","sources":["Breadcrumbs.svelte"],"sourcesContent":["<script>\\r\\n\\timport { page } from '$app/stores';\\r\\n\\timport icons from '$lib/icons.js';\\r\\n\\r\\n\\tconst root = {\\r\\n\\t\\thref: '/',\\r\\n\\t\\ttext: 'borntofrappe',\\r\\n\\t\\ticon: icons.rocket\\r\\n\\t};\\r\\n<\/script>\\r\\n\\r\\n<nav aria-label=\\"Breadcrumb navigation\\" id=\\"breadcrumb\\">\\r\\n\\t<ol>\\r\\n\\t\\t{#each $page.path\\r\\n\\t\\t\\t.split('/')\\r\\n\\t\\t\\t.filter((d) => d)\\r\\n\\t\\t\\t.reduce((acc, curr, i) => [...acc, { href: i === 0 ? \`/\${curr}\` : \`\${acc[acc.length - 1].href}/\${curr}\`, text: \`/ \${curr}\`, icon: icons[curr] || '' }], [root]) as { href, text, icon }}\\r\\n\\t\\t\\t<li>\\r\\n\\t\\t\\t\\t<a {href}>{text} {@html icon}</a>\\r\\n\\t\\t\\t</li>\\r\\n\\t\\t{/each}\\r\\n\\t</ol>\\r\\n</nav>\\r\\n\\r\\n<style>\\r\\n\\tnav ol {\\r\\n\\t\\tlist-style: none;\\r\\n\\t}\\r\\n\\r\\n\\tnav ol li {\\r\\n\\t\\tdisplay: inline-block;\\r\\n\\t}\\r\\n\\r\\n\\tnav ol > li + li {\\r\\n\\t\\tmargin-left: 0.3rem;\\r\\n\\t}\\r\\n\\r\\n\\t:global(.webfonts nav a) {\\r\\n\\t\\tfont-family: JosefinSansBold, sans-serif;\\r\\n\\t}\\r\\n\\r\\n\\tnav a {\\r\\n\\t\\ttext-decoration: none;\\r\\n\\t\\tfont-weight: 700;\\r\\n\\t\\tpadding: 0.25rem 0;\\r\\n\\t\\tdisplay: inline-flex;\\r\\n\\t\\talign-items: center;\\r\\n\\t}\\r\\n\\r\\n\\tnav a :global(svg) {\\r\\n\\t\\tmargin-left: 0.3rem;\\r\\n\\t\\twidth: 1.5em;\\r\\n\\t\\theight: auto;\\r\\n\\t}\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAyBC,iBAAG,CAAC,EAAE,0CAAC,CAAC,AACP,UAAU,CAAE,IAAI,AACjB,CAAC,AAED,iBAAG,CAAC,EAAE,CAAC,EAAE,0CAAC,CAAC,AACV,OAAO,CAAE,YAAY,AACtB,CAAC,AAED,iBAAG,CAAC,gBAAE,CAAG,gBAAE,CAAG,EAAE,cAAC,CAAC,AACjB,WAAW,CAAE,MAAM,AACpB,CAAC,AAEO,eAAe,AAAE,CAAC,AACzB,WAAW,CAAE,eAAe,CAAC,CAAC,UAAU,AACzC,CAAC,AAED,iBAAG,CAAC,CAAC,0CAAC,CAAC,AACN,eAAe,CAAE,IAAI,CACrB,WAAW,CAAE,GAAG,CAChB,OAAO,CAAE,OAAO,CAAC,CAAC,CAClB,OAAO,CAAE,WAAW,CACpB,WAAW,CAAE,MAAM,AACpB,CAAC,AAED,iBAAG,CAAC,eAAC,CAAC,AAAQ,GAAG,AAAE,CAAC,AACnB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,IAAI,AACb,CAAC"}`
+};
+var Breadcrumbs = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $page, $$unsubscribe_page;
+  $$unsubscribe_page = subscribe(page, (value) => $page = value);
+  const root = {
+    href: "/",
+    text: "borntofrappe",
+    icon: icons.rocket
+  };
+  $$result.css.add(css$2);
+  $$unsubscribe_page();
+  return `<nav aria-label="${"Breadcrumb navigation"}" id="${"breadcrumb"}" class="${"svelte-uxric2"}"><ol class="${"svelte-uxric2"}">${each($page.path.split("/").filter((d) => d).reduce((acc, curr, i) => [
+    ...acc,
+    {
+      href: i === 0 ? `/${curr}` : `${acc[acc.length - 1].href}/${curr}`,
+      text: `/ ${curr}`,
+      icon: icons[curr] || ""
+    }
+  ], [root]), ({ href, text, icon }) => `<li class="${"svelte-uxric2"}"><a${add_attribute("href", href, 0)} class="${"svelte-uxric2"}">${escape(text)} <!-- HTML_TAG_START -->${icon}<!-- HTML_TAG_END --></a>
+			</li>`)}</ol>
+</nav>`;
+});
+var css$1 = {
+  code: `footer.svelte-1mpqu8q.svelte-1mpqu8q{--animation-duration:2s;--animation-timing-function:var(--ease-in-out-sine);text-align:center;padding:2rem 1rem 1rem;color:hsl(215, 10%, 98%);color:var(--frappe-grey-10);background:hsl(215, 22%, 5%);background:var(--frappe-grey-0);background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/svg%3E');background-size:20px;position:relative}footer.svelte-1mpqu8q.svelte-1mpqu8q::before{content:'';position:absolute;left:0%;bottom:100%;width:100%;height:20px;background:inherit;background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/svg%3E');background-size:20px;-webkit-mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');-webkit-mask-size:100px 40px;mask-size:100px 40px;-webkit-mask-position:50% 0;mask-position:50% 0}.webfonts footer a{font-family:JosefinSansBold, sans-serif}footer.svelte-1mpqu8q a.svelte-1mpqu8q{padding:0.25rem 0;border:initial;text-decoration:none;font-weight:700;border-bottom:0.1rem solid hsl(340, 90%, 55%);border-bottom:0.1rem solid var(--primary-6);transition:color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:color var(--transition-duration) var(--ease-in-out-sine)}footer.svelte-1mpqu8q a.svelte-1mpqu8q:hover,footer.svelte-1mpqu8q a.svelte-1mpqu8q:focus{color:hsl(340, 90%, 55%);color:var(--primary-6)}footer.svelte-1mpqu8q a.svelte-1mpqu8q:focus{outline:none}footer.svelte-1mpqu8q a.svelte-1mpqu8q::before,footer.svelte-1mpqu8q a.svelte-1mpqu8q::after{content:'';position:absolute;top:0%;left:50%;transform:translate(-50%, -50%);margin-top:-8px}footer.svelte-1mpqu8q a.svelte-1mpqu8q::before{width:4rem;height:4rem;color:hsl(215, 22%, 5%);color:var(--frappe-grey-0);background:hsl(215, 10%, 98%);background:var(--frappe-grey-10);border:0.4rem solid currentColor;border-radius:50%;transition:color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:color var(--transition-duration) var(--ease-in-out-sine)}footer.svelte-1mpqu8q a.svelte-1mpqu8q::after{transform:translate(-50%, -50%) scale(1);width:1.8rem;height:1.8rem;background:hsl(340, 90%, 55%);background:var(--primary-6);border-radius:50%;transition:background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:background var(--transition-duration) var(--ease-in-out-sine)}@supports ((-webkit-mask-image: url()) or (mask-image: url())){footer.svelte-1mpqu8q a.svelte-1mpqu8q::after{border-radius:initial;-webkit-mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" /%3E%3C/g%3E%3C/svg%3E');mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"%3E%3Cpath d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0" /%3E%3C/g%3E%3C/svg%3E')}}footer.svelte-1mpqu8q a.svelte-1mpqu8q::after{animation:svelte-1mpqu8q-heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;animation:svelte-1mpqu8q-heart-beat var(--animation-duration) var(--animation-timing-function) infinite;animation-play-state:paused}@keyframes svelte-1mpqu8q-heart-beat{10%,30%{transform:translate(-50%, -50%) scale(0.7)}0%,20%,40%{transform:translate(-50%, -50%) scale(1)}}footer.svelte-1mpqu8q a.svelte-1mpqu8q:hover::before,footer.svelte-1mpqu8q a.svelte-1mpqu8q:focus::before{color:hsl(340, 90%, 55%);color:var(--primary-6)}@media(prefers-reduced-motion: no-preference){footer.svelte-1mpqu8q a.svelte-1mpqu8q:hover::after,footer.svelte-1mpqu8q a.svelte-1mpqu8q:focus::after{animation-play-state:running}}`,
+  map: `{"version":3,"file":"Footer.svelte","sources":["Footer.svelte"],"sourcesContent":["<footer>\\r\\n\\t<a href=\\"twitter.com/borntofrappe\\">borntofrappe</a>\\r\\n</footer>\\r\\n\\r\\n<style>\\r\\n\\tfooter {\\r\\n\\t\\t--animation-duration: 2s;\\r\\n\\t\\t--animation-timing-function: var(--ease-in-out-sine);\\r\\n\\t\\ttext-align: center;\\r\\n\\t\\tpadding: 2rem 1rem 1rem;\\r\\n\\t\\tcolor: hsl(215, 10%, 98%);\\r\\n\\t\\tcolor: var(--frappe-grey-10);\\r\\n\\t\\tbackground: hsl(215, 22%, 5%);\\r\\n\\t\\tbackground: var(--frappe-grey-0);\\r\\n\\t\\tbackground-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Ccircle r=\\"12\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 -50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 -50)\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\tbackground-size: 20px;\\r\\n\\t\\tposition: relative;\\r\\n\\t}\\r\\n\\r\\n\\tfooter::before {\\r\\n\\t\\tcontent: '';\\r\\n\\t\\tposition: absolute;\\r\\n\\t\\tleft: 0%;\\r\\n\\t\\tbottom: 100%;\\r\\n\\t\\twidth: 100%;\\r\\n\\t\\theight: 20px;\\r\\n\\t\\tbackground: inherit;\\r\\n\\t\\tbackground-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Ccircle r=\\"12\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 -50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 50)\\" /%3E%3Ccircle r=\\"12\\" transform=\\"translate(-50 -50)\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\tbackground-size: 20px;\\r\\n\\t\\t-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"25 -20 100 40\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Cpath d=\\"M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\tmask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"25 -20 100 40\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"none\\"%3E%3Cpath d=\\"M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\t-webkit-mask-size: 100px 40px;\\r\\n\\t\\tmask-size: 100px 40px;\\r\\n\\t\\t-webkit-mask-position: 50% 0;\\r\\n\\t\\tmask-position: 50% 0;\\r\\n\\t}\\r\\n\\r\\n\\t:global(.webfonts footer a) {\\r\\n\\t\\tfont-family: JosefinSansBold, sans-serif;\\r\\n\\t}\\r\\n\\r\\n\\tfooter a {\\r\\n\\t\\tpadding: 0.25rem 0;\\r\\n\\t\\tborder: initial;\\r\\n\\t\\ttext-decoration: none;\\r\\n\\t\\tfont-weight: 700;\\r\\n\\t\\tborder-bottom: 0.1rem solid hsl(340, 90%, 55%);\\r\\n\\t\\tborder-bottom: 0.1rem solid var(--primary-6);\\r\\n\\t\\ttransition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n\\t\\ttransition: color var(--transition-duration) var(--ease-in-out-sine);\\r\\n\\t}\\r\\n\\r\\n\\tfooter a:hover,\\r\\n\\tfooter a:focus {\\r\\n\\t\\tcolor: hsl(340, 90%, 55%);\\r\\n\\t\\tcolor: var(--primary-6);\\r\\n\\t}\\r\\n\\r\\n\\tfooter a:focus {\\r\\n\\t\\toutline: none;\\r\\n\\t}\\r\\n\\r\\n\\tfooter a::before,\\r\\n\\tfooter a::after {\\r\\n\\t\\tcontent: '';\\r\\n\\t\\tposition: absolute;\\r\\n\\t\\ttop: 0%;\\r\\n\\t\\tleft: 50%;\\r\\n\\t\\ttransform: translate(-50%, -50%);\\r\\n\\t\\tmargin-top: -8px;\\r\\n\\t}\\r\\n\\r\\n\\tfooter a::before {\\r\\n\\t\\twidth: 4rem;\\r\\n\\t\\theight: 4rem;\\r\\n\\t\\tcolor: hsl(215, 22%, 5%);\\r\\n\\t\\tcolor: var(--frappe-grey-0);\\r\\n\\t\\tbackground: hsl(215, 10%, 98%);\\r\\n\\t\\tbackground: var(--frappe-grey-10);\\r\\n\\t\\tborder: 0.4rem solid currentColor;\\r\\n\\t\\tborder-radius: 50%;\\r\\n\\t\\ttransition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n\\t\\ttransition: color var(--transition-duration) var(--ease-in-out-sine);\\r\\n\\t}\\r\\n\\r\\n\\tfooter a::after {\\r\\n\\t\\ttransform: translate(-50%, -50%) scale(1);\\r\\n\\t\\twidth: 1.8rem;\\r\\n\\t\\theight: 1.8rem;\\r\\n\\t\\tbackground: hsl(340, 90%, 55%);\\r\\n\\t\\tbackground: var(--primary-6);\\r\\n\\t\\tborder-radius: 50%;\\r\\n\\t\\ttransition: background 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);\\r\\n\\t\\ttransition: background var(--transition-duration) var(--ease-in-out-sine);\\r\\n\\t}\\r\\n\\r\\n\\t@supports ((-webkit-mask-image: url()) or (mask-image: url())) {\\r\\n\\t\\tfooter a::after {\\r\\n\\t\\t\\tborder-radius: initial;\\r\\n\\t\\t\\t-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"currentColor\\" stroke-width=\\"10\\" stroke-linejoin=\\"round\\" stroke-linecap=\\"round\\"%3E%3Cpath d=\\"M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\t\\tmask-image: url('data:image/svg+xml,%3Csvg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"-50 -50 100 100\\"%3E%3Cg fill=\\"currentColor\\" stroke=\\"currentColor\\" stroke-width=\\"10\\" stroke-linejoin=\\"round\\" stroke-linecap=\\"round\\"%3E%3Cpath d=\\"M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0\\" /%3E%3C/g%3E%3C/svg%3E');\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\r\\n\\tfooter a::after {\\r\\n\\t\\tanimation: heart-beat 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;\\r\\n\\t\\tanimation: heart-beat var(--animation-duration) var(--animation-timing-function) infinite;\\r\\n\\t\\tanimation-play-state: paused;\\r\\n\\t}\\r\\n\\r\\n\\t@keyframes heart-beat {\\r\\n\\t\\t10%,\\r\\n\\t\\t30% {\\r\\n\\t\\t\\ttransform: translate(-50%, -50%) scale(0.7);\\r\\n\\t\\t}\\r\\n\\r\\n\\t\\t0%,\\r\\n\\t\\t20%,\\r\\n\\t\\t40% {\\r\\n\\t\\t\\ttransform: translate(-50%, -50%) scale(1);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\r\\n\\tfooter a:hover::before,\\r\\n\\tfooter a:focus::before {\\r\\n\\t\\tcolor: hsl(340, 90%, 55%);\\r\\n\\t\\tcolor: var(--primary-6);\\r\\n\\t}\\r\\n\\r\\n\\t@media (prefers-reduced-motion: no-preference) {\\r\\n\\t\\tfooter a:hover::after,\\r\\n\\t\\tfooter a:focus::after {\\r\\n\\t\\t\\tanimation-play-state: running;\\r\\n\\t\\t}\\r\\n\\t}\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAKC,MAAM,8BAAC,CAAC,AACP,oBAAoB,CAAE,EAAE,CACxB,2BAA2B,CAAE,uBAAuB,CACpD,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,IAAI,CAAC,IAAI,CAAC,IAAI,CACvB,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,gBAAgB,CAAC,CAC5B,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,EAAE,CAAC,CAC7B,UAAU,CAAE,IAAI,eAAe,CAAC,CAChC,gBAAgB,CAAE,IAAI,uXAAuX,CAAC,CAC9Y,eAAe,CAAE,IAAI,CACrB,QAAQ,CAAE,QAAQ,AACnB,CAAC,AAED,oCAAM,QAAQ,AAAC,CAAC,AACf,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,EAAE,CACR,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,OAAO,CACnB,gBAAgB,CAAE,IAAI,uXAAuX,CAAC,CAC9Y,eAAe,CAAE,IAAI,CACrB,kBAAkB,CAAE,IAAI,2RAA2R,CAAC,CACpT,UAAU,CAAE,IAAI,2RAA2R,CAAC,CAC5S,iBAAiB,CAAE,KAAK,CAAC,IAAI,CAC7B,SAAS,CAAE,KAAK,CAAC,IAAI,CACrB,qBAAqB,CAAE,GAAG,CAAC,CAAC,CAC5B,aAAa,CAAE,GAAG,CAAC,CAAC,AACrB,CAAC,AAEO,kBAAkB,AAAE,CAAC,AAC5B,WAAW,CAAE,eAAe,CAAC,CAAC,UAAU,AACzC,CAAC,AAED,qBAAM,CAAC,CAAC,eAAC,CAAC,AACT,OAAO,CAAE,OAAO,CAAC,CAAC,CAClB,MAAM,CAAE,OAAO,CACf,eAAe,CAAE,IAAI,CACrB,WAAW,CAAE,GAAG,CAChB,aAAa,CAAE,MAAM,CAAC,KAAK,CAAC,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9C,aAAa,CAAE,MAAM,CAAC,KAAK,CAAC,IAAI,WAAW,CAAC,CAC5C,UAAU,CAAE,KAAK,CAAC,KAAK,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAC7D,UAAU,CAAE,KAAK,CAAC,IAAI,qBAAqB,CAAC,CAAC,IAAI,kBAAkB,CAAC,AACrE,CAAC,AAED,qBAAM,CAAC,gBAAC,MAAM,CACd,qBAAM,CAAC,gBAAC,MAAM,AAAC,CAAC,AACf,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,WAAW,CAAC,AACxB,CAAC,AAED,qBAAM,CAAC,gBAAC,MAAM,AAAC,CAAC,AACf,OAAO,CAAE,IAAI,AACd,CAAC,AAED,qBAAM,CAAC,gBAAC,QAAQ,CAChB,qBAAM,CAAC,gBAAC,OAAO,AAAC,CAAC,AAChB,OAAO,CAAE,EAAE,CACX,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,EAAE,CACP,IAAI,CAAE,GAAG,CACT,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAChC,UAAU,CAAE,IAAI,AACjB,CAAC,AAED,qBAAM,CAAC,gBAAC,QAAQ,AAAC,CAAC,AACjB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,EAAE,CAAC,CACxB,KAAK,CAAE,IAAI,eAAe,CAAC,CAC3B,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9B,UAAU,CAAE,IAAI,gBAAgB,CAAC,CACjC,MAAM,CAAE,MAAM,CAAC,KAAK,CAAC,YAAY,CACjC,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,KAAK,CAAC,KAAK,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAC7D,UAAU,CAAE,KAAK,CAAC,IAAI,qBAAqB,CAAC,CAAC,IAAI,kBAAkB,CAAC,AACrE,CAAC,AAED,qBAAM,CAAC,gBAAC,OAAO,AAAC,CAAC,AAChB,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,CACzC,KAAK,CAAE,MAAM,CACb,MAAM,CAAE,MAAM,CACd,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9B,UAAU,CAAE,IAAI,WAAW,CAAC,CAC5B,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,UAAU,CAAC,KAAK,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAClE,UAAU,CAAE,UAAU,CAAC,IAAI,qBAAqB,CAAC,CAAC,IAAI,kBAAkB,CAAC,AAC1E,CAAC,AAED,UAAU,CAAC,CAAC,oBAAoB,IAAI,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,YAAY,IAAI,CAAC,CAAC,CAAC,AAAC,CAAC,AAC/D,qBAAM,CAAC,gBAAC,OAAO,AAAC,CAAC,AAChB,aAAa,CAAE,OAAO,CACtB,kBAAkB,CAAE,IAAI,wUAAwU,CAAC,CACjW,UAAU,CAAE,IAAI,wUAAwU,CAAC,AAC1V,CAAC,AACF,CAAC,AAED,qBAAM,CAAC,gBAAC,OAAO,AAAC,CAAC,AAChB,SAAS,CAAE,yBAAU,CAAC,EAAE,CAAC,aAAa,KAAK,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,QAAQ,CACvE,SAAS,CAAE,yBAAU,CAAC,IAAI,oBAAoB,CAAC,CAAC,IAAI,2BAA2B,CAAC,CAAC,QAAQ,CACzF,oBAAoB,CAAE,MAAM,AAC7B,CAAC,AAED,WAAW,yBAAW,CAAC,AACtB,GAAG,CACH,GAAG,AAAC,CAAC,AACJ,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,GAAG,CAAC,AAC5C,CAAC,AAED,EAAE,CACF,GAAG,CACH,GAAG,AAAC,CAAC,AACJ,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC,AAC1C,CAAC,AACF,CAAC,AAED,qBAAM,CAAC,gBAAC,MAAM,QAAQ,CACtB,qBAAM,CAAC,gBAAC,MAAM,QAAQ,AAAC,CAAC,AACvB,KAAK,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CACzB,KAAK,CAAE,IAAI,WAAW,CAAC,AACxB,CAAC,AAED,MAAM,AAAC,yBAAyB,aAAa,CAAC,AAAC,CAAC,AAC/C,qBAAM,CAAC,gBAAC,MAAM,OAAO,CACrB,qBAAM,CAAC,gBAAC,MAAM,OAAO,AAAC,CAAC,AACtB,oBAAoB,CAAE,OAAO,AAC9B,CAAC,AACF,CAAC"}`
+};
+var Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  $$result.css.add(css$1);
+  return `<footer class="${"svelte-1mpqu8q"}"><a href="${"twitter.com/borntofrappe"}" class="${"svelte-1mpqu8q"}">borntofrappe</a>
+</footer>`;
+});
+var css = {
+  code: "div.svelte-9u5b4y{min-height:100vh;display:flex;flex-direction:column}div.svelte-9u5b4y footer{margin-top:auto}",
+  map: `{"version":3,"file":"__layout.svelte","sources":["__layout.svelte"],"sourcesContent":["<script>\\r\\n\\timport Breadcrumbs from '$lib/Breadcrumbs.svelte';\\r\\n\\timport Footer from '$lib/Footer.svelte';\\r\\n\\r\\n\\timport '../app.css';\\r\\n<\/script>\\r\\n\\r\\n<div>\\r\\n\\t<Breadcrumbs />\\r\\n\\r\\n\\t<slot />\\r\\n\\t<Footer />\\r\\n</div>\\r\\n\\r\\n<style>\\r\\n\\tdiv {\\r\\n\\t\\tmin-height: 100vh;\\r\\n\\t\\tdisplay: flex;\\r\\n\\t\\tflex-direction: column;\\r\\n\\t}\\r\\n\\r\\n\\tdiv :global(footer) {\\r\\n\\t\\tmargin-top: auto;\\r\\n\\t}\\r\\n</style>\\r\\n"],"names":[],"mappings":"AAeC,GAAG,cAAC,CAAC,AACJ,UAAU,CAAE,KAAK,CACjB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,AACvB,CAAC,AAED,iBAAG,CAAC,AAAQ,MAAM,AAAE,CAAC,AACpB,UAAU,CAAE,IAAI,AACjB,CAAC"}`
+};
 var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${slots.default ? slots.default({}) : ``}`;
+  $$result.css.add(css);
+  return `<div class="${"svelte-9u5b4y"}">${validate_component(Breadcrumbs, "Breadcrumbs").$$render($$result, {}, {}, {})}
+
+	${slots.default ? slots.default({}) : ``}
+	${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}
+</div>`;
 });
 var __layout = /* @__PURE__ */ Object.freeze({
   __proto__: null,
@@ -2569,12 +2705,11 @@ var error = /* @__PURE__ */ Object.freeze({
 });
 var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<h1>Hello, World!</h1>
-<p>I&#39;m building this website with <a href="${"https://kit.svelte.dev"}">SvelteKit</a>!</p>
-<p>Fingers crossed, the project is live and deployed through <a href="${"https://www.netlify.com/"}">Netlify</a></p>
+<p>I enjoy writing code.<br>With this website I try to convince you I might be good at it as well.
+</p>
 
-<h2>Fonts</h2>
-<p>This website louds <em>a few</em> fonts, among which <strong>Josefin Sans</strong> and <strong>Cantarell</strong>.</p>
-<p>Code snippets are rendered with <strong>Fira Code</strong>, but only if the browser detects the font locally. Otherwise there&#39;s a quite <strong><em>deep</em></strong> font stack.</p>`;
+<h2>Stats</h2>
+<dl><dt>First build</dt><dd><time datetime="${"2021-08-21"}">September 21st, 2021</time></dd><dt>Dependencies</dt><dd><code>sveltejs/kit</code></dd><dd><code>sveltejs/adapter-netlify</code></dd></dl>`;
 });
 var index = /* @__PURE__ */ Object.freeze({
   __proto__: null,

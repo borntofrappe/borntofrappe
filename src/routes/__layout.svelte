@@ -1,14 +1,15 @@
 <script>
-	import Breadcrumbs from '$lib/Breadcrumbs.svelte';
-	import Footer from '$lib/Footer.svelte';
+	import Starter from '$lib/components/Starter.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	import '../app.css';
 </script>
 
 <div>
-	<Breadcrumbs />
+	<Starter />
 
 	<slot />
+
 	<Footer />
 </div>
 
