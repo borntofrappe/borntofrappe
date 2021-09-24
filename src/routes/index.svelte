@@ -2,11 +2,11 @@
 	import Hero from '$lib/components/root/Hero.svelte';
 	import GettingStarted from '$lib/components/root/GettingStarted.svelte';
 	import About from '$lib/components/root/About.svelte';
+
+	import Meta from '$lib/components/Meta.svelte';
 </script>
 
-<svelte:head>
-	<title>borntofrappe</title>
-</svelte:head>
+<Meta description="Personal website for one Gabriele Corti" />
 
 <Hero />
 

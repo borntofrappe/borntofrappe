@@ -10,9 +10,13 @@
 </script>
 
 <script>
+	import Meta from '$lib/components/Meta.svelte';
+
 	export let error;
 	export let status;
 </script>
+
+<Meta description="Error page with a status code {status}." />
 
 <header>
 	<h1>{status}</h1>
