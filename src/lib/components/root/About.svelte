@@ -124,9 +124,6 @@
 		line-height: 1.75;
 	}
 
-	:global(.webfonts) section mark {
-		font-family: JosefinSansBold, sans-serif;
-	}
 	section mark {
 		--animation-duration: 6s;
 		--animation-timing-function: var(--ease-in-out-sine);

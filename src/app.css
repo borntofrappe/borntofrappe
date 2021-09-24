@@ -1,43 +1,3 @@
-@font-face {
-	font-family: Cantarell;
-	src: url('/fonts/cantarell-regular-webfont.woff2') format('woff2'),
-		url('/fonts/cantarell-regular-webfont.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: CantarellOblique;
-	src: url('/fonts/cantarell-oblique-webfont.woff2') format('woff2'),
-		url('/fonts/cantarell-oblique-webfont.woff') format('woff');
-	font-weight: 400;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: CantarellBold;
-	src: url('/fonts/cantarell-bold-webfont.woff2') format('woff2'),
-		url('/fonts/cantarell-bold-webfont.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: CantarellBoldOblique;
-	src: url('/fonts/cantarell-boldoblique-webfont.woff2') format('woff2'),
-		url('/fonts/cantarell-boldoblique-webfont.woff') format('woff');
-	font-weight: 700;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: JosefinsansBold;
-	src: url('/fonts/josefinsans-bold-webfont.woff2') format('woff2'),
-		url('/fonts/josefinsans-bold-webfont.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
-
 *,
 *::before,
 *::after {
@@ -302,47 +262,6 @@ a:focus:not(:focus-visible) {
 
 svg {
 	display: block;
-}
-
-body {
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
-		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-}
-
-.webfonts body {
-	font-family: Cantarell, sans-serif;
-}
-
-.webfonts h1,
-.webfonts h2,
-.webfonts h3,
-.webfonts h4 {
-	font-family: JosefinsansBold, sans-serif;
-	font-weight: 700;
-	font-style: normal;
-}
-
-.webfonts em {
-	font-family: CantarellOblique, sans-serif;
-	font-weight: 400;
-	font-style: italic;
-}
-
-.webfonts strong {
-	font-family: CantarellBold, sans-serif;
-	font-weight: 700;
-	font-style: normal;
-}
-
-.webfonts strong em,
-.webfonts em strong {
-	font-family: CantarellBoldOblique, sans-serif;
-	font-weight: 700;
-	font-style: italic;
-}
-
-code {
-	font-family: 'Fira Code', Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 }
 
 h1,

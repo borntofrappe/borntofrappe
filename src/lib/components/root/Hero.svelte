@@ -90,7 +90,7 @@
 												letter-spacing="1"
 												text-anchor="middle"
 												font-size="12"
-												font-family="monospace"
+												font-family="inherit"
 											>
 												<textPath
 													href={(360 / links.length) * i <= 90 || (360 / links.length) * i >= 270
@@ -201,6 +201,7 @@
 	}
 
 	header nav > svg a .text {
+		font-family: 'Inconsolata', Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 		transform: scale(0);
 		transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 		transition: transform var(--transition-duration) var(--ease-out-cubic);

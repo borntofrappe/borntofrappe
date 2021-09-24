@@ -4,6 +4,90 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<style>
+			@font-face {
+				font-family: Jost;
+				src: url('fonts/jost-regular-webfont.woff2') format('woff2'),
+					url('fonts/jost-regular-webfont.woff') format('woff');
+				font-weight: 400;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: JostItalic;
+				src: url('fonts/jost-italic-webfont.woff2') format('woff2'),
+					url('fonts/jost-italic-webfont.woff') format('woff');
+				font-weight: 400;
+				font-style: italic;
+			}
+
+			@font-face {
+				font-family: JostBold;
+				src: url('fonts/jost-bold-webfont.woff2') format('woff2'),
+					url('fonts/jost-bold-webfont.woff') format('woff');
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: JostBoldItalic;
+				src: url('fonts/jost-bolditalic-webfont.woff2') format('woff2'),
+					url('fonts/jost-bolditalic-webfont.woff') format('woff');
+				font-weight: 700;
+				font-style: italic;
+			}
+
+			@font-face {
+				font-family: JosefinsansBold;
+				src: url('fonts/josefinsans-bold-webfont.woff2') format('woff2'),
+					url('fonts/josefinsans-bold-webfont.woff') format('woff');
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+					helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+			}
+
+			code {
+				font-family: 'Inconsolata', Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+					monospace;
+			}
+
+			.webfonts body {
+				font-family: Jost, sans-serif;
+			}
+
+			.webfonts h1,
+			.webfonts h2,
+			.webfonts h3,
+			.webfonts h4 {
+				font-family: JosefinsansBold, sans-serif;
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			.webfonts em {
+				font-family: JostItalic, sans-serif;
+				font-weight: 400;
+				font-style: italic;
+			}
+
+			.webfonts strong {
+				font-family: JostBold, sans-serif;
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			.webfonts strong em,
+			.webfonts em strong {
+				font-family: JostBoldItalic, sans-serif;
+				font-weight: 700;
+				font-style: italic;
+			}
+		</style>
+
 		<script>
 			function setPreference(preference) {
 				document.documentElement.setAttribute('data-preference', preference);
@@ -30,10 +114,10 @@
 			} else {
 				if ('fonts' in document) {
 					Promise.all([
-						document.fonts.load('1em Cantarell'),
-						document.fonts.load('700 1em CantarellBold'),
-						document.fonts.load('italic 1em CantarellOblique'),
-						document.fonts.load('italic 700 1em CantarellBoldOblique'),
+						document.fonts.load('1em Jost'),
+						document.fonts.load('700 1em JostBold'),
+						document.fonts.load('italic 1em JostItalic'),
+						document.fonts.load('italic 700 1em JostBoldItalic'),
 						document.fonts.load('700 1em JosefinsansBold')
 					]).then(() => {
 						sessionStorage.fontsLoaded = true;
