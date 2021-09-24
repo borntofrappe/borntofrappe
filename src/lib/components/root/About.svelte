@@ -1,5 +1,6 @@
 <script>
 	import icons from '$lib/icons.js';
+	import { observe } from '$lib/utils.js';
 
 	const satellites = ['world', 'editor', 'running', 'flag', 'gaming'];
 
@@ -18,7 +19,7 @@
 	];
 </script>
 
-<section class:observed={false}>
+<section class:observed={false} use:observe>
 	<h2>Almost forgot</h2>
 	<p>
 		I'm <mark>Gabriele Corti</mark>, coming to you from Europe and a couple of hours after Greenwich
@@ -113,7 +114,7 @@
 
 <style>
 	section > * + * {
-		margin-top: 0.5em;
+		margin-top: 0.4em;
 	}
 
 	section h2 {

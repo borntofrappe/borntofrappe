@@ -1,4 +1,8 @@
-<section class:observed={false}>
+<script>
+	import { observe } from '$lib/utils.js';
+</script>
+
+<section class:observed={false} use:observe>
 	<h2 class="visually-hidden">Getting started</h2>
 	<p>
 		I'm building this website with

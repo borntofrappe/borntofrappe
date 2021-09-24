@@ -1,5 +1,6 @@
 <script>
 	import icons from '$lib/icons.js';
+	import { observe } from '$lib/utils.js';
 
 	const links = [
 		{
@@ -25,7 +26,7 @@
 	];
 </script>
 
-<header class:observed={false}>
+<header class:observed={false} use:observe>
 	<div>
 		<h1>Hello, World!</h1>
 		<p>I enjoy writing code.</p>
