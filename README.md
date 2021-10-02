@@ -113,4 +113,14 @@ npm run preview
 
 Directing Netlify to the Github repo should then be enough to have the project live.
 
+## More than a bump
+
+> dated October 2nd 2021
+
+```bash
+npm update
+```
+
+Svelte, but most prominently the kit and the adapter are updated with the most recent commits.
+
 </details>
