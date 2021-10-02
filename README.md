@@ -123,4 +123,6 @@ npm update
 
 Svelte, but most prominently the kit and the adapter are updated with the most recent commits.
 
+The design of the website is updated in the markup and stylesheet.
+
 </details>

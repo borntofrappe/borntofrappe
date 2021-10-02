@@ -20,10 +20,6 @@
 		--animation-duration: 8s;
 	}
 
-	section p {
-		line-height: 1.75;
-	}
-
 	section::before,
 	section::after {
 		width: 6.5em;
@@ -44,7 +40,7 @@
 		top: 0;
 		left: 0;
 		transform: rotate(-20deg);
-		transform-origin: 50% 33%;
+		transform-origin: 50% 36%;
 	}
 
 	@media (prefers-color-scheme: dark) {

@@ -24,15 +24,13 @@
 
 <style>
 	nav ol {
+		margin: 0;
+		padding: 0;
 		list-style: none;
 	}
 
 	nav ol li {
 		display: inline-block;
-	}
-
-	nav ol > li + li {
-		margin-left: 0.3rem;
 	}
 
 	:global(.webfonts) nav a {
@@ -42,13 +40,13 @@
 	nav a {
 		text-decoration: none;
 		font-weight: 700;
-		padding: 0.25rem 0;
+		padding: 0.25em 0;
 		display: inline-flex;
 		align-items: center;
 	}
 
 	nav a :global(svg) {
-		margin-left: 0.3rem;
+		margin-left: 0.3em;
 		width: 1.5em;
 		height: auto;
 	}

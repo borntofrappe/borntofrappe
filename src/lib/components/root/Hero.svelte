@@ -6,22 +6,22 @@
 		{
 			name: 'codepen',
 			href: 'https://codepen.io/borntofrappe',
-			desc: 'Marvel at the numerous demos I created on CodePen.'
+			desc: 'On CodePen I flex my muscles as a web developer, starting with little past HTML, CSS and JavaScript. The foundations of the web!'
 		},
 		{
 			name: 'freecodecamp',
 			href: 'https://www.freecodecamp.org/borntofrappe',
-			desc: 'Double-check the certifications I earned on freeCodeCamp.'
+			desc: 'On freeCodeCamp I started my journey with HTML and CSS. This is where I earned a few certifications and where I continue growing as an endless learner.'
 		},
 		{
 			name: 'github',
 			href: 'https://github.com/borntofrappe',
-			desc: 'Review, fork, and improve the code I publish on Github.'
+			desc: "On Github I share the code for my projects, and even this very website. Feel free to review, fork, and improve; I'm positive you'll find plenty of room for growth."
 		},
 		{
 			name: 'twitter',
 			href: 'https://twitter.com/borntofrappe',
-			desc: 'Follow me @borntofrappe.'
+			desc: 'On Twitter I try to share something helpful, entertaining, and perhaps even both. There are people who seem to appreciate.'
 		}
 	];
 </script>
@@ -129,8 +129,8 @@
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		padding: 2.5rem 0;
-		color: hsl(215, 10%, 98%);
+		padding: 2.5em 0;
+		margin-bottom: 20px;
 		color: var(--frappe-grey-10);
 		background: hsl(215, 22%, 5%);
 		background: var(--frappe-grey-0);
@@ -221,6 +221,10 @@
 
 	header div > * + * {
 		margin-top: 0.5em;
+	}
+
+	header div p {
+		line-height: 1.75;
 	}
 
 	header > *:nth-last-child(2) {

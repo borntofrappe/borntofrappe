@@ -75,8 +75,8 @@
 
 <style>
 	button {
-		width: 2rem;
-		height: 2rem;
+		width: 2em;
+		height: 2em;
 		color: inherit;
 		padding: 0;
 		background: none;
@@ -86,7 +86,6 @@
 	}
 
 	button svg {
-		display: block;
 		width: 100%;
 		height: auto;
 	}

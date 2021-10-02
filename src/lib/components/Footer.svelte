@@ -7,7 +7,7 @@
 		--animation-duration: 2s;
 		--animation-timing-function: var(--ease-in-out-sine);
 		text-align: center;
-		padding: 2rem 1rem 1rem;
+		padding: 2em 1em 1em;
 		color: hsl(215, 10%, 98%);
 		color: var(--frappe-grey-10);
 		background: hsl(215, 22%, 5%);
@@ -40,12 +40,12 @@
 	}
 
 	footer a {
-		padding: 0.25rem 0;
+		padding: 0.25em 0;
 		border: initial;
 		text-decoration: none;
 		font-weight: 700;
-		border-bottom: 0.1rem solid hsl(340, 90%, 55%);
-		border-bottom: 0.1rem solid var(--primary-6);
+		border-bottom: 0.1em solid hsl(340, 90%, 55%);
+		border-bottom: 0.1em solid var(--primary-6);
 		transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: color var(--transition-duration) var(--ease-in-out-sine);
 	}
@@ -71,13 +71,13 @@
 	}
 
 	footer a::before {
-		width: 4rem;
-		height: 4rem;
+		width: 3.5em;
+		height: 3.5em;
 		color: hsl(215, 22%, 5%);
 		color: var(--frappe-grey-0);
 		background: hsl(215, 10%, 98%);
 		background: var(--frappe-grey-10);
-		border: 0.4rem solid currentColor;
+		border: 0.4em solid currentColor;
 		border-radius: 50%;
 		transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: color var(--transition-duration) var(--ease-in-out-sine);
@@ -85,8 +85,8 @@
 
 	footer a::after {
 		transform: translate(-50%, -50%) scale(1);
-		width: 1.8rem;
-		height: 1.8rem;
+		width: 1.5em;
+		height: 1.5em;
 		background: hsl(340, 90%, 55%);
 		background: var(--primary-6);
 		border-radius: 50%;

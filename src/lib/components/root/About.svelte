@@ -113,16 +113,12 @@
 </section>
 
 <style>
-	section > * + * {
-		margin-top: 0.4em;
+	section {
+		margin-bottom: 0;
 	}
 
 	section h2 {
 		text-align: center;
-	}
-
-	section p {
-		line-height: 1.75;
 	}
 
 	section mark {
@@ -255,9 +251,9 @@
 		}
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		section.observed > svg .rotate {
-			animation-play-state: paused;
+	@media (prefers-reduced-motion: no-preference) {
+		section#about.observed > svg .rotate {
+			animation-play-state: running;
 		}
 	}
 </style>

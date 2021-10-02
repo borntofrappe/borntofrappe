@@ -1,8 +1,8 @@
 <script>
+	import '../app.css';
+
 	import Starter from '$lib/components/Starter.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-
-	import '../app.css';
 </script>
 
 <div>

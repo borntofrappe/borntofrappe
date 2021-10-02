@@ -6,7 +6,9 @@
 	import Meta from '$lib/components/Meta.svelte';
 </script>
 
-<Meta description="Personal website for one Gabriele Corti" />
+<Meta
+	description="Personal website for one Gabriele Corti, a web developer from norther Italy, among other things."
+/>
 
 <Hero />
 
@@ -18,8 +20,7 @@
 <style>
 	main {
 		overflow-x: hidden;
-		margin-top: 20px;
-		--section-whitespace: 6em;
+		--section-whitespace: 5em;
 	}
 
 	main > :global(section) {
@@ -27,33 +28,28 @@
 		width: var(--width);
 		max-width: 42rem;
 		max-width: var(--max-width);
-		margin: 6em auto;
+		margin: 5em auto;
 		margin: var(--section-whitespace) auto;
 	}
 
-	main > :global(section:first-of-type) {
-		margin-top: 3em;
-		margin-top: calc(var(--section-whitespace) / 2);
-	}
-
-	main > :global(section:last-of-type) {
-		margin-bottom: 0;
+	main > :global(section p) {
+		line-height: 1.75;
 	}
 
 	main > :global(section + section) {
 		position: relative;
+		padding-top: 5em;
+		padding-top: var(--section-whitespace);
 	}
 
 	main > :global(section + section::before) {
-		position: relative;
 		content: '';
 		position: absolute;
-		top: -3em;
-		top: calc(var(--section-whitespace) / 2 * -1);
+		bottom: 100%;
 		left: 50%;
 		width: 100vw;
-		height: 0.5rem;
-		transform: translate(-50%, -50%);
+		height: 0.5em;
+		transform: translate(-50%, 50%);
 		background: hsl(215, 22%, 5%);
 		background: var(--frappe-grey-0);
 		background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/svg%3E');
@@ -65,16 +61,12 @@
 			height: 2em;
 			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
 			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="25 -20 100 40"%3E%3Cg fill="currentColor" stroke="none"%3E%3Cpath d="M 0 -15 c 50 -17.5 50 17.5 100 0 c 50 -17.5 50 17.5 100 0 v 30 c -50 17.5 -50 -17.5 -100 0 c -50 17.5 -50 -17.5 -100 0" /%3E%3C/g%3E%3C/svg%3E');
-			-webkit-mask-size: auto 100%;
-			mask-size: auto 100%;
+			-webkit-mask-size: auto 2em;
+			mask-size: auto 2em;
 			-webkit-mask-position: 50% 50%;
 			mask-position: 50% 50%;
 			-webkit-mask-repeat: repeat-x;
 			mask-repeat: repeat-x;
-		}
-
-		main > :global(:not(section:last-of-type)) {
-			margin-bottom: calc(var(--section-whitespace) + 1em);
 		}
 	}
 </style>
