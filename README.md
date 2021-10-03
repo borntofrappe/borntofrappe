@@ -144,8 +144,16 @@ blog.svelte
 blog/
     __layout.svelte
 
-    markdown.md
-    svexy.svx
+    markdown-post.md
+    svexy-post.svx
 ```
+
+In `blog.svelte` the idea is to show a list of links redirecting to each and every article in the blog folder. At the top of the component the `load` function allows to retrieve the necessary files through the [`import.meta.glob`](https://vitejs.dev/guide/features.html#glob-import) functionality provided by vite.
+
+<!-- TODOS:
+- mdsvex configurations and plugins
+- blog page
+- blog post page
+ -->
 
 </details>
