@@ -1,0 +1,13 @@
+<script>
+	let value = 5;
+</script>
+
+This is a `.svx` document, created directly in the blog folder: `src/routes/blog/svx.svx`.
+
+Here you can write markdown syntax, but also **Svelte**.
+
+Here's a slider to test things out.
+
+<input type="range" min="0" max="10" bind:value />
+
+<p>And here's your value: <strong>{value}</strong></p>

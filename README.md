@@ -125,4 +125,27 @@ Svelte, but most prominently the kit and the adapter are updated with the most r
 
 The design of the website is updated in the markup and stylesheet.
 
+## Blog
+
+> dated October 3rd 2021
+
+Installing [`mdsvex`](https://github.com/pngwn/mdsvex) allows to process, or rather pre-process, markdown files in the `routes/blog` folder. `.md`, but also and most prominently `.svx` files, which allows to use Svelte syntax in between markdown syntax.
+
+```bash
+npm i -D mdsvex
+```
+
+The config file is updated to consider the different extensions, both for mdsvex, but also for the larger kit.
+
+Creating `routes/blog.svelte` rather than `routes/blog/index.svelte` allows me to include a layout file applied on the blog posts only.
+
+```text
+blog.svelte
+blog/
+    __layout.svelte
+
+    markdown.md
+    svexy.svx
+```
+
 </details>

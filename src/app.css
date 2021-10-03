@@ -27,6 +27,8 @@ button,
 textarea,
 select {
 	font: inherit;
+	accent-color: hsl(340, 90%, 55%);
+	accent-color: var(--primary-6);
 }
 
 :root {

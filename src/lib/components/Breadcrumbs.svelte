@@ -29,6 +29,10 @@
 		list-style: none;
 	}
 
+	nav ol > * + * {
+		margin-left: 0.3em;
+	}
+
 	nav ol li {
 		display: inline-block;
 	}
