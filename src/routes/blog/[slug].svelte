@@ -9,11 +9,10 @@
 			const post = await posts[match.path]();
 
 			const { default: Component, metadata } = post;
-			const { title } = metadata;
 
 			return {
 				props: {
-					title,
+					...metadata,
 					Component
 				}
 			};
@@ -27,12 +26,24 @@
 </script>
 
 <script>
+	import icons from '$lib/icons.js';
+
 	export let title;
+	export let keywords;
 	export let Component;
 </script>
 
 <header>
 	<h1>{title}</h1>
+
+	{#if keywords}
+		<h2>Keywords</h2>
+		<ul>
+			{#each keywords.split(/,\s+?/) as keyword}
+				<li>{@html icons[keyword] || icons.bug}<span class="visually-hidden">{keyword}</span></li>
+			{/each}
+		</ul>
+	{/if}
 </header>
 
 <main id="content">

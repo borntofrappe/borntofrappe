@@ -11,17 +11,37 @@
 </script>
 
 <script>
-	export let posts = [];
+	export let posts;
+
+	const formatter = new Intl.DateTimeFormat('en', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
+
+	posts.forEach((post) => {
+		const datetime = new Date(new Date(...post.date.split('-')));
+		post.datetime = datetime;
+		post.date = formatter.format(datetime);
+		post.href = `/blog/${post.slug}`;
+	});
 </script>
 
-<h1>Blog</h1>
+<header>
+	<h1>Jotting things down</h1>
+	<p>I learn, I build, I write. Not necessarily in that order.</p>
+</header>
 
-<p>In the blog folder you can create pages in multiple formats</p>
-
-{#if posts.length > 0}
-	<ul>
-		{#each posts as { title, slug }}
-			<li><a href="/blog/{slug}">{title}</a></li>
-		{/each}
-	</ul>
-{/if}
+<main id="content">
+	{#each posts as { title, datetime, date, brief, href }}
+		<article>
+			<h2>
+				<a {href}>{title}</a>
+			</h2>
+			<time {datetime}>{date}</time>
+			<p>
+				{brief}
+			</p>
+		</article>
+	{/each}
+</main>

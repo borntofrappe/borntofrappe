@@ -230,12 +230,32 @@ Which leads to the special svelte element.
 <svelte:component this={Component} />
 ```
 
+### Update — Dates
+
+The frontmatter includes a date.
+
+```yaml
+date: 2021-9-21-22-04
+```
+
+The information is used:
+
+- in the session object to sort the blog posts according to date, from most to least recent
+
+- in the blog index, as the content and `datetime` attribute of a `<time>` element
+
+### Bug fixes
+
+- the fonts should be referenced from the root folder
+
+  ```diff
+  url('fonts/jost-bold-webfont.woff2') format('woff2')
+  +url('/fonts/jost-bold-webfont.woff2') format('woff2')
+  ```
+
+  The first statement would not work in a nested route like `/blog`, which would otherwise look for `blog/fonts/...`
+
 <!-- TODOS:
-- blog page blog/index.svelte
-- blog page blog/[slug].svelte
-
-
-- title, date and keywords
 - mdsvex configurations and plugins
 
 - design pages

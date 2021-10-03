@@ -6,6 +6,7 @@ export async function getSession() {
             const extension = filename.split('.').pop();
             const slug = filename.slice(0, (extension.length + 1) * -1);
 
+
             return {
                 path,
                 slug,
@@ -15,6 +16,10 @@ export async function getSession() {
     );
 
     return {
-        posts
+        posts: posts.sort(
+            (a, b) =>
+            new Date(...b.date.split('-')) -
+            new Date(...a.date.split('-'))
+        )
     };
 }
