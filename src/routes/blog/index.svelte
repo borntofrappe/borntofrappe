@@ -20,8 +20,8 @@
 
 {#if posts.length > 0}
 	<ul>
-		{#each posts as { title, href }}
-			<li><a {href}>{title}</a></li>
+		{#each posts as { title, slug }}
+			<li><a href="/blog/{slug}">{title}</a></li>
 		{/each}
 	</ul>
 {/if}

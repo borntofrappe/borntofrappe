@@ -150,7 +150,7 @@ blog/
 
 In `blog.svelte` the idea is to show a list of links redirecting to each and every article in the blog folder. At the top of the component the `load` function allows to retrieve the necessary files through the [`import.meta.glob`](https://vitejs.dev/guide/features.html#glob-import) functionality provided by vite.
 
-### Update
+### Update — Session
 
 Instead of looking for articles in the load function, it is possible to include the array in the session object. The logic is moved to `src/hooks/index.js`, and the blog, or any other page for that matter, can then access the list in the initial script.
 
@@ -162,11 +162,88 @@ export async function load({ session }) {
 }
 ```
 
+### Update — Structure
+
+The blog is restructured to have `blog/index.svelte` and `blog/[slug].svelte`, with the goal of fetching an article matching the `slug` parameter. The articles are moved into a separate folder, `src/blog`, which immediately means the hook needs to be updated.
+
+```diff
+-import.meta.glob('/src/blog/*.{md,svx}'))
++import.meta.glob('/src/routes/blog/*.{md,svx}'))
+```
+
+In `[slug].svelte` the idea is to then return a specific post or a 404 page.
+
+404 page meaning an object with a specific status and error message.
+
+```js
+return {
+	status: 404,
+	error: new Error('Post not found')
+};
+```
+
+Post using the `import.meta.glob` syntax. Heer I decided to use the array in the `session` object to first check if the post exist.
+
+```js
+const { slug } = page.params;
+const match = session.posts.find((post) => post.slug === slug);
+```
+
+If there is an object with the same `slug`, the idea is to use the mentioned glob syntax and extract the specific object referring to the post. Here it is useful to have a reference to the post's path since the glob statement returns an object with the path as the key. Store the path in the session object, alongside the slug.
+
+```js
+return {
+	path,
+	slug,
+	...metadata
+};
+```
+
+Use the path of the matching post to pick the post from the glob-bed object.
+
+```js
+const posts = import.meta.glob('/src/blog/*.{md,svx}');
+const post = await posts[match.path]();
+```
+
+It may look a tad convoluted, but this structure allows to retrieve the metadata and the content through the `default` field.
+
+```js
+const { default: Component, metadata } = post;
+```
+
+The end result can be included in the markup, directly as a svelte component.
+
+```svelte
+<Component />
+```
+
+_Please note:_ the command line highlights the following message.
+
+```text
+<Component/> will not be reactive if Component changes. Use <svelte:component this={Component}/> if you want this reactivity.
+```
+
+Which leads to the special svelte element.
+
+```svelte
+<svelte:component this={Component} />
+```
+
 <!-- TODOS:
 - blog page blog/index.svelte
 - blog page blog/[slug].svelte
+
+
 - title, date and keywords
 - mdsvex configurations and plugins
+
+- design pages
+
+- <svelte:component this={Component} />
+
+
+
 -->
 
 </details>
