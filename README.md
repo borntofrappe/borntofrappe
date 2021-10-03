@@ -150,10 +150,23 @@ blog/
 
 In `blog.svelte` the idea is to show a list of links redirecting to each and every article in the blog folder. At the top of the component the `load` function allows to retrieve the necessary files through the [`import.meta.glob`](https://vitejs.dev/guide/features.html#glob-import) functionality provided by vite.
 
+### Update
+
+Instead of looking for articles in the load function, it is possible to include the array in the session object. The logic is moved to `src/hooks/index.js`, and the blog, or any other page for that matter, can then access the list in the initial script.
+
+```js
+export async function load({ session }) {
+	const { posts } = session;
+
+	// return props
+}
+```
+
 <!-- TODOS:
+- blog page blog/index.svelte
+- blog page blog/[slug].svelte
+- title, date and keywords
 - mdsvex configurations and plugins
-- blog page
-- blog post page
- -->
+-->
 
 </details>
