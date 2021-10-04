@@ -49,7 +49,7 @@
 		display: inline-block;
 		font-size: 1rem;
 		font-size: var(--size-400);
-		padding: 0.4em;
+		padding: 0.2em 0.4em;
 		color: hsl(350, 100%, 8%);
 		color: var(--primary-0);
 		background: hsl(335, 100%, 86%);

@@ -257,7 +257,6 @@ The information is used:
 
 <!-- TODOS:
 - mdsvex configurations and plugins
-- design pages
 -->
 
 </details>
