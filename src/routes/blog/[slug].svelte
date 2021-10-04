@@ -26,25 +26,14 @@
 </script>
 
 <script>
-	import icons from '$lib/icons.js';
+	import Header from '$lib/components/blog/post/Header.svelte';
 
 	export let title;
 	export let keywords;
 	export let Component;
 </script>
 
-<header>
-	<h1>{title}</h1>
-
-	{#if keywords}
-		<h2>Keywords</h2>
-		<ul>
-			{#each keywords.split(/,\s+?/) as keyword}
-				<li>{@html icons[keyword] || icons.bug}<span class="visually-hidden">{keyword}</span></li>
-			{/each}
-		</ul>
-	{/if}
-</header>
+<Header {title} {keywords} />
 
 <main id="content">
 	<svelte:component this={Component} />
@@ -52,11 +41,18 @@
 
 <style>
 	main {
+		width: 90vw;
+		width: var(--width);
 		max-width: 42rem;
-		margin: 1rem auto;
+		max-width: var(--max-width);
+		margin: 3.5rem auto 5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	main > :global(* + *) {
 		margin-top: 1em;
+		margin-top: var(--vertical-rhythm, 1em);
 	}
 </style>

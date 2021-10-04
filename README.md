@@ -257,13 +257,7 @@ The information is used:
 
 <!-- TODOS:
 - mdsvex configurations and plugins
-
 - design pages
-
-- <svelte:component this={Component} />
-
-
-
 -->
 
 </details>
