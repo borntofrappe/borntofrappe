@@ -244,7 +244,9 @@ The information is used:
 
 - in the blog index, as the content and `datetime` attribute of a `<time>` element
 
-### Bug fixes
+## Bug fixes
+
+> started October 3d, 2021
 
 - the fonts should be referenced from the root folder
 
@@ -255,8 +257,36 @@ The information is used:
 
   The first statement would not work in a nested route like `/blog`, which would otherwise look for `blog/fonts/...`
 
-<!-- TODOS:
-- mdsvex configurations and plugins
--->
+- the fonts are updated to remove some of the options added by default by the font squirrel generator
+
+## Config
+
+`mdsvex` is configured in a separate file `mdsvex.config.js`
+
+Two rehype packages allow to add the permalink to the headings processed in the markdown documents (md and svx).
+
+```bash
+npm i -D rehype-slug
+npm i -D rehype-autolink-headings
+```
+
+The auto-headings package is configured to have the following markup.
+
+```html
+<h2 id="identifier">
+	Heading
+	<a href="#identifier">
+		<span class="visually-hidden">Permalink</span>
+	</a>
+</h2>
+```
+
+Shiki is used in place of the default solution to highlight the code snippets on build.
+
+```bash
+npm i -D shiki
+```
+
+A few adjustments are however necessary to incorporate the highlighted code in the context of the preprocessor.
 
 </details>

@@ -1,6 +1,6 @@
 ---
 title: Why
-date: 2021-9-21-22-04
+date: 2021-9-3-22-04
 keywords: svelte
 brief: A few words behind a few choices behind this very website.
 ---
@@ -13,7 +13,7 @@ Because **Svelte**.
 
 Because **HTML**, **CSS**, and **JavaScript**.
 
-## Why HTML and so on and so forth
+## Why all that
 
 Because the web:
 
