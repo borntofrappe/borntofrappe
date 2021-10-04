@@ -7,7 +7,6 @@ const config = {
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
 	preprocess: mdsvex(mdsvexConfig),
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
 		adapter: adapter(),
 		target: '#svelte'
 	}

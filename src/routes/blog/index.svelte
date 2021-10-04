@@ -11,6 +11,7 @@
 </script>
 
 <script>
+	import Meta from '$lib/components/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 	import Post from '$lib/components/blog/Post.svelte';
 
@@ -30,6 +31,11 @@
 	});
 </script>
 
+<Meta
+	description="Blog for the personal website of Gabriele Corti, inline @borntofrappe. There are {posts.length} articles a changing number of subjects."
+	image="blog.png"
+/>
+
 <Header
 	title="Jotting things down"
 	body="I build, I learn, I write. Not necessarily in that order."
@@ -48,22 +54,22 @@
 		width: var(--width);
 		max-width: 42rem;
 		max-width: var(--max-width);
-		margin: 2rem auto 5rem;
+		margin: 2em auto 5em;
 	}
 
 	main > :global(* + *) {
-		margin-top: 1rem;
+		margin-top: 1em;
 	}
 
 	main :global(article > * + *) {
-		margin-top: 0.25em;
+		margin-top: 0.4em;
 	}
 
 	@supports (display: grid) {
 		main {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-			gap: 1.25rem 1.75rem;
+			gap: 1.75em 1em;
 		}
 
 		main > :global(* + *) {

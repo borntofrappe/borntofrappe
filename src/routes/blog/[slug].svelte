@@ -26,12 +26,16 @@
 </script>
 
 <script>
+	import Meta from '$lib/components/Meta.svelte';
 	import Header from '$lib/components/blog/post/Header.svelte';
 
 	export let title;
+	export let brief;
 	export let keywords;
 	export let Component;
 </script>
+
+<Meta description="{title}, a blog post from borntofrappe. {brief}" image="blog" />
 
 <Header {title} {keywords} />
 
@@ -45,9 +49,7 @@
 		width: var(--width);
 		max-width: 42rem;
 		max-width: var(--max-width);
-		margin: 3.5rem auto 5rem;
-		display: flex;
-		flex-direction: column;
+		margin: 2.5em auto 5em;
 	}
 
 	main > :global(* + *) {
@@ -55,14 +57,32 @@
 		margin-top: var(--vertical-rhythm, 1em);
 	}
 
+	main :global(h2),
+	main :global(h3) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	main :global(h2 + *),
+	main :global(h3 + *) {
+		--vertical-rhythm: var(--size-300);
+	}
+
+	main :global(blockquote),
+	main :global(blockquote + *),
+	main :global(figure),
+	main :global(figure + *) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	main :global(table),
+	main :global(table + *) {
+		--vertical-rhythm: var(--size-700);
+		--vertical-rhythm: calc(var(--size-700) + 0.7rem);
+	}
+
 	main :global(.code),
 	main :global(.code + *) {
 		--vertical-rhythm: var(--size-600);
-	}
-
-	main :global(h2),
-	main :global(h3) {
-		max-width: 20ch;
 	}
 
 	main :global(p > code) {
@@ -190,5 +210,235 @@
 	main :global(h2 a:focus),
 	main :global(h3 a:focus) {
 		opacity: 1;
+	}
+
+	main :global(h2 a:hover),
+	main :global(h3 a:hover) {
+		opacity: 1;
+		color: hsl(340, 90%, 55%);
+		color: var(--primary-6);
+	}
+
+	main :global(ul li::marker),
+	main :global(ol li::marker) {
+		color: hsl(340, 90%, 55%);
+		color: var(--primary-6);
+	}
+
+	main :global(ol li::marker) {
+		font-family: 'Josefin Sans', sans-serif;
+		font-weight: 700;
+	}
+
+	main :global(ul ul),
+	main :global(ol ol) {
+		margin-top: 1em;
+	}
+
+	main :global(ul > * + *),
+	main :global(ol > * + *) {
+		margin-top: 0.5em;
+	}
+
+	main :global(li) {
+		line-height: 1.5;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(ul),
+		main :global(ol) {
+			padding: 0;
+		}
+
+		main :global(ul) {
+			--badge-size: 1.25em;
+			list-style: none;
+			margin-left: 1.25em;
+			margin-left: var(--badge-size);
+		}
+
+		main :global(ul li) {
+			position: relative;
+			padding-left: 0.25em;
+		}
+
+		main :global(ul li::before) {
+			content: '';
+			position: absolute;
+			top: 0.125em;
+			right: 100%;
+			width: 1.25em;
+			width: var(--badge-size);
+			height: 1.25em;
+			height: var(--badge-size);
+			background: hsl(340, 90%, 55%);
+			background: var(--primary-6);
+			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath stroke-width="8" d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath stroke-width="8" d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+		}
+
+		main :global(ol) {
+			--badge-size: 1.25em;
+			list-style: none;
+			margin-left: 1.25em;
+			margin-left: var(--badge-size);
+			counter-reset: custom-counter;
+		}
+
+		main :global(ol li) {
+			position: relative;
+			padding-left: 0.25em;
+		}
+
+		main :global(ol li::before) {
+			content: counter(custom-counter);
+			counter-increment: custom-counter;
+			font-family: 'Josefin Sans', sans-serif;
+			font-weight: 700;
+			color: hsl(340, 90%, 55%);
+			color: var(--primary-6);
+			position: absolute;
+			top: 0.125em;
+			right: 100%;
+			width: 1.25em;
+			width: var(--badge-size);
+			height: 1.25em;
+			height: var(--badge-size);
+			text-align: center;
+			transform: scale(0.8);
+			transform-origin: 50% 80%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		main :global(ol li::after) {
+			content: '';
+			position: absolute;
+			top: 0.125em;
+			right: 100%;
+			width: 1.25em;
+			width: var(--badge-size);
+			height: 1.25em;
+			height: var(--badge-size);
+			background: hsl(340, 90%, 55%);
+			background: var(--primary-6);
+			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+		}
+	}
+
+	main :global(blockquote) {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		width: max-content;
+		line-height: 2;
+		padding: 0.8em 2em;
+		border-radius: 0.4rem;
+		background: hsl(335, 100%, 86%);
+		background: var(--primary-9);
+		color: hsl(350, 100%, 8%);
+		color: var(--primary-0);
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(blockquote) {
+			position: relative;
+		}
+
+		main :global(blockquote::before),
+		main :global(blockquote::after) {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0%;
+			width: 3em;
+			height: 3em;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+			background: hsl(340, 90%, 55%);
+			background: var(--primary-6);
+			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/%3E%3C/g%3E%3C/svg%3E');
+			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" /%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-20 -20) scale(0.9)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(20 -25) scale(0.5)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(15 25) scale(0.8)"/%3E%3Cpath d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" transform="translate(-15 20) scale(0.4)"/%3E%3C/g%3E%3C/svg%3E');
+			pointer-events: none;
+		}
+
+		main :global(blockquote::after) {
+			left: 100%;
+			transform: translate(-50%, -50%) scaleX(-1);
+		}
+	}
+
+	main :global(table) {
+		line-height: 2;
+		table-layout: fixed;
+		width: 100%;
+		border-collapse: collapse;
+		border-radius: 0.4rem;
+		color: hsl(214, 15%, 88%);
+		color: var(--frappe-grey-9);
+		background: hsl(210, 20%, 12%);
+		background: var(--frappe-grey-1);
+		font-feature-settings: 'tnum';
+		position: relative;
+	}
+
+	main :global(table::before) {
+		content: '';
+		position: absolute;
+		bottom: 100%;
+		left: 0%;
+		width: 100%;
+		height: 0.7rem;
+		border-radius: 0.4rem;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background: hsl(215, 22%, 5%);
+		background: var(--frappe-grey-0);
+		background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/svg%3E');
+		background-size: 20px;
+		background-position: 0 100%;
+	}
+
+	main :global(table thead tr) {
+		text-align: left;
+		color: hsl(215, 10%, 98%);
+		color: var(--frappe-grey-10);
+		background: hsl(215, 22%, 5%);
+		background: var(--frappe-grey-0);
+		background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg opacity="0.5"%3E%3Cg fill="currentColor" stroke="none"%3E%3Ccircle r="12" /%3E%3Ccircle r="12" transform="translate(50 -50)" /%3E%3Ccircle r="12" transform="translate(50 50)" /%3E%3Ccircle r="12" transform="translate(-50 50)" /%3E%3Ccircle r="12" transform="translate(-50 -50)" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+		background-size: 20px;
+	}
+
+	main :global(table thead tr th) {
+		font-weight: 700;
+		padding: 0 1rem 0.7rem;
+		transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+		transition: color var(--transition-duration) var(--ease-in-out-sine);
+	}
+
+	main :global(table thead tr th:hover) {
+		color: hsl(340, 90%, 55%);
+		color: var(--primary-6);
+	}
+
+	main :global(table tbody tr td) {
+		font-size: 1rem;
+		font-size: var(--size-400);
+		padding: 0.5rem 1rem;
+	}
+
+	main :global(table tbody tr:nth-last-of-type(even) td) {
+		background: hsl(210, 18%, 25%);
+		background: var(--frappe-grey-2);
+	}
+
+	main :global(table [align='right']) {
+		text-align: right;
+	}
+
+	main :global(table [align='center']) {
+		text-align: center;
 	}
 </style>

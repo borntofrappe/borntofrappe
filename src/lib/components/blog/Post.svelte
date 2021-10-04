@@ -10,7 +10,7 @@
 
 <article class:latest>
 	<h2>
-		<a {href}>{title}</a>
+		<a sveltekit:prefetch {href}>{title}</a>
 	</h2>
 	<time {datetime}>{date}</time>
 	<p>

@@ -1,26 +1,35 @@
 ---
-title: Code snippet
-date: 2022-9-4-22-33
-brief: mdsvex is configured to highlight code snippets with shiki and a speficic markup.
+title: Test article 3
+date: 2021-9-3
+brief: A third post to consider rehype packages and shiki for syntax highlighting.
+keywords: node, svelte, blog
 ---
 
 If everything works you shoud find a couple of code snippet right below this paragraph. Nicely formatted snippets.
 
+## HTML
+
 ```html
-<h2 id="identifier">
+<h2 id="heading">
 	Heading
-	<a href="#identifier">
+	<a href="#heading">
 		<span class="visually-hidden">Permalink</span>
 	</a>
 </h2>
 ```
 
-```svelte
-<h1>{title}</h1>
-```
+## JavaScript
 
 ```js
 function highlight(code, lang) {
 	return `<pre><code>${code}</code></pre>`;
 }
+```
+
+## Svelte
+
+Some characters need escaping.
+
+```svelte
+<h1>{title}</h1>
 ```
