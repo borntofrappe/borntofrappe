@@ -22,7 +22,14 @@ async function highlighter(code, lang) {
 
 	return `{@html \`<div class="code"><span aria-label="Language">${
 		icons[lang] || icons.editor
-	} ${lang}</span>${shikiCode.replace(/`/g, '&#96;').replace(/\{/g, '&#123;')}</div>\`}`;
+	} ${lang}</span>${shikiCode
+		.replace(/`/g, '&#96;')
+		.replace(/\{/g, '&#123;')
+		.replace(
+			/<pre .+?>/,
+			'<pre style="background: hsl(210, 20%, 12%); background: var(--frappe-grey-1);">'
+		)}
+            </div>\`}`;
 }
 
 const config = {

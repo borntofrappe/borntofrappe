@@ -133,8 +133,8 @@
 		line-height: 1.75;
 		color: hsl(214, 15%, 88%);
 		color: var(--frappe-grey-9);
-		background: hsl(210, 20%, 12%) !important;
-		background: var(--frappe-grey-1) !important;
+		background: hsl(210, 20%, 12%);
+		background: var(--frappe-grey-1);
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
 	}

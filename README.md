@@ -7,8 +7,6 @@ _What's this?_ my personal website! There's bound to be a homepage and, fingers 
 <strong>Development notes</strong>
 </summary>
 
-Following [the documentation](https://kit.svelte.dev/docs) with excessive detail.
-
 ## Getting started
 
 > dated September 21st 2021
@@ -17,7 +15,7 @@ Following [the documentation](https://kit.svelte.dev/docs) with excessive detail
 npm init svelte@next
 ```
 
-Running the code prompts a series of questions to scaffold the project
+Running the code prompts a series of questions to structure the project:
 
 - Directory not empty. Continue? **y**
 
@@ -33,25 +31,25 @@ The command line highlights a few steps to continue
 
 1. `npm install`
 
-2. optional commit (this is already a git & Github repository)
+2. optional commit (this is already a git & GitHub repository)
 
 3. `npm run dev -- --open`
 
 The existing `README.md` is replaced with the documentation for [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte), but the markup is one `Ctrl-Z` key away. The documentation does provide a few helpful notes though:
 
-- to create a production version you need to first install an [_adapter_](https://kit.svelte.dev/docs#adapters). Afterwards:
+To create a production version you need to first install an [_adapter_](https://kit.svelte.dev/docs#adapters). Afterwards run the build command.
 
-  ```bash
-  npm run build
-  ```
+```bash
+npm run build
+```
 
-- to preview the built application:
+To preview the built version run the preview command.
 
-  ```bash
-  npm run preview
-  ```
+```bash
+npm run preview
+```
 
-## Up and running
+## Deploy
 
 > dated September 22nd 2021
 
@@ -61,7 +59,7 @@ I intend to deploy the website through Netlify, and the relevant adapter is [`ad
 npm i -D @sveltejs/adapter-netlify@next
 ```
 
-From the Github repo, the relevant configuration happens in `svelte.config.js`.
+From the GitHub repo, the relevant configuration happens in `svelte.config.js`.
 
 Import:
 
@@ -88,7 +86,7 @@ Among the [proposed options](https://docs.netlify.com/configure-builds/manage-de
 
 ```toml
 [context.production]
-  environment = { NODE_VERSION = "14.16.0" }
+  environment = { NODE_VERSION = "14.18.0" }
 ```
 
 The config file is also required to specify which command to run on build.
@@ -99,7 +97,7 @@ The config file is also required to specify which command to run on build.
   publish = "build/"
 ```
 
-With this setup, build:
+With this setup, and as mentioned above, build:
 
 ```bash
 npm run build
@@ -111,69 +109,101 @@ Preview:
 npm run preview
 ```
 
-Directing Netlify to the Github repo should then be enough to have the project live.
-
-## More than a bump
-
-> dated October 2nd 2021
-
-```bash
-npm update
-```
-
-Svelte, but most prominently the kit and the adapter are updated with the most recent commits.
-
-The design of the website is updated in the markup and stylesheet.
+Directing Netlify to the GitHub repo should then be enough to deploy the project.
 
 ## Blog
 
 > dated October 3rd 2021
 
-Installing [`mdsvex`](https://github.com/pngwn/mdsvex) allows to process, or rather pre-process, markdown files in the `routes/blog` folder. `.md`, but also and most prominently `.svx` files, which allows to use Svelte syntax in between markdown syntax.
+`src/routes/blog` includes two Svelte components to create a functioning blog: `index.svelte` and `[slug].svelte`. The idea is to use the first component to introduce the blog and list the available articles, while the second component populates the page with the content of a specific, selected post.
+
+The articles are created in a separate folder, `src/blog`, and processed through [`mdsvex`](https://github.com/pngwn/mdsvex). The choice for the specific package is that it allows to process a special kind of markup which allows Svelte syntax — by default `.svx`.
 
 ```bash
 npm i -D mdsvex
 ```
 
-The config file is updated to consider the different extensions, both for mdsvex, but also for the larger kit.
+`mdsvex.config.js` houses the configurations chosen for the preprocessor. Consider the properties of the object returned at the bottom of the file:
 
-Creating `routes/blog.svelte` rather than `routes/blog/index.svelte` allows me to include a layout file applied on the blog posts only.
+- `extensions`, to have mdsvex process both markdown and the special syntax
 
-```text
-blog.svelte
-blog/
-    __layout.svelte
+  The information needs to be repeated in the kit so that the files are considered in the first place
 
-    markdown-post.md
-    svexy-post.svx
+  ```js
+  const config = {
+  	extensions: ['.svelte', ...mdsvexConfig.extensions]
+  	// .. kit cofig
+  };
+  ```
+
+- `smartypants` to remove the fancy typographic options. This is a personal preference to have the output as close as possible to the content actually included in the articles
+
+- `rehypePlugins` to modify the processed markup with plugins from the [rehype](https://github.com/rehypejs/rehype) ecosystem
+
+  - [`rehype-slug`](https://github.com/rehypejs/rehype-slug) to add a unique `id` attribute to heading elements
+
+  - [`rehype-autolink`](https://github.com/rehypejs/rehype-autolink-headings) to include an anchor link element redirecting toward the headings and their respective identifier
+
+  While the first package is used as-is, the second is modified to include a specific markup following the [`hast`](https://github.com/rehypejs/rehype-autolink-headings#optionscontent) specification
+
+- `highlight` to replace the default solution for syntax highlighting with [`shiki`](https://github.com/shikijs/shiki)
+
+  This pacakge requires a bit of adjustment considering the immaturity of the installed packages, and the issues mdsvex raises when processing particular characters.
+
+  Following the suggestions from a couple of issues, [117](https://github.com/pngwn/MDsveX/issues/117#issuecomment-674253491) and [205](https://github.com/pngwn/MDsveX/issues/205#issuecomment-803685689), it is necessary to include the markup with a `{@html }` statement taking care of escaping tags interpreted as expressions
+
+This setup works to process the articles in the chosen formats, but it is then necessary to update the kit in order to:
+
+1. read the contents of the chosen blog folder
+
+2. populate the `[slug].svelte` page when the slug matches one of the available posts
+
+To read the contents refer it is possible to rely on [`import.meta.glob`](https://vitejs.dev/guide/features.html#glob-import), a functionality provided by vite.
+
+It is possible to use the syntax in the `load` function of the desired Svelte components, but I decided to rely on the feature in a hook file, `hooks/index.js`, with the goal of updating the `session` object with an array of the available articles.
+
+```js
+export async function getSession() {
+	// return an array of posts
+}
 ```
 
-In `blog.svelte` the idea is to show a list of links redirecting to each and every article in the blog folder. At the top of the component the `load` function allows to retrieve the necessary files through the [`import.meta.glob`](https://vitejs.dev/guide/features.html#glob-import) functionality provided by vite.
-
-### Update — Session
-
-Instead of looking for articles in the load function, it is possible to include the array in the session object. The logic is moved to `src/hooks/index.js`, and the blog, or any other page for that matter, can then access the list in the initial script.
+In this manner the blog, but also any and other route which need the information, can extract the list from the load function.
 
 ```js
 export async function load({ session }) {
 	const { posts } = session;
-
-	// return props
 }
 ```
 
-### Update — Structure
+The array of posts describes the articles through their path, slug and metadata.
 
-The blog is restructured to have `blog/index.svelte` and `blog/[slug].svelte`, with the goal of fetching an article matching the `slug` parameter. The articles are moved into a separate folder, `src/blog`, which immediately means the hook needs to be updated.
+To find a specific article the route behind `[slug].svelte` retrieves the parameter from the page object.
 
-```diff
--import.meta.glob('/src/blog/*.{md,svx}'))
-+import.meta.glob('/src/routes/blog/*.{md,svx}'))
+```js
+export async function load({ page, session }) {
+	const { slug } = page.params;
+}
 ```
 
-In `[slug].svelte` the idea is to then return a specific post or a 404 page.
+If the array of posts has an object with a matching slug path, the idea is to then repeat the `import.meta.glob` instruction to finally extract the contents of the document.
 
-404 page meaning an object with a specific status and error message.
+The information is passed through props and ultimately included in a `<svelte:component>` element.
+
+```svelte
+<svelte:component this={Component} />
+```
+
+It'd be possible to include the component as is, but it would raise the following warning.
+
+```svelte
+<Component />
+<!--
+<Component/> will not be reactive if Component changes. Use <svelte:component this={Component}/> if you want this reactivity.
+-->
+```
+
+If the slug doesn't match a post, it is enough to return an object with a status code of 404 to have the kit rely on the error page.
 
 ```js
 return {
@@ -181,112 +211,5 @@ return {
 	error: new Error('Post not found')
 };
 ```
-
-Post using the `import.meta.glob` syntax. Heer I decided to use the array in the `session` object to first check if the post exist.
-
-```js
-const { slug } = page.params;
-const match = session.posts.find((post) => post.slug === slug);
-```
-
-If there is an object with the same `slug`, the idea is to use the mentioned glob syntax and extract the specific object referring to the post. Here it is useful to have a reference to the post's path since the glob statement returns an object with the path as the key. Store the path in the session object, alongside the slug.
-
-```js
-return {
-	path,
-	slug,
-	...metadata
-};
-```
-
-Use the path of the matching post to pick the post from the glob-bed object.
-
-```js
-const posts = import.meta.glob('/src/blog/*.{md,svx}');
-const post = await posts[match.path]();
-```
-
-It may look a tad convoluted, but this structure allows to retrieve the metadata and the content through the `default` field.
-
-```js
-const { default: Component, metadata } = post;
-```
-
-The end result can be included in the markup, directly as a svelte component.
-
-```svelte
-<Component />
-```
-
-_Please note:_ the command line highlights the following message.
-
-```text
-<Component/> will not be reactive if Component changes. Use <svelte:component this={Component}/> if you want this reactivity.
-```
-
-Which leads to the special svelte element.
-
-```svelte
-<svelte:component this={Component} />
-```
-
-### Update — Dates
-
-The frontmatter includes a date.
-
-```yaml
-date: 2021-9-21-22-04
-```
-
-The information is used:
-
-- in the session object to sort the blog posts according to date, from most to least recent
-
-- in the blog index, as the content and `datetime` attribute of a `<time>` element
-
-## Bug fixes
-
-> started October 3d, 2021
-
-- the fonts should be referenced from the root folder
-
-  ```diff
-  url('fonts/jost-bold-webfont.woff2') format('woff2')
-  +url('/fonts/jost-bold-webfont.woff2') format('woff2')
-  ```
-
-  The first statement would not work in a nested route like `/blog`, which would otherwise look for `blog/fonts/...`
-
-- the fonts are updated to remove some of the options added by default by the font squirrel generator
-
-## Config
-
-`mdsvex` is configured in a separate file `mdsvex.config.js`
-
-Two rehype packages allow to add the permalink to the headings processed in the markdown documents (md and svx).
-
-```bash
-npm i -D rehype-slug
-npm i -D rehype-autolink-headings
-```
-
-The auto-headings package is configured to have the following markup.
-
-```html
-<h2 id="identifier">
-	Heading
-	<a href="#identifier">
-		<span class="visually-hidden">Permalink</span>
-	</a>
-</h2>
-```
-
-Shiki is used in place of the default solution to highlight the code snippets on build.
-
-```bash
-npm i -D shiki
-```
-
-A few adjustments are however necessary to incorporate the highlighted code in the context of the preprocessor.
 
 </details>

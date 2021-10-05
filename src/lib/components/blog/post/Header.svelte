@@ -84,7 +84,7 @@
 
 	header ul li {
 		flex-shrink: 0;
-		padding: 10px;
+		padding: 0.5em;
 		border-radius: 50%;
 		margin: 0px 22.5px;
 		width: 55px;
