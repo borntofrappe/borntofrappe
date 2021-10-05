@@ -212,24 +212,4 @@ return {
 };
 ```
 
-## Temporary fix
-
-The Netlify build fails highlighting a missing package.
-
-```text
-A Netlify Function failed to require one of its dependencies.
-Please make sure it is present in the site's top-level "package.json".
-
-In file "/opt/build/repo/.netlify/functions-internal/__render.js"
-Cannot find module 'stream/package.json'
-```
-
-Following the suggestion from issue [2523](https://github.com/sveltejs/kit/issues/2523) the package is updated individually.
-
-```bash
-npm i -D stream
-```
-
-That being said, version `@next.180` should make the instruction redundant.
-
 </details>
