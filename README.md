@@ -64,17 +64,17 @@ From the GitHub repo, the relevant configuration happens in `svelte.config.js`.
 Import:
 
 ```js
-import adapter from '@sveltejs/adapter-netlify';
+import adapter from "@sveltejs/adapter-netlify";
 ```
 
 Add the adapter to the field describing the `kit`:
 
 ```js
 export default {
-	kit: {
-		adapter: adapter(),
-		target: '#svelte'
-	}
+  kit: {
+    adapter: adapter(),
+    target: "#svelte",
+  },
 };
 ```
 
@@ -131,8 +131,8 @@ npm i -D mdsvex
 
   ```js
   const config = {
-  	extensions: ['.svelte', ...mdsvexConfig.extensions]
-  	// .. kit cofig
+    extensions: [".svelte", ...mdsvexConfig.extensions],
+    // .. kit cofig
   };
   ```
 
@@ -164,7 +164,7 @@ It is possible to use the syntax in the `load` function of the desired Svelte co
 
 ```js
 export async function getSession() {
-	// return an array of posts
+  // return an array of posts
 }
 ```
 
@@ -172,7 +172,7 @@ In this manner the blog, but also any and other route which need the information
 
 ```js
 export async function load({ session }) {
-	const { posts } = session;
+  const { posts } = session;
 }
 ```
 
@@ -182,7 +182,7 @@ To find a specific article the route behind `[slug].svelte` retrieves the parame
 
 ```js
 export async function load({ page, session }) {
-	const { slug } = page.params;
+  const { slug } = page.params;
 }
 ```
 
@@ -207,9 +207,13 @@ If the slug doesn't match a post, it is enough to return an object with a status
 
 ```js
 return {
-	status: 404,
-	error: new Error('Post not found')
+  status: 404,
+  error: new Error("Post not found"),
 };
 ```
+
+## Dot Netlify
+
+The project includes `.netlify` folder.
 
 </details>
