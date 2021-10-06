@@ -9,7 +9,7 @@ _What's this?_ my personal website! There's bound to be a homepage and, fingers 
 
 ## Getting started
 
-> dated September 21st 2021
+> updated October 6th 2021
 
 ```bash
 npm init svelte@next
@@ -51,7 +51,7 @@ npm run preview
 
 ## Deploy
 
-> dated September 22nd 2021
+> updated October 6th 2021
 
 I intend to deploy the website through Netlify, and the relevant adapter is [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
@@ -64,17 +64,17 @@ From the GitHub repo, the relevant configuration happens in `svelte.config.js`.
 Import:
 
 ```js
-import adapter from "@sveltejs/adapter-netlify";
+import adapter from '@sveltejs/adapter-netlify';
 ```
 
 Add the adapter to the field describing the `kit`:
 
 ```js
 export default {
-  kit: {
-    adapter: adapter(),
-    target: "#svelte",
-  },
+	kit: {
+		adapter: adapter(),
+		target: '#svelte'
+	}
 };
 ```
 
@@ -113,7 +113,7 @@ Directing Netlify to the GitHub repo should then be enough to deploy the project
 
 ## Blog
 
-> dated October 3rd 2021
+> updated October 6th 2021
 
 `src/routes/blog` includes two Svelte components to create a functioning blog: `index.svelte` and `[slug].svelte`. The idea is to use the first component to introduce the blog and list the available articles, while the second component populates the page with the content of a specific, selected post.
 
@@ -131,8 +131,8 @@ npm i -D mdsvex
 
   ```js
   const config = {
-    extensions: [".svelte", ...mdsvexConfig.extensions],
-    // .. kit cofig
+  	extensions: ['.svelte', ...mdsvexConfig.extensions]
+  	// .. kit cofig
   };
   ```
 
@@ -142,13 +142,25 @@ npm i -D mdsvex
 
   - [`rehype-slug`](https://github.com/rehypejs/rehype-slug) to add a unique `id` attribute to heading elements
 
+  ```bash
+  npm i -D rehype-slug
+  ```
+
   - [`rehype-autolink`](https://github.com/rehypejs/rehype-autolink-headings) to include an anchor link element redirecting toward the headings and their respective identifier
+
+  ```bash
+  npm i -D rehype-autolink-headings
+  ```
 
   While the first package is used as-is, the second is modified to include a specific markup following the [`hast`](https://github.com/rehypejs/rehype-autolink-headings#optionscontent) specification
 
 - `highlight` to replace the default solution for syntax highlighting with [`shiki`](https://github.com/shikijs/shiki)
 
-  This pacakge requires a bit of adjustment considering the immaturity of the installed packages, and the issues mdsvex raises when processing particular characters.
+  ```bash
+  npm i -D shiki
+  ```
+
+  The pacakge requires a bit of adjustment considering the immaturity of the installed packages, and the issues mdsvex raises when processing particular characters.
 
   Following the suggestions from a couple of issues, [117](https://github.com/pngwn/MDsveX/issues/117#issuecomment-674253491) and [205](https://github.com/pngwn/MDsveX/issues/205#issuecomment-803685689), it is necessary to include the markup with a `{@html }` statement taking care of escaping tags interpreted as expressions
 
@@ -164,7 +176,7 @@ It is possible to use the syntax in the `load` function of the desired Svelte co
 
 ```js
 export async function getSession() {
-  // return an array of posts
+	// return an array of posts
 }
 ```
 
@@ -172,7 +184,7 @@ In this manner the blog, but also any and other route which need the information
 
 ```js
 export async function load({ session }) {
-  const { posts } = session;
+	const { posts } = session;
 }
 ```
 
@@ -182,7 +194,7 @@ To find a specific article the route behind `[slug].svelte` retrieves the parame
 
 ```js
 export async function load({ page, session }) {
-  const { slug } = page.params;
+	const { slug } = page.params;
 }
 ```
 
@@ -207,27 +219,9 @@ If the slug doesn't match a post, it is enough to return an object with a status
 
 ```js
 return {
-  status: 404,
-  error: new Error("Post not found"),
+	status: 404,
+	error: new Error('Post not found')
 };
 ```
-
-## stream dependency
-
-```bash
-npm i -D stream
-```
-
-The instruction seems necessary since the Netlify build fails with the following message.
-
-```text
-A Netlify Function failed to require one of its dependencies.
-Please make sure it is present in the site's top-level "package.json".
-​
-In file "/opt/build/repo/.netlify/functions-internal/__render.js"
-Cannot find module 'stream/package.json'
-```
-
-According to [this issue](https://github.com/node-fetch/fetch-blob/issues/117) specifying the additional dependency will be unnecessary with a later version of the API.
 
 </details>

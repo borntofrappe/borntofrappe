@@ -1,7 +1,4 @@
-.netlify
 .DS_Store
-.eslintrc.cjs
-.prettierrc
 node_modules
 /build
 /.svelte-kit
