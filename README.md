@@ -212,8 +212,22 @@ return {
 };
 ```
 
-## Dot Netlify
+## stream dependency
 
-The project includes `.netlify` folder.
+```bash
+npm i -D stream
+```
+
+The instruction seems necessary since the Netlify build fails with the following message.
+
+```text
+A Netlify Function failed to require one of its dependencies.
+Please make sure it is present in the site's top-level "package.json".
+​
+In file "/opt/build/repo/.netlify/functions-internal/__render.js"
+Cannot find module 'stream/package.json'
+```
+
+According to [this issue](https://github.com/node-fetch/fetch-blob/issues/117) specifying the additional dependency will be unnecessary with a later version of the API.
 
 </details>
