@@ -14,7 +14,18 @@ export async function getSession() {
 		})
 	);
 
+	const sortedPosts = posts
+		.map((post) => {
+			const date = new Date(
+				...post.datetime
+					.split(/[-,T:]/)
+					.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+			);
+			return { ...post, date };
+		})
+		.sort((a, b) => (b.date > a.date ? 1 : -1));
+
 	return {
-		posts: posts.sort((a, b) => new Date(...b.date.split('-')) - new Date(...a.date.split('-')))
+		posts: sortedPosts
 	};
 }

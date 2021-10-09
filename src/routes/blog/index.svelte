@@ -16,19 +16,6 @@
 	import Post from '$lib/components/blog/Post.svelte';
 
 	export let posts;
-
-	const formatter = new Intl.DateTimeFormat('en', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric'
-	});
-
-	posts.forEach((post) => {
-		const datetime = new Date(new Date(...post.date.split('-')));
-		post.datetime = datetime;
-		post.date = formatter.format(datetime);
-		post.href = `/blog/${post.slug}`;
-	});
 </script>
 
 <Meta
