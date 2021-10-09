@@ -43,9 +43,13 @@
 />
 
 <main id="content">
-	{#each posts as post, i}
-		<Post {...post} latest={i === 0} />
-	{/each}
+	{#if posts.length > 0}
+		{#each posts as post, i}
+			<Post {...post} latest={i === 0} />
+		{/each}
+	{:else}
+		<h2>... get writing!</h2>
+	{/if}
 </main>
 
 <style>
