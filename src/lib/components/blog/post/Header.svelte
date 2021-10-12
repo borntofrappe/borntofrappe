@@ -64,7 +64,7 @@
 	header h1 {
 		color: inherit;
 		text-align: center;
-		max-width: 15ch;
+		max-width: 20ch;
 		margin: 0 auto;
 	}
 

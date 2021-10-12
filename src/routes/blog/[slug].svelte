@@ -86,12 +86,14 @@
 	}
 
 	main :global(p > code) {
-		padding: 0 0.2em;
 		font-family: inherit;
-		color: hsl(350, 100%, 8%);
-		color: var(--primary-0);
-		background: hsl(330, 100%, 92%);
-		background: var(--primary-10);
+		font-weight: 700;
+		padding: 0 0.2em;
+		color: hsl(214, 15%, 88%);
+		color: var(--grey-9);
+		background: hsl(210, 20%, 12%);
+		background: var(--grey-1);
+		border-radius: 0.25em;
 	}
 
 	main :global(.code > span),
@@ -333,6 +335,7 @@
 		margin-right: auto;
 		text-align: center;
 		width: max-content;
+		max-width: 40ch;
 		line-height: 2;
 		padding: 0.8em 2em;
 		border-radius: 0.4rem;

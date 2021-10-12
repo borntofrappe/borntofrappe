@@ -18,40 +18,40 @@
 	<svg
 		aria-hidden="true"
 		xmlns="http://www.w3.org/2000/svg"
-		viewBox="-80 -80 160 160"
+		viewBox="-90 -90 180 180"
 		width="1em"
 		height="1em"
 	>
 		<defs>
 			<clipPath id="clip-path-toggle">
-				<circle r="80" />
+				<circle r="90" />
 			</clipPath>
 		</defs>
-		<circle fill="none" stroke="currentColor" stroke-width="10" r="75" />
+		<circle fill="none" stroke="currentColor" stroke-width="10" r="85" />
 		<g clip-path="url(#clip-path-toggle)">
-			<g transform="translate(0 80)">
+			<g transform="translate(0 90)">
 				<g class="scale">
 					<g class="rotate">
-						<g transform="translate(0 -80)">
+						<g transform="translate(0 -90)">
 							<g transform="scale(-1 1)">
 								<g class="rotate">
 									<g transform="scale(-1 1)">
 										<g fill="currentColor" stroke="none">
 											<circle r="22" />
-											<circle transform="translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(45) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(90) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(135) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(180) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(225) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(270) translate(0 41.2)" r="8.8" />
-											<circle transform="rotate(315) translate(0 41.2)" r="8.8" />
+											<circle transform="translate(0 41)" r="9" />
+											<circle transform="rotate(45) translate(0 41)" r="9" />
+											<circle transform="rotate(90) translate(0 41)" r="9" />
+											<circle transform="rotate(135) translate(0 41)" r="9" />
+											<circle transform="rotate(180) translate(0 41)" r="9" />
+											<circle transform="rotate(225) translate(0 41)" r="9" />
+											<circle transform="rotate(270) translate(0 41)" r="9" />
+											<circle transform="rotate(315) translate(0 41)" r="9" />
 										</g>
 									</g>
 								</g>
 							</g>
 						</g>
-						<g transform="translate(0 80)">
+						<g transform="translate(0 90)">
 							<g transform="scale(-1 1)">
 								<g class="rotate">
 									<g transform="scale(-1 1)">
