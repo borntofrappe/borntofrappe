@@ -1,5 +1,5 @@
 <script>
-	import { formatter } from '$lib/utils.js';
+	import { format } from '$lib/utils.js';
 
 	export let title;
 	export let slug;
@@ -14,7 +14,7 @@
 	<h2>
 		<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
 	</h2>
-	<time {datetime}>{formatter.format(date)}</time>
+	<time {datetime}>{format(date)}</time>
 	<p>
 		{brief}
 	</p>

@@ -18,7 +18,7 @@ export async function getSession() {
 		.map((post) => {
 			const date = new Date(
 				...post.datetime
-					.split(/[-,T:]/)
+					.split(/[-T:]/)
 					.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
 			);
 			return { ...post, date };

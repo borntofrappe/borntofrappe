@@ -29,8 +29,28 @@ export function observe(node) {
 	}
 }
 
-export const formatter = new Intl.DateTimeFormat('en', {
-	year: 'numeric',
-	month: 'long',
-	day: 'numeric'
-});
+export const format = (date) => {
+	if (Intl.DateTimeFormat) {
+		return new Intl.DateTimeFormat('en', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		}).format(date);
+	}
+
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+	return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+};
