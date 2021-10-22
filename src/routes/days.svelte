@@ -49,10 +49,18 @@ npm i -D @sveltejs/adapter-netlify@next
 
 	<pre>
     <code>
+[context.production]
+  environment = &#123; NODE_VERSION = "14.18.1" &#125;
+
 [functions]
   node_bundler = "esbuild"
     </code>
   </pre>
 
-	<p>14.8.1 because that's the version I have locally.</p>
+	<p>
+		14.8.1 because that's the version I have locally. <code>esbuild</code> for
+		<a href="https://github.com/sveltejs/kit/issues/2523#issuecomment-938742210"
+			>netlify functions</a
+		>
+	</p>
 </article>
