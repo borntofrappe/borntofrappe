@@ -5,7 +5,7 @@
 <article>
 	<h2><time datetime="2021-10-22T23:26">Day 0</time> - A simple start</h2>
 	<h3>
-		<a href="https://kit.svelte.dev/docs#introduction-getting-started">A fresh install</a>
+		<a href="https://kit.svelte.dev/docs#introduction-getting-started">Fresh install</a>
 	</h3>
 
 	<pre>
@@ -22,7 +22,19 @@ npm run dev
 	</p>
 
 	<h3>
-		<a href="https://kit.svelte.dev/docs#adapters">A rapid deploy</a>
+		<a href="https://kit.svelte.dev/docs#layouts">Tentative layout</a>
+	</h3>
+
+	<pre>
+    <code>
+&#60;nav&#62;&#60;/nav&#62;
+&#60;slot /&#62;
+&#60;footer&#62;&#60;/footer&#62;
+    </code>
+  </pre>
+
+	<h3>
+		<a href="https://kit.svelte.dev/docs#adapters">Rapid deploy</a>
 	</h3>
 
 	<pre>
@@ -33,15 +45,14 @@ npm i -D @sveltejs/adapter-netlify@next
 
 	<p>Netlify because serverless. And jam. Possibly jam.</p>
 
-	<h3>
-		<a href="https://kit.svelte.dev/docs#layouts">A tentative layout</a>
-	</h3>
+	<h3>Pesky error</h3>
 
 	<pre>
     <code>
-&lt;nav&gt;&lt;/nav&gt;
-&lt;slot /&gt;
-&lt;footer&gt;&lt;/footer&gt;
+[context.production]
+  environment = &#123; NODE_VERSION = "14.18.1" &#125;
     </code>
   </pre>
+
+	<p>14.8.1 because that's the version I have locally.</p>
 </article>
