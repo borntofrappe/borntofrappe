@@ -49,8 +49,8 @@ npm i -D @sveltejs/adapter-netlify@next
 
 	<pre>
     <code>
-[context.production]
-  environment = &#123; NODE_VERSION = "14.18.1" &#125;
+[functions]
+  node_bundler = "esbuild"
     </code>
   </pre>
 
