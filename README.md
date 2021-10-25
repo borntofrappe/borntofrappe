@@ -1,14 +1,14 @@
-# borntofrappe
+# [borntofrappe](https://borntofrappe.netlify.app/)
 
 Huzza! My personal website!
 
 Uses:
 
-- SvelteKit
+- [SvelteKit](https://kit.svelte.dev/)
 
-- Netlify
+- [Netlify](https://www.netlify.com/)
 
-<details open>
+<details>
 <summary><strong>Notes for my future self</strong></summary>
 
 ## Init
@@ -85,5 +85,17 @@ Removes a bunch of warnings for optional dependencies relying on later node & np
 ```
 
 Seems to fix [an issue with a specific package](https://github.com/sveltejs/kit/issues/2523) which causes the Netlify build to fail.
+
+## Icons
+
+Starting from a rocket I drawn with SVG syntax:
+
+- [realfavicongenerator](https://realfavicongenerator.net) to generate the `.png`, `.ico` variants
+
+- [squoosh](https://squoosh.app/) to optimize the `.png` images
+
+- [svgomg](https://jakearchibald.github.io/svgomg/) to optimize the `.svg` version (not by that much :))
+
+##
 
 </details>

@@ -9,8 +9,8 @@
 </p>
 
 <p>
-	Welcome to my personal website, built with <a href="https://kit.svelte.de">SvelteKit</a>, deployed
-	through <a href="https://www.netlify.com/">Netlify</a>.
+	Welcome to my little place on the web, built with <a href="https://kit.svelte.de">SvelteKit</a>,
+	deployed through <a href="https://www.netlify.com/">Netlify</a>.
 </p>
 
 <style>
@@ -26,7 +26,9 @@
 		color: hsl(234, 62%, 26%);
 		background: hsla(221, 68%, 93%, 0.9);
 	}
-	:global(a) {
-		color: inherit;
+
+	a,
+	b {
+		color: hsl(16, 94%, 61%);
 	}
 </style>
