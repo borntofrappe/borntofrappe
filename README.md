@@ -8,6 +8,14 @@ Uses:
 
 - [Netlify](https://www.netlify.com/)
 
+Plans:
+
+- a landing page
+
+- a blog
+
+- more than one blog post
+
 <details>
 <summary><strong>For my future self</strong></summary>
 
@@ -128,8 +136,11 @@ Following the suggestion from [refactoring UI](https://www.refactoringui.com/pre
 
 ```css
 :root {
-	--indigo-000: hsl(216, 100%, 93%);
-	--indigo-100: hsl(216, 100%, 85%);
+	--grey-000: hsl(216, 33%, 97%);
+	--grey-100: hsl(214, 15%, 91%);
+	/*  */
+	--grey-800: hsl(209, 20%, 25%);
+	--grey-900: hsl(210, 24%, 16%);
 }
 ```
 
@@ -158,6 +169,44 @@ The properties will cascade down to benefiting elements.
 ```svelte
 import '../app.css';
 ```
+
+## Custom properties
+
+Beside color properties I use the `:root` selector to define other values repeated throughout the website. The idea is to have a system for sizes, transitions and any other value which needs consistency.
+
+For each property using a custom property I repeat the declaration to provide a fallback. This value works for browsers which do not support custom properties.
+
+```css
+body {
+	color: hsl(210, 16%, 82%);
+	color: var(--copy-color);
+}
+```
+
+I chose not to, but it is possible to repeat the value inside of the `var()` function. This works for browsers that do support custom properties, but are not able to find the custom property itself.
+
+```css
+body {
+	color: var(--copy-color, hsl(210, 16%, 82%));
+}
+```
+
+Say `--copy-color` is not defined, without this fallback the browser would revert to the initial value.
+
+## Sizes
+
+With `--size` I include steps from the [major third](https://www.modularscale.com/?1&em&1.25) scale.
+
+```css
+:root {
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+}
+```
+
+## CSS reset
+
+In `app.css` I follow most of the guidance from [a modern CSS reset](https://piccalil.li/blog/a-modern-css-reset/).
 
 ##
 

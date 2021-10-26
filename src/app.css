@@ -1,3 +1,34 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+	margin: 0;
+}
+
+img,
+picture,
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
 :root {
 	--indigo-000: hsl(216, 100%, 93%);
 	--indigo-100: hsl(216, 100%, 85%);
@@ -31,6 +62,22 @@
 	--grey-700: hsl(209, 18%, 30%);
 	--grey-800: hsl(209, 20%, 25%);
 	--grey-900: hsl(210, 24%, 16%);
+
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+	--size-500: 1.25rem;
+	--size-600: 1.56rem;
+	--size-700: 1.95rem;
+	--size-800: 2.44rem;
+	--size-900: 3.05rem;
+
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+	--transition-duration: 0.25s;
 }
 
 body {
@@ -40,27 +87,122 @@ body {
 	--accent-color: var(--cyan-600);
 }
 
+::selection {
+	color: hsl(234, 90%, 25%);
+	color: var(--background-color);
+	background: hsl(210, 16%, 82%);
+	background: var(--copy-color);
+}
+
 body {
+	text-rendering: optimizeSpeed;
+	color: hsl(210, 16%, 82%);
 	color: var(--copy-color);
+	background: hsl(234, 90%, 25%);
 	background: var(--background-color);
 }
 
-::selection {
-	color: var(--background-color);
-	background: var(--copy-color);
+body::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: hsl(234, 90%, 25%);
+	background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+	border: 0.2rem solid hsl(234, 90%, 25%);
+	border: 0.2rem solid var(--background-color);
+	border-radius: 0.5rem;
+	background: hsl(182, 85%, 39%);
+	background: var(--accent-color);
 }
 
 h1,
 h2,
 h3,
 h4 {
+	color: hsl(214, 15%, 91%);
 	color: var(--heading-color);
 }
 
+input,
+button,
+textarea,
+select {
+	accent-color: hsl(182, 85%, 39%);
+	accent-color: var(--accent-color);
+}
+
 a {
+	text-decoration-skip-ink: auto;
 	color: inherit;
+	font-family: inherit;
+	transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: color var(--transition-duration) var(--ease-in-out-sine);
 }
 
 a:hover {
+	color: hsl(182, 85%, 39%);
 	color: var(--accent-color);
+}
+
+a:focus {
+	outline: 0.15rem dashed currentColor;
+}
+
+a:focus:not(:focus-visible) {
+	outline: none;
+}
+
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 2.44rem;
+	font-size: var(--size-800);
+}
+
+h2 {
+	font-size: 1.95rem;
+	font-size: var(--size-700);
+}
+
+h3 {
+	font-size: 1.56rem;
+	font-size: var(--size-600);
+}
+
+@media (min-width: 42rem) {
+	body {
+		font-size: 1.25rem;
+		font-size: var(--size-500);
+	}
+
+	h1 {
+		font-size: 3.05rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 2.44rem;
+		font-size: var(--size-800);
+	}
+
+	h3 {
+		font-size: 1.95rem;
+		font-size: var(--size-700);
+	}
+}
+
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
 }
