@@ -1,0 +1,66 @@
+:root {
+	--indigo-000: hsl(216, 100%, 93%);
+	--indigo-100: hsl(216, 100%, 85%);
+	--indigo-200: hsl(219, 95%, 76%);
+	--indigo-300: hsl(222, 81%, 65%);
+	--indigo-400: hsl(224, 69%, 54%);
+	--indigo-500: hsl(223, 71%, 47%);
+	--indigo-600: hsl(228, 74%, 43%);
+	--indigo-700: hsl(230, 80%, 38%);
+	--indigo-800: hsl(232, 86%, 32%);
+	--indigo-900: hsl(234, 90%, 25%);
+
+	--cyan-000: hsl(171, 82%, 94%);
+	--cyan-100: hsl(172, 97%, 88%);
+	--cyan-200: hsl(174, 96%, 78%);
+	--cyan-300: hsl(176, 87%, 67%);
+	--cyan-400: hsl(178, 78%, 57%);
+	--cyan-500: hsl(180, 77%, 47%);
+	--cyan-600: hsl(182, 85%, 39%);
+	--cyan-700: hsl(184, 90%, 34%);
+	--cyan-800: hsl(186, 91%, 29%);
+	--cyan-900: hsl(188, 91%, 23%);
+
+	--grey-000: hsl(216, 33%, 97%);
+	--grey-100: hsl(214, 15%, 91%);
+	--grey-200: hsl(210, 16%, 82%);
+	--grey-300: hsl(211, 13%, 65%);
+	--grey-400: hsl(211, 10%, 53%);
+	--grey-500: hsl(211, 12%, 43%);
+	--grey-600: hsl(209, 14%, 37%);
+	--grey-700: hsl(209, 18%, 30%);
+	--grey-800: hsl(209, 20%, 25%);
+	--grey-900: hsl(210, 24%, 16%);
+}
+
+body {
+	--copy-color: var(--grey-200);
+	--heading-color: var(--grey-100);
+	--background-color: var(--indigo-900);
+	--accent-color: var(--cyan-600);
+}
+
+body {
+	color: var(--copy-color);
+	background: var(--background-color);
+}
+
+::selection {
+	color: var(--background-color);
+	background: var(--copy-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: var(--heading-color);
+}
+
+a {
+	color: inherit;
+}
+
+a:hover {
+	color: var(--accent-color);
+}

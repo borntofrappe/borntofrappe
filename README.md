@@ -122,6 +122,43 @@ In terms of CSS the `<style>` tag associates the fonts with the class `.webfonts
 
 In terms of JavaScript the `<script/>` tag loads the fonts with the [font loading API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API).
 
+## Colors
+
+Following the suggestion from [refactoring UI](https://www.refactoringui.com/previews/building-your-color-palette) the `:root` selector defines custom properties for different sets of colors. Each set has ten combinations of `hsl` values with decreasing brightness.
+
+```css
+:root {
+	--indigo-000: hsl(216, 100%, 93%);
+	--indigo-100: hsl(216, 100%, 85%);
+}
+```
+
+From this starting point the `body` selector introduces the properties actually used throughout the website.
+
+```css
+body {
+	--copy-color: var(--grey-200);
+	--heading-color: var(--grey-100);
+}
+```
+
+This makes it easier to implement an alternative color palette, say for a light theme.
+
+```css
+body.light {
+	--copy-color: var(--grey-800);
+	--heading-color: var(--grey-900);
+}
+```
+
+The properties will cascade down to benefiting elements.
+
+`app.css` defines the properties. `__layout.svelte` imports the stylesheet directly in the script.
+
+```svelte
+import '../app.css';
+```
+
 ##
 
 </details>
