@@ -9,7 +9,7 @@ Uses:
 - [Netlify](https://www.netlify.com/)
 
 <details>
-<summary><strong>Notes for my future self</strong></summary>
+<summary><strong>For my future self</strong></summary>
 
 ## Init
 
@@ -88,13 +88,15 @@ Seems to fix [an issue with a specific package](https://github.com/sveltejs/kit/
 
 ## Icons
 
-Starting from a rocket I drawn with SVG syntax:
+I drew an SVG icon to make out the outline of a rocket. From this starting point I removed the unnecessary whitespace and converted the `hsl` color with hexadecimal, saving up a few bytes.
 
-- [realfavicongenerator](https://realfavicongenerator.net) to generate the `.png`, `.ico` variants
+With [realfavicongenerator](https://realfavicongenerator.net) I created the `.png`, `.ico` variants.
 
-- [squoosh](https://squoosh.app/) to optimize the `.png` images
+With [squoosh](https://squoosh.app/) I finally optimized the images.
 
-- [svgomg](https://jakearchibald.github.io/svgomg/) to optimize the `.svg` version (not by that much :))
+## Colors
+
+## Fonts
 
 ##
 
