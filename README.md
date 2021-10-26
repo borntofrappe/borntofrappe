@@ -94,9 +94,33 @@ With [realfavicongenerator](https://realfavicongenerator.net) I created the `.pn
 
 With [squoosh](https://squoosh.app/) I finally optimized the images.
 
-## Colors
+## Webfonts
 
-## Fonts
+From [Google fonts](https://fonts.google.com/) I cherry picked:
+
+- JosefinSans, only in its bold variant
+
+- Jost, considering the regular, bold and italic variants
+
+I don't load a `monospace` webfont and instead prefer to rely on the system font stack. Inconsolata is my preferred option, but it's used only if already available on the machine.
+
+With [fontsquirrel](https://www.fontsquirrel.com/tools/webfont-generator) I created the `woff` and `woff2` file formats, changing a few options in the process:
+
+- keep existing true type hinting
+
+- do not fix GASP table
+
+- no adjustment for vertical metrics
+
+- do not fix missing glyphs, either spaces or hyphens
+
+I don't like the idea that the generator meddles with the typeface, especially considering the vertical measure.
+
+The fonts are placed in the `static` folder and loaded `app.html` following the one-step loading strategy explained in [a comprehensive guide to webfonts](https://www.zachleat.com/web/comprehensive-webfonts/).
+
+In terms of CSS the `<style>` tag associates the fonts with the class `.webfonts`, relying by default on the system font stack.
+
+In terms of JavaScript the `<script/>` tag loads the fonts with the [font loading API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API).
 
 ##
 
