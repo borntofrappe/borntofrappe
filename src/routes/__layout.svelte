@@ -5,7 +5,9 @@
 <div>
 	<slot />
 	<footer>
-		<time datetime="2021-10-26T23:32">October 26, 2021</time>
+		<p>
+			Updated <time datetime="2021-10-26T23:32">October 27, 2021</time>
+		</p>
 	</footer>
 </div>
 
