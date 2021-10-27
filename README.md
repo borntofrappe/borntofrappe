@@ -8,14 +8,6 @@ Uses:
 
 - [Netlify](https://www.netlify.com/)
 
-Plans:
-
-- a landing page
-
-- a blog
-
-- more than one blog post
-
 <details>
 <summary><strong>For my future self</strong></summary>
 
@@ -106,9 +98,9 @@ With [squoosh](https://squoosh.app/) I finally optimized the images.
 
 From [Google fonts](https://fonts.google.com/) I cherry picked:
 
-- JosefinSans, only in its bold variant
+- JosefinSans, only in its semibold variant
 
-- Jost, considering the regular, bold and italic variants
+- Jost, considering the regular, semibold and italic variants
 
 I don't load a `monospace` webfont and instead prefer to rely on the system font stack. Inconsolata is my preferred option, but it's used only if already available on the machine.
 
@@ -136,11 +128,11 @@ Following the suggestion from [refactoring UI](https://www.refactoringui.com/pre
 
 ```css
 :root {
-	--grey-000: hsl(216, 33%, 97%);
-	--grey-100: hsl(214, 15%, 91%);
+	--cool-grey-000: hsl(216, 33%, 97%);
+	--cool-grey-100: hsl(214, 15%, 91%);
 	/*  */
-	--grey-800: hsl(209, 20%, 25%);
-	--grey-900: hsl(210, 24%, 16%);
+	--cool-grey-800: hsl(209, 20%, 25%);
+	--cool-grey-900: hsl(210, 24%, 16%);
 }
 ```
 
@@ -148,21 +140,23 @@ From this starting point the `body` selector introduces the properties actually 
 
 ```css
 body {
-	--copy-color: var(--grey-200);
-	--heading-color: var(--grey-100);
+	--copy-color: var(--cool-grey-200);
+	--heading-color: var(--cool-grey-100);
 }
 ```
 
-This makes it easier to implement an alternative color palette, say for a light theme.
+This makes it easier to implement an alternative color palette, say for a dark theme.
 
 ```css
-body.light {
-	--copy-color: var(--grey-800);
-	--heading-color: var(--grey-900);
+body.dark {
+	--copy-color: var(--blue-grey-200);
+	--heading-color: var(--blue-grey-100);
 }
 ```
 
 The properties will cascade down to benefiting elements.
+
+_Please note:_ the dark theme has not been developed, yet.
 
 `app.css` defines the properties. `__layout.svelte` imports the stylesheet directly in the script.
 
@@ -178,7 +172,7 @@ For each property using a custom property I repeat the declaration to provide a 
 
 ```css
 body {
-	color: hsl(210, 16%, 82%);
+	color: hsl(209, 20%, 25%);
 	color: var(--copy-color);
 }
 ```
@@ -187,7 +181,7 @@ I chose not to, but it is possible to repeat the value inside of the `var()` fun
 
 ```css
 body {
-	color: var(--copy-color, hsl(210, 16%, 82%));
+	color: var(--copy-color, hsl(209, 20%, 25%));
 }
 ```
 

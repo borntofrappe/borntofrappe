@@ -16,4 +16,8 @@
 	main > * + * {
 		margin-top: 1em;
 	}
+
+	b {
+		font-weight: 600;
+	}
 </style>

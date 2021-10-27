@@ -26,26 +26,26 @@
 			}
 
 			@font-face {
-				font-family: JostBold;
-				src: url('/fonts/jost-bold-webfont.woff2') format('woff2'),
-					url('/fonts/jost-bold-webfont.woff') format('woff');
-				font-weight: 700;
+				font-family: JostSemibold;
+				src: url('/fonts/jost-semibold-webfont.woff2') format('woff2'),
+					url('/fonts/jost-semibold-webfont.woff') format('woff');
+				font-weight: 600;
 				font-style: normal;
 			}
 
 			@font-face {
-				font-family: JostBoldItalic;
-				src: url('/fonts/jost-bold-italic-webfont.woff2') format('woff2'),
-					url('/fonts/jost-bold-italic-webfont.woff') format('woff');
-				font-weight: 700;
+				font-family: JostSemiboldItalic;
+				src: url('/fonts/jost-semibold-italic-webfont.woff2') format('woff2'),
+					url('/fonts/jost-semibold-italic-webfont.woff') format('woff');
+				font-weight: 600;
 				font-style: italic;
 			}
 
 			@font-face {
-				font-family: JosefinsansBold;
-				src: url('/fonts/josefinsans-bold-webfont.woff2') format('woff2'),
-					url('/fonts/josefinsans-bold-webfont.woff') format('woff');
-				font-weight: 700;
+				font-family: JosefinsansSemibold;
+				src: url('/fonts/josefinsans-semibold-webfont.woff2') format('woff2'),
+					url('/fonts/josefinsans-semibold-webfont.woff') format('woff');
+				font-weight: 600;
 				font-style: normal;
 			}
 
@@ -67,8 +67,8 @@
 			.webfonts h2,
 			.webfonts h3,
 			.webfonts h4 {
-				font-family: JosefinsansBold, sans-serif;
-				font-weight: 700;
+				font-family: JosefinsansSemibold, sans-serif;
+				font-weight: 600;
 				font-style: normal;
 			}
 
@@ -79,15 +79,15 @@
 			}
 
 			.webfonts strong {
-				font-family: JostBold, sans-serif;
-				font-weight: 700;
+				font-family: JostSemibold, sans-serif;
+				font-weight: 600;
 				font-style: normal;
 			}
 
 			.webfonts strong em,
 			.webfonts em strong {
-				font-family: JostBoldItalic, sans-serif;
-				font-weight: 700;
+				font-family: JostSemiboldItalic, sans-serif;
+				font-weight: 600;
 				font-style: italic;
 			}
 		</style>
@@ -99,10 +99,10 @@
 				if ('fonts' in document) {
 					Promise.all([
 						document.fonts.load('1em Jost'),
-						document.fonts.load('700 1em JostBold'),
+						document.fonts.load('600 1em JostSemibold'),
 						document.fonts.load('italic 1em JostItalic'),
-						document.fonts.load('italic 700 1em JostBoldItalic'),
-						document.fonts.load('700 1em JosefinsansBold')
+						document.fonts.load('italic 600 1em JostSemiboldItalic'),
+						document.fonts.load('600 1em JosefinsansSemibold')
 					]).then(() => {
 						sessionStorage.fontsLoaded = true;
 						document.documentElement.classList.add('webfonts');
