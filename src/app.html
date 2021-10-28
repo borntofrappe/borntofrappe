@@ -93,6 +93,26 @@
 		</style>
 
 		<script>
+			function setPreference(preference) {
+				document.documentElement.setAttribute('data-preference', preference);
+				localStorage.setItem('color-scheme', preference);
+			}
+
+			if (CSS && CSS.supports('--accent-color: hotpink')) {
+				const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)');
+				const colorScheme = localStorage.getItem('color-scheme');
+
+				if (colorScheme) {
+					setPreference(colorScheme);
+				} else {
+					setPreference(prefersColorScheme.matches ? 'dark' : 'light');
+				}
+
+				prefersColorScheme.addEventListener('change', ({ matches }) =>
+					setPreference(matches ? 'dark' : 'light')
+				);
+			}
+
 			if (sessionStorage.fontsLoaded) {
 				document.documentElement.classList.add('webfonts');
 			} else {

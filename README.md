@@ -202,6 +202,24 @@ With `--size` I include steps from the [major third](https://www.modularscale.co
 
 In `app.css` I follow most of the guidance from [a modern CSS reset](https://piccalil.li/blog/a-modern-css-reset/).
 
+## Color preference
+
+The website has two color schemes, inspired by the light and dark preference of the CSS media query. The preference is set on the `html` selector so that `app.html` is able to immediately consider the choice in the script preceding the body.
+
+Each time you need to set properties which are theme-dependent remember to use two declarations:
+
+```css
+@media (prefers-color-scheme: dark) {
+	:global(html:not([data-preference])) YOUR_SELECTOR_HERE {
+	}
+}
+
+:global(html[data-preference='dark']) YOUR_SELECTOR_HERE {
+}
+```
+
+This is to consider the dark color preference for the specific attribute _or_ the preference set through the media query when the attribute does not exist.
+
 ##
 
 </details>

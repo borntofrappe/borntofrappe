@@ -13,8 +13,16 @@
 </main>
 
 <style>
+	main {
+		width: 95vw;
+		width: var(--width);
+		max-width: 42rem;
+		max-width: var(--max-width);
+		margin: 1rem auto;
+	}
+
 	main > * + * {
-		margin-top: 1em;
+		margin-top: 0.5em;
 	}
 
 	b {

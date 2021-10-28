@@ -1,14 +1,16 @@
 <script>
 	import '../app.css';
+
+	import Starter from '$lib/components/Starter.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <div>
+	<Starter />
+
 	<slot />
-	<footer>
-		<p>
-			Updated <time datetime="2021-10-26T23:32">October 27, 2021</time>
-		</p>
-	</footer>
+
+	<Footer />
 </div>
 
 <style>
@@ -16,13 +18,10 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		max-width: 42rem;
-		margin: 0rem auto;
-		padding: 1rem;
 	}
 
-	footer {
+	div :global(footer) {
 		margin-top: auto;
-		text-align: right;
+		text-align: center;
 	}
 </style>
