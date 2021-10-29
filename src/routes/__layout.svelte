@@ -1,8 +1,8 @@
 <script>
 	import '../app.css';
 
-	import Starter from '$lib/components/Starter.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import Starter from '$lib/components/layout/Starter.svelte';
+	import Footer from '$lib/components/layout/Footer.svelte';
 </script>
 
 <div>
@@ -22,6 +22,5 @@
 
 	div :global(footer) {
 		margin-top: auto;
-		text-align: center;
 	}
 </style>

@@ -1,6 +1,6 @@
 <script>
-	import BreadcrumbNavigation from '$lib/components/BreadcrumbNavigation.svelte';
-	import ColorSchemeToggle from '$lib/components/ColorSchemeToggle.svelte';
+	import BreadcrumbNavigation from '$lib/components/layout/BreadcrumbNavigation.svelte';
+	import ColorSchemeToggle from '$lib/components/layout/ColorSchemeToggle.svelte';
 </script>
 
 <div>

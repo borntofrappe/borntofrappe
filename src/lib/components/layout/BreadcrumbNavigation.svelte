@@ -27,7 +27,7 @@
 
 	nav a {
 		text-decoration: none;
-		font-weight: 700;
+		font-weight: 600;
 		padding: 0.25em 0;
 		display: flex;
 		align-items: center;

@@ -1,6 +1,8 @@
 <script>
 	let button;
-	$: button && button.removeAttribute('disabled');
+	$: if (button && CSS.supports('--accent-color', 'hotpink')) {
+		button.removeAttribute('disabled');
+	}
 
 	function handleClick() {
 		const preference = localStorage.getItem('color-scheme') === 'dark' ? 'light' : 'dark';

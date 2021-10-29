@@ -98,7 +98,7 @@
 				localStorage.setItem('color-scheme', preference);
 			}
 
-			if (CSS && CSS.supports('--accent-color: hotpink')) {
+			if (CSS && CSS.supports('--accent-color', 'hotpink')) {
 				const prefersColorScheme = matchMedia('(prefers-color-scheme: dark)');
 				const colorScheme = localStorage.getItem('color-scheme');
 
