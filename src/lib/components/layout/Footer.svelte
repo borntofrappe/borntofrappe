@@ -81,8 +81,8 @@
 
 	footer a::after {
 		transform: translate(-50%, -50%) scale(1);
-		width: 1.5em;
-		height: 1.5em;
+		width: 1.4em;
+		height: 1.4em;
 		background: hsl(330, 79%, 56%);
 		background: var(--accent-color);
 		border-radius: 50%;
