@@ -1,12 +1,36 @@
 <script>
+	import { page } from '$app/stores';
 	import icons from '$lib/icons.js';
 
-	// you should consider the relative URL and add one list item for each path
+	$: breadcrumbs =
+		$page.path === '/'
+			? []
+			: $page.path
+					.slice(1)
+					.split('/')
+					.reduce(
+						(acc, curr, i) => [
+							...acc,
+							{
+								href: i === 0 ? `/${curr}` : `${acc[i - 1].href}/${curr}`,
+								path: curr,
+								icon: curr
+							}
+						],
+						[]
+					);
 </script>
 
 <nav aria-label="Breadcrumb navigation">
 	<ol>
-		<li><a href="/">borntofrappe {@html icons.rocket}</a></li>
+		<li>
+			<a href="/">borntofrappe {@html icons.rocket}</a>
+		</li>
+		{#each breadcrumbs as { href, path, icon }}
+			<li>
+				<a {href}>/ {path} {@html icons[icon] || ' '}</a>
+			</li>
+		{/each}
 	</ol>
 </nav>
 
@@ -15,10 +39,13 @@
 		margin: 0;
 		padding: 0;
 		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 
-	nav ol li {
-		display: inline-block;
+	nav ol > * + * {
+		margin-left: 0.3em;
 	}
 
 	:global(.webfonts) nav a {
@@ -33,7 +60,7 @@
 		align-items: center;
 	}
 
-	nav a :global(svg) {
+	nav a > :global(svg) {
 		margin-left: 0.3em;
 		width: 1.5em;
 		height: auto;

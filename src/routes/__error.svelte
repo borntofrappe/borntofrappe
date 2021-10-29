@@ -51,7 +51,7 @@
 	</p>
 
 	<p>
-		<a href="/">Go to home page</a>
+		<a href="/">Go to home, page</a>
 	</p>
 </main>
 

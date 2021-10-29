@@ -8,6 +8,10 @@ Uses:
 
 - [Netlify](https://www.netlify.com/)
 
+Is it deployed? This badge should answer you.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4e7278de-b395-4b4c-a54c-4c12fbd57fc9/deploy-status)](https://app.netlify.com/sites/borntofrappe/deploys)
+
 <details>
 <summary><strong>For my future self</strong></summary>
 
@@ -219,6 +223,33 @@ Each time you need to set properties which are theme-dependent remember to use t
 ```
 
 This is to consider the dark color preference for the specific attribute _or_ the preference set through the media query when the attribute does not exist.
+
+## Path
+
+To create the breadcrumb navigation it is necessary to retrieve the path behind the current URL. The value is extracted from the `page` store and destructured to create an array with the following logic:
+
+- an empty array for the home path `/`
+
+- an array of objects with a `href`, `path` and `icon` properties
+
+  Both `path` and `icon` refer to the string of text representing the individual segment. `href` builds on top of previous anchor links to make up the URL leading up to the segment itself. As a for-instance, `/blog/new` should produce the following:
+
+  ```js
+  const breadcrumbs = [
+  	{
+  		href: '/blog',
+  		path: 'blog',
+  		icon: 'blog'
+  	},
+  	{
+  		href: '/blog/new',
+  		path: 'new',
+  		icon: 'new'
+  	}
+  ];
+  ```
+
+The markup for the navigation element includes a default anchor link for the homepage and one additional link for each object.
 
 ##
 
