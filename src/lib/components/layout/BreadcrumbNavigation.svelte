@@ -2,33 +2,34 @@
 	import { page } from '$app/stores';
 	import icons from '$lib/icons.js';
 
-	$: breadcrumbs =
-		$page.path === '/'
-			? []
-			: $page.path
-					.slice(1)
-					.split('/')
-					.reduce(
-						(acc, curr, i) => [
-							...acc,
-							{
-								href: i === 0 ? `/${curr}` : `${acc[i - 1].href}/${curr}`,
-								path: curr,
-								icon: curr
-							}
-						],
-						[]
-					);
+	$: breadcrumbs = $page.path
+		.replace(/\/$/, '')
+		.split('/')
+		.slice(1)
+		.reduce(
+			(acc, curr) => [
+				...acc,
+				{
+					href: `${acc.length > 1 ? acc[acc.length - 1].href : ''}/${curr}`,
+					path: `/ ${curr}`,
+					icon: icons[curr] || ''
+				}
+			],
+			[
+				{
+					href: '/',
+					path: 'borntofrappe',
+					icon: icons.rocket
+				}
+			]
+		);
 </script>
 
 <nav aria-label="Breadcrumb navigation">
 	<ol>
-		<li>
-			<a href="/">borntofrappe {@html icons.rocket}</a>
-		</li>
 		{#each breadcrumbs as { href, path, icon }}
 			<li>
-				<a {href}>/ {path} {@html icons[icon] || ' '}</a>
+				<a {href}>{path} {@html icon}</a>
 			</li>
 		{/each}
 	</ol>

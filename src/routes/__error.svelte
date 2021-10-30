@@ -10,6 +10,7 @@
 </script>
 
 <script>
+	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 	import icons from '$lib/icons';
 
@@ -17,9 +18,10 @@
 	export let status;
 </script>
 
-<svelte:head>
-	<title>borntofrappe / {status}</title>
-</svelte:head>
+<!-- consider adding the status code in the title
+<Meta title="borntofrappe / {status}" description={error} />
+-->
+<Meta description={error} />
 
 <Header title="Oopsie" body="Something quite unexpected has happened." />
 

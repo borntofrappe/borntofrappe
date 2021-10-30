@@ -1,10 +1,11 @@
 <script>
+	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 </script>
 
-<svelte:head>
-	<title>borntofrappe</title>
-</svelte:head>
+<Meta
+	description="Welcome to my personal website, a small corner on the web where I try to convince you I'm a solid programmer."
+/>
 
 <Header
 	title="Hello, world!"
@@ -16,6 +17,9 @@
 		I'm building this website with <a href="https://kit.svelte.dev/">SvelteKit</a> and
 		<a href="https://www.netlify.com/">Netlify</a>. You can check how it's going over
 		<a href="https://github.com/borntofrappe/borntofrappe">on GitHub</a>.
+	</p>
+	<p>
+		Go to <a href="/blog">blog</a>
 	</p>
 </main>
 
