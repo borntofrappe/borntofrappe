@@ -112,12 +112,6 @@
 
 <style>
 	section {
-		width: 90vw;
-		width: var(--width);
-		max-width: 42rem;
-		max-width: var(--max-width);
-		margin: 1em auto 0;
-
 		--accent-000: var(--pink-000);
 		--accent-100: var(--pink-100);
 		--accent-200: var(--pink-200);
@@ -158,16 +152,8 @@
 		--accent-900: var(--cyan-900);
 	}
 
-	section > :global(* + *) {
-		margin-top: 0.75em;
-	}
-
 	h2 {
 		text-align: center;
-	}
-
-	p {
-		line-height: 1.75;
 	}
 
 	mark {
@@ -179,7 +165,7 @@
 		padding-top: var(--elevation);
 		color: inherit;
 		background: none;
-		font-weight: 700;
+		font-weight: 600;
 		position: relative;
 		z-index: 5;
 	}
