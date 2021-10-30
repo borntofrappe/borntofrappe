@@ -15,6 +15,17 @@ Is it deployed? This badge should answer you.
 <details>
 <summary><strong>For my future self</strong></summary>
 
+## TODOS
+
+A short list of things that come up as I go:
+
+- consider less structured selectors, for instance in the `Hero` component
+
+  ```diff
+  -header nav > svg a .text text
+  svg text
+  ```
+
 ## Init
 
 ```bash
@@ -281,6 +292,18 @@ section.observed::after {
 ```
 
 The snippet is for `About.svelte` but is relevant to any other component relying on the action.
+
+## const vs export let
+
+The `<About />` component relies on hard-coded arrays. Past the colors, which match the `hsl` values of the default color scheme before relying on custom properties, consider whether or not to receive the keywords describing the icons through props.
+
+```svelte
+<script>
+	export let satellites;
+</script>
+```
+
+In this manner you can change the icons without modifying the component itself. The same spiel could apply to the hero component.
 
 ##
 

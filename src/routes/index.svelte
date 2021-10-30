@@ -1,6 +1,6 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
-	import Header from '$lib/components/routes/Header.svelte';
+	import Hero from '$lib/components/homepage/Hero.svelte';
 	import GettingStarted from '$lib/components/homepage/GettingStarted.svelte';
 	import About from '$lib/components/homepage/About.svelte';
 </script>
@@ -9,10 +9,7 @@
 	description="Welcome to my personal website, a small corner on the web where I try to convince you I'm a solid programmer."
 />
 
-<Header
-	title="Hello, world!"
-	body="Welcome to my personal website, a small corner on the web where I try to convince you I'm a solid programmer."
-/>
+<Hero />
 
 <main>
 	<GettingStarted />
@@ -21,7 +18,7 @@
 
 <style>
 	main {
-		--section-whitespace: 4em;
+		--section-whitespace: 6em;
 		overflow-x: hidden;
 	}
 
