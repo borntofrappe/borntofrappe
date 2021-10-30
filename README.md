@@ -26,6 +26,8 @@ A short list of things that come up as I go:
   svg text
   ```
 
+- consider a class in the app stylesheet for the patterned background
+
 ## Init
 
 ```bash
@@ -304,6 +306,21 @@ The `<About />` component relies on hard-coded arrays. Past the colors, which ma
 ```
 
 In this manner you can change the icons without modifying the component itself. The same spiel could apply to the hero component.
+
+## Skip to content
+
+The anchor link pointing toward the element with an id of `content` is included in the layout file. Personally this is a less-then-welcomed choice as the associated element is in the different routes.
+
+```svelte
+<SkipToContent />
+<div>
+	<Starter />
+
+	<slot /> <!-- #content in here  -->
+
+	<Footer />
+</div>
+```
 
 ##
 
