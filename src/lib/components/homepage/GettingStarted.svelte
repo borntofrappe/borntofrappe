@@ -1,4 +1,8 @@
-<section>
+<script>
+	import { observe } from '$lib/utils';
+</script>
+
+<section class:observed={false} use:observe>
 	<p>
 		I'm building this website with <a href="https://kit.svelte.dev/">SvelteKit</a> and
 		<a href="https://www.netlify.com/">Netlify</a>, one tentative step at a time. While I try
@@ -68,7 +72,7 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		section::after {
+		section.observed::after {
 			animation-play-state: running;
 		}
 	}

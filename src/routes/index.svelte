@@ -21,7 +21,7 @@
 
 <style>
 	main {
-		--section-whitespace: 6em;
+		--section-whitespace: 4em;
 		overflow-x: hidden;
 	}
 

@@ -1,5 +1,6 @@
 <script>
 	import icons from '$lib/icons';
+	import { observe } from '$lib/utils';
 
 	const satellites = ['world', 'editor', 'running', 'flag', 'gaming'];
 
@@ -17,7 +18,7 @@
 	];
 </script>
 
-<section>
+<section class:observed={false} use:observe>
 	<h2>Almost forgot</h2>
 	<p>
 		My name is <mark>Gabriele Corti</mark>. I write to you from Europe a couple of hours after
@@ -245,8 +246,8 @@
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
-			mark::before,
-			mark::after {
+			section.observed mark::before,
+			section.observed mark::after {
 				animation-play-state: running;
 			}
 		}
@@ -274,7 +275,7 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		svg .rotate {
+		section.observed > svg .rotate {
 			animation-play-state: running;
 		}
 	}
