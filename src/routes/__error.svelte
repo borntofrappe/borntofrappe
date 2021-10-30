@@ -12,6 +12,8 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+	import RelativeLink from '$lib/components/routes/RelativeLink.svelte';
+
 	import icons from '$lib/icons';
 
 	export let error;
@@ -53,7 +55,7 @@
 	</p>
 
 	<p>
-		<a href="/">Go to home, page</a>
+		<RelativeLink path="Go to home, page" />
 	</p>
 </main>
 

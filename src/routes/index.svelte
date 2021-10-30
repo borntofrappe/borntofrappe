@@ -18,9 +18,6 @@
 		<a href="https://www.netlify.com/">Netlify</a>. You can check how it's going over
 		<a href="https://github.com/borntofrappe/borntofrappe">on GitHub</a>.
 	</p>
-	<p>
-		Go to <a href="/blog">blog</a>
-	</p>
 </main>
 
 <style>
