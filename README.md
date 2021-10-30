@@ -224,6 +224,64 @@ Each time you need to set properties which are theme-dependent remember to use t
 
 This is to consider the dark color preference for the specific attribute _or_ the preference set through the media query when the attribute does not exist.
 
+## Breadcrumbs
+
+`$app/stores` provides a store describing the page, and most usefully its path. The value is used in `BreadcrumbNavigation` to create a series of anchor link elements leading up to the current URL.
+
+The logic is slightly complicated by the fact that for the root path the idea is to show the string 'borntofrappe' alongside the icon of a rocket.
+
+For each additional path the string of text is accompanied by an icon when one is available with the same name.
+
+## Meta
+
+The `<Meta />` component includes a title, description and link for the canonical URL. For the title the information is extracted from the page store, through `$app/store`, but it is possible to override the deault by passing a value through `props`.
+
+The error page originally leaned on this setup to show the status code.
+
+```svelte
+<Meta title="borntofrappe / {status}" description={error} />
+```
+
+Ultimately, however, I opted to just include the description and rely on the default value.
+
+## observe
+
+In the homepage the goal is to animate different nodes through the intersection observer API. `utils.js` creates an action for such an occasion, receiving the node and attaching a class of `.observed` on the basis of the element's position, but also preference for reduced motion.
+
+The animation is conditioned to the class selector.
+
+```css
+section.observed::after {
+	animation-play-state: running;
+}
+```
+
+However, Svelte strips the CSS since it detects that there are no elements in the component with the matching class.
+
+This explains the explicit mention of the `observed` class.
+
+```svelte
+<section class:observed={false} />
+```
+
+With a default value of `false` the class is present only following the `observe` action.
+
+```svelte
+<section class:observed={false} use:observe />
+```
+
+In the CSS I maintained the selector in a media query, but considering the preference through the action the `@media` expression becomes redundant.
+
+```diff
+-@media (prefers-reduced-motion: no-preference) {
+section.observed::after {
+  animation-play-state: running;
+}
+-}
+```
+
+The snippet is for `About.svelte` but is relevant to any other component relying on the action.
+
 ##
 
 </details>

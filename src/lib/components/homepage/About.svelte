@@ -245,11 +245,9 @@
 			}
 		}
 
-		@media (prefers-reduced-motion: no-preference) {
-			section.observed mark::before,
-			section.observed mark::after {
-				animation-play-state: running;
-			}
+		section.observed mark::before,
+		section.observed mark::after {
+			animation-play-state: running;
 		}
 	}
 
@@ -274,9 +272,7 @@
 		}
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
-		section.observed > svg .rotate {
-			animation-play-state: running;
-		}
+	section.observed > svg .rotate {
+		animation-play-state: running;
 	}
 </style>

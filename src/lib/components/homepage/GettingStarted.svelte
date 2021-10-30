@@ -71,9 +71,7 @@
 		}
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
-		section.observed::after {
-			animation-play-state: running;
-		}
+	section.observed::after {
+		animation-play-state: running;
 	}
 </style>

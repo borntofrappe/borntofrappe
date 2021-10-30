@@ -20,9 +20,6 @@
 	export let status;
 </script>
 
-<!-- consider adding the status code in the title
-<Meta title="borntofrappe / {status}" description={error} />
--->
 <Meta description={error} />
 
 <Header title="Oopsie" body="Something quite unexpected has happened." />
