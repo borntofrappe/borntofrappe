@@ -1,6 +1,7 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+	import About from '$lib/components/homepage/About.svelte';
 </script>
 
 <Meta
@@ -19,6 +20,8 @@
 		<a href="https://github.com/borntofrappe/borntofrappe">on GitHub</a>.
 	</p>
 </main>
+
+<About />
 
 <style>
 	main {
