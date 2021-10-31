@@ -36,7 +36,7 @@
 </nav>
 
 <style>
-	nav ol {
+	ol {
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -45,15 +45,15 @@
 		align-items: center;
 	}
 
-	nav ol > * + * {
+	ol > * + * {
 		margin-left: 0.3em;
 	}
 
-	:global(.webfonts) nav a {
+	:global(.webfonts) a {
 		font-family: JosefinsansSemibold, sans-serif;
 	}
 
-	nav a {
+	a {
 		text-decoration: none;
 		font-weight: 600;
 		padding: 0.25em 0;
@@ -61,7 +61,7 @@
 		align-items: center;
 	}
 
-	nav a > :global(svg) {
+	a > :global(svg) {
 		margin-left: 0.3em;
 		width: 1.5em;
 		height: auto;

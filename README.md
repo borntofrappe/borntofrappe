@@ -15,19 +15,6 @@ Is it deployed? This badge should answer you.
 <details>
 <summary><strong>For my future self</strong></summary>
 
-## TODOS
-
-A short list of things that come up as I go:
-
-- consider less structured selectors, for instance in the `Hero` component
-
-  ```diff
-  -header nav > svg a .text text
-  svg text
-  ```
-
-- consider a class in the app stylesheet for the patterned background
-
 ## Init
 
 ```bash
@@ -309,18 +296,21 @@ In this manner you can change the icons without modifying the component itself. 
 
 ## Skip to content
 
-The anchor link pointing toward the element with an id of `content` is included in the layout file. Personally this is a less-then-welcomed choice as the associated element is in the different routes.
+The anchor link pointing toward the element with an id of `content` is included in the layout file. I'm not comfortable with this choice as the associated element is in the different routes.
 
 ```svelte
 <SkipToContent />
 <div>
 	<Starter />
 
-	<slot /> <!-- #content in here  -->
+	<slot />
+	<!-- #content in here  -->
 
 	<Footer />
 </div>
 ```
+
+What's even less comfortable is that SvelteKit seems to intercept keyboard focus and the feature doesn't work as expected...
 
 ##
 

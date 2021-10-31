@@ -89,6 +89,8 @@
 												text-anchor="middle"
 												font-family="inherit"
 												font-size="12"
+                        font-weight="600"
+                        letter-spacing="3"
 											>
 												<textPath
 													href={(360 / links.length) * i <= 90 || (360 / links.length) * i >= 270
@@ -175,30 +177,33 @@
 	}
 
 	header nav {
-		--transition-duration: 0.4s;
 		order: -1;
+	}
+
+	nav {
+		--transition-duration: 0.4s;
 		padding: 0.5rem;
 	}
 
-	header nav > svg {
+	nav > svg {
 		width: 100%;
 		height: auto;
 	}
 
-	header nav > svg #borntofrappe {
+	nav > svg #borntofrappe {
 		transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55),
 			color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: transform var(--transition-duration) var(--ease-in-out-back),
 			color var(--transition-duration) var(--ease-in-out-sine);
 	}
 
-	header nav > svg #borntofrappe:hover {
+	nav > svg #borntofrappe:hover {
 		color: hsl(210, 24%, 16%);
 		color: var(--heading-color);
 		transform: scale(1.25) rotate(-10deg);
 	}
 
-	header nav > svg a {
+	nav > svg a {
 		transition: transform 0.4s cubic-bezier(0.68, -0.5, 0.265, 1.55),
 			color 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: transform var(--transition-duration) var(--ease-in-out-back),
@@ -206,38 +211,33 @@
 		transform: scale(0.85);
 	}
 
-	header nav > svg a .text {
+	nav > svg a .text {
 		transform: scale(0);
 		transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 		transition: transform var(--transition-duration) var(--ease-out-cubic);
 	}
 
-	header nav > svg a .text text {
-		font-weight: 600;
-		letter-spacing: 3px;
-	}
-
-	header nav > svg a:hover,
-	header nav > svg a:focus {
+	nav > svg a:hover,
+	nav > svg a:focus {
 		color: hsl(210, 24%, 16%);
 		color: var(--heading-color);
 	}
-	header nav > svg a:hover,
-	header nav > svg a:focus,
-	header nav > svg a:hover .text,
-	header nav > svg a:focus .text {
+	nav > svg a:hover,
+	nav > svg a:focus,
+	nav > svg a:hover .text,
+	nav > svg a:focus .text {
 		transform: scale(1);
 	}
 
-	header nav > svg a:focus {
+	nav > svg a:focus {
 		outline: none;
 	}
 
-	header div > * + * {
+	div > * + * {
 		margin-top: 0.5em;
 	}
 
-	header div p {
+	div p {
 		line-height: 1.75;
 	}
 </style>

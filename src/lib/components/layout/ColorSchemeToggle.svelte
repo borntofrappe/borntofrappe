@@ -104,31 +104,31 @@
 		color: var(--accent-color);
 	}
 
-	button svg .rotate {
+	button > svg .rotate {
 		transition: transform 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: transform var(--transition-duration) var(--ease-in-out-sine);
 	}
 
-	button svg .scale {
+	button > svg .scale {
 		transition: transform 0.25s step-end;
 		transition: transform var(--transition-duration) step-end;
 	}
 
 	@media (prefers-color-scheme: dark) {
-		:global(html:not([data-preference])) button svg .rotate {
+		:global(html:not([data-preference])) button > svg .rotate {
 			transform: rotate(180deg);
 		}
 
-		:global(html:not([data-preference])) button svg .scale {
+		:global(html:not([data-preference])) button > svg .scale {
 			transform: scaleX(-1);
 		}
 	}
 
-	:global(html[data-preference='dark']) button svg .rotate {
+	:global(html[data-preference='dark']) button > svg .rotate {
 		transform: rotate(180deg);
 	}
 
-	:global(html[data-preference='dark']) button svg .scale {
+	:global(html[data-preference='dark']) button > svg .scale {
 		transform: scaleX(-1);
 	}
 </style>
