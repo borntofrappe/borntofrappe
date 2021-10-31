@@ -294,6 +294,14 @@ The `<About />` component relies on hard-coded arrays. Past the colors, which ma
 
 In this manner you can change the icons without modifying the component itself. The same spiel could apply to the hero component.
 
+## Opengraph image
+
+The `<Meta />` component refers to a single image for the opengraph protocol. It seems it is not enough to describe the relative path to the resource, however, and it is necessary to refer to the actual domain-
+
+```html
+<meta property="twitter:image" content="https://borntofrappe.netlify.app/images/borntofrappe.png" />
+```
+
 ##
 
 </details>
