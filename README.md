@@ -294,24 +294,6 @@ The `<About />` component relies on hard-coded arrays. Past the colors, which ma
 
 In this manner you can change the icons without modifying the component itself. The same spiel could apply to the hero component.
 
-## Skip to content
-
-The anchor link pointing toward the element with an id of `content` is included in the layout file. I'm not comfortable with this choice as the associated element is in the different routes.
-
-```svelte
-<SkipToContent />
-<div>
-	<Starter />
-
-	<slot />
-	<!-- #content in here  -->
-
-	<Footer />
-</div>
-```
-
-What's even less comfortable is that SvelteKit seems to intercept keyboard focus and the feature doesn't work as expected...
-
 ##
 
 </details>
