@@ -302,6 +302,10 @@ The `<Meta />` component refers to a single image for the opengraph protocol. It
 <meta property="twitter:image" content="https://borntofrappe.netlify.app/images/borntofrappe.png" />
 ```
 
+## Skip to content
+
+In the layout file the `<SkipToContent />` points to a container with an `id` of content. The feature works starting with the kit in version `1.0.0-next.193`, which fixes the scrolling to elements with a hash — `#content`.
+
 ##
 
 </details>

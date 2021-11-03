@@ -89,8 +89,8 @@
 												text-anchor="middle"
 												font-family="inherit"
 												font-size="12"
-                        font-weight="600"
-                        letter-spacing="3"
+												font-weight="600"
+												letter-spacing="3"
 											>
 												<textPath
 													href={(360 / links.length) * i <= 90 || (360 / links.length) * i >= 270

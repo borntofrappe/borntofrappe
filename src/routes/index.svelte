@@ -11,7 +11,7 @@
 
 <Hero />
 
-<main>
+<main id="content">
 	<GettingStarted />
 	<About />
 </main>

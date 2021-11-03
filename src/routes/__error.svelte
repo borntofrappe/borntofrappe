@@ -24,7 +24,7 @@
 
 <Header title="Oopsie" body="Something quite unexpected has happened." />
 
-<main>
+<main id="content">
 	<h2 class="visually-hidden">Status code {status}</h2>
 	<p>Here's the error message for context.</p>
 
