@@ -21,7 +21,7 @@
 	const month = date.getMonth();
 	const year = date.getFullYear();
 
-	const duration = (500 * Math.floor(day / 10 + 1)) / day;
+	const duration = 25 * day;
 	const counter = tweened(0, { duration });
 
 	let today = false;
@@ -62,20 +62,6 @@
 		height="230"
 	>
 		<defs>
-			<path
-				id="a"
-				d="M -25 -25 a 12.5 12.5 0 0 0 25 0 25 25 0 0 0 -50 0 c 0 37.5 50 37.5 50 75 v -75 a 12.5 12.5 0 0 1 -25 0"
-			/>
-			<g id="aa">
-				<use href="#a" />
-				<use href="#a" transform="scale(-1 1)" />
-			</g>
-			<path id="b" d="M 0 50 c 0 15 -15 30 -30 30 c 15 0 30 37.5 30 70z" />
-			<g id="bb">
-				<use href="#b" />
-				<use href="#b" transform="scale(-1 1)" />
-			</g>
-
 			<path id="c" d="M 0 0 v -10 c -5 10 -5 10 -150 10z" />
 			<g id="cc">
 				<use href="#c" />
@@ -111,10 +97,11 @@
 
 			<g transform="translate(0 140)">
 				<g class="offset-y" transform="translate(0 0)">
-					<g transform="scale(0.4)">
-						<g class="rotate-y">
-							<use href="#aa" />
-							<use href="#bb" />
+					<g class="rotate-y">
+						<g transform="scale(0.18)">
+							<path
+								d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
+							/>
 						</g>
 					</g>
 				</g>
@@ -139,9 +126,13 @@
 </main>
 
 <style>
+	:global(.webfonts) main {
+		font-family: JostSemibold, sans-serif;
+	}
+
 	main {
 		min-height: 100vh;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.5' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(338, 100%25, 86%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.25' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(338, 100%25, 86%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
 		background-size: 50px;
 		display: flex;
 		flex-direction: column;
@@ -150,25 +141,31 @@
 		animation: show 2s ease-in-out both;
 	}
 
+	main > * + * {
+		margin-top: 1em;
+	}
+
 	@media (prefers-color-scheme: dark) {
 		:global(html:not([data-preference])) main {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.5' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(212, 39%25, 19%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.1' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(185, 91%25, 17%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
 		}
 	}
 
 	:global(html[data-preference='dark']) main {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.5' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(212, 39%25, 19%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' opacity='0.1' viewBox='-400 -400 800 800'%3E%3Cg fill='hsl(185, 91%25, 17%25)'%3E%3Cpath id='star' d='M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80'%3E%3C/path%3E%3Cuse href='%23star' x='400' y='400'%3E%3C/use%3E%3Cuse href='%23star' x='400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='-400'%3E%3C/use%3E%3Cuse href='%23star' x='-400' y='400'%3E%3C/use%3E%3C/g%3E%3C/svg%3E");
 	}
 
 	h1 {
+		font-family: inherit;
 		display: flex;
 		gap: 0 0.4em;
-		padding: 0;
+		line-height: 1;
 	}
 
 	div {
 		position: relative;
 		overflow: hidden;
+		padding: 0 0.25rem;
 	}
 
 	div strong {
@@ -193,26 +190,27 @@
 
 	svg text {
 		font-weight: 600;
-	}
-
-	:global(.webfonts) svg text {
-		font-family: JosefinsansSemibold, sans-serif;
+		font-family: inherit;
 	}
 
 	.offset-x {
-		animation: offset-x 1s 1.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+		animation: offset-x 1s 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+		animation: offset-x 1s 1.5s var(--ease-out-cubic) both;
 	}
 
 	.offset-y {
-		animation: offset-y 2s cubic-bezier(0.37, 0, 0.63, 1) both paused;
+		animation: offset-y 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
+		animation: offset-y 2.5s var(--ease-in-out-sine) both paused;
 	}
 
 	.rotate-y {
-		animation: rotate-y 2s cubic-bezier(0.37, 0, 0.63, 1) both paused;
+		animation: rotate-y 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
+		animation: rotate-y 2.5s var(--ease-in-out-sine) both paused;
 	}
 
 	.show {
-		animation: show 1s 2.5s cubic-bezier(0.37, 0, 0.63, 1) both paused;
+		animation: show 1s 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
+		animation: show 1s 2.5s var(--ease-in-out-sine) both paused;
 	}
 
 	.today .offset-y,
