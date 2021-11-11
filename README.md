@@ -308,20 +308,22 @@ In the layout file the `<SkipToContent />` points to a container with an `id` of
 
 ## Log
 
-`/log` works as a route to experiment with blog. It started as half a joke half a typo, but it might turn out to be useful as a loose collection of notes.
+The `/log` route works as an experiment and the basis of the future `/blog` path. It started as half a joke, half a typo, but it might turn out to be useful as a loose collection of notes.
 
-Uses mdsvex to transform markdown files (and markdown files including Svelte syntax). The package is what ultimately allows to properly execute the function returned from `import.meta.glob`
+The goal is to render content on the basis of markdown documents. `mdsvex` helps to pre-process these files.
 
-```js
-const { metadata } = await log();
+Install.
+
+```bash
+npm i -D mdsvex
 ```
 
-Just remember to update `svelte.config.js` so that the kit is able to read markdown documents in the first place and then use mdsvex as a preprocessor
+Config.
 
 ```js
 const config = {
 	extensions: ['.svelte', '.md'],
-	preprocess: mdsvex({ extensions: ['.md'], smartypants: false }),
+	preprocess: mdsvex({ extensions: ['.md'] }),
 	kit: {
 		adapter: adapter(),
 		target: '#svelte'
@@ -329,19 +331,43 @@ const config = {
 };
 ```
 
-Improvements:
+As the object passed to `mdsvex` grows in complexity it is helpful to refer to a separate variable.
 
-- document how
+```js
+preprocess: mdsvex(mdsvexConfig),
+```
 
-- mdsvex config file
+Be sure to have the `extensions` field of the kit up-to-date with the extensions considered by `mdsvex`
 
-- article component to mark up content in a single column layout `* + *`
+```js
+const config = {
+	extensions: ['.svelte', ...mdsvexConfig.extensions]
+};
+```
 
-- actual content
+With this setup the kit knows to consider markdown files and processes their content through `mdsvex`.
 
-- store the component of only the latest entry `:/`
+In `/log/index.svelte` use `import.meta.glob` to retrieve a reference to the markdown documents in the `src/log` folder.
 
-- `<svelte:component this={Component}>`
+```js
+import.meta.glob('/src/log/*.md');
+```
+
+The syntax is provided by Vite and ultimately allows to describe the path and a generator function. The code is slightly complicated by the fact that the feature creates a promise, but the point stands.
+
+```js
+async ([path, fn]) => {
+	//
+};
+```
+
+Thanks to mdsvex and the config, executing the function provides a component with the content of the different files and an object with the files' metadata.
+
+```js
+const { default: Component, metadata } = await fn();
+```
+
+The information is passed through props for the latest entry.
 
 ##
 

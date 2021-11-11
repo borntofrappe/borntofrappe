@@ -1,19 +1,21 @@
 <script context="module">
 	export async function load() {
 		const logs = await Promise.all(
-			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, log]) => {
-				const { default: Component, metadata } = await log();
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([_, fn]) => {
+				const { default: Component, metadata } = await fn();
 
 				return {
-					...metadata,
-					Component
+					Component,
+					...metadata
 				};
 			})
 		);
 
+		const log = logs.sort((a, b) => parseInt(b.entry, 10) - parseInt(a.entry, 10))[0];
+
 		return {
 			props: {
-				...logs.sort((a, b) => parseInt(b.entry, 10) - parseInt(a.entry, 10))[0]
+				...log
 			}
 		};
 	}
@@ -133,7 +135,8 @@
 
 {#if currentEntry}
 	<article>
-		<Component />
+		<svelte:component this={Component} />
+		<!-- <Component /> -->
 	</article>
 {/if}
 
