@@ -22,6 +22,8 @@
 </script>
 
 <script>
+	import Article from '$lib/components/log/Article.svelte';
+
 	import { tweened } from 'svelte/motion';
 	import { sineIn as easeIn, sineOut as easeOut } from 'svelte/easing';
 
@@ -134,10 +136,7 @@
 </main>
 
 {#if currentEntry}
-	<article>
-		<svelte:component this={Component} />
-		<!-- <Component /> -->
-	</article>
+	<Article {Component} />
 {/if}
 
 <style>
