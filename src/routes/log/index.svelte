@@ -1,9 +1,32 @@
+<script context="module">
+	export async function load() {
+		const logs = await Promise.all(
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, log]) => {
+				const { default: Component, metadata } = await log();
+
+				return {
+					...metadata,
+					Component
+				};
+			})
+		);
+
+		return {
+			props: {
+				...logs.sort((a, b) => parseInt(b.entry, 10) - parseInt(a.entry, 10))[0]
+			}
+		};
+	}
+</script>
+
 <script>
 	import { tweened } from 'svelte/motion';
 	import { sineIn as easeIn, sineOut as easeOut } from 'svelte/easing';
 
-	const entry = 12;
-	const title = 'Inspiration';
+	export let title;
+	export let entry;
+	export let Component;
+
 	const duration = (750 * Math.floor(entry / 10 + 1)) / entry;
 	const counter = tweened(0, { duration });
 
@@ -108,6 +131,12 @@
 	</svg>
 </main>
 
+{#if currentEntry}
+	<article>
+		<Component />
+	</article>
+{/if}
+
 <style>
 	main {
 		min-height: 101vh;
@@ -130,6 +159,7 @@
 	}
 
 	div {
+		padding: 0 0.25rem;
 		position: relative;
 		overflow: hidden;
 	}

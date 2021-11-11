@@ -306,6 +306,43 @@ The `<Meta />` component refers to a single image for the opengraph protocol. It
 
 In the layout file the `<SkipToContent />` points to a container with an `id` of content. The feature works starting with the kit in version `1.0.0-next.193`, which fixes the scrolling to elements with a hash — `#content`.
 
+## Log
+
+`/log` works as a route to experiment with blog. It started as half a joke half a typo, but it might turn out to be useful as a loose collection of notes.
+
+Uses mdsvex to transform markdown files (and markdown files including Svelte syntax). The package is what ultimately allows to properly execute the function returned from `import.meta.glob`
+
+```js
+const { metadata } = await log();
+```
+
+Just remember to update `svelte.config.js` so that the kit is able to read markdown documents in the first place and then use mdsvex as a preprocessor
+
+```js
+const config = {
+	extensions: ['.svelte', '.md'],
+	preprocess: mdsvex({ extensions: ['.md'], smartypants: false }),
+	kit: {
+		adapter: adapter(),
+		target: '#svelte'
+	}
+};
+```
+
+Improvements:
+
+- document how
+
+- mdsvex config file
+
+- article component to mark up content in a single column layout `* + *`
+
+- actual content
+
+- store the component of only the latest entry `:/`
+
+- `<svelte:component this={Component}>`
+
 ##
 
 </details>
