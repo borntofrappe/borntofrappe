@@ -115,6 +115,7 @@
 				text-anchor="middle"
 				dominant-baseline="middle"
 				font-size="30"
+				font-weight="600"
 				letter-spacing="2"
 			>
 				<g class="show" opacity="1">
