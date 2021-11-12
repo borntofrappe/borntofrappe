@@ -23,7 +23,6 @@
 
 <script>
 	import Article from '$lib/components/log/Article.svelte';
-	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { sineIn as easeIn, sineOut as easeOut, linear } from 'svelte/easing';
 
@@ -32,32 +31,30 @@
 	export let Component;
 
 	const duration = (750 * Math.floor(entry / 10 + 1)) / entry;
-	const counter = tweened(entry);
-	let easing = linear;
+	const counter = tweened(0);
 
-	let isAnimating;
-	let isAnimated;
+	let animateTransform;
 
 	async function animate() {
+		let easing = linear;
 		if ($counter === entry - 1) easing = easeOut;
 		else if ($counter === 0) easing = easeIn;
 
 		await counter.update((n) => n + 1, {
 			easing,
-			duration
+			duration: $counter === entry - 1 ? duration * 3 : duration
 		});
 
 		if ($counter < entry) animate();
-		else isAnimated = true;
+		else if (animateTransform) animateTransform.beginElement();
 	}
-
-	onMount(async () => {
-		counter.set(0, { duration: 0 });
-		isAnimating = true;
-	});
 </script>
 
-<main class:isAnimating>
+<main
+	on:animationend={() => {
+		animate();
+	}}
+>
 	<h1>
 		Entry
 		<div>
@@ -71,14 +68,22 @@
 		</div>
 	</h1>
 
-	<svg
-		class:isAnimated
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="-252.5 -27.5 505 250"
-		width="505"
-		height="250"
-	>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-252.5 -27.5 505 230" width="505" height="230">
 		<defs>
+			<path
+				id="a"
+				d="M -25 -25 a 12.5 12.5 0 0 0 25 0 25 25 0 0 0 -50 0 c 0 37.5 50 37.5 50 75 v -75 a 12.5 12.5 0 0 1 -25 0"
+			/>
+			<g id="aa">
+				<use href="#a" />
+				<use href="#a" transform="scale(-1 1)" />
+			</g>
+			<path id="b" d="M 0 50 c 0 15 -15 30 -30 30 c 15 0 30 37.5 30 70z" />
+			<g id="bb">
+				<use href="#b" />
+				<use href="#b" transform="scale(-1 1)" />
+			</g>
+
 			<path id="c" d="M 0 0 v -10 c -5 10 -5 10 -150 10z" />
 			<g id="cc">
 				<use href="#c" />
@@ -93,32 +98,105 @@
 				d="M -150 0 a 25 25 0 0 0 -25 -25 11.25 11.25 0 0 1 0 22.5 7.5 7.5 0 0 1 -7.5 -7.5 c 0 10 -30 10 -67.5 10 37.5 0 67.5 0 67.5 10 a 7.5 7.5 0 0 1 7.5 -7.5 11.25 11.25 0 0 1 0 22.5 25 25 0 0 0 25 -25z"
 			/>
 		</defs>
-		<g>
-			<g
-				on:animationend|once={() => {
-					animate();
-				}}
-			>
-				<g
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-width="5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<use href="#ccc" />
-					<use class="offset-x" href="#d" />
-					<g transform="scale(-1 1)">
-						<use class="offset-x" href="#d" />
+		<g
+			fill="currentColor"
+			stroke="currentColor"
+			stroke-width="5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<g>
+				<use href="#ccc" />
+				<g>
+					<animateTransform
+						attributeType="XML"
+						attributeName="transform"
+						type="translate"
+						values="100 0"
+						fill="freeze"
+					/>
+					<use href="#d">
+						<animateTransform
+							bind:this={animateTransform}
+							attributeType="XML"
+							attributeName="transform"
+							type="translate"
+							values="0 0; -100 0"
+							keyTimes="0; 1"
+							keySplines="0.25, 1, 0.5, 1"
+							calcMode="spline"
+							dur="2"
+							fill="freeze"
+							begin="indefinite"
+							id="x"
+						/>
+					</use>
+				</g>
+				<g transform="scale(-1 1)">
+					<g>
+						<animateTransform
+							attributeType="XML"
+							attributeName="transform"
+							type="translate"
+							values="100 0"
+							fill="freeze"
+						/>
+						<use href="#d">
+							<animateTransform
+								attributeType="XML"
+								attributeName="transform"
+								type="translate"
+								values="0 0; -100 0"
+								keyTimes="0; 1"
+								keySplines="0.25, 1, 0.5, 1"
+								calcMode="spline"
+								dur="2"
+								fill="freeze"
+								begin="x.begin"
+							/>
+						</use>
 					</g>
 				</g>
 			</g>
 
-			<g fill="currentColor">
-				<g transform="translate(0 145)">
-					<g class="offset-y" transform="translate(0 0)">
-						<g class="rotate-y">
-							<g transform="scale(0.18)">
+			<g transform="translate(0 140)">
+				<g>
+					<animateTransform
+						attributeType="XML"
+						attributeName="transform"
+						type="translate"
+						values="0 -90"
+						fill="freeze"
+					/>
+					<g>
+						<animateTransform
+							attributeType="XML"
+							attributeName="transform"
+							type="translate"
+							values="0 0; 0 90"
+							keyTimes="0; 1"
+							keySplines="0.37 0 0.63 1"
+							calcMode="spline"
+							dur="2"
+							fill="freeze"
+							begin="x.end"
+							id="y"
+						/>
+						<g transform="scale(0.18)">
+							<g>
+								<animateTransform
+									attributeType="XML"
+									attributeName="transform"
+									type="scale"
+									values="1, 1; 0, 1; 1, 1"
+									keyTimes="0; 0.5; 1"
+									keySplines="0.12 0 0.39 0; 0.61 1 0.88 1;"
+									calcMode="spline"
+									dur="0.5"
+									repeatCount="4"
+									fill="freeze"
+									begin="x.end"
+								/>
 								<path
 									d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
 								/>
@@ -126,28 +204,41 @@
 						</g>
 					</g>
 				</g>
+			</g>
+		</g>
 
-				<g transform="translate(0 72.5)">
-					<g
-						font-family="inherit"
-						text-anchor="middle"
-						dominant-baseline="middle"
-						font-size="34"
-						letter-spacing="2"
-					>
-						<g class="show" opacity="1">
-							<text>{title}</text>
-						</g>
-					</g>
+		<g transform="translate(0 67.5)">
+			<g
+				fill="currentColor"
+				font-family="inherit"
+				text-anchor="middle"
+				dominant-baseline="middle"
+				font-size="34"
+				letter-spacing="2"
+			>
+				<g>
+					<set attributeType="XML" attributeName="opacity" to="0" />
+					<animate
+						attributeType="XML"
+						attributeName="opacity"
+						values="0; 1"
+						keyTimes="0; 1"
+						keySplines="0.37 0 0.63 1"
+						calcMode="spline"
+						dur="1"
+						fill="freeze"
+						begin="y.end + 1s"
+					/>
+					<text>
+						{title}
+					</text>
 				</g>
 			</g>
 		</g>
 	</svg>
 </main>
 
-{#if !isAnimating || isAnimated}
-	<Article {Component} />
-{/if}
+<Article {Component} />
 
 <style>
 	main {
@@ -200,55 +291,6 @@
 	:global(.webfonts) svg text {
 		font-family: JosefinsansSemibold, sans-serif;
 		font-weight: 600;
-	}
-
-	.isAnimating .offset-x {
-		animation: offset-x 1s 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) both;
-	}
-
-	.isAnimating .offset-y {
-		animation: offset-y 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
-	}
-
-	.isAnimating .rotate-y {
-		animation: rotate-y 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
-	}
-
-	.isAnimating .show {
-		animation: show 1s 2.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) both paused;
-	}
-
-	.isAnimated .offset-y,
-	.isAnimated .rotate-y,
-	.isAnimated .show {
-		animation-play-state: running;
-	}
-
-	@keyframes offset-x {
-		from {
-			transform: translate3d(100px, 0, 0);
-		}
-		to {
-			transform: translate3d(0px, 0, 0);
-		}
-	}
-
-	@keyframes offset-y {
-		from {
-			transform: translate3d(0, -90px, 0);
-		}
-		to {
-			transform: translate3d(0, 0px, 0);
-		}
-	}
-
-	@keyframes rotate-y {
-		from {
-			transform: rotate3d(0, 0, 0, 2turn);
-		}
-		to {
-			transform: rotate3d(0, 1, 0, 2turn);
-		}
 	}
 
 	@keyframes show {
