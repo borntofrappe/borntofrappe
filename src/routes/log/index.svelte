@@ -245,6 +245,13 @@
 	<svelte:component this={Entry} />
 </article>
 
+<footer>
+	<p>
+		That's all for today. If you feel like an archeologist though, you can check previous entries
+		<a href="/log/entries">in the archives</a>.
+	</p>
+</footer>
+
 <style>
 	main {
 		min-height: 101vh;
@@ -334,6 +341,14 @@
 	article:global(pre),
 	article:global(pre + *) {
 		--vertical-rhythm: var(--size-600);
+	}
+
+	footer {
+		width: 95vw;
+		width: var(--width);
+		max-width: 42rem;
+		max-width: var(--max-width);
+		margin: 1em auto;
 	}
 
 	@keyframes show {

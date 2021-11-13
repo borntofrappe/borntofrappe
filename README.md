@@ -369,6 +369,12 @@ const { default: Component, metadata } = await fn();
 
 The information is passed through props for the latest entry.
 
-##
+### Log blog
+
+Expanding the log route the idea is to add two additional `.svelte` components:
+
+- `[entry].svelte` to capture the page parameter and include the content from a matching article, if existing
+
+- `entries.svelte` to list all entries and linking toward the individual pages created through the previous route
 
 </details>
