@@ -2,10 +2,10 @@
 	export async function load() {
 		const logs = await Promise.all(
 			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([_, fn]) => {
-				const { default: Component, metadata } = await fn();
+				const { default: Entry, metadata } = await fn();
 
 				return {
-					Component,
+					Entry,
 					...metadata
 				};
 			})
@@ -22,13 +22,12 @@
 </script>
 
 <script>
-	import Article from '$lib/components/log/Article.svelte';
 	import { tweened } from 'svelte/motion';
 	import { sineIn as easeIn, sineOut as easeOut, linear } from 'svelte/easing';
 
 	export let title;
 	export let entry;
-	export let Component;
+	export let Entry;
 
 	const duration = (750 * Math.floor(entry / 10 + 1)) / entry;
 	const counter = tweened(0);
@@ -49,6 +48,10 @@
 		else if (animateTransform) animateTransform.beginElement();
 	}
 </script>
+
+<svelte:head>
+	<title>borntofrappe / log</title>
+</svelte:head>
 
 <main
 	on:animationend={() => {
@@ -238,7 +241,9 @@
 	</svg>
 </main>
 
-<Article {Component} />
+<article>
+	<svelte:component this={Entry} />
+</article>
 
 <style>
 	main {
@@ -291,6 +296,44 @@
 	:global(.webfonts) svg text {
 		font-family: JosefinsansSemibold, sans-serif;
 		font-weight: 600;
+	}
+
+	article {
+		width: 95vw;
+		width: var(--width);
+		max-width: 42rem;
+		max-width: var(--max-width);
+		margin: 2em auto 4em;
+	}
+
+	article > :global(* + *) {
+		margin-top: 1em;
+		margin-top: var(--vertical-rhythm, 1em);
+	}
+
+	article:global(h2),
+	article:global(h3) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	article:global(h2 + *),
+	article:global(h3 + *) {
+		--vertical-rhythm: var(--size-300);
+	}
+
+	article:global(blockquote),
+	article:global(blockquote + *) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	article:global(table),
+	article:global(table + *) {
+		--vertical-rhythm: var(--size-700);
+	}
+
+	article:global(pre),
+	article:global(pre + *) {
+		--vertical-rhythm: var(--size-600);
 	}
 
 	@keyframes show {
