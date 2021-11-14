@@ -23,6 +23,7 @@
 
 <script>
 	import { tweened } from 'svelte/motion';
+	import { onMount } from 'svelte';
 	import { quadIn as easeIn, quadOut as easeOut, linear } from 'svelte/easing';
 
 	export let title;
@@ -36,28 +37,31 @@
 
 	async function animate() {
 		let easing = linear;
+		let delay = $counter === 0 ? 250 : 0;
+
 		if ($counter === entry - 1) easing = easeOut;
 		else if ($counter === 0) easing = easeIn;
 
 		await counter.update((n) => n + 1, {
 			easing,
+			delay,
 			duration: $counter === entry - 1 ? duration * 3 : duration
 		});
 
 		if ($counter < entry) animate();
 		else if (animateTransform) animateTransform.beginElement();
 	}
+
+	onMount(() => {
+		animate();
+	});
 </script>
 
 <svelte:head>
 	<title>Log - Entry {entry} | borntofrappe</title>
 </svelte:head>
 
-<main
-	on:animationend={() => {
-		animate();
-	}}
->
+<main>
 	<h1>
 		Entry
 		<div>
@@ -110,100 +114,73 @@
 		>
 			<g>
 				<use href="#ccc" />
-				<g>
+				<use transform="translate(100 0)" href="#d">
 					<animateTransform
+						bind:this={animateTransform}
 						attributeType="XML"
 						attributeName="transform"
 						type="translate"
-						values="100 0"
+						to="0 0"
+						keyTimes="0; 1"
+						keySplines="0.83, 0, 0.17, 1"
+						calcMode="spline"
+						dur="1.75"
 						fill="freeze"
+						begin="indefinite"
+						id="x"
 					/>
-					<use href="#d">
+				</use>
+				<g transform="scale(-1 1)">
+					<use transform="translate(100 0)" href="#d">
 						<animateTransform
-							bind:this={animateTransform}
 							attributeType="XML"
 							attributeName="transform"
 							type="translate"
-							values="0 0; -100 0"
+							to="0 0"
 							keyTimes="0; 1"
 							keySplines="0.83, 0, 0.17, 1"
 							calcMode="spline"
 							dur="1.75"
 							fill="freeze"
-							begin="indefinite"
-							id="x"
+							begin="x.begin"
 						/>
 					</use>
-				</g>
-				<g transform="scale(-1 1)">
-					<g>
-						<animateTransform
-							attributeType="XML"
-							attributeName="transform"
-							type="translate"
-							values="100 0"
-							fill="freeze"
-						/>
-						<use href="#d">
-							<animateTransform
-								attributeType="XML"
-								attributeName="transform"
-								type="translate"
-								values="0 0; -100 0"
-								keyTimes="0; 1"
-								keySplines="0.83, 0, 0.17, 1"
-								calcMode="spline"
-								dur="1.75"
-								fill="freeze"
-								begin="x.begin"
-							/>
-						</use>
-					</g>
 				</g>
 			</g>
 
 			<g transform="translate(0 140)">
-				<g>
+				<g transform="translate(0 -90)">
 					<animateTransform
 						attributeType="XML"
 						attributeName="transform"
 						type="translate"
-						values="0 -90"
+						to="0 0"
+						keyTimes="0; 1"
+						keySplines="0.65, 0, 0.35, 1"
+						calcMode="spline"
+						dur="2"
 						fill="freeze"
+						begin="x.begin + 1s"
+						id="y"
 					/>
-					<g>
-						<animateTransform
-							attributeType="XML"
-							attributeName="transform"
-							type="translate"
-							values="0 0; 0 90"
-							keyTimes="0; 1"
-							keySplines="0.65, 0, 0.35, 1"
-							calcMode="spline"
-							dur="2"
-							fill="freeze"
-							begin="x.begin + 1s"
-							id="y"
-						/>
-						<g transform="scale(0.18)">
-							<g>
-								<animateTransform
-									attributeType="XML"
-									attributeName="transform"
-									type="scale"
-									values="1, 1; 0, 1; 1, 1"
-									keyTimes="0; 0.5; 1"
-									keySplines="0.12, 0, 0.39, 0; 0.61, 1, 0.88, 1;"
-									calcMode="spline"
-									dur="0.5"
-									repeatCount="4"
-									fill="freeze"
-									begin="y.begin"
-								/>
-								<path
-									d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
-								/>
-							</g>
+					<g transform="scale(0.18)">
+						<g>
+							<animateTransform
+								attributeType="XML"
+								attributeName="transform"
+								type="scale"
+								values="1, 1; 0, 1; 1, 1"
+								keyTimes="0; 0.5; 1"
+								keySplines="0.12, 0, 0.39, 0; 0.61, 1, 0.88, 1;"
+								calcMode="spline"
+								dur="0.5"
+								repeatCount="4"
+								fill="freeze"
+								begin="y.begin"
+							/>
+							<path
+								d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
+							/>
 						</g>
 					</g>
 				</g>
@@ -219,12 +196,11 @@
 				font-size="34"
 				letter-spacing="2"
 			>
-				<g>
-					<set attributeType="XML" attributeName="opacity" to="0" />
+				<g opacity="0">
 					<animate
 						attributeType="XML"
 						attributeName="opacity"
-						values="0; 1"
+						to="1"
 						keyTimes="0; 1"
 						keySplines="0.37, 0, 0.63, 1"
 						calcMode="spline"
@@ -260,7 +236,6 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		animation: show 1s 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95) both;
 	}
 
 	main > * + * {
@@ -352,14 +327,5 @@
 		margin: 2em auto 1em;
 		font-size: 1rem;
 		font-size: var(--size-400);
-	}
-
-	@keyframes show {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
 	}
 </style>
