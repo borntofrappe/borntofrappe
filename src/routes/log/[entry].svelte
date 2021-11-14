@@ -1,4 +1,6 @@
 <script context="module">
+	export const prerender = true;
+
 	export async function load({ page }) {
 		const { entry } = page.params;
 
@@ -26,16 +28,17 @@
 
 <script>
 	export let title;
+	export let entry;
 	export let Entry;
 </script>
 
 <svelte:head>
-	<title>borntofrappe / log / {title}</title>
+	<title>Entry {entry} - {title} | borntofrappe</title>
 </svelte:head>
 
 <main>
 	<h1>{title}</h1>
-	<svelte:component this={Entry} />
+	<Entry />
 </main>
 
 <style>

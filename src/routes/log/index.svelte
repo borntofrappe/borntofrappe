@@ -23,7 +23,7 @@
 
 <script>
 	import { tweened } from 'svelte/motion';
-	import { sineIn as easeIn, sineOut as easeOut, linear } from 'svelte/easing';
+	import { quadIn as easeIn, quadOut as easeOut, linear } from 'svelte/easing';
 
 	export let title;
 	export let entry;
@@ -50,7 +50,7 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe / log</title>
+	<title>Log - Entry {entry} | borntofrappe</title>
 </svelte:head>
 
 <main
@@ -126,9 +126,9 @@
 							type="translate"
 							values="0 0; -100 0"
 							keyTimes="0; 1"
-							keySplines="0.25, 1, 0.5, 1"
+							keySplines="0.83, 0, 0.17, 1"
 							calcMode="spline"
-							dur="2"
+							dur="1.75"
 							fill="freeze"
 							begin="indefinite"
 							id="x"
@@ -151,9 +151,9 @@
 								type="translate"
 								values="0 0; -100 0"
 								keyTimes="0; 1"
-								keySplines="0.25, 1, 0.5, 1"
+								keySplines="0.83, 0, 0.17, 1"
 								calcMode="spline"
-								dur="2"
+								dur="1.75"
 								fill="freeze"
 								begin="x.begin"
 							/>
@@ -178,11 +178,11 @@
 							type="translate"
 							values="0 0; 0 90"
 							keyTimes="0; 1"
-							keySplines="0.37 0 0.63 1"
+							keySplines="0.65, 0, 0.35, 1"
 							calcMode="spline"
 							dur="2"
 							fill="freeze"
-							begin="x.end"
+							begin="x.begin + 1s"
 							id="y"
 						/>
 						<g transform="scale(0.18)">
@@ -193,12 +193,12 @@
 									type="scale"
 									values="1, 1; 0, 1; 1, 1"
 									keyTimes="0; 0.5; 1"
-									keySplines="0.12 0 0.39 0; 0.61 1 0.88 1;"
+									keySplines="0.12, 0, 0.39, 0; 0.61, 1, 0.88, 1;"
 									calcMode="spline"
 									dur="0.5"
 									repeatCount="4"
 									fill="freeze"
-									begin="x.end"
+									begin="y.begin"
 								/>
 								<path
 									d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
@@ -226,7 +226,7 @@
 						attributeName="opacity"
 						values="0; 1"
 						keyTimes="0; 1"
-						keySplines="0.37 0 0.63 1"
+						keySplines="0.37, 0, 0.63, 1"
 						calcMode="spline"
 						dur="1"
 						fill="freeze"
@@ -242,13 +242,14 @@
 </main>
 
 <article>
-	<svelte:component this={Entry} />
+	<Entry />
 </article>
 
 <footer>
 	<p>
-		That's all for today. If you feel like an archeologist though, you can check previous entries
-		<a href="/log/entries">in the archives</a>.
+		For the time being, that's a wrap. If you really want to, however, you can check previous
+		entries
+		<a sveltekit:prefetch href="/log/entries">in the archives</a>.
 	</p>
 </footer>
 
@@ -348,7 +349,9 @@
 		width: var(--width);
 		max-width: 42rem;
 		max-width: var(--max-width);
-		margin: 1em auto;
+		margin: 2em auto 1em;
+		font-size: 1rem;
+		font-size: var(--size-400);
 	}
 
 	@keyframes show {

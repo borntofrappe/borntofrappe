@@ -1,4 +1,6 @@
 <script context="module">
+	export const prerender = true;
+
 	export async function load() {
 		const logs = await Promise.all(
 			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, fn]) => {
@@ -26,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe / log / entries</title>
+	<title>Log - Archives | borntofrappe</title>
 </svelte:head>
 
 <main>
@@ -35,7 +37,7 @@
 	<ol>
 		{#each logs as { entry: value, title, href }}
 			<li {value}>
-				<a {href}>{title}</a>
+				<a sveltekit:prefetch {href}>{title}</a>
 			</li>
 		{/each}
 	</ol>

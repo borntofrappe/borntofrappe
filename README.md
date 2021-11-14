@@ -377,4 +377,27 @@ Expanding the log route the idea is to add two additional `.svelte` components:
 
 - `entries.svelte` to list all entries and linking toward the individual pages created through the previous route
 
+### Kit specificities
+
+The pages for the individual entries as well as the page listing all entries in something similar to an archive can be safely pre-rendered.
+
+```svelte
+<script context="module">
+  export const prerender = true;
+</script>
+```
+
+The logic including the processed markdown makes due without the `<svelte:component>` special element. The documents are not meant to be reactive.
+
+```diff
+-<svelte:component this={Entry} />
++<Entry />
+```
+
+The anchor links pointing toward the list of entries, as well as the anchor link pointing to the individual entries, are excellent candidates for the `sveltekit:prefetch` attribute.
+
+```svelte
+<a sveltekit:prefetch {href}>{title}</a>
+```
+
 </details>
