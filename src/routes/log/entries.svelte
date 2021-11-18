@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>Log - Archives | borntofrappe</title>
+	<title>Log Entries | borntofrappe</title>
 </svelte:head>
 
 <main>

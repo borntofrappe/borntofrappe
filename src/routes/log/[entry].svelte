@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Entry {entry} - {title} | borntofrappe</title>
+	<title>Log Entry {entry} - {title} | borntofrappe</title>
 </svelte:head>
 
 <main>

@@ -58,7 +58,7 @@
 </script>
 
 <svelte:head>
-	<title>Log - Entry {entry} | borntofrappe</title>
+	<title>Log | borntofrappe</title>
 </svelte:head>
 
 <main>
@@ -122,7 +122,7 @@
 						type="translate"
 						to="0 0"
 						keyTimes="0; 1"
-						keySplines="0.83, 0, 0.17, 1"
+						keySplines="0.83 0 0.17 1"
 						calcMode="spline"
 						dur="1.75"
 						fill="freeze"
@@ -138,7 +138,7 @@
 							type="translate"
 							to="0 0"
 							keyTimes="0; 1"
-							keySplines="0.83, 0, 0.17, 1"
+							keySplines="0.83 0 0.17 1"
 							calcMode="spline"
 							dur="1.75"
 							fill="freeze"
@@ -148,39 +148,54 @@
 				</g>
 			</g>
 
-			<g transform="translate(0 140)">
-				<g transform="translate(0 -90)">
-					<animateTransform
-						attributeType="XML"
-						attributeName="transform"
-						type="translate"
-						to="0 0"
-						keyTimes="0; 1"
-						keySplines="0.65, 0, 0.35, 1"
-						calcMode="spline"
-						dur="2"
-						fill="freeze"
-						begin="x.begin + 1s"
-						id="y"
-					/>
-					<g transform="scale(0.18)">
-						<g>
-							<animateTransform
-								attributeType="XML"
-								attributeName="transform"
-								type="scale"
-								values="1, 1; 0, 1; 1, 1"
-								keyTimes="0; 0.5; 1"
-								keySplines="0.12, 0, 0.39, 0; 0.61, 1, 0.88, 1;"
-								calcMode="spline"
-								dur="0.5"
-								repeatCount="4"
-								fill="freeze"
-								begin="y.begin"
-							/>
-							<path
-								d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
-							/>
+			<g>
+				<animateTransform
+					attributeType="XML"
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 10; 0 0"
+					keyTimes="0; 0.5; 1"
+					keySplines="0.11 0 0.5 0; 0.5 1 0.89 1"
+					calcMode="spline"
+					dur="2"
+					repeatCount="5"
+					begin="fade.begin + 0.5s"
+				/>
+
+				<g transform="translate(0 140)">
+					<g transform="translate(0 -90)">
+						<animateTransform
+							attributeType="XML"
+							attributeName="transform"
+							type="translate"
+							to="0 0"
+							keyTimes="0; 1"
+							keySplines="0.11 0 0.5 0"
+							calcMode="spline"
+							dur="2"
+							fill="freeze"
+							begin="x.begin + 1s"
+							id="y"
+						/>
+						<g transform="scale(0.18)">
+							<g>
+								<animateTransform
+									attributeType="XML"
+									attributeName="transform"
+									type="scale"
+									values="1 1; 0 1; 1 1"
+									keyTimes="0; 0.5; 1"
+									keySplines="0.12 0 0.39 0; 0.61 1 0.88 1;"
+									calcMode="spline"
+									dur="0.5"
+									repeatCount="4"
+									fill="freeze"
+									begin="y.begin"
+								/>
+								<path
+									d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
+								/>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -207,6 +222,7 @@
 						dur="1"
 						fill="freeze"
 						begin="y.end + 1s"
+						id="fade"
 					/>
 					<text>
 						{title}
