@@ -71,6 +71,23 @@ Add a `netlify.toml` config file.
   publish = "build"
 ```
 
+### Debug
+
+> Failed during stage `building site`: Build script returned non-zero exit code: 2
+
+Among the warnings in the "Deploy log"
+
+> npm WARN notsup Unsupported engine for @sveltejs/kit@1.0.0-next.201: wanted: {"node":">=14.13"} (current: {"node":"10.24.1","npm":"6.14.12"})
+
+Update `netlify.toml` to require a satisfactory node version.
+
+```bash
+[context.production]
+  environment = { NODE_VERSION = "14.18.1" }
+```
+
+`14.18.1` because it's the version I use to develop the website.
+
 ###
 
 </details>
