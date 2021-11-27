@@ -71,7 +71,7 @@ Add a `netlify.toml` config file.
   publish = "build"
 ```
 
-### Debug
+### Debug - failed build
 
 > Failed during stage `building site`: Build script returned non-zero exit code: 2
 
@@ -81,12 +81,44 @@ Among the warnings in the "Deploy log"
 
 Update `netlify.toml` to require a satisfactory node version.
 
-```bash
+```toml
 [context.production]
   environment = { NODE_VERSION = "14.18.1" }
 ```
 
 `14.18.1` because it's the version I use to develop the website.
+
+### Debug - failing function
+
+The site is built but the URL returns the following message
+
+> {"errorType":"Runtime.UserCodeSyntaxError","errorMessage":"SyntaxError: Unexpected token '.'",
+>
+> ...continues
+
+In the console
+
+> Failed to load resource: the server responded with a status of 502 ()
+
+In the Netlify app and the deploy log there is no warning, but under "Publish deploy" (I wanted to look at the built version) you find the following
+
+> Production: master@5151cbf.
+>
+> Deployed Functions
+
+Exploring _functions_ you find a `__render` function which produces the error message
+
+> {"errorType":"Runtime.UserCodeSyntaxError","errorMessage":"SyntaxError: Unexpected token
+
+Scavenging the Netlify [docs](https://docs.netlify.com/configure-builds/file-based-configuration/#functions) and [forum](https://answers.netlify.com/t/build-works-locally-but-not-in-netlify/45438/4) I found
+a possible fix.
+
+Update `netlify.toml` and the `[functions]` field.
+
+```toml
+[functions]
+  node_bundler = "esbuild"
+```
 
 ###
 
