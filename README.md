@@ -126,6 +126,38 @@ Update `netlify.toml` and the `[functions]` field.
   node_bundler = "esbuild"
 ```
 
+---
+
+With the website successfully deployed through Netlify I shift focus to the design and development of the application. I might turn these words in regular articles, but for now I'm satisfied with a stream of loosely connected thoughts.
+
+## Document icons
+
+SvelteKit includes `static/favicon.png` as the default icon, referencing the asset directly in `src/app.html`
+
+```html
+<link rel="icon" href="/favicon.png" />
+```
+
+In place of this default, and taking inspiration from [this article](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs) shared on [CSS-Tricks](https://css-tricks.com/how-to-favicon-in-2021/) I created an SVG icon to better fit the application. The icon describes a rocket pointing up and to the right. There's a reason why I landed on the rocket, but I'd rather yada-yada the issue for the time being.
+
+In terms of actual design I like to draw my vector graphics in VSCode, so that the syntax is the end result of adjusting values by hand. I don't feel pressured to optimize the end result with SVGO and I'm more than satisfied just removing the unnecessary whitespace. The icon itself has a default stroke color, but changes for a dark color preference. The colors refer to the following `hsl` codes:
+
+- hsl(210, 24%, 16%)
+
+- hsl(213, 32%, 88%)
+
+Hex colors just take less characters to type.
+
+Returning to the cited article, the markup references the vector graphic, but also `.ico` and `.png` variants.
+
+```html
+<link rel="icon" href="/icons/favicon.ico" sizes="any" />
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+```
+
+The variants are created with GIMP. This relates to the `.ico` and `.png` files included in the snippet, but also the two images referenced in the web manifest. `.png` images are optimized with [squoosh.app](https://squoosh.app/) compressing with OxiPNG and toggling the "Reduce palette" option with 64 colors. The three go from 37.8kb to 12.5kb. I know the browser only needs one, but the difference is noticeable.
+
 ##
 
 </details>
