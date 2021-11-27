@@ -11,7 +11,13 @@ So here's my personal website, reinforcing the first factoid and hopefully overr
 <details>
 <summary><strong>Dev Notes</strong></summary>
 
-### Links
+## Does it work?
+
+Fingers crossed, it should. Here's a status badge to confirm.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4e7278de-b395-4b4c-a54c-4c12fbd57fc9/deploy-status)](https://app.netlify.com/sites/borntofrappe/deploys)
+
+## Links
 
 - [SvelteKit](https://kit.svelte.dev)
 
@@ -21,7 +27,7 @@ So here's my personal website, reinforcing the first factoid and hopefully overr
 
 - [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify)
 
-### Install
+## Install
 
 ```bash
 npm init svelte@next
@@ -41,13 +47,13 @@ npm init svelte@next
 npm install
 ```
 
-### Develop
+## Develop
 
 ```bash
 npm run dev
 ```
 
-### Publish
+## Publish
 
 `npm run build` creates a production version, but it's first necessary to set up an [adapter](https://kit.svelte.dev/docs#adapters).
 
@@ -71,7 +77,7 @@ Add a `netlify.toml` config file.
   publish = "build"
 ```
 
-### Debug - failed build
+## Debug - failed build
 
 > Failed during stage `building site`: Build script returned non-zero exit code: 2
 
@@ -88,7 +94,7 @@ Update `netlify.toml` to require a satisfactory node version.
 
 `14.18.1` because it's the version I use to develop the website.
 
-### Debug - failing function
+## Debug - failing function
 
 The site is built but the URL returns the following message
 
@@ -111,7 +117,7 @@ Exploring _functions_ you find a `__render` function which produces the error me
 > {"errorType":"Runtime.UserCodeSyntaxError","errorMessage":"SyntaxError: Unexpected token
 
 Scavenging the Netlify [docs](https://docs.netlify.com/configure-builds/file-based-configuration/#functions) and [forum](https://answers.netlify.com/t/build-works-locally-but-not-in-netlify/45438/4) I found
-a possible fix.
+a fix.
 
 Update `netlify.toml` and the `[functions]` field.
 
@@ -120,6 +126,6 @@ Update `netlify.toml` and the `[functions]` field.
   node_bundler = "esbuild"
 ```
 
-###
+##
 
 </details>
