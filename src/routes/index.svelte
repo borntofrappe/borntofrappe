@@ -11,10 +11,8 @@
 	<li>I often fail to follow through past the initial, exciting phase</li>
 </ol>
 
-<p>
-	So here's my personal website, reinforcing the first factoid and hopefully overriding the second.
-</p>
+<p>So here's my own website, reinforcing the first factoid and hopefully overriding the second.</p>
 
 <footer>
-	<p>Signed, Gabriele Corti on <time datetime="2021-11-27">November 27, 2021</time></p>
+	<p>Signed, Gabriele Corti on <time datetime="2021-11-28">November 28, 2021</time>.</p>
 </footer>
