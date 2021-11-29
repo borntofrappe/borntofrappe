@@ -1,8 +1,15 @@
-<svelte:head>
-	<title>borntofrappe</title>
-</svelte:head>
+<script>
+	import Meta from '$lib/components/Meta.svelte';
 
-<h1>borntofrappe</h1>
+	const title = 'borntofrappe';
+</script>
+
+<Meta
+	{title}
+	description="Hello, and welcome to my personal website. This is where I try to convince you I'm a solid programmer. Signed, Gabriele Corti, coding online @borntofrappe."
+/>
+
+<h1>{title}</h1>
 
 <p>Here's two things about me:</p>
 
@@ -14,5 +21,5 @@
 <p>So here's my own website, reinforcing the first factoid and hopefully overriding the second.</p>
 
 <footer>
-	<p>Signed, Gabriele Corti on <time datetime="2021-11-28">November 28, 2021</time>.</p>
+	<p>Signed, Gabriele Corti on <time datetime="2021-11-29">November 29, 2021</time>.</p>
 </footer>

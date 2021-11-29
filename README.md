@@ -288,6 +288,32 @@ body {
 
 Say `--copy-color` is not defined, without this fallback the browser would revert to the initial value.
 
+## Meta
+
+The `<Meta />` component includes a title, description and link for the canonical URL. For the title the information is extracted from the page store through `$app/store`, to resemble something akin to breadcrumb navigation for the current path. It is however possible to override the deault by passing a value through directly through props.
+
+```svelte
+<Meta title="borntofrappe" />
+```
+
+## Opengraph image
+
+Among the meta attributes, the `<Meta />` component refers to a single image for the opengraph protocol. It seems it is not enough to describe the relative path to the resource, however, and it is necessary to refer to the actual domain.
+
+```html
+<meta property="twitter:image" content="https://borntofrappe.netlify.app/images/borntofrappe.png" />
+```
+
+In terms of design the image was created using the same icons and visuals I intend to later include in the application:
+
+- the rocket icon at the center is the same icon used for the document
+
+- the sun and moon icons represent the light and dark color scheme respectively
+
+- the colors are picked from the custom properties in `app.css`
+
+There's also a small repeated pattern in the background which I might later include through the `body` selector as well.
+
 ##
 
 </details>
