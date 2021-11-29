@@ -314,6 +314,26 @@ In terms of design the image was created using the same icons and visuals I inte
 
 There's also a small repeated pattern in the background which I might later include through the `body` selector as well.
 
+## error
+
+Following the suggestion from [the kit's docs](https://kit.svelte.dev/docs#layouts-error-pages) `__error.svelte` implements a custom error page.
+
+The script at the top of the page returns the error and status code, extracted from the `load` function as documented.
+
+```js
+export function load({ error, status }) {}
+```
+
+The values are then included in an arbitrary markup structure (design at a later stage).
+
+Take notice of the `href` attribut for the anchor link pointing toward GitHub to fix the potential issue.
+
+```text
+https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{status}&body={error.message}&labels=bug
+```
+
+The idea is to pre-populate the fields to file an issue as a bug with the given status code and error message.
+
 ##
 
 </details>
