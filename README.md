@@ -162,9 +162,11 @@ The variants are created with GIMP. This relates to the `.ico` and `.png` files 
 
 From [Google fonts](https://fonts.google.com/) I picked:
 
-- JosefinSans, only in its semibold variant
+- JosefinSans, only in its bold variant
 
-- Jost, considering the regular, semibold and italic variants
+- Jost, considering the regular, bold and italic variants
+
+The two are rather similar, with geometric features, but I like JosefinSans for my headings, Jost for copy.
 
 I don't load a `monospace` webfont and instead prefer to rely on the system font stack. Inconsolata is my preferred option, but it's used only if already available on the machine.
 
