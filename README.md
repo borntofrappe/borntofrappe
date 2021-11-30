@@ -334,7 +334,11 @@ https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{s
 
 The idea is to pre-populate the fields to file an issue as a bug with the given status code and error message.
 
-### Playground
+## external
+
+The anchor link elements making up the `<SkipToContent>` component has a `rel` attribute of `external`. [The value](https://kit.svelte.dev/docs#anchor-options-rel-external) is necessary to bypass the kit and rely on browser navigation instead.
+
+## Playground
 
 I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground). The components, the illustrations created in this playground are incorporated with a few Svelte specificity, and making sure to add the fallback to the custom properties.
 

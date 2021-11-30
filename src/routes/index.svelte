@@ -10,7 +10,7 @@
 
 <Header title="Hello world" body="You are welcomed." />
 
-<main>
+<main id="content">
 	<p>Here's two things about me:</p>
 
 	<ol>
