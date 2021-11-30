@@ -93,6 +93,27 @@ select {
 	--transition-duration: 0.25s;
 }
 
+html[data-preference] body {
+	transition: color var(--transition-duration) var(--ease-in-out-sine),
+		background var(--transition-duration) var(--ease-in-out-sine);
+}
+
+@media (prefers-color-scheme: dark) {
+	html:not([data-preference]) body {
+		--copy-color: var(--blue-grey-200);
+		--heading-color: var(--blue-grey-100);
+		--background-color: var(--blue-grey-900);
+		--accent-color: var(--cyan-600);
+	}
+}
+
+html[data-preference='dark'] body {
+	--copy-color: var(--blue-grey-200);
+	--heading-color: var(--blue-grey-100);
+	--background-color: var(--blue-grey-900);
+	--accent-color: var(--cyan-600);
+}
+
 body {
 	--copy-color: var(--cool-grey-800);
 	--heading-color: var(--cool-grey-900);

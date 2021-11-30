@@ -13,7 +13,7 @@
 
 	a {
 		text-decoration: none;
-		--transition-duration: 0.9s;
+		--transition-duration: 0.75s;
 		position: relative;
 		z-index: 5;
 	}
