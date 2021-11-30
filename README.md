@@ -334,6 +334,16 @@ https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{s
 
 The idea is to pre-populate the fields to file an issue as a bug with the given status code and error message.
 
+### Playground
+
+I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground). The components, the illustrations created in this playground are incorporated with a few Svelte specificity, and making sure to add the fallback to the custom properties.
+
+Here's a non-exhaustive list of notable differences:
+
+- the styles for the alternative color scheme rely on the `:global()` syntax, essential to consider the parent selector
+
+- the components are able to use more general CSS selectors instead of dedicated classes, knowing that styles are scoped to each `.svelte` file
+
 ##
 
 </details>

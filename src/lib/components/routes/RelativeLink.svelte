@@ -1,9 +1,10 @@
 <script>
 	export let href;
-	export let body;
 </script>
 
-<a {href}>{body}</a>
+<a {href}>
+	<slot />
+</a>
 
 <style>
 	:global(.webfonts) a {
@@ -28,7 +29,7 @@
 		position: absolute;
 		top: 100%;
 		background: currentColor;
-		transition: transform 0.9s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+		transition: transform 0.75s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		transition: transform var(--transition-duration) var(--ease-in-out-sine);
 		pointer-events: none;
 		z-index: -5;

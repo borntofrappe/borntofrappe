@@ -1,12 +1,10 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
-
-	const title = 'borntofrappe';
 </script>
 
 <Meta
-	{title}
+	title="borntofrappe"
 	description="Hello, and welcome to my personal website. This is where I try to convince you I'm a solid programmer. Signed, Gabriele Corti, coding online @borntofrappe."
 />
 

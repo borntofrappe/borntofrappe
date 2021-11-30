@@ -71,7 +71,7 @@
 	</p>
 
 	<p>
-		<RelativeLink href="/" body="Go to home, page" />
+		<RelativeLink href="/">Go to home, page</RelativeLink>
 	</p>
 </main>
 
