@@ -73,6 +73,9 @@ select {
 	--blue-grey-800: hsl(212, 39%, 19%);
 	--blue-grey-900: hsl(210, 58%, 9%);
 
+	--max-width: 42rem;
+	--width: 90vw;
+
 	--size-300: 0.8rem;
 	--size-400: 1rem;
 	--size-500: 1.25rem;

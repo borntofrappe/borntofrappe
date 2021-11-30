@@ -1,5 +1,5 @@
 <script>
-	import Meta from '$lib/components/Meta.svelte';
+	import Meta from '$lib/components/routes/Meta.svelte';
 
 	const title = 'borntofrappe';
 </script>
