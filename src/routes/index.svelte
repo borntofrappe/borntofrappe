@@ -1,6 +1,9 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+
+	import GettingStarted from '$lib/components/index/GettingStarted.svelte';
+	import About from '$lib/components/index/About.svelte';
 </script>
 
 <Meta
@@ -11,22 +14,8 @@
 <Header title="Hello world" body="You are welcomed." />
 
 <main id="content">
-	<p>Here's two things about me:</p>
-
-	<ol>
-		<li>I like to start new projects</li>
-		<li>I often fail to follow through past the initial, exciting phase</li>
-	</ol>
-
-	<p>
-		So here's my own website, reinforcing the first factoid and hopefully overriding the second.
-	</p>
-
-	<p>
-		You can attest its progress over <a href="https://github.com/borntofrappe/borntofrappe"
-			>on GitHub</a
-		>.
-	</p>
+	<GettingStarted />
+	<About />
 </main>
 
 <style>
@@ -35,10 +24,23 @@
 		max-width: var(--max-width);
 		width: 90vw;
 		width: var(--width);
-		margin: 4rem auto;
+		margin-left: auto;
+		margin-right: auto;
+		--section-whitespace: 6em;
 	}
 
-	main > * + * {
+	main :global(p) {
+		line-height: 1.75;
+	}
+
+	main > :global(section) {
+		margin-top: 6em;
+		margin-top: var(--section-whitespace);
+		margin-bottom: 6em;
+		margin-bottom: var(--section-whitespace);
+	}
+
+	main > :global(section > * + *) {
 		margin-top: 0.75em;
 	}
 </style>
