@@ -149,7 +149,9 @@
 	}
 
 	:global(html[data-preference='dark']) div pre {
+		color: hsl(185, 94%, 87%);
 		color: var(--cyan-100);
+		background: hsl(185, 91%, 17%);
 		background: var(--cyan-900);
 	}
 
@@ -174,6 +176,7 @@
 	}
 
 	:global(html[data-preference='dark']) div pre::-webkit-scrollbar-track {
+		background: hsl(185, 91%, 17%);
 		background: var(--cyan-900);
 	}
 
