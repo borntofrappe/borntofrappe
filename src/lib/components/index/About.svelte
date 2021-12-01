@@ -1,8 +1,12 @@
+<script>
+	import { observe } from '$lib/utils.js';
+</script>
+
 <section>
 	<h2>Almost forgot</h2>
 	<p>
-		My name is <mark>Gabriele Corti</mark>. I write to you from Europe a couple of hours after
-		Greenwich time.
+		My name is <mark class:observed={false} use:observe>Gabriele Corti</mark>. I write to you from
+		Europe a couple of hours after Greenwich time.
 	</p>
 	<p>
 		Outside of VSCode, you'll find me running, watching the highlight of an F1 race or enjoying a
@@ -76,6 +80,7 @@
 				alternate;
 			animation-play-state: paused;
 		}
+
 		mark::after {
 			transform: translate(50%, 50%) rotate(0deg);
 			animation: rotate 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
@@ -85,8 +90,8 @@
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
-			mark::before,
-			mark::after {
+			mark.observed::before,
+			mark.observed::after {
 				animation-play-state: running;
 			}
 		}

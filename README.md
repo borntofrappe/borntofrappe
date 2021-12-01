@@ -338,6 +338,28 @@ The idea is to pre-populate the fields to file an issue as a bug with the given 
 
 The anchor link elements making up the `<SkipToContent>` component has a `rel` attribute of `external`. [The value](https://kit.svelte.dev/docs#anchor-options-rel-external) is necessary to bypass the kit and rely on browser navigation instead.
 
+## observe
+
+The `use:observe` action helps to run animations following the guidance of the intersection observer API. The function is defined in `lib/utils.js` and receives a node, on which the idea is to add and remove a class of `.observed`.
+
+Note that the styling for this class would be normally stripped out by the Svelte compiler.
+
+```css
+section.observed::after {
+	animation-play-state: running;
+}
+```
+
+Unless there is a class of `.observed` in the existing component. To work around this the element being observed technically defines the class, but with a false value.
+
+```svelte
+<section class:observed={false} use:observe>
+```
+
+The compiler retains the property value pairs, the class is not present and is included through the `observe` action.
+
+Minor note: for the `About` component the action is attached to the `<mark>` element being animated. One could make the case for considering the parent container instead.
+
 ## Playground
 
 I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground). The components, the illustrations created in this playground are incorporated with a few Svelte specificity, and making sure to add the fallback to the custom properties.

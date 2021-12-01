@@ -81,7 +81,7 @@
 		max-width: var(--max-width);
 		width: 90vw;
 		width: var(--width);
-		margin: 4rem auto;
+		margin: 2em auto 6em;
 	}
 
 	main > * + * {

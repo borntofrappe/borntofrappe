@@ -1,4 +1,8 @@
-<section>
+<script>
+	import { observe } from '$lib/utils.js';
+</script>
+
+<section class:observed={false} use:observe>
 	<h2>Looking forward</h2>
 	<p>
 		I'm building this website with
@@ -71,7 +75,7 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		section::after {
+		section.observed::after {
 			animation-play-state: running;
 		}
 	}
