@@ -35,7 +35,6 @@
 		z-index: -5;
 	}
 
-	/* before underline */
 	a::before {
 		left: 0%;
 		width: 100%;
