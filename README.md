@@ -456,7 +456,7 @@ Due to this the `load` function needs to also be made into an `async` function.
 
 ### entry
 
-`[entry].svelte` shows the actual content.
+`[slug].svelte` shows the actual content.
 
 ## Playground
 

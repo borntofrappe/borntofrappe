@@ -18,7 +18,7 @@
 	export let status;
 </script>
 
-<Meta title="borntofrappe / {status}" description={error} />
+<Meta title="{status} | borntofrappe" description={error} />
 
 <Header title="Oopsie" body="Something quite unexpected has happened." />
 

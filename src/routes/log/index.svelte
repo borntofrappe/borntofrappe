@@ -1,8 +1,8 @@
 <script context="module">
 	export async function load() {
 		const entries = await Promise.all(
-			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, entry]) => {
-				const { metadata } = await entry();
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, fn]) => {
+				const { metadata } = await fn();
 
 				const slug = path.split('/').pop().replace('.md', '');
 				return {
@@ -28,7 +28,7 @@
 </script>
 
 <Meta
-	title="borntofrappe / log"
+	title="Log | borntofrappe"
 	description="Hello, and welcome to the log of my personal website. This is where I jot down a series of notes loosely connected by the fact that I'm the one writing them. Signed, Gabriele Corti, coding online @borntofrappe."
 />
 
