@@ -360,6 +360,43 @@ The compiler retains the property value pairs, the class is not present and is i
 
 Minor note: for the `About` component the action is attached to the `<mark>` element being animated. One could make the case for considering the parent container instead.
 
+## Log
+
+The website is meant to have a page dedicated to a blog. With `routes/log` I experiment how to set up a similar environment.
+
+### mdsvex
+
+```bash
+npm i --save-dev mdsvex
+```
+
+Following [the docs](https://mdsvex.pngwn.io/docs) update the config file
+
+```js
+import { mdsvex } from 'mdsvex';
+```
+
+The config object includes two additional fields so that the kit is able to:
+
+1. consider markdown documents (Svelte-in-markdown documents discussed at a later stage)
+
+   ```js
+   const config = {
+   	extensions: ['.svelte', '.md']
+   };
+   ```
+
+2. preprocess the documents with mdsvex
+
+   ```js
+   const config = {
+   	extensions: ['.svelte', '.md'],
+   	preprocess: mdsvex({ extensions: ['.md'] })
+   };
+   ```
+
+This is technically enough to have the kit produce a page from a markdown document, say `routes/log/test-entry.md`.
+
 ## Playground
 
 I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground). The components, the illustrations created in this playground are incorporated with a few Svelte specificity, and making sure to add the fallback to the custom properties.
