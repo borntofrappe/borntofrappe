@@ -362,7 +362,7 @@ Minor note: for the `About` component the action is attached to the `<mark>` ele
 
 ## Log
 
-The website is meant to have a page dedicated to a blog. With `routes/log` I experiment how to set up a similar environment.
+I intend to create a blog with `routes/blog`. With `routes/log` I experiment how to create a similar environment, processing markdown syntax and generating pages as needed, with a more informal tone.
 
 ### mdsvex
 
@@ -378,13 +378,15 @@ import { mdsvex } from 'mdsvex';
 
 The config object includes two additional fields so that the kit is able to:
 
-1. consider markdown documents (Svelte-in-markdown documents discussed at a later stage)
+1. consider markdown documents
 
    ```js
    const config = {
    	extensions: ['.svelte', '.md']
    };
    ```
+
+Svelte-in-markdown syntax, touted by mdsvex as `.svg` will be discussed at a later stage and in the context of the blog.
 
 2. preprocess the documents with mdsvex
 
@@ -399,64 +401,183 @@ This is technically enough to have the kit produce a page from a markdown docume
 
 ### glob
 
-Ultimately the idea is to include the documents in a separate folder and have the kit inject the content as needed.
+Ultimately the idea is to include the documents in a separate folder and have the kit inject the content as needed. In `routes/log/index.svelte` consider markdown documents with `import.meta.glob`, a feature made available [by Vite](https://vitejs.dev/guide/features.html#glob-import).
 
 ```js
-<script context="module">
-	export function load() {
-		const entries = import.meta.glob('/src/log/*.md');
-		console.log(entries);
-
-		//
-	}
-</script>
+const log = import.meta.glob('/src/log/*.md');
+console.log(log);
 ```
 
-An object with the path as key, a function as value
+The import syntax returns an object describing the documents with a path and a function.
 
-`Object.entries()` creates a 2d array out of both pieces of information
+```js
+{
+  '/src/log/up-and-running.md': Function(),
+  '/src/log/a-star-is-rotated.md': Function(),
+}
+```
+
+The function is what ultimately allows to transform the documents, through mdsvex, to retrieve the metadata and actual content. Before extracting the information, however, the object is processed to iterate through the entries.
+
+`Object.entries()` creates a 2D array.
 
 ```js
 Object.entries(import.meta.glob('/src/log/*.md'));
 ```
 
-The first value describes the path, the second the function.
-
-Note that the function is a promise.
+With an array `.map` iterates through each pair considering the path and function. Vite calls the larger object `modules` so I decided to use the singular noun in place of something like `fn`, or more topically `entry`.
 
 ```js
-const entries = Object.entries(import.meta.glob('/src/log/*.md')).map(([path, entry]) => {
-	console.log(path);
-	console.log(entry()); // pending
-	return '';
-});
+.map(async ([path, module]) => {
+
+})
 ```
 
-If awaited it shows two important fields: `default`, an object with a `render` function, and `metadata`, an object with information extracted from the YAML frontmatter
+Note the `async` keyword is necessary since behind the scenes `module` is actually a promise.
+
+Once awaited, the module provides an object with metadata.
 
 ```js
-console.log(await entry());
+.map(async ([path, module]) => {
+  const { metadata } = await module();
+})
 ```
 
-Just remember to make the callback function async
+In this instance metadata describes the key value pairs retrieved from the YAML syntax at the top of the documents.
+
+```md
+---
+title: Up and running
+entry: 1
+---
+```
+
+The path helps to build the slug for the individual entries. The approach is rather rudimentary, but it works by considering the name of the file without extension.
 
 ```js
-async ([path, entry]) => {};
+const slug = path.split('/').pop().replace('.md', '');
 ```
 
-For the page listing all entries pass the metadata to consider the title and number of entry. Extract the slug from the path. This is done with a regular expression, but I'm positive there are better ways to achieve the same result.
-
-Note that since `Object.entries` includes promises you need to wrap the object in a giant `Promise.all`, and await its execution.
+Metadata and slug are enough to build the index of entries.
 
 ```js
-await Promise.all(Object.entries());
+return {
+	...metadata,
+	slug
+};
 ```
 
-Due to this the `load` function needs to also be made into an `async` function.
+Howrever, you need to wrap the entire `Object.entries` statement in a giant promise to wait for the execution of each module.
 
-### entry
+```js
+const log = await Promise.all(Object.entries(/**/));
+```
 
-`[slug].svelte` shows the actual content.
+To this end the `load` function needs to be updated with the `async` keyword.
+
+```js
+export async function load() {}
+```
+
+Once the promise is all resolved, `log` describes an array of objects with `title`, `entry` and `slug`. The data is passed through props and iterated through with an `#each` statement to create the list of entries.
+
+Note that the slug is appended to the `/log/` string to redirect toward a page in the log.
+
+```svelte
+<a href="/log/{slug}">{title}</a>
+```
+
+### slug
+
+`[slug].svelte` is responsible for creating the actual page for the individual entries. The square brackets help to capture the slug from the URL parameters.
+
+```text
+.../log/up-and-running
+```
+
+The value is retrieved from the load function.
+
+```js
+export async function load({ page }) {
+	const { slug } = page.params;
+}
+```
+
+The idea is to here generate a page only if there is a matching entry in the log folder. A first approach I found working is to:
+
+1. build the path the entry should have as returned by `import.meta.glob`
+
+   ```js
+   const path = `/src/log/${slug}.md`;
+   ```
+
+2. check if `import.meta.glob` has a matching key
+
+   ```js
+   const log = import.meta.glob('/src/log/*.md');
+
+   if (log[path]) {
+   }
+   ```
+
+If there is a path the script proceeds to resolve the connected module. Aside from the metadata, helpful to introduce the entry with its title and number, the page extracts the content from the `default` field.
+
+```js
+const { default: Entry, metadata } = await log[path]();
+```
+
+I chose to capitalize the content since it is enough to include the variable as a component.
+
+```svelte
+<main id="content">
+	<Entry />
+</main>
+```
+
+If there is no path matching the value it is enough to return an object with a `status` and `error` field to have the kit refer to the error page `__error.svelte`.
+
+```js
+return {
+	status: 404,
+	error: new Error(`No entry found for '${slug}'`)
+};
+```
+
+### warning
+
+There is a warning connected to using the module as-is.
+
+```svelte
+<Entry />
+```
+
+The console suggests to use the special element `svelte:component` instead, describing how the first type is not fully interactive.
+
+```svelte
+<svelte:component this={Entry} />
+```
+
+I will research the topic, but given the static nature of the content I am satisfied with the current solution.
+
+### prerender
+
+Following the suggestion in [the kit's docs](https://kit.svelte.dev/docs#ssr-and-javascript-prerender) both `log.svelte` and `[slug].svelte` are prerendered.
+
+```html
+<script context="module">
+	export const prerender = true;
+</script>
+```
+
+### prefetch
+
+Following [the kit's docs](https://kit.svelte.dev/docs#anchor-options-sveltekit-prefetch) the anchor link element pointing toward the individual entries prefetches the information.
+
+```svelte
+<a sveltekit:prefetch href="/log/{slug}">{title}</a>
+```
+
+I might need to research the topic, however, as I believe the fact that the pages are prerendered defeats the purpose.
 
 ## Playground
 

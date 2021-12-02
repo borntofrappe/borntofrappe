@@ -1,4 +1,6 @@
 <script context="module">
+	export const prerender = true;
+
 	export async function load({ page }) {
 		const { slug } = page.params;
 		const path = `/src/log/${slug}.md`;

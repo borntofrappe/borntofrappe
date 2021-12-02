@@ -1,10 +1,13 @@
 <script context="module">
+	export const prerender = true;
+
 	export async function load() {
-		const entries = await Promise.all(
-			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, fn]) => {
-				const { metadata } = await fn();
+		const log = await Promise.all(
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, module]) => {
+				const { metadata } = await module();
 
 				const slug = path.split('/').pop().replace('.md', '');
+
 				return {
 					...metadata,
 					slug
@@ -14,7 +17,7 @@
 
 		return {
 			props: {
-				entries
+				log
 			}
 		};
 	}
@@ -24,7 +27,7 @@
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 
-	export let entries;
+	export let log;
 </script>
 
 <Meta
@@ -35,11 +38,11 @@
 <Header title="Log" body="Proof that you really don't need to read everything you find online." />
 
 <main id="content">
-	<h2>Entries</h2>
+	<h2 class="visually-hidden">Entries</h2>
 	<ol>
-		{#each entries as { title, entry, slug }}
+		{#each log as { title, entry, slug }}
 			<li value={entry}>
-				<a href="/log/{slug}">{title}</a>
+				<a sveltekit:prefetch href="/log/{slug}">{title}</a>
 			</li>
 		{/each}
 	</ol>
