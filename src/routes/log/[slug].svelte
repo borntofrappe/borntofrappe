@@ -27,21 +27,16 @@
 
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
-	import Header from '$lib/components/routes/Header.svelte';
 
 	export let title;
 	export let entry;
 	export let Entry;
 </script>
 
-<Meta
-	title="Log entry {entry} - {title} | borntofrappe"
-	description="Log entry {entry}: {title}."
-/>
+<Meta title="Log entry {entry} | borntofrappe" description="Log entry {entry}: {title}." />
 
-<Header {title} body="Log entry {entry}" />
-
-<main id="content">
+<main>
+	<h1>{title}</h1>
 	<Entry />
 </main>
 
