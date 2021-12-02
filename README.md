@@ -397,6 +397,67 @@ The config object includes two additional fields so that the kit is able to:
 
 This is technically enough to have the kit produce a page from a markdown document, say `routes/log/test-entry.md`.
 
+### glob
+
+Ultimately the idea is to include the documents in a separate folder and have the kit inject the content as needed.
+
+```js
+<script context="module">
+	export function load() {
+		const entries = import.meta.glob('/src/log/*.md');
+		console.log(entries);
+
+		//
+	}
+</script>
+```
+
+An object with the path as key, a function as value
+
+`Object.entries()` creates a 2d array out of both pieces of information
+
+```js
+Object.entries(import.meta.glob('/src/log/*.md'));
+```
+
+The first value describes the path, the second the function.
+
+Note that the function is a promise.
+
+```js
+const entries = Object.entries(import.meta.glob('/src/log/*.md')).map(([path, entry]) => {
+	console.log(path);
+	console.log(entry()); // pending
+	return '';
+});
+```
+
+If awaited it shows two important fields: `default`, an object with a `render` function, and `metadata`, an object with information extracted from the YAML frontmatter
+
+```js
+console.log(await entry());
+```
+
+Just remember to make the callback function async
+
+```js
+async ([path, entry]) => {};
+```
+
+For the page listing all entries pass the metadata to consider the title and number of entry. Extract the slug from the path. This is done with a regular expression, but I'm positive there are better ways to achieve the same result.
+
+Note that since `Object.entries` includes promises you need to wrap the object in a giant `Promise.all`, and await its execution.
+
+```js
+await Promise.all(Object.entries());
+```
+
+Due to this the `load` function needs to also be made into an `async` function.
+
+### entry
+
+`[entry].svelte` shows the actual content.
+
 ## Playground
 
 I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground). The components, the illustrations created in this playground are incorporated with a few Svelte specificity, and making sure to add the fallback to the custom properties.

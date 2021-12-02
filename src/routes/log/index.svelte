@@ -1,6 +1,30 @@
+<script context="module">
+	export async function load() {
+		const entries = await Promise.all(
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, entry]) => {
+				const { metadata } = await entry();
+
+				const slug = path.split('/').pop().replace('.md', '');
+				return {
+					...metadata,
+					slug
+				};
+			})
+		);
+
+		return {
+			props: {
+				entries
+			}
+		};
+	}
+</script>
+
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+
+	export let entries;
 </script>
 
 <Meta
@@ -12,11 +36,13 @@
 
 <main id="content">
 	<h2>Entries</h2>
-	<ul>
-		<li>
-			<a href="/log/test-entry">test entry</a>
-		</li>
-	</ul>
+	<ol>
+		{#each entries as { title, entry, slug }}
+			<li value={entry}>
+				<a href="/log/{slug}">{title}</a>
+			</li>
+		{/each}
+	</ol>
 </main>
 
 <style>
