@@ -26,7 +26,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
-	import { circIn, quadOut, backOut } from 'svelte/easing';
+	import { circIn, backOut } from 'svelte/easing';
 
 	import Meta from '$lib/components/routes/Meta.svelte';
 
@@ -39,14 +39,14 @@
 
 	async function animate() {
 		let easing;
-		let duration = 100;
+		let duration = 150;
 
 		if ($counter === parseInt(entry, 10) - 1) {
 			easing = backOut;
-			duration = 550;
+			duration = 600;
 		} else if ($counter === 0) {
 			easing = circIn;
-			duration = 350;
+			duration = 400;
 		}
 
 		await counter.update((n) => n + 1, { duration, easing });
@@ -55,7 +55,13 @@
 	}
 
 	onMount(() => {
-		animate();
+		const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+		if (prefersReducedMotion.matches) {
+			counter.set(entry, { duration: 0 });
+			scrolled = true;
+		} else {
+			animate();
+		}
 	});
 </script>
 
@@ -96,8 +102,8 @@
 		<g fill="currentColor" stroke="none">
 			<g transform="translate(0 160)">
 				<g class="offset-y">
-					<g class="nudge-y">
-						<g class="rotate-y">
+					<g class="rotate-y">
+						<g class="nudge-y">
 							<g transform="scale(0.21)">
 								<path
 									d="M 4.898587196589413e-15 80 Q -117.5570504584946 161.80339887498948 -76.08452130361228 24.7213595499958 -190.21130325903073 -61.803398874989455 -47.02282018339786 -64.72135954999578 -3.6739403974420595e-14 -200 47.02282018339783 -64.72135954999581 190.2113032590307 -61.803398874989526 76.08452130361229 24.721359549995775 117.55705045849467 161.80339887498945 4.898587196589413e-15 80"
@@ -196,23 +202,23 @@
 	}
 
 	.offset-x {
-		animation: offset-x 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+		animation: offset-x 3s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
 	.offset-y {
-		animation: offset-y 2s 2s cubic-bezier(0.45, 0, 0.55, 1) both;
+		animation: offset-y 3s 0.5s cubic-bezier(0.45, 0, 0.55, 1) both;
 	}
 
 	.rotate-y {
-		animation: rotate-y 2s 2s ease-in-out both;
+		animation: rotate-y 3s 0.5s ease-in-out both;
 	}
 
 	.nudge-y {
-		animation: nudge-y 0.8s 5s 12 cubic-bezier(0.45, 0, 0.55, 1) alternate both;
+		animation: nudge-y 1s 4s 12 cubic-bezier(0.45, 0, 0.55, 1) alternate both;
 	}
 
 	.show {
-		animation: show 1s 5s ease-in-out both;
+		animation: show 1s 4s ease-in-out both;
 	}
 
 	.offset-x,
@@ -260,7 +266,7 @@
 
 	@keyframes nudge-y {
 		to {
-			transform: translateY(5px);
+			transform: translateY(10px);
 		}
 	}
 

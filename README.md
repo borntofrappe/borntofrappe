@@ -362,15 +362,17 @@ Minor note: for the `About` component the action is attached to the `<mark>` ele
 
 ## Log
 
-I intend to create a blog with `routes/blog`. With `routes/log` I experiment how to create a similar environment, processing markdown syntax and generating pages as needed, with a more informal tone.
+I intend to create a blog in the `/blog` route. With `/log` I experiment how to create a similar environment, a playground of sorts, to learn how to process markdown syntax and generate pages as needed.
 
 ### mdsvex
+
+`mdsvex` helps to process markdown documents.
 
 ```bash
 npm i --save-dev mdsvex
 ```
 
-Following [the docs](https://mdsvex.pngwn.io/docs) update the config file
+Following [the docs](https://mdsvex.pngwn.io/docs) update the config file.
 
 ```js
 import { mdsvex } from 'mdsvex';
@@ -386,7 +388,7 @@ The config object includes two additional fields so that the kit is able to:
    };
    ```
 
-Svelte-in-markdown syntax, touted by mdsvex as `.svg` will be discussed at a later stage and in the context of the blog.
+Svelte-in-markdown syntax, touted by mdsvex as `.svx` will be discussed at a later stage and in the context of the blog.
 
 2. preprocess the documents with mdsvex
 
@@ -487,6 +489,8 @@ Note that the slug is appended to the `/log/` string to redirect toward a page i
 <a href="/log/{slug}">{title}</a>
 ```
 
+**Update**: the logic of this section is moved to `/log/entries.svelte`, as I chose to use the index page to show only the latest entry and through a spiffy animation.
+
 ### slug
 
 `[slug].svelte` is responsible for creating the actual page for the individual entries. The square brackets help to capture the slug from the URL parameters.
@@ -561,7 +565,7 @@ I will research the topic, but given the static nature of the content I am satis
 
 ### prerender
 
-Following the suggestion in [the kit's docs](https://kit.svelte.dev/docs#ssr-and-javascript-prerender) both `log.svelte` and `[slug].svelte` are prerendered.
+Following the suggestion in [the kit's docs](https://kit.svelte.dev/docs#ssr-and-javascript-prerender) the log routes are prerendered.
 
 ```html
 <script context="module">
@@ -571,13 +575,29 @@ Following the suggestion in [the kit's docs](https://kit.svelte.dev/docs#ssr-and
 
 ### prefetch
 
-Following [the kit's docs](https://kit.svelte.dev/docs#anchor-options-sveltekit-prefetch) the anchor link element pointing toward the individual entries prefetches the information.
+Following [the kit's docs](https://kit.svelte.dev/docs#anchor-options-sveltekit-prefetch) the anchor link elements pointing toward the log routes prefetch the information.
 
 ```svelte
 <a sveltekit:prefetch href="/log/{slug}">{title}</a>
 ```
 
-I might need to research the topic, however, as I believe the fact that the pages are prerendered defeats the purpose.
+I tested the feature with the prerendered page and the attribute still works to perform the request before the actual click is registered.
+
+### hydrate
+
+The page devoted to listing all entries, the page(s) devoted to the individual entries are not interactive. Following [the kit's docs](https://kit.svelte.dev/docs#ssr-and-javascript-hydrate) the two disable hydration of the server-rendered version.
+
+```html
+<script context="module">
+	export const hydrate = false;
+</script>
+```
+
+`/log/index.svelte` does not include the same boolean since the page relies on a script, on JavaScript to run the spiffy animation.
+
+### layout reset
+
+As a matter of preference I chose not to rely on the layout file for the components in `routes/log`. Following [the kit's docs](https://kit.svelte.dev/docs#layouts-resets) the reset happens through `__layout.reset.svelte`.
 
 ## Playground
 
