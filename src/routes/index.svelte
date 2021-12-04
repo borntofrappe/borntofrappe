@@ -1,7 +1,7 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
-	import Header from '$lib/components/routes/Header.svelte';
 
+	import Hero from '$lib/components/index/Hero.svelte';
 	import GettingStarted from '$lib/components/index/GettingStarted.svelte';
 	import About from '$lib/components/index/About.svelte';
 </script>
@@ -11,7 +11,7 @@
 	description="Hello, and welcome to my personal website. This is where I try to convince you I'm a solid programmer. Signed, Gabriele Corti, coding online @borntofrappe."
 />
 
-<Header title="Hello world" body="You are welcomed." />
+<Hero />
 
 <main id="content">
 	<GettingStarted />
