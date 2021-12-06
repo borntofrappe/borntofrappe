@@ -101,7 +101,7 @@
 						i *
 						-1})"
 				>
-					<a href="/" aria-labelledby="title-{title}" aria-describedby="desc-{title}">
+					<a {href} aria-labelledby="title-{title}" aria-describedby="desc-{title}">
 						<title id="title-{title}">{title}</title>
 						<desc id="desc-{title}">{desc}</desc>
 
