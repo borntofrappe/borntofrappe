@@ -11,4 +11,4 @@ The log routes — three in total — provide an excellent excuse to experiment 
 
 - the anchor link elements pointing toward the routes prefetch the information with `sveltekit:prefetch`
 
-The last point raised an interesting question: it is pointless to prefetch a prerendered page? I tested the feature with a smaller demo and it is seems that prefetching still works to save a few milliseconds of loading time. It took me a while since version 199 broke prefetching and the issue is outstanding at the time of writing.
+The last point raised an interesting question: it is pointless to prefetch a prerendered page? I tested the feature with a smaller demo and it is seems that prefetching still works to save a few milliseconds of loading time. It took me a lot to find this out, and that's because I found out the prefetching feature has been broken ever since version 199. What a bummer.
