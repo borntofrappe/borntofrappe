@@ -40,8 +40,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		transform-origin: 41.6% 50%;
-		transform: rotate(-25deg);
+		transform-origin: 41.6% 50%; /* x = 50 / 120 && y = (50 + 10) / 120 */
+		transform: rotate(25deg);
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -70,7 +70,7 @@
 	@keyframes rotate {
 		20%,
 		100% {
-			transform: rotate(25deg);
+			transform: rotate(-25deg);
 		}
 	}
 
