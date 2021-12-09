@@ -1,6 +1,6 @@
 <script>
 	import { observe } from '$lib/utils.js';
-	import icons from '$lib/components/icons';
+	import icons from '$lib/icons';
 
 	const satellites = ['editor', 'world', 'running', 'racing', 'gaming'];
 

@@ -1,5 +1,5 @@
 <script>
-	import icons from '$lib/components/icons';
+	import icons from '$lib/icons';
 
 	const links = [
 		{
@@ -246,6 +246,6 @@
 	}
 
 	p {
-		line-height: 1.75;
+		line-height: 1.5;
 	}
 </style>

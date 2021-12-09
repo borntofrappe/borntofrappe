@@ -1,6 +1,6 @@
 <script>
-	import ColorSchemeToggle from './ColorSchemeToggle.svelte';
-	import Navigation from './Navigation.svelte';
+	import ColorSchemeToggle from '$lib/components/layout/ColorSchemeToggle.svelte';
+	import Navigation from '$lib/components/layout/Navigation.svelte';
 </script>
 
 <div>

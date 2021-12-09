@@ -10,7 +10,7 @@
 </script>
 
 <script>
-	import icons from '$lib/components/icons';
+	import icons from '$lib/icons';
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 	import RelativeLink from '$lib/components/routes/RelativeLink.svelte';
