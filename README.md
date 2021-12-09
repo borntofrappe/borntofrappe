@@ -389,6 +389,10 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
+## mdsvex config
+
+##
+
 </details>
 
 <details>

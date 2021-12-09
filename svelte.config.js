@@ -1,10 +1,25 @@
 import adapter from '@sveltejs/adapter-netlify';
-import { mdsvex } from 'mdsvex';
+import { mdsvex, escapeSvelte } from 'mdsvex';
+import { getHighlighter } from 'shiki';
+
+async function highlighter(code, lang) {
+	const shikiHighlighter = await getHighlighter({ theme: 'dracula-soft' });
+	const snippet = escapeSvelte(shikiHighlighter.codeToHtml(code, lang));
+
+	return `{@html \`${snippet}\`}`;
+}
+
+const mdsvexConfig = {
+	extensions: ['.md'],
+	highlight: {
+		highlighter
+	}
+};
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: ['.svelte', '.md'],
-	preprocess: mdsvex({ extensions: ['.md'] }),
+	preprocess: mdsvex(mdsvexConfig),
+	extensions: ['.svelte', ...mdsvexConfig.extensions],
 	kit: {
 		adapter: adapter(),
 
