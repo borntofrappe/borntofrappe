@@ -119,4 +119,9 @@
 			transform: scaleY(-1);
 		}
 	}
+
+	header :global(p) {
+		font-family: JosefinsansBold, sans-serif;
+		font-weight: 700;
+	}
 </style>
