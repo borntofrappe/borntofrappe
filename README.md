@@ -389,7 +389,31 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
-## mdsvex config
+## Blog
+
+Similar setup to the log
+
+### hooks
+
+- `getSession` to store the posts instead of creating the collection in the index and slug file (like in the log)
+
+- an object using the slug as a key to make it easier to find if there is a matching post in `[slug].svelte`
+
+- `Object.values` to have a list of articles
+
+### eslintrc
+
+```js
+// Parsing error: Unexpected token importeslint
+import.meta.glob('/src/blog/*.{md,svx}');
+```
+
+```js
+parserOptions: {
+  sourceType: 'module',
+  ecmaVersion: 2020
+},
+```
 
 ##
 
