@@ -1,12 +1,22 @@
 <script context="module">
 	export async function load({ page }) {
-		const { slug } = page.params;
-		const path = `/src/blog/${slug}.md`;
+		const posts = await Promise.all(
+			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path]) => {
+				const [slug] = path.split('/').pop().split('.');
 
-		const blog = import.meta.glob('/src/blog/*.md');
+				return {
+					slug,
+					path
+				};
+			})
+		);
 
-		if (blog[path]) {
-			const { default: Entry, metadata } = await blog[path]();
+		const match = posts.find(({ slug }) => slug === page.params.slug);
+
+		if (match) {
+			const posts = import.meta.glob('/src/blog/*.{md,svx}');
+			const { default: Entry, metadata } = await posts[match.path]();
+
 			return {
 				props: {
 					Entry,
@@ -17,7 +27,7 @@
 
 		return {
 			status: 404,
-			error: new Error(`No post found for '${slug}'`)
+			error: new Error(`No post found for '${page.params.slug}'`)
 		};
 	}
 </script>

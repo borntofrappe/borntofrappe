@@ -10,7 +10,7 @@ async function highlighter(code, lang) {
 }
 
 const mdsvexConfig = {
-	extensions: ['.md'],
+	extensions: ['.md', '.svx'],
 	highlight: {
 		highlighter
 	}
