@@ -5,16 +5,6 @@ keywords: gaming
 brief: The beginning of a long journey, started long ago and resumed last month.
 ---
 
-<script>
-  const talks = [
-    "Keys! Keys that open any door!",
-    "Begone, you fool!",
-    "Fwah-fwah-fwah-fwah!",
-  ];
-</script>
-
-## {talks[1]}
-
 I consider myself quite partial to Dragon Quest. And yet, the only title I've completed up until last month was the ninth in the series.
 
 Sure I might have poured hundreds of hours in that single game, collecting every weapon and armor piece which piqued my interest, scavenging for treasure in treacherous, tantalizing, addictively randomized dungeons.

@@ -391,7 +391,7 @@ The `<Meta />` component includes a title, description and link for the canonica
 
 ## Blog
 
-Similar setup to the log
+Similar setup to the log. Extending to `.md` and `.svx` files through the import.meta.glob searching patterns
 
 ### hooks
 
