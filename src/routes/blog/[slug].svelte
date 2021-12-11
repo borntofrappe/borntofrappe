@@ -1,21 +1,11 @@
 <script context="module">
-	export async function load({ page }) {
-		const posts = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path]) => {
-				const [slug] = path.split('/').pop().split('.');
+	export async function load({ page, session }) {
+		const { slug } = page.params;
+		const post = session.posts[slug];
 
-				return {
-					slug,
-					path
-				};
-			})
-		);
-
-		const match = posts.find(({ slug }) => slug === page.params.slug);
-
-		if (match) {
+		if (post) {
 			const posts = import.meta.glob('/src/blog/*.{md,svx}');
-			const { default: Entry, metadata } = await posts[match.path]();
+			const { default: Entry, metadata } = await posts[post.path]();
 
 			return {
 				props: {

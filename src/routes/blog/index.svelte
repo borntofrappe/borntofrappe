@@ -1,16 +1,6 @@
 <script context="module">
-	export async function load() {
-		const posts = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, module]) => {
-				const [slug] = path.split('/').pop().split('.');
-				const { metadata } = await module();
-
-				return {
-					...metadata,
-					slug
-				};
-			})
-		);
+	export async function load({ session }) {
+		const posts = Object.values(session.posts);
 
 		return {
 			props: {
