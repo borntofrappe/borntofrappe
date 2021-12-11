@@ -1,6 +1,30 @@
+<script context="module">
+	export async function load() {
+		const posts = await Promise.all(
+			Object.entries(import.meta.glob('/src/blog/*.md')).map(async ([path, module]) => {
+				const [slug] = path.split('/').pop().split('.');
+				const { metadata } = await module();
+
+				return {
+					...metadata,
+					slug
+				};
+			})
+		);
+
+		return {
+			props: {
+				posts
+			}
+		};
+	}
+</script>
+
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+
+	export let posts = [];
 </script>
 
 <Meta
@@ -14,8 +38,14 @@
 </Header>
 
 <main id="content">
-	<h2>Well well well</h2>
-	<p>There are no posts in this blog. I'm working on it, though. Promise.</p>
+	{#each posts as { title, brief, slug }}
+		<article>
+			<h2>
+				<a href="/blog/{slug}">{title}</a>
+			</h2>
+			<p>{brief}</p>
+		</article>
+	{/each}
 </main>
 
 <style>
