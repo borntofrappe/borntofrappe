@@ -139,7 +139,7 @@
 			<g
 				fill="currentColor"
 				font-size="32"
-				font-family="sans-serif"
+				font-family="inherit"
 				text-anchor="middle"
 				dominant-basline="middle"
 			>
