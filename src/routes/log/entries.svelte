@@ -57,6 +57,10 @@
 	}
 
 	main > * + * {
+		margin-top: 1em;
+	}
+
+	ol > * + * {
 		margin-top: 0.5em;
 	}
 </style>
