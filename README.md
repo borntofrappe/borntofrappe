@@ -415,6 +415,14 @@ parserOptions: {
 },
 ```
 
+### date
+
+datetime, date, formatDate
+
+sort by date in the blog
+
+### prefetch (soon)
+
 ##
 
 </details>

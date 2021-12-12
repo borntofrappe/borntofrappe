@@ -11,10 +11,10 @@
 	{#if keywords}
 		<p class="visually-hidden">Keywords</p>
 		<ul>
-			{#each keywords.replace(/ /g, '').split(/,/) as keyword}
+			{#each keywords as keyword}
 				<li>
 					<span class="visually-hidden">{keyword}</span>
-					{@html icons[keyword]}
+					{@html icons[keyword] || icons.bug}
 				</li>
 			{/each}
 		</ul>

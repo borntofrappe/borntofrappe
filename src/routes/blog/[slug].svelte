@@ -7,10 +7,13 @@
 			const posts = import.meta.glob('/src/blog/*.{md,svx}');
 			const { default: Entry, metadata } = await posts[post.path]();
 
+			const { title, keywords } = metadata;
+
 			return {
 				props: {
 					Entry,
-					...metadata
+					title,
+					keywords: keywords.replace(/ /g, '').split(/,/)
 				}
 			};
 		}

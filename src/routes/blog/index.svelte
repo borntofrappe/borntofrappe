@@ -1,6 +1,22 @@
 <script context="module">
 	export async function load({ session }) {
-		const posts = Object.values(session.posts);
+		const posts = Object.values(session.posts)
+			.map(({ slug, title, datetime, brief }) => {
+				const date = new Date(
+					...datetime
+						.split(/[-T:]/)
+						.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+				);
+
+				return {
+					slug,
+					title,
+					datetime,
+					date,
+					brief
+				};
+			})
+			.sort((a, b) => b.date - a.date);
 
 		return {
 			props: {
@@ -13,6 +29,8 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+
+	import { formatDate } from '$lib/utils';
 
 	export let posts;
 </script>
@@ -28,12 +46,12 @@
 </Header>
 
 <main id="content">
-	{#each posts as { slug, title, date, brief }}
+	{#each posts as { slug, title, datetime, date, brief }}
 		<article>
 			<h2>
 				<a href="/blog/{slug}">{title}</a>
 			</h2>
-			<time datetime={date}>{date}</time>
+			<time {datetime}>{formatDate(date)}</time>
 			<p>{brief}</p>
 		</article>
 	{/each}

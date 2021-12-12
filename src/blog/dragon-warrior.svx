@@ -1,6 +1,6 @@
 ---
 title: Dragon Warrior
-date: 2021-12-11
+datetime: 2021-12-11
 keywords: gaming
 brief: The beginning of a long journey, started long ago and resumed last month.
 ---
