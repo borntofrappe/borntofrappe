@@ -32,7 +32,7 @@
 	let option;
 	let options = getOptions();
 
-	function handleFocus() {
+	function handleInput() {
 		option = null;
 		options = getOptions();
 	}
@@ -59,7 +59,7 @@
 
 			{#each options as { id }}
 				<label>
-					<input type="radio" bind:group={option} value={id} on:input={handleFocus} />
+					<input type="radio" bind:group={option} value={id} on:input={handleInput} />
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 -0.5 16 16"
@@ -67,11 +67,11 @@
 						width="1em"
 					>
 						<path
-							stroke="#0c1019"
+							stroke="#020a18"
 							d="M5 0h6M4 1h1M11 1h1M3 2h1M5 2h6M12 2h1M2 3h1M4 3h8M13 3h1M2 4h1M4 4h8M13 4h1M3 5h1M5 5h6M12 5h1M2 6h1M4 6h1M11 6h3M1 7h1M5 7h6M12 7h3M0 8h1M11 8h5M0 9h1M10 9h1M12 9h1M14 9h2M0 10h1M11 10h1M13 10h3M0 11h1M10 11h1M12 11h4M1 12h1M9 12h1M11 12h1M13 12h2M2 13h1M4 13h1M6 13h1M8 13h1M10 13h1M12 13h2M3 14h3M7 14h1M9 14h4M4 15h8"
 						/>
 						<path
-							stroke="#a4773e"
+							stroke="#bd8c4b"
 							d="M5 1h1M9 1h2M11 2h1M12 3h1M3 4h1M12 4h1M4 5h1M11 5h1M3 6h1M5 6h6M2 7h1M4 7h1M11 7h1M1 8h1M6 8h5M1 9h1M3 9h1M5 9h1M7 9h1M9 9h1M11 9h1M13 9h1M1 10h2M4 10h1M6 10h5M12 10h1M1 11h9M11 11h1M2 12h7M10 12h1M12 12h1M3 13h1M5 13h1M7 13h1M9 13h1M11 13h1M6 14h1M8 14h1"
 						/>
 						<path
