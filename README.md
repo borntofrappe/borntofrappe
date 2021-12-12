@@ -435,6 +435,20 @@ Depends on your setup.
 
 The current setup works swimmingly with the last option, since the slug is built from the name of the svx file
 
+## mdsvex config
+
+- codeToHtml(code, options), lang seems deprecated
+
+- off smartypants
+
+- rehype-slug
+
+- rehype-autolink-headings. Configure to append the anchor link and add a class (useful for a later component)
+
+- customize highlighter function to add language and icon in the markup (useful for a later container) (remark plugin would be more appropriate?)
+
+- icons exporting some languages (alias?)
+
 ##
 
 </details>
