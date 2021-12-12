@@ -49,7 +49,7 @@
 	{#each posts as { slug, title, datetime, date, brief }}
 		<article>
 			<h2>
-				<a href="/blog/{slug}">{title}</a>
+				<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
 			</h2>
 			<time {datetime}>{formatDate(date)}</time>
 			<p>{brief}</p>

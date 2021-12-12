@@ -5,6 +5,11 @@ keywords: gaming
 brief: The beginning of a long journey, started long ago and resumed last month.
 ---
 
+<script>
+  import Checkbox from "./Checkbox.svelte"
+  import Radio from "./Radio.svelte"
+</script>
+
 I consider myself quite partial to Dragon Quest. And yet, the only title I've completed up until last month was the ninth in the series.
 
 Sure I might have poured hundreds of hours in that single game, collecting every weapon and armor piece which piqued my interest, scavenging for treasure in treacherous, tantalizing, addictively randomized dungeons.
@@ -23,7 +28,7 @@ The prime minister works to actually introduce a key to your successful journey:
 
 Of course some conversations are worth more than others, but that's part of the charm of your quest. Your quite literal dragon quest.
 
-INSERT_DEMO_HERE
+<Checkbox />
 
 I won't spoil much of the adventure. No matter how rough and interspersed with random encounters, I hope you'll find your way through the game, from Tantegel castle to the quite immediate Tantegel city, to a dark cave and more practical instructions.
 
@@ -35,7 +40,7 @@ In Tantegel castle the game motivates you to talk to everybody. At ground level,
 
 The handful of pots you find mere steps away from the king's room is enough to get addicted to the practice. Those pots and the nagging, evil suspicion that they might not hold anything useful, but maybe just this time.
 
-INSERT_DEMO_HERE
+<Radio />
 
 The series actually doubles down on the feature. Beside opening treasure chests and the obligatory door, you'll soon look into everything, be it a drawer, a closet, and yes, sometimes even seemingly unimportant, empty tiles.
 
@@ -60,5 +65,3 @@ Eventually you start counting down as you find an obstacle and walk your way aro
 If you want a less grueling, but similar experience, however, I introduce you to a small patch of land. A small playground with a pixelated look.
 
 In exactly one tile I've hidden a replica of Loto Seal. I'm quite positive it's there. And I'm sure you'll have no trouble finding it. Maybe in less than five attempts.
-
-INSERT_DEMO_HERE

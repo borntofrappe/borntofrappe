@@ -421,7 +421,19 @@ datetime, date, formatDate
 
 sort by date in the blog
 
-### prefetch (soon)
+### prefetch
+
+### nested structure
+
+Depends on your setup.
+
+- `blog/dragon-warrior/index.svx`
+
+- `blog/dragon-warrior/article.svx`
+
+- `blog/dragon-warrior/dragon-warrior.svx`
+
+The current setup works swimmingly with the last option, since the slug is built from the name of the svx file
 
 ##
 

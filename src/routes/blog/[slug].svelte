@@ -4,7 +4,7 @@
 		const post = session.posts[slug];
 
 		if (post) {
-			const posts = import.meta.glob('/src/blog/*.{md,svx}');
+			const posts = import.meta.glob('/src/blog/**/*.{md,svx}');
 			const { default: Entry, metadata } = await posts[post.path]();
 
 			const { title, keywords } = metadata;
