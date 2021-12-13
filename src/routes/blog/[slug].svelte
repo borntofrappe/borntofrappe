@@ -5,13 +5,13 @@
 
 		if (post) {
 			const posts = import.meta.glob('/src/blog/**/*.{md,svx}');
-			const { default: Entry, metadata } = await posts[post.path]();
+			const { default: Post, metadata } = await posts[post.path]();
 
 			const { title, brief, keywords } = metadata;
 
 			return {
 				props: {
-					Entry,
+					Post,
 					title,
 					brief,
 					keywords: keywords.replace(/ /g, '').split(/,/)
@@ -33,7 +33,7 @@
 	export let title;
 	export let brief;
 	export let keywords;
-	export let Entry;
+	export let Post;
 </script>
 
 <Meta title="{title} | borntofrappe" description={brief} />
@@ -41,7 +41,7 @@
 <Header {title} {keywords} />
 
 <main id="content">
-	<svelte:component this={Entry} />
+	<svelte:component this={Post} />
 </main>
 
 <style>

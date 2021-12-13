@@ -384,22 +384,75 @@ The `<Meta />` component includes a title, description and link for the canonica
 
 ## blog
 
-Similar setup to the log. Extending to `.md` and `.svx` files through the import.meta.glob searching patterns.
+_Please note:_ the routes of the blog initially mirrored those of the log, just expanding the logic to `.md` and `.svx` documents. Developing the feature further the structure became quite different.
+
+### svx
+
+Update the config file to process `.svx` documents as well. Why? I could use Svelte syntax in `.md` documents, and `mdsvex` would still process it, but I want to create a distinction at the root. Want Svelte in markdown? Use `.svx`. Otherwise `.md`.
+
+Include the options in a separate object and spread the extensions in the `extensions` field.
+
+```js
+const mdsvexConfig = {
+	extensions: ['.md', '.svx']
+};
+
+const config = {
+	preprocess: mdsvex(mdsvexConfig),
+	extensions: ['.svelte', ...mdsvexConfig.extensions]
+};
+```
+
+From `/blog/index.svelte` update the importing syntax to consider both types of documents.
+
+```js
+import.meta.glob('/src/blog/*.{md,svx}');
+```
 
 ### hooks
 
-- `getSession` to store the posts instead of creating the collection in the index and slug file (like in the log)
+Instead of importing the documents in the blog and the individual entries I prefer to populate the `sessions` object and retrieve them on load.
 
-- an object using the slug as a key to make it easier to find if there is a matching post in `[slug].svelte`
+```svelte
+<script context="module">
+	export async function load({ session }) {
+		const { posts } = session;
+	}
+</script>
+```
 
-- `Object.values` to have a list of articles
+Create `hooks/index.js` to locate the importing syntax.
+
+```js
+export async function getSession() {
+	return {
+		posts: {}
+	};
+}
+```
+
+Unlike the log, where I was satisfied with the entries being stored in an array, I decided to store the posts in an object using the slug as a key.
+
+```js
+{
+  'dragon-warrior': {
+    //
+  }
+}
+```
+
+Each object lists the metadata, slug and even the path to the article. The path helps to immediately read the syntax for `blog/[slug].svelte`. More on this later.
 
 ### eslintrc
+
+Update the linting file to remove the parsing error raised in `hooks/index.js`.
 
 ```js
 // Parsing error: Unexpected token importeslint
 import.meta.glob('/src/blog/*.{md,svx}');
 ```
+
+The solution is to use the 2020 version of JavaScript.
 
 ```js
 parserOptions: {
@@ -408,25 +461,97 @@ parserOptions: {
 },
 ```
 
-### date
+### posts
 
-datetime, date, formatDate
+`/blog/index.svelte` creates an array from the posts object, sorts the array by date and passes the collection through props. The date is discussed in the later section. Note, however, that the collection includes the information strictly necessary for the page:
 
-sort by date in the blog
+- slug to redirect
 
-### prefetch
+- title, datetime, date and brief for the content
 
-### nested structure
+The path is not necessary. Neither are the keywords.
 
-Depends on your setup.
+### datetime
 
-- `blog/dragon-warrior/index.svx`
+In the frontmatter blog posts do not have a date, but a `datetime` field.
 
-- `blog/dragon-warrior/article.svx`
+```md
+---
+title: Dragon Warrior
+datetime: 2021-12-11
+---
+```
 
-- `blog/dragon-warrior/dragon-warrior.svx`
+This is an HTML-inspired value and ultimately included in the `datetime` attribute of `<time>` elements.
 
-The current setup works swimmingly with the last option, since the slug is built from the name of the svx file
+From the value the date is created splitting the integers and spreading the array in the `new Date()` constructor.
+
+```js
+const date = new Date(
+	...datetime.split(/[-T:]/).map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+);
+```
+
+I chose the separators to support different degrees of precisions.
+
+```text
+2021-12-11
+2021-12-11T20:21:57
+```
+
+The second integer is decremented by `1` since JavaScript months start at zero, at least with the chosen setup.
+
+Use `datetime` in the matching attribute.
+
+Use `date` in the body of `<time>` elements. I've chosen to define a formatting function in `utils.js` to create a pretty date.
+
+```text
+2021-12-11
+December 11, 2021
+```
+
+### post
+
+`/blog/[slug].svelte` extracts the slug from the page parameters and looks for a matching object in the session `posts` object.
+
+```js
+const post = session.posts[page.params.slug];
+```
+
+Only if there is a match the code proceeds to retrieve the document through the importing syntax.
+
+```js
+const posts = import.meta.glob('/src/blog/*.{md,svx}');
+```
+
+Since the post object includes the path to the document it's possible to retrieve the specific file through its key.
+
+```js
+await posts[post.path]();
+```
+
+From here the logic is similar to that of the log. The biggest difference relates to the `keywords` field, which is used to create an array of keywords.
+
+### Nested structure
+
+Since I plan to incorporate Svelte syntax, including components, in `.svx` documents the blog folder needs to support a more elaborate structure. The logic you need ultimately depends on the setup.
+
+With the following folder structure:
+
+```text
+blog
+  dragon-warrior
+    dragon-warrior.svx
+    LotoSeal.svelte
+```
+
+It's enough to update the search pattern to consider the nested structure.
+
+```js
+import.meta.glob('/src/blog/**/*.{md,svx}');
+```
+
+Since the slug is created from the name of the `.svx` file the page is created for `/blog/dragon-warrior`.
 
 ## mdsvex config
 
@@ -442,7 +567,7 @@ The current setup works swimmingly with the last option, since the slug is built
 
 - icons exporting some languages (alias?)
 
-## onDestory
+## onDestroy on server
 
 I've always presumed that by `onMount` guarantees that the code in the script tag doesn't run on the server, but apparently I presumed wrong. I've created a component relying on the window object and added the connected code in the callback functions. The end result is a server error 500, `window` is not defined. I've ended up using `browser` from the `$app/env` module
 
