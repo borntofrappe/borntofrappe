@@ -36,7 +36,7 @@
 				d="M5 1h7M3 2h9M4 3h3M8 3h2M11 3h1M5 4h1M8 6h2M12 6h1M5 7h3M10 7h3M4 8h2M12 8h2M5 9h2M11 9h3M5 10h3M11 10h3M4 11h5M10 11h4M4 12h10M5 13h9M7 14h6"
 			/>
 			<path
-				stroke="#f8fefc"
+				stroke="#ffe489"
 				d="M7 3h1M10 3h1M6 4h1M8 4h2M11 4h1M6 5h1M8 5h2M11 5h1M6 6h2M10 6h2M8 7h2M6 8h6M2 9h2M7 9h4M2 10h2M8 10h3M9 11h1M5 14h2"
 			/>
 		</svg>
@@ -74,7 +74,7 @@
 
 	p > span {
 		padding: 0.35rem 0.5rem;
-		border: 0.15rem solid transparent;
+		border: 0.2rem solid transparent;
 	}
 
 	p > span:nth-of-type(1),
@@ -84,7 +84,6 @@
 
 	p > span:nth-of-type(2) {
 		border-color: currentColor;
-		border: 0.15rem solid currentColor;
 		border-radius: 0.25rem;
 	}
 

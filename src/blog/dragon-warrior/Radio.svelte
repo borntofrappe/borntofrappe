@@ -61,10 +61,11 @@
 				<label>
 					<input type="radio" bind:group={option} value={id} on:input={handleInput} />
 					<svg
+						width="1em"
+						height="1em"
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 -0.5 16 16"
 						shape-rendering="crispEdges"
-						width="1em"
 					>
 						<path
 							stroke="#020a18"
@@ -109,7 +110,7 @@
 	fieldset {
 		display: flex;
 		justify-content: space-evenly;
-		border: 0.15rem solid currentColor;
+		border: 0.2rem solid currentColor;
 		border-radius: 0.25rem;
 		padding: 0.75rem 0.5rem;
 	}
@@ -126,7 +127,7 @@
 	}
 
 	label svg {
-		width: 32px;
+		width: 48px;
 		height: auto;
 	}
 
