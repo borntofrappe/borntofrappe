@@ -35,7 +35,7 @@ npm run dev
 
 ## Publish
 
-`npm run build` creates a production version, but it's first necessary to set up an [adapter](https://kit.svelte.dev/docs#adapters).
+`npm run build` creates a production version, but it's necessary to set up an [adapter](https://kit.svelte.dev/docs#adapters) first.
 
 The application is meant to be deployed with [Netlify](https://www.netlify.com/), hence [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
@@ -43,13 +43,13 @@ The application is meant to be deployed with [Netlify](https://www.netlify.com/)
 npm i -D @sveltejs/adapter-netlify@next
 ```
 
-Update `svelte.config.js` to rely on the adapter.
+Configure `svelte.config.js`.
 
 ```js
 import adapter from '@sveltejs/adapter-netlify';
 ```
 
-Add a `netlify.toml` config file.
+Add `netlify.toml` as a config file for Netlify.
 
 ```toml
 [build]
@@ -72,34 +72,31 @@ Update `netlify.toml` to require a satisfactory node version.
   environment = { NODE_VERSION = "14.18.1" }
 ```
 
-`14.18.1` because it's the version I use to develop the website.
+`14.18.1` because it's the version I have locally.
 
 ## Debug - failing function
 
-The site is built but the URL returns the following message
+The site is built but Netlify produces a page with the following message:
 
 > {"errorType":"Runtime.UserCodeSyntaxError","errorMessage":"SyntaxError: Unexpected token '.'",
 >
 > ...continues
 
-In the console
+In the console:
 
 > Failed to load resource: the server responded with a status of 502 ()
 
-In the Netlify app and the deploy log there is no warning, but under "Publish deploy" (I wanted to look at the built version) you find the following
+In the Netlify app and the deploy log there is no warning, but under "Publish deploy":
 
 > Production: master@5151cbf.
 >
 > Deployed Functions
 
-Exploring _functions_ you find a `__render` function which produces the error message
+The _functions_ tab produces the error message
 
 > {"errorType":"Runtime.UserCodeSyntaxError","errorMessage":"SyntaxError: Unexpected token
 
-Scavenging the Netlify [docs](https://docs.netlify.com/configure-builds/file-based-configuration/#functions) and [forum](https://answers.netlify.com/t/build-works-locally-but-not-in-netlify/45438/4) I found
-a fix.
-
-Update `netlify.toml` and the `[functions]` field.
+Following the Netlify [docs](https://docs.netlify.com/configure-builds/file-based-configuration/#functions) and [forum](https://answers.netlify.com/t/build-works-locally-but-not-in-netlify/45438/4) update `netlify.toml` and the `[functions]` field.
 
 ```toml
 [functions]
@@ -110,21 +107,23 @@ Update `netlify.toml` and the `[functions]` field.
 
 Following the suggestion from [the kit's docs](https://kit.svelte.dev/docs#layouts-error-pages) `__error.svelte` implements a custom error page.
 
-The script at the top of the page returns the error and status code, extracted from the `load` function as documented.
+Retrieve the error and status code from the `load` function made available in the script of type `module`.
 
-```js
-export function load({ error, status }) {}
+```svelte
+<script context="module">
+	export function load({ error, status }) {}
+</script>
 ```
 
 ## external
 
-The anchor link elements making up the `<SkipToContent>` component has a `rel` attribute of `external`. [The value](https://kit.svelte.dev/docs#anchor-options-rel-external) is necessary to bypass the kit and rely on browser navigation instead.
+Add `rel="external"` to the `<SkipToContent>` component. [The value](https://kit.svelte.dev/docs#anchor-options-rel-external) is necessary to bypass the kit and rely on browser navigation instead.
 
 ## use:observe
 
-`use:observe` is an action to have animation run in the viewport, considering the intersection observer API. The function is defined in `lib/utils.js` and receives a node, on which the idea is to add and remove a class of `.observed`.
+Add `use:observe` on elements you wish to observe with the intersection observer API. The action adds a class of `observed` when the element is in the viewport.
 
-Note that the styling for this class would be normally stripped out by the Svelte compiler.
+Note that the CSS applied to the class would be normally ignored by the Svelte compiler.
 
 ```css
 section.observed::after {
@@ -132,21 +131,19 @@ section.observed::after {
 }
 ```
 
-Unless there is a class of `.observed` in the existing component. To work around this the element being observed technically defines the class, but with a false value.
+Add a class of `.observed` with the class directive with a default `false` value.
 
 ```svelte
 <section class:observed={false} use:observe>
 ```
 
-The compiler retains the property value pairs, the class is not present and is included through the `observe` action.
+The compiler retains the property value pairs, the class is not present, but it will be through the `observe` action.
 
-## Log
+## log
 
-`/log` works as a playground to experiment with a blog-like setup, to learn how to process markdown syntax and generate pages as needed.
+`/log` works as a playground to experiment with a blog-like setup, to learn how to generate pages on the basis of url parameters and how to process markdown syntax with `mdsvex`.
 
-### mdsvex
-
-`mdsvex` processes markdown documents.
+### markdown
 
 ```bash
 npm i --save-dev mdsvex
@@ -183,9 +180,9 @@ This is technically enough to have the kit produce a page from a markdown docume
 
 ### glob
 
-Instead of placing the documents the `routes` folder the files are separated in a dedicated location, `src/log`, with the goal of having the kit inject the content as needed.
+Instead of placing the documents the `routes` folder the files are separated in a dedicated folder, `src/log`, with the goal of having the kit inject the content as needed.
 
-In `routes/log/index.svelte` consider markdown documents with `import.meta.glob`, a feature made available [by Vite](https://vitejs.dev/guide/features.html#glob-import).
+In `routes/log/index.svelte` consider markdown documents with `import.meta.glob`, [a Vite feature](https://vitejs.dev/guide/features.html#glob-import).
 
 ```js
 const log = import.meta.glob('/src/log/*.md');
@@ -275,13 +272,13 @@ Note that the slug is appended to the `/log/` string to redirect toward a page i
 
 ### slug
 
-`[slug].svelte` is responsible for creating the actual page for the individual entries. The square brackets help to capture the slug from the URL parameters.
+`[slug].svelte` creates the pages for the individual entries. The square brackets help to capture the slug from the URL parameters.
 
 ```text
 .../log/up-and-running
 ```
 
-The value is retrieved from the load function.
+Retrieve the parameter from the `load` function.
 
 ```js
 export async function load({ page }) {
@@ -306,7 +303,7 @@ The idea is to here generate a page only if there is a matching entry in the log
    }
    ```
 
-If there is a path the script proceeds to resolve the connected module. Aside from the metadata, helpful to introduce the entry with its title and number, the page extracts the content from the `default` field.
+If there is a path the script proceeds to resolve the connected module. Aside from the metadata, helpful to introduce the entry with its title and number, the module provides the content through the `default` field.
 
 ```js
 const { default: Entry, metadata } = await log[path]();
@@ -320,7 +317,7 @@ I chose to capitalize the content since it is enough to include the variable as 
 </main>
 ```
 
-If there is no path matching the value it is enough to return an object with a `status` and `error` field to have the kit refer to the error page `__error.svelte`.
+If there is no path matching the value return an object with a `status` and `error` field. The kit knows to use the informationin the error page `__error.svelte`.
 
 ```js
 return {
@@ -343,11 +340,11 @@ The console suggests to use the special element `svelte:component` instead, desc
 <svelte:component this={Entry} />
 ```
 
-I will research the topic, but given the static nature of the content I am satisfied with the current solution.
+For the log, static in nature, I am satisfied with the first snippet.
 
 ### prerender
 
-Log routes are prerendered.
+Prerender log routes.
 
 ```html
 <script context="module">
@@ -357,17 +354,15 @@ Log routes are prerendered.
 
 ### prefetch
 
-Anchor link elements pointing toward the log routes prefetch the information.
+Prefetch log entries.
 
 ```svelte
 <a sveltekit:prefetch href="/log/{slug}">{title}</a>
 ```
 
-I tested the feature with the prerendered page and the attribute still works to perform the request before the actual click is registered.
-
 ### hydrate
 
-The page devoted to listing all entries, the page(s) devoted to the individual entries are not interactive and disable hydration of the server-rendered version.
+Do not hydrate log entries. The documents are not interactive and it's enough to rely on the server-rendered version.
 
 ```html
 <script context="module">
@@ -375,11 +370,9 @@ The page devoted to listing all entries, the page(s) devoted to the individual e
 </script>
 ```
 
-`/log/index.svelte` does not include the same boolean since the page relies on a script, on JavaScript, to run the animation.
-
 ### layout reset
 
-As a matter of preference I chose not to rely on the layout file for the components in `routes/log`. The reset happens through `__layout.reset.svelte`.
+Avoid the layout file with `__layout.reset.svelte`. This is a matter of preference.
 
 ## Meta
 
@@ -389,9 +382,9 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
-## Blog
+## blog
 
-Similar setup to the log. Extending to `.md` and `.svx` files through the import.meta.glob searching patterns
+Similar setup to the log. Extending to `.md` and `.svx` files through the import.meta.glob searching patterns.
 
 ### hooks
 
@@ -448,6 +441,19 @@ The current setup works swimmingly with the last option, since the slug is built
 - customize highlighter function to add language and icon in the markup (useful for a later container) (remark plugin would be more appropriate?)
 
 - icons exporting some languages (alias?)
+
+## onDestory
+
+I've always presumed that by `onMount` guarantees that the code in the script tag doesn't run on the server, but apparently I presumed wrong. I've created a component relying on the window object and added the connected code in the callback functions. The end result is a server error 500, `window` is not defined. I've ended up using `browser` from the `$app/env` module
+
+https://github.com/sveltejs/kit/issues/2814
+https://github.com/sveltejs/kit/issues/1650
+
+Correction. onMount does run on the browser, it is onDestroy that does not
+
+https://github.com/sveltejs/kit/discussions/2741#discussioncomment-1588535
+
+Knowing tat either you condition the event listener to the browser from the env module or you return a function from onMount
 
 ##
 

@@ -3,21 +3,22 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import { getHighlighter } from 'shiki';
 import slug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
 import icons from './icons.js';
 
 async function highlighter(code, lang) {
 	const shikiHighlighter = await getHighlighter({ theme: 'dracula-soft' });
 	const html = escapeSvelte(shikiHighlighter.codeToHtml(code, { lang }));
 
-	return `{@html \`<div class="code"><span>${lang}${
-		icons[lang] || icons.bug
-	}</span>${html}</div>\`}`;
+	return `{@html \`<div class="code">
+    <span>${lang}${icons[lang] || icons.bug}</span>
+    ${html}
+  </div>\`}`;
 }
 
 const mdsvexConfig = {
 	extensions: ['.md', '.svx'],
 	smartypants: false,
-	remarkPlugins: [],
 	rehypePlugins: [
 		slug,
 		[
@@ -46,7 +47,6 @@ const config = {
 	kit: {
 		adapter: adapter(),
 
-		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'
 	}
 };

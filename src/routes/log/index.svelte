@@ -3,7 +3,7 @@
 
 	export async function load() {
 		const log = await Promise.all(
-			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, module]) => {
+			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([_, module]) => {
 				const { default: Entry, metadata } = await module();
 
 				return {

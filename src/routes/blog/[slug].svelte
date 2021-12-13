@@ -7,12 +7,13 @@
 			const posts = import.meta.glob('/src/blog/**/*.{md,svx}');
 			const { default: Entry, metadata } = await posts[post.path]();
 
-			const { title, keywords } = metadata;
+			const { title, brief, keywords } = metadata;
 
 			return {
 				props: {
 					Entry,
 					title,
+					brief,
 					keywords: keywords.replace(/ /g, '').split(/,/)
 				}
 			};
@@ -26,11 +27,16 @@
 </script>
 
 <script>
+	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/blog/post/Header.svelte';
+
 	export let title;
+	export let brief;
 	export let keywords;
 	export let Entry;
 </script>
+
+<Meta title="{title} | borntofrappe" description={brief} />
 
 <Header {title} {keywords} />
 
@@ -63,9 +69,7 @@
 	}
 
 	main > :global(blockquote),
-	main > :global(blockquote + *),
-	main > :global(figure),
-	main > :global(figure + *) {
+	main > :global(blockquote + *) {
 		--vertical-rhythm: var(--size-800);
 	}
 
