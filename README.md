@@ -553,32 +553,73 @@ import.meta.glob('/src/blog/**/*.{md,svx}');
 
 Since the slug is created from the name of the `.svx` file the page is created for `/blog/dragon-warrior`.
 
-## mdsvex config
+## mdsvexConfig
 
-- codeToHtml(code, options), lang seems deprecated
+The object customizing `mdsvex` is updated out of preference:
 
-- off smartypants
+- turn `smartypants` off. I don't fancy fancy typography
 
-- rehype-slug
+- add rehype plugins to modify the produced markup
 
-- rehype-autolink-headings. Configure to append the anchor link and add a class (useful for a later component)
+  - `rehype-slug` to add an identifier to headings
 
-- customize highlighter function to add language and icon in the markup (useful for a later container) (remark plugin would be more appropriate?)
+  - `rehype-autolink-headings` to add an anchor link to headings which already have an `id`, hence the previous module
 
-- icons exporting some languages (alias?)
+- update the highlighting function to produce a specific markup, useful for a later component.
+
+With regards to the hihglighting function there is a case to be made for a separate remark plugin modifying the markup. Should `highlighter` not just highlight? Due to `mdsvex` highlighting woes, more on this in the later section, it is already necessary to muddle the markup, so for the time being I am willing to accept the confusion of concerns.
+
+### Syntax highlighting
+
+By default `mdsvex` adds a series of tokens to customize the appearence of code fences with `PrismJS`. I don't like the tool, however, and prefer `shiki` instead.
+
+The configuration object for the processing library allows to change the default with a `highlight` field and a `highlighter` function, but the process is less than straightforward. Looking at the issues in the github repo it is indeed essential to include the highlighted code with the following syntax.
+
+```js
+return `{@html \`${code}`\`}`
+```
+
+Moreover, the code needs to be escaped for backticks and curly brackets. For this concern `mdsvex` exports a function.
+
+```js
+import { mdsvex, escapeSvelte } from 'mdsvex';
+
+// later
+return `{@html \`${escapeSvelte(code)}`\`}`
+```
 
 ## onDestroy on server
 
-I've always presumed that by `onMount` guarantees that the code in the script tag doesn't run on the server, but apparently I presumed wrong. I've created a component relying on the window object and added the connected code in the callback functions. The end result is a server error 500, `window` is not defined. I've ended up using `browser` from the `$app/env` module
+[A small fact](https://github.com/sveltejs/kit/discussions/2741#discussioncomment-1588535) worth remembering: `onMount` runs only on the client, but `onDestroy` runs on the server as well. With this in mind, accessing client-specific variables like the `window` object raises an error.
 
-https://github.com/sveltejs/kit/issues/2814
-https://github.com/sveltejs/kit/issues/1650
+```js
+// window is not defined
+onDestroy(() => {
+	window.removeEventListener();
+});
+```
 
-Correction. onMount does run on the browser, it is onDestroy that does not
+You have at least two way to resolve the issue:
 
-https://github.com/sveltejs/kit/discussions/2741#discussioncomment-1588535
+1. use `browser` from the `$app/env` module, a boolean which returns true only on the client
 
-Knowing tat either you condition the event listener to the browser from the env module or you return a function from onMount
+   ```js
+   // window is not defined
+   onDestroy(() => {
+   	if (browser) {
+   		window.removeEventListener();
+   	}
+   });
+   ```
+
+2. return a function from `onMount`, which is called when the component is indeed destroyed
+
+   ```js
+   onMount(() => {
+   	// access window
+   	return () => window.removeEventListener();
+   });
+   ```
 
 ##
 
