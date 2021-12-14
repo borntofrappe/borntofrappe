@@ -53,14 +53,16 @@
 		max-width: var(--max-width);
 		width: 90vw;
 		width: var(--width);
-		margin: 2em auto;
+		margin: 1em auto;
 	}
 
 	main > * + * {
 		margin-top: 1em;
+		margin-top: var(--vertical-rhythm, 1em);
 	}
 
 	ol > * + * {
 		margin-top: 0.5em;
+		margin-top: var(--vertical-rhythm, 0.5em);
 	}
 </style>

@@ -70,16 +70,14 @@
 		--vertical-rhythm: var(--size-800);
 	}
 
-	main > :global(blockquote) {
-		border-top: 0.1em solid currentColor;
-		border-bottom: 0.1em solid currentColor;
-		margin-left: 0;
-		margin-right: 0;
-		padding: 1rem 0.5rem;
+	main > :global(svg),
+	main > :global(svg + *) {
+		--vertical-rhythm: var(--size-700);
 	}
 
 	main > :global(ol > * + *),
 	main > :global(ul > * + *) {
 		margin-top: 0.5em;
+		margin-top: var(--vertical-rhythm, 0.5em);
 	}
 </style>

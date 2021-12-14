@@ -288,6 +288,33 @@
 	}
 
 	article > :global(* + *) {
+		margin-top: 1em;
+		margin-top: var(--vertical-rhythm, 1em);
+	}
+
+	article > :global(h2),
+	article > :global(h3) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	article > :global(h2 + *),
+	article > :global(h3 + *) {
+		--vertical-rhythm: var(--size-300);
+	}
+
+	article > :global(blockquote),
+	article > :global(blockquote + *) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	article > :global(svg),
+	article > :global(svg + *) {
+		--vertical-rhythm: var(--size-700);
+	}
+
+	article > :global(ol > * + *),
+	article > :global(ul > * + *) {
 		margin-top: 0.5em;
+		margin-top: var(--vertical-rhythm, 0.5em);
 	}
 </style>
