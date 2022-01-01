@@ -2,8 +2,8 @@
 	export const prerender = true;
 	export const hydrate = false;
 
-	export async function load({ page }) {
-		const { slug } = page.params;
+	export async function load({ params }) {
+		const { slug } = params;
 		const path = `/src/log/${slug}.md`;
 
 		const log = import.meta.glob('/src/log/*.md');

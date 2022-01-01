@@ -57,7 +57,7 @@ Add `netlify.toml` as a config file for Netlify.
   publish = "build"
 ```
 
-## Debug - failed build
+## Failed build
 
 > Failed during stage `building site`: Build script returned non-zero exit code: 2
 
@@ -74,7 +74,7 @@ Update `netlify.toml` to require a satisfactory node version.
 
 `14.18.1` because it's the version I have locally.
 
-## Debug - failing function
+## Failing function
 
 The site is built but Netlify produces a page with the following message:
 
@@ -103,7 +103,7 @@ Following the Netlify [docs](https://docs.netlify.com/configure-builds/file-base
   node_bundler = "esbuild"
 ```
 
-## error
+## Error page
 
 Following the suggestion from [the kit's docs](https://kit.svelte.dev/docs#layouts-error-pages) `__error.svelte` implements a custom error page.
 
@@ -115,11 +115,11 @@ Retrieve the error and status code from the `load` function made available in th
 </script>
 ```
 
-## external
+## Skip to content
 
 Add `rel="external"` to the `<SkipToContent>` component. [The value](https://kit.svelte.dev/docs#anchor-options-rel-external) is necessary to bypass the kit and rely on browser navigation instead.
 
-## use:observe
+## Observe action
 
 Add `use:observe` on elements you wish to observe with the intersection observer API. The action adds a class of `observed` when the element is in the viewport.
 
@@ -139,11 +139,11 @@ Add a class of `.observed` with the class directive with a default `false` value
 
 The compiler retains the property value pairs, the class is not present, but it will be through the `observe` action.
 
-## log
+## log route
 
-`/log` works as a playground to experiment with a blog-like setup, to learn how to generate pages on the basis of url parameters and how to process markdown syntax with `mdsvex`.
+The `/log` route works as a playground to experiment with a blog-like setup, to learn how to generate pages on the basis of url parameters and how to process markdown syntax with `mdsvex`.
 
-### markdown
+### markdown documents
 
 ```bash
 npm i --save-dev mdsvex
@@ -178,7 +178,7 @@ The config object includes two additional fields so that the kit is able to:
 
 This is technically enough to have the kit produce a page from a markdown document, say `routes/log/test-entry.md`.
 
-### glob
+### glob import
 
 Instead of placing the documents the `routes` folder the files are separated in a dedicated folder, `src/log`, with the goal of having the kit inject the content as needed.
 
@@ -270,7 +270,7 @@ Note that the slug is appended to the `/log/` string to redirect toward a page i
 
 **Update**: the logic of this section is moved to `/log/entries.svelte`, as I chose to use the index page to show only the most recent entry.
 
-### slug
+### Dynamic parameter
 
 `[slug].svelte` creates the pages for the individual entries. The square brackets help to capture the slug from the URL parameters.
 
@@ -326,7 +326,7 @@ return {
 };
 ```
 
-### warning
+### Interactivity warning
 
 There is a warning connected to using the module as-is.
 
@@ -342,7 +342,7 @@ The console suggests to use the special element `svelte:component` instead, desc
 
 For the log, static in nature, I am satisfied with the first snippet.
 
-### prerender
+### prerender option
 
 Prerender log routes.
 
@@ -352,7 +352,7 @@ Prerender log routes.
 </script>
 ```
 
-### prefetch
+### prefetch attribute
 
 Prefetch log entries.
 
@@ -360,7 +360,7 @@ Prefetch log entries.
 <a sveltekit:prefetch href="/log/{slug}">{title}</a>
 ```
 
-### hydrate
+### hydrate option
 
 Do not hydrate log entries. The documents are not interactive and it's enough to rely on the server-rendered version.
 
@@ -374,7 +374,7 @@ Do not hydrate log entries. The documents are not interactive and it's enough to
 
 Avoid the layout file with `__layout.reset.svelte`. This is a matter of preference.
 
-## Meta
+## Meta component
 
 The `<Meta />` component includes a title, description and link for the canonical URL. For the title the information is extracted from the page store through `$app/store`, to resemble something akin to breadcrumb navigation for the current path. It is however possible to override the deault by passing a value through directly through props.
 
@@ -382,13 +382,13 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
-## blog
+## blog route
 
 _Please note:_ the routes of the blog initially mirrored those of the log, just expanding the logic to `.md` and `.svx` documents. Developing the feature further the structure became quite different.
 
-### svx
+### svx documents
 
-Update the config file to process `.svx` documents as well. Why? I could use Svelte syntax in `.md` documents, and `mdsvex` would still process it, but I want to create a distinction at the root. Want Svelte in markdown? Use `.svx`. Otherwise `.md`.
+Update the config file to process `.svx` documents as well. It is possible to use Svelte syntax in `.md` documents already, but as a matter of preference having a distinct format makes for a clearer authoring perspective. If you want to create an interactive post with Svelte use `.svx`, else use `.md`.
 
 Include the options in a separate object and spread the extensions in the `extensions` field.
 
@@ -409,7 +409,7 @@ From `/blog/index.svelte` update the importing syntax to consider both types of 
 import.meta.glob('/src/blog/*.{md,svx}');
 ```
 
-### hooks
+### hooks folder
 
 Instead of importing the documents in the blog and the individual entries I prefer to populate the `sessions` object and retrieve them on load.
 
@@ -431,7 +431,7 @@ export async function getSession() {
 }
 ```
 
-Unlike the log, where I was satisfied with the entries being stored in an array, I decided to store the posts in an object using the slug as a key.
+Unlike the log, where the entries are stored in an array, store the posts in an object using the slug as a key.
 
 ```js
 {
@@ -443,7 +443,7 @@ Unlike the log, where I was satisfied with the entries being stored in an array,
 
 Each object lists the metadata, slug and even the path to the article. The path helps to immediately read the syntax for `blog/[slug].svelte`. More on this later.
 
-### eslintrc
+### eslintrc linting
 
 Update the linting file to remove the parsing error raised in `hooks/index.js`.
 
@@ -452,7 +452,7 @@ Update the linting file to remove the parsing error raised in `hooks/index.js`.
 import.meta.glob('/src/blog/*.{md,svx}');
 ```
 
-The solution is to use the 2020 version of JavaScript.
+Suppress the message with the 2020 version of JavaScript.
 
 ```js
 parserOptions: {
@@ -461,11 +461,11 @@ parserOptions: {
 },
 ```
 
-### posts
+### blog index
 
 `/blog/index.svelte` creates an array from the posts object, sorts the array by date and passes the collection through props. The date is discussed in the later section. Note, however, that the collection includes the information strictly necessary for the page:
 
-- slug to redirect
+- slug to redirect to the specific post
 
 - title, datetime, date and brief for the content
 
@@ -482,9 +482,9 @@ datetime: 2021-12-11
 ---
 ```
 
-This is an HTML-inspired value and ultimately included in the `datetime` attribute of `<time>` elements.
+This is an HTML-inspired value, with the goal of adding the string in the `datetime` attribute of `<time>` elements.
 
-From the value the date is created splitting the integers and spreading the array in the `new Date()` constructor.
+From the datetime create a date object srparating the integers and spreading the array in the `new Date()` constructor.
 
 ```js
 const date = new Date(
@@ -492,25 +492,18 @@ const date = new Date(
 );
 ```
 
-I chose the separators to support different degrees of precisions.
+I chose the separators to support different formats and an increasing level of precisions.
 
 ```text
 2021-12-11
 2021-12-11T20:21:57
 ```
 
-The second integer is decremented by `1` since JavaScript months start at zero, at least with the chosen setup.
+In the constructor remember to decrement the second integer, the one describing the month, by one since JavaScript months start at zero, at least with the chosen setup.
 
-Use `datetime` in the matching attribute.
+Use `date` in the body of `<time>` elements. I've chosen to define a formatting function in `utils.js` to create a more legible date. `2021-12-11` becomes `December 11, 2021` with the internationalization API or an alternative based on an array of hard-coded months.
 
-Use `date` in the body of `<time>` elements. I've chosen to define a formatting function in `utils.js` to create a pretty date.
-
-```text
-2021-12-11
-December 11, 2021
-```
-
-### post
+### Dynamic parameter
 
 `/blog/[slug].svelte` extracts the slug from the page parameters and looks for a matching object in the session `posts` object.
 
@@ -534,7 +527,7 @@ From here the logic is similar to that of the log. The biggest difference relate
 
 ### Nested structure
 
-Since I plan to incorporate Svelte syntax, including components, in `.svx` documents the blog folder needs to support a more elaborate structure. The logic you need ultimately depends on the setup.
+Since I plan to incorporate Svelte syntax, including components, in `.svx` documents the blog folder needs to support a more elaborate structure. The importing logic you need ultimately depends on the setup.
 
 With the following folder structure:
 
@@ -551,11 +544,11 @@ It's enough to update the search pattern to consider the nested structure.
 import.meta.glob('/src/blog/**/*.{md,svx}');
 ```
 
-Since the slug is created from the name of the `.svx` file the page is created for `/blog/dragon-warrior`.
+Since the slug is created from the name of the `.svx` document the page is created for `/blog/dragon-warrior`.
 
 ## mdsvexConfig
 
-The object customizing `mdsvex` is updated out of preference:
+As a matter of preference the object customizing `mdsvex` is updated as follows:
 
 - turn `smartypants` off. I don't fancy fancy typography
 
@@ -571,7 +564,7 @@ With regards to the hihglighting function there is a case to be made for a separ
 
 ### Syntax highlighting
 
-By default `mdsvex` adds a series of tokens to customize the appearence of code fences with `PrismJS`. I don't like the tool, however, and prefer `shiki` instead.
+By default `mdsvex` adds a series of tokens to customize the appearence of code fences with `PrismJS`. I prefer to use `shiki` and highlight code in the build process instead.
 
 The configuration object for the processing library allows to change the default with a `highlight` field and a `highlighter` function, but the process is less than straightforward. Looking at the issues in the github repo it is indeed essential to include the highlighted code with the following syntax.
 
@@ -588,13 +581,13 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 return `{@html \`${escapeSvelte(code)}`\`}`
 ```
 
-## onDestroy on server
+## onDestroy runs on server
 
-[A small fact](https://github.com/sveltejs/kit/discussions/2741#discussioncomment-1588535) worth remembering: `onMount` runs only on the client, but `onDestroy` runs on the server as well. With this in mind, accessing client-specific variables like the `window` object raises an error.
+`onMount` runs only on the client, but `onDestroy` runs on the server as well. With this in mind, accessing client-specific variables like the `window` object raises an error.
 
 ```js
-// window is not defined
 onDestroy(() => {
+	// window is not defined
 	window.removeEventListener();
 });
 ```
@@ -604,7 +597,6 @@ You have at least two way to resolve the issue:
 1. use `browser` from the `$app/env` module, a boolean which returns true only on the client
 
    ```js
-   // window is not defined
    onDestroy(() => {
    	if (browser) {
    		window.removeEventListener();
@@ -616,7 +608,6 @@ You have at least two way to resolve the issue:
 
    ```js
    onMount(() => {
-   	// access window
    	return () => window.removeEventListener();
    });
    ```

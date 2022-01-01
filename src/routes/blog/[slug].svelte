@@ -1,6 +1,6 @@
 <script context="module">
-	export async function load({ page, session }) {
-		const { slug } = page.params;
+	export async function load({ params, session }) {
+		const { slug } = params;
 		const post = session.posts[slug];
 
 		if (post) {

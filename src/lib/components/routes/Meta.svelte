@@ -1,7 +1,9 @@
 <script>
 	import { page } from '$app/stores';
 
-	export let title = `borntofrappe${$page.path === '/' ? '' : $page.path.replace(/\//g, ' / ')}`;
+	export let title = `borntofrappe${
+		$page.url.pathname === '/' ? '' : $page.url.pathname.replace(/\//g, ' / ')
+	}`;
 	export let description = '';
 
 	const baseUrl = 'https://borntofrappe.netlify.app';
@@ -11,11 +13,11 @@
 	<title>{title}</title>
 	<meta name="description" content={description} />
 
-	<link rel="canonical" href="{baseUrl}{$page.path}" />
+	<link rel="canonical" href="{baseUrl}{$page.url.pathname}" />
 
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
-	<meta property="og:url" content="{baseUrl}{$page.path}" />
+	<meta property="og:url" content="{baseUrl}{$page.url.pathname}" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="borntofrappe" />
