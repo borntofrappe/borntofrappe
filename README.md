@@ -1,38 +1,103 @@
-# create-svelte
+# borntofrappe
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+![Sveltekit Badge](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/sveltekit-badge.svg)
 
-## Creating a project
+<details>
+<summary><strong>Development Notes</strong></summary>
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Install
 
 ```bash
-# create a new project in the current directory
 npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
 ```
 
-> Note: the `@next` is temporary
+- Directory not empty. Continue? y
 
-## Developing
+- Which Svelte app template? Skeleton project
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Use TypeScript? No
+
+- Add ESLint for code linting? Yes
+
+- Add Prettier for code formatting? Yes
+
+```bash
+npm install
+```
+
+## Develop
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Publish
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+`npm run build` creates a production version, but it's necessary to set up an [adapter](https://kit.svelte.dev/docs#adapters) first.
+
+The application is meant to be deployed with [Netlify](https://www.netlify.com/), hence [`adapter-netlify`](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
+
+```bash
+npm i -D @sveltejs/adapter-netlify@next
+```
+
+Configure the adapter in `svelte.config.js`.
+
+```js
+import adapter from '@sveltejs/adapter-netlify';
+
+const config = {
+	kit: {
+		adapter: adapter({
+			split: false
+		})
+
+		// ...
+	}
+};
+```
+
+Add a config file `netlify.toml`.
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "build"
+```
+
+Since you remove `adapter-auto` feel free to remove the package from the dependencies listed in `package.json`.
+
+```diff
+"devDependencies": {
+-    "@sveltejs/adapter-auto": "next",
++    "@sveltejs/adapter-netlify": "^1.0.0-next.37",
+```
+
+Test the build locally.
 
 ```bash
 npm run build
+npm run preview
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+**Warning**: at least for my specific use case and at the time of writing Netlify relies on a version of Node that is not supported by the Kit. Update `netlify.toml` to require a satisfactory node version.
+
+```toml
+[context.production]
+  environment = { NODE_VERSION = "14.18.1" }
+```
+
+`14.18.1` because it's the version I have locally.
+
+**Warning**: at least for my specific use case and at the time of writing `npm run build` creates a `.netlify` folder. By experimenting with the setup it seems that:
+
+1. the build on Netlify fails if you add the folder to `.gitignore` and you don't push the files to the public repository
+
+2. the failure is rectified if you specify `esbuild` for the `node_bundler` option in the config file
+
+   ```toml
+   [functions]
+     node_bundler = "esbuild"
+   ```
+
+</details>
