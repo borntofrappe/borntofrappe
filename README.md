@@ -275,4 +275,22 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
+## Opengraph
+
+Among the meta attributes, the `<Meta />` component includes tags from the opengraph protocol. Among these tags the component refers to a single image for the `og:image>` and `twitter:image>` pair. Remember to point to the image through the absolute path.
+
+```html
+<meta property="twitter:image" content="https://borntofrappe.netlify.app/images/borntofrappe.png" />
+```
+
+Visually the image relies on the same icons and overall style I intend to use in the website
+
+- the rocket icon at the center is the same icon used for the document
+
+- the sun and moon icons represent the light and dark color scheme respectively
+
+- the colors are picked from the custom properties in the global stylesheet
+
+- the background pattern is similar to that ultimately included in the `body` and other specific selectors
+
 </details>
