@@ -1,9 +1,15 @@
-<svelte:head>
-	<title>borntofrappe</title>
-</svelte:head>
-<h1>Hello world!</h1>
+<script>
+	import Meta from '$lib/Meta.svelte';
+</script>
+
+<Meta
+	title="borntofrappe"
+	description="Hello, and welcome to my personal website. My name is Gabriele Corti, and I code online @borntofrappe."
+/>
+
+<h1>Hello. world!</h1>
 <p>
-	Little to see here, just prepping for launch...
+	Welcome to my personal website. My name is Gabriele Corti, and I code online @borntofrappe.
 
 	<svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"
 		><style>

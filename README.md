@@ -267,4 +267,12 @@ body {
 
 Say `--copy-color` is not defined, without this fallback the browser would revert to the initial value.
 
+## Meta component
+
+The `<Meta />` component includes a title, description and link for the canonical URL. For the title the information is extracted from the page store through `$app/store`, to resemble something akin to breadcrumb navigation for the current path. It is however possible to override the deault by passing a value through directly through props.
+
+```svelte
+<Meta title="borntofrappe" />
+```
+
 </details>
