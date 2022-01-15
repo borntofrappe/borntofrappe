@@ -100,14 +100,7 @@ npm run preview
      node_bundler = "esbuild"
    ```
 
-</details>
-
-<details>
-<summary><strong>Design Notes</strong></summary>
-
-## playground
-
-I'm exploring the design of several parts of the website in [a separate repository](https://github.com/borntofrappe/playground/borntofrappe).
+---
 
 ## Document icons
 
@@ -173,5 +166,105 @@ The fonts are placed in the `static` folder and loaded in `app.html` following t
 In `app.html` a `<style>` tag associates the fonts with the class `.webfonts`, relying by default on the system font stack.
 
 In terms of JavaScript the `<script/>` tag loads the fonts with the [font loading API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API).
+
+## Global stylesheet
+
+`__layout.svelte` includes the property value pairs from `app.css`.
+
+```svelte
+import '../app.css';
+```
+
+The stylesheet implements several systems for color, sizes and even transitions through custom properties.
+
+### Colors
+
+Following the suggestion from [refactoring UI](https://www.refactoringui.com/previews/building-your-color-palette) the `:root` selector defines custom properties for different sets of colors. Each set has ten combinations of `hsl` values with decreasing brightness.
+
+```css
+:root {
+	--cool-grey-000: hsl(216, 33%, 97%);
+	--cool-grey-100: hsl(214, 15%, 91%);
+	/*  */
+	--cool-grey-800: hsl(209, 20%, 25%);
+	--cool-grey-900: hsl(210, 24%, 16%);
+}
+```
+
+From this starting point the `body` selector introduces the properties actually used throughout the website.
+
+```css
+body {
+	--copy-color: var(--cool-grey-800);
+	--heading-color: var(--cool-grey-900);
+}
+```
+
+This makes it easier to implement an alternative color palette, say for a dark theme.
+
+```css
+body.dark {
+	--copy-color: var(--blue-grey-200);
+	--heading-color: var(--blue-grey-100);
+}
+```
+
+The properties cascade down to benefiting elements.
+
+_Please note:_ the snippet is just a proof of concept and does not reflect the actual implementation of a different color scheme.
+
+### Sizes
+
+With `--size` I include steps from the [major third](https://www.modularscale.com/?1&em&1.25) scale.
+
+```css
+:root {
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+}
+```
+
+### Easings
+
+With `--ease-*` I include bezier functions I intend to use over CSS keywords like `ease-in-out`. There's also an associated custom property describing a default duration for transitions, `transition--duration`.
+
+### CSS reset
+
+In `app.css` I follow most of the guidance from [a modern CSS reset](https://piccalil.li/blog/a-modern-css-reset/). Where I slightly differ:
+
+- no reset for the margin on `blockquote`, `dl` and `dd` elements, since I don't mind the browser default and I'd rather design the elements on a need-to-have basis
+
+- no reset on lists, again relying on defaults and overriding if need be
+
+- no smooth scroll, as I don't feel like the application really needs smooth scrolling, at least at the time of writing
+
+- no `min-height` on the body
+
+- `line-height` on paragraph elements, not the body as one time I found the selector messed with the spacing too muc
+
+- `display: block` on images, pictures, but also `<svg>` elements, something I repeat over and over when styling vector graphics
+
+- no reset on animations for the reduced motion preference. Not just because I'm not a fan of the `!important` keyword, but also because I consider the preference where I design the animations
+
+### Fallbacks
+
+Each time I rely on a custom property I repeat the declaration to provide a fallback. The first pairing works for browsers which do not support custom properties.
+
+```css
+body {
+	color: hsl(209, 20%, 25%);
+	color: var(--copy-color);
+}
+```
+
+I chose not to, but it is possible to repeat the value inside of the `var()` function. This works for browsers that do support custom properties, but are not able to find the custom property itself.
+
+```css
+body {
+	color: var(--copy-color, hsl(209, 20%, 25%));
+}
+```
+
+Say `--copy-color` is not defined, without this fallback the browser would revert to the initial value.
 
 </details>
