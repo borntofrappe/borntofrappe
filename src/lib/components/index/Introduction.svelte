@@ -1,4 +1,8 @@
-<section>
+<script>
+	import { observe } from '$lib/utils.js';
+</script>
+
+<section class:observed={false} use:observe>
 	<h2>Looking forward</h2>
 	<p>
 		I'm building this website one tentative step at a time. While I try setting up a blog and
@@ -65,6 +69,12 @@
 		20%,
 		100% {
 			transform: rotate(25deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		section.observed::after {
+			animation-play-state: running;
 		}
 	}
 </style>
