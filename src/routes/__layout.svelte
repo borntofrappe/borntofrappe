@@ -1,12 +1,12 @@
 <script>
 	import '../app.css';
 
-	import Navigation from '$lib/components/layout/Navigation.svelte';
+	import Starter from '$lib/components/layout/Starter.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 </script>
 
 <div>
-	<Navigation />
+	<Starter />
 
 	<slot />
 
