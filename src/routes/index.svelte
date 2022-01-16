@@ -13,7 +13,7 @@
 
 <Hero />
 
-<main>
+<main id="content">
 	<Introduction />
 	<About />
 </main>
