@@ -1,4 +1,7 @@
 <script context="module">
+	export const prerender = true;
+	export const hydrate = false;
+
 	export async function load({ params }) {
 		const { day } = params;
 		const path = `/src/log/${day}.md`;
@@ -30,7 +33,7 @@
 	export let Module;
 </script>
 
-<Meta title="Log day {day} | borntofrappe" description="Log day {day}: {title}." />
+<Meta title="Log Day {day} | borntofrappe" description="Log day {day}: {title}." />
 
 <main>
 	<h1>{title}</h1>
@@ -64,11 +67,6 @@
 	main > :global(blockquote),
 	main > :global(blockquote + *) {
 		--vertical-rhythm: var(--size-800);
-	}
-
-	main > :global(svg),
-	main > :global(svg + *) {
-		--vertical-rhythm: var(--size-700);
 	}
 
 	main > :global(ol > * + *),

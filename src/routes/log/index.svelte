@@ -1,4 +1,6 @@
 <script context="module">
+	export const prerender = true;
+
 	export async function load() {
 		const log = await Promise.all(
 			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, module]) => {
@@ -168,7 +170,7 @@
 		gap: 1rem 0;
 	}
 
-	:global(.webfonts) h1 {
+	:global(.webfonts) svg {
 		font-family: JosefinsansBold, sans-serif;
 		font-weight: 700;
 	}
@@ -205,19 +207,19 @@
 	}
 
 	.offset-x {
-		animation: offset-x 3.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+		animation: offset-x 2.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
 	.offset-y {
-		animation: offset-y 2.5s 3.5s cubic-bezier(0.45, 0, 0.55, 1) both;
+		animation: offset-y 2.5s 2.5s cubic-bezier(0.45, 0, 0.55, 1) both;
 	}
 
 	.rotate-y {
-		animation: rotate-y 2.5s 3.5s ease-in-out both;
+		animation: rotate-y 2.5s 2.5s ease-in-out both;
 	}
 
 	.show {
-		animation: show 1s 6s ease-in-out both;
+		animation: show 1s 5s ease-in-out both;
 	}
 
 	.offset-x,
@@ -296,11 +298,6 @@
 	article > :global(blockquote),
 	article > :global(blockquote + *) {
 		--vertical-rhythm: var(--size-800);
-	}
-
-	article > :global(svg),
-	article > :global(svg + *) {
-		--vertical-rhythm: var(--size-700);
 	}
 
 	article > :global(ol > * + *),
