@@ -294,3 +294,26 @@ Visually the image relies on the same icons and overall style I intend to use in
 - the background pattern is similar to that ultimately included in the `body` and other specific selectors
 
 </details>
+
+## Log
+
+```bash
+npm i -D mdsvex
+```
+
+```js
+import { mdsvex } from 'mdsvex';
+const config = {
+	preprocess: mdsvex({
+		extensions: '.md',
+		smartypants: false
+	}),
+	extensions: ['.svelte', '.md']
+
+	// kit...
+};
+```
+
+The setup is enough to process `.md` documents as is. `routes/log/123.md` is rendered to `/log/123`, and it's even possible to include metadata with curly brackets.
+
+With a more elaborate setup require markdown documents from a general `[day].svelte` component with `import.meta.glob`.

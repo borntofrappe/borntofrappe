@@ -17,8 +17,6 @@
 
 	export let error;
 	export let status;
-
-	console.log(error);
 </script>
 
 <Meta title="{status} | borntofrappe" description={error.message} />
