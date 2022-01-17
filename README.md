@@ -316,4 +316,4 @@ const config = {
 
 The setup is enough to process `.md` documents as is. `routes/log/123.md` is rendered to `/log/123`, and it's even possible to include metadata with curly brackets.
 
-With a more elaborate setup require markdown documents from a general `[day].svelte` component with `import.meta.glob`.
+With a more elaborate structure consider markdown documents in a separate folder and with the `import.meta.glob` syntax provided by Vite.
