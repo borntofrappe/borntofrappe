@@ -1,21 +1,6 @@
 <script context="module">
-	export async function load({ params }) {
-		const articles = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, module]) => {
-				const { metadata } = await module();
-
-				const slug = path
-					.split('/')
-					.pop()
-					.replace(/\.(md|svx)/, '');
-
-				return {
-					...metadata,
-					slug,
-					path
-				};
-			})
-		);
+	export async function load({ session, params }) {
+		const { articles } = session;
 
 		const article = articles.find(({ slug }) => slug === params.slug);
 

@@ -356,7 +356,7 @@ As a matter of preference the folder also includes `__layout.reset.svelte` to re
 
 ## Blog routes
 
-Blog routes start out similarly to [log routes](#log-routes), with a smaller setup actually.
+Blog routes start out similarly to [log routes](#log-routes).
 
 In `/blog/index.svelte` retrieve all the articles from the `/src/blog` folder. Initially this refers to markdown files, but the idea is to consider `.svx` syntax as well, so that it necessary to slightly modify the string passed to the `glob` method.
 
@@ -417,6 +417,18 @@ const config = {
 	extensions: ['.svelte', '.md', '.svx']
 };
 ```
+
+### Hooks and session
+
+`/routes/blog/index.svelte` and `/routes/blog/[slug].svelte` share much of the same logic in the initial script. With `hooks/index.js` the idea is to store the information in the `sessions` object so that it's possible to retrieve the articles as follows.
+
+```js
+export async function load({ session }) {
+	const { articles } = session;
+}
+```
+
+In the hook file `getSession` returns an object with the articles, including the `date` and `path` fields.
 
 ---
 

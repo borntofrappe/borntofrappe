@@ -1,31 +1,10 @@
 <script context="module">
-	export async function load() {
-		const articles = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, module]) => {
-				const { metadata } = await module();
-
-				const date = new Date(
-					...metadata.datetime
-						.split(/[-T:]/)
-						.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
-				);
-
-				const slug = path
-					.split('/')
-					.pop()
-					.replace(/\.(md|svx)/, '');
-
-				return {
-					...metadata,
-					date,
-					slug
-				};
-			})
-		);
+	export async function load({ session }) {
+		const { articles } = session;
 
 		return {
 			props: {
-				articles: articles.sort((a, b) => b.date - a.date)
+				articles
 			}
 		};
 	}
