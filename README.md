@@ -439,14 +439,26 @@ In the hook file `getSession` returns an object with the articles, including the
 
 ### Data structure
 
-Instead of storing the articles in an array sorted by date it is possible to save the information in an object. This is to ultimately make it easier to find if an article exists.
+The articles can be stored in an object using the `slug` as a key. The solution makes it easier to retrieve a specific article in `[slug].svelte`
 
 ```diff
 -const article = articles.find(({ slug }) => slug === params.slug);
 +const article = articles[params.slug];
 ```
 
-The drawback is that `/routes/blog/index.svelte` needs to create the array back to highlight the articles in order.
+The drawback of this approach is that `index.svelte` needs the information back into a sorted array.
+
+One way to combine both needs, having the data stored by keys and maintain the expected order, is to use a map. The article is retrieved with the `.get()` method.
+
+```js
+const article = articles.get(params.slug);
+```
+
+The articles to use in the index file are retrieved with the `.values()` method. Note that the value returned by a function is an interator.
+
+```js
+const articles = [...session.articles.values()];
+```
 
 ---
 

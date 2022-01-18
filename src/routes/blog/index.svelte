@@ -4,7 +4,7 @@
 
 		return {
 			props: {
-				articles: Object.values(articles)
+				articles: [...articles.values()]
 			}
 		};
 	}
