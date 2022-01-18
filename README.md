@@ -100,6 +100,260 @@ npm run preview
      node_bundler = "esbuild"
    ```
 
+## use:observe
+
+The landing page leans on the `observe` action to observe several elements with the intersection observer API. The action adds a class of `observed` when the element is in the viewport. I highlight the feature because the CSS applied to the class would be normally ignored by the Svelte compiler, making the action pointless.
+
+```css
+section.observed::after {
+	animation-play-state: running;
+}
+```
+
+To have the compiler retain the CSS add a class of `.observed` with the class directive and a default `false` value.
+
+```svelte
+<section class:observed={false} use:observe>
+```
+
+The compiler keeps the property value pairs, the class is not present, but it will be through the `observe` action.
+
+## Log routes
+
+The `/log` route works as a playground to experiment with a blog-like setup, to learn how to generate pages on the basis of url parameters and how to process markdown syntax with `mdsvex`.
+
+### markdown documents
+
+Install `mdsvex`.
+
+```bash
+npm i --save-dev mdsvex
+```
+
+Update the config file so that the kit is able to:
+
+1. consider markdown documents
+
+   ```js
+   const config = {
+   	extensions: ['.svelte', '.md']
+   };
+   ```
+
+   _Please note:_ for the log I am focused on markdown documents only. The inclusion of Svelte syntax in markdown, which `mdsvex` promotes with the `.svx` extension is discussed separately and in the context of the blog.
+
+2. preprocess the documents with mdsvex
+
+   ```js
+   const config = {
+   	extensions: ['.svelte', '.md'],
+   	preprocess: mdsvex({ extensions: ['.md'] })
+   };
+   ```
+
+This is technically enough to have the kit produce a page from a markdown document, say `routes/log/test-entry.md`. Visit `/log/test-entry` and the page renders the content. It's also possible to include the metadata in curly braces.
+
+```md
+---
+title: Test entry
+---
+
+# {title}
+```
+
+### glob import
+
+Instead of placing markdown documents in the `routes` folder the idea is to separate the files in a dedicated folder, like `src/log`. With this structure it is up to the kit to inject the content as needed.
+
+In `routes/log/index.svelte` consider markdown documents with `import.meta.glob`, [a Vite feature](https://vitejs.dev/guide/features.html#glob-import).
+
+```js
+const log = import.meta.glob('/src/log/*.md');
+console.log(log);
+```
+
+The import syntax returns an object describing the documents with a path and a function.
+
+```js
+{
+  '/src/log/test-entry.md': Function(),
+  '/src/log/123.md': Function(),
+}
+```
+
+The function is what ultimately allows to transform the documents through mdsvex, to retrieve the metadata and actual content. Before extracting the information, however, the object is processed to iterate through the entries.
+
+`Object.entries()` creates a 2D array.
+
+```js
+Object.entries(import.meta.glob('/src/log/*.md'));
+```
+
+With an array `.map` iterates through each pair considering the path and function. Vite calls the larger object `modules` so I decided to use the singular noun in place of something like `fn`, or more topically `day`.
+
+```js
+.map(async ([path, module]) => {
+
+})
+```
+
+Note the `async` keyword is necessary since behind the scenes `module` is actually a promise.
+
+Once awaited, the module provides an object with metadata.
+
+```js
+.map(async ([path, module]) => {
+  const { metadata } = await module();
+})
+```
+
+In this instance metadata describes the key value pairs retrieved from the YAML syntax at the top of the documents.
+
+```md
+---
+title: Test entry
+---
+```
+
+The `path` helps to build the slug for the individual entries. The approach is rather rudimentary, but it works by considering the name of the file without extension.
+
+```js
+const slug = path.split('/').pop().replace('.md', '');
+```
+
+Metadata and slug are enough to build the index of entries.
+
+```js
+return {
+	...metadata,
+	slug
+};
+```
+
+However, you need to wrap the entire `Object.entries` statement in a giant promise to wait for the execution of each module.
+
+```js
+const log = await Promise.all(Object.entries(/**/));
+```
+
+To this end the `load` function needs to be updated with the `async` keyword.
+
+```js
+export async function load() {}
+```
+
+Once the promises are all resolved, `log` describes an array of objects with `title`, `day` and `slug`. The data is passed through props and iterated through with an `#each` statement to create the list of entries.
+
+Note that the slug is appended to the `/log/` string to redirect toward a page in the log.
+
+```svelte
+<a href="/log/{slug}">{title}</a>
+```
+
+**Update**: the logic of this section is moved to `/log/days.svelte`, as I chose to use the index page to show only the most recent entry.
+
+### params
+
+`[day].svelte` creates the pages for the individual entries. The square brackets help to capture the day from URL parameters.
+
+```text
+.../log/123
+```
+
+Retrieve the parameter from the `load` function.
+
+```js
+export async function load({ params }) {
+	const { day } = params;
+}
+```
+
+The idea is to here generate a page only if there is a matching entry in the log folder. A first approach I found working is to:
+
+1. build the path the entry should have as returned by `import.meta.glob`
+
+   ```js
+   const path = `/src/log/${day}.md`;
+   ```
+
+2. check if the object returned by `import.meta.glob` has a matching key
+
+   ```js
+   const log = import.meta.glob('/src/log/*.md');
+
+   if (log[path]) {
+   }
+   ```
+
+If there is a match the script proceeds to consider the connected module. Aside from the metadata, helpful to introduce the entry with its title and number, the module provides the content through the `default` field.
+
+```js
+const { default: Module, metadata } = await log[path]();
+```
+
+I chose to capitalize the content since it is enough to include the variable as a component.
+
+```svelte
+<main>
+	<Module />
+</main>
+```
+
+If there is no path matching the value return an object with a `status` and `error` field. The object is enough to have the kit pass the information to the error page `__error.svelte`.
+
+```js
+return {
+	status: 404,
+	error: new Error(`There is no log for day ${day}`)
+};
+```
+
+### Interactivity warning
+
+There is a warning connected to using the module as-is.
+
+```svelte
+<Module />
+```
+
+The console suggests to use the special element `svelte:component` instead, describing how the first type is not fully interactive.
+
+```svelte
+<svelte:component this={Module} />
+```
+
+Ultimately I believe the first approach would work as well, given the static nature of the log routes.
+
+### kit specificities
+
+Considering the SvelteKit's features the components are updated to:
+
+- prerender the routes
+
+  ```html
+  <script context="module">
+  	export const prerender = true;
+  </script>
+  ```
+
+- prefetch log entries
+
+  ```svelte
+  <a sveltekit:prefetch href="/log/{slug}">{title}</a>
+  ```
+
+- avoid hydrating log entries
+
+  ```html
+  <script context="module">
+  	export const hydrate = false;
+  </script>
+  ```
+
+  The documents are not interactive and it's enough to rely on the server-rendered version.
+
+As a matter of preference the folder also includes `__layout.reset.svelte` to remove the layout file set at root level.
+
 ---
 
 ## Document icons
@@ -275,7 +529,7 @@ The `<Meta />` component includes a title, description and link for the canonica
 <Meta title="borntofrappe" />
 ```
 
-## Opengraph
+## Opengraph protocol
 
 Among the meta attributes, the `<Meta />` component includes tags from the opengraph protocol. Among these tags the component refers to a single image for the `og:image>` and `twitter:image>` pair. Remember to point to the image through the absolute path.
 
@@ -293,27 +547,6 @@ Visually the image relies on the same icons and overall style I intend to use in
 
 - the background pattern is similar to that ultimately included in the `body` and other specific selectors
 
+##
+
 </details>
-
-## Log
-
-```bash
-npm i -D mdsvex
-```
-
-```js
-import { mdsvex } from 'mdsvex';
-const config = {
-	preprocess: mdsvex({
-		extensions: '.md',
-		smartypants: false
-	}),
-	extensions: ['.svelte', '.md']
-
-	// kit...
-};
-```
-
-The setup is enough to process `.md` documents as is. `routes/log/123.md` is rendered to `/log/123`, and it's even possible to include metadata with curly brackets.
-
-With a more elaborate structure consider markdown documents in a separate folder and with the `import.meta.glob` syntax provided by Vite.
