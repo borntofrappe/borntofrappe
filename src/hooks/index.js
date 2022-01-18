@@ -24,6 +24,17 @@ export async function getSession() {
 	);
 
 	return {
-		articles: articles.sort((a, b) => b.date - a.date)
+		articles: articles
+			.sort((a, b) => b.date - a.date)
+			.reduce(
+				(acc, curr, i) => ({
+					...acc,
+					[curr.slug]: {
+						...curr,
+						latest: i === 0
+					}
+				}),
+				{}
+			)
 	};
 }

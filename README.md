@@ -382,6 +382,13 @@ const date = new Date(
 );
 ```
 
+_Please note:_ if you do not store the datetime as a string SvelteKit processes the value as a date.
+
+```diff
+datetime: 2022-01-17
++datetime: '2022-01-17'
+```
+
 In `/blog/[slug].svelte` repeat the process, but store the path as well.
 
 ```js
@@ -429,6 +436,17 @@ export async function load({ session }) {
 ```
 
 In the hook file `getSession` returns an object with the articles, including the `date` and `path` fields.
+
+### Data structure
+
+Instead of storing the articles in an array sorted by date it is possible to save the information in an object. This is to ultimately make it easier to find if an article exists.
+
+```diff
+-const article = articles.find(({ slug }) => slug === params.slug);
++const article = articles[params.slug];
+```
+
+The drawback is that `/routes/blog/index.svelte` needs to create the array back to highlight the articles in order.
 
 ---
 

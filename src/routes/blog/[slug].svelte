@@ -2,11 +2,12 @@
 	export async function load({ session, params }) {
 		const { articles } = session;
 
-		const article = articles.find(({ slug }) => slug === params.slug);
+		const article = articles[params.slug];
 
 		if (article) {
 			const articles = import.meta.glob('/src/blog/*.{md,svx}');
 			const { default: Module, metadata } = await articles[article.path]();
+
 			return {
 				props: {
 					Module,

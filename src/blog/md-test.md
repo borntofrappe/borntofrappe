@@ -1,6 +1,6 @@
 ---
 title: Markdown
-datetime: 2022-01-17
+datetime: '2022-01-17'
 keywords: html, js
 brief: A test article to ensure the script considers markdown documents
 ---
