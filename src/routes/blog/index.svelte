@@ -1,0 +1,75 @@
+<script context="module">
+	export async function load() {
+		const articles = await Promise.all(
+			Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, module]) => {
+				const { metadata } = await module();
+
+				const date = new Date(
+					...metadata.datetime
+						.split(/[-T:]/)
+						.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+				);
+
+				const slug = path
+					.split('/')
+					.pop()
+					.replace(/\.(md|svx)/, '');
+
+				return {
+					...metadata,
+					date,
+					slug
+				};
+			})
+		);
+
+		return {
+			props: {
+				articles: articles.sort((a, b) => b.date - a.date)
+			}
+		};
+	}
+</script>
+
+<script>
+	import Meta from '$lib/components/routes/Meta.svelte';
+
+	export let articles;
+</script>
+
+<Meta title="Blog | borntofrappe" description="There are {articles.length} articles in the blog." />
+
+<main id="content">
+	<header>
+		<h1>Blog</h1>
+		<p>I write on web development, game development, and anything that piques my interest.</p>
+	</header>
+
+	{#each articles as { slug, title, datetime, date, brief }}
+		<article>
+			<h2>
+				<a href="/blog/{slug}">{title}</a>
+			</h2>
+			<time {datetime}>{date.toDateString()}</time>
+			<p>{brief}</p>
+		</article>
+	{/each}
+</main>
+
+<style>
+	main {
+		max-width: 42rem;
+		max-width: var(--max-width);
+		width: 90vw;
+		width: var(--width);
+		margin: 1em auto;
+	}
+
+	main > * + * {
+		margin-top: 1em;
+	}
+
+	article > * + * {
+		margin-top: 0.5em;
+	}
+</style>

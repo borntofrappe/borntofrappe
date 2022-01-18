@@ -354,6 +354,70 @@ Considering the SvelteKit's features the components are updated to:
 
 As a matter of preference the folder also includes `__layout.reset.svelte` to remove the layout file set at root level.
 
+## Blog routes
+
+Blog routes start out similarly to [log routes](#log-routes), with a smaller setup actually.
+
+In `/blog/index.svelte` retrieve all the articles from the `/src/blog` folder. Initially this refers to markdown files, but the idea is to consider `.svx` syntax as well, so that it necessary to slightly modify the string passed to the `glob` method.
+
+```diff
+-'/src/blog/*.{md,svx}'
++'/src/blog/*.{md,svx}'
+```
+
+Since the extension is not known retrieve the slug removing either sequence.
+
+```diff
+-.replace('.md', '');
++.replace(/\.(md|svx)/, '');
+```
+
+To sort the articles consider the string included in the frontmatter as `datetime`, a value inspired by the HTML attribute with the same name. The idea is to create a date from this string destructuring its various components.
+
+```js
+const date = new Date(
+	...metadata.datetime
+		.split(/[-T:]/)
+		.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+);
+```
+
+In `/blog/[slug].svelte` repeat the process, but store the path as well.
+
+```js
+return {
+	...metadata,
+	slug,
+	path
+};
+```
+
+With this information extracting the content is a matter of
+
+1. finding if an article exist evaluating the input slug
+
+   ```js
+   const article = articles.find(({ slug }) => slug === params.slug);
+   ```
+
+2. call once more `import.meta.glob`, but refer to the key with a matching path
+
+   ```js
+   const articles = import.meta.glob('/src/blog/*.{md,svx}');
+   const { default: Module, metadata } = await articles[article.path]();
+   ```
+
+This is enough to consider markdown documents. For `.svx` documents, however you need to tweak the config file so that mdsvex processes the extension and SvelteKit doesn't ignore the files.
+
+```js
+const config = {
+	preprocess: mdsvex({
+		extensions: ['.md', '.svx']
+	}),
+	extensions: ['.svelte', '.md', '.svx']
+};
+```
+
 ---
 
 ## Document icons

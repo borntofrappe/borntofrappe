@@ -1,0 +1,8 @@
+---
+title: Svelte in markdown
+datetime: 2022-01-18
+keywords: html, js
+brief: A test article to ensure the script considers `.svx` documents
+---
+
+If everything works the page should render some content. Even if the extension is `.svx` instead of `.md`.
