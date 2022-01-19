@@ -14,6 +14,8 @@
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 
+	import { formatDate } from '$lib/utils';
+
 	export let articles;
 </script>
 
@@ -30,7 +32,7 @@
 			<h2>
 				<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
 			</h2>
-			<time {datetime}>{date.toDateString()}</time>
+			<time {datetime}>{formatDate(date)}</time>
 			<p>{brief}</p>
 		</article>
 	{/each}
@@ -83,7 +85,7 @@
 		display: inline-block;
 		font-size: 1rem;
 		font-size: var(--size-400);
-		padding: 0.25em 0.5em;
+		padding: 0.25em 1em;
 		color: hsl(320, 100%, 19%);
 		color: var(--pink-900);
 		background: hsl(338, 100%, 86%);

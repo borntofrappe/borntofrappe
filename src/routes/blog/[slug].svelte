@@ -6,16 +6,17 @@
 
 		if (article) {
 			const articles = import.meta.glob('/src/blog/*.{md,svx}');
-			const { default: Module, metadata } = await articles[article.path]();
+			const { default: Module } = await articles[article.path]();
 
-			const { title, brief, keywords } = metadata;
+			const { title, brief, keywords, latest } = article;
 
 			return {
 				props: {
 					Module,
 					title,
 					brief,
-					keywords: keywords.replace(/ /g, '').split(',')
+					keywords: keywords.replace(/ /g, '').split(','),
+					latest
 				}
 			};
 		}
@@ -34,12 +35,14 @@
 	export let title;
 	export let keywords;
 	export let brief;
+	export let latest;
+
 	export let Module;
 </script>
 
 <Meta title="{title} | borntofrappe" description={brief} />
 
-<Header {title} {keywords} />
+<Header {title} {keywords} {latest} />
 
 <main id="content">
 	<svelte:component this={Module} />
