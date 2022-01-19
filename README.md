@@ -460,6 +460,98 @@ The articles to use in the index file are retrieved with the `.values()` method.
 const articles = [...session.articles.values()];
 ```
 
+## mdsvexConfig
+
+### frontmatter
+
+```js
+const mdsvexConfig = {
+	frontmatter: {
+		marker: '-',
+		type: 'yaml',
+		parse: (frontmatter) =>
+			Object.fromEntries(frontmatter.split('\n').map((line) => line.split(/: ?/, 2)))
+	}
+};
+```
+
+### rehypePlugins
+
+rehype-slug
+
+```bash
+npm i -D rehype-slug
+```
+
+```js
+import slug from 'rehype-slug';
+
+const mdsvexConfig = {
+	// ...,
+	rehypePlugins: [slug]
+};
+```
+
+rehype-autolink-headings
+
+```bash
+npm i -D rehype-autolink-headings
+```
+
+```js
+import autolinkHeadings from 'rehype-autolink-headings';
+
+const mdsvexConfig = {
+	// ...,
+	rehypePlugins: [slug, autolinkHeadings]
+};
+```
+
+Default markup created _before_ the text in the headings.
+
+```html
+<a aria-hidden="true" tabindex="-1" href="#id"><span class="icon icon-link"></span></a>
+```
+
+Custom markup included _after_ the text.
+
+```html
+<a href="#id"><span class="visully-hidden">Permalink</span></a>
+```
+
+```js
+const mdsvexConfig = {
+	rehypePlugins: [slug, [autolinkHeadings, autolinkHeadingsConfig]]
+};
+```
+
+### highlight
+
+```bash
+npm i -D shiki
+```
+
+```js
+import { getHighlighter } from 'shiki';
+
+async function highlighter(code, lang) {
+	const shikiHighlighter = await getHighlighter({ theme: 'dracula-soft' });
+	const html = escapeSvelte(shikiHighlighter.codeToHtml(code, { lang }));
+	return `{@html \`${html}\`}`;
+}
+```
+
+`html` is wrapped in a `<pre>` and `<code>` element. Code is highlighted with `<span>` elements.
+
+```js
+const mdsvexConfig = {
+	// ...,
+	highlight: {
+		highlighter
+	}
+};
+```
+
 ---
 
 ## Document icons
