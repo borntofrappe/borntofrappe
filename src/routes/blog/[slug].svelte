@@ -8,10 +8,14 @@
 			const articles = import.meta.glob('/src/blog/*.{md,svx}');
 			const { default: Module, metadata } = await articles[article.path]();
 
+			const { title, brief, keywords } = metadata;
+
 			return {
 				props: {
 					Module,
-					...metadata
+					title,
+					brief,
+					keywords: keywords.replace(/ /g, '').split(',')
 				}
 			};
 		}
@@ -25,18 +29,19 @@
 
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
+	import Header from '$lib/components/blog/article/Header.svelte';
 
 	export let title;
+	export let keywords;
 	export let brief;
 	export let Module;
 </script>
 
 <Meta title="{title} | borntofrappe" description={brief} />
 
+<Header {title} {keywords} />
+
 <main id="content">
-	<header>
-		<h1>{title}</h1>
-	</header>
 	<svelte:component this={Module} />
 </main>
 
@@ -46,10 +51,36 @@
 		max-width: var(--max-width);
 		width: 90vw;
 		width: var(--width);
-		margin: 1em auto;
+		margin: 3em auto 6em;
 	}
 
 	main > :global(* + *) {
 		margin-top: 1em;
+		margin-top: var(--vertical-rhythm, 1em);
+	}
+
+	main > :global(h2),
+	main > :global(h3) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	main > :global(h2 + *),
+	main > :global(h3 + *) {
+		--vertical-rhythm: var(--size-300);
+	}
+
+	main > :global(blockquote),
+	main > :global(blockquote + *) {
+		--vertical-rhythm: var(--size-800);
+	}
+
+	main > :global(table),
+	main > :global(table + *) {
+		--vertical-rhythm: var(--size-700);
+	}
+
+	main > :global(pre),
+	main > :global(pre + *) {
+		--vertical-rhythm: var(--size-600);
 	}
 </style>

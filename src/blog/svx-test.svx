@@ -1,7 +1,7 @@
 ---
 title: Svelte in markdown
 datetime: '2022-01-18'
-keywords: html, js
+keywords: svelte
 brief: A test article to ensure the script considers `.svx` documents
 ---
 

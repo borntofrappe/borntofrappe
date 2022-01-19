@@ -1,7 +1,7 @@
 ---
 title: Markdown
 datetime: '2022-01-17'
-keywords: html, js
+keywords: html
 brief: A test article to ensure the script considers markdown documents
 ---
 
