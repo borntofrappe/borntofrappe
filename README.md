@@ -2,6 +2,8 @@
 
 ![SvelteKit Badge](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/sveltekit-badge.svg)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4e7278de-b395-4b4c-a54c-4c12fbd57fc9/deploy-status)](https://app.netlify.com/sites/borntofrappe/deploys)
+
 <details>
 <summary><strong>Development Notes</strong></summary>
 
