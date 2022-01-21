@@ -174,8 +174,6 @@
 		background-size: 100px;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
-		transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-		transition: color var(--transition-duration) var(--ease-in-out-sine);
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: flex-end;
@@ -235,7 +233,7 @@
 	}
 
 	main > :global(.code pre::-webkit-scrollbar-thumb) {
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		background: hsl(330, 79%, 56%);
 		background: var(--accent-color);
 	}

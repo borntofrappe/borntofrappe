@@ -123,5 +123,7 @@
 	header :global(p) {
 		font-family: JosefinsansBold, sans-serif;
 		font-weight: 700;
+		color: hsl(210, 24%, 16%);
+		color: var(--heading-color);
 	}
 </style>
