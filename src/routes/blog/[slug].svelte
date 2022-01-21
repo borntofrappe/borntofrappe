@@ -5,7 +5,7 @@
 		const article = articles.get(params.slug);
 
 		if (article) {
-			const articles = import.meta.glob('/src/blog/*.{md,svx}');
+			const articles = import.meta.glob('/src/blog/**/*.{md,svx}');
 			const { default: Module } = await articles[article.path]();
 
 			const { title, brief, keywords, latest } = article;

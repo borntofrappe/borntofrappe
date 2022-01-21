@@ -427,6 +427,34 @@ const config = {
 };
 ```
 
+### Nested articles
+
+Ultimately I want to support a setup where you can write a markdown or `.svx` document in a dedicated folder.
+
+```text
+/blog
+  /folder
+    /article.md
+```
+
+Especially in the context of `svx` files the idea is to use the folder for all the components, all the sections devoted to an article.
+
+```text
+/blog
+  /folder
+    /Counter.svelte
+    /article.svx
+```
+
+To support this setup update the syntax of the glob feature.
+
+```diff
+import.meta.glob('/src/blog/*.{md,svx}')
++import.meta.glob('/src/blog/**/*.{md,svx}')
+```
+
+What matters here, what is used as a slug, is the name of the article, and **not** the name of the folder.
+
 ### Hooks and session
 
 `/routes/blog/index.svelte` and `/routes/blog/[slug].svelte` share much of the same logic in the initial script. With `hooks/index.js` the idea is to store the information in the `sessions` object so that it's possible to retrieve the articles as follows.

@@ -1,6 +1,6 @@
 export async function getSession() {
 	const articles = await Promise.all(
-		Object.entries(import.meta.glob('/src/blog/*.{md,svx}')).map(async ([path, module]) => {
+		Object.entries(import.meta.glob('/src/blog/**/*.{md,svx}')).map(async ([path, module]) => {
 			const { metadata } = await module();
 
 			const date = new Date(
