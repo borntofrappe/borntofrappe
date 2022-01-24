@@ -13,7 +13,6 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
-	import RelativeLink from '$lib/components/routes/RelativeLink.svelte';
 
 	import { formatDate } from '$lib/utils';
 
@@ -35,9 +34,6 @@
 		<h2>Well, well, well</h2>
 		<p>It seems there are no articles at the time of writing. Isn't it funny.</p>
 		<p>At least we can all cherish how CSS handles layout with an unexpected set of elements.</p>
-		<p>
-			<RelativeLink href="/">Go to home page</RelativeLink>
-		</p>
 	{:else}
 		{#each articles as { slug, title, datetime, date, brief }}
 			<article>
