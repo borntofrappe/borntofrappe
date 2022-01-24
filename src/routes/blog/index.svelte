@@ -13,6 +13,7 @@
 <script>
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
+	import RelativeLink from '$lib/components/routes/RelativeLink.svelte';
 
 	import { formatDate } from '$lib/utils';
 
@@ -23,19 +24,31 @@
 
 <Header>
 	<h1>Blog</h1>
-	<p>I write on web development, game development, and anything that piques my interest.</p>
+	<p>
+		I write about code, games and anything which piques my interest. Among the three I hope you'll
+		find something of value.
+	</p>
 </Header>
 
 <main id="content">
-	{#each articles as { slug, title, datetime, date, brief }}
-		<article>
-			<h2>
-				<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
-			</h2>
-			<time {datetime}>{formatDate(date)}</time>
-			<p>{brief}</p>
-		</article>
-	{/each}
+	{#if articles.length === 0}
+		<h2>Well, well, well</h2>
+		<p>It seems there are no articles at the time of writing. Isn't it funny.</p>
+		<p>At least we can all cherish how CSS handles layout with an unexpected set of elements.</p>
+		<p>
+			<RelativeLink href="/">Go to home page</RelativeLink>
+		</p>
+	{:else}
+		{#each articles as { slug, title, datetime, date, brief }}
+			<article>
+				<h2>
+					<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
+				</h2>
+				<time {datetime}>{formatDate(date)}</time>
+				<p>{brief}</p>
+			</article>
+		{/each}
+	{/if}
 </main>
 
 <style>
