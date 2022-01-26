@@ -1,7 +1,7 @@
 ---
 title: Symmetric difference
 datetime: 2022-01-24
-keywords: js
+keywords: freecodecamp, js, certificate
 brief: Given two sets consider the elements which are in either collection but not in both.
 ---
 

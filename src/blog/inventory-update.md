@@ -1,7 +1,7 @@
 ---
 title: Inventory update
 datetime: 2022-01-25
-keywords: js
+keywords: freecodecamp, js, certificate
 brief: Update an array with the keys and values from a second array.
 ---
 

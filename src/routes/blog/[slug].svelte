@@ -82,13 +82,6 @@
 		--vertical-rhythm: var(--size-700);
 	}
 
-	main > :global(pre),
-	main > :global(pre + *),
-	main > :global(.code),
-	main > :global(.code + *) {
-		--vertical-rhythm: var(--size-600);
-	}
-
 	main > :global(h2),
 	main > :global(h3),
 	main > :global(h4) {
