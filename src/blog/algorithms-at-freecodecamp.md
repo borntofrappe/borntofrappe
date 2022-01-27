@@ -13,7 +13,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - no repeats please (coming soon)
 
-- pairwise (coming soon)
+- [pairwise](/blog/pairwise)
 
 - implement bubble sort (coming soon)
 
