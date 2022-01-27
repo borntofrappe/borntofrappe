@@ -9,7 +9,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - [find the symmetric difference](/blog/find-the-symmetric-difference)
 
-- inventory update (coming soon)
+- [inventory update](/blog/inventory-update)
 
 - no repeats please (coming soon)
 
