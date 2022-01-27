@@ -54,7 +54,7 @@ const mdsvexConfig = {
 		marker: '-',
 		type: 'yaml',
 		parse: (frontmatter) =>
-			Object.fromEntries(frontmatter.split('\n').map((line) => line.split(/: ?/, 2)))
+			Object.fromEntries(frontmatter.split('\n').map((line) => line.split(/: /, 2)))
 	}
 };
 
