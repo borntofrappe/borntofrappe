@@ -147,6 +147,17 @@
 		}
 	}
 
+	main > :global(p > code) {
+		font-family: inherit;
+		font-weight: 700;
+		padding: 0 0.25em;
+		border-radius: 0.25em;
+		color: hsl(210, 24%, 16%);
+		color: var(--heading-color);
+		background: hsl(330, 79%, 56%);
+		background: var(--accent-color);
+	}
+
 	main > :global(.code > span),
 	main > :global(.code pre) {
 		border-radius: 1rem;
@@ -229,5 +240,97 @@
 		border-radius: 0.25rem;
 		background: hsl(330, 79%, 56%);
 		background: var(--accent-color);
+	}
+
+	main > :global(ul li::marker),
+	main > :global(ol li::marker) {
+		color: var(--accent-color);
+	}
+
+	main > :global(ol li::marker) {
+		font-weight: 700;
+	}
+
+	main > :global(ul ul),
+	main > :global(ol ol) {
+		margin-top: 1em;
+	}
+
+	main > :global(ul > * + *),
+	main > :global(ol > * + *) {
+		margin-top: 0.5em;
+	}
+
+	main > :global(li) {
+		line-height: 1.5;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main > :global(ul),
+		main > :global(ol) {
+			padding: 0;
+		}
+
+		main > :global(ul) {
+			list-style: none;
+			--badge-size: 1.5em;
+			margin-left: var(--badge-size);
+		}
+
+		main > :global(ul li) {
+			position: relative;
+			padding-left: 0.5em;
+		}
+
+		main > :global(ul li::before) {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 100%;
+			width: var(--badge-size);
+			height: var(--badge-size);
+			background: var(--accent-color);
+			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath stroke-width="8" d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3Cpath stroke-width="8" d="M -17 -0 l 12 12 21 -21" /%3E%3C/g%3E%3C/svg%3E');
+		}
+
+		main > :global(ol) {
+			list-style: none;
+			--badge-size: 1.5em;
+			margin-left: var(--badge-size);
+			counter-reset: custom-counter;
+		}
+
+		main > :global(ol li) {
+			position: relative;
+			padding-left: 0.5em;
+		}
+
+		main > :global(ol li::before) {
+			content: '';
+			position: absolute;
+			top: 0%;
+			right: 100%;
+			width: var(--badge-size);
+			height: var(--badge-size);
+			background: var(--accent-color);
+			-webkit-mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+			mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100"%3E%3Cg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath stroke-width="10" d="M 0 -45 q -18 10 -36 10 v 55 c 8 15 20 20 36 25 c 15 -5 27 -10 36 -25 v -55 q -18 0 -36 -10z" /%3E%3C/g%3E%3C/svg%3E');
+		}
+
+		main > :global(ol li::after) {
+			counter-increment: custom-counter;
+			content: counter(custom-counter);
+			color: var(--accent-color);
+			font-weight: 700;
+			position: absolute;
+			top: 0%;
+			right: 100%;
+			width: var(--badge-size);
+			height: var(--badge-size);
+			text-align: center;
+			transform: scale(0.75);
+			transform-origin: 50% 42%;
+		}
 	}
 </style>
