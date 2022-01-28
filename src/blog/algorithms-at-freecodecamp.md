@@ -15,7 +15,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - [pairwise](/blog/pairwise)
 
-- implement bubble sort (coming soon)
+- [implement bubble sort](/blog/implement-bubble-sort)
 
 - implement selection sort (coming soon)
 
