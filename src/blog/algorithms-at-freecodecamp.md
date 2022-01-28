@@ -19,7 +19,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - [implement selection sort](/blog/implement-selection-sort)
 
-- implement insertion sort (coming soon)
+- [implement insertion sort](/blog/implement-insertion-sort)
 
 - implement quick sort (coming soon)
 
