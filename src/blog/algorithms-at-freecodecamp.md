@@ -17,7 +17,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - [implement bubble sort](/blog/implement-bubble-sort)
 
-- implement selection sort (coming soon)
+- [implement selection sort](/blog/implement-selection-sort)
 
 - implement insertion sort (coming soon)
 
