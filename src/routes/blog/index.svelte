@@ -24,8 +24,9 @@
 <Header>
 	<h1>Blog</h1>
 	<p>
-		I write about code, games and anything which piques my interest. Among the three I hope you'll
-		find something of value.
+		Monday to Friday I tend to write about code. Over the weekend I sparingly write about games and
+		anything which piques my interest. The hope is you'll find something of value in at least a day
+		a week.
 	</p>
 </Header>
 
