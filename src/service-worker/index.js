@@ -1,7 +1,7 @@
 import { files } from '$service-worker';
 
-const staticCache = 'static-cache';
-const dynamicCache = 'dynamic-cache';
+const staticCache = 'static-cache-0';
+const dynamicCache = 'dynamic-cache-0';
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
@@ -23,16 +23,25 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
 	event.respondWith(
-		caches.match(event.request).then((cacheRes) => {
-			return (
-				cacheRes ||
-				fetch(event.request).then((fetchRes) => {
-					return caches.open(dynamicCache).then((cache) => {
-						cache.put(event.request.url, fetchRes.clone());
-						return fetchRes;
-					});
-				})
-			);
-		})
+		caches
+			.match(event.request)
+			.then((response) => {
+				return (
+					response ||
+					fetch(event.request).then((fetchResponse) => {
+						if (!fetchResponse.ok) throw fetchResponse.statusText;
+
+						caches.open(dynamicCache).then((cache) => {
+							cache.put(event.request.url, fetchResponse.clone());
+							return fetchResponse;
+						});
+					})
+				);
+			})
+			.catch(() => {
+				if (event.request.url.endsWith('.html')) {
+					return caches.match('/offline.html');
+				}
+			})
 	);
 });
