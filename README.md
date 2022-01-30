@@ -594,13 +594,7 @@ SvelteKit includes `static/favicon.png` as the default icon, referencing the ass
 
 In place of this default, and taking inspiration from [this article](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs) shared on [CSS-Tricks](https://css-tricks.com/how-to-favicon-in-2021/) I created an SVG icon to better fit the application. The icon describes a rocket pointing up and to the right. There's a reason why I landed on the rocket, but I'd rather yada-yada the issue for the time being.
 
-In terms of actual design I like to draw my vector graphics in VSCode, so that the syntax is the end result of adjusting values by hand. I don't feel pressured to optimize the end result with SVGO and I'm more than satisfied just removing the unnecessary whitespace. The icon itself has a default stroke color, but changes for a dark color preference. The colors refer to the following `hsl` codes:
-
-- hsl(210, 24%, 16%)
-
-- hsl(213, 32%, 88%)
-
-Hex colors just take less characters to type.
+In terms of actual design I like to draw my vector graphics in VSCode, so that the syntax is the end result of adjusting values by hand. I don't feel pressured to optimize the end result with SVGO and I'm more than satisfied just removing the unnecessary whitespace. The icon itself has a default fill and stroke color, but the values change for the dark color preference. The colors refer to the `hsl` codes from the global stylesheet, but are kept in hexadecimal format. Hex colors just take less characters to type.
 
 Returning to the cited article, the markup references the vector graphic, but also `.ico` and `.png` variants.
 
@@ -611,7 +605,7 @@ Returning to the cited article, the markup references the vector graphic, but al
 <link rel="manifest" href="/manifest.json" />
 ```
 
-The variants are created with GIMP. This relates to the `.ico` and `.png` files included in the snippet, but also the two images referenced in the web manifest. `.png` images are optimized with [squoosh.app](https://squoosh.app/) compressing with OxiPNG and toggling the "Reduce palette" option with 64 colors. The three go from 37.8kb to 12.5kb. I know the browser should download only one, but the difference is noticeable.
+The variants are created with GIMP. This relates to the `.ico` and `.png` files included in the snippet, but also the images referenced in the web manifest. `.png` images are optimized with [squoosh.app](https://squoosh.app/) compressing with OxiPNG and toggling the "Reduce palette" option with 64 colors. The three go from 47.8kb to 14.9kb. I know the browser should download only one, but the difference is noticeable.
 
 ## Webfonts
 
@@ -774,6 +768,40 @@ Visually the image relies on the same icons and overall style I intend to use in
 - the colors are picked from the custom properties in the global stylesheet
 
 - the background pattern is similar to that ultimately included in the `body` and other specific selectors
+
+## PWA
+
+The website is set to have progressive web app features in terms of a more structure web app manifest and a service worker. The goal is to ultimately provide an offline experience more than a fully fledged mobile application.
+
+Update the web app manifest with the following field:
+
+- `display`, the appearance of the page when installed
+
+- `start_url`, entry point of the application
+
+The name, short name, theme and background color, not to mention the icons are already included for the meta tags.
+
+Update the icons field to include a maskable version:
+
+```json
+{
+	"src": "/icons/android-maskable-192x192.png",
+	"sizes": "192x192",
+	"type": "image/png",
+	"purpose": "maskable"
+}
+```
+
+The image itself is slightly different as the rocket needs to be smaller in size.
+
+Update the meta tags to add the theme color in the `html` file.
+
+It is actually possible to specify the theme with a media query.
+
+```html
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1f2933" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#d6dfea" />
+```
 
 ##
 
