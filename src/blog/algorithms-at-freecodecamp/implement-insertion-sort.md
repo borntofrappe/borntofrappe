@@ -35,7 +35,7 @@ for (let i = 0; i < array.length; i++) {
 }
 ```
 
-It would be equally possible to use `push` method since the number is added as the last element.
+It would be equally possible to use the `push` method since the number is added as the last element.
 
 ```js
 sorted.push(array[i]);

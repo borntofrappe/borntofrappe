@@ -21,7 +21,7 @@ With the first loop consider all the elements in the collection.
 for (let i = 0; i < array.length; i++) {}
 ```
 
-With the second loop iterate look for the smallest value in the gradually smaller array.
+With the second loop look for the smallest value in the gradually smaller array.
 
 ```js
 for (let j = i + 1; j < array.length; j++) {}

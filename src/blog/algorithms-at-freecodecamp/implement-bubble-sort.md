@@ -21,7 +21,7 @@ The idea is to then repeat the process considering one less element. Larger valu
 
 ## Loops
 
-The iteration explained above is implemented with two for loops, one nested in the other.
+One possible way to implement the algorithm is with two `for` loops, one nested in the other.
 
 With the first loop consider all the elements to gradually push the maximum value to the end of the collection.
 
@@ -39,6 +39,7 @@ Decrement the end condition by `i`, skipping the sorted value, and by `1`, to co
 
 ```js
 if (array[j] > array[j + 1]) {
+	// swap
 }
 ```
 
