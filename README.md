@@ -769,39 +769,23 @@ Visually the image relies on the same icons and overall style I intend to use in
 
 - the background pattern is similar to that ultimately included in the `body` and other specific selectors
 
-## PWA
+## Progressive Web App
 
-The website is set to have progressive web app features in terms of a more structure web app manifest and a service worker. The goal is to ultimately provide an offline experience more than a fully fledged mobile application.
+Update the web app manifest with the following field: `display`, `start_url`.
 
-Update the web app manifest with the following field:
+Update the icons field to include a maskable version. An icon with `"purpose": "maskable"`. The image itself is slightly different as the rocket needs to be smaller in size.
 
-- `display`, the appearance of the page when installed
-
-- `start_url`, entry point of the application
-
-The name, short name, theme and background color, not to mention the icons are already included for the meta tags.
-
-Update the icons field to include a maskable version:
-
-```json
-{
-	"src": "/icons/android-maskable-192x192.png",
-	"sizes": "192x192",
-	"type": "image/png",
-	"purpose": "maskable"
-}
-```
-
-The image itself is slightly different as the rocket needs to be smaller in size.
-
-Update the meta tags to add the theme color in the `html` file.
+Update the meta tags to add the theme color in `app.html`.
 
 It is actually possible to specify the theme with a media query.
 
-```html
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1f2933" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#d6dfea" />
-```
+Add a service worker with `service-worker/index.js`. SvelteKit automatically registers the worker, so what you need is to choose a caching strategy. The current choice is to:
+
+1. cache the files in the `static` folder in a static cache
+
+2. delete outdated caches when a new worker is registered
+
+3. respond with the files in the cache. If not available fetch the file and place the matching response in a dynamic cache
 
 ##
 
