@@ -25,4 +25,4 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 - implement merge sort (coming soon)
 
-- implement binary search (coming soon)
+- [implement binary search](/blog/implement-binary-search)
