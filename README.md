@@ -35,3 +35,20 @@ With the environment:
 2. develop with `npm run dev`
 
 3. create a production app with `npm run build`
+
+### Netlify config
+
+Netlify is able to deploy the website directly through `adapter-auto`.
+
+It is possible to specify the build command and publish directly in the Netlify UI, but the build process requires a specific node version.
+
+```text
+npm ERR! notsup Unsupported engine for @sveltejs/kit@1.0.0-next.253: wanted: {"node":">=14.13"} (current: {"node":"10.24.1","npm":"6.14.12"})
+```
+
+Add `netlify.toml` to config the version.
+
+```toml
+[context.production]
+  environment = { NODE_VERSION = "14.18.1" }
+```
