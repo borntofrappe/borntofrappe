@@ -76,3 +76,29 @@ Reduce the size of the `.png` images with [squoosh.app](https://squoosh.app/).
 Reference the icons in `app.html` and the web app manifest `/static/manifest.json`.
 
 Reference the manifest file in `app.html`.
+
+### Webfonts
+
+In `/static/fonts` include fonts in the following variants:
+
+- [JosefinSans](https://fonts.google.com/specimen/Josefin+Sans?query=josefin) bold
+
+- [Jost](https://fonts.google.com/specimen/Jost?query=jost) regular, bold, italic, bold italic
+
+Create the `woff` and `woff2` file formats with [fontsquirrel's generator](https://www.fontsquirrel.com/tools/webfont-generator).
+
+The generator is modify to:
+
+- keep existing true type hinting
+
+- avoid fixing the GASP table
+
+- avoid adjustment for vertical metrics
+
+- avoid fixing missing glyphs, either spaces or hyphens
+
+Include the fonts with the one-step loading strategy explained in [a comprehensive guide to webfonts](https://www.zachleat.com/web/comprehensive-webfonts/).
+
+By default rely the system font stack. Apply the fonts through the `.webfonts` class added to the document when the fonts are indeed loaded.
+
+Rely on the system font stack for `code` elements.
