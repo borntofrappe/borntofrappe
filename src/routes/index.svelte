@@ -1,3 +1,12 @@
+<script>
+	import Meta from '$lib/components/routes/Meta.svelte';
+</script>
+
+<Meta
+	title="borntofrappe"
+	description="Personal website of one Gabriele Corti, online @borntofrappe."
+/>
+
 <h1>Hello, world</h1>
 
 <p>

@@ -162,3 +162,15 @@ Past the different systems set default values for a range of selectors consideri
 - set `display: block` on images but also the svg selector for vector graphics
 
 - avoid resetting animations for the reduced motion preference with the `!important` keyword
+
+### Meta tags
+
+Beside the tags in `app.html` include additional information in the `<Meta />` component:
+
+- title
+
+- description
+
+- open graph properties
+
+Use the URL from the `page` store made available by the kit in `$app/stores`.
