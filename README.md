@@ -1,40 +1,37 @@
-# create-svelte
+![On pink days, on cyan nights, you'll find me online @borntofrappe](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+# Hello World!
 
-## Creating a project
+If you are curious in _how_ the website is built in the first place, feel free to continue with the [_Development notes_](#development-notes).
 
-If you're seeing this, you've probably already done this step. Congrats!
+If you are interested in only results, I have the gumption to direct you toward the home page once more.
+
+[**Go to website ![](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/rocket.svg)**](https://borntofrappe.netlify.app)
+
+## Development notes
+
+### create-svelte
 
 ```bash
-# create a new project in the current directory
 npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
 ```
 
-> Note: the `@next` is temporary
+The instruction prompts several questions:
 
-## Developing
+- Directory not empty. Continue? **y**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- Which Svelte app template? **Skeleton project**
 
-```bash
-npm run dev
+- Use TypeScript? **No**
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- Add ESLint for code linting? **Yes**
 
-## Building
+- Add Prettier for code formatting? **Yes**
 
-To create a production version of your app:
+With the environment:
 
-```bash
-npm run build
-```
+1. install the dependencies listed in the package file with `npm install`
 
-You can preview the production build with `npm run preview`.
+2. develop with `npm run dev`
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+3. create a production app with `npm run build`

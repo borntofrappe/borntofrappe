@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Hello, world</h1>
+
+<p>
+	This is my website, and you are welcome<b>d</b>. It is built with <strong>SvelteKit</strong>, in
+	its latest
+	<code>1.0.0-next.253</code> version. It is deployed through <strong>Netlify</strong>, and
+	available on
+	<a href="https://borntofrappe.netlify.app">borntofrappe.netlify.app</a>.
+</p>
