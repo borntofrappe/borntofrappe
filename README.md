@@ -87,7 +87,7 @@ In `/static/fonts` include fonts in the following variants:
 
 Create the `woff` and `woff2` file formats with [fontsquirrel's generator](https://www.fontsquirrel.com/tools/webfont-generator).
 
-The generator is modify to:
+The generator is modified to:
 
 - keep existing true type hinting
 
@@ -102,3 +102,63 @@ Include the fonts with the one-step loading strategy explained in [a comprehensi
 By default rely the system font stack. Apply the fonts through the `.webfonts` class added to the document when the fonts are indeed loaded.
 
 Rely on the system font stack for `code` elements.
+
+### Global stylesheet
+
+Include the stylesheet `src/app.css` through the layout file `__layout.svelte`.
+
+The global values set different systems in terms of color, sizes, transitions relying on CSS custom properties.
+
+In terms of **color** define different sets of colors following the suggestion from [refactoring UI](https://www.refactoringui.com/previews/building-your-color-palette).
+
+Set root properties in the `:root` selector, create additional properties on the `body` selector.
+
+```css
+:root {
+	--cool-grey-000: hsl(216, 33%, 97%);
+	--cool-grey-100: hsl(214, 15%, 91%);
+}
+
+body {
+	--copy-color: var(--cool-grey-800);
+	--heading-color: var(--cool-grey-900);
+}
+```
+
+The approach allows to change the style of the application through the more specific properties.
+
+```css
+body.dark {
+	--copy-color: var(--blue-grey-200);
+	--heading-color: var(--blue-grey-100);
+}
+```
+
+In terms of **sizes** include steps from the [major third](https://www.modularscale.com/?1&em&1.25) scale.
+
+In terms of **easing** include the bezier curves for different timing functions.
+
+Each time you rely on a custom property repeat the declaration _before_ to provide a fallback.
+
+```css
+body {
+	color: hsl(209, 20%, 25%);
+	color: var(--copy-color);
+}
+```
+
+Past the different systems set default values for a range of selectors considering most of the guidance from [a modern CSS reset](https://piccalil.li/blog/a-modern-css-reset/). The reset is modified as follows:
+
+- avoid resetting the margin on `blockquote`, `dl` and `dd` elements
+
+- avoid resetting the padding on lists
+
+- avoid implementing smooth scrolling
+
+- avoid setting a `min-height` on the entire body
+
+- set the `line-height` not through the body but through the paragraph selector
+
+- set `display: block` on images but also the svg selector for vector graphics
+
+- avoid resetting animations for the reduced motion preference with the `!important` keyword

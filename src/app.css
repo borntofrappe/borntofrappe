@@ -1,0 +1,222 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+	margin: 0;
+}
+
+img,
+picture,
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+:root {
+	--pink-000: hsl(341, 100%, 95%);
+	--pink-100: hsl(338, 100%, 86%);
+	--pink-200: hsl(336, 100%, 77%);
+	--pink-300: hsl(334, 86%, 67%);
+	--pink-400: hsl(330, 79%, 56%);
+	--pink-500: hsl(328, 85%, 46%);
+	--pink-600: hsl(326, 90%, 39%);
+	--pink-700: hsl(324, 93%, 33%);
+	--pink-800: hsl(322, 93%, 27%);
+	--pink-900: hsl(320, 100%, 19%);
+
+	--cool-grey-000: hsl(216, 33%, 97%);
+	--cool-grey-100: hsl(214, 15%, 91%);
+	--cool-grey-200: hsl(210, 16%, 82%);
+	--cool-grey-300: hsl(211, 13%, 65%);
+	--cool-grey-400: hsl(211, 10%, 53%);
+	--cool-grey-500: hsl(211, 12%, 43%);
+	--cool-grey-600: hsl(209, 14%, 37%);
+	--cool-grey-700: hsl(209, 18%, 30%);
+	--cool-grey-800: hsl(209, 20%, 25%);
+	--cool-grey-900: hsl(210, 24%, 16%);
+
+	--cyan-000: hsl(186, 100%, 94%);
+	--cyan-100: hsl(185, 94%, 87%);
+	--cyan-200: hsl(184, 80%, 74%);
+	--cyan-300: hsl(184, 65%, 59%);
+	--cyan-400: hsl(185, 57%, 50%);
+	--cyan-500: hsl(185, 62%, 45%);
+	--cyan-600: hsl(184, 77%, 34%);
+	--cyan-700: hsl(185, 81%, 29%);
+	--cyan-800: hsl(185, 84%, 25%);
+	--cyan-900: hsl(185, 91%, 17%);
+
+	--blue-grey-000: hsl(211, 36%, 95%);
+	--blue-grey-100: hsl(213, 33%, 88%);
+	--blue-grey-200: hsl(211, 31%, 79%);
+	--blue-grey-300: hsl(212, 27%, 67%);
+	--blue-grey-400: hsl(210, 23%, 59%);
+	--blue-grey-500: hsl(211, 22%, 48%);
+	--blue-grey-600: hsl(210, 28%, 37%);
+	--blue-grey-700: hsl(210, 34%, 28%);
+	--blue-grey-800: hsl(212, 39%, 19%);
+	--blue-grey-900: hsl(210, 58%, 9%);
+
+	--max-width: 42rem;
+	--width: 90vw;
+
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+	--size-500: 1.25rem;
+	--size-600: 1.56rem;
+	--size-700: 1.95rem;
+	--size-800: 2.44rem;
+	--size-900: 3.05rem;
+
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-back: cubic-bezier(0.68, -0.5, 0.265, 1.55);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+	--transition-duration: 0.25s;
+}
+
+body {
+	--copy-color: var(--cool-grey-800);
+	--heading-color: var(--cool-grey-900);
+	--background-color: var(--pink-000);
+	--accent-color: var(--pink-400);
+	--selection-background: hsla(338, 100%, 86%, 0.75);
+}
+
+body {
+	text-rendering: optimizeSpeed;
+	color: hsl(209, 20%, 25%);
+	color: var(--copy-color);
+	background: hsl(341, 100%, 95%);
+	background: var(--background-color);
+	background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 240 240"%3E%3Cdefs%3E%3Ccircle id="dot" r="2"%3E%3C/circle%3E%3Cpath id="star" d="M 0 -5 a 5 5 0 0 0 5 5 5 5 0 0 0 -5 5 5 5 0 0 0 -5 -5 5 5 0 0 0 5 -5"%3E%3C/path%3E%3C/defs%3E%3Cg fill="hsl(338, 100%25, 86%25)" stroke="hsl(338, 100%25, 86%25)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"%3E%3Cuse href="%23dot" transform="translate(27.96 4.62) scale(0.2)"%3E%3C/use%3E%3Cuse href="%23star" transform="translate(116.2 -9.49) scale(0.31) rotate(-4)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(135.57 15.18) scale(0.57)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(8.87 40.07) scale(0.2)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(58.77 43.19) scale(0.28)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(78.77 44.35) scale(0.67)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(142.49 38.37) scale(0.3)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(189.24 46.54) scale(0.66)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(81.94 64.58) scale(0.8)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(97.16 55.31) scale(0.35)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(182.15 65.83) scale(0.65)"%3E%3C/use%3E%3Cuse href="%23star" transform="translate(-1.64 70.38) scale(0.51) rotate(1)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(47.43 82.49) scale(0.59)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(73.87 83.41) scale(0.2)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(135.75 82.16) scale(0.24)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(171.02 74.39) scale(0.2)"%3E%3C/use%3E%3Cuse href="%23star" transform="translate(142.99 94.87) scale(0.45) rotate(-15)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(58.43 113.62) scale(0.23)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(153.46 125.55) scale(0.63)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(64.74 144.16) scale(0.55)"%3E%3C/use%3E%3Cuse href="%23star" transform="translate(143.3 140.55) scale(0.8) rotate(14)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(35.58 154.96) scale(0.2)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(57.06 186.47) scale(0.8)"%3E%3C/use%3E%3Cuse href="%23dot" transform="translate(166.37 182.71) scale(0.73)"%3E%3C/use%3E%3C/g%3E%3C/svg%3E');
+	background-size: 100px;
+}
+
+::selection {
+	background: hsla(338, 100%, 86%, 0.75);
+	background: var(--selection-background);
+}
+
+body::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: hsl(341, 100%, 95%);
+	background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+	border: 0.2rem solid hsl(341, 100%, 95%);
+	border: 0.2rem solid var(--background-color);
+	border-radius: 0.5rem;
+	background: hsl(330, 79%, 56%);
+	background: var(--accent-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: hsl(210, 24%, 16%);
+	color: var(--heading-color);
+}
+
+input,
+button,
+textarea,
+select {
+	accent-color: hsl(330, 79%, 56%);
+	accent-color: var(--accent-color);
+}
+
+a {
+	text-decoration-skip-ink: auto;
+	color: inherit;
+	font-family: inherit;
+	transition: color 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: color var(--transition-duration) var(--ease-in-out-sine);
+}
+
+a:hover {
+	color: hsl(330, 79%, 56%);
+	color: var(--accent-color);
+}
+
+a:focus {
+	outline: 0.15rem dashed currentColor;
+}
+
+a:focus:not(:focus-visible) {
+	outline: none;
+}
+
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 2.44rem;
+	font-size: var(--size-800);
+}
+
+h2 {
+	font-size: 1.95rem;
+	font-size: var(--size-700);
+}
+
+h3 {
+	font-size: 1.56rem;
+	font-size: var(--size-600);
+}
+
+@media (min-width: 42rem) {
+	body {
+		font-size: 1.25rem;
+		font-size: var(--size-500);
+	}
+
+	h1 {
+		font-size: 3.05rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 2.44rem;
+		font-size: var(--size-800);
+	}
+
+	h3 {
+		font-size: 1.95rem;
+		font-size: var(--size-700);
+	}
+}
+
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}
