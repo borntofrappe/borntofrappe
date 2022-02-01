@@ -2,6 +2,8 @@
 
 # Hello World!
 
+This is my website, and you are welcome**d**. It is built with **SvelteKit**, in its latest `1.0.0-next.253` version. It is deployed through **Netlify**, and available on [borntofrappe.netlify.app](https://borntofrappe.netlify.app)
+
 If you are curious in _how_ the website is built in the first place, feel free to continue with the [_Development notes_](#development-notes).
 
 If you are interested in only results, I have the gumption to direct you toward the home page once more.
@@ -38,17 +40,39 @@ With the environment:
 
 ### Netlify config
 
-Netlify is able to deploy the website directly through `adapter-auto`.
+Netlify is able to deploy the website directly through `adapter-auto`. It is possible to configure the build process through Netlify's own interaface, but `netlify.toml` provides a more deliberate approach:
 
-It is possible to specify the build command and publish directly in the Netlify UI, but the build process requires a specific node version.
+- specify the build command and publish directory
 
-```text
-npm ERR! notsup Unsupported engine for @sveltejs/kit@1.0.0-next.253: wanted: {"node":">=14.13"} (current: {"node":"10.24.1","npm":"6.14.12"})
+```toml
+[build]
+  command = "npm run build"
+  publish = "build"
 ```
 
-Add `netlify.toml` to config the version.
+- specify a node version suitable for SvelteKit. The utility requires at least node 14.13
 
 ```toml
 [context.production]
   environment = { NODE_VERSION = "14.18.1" }
 ```
+
+In Netlify's own interface you'd need to configure the options updating the deploy settings and setting an environmental variable for `NODE_ENV`.
+
+### Document icons
+
+In `/static/icons` include icons in the following formats and sizes:
+
+- `icon.svg`
+
+- `favicon.icon`, 32 and 16 pixels
+
+- `apple-touch-icon.png`, 180 pixels
+
+- `android-chrome-192x192.png` and `android-chrome-512x512.png`, 192 and 512 pixels respectively
+
+Reduce the size of the `.png` images with [squoosh.app](https://squoosh.app/).
+
+Reference the icons in `app.html` and the web app manifest `/static/manifest.json`.
+
+Reference the manifest file in `app.html`.
