@@ -12,7 +12,7 @@
 	<h1>Hello world!</h1>
 </Header>
 
-<main>
+<main id="content">
 	<p>
 		This is my website, and you are welcome<b>d</b>. It is built with <strong>SvelteKit</strong>, in
 		its latest
