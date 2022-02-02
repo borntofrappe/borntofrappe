@@ -1,4 +1,5 @@
 <script>
+	import { observe } from '$lib/utils';
 	import icons from '$lib/icons';
 
 	const satellites = ['editor', 'world', 'running', 'racing', 'gaming'];
@@ -20,15 +21,22 @@
 <section>
 	<h2>Almost forgot</h2>
 	<p>
-		My name is <mark>Gabriele Corti</mark>. I write to you from Europe a couple of hours after
-		Greenwich time.
+		My name is <mark class:observed={false} use:observe>Gabriele Corti</mark>. I write to you from
+		Europe a couple of hours after Greenwich time.
 	</p>
 	<p>
 		Outside of VSCode, you'll find me running, watching the highlight of an F1 race or enjoying a
 		dated video game. Depends on the season.
 	</p>
 
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 50" width="400" height="200">
+	<svg
+		class:observed={false}
+		use:observe
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="-50 -50 100 50"
+		width="400"
+		height="200"
+	>
 		<defs>
 			<clipPath id="clip-planet">
 				<circle r="30" />
@@ -161,7 +169,7 @@
 
 	mark {
 		--elevation: 2.5em;
-		--animation-duration: 6s;
+		--animation-duration: 5s;
 		--animation-timing-function: var(--ease-in-out-sine);
 		padding-top: 2.5em;
 		padding-top: var(--elevation);
@@ -226,6 +234,13 @@
 			animation-play-state: paused;
 		}
 
+		@media (prefers-reduced-motion: no-preference) {
+			mark.observed::before,
+			mark.observed::after {
+				animation-play-state: running;
+			}
+		}
+
 		@keyframes clip-beam {
 			15% {
 				clip-path: polygon(100% 0%, 70% 100%, 0% 100%);
@@ -259,8 +274,14 @@
 	}
 
 	section > svg .rotate {
-		animation: rotate-orbit 200s linear infinite;
+		animation: rotate-orbit 100s linear infinite;
 		animation-play-state: paused;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		section > svg.observed .rotate {
+			animation-play-state: running;
+		}
 	}
 
 	@keyframes rotate-orbit {

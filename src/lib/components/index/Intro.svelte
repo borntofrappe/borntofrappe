@@ -1,4 +1,8 @@
-<section>
+<script>
+	import { observe } from '$lib/utils';
+</script>
+
+<section class:observed={false} use:observe>
 	<h2>Looking forward</h2>
 	<p>
 		I'm building this website one tentative step at a time. While I try setting up a blog and
@@ -10,7 +14,7 @@
 <style>
 	section {
 		--telescope-size: 6.5em;
-		--animation-duration: 8s;
+		--animation-duration: 5s;
 		--animation-timing-function: var(--ease-in-out-sine);
 		position: relative;
 	}
@@ -59,6 +63,12 @@
 		animation: rotate 8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
 		animation: rotate var(--animation-duration) var(--animation-timing-function) infinite alternate;
 		animation-play-state: paused;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		section.observed::after {
+			animation-play-state: running;
+		}
 	}
 
 	@keyframes rotate {
