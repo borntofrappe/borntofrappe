@@ -48,7 +48,7 @@
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
 		a {
 			display: inline-block;
-			padding-bottom: 0.55em;
+			padding-bottom: 0.5em;
 		}
 
 		a::after {

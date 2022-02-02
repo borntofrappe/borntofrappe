@@ -30,6 +30,22 @@
 		gap: 0 0.4em;
 	}
 
+	@media (prefers-color-scheme: dark) {
+		:global(html:not([data-preference])) a {
+			color: hsl(210, 58%, 9%);
+			color: var(--blue-grey-900);
+			background: hsl(211, 36%, 95%);
+			background: var(--blue-grey-000);
+		}
+	}
+
+	:global(html[data-preference='dark']) a {
+		color: hsl(210, 58%, 9%);
+		color: var(--blue-grey-900);
+		background: hsl(211, 36%, 95%);
+		background: var(--blue-grey-000);
+	}
+
 	a::after {
 		content: '';
 		background: currentColor;

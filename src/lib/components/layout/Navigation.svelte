@@ -7,15 +7,6 @@
 </nav>
 
 <style>
-	nav {
-		max-width: 42rem;
-		max-width: var(--max-width);
-		width: 90vw;
-		width: var(--width);
-		margin: 0rem auto;
-		padding: 0.5rem 0;
-	}
-
 	:global(.webfonts) a {
 		font-family: JosefinsansBold, sans-serif;
 	}

@@ -2,14 +2,14 @@
 	import '../app.css';
 
 	import SkipToContent from '$lib/components/layout/SkipToContent.svelte';
-	import Navigation from '$lib/components/layout/Navigation.svelte';
+	import Starter from '$lib/components/layout/Starter.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 </script>
 
 <SkipToContent />
 
 <div>
-	<Navigation />
+	<Starter />
 
 	<slot />
 
