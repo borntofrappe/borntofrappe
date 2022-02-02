@@ -2,7 +2,7 @@
 
 # Hello World!
 
-This is my website, and you are welcome**d**. It is built with **SvelteKit**, in its latest `1.0.0-next.253` version. It is deployed through **Netlify**, and available on [borntofrappe.netlify.app](https://borntofrappe.netlify.app)
+This is my website, and you are welcome**d**. It is built with **SvelteKit**, in its latest version. It is deployed through **Netlify**, and available on [borntofrappe.netlify.app](https://borntofrappe.netlify.app)
 
 If you are curious in _how_ the website is built in the first place, feel free to continue with the [_Development notes_](#development-notes).
 
@@ -174,3 +174,77 @@ Beside the tags in `app.html` include additional information in the `<Meta />` c
 - open graph properties
 
 Use the URL from the `page` store made available by the kit in `$app/stores`.
+
+### use observe
+
+Through the `use:observe` action add and remove a class of `observed` on the target elements considering the intersection observer API and the preference for reduced motion.
+
+```svelte
+<section use:observe />
+```
+
+To have the Svelte compile the associated CSS declarations add a class through the class directive.
+
+```html
+<section class:observed="{false}" use:observe />
+
+<style>
+	section.observed {
+		animation-play-state: running;
+	}
+</style>
+```
+
+### log
+
+Install mdsvex to process markdown files.
+
+```bash
+npm i --save-dev mdsvex
+```
+
+Process markdown files with mdsvex. Have the kit pick up the files with the matching extension.
+
+```js
+import { mdsvex } from 'mdsvex';
+
+const mdsvexConfig = {
+	extensions: ['.md']
+};
+
+const config = {
+	preprocess: mdsvex(mdsvexConfig),
+	extensions: ['.svelte', ...mdsvexConfig.extensions]
+	// kit
+};
+```
+
+Create three routes for the `/log` path:
+
+1. `/`: show the latest day
+
+2. `/archives`: show every day
+
+3. `/[day]`: show the specific day
+
+Each markdown file is scheduled to have a day and title in the frontmatter.
+
+```md
+---
+day: 0
+title: Launching pad
+---
+```
+
+Import markdown files with `import.meta.glob()`. The feature returns an object with the path as key, a transforming function as a value. Use this last field to retrieve the metadata and actual content.
+
+```js
+const { default: Module, metadata } = await log[path]();
+```
+
+Use the module as-is on through the `<svelte:component>` element.
+
+```html
+<!-- <Module /> -->
+<svelte:component this="{Module}" />
+```
