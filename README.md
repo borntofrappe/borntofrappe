@@ -197,17 +197,17 @@ To have the Svelte compile the associated CSS declarations add a class through t
 
 ### log
 
-Install mdsvex to process markdown files.
+The log helps to set up an environment where the kit is able to create pages and content from markdown files.
+
+Install `mdsvex` to process markdown files.
 
 ```bash
 npm i --save-dev mdsvex
 ```
 
-Process markdown files with mdsvex. Have the kit pick up the files with the matching extension.
+Update `svelte.config.js` to 1. have mdsvex process `.md` files, and 2. SvelteKit consider `.md` files.
 
 ```js
-import { mdsvex } from 'mdsvex';
-
 const mdsvexConfig = {
 	extensions: ['.md']
 };
@@ -219,32 +219,201 @@ const config = {
 };
 ```
 
-Create three routes for the `/log` path:
+This is enough to create pags from markdown files. `/src/routes/blog/article.md` would create a page available at `/blog/article`.
 
-1. `/`: show the latest day
+Considering the content from a separate folder — `/src/log` — import the files with `import.meta.glob()`.
 
-2. `/archives`: show every day
-
-3. `/[day]`: show the specific day
-
-Each markdown file is scheduled to have a day and title in the frontmatter.
-
-```md
----
-day: 0
-title: Launching pad
----
+```html
+<script context="module">
+	export async function load() {
+	  const log = import.meta.glob()
+	}
+</script>
 ```
 
-Import markdown files with `import.meta.glob()`. The feature returns an object with the path as key, a transforming function as a value. Use this last field to retrieve the metadata and actual content.
+The [Vite](https://vitejs.dev/guide/features.html#glob-import). feature returns an object describing the documents with a path and a transforming function.
+
+```js
+{
+  '/src/log/0.md': Function(),
+  '/src/log/1.md': Function(),
+}
+```
+
+The function is what ultimately allows to transform the documents through `mdsvex`.
+
+#### archives
+
+With `src/log/archives.svelte` show all the log entries sorted by `day`.
+
+Wrap the imported object in `Object.entries()` to create a 2D array.
+
+```js
+Object.entries(import.meta.glob('/src/log/*.md'));
+```
+
+Iterate through the array to consider the path and transforming function.
+
+```js
+.map(async ([path, module]) => {
+
+})
+```
+
+Extract the data from the frontmatter, which details `day` and `title`.
+
+```js
+const { metadata } = await module();
+const { day, title } = metadata;
+```
+
+For the URL of the article create a slug considering the name of the file.
+
+```js
+const slug = path.split('/').pop().replace(/\.md$/, '');
+```
+
+For each entry produce an object with the relevant metadata and the slug.
+
+```js
+return {
+	day,
+	title,
+	slug
+};
+```
+
+Since the operation is asynchronous wrap the entire `Object.entries` statement in a giant promise to wait for the execution of each module.
+
+```js
+const log = await Promise.all(Object.entries(/**/));
+```
+
+Once the promises are all resolved, `entries` describes an array of objects with `title`, `day` and `slug`. Pass the data through `props` and iterated through the collection with an `#each` statement to create the list of entries.
+
+In the markup link to the specific entries through the slug.
+
+```html
+<a href="/log/{slug}">{title}</a>
+```
+
+The day is also used in the ordered list, but is connected to HTML more than SvelteKit.
+
+#### day
+
+With `src/log/[day].svelte` show the entry for the specific day.
+
+Extract the day from the `params` object.
+
+```js
+export async function load({ params }) {
+	const { day } = params;
+}
+```
+
+Build the path the day would have in the log folder.
+
+```js
+const path = `/src/log/${day}.md`;
+```
+
+Use the string to find a match in the imported object.
+
+```js
+const log = import.meta.glob('/src/log/*.md');
+
+if (log[path]) {
+}
+```
+
+With a match extract the metadata, but also content.
 
 ```js
 const { default: Module, metadata } = await log[path]();
 ```
 
-Use the module as-is on through the `<svelte:component>` element.
+Include the `Module` in the markup as any component.
 
 ```html
-<!-- <Module /> -->
-<svelte:component this="{Module}" />
+<main>
+	<h1>{title}</h1>
+	<Module />
+</main>
 ```
+
+Without a match return an object with a `status` and `error`.
+
+```js
+return {
+	status: 404,
+	error: new Error('Not found')
+};
+```
+
+The object is enough to have the kit produce the error page.
+
+#### index
+
+With `src/log/index.svelte` show the latest entry.
+
+First create an array similar to [the archives](#archives). Unlike with the archives, however, create an object with the day and path only.
+
+```js
+return {
+	day,
+	path
+};
+```
+
+Use the path produce the content only for the specific entry. Isolate the latest entry from the sorted collection.
+
+```js
+const [entry] = entries.sort((a, b) => parseInt(b.day, 10) - parseInt(a.day, 10));
+```
+
+Re-use the importing syntax to extract the corresponding component.
+
+```js
+const log = import.meta.glob('/src/log/*.md');
+const { default: Module, metadata } = await log[entry.path]();
+```
+
+#### kit specificities
+
+Considering the SvelteKit's features the components are updated to:
+
+- prerender the routes
+
+  ```html
+  <script context="module">
+  	export const prerender = true;
+  </script>
+  ```
+
+- prefetch log entries
+
+  ```svelte
+  <a sveltekit:prefetch href="/log/{slug}">{title}</a>
+  ```
+
+- avoid hydrating the archives and individual entries
+
+  ```html
+  <script context="module">
+  	export const hydrate = false;
+  </script>
+  ```
+
+  The documents are not interactive and it's enough to rely on the server-rendered version.
+
+As a matter of preference add `__layout.reset.svelte` to remove the layout file set at root level.
+
+#### Interactivity warning
+
+At the time of writing the console highlights a warning when using `<Module />` and points to the `<svelte:component >` special element instead.
+
+```bash
+/src/routes/log/[day].svelte:42:1 <Module/> will not be reactive if Module changes. Use <svelte:component this={Module}/> if you want this reactivity.
+```
+
+For the log and the static nature of the content, however, the module does not change in the first place.

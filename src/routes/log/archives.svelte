@@ -6,10 +6,13 @@
 		const entries = await Promise.all(
 			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, module]) => {
 				const { metadata } = await module();
+				const { day, title } = metadata;
 
 				const slug = path.split('/').pop().replace(/\.md$/, '');
+
 				return {
-					...metadata,
+					day,
+					title,
 					slug
 				};
 			})
@@ -40,7 +43,7 @@
 	<ol>
 		{#each entries as { day: value, title, slug }}
 			<li {value} data-value={value}>
-				<a href="/log/{slug}">{title}</a>
+				<a sveltekit:prefetch href="/log/{slug}">{title}</a>
 			</li>
 		{/each}
 	</ol>

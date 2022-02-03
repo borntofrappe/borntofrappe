@@ -14,7 +14,7 @@
 			})
 		);
 
-		const entry = entries.sort((a, b) => parseInt(b.day, 10) - parseInt(a.day, 10))[0];
+		const [entry] = entries.sort((a, b) => parseInt(b.day, 10) - parseInt(a.day, 10));
 		const log = import.meta.glob('/src/log/*.md');
 
 		const { default: Module, metadata } = await log[entry.path]();
