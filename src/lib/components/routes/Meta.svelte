@@ -4,7 +4,7 @@
 	export let title = 'borntofrappe';
 	export let description = '';
 
-	const pageUrlOrigin = import.meta.env.VITE_URL || process.env.URL;
+	const pageUrlOrigin = 'https://borntofrappe.netlify.app';
 </script>
 
 <svelte:head>
