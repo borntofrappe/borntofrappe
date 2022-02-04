@@ -510,3 +510,38 @@ import.meta.glob('/src/blog/*.{md,svx}')
 ```
 
 What matters here, what is used as a slug, is the name of the article, and **not** the name of the folder.
+
+#### slug
+
+With `src/blog/[slug].svelte` show the article for the specific slug.
+
+Repeat the importing syntax used for all articles, but store the path to identify a potential article.
+
+```js
+return {
+	slug,
+	path
+};
+```
+
+With the array find a potential match comparing the slug against the parameter passed through the `load` function.
+
+```js
+const entry = entries.find(({ slug }) => slug === params.slug);
+```
+
+If there is a match call once more `import.meta.glob` and retrieve the metadata and associated content using the match's path.
+
+```js
+const blog = import.meta.glob('/src/blog/**/*.{md,svx}');
+const { default: Module, metadata } = await blog[entry.path]();
+```
+
+Without a match return an object to produce the 404 error page.
+
+```js
+return {
+	status: 404,
+	error: new Error(`There is no article for ${entry.slug}.`)
+};
+```
