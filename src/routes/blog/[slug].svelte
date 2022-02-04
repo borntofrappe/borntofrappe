@@ -1,18 +1,6 @@
 <script context="module">
-	export async function load({ params }) {
-		const entries = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/**/*.{md,svx}')).map(async ([path, module]) => {
-				const slug = path
-					.split('/')
-					.pop()
-					.replace(/\.(md|svx)$/, '');
-
-				return {
-					slug,
-					path
-				};
-			})
-		);
+	export async function load({ session, params }) {
+		const { entries } = session;
 
 		const entry = entries.find(({ slug }) => slug === params.slug);
 

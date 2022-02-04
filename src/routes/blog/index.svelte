@@ -1,34 +1,10 @@
 <script context="module">
-	export async function load() {
-		const entries = await Promise.all(
-			Object.entries(import.meta.glob('/src/blog/**/*.{md,svx}')).map(async ([path, module]) => {
-				const slug = path
-					.split('/')
-					.pop()
-					.replace(/\.(md|svx)$/, '');
-
-				const { metadata } = await module();
-				const { title, datetime, brief } = metadata;
-
-				const date = new Date(
-					...datetime
-						.split(/[-T:]/)
-						.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
-				);
-
-				return {
-					slug,
-					title,
-					datetime,
-					date,
-					brief
-				};
-			})
-		);
+	export async function load({ session }) {
+		const { entries } = session;
 
 		return {
 			props: {
-				entries: entries.sort((a, b) => b.date - a.date)
+				entries
 			}
 		};
 	}
@@ -63,7 +39,7 @@
 				<h2>
 					<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
 				</h2>
-				<time {datetime}>{date}</time>
+				<time {datetime}>{date.toDateString()}</time>
 				<p>{brief}</p>
 			</article>
 		{/each}

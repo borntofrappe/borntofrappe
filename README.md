@@ -545,3 +545,28 @@ return {
 	error: new Error(`There is no article for ${entry.slug}.`)
 };
 ```
+
+#### Session
+
+`/routes/blog/index.svelte` and `/routes/blog/[slug].svelte` share much of the same logic in the initial script.
+
+With `hooks/index.js` store the information in the `sessions` object.
+
+```js
+export async function getSession() {
+	const entries = await Promise.all(/* ... */);
+	return {
+		entries: entries.sort((a, b) => b.date - a.date)
+	};
+}
+```
+
+Retrieve the articles from the `load` function.
+
+```js
+export async function load({ session }) {
+	const { entries } = session;
+}
+```
+
+Retrieve the specific article finding a match in the same object.
