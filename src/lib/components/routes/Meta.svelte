@@ -27,9 +27,6 @@
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:site" content="@borntofrappe" />
 	<meta property="twitter:creator" content="@borntofrappe" />
-	<meta
-		property="twitter:image"
-		content="{import.meta.env.VITE_URL || process.env.URL}/images/borntofrappe.png"
-	/>
+	<meta property="twitter:image" content="{pageUrlOrigin}/images/borntofrappe.png" />
 	<meta property="twitter:image:alt" content="On pink days, on cyan nights, I code @borntofrappe" />
 </svelte:head>
