@@ -14,6 +14,8 @@
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 
+	import { formatDate } from '$lib/utils';
+
 	export let entries;
 </script>
 
@@ -22,9 +24,9 @@
 <Header>
 	<h1>Blog</h1>
 	<p>
-		Monday to Friday I tend to write about code. Over the weekend I sparingly write about games and
-		anything which piques my interest. The hope is you'll find something of value in at least a day
-		a week.
+		Monday to Friday I aspire to write about code. Over the weekend I sparingly splurge about games
+		and anything which piques my interest. The hope is you'll find something of value in at least a
+		day a week.
 	</p>
 </Header>
 
@@ -39,7 +41,7 @@
 				<h2>
 					<a sveltekit:prefetch href="/blog/{slug}">{title}</a>
 				</h2>
-				<time {datetime}>{date.toDateString()}</time>
+				<time {datetime}>{formatDate(date)}</time>
 				<p>{brief}</p>
 			</article>
 		{/each}

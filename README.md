@@ -609,3 +609,124 @@ Loop through the collection to create the 2D structure expected by the map const
 ```js
 [...entries].sort((a, b) => b.date - a.date).reduce((acc, curr) => [...acc, [curr.slug, curr]], []);
 ```
+
+#### formatDate
+
+In `utils.js` create a function to format date objects with a more readable label.
+
+```html
+<time {datetime}>{formatDate(date)}</time>
+```
+
+The function receives a date and returns the name of the month followed by day and year. The feature leans on the internationalization API or a hard-coded array.
+
+#### mdsvex/2
+
+Update the config object to modify the default markup.
+
+With `rehype-slug` add an identifier on heading elements.
+
+```bash
+npm i -D rehype-slug
+```
+
+Include the package in the `rehypePlugins` field.
+
+```js
+import slug from 'rehype-slug';
+
+const mdsvexConfig = {
+	// ...,
+	rehypePlugins: [slug]
+};
+```
+
+The `id` is necessary to add an autolink.
+
+With `rehype-autolink-headings` mark up headings to include an anchor link element pointing to the corresponding landmark.
+
+```bash
+npm i -D rehype-autolink-headings
+```
+
+Include the package alongside `rehype-slug`.
+
+```js
+import autolinkHeadings from 'rehype-autolink-headings';
+
+const mdsvexConfig = {
+	// ...,
+	rehypePlugins: [slug, autolinkHeadings]
+};
+```
+
+By default the package adds the anchor link before the text making up the headinig. Modify the default to inject the following markup.
+
+```html
+<a href="#id"><span class="visully-hidden">Permalink</span></a>
+```
+
+To modify the package pass an object in a 2D array.
+
+```js
+const mdsvexConfig = {
+	rehypePlugins: [[(autolinkHeadings, autolinkHeadingsConfig)]]
+};
+```
+
+In the object append the span with the chosen text and class.
+
+```js
+const autolinkHeadingsConfig = {
+	behavior: 'append',
+	properties: {},
+	content: {
+		type: 'element',
+		tagName: 'span',
+		properties: { className: 'visually-hidden' },
+		children: [{ type: 'text', value: 'Permalink' }]
+	}
+};
+```
+
+With `shiki` highlight code fences.
+
+```bash
+npm i -D shiki
+```
+
+Include the highlighting function through the `highlight` field.
+
+```js
+const mdsvexConfig = {
+	// ...,
+	highlight: {
+		highlighter
+	}
+};
+```
+
+To highlight use the highlighter from the package.
+
+```js
+async function highlighter(code, lang) {
+	const shikiHighlighter = await getHighlighter({ theme: 'dracula-soft' });
+}
+```
+
+Return the markup with a specific string, wrapping the output in an `@html` directive. The actual specific instructions is found looking through the issues in the GitHub repo.
+
+```js
+const html = escapeSvelte(shikiHighlighter.codeToHtml(code, { lang }));
+
+return `{@html \`${html}\`}`;
+```
+
+`shiki` marks code fences in a `<pre>` element nesting `<code>` elements. Inject the output in a specific markup.
+
+```html
+<div class="code">
+	<span>lang <svg></svg></span>
+	<!-- shiki output -->
+</div>
+```
