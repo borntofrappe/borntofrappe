@@ -7,7 +7,7 @@ export async function getSession() {
 				.replace(/\.(md|svx)$/, '');
 
 			const { metadata } = await module();
-			const { title, datetime, brief } = metadata;
+			const { title, datetime, keywords, brief } = metadata;
 
 			const date = new Date(
 				...datetime.split(/[-T:]/).map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
@@ -19,6 +19,7 @@ export async function getSession() {
 				title,
 				datetime,
 				date,
+				keywords,
 				brief
 			};
 		})
@@ -28,7 +29,7 @@ export async function getSession() {
 		entries: new Map(
 			[...entries]
 				.sort((a, b) => b.date - a.date)
-				.reduce((acc, curr) => [...acc, [curr.slug, curr]], [])
+				.reduce((acc, curr, i) => [...acc, [curr.slug, { ...curr, latest: i === 0 }]], [])
 		)
 	};
 }
