@@ -1,6 +1,6 @@
 <script context="module">
 	export async function load({ session }) {
-		const { entries } = session;
+		const entries = [...session.entries.values()];
 
 		return {
 			props: {

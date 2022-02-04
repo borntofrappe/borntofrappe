@@ -570,3 +570,42 @@ export async function load({ session }) {
 ```
 
 Retrieve the specific article finding a match in the same object.
+
+#### Data structure
+
+Instead of storing the articles in an array I find it preferable to create an object using the `slug` as a key. The solution makes it easier to retrieve a specific article in `[slug].svelte`
+
+```diff
+-const entry = entries.find(({ slug }) => slug === params.slug);
++const entry = entries[params.slug];
+```
+
+The drawback is that `index.svelte` needs the information back into an array to sort the articles by date.
+
+One way to combine both needs, having the articles stored by slug and maintain the expected order, is to use a map.
+
+With a map retrieve a specific article with the `.get()` method.
+
+```js
+const article = articles.get(params.slug);
+```
+
+With a map retrieve all articles with the `.values()` method. Note that the value returned by a function is an interator.
+
+```js
+const articles = [...session.articles.values()];
+```
+
+For the map create a two dimensional array where each article includes the slug and then the relevant metadata. Sort the entries.
+
+```js
+[...entries].sort((a, b) => b.date - a.date);
+```
+
+Modifying the array in place would not create issues, but I'd rather avoid side effects.
+
+Loop through the collection to create the 2D structure expected by the map constructor.
+
+```js
+[...entries].sort((a, b) => b.date - a.date).reduce((acc, curr) => [...acc, [curr.slug, curr]], []);
+```

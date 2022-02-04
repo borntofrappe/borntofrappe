@@ -2,7 +2,7 @@
 	export async function load({ session, params }) {
 		const { entries } = session;
 
-		const entry = entries.find(({ slug }) => slug === params.slug);
+		const entry = entries.get(params.slug);
 
 		if (entry) {
 			const blog = import.meta.glob('/src/blog/**/*.{md,svx}');

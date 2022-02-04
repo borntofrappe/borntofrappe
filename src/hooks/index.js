@@ -25,6 +25,10 @@ export async function getSession() {
 	);
 
 	return {
-		entries: entries.sort((a, b) => b.date - a.date)
+		entries: new Map(
+			[...entries]
+				.sort((a, b) => b.date - a.date)
+				.reduce((acc, curr) => [...acc, [curr.slug, curr]], [])
+		)
 	};
 }
