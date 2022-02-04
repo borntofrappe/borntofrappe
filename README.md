@@ -417,3 +417,96 @@ At the time of writing the console highlights a warning when using `<Module />` 
 ```
 
 For the log and the static nature of the content, however, the module does not change in the first place.
+
+### Blog routes
+
+The blog follows the experimentation of the [log](#log) with a more elaborate structure.
+
+#### mdsvex
+
+Update the config object so that `mdsvex` picks up markdown files, but also documents ending with the `.svx` extension. The split between the two helps to differentiate purely static articles from those including Svelte syntax.
+
+```js
+const mdsvexConfig = {
+	extensions: ['.md', '.svx']
+};
+```
+
+Update the config option to also override the default frontmatter function.
+
+```js
+const mdsvexConfig = {
+	frontmatter: {
+		marker: '-',
+		type: 'yaml',
+		parse: (frontmatter) =>
+			Object.fromEntries(frontmatter.split('\n').map((line) => line.split(/: /, 2)))
+	}
+};
+```
+
+The idea is to always process the values in the frontmatter as a string, which make it possible to avoid parsing the input dates as date objects.
+
+```md
+---
+datetime: 2021-02-04
+---
+```
+
+`datetime` is preferred over `date` since the corresponding value is inspired by the HTML attribute with the same name.
+
+#### index
+
+With `src/blog/index.svelte` show all the articles sorted by date.
+
+With `import.meta.glob` refer to markdown files, but also `.svx` documents as well.
+
+```diff
+'/src/blog/*.md'
++'/src/blog/*.{md,svx}'
+```
+
+To extract the name of the file and build the slug remove either extension.
+
+```diff
+.replace('.md', '');
++.replace(/\.(md|svx)/, '');
+```
+
+To sort by date create the date from the `datetime` value. The idea is to create a date object from this string destructuring its various components.
+
+```js
+const date = new Date(
+	...metadata.datetime
+		.split(/[-T:]/)
+		.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+);
+```
+
+#### Nested articles
+
+Ultimately I want to support a setup where you can write a markdown or `.svx` document in a dedicated folder.
+
+```text
+/blog
+  /folder
+    /article.md
+```
+
+Especially in the context of `svx` files the idea is to use the folder for all the components, all the sections devoted to an article.
+
+```text
+/blog
+  /folder
+    /Counter.svelte
+    /article.svx
+```
+
+To support this setup update the syntax of the glob statement.
+
+```diff
+import.meta.glob('/src/blog/*.{md,svx}')
++import.meta.glob('/src/blog/**/*.{md,svx}')
+```
+
+What matters here, what is used as a slug, is the name of the article, and **not** the name of the folder.
