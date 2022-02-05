@@ -14,7 +14,7 @@
 <style>
 	section {
 		--telescope-size: 6.5em;
-		--animation-duration: 5s;
+		--animation-duration: 8s;
 		--animation-timing-function: var(--ease-in-out-sine);
 		position: relative;
 	}

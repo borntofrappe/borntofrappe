@@ -89,11 +89,11 @@
 		display: inline-block;
 		font-size: 1rem;
 		font-size: var(--size-400);
-		padding: 0.25em 1em;
+		padding: 0.25rem 1rem;
 		color: hsl(320, 100%, 19%);
 		color: var(--pink-900);
-		background: hsl(338, 100%, 86%);
-		background: var(--pink-100);
+		background: hsl(336, 100%, 77%);
+		background: var(--pink-200);
 		border-radius: 1rem;
 	}
 
@@ -101,16 +101,16 @@
 		:global(html:not([data-preference])) time {
 			color: hsl(185, 94%, 87%);
 			color: var(--cyan-100);
-			background: hsl(185, 91%, 17%);
-			background: var(--cyan-900);
+			background: hsl(185, 84%, 25%);
+			background: var(--cyan-800);
 		}
 	}
 
 	:global(html[data-preference='dark']) time {
 		color: hsl(185, 94%, 87%);
 		color: var(--cyan-100);
-		background: hsl(185, 91%, 17%);
-		background: var(--cyan-900);
+		background: hsl(185, 84%, 25%);
+		background: var(--cyan-800);
 	}
 
 	@supports (display: grid) {
