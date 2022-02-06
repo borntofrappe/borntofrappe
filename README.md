@@ -732,4 +732,6 @@ return `{@html \`${html}\`}`;
 </div>
 ```
 
+### Service worker
+
 </details>
