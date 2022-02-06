@@ -13,7 +13,7 @@
 		text-decoration: none;
 		--transition-duration: 0.5s;
 		position: relative;
-		z-index: 5;
+		z-index: 0;
 	}
 
 	a:focus {
@@ -35,7 +35,7 @@
 	a::before {
 		left: 0%;
 		width: 100%;
-		height: 2px;
+		height: 0.1em;
 		transform-origin: 0% 50%;
 		transform: translate(0%, -50%) scaleX(0);
 	}

@@ -72,14 +72,14 @@
 		margin-top: 0.75em;
 	}
 
-	:global(.webfonts) div span {
-		font-family: JosefinsansBold, sans-serif;
-	}
-
 	div span,
 	div pre {
 		border-radius: 1rem;
 		padding: 1rem;
+	}
+
+	:global(.webfonts) div span {
+		font-family: JosefinsansBold, sans-serif;
 	}
 
 	div span {
@@ -149,8 +149,8 @@
 	}
 
 	div pre::-webkit-scrollbar-thumb {
-		border-radius: 0.25rem;
 		background: hsl(330, 79%, 56%);
 		background: var(--accent-color);
+		border-radius: 0.2rem;
 	}
 </style>
