@@ -1,16 +1,17 @@
 ![On pink days, on cyan nights, you'll find me online @borntofrappe](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
 
-# Hello World!
+# Hello world!
 
 This is my website, and you are welcome**d**. It is built with **SvelteKit**, in its latest version. It is deployed through **Netlify**, and available on [borntofrappe.netlify.app](https://borntofrappe.netlify.app)
 
-If you are curious in _how_ the website is built in the first place, feel free to continue with the [_Development notes_](#development-notes).
+If you are curious in _how_ the website is built in the first place, feel free to continue with the [_development notes_](#development-notes).
 
 If you are interested in only results, I have the gumption to direct you toward the home page once more.
 
 [**Go to website ![](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/rocket.svg)**](https://borntofrappe.netlify.app)
 
-## Development notes
+<details>
+<summary><h2 style="display: inline-block" id="development-notes">Development notes</h2></summary>
 
 ### create-svelte
 
@@ -730,3 +731,5 @@ return `{@html \`${html}\`}`;
 	<!-- shiki output -->
 </div>
 ```
+
+</details>
