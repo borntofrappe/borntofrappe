@@ -19,14 +19,17 @@
 	export let entries;
 </script>
 
-<Meta title="Blog | borntofrappe" description="There are {entries.length} articles in the blog." />
+<Meta
+	title="Blog | borntofrappe"
+	description="Monday to Friday I aspire to write about code. Over the weekend I tend to jabber about games and anything which piques my interest. The hope is you'll find something of value in at least a day a week."
+/>
 
 <Header>
 	<h1>Blog</h1>
 	<p>
-		Monday to Friday I aspire to write about code. Over the weekend I'd like to jabber about games
-		and anything which piques my interest. The hope is you'll find something of value in at least a
-		day a week.
+		Monday to Friday I aspire to write about code. Over the weekend I tend to jabber about games and
+		anything which piques my interest. The hope is you'll find something of value in at least a day
+		a week.
 	</p>
 </Header>
 

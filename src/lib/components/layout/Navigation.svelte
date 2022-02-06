@@ -3,12 +3,32 @@
 </script>
 
 <nav>
-	<a href="/">borntofrappe {@html icons.rocket}</a>
+	<ul>
+		<li>
+			<a href="/">borntofrappe {@html icons.rocket}</a>
+		</li>
+		<li>
+			<a sveltekit:prefetch href="/blog">blog {@html icons.blog}</a>
+		</li>
+	</ul>
 </nav>
 
 <style>
 	:global(.webfonts) a {
 		font-family: JosefinsansBold, sans-serif;
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+
+	ul li {
+		display: inline-block;
+	}
+
+	ul li + li {
+		margin-left: 0.5em;
 	}
 
 	a {
