@@ -1,9 +1,9 @@
-import { files } from '$service-worker';
+import { files, build, timestamp } from '$service-worker';
 
-const cacheNameStatic = `cache-static`;
+const cacheTimestamp = `cache-${timestamp}`;
 
 self.addEventListener('install', (event) => {
-	event.waitUntil(caches.open(cacheNameStatic).then((cache) => cache.addAll(files)));
+	event.waitUntil(caches.open(cacheTimestamp).then((cache) => cache.addAll([...files, ...build])));
 });
 
 self.addEventListener('activate', (event) => {
@@ -13,7 +13,7 @@ self.addEventListener('activate', (event) => {
 			.then((cacheNames) =>
 				Promise.all(
 					cacheNames
-						.filter((cacheName) => cacheName !== cacheNameStatic)
+						.filter((cacheName) => cacheName !== cacheTimestamp)
 						.map((cacheName) => caches.delete(cacheName))
 				)
 			)
@@ -21,7 +21,13 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-	event.respondWith(
-		caches.match(event.request).then((response) => response || fetch(event.request))
-	);
+	if (event.request.mode === 'navigate') {
+		event.respondWith(
+			caches
+				.match(event.request)
+				.then(
+					(response) => response || fetch(event.request).catch(() => caches.match('/offline.html'))
+				)
+		);
+	}
 });

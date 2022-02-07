@@ -732,6 +732,34 @@ return `{@html \`${html}\`}`;
 </div>
 ```
 
-### Service worker
+### Progressive web app
+
+To create a progressive web app:
+
+- ensure the manifest has a few key-value pairs, such as `name`, `short_name`, `start_url`. For one of the icons devoted to the android operating system include the purpose of `maskable`
+
+- add a theme color with meta tags in the `app.html` file. It is possible to include a value for a specific color preference with a media query
+
+- create a service worker in `src/service-worker.js` or `src/service-worker/index.js` to manage cache
+
+#### Cache
+
+SvelteKit automatically registers the service worker and gives access to three assets in the `$service-worker` store.
+
+- with `files` you reference the files in the `static` folder
+
+- with `build` you reference the files in the `build` folder.
+
+- with `timestamp` you reference `Date.now()` at the time of the build process
+
+In terms of caching strategy listen to three events on the service worker, `self`:
+
+- with `install` add the files in a cache with a specific name
+
+- with `activate` remove the caches with a different name from the one used in the installation
+
+- with `fetch` respond to the incoming request with the cache **or** with a fetch request **or** with a `html` document providing a generic fallback
+
+###
 
 </details>
