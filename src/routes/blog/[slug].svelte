@@ -22,7 +22,7 @@
 
 		return {
 			status: 404,
-			error: new Error(`No article found for ${entry.slug}.`)
+			error: new Error(`No article found for ${params.slug}.`)
 		};
 	}
 </script>
