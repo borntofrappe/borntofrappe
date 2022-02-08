@@ -1,14 +1,28 @@
 <script>
+	import { page } from '$app/stores';
 	import icons from '$lib/icons';
 </script>
 
 <nav>
 	<ul>
 		<li>
-			<a href="/">borntofrappe {@html icons.rocket}</a>
+			<a
+				href="/"
+				aria-current={$page.url.pathname === '/' ? 'page' : ''}
+				class:active={$page.url.pathname === '/'}
+			>
+				borntofrappe {@html icons.rocket}</a
+			>
 		</li>
 		<li>
-			<a sveltekit:prefetch href="/blog">blog {@html icons.blog}</a>
+			<a
+				href="/blog"
+				aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : ''}
+				class:active={$page.url.pathname.startsWith('/blog')}
+				sveltekit:prefetch
+			>
+				blog {@html icons.blog}</a
+			>
 		</li>
 	</ul>
 </nav>
@@ -21,14 +35,13 @@
 	ul {
 		padding: 0;
 		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 0.5em;
 	}
 
-	ul li {
-		display: inline-block;
-	}
-
-	ul li + li {
-		margin-left: 0.5em;
+	ul li::marker {
+		content: '';
 	}
 
 	a {
@@ -41,6 +54,11 @@
 
 	a:hover {
 		color: inherit;
+	}
+
+	a.active {
+		color: hsl(330, 79%, 56%);
+		color: var(--accent-color);
 	}
 
 	a:hover > :global(svg),
