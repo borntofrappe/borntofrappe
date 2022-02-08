@@ -9,7 +9,7 @@ The freeCodeCamp curriculum proposes [hundreds of exercises](https://www.freecod
 
 With a series of articles I try to complete the challenges and explain my reasoning for the section devoted to _algorithms_:
 
-- find the symmetric difference
+- [find the symmetric difference](/blog/find-the-symmetric-difference)
 
 - inventory update
 
