@@ -11,7 +11,7 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - [find the symmetric difference](/blog/find-the-symmetric-difference)
 
-- inventory update
+- [inventory update](/blog/inventory-update)
 
 - no repeats please
 
