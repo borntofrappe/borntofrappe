@@ -2,14 +2,207 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1f2933" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#d6dfea" />
+
 		<title>Offline | borntofrappe</title>
+
+		<style>
+			:root {
+				--copy-color: hsl(209, 20%, 25%);
+				--background-color: hsl(341, 100%, 95%);
+
+				--primary-000: hsl(341, 100%, 95%);
+				--primary-100: hsl(338, 100%, 86%);
+				--primary-200: hsl(336, 100%, 77%);
+				--primary-300: hsl(334, 86%, 67%);
+				--primary-400: hsl(330, 79%, 56%);
+				--primary-500: hsl(328, 85%, 46%);
+				--primary-600: hsl(326, 90%, 39%);
+				--primary-700: hsl(324, 93%, 33%);
+				--primary-800: hsl(322, 93%, 27%);
+				--primary-900: hsl(320, 100%, 19%);
+			}
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				display: grid;
+				place-items: center;
+				color: hsl(209, 20%, 25%);
+				color: var(--copy-color);
+				background: hsl(341, 100%, 95%);
+				background: var(--background-color);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				body {
+					--copy-color: hsl(211, 31%, 79%);
+					--background-color: hsl(210, 58%, 9%);
+					--primary-000: hsl(186, 100%, 94%);
+					--primary-100: hsl(185, 94%, 87%);
+					--primary-200: hsl(184, 80%, 74%);
+					--primary-300: hsl(184, 65%, 59%);
+					--primary-400: hsl(185, 57%, 50%);
+					--primary-500: hsl(185, 62%, 45%);
+					--primary-600: hsl(184, 77%, 34%);
+					--primary-700: hsl(185, 81%, 29%);
+					--primary-800: hsl(185, 84%, 25%);
+					--primary-900: hsl(185, 91%, 17%);
+				}
+			}
+
+			svg {
+				display: block;
+				width: 75vmin;
+				max-width: 35rem;
+				height: auto;
+			}
+
+			svg text {
+				font-family: Inconsolata, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+					monospace;
+				font-size: 6px;
+			}
+		</style>
 	</head>
 	<body>
-		<header>
-			<h1>Oopsie</h1>
-			<p>It's quite likely you are not online.</p>
-		</header>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="500" height="500">
+			<defs>
+				<path id="a" d="M 0 33 a 33 33 0 0 1 0 -66 33 33 0 0 1 0 66" />
+				<path id="b" d="M 0 -45 a 45 45 0 0 1 0 90 45 45 0 0 1 0 -90" />
+
+				<clipPath id="clip-planet">
+					<circle r="30" />
+				</clipPath>
+			</defs>
+
+			<text fill="currentColor">
+				<textPath href="#a" text-anchor="middle" startOffset="50%">
+					It seems you are quite offline...
+				</textPath>
+			</text>
+
+			<g>
+				<g transform="scale(0.1) rotate(90)">
+					<g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+						<g stroke-width="7">
+							<path d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" />
+							<path transform="scale(-1 1)" d="M 23 6 h 2 a 12 12 0 0 1 12 12 v 6 h -21" />
+							<path d="M 0 24 c -10 5 -12 16 0 22.5 12 -6.5 10 -17.5 0 -22.5" />
+							<circle r="9" cy="-11" />
+						</g>
+						<path
+							stroke-width="8"
+							d="M 0 -46 q 23 15 23 52 v 10 a 8 8 0 0 1 -8 8 h -30 a 8 8 0 0 1 -8 -8 v -10 q 0 -37 23 -52"
+						/>
+					</g>
+				</g>
+				<animateMotion dur="200s" rotate="auto" repeatCount="indefinite">
+					<mpath href="#b" />
+				</animateMotion>
+			</g>
+
+			<g clip-path="url(#clip-planet)">
+				<g stroke="none">
+					<g transform="translate(0 -70)">
+						<ellipse
+							style="color: hsl(320, 100%, 19%); color: var(--primary-900)"
+							fill="currentColor"
+							cy="70"
+							rx="35"
+							ry="33"
+							transform="scale(1)"
+						/>
+						<ellipse
+							style="color: hsl(322, 93%, 27%); color: var(--primary-800)"
+							fill="currentColor"
+							cy="70"
+							rx="36.5"
+							ry="33"
+							transform="scale(0.935)"
+						/>
+						<ellipse
+							style="color: hsl(324, 93%, 33%); color: var(--primary-700)"
+							fill="currentColor"
+							cy="70"
+							rx="38"
+							ry="33"
+							transform="scale(0.87)"
+						/>
+						<ellipse
+							style="color: hsl(326, 90%, 39%); color: var(--primary-600)"
+							fill="currentColor"
+							cy="70"
+							rx="39.5"
+							ry="33"
+							transform="scale(0.805)"
+						/>
+						<ellipse
+							style="color: hsl(328, 85%, 46%); color: var(--primary-500)"
+							fill="currentColor"
+							cy="70"
+							rx="41"
+							ry="33"
+							transform="scale(0.74)"
+						/>
+						<ellipse
+							style="color: hsl(330, 79%, 56%); color: var(--primary-400)"
+							fill="currentColor"
+							cy="70"
+							rx="42.5"
+							ry="33"
+							transform="scale(0.675)"
+						/>
+						<ellipse
+							style="color: hsl(334, 86%, 67%); color: var(--primary-300)"
+							fill="currentColor"
+							cy="70"
+							rx="44"
+							ry="33"
+							transform="scale(0.61)"
+						/>
+						<ellipse
+							style="color: hsl(336, 100%, 77%); color: var(--primary-200)"
+							fill="currentColor"
+							cy="70"
+							rx="45.5"
+							ry="33"
+							transform="scale(0.545)"
+						/>
+						<ellipse
+							style="color: hsl(338, 100%, 86%); color: var(--primary-100)"
+							fill="currentColor"
+							cy="70"
+							rx="47"
+							ry="33"
+							transform="scale(0.48)"
+						/>
+						<ellipse
+							style="color: hsl(341, 100%, 95%); color: var(--primary-000)"
+							fill="currentColor"
+							cy="70"
+							rx="48.5"
+							ry="33"
+							transform="scale(0.415)"
+						/>
+					</g>
+				</g>
+			</g>
+
+
+			<circle
+				style="color: hsl(330, 79%, 56%); color: var(--primary-500)"
+				r="30"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="0.2"
+			/>
+		</svg>
 	</body>
 </html>
