@@ -21,7 +21,7 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - [implement selection sort](/blog/implement-selection-sort)
 
-- implement insertion sort
+- [implement insertion sort](/blog/implement-insertion-sort)
 
 - implement quick sort
 
