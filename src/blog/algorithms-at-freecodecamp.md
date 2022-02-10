@@ -23,7 +23,7 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - [implement insertion sort](/blog/implement-insertion-sort)
 
-- implement quick sort
+- [implement quick sort](/blog/implement-quick-sort)
 
 - implement merge sort
 
