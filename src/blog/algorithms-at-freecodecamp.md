@@ -17,7 +17,7 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - [pairwise](/blog/pairwise)
 
-- implement bubble sort
+- [implement bubble sort](/blog/implement-bubble-sort)
 
 - implement selection sort
 
