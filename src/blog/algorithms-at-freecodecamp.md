@@ -19,7 +19,7 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - [implement bubble sort](/blog/implement-bubble-sort)
 
-- implement selection sort
+- [implement selection sort](/blog/implement-selection-sort)
 
 - implement insertion sort
 
