@@ -27,4 +27,4 @@ With a series of articles I try to complete the challenges and explain my reason
 
 - implement merge sort
 
-- implement binary search
+- [implement binary search](/blog/implement-binary-search)
