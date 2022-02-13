@@ -1,4 +1,4 @@
-![On pink days, on cyan nights, you'll find me online @borntofrappe](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
+![On pink days, on cyan nights, you'll find me online borntofrappé](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
 
 # Hello world!
 

@@ -28,6 +28,7 @@
 </script>
 
 <script>
+	import site from '$lib/site';
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/blog/article/Header.svelte';
 
@@ -39,7 +40,7 @@
 	export let Module;
 </script>
 
-<Meta title="{title} | borntofrappe" description={brief} />
+<Meta title="{title} | {site.name}" description={brief} />
 
 <Header {title} {keywords} {latest} />
 

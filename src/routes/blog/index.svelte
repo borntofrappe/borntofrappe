@@ -11,6 +11,7 @@
 </script>
 
 <script>
+	import site from '$lib/site';
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
 
@@ -20,7 +21,7 @@
 </script>
 
 <Meta
-	title="Blog | borntofrappe"
+	title="Blog | {site.name}"
 	description="Monday to Friday I aspire to write about code. Over the weekend I tend to jabber about games and anything which piques my interest. The hope is you'll find something of value in at least a day a week."
 />
 

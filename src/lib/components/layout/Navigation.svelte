@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import icons from '$lib/icons';
+	import site from '$lib/site';
 </script>
 
 <nav>
@@ -11,7 +12,7 @@
 				aria-current={$page.url.pathname === '/' ? 'page' : ''}
 				class:active={$page.url.pathname === '/'}
 			>
-				borntofrappe {@html icons.rocket}</a
+				{site.name} {@html icons.rocket}</a
 			>
 		</li>
 		<li>

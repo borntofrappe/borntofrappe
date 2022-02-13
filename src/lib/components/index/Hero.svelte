@@ -1,32 +1,8 @@
 <script>
 	import icons from '$lib/icons';
+	import site from '$lib/site';
 
-	const links = [
-		{
-			title: 'codepen',
-			desc: 'On CodePen I flex my muscles as a web developer, starting with little past HTML, CSS and JavaScript. The foundations of the web!',
-			href: 'https://codepen.io/borntofrappe',
-			icon: 'codepen'
-		},
-		{
-			title: 'freecodecamp',
-			desc: 'On freeCodeCamp I started my journey with HTML and CSS. This is where I earned a few certifications and where I continue growing as an endless learner.',
-			href: 'https://www.freecodecamp.org/borntofrappe',
-			icon: 'freecodecamp'
-		},
-		{
-			title: 'github',
-			desc: "On Github I share the code for my projects, including this very website. Feel free to review, fork, and improve; I'm positive you'll find plenty of room for growth.",
-			href: 'https://github.com/borntofrappe',
-			icon: 'github'
-		},
-		{
-			title: 'twitter',
-			desc: 'On Twitter I try to share something helpful, entertaining, and perhaps even both. There are some who seem to appreciate and the hope is you will too.',
-			href: 'https://twitter.com/borntofrappe',
-			icon: 'twitter'
-		}
-	];
+	const { links } = site;
 </script>
 
 <header>

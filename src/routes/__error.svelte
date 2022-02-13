@@ -11,6 +11,7 @@
 
 <script>
 	import icons from '$lib/icons';
+	import site from '$lib/site';
 
 	import Meta from '$lib/components/routes/Meta.svelte';
 	import Header from '$lib/components/routes/Header.svelte';
@@ -20,7 +21,7 @@
 	export let status;
 </script>
 
-<Meta title="{status} | borntofrappe" description={error.message} />
+<Meta title="{status} | {site.name}" description={error.message} />
 
 <Header>
 	<h1>Oopsie</h1>

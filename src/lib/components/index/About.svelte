@@ -1,21 +1,9 @@
 <script>
 	import { observe } from '$lib/utils';
 	import icons from '$lib/icons';
+	import site from '$lib/site';
 
-	const satellites = ['editor', 'world', 'running', 'racing', 'gaming'];
-
-	const colors = [
-		'hsl(341, 100%, 95%)',
-		'hsl(338, 100%, 86%)',
-		'hsl(336, 100%, 77%)',
-		'hsl(334, 86%, 67%)',
-		'hsl(330, 79%, 56%)',
-		'hsl(328, 85%, 46%)',
-		'hsl(326, 90%, 39%)',
-		'hsl(324, 93%, 33%)',
-		'hsl(322, 93%, 27%)',
-		'hsl(320, 100%, 19%)'
-	];
+	const { satellites, colors } = site;
 </script>
 
 <section>
@@ -165,6 +153,10 @@
 
 	h2 {
 		text-align: center;
+	}
+
+	:global(.webfonts) mark {
+		font-family: JostBold, sans-serif;
 	}
 
 	mark {

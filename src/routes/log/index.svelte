@@ -35,6 +35,7 @@
 	import { tweened } from 'svelte/motion';
 	import { circIn, backOut } from 'svelte/easing';
 
+	import site from '$lib/site';
 	import Meta from '$lib/components/routes/Meta.svelte';
 
 	export let title;
@@ -79,7 +80,7 @@
 	});
 </script>
 
-<Meta title="Log {day} | borntofrappe" description="Log {day}: {title}" />
+<Meta title="Log {day} | {site.name}" description="Log {day}: {title}" />
 
 <main class:scrolled>
 	<h1>

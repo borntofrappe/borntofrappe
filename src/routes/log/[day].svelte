@@ -28,6 +28,7 @@
 </script>
 
 <script>
+	import site from '$lib/site';
 	import Meta from '$lib/components/routes/Meta.svelte';
 
 	export let day;
@@ -35,7 +36,7 @@
 	export let Module;
 </script>
 
-<Meta title="Log {day}: {title} | borntofrappe" description="Log {day}: {title}." />
+<Meta title="Log {day}: {title} | {site.name}" description="Log {day}: {title}." />
 
 <main>
 	<h1>{title}</h1>

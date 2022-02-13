@@ -27,13 +27,14 @@
 </script>
 
 <script>
+	import site from '$lib/site';
 	import Meta from '$lib/components/routes/Meta.svelte';
 
 	export let entries;
 </script>
 
 <Meta
-	title="Log archives | borntofrappe"
+	title="Log archives | {site.name}"
 	description="I've logged {entries.length} days in total."
 />
 

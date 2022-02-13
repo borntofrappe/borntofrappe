@@ -6,10 +6,7 @@
 	import About from '$lib/components/index/About.svelte';
 </script>
 
-<Meta
-	title="borntofrappe"
-	description="Personal website of one Gabriele Corti, online @borntofrappe."
-/>
+<Meta description="Personal website of one Gabriele Corti, online @borntofrappe." />
 
 <Hero />
 
