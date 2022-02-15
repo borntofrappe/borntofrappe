@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "^1.0.0-next.266",
+    "@sveltejs/kit": "^1.0.0-next.271",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
@@ -20,7 +20,7 @@
     "prettier-plugin-svelte": "^2.4.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.0.1",
-    "shiki": "^0.10.0",
+    "shiki": "^0.10.1",
     "svelte": "^3.46.4"
   },
   "type": "module"
