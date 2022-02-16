@@ -15,16 +15,6 @@
 				{site.name} {@html icons.rocket}</a
 			>
 		</li>
-		<li>
-			<a
-				href="/blog"
-				aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : ''}
-				class:active={$page.url.pathname.startsWith('/blog')}
-				sveltekit:prefetch
-			>
-				blog {@html icons.blog}</a
-			>
-		</li>
 	</ul>
 </nav>
 
