@@ -1,5 +1,6 @@
 <script>
 	import { observe } from '$lib/utils';
+	import RelativeLink from '../routes/RelativeLink.svelte';
 </script>
 
 <section class:observed={false} use:observe>
@@ -9,6 +10,8 @@
 		writing a good honest article, you can check how it's going over
 		<a href="https://github.com/borntofrappe/borntofrappe">on GitHub</a>.
 	</p>
+	<p><strong>Or</strong>, you can read about a game I finished but a few weeks ago.</p>
+	<RelativeLink href="/dragon-warrior">Explore title</RelativeLink>
 </section>
 
 <style>

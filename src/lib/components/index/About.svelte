@@ -9,11 +9,11 @@
 <section>
 	<h2>Almost forgot</h2>
 	<p>
-		My name is <mark class:observed={false} use:observe>Gabriele Corti</mark>. I write to you from
-		Europe a couple of hours after Greenwich time.
+		My name is <mark class:observed={false} use:observe>Gabriele Corti</mark>, and this message
+		comes to you from Europe, just a couple of hours after Greenwich time.
 	</p>
 	<p>
-		Outside of VSCode, you'll find me running, watching the highlight of an F1 race or enjoying a
+		Outside of VSCode you'll find me running, watching the highlight of an F1 race or enjoying a
 		dated video game. Depends on the season.
 	</p>
 

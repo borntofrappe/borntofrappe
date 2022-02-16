@@ -15,15 +15,6 @@
 	<About />
 </main>
 
-<!-- <main id="content">
-	<p>
-		This is my website, and you are welcome<b>d</b>. It is built with <strong>SvelteKit</strong>, in
-		its latest
-		<code>1.0.0-next.253</code> version. It is deployed through <strong>Netlify</strong>, and
-		available on
-		<a href="https://borntofrappe.netlify.app">borntofrappe.netlify.app</a>.
-	</p>
-</main> -->
 <style>
 	main {
 		--section-whitespace: 6em;
@@ -34,7 +25,6 @@
 	main :global(p) {
 		line-height: 1.75;
 	}
-
 	main > :global(section) {
 		max-width: 42rem;
 		max-width: var(--max-width);

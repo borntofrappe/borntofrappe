@@ -1,3 +1,16 @@
+		<li>
+			<a
+				href="/blog"
+				aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : ''}
+				class:active={$page.url.pathname.startsWith('/blog')}
+				sveltekit:prefetch
+			>
+				blog {@html icons.blog}</a
+			>
+		</li>
+    
+    
+    
 ![On pink days, on cyan nights, you'll find me online borntofrappé](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
 
 # Hello world!
@@ -511,6 +524,8 @@ import.meta.glob('/src/blog/*.{md,svx}')
 ```
 
 What matters here, what is used as a slug, is the name of the article, and **not** the name of the folder.
+
+The setup is also helpful to have connected articles share a location.
 
 #### slug
 
