@@ -25,6 +25,7 @@
 	main :global(p) {
 		line-height: 1.75;
 	}
+
 	main > :global(section) {
 		max-width: 42rem;
 		max-width: var(--max-width);
