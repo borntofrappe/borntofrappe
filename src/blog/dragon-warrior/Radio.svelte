@@ -1,5 +1,5 @@
 <script>
-	import { typewriter } from './_utils';
+	import { typewriter } from './utils';
 
 	const vases = [
 		{ value: "What's this? The Herb?", odds: 0.2 },
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<article>
+<div>
 	<form on:submit|preventDefault>
 		<fieldset>
 			<legend> Peer into a vase </legend>
@@ -48,30 +48,28 @@
 			{#each options as { id }}
 				<label>
 					<input type="radio" bind:group={option} value={id} on:input={handleInput} />
-
 					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						shape-rendering="crispEdges"
-						viewBox="0 0 16 16"
 						width="1em"
 						height="1em"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 -0.5 16 16"
+						shape-rendering="crispEdges"
 					>
-						<g fill="currentColor">
-							<g class="c1"
-								><path
-									d="M5 0h6v1H5zM4 1h8v1H4zM3 2h10v1H3zM2 3h12v2H2zM3 5h10v1H3zM2 6h12v1H2zM1 7h14v1H1zM0 8h16v4H0zM1 12h14v1H1zM2 13h12v1H2zM3 14h10v1H3zM4 15h8v1H4z"
-								/></g
-							><g class="c2"
-								><path
-									d="M5 1h6v1H5zM11 2h1v1h-1zM12 3h1v1h-1zM3 4h1v1H3zM12 4h1v1h-1zM4 5h1v1H4zM11 5h1v1h-1zM3 6h1v1H3zM5 6h6v1H5zM2 7h3v1H2zM11 7h1v1h-1zM1 8h10v1H1zM1 9h9v1H1zM11 9h1v1h-1zM13 9h1v1h-1zM1 10h10v1H1zM12 10h1v1h-1zM1 11h9v1H1zM11 11h1v1h-1zM2 12h7v1H2zM10 12h1v1h-1zM12 12h1v1h-1zM3 13h1v1H3zM5 13h1v1H5zM7 13h1v1H7zM9 13h1v1H9zM11 13h1v1h-1zM6 14h1v1H6zM8 14h1v1H8z"
-								/></g
-							><g class="c3"
-								><path
-									d="M6 1h3v1H6zM4 2h1v1H4zM3 3h1v1H3zM3 7h1v1H3zM2 8h4v1H2zM2 9h1v1H2zM4 9h1v1H4zM6 9h1v1H6zM8 9h1v1H8zM3 10h1v1H3zM5 10h1v1H5z"
-								/></g
-							></g
-						></svg
-					>
+						<g stroke="currentColor">
+							<path
+								class="c1"
+								d="M5 0h6M4 1h1M11 1h1M3 2h1M5 2h6M12 2h1M2 3h1M4 3h8M13 3h1M2 4h1M4 4h8M13 4h1M3 5h1M5 5h6M12 5h1M2 6h1M4 6h1M11 6h3M1 7h1M5 7h6M12 7h3M0 8h1M11 8h5M0 9h1M10 9h1M12 9h1M14 9h2M0 10h1M11 10h1M13 10h3M0 11h1M10 11h1M12 11h4M1 12h1M9 12h1M11 12h1M13 12h2M2 13h1M4 13h1M6 13h1M8 13h1M10 13h1M12 13h2M3 14h3M7 14h1M9 14h4M4 15h8"
+							/>
+							<path
+								class="c2"
+								d="M5 1h1M9 1h2M11 2h1M12 3h1M3 4h1M12 4h1M4 5h1M11 5h1M3 6h1M5 6h6M2 7h1M4 7h1M11 7h1M1 8h1M6 8h5M1 9h1M3 9h1M5 9h1M7 9h1M9 9h1M11 9h1M13 9h1M1 10h2M4 10h1M6 10h5M12 10h1M1 11h9M11 11h1M2 12h7M10 12h1M12 12h1M3 13h1M5 13h1M7 13h1M9 13h1M11 13h1M6 14h1M8 14h1"
+							/>
+							<path
+								class="c3"
+								d="M6 1h3M4 2h1M3 3h1M3 7h1M2 8h4M2 9h1M4 9h1M6 9h1M8 9h1M3 10h1M5 10h1"
+							/>
+						</g>
+					</svg>
 				</label>
 			{/each}
 		</fieldset>
@@ -87,21 +85,16 @@
 			</span>
 		{/if}
 	</p>
-</article>
+</div>
 
 <style>
-	article {
+	div {
 		max-width: 32rem;
-		width: 100%;
 		margin: 1rem auto;
 	}
 
-	article > * + * {
+	div > * + * {
 		margin-top: 0.75em;
-	}
-
-	form {
-		accent-color: currentColor;
 	}
 
 	fieldset {
@@ -124,7 +117,7 @@
 	}
 
 	label svg {
-		width: 3em;
+		width: 48px;
 		height: auto;
 	}
 

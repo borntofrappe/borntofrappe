@@ -1,23 +1,26 @@
+---
+title: Dragon Warrior
+datetime: 2022-02-06T21:36
+keywords: gaming
+brief: Celebrating the first step in a promising, long journey in all its colorful glory.
+---
+
 <script>
-	import site from '$lib/site';
-	import Meta from '$lib/components/routes/Meta.svelte';
-  
-  import Header from '$lib/components/blog/article/Header.svelte'
-
-  import Checkbox from "./_Checkbox.svelte"
-  import Radio from "./_Radio.svelte"
-  import LotoSeal from "./_LotoSeal.svelte"
-
-  const title = "Dragon Warrior"
-  const description = "Celebrating the first step in a promising, long journey in all its colorful glory."
-  const keywords = ['gaming']
+  import './style.css'
+  import Checkbox from "./Checkbox.svelte"
+  import Radio from "./Radio.svelte"
+  import LotoSeal from "./LotoSeal.svelte"
 </script>
 
-<Meta title="{title} | {site.name}" {description} />
+I consider myself quite partial to Dragon Quest. And yet, the only title I had completed until a month ago was the ninth in the series.
 
-<Header {title} {keywords} />
+Sure I might have poured hundreds of hours in that single game, collecting every weapon and armor piece with a bit of flair, scavenging for treasure in treacherous, tantalizing, addictively randomized dungeons.
 
-<main id="content">
+The point stands, however. How can I label myself a fan with such an episodic experience?
+
+And so it was that I took the plunge and decided to rectify the situation starting from the very beginning.
+
+## The beginning
 
 Known to western audiences as _Dragon Warrior_, the first title in the Dragon Quest series is beautifully straightforward and wastes no time to thrust you into adventure.
 
@@ -76,87 +79,3 @@ I've hidden a replica of Loto Seal.
 I'm quite positive it's there. And I'm sure you'll have no trouble finding it in a fraction of the time it took me.
 
 <LotoSeal />
-
-</main>
-
-<style>
-  main {
-    width: 100%;
-    max-width: 42rem;
-    padding: 0 1rem;
-    margin: 2em auto 5em;
-  }
-
-  @supports (display: grid) {
-    main {
-      max-width: initial;
-      display: grid;
-      grid-template-columns: 1fr 42rem 1fr;
-    }
-
-    main > :global(*) {
-      grid-column: 2;
-    }
-
-    main > :global(.bleed) {
-      grid-column: 1/-1;
-      justify-self: center;
-    }
-  }
-
-  main p {
-    max-width: 58ch;
-  }
-
-  main > :global(* + *) {
-    margin-top: 1em;
-  }
-
-  main :global(.c1) {
-	color: hsl(320, 100%, 19%);
-	color: var(--pink-900);
-}
-
-main :global(.c2) {
-	color: hsl(328, 85%, 46%);
-	color: var(--pink-500);
-}
-
-main :global(.c3) {
-	color: hsl(338, 100%, 86%);
-	color: var(--pink-100);
-}
-
-@media (prefers-color-scheme: dark) {
-	:global(html:not([data-preference])) main :global(.c1) {
-		color: hsl(185, 91%, 17%);
-		color: var(--cyan-900);
-	}
-
-	:global(html:not([data-preference])) main :global(.c2) {
-		color: hsl(185, 62%, 45%);
-		color: var(--cyan-500);
-	}
-
-	:global(html:not([data-preference])) main :global(.c3) {
-		color: hsl(185, 94%, 87%);
-		color: var(--cyan-100);
-	}
-}
-
-:global(html[data-preference='dark']) main :global(.c1) {
-	color: hsl(185, 91%, 17%);
-	color: var(--cyan-900);
-}
-
-:global(html[data-preference='dark']) main :global(.c2) {
-	color: hsl(185, 62%, 45%);
-	color: var(--cyan-500);
-}
-
-:global(html[data-preference='dark']) main :global(.c3) {
-	color: hsl(185, 94%, 87%);
-	color: var(--cyan-100);
-}
-
-</style>

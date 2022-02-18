@@ -1,16 +1,3 @@
-		<li>
-			<a
-				href="/blog"
-				aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : ''}
-				class:active={$page.url.pathname.startsWith('/blog')}
-				sveltekit:prefetch
-			>
-				blog {@html icons.blog}</a
-			>
-		</li>
-    
-    
-    
 ![On pink days, on cyan nights, you'll find me online borntofrappé](https://raw.githubusercontent.com/borntofrappe/borntofrappe/master/borntofrappe.png)
 
 # Hello world!

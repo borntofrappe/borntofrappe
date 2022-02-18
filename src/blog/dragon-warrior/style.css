@@ -1,0 +1,46 @@
+.c1 {
+	color: hsl(320, 100%, 19%);
+	color: var(--pink-900);
+}
+
+.c2 {
+	color: hsl(328, 85%, 46%);
+	color: var(--pink-500);
+}
+
+.c3 {
+	color: hsl(338, 100%, 86%);
+	color: var(--pink-100);
+}
+
+@media (prefers-color-scheme: dark) {
+	html:not([data-preference]) .c1 {
+		color: hsl(185, 91%, 17%);
+		color: var(--cyan-900);
+	}
+
+	html:not([data-preference]) .c2 {
+		color: hsl(185, 62%, 45%);
+		color: var(--cyan-500);
+	}
+
+	html:not([data-preference]) .c3 {
+		color: hsl(185, 94%, 87%);
+		color: var(--cyan-100);
+	}
+}
+
+html[data-preference='dark'] .c1 {
+	color: hsl(185, 91%, 17%);
+	color: var(--cyan-900);
+}
+
+html[data-preference='dark'] .c2 {
+	color: hsl(185, 62%, 45%);
+	color: var(--cyan-500);
+}
+
+html[data-preference='dark'] .c3 {
+	color: hsl(185, 94%, 87%);
+	color: var(--cyan-100);
+}
