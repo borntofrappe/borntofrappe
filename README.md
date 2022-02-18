@@ -220,7 +220,7 @@ const config = {
 };
 ```
 
-This is enough to create pags from markdown files. `/src/routes/blog/article.md` would create a page available at `/blog/article`.
+This is enough to create pags from markdown files. `/src/routes/test.md` would create a page for at `/test`.
 
 Considering the content from a separate folder — `/src/log` — import the files with `import.meta.glob()`.
 
@@ -489,30 +489,25 @@ const date = new Date(
 Ultimately I want to support a setup where you can write a markdown or `.svx` document in a dedicated folder.
 
 ```text
-/blog
-  /folder
-    /article.md
+/folder
+  /article.md
+
+/article
+  /index.md
 ```
 
-Especially in the context of `svx` files the idea is to use the folder for all the components, all the sections devoted to an article.
+Especially in the context of files incorporating Svelte syntax the structure helps to maintain a single, shared location for all components.
 
-```text
-/blog
-  /folder
-    /Counter.svelte
-    /article.svx
-```
+To support this setup
 
-To support this setup update the syntax of the glob statement.
+1. update the syntax of the glob statement.
 
-```diff
-import.meta.glob('/src/blog/*.{md,svx}')
-+import.meta.glob('/src/blog/**/*.{md,svx}')
-```
+   ```diff
+   import.meta.glob('/src/blog/*.{md,svx}')
+   +import.meta.glob('/src/blog/**/*.{md,svx}')
+   ```
 
-What matters here, what is used as a slug, is the name of the article, and **not** the name of the folder.
-
-The setup is also helpful to have connected articles share a location.
+2. update how the `slug` is extracted from the path, removing the optional `/index` string so to isolate the name of the article
 
 #### slug
 

@@ -2,6 +2,7 @@ export async function getSession() {
 	const entries = await Promise.all(
 		Object.entries(import.meta.glob('/src/blog/**/*.{md,svx}')).map(async ([path, module]) => {
 			const slug = path
+        .replace('/index', '')
 				.split('/')
 				.pop()
 				.replace(/\.(md|svx)$/, '');
