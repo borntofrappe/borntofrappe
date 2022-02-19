@@ -10,7 +10,7 @@
 
 		if (log[path]) {
 			const { default: Module, metadata } = await log[path]();
-			const { day, title } = metadata;
+			const { title } = metadata;
 			return {
 				props: {
 					day,

@@ -245,7 +245,7 @@ The function is what ultimately allows to transform the documents through `mdsve
 
 #### archives
 
-With `src/log/archives.svelte` show all the log entries sorted by `day`.
+With `src/log/archives.svelte` show all the log entries sorted by day, provided by the name of the file — `0.md`, `1.md` and so forth.
 
 Wrap the imported object in `Object.entries()` to create a 2D array.
 
@@ -261,17 +261,17 @@ Iterate through the array to consider the path and transforming function.
 })
 ```
 
-Extract the data from the frontmatter, which details `day` and `title`.
+Extract the data from the frontmatter, to retrieve the `title`.
 
 ```js
 const { metadata } = await module();
-const { day, title } = metadata;
+const { title } = metadata;
 ```
 
-For the URL of the article create a slug considering the name of the file.
+For the day, and the slug pointing to the article, extract the value from the path.
 
 ```js
-const slug = path.split('/').pop().replace(/\.md$/, '');
+const day = path.split('/').pop().replace(/\.md$/, '');
 ```
 
 For each entry produce an object with the relevant metadata and the slug.
@@ -279,8 +279,7 @@ For each entry produce an object with the relevant metadata and the slug.
 ```js
 return {
 	day,
-	title,
-	slug
+	title
 };
 ```
 
@@ -290,12 +289,12 @@ Since the operation is asynchronous wrap the entire `Object.entries` statement i
 const log = await Promise.all(Object.entries(/**/));
 ```
 
-Once the promises are all resolved, `entries` describes an array of objects with `title`, `day` and `slug`. Pass the data through `props` and iterated through the collection with an `#each` statement to create the list of entries.
+Once the promises are all resolved, `entries` describes an array of objects with `title` and `day`. Pass the data through `props` and iterate through the collection with an `#each` statement to create the list of entries.
 
-In the markup link to the specific entries through the slug.
+In the markup link to the specific entries through the day.
 
 ```html
-<a href="/log/{slug}">{title}</a>
+<a href="/log/{day}">{title}</a>
 ```
 
 The day is also used in the ordered list, but is connected to HTML more than SvelteKit.
@@ -366,13 +365,15 @@ return {
 };
 ```
 
-Use the path produce the content only for the specific entry. Isolate the latest entry from the sorted collection.
+The idea is to use the path to produce the content only for the specific entry.
+
+Isolate the latest entry from the sorted collection.
 
 ```js
 const [entry] = entries.sort((a, b) => parseInt(b.day, 10) - parseInt(a.day, 10));
 ```
 
-Re-use the importing syntax to extract the corresponding component.
+Repeat the importing syntax to extract the corresponding component.
 
 ```js
 const log = import.meta.glob('/src/log/*.md');

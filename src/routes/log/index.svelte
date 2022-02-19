@@ -4,8 +4,7 @@
 	export async function load() {
 		const entries = await Promise.all(
 			Object.entries(import.meta.glob('/src/log/*.md')).map(async ([path, module]) => {
-				const { metadata } = await module();
-				const { day } = metadata;
+				const day = path.split('/').pop().replace(/\.md$/, '');
 
 				return {
 					day,
@@ -15,10 +14,12 @@
 		);
 
 		const [entry] = entries.sort((a, b) => parseInt(b.day, 10) - parseInt(a.day, 10));
+		const { day, path } = entry;
+
 		const log = import.meta.glob('/src/log/*.md');
 
-		const { default: Module, metadata } = await log[entry.path]();
-		const { day, title } = metadata;
+		const { default: Module, metadata } = await log[path]();
+		const { title } = metadata;
 
 		return {
 			props: {
