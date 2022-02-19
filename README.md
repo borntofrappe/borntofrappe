@@ -346,7 +346,7 @@ Without a match return an object with a `status` and `error`.
 ```js
 return {
 	status: 404,
-	error: new Error('Not found')
+	error: new Error(`I haven't logged anything on day ${day}.`)
 };
 ```
 
@@ -419,6 +419,10 @@ At the time of writing the console highlights a warning when using `<Module />` 
 ```
 
 For the log and the static nature of the content, however, the module does not change in the first place.
+
+#### Error page
+
+SvelteKit falls back to `src/__error.svelte` when visiting a URL for a non-existing day. In the moment you create a specific error page in the `/log` sub-folder, `src/log/__error.svelte`, this one takes precedence for errors produced in the nested routes.
 
 ### Blog routes
 
