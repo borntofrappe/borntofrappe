@@ -1,9 +1,9 @@
-import { files, build, timestamp } from '$service-worker';
+import { files, timestamp } from '$service-worker';
 
 const cacheTimestamp = `cache-${timestamp}`;
 
 self.addEventListener('install', (event) => {
-	event.waitUntil(caches.open(cacheTimestamp).then((cache) => cache.addAll([...files, ...build])));
+	event.waitUntil(caches.open(cacheTimestamp).then((cache) => cache.addAll(files)));
 });
 
 self.addEventListener('activate', (event) => {

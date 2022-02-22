@@ -762,6 +762,8 @@ In terms of caching strategy listen to three events on the service worker, `self
 
 - with `fetch` respond to the incoming request with the cache **or** with a fetch request **or** with a `html` document providing a generic fallback
 
+I ultimately choose to cache only the static files.
+
 ###
 
 </details>
