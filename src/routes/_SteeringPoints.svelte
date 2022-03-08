@@ -47,7 +47,7 @@
 	onMount(() => {
 		handleResize();
 		context = canvas.getContext('2d');
-		context.fillStyle = 'currentColor';
+		context.fillStyle = 'hsl(185, 62%, 45%)';
 
 		draw();
 	});
