@@ -1,47 +1,18 @@
 <script>
-	import { onMount } from 'svelte';
-	import SteeringPoints from './_SteeringPoints.svelte';
-
-	let canvas;
-
-	const text = 'soon';
-	const width = 64;
-	const height = 24;
-
-	let points = [];
-
-	onMount(() => {
-		const context = canvas.getContext('2d');
-
-		context.font = `${height}px sans-serif`;
-		context.textAlign = 'center';
-		context.textBaseline = 'middle';
-		context.fillStyle = 'green';
-		context.fillText(text, width / 2, height / 2);
-
-		const pixels = [...context.getImageData(0, 0, width, height).data];
-		for (let i = 0; i < pixels.length - 4; i += 4) {
-			if (pixels[i] !== 0 || pixels[i + 1] !== 0 || pixels[i + 2] !== 0) {
-				const x = (i / 4) % width;
-				const y = Math.floor(i / 4 / width);
-				points = [...points, { x, y }];
-			}
-		}
-	});
+	import Stars from './_Stars.svelte';
 </script>
 
 <svelte:head>
-	<title>borntofrappe</title>
+	<title>borntofrappe | Launching soon</title>
 	<meta name="description" content="Personal website of one Gabriele Corti. Launching soon." />
 </svelte:head>
 
-<h1 class="visually-hidden">borntofrappe</h1>
-<p>Launching...<span class="visually-hidden">soon</span></p>
+<header class="visually-hidden">
+	<h1>borntofrappe</h1>
+	<p>Launching soon</p>
+</header>
 
-<canvas style:display="none" bind:this={canvas} {width} {height} />
-{#if points.length > 0}
-	<SteeringPoints {points} {width} {height} />
-{/if}
+<Stars />
 
 <style>
 	:global(*) {
@@ -49,10 +20,14 @@
 		margin: 0;
 	}
 
+	:global(html),
+	:global(body) {
+		height: 100%;
+	}
+
 	:global(body) {
 		display: grid;
 		place-items: center;
-		min-height: 100vh;
 		background: hsl(210, 58%, 9%);
 		color: hsl(185, 62%, 45%);
 	}

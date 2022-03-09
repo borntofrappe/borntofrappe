@@ -1,27 +1,20 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
 	import Vehicle from './_Vehicle.js';
+	import points from './_points.js';
 
-	export let points = [];
-	export let width = 0;
-	export let height = 0;
-
-	const scale = 10;
-	width *= scale;
-	height *= scale;
+	const scale = 8;
+	const width = 50 * scale;
+	const height = 50 * scale;
 
 	let canvas;
 	let context;
 	let animationID;
 
-	const r = scale / 2;
-	const startAngle = 0;
-	const endAngle = Math.PI * 2;
-
 	let left, top;
 
-	const vehicles = points.map(
-		({ x, y }) =>
+	const vehicles = points.rocket.map(
+		([x, y]) =>
 			new Vehicle(
 				Math.floor(Math.random() * width),
 				Math.floor(Math.random() * height),
@@ -35,8 +28,8 @@
 		for (const vehicle of vehicles) {
 			context.beginPath();
 			const { x, y } = vehicle.pos;
-			context.arc(x, y, r, startAngle, endAngle);
-			context.fill();
+			context.fillRect(x, y, scale, scale);
+			// context.fill();
 
 			vehicle.update();
 			vehicle.behave();
@@ -48,12 +41,9 @@
 		handleResize();
 		context = canvas.getContext('2d');
 		context.fillStyle = 'hsl(185, 62%, 45%)';
-
 		draw();
-	});
 
-	onDestroy(() => {
-		cancelAnimationFrame(animationID);
+		return () => cancelAnimationFrame(animationID);
 	});
 
 	function handleMousemove({ pageX, pageY }) {
