@@ -11,7 +11,7 @@
 
 <script>
 	import { onMount } from 'svelte';
-	import SteeringPoints from '$lib/experiments/SteeringPoints.svelte';
+	import SteeringPoints from '$lib/experiments/steering/SteeringPoints.svelte';
 
 	export let status = 500;
 	export let error;
@@ -55,7 +55,6 @@
 	:global(body) {
 		height: 100%;
 	}
-
 	:global(body) {
 		display: grid;
 		place-items: center;
