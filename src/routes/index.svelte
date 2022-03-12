@@ -23,10 +23,10 @@
 			helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 		display: grid;
 		place-items: center;
-		color: hsl(186, 100%, 94%);
-		background: hsl(210, 58%, 9%);
+		color: hsl(216, 33%, 97%);
+		background: hsl(210, 24%, 16%);
 	}
 	:global(::selection) {
-		background: hsl(186, 100%, 94%, 0.25);
+		background: hsla(216, 33%, 97%, 0.25);
 	}
 </style>
