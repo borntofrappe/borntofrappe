@@ -51,11 +51,14 @@
 <SteeringPoints {points} {width} {height} />
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
+	:global(*) {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
+
 	:global(body) {
+		min-height: 100vh;
 		display: grid;
 		place-items: center;
 		color: hsl(216, 33%, 97%);
