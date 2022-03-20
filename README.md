@@ -1,7 +1,7 @@
 # borntofrappe
 
-## Have some backbone
-
-I built with website with:
+## Thankses
 
 - [kit.svelte.dev](https://kit.svelte.dev)
+
+- [Netlify](https://www.netlify.com/)
