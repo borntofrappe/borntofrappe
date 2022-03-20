@@ -1,7 +1,5 @@
 # borntofrappe
 
-## Thankses
-
-- [kit.svelte.dev](https://kit.svelte.dev)
-
-- [Netlify](https://www.netlify.com/)
+> Let's hit the ground running
+>
+> 20th March 2022
