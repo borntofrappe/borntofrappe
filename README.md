@@ -1,3 +1,0 @@
-# borntofrappe
-
-Launching... soon!
