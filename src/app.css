@@ -8,3 +8,11 @@ body {
 code {
 	font-family: Inconsolata, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 }
+
+a {
+	color: hsl(330, 79%, 56%);
+}
+
+::selection {
+	background: hsl(330, 79%, 56%, 0.1);
+}
