@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
 	let scale = spring(1, {
@@ -17,7 +18,9 @@
 	let svg;
 	let w, h;
 
-	$: if (svg) handleSize();
+	onMount(() => {
+		handleSize();
+	});
 
 	const handleSize = () => {
 		const { width, height } = svg.getBoundingClientRect();
@@ -34,6 +37,10 @@
 	};
 </script>
 
+<svelte:head>
+	<link rel="icon" href="/sun.svg" type="image/svg+xml" />
+</svelte:head>
+
 <svelte:window on:resize={handleSize} />
 
 <svg
@@ -43,6 +50,7 @@
 	on:mousedown={handleStart}
 	on:touchstart={handleStart}
 	on:mouseup={handleEnd}
+	on:mouseleave={handleEnd}
 	on:touchend={handleEnd}
 	on:mousemove={handleMove}
 	on:touchmove={(e) => {

@@ -56,6 +56,7 @@
 	on:mousedown={handleStart}
 	on:touchstart={handleStart}
 	on:mouseup={handleEnd}
+	on:mouseleave={handleEnd}
 	on:touchend={handleEnd}
 	on:mousemove={handleMove}
 	on:touchmove={(e) => {
@@ -151,12 +152,12 @@
 						<g id="e">
 							<g transform="scale({$scale ** 2})">
 								<g fill="#38311e">
-									<circle cx="7" cy="-3" r="3.5" />
+									<circle cx="7" cy="-3" r="3" />
 									<circle cx="8" cy="-4" r="0.8" fill="white" />
 								</g>
 							</g>
 						</g>
-						<use x="-10" href="#e" />
+						<use x="-9" href="#e" />
 					</g>
 				</g>
 			</g>

@@ -56,6 +56,7 @@
 	on:mousedown={handleStart}
 	on:touchstart={handleStart}
 	on:mouseup={handleEnd}
+	on:mouseleave={handleEnd}
 	on:touchend={handleEnd}
 	on:mousemove={handleMove}
 	on:touchmove={(e) => {
