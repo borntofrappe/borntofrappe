@@ -1,9 +1,15 @@
 <script>
 	import Sun from './_Sun.svelte';
+	import Bee from './_Bee.svelte';
 </script>
 
+<svelte:head>
+	<title>borntofrappe</title>
+	<meta name="description" content="" />
+</svelte:head>
+
 <article>
-	<Sun />
+	<Bee />
 </article>
 
 <style>
