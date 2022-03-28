@@ -1,6 +1,7 @@
 <script>
 	import Sun from './_Sun.svelte';
 	import Bee from './_Bee.svelte';
+	import LadyBird from './_LadyBird.svelte';
 </script>
 
 <svelte:head>
@@ -9,7 +10,7 @@
 </svelte:head>
 
 <article>
-	<Bee />
+	<LadyBird />
 </article>
 
 <style>
