@@ -1,9 +1,5 @@
 <script>
-	import Sun from './_Sun.svelte';
-	import Bee from './_Bee.svelte';
-	import Ladybird from './_Ladybird.svelte';
-
-	const options = [Sun, Bee, Ladybird];
+	import Chick from './_Chick.svelte';
 </script>
 
 <svelte:head>
@@ -12,13 +8,13 @@
 </svelte:head>
 
 <section>
-	<svelte:component this={options[new Date().getHours() % options.length]} />
+	<Chick />
 </section>
 
 <style>
 	:global(body) {
 		margin: 0;
-		background: hsl(41, 100%, 96%);
+		background: hsl(41, 100%, 97%);
 		color: hsl(44, 30%, 17%);
 	}
 
