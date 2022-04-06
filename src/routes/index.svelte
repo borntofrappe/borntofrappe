@@ -1,5 +1,5 @@
 <script>
-	import Chick from './_Chick.svelte';
+	import Rainbow from './_Rainbow.svelte';
 </script>
 
 <svelte:head>
@@ -7,24 +7,22 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<section>
-	<Chick />
-</section>
+<Rainbow />
 
 <style>
+	:global(html),
+	:global(body) {
+		height: 100%;
+	}
 	:global(body) {
 		margin: 0;
 		background: hsl(41, 100%, 97%);
 		color: hsl(44, 30%, 17%);
-	}
-
-	section {
 		display: grid;
 		place-items: center;
-		min-height: 100vh;
 	}
 
-	section > :global(svg) {
+	:global(svg) {
 		display: block;
 		max-width: 30rem;
 		width: 100vmin;
