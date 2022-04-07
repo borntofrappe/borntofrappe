@@ -1,5 +1,5 @@
 <script>
-	import Rainbow from './_Rainbow.svelte';
+	import Owl from './_Owl.svelte';
 </script>
 
 <svelte:head>
@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<Rainbow />
+<Owl />
 
 <style>
 	:global(html),
