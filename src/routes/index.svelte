@@ -1,5 +1,5 @@
 <script>
-	import Owl from './_Owl.svelte';
+	import Raincloud from './_Raincloud.svelte';
 </script>
 
 <svelte:head>
@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<Owl />
+<Raincloud />
 
 <style>
 	:global(html),
