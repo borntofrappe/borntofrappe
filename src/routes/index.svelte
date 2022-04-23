@@ -1,5 +1,5 @@
 <script>
-	import Raincloud from './_Raincloud.svelte';
+	import Tangram from './tangram/_Tangram.svelte';
 </script>
 
 <svelte:head>
@@ -7,13 +7,14 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<Raincloud />
+<Tangram />
 
 <style>
 	:global(html),
 	:global(body) {
 		height: 100%;
 	}
+
 	:global(body) {
 		margin: 0;
 		background: hsl(41, 100%, 97%);
