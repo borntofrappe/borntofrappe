@@ -5,7 +5,7 @@
 	export let shape = shapes[Math.floor(Math.random() * shapes.length)];
 
 	const pieces = [
-		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#2432ad' },
+		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#243224' },
 		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#adecf3' },
 		{ d: 'M 0 0 l 50 50 h-50z', fill: '#f4786c' },
 		{ d: 'M 0 0 l 25 25 25 -25 -25 -25z', fill: '#f4786c' },
@@ -14,7 +14,7 @@
 		{ d: 'M 0 25 l 25 -25 h 50 l -25 25z', fill: '#f4786c' }
 	];
 
-	const paths = pieces.map((piece, i) => ({
+	$: paths = pieces.map((piece, i) => ({
 		...piece,
 		style: styles[shape][i]
 	}));
@@ -23,6 +23,8 @@
 </script>
 
 <svelte:head>
+	<title>borntofrappe | Tangram</title>
+	<meta name="description" content="7 shapes make for 1 nice visual." />
 	<link rel="icon" href="/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
@@ -30,6 +32,7 @@
 	viewBox="-75 -75 250 250"
 	on:click={() => {
 		tangram = !tangram;
+		if (!tangram) shape = shapes[Math.floor(Math.random() * shapes.length)];
 	}}
 >
 	<g class:tangram>
@@ -40,8 +43,23 @@
 </svg>
 
 <style>
+	:global(html),
+	:global(body) {
+		height: 100%;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: hsl(44, 17%, 12%);
+		display: grid;
+		place-items: center;
+	}
+
 	svg {
-		max-width: initial;
+		display: block;
+		width: 100vmin;
+		height: auto;
+		filter: drop-shadow(0 0.5rem 1rem hsla(45, 15%, 5%, 0.5));
 	}
 
 	path {

@@ -1,5 +1,5 @@
 <script>
-	import Tangram from './tangram/_Tangram.svelte';
+	import Sun from './_Sun.svelte';
 </script>
 
 <svelte:head>
@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<Tangram />
+<Sun />
 
 <style>
 	:global(html),
