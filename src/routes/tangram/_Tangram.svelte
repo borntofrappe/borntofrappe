@@ -1,15 +1,16 @@
 <script>
-	import styles from './_styles';
+	import styles from './_styles.js';
+	const shapes = Object.keys(styles);
 
-	export let shape = 'cat';
+	export let shape = shapes[Math.floor(Math.random() * shapes.length)];
 
 	const pieces = [
 		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#2432ad' },
 		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#adecf3' },
 		{ d: 'M 0 0 l 50 50 h-50z', fill: '#f4786c' },
 		{ d: 'M 0 0 l 25 25 25 -25 -25 -25z', fill: '#f4786c' },
-		{ d: 'M 0 0 l 50 -50 v 100z', fill: '#f0d759' },
-		{ d: 'M 0 0 l 25 25 h-50z', fill: '#adecf3' },
+		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#f0d759' },
+		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#adecf3' },
 		{ d: 'M 0 25 l 25 -25 h 50 l -25 25z', fill: '#f4786c' }
 	];
 
@@ -44,7 +45,7 @@
 	}
 
 	path {
-		transition: transform 1s ease-in-out;
+		transition: transform 1s cubic-bezier(0.49, 0.11, 0.1, 1.32);
 	}
 
 	.tangram path:nth-of-type(1) {
@@ -64,11 +65,11 @@
 	}
 
 	.tangram path:nth-of-type(5) {
-		transform: translate(50px, 50px) rotate(180deg) !important;
+		transform: translate(0px, 100px) rotate(270deg) !important;
 	}
 
 	.tangram path:nth-of-type(6) {
-		transform: translate(50px, 50px) rotate(0) !important;
+		transform: translate(25px, 75px) rotate(270deg) !important;
 	}
 
 	.tangram path:nth-of-type(7) {
