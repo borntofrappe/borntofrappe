@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/bee.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/bee.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svelte:window on:resize={handleSize} />

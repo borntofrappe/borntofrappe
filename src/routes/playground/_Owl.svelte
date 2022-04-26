@@ -57,7 +57,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/owl.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/owl.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svelte:window on:resize={handleSize} />

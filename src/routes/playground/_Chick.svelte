@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/chick.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/chick.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svelte:window on:resize={handleSize} />

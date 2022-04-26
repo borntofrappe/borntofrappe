@@ -1,5 +1,5 @@
 <script>
-	import Sun from './_Sun.svelte';
+	import Sun from './playground/_Sun.svelte';
 </script>
 
 <svelte:head>

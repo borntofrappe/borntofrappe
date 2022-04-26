@@ -65,7 +65,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/cloud.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/cloud.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svelte:window on:resize={handleSize} />

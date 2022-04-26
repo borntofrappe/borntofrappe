@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/ladybird.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/ladybird.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svelte:window on:resize={handleSize} />
