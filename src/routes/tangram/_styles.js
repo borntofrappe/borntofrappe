@@ -79,5 +79,23 @@ export default {
 		'transform: translate(126px, 56px) rotate(135deg);',
 		'transform: translate(20px, 70px) rotate(-45deg);',
 		'transform: translate(20px, 10px) rotate(135deg); transform-origin: 0px 25px;'
+	],
+	goat: [
+		'transform: translate(55px, 50px) rotate(-225deg);',
+		'transform: translate(-15px, 75px) rotate(180deg);',
+		'transform: translate(140px, 65px) rotate(-180deg);',
+		'transform: translate(115px, 40px) rotate(180deg); transform-origin: 0px 0px;',
+		'transform: translate(115px, 90px) rotate(180deg);',
+		'transform: translate(65px, 90px) rotate(-45deg);',
+		'transform: translate(140px, -10px) rotate(-135deg); transform-origin: 0px 25px;'
+	],
+	horse: [
+		'transform: translate(50px, 15px) rotate(90deg);',
+		'transform: translate(95px, 40px) rotate(-90deg);',
+		'transform: translate(120px, -20px) rotate(-225deg);',
+		'transform: translate(25px, -10px) rotate(45deg); transform-origin: 25px 25px;',
+		'transform: translate(120px, 15px) rotate(135deg);',
+		'transform: translate(85px, 135px) rotate(135deg);',
+		'transform: translate(0px, 40px) rotate(-225deg); transform-origin: 0px 25px;'
 	]
 };
