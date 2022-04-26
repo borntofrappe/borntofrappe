@@ -1,25 +1,24 @@
 <script>
 	import styles from './_styles.js';
-	const shapes = Object.keys(styles);
 
-	export let shape = shapes[Math.floor(Math.random() * shapes.length)];
+	const shapes = Object.keys(styles);
+	export let shape = 'rocket';
+	let tangram = true;
 
 	const pieces = [
-		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#243224' },
-		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#adecf3' },
-		{ d: 'M 0 0 l 50 50 h-50z', fill: '#f4786c' },
-		{ d: 'M 0 0 l 25 25 25 -25 -25 -25z', fill: '#f4786c' },
-		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#f0d759' },
-		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#adecf3' },
-		{ d: 'M 0 25 l 25 -25 h 50 l -25 25z', fill: '#f4786c' }
+		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#71c49a' },
+		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#ef847a' },
+		{ d: 'M 0 0 l 50 50 h-50z', fill: '#abdcc7' },
+		{ d: 'M 0 0 l 25 25 25 -25 -25 -25z', fill: '#71c49a' },
+		{ d: 'M 0 0 l 50 50 50 -50z', fill: '#f6e48e' },
+		{ d: 'M 0 0 l 25 25 -25 25z', fill: '#ef847a' },
+		{ d: 'M 0 25 l 25 -25 h 50 l -25 25z', fill: '#f6e48e' }
 	];
 
 	$: paths = pieces.map((piece, i) => ({
 		...piece,
 		style: styles[shape][i]
 	}));
-
-	let tangram = true;
 </script>
 
 <svelte:head>
@@ -50,7 +49,8 @@
 
 	:global(body) {
 		margin: 0;
-		background: hsl(44, 17%, 12%);
+		color: hsl(44, 30%, 17%);
+		background: hsl(41, 100%, 97%);
 		display: grid;
 		place-items: center;
 	}
@@ -59,7 +59,6 @@
 		display: block;
 		width: 100vmin;
 		height: auto;
-		filter: drop-shadow(0 0.5rem 1rem hsla(45, 15%, 5%, 0.5));
 	}
 
 	path {
