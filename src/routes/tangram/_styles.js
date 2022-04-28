@@ -97,5 +97,23 @@ export default {
 		'transform: translate(120px, 15px) rotate(135deg);',
 		'transform: translate(85px, 135px) rotate(135deg);',
 		'transform: translate(0px, 40px) rotate(-225deg); transform-origin: 0px 25px;'
+	],
+	serpent: [
+		'transform: translate(150px, 50px) rotate(180deg);',
+		'transform: translate(-35px, 0px) rotate(45deg);',
+		'transform: translate(0px, 0px) rotate(0deg);',
+		'transform: translate(0px, 0px) rotate(135deg);',
+		'transform: translate(0px, 50px) rotate(360deg);',
+		'transform: translate(-35px, 0px) rotate(90deg);',
+		'transform: translate(115px, 25px) rotate(45deg); transform-origin: 0px 25px;'
+	],
+	scorpion: [
+		'transform: translate(75px, 65px) rotate(180deg);',
+		'transform: translate(10px, 30px) rotate(225deg);',
+		'transform: translate(90px, 35px) rotate(0deg);',
+		'transform: translate(60px, -5px) rotate(0deg);',
+		'transform: translate(90px, 135px) rotate(225deg);',
+		'transform: translate(-5px, 100px) rotate(225deg);',
+		'transform: translate(10px, -30px) rotate(0deg); transform-origin: 0px 25px;'
 	]
 };
