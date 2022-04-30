@@ -11,9 +11,13 @@
 	let isDrawing;
 	let start;
 
+	let t, l;
+
 	onMount(() => {
 		context = canvas.getContext('2d');
 		context.lineWidth = 3;
+
+		handleSize();
 	});
 
 	$: if (context) {
@@ -45,7 +49,15 @@
 
 		start = { x: x1, y: y1 };
 	};
+
+	const handleSize = () => {
+		const { top, left } = canvas.getBoundingClientRect();
+		t = top;
+		l = left;
+	};
 </script>
+
+<svelte:window on:resize={handleSize} />
 
 <canvas
 	{width}
@@ -53,7 +65,13 @@
 	style:background
 	bind:this={canvas}
 	on:mousedown={handleStart}
-	on:touchstart={handleStart}
+	on:touchstart={(e) => {
+		const { clientX, clientY } = e.touches[0];
+		handleStart({
+			offsetX: clientX - l,
+			offsetY: clientY - t
+		});
+	}}
 	on:mouseup={handleEnd}
 	on:touchend={handleEnd}
 	on:mouseleave={handleEnd}
@@ -61,8 +79,8 @@
 	on:touchmove={(e) => {
 		const { clientX, clientY } = e.touches[0];
 		handleMove({
-			offsetX: clientX,
-			offsetY: clientY
+			offsetX: clientX - l,
+			offsetY: clientY - t
 		});
 	}}
 />

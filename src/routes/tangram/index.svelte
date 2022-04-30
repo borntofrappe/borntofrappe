@@ -28,7 +28,7 @@
 </svelte:head>
 
 <svg
-	viewBox="-75 -75 250 250"
+	viewBox="-90 -90 280 280"
 	on:click={() => {
 		tangram = !tangram;
 		if (!tangram) shape = shapes[Math.floor(Math.random() * shapes.length)];
