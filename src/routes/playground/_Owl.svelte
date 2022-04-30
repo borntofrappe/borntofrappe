@@ -25,7 +25,6 @@
 		const { width, height } = svg.getBoundingClientRect();
 		w = width;
 		h = height;
-		console.log('resize!');
 	};
 
 	const handleStart = () => {
