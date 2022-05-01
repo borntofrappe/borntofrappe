@@ -43,10 +43,6 @@
 	};
 </script>
 
-<svelte:head>
-	<link rel="icon" href="/icons/cauldron.svg" type="image/svg+xml" />
-</svelte:head>
-
 <svelte:window on:resize={handleSize} />
 
 <svg

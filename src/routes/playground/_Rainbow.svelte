@@ -47,10 +47,6 @@
 	}
 </script>
 
-<svelte:head>
-	<link rel="icon" href="/icons/rainbow.svg" type="image/svg+xml" />
-</svelte:head>
-
 <svelte:window on:resize={handleSize} />
 
 <svg

@@ -64,10 +64,6 @@
 	const handleMouseup = () => bounce.set(1);
 </script>
 
-<svelte:head>
-	<link rel="icon" href="/icons/cloud.svg" type="image/svg+xml" />
-</svelte:head>
-
 <svelte:window on:resize={handleSize} />
 
 <svg

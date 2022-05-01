@@ -1,10 +1,14 @@
 <script context="module">
 	export async function load() {
 		const components = await Promise.all(
-			Object.values(import.meta.glob('./_*.svelte')).map(async (module) => {
-				const { metatada, default: component } = await module();
-				console.log(metatada);
-				return component;
+			Object.entries(import.meta.glob('./_*.svelte')).map(async ([path, module]) => {
+				const [, title] = path.match('_(.+).svelte');
+				const { default: Function } = await module();
+
+				return {
+					title,
+					Function
+				};
 			})
 		);
 
@@ -18,12 +22,19 @@
 
 <script>
 	export let components;
+
 	let index = 0;
+	$: component = components[index];
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Playground</title>
+	<title>borntofrappe | Playground - {component.title}</title>
 	<meta name="description" content="A cheerful corner on the web." />
+	<link
+		rel="icon"
+		href="/icons/playground/{component.title.toLowerCase()}.svg"
+		type="image/svg+xml"
+	/>
 </svelte:head>
 
 <svelte:body
@@ -31,7 +42,7 @@
 		index = (index + 1) % components.length;
 	}} />
 
-<svelte:component this={components[index]} />
+<svelte:component this={component.Function} />
 
 <style>
 	:global(html),
