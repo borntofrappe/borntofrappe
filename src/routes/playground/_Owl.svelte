@@ -28,7 +28,7 @@
 	};
 
 	const handleStart = () => {
-		opacity.set(0.2);
+		opacity.set(1);
 	};
 
 	const handleEnd = () => {
@@ -88,7 +88,7 @@
 			stroke-linecap="round"
 			stroke-linejoin="round"
 		>
-			<g id="h" style="color: #ae51bb;">
+			<g id="h" style="color: #e7a76a;">
 				<g transform="scale({$scale})">
 					<g transform="translate(-22 -20) rotate(-30)">
 						<g transform="rotate({$rotate})">
@@ -101,20 +101,19 @@
 
 			<g transform="scale({$scale})">
 				<path
-					style="color: #ae51bb;"
+					style="color: #f0d584;"
 					d="M -33 0 a 33 33 0 0 1 66 0 c 0 11 -5 30 -33 30 -28 0 -33 -19 -33 -30"
 				/>
-			</g>
 
-			<g id="c" style="color: #fcc43d">
-				<g transform="translate(-12 0)">
-					<g opacity={$opacity}>
-						<ellipse rx="4" ry="2.5" />
+				<g id="c" style="color: #f59c8c">
+					<g transform="translate(-12 0)">
+						<g opacity={$opacity}>
+							<ellipse rx="4" ry="2.5" />
+						</g>
 					</g>
 				</g>
+				<use transform="scale(-1 1)" href="#c" />
 			</g>
-
-			<use transform="scale(-1 1)" href="#c" />
 
 			<g id="e">
 				<g transform="translate(12 -10)">
@@ -122,7 +121,7 @@
 						<circle r="9" style="color: #ffffff;" />
 					</g>
 					<g transform="scale({$scale})">
-						<circle r="5" style="color: #7332b4;" />
+						<circle r="5" style="color: #542b19;" />
 						<g transform="rotate({$rotate})">
 							<circle r="2" cx="-2.5" cy="-2.5" style="color: #ffffff;" />
 						</g>
@@ -132,10 +131,10 @@
 			<use transform="scale(-1 1)" href="#e" />
 
 			<g transform="scale({$scale})">
-				<path style="color: #fcc43d;" d="M -3 2 a 3 3 0 0 1 6 0 q 0 3 -3 6 -3 -3 -3 -6" />
+				<path style="color: #fd971b;" d="M -3 2 a 3 3 0 0 1 6 0 q 0 3 -3 6 -3 -3 -3 -6" />
 			</g>
 
-			<g id="w" style="color: #7332b4;">
+			<g id="w" style="color: #e7a76a;">
 				<g transform="scale({$scale})">
 					<g transform="translate(-30 8)">
 						<g transform="rotate({$rotate})">
@@ -148,7 +147,7 @@
 			</g>
 			<use transform="scale(-1 1)" href="#w" />
 
-			<g id="f" style="color: #fcc43d;">
+			<g id="f" style="color: #fd971b;">
 				<g transform="translate(-8 -9)">
 					<g transform="scale({$scale})">
 						<g transform="rotate({$rotate / 10})">
