@@ -1,14 +1,23 @@
-<script>
-	import Bee from './_Bee.svelte';
-	import Cauldron from './_Cauldron.svelte';
-	import Chick from './_Chick.svelte';
-	import Ladybird from './_Ladybird.svelte';
-	import Owl from './_Owl.svelte';
-	import Rainbow from './_Rainbow.svelte';
-	import Raincloud from './_Raincloud.svelte';
-	import Sun from './_Sun.svelte';
+<script context="module">
+	export async function load() {
+		const components = await Promise.all(
+			Object.values(import.meta.glob('./_*.svelte')).map(async (module) => {
+				const { metatada, default: component } = await module();
+				console.log(metatada);
+				return component;
+			})
+		);
 
-	const components = [Bee, Cauldron, Chick, Ladybird, Owl, Rainbow, Raincloud, Sun];
+		return {
+			props: {
+				components
+			}
+		};
+	}
+</script>
+
+<script>
+	export let components;
 	let index = 0;
 </script>
 
@@ -16,6 +25,7 @@
 	<title>borntofrappe | Playground</title>
 	<meta name="description" content="A cheerful corner on the web." />
 </svelte:head>
+
 <svelte:body
 	on:click|self={() => {
 		index = (index + 1) % components.length;
