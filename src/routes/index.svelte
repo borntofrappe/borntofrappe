@@ -1,5 +1,8 @@
 <script>
+	import '../app.css';
+
 	import Sun from './playground/_Sun.svelte';
+	import Footer from './_Footer.svelte';
 </script>
 
 <svelte:head>
@@ -7,23 +10,22 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<Sun />
+<article>
+	<Sun />
+</article>
+
+<Footer />
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-
-	:global(body) {
-		margin: 0;
+	article {
+		min-height: 100vh;
 		background: hsl(41, 100%, 97%);
 		color: hsl(44, 30%, 17%);
 		display: grid;
 		place-items: center;
 	}
 
-	:global(svg) {
+	article > :global(svg) {
 		display: block;
 		max-width: 30rem;
 		width: 100vmin;

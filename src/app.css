@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+ color: hsl(0, 0%, 18%);
+	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+					helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
+}
+
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
