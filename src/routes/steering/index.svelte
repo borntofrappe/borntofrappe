@@ -5,6 +5,10 @@
 	let canvas;
 
 	export let text = 'btfé';
+	export let title = 'borntofrappe | Steering points';
+	export let description =
+		'A showcase of a steering behavior, with numerous agents lining up in the shape of a string of text.';
+
 	const width = text.length * 15;
 	const height = 24;
 
@@ -31,11 +35,8 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Steering points</title>
-	<meta
-		name="description"
-		content="A showcase of a steering behavior, with numerous agents lining up in the shape of a string of text."
-	/>
+	<title>{title}</title>
+	<meta name="description" content={description} />
 </svelte:head>
 
 <canvas style:display="none" bind:this={canvas} {width} {height} />

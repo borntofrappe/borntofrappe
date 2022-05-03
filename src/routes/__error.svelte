@@ -16,14 +16,9 @@
 	export let message;
 </script>
 
-<svelte:head>
-	<title>borntofrappe | {status}</title>
-	<meta name="description" content="" />
-</svelte:head>
-
 <main class="visually-hidden">
 	<h1>Status code {status}</h1>
 	<p>Here's the error message for context: <mark>{message}</mark></p>
 </main>
 
-<SteeringPoints text={status.toString()} />
+<SteeringPoints text={status.toString()} title="borntofrappe | {status}" description={message} />
