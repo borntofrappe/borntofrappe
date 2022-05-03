@@ -4,7 +4,7 @@
 
 	let canvas;
 
-	const text = 'btfé';
+	export let text = 'btfé';
 	const width = text.length * 15;
 	const height = 24;
 
