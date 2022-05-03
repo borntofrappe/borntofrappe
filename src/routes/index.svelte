@@ -1,6 +1,4 @@
 <script>
-	import '../app.css';
-
 	import Sun from './playground/_Sun.svelte';
 	import Footer from './_Footer.svelte';
 </script>
