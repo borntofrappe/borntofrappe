@@ -60,11 +60,11 @@
 		t = top;
 	};
 
-	const handleMousemove = ({ pageX, pageY }) => {
+	const handleMousemove = ({ offsetX, offsetY }) => {
 		for (const vehicle of vehicles) {
 			vehicle.mouse = {
-				x: pageX - l,
-				y: pageY - t
+				x: offsetX,
+				y: offsetY
 			};
 		}
 	};
@@ -83,5 +83,13 @@
 	{width}
 	{height}
 	on:mousemove={handleMousemove}
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x, pageY: y } = e.touches[0];
+		handleMousemove({
+			offsetX: x - l,
+			offsetY: y - t
+		});
+	}}
 	on:mouseleave={handleMouseleave}
+	on:touchend|preventDefault={handleMouseleave}
 />
