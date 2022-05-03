@@ -31,6 +31,7 @@
 	let hover;
 
 	let svg;
+	let l;
 	let w;
 
 	onMount(() => {
@@ -38,7 +39,8 @@
 	});
 
 	const handleSize = () => {
-		const { width } = svg.getBoundingClientRect();
+		const { left, width } = svg.getBoundingClientRect();
+		l = left;
 		w = width;
 	};
 
@@ -74,14 +76,14 @@
 	on:mousedown={handleMousedown}
 	on:mouseup={handleMouseup}
 	on:mouseenter={handleStart}
-	on:touchstart={handleStart}
+	on:touchstart|preventDefault={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchend={handleEnd}
+	on:touchend|preventDefault={handleEnd}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientX } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x } = e.touches[0];
 		handleMove({
-			offsetX: clientX
+			offsetX: x - l
 		});
 	}}
 >

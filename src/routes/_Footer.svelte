@@ -3,8 +3,8 @@
 	import { spring } from 'svelte/motion';
 
 	let svg;
-	let w, h;
 	let l, t;
+	let w, h;
 
 	const pos = spring(
 		{
@@ -166,7 +166,7 @@
 				on:touchend|preventDefault={handleEnd}
 				on:mousemove={handleMove}
 				on:touchmove|preventDefault={(e) => {
-					const { clientX: x, clientY: y } = e.touches[0];
+					const { pageX: x, pageY: y } = e.touches[0];
 					handleMove({
 						offsetX: x - l,
 						offsetY: y - t

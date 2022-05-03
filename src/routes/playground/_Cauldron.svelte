@@ -18,6 +18,7 @@
 	});
 
 	let svg;
+	let l;
 	let w;
 
 	onMount(() => {
@@ -25,7 +26,8 @@
 	});
 
 	const handleSize = () => {
-		const { width } = svg.getBoundingClientRect();
+		const { left, width } = svg.getBoundingClientRect();
+		l = left;
 		w = width;
 	};
 
@@ -33,10 +35,12 @@
 		scale.set(1);
 		offset.set(2);
 	};
+
 	const handleEnd = () => {
 		scale.set(0.7);
 		offset.set(0);
 	};
+
 	const handleMove = ({ offsetX }) => {
 		const degrees = (offsetX / w - 0.5) * 40;
 		angle.set(degrees);
@@ -50,14 +54,14 @@
 	viewBox="-30 -35 60 80"
 	bind:this={svg}
 	on:mouseenter={handleStart}
-	on:touchstart={handleStart}
+	on:touchstart|preventDefault={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchend={handleEnd}
+	on:touchend|preventDefault={handleEnd}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientX } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x } = e.touches[0];
 		handleMove({
-			offsetX: clientX
+			offsetX: x - l
 		});
 	}}
 >

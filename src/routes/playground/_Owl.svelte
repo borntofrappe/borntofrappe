@@ -15,6 +15,7 @@
 	let rotate = spring(0);
 
 	let svg;
+	let l, t;
 	let w, h;
 
 	onMount(() => {
@@ -22,7 +23,9 @@
 	});
 
 	const handleSize = () => {
-		const { width, height } = svg.getBoundingClientRect();
+		const { left, top, width, height } = svg.getBoundingClientRect();
+		l = left;
+		t = top;
 		w = width;
 		h = height;
 	};
@@ -64,15 +67,15 @@
 	on:mousedown={handleMousedown}
 	on:mouseup={handleMouseup}
 	on:mouseenter={handleStart}
-	on:touchstart={handleStart}
+	on:touchstart|preventDefault={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchend={handleEnd}
+	on:touchend|preventDefault={handleEnd}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientX, clientY } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x, pageY: y } = e.touches[0];
 		handleMove({
-			offsetX: clientX,
-			offsetY: clientY
+			offsetX: x - l,
+			offsetY: y - t
 		});
 	}}
 >

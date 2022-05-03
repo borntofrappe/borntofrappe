@@ -13,6 +13,7 @@
 	});
 
 	let svg;
+	let t;
 	let h;
 
 	onMount(() => {
@@ -20,15 +21,16 @@
 	});
 
 	const handleSize = () => {
-		const { height } = svg.getBoundingClientRect();
+		const { top, height } = svg.getBoundingClientRect();
+		t = top;
 		h = height;
 	};
 
-	function handleMove({ offsetY }) {
+	const handleMove = ({ offsetY }) => {
 		const y = 1 - offsetY / h;
 		scale.set(0.8 + y * 0.2);
 		angle.set(y * 90);
-	}
+	};
 </script>
 
 <svelte:window on:resize={handleSize} />
@@ -38,10 +40,10 @@
 	viewBox="-55 -60 110 100"
 	bind:this={svg}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientY } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageY: y } = e.touches[0];
 		handleMove({
-			offsetY: clientY
+			offsetY: y - t
 		});
 	}}
 >

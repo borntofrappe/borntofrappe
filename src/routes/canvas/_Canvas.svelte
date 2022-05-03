@@ -11,7 +11,7 @@
 	let isDrawing;
 	let start;
 
-	let t, l;
+	let l, t;
 
 	onMount(() => {
 		context = canvas.getContext('2d');
@@ -19,6 +19,12 @@
 
 		handleSize();
 	});
+
+	const handleSize = () => {
+		const { left, top } = canvas.getBoundingClientRect();
+		l = left;
+		t = top;
+	};
 
 	$: if (context) {
 		context.strokeStyle = color;
@@ -49,12 +55,6 @@
 
 		start = { x: x1, y: y1 };
 	};
-
-	const handleSize = () => {
-		const { top, left } = canvas.getBoundingClientRect();
-		t = top;
-		l = left;
-	};
 </script>
 
 <svelte:window on:resize={handleSize} />
@@ -65,22 +65,22 @@
 	style:background
 	bind:this={canvas}
 	on:mousedown={handleStart}
-	on:touchstart={(e) => {
-		const { clientX, clientY } = e.touches[0];
+	on:touchstart|preventDefault={(e) => {
+		const { pageX: x, pageY: y } = e.touches[0];
 		handleStart({
-			offsetX: clientX - l,
-			offsetY: clientY - t
+			offsetX: x - l,
+			offsetY: y - t
 		});
 	}}
 	on:mouseup={handleEnd}
-	on:touchend={handleEnd}
+	on:touchend|preventDefault={handleEnd}
 	on:mouseleave={handleEnd}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientX, clientY } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x, pageY: y } = e.touches[0];
 		handleMove({
-			offsetX: clientX - l,
-			offsetY: clientY - t
+			offsetX: x - l,
+			offsetY: y - t
 		});
 	}}
 />

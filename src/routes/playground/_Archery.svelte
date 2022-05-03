@@ -13,6 +13,7 @@
 	const arrowDistance = spring(0, springOptions);
 
 	let svg;
+	let l;
 	let w;
 
 	let hasFocus;
@@ -23,7 +24,8 @@
 	});
 
 	const handleSize = () => {
-		const { width } = svg.getBoundingClientRect();
+		const { left, width } = svg.getBoundingClientRect();
+		l = left;
 		w = width;
 	};
 
@@ -89,14 +91,14 @@
 <svg
 	bind:this={svg}
 	on:mouseenter={handleFocus}
-	on:touchstart={handleFocus}
+	on:touchstart|preventDefault={handleFocus}
 	on:mouseleave={handleBlur}
-	on:touchend={handleBlur}
+	on:touchend|preventDefault={handleBlur}
 	on:mousemove={handleCharge}
-	on:touchmove={(e) => {
-		const { clientX } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x } = e.touches[0];
 		handleCharge({
-			offsetX: clientX
+			offsetX: x - l
 		});
 	}}
 	xmlns="http://www.w3.org/2000/svg"

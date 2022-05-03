@@ -12,6 +12,7 @@
 	});
 
 	let svg;
+	let l;
 	let w;
 
 	onMount(async () => {
@@ -28,20 +29,22 @@
 	});
 
 	const handleSize = () => {
-		const { width } = svg.getBoundingClientRect();
+		const { left, width } = svg.getBoundingClientRect();
+		l = left;
 		w = width;
 	};
 
-	function handleMove({ offsetX }) {
+	const handleMove = ({ offsetX }) => {
 		if (!offset.damping) return;
 
 		const x = offsetX / w;
 		offset.set(1 - x);
-	}
+	};
 
 	$: if ($offset < 0.25 && $scale == 1) {
 		scale.set(1.2);
 	}
+
 	$: if ($offset > 0.25 && $scale == 1.2) {
 		scale.set(1);
 	}
@@ -54,10 +57,10 @@
 	viewBox="-100 -60 200 120"
 	bind:this={svg}
 	on:mousemove={handleMove}
-	on:touchmove={(e) => {
-		const { clientY } = e.touches[0];
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x } = e.touches[0];
 		handleMove({
-			offsetX: clientY
+			offsetX: x - l
 		});
 	}}
 >
