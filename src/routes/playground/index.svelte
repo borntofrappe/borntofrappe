@@ -42,23 +42,20 @@
 		index = (index + 1) % components.length;
 	}} />
 
-<svelte:component this={component.Function} />
+<main>
+	<svelte:component this={component.Function} />
+</main>
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-
-	:global(body) {
-		margin: 0;
-		background: hsl(41, 100%, 97%);
+	main {
 		color: hsl(44, 30%, 17%);
+		background: hsl(41, 100%, 97%);
+		min-height: 100vh;
 		display: grid;
 		place-items: center;
 	}
 
-	:global(svg) {
+	main > :global(svg) {
 		display: block;
 		max-width: 30rem;
 		width: 100vmin;

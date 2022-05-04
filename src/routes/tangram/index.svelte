@@ -27,30 +27,27 @@
 	<link rel="icon" href="/icons/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
-<svg
-	viewBox="-90 -90 280 280"
-	on:click={() => {
-		tangram = !tangram;
-		if (!tangram) shape = shapes[Math.floor(Math.random() * shapes.length)];
-	}}
->
-	<g class:tangram>
-		{#each paths as { d, fill, style }}
-			<path {d} {fill} {style} />
-		{/each}
-	</g>
-</svg>
+<main>
+	<svg
+		viewBox="-95 -95 290 290"
+		on:click={() => {
+			tangram = !tangram;
+			if (!tangram) shape = shapes[Math.floor(Math.random() * shapes.length)];
+		}}
+	>
+		<g class:tangram>
+			{#each paths as { d, fill, style }}
+				<path {d} {fill} {style} />
+			{/each}
+		</g>
+	</svg>
+</main>
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-
-	:global(body) {
-		margin: 0;
+	main {
 		color: hsl(44, 30%, 17%);
 		background: hsl(41, 100%, 97%);
+		min-height: 100vh;
 		display: grid;
 		place-items: center;
 	}

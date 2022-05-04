@@ -40,20 +40,18 @@
 </svelte:head>
 
 <canvas style:display="none" bind:this={canvas} {width} {height} />
+
 {#if points.length > 0}
-	<SteeringPoints {points} {width} {height} />
+	<main>
+		<SteeringPoints {points} {width} {height} />
+	</main>
 {/if}
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-
-	:global(body) {
-		margin: 0;
+	main {
 		color: hsl(44, 30%, 17%);
 		background: hsl(41, 100%, 97%);
+		min-height: 100vh;
 		display: grid;
 		place-items: center;
 	}

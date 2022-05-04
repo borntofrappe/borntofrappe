@@ -28,36 +28,12 @@
 </main>
 
 <style>
-	:global(html),
-	:global(body) {
-		height: 100%;
-	}
-
-	:global(body) {
-		margin: 0;
-		background: #e5e5e5;
-		display: grid;
-		place-items: center;
-	}
-
-	:global(.visually-hidden:not(:focus):not(:active)) {
-		clip: rect(0 0 0 0);
-		clip-path: inset(50%);
-		height: 1px;
-		width: 1px;
-		overflow: hidden;
-		position: absolute;
-		white-space: nowrap;
-	}
-
 	main {
-		max-width: 300px;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem 0;
-	}
-
-	main :global(canvas) {
-		align-self: center;
+		background: #e5e5e5;
+		min-height: 100vh;
+		display: grid;
+		justify-content: center;
+		align-content: center;
+		gap: 0.75rem 0;
 	}
 </style>
