@@ -1,5 +1,5 @@
 <script>
-	import Sun from './playground/_Sun.svelte';
+	import Header from './_Header.svelte';
 	import Footer from './_Footer.svelte';
 </script>
 
@@ -8,25 +8,20 @@
 	<meta name="description" content="" />
 </svelte:head>
 
-<article>
-	<Sun />
-</article>
+<div>
+	<Header />
 
-<Footer />
+	<Footer />
+</div>
 
 <style>
-	article {
-		min-height: 100vh;
-		background: hsl(41, 100%, 97%);
+	div {
 		color: hsl(44, 30%, 17%);
-		display: grid;
-		place-items: center;
+		background: hsl(41, 100%, 97%);
+		min-height: 100vh;
 	}
 
-	article > :global(svg) {
-		display: block;
-		max-width: 30rem;
-		width: 100vmin;
-		height: auto;
+	div > :global(footer) {
+		margin-top: auto;
 	}
 </style>
