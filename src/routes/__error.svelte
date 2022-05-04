@@ -21,4 +21,7 @@
 	<p>Here's the error message for context: <mark>{message}</mark></p>
 </main>
 
-<SteeringPoints text={status.toString()} title="borntofrappe | {status}" description={message} />
+<SteeringPoints text={status.toString()}>
+	<title>borntofrappe | {status}</title>
+	<meta name="description" content={message} />
+</SteeringPoints>

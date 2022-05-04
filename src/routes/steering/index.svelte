@@ -4,20 +4,18 @@
 
 	let canvas;
 
-	export let text = 'btfé';
-	export let title = 'borntofrappe | Steering points';
-	export let description =
-		'A showcase of a steering behavior, with numerous agents lining up in the shape of a string of text.';
+	export let text = 'Points'.toUpperCase();
 
-	const width = text.length * 15;
+	const width = text.length * 16;
 	const height = 24;
+	const fontSize = 18;
 
 	let points = [];
 
 	onMount(() => {
 		const context = canvas.getContext('2d');
 
-		context.font = `${height}px monospace`;
+		context.font = `${fontSize}px monospace`;
 		context.textAlign = 'center';
 		context.textBaseline = 'middle';
 		context.fillStyle = 'green';
@@ -35,8 +33,13 @@
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
+	<slot>
+		<title>borntofrappe | Steering</title>
+		<meta
+			name="description"
+			content="A showcase of a steering behavior, with numerous agents lining up in the shape of a string of text."
+		/>
+	</slot>
 </svelte:head>
 
 <canvas style:display="none" bind:this={canvas} {width} {height} />
