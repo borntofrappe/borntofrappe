@@ -37,12 +37,11 @@
 	/>
 </svelte:head>
 
-<svelte:body
+<main
 	on:click|self={() => {
 		index = (index + 1) % components.length;
-	}} />
-
-<main>
+	}}
+>
 	<svelte:component this={component.Function} />
 </main>
 
