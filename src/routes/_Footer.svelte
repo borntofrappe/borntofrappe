@@ -228,10 +228,18 @@
 		text-align: center;
 	}
 
+	p::selection {
+		background: #f0f8ff22;
+	}
+
 	p,
 	ul {
 		font-size: 2rem;
 		font-weight: 700;
+	}
+
+	:global(.webfonts) p {
+		font-family: 'JosefinsansBold';
 	}
 
 	ul {
