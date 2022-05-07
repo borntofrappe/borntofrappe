@@ -1,5 +1,6 @@
 <script>
 	import Ladybug from './_Ladybug.svelte';
+	import Balloon from './_Balloon.svelte';
 </script>
 
 <svelte:head>
@@ -10,6 +11,9 @@
 <div>
 	<article style="--background-color: #f7717b; --outline-color: #b5d2c5;">
 		<Ladybug />
+	</article>
+	<article style="--background-color: #f7c629; --outline-color: #eea200;">
+		<Balloon />
 	</article>
 </div>
 
@@ -31,6 +35,7 @@
 
 	article > :global(svg) {
 		max-width: 32rem;
+		height: auto;
 		border-radius: 0.25rem;
 		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.15rem currentColor,
 			0 0 0 0.9rem hsl(6, 100%, 74%), 0 0 0 1rem currentColor;
