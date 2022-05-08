@@ -1,6 +1,11 @@
+<script context="module">
+	export const hydrate = false;
+</script>
+
 <script>
 	import Ladybug from './_Ladybug.svelte';
 	import Balloon from './_Balloon.svelte';
+	import Butterflies from './_Butterflies.svelte';
 </script>
 
 <svelte:head>
@@ -14,6 +19,9 @@
 	</article>
 	<article style="--background-color: #f7c629; --outline-color: #eea200;">
 		<Balloon />
+	</article>
+	<article style="--background-color: #2979ce; --outline-color: #19baa4;">
+		<Butterflies />
 	</article>
 </div>
 
@@ -34,6 +42,7 @@
 	}
 
 	article > :global(svg) {
+		width: 90vw;
 		max-width: 32rem;
 		height: auto;
 		border-radius: 0.25rem;
