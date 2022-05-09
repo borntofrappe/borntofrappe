@@ -29,12 +29,16 @@
 	div {
 		color: hsl(44, 30%, 17%);
 		background: hsl(41, 100%, 97%);
+		max-height: 100vh;
+		overflow-y: scroll;
+		scroll-snap-type: y proximity;
 		--outline-color: hsl(6, 100%, 74%);
 		--background-color: hsl(41, 100%, 97%);
 	}
 
 	article {
-		min-height: 100vh;
+		scroll-snap-align: start;
+		height: 100vh;
 		display: grid;
 		place-items: center;
 		background: inherit;
