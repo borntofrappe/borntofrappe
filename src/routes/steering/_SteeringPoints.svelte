@@ -6,7 +6,7 @@
 	export let width;
 	export let height;
 
-	const scale = 15;
+	const scale = 14;
 	width *= scale;
 	height *= scale;
 
@@ -45,7 +45,7 @@
 
 	onMount(() => {
 		context = canvas.getContext('2d');
-		context.fillStyle = '#ff877a';
+		context.fillStyle = '#ffdb47';
 		draw();
 		handleSize();
 

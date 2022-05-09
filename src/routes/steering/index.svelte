@@ -52,10 +52,10 @@
 
 <style>
 	main {
-		color: hsl(44, 30%, 17%);
-		background: hsl(41, 100%, 97%);
+		background: #38311e;
 		min-height: 100vh;
 		display: grid;
 		place-items: center;
+		overflow-x: auto;
 	}
 </style>
