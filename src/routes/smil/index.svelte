@@ -6,6 +6,7 @@
 	import Ladybug from './_Ladybug.svelte';
 	import Balloon from './_Balloon.svelte';
 	import Butterflies from './_Butterflies.svelte';
+	import Egg from './_Egg.svelte';
 </script>
 
 <svelte:head>
@@ -22,6 +23,9 @@
 	</article>
 	<article style="--background-color: #2979ce; --outline-color: #19baa4;">
 		<Butterflies />
+	</article>
+	<article style="--background-color: #cedfde; --outline-color: #11b69c;">
+		<Egg />
 	</article>
 </div>
 
@@ -46,7 +50,7 @@
 	}
 
 	article > :global(svg) {
-		width: 90vw;
+		width: 90vmin;
 		max-width: 32rem;
 		height: auto;
 		border-radius: 0.25rem;
