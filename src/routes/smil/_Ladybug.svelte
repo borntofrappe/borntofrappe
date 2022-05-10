@@ -28,20 +28,20 @@
 		const dx = (x2 - x1) / p;
 		const dy = (y2 - y1) / p;
 
-		return `M ${x1} ${y1}
-  ${Array(p)
-		.fill()
-		.map((_, i) => {
-			const x = x1 + dx * i + Math.random() - 0.5;
-			const y = y1 + dy * i + Math.random() - 0.5;
-			return {
-				x,
-				y
-			};
-		})
-		.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, '')}
-   ${x2} ${y2}`;
+		return `M ${x1} ${y1} ${Array(p)
+			.fill()
+			.map((_, i) => {
+				const x = x1 + dx * i + Math.random() - 0.5;
+				const y = y1 + dy * i + Math.random() - 0.5;
+				return {
+					x,
+					y
+				};
+			})
+			.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, '')} ${x2} ${y2}`;
 	};
+
+	console.log(dLine({ x1: 0, y1: -9.5, x2: -0, y2: 9.5, points: 7 }));
 
 	const sprites = 4;
 </script>
