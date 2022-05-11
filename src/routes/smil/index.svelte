@@ -7,6 +7,7 @@
 	import Balloon from './_Balloon.svelte';
 	import Butterflies from './_Butterflies.svelte';
 	import Egg from './_Egg.svelte';
+	import Battle from './_Battle.svelte';
 </script>
 
 <svelte:head>
@@ -26,6 +27,9 @@
 	</article>
 	<article style="--background-color: #cedfde; --outline-color: #11b69c;">
 		<Egg />
+	</article>
+	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
+		<Battle />
 	</article>
 </div>
 
