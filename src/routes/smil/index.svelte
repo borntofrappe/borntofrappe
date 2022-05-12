@@ -8,6 +8,7 @@
 	import Butterflies from './_Butterflies.svelte';
 	import Egg from './_Egg.svelte';
 	import Battle from './_Battle.svelte';
+	import HitParade from './_HitParade.svelte';
 </script>
 
 <svelte:head>
@@ -30,6 +31,9 @@
 	</article>
 	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
 		<Battle />
+	</article>
+	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
+		<HitParade />
 	</article>
 </div>
 
