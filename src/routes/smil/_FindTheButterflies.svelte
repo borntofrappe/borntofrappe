@@ -71,7 +71,7 @@
 
 <svg viewBox="0 0 80 50">
 	<defs>
-		<pattern id="butterflies-pattern-bricks" viewBox="0 0 8 5" width="0.12" height="0.12">
+		<pattern id="find-the-butterflies-pattern-bricks" viewBox="0 0 8 5" width="0.12" height="0.12">
 			<rect fill="#bd4900" width="8" height="5" />
 			<g fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="square">
 				<path d="M 7.75 0 v 2.375 h -7.75 m 3.875 0 v 2.375 m -3.875 0h 7.75" />
@@ -79,7 +79,7 @@
 		</pattern>
 	</defs>
 
-	<rect fill="url(#butterflies-pattern-bricks)" width="80" height="50" />
+	<rect fill="url(#find-the-butterflies-pattern-bricks)" width="80" height="50" />
 	<g transform="translate({ribbon.x} {ribbon.y})">
 		<g transform="translate(8 6) scale(0.7)">
 			<g stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
@@ -109,7 +109,7 @@
 						dur="0.2s"
 						fill="freeze"
 						begin="click"
-						id="butterfliesGameButterfly{i}"
+						id="findTheButterfliesButterfly{i}"
 						restart="never"
 					/>
 					<g>
@@ -118,8 +118,8 @@
 							dur="12s"
 							repeatCount="indefinite"
 							fill="freeze"
-							begin="butterfliesGameButterfly{i}.begin"
-							end="butterfliesGameEnd.end"
+							begin="findTheButterfliesButterfly{i}.begin"
+							end="findTheButterfliesEnd.end"
 						/>
 
 						<g
@@ -138,8 +138,8 @@
 										calcMode="discrete"
 										repeatCount="indefinite"
 										fill="freeze"
-										begin="butterfliesGameButterfly{i}.begin"
-										end="butterfliesGameEnd.end"
+										begin="findTheButterfliesButterfly{i}.begin"
+										end="findTheButterfliesEnd.end"
 									/>
 									<path
 										fill="currentColor"
@@ -203,7 +203,7 @@
 				to="0"
 				fill="freeze"
 				dur="0.1s"
-				begin="butterfliesGameStart.begin"
+				begin="findTheButterfliesStart.begin"
 			/>
 			<text> Butterflies? </text>
 		</g>
@@ -211,7 +211,7 @@
 
 	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="butterfliesGameStart"
+			id="findTheButterfliesStart"
 			attributeName="display"
 			to="none"
 			fill="freeze"
@@ -230,7 +230,7 @@
 				fill="freeze"
 				dur="0.1s"
 				calcMode="discrete"
-				begin="butterfliesGameButterfly{i}.begin"
+				begin="findTheButterfliesButterfly{i}.begin"
 			/>
 		{/each}
 		<g transform="translate(40 25)">
@@ -251,13 +251,13 @@
 					to="0 1"
 					dur="0.25s"
 					repeatCount="indefinite"
-					begin="butterfliesGameButterfly0.begin"
-					end="butterfliesGameEnd.end"
+					begin="findTheButterfliesButterfly0.begin"
+					end="findTheButterfliesEnd.end"
 					fill="freeze"
 					calcMode="discrete"
 				/>
 				<text>
-					{#each 'You found them!'.split('') as l, i}
+					{#each "That's all!".split('') as l, i}
 						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
 					{/each}
 				</text>
@@ -271,7 +271,7 @@
 				begin="click"
 				restart="never"
 				dur="0.1s"
-				id="butterfliesGameEnd"
+				id="findTheButterfliesEnd"
 			/>
 		</rect>
 	</g>

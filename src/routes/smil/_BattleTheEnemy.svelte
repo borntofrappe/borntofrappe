@@ -31,7 +31,7 @@
 				dur="0.1s"
 				fill="freeze"
 				calcMode="discrete"
-				begin="battleGameStart.begin"
+				begin="battleTheEnemyStart.begin"
 			/>
 			<rect fill="currentColor" stroke="#fff" width="20" height="11" rx="1" />
 			<g transform="translate(10 4.6)">
@@ -55,7 +55,7 @@
 											dur="0.1s"
 											fill="freeze"
 											calcMode="discrete"
-											begin="battleGameHit{i}.begin"
+											begin="battleTheEnemyHit{i}.begin"
 										/>
 									{/if}
 									{#if i > 0}
@@ -65,7 +65,7 @@
 											dur="0.1s"
 											fill="freeze"
 											calcMode="discrete"
-											begin="battleGameHit{i - 1}.begin"
+											begin="battleTheEnemyHit{i - 1}.begin"
 										/>
 									{/if}
 									{i}
@@ -86,7 +86,7 @@
 				dur="0.1s"
 				fill="freeze"
 				calcMode="discrete"
-				begin="battleGameStart.begin"
+				begin="battleTheEnemyStart.begin"
 			/>
 			<rect fill="currentColor" stroke="#fff" width="78" height="11" rx="1" />
 
@@ -107,7 +107,7 @@
 									dur="0.1s"
 									fill="freeze"
 									calcMode="discrete"
-									begin="battleGameHit{i}.begin"
+									begin="battleTheEnemyHit{i}.begin"
 								/>
 							{/if}
 							{#if i > 0}
@@ -117,7 +117,7 @@
 									dur="0.1s"
 									fill="freeze"
 									calcMode="discrete"
-									begin="battleGameHit{i - 1}.begin"
+									begin="battleTheEnemyHit{i - 1}.begin"
 								/>
 							{/if}
 							<text>
@@ -129,9 +129,11 @@
 												to="1"
 												dur="0.025s"
 												fill="freeze"
-												id="message{i}Letter{j}"
+												id="battleTheEnemyMessage{i}Letter{j}"
 												calcMode="discrete"
-												begin={j === 0 ? 'battleGameStart.end' : `message${i}Letter${j - 1}.end`}
+												begin={j === 0
+													? 'battleTheEnemyStart.end'
+													: `battleTheEnemyMessage${i}Letter${j - 1}.end`}
 											/>
 											{l}
 										</tspan>
@@ -144,9 +146,11 @@
 												to="1"
 												dur="0.025s"
 												fill="freeze"
-												id="message{i}Letter{j}"
+												id="battleTheEnemyMessage{i}Letter{j}"
 												calcMode="discrete"
-												begin={j === 0 ? `battleGameHit${i}.end` : `message${i}Letter${j - 1}.end`}
+												begin={j === 0
+													? `battleTheEnemyHit${i}.end`
+													: `battleTheEnemyMessage${i}Letter${j - 1}.end`}
 											/>
 											{l}
 										</tspan>
@@ -170,7 +174,9 @@
 						dur="0.1s"
 						fill="freeze"
 						calcMode="discrete"
-						begin={i === lifepoints - 1 ? 'battleGameStart.begin' : `battleGameHit${i + 1}.begin`}
+						begin={i === lifepoints - 1
+							? 'battleTheEnemyStart.begin'
+							: `battleTheEnemyHit${i + 1}.begin`}
 					/>
 					{#if i !== lifepoints - 1}
 						<animate
@@ -179,7 +185,7 @@
 							repeatCount="2"
 							dur="0.2s"
 							calcMode="discrete"
-							begin="battleGameHit{i + 1}.begin"
+							begin="battleTheEnemyHit{i + 1}.begin"
 						/>
 					{/if}
 
@@ -189,7 +195,7 @@
 						dur="0.1s"
 						fill="freeze"
 						calcMode="discrete"
-						id="battleGameHit{i}"
+						id="battleTheEnemyHit{i}"
 						begin="click"
 					/>
 
@@ -207,7 +213,7 @@
 		</g>
 	</g>
 
-	<g transform="translate(40 25)">
+	<g transform="translate(40 30)">
 		<g
 			style="pointer-events: none;"
 			font-size="7"
@@ -224,7 +230,7 @@
 				to="0"
 				fill="freeze"
 				dur="0.1s"
-				begin="battleGameStart.begin"
+				begin="battleTheEnemyStart.begin"
 			/>
 			<text> Battle! </text>
 		</g>
@@ -232,7 +238,7 @@
 
 	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="battleGameStart"
+			id="battleTheEnemyStart"
 			attributeName="display"
 			to="none"
 			fill="freeze"
@@ -249,12 +255,12 @@
 			additive="sum"
 			calcMode="discrete"
 			fill="freeze"
-			begin="battleGameHit0.end + 2s"
-			id="battleGameMessage"
+			begin="battleTheEnemyHit0.end + 2s"
+			id="battleTheEnemyMessage"
 			dur="0.1s"
 		/>
 
-		<g transform="translate(40 25)">
+		<g transform="translate(40 30)">
 			<g
 				style="pointer-events: none;"
 				font-size="6"
@@ -272,13 +278,13 @@
 					to="0 1"
 					dur="0.25s"
 					repeatCount="indefinite"
-					begin="battleGameMessage.begin"
-					end="battleGameEnd.end"
+					begin="battleTheEnemyMessage.begin"
+					end="battleTheEnemy.end"
 					fill="freeze"
 					calcMode="discrete"
 				/>
 				<text>
-					{#each 'Congratulations!'.split('') as l, i}
+					{#each 'Level up!'.split('') as l, i}
 						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
 					{/each}
 				</text>
@@ -293,7 +299,7 @@
 				begin="click"
 				restart="never"
 				dur="0.1s"
-				id="battleGameEnd"
+				id="battleTheEnemy"
 			/>
 		</rect>
 	</g>

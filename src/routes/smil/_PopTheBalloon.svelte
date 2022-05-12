@@ -34,7 +34,7 @@
 
 <svg viewBox="0 0 80 50">
 	<defs>
-		<g id="balloon-cloud">
+		<g id="pop-the-balloon-cloud">
 			<path
 				fill="#f7f7f7"
 				d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
@@ -51,7 +51,7 @@
 		</g>
 
 		<pattern
-			id="balloon-pattern-present"
+			id="pop-the-balloon-pattern-present"
 			viewBox="0 0 10 10"
 			width="4"
 			height="4"
@@ -64,9 +64,9 @@
 			/>
 		</pattern>
 
-		<ellipse id="balloon-balloon-light" stroke="none" rx="2" ry="2.5" />
+		<ellipse id="pop-the-balloon-reflection" stroke="none" rx="2" ry="2.5" />
 
-		<g id="balloon-balloon">
+		<g id="pop-the-balloon-balloon">
 			<g transform="translate(0 -3)">
 				<path d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
 				<g transform="translate(0 -10)">
@@ -74,7 +74,7 @@
 					<use
 						transform="translate(2 -2.5) rotate(-40)"
 						fill="#f7d794"
-						href="#balloon-balloon-light"
+						href="#pop-the-balloon-reflection"
 					/>
 				</g>
 				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
@@ -82,7 +82,7 @@
 		</g>
 
 		<pattern
-			id="balloon-balloon-shreds"
+			id="pop-the-balloon-shreds"
 			viewBox="0 0 5 5"
 			width="1"
 			height="1"
@@ -94,11 +94,11 @@
 			</g>
 		</pattern>
 
-		<mask id="balloon-mask-balloon-shreds">
-			<use href="#balloon-balloon" fill="white" stroke="white" />
-			<g fill="url(#balloon-balloon-shreds)">
-				<use href="#balloon-balloon" stroke="white" />
-				<use transform="translate(2 -15.5) rotate(-40)" href="#balloon-balloon-light" />
+		<mask id="pop-the-balloon-mask-shreds">
+			<use href="#pop-the-balloon-balloon" fill="white" stroke="white" />
+			<g fill="url(#pop-the-balloon-shreds)">
+				<use href="#pop-the-balloon-balloon" stroke="white" />
+				<use transform="translate(2 -15.5) rotate(-40)" href="#pop-the-balloon-reflection" />
 			</g>
 		</mask>
 	</defs>
@@ -106,8 +106,8 @@
 	<rect fill="#10c2ce" width="80" height="50" />
 
 	<g stroke-width="0.5">
-		<use transform="translate(15 15) scale(0.8)" href="#balloon-cloud" />
-		<use transform="translate(65 35) scale(0.8)" href="#balloon-cloud" />
+		<use transform="translate(15 15) scale(0.8)" href="#pop-the-balloon-cloud" />
+		<use transform="translate(65 35) scale(0.8)" href="#pop-the-balloon-cloud" />
 	</g>
 
 	<g transform="translate(40 28)">
@@ -118,9 +118,9 @@
 				to="{dx} {dy}"
 				dur="5s"
 				fill="freeze"
-				begin="balloonGameStart.begin"
-				end="balloonGamePopBalloon.begin"
-				id="balloonGameOver"
+				begin="popTheBalloonStart.begin"
+				end="popTheBalloonPop.begin"
+				id="popTheBalloonOver"
 			/>
 			<g fill="#f70000" stroke="currentColor" stroke-width="0.5">
 				<g style:cursor="pointer">
@@ -133,7 +133,7 @@
 						fill="freeze"
 						begin="click"
 						restart="never"
-						id="balloonGamePopBalloon"
+						id="popTheBalloonPop"
 					/>
 					<g>
 						<animateTransform
@@ -143,12 +143,16 @@
 							dur="0.35s"
 							calcMode="discrete"
 							fill="freeze"
-							begin="balloonGameStart.begin"
+							begin="popTheBalloonStart.begin"
 							repeatCount="indefinite"
-							id="balloonGamePopBalloon.end"
+							id="popTheBalloonPop.end"
 						/>
-						<use href="#balloon-balloon" />
-						<use x="-160" href="#balloon-balloon" mask="url(#balloon-mask-balloon-shreds)" />
+						<use href="#pop-the-balloon-balloon" />
+						<use
+							x="-160"
+							href="#pop-the-balloon-balloon"
+							mask="url(#pop-the-balloon-mask-shreds)"
+						/>
 					</g>
 				</g>
 			</g>
@@ -159,13 +163,13 @@
 					to="0 100"
 					dur="1.5s"
 					fill="freeze"
-					begin="balloonGamePopBalloon.begin"
+					begin="popTheBalloonPop.begin"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.65 0 0.4 1"
 				/>
 				<g stroke="currentColor" stroke-width="0.6">
-					<g fill="url(#balloon-pattern-present)">
+					<g fill="url(#pop-the-balloon-pattern-present)">
 						<rect x="-6" y="4" width="12" height="7" />
 						<rect x="-7" width="14" height="4" />
 					</g>
@@ -192,7 +196,7 @@
 				to="0"
 				fill="freeze"
 				dur="0.1s"
-				begin="balloonGameStart.begin"
+				begin="popTheBalloonStart.begin"
 			/>
 			<text> Pop! </text>
 		</g>
@@ -200,7 +204,7 @@
 
 	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="balloonGameStart"
+			id="popTheBalloonStart"
 			attributeName="display"
 			to="none"
 			fill="freeze"
@@ -217,9 +221,9 @@
 			additive="sum"
 			calcMode="discrete"
 			fill="freeze"
-			begin="balloonGameOver.end + 1.5s"
+			begin="popTheBalloonOver.end + 1.5s"
 			dur="0.1s"
-			id="balloonGameMessage"
+			id="popTheBalloonMessage"
 		/>
 
 		<g transform="translate(40 25)">
@@ -240,8 +244,8 @@
 					to="0 1"
 					dur="0.25s"
 					repeatCount="indefinite"
-					begin="balloonGameMessage.begin"
-					end="balloonGameEnd.end"
+					begin="popTheBalloonMessage.begin"
+					end="popTheBalloonEnd.end"
 					fill="freeze"
 					calcMode="discrete"
 				/>
@@ -253,16 +257,16 @@
 						dur="0.1s"
 						calcMode="discrete"
 						fill="freeze"
-						begin="balloonGamePopBalloon.begin"
+						begin="popTheBalloonPop.begin"
 					/>
 					<text>
-						{#each 'Too bad...'.split('') as l, i}
+						{#each 'Far away...'.split('') as l, i}
 							<tspan dx="0.5" dy={i % 2 === 0 ? -0.5 : 0.5}>{l}</tspan>
 						{/each}
 					</text>
 					<g transform="translate(0 -50)">
 						<text>
-							{#each 'You did it!'.split('') as l, i}
+							{#each "That's a wrap!".split('') as l, i}
 								<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
 							{/each}
 						</text>
@@ -279,7 +283,7 @@
 				begin="click"
 				restart="never"
 				dur="0.1s"
-				id="balloonGameEnd"
+				id="popTheBalloonEnd"
 			/>
 		</rect>
 	</g>

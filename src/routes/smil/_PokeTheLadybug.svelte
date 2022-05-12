@@ -41,16 +41,14 @@
 			.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, '')} ${x2} ${y2}`;
 	};
 
-	console.log(dLine({ x1: 0, y1: -9.5, x2: -0, y2: 9.5, points: 7 }));
-
 	const sprites = 4;
 </script>
 
 <svg viewBox="0 0 80 50">
 	<defs>
-		<circle id="ladybug-dot-grass" r="0.5" />
+		<circle id="poke-the-ladybug-dot-grass" r="0.5" />
 		<pattern
-			id="ladybug-pattern-grass"
+			id="poke-the-ladybug-pattern-grass"
 			viewBox="0 0 10 10"
 			patternUnits="userSpaceOnUse"
 			width="4"
@@ -58,56 +56,56 @@
 		>
 			<rect fill="#73d23a" width="10" height="10" />
 			<g fill="#eef7ee">
-				<use href="#ladybug-dot-grass" x="1" y="2" />
-				<use href="#ladybug-dot-grass" x="1.5" y="4" />
-				<use href="#ladybug-dot-grass" x="1.5" y="7.5" />
-				<use href="#ladybug-dot-grass" x="2.5" y="8.5" />
-				<use href="#ladybug-dot-grass" x="4.5" y="1" />
-				<use href="#ladybug-dot-grass" x="7" y="2" />
-				<use href="#ladybug-dot-grass" x="5" y="3.5" />
-				<use href="#ladybug-dot-grass" x="8" y="0" />
-				<use href="#ladybug-dot-grass" x="8" y="10" />
-				<use href="#ladybug-dot-grass" x="0" y="3" />
-				<use href="#ladybug-dot-grass" x="10" y="3" />
-				<use href="#ladybug-dot-grass" x="4" y="5" />
-				<use href="#ladybug-dot-grass" x="6" y="6" />
-				<use href="#ladybug-dot-grass" x="5" y="8.5" />
-				<use href="#ladybug-dot-grass" x="8" y="5" />
-				<use href="#ladybug-dot-grass" x="7.5" y="9" />
+				<use href="#poke-the-ladybug-dot-grass" x="1" y="2" />
+				<use href="#poke-the-ladybug-dot-grass" x="1.5" y="4" />
+				<use href="#poke-the-ladybug-dot-grass" x="1.5" y="7.5" />
+				<use href="#poke-the-ladybug-dot-grass" x="2.5" y="8.5" />
+				<use href="#poke-the-ladybug-dot-grass" x="4.5" y="1" />
+				<use href="#poke-the-ladybug-dot-grass" x="7" y="2" />
+				<use href="#poke-the-ladybug-dot-grass" x="5" y="3.5" />
+				<use href="#poke-the-ladybug-dot-grass" x="8" y="0" />
+				<use href="#poke-the-ladybug-dot-grass" x="8" y="10" />
+				<use href="#poke-the-ladybug-dot-grass" x="0" y="3" />
+				<use href="#poke-the-ladybug-dot-grass" x="10" y="3" />
+				<use href="#poke-the-ladybug-dot-grass" x="4" y="5" />
+				<use href="#poke-the-ladybug-dot-grass" x="6" y="6" />
+				<use href="#poke-the-ladybug-dot-grass" x="5" y="8.5" />
+				<use href="#poke-the-ladybug-dot-grass" x="8" y="5" />
+				<use href="#poke-the-ladybug-dot-grass" x="7.5" y="9" />
 			</g>
 		</pattern>
 
-		<circle id="ladybug-dot-rock" r="0.2" />
-		<g id="ladybug-rock">
+		<circle id="poke-the-ladybug-dot-rock" r="0.2" />
+		<g id="poke-the-ladybug-rock">
 			<g stroke="#7b7e7b" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round">
 				<path fill="#bdbebd" d="M 0 0 2 -3 9 -5 12 -4 14 1 12 4 2 4z" />
 				<path fill="#7b7e7b" d="M 0 0 2 4 12 4 14 1 11.5 2.5 2.5 3" />
 			</g>
 			<g fill="#7b7e7b">
-				<use href="#ladybug-dot-rock" x="2" y="-1" />
-				<use href="#ladybug-dot-rock" x="7" y="-2" />
-				<use href="#ladybug-dot-rock" x="8" y="-1.5" />
-				<use href="#ladybug-dot-rock" x="9" y="-3.5" />
-				<use href="#ladybug-dot-rock" x="10.5" y="-3.5" />
-				<use href="#ladybug-dot-rock" x="12" y="-1" />
-				<use href="#ladybug-dot-rock" x="11" y="0.5" />
-				<use href="#ladybug-dot-rock" x="10" />
-				<use href="#ladybug-dot-rock" x="6.5" />
-				<use href="#ladybug-dot-rock" x="7.5" y="2" />
-				<use href="#ladybug-dot-rock" x="6" y="1.5" />
-				<use href="#ladybug-dot-rock" x="3.5" y="1" />
+				<use href="#poke-the-ladybug-dot-rock" x="2" y="-1" />
+				<use href="#poke-the-ladybug-dot-rock" x="7" y="-2" />
+				<use href="#poke-the-ladybug-dot-rock" x="8" y="-1.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="9" y="-3.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="10.5" y="-3.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="12" y="-1" />
+				<use href="#poke-the-ladybug-dot-rock" x="11" y="0.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="10" />
+				<use href="#poke-the-ladybug-dot-rock" x="6.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="7.5" y="2" />
+				<use href="#poke-the-ladybug-dot-rock" x="6" y="1.5" />
+				<use href="#poke-the-ladybug-dot-rock" x="3.5" y="1" />
 			</g>
 		</g>
 	</defs>
 
-	<rect fill="url(#ladybug-pattern-grass)" width="80" height="50" />
+	<rect fill="url(#poke-the-ladybug-pattern-grass)" width="80" height="50" />
 	<g>
-		<use x="12.5" y="12.5" href="#ladybug-rock" />
-		<use x="5" y="17.5" href="#ladybug-rock" />
-		<use x="60" y="15" href="#ladybug-rock" />
-		<use transform="translate(25 35) scale(-1 1)" href="#ladybug-rock" />
-		<use transform="translate(70 35) scale(-1 1)" href="#ladybug-rock" />
-		<use transform="translate(65 40) scale(-1 1)" href="#ladybug-rock" />
+		<use x="12.5" y="12.5" href="#poke-the-ladybug-rock" />
+		<use x="5" y="17.5" href="#poke-the-ladybug-rock" />
+		<use x="60" y="15" href="#poke-the-ladybug-rock" />
+		<use transform="translate(25 35) scale(-1 1)" href="#poke-the-ladybug-rock" />
+		<use transform="translate(70 35) scale(-1 1)" href="#poke-the-ladybug-rock" />
+		<use transform="translate(65 40) scale(-1 1)" href="#poke-the-ladybug-rock" />
 	</g>
 
 	<g transform="translate(40 25)">
@@ -119,7 +117,7 @@
 				dur="2s"
 				begin="click"
 				restart="never"
-				id="ladybugGameOver"
+				id="pokeTheLadybugOver"
 				fill="freeze"
 			/>
 			<g>
@@ -134,9 +132,9 @@
 					additive="sum"
 					calcMode="discrete"
 					repeatCount="indefinite"
-					begin="ladybugGameStart.begin"
+					begin="pokeTheLadybugStart.begin"
 					fill="freeze"
-					end="ladybugGameOver.end"
+					end="pokeTheLadybugOver.end"
 				/>
 				{#each Array(sprites).fill() as _, i}
 					<g transform="translate({80 * i * -1} 0)">
@@ -168,7 +166,7 @@
 		</g>
 	</g>
 
-	<g transform="translate(40 25)">
+	<g transform="translate(40 40)">
 		<g
 			style="pointer-events: none;"
 			font-size="7"
@@ -185,7 +183,7 @@
 				to="0"
 				fill="freeze"
 				dur="0.1s"
-				begin="ladybugGameStart.begin"
+				begin="pokeTheLadybugStart.begin"
 			/>
 			<text> Poke! </text>
 		</g>
@@ -193,7 +191,7 @@
 
 	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="ladybugGameStart"
+			id="pokeTheLadybugStart"
 			attributeName="display"
 			to="none"
 			fill="freeze"
@@ -210,7 +208,7 @@
 			additive="sum"
 			calcMode="discrete"
 			fill="freeze"
-			begin="ladybugGameOver.end"
+			begin="pokeTheLadybugOver.end"
 			dur="0.1s"
 		/>
 
@@ -232,8 +230,8 @@
 					to="0 1"
 					dur="0.25s"
 					repeatCount="indefinite"
-					begin="ladybugGameOver.end"
-					end="ladybugGameEnd.end"
+					begin="pokeTheLadybugOver.end"
+					end="pokeTheLadybugEnd.end"
 					fill="freeze"
 					calcMode="discrete"
 				/>
@@ -253,7 +251,7 @@
 				begin="click"
 				restart="never"
 				dur="0.1s"
-				id="ladybugGameEnd"
+				id="pokeTheLadybugEnd"
 			/>
 		</rect>
 	</g>

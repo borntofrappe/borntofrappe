@@ -3,12 +3,12 @@
 </script>
 
 <script>
-	import Ladybug from './_Ladybug.svelte';
-	import Balloon from './_Balloon.svelte';
-	import Butterflies from './_Butterflies.svelte';
-	import Egg from './_Egg.svelte';
-	import Battle from './_Battle.svelte';
-	import HitParade from './_HitParade.svelte';
+	import PokeTheLadybug from './_PokeTheLadybug.svelte';
+	import PopTheBalloon from './_PopTheBalloon.svelte';
+	import FindTheButterflies from './_FindTheButterflies.svelte';
+	import CrackTheEgg from './_CrackTheEgg.svelte';
+	import BattleTheEnemy from './_BattleTheEnemy.svelte';
+	import SmashTheRabbits from './_SmashTheRabbits.svelte';
 </script>
 
 <svelte:head>
@@ -18,22 +18,22 @@
 
 <div>
 	<article style="--background-color: #f7717b; --outline-color: #b5d2c5;">
-		<Ladybug />
+		<PokeTheLadybug />
 	</article>
 	<article style="--background-color: #f7c629; --outline-color: #eea200;">
-		<Balloon />
+		<PopTheBalloon />
 	</article>
 	<article style="--background-color: #2979ce; --outline-color: #19baa4;">
-		<Butterflies />
+		<FindTheButterflies />
 	</article>
 	<article style="--background-color: #cedfde; --outline-color: #11b69c;">
-		<Egg />
+		<CrackTheEgg />
 	</article>
 	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
-		<Battle />
+		<BattleTheEnemy />
 	</article>
 	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
-		<HitParade />
+		<SmashTheRabbits />
 	</article>
 </div>
 
@@ -43,7 +43,7 @@
 		background: hsl(41, 100%, 97%);
 		max-height: 100vh;
 		overflow-y: scroll;
-		scroll-snap-type: y proximity;
+		scroll-snap-type: y mandatory;
 		--outline-color: hsl(6, 100%, 74%);
 		--background-color: hsl(41, 100%, 97%);
 	}
@@ -58,13 +58,13 @@
 	}
 
 	article > :global(svg) {
-		width: 90vmin;
+		width: 85vmin;
 		max-width: 32rem;
 		height: auto;
 		border-radius: 0.25rem;
-		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.15rem currentColor,
-			0 0 0 0.9rem hsl(6, 100%, 74%), 0 0 0 1rem currentColor;
-		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.15rem currentColor,
-			0 0 0 0.9rem var(--outline-color), 0 0 0 1rem currentColor;
+		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.05rem currentColor,
+			0 0 0 0.95rem hsl(6, 100%, 74%), 0 0 0 1rem currentColor;
+		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.05rem currentColor,
+			0 0 0 0.95rem var(--outline-color), 0 0 0 1rem currentColor;
 	}
 </style>

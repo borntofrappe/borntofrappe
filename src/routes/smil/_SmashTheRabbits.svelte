@@ -32,14 +32,14 @@
 <svg viewBox="0 0 80 50">
 	<defs>
 		{#each holes as { cx, cy, rx, ry }, i}
-			<clipPath id="hitparade-clip-hole-{i}">
+			<clipPath id="smash-the-rabbit-clip-hole-{i}">
 				<ellipse {cx} {cy} {rx} {ry} />
 				<path d="M {cx - rx} {cy} v -50 h {rx * 2} v 50z" />
 			</clipPath>
 		{/each}
 
 		<pattern
-			id="hitparade-pattern-grass"
+			id="smash-the-rabbit-pattern-grass"
 			viewBox="-1 -1 6 6"
 			width="5"
 			height="5"
@@ -61,7 +61,7 @@
 			</g>
 		</pattern>
 
-		<g id="hitparade-rabbit">
+		<g id="smash-the-rabbit-rabbit">
 			<path
 				d="m2.78 0.15c-0.521 0.0121-0.627 0.943 0.217 2.35-0.664 1.56-0.445 3.11-0.316 3.72-0.575-2.14-2.29-1.62-0.525 1.14-0.564-0.688-1.8 0.726 0.0918 2.14 0.852 0.426 0.976-0.236 0.84-0.596 0.569 0.846 1.91 0.846 1.91 0.846s1.34 5.56e-5 1.91-0.846c-0.136 0.36-0.0125 1.02 0.84 0.596 1.89-1.42 0.656-2.83 0.0918-2.14 1.77-2.76 0.05-3.28-0.525-1.14 0.128-0.608 0.348-2.16-0.316-3.72 1.5-2.5 0-3.5-1.5-0.5h-0.5-0.5c-0.656-1.31-1.31-1.86-1.72-1.85z"
 				fill="#ffffff"
@@ -84,7 +84,7 @@
 			</g>
 		</g>
 
-		<g id="hitparade-rabbit-hit">
+		<g id="smash-the-rabbit-rabbit-hit">
 			<path
 				d="m2.7 1.1c-1.8-0.052-1.7 3.4 0.26 1.4-0.85 2-0.25 4-0.25 4-0.5 0-0.75 0.5-0.5 1-0.5-1-2 0.5 0 2 0.85 0.43 0.98-0.24 0.84-0.6 0.57 0.85 1.9 0.85 1.9 0.85s1.3 5.6e-5 1.9-0.85c-0.14 0.36-0.013 1 0.84 0.6 2-1.5 0.5-3 0-2 0.25-0.5 0-1-0.5-1 0 0 0.6-2-0.25-4 2.5 2.5 2-3.5-1.5-0.5h-0.5-0.5c-0.71-0.61-1.3-0.85-1.8-0.86z"
 				fill="#ffffff"
@@ -109,7 +109,7 @@
 	</defs>
 
 	<g>
-		<rect fill="url(#hitparade-pattern-grass)" width="80" height="50" />
+		<rect fill="url(#smash-the-rabbit-pattern-grass)" width="80" height="50" />
 
 		<rect fill="#10c5ce" width="80" height="17" />
 		<g
@@ -137,7 +137,7 @@
 
 		<g fill="#ffffff">
 			{#each rabbits as { delay, hole, x, y }, i}
-				<g clip-path="url(#hitparade-clip-hole-{hole})">
+				<g clip-path="url(#smash-the-rabbit-clip-hole-{hole})">
 					<g transform="translate({x} {y})">
 						<g transform="translate(0 15)">
 							<animateTransform
@@ -145,8 +145,8 @@
 								type="translate"
 								values="0 15; 0 -2.5; 0 15"
 								dur="{2.5 + Math.random()}s"
-								begin="hitparadeGameStart.begin + {delay}s"
-								id="hitparadeGameRabbit{i}"
+								begin="smashTheRabbitStart.begin + {delay}s"
+								id="smashTheRabbitRabbit{i}"
 								calcMode="spline"
 								keyTimes="0; 0.5; 1"
 								keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
@@ -160,9 +160,9 @@
 										fill="freeze"
 										dur="0.1s"
 										calcMode="discrete"
-										begin="hitparadeGameRabbitHit{i}.begin"
+										begin="smashTheRabbitRabbitHit{i}.begin"
 									/>
-									<use transform="scale(1.5)" href="#hitparade-rabbit-hit" x="-5" y="-5" />
+									<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit-hit" x="-5" y="-5" />
 								</g>
 								<g style:cursor="pointer">
 									<animate
@@ -172,9 +172,9 @@
 										dur="0.1s"
 										calcMode="discrete"
 										begin="click"
-										id="hitparadeGameRabbitHit{i}"
+										id="smashTheRabbitRabbitHit{i}"
 									/>
-									<use transform="scale(1.5)" href="#hitparade-rabbit" x="-5" y="-5" />
+									<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit" x="-5" y="-5" />
 								</g>
 							</g>
 						</g>
@@ -192,7 +192,7 @@
 				dur="0.1s"
 				calcMode="discrete"
 				fill="freeze"
-				begin="hitparadeGameStart.begin"
+				begin="smashTheRabbitStart.begin"
 			/>
 			<g
 				fill="currentColor"
@@ -210,7 +210,7 @@
 							dur="0.1s"
 							calcMode="discrete"
 							by="80 0"
-							begin="hitparadeGameRabbitHit{i}.begin"
+							begin="smashTheRabbitRabbitHit{i}.begin"
 						/>
 					{/each}
 
@@ -225,7 +225,7 @@
 		</g>
 	</g>
 
-	<g transform="translate(40 25)">
+	<g transform="translate(40 17)">
 		<g
 			style="pointer-events: none;"
 			font-size="7"
@@ -242,7 +242,7 @@
 				to="0"
 				fill="freeze"
 				dur="0.1s"
-				begin="hitparadeGameStart.begin"
+				begin="smashTheRabbitStart.begin"
 			/>
 			<text> Smash! </text>
 		</g>
@@ -250,7 +250,7 @@
 
 	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="hitparadeGameStart"
+			id="smashTheRabbitStart"
 			attributeName="display"
 			to="none"
 			fill="freeze"
@@ -267,11 +267,11 @@
 			fill="freeze"
 			dur="0.1s"
 			calcMode="discrete"
-			begin="hitparadeGameRabbit{rabbits.length - 1}.end"
-			id="hitparadeGameMessage"
+			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
+			id="smashTheRabbitMessage"
 		/>
 
-		<g transform="translate(40 25)">
+		<g transform="translate(40 17)">
 			<g
 				style="pointer-events: none;"
 				font-size="6"
@@ -292,7 +292,7 @@
 							dur="0.1s"
 							calcMode="discrete"
 							by="80 0"
-							begin="hitparadeGameRabbitHit{i}.begin"
+							begin="smashTheRabbitRabbitHit{i}.begin"
 						/>
 					{/each}
 
@@ -303,14 +303,14 @@
 							to="0 1"
 							dur="0.25s"
 							repeatCount="indefinite"
-							begin="hitparadeGameMessage.begin"
-							end="hitparadeGameEnd.end"
+							begin="smashTheRabbitMessage.begin"
+							end="smashTheRabbitEnd.end"
 							fill="freeze"
 							calcMode="discrete"
 						/>
 						{#each Array(rabbits.length + 1) as _, i}
 							<text transform="translate({80 * i} 0)">
-								{#each `${i < rabbits.length - winCondition + 1 ? 'You did it!' : 'Too bad...'}`.split('') as l, j}
+								{#each `${i < rabbits.length - winCondition + 1 ? "That's it!" : 'Missed some...'}`.split('') as l, j}
 									<tspan dx="0.5" dy={j % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
 								{/each}
 							</text>
@@ -328,7 +328,7 @@
 				begin="click"
 				restart="never"
 				dur="0.1s"
-				id="hitparadeGameEnd"
+				id="smashTheRabbitEnd"
 			/>
 		</rect>
 	</g>
