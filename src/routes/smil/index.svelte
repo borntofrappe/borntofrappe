@@ -9,6 +9,7 @@
 	import CrackTheEgg from './_CrackTheEgg.svelte';
 	import BattleTheEnemy from './_BattleTheEnemy.svelte';
 	import SmashTheRabbits from './_SmashTheRabbits.svelte';
+	import FightTheEnemy from './_FightTheEnemy.svelte';
 </script>
 
 <svelte:head>
@@ -35,11 +36,14 @@
 	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
 		<SmashTheRabbits />
 	</article>
+	<article style="--background-color: #cedfde; --outline-color: #1f2a26;">
+		<FightTheEnemy />
+	</article>
 </div>
 
 <style>
 	div {
-		color: hsl(44, 30%, 17%);
+		color: hsl(0, 0%, 23%);
 		background: hsl(41, 100%, 97%);
 		max-height: 100vh;
 		overflow-y: scroll;
