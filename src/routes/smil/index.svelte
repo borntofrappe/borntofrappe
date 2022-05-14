@@ -10,6 +10,7 @@
 	import BattleTheEnemy from './_BattleTheEnemy.svelte';
 	import SmashTheRabbits from './_SmashTheRabbits.svelte';
 	import FightTheEnemy from './_FightTheEnemy.svelte';
+	import TakeAPicture from './_TakeAPicture.svelte';
 </script>
 
 <svelte:head>
@@ -33,6 +34,9 @@
 	</article>
 	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
 		<BattleTheEnemy />
+	</article>
+	<article style="--background-color: #cedfde; --outline-color: #42414a;">
+		<TakeAPicture />
 	</article>
 	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
 		<SmashTheRabbits />
