@@ -1,4 +1,7 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+	import Text from './_helpers/_Text.svelte';
+
 	const dBalloon = ({ radius, protuberance = 10, points }) => {
 		let p = points || radius * 2;
 		if (p % 2 !== 0) p++;
@@ -119,10 +122,21 @@
 				dur="5s"
 				fill="freeze"
 				begin="popTheBalloonStart.begin"
-				end="popTheBalloonPop.begin"
-				id="popTheBalloonOver"
+				end="popTheBalloonPopped.begin"
+				id="popTheBalloonFloat"
 			/>
-			<g fill="#f70000" stroke="currentColor" stroke-width="0.5">
+			<g>
+				<animateTransform
+					attributeName="transform"
+					type="translate"
+					to="0 1"
+					dur="0.35s"
+					calcMode="discrete"
+					fill="freeze"
+					repeatCount="indefinite"
+					begin="popTheBalloonStart.begin"
+					end="popTheBalloonPopped.begin"
+				/>
 				<g style:cursor="pointer">
 					<animateTransform
 						attributeName="transform"
@@ -133,29 +147,19 @@
 						fill="freeze"
 						begin="click"
 						restart="never"
-						id="popTheBalloonPop"
+						id="popTheBalloonPopped"
 					/>
-					<g>
-						<animateTransform
-							attributeName="transform"
-							type="translate"
-							to="0 1"
-							dur="0.35s"
-							calcMode="discrete"
-							fill="freeze"
-							begin="popTheBalloonStart.begin"
-							repeatCount="indefinite"
-							id="popTheBalloonPop.end"
-						/>
+					<g fill="#f70000" stroke="currentColor" stroke-width="0.5">
 						<use href="#pop-the-balloon-balloon" />
 						<use
-							x="-160"
+							transform="translate(-160 0)"
 							href="#pop-the-balloon-balloon"
 							mask="url(#pop-the-balloon-mask-shreds)"
 						/>
 					</g>
 				</g>
 			</g>
+
 			<g>
 				<animateTransform
 					attributeName="transform"
@@ -163,10 +167,11 @@
 					to="0 100"
 					dur="1.5s"
 					fill="freeze"
-					begin="popTheBalloonPop.begin"
+					begin="popTheBalloonPopped.begin"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.65 0 0.4 1"
+					id="popTheBalloonFall"
 				/>
 				<g stroke="currentColor" stroke-width="0.6">
 					<g fill="url(#pop-the-balloon-pattern-present)">
@@ -179,112 +184,81 @@
 		</g>
 	</g>
 
-	<g transform="translate(40 25)">
-		<g
-			style="pointer-events: none;"
-			font-size="7"
-			font-weight="bold"
-			font-family="sans-serif"
-			text-anchor="middle"
-			dominant-baseline="middle"
-			fill="#f7f7f7"
-			stroke="currentColor"
-			stroke-width="0.3"
-		>
-			<animate
-				attributeName="opacity"
-				to="0"
-				fill="freeze"
-				dur="0.1s"
-				begin="popTheBalloonStart.begin"
-			/>
-			<text> Pop! </text>
-		</g>
-	</g>
+	<g display="none">
+		<animate id="popTheBalloonEnd" begin="click" restart="never" />
 
-	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="popTheBalloonStart"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-	</rect>
-
-	<g transform="translate(-80 0)">
-		<animateTransform
-			attributeName="transform"
-			by="80 0"
-			additive="sum"
-			calcMode="discrete"
-			fill="freeze"
-			begin="popTheBalloonOver.end + 1.5s"
-			dur="0.1s"
 			id="popTheBalloonMessage"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
+			dur="0.1s"
 		/>
-
-		<g transform="translate(40 25)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					to="0 1"
-					dur="0.25s"
-					repeatCount="indefinite"
-					begin="popTheBalloonMessage.begin"
-					end="popTheBalloonEnd.end"
-					fill="freeze"
-					calcMode="discrete"
-				/>
-				<g>
-					<animateTransform
-						attributeName="transform"
-						type="translate"
-						to="0 50"
-						dur="0.1s"
-						calcMode="discrete"
+		<g>
+			<g transform="translate(40 25)">
+				<g display="none">
+					<animate
+						attributeName="display"
+						to="initial"
 						fill="freeze"
-						begin="popTheBalloonPop.begin"
+						begin="popTheBalloonFall.end"
+						dur="0.1s"
 					/>
-					<text>
-						{#each 'Far away...'.split('') as l, i}
-							<tspan dx="0.5" dy={i % 2 === 0 ? -0.5 : 0.5}>{l}</tspan>
-						{/each}
-					</text>
-					<g transform="translate(0 -50)">
-						<text>
-							{#each "That's a wrap!".split('') as l, i}
-								<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-							{/each}
-						</text>
+					<g>
+						<AnimatedText
+							text="That's a wrap!"
+							begin="popTheBalloonMessage.begin"
+							end="popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+				<g>
+					<animate
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						begin="popTheBalloonFall.begin"
+						dur="0.1s"
+					/>
+					<g>
+						<AnimatedText
+							text="Far it goes..."
+							begin="popTheBalloonMessage.begin"
+							end="popTheBalloonFall.end; popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
 					</g>
 				</g>
 			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<animate
+					attributeName="display"
+					begin="popTheBalloonEnd.begin"
+					to="none"
+					dur="0.1s"
+					fill="freeze"
+				/>
+			</rect>
 		</g>
+	</g>
 
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+	<g style:cursor="pointer">
+		<g>
 			<animate
+				id="popTheBalloonStart"
 				attributeName="display"
 				to="none"
 				fill="freeze"
 				begin="click"
-				restart="never"
 				dur="0.1s"
-				id="popTheBalloonEnd"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<Text fill="url(#linear-gradient-text)">Pop!</Text>
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>
