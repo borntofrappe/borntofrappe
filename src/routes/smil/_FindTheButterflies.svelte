@@ -1,11 +1,16 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+	import Text from './_helpers/_Text.svelte';
+
 	const size = 16;
 	const width = 80;
 	const height = 50;
+	const targets = 3;
 
 	const getX = () => Math.floor(Math.random() * (width - size));
 	const getY = () => Math.floor(Math.random() * (height - size));
 
+	const dur = '12s';
 	const getPath = ({ translateX, translateY, thresholdLength = 200 }) => {
 		let d = `M 0 0`;
 		let length = 0;
@@ -36,7 +41,7 @@
 		y
 	};
 
-	const butterflies = Array(3)
+	const butterflies = Array(targets)
 		.fill()
 		.map(() => {
 			let x = getX();
@@ -73,13 +78,14 @@
 	<defs>
 		<pattern id="find-the-butterflies-pattern-bricks" viewBox="0 0 8 5" width="0.12" height="0.12">
 			<rect fill="#bd4900" width="8" height="5" />
-			<g fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="square">
-				<path d="M 7.75 0 v 2.375 h -7.75 m 3.875 0 v 2.375 m -3.875 0h 7.75" />
+			<g fill="none" stroke="currentColor" stroke-width="0.2" stroke-linecap="square">
+				<path d="M 7.9 0 v 2.45 h -7.9 m 3.95 0 v 2.45 m -3.95 0h 7.9" />
 			</g>
 		</pattern>
 	</defs>
 
 	<rect fill="url(#find-the-butterflies-pattern-bricks)" width="80" height="50" />
+
 	<g transform="translate({ribbon.x} {ribbon.y})">
 		<g transform="translate(8 6) scale(0.7)">
 			<g stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
@@ -115,11 +121,11 @@
 					<g>
 						<animateMotion
 							{path}
-							dur="12s"
+							{dur}
 							repeatCount="indefinite"
 							fill="freeze"
 							begin="findTheButterfliesButterfly{i}.begin"
-							end="findTheButterfliesEnd.end"
+							end="findTheButterfliesEnd.begin"
 						/>
 
 						<g
@@ -133,13 +139,13 @@
 									<animateTransform
 										attributeName="transform"
 										type="scale"
-										values="0.6 1; 1 1"
+										values="1 1; 0.6 1; 1 1"
 										dur="0.2s"
 										calcMode="discrete"
 										repeatCount="indefinite"
 										fill="freeze"
 										begin="findTheButterfliesButterfly{i}.begin"
-										end="findTheButterfliesEnd.end"
+										end="findTheButterfliesEnd.begin"
 									/>
 									<path
 										fill="currentColor"
@@ -186,41 +192,6 @@
 		</g>
 	{/each}
 
-	<g transform="translate(40 25)">
-		<g
-			style="pointer-events: none;"
-			font-size="7"
-			font-weight="bold"
-			font-family="sans-serif"
-			text-anchor="middle"
-			dominant-baseline="middle"
-			fill="#f7f7f7"
-			stroke="currentColor"
-			stroke-width="0.3"
-		>
-			<animate
-				attributeName="opacity"
-				to="0"
-				fill="freeze"
-				dur="0.1s"
-				begin="findTheButterfliesStart.begin"
-			/>
-			<text> Butterflies? </text>
-		</g>
-	</g>
-
-	<rect style:cursor="pointer" width="80" height="50" opacity="0">
-		<animate
-			id="findTheButterfliesStart"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-	</rect>
-
 	<g transform="translate({80 * butterflies.length * -1} 0)">
 		{#each butterflies as _, i}
 			<animateTransform
@@ -233,46 +204,44 @@
 				begin="findTheButterfliesButterfly{i}.begin"
 			/>
 		{/each}
-		<g transform="translate(40 25)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					to="0 1"
-					dur="0.25s"
-					repeatCount="indefinite"
+		<g>
+			<animate id="findTheButterfliesEnd" begin="click" restart="never" />
+
+			<g transform="translate(40 25)">
+				<AnimatedText
+					text="Found em all!"
 					begin="findTheButterfliesButterfly0.begin"
-					end="findTheButterfliesEnd.end"
-					fill="freeze"
-					calcMode="discrete"
+					end="findTheButterfliesEnd.begin"
+					fill="url(#linear-gradient-text)"
 				/>
-				<text>
-					{#each "That's all!".split('') as l, i}
-						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-					{/each}
-				</text>
 			</g>
+
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<animate
+					attributeName="display"
+					begin="findTheButterfliesEnd.begin"
+					to="none"
+					dur="0.1s"
+					fill="freeze"
+				/>
+			</rect>
 		</g>
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+	</g>
+
+	<g style:cursor="pointer">
+		<g>
 			<animate
 				attributeName="display"
 				to="none"
 				fill="freeze"
 				begin="click"
-				restart="never"
 				dur="0.1s"
-				id="findTheButterfliesEnd"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<Text fill="url(#linear-gradient-text)">Butterflies?</Text>
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>
