@@ -1,4 +1,8 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+
+	const sprites = 4;
+
 	const dCircle = ({ radius, points }) => {
 		let p = points || radius * 2;
 		if (p % 2 !== 0) p++;
@@ -40,8 +44,6 @@
 			})
 			.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, '')} ${x2} ${y2}`;
 	};
-
-	const sprites = 4;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -99,6 +101,7 @@
 	</defs>
 
 	<rect fill="url(#poke-the-ladybug-pattern-grass)" width="80" height="50" />
+
 	<g>
 		<use x="12.5" y="12.5" href="#poke-the-ladybug-rock" />
 		<use x="5" y="17.5" href="#poke-the-ladybug-rock" />
@@ -117,9 +120,10 @@
 				dur="2s"
 				begin="click"
 				restart="never"
-				id="pokeTheLadybugOver"
+				id="pokeTheLadybugPoked"
 				fill="freeze"
 			/>
+
 			<g>
 				<animateTransform
 					attributeName="transform"
@@ -129,13 +133,13 @@
 						.fill()
 						.map((_, i) => `${80 * i} 0`)
 						.join(';')}
-					additive="sum"
 					calcMode="discrete"
 					repeatCount="indefinite"
 					begin="pokeTheLadybugStart.begin"
+					end="pokeTheLadybugPoked.end"
 					fill="freeze"
-					end="pokeTheLadybugOver.end"
 				/>
+
 				{#each Array(sprites).fill() as _, i}
 					<g transform="translate({80 * i * -1} 0)">
 						<g transform="translate(0 -8)">
@@ -147,11 +151,14 @@
 								</g>
 							</g>
 						</g>
+
 						<path fill="#f70000" stroke="none" stroke-width="0.5" d={dCircle({ radius: 10 })} />
+
 						<g fill="currentColor">
 							<path transform="translate(-5 -1)" d={dCircle({ radius: 3.6, points: 10 })} />
 							<path transform="translate(5 1)" d={dCircle({ radius: 3.6, points: 10 })} />
 						</g>
+
 						<path
 							fill="none"
 							stroke="currentColor"
@@ -166,93 +173,53 @@
 		</g>
 	</g>
 
-	<g transform="translate(40 40)">
-		<g
-			style="pointer-events: none;"
-			font-size="7"
-			font-weight="bold"
-			font-family="sans-serif"
-			text-anchor="middle"
-			dominant-baseline="middle"
-			fill="#f7f7f7"
-			stroke="currentColor"
-			stroke-width="0.3"
-		>
-			<animate
-				attributeName="opacity"
-				to="0"
-				fill="freeze"
-				dur="0.1s"
-				begin="pokeTheLadybugStart.begin"
-			/>
-			<text> Poke! </text>
+	<g display="none">
+		<animate id="pokeTheLadybugEnd" begin="click" restart="never" />
+
+		<animate
+			id="pokeTheLadybugMessage"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			begin="pokeTheLadybugPoked.end"
+			dur="0.1s"
+		/>
+		<g>
+			<g transform="translate(40 25)">
+				<AnimatedText
+					text="You did it!"
+					begin="pokeTheLadybugMessage.begin"
+					end="pokeTheLadybugEnd.begin"
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<animate
+					attributeName="display"
+					begin="pokeTheLadybugEnd.begin"
+					to="none"
+					dur="0.1s"
+					fill="freeze"
+				/>
+			</rect>
 		</g>
 	</g>
 
-	<rect style:cursor="pointer" width="80" height="50" opacity="0">
-		<animate
-			id="pokeTheLadybugStart"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-	</rect>
-
-	<g transform="translate(-80 0)">
-		<animateTransform
-			attributeName="transform"
-			by="80 0"
-			additive="sum"
-			calcMode="discrete"
-			fill="freeze"
-			begin="pokeTheLadybugOver.end"
-			dur="0.1s"
-		/>
-
-		<g transform="translate(40 25)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					to="0 1"
-					dur="0.25s"
-					repeatCount="indefinite"
-					begin="pokeTheLadybugOver.end"
-					end="pokeTheLadybugEnd.end"
-					fill="freeze"
-					calcMode="discrete"
-				/>
-				<text>
-					{#each 'You did it!'.split('') as l, i}
-						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-					{/each}
-				</text>
-			</g>
-		</g>
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+	<g style:cursor="pointer">
+		<g>
 			<animate
+				id="pokeTheLadybugStart"
 				attributeName="display"
 				to="none"
 				fill="freeze"
 				begin="click"
-				restart="never"
 				dur="0.1s"
-				id="pokeTheLadybugEnd"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>

@@ -3,6 +3,7 @@
 </script>
 
 <script>
+	import Defs from './_helpers/_Defs.svelte';
 	import PokeTheLadybug from './_PokeTheLadybug.svelte';
 	import PopTheBalloon from './_PopTheBalloon.svelte';
 	import FindTheButterflies from './_FindTheButterflies.svelte';
@@ -18,6 +19,8 @@
 	<meta name="description" content="A showcase of animated, scalable vector graphics." />
 	<link rel="icon" href="/icons/touch.svg" type="image/svg+xml" />
 </svelte:head>
+
+<Defs />
 
 <div>
 	<article style="--background-color: #f7717b; --outline-color: #b5d2c5;">
@@ -55,6 +58,10 @@
 		scroll-snap-type: y mandatory;
 		--outline-color: hsl(6, 100%, 74%);
 		--background-color: hsl(41, 100%, 97%);
+	}
+
+	div :global(::selection) {
+		background: hsl(41, 100%, 97%, 0.3);
 	}
 
 	article {
