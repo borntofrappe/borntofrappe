@@ -52,20 +52,47 @@
 
 <svg viewBox="0 0 80 50">
 	<defs>
+		<pattern id="take-a-picture-pattern-sprite" viewBox="-2.25 -2.12 4.5 4.6" width="1" height="1">
+			<g stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round">
+				<g fill="none">
+					<path d="M 0.1 -1 q 0 -0.8 0.75 -1" />
+					<path transform="scale(-1 1)" d="M 0.1 -1 q 0 -0.8 0.75 -1" />
+				</g>
+				<g fill="#f70000">
+					<g transform="translate(0 0.5)">
+						<path d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z" />
+						<path
+							transform="scale(-1 1)"
+							d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
+						/>
+						<path
+							transform="scale(-1 -1)"
+							d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
+						/>
+						<path
+							transform="scale(1 -1)"
+							d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
+						/>
+					</g>
+				</g>
+				<path fill="currentColor" d="M 0 -1 c 0.75 0.5 0.75 2.5 0 3 -0.75 -0.5 -0.75 -2.5 0 -3" />
+			</g>
+		</pattern>
+
 		<filter id="take-a-picture-filter">
 			<feColorMatrix
 				type="matrix"
 				values="-1 0 0 0 1 
-														 0 -1 0 0 1 
-														 0 0 -1 0 1
-														 0 0 0 1 0"
+                0 -1 0 0 1 
+                0 0 -1 0 1
+                0 0 0 1 0"
 			/>
 			<feColorMatrix
 				type="matrix"
 				values="0.33 0.33 0.33 0 0
-														 0.33 0.33 0.33 0 0
-														 0.33 0.33 0.33 0 0
-														 0 0 0 1 0"
+                0.33 0.33 0.33 0 0
+                0.33 0.33 0.33 0 0
+                0 0 0 1 0"
 			/>
 		</filter>
 
@@ -77,26 +104,10 @@
 			height={lens.height}
 			rx="2"
 		/>
+
 		<clipPath id="take-a-picture-clip-lens">
 			<use href="#take-a-picture-lens" />
 		</clipPath>
-
-		<pattern
-			id="take-a-picture-pattern-tree"
-			viewBox="0 0 15 15"
-			patternUnits="userSpaceOnUse"
-			width="8"
-			height="8"
-		>
-			<rect fill="#f7f7f7" width="15" height="15" />
-			<g fill="none" stroke="#bdbebd" stroke-width="0.25">
-				<path transform="translate(3 3) rotate(-21)" d="M 0 -1 v 2" />
-				<path transform="translate(12 7) rotate(-21)" d="M 0 -1 v 2" />
-				<path transform="translate(5 6) rotate(-21)" d="M 0 -1 v 2" />
-				<path transform="translate(10 2) rotate(-21)" d="M 0 -1.5 v 3" />
-				<path transform="translate(8 4) rotate(-21)" d="M 0 -2 v 4" />
-			</g>
-		</pattern>
 	</defs>
 
 	<g>
@@ -155,40 +166,7 @@
 						restart="never"
 						id="takeAPictureMotion"
 					/>
-					<g transform="scale({size / 5}) translate(2.5 2.35)">
-						<g
-							stroke="currentColor"
-							stroke-width="0.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<g fill="none">
-								<path d="M 0.1 -1 q 0 -0.8 0.75 -1" />
-								<path transform="scale(-1 1)" d="M 0.1 -1 q 0 -0.8 0.75 -1" />
-								<g fill="#f70000">
-									<g transform="translate(0 0.5)">
-										<path d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z" />
-										<path
-											transform="scale(-1 1)"
-											d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
-										/>
-										<path
-											transform="scale(-1 -1)"
-											d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
-										/>
-										<path
-											transform="scale(1 -1)"
-											d="M 0.35 -0.8 a 0.6 0.8 0 0 1 1.6 0 0.8 0.8 0 0 1 -0.8 0.8 h -0.8z"
-										/>
-									</g>
-								</g>
-							</g>
-							<path
-								fill="currentColor"
-								d="M 0 -1 c 0.75 0.5 0.75 2.5 0 3 -0.75 -0.5 -0.75 -2.5 0 -3"
-							/>
-						</g>
-					</g>
+					<rect width={size} height={size} fill="url(#take-a-picture-pattern-sprite)" />
 				</g>
 			</g>
 		</g>
@@ -217,8 +195,7 @@
 						{end}
 					/>
 					<g>
-						<animate id="takeAPictureFrame{i}" begin="click" restart="never" />
-
+						<animate id="takeAPictureFrame{i}" begin="click" />
 						<g display="none">
 							<animate
 								attributeName="display"
@@ -228,15 +205,29 @@
 								begin="takeAPictureFrame{i}.begin"
 								fill="freeze"
 							/>
-							<g transform="translate(40 46)">
-								<AnimatedText
-									{text}
-									begin="takeAPictureFrame{i}.begin"
-									end="takeAPictureEnd.begin"
+							<g display="none">
+								<animate
+									id="takeAPictureMessage{i}"
+									attributeName="display"
+									to="initial"
+									dur="0.1s"
+									calcMode="discrete"
+									begin="takeAPictureFlash.end"
+									fill="freeze"
 								/>
+								<g transform="translate(40 46)">
+									<AnimatedText
+										fill="currentColor"
+										stroke="#f7f7f7"
+										{text}
+										begin="takeAPictureMessage{i}.begin"
+										end="takeAPictureEnd.begin"
+									/>
+								</g>
 							</g>
 						</g>
-						<rect width="80" height="50" opacity="0">
+
+						<rect style:cursor="pointer" width="80" height="50" opacity="0">
 							<animate
 								attributeName="display"
 								to="none"
@@ -252,8 +243,20 @@
 		</g>
 	</g>
 
+	<rect style="pointer-events: none;" width="80" height="50" opacity="0" fill="#ffffff">
+		<animate
+			id="takeAPictureFlash"
+			attributeName="opacity"
+			values="0; 1; 0"
+			fill="freeze"
+			dur="0.15s"
+			begin={end}
+		/>
+	</rect>
+
 	<g display="none">
 		<animate
+			id="takeAPictureMessage"
 			attributeName="display"
 			to="initial"
 			dur="0.1s"
@@ -264,8 +267,10 @@
 		/>
 		<g transform="translate(40 46)">
 			<AnimatedText
-				text="Next time..."
-				begin="takeAPictureMotion.end"
+				fill="currentColor"
+				stroke="#f7f7f7"
+				text="Moment's gone..."
+				begin="takeAPictureMessage.begin"
 				end="takeAPictureEnd.begin"
 			/>
 		</g>
@@ -287,7 +292,7 @@
 			fill="freeze"
 			dur="0.1s"
 			calcMode="discrete"
-			begin="{end}; takeAPictureMotion.end"
+			begin="takeAPictureFlash.end; takeAPictureMotion.end"
 		/>
 		<rect width="80" height="50" opacity="0" />
 	</g>
@@ -310,9 +315,3 @@
 		</g>
 	</g>
 </svg>
-
-<style>
-	svg {
-		outline: 1px solid;
-	}
-</style>
