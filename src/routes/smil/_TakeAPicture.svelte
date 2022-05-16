@@ -23,7 +23,7 @@
 		},
 		{
 			threshold: height + lens.y - size,
-			text: 'A bit early...'
+			text: 'A touch early...'
 		},
 		{
 			threshold: height + lens.y,
@@ -32,7 +32,7 @@
 		},
 		{
 			threshold: height + lens.y + lens.height - size,
-			text: 'A tad late...'
+			text: 'A bit late...'
 		},
 		{
 			threshold: height + lens.y + lens.height,
@@ -48,11 +48,18 @@
 	const path = `M ${getX()} ${-height} ${getX()} ${height}`;
 
 	const end = frames.map((_, i) => `takeAPictureFrame${i}.begin`).join(';');
+
+	const sprite = Math.floor(Math.random() * 2);
 </script>
 
 <svg viewBox="0 0 80 50">
 	<defs>
-		<pattern id="take-a-picture-pattern-sprite" viewBox="-2.25 -2.12 4.5 4.6" width="1" height="1">
+		<pattern
+			id="take-a-picture-pattern-sprite-0"
+			viewBox="-2.25 -2.12 4.5 4.6"
+			width="1"
+			height="1"
+		>
 			<g stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round">
 				<g fill="none">
 					<path d="M 0.1 -1 q 0 -0.8 0.75 -1" />
@@ -76,6 +83,21 @@
 					</g>
 				</g>
 				<path fill="currentColor" d="M 0 -1 c 0.75 0.5 0.75 2.5 0 3 -0.75 -0.5 -0.75 -2.5 0 -3" />
+			</g>
+		</pattern>
+
+		<pattern id="take-a-picture-pattern-sprite-1" viewBox="-2.15 -1.75 4.3 5" width="1" height="1">
+			<g stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round">
+				<g transform="translate(0 0.11)">
+					<path
+						fill="#fecd00"
+						d="M 0 0 c 0.5 -0.5 2 0 2 1.5 0 1.5 -2 1.5 -2 1.5 -1.5 0 -2 -1 -2 -1.5 0 -1.5 1.5 -2 2 -1.5"
+					/>
+				</g>
+				<g fill="#00e200">
+					<path transform="rotate(10)" d="M 0 0.25 v -0.1 q 0 -1.5 1.5 -1.5 0 1.5 -1.5 1.5" />
+					<path transform="rotate(5) scale(-1 1) " d="M 0 0 q 0 -1.5 1.5 -1.5 0 1.5 -1.5 1.5" />
+				</g>
 			</g>
 		</pattern>
 
@@ -166,7 +188,7 @@
 						restart="never"
 						id="takeAPictureMotion"
 					/>
-					<rect width={size} height={size} fill="url(#take-a-picture-pattern-sprite)" />
+					<rect width={size} height={size} fill="url(#take-a-picture-pattern-sprite-{sprite})" />
 				</g>
 			</g>
 		</g>

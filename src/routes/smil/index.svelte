@@ -32,19 +32,19 @@
 	<article style="--background-color: #2979ce; --outline-color: #19baa4;">
 		<FindTheButterflies />
 	</article>
-	<article style="--background-color: #cedfde; --outline-color: #11b69c;">
+	<article style="--background-color: #f7f75a; --outline-color: #11b69c;">
 		<CrackTheEgg />
 	</article>
-	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
+	<article style="--background-color: #59a258; --outline-color: #37d4cd;">
 		<BattleTheEnemy />
 	</article>
-	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
+	<article style="--background-color: #f5ab26; --outline-color: #01a33e;">
 		<SmashTheRabbits />
 	</article>
-	<article style="--background-color: #cedfde; --outline-color: #1f2a26;">
+	<article style="--background-color: #455f58; --outline-color: #1f2a26;">
 		<FightTheEnemy />
 	</article>
-	<article style="--background-color: #cedfde; --outline-color: #42414a;">
+	<article style="--background-color: #d6d7d6; --outline-color: #42414a;">
 		<TakeAPicture />
 	</article>
 </div>

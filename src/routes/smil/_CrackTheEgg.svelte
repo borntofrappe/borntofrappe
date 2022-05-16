@@ -169,7 +169,6 @@
 				fill="freeze"
 			/>
 
-			<!-- 		surprise	 -->
 			<g>
 				<animateTransform
 					attributeName="transform"
@@ -185,13 +184,14 @@
 				/>
 				<g transform="translate(0 -2)">
 					<g stroke="currentColor">
-						<g fill="#fefefe" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+						<g fill="#f7f75a" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M -0.5 -4 v 2 h -3 v 2 h 6 v -2 h -1.5 v -2" />
-						</g>
-						<g fill="#f7f75a">
 							<path d="M -4 -21.5 h -4 v 4" />
-							<path d="M -9 -11 c 0 10 18 10 18 0 v -4 h -6 v -2 c 0 -8 -12 -8 -12 6" />
 						</g>
+						<path
+							fill="#fefefe"
+							d="M -9 -11 c 0 10 18 10 18 0 v -4 h -6 v -2 c 0 -8 -12 -8 -12 6"
+						/>
 					</g>
 					<circle fill="currentColor" cx="-3.5" cy="-19" r="0.75" />
 				</g>
