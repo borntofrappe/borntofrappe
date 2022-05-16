@@ -38,11 +38,11 @@
 	<article style="--background-color: #d6e6e6; --outline-color: #37d4cd;">
 		<BattleTheEnemy />
 	</article>
-	<article style="--background-color: #cedfde; --outline-color: #42414a;">
-		<TakeAPicture />
-	</article>
 	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
 		<SmashTheRabbits />
+	</article>
+	<article style="--background-color: #cedfde; --outline-color: #42414a;">
+		<TakeAPicture />
 	</article>
 	<article style="--background-color: #cedfde; --outline-color: #1f2a26;">
 		<FightTheEnemy />

@@ -1,4 +1,7 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+	import Text from './_helpers/_Text.svelte';
+
 	const holes = [
 		{ cx: 15, cy: 40, rx: 10, ry: 4 },
 		{ cx: 40, cy: 40, rx: 10, ry: 4 },
@@ -8,8 +11,9 @@
 	];
 
 	const winCondition = 3;
+	const targets = winCondition + 1 + Math.floor(Math.random() * 2);
 
-	const delays = Array(winCondition + Math.floor(Math.random() * 3))
+	const delays = Array(targets)
 		.fill()
 		.map((_) => Math.floor(Math.random() * 3) + 1)
 		.reduce(
@@ -18,11 +22,11 @@
 		);
 
 	const rabbits = delays.map((delay) => {
-		const indexHole = Math.floor(Math.random() * holes.length);
-		const { cx: x, cy: y } = holes[indexHole];
+		const i = Math.floor(Math.random() * holes.length);
+		const { cx: x, cy: y } = holes[i];
 		return {
 			delay,
-			hole: indexHole,
+			hole: i,
 			x,
 			y
 		};
@@ -64,7 +68,7 @@
 		<g id="smash-the-rabbit-rabbit">
 			<path
 				d="m2.78 0.15c-0.521 0.0121-0.627 0.943 0.217 2.35-0.664 1.56-0.445 3.11-0.316 3.72-0.575-2.14-2.29-1.62-0.525 1.14-0.564-0.688-1.8 0.726 0.0918 2.14 0.852 0.426 0.976-0.236 0.84-0.596 0.569 0.846 1.91 0.846 1.91 0.846s1.34 5.56e-5 1.91-0.846c-0.136 0.36-0.0125 1.02 0.84 0.596 1.89-1.42 0.656-2.83 0.0918-2.14 1.77-2.76 0.05-3.28-0.525-1.14 0.128-0.608 0.348-2.16-0.316-3.72 1.5-2.5 0-3.5-1.5-0.5h-0.5-0.5c-0.656-1.31-1.31-1.86-1.72-1.85z"
-				fill="#ffffff"
+				fill="#f7f7f7"
 				stroke="currentColor"
 				stroke-linecap="round"
 				stroke-linejoin="round"
@@ -87,7 +91,7 @@
 		<g id="smash-the-rabbit-rabbit-hit">
 			<path
 				d="m2.7 1.1c-1.8-0.052-1.7 3.4 0.26 1.4-0.85 2-0.25 4-0.25 4-0.5 0-0.75 0.5-0.5 1-0.5-1-2 0.5 0 2 0.85 0.43 0.98-0.24 0.84-0.6 0.57 0.85 1.9 0.85 1.9 0.85s1.3 5.6e-5 1.9-0.85c-0.14 0.36-0.013 1 0.84 0.6 2-1.5 0.5-3 0-2 0.25-0.5 0-1-0.5-1 0 0 0.6-2-0.25-4 2.5 2.5 2-3.5-1.5-0.5h-0.5-0.5c-0.71-0.61-1.3-0.85-1.8-0.86z"
-				fill="#ffffff"
+				fill="#f7f7f7"
 				stroke="currentColor"
 				stroke-linecap="round"
 				stroke-linejoin="round"
@@ -108,63 +112,61 @@
 		</g>
 	</defs>
 
+	<rect fill="url(#smash-the-rabbit-pattern-grass)" width="80" height="50" />
+	<rect fill="#10c5ce" width="80" height="17" />
+	<g
+		transform="translate(0 17)"
+		fill="#73d33e"
+		stroke="#73d33e"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
+		<path transform="translate(40 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
+		<path transform="translate(40 0)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
+		<path transform="translate(80 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
+	</g>
+
 	<g>
-		<rect fill="url(#smash-the-rabbit-pattern-grass)" width="80" height="50" />
+		{#each holes as { cx: x, cy: y, rx, ry }}
+			<g transform="translate({x} {y + ry})">
+				<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy={ry * -1} {rx} {ry} />
+				<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy={ry * -1} {rx} {ry} />
+				<ellipse fill="currentColor" cy={ry * -1} {rx} {ry} />
+			</g>
+		{/each}
+	</g>
 
-		<rect fill="#10c5ce" width="80" height="17" />
-		<g
-			transform="translate(0 17)"
-			fill="#73d33e"
-			stroke="#73d33e"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		>
-			<path d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
-			<path transform="translate(40 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
-			<path transform="translate(40 0)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
-			<path transform="translate(80 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
-		</g>
-
-		<g>
-			{#each holes as { cx: x, cy: y, rx, ry }}
-				<g transform="translate({x} {y + ry})">
-					<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy={ry * -1} {rx} {ry} />
-					<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy={ry * -1} {rx} {ry} />
-					<ellipse fill="currentColor" cy={ry * -1} {rx} {ry} />
-				</g>
-			{/each}
-		</g>
-
-		<g fill="#ffffff">
-			{#each rabbits as { delay, hole, x, y }, i}
-				<g clip-path="url(#smash-the-rabbit-clip-hole-{hole})">
-					<g transform="translate({x} {y})">
-						<g transform="translate(0 15)">
-							<animateTransform
-								attributeName="transform"
-								type="translate"
-								values="0 15; 0 -2.5; 0 15"
-								dur="{2.5 + Math.random()}s"
-								begin="smashTheRabbitStart.begin + {delay}s"
-								id="smashTheRabbitRabbit{i}"
-								calcMode="spline"
-								keyTimes="0; 0.5; 1"
-								keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
-							/>
-
-							<g>
-								<g display="none">
-									<animate
-										attributeName="display"
-										to="initial"
-										fill="freeze"
-										dur="0.1s"
-										calcMode="discrete"
-										begin="smashTheRabbitRabbitHit{i}.begin"
-									/>
-									<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit-hit" x="-5" y="-5" />
-								</g>
-								<g style:cursor="pointer">
+	<g>
+		{#each rabbits as { delay, hole, x, y }, i}
+			<g clip-path="url(#smash-the-rabbit-clip-hole-{hole})">
+				<g transform="translate({x} {y})">
+					<g transform="translate(0 15)">
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							values="0 15; 0 -2.5; 0 15"
+							dur="{2 + Math.random()}s"
+							begin="smashTheRabbitStart.begin + {delay}s"
+							id="smashTheRabbitRabbit{i}"
+							calcMode="spline"
+							keyTimes="0; 0.5; 1"
+							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+						/>
+						<g>
+							<g display="none">
+								<animate
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+									dur="0.1s"
+									calcMode="discrete"
+									begin="smashTheRabbitRabbitHit{i}.begin"
+								/>
+								<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit-hit" x="-5" y="-5" />
+							</g>
+							<g style:cursor="pointer">
+								<g>
 									<animate
 										attributeName="display"
 										to="none"
@@ -180,20 +182,20 @@
 						</g>
 					</g>
 				</g>
-			{/each}
-		</g>
+			</g>
+		{/each}
 	</g>
 
-	<g transform="translate(40 7)">
-		<g display="none">
-			<animate
-				attributeName="display"
-				to="initial"
-				dur="0.1s"
-				calcMode="discrete"
-				fill="freeze"
-				begin="smashTheRabbitStart.begin"
-			/>
+	<g display="none">
+		<animate
+			attributeName="display"
+			to="initial"
+			dur="0.1s"
+			calcMode="discrete"
+			fill="freeze"
+			begin="smashTheRabbitStart.begin"
+		/>
+		<g transform="translate(40 6)">
 			<g
 				fill="currentColor"
 				font-size="4"
@@ -201,6 +203,46 @@
 				font-family="sans-serif"
 				text-anchor="middle"
 			>
+				<g transform="translate({80 * rabbits.length * -1} 0)">
+					{#each Array(rabbits.length) as _, i}
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							by="80 0"
+							calcMode="discrete"
+							dur="0.01s"
+							fill="freeze"
+							begin="smashTheRabbitRabbitHit{i}.begin"
+						/>
+					{/each}
+
+					{#each Array(rabbits.length + 1) as _, i}
+						<g transform="translate({80 * i} 0)">
+							<text>
+								<tspan fill="#bc4701">{Math.max(0, i - (rabbits.length - winCondition))}</tspan>
+								more!
+							</text>
+						</g>
+					{/each}
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<animate id="smashTheRabbitEnd" begin="click" restart="never" />
+
+		<animate
+			id="smashTheRabbitMessage"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			dur="0.1s"
+			calcMode="discrete"
+			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
+		/>
+		<g>
+			<g transform="translate(40 25)">
 				<g transform="translate({80 * rabbits.length * -1} 0)">
 					{#each Array(rabbits.length) as _, i}
 						<animateTransform
@@ -215,121 +257,44 @@
 					{/each}
 
 					{#each Array(rabbits.length + 1) as _, i}
-						<text transform="translate({80 * i} 0)">
-							<tspan fill="#e60c0a">{Math.max(0, i - (rabbits.length - winCondition))}</tspan>
-							more!
-						</text>
+						<g transform="translate({80 * i} 0)">
+							<AnimatedText
+								text={i < rabbits.length - winCondition + 1 ? 'And then some!' : 'Missed some...'}
+								begin="smashTheRabbitMessage.begin"
+								end="smashTheRabbitEnd.begin"
+								fill="url(#linear-gradient-text)"
+							/>
+						</g>
 					{/each}
 				</g>
 			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<animate
+					attributeName="display"
+					begin="smashTheRabbitEnd.begin"
+					to="none"
+					dur="0.1s"
+					fill="freeze"
+				/>
+			</rect>
 		</g>
 	</g>
 
-	<g transform="translate(40 17)">
-		<g
-			style="pointer-events: none;"
-			font-size="7"
-			font-weight="bold"
-			font-family="sans-serif"
-			text-anchor="middle"
-			dominant-baseline="middle"
-			fill="#f7f7f7"
-			stroke="currentColor"
-			stroke-width="0.3"
-		>
+	<g style:cursor="pointer">
+		<g>
 			<animate
-				attributeName="opacity"
-				to="0"
-				fill="freeze"
-				dur="0.1s"
-				begin="smashTheRabbitStart.begin"
-			/>
-			<text> Smash! </text>
-		</g>
-	</g>
-
-	<rect style:cursor="pointer" width="80" height="50" opacity="0">
-		<animate
-			id="smashTheRabbitStart"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-	</rect>
-
-	<g display="none">
-		<animate
-			attributeName="display"
-			to="initial"
-			fill="freeze"
-			dur="0.1s"
-			calcMode="discrete"
-			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
-			id="smashTheRabbitMessage"
-		/>
-
-		<g transform="translate(40 17)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<g transform="translate({80 * rabbits.length * -1} 0)">
-					{#each Array(rabbits.length) as _, i}
-						<animateTransform
-							attributeName="transform"
-							type="translate"
-							fill="freeze"
-							dur="0.1s"
-							calcMode="discrete"
-							by="80 0"
-							begin="smashTheRabbitRabbitHit{i}.begin"
-						/>
-					{/each}
-
-					<g>
-						<animateTransform
-							attributeName="transform"
-							type="translate"
-							to="0 1"
-							dur="0.25s"
-							repeatCount="indefinite"
-							begin="smashTheRabbitMessage.begin"
-							end="smashTheRabbitEnd.end"
-							fill="freeze"
-							calcMode="discrete"
-						/>
-						{#each Array(rabbits.length + 1) as _, i}
-							<text transform="translate({80 * i} 0)">
-								{#each `${i < rabbits.length - winCondition + 1 ? "That's it!" : 'Missed some...'}`.split('') as l, j}
-									<tspan dx="0.5" dy={j % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-								{/each}
-							</text>
-						{/each}
-					</g>
-				</g>
-			</g>
-		</g>
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<animate
+				id="smashTheRabbitStart"
 				attributeName="display"
 				to="none"
 				fill="freeze"
 				begin="click"
-				restart="never"
 				dur="0.1s"
-				id="smashTheRabbitEnd"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<Text fill="url(#linear-gradient-text)">Smash!</Text>
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>
