@@ -1,4 +1,7 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+	import Text from './_helpers/_Text.svelte';
+
 	const eggShape = 'M 0 0 c 25 0 15 -32 0 -32 -15 2 -25 32 0 32';
 
 	const eggSpots = [
@@ -19,6 +22,7 @@
 		.match(/(-?[\d\.]+) (-?[\d\.]+)/)
 		.slice(1)
 		.map((c) => parseFloat(c));
+
 	const eggFragments = eggCrack
 		.slice(eggCrack.indexOf('l') + 2)
 		.split(/ ?l ?/)
@@ -150,261 +154,222 @@
 	</g>
 
 	<g transform="translate(40 49.5)">
-		<animateTransform
-			attributeName="transform"
-			type="translate"
-			values="0 0; 20 0; 0 0; -20 0; 0 0;"
-			dur="8s"
-			additive="sum"
-			calcMode="spline"
-			keyTimes="0; 0.25; 0.5; 0.75; 1"
-			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
-			repeatCount="indefinite"
-			begin="crackTheEggStart.begin"
-			end="crackTheEggOpen.begin"
-			fill="freeze"
-		/>
-		<g transform="translate(0 -2)">
+		<g>
 			<animateTransform
 				attributeName="transform"
 				type="translate"
-				values="0 0; 0 -22.5; 0 -17.5"
+				values="0 0; 20 0; 0 0; -20 0; 0 0;"
+				dur="8s"
 				calcMode="spline"
-				keyTimes="0; 0.7; 1"
-				keySplines="0.8 0 0.25 1; 0.5 0 0.5 1;"
-				dur="0.7s"
-				begin="crackTheEggOpen.begin"
-				id="crackTheEggOpened"
+				keyTimes="0; 0.25; 0.5; 0.75; 1"
+				keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
+				repeatCount="indefinite"
+				begin="crackTheEggStart.begin"
+				end="crackTheEggOpen.begin"
 				fill="freeze"
 			/>
-			<g stroke="currentColor">
-				<g fill="#fefefe" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M -0.5 -4 v 2 h -3 v 2 h 6 v -2 h -1.5 v -2" />
-				</g>
-				<path fill="#f7f75a" d="M -4 -21.5 h -4 v 4" />
-				<path fill="#fefefe" d="M -9 -11 c 0 10 18 10 18 0 v -4 h -6 v -2 c 0 -8 -12 -8 -12 6" />
-			</g>
-			<circle fill="currentColor" cx="-3.5" cy="-19" r="0.75" />
-		</g>
 
-		<g>
-			<animateTransform
-				attributeName="transform"
-				type="rotate"
-				values="0; 5; 0; -5; 0"
-				dur="0.3s"
-				begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
-			/>
-			<animate
-				attributeName="display"
-				to="none"
-				dur="0.1s"
-				calcMode="discrete"
-				fill="freeze"
-				begin="crackTheEggOpen.begin"
-			/>
-			<use href="#crack-the-egg-egg" />
-			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
-				<g fill="none" stroke="currentColor" stroke-linecap="square">
-					{#each eggFragments as { d }, i}
-						<path {d} opacity="0">
-							<animate
-								attributeName="opacity"
-								to="1"
-								dur="0.1s"
-								calcMode="discrete"
-								fill="freeze"
-								begin="crackTheEggFragment{i}.begin"
-							/>
-						</path>
-					{/each}
-				</g>
-				<g opacity="0">
-					{#each eggFragments as { x, y, width, height }, i}
-						<rect style:cursor="pointer" {x} {y} {width} {height}>
-							<animate
-								attributeName="display"
-								to="none"
-								dur="0.1s"
-								calcMode="discrete"
-								fill="freeze"
-								restart="never"
-								begin="click"
-								id="crackTheEggFragment{i}"
-							/>
-						</rect>
-					{/each}
+			<!-- 		surprise	 -->
+			<g>
+				<animateTransform
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 -20; 0 -17.5"
+					calcMode="spline"
+					keyTimes="0; 0.7; 1"
+					keySplines="0.8 0 0.25 1; 0.5 0 0.5 1;"
+					dur="0.7s"
+					begin="crackTheEggOpen.begin"
+					id="crackTheEggOpened"
+					fill="freeze"
+				/>
+				<g transform="translate(0 -2)">
+					<g stroke="currentColor">
+						<g fill="#fefefe" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M -0.5 -4 v 2 h -3 v 2 h 6 v -2 h -1.5 v -2" />
+						</g>
+						<g fill="#f7f75a">
+							<path d="M -4 -21.5 h -4 v 4" />
+							<path d="M -9 -11 c 0 10 18 10 18 0 v -4 h -6 v -2 c 0 -8 -12 -8 -12 6" />
+						</g>
+					</g>
+					<circle fill="currentColor" cx="-3.5" cy="-19" r="0.75" />
 				</g>
 			</g>
-		</g>
 
-		<g>
-			<animateTransform
-				attributeName="transform"
-				type="rotate"
-				values="0; 5; 0; -5; 0"
-				dur="0.3s"
-				begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
-			/>
-			<g transform="translate(0 {50 * eggFragments.length * -1})">
-				{#each eggFragments as _, i}
-					<animateTransform
-						attributeName="transform"
-						type="translate"
-						by="0 50"
-						dur="0.1s"
-						begin="crackTheEggFragment{i}.begin"
-						fill="freeze"
-						calcMode="discrete"
-					/>
-				{/each}
+			<g>
+				<animateTransform
+					attributeName="transform"
+					type="rotate"
+					values="0; 5; 0; -5; 0"
+					dur="0.3s"
+					begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
+				/>
 				<g>
-					<animateTransform
-						attributeName="transform"
-						type="translate"
-						to="0 -50"
-						dur="0.35s"
-						calcMode="spline"
-						keySplines="0.8 0 0.25 1"
-						begin="crackTheEggOpen.begin + 0.03s"
-						fill="freeze"
-					/>
-					<g clip-path="url(#crack-the-egg-clip-egg-top-half)">
-						<use href="#crack-the-egg-egg" />
-						<path
-							clip-path="url(#crack-the-egg-clip-egg-shape)"
-							fill="none"
-							stroke="currentColor"
-							d={eggCrack}
-						/>
-					</g>
-				</g>
-				<g>
-					<animateTransform
-						attributeName="transform"
-						type="translate"
-						to="0 50"
-						dur="0.5s"
-						calcMode="spline"
-						keySplines="0.8 0 0.25 1"
-						begin="crackTheEggOpen.begin + 0.03s"
-						fill="freeze"
-					/>
-					<g clip-path="url(#crack-the-egg-clip-egg-bottom-half)">
-						<use href="#crack-the-egg-egg" />
-						<path
-							clip-path="url(#crack-the-egg-clip-egg-shape)"
-							fill="none"
-							stroke="currentColor"
-							d={eggCrack}
-						/>
-					</g>
-				</g>
-
-				<use style:cursor="pointer" opacity="0" href="#crack-the-egg-egg">
 					<animate
 						attributeName="display"
 						to="none"
 						dur="0.1s"
 						calcMode="discrete"
 						fill="freeze"
-						restart="never"
-						begin="click"
-						id="crackTheEggOpen"
+						begin="crackTheEggOpen.begin"
 					/>
-				</use>
+					<use href="#crack-the-egg-egg" />
+					<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+						<g fill="none" stroke="currentColor" stroke-linecap="square">
+							{#each eggFragments as { d }, i}
+								<path {d} opacity="0">
+									<animate
+										attributeName="opacity"
+										to="1"
+										dur="0.1s"
+										calcMode="discrete"
+										fill="freeze"
+										begin="crackTheEggFragment{i}.begin"
+									/>
+								</path>
+							{/each}
+						</g>
+
+						<g opacity="0">
+							{#each eggFragments as { x, y, width, height }, i}
+								<rect style:cursor="pointer" {x} {y} {width} {height}>
+									<animate
+										attributeName="display"
+										to="none"
+										dur="0.1s"
+										calcMode="discrete"
+										fill="freeze"
+										restart="never"
+										begin="click"
+										id="crackTheEggFragment{i}"
+									/>
+								</rect>
+							{/each}
+						</g>
+					</g>
+				</g>
+
+				<g transform="translate(0 {100 * eggFragments.length * -1})">
+					{#each eggFragments as _, i}
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							by="0 100"
+							dur="0.1s"
+							begin="crackTheEggFragment{i}.begin"
+							fill="freeze"
+							calcMode="discrete"
+						/>
+					{/each}
+					<g>
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							to="0 -50"
+							dur="0.35s"
+							calcMode="spline"
+							keySplines="0.8 0 0.25 1"
+							begin="crackTheEggOpen.begin + 0.03s"
+							fill="freeze"
+						/>
+						<g clip-path="url(#crack-the-egg-clip-egg-top-half)">
+							<use href="#crack-the-egg-egg" />
+							<path
+								d={eggCrack}
+								clip-path="url(#crack-the-egg-clip-egg-shape)"
+								fill="none"
+								stroke="currentColor"
+							/>
+						</g>
+					</g>
+
+					<g>
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							to="0 50"
+							dur="0.5s"
+							calcMode="spline"
+							keySplines="0.8 0 0.25 1"
+							begin="crackTheEggOpen.begin + 0.03s"
+							fill="freeze"
+						/>
+						<g clip-path="url(#crack-the-egg-clip-egg-bottom-half)">
+							<use href="#crack-the-egg-egg" />
+							<path
+								d={eggCrack}
+								clip-path="url(#crack-the-egg-clip-egg-shape)"
+								fill="none"
+								stroke="currentColor"
+							/>
+						</g>
+					</g>
+
+					<use style:cursor="pointer" opacity="0" href="#crack-the-egg-egg">
+						<animate
+							attributeName="display"
+							to="none"
+							dur="0.1s"
+							calcMode="discrete"
+							fill="freeze"
+							restart="never"
+							begin="click"
+							id="crackTheEggOpen"
+						/>
+					</use>
+				</g>
 			</g>
 		</g>
 	</g>
 
-	<g transform="translate(40 10)">
-		<g
-			style="pointer-events: none;"
-			font-size="7"
-			font-weight="bold"
-			font-family="sans-serif"
-			text-anchor="middle"
-			dominant-baseline="middle"
-			fill="#f7f7f7"
-			stroke="currentColor"
-			stroke-width="0.3"
-		>
-			<animate
-				attributeName="opacity"
-				to="0"
-				fill="freeze"
-				dur="0.1s"
-				begin="crackTheEggStart.begin"
-			/>
-			<text> Break open! </text>
-		</g>
-	</g>
+	<g display="none">
+		<animate id="crackTheEggEnd" begin="click" restart="never" />
 
-	<rect style:cursor="pointer" width="80" height="50" opacity="0">
 		<animate
-			id="crackTheEggStart"
+			id="crackTheEggMessage"
 			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-	</rect>
-
-	<g transform="translate(-80 0)">
-		<animateTransform
-			attributeName="transform"
-			by="80 0"
-			additive="sum"
-			calcMode="discrete"
+			to="initial"
 			fill="freeze"
 			begin="crackTheEggOpened.end"
-			id="crackTheEggMessage"
 			dur="0.1s"
 		/>
-
-		<g transform="translate(40 37.5)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					to="0 1"
-					dur="0.25s"
-					repeatCount="indefinite"
+		<g>
+			<g transform="translate(40 37.5)">
+				<AnimatedText
+					text="Open sesame!"
 					begin="crackTheEggMessage.begin"
-					end="crackTheEggEnd.end"
-					fill="freeze"
-					calcMode="discrete"
+					end="crackTheEggEnd.begin"
+					fill="url(#linear-gradient-text)"
 				/>
-				<text>
-					{#each 'Open sesame!'.split('') as l, i}
-						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-					{/each}
-				</text>
 			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<animate
+					attributeName="display"
+					begin="crackTheEggEnd.begin"
+					to="none"
+					dur="0.1s"
+					fill="freeze"
+				/>
+			</rect>
 		</g>
+	</g>
 
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+	<g style:cursor="pointer">
+		<g>
 			<animate
+				id="crackTheEggStart"
 				attributeName="display"
 				to="none"
 				fill="freeze"
 				begin="click"
-				restart="never"
 				dur="0.1s"
-				id="crackTheEggEnd"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<Text fill="url(#linear-gradient-text)">Break open!</Text>
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>
