@@ -41,11 +41,11 @@
 	<article style="--background-color: #d1e3e7; --outline-color: #01a33e;">
 		<SmashTheRabbits />
 	</article>
-	<article style="--background-color: #cedfde; --outline-color: #42414a;">
-		<TakeAPicture />
-	</article>
 	<article style="--background-color: #cedfde; --outline-color: #1f2a26;">
 		<FightTheEnemy />
+	</article>
+	<article style="--background-color: #cedfde; --outline-color: #42414a;">
+		<TakeAPicture />
 	</article>
 </div>
 
