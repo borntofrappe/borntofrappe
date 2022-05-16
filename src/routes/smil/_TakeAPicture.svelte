@@ -1,4 +1,7 @@
 <script>
+	import AnimatedText from './_helpers/_AnimatedText.svelte';
+	import Text from './_helpers/_Text.svelte';
+
 	const size = 15;
 	const width = 80;
 	const height = 50;
@@ -20,7 +23,7 @@
 		},
 		{
 			threshold: height + lens.y - size,
-			text: 'Out of focus...'
+			text: 'A bit early...'
 		},
 		{
 			threshold: height + lens.y,
@@ -29,11 +32,11 @@
 		},
 		{
 			threshold: height + lens.y + lens.height - size,
-			text: 'Out of focus...'
+			text: 'A tad late...'
 		},
 		{
 			threshold: height + lens.y + lens.height,
-			text: 'Quite late...'
+			text: 'Exceedingly late...'
 		}
 	].map(({ threshold, text, filter = true }) => ({
 		delay: (threshold / (height * 2)) * time,
@@ -77,6 +80,23 @@
 		<clipPath id="take-a-picture-clip-lens">
 			<use href="#take-a-picture-lens" />
 		</clipPath>
+
+		<pattern
+			id="take-a-picture-pattern-tree"
+			viewBox="0 0 15 15"
+			patternUnits="userSpaceOnUse"
+			width="8"
+			height="8"
+		>
+			<rect fill="#f7f7f7" width="15" height="15" />
+			<g fill="none" stroke="#bdbebd" stroke-width="0.25">
+				<path transform="translate(3 3) rotate(-21)" d="M 0 -1 v 2" />
+				<path transform="translate(12 7) rotate(-21)" d="M 0 -1 v 2" />
+				<path transform="translate(5 6) rotate(-21)" d="M 0 -1 v 2" />
+				<path transform="translate(10 2) rotate(-21)" d="M 0 -1.5 v 3" />
+				<path transform="translate(8 4) rotate(-21)" d="M 0 -2 v 4" />
+			</g>
+		</pattern>
 	</defs>
 
 	<g>
@@ -94,27 +114,34 @@
 
 		<rect fill="currentColor" width="80" height="50" />
 
-		<g style="pointer-events: none">
+		<g>
+			<use href="#take-a-picture-lens" fill="none" stroke="#ffffff" stroke-width="2.5" />
+			<use href="#take-a-picture-lens" fill="none" stroke="currentColor" stroke-width="1" />
+
 			<g clip-path="url(#take-a-picture-clip-lens)">
 				<rect width="80" height="50" fill="#ffffff" />
 
-				<g
+				<path
+					transform="scale(.5)"
 					fill="#d6d7d6"
-					stroke="#d6d7d6"
-					stroke-width="0.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<circle cx="30" cy="22" r="8" />
-					<circle cx="40" cy="16" r="10" />
-					<circle cx="35" cy="14" r="10" />
-					<circle cx="50" cy="12" r="8" />
-				</g>
-				<g stroke="#bdbebd" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-					<path fill="#f7f7f7" d="M 45 50 34 25 55 0 48 0 30 20 18 0 8 0 28 30 35 50" />
-					<g fill="none">
-						<path d="M 30 30 33 38" />
-						<path d="M 34.5 32 36 36" />
+					d="m0 0v50.2a26.3 26.3 0 0 0 3.03 0.342 26.3 26.3 0 0 0 13.2-3.54 26.3 26.3 0 0 0 24.2 16.2 26.3 26.3 0 0 0 23.3-14.2 26.3 26.3 0 0 0 14.1 4.13 26.3 26.3 0 0 0 23.3-14.2 26.3 26.3 0 0 0 1.45 0.0762 26.3 26.3 0 0 0 25-18.2 26.3 26.3 0 0 0 5.99-2.03 26.3 26.3 0 0 0 5.38 0.561 26.3 26.3 0 0 0 21.1-10.8v-8.4h-160z"
+				/>
+				<g stroke="#bdbebd">
+					<path
+						transform="scale(.5)"
+						fill="#f7f7f7"
+						d="m47.8 0 7.1 33.4-54.9-20v19.3l57.9 19 8.65 48.3h25.4l-13.8-58.3 70.8-41.7h-28l-47.9 27.2-7.63-27.2z"
+					/>
+					<g stroke-width="0.4">
+						<path d="m4.55 13.9 9.49 3.54" />
+						<path d="m27.5 4.82 1.86 6.96" />
+						<path d="m33.6 32.2 2.24 12.5" />
+						<path d="m37.2 24.4 1.81 8.68" />
+						<path d="m40.5 15.5 5.62-3.18" />
+						<path d="m51.5 6.63 4.11-2.25" />
+						<path d="m54.7 8.21 9.09-5.25" />
+						<path d="m18.4 16 5.68 1.99" />
+						<path d="m30.6 19.2 0.795 4.78" />
 					</g>
 				</g>
 
@@ -164,13 +191,10 @@
 					</g>
 				</g>
 			</g>
-
-			<use href="#take-a-picture-lens" fill="none" stroke="#ffffff" stroke-width="2" />
-			<use href="#take-a-picture-lens" fill="none" stroke="currentColor" stroke-width=".5" />
 		</g>
 
 		<g>
-			{#each frames as { delay, text, invert }, i}
+			{#each frames as { delay, text }, i}
 				<g display="none">
 					<animate
 						attributeName="display"
@@ -181,18 +205,20 @@
 						begin="takeAPictureStart.begin + {delay}s"
 						{end}
 					/>
-					{#if i < frames.length - 1}
-						<animate
-							attributeName="display"
-							to="none"
-							fill="freeze"
-							dur="0.1s"
-							calcMode="discrete"
-							begin="takeAPictureStart.begin + {frames[i + 1].delay}s"
-							{end}
-						/>
-					{/if}
-					<g style:cursor="pointer">
+					<animate
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						dur="0.1s"
+						calcMode="discrete"
+						begin={i < frames.length - 1
+							? `takeAPictureStart.begin + ${frames[i + 1].delay}s`
+							: 'takeAPictureMotion.end'}
+						{end}
+					/>
+					<g>
+						<animate id="takeAPictureFrame{i}" begin="click" restart="never" />
+
 						<g display="none">
 							<animate
 								attributeName="display"
@@ -202,82 +228,28 @@
 								begin="takeAPictureFrame{i}.begin"
 								fill="freeze"
 							/>
-
-							<g transform="translate(40 45)">
-								<g
-									style="pointer-events: none;"
-									font-size="6"
-									font-weight="bold"
-									font-family="sans-serif"
-									text-anchor="middle"
-									dominant-baseline="middle"
-									fill="#f7f7f7"
-									stroke="currentColor"
-									stroke-width="0.3"
-								>
-									<animateTransform
-										attributeName="transform"
-										type="translate"
-										to="0 1"
-										dur="0.25s"
-										repeatCount="indefinite"
-										begin="takeAPictureFrame{i}.begin"
-										end="takeAPictureEnd.begin"
-										fill="freeze"
-										calcMode="discrete"
-									/>
-									<text>
-										{#each text.split('') as l, i}
-											<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-										{/each}
-									</text>
-								</g>
+							<g transform="translate(40 46)">
+								<AnimatedText
+									{text}
+									begin="takeAPictureFrame{i}.begin"
+									end="takeAPictureEnd.begin"
+								/>
 							</g>
 						</g>
-
 						<rect width="80" height="50" opacity="0">
-							<animate restart="never" begin="click" id="takeAPictureFrame{i}" />
+							<animate
+								attributeName="display"
+								to="none"
+								dur="0.1s"
+								calcMode="discrete"
+								begin="takeAPictureFrame{i}.begin"
+								fill="freeze"
+							/>
 						</rect>
 					</g>
 				</g>
 			{/each}
 		</g>
-	</g>
-
-	<g>
-		<animate
-			id="takeAPictureStart"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			begin="click"
-			dur="0.1s"
-			restart="never"
-		/>
-		<g transform="translate(40 25)">
-			<g
-				style="pointer-events: none;"
-				font-size="7"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animate
-					attributeName="opacity"
-					to="0"
-					fill="freeze"
-					dur="0.1s"
-					begin="takeAPictureStart.begin"
-				/>
-				<text> Picture! </text>
-			</g>
-		</g>
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0" />
 	</g>
 
 	<g display="none">
@@ -286,61 +258,61 @@
 			to="initial"
 			dur="0.1s"
 			calcMode="discrete"
-			begin="takeAPictureMotion.end"
+			begin="takeAPictureMotion.end + 1s"
 			{end}
 			fill="freeze"
 		/>
-		<g transform="translate(40 45)">
-			<g
-				style="pointer-events: none;"
-				font-size="6"
-				font-weight="bold"
-				font-family="sans-serif"
-				text-anchor="middle"
-				dominant-baseline="middle"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				stroke-width="0.3"
-			>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					to="0 1"
-					dur="0.25s"
-					repeatCount="indefinite"
-					begin="takeAPictureMotion.end"
-					end="takeAPictureEnd.begin"
-					fill="freeze"
-					calcMode="discrete"
-				/>
-				<text>
-					{#each 'Next time...'.split('') as l, i}
-						<tspan dx="0.5" dy={i % 2 === 0 ? 0.5 : -0.5}>{l}</tspan>
-					{/each}
-				</text>
-			</g>
+		<g transform="translate(40 46)">
+			<AnimatedText
+				text="Next time..."
+				begin="takeAPictureMotion.end"
+				end="takeAPictureEnd.begin"
+			/>
 		</g>
 	</g>
 
-	<g display="none">
+	<g style:cursor="pointer" display="none">
+		<animate
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			dur="0.1s"
+			calcMode="discrete"
+			begin="click"
+			id="takeAPictureEnd"
+		/>
 		<animate
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			begin="{end}; takeAPictureMotion.end"
 			dur="0.1s"
-			restart="never"
+			calcMode="discrete"
+			begin="{end}; takeAPictureMotion.end"
 		/>
-		<rect width="80" height="50" opacity="0.0" />
-		<rect style:cursor="pointer" width="80" height="50" opacity="0.0">
+		<rect width="80" height="50" opacity="0" />
+	</g>
+
+	<g style:cursor="pointer">
+		<g>
 			<animate
-				id="takeAPictureEnd"
+				id="takeAPictureStart"
 				attributeName="display"
 				to="none"
-				dur="0.1s"
 				fill="freeze"
 				begin="click"
+				dur="0.1s"
+				restart="never"
 			/>
-		</rect>
+			<g transform="translate(40 25)">
+				<Text fill="url(#linear-gradient-text)">Frame!</Text>
+			</g>
+			<rect width="80" height="50" opacity="0" />
+		</g>
 	</g>
 </svg>
+
+<style>
+	svg {
+		outline: 1px solid;
+	}
+</style>
