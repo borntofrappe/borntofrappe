@@ -12,6 +12,7 @@
 	import SmashTheRabbits from './_SmashTheRabbits.svelte';
 	import FightTheEnemy from './_FightTheEnemy.svelte';
 	import TakeAPicture from './_TakeAPicture.svelte';
+	import PickASide from './_PickASide.svelte';
 </script>
 
 <svelte:head>
@@ -46,6 +47,9 @@
 	</article>
 	<article style="--background-color: #d6d7d6; --outline-color: #42414a;">
 		<TakeAPicture />
+	</article>
+	<article style="--background-color: #f7a629; --outline-color: #bd4900;">
+		<PickASide />
 	</article>
 </div>
 
