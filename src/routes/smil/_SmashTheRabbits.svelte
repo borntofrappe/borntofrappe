@@ -143,38 +143,36 @@
 				<g transform="translate({x} {y})">
 					<g transform="translate(0 15)">
 						<animateTransform
+							id="smashTheRabbitRabbit{i}"
+							begin="smashTheRabbitStart.begin + {delay}s"
 							attributeName="transform"
 							type="translate"
 							values="0 15; 0 -2.5; 0 15"
 							dur="{2 + Math.random()}s"
-							begin="smashTheRabbitStart.begin + {delay}s"
-							id="smashTheRabbitRabbit{i}"
 							calcMode="spline"
 							keyTimes="0; 0.5; 1"
 							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
 						/>
 						<g>
 							<g display="none">
-								<animate
+								<set
+									begin="smashTheRabbitRabbitHit{i}.begin"
 									attributeName="display"
 									to="initial"
 									fill="freeze"
-									dur="0.1s"
-									calcMode="discrete"
-									begin="smashTheRabbitRabbitHit{i}.begin"
+									restart="never"
 								/>
 								<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit-hit" x="-5" y="-5" />
 							</g>
 							<g style:cursor="pointer">
 								<g>
-									<animate
+									<set
+										id="smashTheRabbitRabbitHit{i}"
+										begin="click"
 										attributeName="display"
 										to="none"
 										fill="freeze"
-										dur="0.1s"
-										calcMode="discrete"
-										begin="click"
-										id="smashTheRabbitRabbitHit{i}"
+										restart="never"
 									/>
 									<use transform="scale(1.5)" href="#smash-the-rabbit-rabbit" x="-5" y="-5" />
 								</g>
@@ -187,13 +185,12 @@
 	</g>
 
 	<g display="none">
-		<animate
+		<set
+			begin="smashTheRabbitStart.begin"
 			attributeName="display"
 			to="initial"
-			dur="0.1s"
-			calcMode="discrete"
 			fill="freeze"
-			begin="smashTheRabbitStart.begin"
+			restart="never"
 		/>
 		<g transform="translate(40 6)">
 			<g
@@ -206,13 +203,13 @@
 				<g transform="translate({80 * rabbits.length * -1} 0)">
 					{#each Array(rabbits.length) as _, i}
 						<animateTransform
+							begin="smashTheRabbitRabbitHit{i}.begin"
 							attributeName="transform"
 							type="translate"
 							by="80 0"
-							calcMode="discrete"
 							dur="0.01s"
+							calcMode="discrete"
 							fill="freeze"
-							begin="smashTheRabbitRabbitHit{i}.begin"
 						/>
 					{/each}
 
@@ -230,29 +227,26 @@
 	</g>
 
 	<g display="none">
-		<animate id="smashTheRabbitEnd" begin="click" restart="never" />
-
-		<animate
+		<set
 			id="smashTheRabbitMessage"
+			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			dur="0.1s"
-			calcMode="discrete"
-			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
+			restart="never"
 		/>
 		<g>
 			<g transform="translate(40 25)">
 				<g transform="translate({80 * rabbits.length * -1} 0)">
 					{#each Array(rabbits.length) as _, i}
 						<animateTransform
+							begin="smashTheRabbitRabbitHit{i}.begin"
 							attributeName="transform"
 							type="translate"
+							by="80 0"
 							fill="freeze"
 							dur="0.1s"
 							calcMode="discrete"
-							by="80 0"
-							begin="smashTheRabbitRabbitHit{i}.begin"
 						/>
 					{/each}
 
@@ -268,33 +262,32 @@
 					{/each}
 				</g>
 			</g>
+
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
+				<set
+					id="smashTheRabbitEnd"
+					begin="click"
 					attributeName="display"
-					begin="smashTheRabbitEnd.begin"
 					to="none"
-					dur="0.1s"
 					fill="freeze"
+					restart="never"
 				/>
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="smashTheRabbitStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<Text fill="url(#linear-gradient-text)">Smash!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="smashTheRabbitStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Smash!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>

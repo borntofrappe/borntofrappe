@@ -116,17 +116,19 @@
 	<g transform="translate(40 28)">
 		<g>
 			<animateTransform
+				id="popTheBalloonFloat"
+				begin="popTheBalloonStart.begin"
+				end="popTheBalloonPopped.begin"
 				attributeName="transform"
 				type="translate"
 				to="{dx} {dy}"
 				dur="5s"
 				fill="freeze"
-				begin="popTheBalloonStart.begin"
-				end="popTheBalloonPopped.begin"
-				id="popTheBalloonFloat"
 			/>
 			<g>
 				<animateTransform
+					begin="popTheBalloonStart.begin"
+					end="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 1"
@@ -134,20 +136,18 @@
 					calcMode="discrete"
 					fill="freeze"
 					repeatCount="indefinite"
-					begin="popTheBalloonStart.begin"
-					end="popTheBalloonPopped.begin"
 				/>
 				<g style:cursor="pointer">
 					<animateTransform
+						id="popTheBalloonPopped"
+						begin="click"
 						attributeName="transform"
 						type="translate"
 						values="160 0; 320 0"
 						dur="0.1s"
 						calcMode="discrete"
 						fill="freeze"
-						begin="click"
 						restart="never"
-						id="popTheBalloonPopped"
 					/>
 					<g fill="#f70000" stroke="currentColor" stroke-width="0.5">
 						<use href="#pop-the-balloon-balloon" />
@@ -162,16 +162,16 @@
 
 			<g>
 				<animateTransform
+					id="popTheBalloonFall"
+					begin="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 100"
 					dur="1.5s"
 					fill="freeze"
-					begin="popTheBalloonPopped.begin"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.65 0 0.4 1"
-					id="popTheBalloonFall"
 				/>
 				<g stroke="currentColor" stroke-width="0.6">
 					<g fill="url(#pop-the-balloon-pattern-present)">
@@ -185,42 +185,40 @@
 	</g>
 
 	<g display="none">
-		<animate id="popTheBalloonEnd" begin="click" restart="never" />
-
-		<animate
+		<set
 			id="popTheBalloonMessage"
+			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
-			dur="0.1s"
+			restart="never"
 		/>
 		<g>
 			<g transform="translate(40 25)">
 				<g display="none">
-					<animate
+					<set
+						begin="popTheBalloonFall.end"
 						attributeName="display"
 						to="initial"
 						fill="freeze"
-						begin="popTheBalloonFall.end"
-						dur="0.1s"
+						restart="never"
 					/>
 					<g>
 						<AnimatedText
 							text="That's a wrap!"
-							begin="popTheBalloonMessage.begin"
+							begin="popTheBalloonFall.end"
 							end="popTheBalloonEnd.begin"
 							fill="url(#linear-gradient-text)"
 						/>
 					</g>
 				</g>
 				<g>
-					<animate
+					<set
+						begin="popTheBalloonFall.begin"
 						attributeName="display"
 						to="none"
 						fill="freeze"
-						begin="popTheBalloonFall.begin"
-						dur="0.1s"
+						restart="never"
 					/>
 					<g>
 						<AnimatedText
@@ -233,32 +231,30 @@
 				</g>
 			</g>
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
+				<set
+					id="popTheBalloonEnd"
+					begin="click"
 					attributeName="display"
-					begin="popTheBalloonEnd.begin"
 					to="none"
-					dur="0.1s"
 					fill="freeze"
+					restart="never"
 				/>
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="popTheBalloonStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<Text fill="url(#linear-gradient-text)">Pop!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="popTheBalloonStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Pop!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>

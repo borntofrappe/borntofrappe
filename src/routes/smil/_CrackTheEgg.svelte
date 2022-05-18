@@ -120,6 +120,7 @@
 	</defs>
 
 	<rect fill="url(#crack-the-egg-pattern-sky)" width="80" height="50" />
+
 	<g fill="url(#crack-the-egg-pattern-cloud)">
 		<g transform="translate(20 17.5)">
 			<circle r="9" />
@@ -206,26 +207,18 @@
 					begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
 				/>
 				<g>
-					<animate
-						attributeName="display"
-						to="none"
-						dur="0.1s"
-						calcMode="discrete"
-						fill="freeze"
-						begin="crackTheEggOpen.begin"
-					/>
+					<set begin="crackTheEggOpen.begin" attributeName="display" to="none" fill="freeze" />
+
 					<use href="#crack-the-egg-egg" />
 					<g clip-path="url(#crack-the-egg-clip-egg-shape)">
 						<g fill="none" stroke="currentColor" stroke-linecap="square">
 							{#each eggFragments as { d }, i}
 								<path {d} opacity="0">
-									<animate
+									<set
+										begin="crackTheEggFragment{i}.begin"
 										attributeName="opacity"
 										to="1"
-										dur="0.1s"
-										calcMode="discrete"
 										fill="freeze"
-										begin="crackTheEggFragment{i}.begin"
 									/>
 								</path>
 							{/each}
@@ -234,15 +227,13 @@
 						<g opacity="0">
 							{#each eggFragments as { x, y, width, height }, i}
 								<rect style:cursor="pointer" {x} {y} {width} {height}>
-									<animate
+									<set
+										id="crackTheEggFragment{i}"
+										begin="click"
 										attributeName="display"
 										to="none"
-										dur="0.1s"
-										calcMode="discrete"
 										fill="freeze"
 										restart="never"
-										begin="click"
-										id="crackTheEggFragment{i}"
 									/>
 								</rect>
 							{/each}
@@ -307,15 +298,13 @@
 					</g>
 
 					<use style:cursor="pointer" opacity="0" href="#crack-the-egg-egg">
-						<animate
+						<set
+							id="crackTheEggOpen"
+							begin="click"
 							attributeName="display"
 							to="none"
-							dur="0.1s"
-							calcMode="discrete"
 							fill="freeze"
 							restart="never"
-							begin="click"
-							id="crackTheEggOpen"
 						/>
 					</use>
 				</g>
@@ -324,15 +313,12 @@
 	</g>
 
 	<g display="none">
-		<animate id="crackTheEggEnd" begin="click" restart="never" />
-
-		<animate
+		<set
 			id="crackTheEggMessage"
+			begin="crackTheEggOpened.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			begin="crackTheEggOpened.end"
-			dur="0.1s"
 		/>
 		<g>
 			<g transform="translate(40 37.5)">
@@ -344,32 +330,30 @@
 				/>
 			</g>
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
+				<set
+					id="crackTheEggEnd"
+					begin="click"
 					attributeName="display"
-					begin="crackTheEggEnd.begin"
 					to="none"
-					dur="0.1s"
 					fill="freeze"
+					restart="never"
 				/>
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="crackTheEggStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<Text fill="url(#linear-gradient-text)">Break open!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="crackTheEggStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Break open!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>

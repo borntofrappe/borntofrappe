@@ -114,18 +114,19 @@
 	<g transform="translate(40 25)">
 		<g style:cursor="pointer">
 			<animateTransform
+				id="pokeTheLadybugPoked"
+				begin="click"
 				attributeName="transform"
 				type="translate"
 				to="0 -50"
 				dur="2s"
-				begin="click"
 				restart="never"
-				id="pokeTheLadybugPoked"
 				fill="freeze"
 			/>
 
 			<g>
 				<animateTransform
+					begin="pokeTheLadybugStart.begin"
 					attributeName="transform"
 					type="translate"
 					dur="{sprites * 0.15}s"
@@ -135,7 +136,6 @@
 						.join(';')}
 					calcMode="discrete"
 					repeatCount="indefinite"
-					begin="pokeTheLadybugStart.begin"
 					end="pokeTheLadybugPoked.end"
 					fill="freeze"
 				/>
@@ -174,15 +174,13 @@
 	</g>
 
 	<g display="none">
-		<animate id="pokeTheLadybugEnd" begin="click" restart="never" />
-
-		<animate
+		<set
 			id="pokeTheLadybugMessage"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
 			begin="pokeTheLadybugPoked.end"
-			dur="0.1s"
+			restart="never"
 		/>
 		<g>
 			<g transform="translate(40 25)">
@@ -193,33 +191,32 @@
 					fill="url(#linear-gradient-text)"
 				/>
 			</g>
+
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
+				<set
+					id="pokeTheLadybugEnd"
 					attributeName="display"
-					begin="pokeTheLadybugEnd.begin"
+					begin="click"
 					to="none"
-					dur="0.1s"
 					fill="freeze"
+					restart="never"
 				/>
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="pokeTheLadybugStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="pokeTheLadybugStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
