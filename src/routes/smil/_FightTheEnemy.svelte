@@ -47,26 +47,25 @@
 	</g>
 
 	<g display="none">
-		<animate
+		<set
+			begin="fightTheEnemyStart.begin"
 			attributeName="display"
 			to="initial"
-			dur="0.1s"
 			fill="freeze"
-			calcMode="discrete"
-			begin="fightTheEnemyStart.begin"
+			restart="never"
 		/>
 		<g>
 			<animateTransform
-				attributeName="transform"
-				type="translate"
-				dur="0.1s"
-				repeatCount="2"
-				values="0 0; 1 0; 0 0; -1 0; 0 0"
 				begin={Array(hpYou)
 					.fill()
 					.map((_, i) => `fightTheEnemyHpDrop${i + 1}.begin`)
 					.join(';')}
 				end="fightTheEnemyHpEnemy1.begin"
+				attributeName="transform"
+				type="translate"
+				values="0 0; 1 0; 0 0; -1 0; 0 0"
+				dur="0.1s"
+				repeatCount="2"
 			/>
 
 			<g transform="translate(1 1)">
@@ -87,22 +86,20 @@
 								{#each Array(hpEnemy + 1) as _, i}
 									<tspan display={i === hpEnemy ? 'initial' : 'none'}>
 										{#if i > 0}
-											<animate
+											<set
+												begin="fightTheEnemyHpEnemy{i}.begin"
 												attributeName="display"
 												to="none"
-												dur="0.1s"
-												calcMode="discrete"
 												fill="freeze"
-												begin="fightTheEnemyHpEnemy{i}.begin"
+												restart="never"
 											/>
 										{/if}
-										<animate
+										<set
+											begin="fightTheEnemyHpEnemy{i + 1}.begin"
 											attributeName="display"
 											to="initial"
-											dur="0.1s"
-											calcMode="discrete"
 											fill="freeze"
-											begin="fightTheEnemyHpEnemy{i + 1}.begin"
+											restart="never"
 										/>
 										{i}
 									</tspan>
@@ -130,25 +127,23 @@
 								{#each [0, ...[...hpDropDelays].reverse()] as hpDropDelay, i}
 									<tspan display={i === hpDropDelays.length ? 'initial' : 'none'}>
 										{#if i > 0}
-											<animate
-												attributeName="display"
-												to="none"
-												dur="0.1s"
-												calcMode="discrete"
-												fill="freeze"
+											<set
+												id="fightTheEnemyHpYou{i}"
 												begin="fightTheEnemyStart.begin + {hpDropDelay}s"
 												end="fightTheEnemyHpEnemy1.begin"
-												id="fightTheEnemyHpYou{i}"
+												attributeName="display"
+												to="none"
+												fill="freeze"
+												restart="never"
 											/>
 										{/if}
-										<animate
-											attributeName="display"
-											to="initial"
-											dur="0.1s"
-											calcMode="discrete"
-											fill="freeze"
+										<set
 											begin="fightTheEnemyHpYou{i + 1}.begin"
 											end="fightTheEnemyHpEnemy1.begin"
+											attributeName="display"
+											to="initial"
+											fill="freeze"
+											restart="never"
 										/>
 										{i}
 									</tspan>
@@ -173,37 +168,36 @@
 						<g>
 							{#each Array(hpYou) as _, i}
 								<text display="none">
-									<animate
-										attributeName="display"
-										to="initial"
-										dur="0.1s"
-										fill="freeze"
+									<set
+										id="fightTheEnemyHpDrop{i + 1}"
 										begin="fightTheEnemyHpYou{i + 1}.begin"
 										end="fightTheEnemyHpEnemy1.begin"
-										id="fightTheEnemyHpDrop{i + 1}"
-									/>
-									<animate
 										attributeName="display"
-										to="none"
-										dur="0.1s"
+										to="initial"
 										fill="freeze"
+										restart="never"
+									/>
+									<set
 										begin={`fightTheEnemyHpYou${i}.begin; ${Array(hpEnemy)
 											.fill()
 											.map((_, i) => `fightTheEnemyHpEnemy${i + 1}.begin`)
 											.join(';')}`}
+										attributeName="display"
+										to="none"
+										fill="freeze"
 									/>
 									{#each `${i === 0 ? 'You were defeated...' : 'You are hit for 1 point!'}`.split('') as l, j}
 										<tspan fill-opacity="0">
 											<animate
+												id="fightTheEnemyMessageYou{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpDrop${i + 1}.begin`
+													: `fightTheEnemyMessageYou${i}Letter${j - 1}.end`}
 												attributeName="fill-opacity"
 												to="1"
 												dur="0.025s"
 												fill="freeze"
-												id="fightTheEnemyMessageYou{i}Letter{j}"
 												calcMode="discrete"
-												begin={j === 0
-													? `fightTheEnemyHpDrop${i + 1}.begin`
-													: `fightTheEnemyMessageYou${i}Letter${j - 1}.end`}
 											/>
 											{l}
 										</tspan>
@@ -215,37 +209,36 @@
 						<g>
 							{#each Array(hpEnemy) as _, i}
 								<text display="none">
-									<animate
+									<set
+										begin="fightTheEnemyHpEnemy{i + 1}.begin"
 										attributeName="display"
 										to="initial"
-										dur="0.1s"
 										fill="freeze"
-										begin="fightTheEnemyHpEnemy{i + 1}.begin"
+										restart="never"
 									/>
 									{#if i > 0}
-										<animate
-											attributeName="display"
-											to="none"
-											dur="0.1s"
-											fill="freeze"
+										<set
 											begin={`fightTheEnemyHpEnemy${i}.begin; ${Array(hpYou)
 												.fill()
 												.map((_, i) => `fightTheEnemyHpYou${i + 1}.begin`)
 												.join(';')}`}
+											attributeName="display"
+											to="none"
+											fill="freeze"
 										/>
 									{/if}
 									{#each `${i === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as l, j}
 										<tspan fill-opacity="0">
 											<animate
+												id="fightTheEnemyMessageEnemy{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpEnemy${i + 1}.begin`
+													: `fightTheEnemyMessageEnemy${i}Letter${j - 1}.end`}
 												attributeName="fill-opacity"
 												to="1"
 												dur="0.025s"
 												fill="freeze"
-												id="fightTheEnemyMessageEnemy{i}Letter{j}"
 												calcMode="discrete"
-												begin={j === 0
-													? `fightTheEnemyHpEnemy${i + 1}.begin`
-													: `fightTheEnemyMessageEnemy${i}Letter${j - 1}.end`}
 											/>
 											{l}
 										</tspan>
@@ -255,27 +248,26 @@
 						</g>
 
 						<g>
-							<animate
+							<set
+								begin="fightTheEnemyHpEnemy{hpEnemy}.begin; fightTheEnemyHpYou{hpYou}.begin"
 								attributeName="display"
 								to="none"
-								dur="0.1s"
 								fill="freeze"
-								begin="fightTheEnemyHpEnemy{hpEnemy}.begin; fightTheEnemyHpYou{hpYou}.begin"
 								restart="never"
 							/>
 							<text>
 								{#each 'An enemy appeared!'.split('') as l, j}
 									<tspan fill-opacity="0">
 										<animate
+											id="fightTheEnemyMessageLetter{j}"
+											begin={j === 0
+												? 'fightTheEnemyStart.begin'
+												: `fightTheEnemyMessageLetter${j - 1}.end`}
 											attributeName="fill-opacity"
 											to="1"
 											dur="0.025s"
 											fill="freeze"
-											id="fightTheEnemyMessageLetter{j}"
 											calcMode="discrete"
-											begin={j === 0
-												? 'fightTheEnemyStart.begin'
-												: `fightTheEnemyMessageLetter${j - 1}.end`}
 										/>
 										{l}
 									</tspan>
@@ -291,57 +283,55 @@
 			<g style:cursor="pointer" fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
 				{#each Array(hpEnemy) as _, i}
 					<g display={i === hpEnemy - 1 ? 'initial' : 'none'}>
-						<animate
+						<set
+							begin="fightTheEnemyHpEnemy{i + 2}.begin"
 							attributeName="display"
 							to="initial"
-							dur="0.1s"
 							fill="freeze"
-							calcMode="discrete"
-							begin="fightTheEnemyHpEnemy{i + 2}.begin"
+							restart="never"
 						/>
 
 						<animate
+							begin="fightTheEnemyHpEnemy{i + 2}.begin"
 							attributeName="opacity"
 							values="1;0;1"
 							repeatCount="2"
 							dur="0.2s"
 							calcMode="discrete"
-							begin="fightTheEnemyHpEnemy{i + 2}.begin"
 						/>
 
-						<animate
+						<set
+							id="fightTheEnemyHpEnemy{i + 1}"
+							begin="click"
+							end="fightTheEnemyHpYou1.begin"
 							attributeName="display"
 							to="none"
-							dur="0.1s"
 							fill="freeze"
-							calcMode="discrete"
-							id="fightTheEnemyHpEnemy{i + 1}"
-							end="fightTheEnemyHpYou1.begin"
-							begin="click"
+							restart="never"
 						/>
 
 						<g>
 							<animateTransform
-								attributeName="transform"
-								type="scale"
-								dur="0.1s"
-								values="1; 1.1; 1"
 								begin={Array(hpYou)
 									.fill()
 									.map((_, i) => `fightTheEnemyHpDrop${i + 1}.begin`)
 									.join(';')}
 								end="fightTheEnemyHpEnemy1.begin"
+								attributeName="transform"
+								type="scale"
+								dur="0.1s"
+								values="1; 1.1; 1"
 							/>
 							<animateTransform
-								attributeName="transform"
-								type="translate"
-								dur="0.1s"
-								values="0 0; 0 -1; 0 0"
 								begin={Array(hpYou)
 									.fill()
 									.map((_, i) => `fightTheEnemyHpDrop${i}.begin`)
 									.join(';')}
 								end="fightTheEnemyHpEnemy1.begin"
+								attributeName="transform"
+								type="translate"
+								values="0 0; 0 -1; 0 0"
+								dur="0.1s"
 								additive="sum"
 							/>
 							<path
@@ -363,105 +353,101 @@
 
 	<g>
 		<rect display="none" width="80" height="50" opacity="0">
-			<animate
+			<set
+				id="fightTheEnemyWin"
+				begin="fightTheEnemyHpEnemy1.begin"
 				attributeName="display"
 				to="initial"
-				begin="fightTheEnemyHpEnemy1.end"
 				fill="freeze"
-				dur="0.1s"
-				id="fightTheEnemyWin"
+				restart="never"
 			/>
 		</rect>
 
 		<rect display="none" width="80" height="50" opacity="0">
-			<animate
+			<set
+				id="fightTheEnemyLoss"
+				begin="fightTheEnemyHpDrop1.begin"
+				end="fightTheEnemyHpEnemy1.begin"
 				attributeName="display"
 				to="initial"
-				begin="fightTheEnemyHpDrop1.end"
-				end="fightTheEnemyHpEnemy1.end"
 				fill="freeze"
-				dur="0.1s"
-				id="fightTheEnemyLoss"
+				restart="never"
 			/>
 		</rect>
 	</g>
 
 	<g display="none">
-		<animate id="fightTheEnemyEnd" begin="click" restart="never" />
-
-		<animate
+		<set
 			id="fightTheEnemyMessage"
+			begin="fightTheEnemyWin.begin + 2s; fightTheEnemyLoss.begin + 2s"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			begin="fightTheEnemyWin.begin + 2s; fightTheEnemyLoss.begin + 2s"
-			dur="0.1s"
 			restart="never"
 		/>
 		<g>
 			<g display="none">
-				<animate
+				<set
+					begin="fightTheEnemyWin.begin"
 					attributeName="display"
 					to="initial"
 					fill="freeze"
-					begin="fightTheEnemyWin.end"
-					dur="0.1s"
+					restart="never"
 				/>
 				<g transform="translate(40 20)">
 					<AnimatedText
 						text="Level up!"
-						begin="fightTheEnemyWin.end"
+						begin="fightTheEnemyWin.begin + 2s"
 						end="fightTheEnemyEnd.begin"
 						fill="url(#linear-gradient-text)"
 					/>
 				</g>
 			</g>
 			<g>
-				<animate
+				<set
+					begin="fightTheEnemyWin.begin"
 					attributeName="display"
 					to="none"
 					fill="freeze"
-					begin="fightTheEnemyWin.begin"
-					dur="0.1s"
+					restart="never"
 				/>
 				<g transform="translate(40 6)">
 					<AnimatedText
 						text="Oowoo..."
 						delay={0.1}
 						offset={0.5}
-						begin="fightTheEnemyLoss.end"
+						begin="fightTheEnemyLoss.begin + 2s"
 						end="fightTheEnemyEnd.begin"
 						fill="url(#linear-gradient-text)"
 					/>
 				</g>
 			</g>
+
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
+				<set
+					id="fightTheEnemyEnd"
+					begin="click"
 					attributeName="display"
-					begin="fightTheEnemyEnd.begin"
 					to="none"
-					dur="0.1s"
 					fill="freeze"
+					restart="never"
 				/>
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="fightTheEnemyStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<Text fill="url(#linear-gradient-text)">Fight!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="fightTheEnemyStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Fight!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
