@@ -31,8 +31,10 @@
 
 	const length = Math.random() > 0.5 ? destinations.length - 1 : destinations.length - 3;
 
-	const getX = () => width / 4 + Math.floor((Math.random() * width) / 2);
-	const getY = () => 18 + 8 + Math.floor(Math.random() * 8);
+	const gridWidth = width;
+	const gridHeight = height - 18;
+	const getX = () => gridWidth / 4 + Math.floor((Math.random() * gridWidth) / 2);
+	const getY = () => 18 + gridHeight / 4 + Math.floor((Math.random() * gridHeight) / 2);
 
 	const sprites = Array(length)
 		.fill()
@@ -68,7 +70,7 @@
 					return acc + d;
 				}
 			}, 0);
-			const dur = `${Math.floor(1250 / distance)}s`;
+			const dur = `${Math.floor((125 * 10) / distance)}s`;
 
 			const values = moves.map(({ x, y }) => `${x} ${y}`).join(';');
 
@@ -113,7 +115,6 @@
 				/>
 			</g>
 		</pattern>
-
 		<pattern id="pick-a-side-pattern-sprite-2" width="1" height="1" viewBox="-5 -5 10 10">
 			<g stroke-width="0.4" stroke="currentColor">
 				<g fill="#f7f7f7">
@@ -156,7 +157,6 @@
 				<rect x="1" y="1" width="1" height="1" />
 			</g>
 		</pattern>
-
 		<pattern
 			id="pick-a-side-pattern-stroke-2"
 			viewBox="0 0 2 2"
@@ -215,13 +215,13 @@
 									-1}"
 							>
 								<animate
+									begin="pickASidePress1.begin"
 									attributeName="d"
 									to="M 0 {size +
 										padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
 										-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
 										-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 									dur="0.25s"
-									begin="pickASidePress1.begin"
 									fill="freeze"
 									restart="never"
 									calcMode="spline"
@@ -233,13 +233,13 @@
 					</g>
 					<g transform="translate(0 -{padding / 2})">
 						<animateTransform
+							id="pickASidePressed1"
+							begin="pickASidePress1.begin"
 							attributeName="transform"
 							type="translate"
 							to="0 0"
-							id="pickASidePressed1"
-							begin="pickASidePress1.begin"
-							fill="freeze"
 							dur="0.25s"
+							fill="freeze"
 							restart="never"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -248,15 +248,14 @@
 						<rect width={size} height={size} fill="url(#pick-a-side-pattern-sprite-1)" />
 					</g>
 					<g style:cursor="pointer">
-						<animate
+						<set
 							id="pickASidePress1"
 							begin="click"
 							end="pickASidePress2.begin"
 							attributeName="display"
 							to="none"
-							dur="0.01s"
-							calcMode="discrete"
 							fill="freeze"
+							restart="never"
 						/>
 						<rect
 							x="-{padding}"
@@ -289,13 +288,13 @@
 									-1}"
 							>
 								<animate
+									begin="pickASidePress2.begin"
 									attributeName="d"
 									to="M 0 {size +
 										padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
 										-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
 										-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 									dur="0.25s"
-									begin="pickASidePress2.begin"
 									fill="freeze"
 									restart="never"
 									calcMode="spline"
@@ -307,11 +306,11 @@
 					</g>
 					<g transform="translate(0 -{padding / 2})">
 						<animateTransform
+							id="pickASidePressed2"
+							begin="pickASidePress2.begin"
 							attributeName="transform"
 							type="translate"
 							to="0 0"
-							id="pickASidePressed2"
-							begin="pickASidePress2.begin"
 							fill="freeze"
 							dur="0.25s"
 							restart="never"
@@ -322,15 +321,14 @@
 						<rect width={size} height={size} fill="url(#pick-a-side-pattern-sprite-2)" />
 					</g>
 					<g style:cursor="pointer">
-						<animate
+						<set
 							id="pickASidePress2"
 							begin="click"
 							end="pickASidePress1.begin"
 							attributeName="display"
 							to="none"
-							dur="0.01s"
-							calcMode="discrete"
 							fill="freeze"
+							restart="never"
 						/>
 						<rect
 							x="-{padding}"
@@ -352,12 +350,12 @@
 				<g transform="rotate(50)">
 					<g transform="rotate(-50)">
 						<animateTransform
+							begin="pickASidePressed1.begin"
 							attributeName="transform"
 							type="rotate"
 							to="0"
-							begin="pickASidePressed1.begin"
-							fill="freeze"
 							dur="0.25s"
+							fill="freeze"
 							restart="never"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -369,12 +367,12 @@
 				<g transform="rotate(-50)">
 					<g transform="rotate(50)">
 						<animateTransform
+							begin="pickASidePressed2.begin"
 							attributeName="transform"
 							type="rotate"
 							to="0"
-							begin="pickASidePressed2.begin"
-							fill="freeze"
 							dur="0.25s"
+							fill="freeze"
 							restart="never"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -390,10 +388,10 @@
 	<g>
 		<g transform="translate(0 {height + spriteSize})">
 			<animateTransform
+				begin="pickASideStart.begin"
 				attributeName="transform"
 				type="translate"
 				to="0 0"
-				begin="pickASideStart.begin"
 				dur="0.5s"
 				fill="freeze"
 				calcMode="spline"
@@ -404,20 +402,20 @@
 				<g>
 					<g>
 						<animateTransform
+							begin="pickASideStart.begin"
+							end="pickASidePressed1.end; pickASidePressed2.end"
 							attributeName="transform"
 							type="translate"
 							{values}
-							begin="pickASideStart.begin"
-							repeatCount="indefinite"
-							end="pickASidePressed1.end; pickASidePressed2.end"
 							{dur}
+							repeatCount="indefinite"
 							fill="freeze"
 						/>
 						<animateTransform
+							begin="pickASidePressed1.end; pickASidePressed2.end"
 							attributeName="transform"
 							type="translate"
 							to="{x} {y}"
-							begin="pickASidePressed1.end; pickASidePressed2.end"
 							dur="0.5s"
 							fill="freeze"
 							calcMode="spline"
@@ -433,82 +431,66 @@
 		</g>
 	</g>
 
-	<g>
-		<g display="none">
-			<animate
-				id="pickASideMessage"
-				attributeName="display"
-				to="initial"
-				begin="pickASidePressed1.begin + 1.5s; pickASidePressed2.begin + 1.5s"
-				dur="0.5s"
-				fill="freeze"
-				restart="never"
-			/>
-			<g transform="translate(40 20)">
-				<g display="none">
-					<animate
-						id="pickASidePicked1"
-						attributeName="display"
-						to="initial"
-						begin="pickASidePressed1.begin"
-						dur="0.5s"
-						fill="freeze"
-						restart="never"
-					/>
-					<AnimatedText
-						text={majorityOnSide1 ? 'Right you are!' : 'Too fast?'}
-						begin="pickASideMessage.end"
-						end="pickASideEnd.begin"
-						fill="url(#linear-gradient-text)"
-					/>
-				</g>
-				<g display="none">
-					<animate
-						id="pickASidePicked2"
-						attributeName="display"
-						to="initial"
-						begin="pickASidePressed2.begin"
-						dur="0.5s"
-						fill="freeze"
-						restart="never"
-					/>
-					<AnimatedText
-						text={majorityOnSide1 ? 'Too fast?' : 'Right you are!'}
-						begin="pickASideMessage.end"
-						end="pickASideEnd.begin"
-						fill="url(#linear-gradient-text)"
-					/>
-				</g>
-			</g>
-
-			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<animate
-					id="pickASideEnd"
+	<g display="none">
+		<set
+			id="pickASideMessage"
+			begin="pickASidePressed1.begin + 1.5s; pickASidePressed2.begin + 1.5s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 20)">
+			<g display="none">
+				<set
+					id="pickASidePicked1"
+					begin="pickASidePressed1.begin + 1.5s"
 					attributeName="display"
-					to="none"
-					begin="click"
-					dur="0.1s"
-					fill="freeze"
+					to="initial"
+					restart="never"
 				/>
-			</rect>
+				<AnimatedText
+					begin="pickASidePicked1.begin"
+					end="pickASideEnd.begin"
+					text={majorityOnSide1 ? 'Right you are!' : 'Too fast?'}
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
+			<g display="none">
+				<set
+					id="pickASidePicked2"
+					begin="pickASidePressed2.begin + 1.5s"
+					attributeName="display"
+					to="initial"
+					fill="freeze"
+					restart="never"
+				/>
+				<AnimatedText
+					begin="pickASidePicked2.begin"
+					end="pickASideEnd.begin"
+					text={majorityOnSide1 ? 'Too fast?' : 'Right you are!'}
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
 		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="pickASideEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="pickASideStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 32)">
-				<Text fill="url(#linear-gradient-text)">Majority!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="pickASideStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Majority!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
