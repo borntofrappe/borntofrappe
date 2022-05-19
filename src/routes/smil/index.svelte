@@ -13,6 +13,7 @@
 	import FightTheEnemy from './_FightTheEnemy.svelte';
 	import TakeAPicture from './_TakeAPicture.svelte';
 	import PickASide from './_PickASide.svelte';
+	import MatchInPairs from './_MatchInPairs.svelte';
 </script>
 
 <svelte:head>
@@ -50,6 +51,9 @@
 	</article>
 	<article style="--background-color: #f7a629; --outline-color: #bd4900;">
 		<PickASide />
+	</article>
+	<article style="--background-color: #d66d19; --outline-color: #009e3a;">
+		<MatchInPairs />
 	</article>
 </div>
 
