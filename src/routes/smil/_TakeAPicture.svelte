@@ -14,7 +14,7 @@
 	lens.x = width / 2 - lens.width / 2;
 	lens.y = height / 2 - lens.height / 2;
 
-	const time = 3 + Math.floor(Math.random() * 2);
+	const time = 5 + Math.floor(Math.random() * 2);
 
 	const frames = [
 		{
@@ -28,7 +28,7 @@
 		{
 			threshold: height + lens.y,
 			text: 'Nice shot!',
-			filter: false
+			focus: true
 		},
 		{
 			threshold: height + lens.y + lens.height - size,
@@ -38,18 +38,25 @@
 			threshold: height + lens.y + lens.height,
 			text: 'Exceedingly late...'
 		}
-	].map(({ threshold, text, filter = true }) => ({
+	].map(({ threshold, text, focus }) => ({
 		delay: (threshold / (height * 2)) * time,
 		text,
-		filter
+		focus
 	}));
 
 	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
 	const path = `M ${getX()} ${-height} ${getX()} ${height}`;
 
-	const end = frames.map((_, i) => `takeAPictureFrame${i}.begin`).join(';');
-
 	const sprite = Math.floor(Math.random() * 2);
+
+	const focusFrame = frames.findIndex((d) => d.focus);
+
+	const focusBegin = `takeAPictureStart.begin + ${frames[focusFrame].delay}s`;
+	const focusEnd = frames[focusFrame + 1]
+		? `takeAPictureStart.begin + ${frames[focusFrame + 1].delay}s`
+		: `takeAPictureMotion.end`;
+
+	const end = 'takeAPictureFrame.begin; takeAPictureFocus.begin';
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -133,16 +140,12 @@
 	</defs>
 
 	<g>
-		<animate
+		<set
+			begin="takeAPictureFrame.begin"
 			attributeName="filter"
 			to="url(#take-a-picture-filter)"
-			dur="0.1s"
-			calcMode="discrete"
 			fill="freeze"
-			begin={frames
-				.map(({ filter }, i) => (filter ? `takeAPictureFrame${i}.begin` : null))
-				.filter((d) => d)
-				.join(';')}
+			restart="never"
 		/>
 
 		<rect fill="currentColor" width="80" height="50" />
@@ -154,138 +157,161 @@
 			<g clip-path="url(#take-a-picture-clip-lens)">
 				<rect width="80" height="50" fill="#ffffff" />
 
-				<path
-					transform="scale(.5)"
-					fill="#d6d7d6"
-					d="m0 0v50.2a26.3 26.3 0 0 0 3.03 0.342 26.3 26.3 0 0 0 13.2-3.54 26.3 26.3 0 0 0 24.2 16.2 26.3 26.3 0 0 0 23.3-14.2 26.3 26.3 0 0 0 14.1 4.13 26.3 26.3 0 0 0 23.3-14.2 26.3 26.3 0 0 0 1.45 0.0762 26.3 26.3 0 0 0 25-18.2 26.3 26.3 0 0 0 5.99-2.03 26.3 26.3 0 0 0 5.38 0.561 26.3 26.3 0 0 0 21.1-10.8v-8.4h-160z"
-				/>
-				<g stroke="#bdbebd">
-					<path
-						transform="scale(.5)"
-						fill="#f7f7f7"
-						d="m47.8 0 7.1 33.4-54.9-20v19.3l57.9 19 8.65 48.3h25.4l-13.8-58.3 70.8-41.7h-28l-47.9 27.2-7.63-27.2z"
-					/>
-					<g stroke-width="0.4">
-						<path d="m4.55 13.9 9.49 3.54" />
-						<path d="m27.5 4.82 1.86 6.96" />
-						<path d="m33.6 32.2 2.24 12.5" />
-						<path d="m37.2 24.4 1.81 8.68" />
-						<path d="m40.5 15.5 5.62-3.18" />
-						<path d="m51.5 6.63 4.11-2.25" />
-						<path d="m54.7 8.21 9.09-5.25" />
-						<path d="m18.4 16 5.68 1.99" />
-						<path d="m30.6 19.2 0.795 4.78" />
+				<g>
+					<g fill="#dedede">
+						<circle cx="0" cy="0" r="25" />
+						<circle cx="25" cy="0" r="25" />
+						<circle cx="50" cy="-5" r="25" />
+						<circle cx="80" cy="-10" r="25" />
+						<circle cx="15" cy="20" r="12" />
+						<circle cx="30" cy="20" r="12" />
+						<circle cx="45" cy="15" r="12" />
+						<circle cx="65" cy="10" r="12" />
+					</g>
+
+					<g stroke-width="0.5" stroke="#dfdfdf">
+						<path
+							fill="#f7f7f7"
+							d="M 0 21.5 29.5 28.5 35 50 45 50 39 25 80 5 80 0 74 0 37 18 32.5 0 22.5 0 28 20 0 14"
+						/>
+						<g fill="none">
+							<path d="M 0 21.5 29.5 28.5" stroke-dasharray="8" transform="translate(2 -3.5)" />
+							<path d="M 29.5 27 35 50" stroke-dasharray="12" transform="translate(2 1)" />
+							<path d="M 45 50 39 25" stroke-dasharray="10" transform="translate(-4 -2)" />
+							<path d="M 39 25 80 5" stroke-dasharray="10" transform="translate(4 -5)" />
+							<path d="M 37 18 32.5 0" stroke-dasharray="10" transform="translate(-3 -2)" />
+							<path d="M 22.5 0 28 20" stroke-dasharray="10" transform="translate(2 -1)" />
+						</g>
 					</g>
 				</g>
 
 				<g>
 					<animateMotion
+						id="takeAPictureMotion"
 						begin="takeAPictureStart.begin"
+						{end}
 						{path}
 						dur="{time}s"
-						{end}
 						fill="freeze"
 						restart="never"
-						id="takeAPictureMotion"
 					/>
 					<rect width={size} height={size} fill="url(#take-a-picture-pattern-sprite-{sprite})" />
 				</g>
 			</g>
 		</g>
 
-		<g>
+		<g display="none">
+			<set begin={end} attributeName="display" to="initial" fill="freeze" restart="never" />
 			{#each frames as { delay, text }, i}
 				<g display="none">
-					<animate
+					<set
+						begin="takeAPictureStart.begin + {delay}s"
+						{end}
 						attributeName="display"
 						to="initial"
 						fill="freeze"
-						dur="0.1s"
-						calcMode="discrete"
-						begin="takeAPictureStart.begin + {delay}s"
-						{end}
+						restart="never"
 					/>
-					<animate
-						attributeName="display"
-						to="none"
-						fill="freeze"
-						dur="0.1s"
-						calcMode="discrete"
+					<set
 						begin={i < frames.length - 1
 							? `takeAPictureStart.begin + ${frames[i + 1].delay}s`
 							: 'takeAPictureMotion.end'}
 						{end}
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						restart="never"
 					/>
-					<g>
-						<animate id="takeAPictureFrame{i}" begin="click" />
-						<g display="none">
-							<animate
-								attributeName="display"
-								to="initial"
-								dur="0.1s"
-								calcMode="discrete"
-								begin="takeAPictureFrame{i}.begin"
-								fill="freeze"
+					<g display="none">
+						<set
+							begin="takeAPictureFlash.end"
+							attributeName="display"
+							to="initial"
+							fill="freeze"
+							restart="never"
+						/>
+						<g transform="translate(40 46)">
+							<AnimatedText
+								begin="takeAPictureFlash.end"
+								end="takeAPictureEnd.begin"
+								fill="currentColor"
+								stroke="#f7f7f7"
+								{text}
 							/>
-							<g display="none">
-								<animate
-									id="takeAPictureMessage{i}"
-									attributeName="display"
-									to="initial"
-									dur="0.1s"
-									calcMode="discrete"
-									begin="takeAPictureFlash.end"
-									fill="freeze"
-								/>
-								<g transform="translate(40 46)">
-									<AnimatedText
-										fill="currentColor"
-										stroke="#f7f7f7"
-										{text}
-										begin="takeAPictureMessage{i}.begin"
-										end="takeAPictureEnd.begin"
-									/>
-								</g>
-							</g>
 						</g>
-
-						<rect style:cursor="pointer" width="80" height="50" opacity="0">
-							<animate
-								attributeName="display"
-								to="none"
-								dur="0.1s"
-								calcMode="discrete"
-								begin="takeAPictureFrame{i}.begin"
-								fill="freeze"
-							/>
-						</rect>
 					</g>
 				</g>
 			{/each}
 		</g>
 	</g>
 
-	<rect style="pointer-events: none;" width="80" height="50" opacity="0" fill="#ffffff">
+	<rect width="80" height="50" opacity="0" fill="#ffffff">
+		<set
+			begin="takeAPictureFlash.end"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
 		<animate
 			id="takeAPictureFlash"
+			begin={end}
 			attributeName="opacity"
 			values="0; 1; 0"
-			fill="freeze"
 			dur="0.15s"
-			begin={end}
+			fill="freeze"
+			restart="never"
+		/>
+	</rect>
+
+	<rect style:cursor="pointer" width="80" height="50" opacity="0">
+		<set
+			begin="takeAPictureMotion.end"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<set
+			id="takeAPictureFrame"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
 		/>
 	</rect>
 
 	<g display="none">
-		<animate
-			id="takeAPictureMessage"
+		<set
+			begin={focusBegin}
+			{end}
 			attributeName="display"
 			to="initial"
-			dur="0.1s"
-			calcMode="discrete"
-			begin="takeAPictureMotion.end + 1s"
-			{end}
 			fill="freeze"
+			restart="never"
+		/>
+		<set begin={focusEnd} {end} attributeName="display" to="none" fill="freeze" restart="never" />
+		<set
+			id="takeAPictureFocus"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0" />
+	</g>
+
+	<g display="none">
+		<set
+			id="takeAPictureMessage"
+			begin="takeAPictureMotion.end + 1s"
+			end="takeAPictureFrame.begin; takeAPictureFocus.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
 		/>
 		<g transform="translate(40 46)">
 			<AnimatedText
@@ -299,41 +325,31 @@
 	</g>
 
 	<g style:cursor="pointer" display="none">
-		<animate
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			dur="0.1s"
-			calcMode="discrete"
-			begin="click"
-			id="takeAPictureEnd"
-		/>
-		<animate
+		<set
+			begin="takeAPictureFlash.end; takeAPictureMotion.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			dur="0.1s"
-			calcMode="discrete"
-			begin="takeAPictureFlash.end; takeAPictureMotion.end"
+			restart="never"
 		/>
+
+		<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+
 		<rect width="80" height="50" opacity="0" />
 	</g>
 
 	<g style:cursor="pointer">
-		<g>
-			<animate
-				id="takeAPictureStart"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				begin="click"
-				dur="0.1s"
-				restart="never"
-			/>
-			<g transform="translate(40 25)">
-				<Text fill="url(#linear-gradient-text)">Frame!</Text>
-			</g>
-			<rect width="80" height="50" opacity="0" />
+		<set
+			id="takeAPictureStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Frame!</Text>
 		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
