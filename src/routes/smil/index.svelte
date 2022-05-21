@@ -14,6 +14,7 @@
 	import TakeAPicture from './_TakeAPicture.svelte';
 	import PickASide from './_PickASide.svelte';
 	import MatchInPairs from './_MatchInPairs.svelte';
+	import TimeTheShots from './_TimeTheShots.svelte';
 </script>
 
 <svelte:head>
@@ -54,6 +55,9 @@
 	</article>
 	<article style="--background-color: #d66d19; --outline-color: #009e3a;">
 		<MatchInPairs />
+	</article>
+	<article style="--background-color: #3fabec; --outline-color: #0565d3;">
+		<TimeTheShots />
 	</article>
 </div>
 
