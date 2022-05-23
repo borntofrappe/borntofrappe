@@ -15,6 +15,7 @@
 	import PickASide from './_PickASide.svelte';
 	import MatchInPairs from './_MatchInPairs.svelte';
 	import TimeTheShots from './_TimeTheShots.svelte';
+	import PickUpProduce from './_PickUpProduce.svelte';
 </script>
 
 <svelte:head>
@@ -58,6 +59,9 @@
 	</article>
 	<article style="--background-color: #3fabec; --outline-color: #0565d3;">
 		<TimeTheShots />
+	</article>
+	<article style="--background-color: #ffd794; --outline-color: #38d8ce;">
+		<PickUpProduce />
 	</article>
 </div>
 
