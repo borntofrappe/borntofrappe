@@ -27,6 +27,12 @@
 				delay
 			};
 		});
+
+	const mulch = Array(5)
+		.fill()
+		.map((_, i) => ({
+			spread: i
+		}));
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -174,6 +180,33 @@
 			</g>
 		</pattern>
 
+		{#each mulch as { spread }, i}
+			<pattern id="pick-up-produce-pattern-mulch-{i}" viewBox="-15 -21 30 47" width="1" height="1">
+				<g transform="translate(0 -5)">
+					<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+						<g>
+							<path
+								transform="translate({2.5 + spread / 2} {spread * 2 * -1})"
+								d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z"
+							/>
+							<path
+								transform="translate({5 + spread} {spread * -1})"
+								d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z"
+							/>
+							<path
+								transform="translate({(5 + spread) * -1} {spread * -1})"
+								d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z"
+							/>
+							<path
+								transform="translate({(2.5 + spread / 2) * -1} {spread * 2 * -1})"
+								d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z"
+							/>
+						</g>
+					</g>
+				</g>
+			</pattern>
+		{/each}
+
 		<rect
 			id="pick-up-produce-crop"
 			width={w}
@@ -208,6 +241,14 @@
 			height={h}
 			fill="url(#pick-up-produce-pattern-crop-top-spoiled)"
 		/>
+
+		<g id="pick-up-produce-mulch">
+			{#each mulch as _, i}
+				<g transform="translate({80 * i * -1} 0)">
+					<rect width={w} height={h} fill="url(#pick-up-produce-pattern-mulch-{i})" />
+				</g>
+			{/each}
+		</g>
 	</defs>
 
 	<rect width="80" height="50" fill="#85dde1" />
@@ -253,58 +294,78 @@
 			<g transform="translate(0 23)">
 				<g>
 					{#each crops as { x, delay }, i}
-						<g>
-							<set
-								begin="pickUpProduceHarvested{i}.end"
-								attributeName="display"
-								to="none"
-								fill="freeze"
-							/>
+						<g transform="translate({x} 0)">
 							<g>
-								<animateTransform
-									begin="pickUpProduceHarvested{i}.begin"
-									attributeName="transform"
-									type="translate"
-									to="0 -20"
-									dur="0.25s"
-									calcMode="spline"
-									keySplines="0.5 0 0.5 1;"
+								<set
+									begin="pickUpProduceHarvested{i}.end"
+									attributeName="display"
+									to="none"
 									fill="freeze"
 								/>
+								<g>
+									<g>
+										<animateTransform
+											begin="pickUpProduceHarvested{i}.begin"
+											attributeName="transform"
+											type="translate"
+											to="0 -20"
+											dur="0.25s"
+											calcMode="spline"
+											keySplines="0.5 0 0.5 1;"
+											fill="freeze"
+										/>
 
-								<g transform="translate(0 50)">
-									<animateTransform
-										id="pickUpProduceCrop{i}"
-										begin="pickUpProduceStart.begin + {delay}s"
-										attributeName="transform"
-										type="translate"
-										to="0 0"
-										dur="0.35s"
-										calcMode="spline"
-										keySplines="0.5 0 0.5 1;"
-										fill="freeze"
-									/>
-									<g transform="translate({x} 0)">
-										<use href="#pick-up-produce-crop-top-0">
-											{#each Array(decays) as _, j}
-												<set
-													begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
-													end="pickUpProduceHarvest{i}.begin"
-													attributeName="href"
-													to="#pick-up-produce-crop-top-{j}"
-													fill="freeze"
-													calcMode="discrete"
-												/>
-											{/each}
-											<set
-												begin="pickUpProduceDecay{i}{decays - 1}.begin + {decay}s"
-												end="pickUpProduceHarvest{i}.begin"
-												attributeName="href"
-												to="#pick-up-produce-crop-top-spoiled"
+										<g transform="translate(0 50)">
+											<animateTransform
+												id="pickUpProduceCrop{i}"
+												begin="pickUpProduceStart.begin + {delay}s"
+												attributeName="transform"
+												type="translate"
+												to="0 0"
+												dur="0.35s"
+												calcMode="spline"
+												keySplines="0.5 0 0.5 1;"
 												fill="freeze"
 											/>
-										</use>
-										<use href="#pick-up-produce-crop" />
+											<g>
+												<use href="#pick-up-produce-crop-top-0">
+													{#each Array(decays) as _, j}
+														<set
+															begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+															end="pickUpProduceHarvest{i}.begin"
+															attributeName="href"
+															to="#pick-up-produce-crop-top-{j}"
+															fill="freeze"
+															calcMode="discrete"
+														/>
+													{/each}
+													<set
+														begin="pickUpProduceDecay{i}{decays - 1}.begin + {decay}s"
+														end="pickUpProduceHarvest{i}.begin"
+														attributeName="href"
+														to="#pick-up-produce-crop-top-spoiled"
+														fill="freeze"
+													/>
+												</use>
+												<use href="#pick-up-produce-crop" />
+											</g>
+										</g>
+									</g>
+
+									<g transform="translate(-80 0)">
+										<animateTransform
+											begin="pickUpProduceHarvested{i}.begin"
+											attributeName="transform"
+											type="translate"
+											values={Array(mulch.length + 1)
+												.fill()
+												.map((_, i) => `${80 * i} 0`)
+												.join(';')}
+											dur="0.25s"
+											calcMode="discrete"
+											fill="freeze"
+										/>
+										<use href="#pick-up-produce-mulch" />
 									</g>
 								</g>
 							</g>
@@ -351,86 +412,88 @@
 			<g transform="translate(0 23)">
 				<g>
 					{#each crops as { x }, i}
-						<g display="none">
-							<set
-								begin="pickUpProduceCrop{i}.end"
-								attributeName="display"
-								to="initial"
-								fill="freeze"
-							/>
-							<set
-								begin="pickUpProduceDecayed{i}.begin"
-								end="pickUpProduceHarvest{i}.begin"
-								attributeName="display"
-								to="none"
-								fill="freeze"
-							/>
-							<g opacity="0">
+						<g transform="translate({x} 0)">
+							<g display="none">
 								<set
-									begin="pickUpProduceHarvested{i}.end"
-									attributeName="opacity"
-									to="1"
+									begin="pickUpProduceCrop{i}.end"
+									attributeName="display"
+									to="initial"
 									fill="freeze"
 								/>
-
-								<animateTransform
-									id="pickUpProduceHarvested{i}"
-									begin="pickUpProduceHarvest{i}.begin"
-									attributeName="transform"
-									type="translate"
-									to="0 -20"
-									dur="0.25s"
-									calcMode="spline"
-									keySplines="0.5 0 0.5 1;"
+								<set
+									begin="pickUpProduceDecayed{i}.begin"
+									end="pickUpProduceHarvest{i}.begin"
+									attributeName="display"
+									to="none"
 									fill="freeze"
 								/>
+								<g opacity="0">
+									<set
+										begin="pickUpProduceHarvested{i}.end"
+										attributeName="opacity"
+										to="1"
+										fill="freeze"
+									/>
 
-								<animateTransform
-									id="pickUpProduceHighlight{i}"
-									begin="pickUpProduceHarvested{i}.end"
-									attributeName="transform"
-									type="translate"
-									to="0 -12"
-									dur="0.25s"
-									calcMode="spline"
-									keySplines="0.5 0 0.5 1;"
-									fill="freeze"
-								/>
+									<animateTransform
+										id="pickUpProduceHarvested{i}"
+										begin="pickUpProduceHarvest{i}.begin"
+										attributeName="transform"
+										type="translate"
+										to="0 -20"
+										dur="0.25s"
+										calcMode="spline"
+										keySplines="0.5 0 0.5 1;"
+										fill="freeze"
+									/>
 
-								<g transform="translate({x} 0)">
-									<use href="#pick-up-produce-crop-top-0">
-										{#each Array(decays) as _, j}
+									<animateTransform
+										id="pickUpProduceHighlight{i}"
+										begin="pickUpProduceHarvested{i}.end"
+										attributeName="transform"
+										type="translate"
+										to="0 -12"
+										dur="0.25s"
+										calcMode="spline"
+										keySplines="0.5 0 0.5 1;"
+										fill="freeze"
+									/>
+
+									<g>
+										<use href="#pick-up-produce-crop-top-0">
+											{#each Array(decays) as _, j}
+												<set
+													id="pickUpProduceDecay{i}{j}"
+													begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+													end="pickUpProduceHarvest{i}.begin"
+													attributeName="href"
+													to="#pick-up-produce-crop-top-{j}"
+													fill="freeze"
+													calcMode="discrete"
+												/>
+											{/each}
 											<set
-												id="pickUpProduceDecay{i}{j}"
-												begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+												id="pickUpProduceDecayed{i}"
+												begin="pickUpProduceDecay{i}{decays - 1}.begin + {decay}s"
 												end="pickUpProduceHarvest{i}.begin"
 												attributeName="href"
-												to="#pick-up-produce-crop-top-{j}"
+												to="#pick-up-produce-crop-top-spoiled"
 												fill="freeze"
-												calcMode="discrete"
 											/>
-										{/each}
+										</use>
+										<use href="#pick-up-produce-crop" />
+									</g>
+
+									<use style:cursor="pointer" href="#pick-up-produce-crop">
 										<set
-											id="pickUpProduceDecayed{i}"
-											begin="pickUpProduceDecay{i}{decays - 1}.begin + {decay}s"
-											end="pickUpProduceHarvest{i}.begin"
-											attributeName="href"
-											to="#pick-up-produce-crop-top-spoiled"
+											id="pickUpProduceHarvest{i}"
+											begin="click"
+											attributeName="display"
+											to="none"
 											fill="freeze"
 										/>
 									</use>
-									<use href="#pick-up-produce-crop" />
 								</g>
-
-								<use style:cursor="pointer" {x} href="#pick-up-produce-crop">
-									<set
-										id="pickUpProduceHarvest{i}"
-										begin="click"
-										attributeName="display"
-										to="none"
-										fill="freeze"
-									/>
-								</use>
 							</g>
 						</g>
 					{/each}
