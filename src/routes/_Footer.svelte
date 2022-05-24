@@ -89,23 +89,6 @@
 <svelte:window on:resize={handleSize} />
 
 <footer style:background>
-	<p>Proudly built with</p>
-
-	<ul>
-		<li>
-			<span class="visually-hidden">Svelte</span>
-			{@html icons.svelte}
-		</li>
-		<li>
-			<span class="visually-hidden">much love</span>
-			{@html icons.heart}
-		</li>
-		<li>
-			<span class="visually-hidden">plenty of scalable vector graphics</span>
-			{@html icons.svg}
-		</li>
-	</ul>
-
 	<svg bind:this={svg} viewBox="0 0 120 60">
 		<circle fill={background} r="60" cx="60" cy="60" />
 
@@ -222,36 +205,7 @@
 </footer>
 
 <style>
-	footer {
-		padding-top: 3rem;
-		color: #f0f8ff;
-		text-align: center;
-	}
-
-	p::selection {
-		background: #f0f8ff22;
-	}
-
-	p,
-	ul {
-		font-size: 2rem;
-		font-weight: 700;
-	}
-
-	:global(.webfonts) p {
-		font-family: 'JosefinsansBold';
-	}
-
-	ul {
-		padding: 0;
-	}
-
-	ul li {
-		margin: 0 0.25em;
-		display: inline-block;
-	}
-
-	footer > svg {
+	svg {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;

@@ -32,7 +32,10 @@
 	};
 
 	const handleStart = () => scale.set(1.5);
-	const handleEnd = () => scale.set(1);
+	const handleEnd = () => {
+		scale.set(1);
+		offset.set({ x: 0, y: 0 });
+	};
 	const handleMove = ({ offsetX, offsetY }) => {
 		const x = (offsetX / w - 0.5) * 20;
 		const y = (offsetY / h - 0.5) * 20;
