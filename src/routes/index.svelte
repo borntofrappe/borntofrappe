@@ -1,6 +1,5 @@
 <script>
-	import Header from './_Header.svelte';
-	import Footer from './_Footer.svelte';
+	import Intro from './_Intro.svelte';
 </script>
 
 <svelte:head>
@@ -11,14 +10,4 @@
 	/>
 </svelte:head>
 
-<div>
-	<Header />
-</div>
-
-<style>
-	div {
-		color: hsl(44, 30%, 17%);
-		background: hsl(41, 100%, 97%);
-		min-height: 100vh;
-	}
-</style>
+<Intro />
