@@ -2,20 +2,18 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	import icons from '$lib/icons.js';
-
 	let svg;
 	let l, t;
 	let w, h;
 
-	const pos = spring(
+	const position = spring(
 		{
 			x: 60,
 			y: 60
 		},
 		{
-			damping: 0.4,
-			stiffness: 0.3
+			damping: 0.3,
+			stiffness: 0.2
 		}
 	);
 
@@ -24,13 +22,13 @@
 		const hours = new Date().getHours();
 		if (hours > 2 && hours < 10) {
 			timeOfDay = 'morning';
-			pos.set({ x: 30, y: 35 });
+			position.set({ x: 30, y: 35 });
 		} else if (hours < 18) {
 			timeOfDay = 'day';
-			pos.set({ x: 60, y: 25 });
+			position.set({ x: 60, y: 25 });
 		} else {
 			timeOfDay = 'night';
-			pos.set({ x: 90, y: 35 });
+			position.set({ x: 90, y: 35 });
 		}
 	});
 
@@ -52,7 +50,7 @@
 		const x = (offsetX / w) * 120;
 		const y = (offsetY / h) * 60;
 
-		pos.set({ x, y });
+		position.set({ x, y });
 
 		const dx = 60 - x;
 		const dy = 60 - y;
@@ -158,7 +156,7 @@
 			</g>
 		{/if}
 
-		<g transform="translate({$pos.x} {$pos.y})">
+		<g transform="translate({$position.x} {$position.y})">
 			<g
 				style:cursor={isGrabbing ? 'grabbing' : 'grab'}
 				on:mousedown={handleStart}
