@@ -7,13 +7,13 @@
 	<header>
 		<h1>Hi there</h1>
 		<Sun />
-		<p>I'm a software developer focused on super-effective, delightful interactions.</p>
+		<p>I'm a software developer who bakes super-effective interactions.</p>
 		<p>
-			I take pride in almost everything I make, be it web apps with Svelte {@html icons.js}, or
-			small 2D games with Love2D {@html icons.lua}.
+			I take pride in almost everything I make, mixed in web applications built with Svelte {@html icons.js},
+			or again 2D games crafted with Love2D {@html icons.lua}.
 		</p>
 		<p>
-			Welcome to my personal website, where I try to convince you of my skills and show the power of
+			Welcome to my personal website, where I try to convince you of my skills and my focus on
 			Scalable Vector Graphics {@html icons.svg}.
 		</p>
 	</header>
@@ -50,5 +50,21 @@
 		max-width: 22rem;
 		width: 100%;
 		height: auto;
+	}
+
+	@media screen and (max-width: 36rem) {
+		header {
+			display: flex;
+			flex-direction: column;
+		}
+
+		header > :global(* + *) {
+			margin-top: 0.75em;
+		}
+
+		header > :global(svg) {
+			order: 1;
+			align-self: center;
+		}
 	}
 </style>
