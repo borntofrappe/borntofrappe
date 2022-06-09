@@ -13,6 +13,7 @@
 	const width = w * size * 2;
 	const height = h * size * 2;
 
+	const winningCondition = Math.min(4, size);
 	let winningTiles;
 	let grid = Array(size ** 2)
 		.fill()
@@ -30,7 +31,7 @@
 	const decks = Array(2)
 		.fill()
 		.map((_, i) => {
-			return Array(size ** 2 + 1)
+			return Array(size % 2 === 0 ? size ** 2 : size ** 2 + 1)
 				.fill()
 				.map((_, j) => {
 					const c = i % 2 === 0 ? color0 : color0 === colors[0] ? colors[1] : colors[0];
@@ -66,7 +67,7 @@
 	const updateGrid = (i) => {
 		grid[i].color = color;
 
-		const wTiles = getWinningTiles();
+		const wTiles = getWinningTiles(i);
 		if (wTiles) {
 			winningTiles = wTiles;
 		} else {
@@ -80,80 +81,105 @@
 		}
 	};
 
-	const getWinningTiles = () => {
-		let winningColor;
+	const getI = (r, c, size) => r * size + c;
+	const getRC = (i, size) => [Math.floor(i / size), i % size];
 
-		for (let r = 0; r < size; r++) {
-			winningColor = grid[r * size].color;
-			for (let c = 1; c < size; c++) {
-				const value = grid[r * size + c].color;
-				if (value !== winningColor) {
-					winningColor = null;
-					break;
-				}
+	const getWinningTiles = (i) => {
+		let winningTiles = [];
+
+		const [r, c] = getRC(i, size);
+		const c0 = Math.max(0, c - size);
+		const c1 = Math.min(size - 1, c + size);
+		const r0 = Math.max(0, r - size);
+		const r1 = Math.min(size - 1, r + size);
+
+		let winningTilesRow = [];
+
+		for (let r = r0; r <= r1; r++) {
+			const i = getI(r, c, size);
+			const value = grid[i].color;
+			if (value === color) {
+				winningTilesRow.push(i);
+			} else {
+				if (winningTilesRow.length >= winningCondition)
+					winningTiles = [...winningTiles, ...winningTilesRow];
+				if (r > r1 - winningCondition) break;
+				winningTilesRow = [];
 			}
-			if (winningColor) {
-				return Array(size)
-					.fill()
-					.map((_, i) => r * size + i);
-			}
+
+			if (winningTilesRow.length >= winningCondition)
+				winningTiles = [...winningTiles, ...winningTilesRow];
 		}
 
-		for (let c = 0; c < size; c++) {
-			winningColor = grid[c].color;
-			for (let r = 1; r < size; r++) {
-				const value = grid[r * size + c].color;
-				if (value !== winningColor) {
-					winningColor = null;
-					break;
-				}
+		let winningTilesColumn = [];
+
+		for (let c = c0; c <= c1; c++) {
+			const i = getI(r, c, size);
+			const value = grid[i].color;
+			if (value === color) {
+				winningTilesColumn.push(i);
+			} else {
+				if (winningTilesColumn.length >= winningCondition)
+					winningTiles = [...winningTiles, ...winningTilesColumn];
+				if (c > c1 - winningCondition) break;
+				winningTilesColumn = [];
 			}
-			if (winningColor) {
-				return Array(size)
-					.fill()
-					.map((_, i) => i * size + c);
-			}
+
+			if (winningTilesColumn.length >= winningCondition)
+				winningTiles = [...winningTiles, ...winningTilesColumn];
 		}
 
-		winningColor = grid[0].color;
-		for (let d = 1; d < size; d++) {
-			const value = grid[d * size + d].color;
-			if (value !== winningColor) {
-				winningColor = null;
-				break;
+		let winningTilesDiagonal = [];
+		const d0 = Math.min(size, c - c0, r - r0) * -1;
+		const d1 = Math.min(size, c1 - c, r1 - r);
+		for (let d = d0; d <= d1; d++) {
+			const i = getI(r + d, c + d, size);
+			if (grid[i] && grid[i].color === color) {
+				winningTilesDiagonal.push(i);
+			} else {
+				if (winningTilesDiagonal.length >= winningCondition)
+					winningTiles = [...winningTiles, ...winningTilesDiagonal];
+				if (d > d1 - winningCondition) break;
+				winningTilesDiagonal = [];
 			}
+
+			if (winningTilesDiagonal.length >= winningCondition)
+				winningTiles = [...winningTiles, ...winningTilesDiagonal];
 		}
 
-		if (winningColor) {
-			return Array(size)
-				.fill()
-				.map((_, i) => i * size + i);
-		}
-
-		winningColor = grid[size - 1].color;
-		for (let d = 1; d < size; d++) {
-			const value = grid[d * size + size - 1 - d].color;
-			if (value !== winningColor) {
-				winningColor = null;
-				break;
+		const d2 = Math.min(size, c1 - c, r - r0) * -1;
+		const d3 = Math.min(size, c - c0, r1 - r);
+		let winningTilesAntiDiagonal = [];
+		for (let d = d2; d <= d3; d++) {
+			const i = getI(r + d, c + d * -1, size);
+			if (grid[i] && grid[i].color === color) {
+				winningTilesAntiDiagonal.push(i);
+			} else {
+				if (winningTilesAntiDiagonal.length >= winningCondition)
+					winningTiles = [...winningTiles, ...winningTilesAntiDiagonal];
+				if (d > d3 - winningCondition) break;
+				winningTilesAntiDiagonal = [];
 			}
+
+			if (winningTilesAntiDiagonal.length >= winningCondition)
+				winningTiles = [...winningTiles, ...winningTilesAntiDiagonal];
 		}
 
-		if (winningColor) {
-			return Array(size)
-				.fill()
-				.map((_, i) => i * size + (size - 1 - i));
-		}
+		if (winningTiles.length > 0)
+			return winningTiles.reduce(
+				(acc, curr) => (acc.includes(curr) ? [...acc] : [...acc, curr]),
+				[]
+			);
 
 		return grid.every((d) => d.color) && [];
 	};
 
-	const durationReset = 125;
+	const durationReset = 100;
 
 	const animateDeck = async (n) => {
 		const tileDeck = decks[iDeck][n - 1];
 		if (tileDeck) {
-			const i = size ** 2 + 1 - n;
+			const i = size % 2 === 0 ? size ** 2 - n : size ** 2 + 1 - n;
 			const tile = deck[i];
 			const { x, y } = tile;
 			deck = [...deck.slice(0, i), ...deck.slice(i + 1)];
