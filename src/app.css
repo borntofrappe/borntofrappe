@@ -13,10 +13,95 @@ p {
 	margin: 0;
 }
 
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+:root {
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+	--size-500: 1.25rem;
+	--size-600: 1.56rem;
+	--size-700: 1.95rem;
+	--size-800: 2.44rem;
+	--size-900: 3.05rem;
+}
+
 body {
-	margin: 0;
+	color: hsl(44, 30%, 17%);
+	background: hsl(41, 100%, 97%);
+	text-rendering: optimizeSpeed;
 	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
 		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+::selection {
+	background: #ff877a;
+	background: #ffdb47;
+}
+
+body::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: hsl(41, 100%, 97%);
+}
+
+body::-webkit-scrollbar-thumb {
+	border: 0.2rem solid hsl(41, 100%, 97%);
+	border-radius: 0.5rem;
+	background: #ffdb47;
+}
+
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 2.44rem;
+	font-size: var(--size-800);
+}
+
+h2 {
+	font-size: 1.95rem;
+	font-size: var(--size-700);
+}
+
+h3 {
+	font-size: 1.56rem;
+	font-size: var(--size-600);
+}
+
+@media (min-width: 42rem) {
+	body {
+		font-size: 1.25rem;
+		font-size: var(--size-500);
+	}
+
+	h1 {
+		font-size: 3.05rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 2.44rem;
+		font-size: var(--size-800);
+	}
+
+	h3 {
+		font-size: 1.95rem;
+		font-size: var(--size-700);
+	}
 }
 
 .visually-hidden:not(:focus):not(:active) {
