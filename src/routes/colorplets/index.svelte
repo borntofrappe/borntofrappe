@@ -3,9 +3,9 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Coroplets</title>
-	<meta name="description" content="Line up tiles of the same color." />
-	<link rel="icon" href="/icons/coroplets.svg" type="image/svg+xml" />
+	<title>borntofrappe | Colorplets</title>
+	<meta name="description" content="Line up to four tiles of the same color." />
+	<link rel="icon" href="/icons/colorplets.svg" type="image/svg+xml" />
 </svelte:head>
 
 <article>

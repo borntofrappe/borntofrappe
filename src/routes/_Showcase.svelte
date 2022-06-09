@@ -1,6 +1,6 @@
 <script>
 	import RainbowSlidingPuzzle from './rainbow-sliding-puzzle/_Puzzle.svelte';
-	import Coroplets from './coroplets/_Puzzle.svelte';
+	import Colorplets from './colorplets/_Puzzle.svelte';
 </script>
 
 <article>
@@ -8,7 +8,7 @@
 </article>
 
 <article style="--color: #f1f7fa; --background: #233038">
-	<Coroplets />
+	<Colorplets />
 </article>
 
 <style>
