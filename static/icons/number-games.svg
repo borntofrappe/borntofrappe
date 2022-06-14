@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.38 -0.38 0.76 0.76">
+	<rect
+				fill="#fcb22d"
+				x="-0.38" 
+				y="-0.38"
+				width="0.76"
+				height="0.76"
+				rx="0.15"
+				/>
+<text
+								font-family="monospace"
+								text-anchor="middle"
+								dominant-baseline="middle"
+								font-size="0.4"
+								font-weight="700"
+								stroke="#1a1a1a"
+								paint-order="stroke"
+								fill="#fafafa"
+								stroke-width="0.08"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								y="0.02">1</text
+						>
+</svg>
