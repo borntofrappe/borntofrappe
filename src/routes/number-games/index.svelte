@@ -9,7 +9,9 @@
 	<link rel="icon" href="/icons/number-games.svg" type="image/svg+xml" />
 </svelte:head>
 
-<Sixteen />
+<div>
+	<Sixteen />
+</div>
 
 <div>
 	<ZerosAndOnes />

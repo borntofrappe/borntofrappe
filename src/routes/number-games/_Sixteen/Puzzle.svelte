@@ -72,72 +72,61 @@
 	};
 </script>
 
-<article>
-	<svg class:slid viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
-		{#each puzzle.grid as row}
-			{#each row as { r, c, n, hidden }}
-				<g transform="translate({c} {r})">
-					<g
-						style:cursor={hidden || slid ? 'initial' : 'pointer'}
-						on:click={() => {
-							if (hidden || slid) return;
-							updateGrid({ r, c });
-						}}
-					>
-						<g transform="scale({$scale})">
-							<g transform="scale({hidden ? $reveal : 1})">
-								<rect x="-0.45" y="-0.45" width="0.9" height="0.9" fill="#fcb22d" rx="0.15" />
-								<text
-									y="0.03"
-									font-size="0.4"
-									font-weight="700"
-									font-family="monospace"
-									text-anchor="middle"
-									dominant-baseline="middle"
-									fill="#fafafa"
-									stroke="#1a1a1a"
-									stroke-width="0.07"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									paint-order="stroke"
-								>
-									{n}
-								</text>
-							</g>
+<svg class:slid viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
+	{#each puzzle.grid as row}
+		{#each row as { r, c, n, hidden }}
+			<g transform="translate({c} {r})">
+				<g
+					style:cursor={hidden || slid ? 'initial' : 'pointer'}
+					on:click={() => {
+						if (hidden || slid) return;
+						updateGrid({ r, c });
+					}}
+				>
+					<g transform="scale({$scale})">
+						<g transform="scale({hidden ? $reveal : 1})">
+							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" fill="#fcb22d" rx="0.15" />
+							<text
+								y="0.03"
+								font-size="0.4"
+								font-weight="700"
+								font-family="monospace"
+								text-anchor="middle"
+								dominant-baseline="middle"
+								fill="#fafafa"
+								stroke="#1a1a1a"
+								stroke-width="0.07"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								paint-order="stroke"
+							>
+								{n}
+							</text>
 						</g>
+					</g>
+				</g>
+			</g>
+		{/each}
+	{/each}
+
+	{#if slid}
+		{#each puzzle.grid as row}
+			{#each row as { r, c }}
+				<g style:cursor="pointer" on:click|once={getNewPuzzle({ r, c })} opacity="0">
+					<g transform="translate({c} {r})">
+						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
 					</g>
 				</g>
 			{/each}
 		{/each}
-
-		{#if slid}
-			{#each puzzle.grid as row}
-				{#each row as { r, c }}
-					<g style:cursor="pointer" on:click|once={getNewPuzzle({ r, c })} opacity="0">
-						<g transform="translate({c} {r})">
-							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
-						</g>
-					</g>
-				{/each}
-			{/each}
-		{/if}
-	</svg>
-</article>
+	{/if}
+</svg>
 
 <style>
-	article {
-		color: #fafafa;
-		background: #1a1a1a;
-		min-height: 100vh;
-		display: grid;
-		place-items: center;
-	}
-
 	svg {
 		display: block;
 		user-select: none;
 		max-width: 20rem;
-		width: 100vmin;
 		height: auto;
 	}
 </style>
