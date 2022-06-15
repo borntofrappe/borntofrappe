@@ -1,5 +1,6 @@
 <script>
 	import Sixteen from './_Sixteen/Puzzle.svelte';
+	import ZerosAndOnes from './_ZerosAndOnes/Puzzle.svelte';
 </script>
 
 <svelte:head>
@@ -9,3 +10,18 @@
 </svelte:head>
 
 <Sixteen />
+
+<div>
+	<ZerosAndOnes />
+</div>
+
+<style>
+	div {
+		font-size: initial;
+		color: #fafafa;
+		background: #1a1a1a;
+		min-height: 100vh;
+		display: grid;
+		place-items: center;
+	}
+</style>
