@@ -1,6 +1,7 @@
 <script>
 	import Sixteen from './_Sixteen/Puzzle.svelte';
 	import AdditionSquare from './_AdditionSquare/Puzzle.svelte';
+	import MoreOrLess from './_MoreOrLess/Puzzle.svelte';
 	import ZerosAndOnes from './_ZerosAndOnes/Puzzle.svelte';
 </script>
 
@@ -16,6 +17,10 @@
 
 <div>
 	<AdditionSquare />
+</div>
+
+<div>
+	<MoreOrLess />
 </div>
 
 <div>
