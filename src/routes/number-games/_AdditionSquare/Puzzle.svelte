@@ -138,11 +138,9 @@
 							<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
 							<g transform="scale({$scale})">
 								<text
-									y="0.01"
 									font-size="0.3"
-									font-family="monospace"
 									text-anchor="middle"
-									dominant-baseline="middle"
+									dominant-baseline="central"
 									fill="currentColor"
 								>
 									{c}
@@ -158,11 +156,9 @@
 							<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
 							<g transform="scale({$scale})">
 								<text
-									y="0.01"
 									font-size="0.3"
-									font-family="monospace"
 									text-anchor="middle"
-									dominant-baseline="middle"
+									dominant-baseline="central"
 									fill="currentColor"
 								>
 									{r}
@@ -191,11 +187,9 @@
 								<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
 								<g transform="scale({$scale})">
 									<text
-										y="0.01"
 										font-size="0.3"
-										font-family="monospace"
 										text-anchor="middle"
-										dominant-baseline="middle"
+										dominant-baseline="central"
 										fill="currentColor"
 									>
 										{c}
@@ -223,11 +217,9 @@
 								<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
 								<g transform="scale({$scale})">
 									<text
-										y="0.01"
 										font-size="0.3"
-										font-family="monospace"
 										text-anchor="middle"
-										dominant-baseline="middle"
+										dominant-baseline="central"
 										fill="currentColor"
 									>
 										{r}
@@ -290,12 +282,10 @@
 										/>
 										{#if n !== 0}
 											<text
-												y="0.02"
 												font-size="0.3"
 												font-weight="700"
-												font-family="monospace"
 												text-anchor="middle"
-												dominant-baseline="middle"
+												dominant-baseline="central"
 												fill="#fafafa"
 												stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#1a1a1a'}
 												stroke-width="0.07"
@@ -389,7 +379,7 @@
 		background: #fafafa;
 		border-radius: 0.5rem;
 		border: none;
-		font-family: monospace;
+		font-family: inherit;
 		display: block;
 		font-size: 1.25rem;
 		margin: 0;

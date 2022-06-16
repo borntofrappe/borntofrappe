@@ -209,12 +209,10 @@
 							<rect fill={colors[n]} x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
 
 							<text
-								y="0.03"
 								font-size="0.3"
 								font-weight="700"
-								font-family="monospace"
 								text-anchor="middle"
-								dominant-baseline="middle"
+								dominant-baseline="central"
 								fill="#fafafa"
 								stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#1a1a1a'}
 								stroke-width="0.07"

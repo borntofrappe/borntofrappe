@@ -87,12 +87,10 @@
 						<g transform="scale({hidden ? $reveal : 1})">
 							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" fill="#fcb22d" rx="0.15" />
 							<text
-								y="0.03"
-								font-size="0.4"
+								font-size="0.35"
 								font-weight="700"
-								font-family="monospace"
 								text-anchor="middle"
-								dominant-baseline="middle"
+								dominant-baseline="central"
 								fill="#fafafa"
 								stroke="#1a1a1a"
 								stroke-width="0.07"

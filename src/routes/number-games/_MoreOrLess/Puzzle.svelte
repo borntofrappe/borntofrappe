@@ -172,12 +172,10 @@
 								/>
 								{#if n}
 									<text
-										y="0.03"
 										font-size="0.3"
 										font-weight="700"
-										font-family="monospace"
 										text-anchor="middle"
-										dominant-baseline="middle"
+										dominant-baseline="central"
 										fill="#fafafa"
 										stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#1a1a1a'}
 										stroke-width="0.07"
@@ -292,7 +290,7 @@
 		background: #fafafa;
 		border-radius: 0.5rem;
 		border: none;
-		font-family: monospace;
+		font-family: inherit;
 		display: block;
 		font-size: 1.25rem;
 		margin: 0;

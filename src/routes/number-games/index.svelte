@@ -29,7 +29,7 @@
 
 <style>
 	div {
-		font-size: initial;
+		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 		color: #fafafa;
 		background: #1a1a1a;
 		min-height: 100vh;
