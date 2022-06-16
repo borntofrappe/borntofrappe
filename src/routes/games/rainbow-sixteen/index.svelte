@@ -5,7 +5,7 @@
 <svelte:head>
 	<title>borntofrappe | Rainbow Sliding Puzzle</title>
 	<meta name="description" content="Slide tiles to complete the colors of the rainbow." />
-	<link rel="icon" href="/icons/rainbow.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/games/rainbow-sixteen.svg" type="image/svg+xml" />
 </svelte:head>
 
 <article>

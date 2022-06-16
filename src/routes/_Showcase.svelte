@@ -1,14 +1,14 @@
 <script>
-	import RainbowSlidingPuzzle from './rainbow-sliding-puzzle/_Puzzle.svelte';
-	import Colorplets from './colorplets/_Puzzle.svelte';
+	import RainbowSixteen from './games/rainbow-sixteen/_Puzzle.svelte';
+	import ColorTiles from './games/color-tiles/_Puzzle.svelte';
 </script>
 
 <article>
-	<RainbowSlidingPuzzle moves={25} />
+	<RainbowSixteen />
 </article>
 
 <article style="--color: #f1f7fa; --background: #233038">
-	<Colorplets />
+	<ColorTiles />
 </article>
 
 <style>
