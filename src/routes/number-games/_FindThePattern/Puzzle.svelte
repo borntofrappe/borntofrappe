@@ -1,0 +1,266 @@
+<script>
+	import { Puzzle } from './utils.js';
+	import { tweened } from 'svelte/motion';
+	import { cubicInOut as easing } from 'svelte/easing';
+
+	export let size = 5;
+	export let n = Math.min(size, 4);
+	export let p = Math.min(size, 3);
+	export let s = 3;
+
+	const tween = tweened(1, { easing });
+
+	let puzzle = new Puzzle({ size, n, p, s });
+
+	$: w = Math.max(puzzle.size, puzzle.pattern.length + 1);
+
+	let pattern = null;
+	let solutions = [];
+	let indexes = [];
+	let animated;
+
+	$: solved = solutions.length === puzzle.solutions.length;
+
+	const handleStart = ({ r, c }) => {
+		if (solved) return;
+
+		pattern = {
+			r1: r,
+			c1: c,
+			r2: r,
+			c2: c
+		};
+	};
+
+	const handleIng = ({ r, c }) => {
+		if (!pattern || (pattern.r2 === r && pattern.c2 === c) || solved) return;
+
+		pattern.r2 = r;
+		pattern.c2 = c;
+
+		handlePattern();
+	};
+
+	const handlePattern = () => {
+		const solution = puzzle.solutions.find(
+			({ r1, c1, r2, c2 }) =>
+				`r${r1}c${c1}r${r2}c${c2}` === `r${pattern.r1}c${pattern.c1}r${pattern.r2}c${pattern.c2}` ||
+				`r${r1}c${c1}r${r2}c${c2}` === `r${pattern.r2}c${pattern.c2}r${pattern.r1}c${pattern.c1}`
+		);
+
+		if (solution) {
+			const previousSolution = solutions.find(
+				({ r1, c1, r2, c2 }) =>
+					`r${r1}c${c1}r${r2}c${c2}` ===
+					`r${solution.r1}c${solution.c1}r${solution.r2}c${solution.c2}`
+			);
+
+			if (!previousSolution) {
+				pattern = null;
+				solutions = [...solutions, { ...solution }];
+				indexes = [...indexes, ...solution.indexes].reduce(
+					(acc, curr) => (acc.includes(curr) ? acc : [...acc, curr]),
+					[]
+				);
+			}
+		}
+	};
+
+	const handleEnd = () => {
+		pattern = null;
+	};
+
+	const handleAnimation = () => {
+		if (animated) return;
+
+		animated = true;
+	};
+
+	const handleReset = async () => {
+		animated = false;
+
+		await tween.set(0);
+		puzzle = new Puzzle({ size, n, p, s });
+		solutions = [];
+		indexes = [];
+
+		tween.set(1);
+	};
+
+	const handleTouch = ({ r, c }) => {
+		if (!pattern) {
+			pattern = {
+				r1: r,
+				c1: c,
+				r2: r,
+				c2: c
+			};
+		} else {
+			const { r2, c2 } = pattern;
+			if (r !== r2 || c !== c2) {
+				pattern.r2 = r;
+				pattern.c2 = c;
+
+				handlePattern();
+				pattern = null;
+			}
+		}
+	};
+</script>
+
+<svg
+	on:mouseleave={handleEnd}
+	on:mouseup={handleEnd}
+	viewBox="-{0.5 + (w - puzzle.size) / 2} -0.5 {w} {puzzle.size + 1.1}"
+>
+	<g transform="translate({((w - puzzle.size) / 2) * -1} 0)">
+		<rect x="-0.34" y="-0.34" width="0.68" height="0.68" fill="#fcb22d" rx="0.15" />
+		<g transform="scale({$tween})">
+			<text
+				font-size="0.3"
+				text-anchor="middle"
+				dominant-baseline="central"
+				font-weight="700"
+				fill="#fafafa"
+				stroke="#1a1a1a"
+				stroke-width="0.08"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				paint-order="stroke">{puzzle.solutions.length - solutions.length}</text
+			>
+		</g>
+
+		{#each puzzle.pattern as p, i}
+			<g transform="translate({i + 1} 0)">
+				<g transform="scale(0.75)">
+					<rect x="-0.34" y="-0.34" width="0.68" height="0.68" fill="#fcb22d" rx="0.15" />
+					<g transform="scale({$tween})">
+						<text
+							font-size="0.3"
+							text-anchor="middle"
+							dominant-baseline="central"
+							font-weight="700"
+							fill="#fafafa"
+							stroke="#1a1a1a"
+							stroke-width="0.08"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							paint-order="stroke">{p}</text
+						>
+					</g>
+				</g>
+				{#if i < puzzle.pattern.length - 1}
+					<g transform="translate(0.5 0)">
+						<path
+							d="M -0.035 -0.08 l 0.07 0.08 -0.07 0.08"
+							fill="none"
+							stroke="#fafafa"
+							stroke-width="0.07"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</g>
+				{/if}
+			</g>
+		{/each}
+	</g>
+
+	<g transform="translate(0 1.1)">
+		<g opacity={$tween}>
+			{#each solutions as { r1, c1, r2, c2 }, i}
+				<g
+					on:animationend={handleAnimation}
+					class:solved
+					style="animation-duration: 0.6s; animation-delay: {i % 2 ? 0 : 0.18}s"
+				>
+					<path
+						fill="none"
+						stroke="#fafafa"
+						stroke-width="1"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M {c1} {r1} {c2} {r2}"
+						opacity="0.2"
+					/>
+				</g>
+			{/each}
+		</g>
+
+		{#each puzzle.grid as row}
+			{#each row as { r, c, n }}
+				<g transform="translate({c} {r})">
+					<g transform="scale({$tween})">
+						<rect
+							x="-0.34"
+							y="-0.34"
+							width="0.68"
+							height="0.68"
+							fill={indexes.includes(r * puzzle.size + c) ? '#fcb22d' : '#fafafa'}
+							rx="0.15"
+						/>
+						<text
+							font-size="0.3"
+							text-anchor="middle"
+							dominant-baseline="central"
+							font-weight="700"
+							fill="#fafafa"
+							stroke="#1a1a1a"
+							stroke-width="0.08"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							paint-order="stroke">{n}</text
+						>
+					</g>
+					<g
+						on:mousedown={() => handleStart({ r, c })}
+						on:touchstart|preventDefault={() => handleTouch({ r, c })}
+						on:mouseenter={() => handleIng({ r, c })}
+						opacity="0"
+					>
+						<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+					</g>
+				</g>
+			{/each}
+		{/each}
+
+		{#if pattern}
+			<path
+				pointer-events="none"
+				fill="none"
+				stroke="#fafafa"
+				stroke-width="1"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M {pattern.c1} {pattern.r1} {pattern.c2} {pattern.r2}"
+				opacity="0.2"
+			/>
+		{/if}
+	</g>
+
+	{#if animated}
+		<g transform="translate({((w - puzzle.size) / 2) * -1} 0)">
+			<g style:cursor="pointer" on:click|once={handleReset} opacity="0">
+				<rect x="-0.5" y="-0.5" width={w} height={puzzle.size + 1.1} />
+			</g>
+		</g>
+	{/if}
+</svg>
+
+<style>
+	svg {
+		display: block;
+		max-width: 28rem;
+		height: auto;
+		user-select: none;
+	}
+
+	.solved {
+		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	@keyframes flash {
+		50% {
+			opacity: 0;
+		}
+	}
+</style>

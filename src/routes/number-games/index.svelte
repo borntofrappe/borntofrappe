@@ -3,6 +3,7 @@
 	import AdditionSquare from './_AdditionSquare/Puzzle.svelte';
 	import MoreOrLess from './_MoreOrLess/Puzzle.svelte';
 	import ZerosAndOnes from './_ZerosAndOnes/Puzzle.svelte';
+	import FindThePattern from './_FindThePattern/Puzzle.svelte';
 </script>
 
 <svelte:head>
@@ -25,6 +26,10 @@
 
 <div>
 	<ZerosAndOnes />
+</div>
+
+<div>
+	<FindThePattern />
 </div>
 
 <style>
