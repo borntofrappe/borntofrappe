@@ -97,9 +97,15 @@
 	const handleKey = (e) => {
 		if (!focus) return;
 
-		const n = parseInt(e.key, 10);
-		if (n) {
-			nums[focus.r][focus.c].n = n;
+		const { key } = e;
+
+		if (key === 'Backspace' || key === 'Delete') {
+			nums[focus.r][focus.c].n = 0;
+		} else {
+			const n = parseInt(e.key, 10);
+			if (n) {
+				nums[focus.r][focus.c].n = n;
+			}
 		}
 	};
 
@@ -123,6 +129,12 @@
 
 		await scale.set(1);
 		solved = false;
+	};
+
+	const handleClear = () => {
+		if (!focus) return;
+
+		nums[focus.r][focus.c].n = 0;
 	};
 </script>
 
@@ -174,7 +186,7 @@
 					{#each columns as c, i}
 						<g
 							opacity={c === puzzle.columns[i] ? 1 : 0.55}
-							style="transition: opacity 0.1s ease-in-out;"
+							style="transition: opacity 0.15s ease-in-out;"
 						>
 							<g transform="translate({i} 0)">
 								<path
@@ -323,10 +335,15 @@
 
 	<div>
 		{#each buttons as n}
-			<button on:click|stopPropagation={() => (animated ? handleReset() : handleSelection({ n }))}>
+			<button on:click|stopPropagation={() => handleSelection({ n })}>
 				{n}
 			</button>
 		{/each}
+
+		<button
+			aria-label={animated ? 'Start a new game' : 'Clear focused cell'}
+			on:click|stopPropagation={() => (animated ? handleReset() : handleClear())}
+		/>
 	</div>
 </article>
 
