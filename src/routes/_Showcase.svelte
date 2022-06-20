@@ -25,13 +25,20 @@
 	</article>
 </div>
 
-<!-- <div style="--color: #f1f7fa; --background: #233038">
-		<article>
-			<h2>Color tiles</h2>
-			<p>Line up tiles of the same color.</p>
-		</article>
+<div style="--color: #f1f7fa; --background: #233038">
+	<article>
+		<h2>Color tiles</h2>
 		<ColorTiles />
-	</div>
+		<p>
+			It might always end in a draw, but Tic Tac Toe is always a source of entertainment. Especially
+			if you are willing to change perspective and enjoy a bit of a redesign.
+		</p>
+		<p>Grab a friend and enjoy a round or two.</p>
+		<p>And do not worry, you'll both get a chance to start first.</p>
+	</article>
+</div>
+
+<!-- 
 
 	<div style="--color: #040404; --background: #c0c0c0">
 		<article>
@@ -66,6 +73,10 @@
 		margin-top: 0.75em;
 	}
 
+	h2 {
+		text-transform: capitalize;
+	}
+
 	p:first-of-type {
 		margin-top: var(--size-500);
 	}
@@ -86,6 +97,15 @@
 		max-width: 24rem;
 		width: 100%;
 		height: auto;
+	}
+
+	div:nth-of-type(odd) article > :global(svg) {
+		float: left;
+	}
+
+	div:nth-of-type(3) article > :global(svg) {
+		max-width: 28rem;
+		shape-outside: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
 	}
 
 	@media screen and (max-width: 38rem) {

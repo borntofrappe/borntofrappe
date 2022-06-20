@@ -45,7 +45,7 @@ body {
 }
 
 ::selection {
-	background: #ffdb47;
+	background: #ffdb4748;
 }
 
 body::-webkit-scrollbar {
