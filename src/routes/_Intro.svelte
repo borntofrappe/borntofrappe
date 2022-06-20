@@ -38,7 +38,7 @@
 
 	header {
 		max-width: 56rem;
-		padding: 1rem;
+		padding: 4rem 1rem;
 		margin-left: auto;
 		margin-right: auto;
 	}

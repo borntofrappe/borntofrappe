@@ -45,7 +45,6 @@ body {
 }
 
 ::selection {
-	background: #ff877a;
 	background: #ffdb47;
 }
 
@@ -61,6 +60,11 @@ body::-webkit-scrollbar-thumb {
 	border: 0.2rem solid hsl(41, 100%, 97%);
 	border-radius: 0.5rem;
 	background: #ffdb47;
+}
+
+a {
+	color: inherit;
+	font-weight: 700;
 }
 
 p {
