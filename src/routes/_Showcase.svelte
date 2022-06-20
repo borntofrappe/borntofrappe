@@ -38,15 +38,20 @@
 	</article>
 </div>
 
-<!-- 
+<div style="--color: #040404; --background: #c0c0c0">
+	<article>
+		<h2>Minesweeper</h2>
 
-	<div style="--color: #040404; --background: #c0c0c0">
-		<article>
-			<h2>Minesweeper</h2>
-			<p>Avoid mines and uncover the grid.</p>
-		</article>
 		<Minesweeper />
-	</div> -->
+		<p>
+			A question was asked. How close can you possibly get to the puzzle game baked in the popular,
+			quite historic operating system?
+		</p>
+		<p>The result almost speaks for itself.</p>
+		<p>It may not emit a sound, but there's certainly enough nostalgia to revive old memories.</p>
+	</article>
+</div>
+
 <style>
 	div {
 		--color: #243139;
