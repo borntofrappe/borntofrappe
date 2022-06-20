@@ -21,7 +21,7 @@
 <svelte:head>
 	<title>borntofrappe | SMIL</title>
 	<meta name="description" content="A showcase of animated, scalable vector graphics." />
-	<link rel="icon" href="/icons/touch.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/smil.svg" type="image/svg+xml" />
 </svelte:head>
 
 <Defs />
