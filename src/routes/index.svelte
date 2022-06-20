@@ -1,7 +1,6 @@
 <script>
 	import Intro from './_Intro.svelte';
 	import Showcase from './_Showcase.svelte';
-	import Footer from './_Footer.svelte';
 </script>
 
 <svelte:head>
@@ -14,4 +13,3 @@
 
 <Intro />
 <Showcase />
-<Footer />

@@ -1,6 +1,7 @@
 <script>
 	import RainbowSixteen from './games/rainbow-sixteen/_Puzzle.svelte';
 	import ColorTiles from './games/color-tiles/_Puzzle.svelte';
+	import Minesweeper from './games/minesweeper/_Puzzle.svelte';
 </script>
 
 <article>
@@ -9,6 +10,10 @@
 
 <article style="--color: #f1f7fa; --background: #233038">
 	<ColorTiles />
+</article>
+
+<article style="--color: #040404; --background: #c0c0c0">
+	<Minesweeper />
 </article>
 
 <style>
@@ -27,7 +32,7 @@
 	article > :global(svg) {
 		display: block;
 		width: 100vmin;
-		max-width: 20rem;
+		max-width: 18rem;
 	}
 
 	article:nth-of-type(2) > :global(svg) {

@@ -7,20 +7,22 @@
 	<header>
 		<h1>Hi there</h1>
 		<Sun />
-		<p>I'm a software developer who bakes super-effective interactions.</p>
 		<p>
-			I take pride in almost everything I make, mixed in web apps built with Svelte {@html icons.svelte}.
+			Name's Gabriele Corti. <br />I'm a software developer focused on Svelte {@html icons.svelte} and
+			<abbr title="Scalable Vector Graphics">SVG</abbr>
+			{@html icons.svg}.
 		</p>
-		<p>Why Svelte? Mainly for three reasons:</p>
-		<ol>
+		<h2>Why Svelte?</h2>
+		<p style:display="inline">Mainly for three reasons:</p>
+		<ol style:display="inline">
 			<li><abbr title="HyperText Markup Language">HTML</abbr>{@html icons.html}</li>
 			<li><abbr title="Cascading Style Sheets">CSS</abbr>{@html icons.css}</li>
 			<li><span>Javascript</span>{@html icons.js}</li>
 		</ol>
+		<h2>Why SVG?</h2>
 		<p>
-			Welcome to my personal website, where I try to convince you of my skills and my focus on
-			<abbr title="Scalable Vector Graphics">SVG</abbr>
-			{@html icons.svg}.
+			Take a look around this verty website and, fingers crossed, you'll find the answer in
+			applications worth exploring.
 		</p>
 	</header>
 </div>
@@ -42,7 +44,12 @@
 	}
 
 	header > * + * {
-		margin-top: 0.5em;
+		margin-top: 0.75em;
+	}
+
+	h2 {
+		font-size: var(--size-500);
+		margin-top: var(--size-600);
 	}
 
 	p {
@@ -57,6 +64,14 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.25rem;
+	}
+
+	li::after {
+		content: '.';
+	}
+
+	li:not(:last-of-type)::after {
+		content: ',';
 	}
 
 	header > :global(svg) {
