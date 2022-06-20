@@ -28,11 +28,14 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Playground - {component.title}</title>
-	<meta name="description" content="A cheerful corner on the web." />
+	<title>borntofrappe | SVG Motion - {component.title}</title>
+	<meta
+		name="description"
+		content="Scalable vector graphics, designed with painstaking care and animated with Svelte."
+	/>
 	<link
 		rel="icon"
-		href="/icons/playground/{component.title.toLowerCase()}.svg"
+		href="/icons/svg-motion/{component.title.toLowerCase()}.svg"
 		type="image/svg+xml"
 	/>
 </svelte:head>

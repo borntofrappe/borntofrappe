@@ -1,5 +1,5 @@
 <script>
-	import Sun from './playground/_Sun.svelte';
+	import Sun from './svg-motion/_Sun.svelte';
 	import icons from '$lib/icons';
 </script>
 
