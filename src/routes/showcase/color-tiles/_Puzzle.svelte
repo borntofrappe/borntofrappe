@@ -52,7 +52,7 @@
 	let color = tile.color;
 	const { x, y } = tile;
 
-	const duration = 275;
+	const duration = 200;
 	const position = tweened(
 		{
 			x,
@@ -63,6 +63,15 @@
 			easing
 		}
 	);
+
+	const positionTile = async ({ x, y, i }) => {
+		await position.set({
+			x,
+			y
+		});
+
+		updateGrid(i);
+	};
 
 	const updateGrid = (i) => {
 		grid[i].color = color;
@@ -275,17 +284,7 @@
 		</g>
 	</defs>
 
-	<g
-		on:mouseleave={() => {
-			if (winningTiles) return;
-
-			const tile = deck[deck.length - 1];
-			if (tile) {
-				const { x, y } = tile;
-				position.set({ x, y: y - d / 2 });
-			}
-		}}
-	>
+	<g>
 		{#each grid as { x, y, color }, i}
 			<g transform="translate({x} {y})">
 				{#if color}
@@ -298,29 +297,13 @@
 					<use fill={color} href="#tile" transform="scale(0.5)" />
 				{:else}
 					<use
-						on:mouseenter={() => {
-							if (winningTiles) return;
-
-							position.set({
-								x,
-								y
-							});
-						}}
 						on:click={() => {
 							if (winningTiles) return;
 
-							updateGrid(i);
+							positionTile({ x, y, i });
 						}}
 						tabindex={winningTiles ? '-1' : '0'}
 						aria-label="Place the tile on row {y + 1} and column {x + 1}."
-						on:focus={() => {
-							if (winningTiles) return;
-
-							position.set({
-								x,
-								y
-							});
-						}}
 						style:outline="none"
 						on:keydown={(e) => {
 							if (winningTiles) return;
@@ -328,7 +311,7 @@
 							const { key, target } = e;
 							if (key === 'Enter') {
 								e.preventDefault();
-								updateGrid(i);
+								positionTile({ x, y, i });
 								target.blur();
 							}
 						}}
