@@ -7,15 +7,19 @@
 <div>
 	<article>
 		<h2>Rainbow sixteen</h2>
+
 		<RainbowSixteen />
+
 		<p>
-			In a classic <a href="https://en.wikipedia.org/wiki/15_puzzle">15 Puzzle</a> you are tasked to
-			slide tiles in a specific arrangement. I find the game exceedingly frustrating, to the point where
-			I decided to create a colorful version which is a tad more merciful.
+			In a classic 15 puzzle you are tasked to slide tiles in a specific arrangement. It is often a
+			frustrating experience as you try to position that very last number.
 		</p>
-		<p>Your goal is to recreate the colors of the rainbow.</p>
+		<p>
+			If you share in the affliction you might enjoy this merciful, colorful version. <br />Your
+			goal is to recreate the colors of the rainbow.
+		</p>
 		<img
-			alt="This specific rainbow follows a color wheel from red to green to blue. In between you find nice bright shades yellow, aquamarine and purple."
+			alt="This specific rainbow follows a color wheel from red to green to blue. In between you find bright shades yellow, aquamarine and purple."
 			src="./icons/showcase/rainbow-sixteen.svg"
 		/>
 		<p>
@@ -28,12 +32,15 @@
 <div style="--color: #f1f7fa; --background: #233038">
 	<article>
 		<h2>Color tiles</h2>
+
 		<ColorTiles />
+
 		<p>
-			It might always end in a draw, but Tic Tac Toe is always a source of entertainment. Especially
-			if you are willing to change perspective and enjoy a bit of a redesign.
+			Tic Tac Toe logic asks to place a marker to create a contiguous column, row, or again
+			diagonal. <br />The game might always end in a draw, but is always a source of entertainment,
+			especially if you welcome a change in perspective.
 		</p>
-		<p>Grab a friend and enjoy a round or two.</p>
+		<p>So grab a friend and play a round or two.</p>
 		<p>And do not worry, you'll both get a chance to start first.</p>
 	</article>
 </div>
@@ -43,12 +50,22 @@
 		<h2>Minesweeper</h2>
 
 		<Minesweeper />
+
 		<p>
-			A question was asked. How close can you possibly get to the puzzle game baked in the popular,
-			quite historic operating system?
+			There are mines you definitely want to avoid. There will certainly be hints to help you
+			dispose of the perilous devices.
 		</p>
-		<p>The result almost speaks for itself.</p>
-		<p>It may not emit a sound, but there's certainly enough nostalgia to revive old memories.</p>
+
+		<p>There are only two questions left:</p>
+		<ol>
+			<li>how well do you deal with high-pressure situations?</li>
+			<li>how much nostalgia can you tolerate?</li>
+		</ol>
+
+		<p>
+			This particular pastime is designed after the title built-in a very popular operating system,
+			as closely as possible.<br /> It may not emit a sound, but result almost speaks for itself.
+		</p>
 	</article>
 </div>
 
@@ -95,6 +112,14 @@
 		height: 3em;
 	}
 
+	ol > li + li {
+		margin-top: 0.5em;
+	}
+
+	li {
+		line-height: 1.5;
+	}
+
 	article > :global(svg) {
 		margin: 2rem;
 		float: right;
@@ -109,7 +134,8 @@
 	}
 
 	div:nth-of-type(3) article > :global(svg) {
-		max-width: 28rem;
+		margin: 3rem;
+		max-width: 32rem;
 		shape-outside: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
 	}
 
