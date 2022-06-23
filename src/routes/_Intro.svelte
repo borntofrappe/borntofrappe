@@ -1,12 +1,12 @@
 <script>
-	import Sun from './svg-motion/_Sun.svelte';
+	import Ray from './showcase/mignon/_Ray.svelte';
 	import icons from '$lib/icons';
 </script>
 
 <div>
 	<header>
 		<h1>Hi there</h1>
-		<Sun />
+		<Ray />
 		<p>
 			Name's Gabriele Corti. <br />I'm a software developer focused on Svelte {@html icons.svelte} and
 			<abbr title="Scalable Vector Graphics">SVG</abbr>
