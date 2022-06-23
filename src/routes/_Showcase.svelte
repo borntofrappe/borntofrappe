@@ -1,7 +1,7 @@
 <script>
-	import RainbowSixteen from './games/rainbow-sixteen/_Puzzle.svelte';
-	import ColorTiles from './games/color-tiles/_Puzzle.svelte';
-	import Minesweeper from './games/minesweeper/_Puzzle.svelte';
+	import RainbowSixteen from './showcase/rainbow-sixteen/_Puzzle.svelte';
+	import ColorTiles from './showcase/color-tiles/_Puzzle.svelte';
+	import Minesweeper from './showcase/minesweeper/_Puzzle.svelte';
 </script>
 
 <div>
@@ -16,7 +16,7 @@
 		<p>Your goal is to recreate the colors of the rainbow.</p>
 		<img
 			alt="This specific rainbow follows a color wheel from red to green to blue. In between you find nice bright shades yellow, aquamarine and purple."
-			src="./icons/games/rainbow-sixteen.svg"
+			src="./icons/showcase/rainbow-sixteen.svg"
 		/>
 		<p>
 			You find red, green, blue, interspersed with bright shades of yellow, aquamarine and purple.

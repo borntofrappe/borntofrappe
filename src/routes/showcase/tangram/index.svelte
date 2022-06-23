@@ -24,7 +24,7 @@
 <svelte:head>
 	<title>borntofrappe | Tangram</title>
 	<meta name="description" content="7 shapes make for 1 nice visual." />
-	<link rel="icon" href="/icons/games/tangram.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/showcase/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
 <main>
