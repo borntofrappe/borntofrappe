@@ -311,6 +311,27 @@
 
 							updateGrid(i);
 						}}
+						tabindex={winningTiles ? '-1' : '0'}
+						aria-label="Place the tile on row {y + 1} and column {x + 1}."
+						on:focus={() => {
+							if (winningTiles) return;
+
+							position.set({
+								x,
+								y
+							});
+						}}
+						style:outline="none"
+						on:keydown={(e) => {
+							if (winningTiles) return;
+
+							const { key, target } = e;
+							if (key === 'Enter') {
+								e.preventDefault();
+								updateGrid(i);
+								target.blur();
+							}
+						}}
 						class:tile={!winningTiles}
 						fill={colors[2]}
 						href="#tile"
@@ -319,6 +340,34 @@
 			</g>
 		{/each}
 	</g>
+
+	{#if winningTiles}
+		<g
+			style:cursor="pointer"
+			on:click|once={() => {
+				playOtherDeck();
+			}}
+			fill="transparent"
+			opacity="0.25"
+			class="focusable"
+			tabindex="0"
+			aria-label="Clear the board and play a new round."
+			on:keydown={(e) => {
+				const { key, target } = e;
+				if (key === 'Enter') {
+					e.preventDefault();
+					playOtherDeck();
+					target.blur();
+				}
+			}}
+		>
+			<path
+				d="M 0 {(h - d) * -1} l {width / 2} {height / 2} {(width / 2) * -1} {height / 2} {(width /
+					2) *
+					-1} {(height / 2) * -1}z"
+			/>
+		</g>
+	{/if}
 
 	<g>
 		{#each deck as { color, x, y }}
@@ -333,18 +382,6 @@
 			<use fill={color} href="#tile" transform="scale(0.5)" />
 		</g>
 	</g>
-
-	{#if winningTiles}
-		<g style:cursor="pointer" on:click|once={playOtherDeck}>
-			<rect
-				x={(width / 2 + w / 2) * -1}
-				y={h * -1}
-				width={width + w}
-				height={height + h}
-				opacity="0"
-			/>
-		</g>
-	{/if}
 </svg>
 
 <style>
@@ -356,8 +393,18 @@
 		cursor: pointer;
 	}
 
-	.tile:hover {
+	.tile:hover,
+	.tile:focus {
 		filter: brightness(1.25);
+	}
+
+	.focusable:focus {
+		outline: none;
+		fill: currentColor;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		fill: transparent;
 	}
 
 	.blink {

@@ -88,6 +88,39 @@
 			duration: (duration * 1000) / 2
 		});
 	};
+
+	const handleKeydown = ({ event, r, c }) => {
+		const { key, target } = event;
+		if (key === 'Enter') {
+			event.preventDefault();
+			const hiddenNeighbor = puzzle.getHiddenNeighbor({ r, c });
+
+			if (hiddenNeighbor) {
+				updateGrid({ r, c });
+				target.blur();
+			}
+		} else {
+			const neighbors = {
+				ArrowUp: [-1, 0],
+				ArrowRight: [0, 1],
+				ArrowDown: [1, 0],
+				ArrowLeft: [0, -1]
+			};
+
+			const neighbor = neighbors[key];
+			const hiddenNeighbor = puzzle.getHiddenNeighbor({ r, c });
+
+			if (neighbor && hiddenNeighbor) {
+				event.preventDefault();
+				const [dr, dc] = neighbor;
+				const [hr, hc] = hiddenNeighbor;
+				if (dr === hr - r && dc === hc - c) {
+					updateGrid({ r, c });
+					target.blur();
+				}
+			}
+		}
+	};
 </script>
 
 <svg class:slid viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
@@ -95,10 +128,19 @@
 		{#each row as { r, c, color: fill, hidden, animationDelay }}
 			<g transform="translate({c} {r})">
 				<g
-					style:cursor={hidden || slid ? 'initial' : 'pointer'}
+					style:cursor={hidden || slid || !puzzle.getHiddenNeighbor({ r, c })
+						? 'initial'
+						: 'pointer'}
 					on:click={() => {
 						if (hidden || slid) return;
 						updateGrid({ r, c });
+					}}
+					class="focusable"
+					aria-label="Tile on row {r + 1} and column {c + 1}, with the color {fill}."
+					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? '-1' : '0'}
+					on:keydown={(event) => {
+						if (hidden || slid) return;
+						handleKeydown({ event, r, c });
 					}}
 				>
 					<g transform="scale({$scale})">
@@ -123,8 +165,24 @@
 
 	{#if animated}
 		{#each puzzle.grid as row}
-			{#each row as { r, c }}
-				<g style:cursor="pointer" on:click|once={getNewPuzzle({ r, c })} opacity="0">
+			{#each row as { r, c, color: fill }}
+				<g
+					style:cursor="pointer"
+					aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
+						1}, with the color {fill}."
+					class="focusable"
+					tabindex="0"
+					on:keydown={(e) => {
+						const { key, target } = e;
+						if (key === 'Enter') {
+							e.preventDefault();
+							getNewPuzzle({ r, c });
+							target.blur();
+						}
+					}}
+					on:click|once={getNewPuzzle({ r, c })}
+					fill="transparent"
+				>
 					<g transform="translate({c} {r})">
 						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
 					</g>
@@ -137,6 +195,19 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	.focusable {
+		stroke-width: 0.05px;
+	}
+
+	.focusable:focus {
+		outline: none;
+		stroke: currentColor;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		stroke: none;
 	}
 
 	.slid rect {
