@@ -75,11 +75,11 @@
 
 		<p>
 			This particular pastime is designed after the title built-in a very popular operating system,
-			as closely as possible.<br /> It may not emit a sound, but result almost speaks for itself.
+			as closely as possible.<br /> It may not emit a sound, but the result almost speaks for itself.
 		</p>
 
 		<p>
-			If you answered positively to both questions, by happenstance, there always <a
+			If you answered positively to both questions, by happenstance, there's always <a
 				href="/showcase/minesweeper">room for growth</a
 			>.
 		</p>
@@ -157,12 +157,20 @@
 			flex-direction: column;
 		}
 
-		article > :global(* + *) {
+		article > * + * {
 			margin-top: 0.75em;
 		}
 
 		article > :global(svg) {
 			order: 1;
+			align-self: center;
+		}
+
+		article > p:last-of-type {
+			order: 1;
+		}
+
+		img {
 			align-self: center;
 		}
 	}
