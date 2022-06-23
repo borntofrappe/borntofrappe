@@ -23,7 +23,7 @@
 
 	article > :global(svg) {
 		display: block;
-		width: 100vmin;
-		max-width: 20rem;
+		width: 90vmin;
+		max-width: 52rem;
 	}
 </style>

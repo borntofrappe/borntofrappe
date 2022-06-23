@@ -14,17 +14,25 @@
 			In a classic 15 puzzle you are tasked to slide tiles in a specific arrangement. It is often a
 			frustrating experience as you try to position that very last number.
 		</p>
-		<p>
-			If you share in the affliction you might enjoy this merciful, colorful version. <br />Your
-			goal is to recreate the colors of the rainbow.
+		<p>If you share in the affliction you might enjoy this merciful, colorful version.</p>
+
+		<p style:position="relative">
+			You find red, green, blue, interspersed with bright shades of yellow, aquamarine and purple.
+			Can you arrange them in the correct order?
 		</p>
+
 		<img
+			style:width="3em"
+			style:height="3em"
 			alt="This specific rainbow follows a color wheel from red to green to blue. In between you find bright shades yellow, aquamarine and purple."
 			src="./icons/showcase/rainbow-sixteen.svg"
 		/>
+
 		<p>
-			You find red, green, blue, interspersed with bright shades of yellow, aquamarine and purple.
-			Can you arrange them in the correct order?
+			If you have patience and keen eyes you are in luck, there are bound to be <a
+				href="/showcase/rainbow-sixteen"
+				>more colors
+			</a> to discover.
 		</p>
 	</article>
 </div>
@@ -36,12 +44,14 @@
 		<ColorTiles />
 
 		<p>
-			Tic Tac Toe logic asks to place a marker to create a contiguous column, row, or again
-			diagonal. <br />The game might always end in a draw, but is always a source of entertainment,
-			especially if you welcome a change in perspective.
+			Tic Tac Toe logic asks to place a marker to create a link in a column, row, or again diagonal. <br
+			/>The game might always end in a draw, but is always a source of entertainment.
 		</p>
 		<p>So grab a friend and play a round or two.</p>
-		<p>And do not worry, you'll both get a chance to start first.</p>
+		<p>
+			You'll both get a chance to start first, and if you need more of a challenge, you can try to
+			match four in <a href="/showcase/color-tiles">a larger board</a>.
+		</p>
 	</article>
 </div>
 
@@ -57,6 +67,7 @@
 		</p>
 
 		<p>There are only two questions left:</p>
+
 		<ol>
 			<li>how well do you deal with high-pressure situations?</li>
 			<li>how much nostalgia can you tolerate?</li>
@@ -65,6 +76,12 @@
 		<p>
 			This particular pastime is designed after the title built-in a very popular operating system,
 			as closely as possible.<br /> It may not emit a sound, but result almost speaks for itself.
+		</p>
+
+		<p>
+			If you answered positively to both questions, by happenstance, there always <a
+				href="/showcase/minesweeper">room for growth</a
+			>.
 		</p>
 	</article>
 </div>
@@ -105,11 +122,6 @@
 
 	p {
 		line-height: 2;
-	}
-
-	img {
-		width: 3em;
-		height: 3em;
 	}
 
 	ol > li + li {
