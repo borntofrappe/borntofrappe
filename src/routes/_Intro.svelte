@@ -1,5 +1,5 @@
 <script>
-	import Ray from './showcase/mignon/_Ray.svelte';
+	import Ray from './mignon/_Ray.svelte';
 	import icons from '$lib/icons';
 </script>
 

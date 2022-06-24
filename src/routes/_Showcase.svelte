@@ -1,7 +1,7 @@
 <script>
-	import RainbowSixteen from './showcase/rainbow-sixteen/_Puzzle.svelte';
-	import ColorTiles from './showcase/color-tiles/_Puzzle.svelte';
-	import Minesweeper from './showcase/minesweeper/_Puzzle.svelte';
+	import RainbowSixteen from './rainbow-sixteen/_Puzzle.svelte';
+	import ColorTiles from './color-tiles/_Puzzle.svelte';
+	import Minesweeper from './minesweeper/_Puzzle.svelte';
 </script>
 
 <div>
