@@ -171,7 +171,12 @@
 	};
 </script>
 
-<svg viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}" style="user-select: none;">
+<svg
+	viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
+	style="user-select: none;"
+	tabindex="0"
+	aria-label="Cycle through the available options to guarantee that each row, each column contains a unique sequence of value. Ensure that no value is repeated thrice. Ensure that each row and column contains an equal number of copies."
+>
 	{#each puzzle.grid as row, r}
 		{#each row as { n, locked }, c}
 			<g transform="translate({c} {r})">
@@ -239,23 +244,54 @@
 				</g>
 
 				{#if !locked && !solved}
-					<rect
+					<g
 						style:cursor="pointer"
-						on:click={() => updateGrid({ r, c })}
-						opacity="0"
-						x="-0.38"
-						y="-0.38"
-						width="0.76"
-						height="0.76"
-						rx="0.15"
-					/>
+						on:click={() => {
+							updateGrid({ r, c });
+						}}
+						fill="transparent"
+						stroke={n === null ? colors[0] : colors[(n + 1) % colors.length]}
+						stroke-width="0"
+						class="focusable"
+						tabindex="0"
+						aria-label="Row {r + 1} and column {c + 1}, with the current value of {n}."
+						on:keydown={(e) => {
+							const { key, target } = e;
+							if (key === 'Enter') {
+								e.preventDefault();
+								updateGrid({ r, c });
+							} else if (key === 'Escape') {
+								target.blur();
+							}
+						}}
+					>
+						<rect x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
+					</g>
 				{/if}
 			</g>
 		{/each}
 	{/each}
 
 	{#if animated}
-		<g style:cursor="pointer" on:click|once={handleReset} opacity="0">
+		<g
+			style:cursor="pointer"
+			on:click|once={() => {
+				handleReset();
+			}}
+			fill="transparent"
+			stroke="currentColor"
+			stroke-width="0"
+			class="focusable"
+			tabindex="0"
+			aria-label="Reset puzzle to start a new round."
+			on:keydown={(e) => {
+				const { key } = e;
+				if (key === 'Enter') {
+					e.preventDefault();
+					handleReset();
+				}
+			}}
+		>
 			<rect x="-0.5" y="-0.5" width={puzzle.size} height={puzzle.size} />
 		</g>
 	{/if}
@@ -268,8 +304,21 @@
 		max-width: 24rem;
 	}
 
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	.solved {
 		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	.focusable:focus {
+		outline: none;
+		stroke-width: 0.05px;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		stroke: none;
 	}
 
 	@keyframes flash {

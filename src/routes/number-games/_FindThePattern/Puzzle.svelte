@@ -88,6 +88,8 @@
 	};
 
 	const handleTouch = ({ r, c }) => {
+		if (solved) return;
+
 		if (!pattern) {
 			pattern = {
 				r1: r,
@@ -106,12 +108,68 @@
 			}
 		}
 	};
+
+	const handleFocus = () => {
+		if (solved) return;
+
+		pattern = null;
+	};
+
+	const handleKeydown = ({ e, r, c }) => {
+		if (solved) return;
+
+		const { key, target } = e;
+		if (key === 'Enter') {
+			e.preventDefault();
+
+			pattern = pattern
+				? null
+				: {
+						r1: r,
+						c1: c,
+						r2: r,
+						c2: c
+				  };
+		} else if (key === 'Escape') {
+			pattern = null;
+		} else if (pattern) {
+			const neighbors = {
+				ArrowUp: [-1, 0],
+				ArrowRight: [0, 1],
+				ArrowDown: [1, 0],
+				ArrowLeft: [0, -1]
+			};
+
+			const neighbor = neighbors[key];
+
+			if (neighbor) {
+				e.preventDefault();
+
+				const [dr, dc] = neighbor;
+				const { r2, c2 } = pattern;
+				const m = puzzle.size - 1;
+				const nr = Math.min(m, Math.max(0, r2 + dr));
+				const nc = Math.min(m, Math.max(0, c2 + dc));
+				pattern.r2 = nr;
+				pattern.c2 = nc;
+
+				handlePattern();
+				if (!pattern) {
+					target.blur();
+				}
+			}
+		}
+	};
 </script>
 
 <svg
 	on:mouseleave={handleEnd}
 	on:mouseup={handleEnd}
 	viewBox="-{0.5 + (w - puzzle.size) / 2} -0.5 {w} {puzzle.size + 1.1}"
+	tabindex="0"
+	aria-label="Find the pattern {puzzle.pattern.join(
+		', '
+	)} in a grid of values, be it a column, row, or diagonal. Press enter to start a pattern from the focused cell. Press the arrow keys to link neighboring cells."
 >
 	<g transform="translate({((w - puzzle.size) / 2) * -1} 0)">
 		<rect x="-0.34" y="-0.34" width="0.68" height="0.68" fill="#fcb22d" rx="0.15" />
@@ -211,13 +269,40 @@
 							paint-order="stroke">{n}</text
 						>
 					</g>
-					<g
-						on:mousedown={() => handleStart({ r, c })}
-						on:touchstart|preventDefault={() => handleTouch({ r, c })}
-						on:mouseenter={() => handleIng({ r, c })}
-						opacity="0"
-					>
-						<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+
+					<g>
+						<g
+							fill="none"
+							stroke={indexes.includes(r * puzzle.size + c) ? '#fafafa' : '#fcb22d'}
+							stroke-width="0.08"
+							tabindex={solved ? '-1' : '0'}
+							aria-label="Row {r + 1} and column {c + 1}, with a  value of {n}."
+							class="focusable"
+							opacity="0"
+							style:outline="none"
+							on:focus={() => {
+								handleFocus();
+							}}
+							on:keydown={(e) => {
+								handleKeydown({ e, r, c });
+							}}
+						>
+							<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+						</g>
+						<g
+							on:mousedown={() => {
+								handleStart({ r, c });
+							}}
+							on:touchstart|preventDefault={() => {
+								handleTouch({ r, c });
+							}}
+							on:mouseenter={() => {
+								handleIng({ r, c });
+							}}
+							opacity="0"
+						>
+							<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+						</g>
 					</g>
 				</g>
 			{/each}
@@ -239,8 +324,34 @@
 
 	{#if animated}
 		<g transform="translate({((w - puzzle.size) / 2) * -1} 0)">
-			<g style:cursor="pointer" on:click|once={handleReset} opacity="0">
-				<rect x="-0.5" y="-0.5" width={w} height={puzzle.size + 1.1} />
+			<g
+				style:cursor="pointer"
+				on:click|once={() => {
+					handleReset();
+				}}
+				fill="transparent"
+				stroke="currentColor"
+				stroke-width="0.1"
+				tabindex="0"
+				style:outline="none"
+				class="focusable"
+				opacity="0"
+				on:keydown={(e) => {
+					const { key, target } = e;
+					if (key === 'Enter') {
+						e.preventDefault();
+						handleReset();
+						target.blur();
+					}
+				}}
+			>
+				<rect
+					x={(0.5 - 0.05) * -1}
+					y={(0.5 - 0.05) * -1}
+					width={w - 0.1}
+					height={puzzle.size + 1.1 - 0.1}
+					rx="0.2"
+				/>
 			</g>
 		</g>
 	{/if}
@@ -254,8 +365,20 @@
 		user-select: none;
 	}
 
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	.solved {
 		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	.focusable:focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		opacity: 0;
 	}
 
 	@keyframes flash {

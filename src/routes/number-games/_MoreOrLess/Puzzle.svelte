@@ -95,6 +95,8 @@
 
 		if (key === 'Backspace' || key === 'Delete') {
 			puzzle.grid[focus.r][focus.c].n = 0;
+		} else if (key === 'Escape') {
+			focus = null;
 		} else {
 			const n = parseInt(e.key, 10);
 			if (n && n !== 0 && n <= puzzle.size) {
@@ -135,7 +137,11 @@
 <svelte:body on:keydown={handleKey} on:click={handleBlur} />
 
 <article>
-	<svg viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
+	<svg
+		viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
+		tabindex="0"
+		aria-label="Fill a grid so that every column, every row has but one copy of the available numbers. Respect the comparison signs."
+	>
 		<g>
 			{#if focus}
 				<g transform="translate({focus.c} {focus.r})">
@@ -218,18 +224,21 @@
 							{/each}
 
 							{#if !locked && !solved}
-								<rect
+								<g
 									on:click|stopPropagation={() => {
 										handleFocus({ r, c });
 									}}
 									style:cursor="pointer"
-									opacity="0"
-									x="-0.35"
-									y="-0.35"
-									width="0.7"
-									height="0.7"
-									rx="0.15"
-								/>
+									fill="transparent"
+									aria-label="Row {r + 1} and column {c + 1}."
+									tabindex="0"
+									on:focus={() => {
+										handleFocus({ c, r });
+									}}
+									style:outline="none"
+								>
+									<rect x="-0.35" y="-0.35" width="0.7" height="0.7" rx="0.15" />
+								</g>
 							{/if}
 						</g>
 					{/each}
@@ -246,13 +255,20 @@
 
 	<div>
 		{#each buttons as n}
-			<button on:click|stopPropagation={() => handleSelection({ n })}>
+			<button
+				on:click|stopPropagation={() => {
+					handleSelection({ n });
+				}}
+			>
 				{n}
 			</button>
 		{/each}
+
 		<button
-			aria-label={animated ? 'Start a new game' : 'Clear focused cell'}
-			on:click|stopPropagation={() => (animated ? handleReset() : handleClear())}
+			aria-label={animated ? 'Reset grid to play a new round.' : 'Clear focused cell'}
+			on:click|stopPropagation={() => {
+				animated ? handleReset() : handleClear();
+			}}
 		/>
 	</div>
 </article>
@@ -273,6 +289,10 @@
 	svg {
 		display: block;
 		user-select: none;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	div {
@@ -310,6 +330,14 @@
 		display: block;
 		font-size: 1.25rem;
 		margin: 0;
+	}
+
+	button:focus {
+		outline: 0.32rem solid #fcb22d;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	.solved {

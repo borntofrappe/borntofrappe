@@ -101,6 +101,8 @@
 
 		if (key === 'Backspace' || key === 'Delete') {
 			nums[focus.r][focus.c].n = 0;
+		} else if (key === 'Escape') {
+			focus = null;
 		} else {
 			const n = parseInt(e.key, 10);
 			if (n) {
@@ -141,7 +143,11 @@
 <svelte:body on:keydown={handleKey} on:click={handleBlur} />
 
 <article>
-	<svg viewBox="-0.5 -0.5 {puzzle.size + 2} {puzzle.size + 2}">
+	<svg
+		viewBox="-0.5 -0.5 {puzzle.size + 2} {puzzle.size + 2}"
+		tabindex="0"
+		aria-label="Fill the grid with the correct numbers in order to respect the sum in the respective row and column."
+	>
 		<g>
 			<g>
 				<g transform="translate(1 {puzzle.size + 1})">
@@ -186,7 +192,7 @@
 					{#each columns as c, i}
 						<g
 							opacity={c === puzzle.columns[i] ? 1 : 0.55}
-							style="transition: opacity 0.15s ease-in-out;"
+							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate({i} 0)">
 								<path
@@ -216,7 +222,7 @@
 					{#each rows as r, i}
 						<g
 							opacity={r === puzzle.rows[i] ? 1 : 0.55}
-							style="transition: opacity 0.1s ease-in-out;"
+							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate(0 {i})">
 								<path
@@ -268,7 +274,7 @@
 								<g transform="translate({c} 0)">
 									<g
 										class:solved
-										style="animation-duration: 0.7s; animation-delay: {(r + c) % 2 ? 0 : 0.2}s"
+										style="animation-duration: 0.6s; animation-delay: {(r + c) % 2 ? 0 : 0.18}s"
 										opacity="0"
 									>
 										<rect
@@ -311,9 +317,17 @@
 									</g>
 									{#if !locked && !solved}
 										<g
-											on:click|stopPropagation={() => handleFocus({ c, r })}
+											on:click|stopPropagation={() => {
+												handleFocus({ c, r });
+											}}
 											style:cursor="pointer"
-											opacity="0"
+											fill="transparent"
+											aria-label="Row {r + 1} and column {c + 1}."
+											tabindex="0"
+											on:focus={() => {
+												handleFocus({ c, r });
+											}}
+											style:outline="none"
 										>
 											<rect x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
 										</g>
@@ -335,14 +349,20 @@
 
 	<div>
 		{#each buttons as n}
-			<button on:click|stopPropagation={() => handleSelection({ n })}>
+			<button
+				on:click|stopPropagation={() => {
+					handleSelection({ n });
+				}}
+			>
 				{n}
 			</button>
 		{/each}
 
 		<button
-			aria-label={animated ? 'Start a new game' : 'Clear focused cell'}
-			on:click|stopPropagation={() => (animated ? handleReset() : handleClear())}
+			aria-label={animated ? 'Reset grid to play a new round.' : 'Clear focused cell.'}
+			on:click|stopPropagation={() => {
+				animated ? handleReset() : handleClear();
+			}}
 		/>
 	</div>
 </article>
@@ -363,6 +383,10 @@
 	svg {
 		display: block;
 		user-select: none;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	div {
@@ -399,7 +423,14 @@
 		font-family: inherit;
 		display: block;
 		font-size: 1.25rem;
-		margin: 0;
+	}
+
+	button:focus {
+		outline: 0.32rem solid #fcb22d;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	.solved {

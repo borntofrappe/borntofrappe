@@ -70,17 +70,66 @@
 
 		scale.set(1);
 	};
+
+	const handleKeydown = ({ e, r, c }) => {
+		const { key, target } = e;
+		if (key === 'Enter') {
+			e.preventDefault();
+			const hiddenNeighbor = puzzle.getHiddenNeighbor({ r, c });
+
+			if (hiddenNeighbor) {
+				updateGrid({ r, c });
+				target.blur();
+			}
+		} else if (key === 'Escape') {
+			target.blur();
+		} else {
+			const neighbors = {
+				ArrowUp: [-1, 0],
+				ArrowRight: [0, 1],
+				ArrowDown: [1, 0],
+				ArrowLeft: [0, -1]
+			};
+
+			const neighbor = neighbors[key];
+			const hiddenNeighbor = puzzle.getHiddenNeighbor({ r, c });
+
+			if (neighbor && hiddenNeighbor) {
+				e.preventDefault();
+				const [dr, dc] = neighbor;
+				const [hr, hc] = hiddenNeighbor;
+				if (dr === hr - r && dc === hc - c) {
+					updateGrid({ r, c });
+					target.blur();
+				}
+			}
+		}
+	};
 </script>
 
-<svg class:slid viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
+<svg
+	class:slid
+	viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
+	tabindex="0"
+	aria-label="Slide the tiles so that the numbers are in the correct, ascending order. Press enter or one of the possible arrow keys to change the position of the focused number."
+>
 	{#each puzzle.grid as row}
 		{#each row as { r, c, n, hidden }}
 			<g transform="translate({c} {r})">
 				<g
-					style:cursor={hidden || slid ? 'initial' : 'pointer'}
+					style:cursor={hidden || slid || !puzzle.getHiddenNeighbor({ r, c })
+						? 'initial'
+						: 'pointer'}
 					on:click={() => {
 						if (hidden || slid) return;
 						updateGrid({ r, c });
+					}}
+					class="focusable"
+					aria-label="Row {r + 1} and column {c + 1}, with the number {n}."
+					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? -1 : 0}
+					on:keydown={(e) => {
+						if (hidden || slid) return;
+						handleKeydown({ e, r, c });
 					}}
 				>
 					<g transform="scale({$scale})">
@@ -109,8 +158,26 @@
 
 	{#if slid}
 		{#each puzzle.grid as row}
-			{#each row as { r, c }}
-				<g style:cursor="pointer" on:click|once={getNewPuzzle({ r, c })} opacity="0">
+			{#each row as { r, c, n }}
+				<g
+					style:cursor="pointer"
+					on:click|once={() => {
+						getNewPuzzle({ r, c });
+					}}
+					fill="transparent"
+					class="focusable"
+					aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
+						1}, with the number {n}."
+					tabindex="0"
+					on:keydown={(e) => {
+						const { key, target } = e;
+						if (key === 'Enter') {
+							e.preventDefault();
+							getNewPuzzle({ r, c });
+							target.blur();
+						}
+					}}
+				>
 					<g transform="translate({c} {r})">
 						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
 					</g>
@@ -126,5 +193,22 @@
 		user-select: none;
 		max-width: 20rem;
 		height: auto;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	.focusable {
+		stroke-width: 0.05px;
+	}
+
+	.focusable:focus {
+		outline: none;
+		stroke: currentColor;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		stroke: none;
 	}
 </style>

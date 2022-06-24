@@ -8,7 +8,7 @@
 
 <svelte:head>
 	<title>borntofrappe | Number Games</title>
-	<meta name="description" content="Play with numbers and wickedly neat puzzles." />
+	<meta name="description" content="Play with numbers in a series of wickedly neat puzzles." />
 	<link rel="icon" href="/icons/number-games.svg" type="image/svg+xml" />
 </svelte:head>
 
@@ -38,7 +38,9 @@
 		color: #fafafa;
 		background: #1a1a1a;
 		min-height: 100vh;
-		display: grid;
-		place-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
