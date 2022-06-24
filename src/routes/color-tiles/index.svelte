@@ -5,7 +5,7 @@
 <svelte:head>
 	<title>borntofrappe | Color Tiles</title>
 	<meta name="description" content="Line up to four tiles of the same color." />
-	<link rel="icon" href="/icons/showcase/color-tiles.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/color-tiles.svg" type="image/svg+xml" />
 </svelte:head>
 
 <article>

@@ -25,12 +25,12 @@
 			style:width="3em"
 			style:height="3em"
 			alt="This specific rainbow follows a color wheel from red to green to blue. In between you find bright shades yellow, aquamarine and purple."
-			src="./icons/showcase/rainbow-sixteen.svg"
+			src="./icons/rainbow-sixteen.svg"
 		/>
 
 		<p>
 			If you have patience and keen eyes you are in luck, there are bound to be <a
-				href="/showcase/rainbow-sixteen"
+				href="/rainbow-sixteen"
 				>more colors
 			</a> to discover.
 		</p>
@@ -50,7 +50,7 @@
 		<p>So grab a friend and play a round or two.</p>
 		<p>
 			You'll both get a chance to start first, and if you need more of a challenge, you can try to
-			match four in <a href="/showcase/color-tiles">a larger board</a>.
+			match four in <a href="/color-tiles">a larger board</a>.
 		</p>
 	</article>
 </div>
@@ -80,7 +80,7 @@
 
 		<p>
 			If you answered positively to both questions, by happenstance, there's always <a
-				href="/showcase/minesweeper">room for growth</a
+				href="/minesweeper">room for growth</a
 			>.
 		</p>
 	</article>

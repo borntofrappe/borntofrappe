@@ -5,7 +5,7 @@
 <svelte:head>
 	<title>borntofrappe | Minesweeper</title>
 	<meta name="description" content="Play a nostalgia-filled version of a classic puzzle game." />
-	<link rel="icon" href="/icons/showcase/minesweeper.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/minesweeper.svg" type="image/svg+xml" />
 </svelte:head>
 
 <article>
