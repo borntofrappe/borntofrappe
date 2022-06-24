@@ -4,7 +4,6 @@
 
 	export let size = 3;
 	export let colors = ['#e47272', '#fef073', '#7dd3f6'];
-
 	const h = 10;
 	const w = h * 2;
 	const d = 4;
@@ -266,6 +265,8 @@
 	viewBox="{(width / 2 + strokeWidth / 2 + w) * -1} {(h - d + strokeWidth / 2) * -1} {width +
 		strokeWidth +
 		w * 2} {height + d + strokeWidth + h}"
+	tabindex="0"
+	aria-label="Position tiles in the grid to create a match of length {winningCondition}."
 >
 	<defs>
 		<g id="tile" stroke-width={strokeWidth}>
@@ -303,7 +304,7 @@
 							positionTile({ x, y, i });
 						}}
 						tabindex={winningTiles ? '-1' : '0'}
-						aria-label="Place the tile on row {y + 1} and column {x + 1}."
+						aria-label="Row {y + 1} and column {x + 1}."
 						style:outline="none"
 						on:keydown={(e) => {
 							if (winningTiles) return;
@@ -372,6 +373,10 @@
 		display: block;
 	}
 
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	.tile {
 		cursor: pointer;
 	}
@@ -394,7 +399,6 @@
 		animation: blink 0.2s 8 steps(2);
 		filter: brightness(1.25);
 	}
-
 	@keyframes blink {
 		100% {
 			filter: brightness(1);

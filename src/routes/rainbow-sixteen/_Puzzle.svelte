@@ -123,7 +123,12 @@
 	};
 </script>
 
-<svg class:slid viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}">
+<svg
+	class:slid
+	viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
+	tabindex="0"
+	aria-label="Slide the tiles so that the colors are in the correct order. Press enter or one of the possible arrow keys to change the position of the focused color."
+>
 	{#each puzzle.grid as row}
 		{#each row as { r, c, color: fill, hidden, animationDelay }}
 			<g transform="translate({c} {r})">
@@ -136,7 +141,7 @@
 						updateGrid({ r, c });
 					}}
 					class="focusable"
-					aria-label="Tile on row {r + 1} and column {c + 1}, with the color {fill}."
+					aria-label="Row {r + 1} and column {c + 1}, with the color {fill}."
 					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? '-1' : '0'}
 					on:keydown={(event) => {
 						if (hidden || slid) return;
@@ -195,6 +200,10 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	.focusable {

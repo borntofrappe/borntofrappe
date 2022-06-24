@@ -104,7 +104,11 @@
 	};
 </script>
 
-<svg viewBox="-0.1 -0.1 {puzzle.columns + 1 + 0.2} {puzzle.rows + 3 + 0.2}">
+<svg
+	viewBox="-0.1 -0.1 {puzzle.columns + 1 + 0.2} {puzzle.rows + 3 + 0.2}"
+	tabindex="0"
+	aria-label="Avoid mines and clear the grid. When you focus on a cell reveal the content by pressing enter, toggle a flag to lock the cell by pressing f."
+>
 	<defs>
 		<linearGradient id="minesweeper-linear-gradient-stroke-se" x1="0" x2="1" y1="0" y2="1">
 			<stop stop-color="#ffffff" offset="0.5" />
@@ -294,88 +298,86 @@
 
 			<g transform="translate({puzzle.columns / 2} 0.5)">
 				<g transform="translate(0 0.75)">
-					<g style:cursor="pointer" on:click={() => handleReset()}>
+					<rect
+						fill="#bbbbbb"
+						stroke="url(#minesweeper-linear-gradient-stroke-se)"
+						stroke-width="0.12"
+						x="-0.6875"
+						y="-0.6875"
+						width={1.375}
+						height={1.375}
+					/>
+
+					{#if gamewon}
+						<g>
+							<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
+							<g fill="#040404">
+								<circle r="0.06" cx="-0.13" cy="-0.11" />
+								<circle r="0.06" cx="0.13" cy="-0.11" />
+								<g stroke="#040404" stroke-width="0.05">
+									<path
+										d="M -0.42 0 l 0.19 -0.15 v 0.05 a 0.1 0.1 0 0 0 0.2 0 v -0.05 h 0.06 v 0.05 a 0.1 0.1 0 0 0 0.2 0 v -0.05 l 0.19 0.15 -0.19 -0.15 h -0.46z"
+										stroke-linejoin="round"
+									/>
+								</g>
+							</g>
+							<g fill="none" stroke="#040404" stroke-width="0.05">
+								<path d="M -0.19 0.1 a 0.21 0.21 0 0 0 0.38 0" />
+							</g>
+						</g>
+					{:else if gameover}
+						<g>
+							<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
+							<g fill="none" stroke="#040404" stroke-width="0.05">
+								<g transform="translate(-0.13 -0.11)">
+									<path transform="rotate(45)" d="M -0.11 0 h 0.22 m -0.11 -0.11 v 0.22" />
+								</g>
+								<g transform="translate(0.13 -0.11)">
+									<path transform="rotate(45)" d="M -0.11 0 h 0.22 m -0.11 -0.11 v 0.22" />
+								</g>
+								<path d="M -0.19 0.2 a 0.24 0.24 0 0 1 0.38 0" />
+							</g>
+						</g>
+					{:else}
+						<g>
+							<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
+							<g fill="#040404">
+								<circle r="0.06" cx="-0.13" cy="-0.11" />
+								<circle r="0.06" cx="0.13" cy="-0.11" />
+							</g>
+							<g fill="none" stroke="#040404" stroke-width="0.05">
+								<path d="M -0.19 0.1 a 0.21 0.21 0 0 0 0.38 0" />
+							</g>
+						</g>
+					{/if}
+
+					<g
+						style:cursor="pointer"
+						on:click={() => {
+							handleReset();
+						}}
+						opacity="0"
+						class="focusable"
+						aria-label="Reset the grid to start a new game from scratch."
+						tabindex="0"
+						on:keydown={(e) => {
+							const { key, target } = e;
+							if (key === 'Enter') {
+								e.preventDefault();
+								handleReset();
+								target.blur();
+							}
+						}}
+					>
 						<rect
-							fill="#bbbbbb"
-							stroke="url(#minesweeper-linear-gradient-stroke-se)"
+							fill="transparent"
+							stroke="url(#minesweeper-linear-gradient-stroke-nw)"
 							stroke-width="0.12"
 							x="-0.6875"
 							y="-0.6875"
 							width={1.375}
 							height={1.375}
 						/>
-
-						{#if gamewon}
-							<g>
-								<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
-								<g fill="#040404">
-									<circle r="0.06" cx="-0.13" cy="-0.11" />
-									<circle r="0.06" cx="0.13" cy="-0.11" />
-									<g stroke="#040404" stroke-width="0.05">
-										<path
-											d="M -0.42 0 l 0.19 -0.15 v 0.05 a 0.1 0.1 0 0 0 0.2 0 v -0.05 h 0.06 v 0.05 a 0.1 0.1 0 0 0 0.2 0 v -0.05 l 0.19 0.15 -0.19 -0.15 h -0.46z"
-											stroke-linejoin="round"
-										/>
-									</g>
-								</g>
-								<g fill="none" stroke="#040404" stroke-width="0.05">
-									<path d="M -0.19 0.1 a 0.21 0.21 0 0 0 0.38 0" />
-								</g>
-							</g>
-						{:else if gameover}
-							<g>
-								<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
-								<g fill="none" stroke="#040404" stroke-width="0.05">
-									<g transform="translate(-0.13 -0.11)">
-										<path transform="rotate(45)" d="M -0.11 0 h 0.22 m -0.11 -0.11 v 0.22" />
-									</g>
-									<g transform="translate(0.13 -0.11)">
-										<path transform="rotate(45)" d="M -0.11 0 h 0.22 m -0.11 -0.11 v 0.22" />
-									</g>
-									<path d="M -0.19 0.2 a 0.24 0.24 0 0 1 0.38 0" />
-								</g>
-							</g>
-						{:else}
-							<g>
-								<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
-								<g fill="#040404">
-									<circle r="0.06" cx="-0.13" cy="-0.11" />
-									<circle r="0.06" cx="0.13" cy="-0.11" />
-								</g>
-								<g fill="none" stroke="#040404" stroke-width="0.05">
-									<path d="M -0.19 0.1 a 0.21 0.21 0 0 0 0.38 0" />
-								</g>
-							</g>
-						{/if}
-
-						<g
-							style:cursor="pointer"
-							on:click={() => {
-								handleReset();
-							}}
-							opacity="0"
-							class="focusable"
-							aria-label="Reset grid to start a new game from scratch."
-							tabindex="0"
-							on:keydown={(e) => {
-								const { key, target } = e;
-								if (key === 'Enter') {
-									e.preventDefault();
-									handleReset();
-									target.blur();
-								}
-							}}
-						>
-							<rect
-								fill="transparent"
-								stroke="url(#minesweeper-linear-gradient-stroke-nw)"
-								stroke-width="0.12"
-								x="-0.6875"
-								y="-0.6875"
-								width={1.375}
-								height={1.375}
-							/>
-						</g>
 					</g>
 				</g>
 			</g>
@@ -409,8 +411,7 @@
 						}}
 						opacity="0"
 						class="focusable"
-						aria-label="Cell in row {r + 1} and column {c +
-							1}. Reveal by pressing enter, flag by pressing 'f'"
+						aria-label="Row {r + 1} and column {c + 1}."
 						tabindex={revealed || gameover || gamewon ? '-1' : '0'}
 						on:keydown={(e) => {
 							const { key, target } = e;
@@ -419,6 +420,8 @@
 
 								e.preventDefault();
 								handleReveal({ r, c });
+								target.blur();
+							} else if (key === 'Escape') {
 								target.blur();
 							} else if (key === 'f' || key === 'F') {
 								e.preventDefault();
@@ -475,6 +478,10 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	.focusable:focus {
