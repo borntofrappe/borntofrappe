@@ -1,6 +1,7 @@
 <script>
 	import Intro from './_Intro.svelte';
 	import Showcase from './_Showcase.svelte';
+	import Outro from './_Outro.svelte';
 </script>
 
 <svelte:head>
@@ -11,5 +12,24 @@
 	/>
 </svelte:head>
 
-<Intro />
-<Showcase />
+<div>
+	<section>
+		<Intro />
+		<Showcase />
+	</section>
+	<Outro />
+</div>
+
+<style>
+	section {
+		background: inherit;
+		min-height: 100vh;
+		z-index: 1;
+		position: relative;
+	}
+
+	div > :global(footer) {
+		position: sticky;
+		bottom: 0;
+	}
+</style>

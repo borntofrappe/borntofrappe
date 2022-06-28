@@ -2,7 +2,6 @@
 	import RainbowSixteen from './rainbow-sixteen/_Puzzle.svelte';
 	import ColorTiles from './color-tiles/_Puzzle.svelte';
 	import Minesweeper from './minesweeper/_Puzzle.svelte';
-	import Tangram from './tangram/_Tangram.svelte';
 </script>
 
 <div style:color="#243139" style:background="#f7faff">

@@ -29,6 +29,8 @@
 
 <style>
 	div {
+		color: hsl(44, 30%, 17%);
+		background: hsl(41, 100%, 97%);
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
