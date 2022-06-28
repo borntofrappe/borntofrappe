@@ -16,7 +16,7 @@
 		</p>
 		<p>If you share in the affliction you might enjoy this merciful, colorful version.</p>
 
-		<p style:position="relative">
+		<p>
 			You find red, green, blue, interspersed with bright shades of yellow, aquamarine and purple.
 			Can you arrange them in the correct order?
 		</p>
