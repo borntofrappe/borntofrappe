@@ -2,9 +2,10 @@
 	import RainbowSixteen from './rainbow-sixteen/_Puzzle.svelte';
 	import ColorTiles from './color-tiles/_Puzzle.svelte';
 	import Minesweeper from './minesweeper/_Puzzle.svelte';
+	import Tangram from './tangram/_Tangram.svelte';
 </script>
 
-<div>
+<div style:color="#243139" style:background="#f7faff">
 	<article>
 		<h2>Rainbow sixteen</h2>
 
@@ -37,7 +38,13 @@
 	</article>
 </div>
 
-<div style="--color: #f1f7fa; --background: #233038">
+<div
+	style:color="#f1f7fa"
+	style:background="#233038"
+	style:--shape-outside="polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%)"
+	style:--margin="3rem"
+	style:--max-width="32rem"
+>
 	<article>
 		<h2>Color tiles</h2>
 
@@ -55,7 +62,7 @@
 	</article>
 </div>
 
-<div style="--color: #040404; --background: #c0c0c0">
+<div style:color="#040404" style:background="#c0c0c0">
 	<article>
 		<h2>Minesweeper</h2>
 
@@ -88,11 +95,7 @@
 
 <style>
 	div {
-		--color: #243139;
-		--background: #f7faff;
-		color: #243139;
 		color: var(--color, #243139);
-		background: #f7faff;
 		background: var(--background, #f7faff);
 		min-height: 100vh;
 		display: flex;
@@ -117,7 +120,7 @@
 	}
 
 	p:first-of-type {
-		margin-top: var(--size-500);
+		margin-top: var(--size-500, 1em);
 	}
 
 	p {
@@ -133,22 +136,17 @@
 	}
 
 	article > :global(svg) {
-		margin: 2rem;
 		float: right;
 		display: block;
-		max-width: 24rem;
 		width: 100%;
 		height: auto;
+		margin: var(--margin, 2rem);
+		max-width: var(--max-width, 24rem);
+		shape-outside: var(--shape-outside, initial);
 	}
 
 	div:nth-of-type(odd) article > :global(svg) {
 		float: left;
-	}
-
-	div:nth-of-type(3) article > :global(svg) {
-		margin: 3rem;
-		max-width: 32rem;
-		shape-outside: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
 	}
 
 	@media screen and (max-width: 38rem) {
