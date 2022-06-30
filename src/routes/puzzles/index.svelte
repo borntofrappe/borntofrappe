@@ -44,6 +44,12 @@
 </div>
 
 <style>
+	div {
+		color: #07093a;
+		background: #eb4328;
+		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+	}
+
 	header {
 		min-height: 100vh;
 		display: flex;
@@ -58,17 +64,12 @@
 		font-family: inherit;
 	}
 
-	div {
-		color: #07093a;
-		background: #eb4328;
-		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-	}
-
 	article {
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		padding: 1rem 0;
 	}
 </style>

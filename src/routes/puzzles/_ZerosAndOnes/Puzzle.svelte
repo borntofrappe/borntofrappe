@@ -209,9 +209,9 @@
 					<g
 						tabindex="0"
 						aria-label="Row {r + 1} and column {c + 1}, with the current value of {n}."
+						style:outline="none"
 						class="focusable"
 						opacity="0"
-						style:outline="none"
 						on:keydown={(e) => {
 							const { key, target } = e;
 							if (key === 'Enter') {
@@ -232,7 +232,7 @@
 						}}
 						opacity="0"
 					>
-						<rect x="-0.35" y="-0.35" width="0.7" height="0.7" rx="0.1" />
+						<rect x="-0.35" y="-0.35" width="0.7" height="0.7" />
 					</g>
 				{/if}
 			</g>
@@ -245,21 +245,29 @@
 			on:click|once={() => {
 				handleReset();
 			}}
-			fill="transparent"
-			stroke="currentColor"
-			stroke-width="0"
-			class="focusable"
 			tabindex="0"
-			aria-label="Reset puzzle to start a new round."
+			aria-label="Reset puzzle to play a new game."
+			style:outline="none"
+			class="focusable"
+			opacity="0"
 			on:keydown={(e) => {
-				const { key } = e;
+				const { key, target } = e;
 				if (key === 'Enter') {
 					e.preventDefault();
 					handleReset();
+					target.blur();
 				}
 			}}
 		>
-			<rect x="-0.5" y="-0.5" width={puzzle.size} height={puzzle.size} />
+			<rect
+				fill="#f2eeef"
+				x="-0.5"
+				y="-0.5"
+				width={puzzle.size}
+				height={puzzle.size}
+				rx="0.15"
+				opacity="0.2"
+			/>
 		</g>
 	{/if}
 </svg>
@@ -271,8 +279,18 @@
 		max-width: 24rem;
 	}
 
+	svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
+	}
+
 	svg:focus:not(:focus-visible) {
 		outline: none;
+	}
+
+	svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	.solved {

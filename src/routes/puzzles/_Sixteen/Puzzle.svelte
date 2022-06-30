@@ -110,7 +110,6 @@
 </script>
 
 <svg
-	class:slid
 	viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
 	tabindex="0"
 	aria-label="Slide the tiles so that the numbers are in the correct, ascending order. Press enter or one of the possible arrow keys to change the position of the focused number."
@@ -145,7 +144,7 @@
 						<g transform="scale({hidden ? $reveal : 1})">
 							<g transform="translate(-0.4 -0.4)">
 								<Tile width={0.8} height={0.8} char={n.toString()} />
-								<rect width="0.8" height="0.8" rx="0.1" opacity="0" />
+								<rect width="0.8" height="0.8" opacity="0" />
 							</g>
 						</g>
 					</g>
@@ -183,7 +182,7 @@
 						}}
 						opacity="0"
 					>
-						<rect x="-0.4" y="-0.4" width="0.8" height="0.8" rx="0.1" />
+						<rect x="-0.4" y="-0.4" width="0.8" height="0.8" />
 					</g>
 				</g>
 			{/each}
@@ -196,6 +195,20 @@
 		display: block;
 		user-select: none;
 		max-width: 20rem;
+	}
+
+	svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	.focusable:focus {

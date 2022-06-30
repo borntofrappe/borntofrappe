@@ -143,6 +143,9 @@
 		viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
 		tabindex="0"
 		aria-label="Fill a grid so that every column, every row has but one copy of the available numbers. Respect the comparison signs."
+		on:focus={() => {
+			focus = null;
+		}}
 	>
 		<g>
 			{#if focus}
@@ -208,7 +211,7 @@
 									}}
 									style:outline="none"
 								>
-									<rect x="-0.32" y="-0.32" width="0.64" height="0.64" rx="0.1" />
+									<rect x="-0.32" y="-0.32" width="0.64" height="0.64" />
 								</g>
 							{/if}
 						</g>
@@ -264,8 +267,18 @@
 		user-select: none;
 	}
 
+	svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
+	}
+
 	svg:focus:not(:focus-visible) {
 		outline: none;
+	}
+
+	svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	section {
@@ -293,8 +306,8 @@
 	}
 
 	button {
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 3rem;
+		height: 3rem;
 		display: block;
 		border: none;
 		background: none;

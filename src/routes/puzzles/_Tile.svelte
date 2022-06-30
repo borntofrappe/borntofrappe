@@ -19,13 +19,13 @@
 		stroke-linecap="round"
 		stroke-linejoin="round"
 		paint-order="stroke"
-		stroke-width="0.08"
+		stroke-width="0.07"
 		x="0.5"
 		y="0.45"
 		text-anchor="middle"
 		dominant-baseline="central"
 		font-weight="700"
-		font-size="0.45"
+		font-size="0.42"
 	>
 		{char}
 	</text>

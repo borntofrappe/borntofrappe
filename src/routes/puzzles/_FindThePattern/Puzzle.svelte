@@ -230,9 +230,37 @@
 			{/each}
 		</g>
 
+		{#if pattern}
+			<path
+				fill="none"
+				stroke="#f2eeef"
+				stroke-width="1"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M {pattern.c1} {pattern.r1} {pattern.c2} {pattern.r2}"
+				opacity="0.2"
+			/>
+		{/if}
+
 		{#each puzzle.grid as row}
 			{#each row as { r, c, n }}
 				<g transform="translate({c} {r})">
+					<g
+						tabindex={solved ? '-1' : '0'}
+						aria-label="Row {r + 1} and column {c + 1}, with a  value of {n}."
+						class="focusable"
+						opacity="0"
+						style:outline="none"
+						on:focus={() => {
+							handleFocus();
+						}}
+						on:keydown={(e) => {
+							handleKeydown({ e, r, c });
+						}}
+					>
+						<circle r="0.45" fill="#f2eeef" opacity="0.2" />
+					</g>
+
 					<g transform="scale({$tween})">
 						<g transform="translate(-0.34 -0.34)">
 							<Tile
@@ -244,54 +272,24 @@
 						</g>
 					</g>
 
-					<g>
-						<g
-							tabindex={solved ? '-1' : '0'}
-							aria-label="Row {r + 1} and column {c + 1}, with a  value of {n}."
-							class="focusable"
-							opacity="0"
-							style:outline="none"
-							on:focus={() => {
-								handleFocus();
-							}}
-							on:keydown={(e) => {
-								handleKeydown({ e, r, c });
-							}}
-						>
-							<circle r="0.45" fill="#f2eeef" opacity="0.2" />
-						</g>
-						<g
-							style:cursor="pointer"
-							on:mousedown={() => {
-								handleStart({ r, c });
-							}}
-							on:touchstart|preventDefault={() => {
-								handleTouch({ r, c });
-							}}
-							on:mouseenter={() => {
-								handleIng({ r, c });
-							}}
-							opacity="0"
-						>
-							<circle r="0.45" fill="#f2eeef" opacity="0.2" />
-						</g>
+					<g
+						style:cursor="pointer"
+						on:mousedown={() => {
+							handleStart({ r, c });
+						}}
+						on:touchstart|preventDefault={() => {
+							handleTouch({ r, c });
+						}}
+						on:mouseenter={() => {
+							handleIng({ r, c });
+						}}
+						opacity="0"
+					>
+						<rect x="-0.34" y="-0.34" width="0.68" height="0.68" />
 					</g>
 				</g>
 			{/each}
 		{/each}
-
-		{#if pattern}
-			<path
-				pointer-events="none"
-				fill="none"
-				stroke="#f2eeef"
-				stroke-width="1"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M {pattern.c1} {pattern.r1} {pattern.c2} {pattern.r2}"
-				opacity="0.2"
-			/>
-		{/if}
 	</g>
 
 	{#if animated}
@@ -301,10 +299,8 @@
 				on:click|once={() => {
 					handleReset();
 				}}
-				fill="transparent"
-				stroke="currentColor"
-				stroke-width="0.1"
 				tabindex="0"
+				aria-label="Reset puzzle to play a new game."
 				style:outline="none"
 				class="focusable"
 				opacity="0"
@@ -318,11 +314,13 @@
 				}}
 			>
 				<rect
+					fill="#f2eeef"
 					x={(0.5 - 0.05) * -1}
 					y={(0.5 - 0.05) * -1}
 					width={w - 0.1}
 					height={puzzle.size + 1.1 - 0.1}
-					rx="0.2"
+					rx="0.15"
+					opacity="0.2"
 				/>
 			</g>
 		</g>
@@ -337,8 +335,18 @@
 		user-select: none;
 	}
 
+	svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
+	}
+
 	svg:focus:not(:focus-visible) {
 		outline: none;
+	}
+
+	svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	.solved {

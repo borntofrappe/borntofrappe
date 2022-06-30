@@ -149,6 +149,9 @@
 		viewBox="-0.5 -0.5 {puzzle.size + 2} {puzzle.size + 2}"
 		tabindex="0"
 		aria-label="Fill the grid with the correct numbers in order to respect the sum in the respective row and column."
+		on:focus={() => {
+			focus = null;
+		}}
 	>
 		<g style:color="#f2eeef">
 			<g>
@@ -193,7 +196,7 @@
 				<g transform="translate(1 0)">
 					{#each columns as c, i}
 						<g
-							opacity={c === puzzle.columns[i] ? 1 : 0.5}
+							opacity={c === puzzle.columns[i] ? 1 : 0.7}
 							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate({i} 0)">
@@ -223,7 +226,7 @@
 				<g transform="translate(0 1)">
 					{#each rows as r, i}
 						<g
-							opacity={r === puzzle.rows[i] ? 1 : 0.5}
+							opacity={r === puzzle.rows[i] ? 1 : 0.7}
 							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate(0 {i})">
@@ -297,7 +300,7 @@
 										}}
 										style:outline="none"
 									>
-										<rect x="-0.35" y="-0.35" width="0.7" height="0.7" rx="0.1" />
+										<rect x="-0.35" y="-0.35" width="0.7" height="0.7" />
 									</g>
 								{/if}
 							</g>
@@ -354,8 +357,18 @@
 		user-select: none;
 	}
 
+	svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
+	}
+
 	svg:focus:not(:focus-visible) {
 		outline: none;
+	}
+
+	svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	section {
@@ -383,8 +396,8 @@
 	}
 
 	button {
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 3rem;
+		height: 3rem;
 		display: block;
 		border: none;
 		background: none;
