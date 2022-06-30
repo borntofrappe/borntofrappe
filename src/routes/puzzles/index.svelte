@@ -1,4 +1,6 @@
 <script>
+	import TextTile from './_TextTile.svelte';
+
 	import Sixteen from './_Sixteen/Puzzle.svelte';
 	import AdditionSquare from './_AdditionSquare/Puzzle.svelte';
 	import MoreOrLess from './_MoreOrLess/Puzzle.svelte';
@@ -16,6 +18,10 @@
 </svelte:head>
 
 <div>
+	<header>
+		<TextTile element="h1" text="Puzzles" />
+	</header>
+
 	<article>
 		<Sixteen />
 	</article>
@@ -38,9 +44,23 @@
 </div>
 
 <style>
+	header {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+	}
+
+	header > :global(h1) {
+		max-width: 100%;
+		font-family: inherit;
+	}
+
 	div {
 		color: #07093a;
-		background-image: linear-gradient(to bottom left, #ea412c, #eb4328);
+		background: #eb4328;
 		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 	}
 
