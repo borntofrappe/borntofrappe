@@ -7,8 +7,11 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Number Games</title>
-	<meta name="description" content="Play with numbers in a series of wickedly neat puzzles." />
+	<title>borntofrappe | Puzzles</title>
+	<meta
+		name="description"
+		content="Enjoy a few interactive, infinitely replayable, inconsistently merciful puzzles."
+	/>
 	<link rel="icon" href="/icons/puzzles.svg" type="image/svg+xml" />
 </svelte:head>
 
