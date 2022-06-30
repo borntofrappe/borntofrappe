@@ -1,4 +1,6 @@
 <script>
+	import Tile from '../_Tile.svelte';
+
 	import { Puzzle } from './utils.js';
 	import { cubicInOut as easing } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
@@ -148,7 +150,7 @@
 		tabindex="0"
 		aria-label="Fill the grid with the correct numbers in order to respect the sum in the respective row and column."
 	>
-		<g>
+		<g style:color="#f2eeef">
 			<g>
 				<g transform="translate(1 {puzzle.size + 1})">
 					{#each puzzle.columns as c, i}
@@ -191,7 +193,7 @@
 				<g transform="translate(1 0)">
 					{#each columns as c, i}
 						<g
-							opacity={c === puzzle.columns[i] ? 1 : 0.55}
+							opacity={c === puzzle.columns[i] ? 1 : 0.5}
 							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate({i} 0)">
@@ -221,7 +223,7 @@
 				<g transform="translate(0 1)">
 					{#each rows as r, i}
 						<g
-							opacity={r === puzzle.rows[i] ? 1 : 0.55}
+							opacity={r === puzzle.rows[i] ? 1 : 0.5}
 							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
 						>
 							<g transform="translate(0 {i})">
@@ -254,87 +256,52 @@
 			<g transform="translate(1 1)">
 				{#if focus}
 					<g transform="translate({focus.c} {focus.r})">
-						<rect
-							fill="none"
-							stroke="#fcb22d"
-							stroke-width="0.15"
-							x="-0.38"
-							y="-0.38"
-							width="0.76"
-							height="0.76"
-							rx="0.15"
-						/>
+						<circle r="0.45" fill="#f2eeef" opacity="0.2" />
 					</g>
 				{/if}
 
 				<g on:animationend={handleAnimation}>
 					{#each nums as row, r}
-						<g transform="translate(0 {r})">
-							{#each row as { n, locked }, c}
-								<g transform="translate({c} 0)">
-									<g
-										class:solved
-										style="animation-duration: 0.6s; animation-delay: {(r + c) % 2 ? 0 : 0.18}s"
-										opacity="0"
-									>
-										<rect
-											fill="none"
-											stroke={locked ? '#fafafa' : '#fcb22d'}
-											stroke-width="0.15"
-											x="-0.38"
-											y="-0.38"
-											width="0.76"
-											height="0.76"
-											rx="0.15"
-										/>
-									</g>
-
-									<g transform="scale({$scale})">
-										<rect
-											fill={locked ? '#fcb22d' : '#fafafa'}
-											x="-0.38"
-											y="-0.38"
-											width="0.76"
-											height="0.76"
-											rx="0.15"
-										/>
-										{#if n !== 0}
-											<text
-												font-size="0.3"
-												font-weight="700"
-												text-anchor="middle"
-												dominant-baseline="central"
-												fill="#fafafa"
-												stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#1a1a1a'}
-												stroke-width="0.07"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												paint-order="stroke"
-											>
-												{n}
-											</text>
-										{/if}
-									</g>
-									{#if !locked && !solved}
-										<g
-											on:click|stopPropagation={() => {
-												handleFocus({ c, r });
-											}}
-											style:cursor="pointer"
-											fill="transparent"
-											aria-label="Row {r + 1} and column {c + 1}."
-											tabindex="0"
-											on:focus={() => {
-												handleFocus({ c, r });
-											}}
-											style:outline="none"
-										>
-											<rect x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
-										</g>
-									{/if}
+						{#each row as { n, locked }, c}
+							<g transform="translate({c} {r})">
+								<g
+									class:solved
+									style="animation-duration: 0.6s; animation-delay: {(r + c) % 2 ? 0 : 0.18}s"
+									opacity="0"
+								>
+									<circle r="0.45" fill="#f2eeef" opacity="0.31" />
 								</g>
-							{/each}
-						</g>
+
+								<g transform="scale({$scale})">
+									<g transform="translate(-0.35 -0.35)">
+										<Tile
+											width={0.7}
+											height={0.7}
+											fill={locked ? '#fdd4ce' : '#f2eeef'}
+											stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#07093a'}
+											char={n === 0 ? '' : n.toString()}
+										/>
+									</g>
+								</g>
+								{#if !locked && !solved}
+									<g
+										on:click|stopPropagation={() => {
+											handleFocus({ c, r });
+										}}
+										style:cursor="pointer"
+										fill="transparent"
+										aria-label="Row {r + 1} and column {c + 1}."
+										tabindex="0"
+										on:focus={() => {
+											handleFocus({ c, r });
+										}}
+										style:outline="none"
+									>
+										<rect x="-0.35" y="-0.35" width="0.7" height="0.7" rx="0.1" />
+									</g>
+								{/if}
+							</g>
+						{/each}
 					{/each}
 				</g>
 			</g>
@@ -354,7 +321,7 @@
 					handleSelection({ n });
 				}}
 			>
-				{n}
+				<Tile char={n.toString()} />
 			</button>
 		{/each}
 
@@ -363,7 +330,9 @@
 			on:click|stopPropagation={() => {
 				animated ? handleReset() : handleClear();
 			}}
-		/>
+		>
+			<Tile char="" />
+		</button>
 	</section>
 </div>
 
@@ -406,31 +375,58 @@
 	}
 
 	section::-webkit-scrollbar-track {
-		background: #fafafa55;
+		background: #f2eeef55;
 	}
 
 	section::-webkit-scrollbar-thumb {
-		background: #fafafa;
+		background: #f2eeef;
 	}
 
 	button {
 		width: 2.5rem;
 		height: 2.5rem;
-		color: #1a1a1a;
-		background: #fafafa;
-		border-radius: 0.5rem;
-		border: none;
-		font-family: inherit;
 		display: block;
-		font-size: 1.25rem;
+		border: none;
+		background: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	button > :global(svg) {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	button {
+		position: relative;
+		z-index: 0;
+	}
+
+	button::before {
+		position: absolute;
+		content: '';
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		background: #f2eeef;
+		transform: translate(-50%, -50%) scale(1.25);
+		border-radius: 50%;
+		opacity: 0;
+		z-index: -1;
 	}
 
 	button:focus {
-		outline: 0.32rem solid #fcb22d;
+		outline: none;
 	}
 
-	button:focus:not(:focus-visible) {
-		outline: none;
+	button:focus::before {
+		opacity: 0.4;
+	}
+
+	button:focus:not(:focus-visible)::before {
+		opacity: 0;
 	}
 
 	.solved {

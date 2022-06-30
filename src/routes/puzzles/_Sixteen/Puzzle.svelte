@@ -1,4 +1,6 @@
 <script>
+	import Tile from '../_Tile.svelte';
+
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut, backOut } from 'svelte/easing';
 	import { Puzzle } from './utils.js';
@@ -117,6 +119,20 @@
 		{#each row as { r, c, n, hidden }}
 			<g transform="translate({c} {r})">
 				<g
+					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? -1 : 0}
+					aria-label="Row {r + 1} and column {c + 1}, with the number {n}."
+					class="focusable"
+					opacity="0"
+					style:outline="none"
+					on:keydown={(e) => {
+						if (hidden || slid) return;
+						handleKeydown({ e, r, c });
+					}}
+				>
+					<circle r="0.5" fill="#f2eeef" opacity="0.2" />
+				</g>
+
+				<g
 					style:cursor={hidden || slid || !puzzle.getHiddenNeighbor({ r, c })
 						? 'initial'
 						: 'pointer'}
@@ -124,31 +140,13 @@
 						if (hidden || slid) return;
 						updateGrid({ r, c });
 					}}
-					class="focusable"
-					aria-label="Row {r + 1} and column {c + 1}, with the number {n}."
-					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? -1 : 0}
-					on:keydown={(e) => {
-						if (hidden || slid) return;
-						handleKeydown({ e, r, c });
-					}}
 				>
 					<g transform="scale({$scale})">
 						<g transform="scale({hidden ? $reveal : 1})">
-							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" fill="#fcb22d" rx="0.15" />
-							<text
-								font-size="0.35"
-								font-weight="700"
-								text-anchor="middle"
-								dominant-baseline="central"
-								fill="#fafafa"
-								stroke="#1a1a1a"
-								stroke-width="0.07"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								paint-order="stroke"
-							>
-								{n}
-							</text>
+							<g transform="translate(-0.4 -0.4)">
+								<Tile width={0.8} height={0.8} char={n.toString()} />
+								<rect width="0.8" height="0.8" rx="0.1" opacity="0" />
+							</g>
 						</g>
 					</g>
 				</g>
@@ -159,27 +157,33 @@
 	{#if slid}
 		{#each puzzle.grid as row}
 			{#each row as { r, c, n }}
-				<g
-					style:cursor="pointer"
-					on:click|once={() => {
-						getNewPuzzle({ r, c });
-					}}
-					fill="transparent"
-					class="focusable"
-					aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
-						1}, with the number {n}."
-					tabindex="0"
-					on:keydown={(e) => {
-						const { key, target } = e;
-						if (key === 'Enter') {
-							e.preventDefault();
+				<g transform="translate({c} {r})">
+					<g
+						tabindex="0"
+						aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
+							1}, with the number {n}."
+						class="focusable"
+						opacity="0"
+						style:outline="none"
+						on:keydown={(e) => {
+							const { key, target } = e;
+							if (key === 'Enter') {
+								e.preventDefault();
+								getNewPuzzle({ r, c });
+								target.blur();
+							}
+						}}
+					>
+						<circle r="0.5" fill="#f2eeef" opacity="0.2" />
+					</g>
+					<g
+						style:cursor="pointer"
+						on:click|once={() => {
 							getNewPuzzle({ r, c });
-							target.blur();
-						}
-					}}
-				>
-					<g transform="translate({c} {r})">
-						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
+						}}
+						opacity="0"
+					>
+						<rect x="-0.4" y="-0.4" width="0.8" height="0.8" rx="0.1" />
 					</g>
 				</g>
 			{/each}
@@ -192,23 +196,13 @@
 		display: block;
 		user-select: none;
 		max-width: 20rem;
-		height: auto;
-	}
-
-	svg:focus:not(:focus-visible) {
-		outline: none;
-	}
-
-	.focusable {
-		stroke-width: 0.05px;
 	}
 
 	.focusable:focus {
-		outline: none;
-		stroke: currentColor;
+		opacity: 1;
 	}
 
 	.focusable:focus:not(:focus-visible) {
-		stroke: none;
+		opacity: 0;
 	}
 </style>

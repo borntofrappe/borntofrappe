@@ -12,31 +12,36 @@
 	<link rel="icon" href="/icons/puzzles.svg" type="image/svg+xml" />
 </svelte:head>
 
-<article>
-	<Sixteen />
-</article>
+<div>
+	<article>
+		<Sixteen />
+	</article>
 
-<article>
-	<AdditionSquare />
-</article>
+	<article>
+		<AdditionSquare />
+	</article>
 
-<article>
-	<MoreOrLess />
-</article>
+	<article>
+		<MoreOrLess />
+	</article>
 
-<article>
-	<ZerosAndOnes />
-</article>
+	<article>
+		<ZerosAndOnes />
+	</article>
 
-<article>
-	<FindThePattern />
-</article>
+	<article>
+		<FindThePattern />
+	</article>
+</div>
 
 <style>
-	article {
+	div {
+		color: #07093a;
+		background-image: linear-gradient(to bottom left, #ea412c, #eb4328);
 		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-		color: #fafafa;
-		background: #1a1a1a;
+	}
+
+	article {
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;

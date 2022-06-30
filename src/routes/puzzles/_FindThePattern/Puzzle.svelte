@@ -1,4 +1,6 @@
 <script>
+	import Tile from '../_Tile.svelte';
+
 	import { Puzzle } from './utils.js';
 	import { tweened } from 'svelte/motion';
 	import { cubicInOut as easing } from 'svelte/easing';
@@ -172,39 +174,23 @@
 	)} in a grid of values, be it a column, row, or diagonal. Press enter to start a pattern from the focused cell. Press the arrow keys to link neighboring cells."
 >
 	<g transform="translate({((w - puzzle.size) / 2) * -1} 0)">
-		<rect x="-0.34" y="-0.34" width="0.68" height="0.68" fill="#fcb22d" rx="0.15" />
 		<g transform="scale({$tween})">
-			<text
-				font-size="0.3"
-				text-anchor="middle"
-				dominant-baseline="central"
-				font-weight="700"
-				fill="#fafafa"
-				stroke="#1a1a1a"
-				stroke-width="0.08"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				paint-order="stroke">{puzzle.solutions.length - solutions.length}</text
-			>
+			<g transform="translate(-0.34 -0.34)">
+				<Tile
+					char={(puzzle.solutions.length - solutions.length).toString()}
+					width={0.68}
+					height={0.68}
+				/>
+			</g>
 		</g>
 
 		{#each puzzle.pattern as p, i}
 			<g transform="translate({i + 1} 0)">
 				<g transform="scale(0.75)">
-					<rect x="-0.34" y="-0.34" width="0.68" height="0.68" fill="#fcb22d" rx="0.15" />
 					<g transform="scale({$tween})">
-						<text
-							font-size="0.3"
-							text-anchor="middle"
-							dominant-baseline="central"
-							font-weight="700"
-							fill="#fafafa"
-							stroke="#1a1a1a"
-							stroke-width="0.08"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							paint-order="stroke">{p}</text
-						>
+						<g transform="translate(-0.34 -0.34)">
+							<Tile char={p.toString()} width={0.68} height={0.68} />
+						</g>
 					</g>
 				</g>
 				{#if i < puzzle.pattern.length - 1}
@@ -212,7 +198,7 @@
 						<path
 							d="M -0.035 -0.08 l 0.07 0.08 -0.07 0.08"
 							fill="none"
-							stroke="#fafafa"
+							stroke="#f2eeef"
 							stroke-width="0.07"
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -233,12 +219,12 @@
 				>
 					<path
 						fill="none"
-						stroke="#fafafa"
+						stroke="#f2eeef"
 						stroke-width="1"
 						stroke-linecap="round"
 						stroke-linejoin="round"
 						d="M {c1} {r1} {c2} {r2}"
-						opacity="0.2"
+						opacity="0.31"
 					/>
 				</g>
 			{/each}
@@ -248,33 +234,18 @@
 			{#each row as { r, c, n }}
 				<g transform="translate({c} {r})">
 					<g transform="scale({$tween})">
-						<rect
-							x="-0.34"
-							y="-0.34"
-							width="0.68"
-							height="0.68"
-							fill={indexes.includes(r * puzzle.size + c) ? '#fcb22d' : '#fafafa'}
-							rx="0.15"
-						/>
-						<text
-							font-size="0.3"
-							text-anchor="middle"
-							dominant-baseline="central"
-							font-weight="700"
-							fill="#fafafa"
-							stroke="#1a1a1a"
-							stroke-width="0.08"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							paint-order="stroke">{n}</text
-						>
+						<g transform="translate(-0.34 -0.34)">
+							<Tile
+								fill={indexes.includes(r * puzzle.size + c) ? '#fdd4ce' : '#f2eeef'}
+								char={n.toString()}
+								width={0.68}
+								height={0.68}
+							/>
+						</g>
 					</g>
 
 					<g>
 						<g
-							fill="none"
-							stroke={indexes.includes(r * puzzle.size + c) ? '#fafafa' : '#fcb22d'}
-							stroke-width="0.08"
 							tabindex={solved ? '-1' : '0'}
 							aria-label="Row {r + 1} and column {c + 1}, with a  value of {n}."
 							class="focusable"
@@ -287,9 +258,10 @@
 								handleKeydown({ e, r, c });
 							}}
 						>
-							<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+							<circle r="0.45" fill="#f2eeef" opacity="0.2" />
 						</g>
 						<g
+							style:cursor="pointer"
 							on:mousedown={() => {
 								handleStart({ r, c });
 							}}
@@ -301,7 +273,7 @@
 							}}
 							opacity="0"
 						>
-							<rect x="-0.34" y="-0.34" width="0.68" height="0.68" rx="0.15" />
+							<circle r="0.45" fill="#f2eeef" opacity="0.2" />
 						</g>
 					</g>
 				</g>
@@ -312,7 +284,7 @@
 			<path
 				pointer-events="none"
 				fill="none"
-				stroke="#fafafa"
+				stroke="#f2eeef"
 				stroke-width="1"
 				stroke-linecap="round"
 				stroke-linejoin="round"

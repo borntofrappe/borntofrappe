@@ -1,4 +1,6 @@
 <script>
+	import Tile from '../_Tile.svelte';
+
 	import { Puzzle } from './utils.js';
 	import { cubicInOut as easing } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
@@ -9,8 +11,6 @@
 	const scale = tweened(1, { easing });
 
 	let puzzle = new Puzzle({ n, reveal });
-
-	const colors = ['#fafafa', '#fcb22d'];
 
 	let solved;
 	let issues = [];
@@ -186,75 +186,32 @@
 					style="animation-duration: 0.6s; animation-delay: {(r + c) % 2 ? 0 : 0.18}s"
 					opacity="0"
 				>
-					<rect
-						fill="none"
-						stroke={colors[(n + 1) % colors.length]}
-						stroke-width="0.15"
-						x="-0.38"
-						y="-0.38"
-						width="0.76"
-						height="0.76"
-						rx="0.15"
-					/>
+					<circle r="0.45" fill="#f2eeef" opacity="0.31" />
 				</g>
 
 				<g transform="scale({$scale})">
-					<rect
-						opacity="0.15"
-						fill="#fafafa"
-						x="-0.38"
-						y="-0.38"
-						width="0.76"
-						height="0.76"
-						rx="0.15"
-					/>
-
-					{#if n !== null}
-						<g>
-							<rect fill={colors[n]} x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
-
-							<text
-								font-size="0.3"
-								font-weight="700"
-								text-anchor="middle"
-								dominant-baseline="central"
-								fill="#fafafa"
-								stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#1a1a1a'}
-								stroke-width="0.07"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								paint-order="stroke"
-							>
-								{n}
-							</text>
-						</g>
-
-						{#if !locked && !solved}
-							<rect
-								fill="#ffffff"
-								opacity="0.3"
-								x="-0.38"
-								y="-0.38"
-								width="0.76"
-								height="0.76"
-								rx="0.15"
+					<g transform="translate(-0.35 -0.35)">
+						{#if n === null}
+							<Tile width={0.7} height={0.7} fill="#f2eeef" char="" />
+						{:else}
+							<Tile
+								width={0.7}
+								height={0.7}
+								fill={locked ? '#fdd4ce' : '#f2eeef'}
+								stroke={issues.includes(r * puzzle.size + c) ? '#d91650' : '#07093a'}
+								char={n.toString()}
 							/>
 						{/if}
-					{/if}
+					</g>
 				</g>
 
 				{#if !locked && !solved}
 					<g
-						style:cursor="pointer"
-						on:click={() => {
-							updateGrid({ r, c });
-						}}
-						fill="transparent"
-						stroke={n === null ? colors[0] : colors[(n + 1) % colors.length]}
-						stroke-width="0"
-						class="focusable"
 						tabindex="0"
 						aria-label="Row {r + 1} and column {c + 1}, with the current value of {n}."
+						class="focusable"
+						opacity="0"
+						style:outline="none"
 						on:keydown={(e) => {
 							const { key, target } = e;
 							if (key === 'Enter') {
@@ -265,7 +222,17 @@
 							}
 						}}
 					>
-						<rect x="-0.38" y="-0.38" width="0.76" height="0.76" rx="0.15" />
+						<circle r="0.45" fill="#f2eeef" opacity="0.2" />
+					</g>
+
+					<g
+						style:cursor="pointer"
+						on:click={() => {
+							updateGrid({ r, c });
+						}}
+						opacity="0"
+					>
+						<rect x="-0.35" y="-0.35" width="0.7" height="0.7" rx="0.1" />
 					</g>
 				{/if}
 			</g>
@@ -313,12 +280,11 @@
 	}
 
 	.focusable:focus {
-		outline: none;
-		stroke-width: 0.05px;
+		opacity: 1;
 	}
 
 	.focusable:focus:not(:focus-visible) {
-		stroke: none;
+		opacity: 0;
 	}
 
 	@keyframes flash {
