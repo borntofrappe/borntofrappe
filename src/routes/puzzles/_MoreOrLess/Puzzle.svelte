@@ -136,7 +136,7 @@
 
 <svelte:body on:keydown={handleKey} on:click={handleBlur} />
 
-<article>
+<div>
 	<svg
 		viewBox="-0.5 -0.5 {puzzle.size} {puzzle.size}"
 		tabindex="0"
@@ -253,7 +253,7 @@
 		{/if}
 	</svg>
 
-	<div>
+	<section>
 		{#each buttons as n}
 			<button
 				on:click|stopPropagation={() => {
@@ -270,11 +270,11 @@
 				animated ? handleReset() : handleClear();
 			}}
 		/>
-	</div>
-</article>
+	</section>
+</div>
 
 <style>
-	article {
+	div {
 		max-width: 26rem;
 		width: 100%;
 		display: flex;
@@ -282,7 +282,7 @@
 		align-items: center;
 	}
 
-	article > * + * {
+	div > * + * {
 		margin-top: 0.5em;
 	}
 
@@ -295,7 +295,7 @@
 		outline: none;
 	}
 
-	div {
+	section {
 		max-width: 100%;
 		display: flex;
 		gap: 0 1rem;
@@ -303,19 +303,19 @@
 		padding: 0.5rem 1rem;
 	}
 
-	div button {
+	section button {
 		flex-shrink: 0;
 	}
 
-	div::-webkit-scrollbar {
+	section::-webkit-scrollbar {
 		height: 0.25rem;
 	}
 
-	div::-webkit-scrollbar-track {
+	section::-webkit-scrollbar-track {
 		background: #fafafa55;
 	}
 
-	div::-webkit-scrollbar-thumb {
+	section::-webkit-scrollbar-thumb {
 		background: #fafafa;
 	}
 

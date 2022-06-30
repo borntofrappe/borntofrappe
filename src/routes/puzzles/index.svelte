@@ -9,31 +9,31 @@
 <svelte:head>
 	<title>borntofrappe | Number Games</title>
 	<meta name="description" content="Play with numbers in a series of wickedly neat puzzles." />
-	<link rel="icon" href="/icons/number-games.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/puzzles.svg" type="image/svg+xml" />
 </svelte:head>
 
-<div>
+<article>
 	<Sixteen />
-</div>
+</article>
 
-<div>
+<article>
 	<AdditionSquare />
-</div>
+</article>
 
-<div>
+<article>
 	<MoreOrLess />
-</div>
+</article>
 
-<div>
+<article>
 	<ZerosAndOnes />
-</div>
+</article>
 
-<div>
+<article>
 	<FindThePattern />
-</div>
+</article>
 
 <style>
-	div {
+	article {
 		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 		color: #fafafa;
 		background: #1a1a1a;
