@@ -215,7 +215,7 @@
 				<g
 					on:animationend={handleAnimation}
 					class:solved
-					style="animation-duration: 0.6s; animation-delay: {i % 2 ? 0 : 0.18}s"
+					style="animation-duration: 0.3s; animation-delay: {i % 2 ? 0 : 0.18}s"
 				>
 					<path
 						fill="none"
@@ -350,7 +350,7 @@
 	}
 
 	.solved {
-		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+		animation: flash 9 cubic-bezier(0.37, 0, 0.63, 1) alternate forwards;
 	}
 
 	.focusable:focus {
@@ -362,7 +362,7 @@
 	}
 
 	@keyframes flash {
-		50% {
+		100% {
 			opacity: 0;
 		}
 	}
