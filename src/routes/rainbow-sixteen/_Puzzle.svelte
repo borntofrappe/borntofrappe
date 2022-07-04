@@ -141,6 +141,7 @@
 						updateGrid({ r, c });
 					}}
 					class="focusable"
+					role="button"
 					aria-label="Row {r + 1} and column {c + 1}, with the color {fill}."
 					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? '-1' : '0'}
 					on:keydown={(event) => {
@@ -173,6 +174,7 @@
 			{#each row as { r, c, color: fill }}
 				<g
 					style:cursor="pointer"
+					role="button"
 					aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
 						1}, with the color {fill}."
 					class="focusable"

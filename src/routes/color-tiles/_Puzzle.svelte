@@ -304,6 +304,7 @@
 							positionTile({ x, y, i });
 						}}
 						tabindex={winningTiles ? '-1' : '0'}
+						role="button"
 						aria-label="Row {y + 1} and column {x + 1}."
 						style:outline="none"
 						on:keydown={(e) => {
@@ -335,6 +336,7 @@
 			opacity="0.25"
 			class="focusable"
 			tabindex="0"
+			role="button"
 			aria-label="Clear the board and play a new round."
 			on:keydown={(e) => {
 				const { key, target } = e;

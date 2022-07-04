@@ -208,6 +208,7 @@
 				{#if !locked && !solved}
 					<g
 						tabindex="0"
+						role="button"
 						aria-label="Row {r + 1} and column {c + 1}, with the current value of {n}."
 						style:outline="none"
 						class="focusable"
@@ -246,6 +247,7 @@
 				handleReset();
 			}}
 			tabindex="0"
+			role="button"
 			aria-label="Reset puzzle to play a new game."
 			style:outline="none"
 			class="focusable"

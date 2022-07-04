@@ -119,6 +119,7 @@
 			<g transform="translate({c} {r})">
 				<g
 					tabindex={hidden || slid || !puzzle.getHiddenNeighbor({ r, c }) ? -1 : 0}
+					role="button"
 					aria-label="Row {r + 1} and column {c + 1}, with the number {n}."
 					class="focusable"
 					opacity="0"
@@ -159,6 +160,7 @@
 				<g transform="translate({c} {r})">
 					<g
 						tabindex="0"
+						role="button"
 						aria-label="Start a new puzzle hiding the tile on row {r + 1} and column {c +
 							1}, with the number {n}."
 						class="focusable"

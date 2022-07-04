@@ -247,6 +247,7 @@
 				<g transform="translate({c} {r})">
 					<g
 						tabindex={solved ? '-1' : '0'}
+						role="button"
 						aria-label="Row {r + 1} and column {c + 1}, with a  value of {n}."
 						class="focusable"
 						opacity="0"
@@ -300,6 +301,7 @@
 					handleReset();
 				}}
 				tabindex="0"
+				role="button"
 				aria-label="Reset puzzle to play a new game."
 				style:outline="none"
 				class="focusable"

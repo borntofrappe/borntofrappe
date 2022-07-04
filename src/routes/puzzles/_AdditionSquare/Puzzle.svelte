@@ -293,6 +293,7 @@
 										}}
 										style:cursor="pointer"
 										fill="transparent"
+										role="button"
 										aria-label="Row {r + 1} and column {c + 1}."
 										tabindex="0"
 										on:focus={() => {

@@ -358,6 +358,7 @@
 						}}
 						opacity="0"
 						class="focusable"
+						role="button"
 						aria-label="Reset the grid to start a new game from scratch."
 						tabindex="0"
 						on:keydown={(e) => {
@@ -411,6 +412,7 @@
 						}}
 						opacity="0"
 						class="focusable"
+						role="button"
 						aria-label="Row {r + 1} and column {c + 1}."
 						tabindex={revealed || gameover || gamewon ? '-1' : '0'}
 						on:keydown={(e) => {
