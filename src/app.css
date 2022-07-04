@@ -44,6 +44,10 @@ body {
 		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 }
 
+code {
+	font-family: Inconsolata, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+}
+
 ::selection {
 	background: #ffdb4748;
 }
