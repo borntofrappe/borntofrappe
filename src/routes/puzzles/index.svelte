@@ -6,6 +6,7 @@
 	import MoreOrLess from './_MoreOrLess/Puzzle.svelte';
 	import ZerosAndOnes from './_ZerosAndOnes/Puzzle.svelte';
 	import FindThePattern from './_FindThePattern/Puzzle.svelte';
+	import TwoToThePower from './_TwoToThePower/Puzzle.svelte';
 </script>
 
 <svelte:head>
@@ -40,6 +41,10 @@
 
 	<article>
 		<FindThePattern />
+	</article>
+
+	<article>
+		<TwoToThePower />
 	</article>
 </div>
 
