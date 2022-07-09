@@ -288,7 +288,7 @@
 <style>
 	svg {
 		display: block;
-		max-width: 26rem;
+		max-width: 30rem;
 		height: auto;
 		user-select: none;
 	}

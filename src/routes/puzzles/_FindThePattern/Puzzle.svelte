@@ -332,7 +332,7 @@
 <style>
 	svg {
 		display: block;
-		max-width: 28rem;
+		max-width: 30rem;
 		height: auto;
 		user-select: none;
 	}

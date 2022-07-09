@@ -342,7 +342,7 @@
 
 <style>
 	div {
-		max-width: 28rem;
+		max-width: 30rem;
 		width: 100%;
 		display: flex;
 		flex-direction: column;

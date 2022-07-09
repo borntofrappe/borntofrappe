@@ -196,7 +196,7 @@
 	svg {
 		display: block;
 		user-select: none;
-		max-width: 20rem;
+		max-width: 28rem;
 	}
 
 	svg:focus {
