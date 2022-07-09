@@ -335,7 +335,7 @@
 				animated ? handleReset() : handleClear();
 			}}
 		>
-			<Tile char="" />
+			<Tile char="" fill="#f2eeef" />
 		</button>
 	</section>
 </div>
