@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-252.5 -27.5 505 230">
+  <style>
+    svg {
+      outline: 1px solid;
+      max-width: 400px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
+          helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+    }
+  </style>
+  <defs>
+    <path id="a" d="M -25 -25 a 12.5 12.5 0 0 0 25 0 25 25 0 0 0 -50 0 c 0 37.5 50 37.5 50 75 v -75 a 12.5 12.5 0 0 1 -25 0" />
+    <g id="aa">
+      <use href="#a" />
+      <use href="#a" transform="scale(-1 1)" />
+    </g>
+    <path id="b" d="M 0 50 c 0 15 -15 30 -30 30 c 15 0 30 37.5 30 70z" />
+    <g id="bb">
+      <use href="#b" />
+      <use href="#b" transform="scale(-1 1)" />
+    </g>
+    <path id="c" d="M 0 0 v -10 c -5 10 -5 10 -150 10z" />
+    <g id="cc">
+      <use href="#c" />
+      <use href="#c" transform="scale(-1 1)" />
+    </g>
+    <g id="ccc">
+      <use href="#cc" />
+      <use href="#cc" transform="scale(1 -1)" />
+    </g>
+    <path
+      id="d" d="M -150 0 a 25 25 0 0 0 -25 -25 11.25 11.25 0 0 1 0 22.5 7.5 7.5 0 0 1 -7.5 -7.5 c 0 10 -30 10 -67.5 10 37.5 0 67.5 0 67.5 10 a 7.5 7.5 0 0 1 7.5 -7.5 11.25 11.25 0 0 1 0 22.5 25 25 0 0 0 25 -25z" />
+  </defs>
+  <g fill="#38311e" stroke="#38311e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#ccc" />
+    <use href="#d" transform="translate(100 0)">
+      <animateTransform 
+        attributeName="transform"  
+        type="translate"  
+        to="0 0"
+        keyTimes="0; 1"  
+        keySplines="0.25, 1, 0.5, 1"  
+        calcMode="spline"  
+        dur="1.5"  
+        fill="freeze" 
+        begin="1s" 
+        id="x" />
+    </use>
+    <g transform="scale(-1 1)">
+      <use href="#d" transform="translate(100 0)">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        to="0 0"
+        keyTimes="0; 1" 
+        keySplines="0.25, 1, 0.5, 1" 
+        calcMode="spline" 
+        dur="1.5" 
+        fill="freeze"
+        begin="x.begin" />
+      </use>
+    </g>
+  </g>
+
+  <g transform="translate(0 140)">
+    <g transform="translate(0 -85)">
+      <animateTransform 
+        attributeName="transform" 
+        type="translate" 
+        to="0 0" 
+        keyTimes="0; 1"  
+        keySplines="0.37 0 0.63 1" 
+        calcMode="spline" 
+        dur="2" 
+        fill="freeze" 
+        begin="x.end" 
+        id="y" /> 
+      <g>
+        <animateTransform 
+          attributeName="transform" 
+          type="scale" 
+          values="1, 1; 0, 1; 1, 1" 
+          keyTimes="0; 0.5; 1"
+          keySplines="0.12 0 0.39 0; 0.61 1 0.88 1;" 
+          calcMode="spline"
+          dur="1"
+          repeatCount="2" 
+          fill="freeze"
+          begin="x.end" />
+          <g>
+           <animateTransform 
+              attributeName="transform" 
+              type="translate" 
+              values="0 0; 0 -5; 0 0" 
+              keyTimes="0; 0.5; 1"
+              keySplines="0.12 0 0.39 0; 0.61 1 0.88 1;" 
+              calcMode="spline" 
+              repeatCount="5" 
+              dur="2" 
+              fill="freeze" 
+              begin="z.end; click"
+              restart="whenNotActive"
+               /> 
+            <path fill="#ffdb47" d="M 14 4 Q 20 28 0 15 -20  28 -14 4 -33 -11 -9 -12 0 -36  9 -12 33 -11 14 4"  />
+          </g>
+      </g>
+    </g>
+  </g>
+ 
+  <g transform="translate(0 67.5)">
+    <g fill="#38311e" text-anchor="middle" dominant-baseline="central" font-size="32" font-weight="700" letter-spacing="1">
+			<text opacity="0">
+				Hi there
+				<animate
+          attributeName="opacity" 
+          values="0; 1" 
+          keyTimes="0; 1"  
+          keySplines="0.37 0 0.63 1" 
+          calcMode="spline" 
+          dur="1" 
+          fill="freeze"
+          begin="y.end + 1s"
+          id="z" />
+			</text>
+    </g>
+  </g>
+</svg>

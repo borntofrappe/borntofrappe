@@ -1,4 +1,4 @@
-# Hi there 👋🏻
+![Hi there 👋🏻](./hi-there.svg)
 
 Name's Gabriele Corti.
 
