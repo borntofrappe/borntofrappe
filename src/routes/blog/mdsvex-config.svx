@@ -66,3 +66,24 @@ Tidies things up a bit.
 Turn off `smartypants` within the context of mdsvex. I don't like meddling with the markdown syntax.
 
 Install rehype plugins to add permanent links to headings.
+
+## Step 6
+
+This is a big one. Highlight code blocks with `shiki` instead of the default prism.
+
+After much research and struggling, turns out to a few lines of code though...
+
+```js
+const highlighter = async (code, lang) => {
+	const shikiHighlighter = await getHighlighter({ theme: 'github-dark' });
+	const shikiCode = shikiHighlighter.codeToHtml(code, { lang });
+
+	return escapeSvelte(shikiCode);
+};
+```
+
+Just need to escape the markup for a few special characters. Luckily mdsvex is equipped for that.
+
+```js
+import { mdsvex, escapeSvelte } from 'mdsvex';
+```
