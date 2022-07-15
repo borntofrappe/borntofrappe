@@ -1,6 +1,11 @@
 <script>
 	export let title;
 	export let description;
+	export let datetime;
+
+	$: date = new Date(
+		...datetime.split(/[-T:]/).map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+	);
 </script>
 
 <svelte:head>
@@ -12,6 +17,7 @@
 
 <header>
 	<h1>{title}</h1>
+	<time {datetime}>{date}</time>
 </header>
 
 <main>

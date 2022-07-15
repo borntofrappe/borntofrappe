@@ -1,89 +1,21 @@
 ---
-title: Blogging
-date: 2022-07-15
-brief: Setting up a markdown blog with mdsvex
+title: mdsvex config
+description: Setting up a markdown blog with mdsvex
+datetime: '2022-07-15'
 ---
 
-<script>
-    let value = 0
-    let amount = 1
+I created `mdsvex.config.js` to customize how mdsvex processes `.md` and `.svx` documents.
 
-    const handleClick = () => value += amount
-</script>
+Here's a non-comprehensive short list of what the file accomplishes:
 
-This article need erasing. It will be deleted once I am able to finally write something deserving of attention.
+- sets a named layout for documents in the blog route
 
-Just an excuse to jot things down as I set up the blog within the context of my SvelteKit app.
+- adds two rehype plugins to add a permalink to heading elements
 
-## Step 1
+- highlights code fences with shiki
 
-Install mdsvex with `npm`.
+Also:
 
-## Step 2
+- processes `.md` and `.svx` syntax
 
-Create a `/routes/blog/` route with a tenative `.md` and `.svx` document — this one, by happenstance.
-
-## Step 3
-
-Update the config object so that svelte processes both file extensions and uses mdsvex to process either.
-
-> intermession
->
-> commit and take a breather
-
-## Step 4
-
-Create a layout file for articles in the blog route. A _named layout_ for mdsvex.
-
-## Step 4 - 0.5
-
-Add a bit of Svelte to the document remembering mdsvex allows to include Svelte in markdown.
-
-A counter starting at **{value}** for instance
-
-And a button to <button on:click={handleClick}>change</button> by a specific <label>amount <input bind:value={amount} /></label>
-
-> intermession
->
-> find out how to set up vscode so that `.svx` files are treated as markdown
-
-## Step 4.9
-
-I did figure out how to consider `.svx` as `.md`. There a setting for _file associations_.
-
-```json
-{
-	"files.associations": {
-		"*.svx": "markdown"
-	}
-}
-```
-
-Tidies things up a bit.
-
-## Step 5
-
-Turn off `smartypants` within the context of mdsvex. I don't like meddling with the markdown syntax.
-
-Install rehype plugins to add permanent links to headings.
-
-## Step 6
-
-This is a big one. Highlight code blocks with `shiki` instead of the default prism.
-
-After much research and struggling, turns out to a few lines of code though...
-
-```js
-const highlighter = async (code, lang) => {
-	const shikiHighlighter = await getHighlighter({ theme: 'github-dark' });
-	const shikiCode = shikiHighlighter.codeToHtml(code, { lang });
-
-	return escapeSvelte(shikiCode);
-};
-```
-
-Just need to escape the markup for a few special characters. Luckily mdsvex is equipped for that.
-
-```js
-import { mdsvex, escapeSvelte } from 'mdsvex';
-```
+- removes `smartypants` fancy typography features
