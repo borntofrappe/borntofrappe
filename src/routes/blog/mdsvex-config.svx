@@ -1,0 +1,25 @@
+---
+title: Blogging
+date: 2022-07-15
+brief: Setting up a markdown blog with mdsvex
+---
+
+This article need erasing. It will be deleted once I am able to finally write something deserving of attention.
+
+Just an excuse to jot things down as I set up the blog within the context of my SvelteKit app.
+
+## Step 1
+
+Install mdsvex with `npm`.
+
+## Step 2
+
+Create a `/routes/blog/` route with a tenative `.md` and `.svx` document — this one, by happenstance.
+
+## Step 3
+
+Update the config object so that svelte processes both file extensions and uses mdsvex to process either.
+
+> intermession
+> 
+> commit and take a breather
