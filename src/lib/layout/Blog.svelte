@@ -1,5 +1,6 @@
 <script>
 	import Theme from '$lib/components/Theme.svelte';
+	import '$lib/style/blog.css';
 
 	export let title;
 	export let description;
@@ -71,23 +72,26 @@
 </div>
 
 <style>
+	div {
+		min-height: 100vh;
+	}
 	div > :global(* + *) {
 		margin-top: 1em;
 	}
 
 	.morning {
-		color: hsl(0, 0%, 23%);
-		background: hsl(0, 0%, 93%);
+		color: var(--warm-grey-700);
+		background: var(--warm-grey-200);
 	}
 
 	.day {
-		color: hsl(0, 0%, 12%);
-		background: hsl(0, 0%, 97%);
+		color: var(--warm-grey-900);
+		background: var(--warm-grey-000);
 	}
 
 	.night {
-		color: hsl(0, 0%, 93%);
-		background: hsl(0, 0%, 12%);
+		color: var(--warm-grey-200);
+		background: var(--warm-grey-900);
 	}
 
 	header {
@@ -95,7 +99,7 @@
 	}
 
 	h1 {
-		color: hsl(0, 0%, 97%);
+		color: #f7f7f7;
 		text-align: center;
 		filter: url(#filter-outline);
 	}
@@ -104,18 +108,5 @@
 		max-width: 36rem;
 		margin-left: auto;
 		margin-right: auto;
-	}
-
-	main {
-		max-width: 42rem;
-		width: 90vmin;
-		width: calc(100vmin - 20px);
-		margin-left: auto;
-		margin-right: auto;
-		padding: 1rem;
-	}
-
-	main > :global(* + *) {
-		margin-top: 0.75em;
 	}
 </style>

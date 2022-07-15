@@ -14,6 +14,15 @@ Here's a non-comprehensive short list of what the file accomplishes:
 
 - highlights code fences with shiki
 
+```js
+const highlighter = async (code, lang) => {
+	const shikiHighlighter = await getHighlighter({ theme: 'material-palenight' });
+	const shikiCode = shikiHighlighter.codeToHtml(code, { lang });
+
+	return escapeSvelte(shikiCode);
+};
+```
+
 Also:
 
 - processes `.md` and `.svx` syntax
