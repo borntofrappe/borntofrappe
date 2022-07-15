@@ -1,12 +1,16 @@
 import adapter from '@sveltejs/adapter-auto';
 import { resolve } from 'path';
 import { mdsvex } from 'mdsvex';
+import slug from 'rehype-slug';
+import autolinkHeadings from 'rehype-autolink-headings';
 
 const mdsvexConfig = {
 	extensions: ['.md', '.svx'],
+	smartypants: false,
 	layout: {
 		blog: 'src/lib/layout/Blog.svelte'
-	}
+	},
+	rehypePlugins: [slug, autolinkHeadings]
 };
 
 /** @type {import('@sveltejs/kit').Config} */
