@@ -4,9 +4,26 @@
 	export let title;
 	export let description;
 
+	const colors = {
+		morning: { foreground: '#838ac5', background: '#9cb2ce' },
+		day: { foreground: '#639aef', background: '#73d2e6' },
+		night: { foreground: '#7369b5', background: '#838ace' }
+	};
+
 	let timeOfDay;
-	let background;
-	let foreground;
+
+	const hours = new Date().getHours();
+
+	if (hours > 2 && hours < 10) {
+		timeOfDay = 'morning';
+	} else if (hours < 18) {
+		timeOfDay = 'day';
+	} else {
+		timeOfDay = 'night';
+	}
+
+	let foreground = colors[timeOfDay].foreground;
+	let background = colors[timeOfDay].background;
 
 	const handleChange = (e) => {
 		const { detail: change } = e;
@@ -45,7 +62,7 @@
 <div class={timeOfDay}>
 	<header style:background>
 		<h1>{title}</h1>
-		<Theme {timeOfDay} on:change={handleChange} />
+		<Theme {timeOfDay} {colors} on:change={handleChange} />
 	</header>
 
 	<main>

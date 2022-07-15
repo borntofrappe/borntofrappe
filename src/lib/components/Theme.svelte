@@ -9,8 +9,7 @@
 	let w, h;
 
 	export let timeOfDay;
-
-	const colors = {
+	export let colors = {
 		morning: { foreground: '#838ac5', background: '#9cb2ce' },
 		day: { foreground: '#639aef', background: '#73d2e6' },
 		night: { foreground: '#7369b5', background: '#838ace' }
@@ -30,11 +29,10 @@
 	const position = spring(
 		{
 			x: 60,
-			y: 120
+			y: 60
 		},
 		{
-			damping: 0.4,
-			stiffness: 0.22
+			damping: 0.4
 		}
 	);
 
@@ -55,7 +53,7 @@
 
 		const { x, y } = positions[timeOfDay];
 
-		position.set({ x, y }, { hard: true });
+		position.set({ x, y });
 
 		dispatch('change', {
 			timeOfDay,
