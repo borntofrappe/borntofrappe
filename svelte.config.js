@@ -3,7 +3,10 @@ import { resolve } from 'path';
 import { mdsvex } from 'mdsvex';
 
 const mdsvexConfig = {
-	extensions: ['.md', '.svx']
+	extensions: ['.md', '.svx'],
+	layout: {
+		blog: 'src/lib/layout/Blog.svelte'
+	}
 };
 
 /** @type {import('@sveltejs/kit').Config} */

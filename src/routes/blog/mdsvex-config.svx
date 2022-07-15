@@ -4,6 +4,14 @@ date: 2022-07-15
 brief: Setting up a markdown blog with mdsvex
 ---
 
+<script>
+
+let value = 0
+let amount = 1
+
+const handleClick = () => value += amount
+</script>
+
 This article need erasing. It will be deleted once I am able to finally write something deserving of attention.
 
 Just an excuse to jot things down as I set up the blog within the context of my SvelteKit app.
@@ -23,3 +31,19 @@ Update the config object so that svelte processes both file extensions and uses 
 > intermession
 > 
 > commit and take a breather
+
+## Step 4
+
+Create a layout file for articles in the blog route. A _named layout_ for mdsvex.
+
+## Step 4 - 0.5
+
+Add a bit of Svelte to the document remembering mdsvex allows to include Svelte in markdown.
+
+A counter starting at **{value}** for instance 
+
+And a button to <button on:click={handleClick}>change</button> by a specific <label>amount <input bind:value={amount} /></label>
+
+> intermession
+>
+> find out how to set up vscode so that `.svx` files are treated as markdown
