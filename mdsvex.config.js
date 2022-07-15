@@ -4,7 +4,7 @@ import slug from 'rehype-slug';
 import autolinkHeadings from 'rehype-autolink-headings';
 
 import { getHighlighter } from 'shiki';
-import icons from './src/utils/icons.js';
+import icons from './src/lib/utils/icons.js';
 
 const layout = {
 	blog: 'src/lib/layout/Blog.svelte'

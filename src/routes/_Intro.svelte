@@ -1,6 +1,6 @@
 <script>
 	import Ray from './mignon/_Ray.svelte';
-	import icons from '$utils/icons';
+	import icons from '$lib/utils/icons';
 </script>
 
 <div>
