@@ -16,7 +16,6 @@
 	);
 
 	let svg;
-	let l, t;
 	let w, h;
 
 	onMount(() => {
@@ -24,21 +23,23 @@
 	});
 
 	const handleSize = () => {
-		const { left, top, width, height } = svg.getBoundingClientRect();
-		l = left;
-		t = top;
+		const { width, height } = svg.getBoundingClientRect();
 		w = width;
 		h = height;
 	};
 
 	const handleStart = () => scale.set(1.5);
-	const handleEnd = () => {
+	const handleEnd = () => scale.set(1);
+
+	const handleOut = () => {
 		scale.set(1);
 		offset.set({ x: 0, y: 0 });
 	};
+
 	const handleMove = ({ offsetX, offsetY }) => {
 		const x = (offsetX / w - 0.5) * 20;
 		const y = (offsetY / h - 0.5) * 20;
+
 		offset.set({ x, y });
 	};
 </script>
@@ -50,11 +51,10 @@
 	viewBox="-50 -50 100 100"
 	bind:this={svg}
 	on:mousedown={handleStart}
-	on:touchstart|preventDefault={handleStart}
 	on:mouseup={handleEnd}
-	on:mouseleave={handleEnd}
-	on:touchend|preventDefault={handleEnd}
+	on:mouseleave={handleOut}
 	on:mousemove={handleMove}
+	on:click={handleMove}
 >
 	<g transform="translate({$offset.x * 0.3} {$offset.y * 0.3})">
 		<circle r="28" fill="#ffdb47" />
