@@ -42,12 +42,14 @@ pre + * {
 	--vertical-rhythm: var(--size-600);
 }
 
-.code {
-	--vertical-rhythm: var(--size-900);
+a {
+	color: inherit;
+	font-weight: 700;
+	transition: color 0.25s cubic-bezier(0.37, 0, 0.63, 1);
 }
 
-.code + * {
-	--vertical-rhythm: var(--size-800);
+a:hover {
+	color: var(--accent);
 }
 
 blockquote {
@@ -145,8 +147,8 @@ p > code {
 	}
 }
 
-/* .code blocks should have a wider gap above for the supporting span/svg (see --vertical-rhythm) */
 .code {
+	--vertical-rhythm: var(--size-800);
 	position: relative;
 }
 
@@ -157,13 +159,13 @@ p > code {
 }
 
 .code > span {
+	color: #e4e7eb;
 	background: #292d3e;
 	border-top-left-radius: 0.5rem;
 	border-top-right-radius: 0.5rem;
 	padding: 0.4rem 0.8rem;
 	font-weight: 700;
 	font-size: var(--size-400);
-	color: var(--accent);
 	bottom: 100%;
 	right: 1.5rem;
 	display: flex;
@@ -191,13 +193,13 @@ p > code {
 	border-radius: 0.2rem;
 }
 
-.permalink {
+:is(h2, h3, h4) {
 	display: flex;
 	align-items: baseline;
 	gap: 0 0.5rem;
 }
 
-.permalink a {
+:is(h2, h3, h4) a {
 	opacity: 0.3;
 	width: 0.42rem;
 	height: 0.42rem;
@@ -207,23 +209,23 @@ p > code {
 	background: currentColor;
 }
 
-.permalink a:focus {
-	opacity: 1;
-}
-
-.permalink a:hover {
+:is(h2, h3, h4) a:hover {
 	opacity: 1;
 	color: var(--accent);
 }
 
+:is(h2, h3, h4) a:focus {
+	opacity: 1;
+}
+
 @supports ((-webkit-mask-image: url()) or (mask-image: url())) {
-	.permalink {
+	:is(h2, h3, h4) {
 		--icon-size: 0.9em;
 		align-items: center;
 	}
 
 	/* you could mask the link directly, but you'd lose the outline on focus */
-	.permalink a {
+	:is(h2, h3, h4) a {
 		background: initial;
 		border-radius: 0;
 		position: relative;
@@ -231,7 +233,7 @@ p > code {
 		height: var(--icon-size);
 	}
 
-	.permalink a::before {
+	:is(h2, h3, h4) a::before {
 		content: '';
 		position: absolute;
 		top: 0;

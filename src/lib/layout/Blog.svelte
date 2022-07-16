@@ -75,13 +75,14 @@
 	div {
 		min-height: 100vh;
 	}
+
 	div > :global(* + *) {
 		margin-top: 1em;
 	}
 
 	.morning {
 		color: var(--warm-grey-700);
-		background: var(--warm-grey-200);
+		background: var(--warm-grey-100);
 	}
 
 	.day {
