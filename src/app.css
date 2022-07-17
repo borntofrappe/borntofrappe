@@ -34,11 +34,48 @@ select {
 	--size-700: 1.95rem;
 	--size-800: 2.44rem;
 	--size-900: 3.05rem;
+
+	--accent-color-000: hsl(294, 100%, 96%);
+	--accent-color-100: hsl(294, 97%, 88%);
+	--accent-color-200: hsl(294, 100%, 78%);
+	--accent-color-300: hsl(296, 96%, 70%);
+	--accent-color-400: hsl(300, 82%, 60%);
+	--accent-color-500: hsl(305, 80%, 49%);
+	--accent-color-600: hsl(306, 85%, 43%);
+	--accent-color-700: hsl(306, 88%, 37%);
+	--accent-color-800: hsl(306, 90%, 31%);
+	--accent-color-900: hsl(308, 91%, 23%);
+
+	--grey-000: hsl(0, 0%, 97%);
+	--grey-100: hsl(0, 0%, 88%);
+	--grey-200: hsl(0, 0%, 81%);
+	--grey-300: hsl(0, 0%, 69%);
+	--grey-400: hsl(0, 0%, 62%);
+	--grey-500: hsl(0, 0%, 49%);
+	--grey-600: hsl(0, 0%, 38%);
+	--grey-700: hsl(0, 0%, 32%);
+	--grey-800: hsl(0, 0%, 23%);
+	--grey-900: hsl(0, 0%, 13%);
+
+	--warm-grey-000: hsl(40, 23%, 97%);
+	--warm-grey-100: hsl(43, 13%, 90%);
+	--warm-grey-200: hsl(40, 15%, 80%);
+	--warm-grey-300: hsl(39, 11%, 69%);
+	--warm-grey-400: hsl(41, 8%, 61%);
+	--warm-grey-500: hsl(41, 8%, 48%);
+	--warm-grey-600: hsl(40, 10%, 30%);
+	--warm-grey-700: hsl(37, 12%, 22%);
+	--warm-grey-800: hsl(38, 13%, 17%);
+	--warm-grey-900: hsl(30, 13%, 9%);
 }
 
 body {
-	color: hsl(44, 30%, 17%);
-	background: hsl(41, 100%, 97%);
+	--color: var(--warm-grey-900);
+	--background: var(--warm-grey-000);
+	--accent: var(--accent-color-500);
+	color: var(--color);
+	background: var(--background);
+	accent-color: var(--accent);
 	text-rendering: optimizeSpeed;
 	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
 		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
@@ -49,7 +86,8 @@ code {
 }
 
 ::selection {
-	background: #ffdb4748;
+	color: var(--warm-grey-000);
+	background: var(--accent-color-700);
 }
 
 body::-webkit-scrollbar {
@@ -57,13 +95,13 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-	background: hsl(41, 100%, 97%);
+	background: var(--background);
 }
 
 body::-webkit-scrollbar-thumb {
-	border: 0.2rem solid hsl(41, 100%, 97%);
-	border-radius: 0.5rem;
-	background: #ffdb47;
+	border: 0.2rem solid var(--background);
+	border-radius: 0.4rem;
+	background: var(--accent);
 }
 
 a {
