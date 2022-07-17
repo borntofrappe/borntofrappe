@@ -148,30 +148,29 @@ p > code {
 }
 
 .code {
-	--vertical-rhythm: var(--size-800);
-	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 .code pre {
+	margin-top: 0;
 	padding: 1.25rem;
 	border-radius: 1rem;
 	line-height: 1.75;
 }
 
 .code > span {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	gap: 0 0.5rem;
+	transform: translateX(-1.5rem);
 	color: #e4e7eb;
 	background: #292d3e;
 	border-top-left-radius: 0.5rem;
 	border-top-right-radius: 0.5rem;
-	padding: 0.4rem 0.8rem;
+	padding: 0.4rem 1rem;
 	font-weight: 700;
-	font-size: var(--size-400);
-	bottom: 100%;
-	right: 1.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0 0.5rem;
-	position: absolute;
 }
 
 .code > span > svg {
