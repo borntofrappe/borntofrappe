@@ -10,6 +10,8 @@
 </script>
 
 <script>
+	import icons from '$lib/utils/icons';
+
 	import { onMount } from 'svelte';
 
 	export let status;
@@ -110,7 +112,10 @@
 	<main>
 		<h1>Oopsie</h1>
 		<p>Something quite unexpected has happened.<br /> Here the error message for context:</p>
-		<pre><code>{message}</code></pre>
+		<div class="code">
+			<span>code{@html icons.editor}</span>
+			<pre><code>{message}</code></pre>
+		</div>
 		<p>
 			If you think this is a mistake and you feel up to it, please consider filing an issue <a
 				href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{status}&body={message}&labels=bug"
@@ -126,10 +131,6 @@
 	div {
 		color: hsl(0, 0%, 30%);
 		background: hsl(0, 0%, 97%);
-	}
-
-	div *::selection {
-		background: hsl(0, 0%, 30%, 0.17);
 	}
 
 	article {
@@ -156,17 +157,55 @@
 	}
 
 	main > * + * {
-		margin-top: 0.75em;
+		margin-top: 1em;
 	}
 
-	pre {
-		font-weight: bold;
-		padding: 0.5rem 0.5rem;
-		color: hsl(0, 0%, 97%);
-		background: hsl(0, 0%, 30%);
+	.code {
+		display: flex;
+		flex-direction: column;
 	}
 
-	code::selection {
-		background: hsl(0, 0%, 97%, 0.15);
+	.code pre,
+	.code > span {
+		color: #e4e7eb;
+		background: #292d3e;
+	}
+
+	.code pre {
+		margin-top: 0;
+		padding: 1.25rem;
+		border-radius: 1rem;
+		line-height: 1.75;
+	}
+
+	.code > span {
+		align-self: flex-end;
+		display: inline-flex;
+		align-items: center;
+		gap: 0 0.5rem;
+		transform: translateX(-1.5rem);
+		border-top-left-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
+		padding: 0.4rem 1rem;
+		font-weight: 700;
+	}
+
+	.code > span > :global(svg) {
+		display: block;
+		width: 1em;
+		height: auto;
+	}
+
+	.code pre {
+		overflow-x: auto;
+	}
+
+	.code pre::-webkit-scrollbar {
+		height: 0.4rem;
+	}
+
+	.code pre::-webkit-scrollbar-thumb {
+		background: var(--accent);
+		border-radius: 0.2rem;
 	}
 </style>
