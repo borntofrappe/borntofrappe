@@ -1,4 +1,6 @@
 <script>
+	import AnimatedText from './AnimatedText.svelte';
+
 	const sprites = 4;
 
 	const dCircle = ({ radius, points }) => {
@@ -110,49 +112,78 @@
 	</g>
 
 	<g transform="translate(40 25)">
-		<g>
+		<g style:cursor="pointer">
 			<animateTransform
+				id="pokeTheLadybugPoked"
+				begin="click"
 				attributeName="transform"
 				type="translate"
-				dur="{sprites * 0.15}s"
-				values={Array(sprites)
-					.fill()
-					.map((_, i) => `${80 * i} 0`)
-					.join(';')}
-				calcMode="discrete"
-				repeatCount="indefinite"
-				end="click"
+				to="0 -50"
+				dur="2s"
+				restart="never"
+				fill="freeze"
 			/>
-			{#each Array(sprites).fill() as _, i}
-				<g transform="translate({80 * i * -1} 0)">
-					<g transform="translate(0 -8)">
-						<path fill="currentColor" d={dCircle({ radius: 6 })} />
-						<g transform="translate(0 -3.5)">
-							<g fill="#f7f7f7">
-								<path transform="translate(-2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
-								<path transform="translate(2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
+			<g>
+				<animateTransform
+					attributeName="transform"
+					type="translate"
+					dur="{sprites * 0.15}s"
+					values={Array(sprites)
+						.fill()
+						.map((_, i) => `${80 * i} 0`)
+						.join(';')}
+					calcMode="discrete"
+					repeatCount="indefinite"
+					begin="pokeTheLadybugStart.begin"
+					end="pokeTheLadybugPoked.end"
+					fill="freeze"
+				/>
+				{#each Array(sprites).fill() as _, i}
+					<g transform="translate({80 * i * -1} 0)">
+						<g transform="translate(0 -8)">
+							<path fill="currentColor" d={dCircle({ radius: 6 })} />
+							<g transform="translate(0 -3.5)">
+								<g fill="#f7f7f7">
+									<path transform="translate(-2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
+									<path transform="translate(2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
+								</g>
 							</g>
 						</g>
+
+						<path fill="#f70000" stroke="none" stroke-width="0.5" d={dCircle({ radius: 10 })} />
+
+						<g fill="currentColor">
+							<path transform="translate(-5 -1)" d={dCircle({ radius: 3.6, points: 10 })} />
+							<path transform="translate(5 1)" d={dCircle({ radius: 3.6, points: 10 })} />
+						</g>
+
+						<path
+							fill="none"
+							stroke="currentColor"
+							stroke-width="0.5"
+							stroke-linecap="square"
+							stroke-linejoin="round"
+							d={dLine({ x1: 0, y1: -9.5, x2: -0, y2: 9.5, points: 7 })}
+						/>
 					</g>
-
-					<path fill="#f70000" stroke="none" stroke-width="0.5" d={dCircle({ radius: 10 })} />
-
-					<g fill="currentColor">
-						<path transform="translate(-5 -1)" d={dCircle({ radius: 3.6, points: 10 })} />
-						<path transform="translate(5 1)" d={dCircle({ radius: 3.6, points: 10 })} />
-					</g>
-
-					<path
-						fill="none"
-						stroke="currentColor"
-						stroke-width="0.5"
-						stroke-linecap="square"
-						stroke-linejoin="round"
-						d={dLine({ x1: 0, y1: -9.75, x2: -0, y2: 9.75, points: 7 })}
-					/>
-				</g>
-			{/each}
+				{/each}
+			</g>
 		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="pokeTheLadybugStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
 
