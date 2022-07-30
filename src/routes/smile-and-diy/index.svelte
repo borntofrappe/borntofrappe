@@ -1,3 +1,7 @@
+<script context="module">
+	export const hydrate = false;
+</script>
+
 <script>
 	import Defs from './_helpers/Defs.svelte';
 
