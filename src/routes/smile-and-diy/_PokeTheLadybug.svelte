@@ -218,9 +218,3 @@
 		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
-
-<style>
-	svg {
-		max-width: 40rem;
-	}
-</style>
