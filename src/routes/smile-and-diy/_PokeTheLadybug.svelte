@@ -1,5 +1,5 @@
 <script>
-	import AnimatedText from './AnimatedText.svelte';
+	import AnimatedText from './_helpers/AnimatedText.svelte';
 
 	const sprites = 4;
 
@@ -167,6 +167,38 @@
 						/>
 					</g>
 				{/each}
+			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="pokeTheLadybugMessage"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			begin="pokeTheLadybugPoked.end"
+			restart="never"
+		/>
+		<g>
+			<g transform="translate(40 25)">
+				<AnimatedText
+					text="You did it!"
+					begin="pokeTheLadybugMessage.begin"
+					end="pokeTheLadybugEnd.begin"
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
+			<g style:cursor="pointer">
+				<set
+					id="pokeTheLadybugEnd"
+					attributeName="display"
+					begin="click"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+				<rect width="80" height="50" opacity="0" />
 			</g>
 		</g>
 	</g>
