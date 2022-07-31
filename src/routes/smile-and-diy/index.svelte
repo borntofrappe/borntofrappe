@@ -8,6 +8,12 @@
 	import PokeTheLadybug from './_PokeTheLadybug.svelte';
 </script>
 
+<svelte:head>
+	<title>borntofrappe | SMILe & D.I.Y.</title>
+	<meta name="description" content="A showcase of animated scalable vector graphics." />
+	<link rel="icon" href="/icons/smile-and-diy.svg" type="image/svg+xml" />
+</svelte:head>
+
 <Defs />
 
 <div>
