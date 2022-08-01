@@ -1,4 +1,4 @@
-![Hi there 👋🏻](./hi-there.svg)
+![Hi there 👋🏻](./intro.svg)
 
 Name's Gabriele Corti.
 
@@ -17,3 +17,5 @@ Also:
 - [freeCodeCamp](https://www.freecodecamp.org/borntofrappe) 🔥
 
 And routher proudly: [borntofrappe.netlify.app](https://borntofrappe.netlify.app/) 🙌.
+
+![That's all for now. 👋🏻👋🏻](./outro.svg)
