@@ -120,22 +120,22 @@
 				type="translate"
 				to="0 -50"
 				dur="2s"
-				restart="never"
 				fill="freeze"
+				restart="never"
 			/>
 			<g>
 				<animateTransform
+					begin="pokeTheLadybugStart.begin"
+					end="pokeTheLadybugPoked.end"
 					attributeName="transform"
 					type="translate"
-					dur="{sprites * 0.15}s"
 					values={Array(sprites)
 						.fill()
 						.map((_, i) => `${80 * i} 0`)
 						.join(';')}
+					dur="{sprites * 0.15}s"
 					calcMode="discrete"
 					repeatCount="indefinite"
-					begin="pokeTheLadybugStart.begin"
-					end="pokeTheLadybugPoked.end"
 					fill="freeze"
 				/>
 				{#each Array(sprites).fill() as _, i}
@@ -150,7 +150,7 @@
 							</g>
 						</g>
 
-						<path fill="#f70000" stroke="none" stroke-width="0.5" d={dCircle({ radius: 10 })} />
+						<path fill="#f70000" d={dCircle({ radius: 10 })} />
 
 						<g fill="currentColor">
 							<path transform="translate(-5 -1)" d={dCircle({ radius: 3.6, points: 10 })} />
@@ -174,10 +174,10 @@
 	<g display="none">
 		<set
 			id="pokeTheLadybugMessage"
+			begin="pokeTheLadybugPoked.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			begin="pokeTheLadybugPoked.end"
 			restart="never"
 		/>
 		<g>
@@ -192,8 +192,8 @@
 			<g style:cursor="pointer">
 				<set
 					id="pokeTheLadybugEnd"
-					attributeName="display"
 					begin="click"
+					attributeName="display"
 					to="none"
 					fill="freeze"
 					restart="never"

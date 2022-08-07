@@ -76,26 +76,26 @@
 	<g transform="translate(40 28)">
 		<g>
 			<animateTransform
+				id="popTheBalloonFloat"
+				begin="popTheBalloonStart.begin"
+				end="popTheBalloonPopped.begin"
 				attributeName="transform"
 				type="translate"
 				to="{dx} {dy}"
 				dur="5s"
 				fill="freeze"
-				id="popTheBalloonFloat"
-				begin="popTheBalloonStart.begin"
-				end="popTheBalloonPopped.begin"
 			/>
 			<g>
 				<animateTransform
+					begin="popTheBalloonStart.begin"
+					end="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 1"
 					dur="0.35s"
 					calcMode="discrete"
-					fill="freeze"
 					repeatCount="indefinite"
-					begin="popTheBalloonStart.begin"
-					end="popTheBalloonPopped.begin"
+					fill="freeze"
 				/>
 				<g transform="translate(0 -3)">
 					<g style:cursor="pointer">
@@ -131,10 +131,10 @@
 					type="translate"
 					to="0 100"
 					dur="2s"
-					fill="freeze"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.65 0 0.4 1"
+					fill="freeze"
 				/>
 				<g stroke="currentColor" stroke-width="0.6">
 					<g fill="url(#pop-the-balloon-pattern-present)">
