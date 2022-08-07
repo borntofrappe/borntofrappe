@@ -1,0 +1,61 @@
+<svg viewBox="0 0 80 50">
+	<defs>
+		<g id="pop-the-balloon-cloud">
+			<path
+				fill="#f7f7f7"
+				d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
+			/>
+			<path
+				fill="#bdbebd"
+				d="M -7 0 a 2 2 0 0 0 0 4 1.85 1.85 0 0 0 3.7 0 3.4 3.4 0 0 0 6.6 0 1.85 1.85 0 0 0 3.7 0 2 2 0 0 0 0 -4 a 1.5 1.5 0 0 1 -0.5 2.5 a 1.4 1.4 0 0 1 -3 -0.5 a 3.6 3.6 0 0 1 -7 0 a 1.4 1.4 0 0 1 -3 0.5 a 1.5 1.5 0 0 1 -0.5 -2.5"
+			/>
+			<path
+				fill="none"
+				stroke="currentColor"
+				d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
+			/>
+		</g>
+
+		<pattern
+			id="pop-the-balloon-pattern-present"
+			viewBox="0 0 10 10"
+			width="4"
+			height="4"
+			patternUnits="userSpaceOnUse"
+		>
+			<rect width="10" height="10" fill="#f7f75a" />
+			<path
+				fill="#f7aa31"
+				d="M 0 0 3 0 0 3Z M 0 7 3 10 0 10Z M 7 0 10 3 10 0Z M 7 10 10 7 10 10Z M 2 5 5 2 8 5 5 8z"
+			/>
+		</pattern>
+	</defs>
+
+	<rect fill="#10c2ce" width="80" height="50" />
+
+	<g stroke-width="0.5">
+		<use transform="translate(15 15) scale(0.8)" href="#pop-the-balloon-cloud" />
+		<use transform="translate(65 35) scale(0.8)" href="#pop-the-balloon-cloud" />
+	</g>
+
+	<g transform="translate(40 30)">
+		<g transform="translate(0 -2)">
+			<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
+			<ellipse fill="#f70000" stroke="currentColor" stroke-width="0.5" rx="7" ry="9" cy="-10" />
+			<ellipse transform="translate(2 -14) rotate(-30)" fill="#fff" opacity="0.3" rx="2" ry="2.5" />
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="0.5"
+				d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5"
+			/>
+		</g>
+		<g stroke="currentColor" stroke-width="0.6">
+			<g fill="url(#pop-the-balloon-pattern-present)">
+				<rect x="-6" y="4" width="12" height="7" />
+				<rect x="-7" width="14" height="4" />
+			</g>
+			<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+		</g>
+	</g>
+</svg>
