@@ -1,3 +1,31 @@
+<script>
+	const dBalloon = ({ radius, protuberance = 10, points }) => {
+		let p = points || radius * 2;
+		if (p % 2 !== 0) p++;
+
+		const pts = Array(p)
+			.fill()
+			.map((_, i, { length }) => {
+				const distance = i % 2 !== 0 ? radius + Math.random() / 2 : radius - Math.random() / 2;
+				const angle = (((360 / length) * i) / 180) * Math.PI;
+				const x = Math.cos(angle) * distance;
+				const y =
+					angle > 0 && angle < Math.PI
+						? Math.sin(angle) * (distance + protuberance)
+						: Math.sin(angle) * distance;
+				return {
+					x,
+					y
+				};
+			});
+
+		return [...pts, { x: pts[0].x, y: pts[0].y }].reduce(
+			(acc, { x, y }, i) => (i % 2 === 0 ? `${acc} ${x} ${y}` : `${acc} Q ${x} ${y}`),
+			'M'
+		);
+	};
+</script>
+
 <svg viewBox="0 0 80 50">
 	<defs>
 		<g id="pop-the-balloon-cloud">
@@ -38,17 +66,18 @@
 		<use transform="translate(65 35) scale(0.8)" href="#pop-the-balloon-cloud" />
 	</g>
 
-	<g transform="translate(40 30)">
-		<g transform="translate(0 -2)">
-			<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
-			<ellipse fill="#f70000" stroke="currentColor" stroke-width="0.5" rx="7" ry="9" cy="-10" />
-			<ellipse transform="translate(2 -14) rotate(-30)" fill="#fff" opacity="0.3" rx="2" ry="2.5" />
-			<path
-				fill="none"
-				stroke="currentColor"
-				stroke-width="0.5"
-				d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5"
-			/>
+	<g transform="translate(40 28)">
+		<g transform="translate(0 -3)">
+			<g stroke="currentColor" stroke-width="0.5">
+				<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
+				<g transform="translate(0 -10)">
+					<path fill="#f70000" d={dBalloon({ radius: 7, protuberance: 2, points: 16 })} />
+					<g transform="translate(2 -2.5) rotate(-40)">
+						<ellipse fill="#f7d794" stroke="none" rx="2" ry="2.5" />
+					</g>
+				</g>
+				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
+			</g>
 		</g>
 		<g stroke="currentColor" stroke-width="0.6">
 			<g fill="url(#pop-the-balloon-pattern-present)">
