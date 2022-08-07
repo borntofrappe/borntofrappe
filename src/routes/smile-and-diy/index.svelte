@@ -29,11 +29,17 @@
 
 <style>
 	div {
+		color: hsl(0, 0%, 23%);
+		background: hsl(41, 100%, 97%);
+		max-height: 100vh;
+		overflow-y: scroll;
+		scroll-snap-type: y mandatory;
 		--outline-color: hsl(153, 24%, 77%);
 		--background-color: hsl(356, 89%, 71%);
 	}
 
 	article {
+		scroll-snap-align: start;
 		height: 100vh;
 		display: grid;
 		place-items: center;
@@ -42,10 +48,10 @@
 
 	article > :global(svg) {
 		display: block;
+		max-width: 32rem;
 		width: 90vmin;
 		width: calc(100vmin - 3rem);
 		height: auto;
-		max-width: 32rem;
 		border-radius: 0.25rem;
 		box-shadow: 0 -1rem 1rem hsla(0, 0%, 0%, 0.1), 0 0 0 0.05rem currentColor,
 			0 0 0 0.95rem var(--outline-color), 0 0 0 1rem currentColor;
