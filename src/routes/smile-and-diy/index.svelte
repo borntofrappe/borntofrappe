@@ -6,6 +6,7 @@
 	import Defs from './_helpers/Defs.svelte';
 
 	import PokeTheLadybug from './_PokeTheLadybug.svelte';
+	import PopTheBalloon from './_PopTheBalloon.svelte';
 </script>
 
 <svelte:head>
@@ -19,6 +20,10 @@
 <div>
 	<article>
 		<PokeTheLadybug />
+	</article>
+
+	<article style="--background-color: #f7c629; --outline-color: #eea200;">
+		<PopTheBalloon />
 	</article>
 </div>
 
