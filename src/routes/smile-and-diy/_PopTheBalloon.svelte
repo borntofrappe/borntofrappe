@@ -1,4 +1,7 @@
 <script>
+	import AnimatedText from './_helpers/AnimatedText.svelte';
+	import Text from './_helpers/Text.svelte';
+
 	const dBalloon = ({ radius, protuberance = 10, points }) => {
 		let p = points || radius * 2;
 		if (p % 2 !== 0) p++;
@@ -78,7 +81,8 @@
 				to="{dx} {dy}"
 				dur="5s"
 				fill="freeze"
-				begin="3s"
+				id="popTheBalloonFloat"
+				begin="popTheBalloonStart.begin"
 				end="popTheBalloonPopped.begin"
 			/>
 			<g>
@@ -90,6 +94,7 @@
 					calcMode="discrete"
 					fill="freeze"
 					repeatCount="indefinite"
+					begin="popTheBalloonStart.begin"
 					end="popTheBalloonPopped.begin"
 				/>
 				<g transform="translate(0 -3)">
@@ -120,12 +125,16 @@
 			</g>
 			<g>
 				<animateTransform
+					id="popTheBalloonFall"
 					begin="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 100"
 					dur="2s"
 					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.65 0 0.4 1"
 				/>
 				<g stroke="currentColor" stroke-width="0.6">
 					<g fill="url(#pop-the-balloon-pattern-present)">
@@ -136,5 +145,79 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="popTheBalloonMessage"
+			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g>
+			<g transform="translate(40 25)">
+				<g display="none">
+					<set
+						begin="popTheBalloonFall.end"
+						attributeName="display"
+						to="initial"
+						fill="freeze"
+						restart="never"
+					/>
+					<g>
+						<AnimatedText
+							text="That's a wrap!"
+							begin="popTheBalloonFall.end"
+							end="popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+				<g>
+					<set
+						begin="popTheBalloonFall.begin"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						restart="never"
+					/>
+					<g>
+						<AnimatedText
+							text="Far it goes..."
+							begin="popTheBalloonMessage.begin"
+							end="popTheBalloonFall.end; popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="popTheBalloonEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+			</rect>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="popTheBalloonStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Pop!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
