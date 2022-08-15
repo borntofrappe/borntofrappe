@@ -11,6 +11,7 @@
 
 <script>
 	import { onMount } from 'svelte';
+	import icons from '$lib/utils/icons.js';
 
 	export let status;
 	export let message;
@@ -111,24 +112,7 @@
 		<h1>Oopsie</h1>
 		<p>Something quite unexpected has happened.<br /> Here the error message for context:</p>
 		<div class="code">
-			<span
-				>code <svg
-					aria-hidden="true"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="-50 -50 100 100"
-					width="1em"
-					height="1em"
-					><path
-						fill="currentColor"
-						stroke="none"
-						d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"
-					/><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-						><path d="M-45-37.5h90v75h-90z" stroke-width="10" /><g stroke-width="8"
-							><path d="M5-4L-5 21M-18 0l-8 8 8 8M18 0l8 8-8 8" /></g
-						></g
-					></svg
-				></span
-			>
+			<span>code {@html icons.editor}</span>
 			<pre><code>{message}</code></pre>
 		</div>
 		<p>
@@ -206,7 +190,7 @@
 		font-weight: 700;
 	}
 
-	.code > span > svg {
+	.code > span > :global(svg) {
 		display: block;
 		width: 1em;
 		height: auto;
