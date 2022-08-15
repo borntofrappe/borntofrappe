@@ -1,9 +1,0 @@
-{
-	"name": "utils",
-	"description": "handy little scripts to make the project slightly more automated",
-	"version": "0.0.1",
-	"scripts": {
-		"icons": "cd icons && node script.js"
-	},
-	"type": "module"
-}
