@@ -1,9 +1,9 @@
 <script>
-	import Ray from './mignon/_Ray.svelte';
+	import Ray from '$lib/components/mignon/Ray.svelte';
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Coming Soon</title>
+	<title>borntofrappe</title>
 	<meta
 		name="description"
 		content="Personal website for one Gabriele Corti, built by one Gabriele Corti, coding online as borntofrappe."

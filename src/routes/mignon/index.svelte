@@ -1,5 +1,5 @@
 <script>
-	import Ray from './_Ray.svelte';
+	import Ray from '$lib/components/mignon/Ray.svelte';
 </script>
 
 <svelte:head>
