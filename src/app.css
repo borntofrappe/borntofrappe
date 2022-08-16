@@ -119,8 +119,8 @@ h1 {
 }
 
 h2 {
-	font-size: 1.95rem;
-	font-size: var(--size-700);
+	font-size: 1.56rem;
+	font-size: var(--size-600);
 }
 
 h3 {
@@ -140,8 +140,8 @@ h3 {
 	}
 
 	h2 {
-		font-size: 2.44rem;
-		font-size: var(--size-800);
+		font-size: 1.95rem;
+		font-size: var(--size-700);
 	}
 
 	h3 {

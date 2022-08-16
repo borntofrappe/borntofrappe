@@ -1,5 +1,5 @@
 <script>
-	import Ray from '$lib/components/mignon/Ray.svelte';
+	import Intro from '$lib/components/index/Intro.svelte';
 </script>
 
 <svelte:head>
@@ -10,32 +10,4 @@
 	/>
 </svelte:head>
 
-<header class="visually-hidden">
-	<h1>Hello world</h1>
-	<p>
-		Welcome to my personal website. There's very little to it right now. The hope is something will
-		change. Soon
-	</p>
-</header>
-
-<main>
-	<Ray />
-</main>
-
-<style>
-	main {
-		color: hsl(44, 30%, 17%);
-		background: hsl(41, 100%, 97%);
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	main > :global(svg) {
-		display: block;
-		max-width: 30rem;
-		width: 100vmin;
-		height: auto;
-	}
-</style>
+<Intro />
