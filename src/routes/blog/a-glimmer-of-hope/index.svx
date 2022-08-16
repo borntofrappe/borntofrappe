@@ -1,0 +1,17 @@
+---
+title: 'A glimmer of hope'
+description: 'Introducing this website through its first and most cheerful mascot.'
+datetime: '2022-08-17T20:22'
+---
+
+<script>
+	import Ray from '$lib/components/mignon/Ray.svelte';
+</script>
+
+This website has a mascot, full of charm and whimsy.
+
+<div style:max-width="20rem">
+    <Ray />
+</div>
+
+If you are interested in how such a delightful mascot came to be, keep on reading.
