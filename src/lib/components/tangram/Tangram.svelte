@@ -1,4 +1,6 @@
 <script>
+	import styles from './styles.js';
+
 	const pieces = [
 		{ d: 'M 0 0 l 2 2 2 -2z', fill: '#71c49a' },
 		{ d: 'M 0 0 l 2 2 2 -2z', fill: '#f6e48e' },
@@ -8,11 +10,16 @@
 		{ d: 'M 0 0 l 1 1 1 -1 -1 -1z', fill: '#71c49a' },
 		{ d: 'M 0 0 l 1 -1 h 2 l -1 1z', fill: '#f6e48e' }
 	];
+
+	$: paths = pieces.map((piece, i) => ({
+		...piece,
+		style: styles['butterfly'][i]
+	}));
 </script>
 
-<svg viewBox="0 0 {4} {4}">
-	{#each pieces as { d, fill }}
-		<path {d} {fill} />
+<svg viewBox="-2 -2 {8} {8}">
+	{#each paths as { d, fill, style }}
+		<path {d} {fill} {style} />
 	{/each}
 </svg>
 
