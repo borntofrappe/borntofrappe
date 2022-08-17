@@ -1,7 +1,23 @@
 <script>
 	import Tangram from '$lib/components/tangram/Tangram.svelte';
+	import styles from '$lib/components/tangram/styles.js';
 
-	export let tangram = true;
+	const shapes = Object.keys(styles);
+
+	let tangram = true;
+	let shape = shapes[0];
+
+	const handleClick = () => {
+		tangram = !tangram;
+		if (!tangram) {
+			let newShape;
+			do {
+				newShape = shapes[Math.floor(Math.random() * shapes.length)];
+			} while (newShape === shape);
+
+			shape = newShape;
+		}
+	};
 </script>
 
 <svelte:head>
@@ -15,12 +31,11 @@
 
 <div>
 	<button
-		on:click={() => {
-			tangram = !tangram;
-		}}
 		class:tangram
+		aria-label={tangram ? 'Position the pieces in a new shape.' : 'Move the pieces back together.'}
+		on:click={handleClick}
 	>
-		<Tangram />
+		<Tangram {shape} />
 	</button>
 </div>
 

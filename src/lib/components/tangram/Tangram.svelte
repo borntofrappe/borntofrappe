@@ -1,7 +1,8 @@
 <script>
 	import styles from './styles.js';
 
-	export let padding = 2;
+	export let shape = Object.keys(styles)[0];
+	export let padding = 5;
 
 	const pieces = [
 		{ d: 'M 0 0 l 2 2 2 -2z', fill: '#71c49a' },
@@ -15,7 +16,7 @@
 
 	$: paths = pieces.map((piece, i) => ({
 		...piece,
-		style: styles['butterfly'][i]
+		style: styles[shape][i]
 	}));
 </script>
 
