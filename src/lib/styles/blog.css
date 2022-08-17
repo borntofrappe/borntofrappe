@@ -1,0 +1,263 @@
+main {
+	max-width: var(--max-width, 48rem);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1rem;
+}
+
+main > * + * {
+	margin-top: 1em;
+	margin-top: var(--vertical-rhythm, 1em);
+}
+
+ul > * + *,
+ol > * + * {
+	margin-top: 0.75em;
+}
+
+h2,
+h3 {
+	--vertical-rhythm: var(--size-800);
+}
+
+h2 + *,
+h3 + * {
+	--vertical-rhythm: var(--size-300);
+}
+
+blockquote,
+blockquote + *,
+figure,
+figure + * {
+	--vertical-rhythm: var(--size-700);
+}
+
+table,
+table + * {
+	--vertical-rhythm: var(--size-700);
+}
+
+pre,
+pre + * {
+	--vertical-rhythm: var(--size-600);
+}
+
+a {
+	color: inherit;
+	font-weight: 700;
+	transition: color 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+blockquote {
+	margin-left: 0;
+	margin-right: 0;
+	font-style: italic;
+	font-weight: 700;
+	line-height: 2;
+	padding: 0.5rem 1rem;
+	border-left: 0.25rem solid var(--accent);
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	blockquote {
+		padding-left: 0;
+		border-left: none;
+		--icon-size: 3rem;
+	}
+
+	blockquote::before {
+		float: left;
+		content: '';
+		width: var(--icon-size);
+		height: var(--icon-size);
+		background: var(--accent);
+		mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <defs>\
+            <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
+          </defs>\
+          <g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
+            <use href="%23star" />\
+            <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
+            <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
+            <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
+            <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
+          </g>\
+        </svg>');
+		-webkit-mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <defs>\
+            <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
+          </defs>\
+          <g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
+            <use href="%23star" />\
+            <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
+            <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
+            <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
+            <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
+          </g>\
+        </svg>');
+	}
+}
+
+p > code {
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
+	border-bottom: 0.2rem solid var(--accent);
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	p > code {
+		border-bottom: none;
+		--icon-size: 1.25em;
+		display: inline-flex;
+		align-items: center;
+		gap: 0 0.4rem;
+	}
+
+	p > code::before {
+		content: '';
+		width: var(--icon-size);
+		height: var(--icon-size);
+		background: var(--accent);
+		mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <path fill="currentColor" stroke="none" d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"/>\
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
+            <path d="M-45-37.5h90v75h-90z" stroke-width="10"/>\
+            <g stroke-width="8">\
+              <path d="M5-4L-5 21M-18 0l-8 8 8 8M18 0l8 8-8 8"/>\
+            </g>\
+          </g>\
+        </svg>');
+		-webkit-mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <path fill="currentColor" stroke="none" d="M-40.5-33v16h.5v.5h80v-16h-.5v-.5h-80zm8.5.5a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0a4.5 4.5 0 014.5 4.5 4.5 4.5 0 01-4.5 4.5 4.5 4.5 0 01-4.5-4.5 4.5 4.5 0 014.5-4.5zm13 0A4.5 4.5 0 01-1.5-28 4.5 4.5 0 01-6-23.5a4.5 4.5 0 01-4.5-4.5A4.5 4.5 0 01-6-32.5z"/>\
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
+            <path d="M-45-37.5h90v75h-90z" stroke-width="10"/>\
+            <g stroke-width="8">\
+              <path d="M5-4L-5 21M-18 0l-8 8 8 8M18 0l8 8-8 8"/>\
+            </g>\
+          </g>\
+        </svg>');
+	}
+}
+
+.code {
+	display: flex;
+	flex-direction: column;
+}
+
+.code pre {
+	margin-top: 0;
+	padding: 1.25rem;
+	border-radius: 1rem;
+	line-height: 1.75;
+	tab-size: 2;
+}
+
+.code > span {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	gap: 0 0.5rem;
+	transform: translateX(-1.5rem);
+	color: #e4e7eb;
+	background: #292d3e;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	padding: 0.4rem 1rem;
+	font-weight: 700;
+}
+
+.code > span > svg {
+	display: block;
+	width: 1em;
+	height: auto;
+}
+
+.code pre {
+	overflow-x: auto;
+}
+
+.code pre::-webkit-scrollbar {
+	height: 0.4rem;
+}
+
+.code pre::-webkit-scrollbar-thumb {
+	background: var(--accent);
+	border-radius: 0.2rem;
+}
+
+:is(h2, h3, h4) {
+	display: flex;
+	align-items: baseline;
+	gap: 0 0.5rem;
+}
+
+:is(h2, h3, h4) a {
+	opacity: 0.3;
+	width: 0.42rem;
+	height: 0.42rem;
+	border-radius: 0.2rem;
+	transition-property: opacity, color;
+	transition-timing-function: var(--easing);
+	background: currentColor;
+}
+
+:is(h2, h3, h4) a:hover {
+	opacity: 1;
+	color: var(--accent);
+}
+
+:is(h2, h3, h4) a:focus {
+	opacity: 1;
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	:is(h2, h3, h4) {
+		--icon-size: 0.9em;
+		align-items: center;
+	}
+
+	/* you could mask the link directly, but you'd lose the outline on focus */
+	:is(h2, h3, h4) a {
+		background: initial;
+		border-radius: 0;
+		position: relative;
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+
+	:is(h2, h3, h4) a::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: currentColor;
+		-webkit-mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <g transform="rotate(-45)">\
+            <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+              <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+              <use href="%23link" transform="scale(-1 -1)" />\
+            </g>\
+          </g>\
+        </svg>');
+		mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <g transform="rotate(-45)">\
+            <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+              <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+              <use href="%23link" transform="scale(-1 -1)" />\
+            </g>\
+          </g>\
+        </svg>');
+	}
+}
