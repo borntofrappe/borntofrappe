@@ -1,5 +1,7 @@
 <script>
 	import Tangram from '$lib/components/tangram/Tangram.svelte';
+
+	export let tangram = true;
 </script>
 
 <svelte:head>
@@ -12,7 +14,14 @@
 </svelte:head>
 
 <div>
-	<Tangram />
+	<button
+		on:click={() => {
+			tangram = !tangram;
+		}}
+		class:tangram
+	>
+		<Tangram />
+	</button>
 </div>
 
 <style>
@@ -26,8 +35,57 @@
 		align-items: center;
 	}
 
-	div > :global(svg) {
-		max-width: 30rem;
+	button {
+		--size: 100vmin;
+		--max-size: 52rem;
+		display: block;
+		background: none;
+		border: none;
+		width: var(--size, 100vmin);
+		height: var(--size, 100vmin);
+		max-width: var(--max-size, 52rem);
+		max-height: var(--max-size, 52rem);
+		aspect-ratio: 1/1;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	button > :global(svg) {
+		width: 100%;
 		height: auto;
+	}
+
+	button > :global(svg path) {
+		transition: transform 0.75s cubic-bezier(0.49, 0.11, 0.1, 1.32);
+	}
+
+	.tangram :global(svg path:nth-of-type(1)) {
+		transform: translate(0px, 0px) rotate(0deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(2)) {
+		transform: translate(0px, 4px) rotate(270deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(3)) {
+		transform: translate(4px, 2px) rotate(180deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(4)) {
+		transform: translate(1px, 3px) rotate(270deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(5)) {
+		transform: translate(2px, 4px) rotate(-90deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(6)) {
+		transform: translate(2px, 2px) rotate(0deg) !important;
+	}
+
+	.tangram :global(svg path:nth-of-type(7)) {
+		transform: translate(0px, 4px) rotate(0deg) !important;
 	}
 </style>
