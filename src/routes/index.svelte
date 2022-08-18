@@ -1,5 +1,6 @@
 <script>
 	import Intro from '$lib/components/index/Intro.svelte';
+	import Outro from '$lib/components/index/Outro.svelte';
 </script>
 
 <svelte:head>
@@ -10,4 +11,14 @@
 	/>
 </svelte:head>
 
-<Intro />
+<div
+	style:background="inherit"
+	style:min-height="100vh"
+	style:z-index="1"
+	style:position="relative"
+>
+	<Intro />
+</div>
+<div style:position="sticky" style:bottom="0">
+	<Outro />
+</div>
