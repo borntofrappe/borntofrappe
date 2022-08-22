@@ -48,7 +48,7 @@
 		scale.set(1);
 	};
 
-	const handleOut = () => {
+	const handleReset = () => {
 		scale.set(1);
 		offset.set({ x: 0, y: 0 });
 	};
@@ -69,8 +69,8 @@
 	bind:this={svg}
 	on:mousedown={handleStart}
 	on:mouseup={handleEnd}
-	on:mouseleave={handleOut}
 	on:mousemove={handleMove}
+	on:mouseleave={handleReset}
 	on:click={handleMove}
 >
 	<g transform="scale({$scale})">

@@ -10,10 +10,9 @@
 		<p>
 			Name's Gabriele Corti. <br />I'm the type of person who delights in writing code, be it for a
 			data visualization, a 2D game or a full-fledged website. <br />I enjoy different technologies,
-			and in this very moment I appreciate Svelte {@html icons.svelte}
-			and
-			<abbr title="Scalable Vector Graphics">SVG</abbr>
-			{@html icons.svg} the most.
+			and in this very moment I appreciate <abbr title="Scalable Vector Graphics">SVG</abbr>
+			{@html icons.svg} and Svelte {@html icons.svelte}
+			the most.
 		</p>
 		<h2>Why Svelte?</h2>
 		<p style:display="inline">Mainly for three reasons:</p>
@@ -78,7 +77,7 @@
 		float: right;
 		shape-outside: circle();
 		display: block;
-		max-width: 22rem;
+		max-width: 24rem;
 		width: 100%;
 		height: auto;
 	}
