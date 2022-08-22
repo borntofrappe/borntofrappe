@@ -16,6 +16,8 @@ datetime: '2022-08-22T22:15'
 	import Eyes from './_drawing/Eyes.svelte';
 	import Rotate from './_drawing/Rotate.svelte';
 	import Rays from './_drawing/Rays.svelte';
+    import Drawing from './_drawing/Drawing.svelte';
+	
 </script>
 
 <div class="float">
@@ -236,6 +238,39 @@ And the drawing is complete.
 <div class="center">
     <Rays />
 </div>
+
+## Drawing with Svelte
+
+15, 30, 45. Adding all those lines around the center one by one works, but thankfully, Svelte offers the `{#each}` block to make life slightly easier.
+
+What you need is an array of angles. You then loop through the collection adding the `<path>` with the appropriate rotation.
+
+```svelte
+{#each angles as angle}
+	<path transform="rotate({angle})" d="M 35 0 h 7" />
+{/each}
+```
+
+With a bit of JavaScript you can recreate the 15 degrees increment with an array of 24 items.
+
+```js
+const angles = Array(24)
+	.fill()
+	.map((_, i, { length }) => (360 / length) * i);
+```
+
+If 24 rays are too many you then change one line. One number.
+
+```diff
+-const angles = Array(24)
++const angles = Array(16)
+```
+
+<div class="center">
+    <Drawing rays={16} />
+</div>
+
+What's 360 / 16? You don't really need to know now. And you can skip rotating lines at increments of {360 / 16} degrees. Oopsie.
 
 <style>
     .float > * + * {
