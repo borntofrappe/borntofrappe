@@ -113,9 +113,9 @@ p > code {
 @supports ((-webkit-mask-image: url()) or (mask-image: url())) {
 	p > code {
 		border-bottom: none;
-		--icon-size: 1.25em;
+		--icon-size: 1em;
 		display: inline-flex;
-		align-items: center;
+		align-items: baseline;
 		gap: 0 0.4rem;
 	}
 

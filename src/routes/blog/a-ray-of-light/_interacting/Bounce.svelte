@@ -40,10 +40,8 @@
 				<circle r="4" cx="9" />
 			</g>
 			<g transform="translate(0 6)">
-				<g transform="scale({$scale})">
-					<g stroke="#ff877a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-						<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
-					</g>
+				<g stroke="#ff877a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+					<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
 				</g>
 			</g>
 		</g>

@@ -1,5 +1,5 @@
 export default {
-	body: `<svg viewBox="-50 -50 100 100">
+	body: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
 	<circle r="28" fill="#ffdb47" />
 </svg>
 `,
