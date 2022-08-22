@@ -18,6 +18,9 @@ datetime: '2022-08-22T22:15'
 	import Rays from './_drawing/Rays.svelte';
     import Drawing from './_drawing/Drawing.svelte';
 	
+    import Bounce from './_interacting/Bounce.svelte';
+    import Offset from './_interacting/Offset.svelte';
+    import Offsets from './_interacting/Offsets.svelte';
 </script>
 
 <div class="float">
@@ -271,6 +274,281 @@ If 24 rays are too many you then change one line. One number.
 </div>
 
 What's 360 / 16? You don't really need to know now. And you can skip rotating lines at increments of {360 / 16} degrees. Oopsie.
+
+## Interacting with Svelte
+
+Even if I take a lot of enjoyment out of writing SVG by hand, I can see how people might be thrown off by the imperative syntax. Luckily we now turn the fun part: adding character with spring-based motion.
+
+The mascot is updated in at least two ways, and following mouse interaction:
+
+- tap the `<svg>` element to have the drawing bounce
+
+- move the cursor in the scope of the same element to have the shape follow its position
+
+With this in mind import `spring` from the `svelte/motion` module.
+
+```js
+import { spring } from 'svelte/motion
+```
+
+### Bounce
+
+Initialize a scale value with the helpful spring function.
+
+```js
+const scale = spring(1);
+```
+
+You can explore `stiffness` and `damping` values to modify the physics of the spring — a nice way to make the mascot more sensible, more reactive.
+
+```js
+const scale = spring(1, {
+	stiffness: 0.1,
+	damping: 0.2
+});
+```
+
+Svelte makes it exceedingly fun to play around with the values, but ultimately it is a matter of preference.
+
+What is less up to preference is how to use the scale value, directly in the markup.
+
+Wrap the drawing in a nice group element and change its scale with the `transform` attribute. Since `spring` is technically a store preface the variable with the dollar sign character.
+
+```svelte
+<g transform="scale({$scale})">
+	<!-- mascot -->
+</g>
+```
+
+What is left is then actually animating the scale.
+
+Listen to two events — the goal is to have the scale increase as you tap _on_ the element and resume its original value as you tap _away_ from it.
+
+```svelte
+<svg
+	on:mousedown={handleStart}
+	on:mouseup={handleEnd}>
+```
+
+In the script update the value with the respective functions.
+
+```js
+const handleStart = () => {
+	scale.set(1.1);
+};
+
+const handleEnd = () => {
+	scale.set(1);
+};
+```
+
+Quite entertaining already.
+
+<div class="center">
+    <Bounce />
+</div>
+
+### Offsets
+
+To follow the cursor initialize a spring with an object, tracking the position on both axes.
+
+```js
+const offset = spring({ x: 0, y: 0 });
+```
+
+It would be possible to wrap the entire mascot in a group element, and have the position change with the `transform` attribute — just with a different value.
+
+```svelte
+<g transform="translate({$offset.x} {$offset.y})">
+	<!-- mascot -->
+</g>
+```
+
+The effect is however far from ideal.
+
+<div class="center">
+    <Offset />
+</div>
+
+The mascot follows the cursor — we'll get to how in a second — but in its entirety. We're almost spoiling all the work done so far.
+
+The eyes, the cheeks and mouth should move, and certainly more than the body and rays.
+
+```svelte
+<g transform="translate({$offset.x * 0.2} {$offset.y * 0.2})">
+	<!-- rays -->
+</g>
+
+<g transform="translate({$offset.x * 0.3} {$offset.y * 0.3})">
+	<!-- face -->
+</g>
+```
+
+You could move only the face, but I prefer animating the entire lot, just with different offset values.
+
+<div class="center">
+    <Offsets />
+</div>
+
+### Tracking
+
+The offset object gives us one of the most exciting parts of the demo, but you first need to find the x and y coordinates.
+
+Call a function as the mouse hovers on the `<svg>` element.
+
+```svelte
+<svg on:mousemove={handleMove}>
+```
+
+The event provides a heaping of values, among which `offsetX` and `offsetY`. The two describe the position from the top left corner of the element, but relative to the pixel width and height.
+
+```js
+const handleMove = (e) => {
+	const { offsetX, offsetY } = e;
+	// offsetX [0, width]
+	// offsetY [0, height]
+};
+```
+
+You need to know the actual size of the `<svg>` as rendered on the page. With Svelte, this means you need to:
+
+1. bind a variable to the element
+
+   ```svelte
+   <script>
+       let svg;
+   </script>
+   <svg
+       bind:this={svg}>
+   ```
+
+2. extract the width and height as the component is added to the page — mounted as it were
+
+   ```js
+   let w, h;
+
+   onMount(() => {
+   	const { width, height } = svg.getBoundingClientRect();
+   	w = width;
+   	h = height;
+   });
+   ```
+
+You can now compute the offset in a 0 to 1 range.
+
+```js
+const handleMove = ({ offsetX, offsetY }) => {
+	const x = offsetX / w; // [0-1]
+};
+```
+
+Subtract 0.5 and you finally get a value we can all use.
+
+```js
+const x = offsetX / w - 0.5; // [-0.5, 0.5]
+```
+
+We are tracking from the center of the element after all.
+
+```js
+const x = offsetX / w - 0.5;
+const y = offsetY / h - 0.5;
+
+offset.set({ x, y });
+```
+
+The [-0.5, 0.5] range turned out to give a very small value, so I decided to multiply both coordinates by an arbitrary amount.
+
+```js
+const x = (offsetX / w - 0.5) * 20;
+const y = (offsetY / h - 0.5) * 20;
+```
+
+A lot of work, admittedly. But I'll go ahead and presume you appreciate the end result — just once more.
+
+<div class="center">
+    <Ray y={-10} />
+</div>
+
+## Finishing touches
+
+The mascot is essentially done. That being said, there are a couple more tweaks I'm sure you won't mind sharing.
+
+### Bounce more
+
+The mouth is wrapped in a group element, itself scaled with the matching value.
+
+```svelte
+<g transform="scale({$scale})">
+	<!-- mascot -->
+	<g transform="scale({$scale})">
+		<!-- mouth -->
+	</g>
+</g>
+```
+
+This is mostly a matter of preference, to have the visual grow more than the larger, surrounding areas.
+
+A small touch which somebody might notice.
+
+### Shrink down
+
+What more people will definitely notice is that the interactive mascot shrinked in size. I soon realized the animation potentially pushed the rays outside of the canvas, cropping the elements out of sight.
+
+The `viewBox` attribute came back to help to scale the entire drawing down.
+
+```diff
+-viewBox="-50 -50 100 100"
++viewBox="-55 -55 110 110"
+```
+
+### Handle reset
+
+The scale is reset when the mouse leaves the element as well — you can't just leave the mascot stuck in a state of surprise.
+
+```diff
+<svg
+	on:mousedown={handleStart}
+	on:mouseup={handleEnd}
++	on:mouseleave={handleEnd}>
+```
+
+The offset is also reset as the mouse leaves the area, so that it is better to invoke a separate function handling both values.
+
+```js
+const handleReset = () => {
+	scale.set(1);
+	offset.set({ x: 0, y: 0 });
+};
+```
+
+### Handle size
+
+Scalable vector graphics are inherently scalable — who would have guessed it — and in this instance the element stretches to the available width. This is an incredible asset, but has one unfortunate side effect: resize the element and the `width` and `height` are no longer accurate.
+
+One way to cope with this change is to extract the sizing logic in a dedicated function.
+
+```js
+const handleSize = () => {
+	const { width, height } = svg.getBoundingClientRect();
+	w = width;
+	h = height;
+};
+```
+
+Call the function as the component is mounted.
+
+```js
+onMount(() => {
+	handleSize();
+});
+```
+
+Call it once more as the window changes in size — Svelte luckily provides a special element for this express purpose.
+
+```svelte
+<svelte:window on:resize={handleSize} />
+```
 
 <style>
     .float > * + * {
