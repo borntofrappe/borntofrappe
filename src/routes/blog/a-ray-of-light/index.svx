@@ -1,0 +1,24 @@
+---
+title: 'A Ray of Light'
+description: 'How to introduce the personal website of a rather pessimistic character? Why, with an uplifting mascot and hope for things to come.'
+datetime: '2022-08-22T22:15'
+---
+
+<script>
+    import icons from '$lib/utils/icons.js'
+
+	import Ray from './_Ray.svelte';
+
+	
+</script>
+
+<div class="float">
+    <Ray x={-5} y={-5} />
+
+    I am pleased to introduce <em>Ray</em>, the first and most delightful mascot for this very website.
+
+    It is charming in its simplicity, it hides a whimsical interaction and, whatsmore, it works to showcase the fitting union of SVG {@html icons.svg} and Svelte {@html icons.svelte}.
+
+</div>
+
+If you are intrigued in how this lovable celestial body came to be, you are in luck, we are going to recreate the mascot one step at a time.
