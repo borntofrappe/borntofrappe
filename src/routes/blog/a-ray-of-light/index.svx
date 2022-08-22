@@ -9,7 +9,13 @@ datetime: '2022-08-22T22:15'
 
 	import Ray from './_Ray.svelte';
 
-	
+	import Body from './_drawing/Body.svelte';
+	import Cheeks from './_drawing/Cheeks.svelte';
+    import Commands from './_drawing/Commands.svelte';
+    import Mouth from './_drawing/Mouth.svelte';
+	import Eyes from './_drawing/Eyes.svelte';
+	import Rotate from './_drawing/Rotate.svelte';
+	import Rays from './_drawing/Rays.svelte';
 </script>
 
 <div class="float">
@@ -22,3 +28,244 @@ datetime: '2022-08-22T22:15'
 </div>
 
 If you are intrigued in how this lovable celestial body came to be, you are in luck, we are going to recreate the mascot one step at a time.
+
+## Drawing with SVG
+
+Every respectable vector graphic begins with an `<svg>` element.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!-- drawing -->
+</svg>
+```
+
+With the `viewBox` attribute you set a width and a height of 100, creating a squared canvas in the process.
+
+I like to fiddle with the `viewBox` so as to modify the origin of the vector graphics.
+
+```diff
+-viewBox="0 0 100 100"
++viewBox="-50 -50 100 100"
+```
+
+You are essentially translating the origin as if you were to use a group element.
+
+```html
+<svg viewBox="0 0 100 100">
+	<g transform="translate(50 50)">
+		<!-- drawing -->
+	</g>
+</svg>
+```
+
+Either approach works. Either approach lets you draw from the very center of the element. Tinkering with the `viewBox` just saves the hassle of an additional element, and a few keystrokes as well.
+
+### Body
+
+A `<circle>` element with a nice shade of yellow seems like a good fit.
+
+```html
+<circle r="28" fill="#ffdb47" />
+```
+
+Enough to get started with the body, at least.
+
+<div class="center">
+    <Body />
+</div>
+
+### Cheeks
+
+Smaller circles with a stronger red hue help to refine the picture.
+
+<div class="center">
+    <Cheeks />
+</div>
+
+Group elements prove to be helpful once more, so to avoid repeating attributes on multiple visuals:
+
+1. paint the elements with a lovable color
+
+2. move the shapes slightly off center, slightly down
+
+```html
+<g fill="#ff877a">
+	<g transform="translate(0 5)">
+		<!-- cheeks  -->
+	</g>
+</g>
+```
+
+For the circles themselves, place one on either side.
+
+<!-- prettier-ignore-start -->
+```html
+<circle r="4" cx="-9" />
+<circle r="4" cx="9" />
+```
+<!-- prettier-ignore-end -->
+
+### Mouth
+
+In between the cheeks, and slightly below the connected circles, add a joyful expression with the ever-flexible `<path>` element.
+
+```html
+<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
+```
+
+The `d` attribute might look complex, but it's quite clear once you break down the individual commands:
+
+- move 1.5 to the left
+
+- draw a vertical line 1.5 down
+
+- draw an arc — a semicircle — 3 to the right
+
+- retrace the vertical shift 1.5 up
+
+- close the path
+
+Perhaps an interactive picture is worth more than a few words, however.
+
+<div class="center">
+    <Commands
+        x={-4}
+        y={-3}
+        width={8}
+        height={8}
+        accentColor="#ff877a"
+        commands="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z"/>
+</div>
+
+Add a stroke with rounded edges.
+
+<!-- prettier-ignore-start -->
+```html
+<g 
+    stroke="#ff877a" 
+    stroke-width="2" 
+    stroke-linejoin="round" 
+    stroke-linecap="round">
+	<!-- path -->
+</g>
+```
+<!-- prettier-ignore-end -->
+
+And there you have it, a welcoming, soft mug.
+
+<div class="center">
+    <Mouth />
+</div>
+
+### Eyes
+
+Just like for the cheeks, add two circles on either side of the body. A dark color and a smaller radius make enough of a difference.
+
+```html
+<g fill="#38311e">
+	<circle r="2" cx="-5" />
+	<circle r="2" cx="5" />
+</g>
+```
+
+Ultimately, I decided to add a small stroke matching the yellow shade of the body.
+
+```html
+<g fill="#38311e" stroke="#ffdb47" stroke-width="1">
+	<!-- eyes -->
+</g>
+```
+
+You may not notice the outline — immediately.
+
+<div class="center">
+    <Eyes />
+</div>
+
+As later elements are drawn _on top_ of previous ones, however, the stroke works to have the eyes pop above the cheeks.
+
+<div class="center">
+    <Eyes offset={2} />
+</div>
+
+### Rays
+
+Around the body draw the rays as straight lines, matching the circle in color.
+
+<!-- prettier-ignore-start -->
+```html
+<g 
+    fill="none" 
+    stroke="#ffdb47" 
+    stroke-width="3" 
+    stroke-linecap="round">
+	<!-- rays -->
+</g>
+```
+<!-- prettier-ignore-end -->
+
+For one ray add a `<path>` outside of the circle's area.
+
+```html
+<path d="M 35 0 h 7" />
+```
+
+Since we moved the origin of the canvas, you can actually rotate the visual and have it move around the center.
+
+```html
+<path transform="rotate(15)" d="M 35 0 h 7" />
+```
+
+It's almost magical when you try a different value.
+
+<div class="center">
+    <Rotate value={15} />
+</div>
+
+Repeat the line with different rotations.
+
+```html
+<path transform="rotate(0)" d="M 35 0 h 7" />
+<path transform="rotate(15)" d="M 35 0 h 7" />
+<path transform="rotate(30)" d="M 35 0 h 7" />
+<!-- ... -->
+```
+
+And the drawing is complete.
+
+<div class="center">
+    <Rays />
+</div>
+
+<style>
+    .float > * + * {
+        margin-top: 0.75em;
+    }
+
+    .float > :global(svg) {
+        shape-outside: circle();
+        float: right;
+        max-width: 20rem;
+        height: auto;
+    }
+
+    @media screen and (max-width: 28rem) {
+        .float {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .float > :global(svg) {
+            float: initial;
+            align-self: center;
+            order: 1;
+        }
+
+    }
+
+    .center {
+        max-width: 28rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
