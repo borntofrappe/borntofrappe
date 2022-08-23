@@ -5,30 +5,23 @@ datetime: '2022-08-22T22:50'
 ---
 
 <script>
-    import icons from '$lib/utils/icons.js'
+    import Intro from './_Intro.svelte';
+    import Center from './_Center.svelte';
 
-	import Ray from './_Ray.svelte';
-
-	import svg from './_drawing/svg.js';
-    
+	import SVG from './_drawing/SVG.svelte';
     import Commands from './_drawing/Commands.svelte';
 	import Eyes from './_drawing/Eyes.svelte';
-	import Rotate from './_drawing/Rotate.svelte';
-    import Drawing from './_drawing/Drawing.svelte';
+	import Angle from './_drawing/Angle.svelte';
+    import Angles from './_drawing/Angles.svelte';
 	
     import Bounce from './_interacting/Bounce.svelte';
     import Offset from './_interacting/Offset.svelte';
     import Offsets from './_interacting/Offsets.svelte';
+
+	import Ray from './_Ray.svelte';
 </script>
 
-<div class="float">
-    <Ray x={-5} y={-5} />
-
-    I am pleased to introduce <em>Ray</em>, the first and most delightful mascot for this very website.
-
-    It is charming in its simplicity, it hides a whimsical interaction and, whatsmore, it works to showcase the fitting union of SVG {@html icons.svg} and Svelte {@html icons.svelte}.
-
-</div>
+<Intro />
 
 If you are intrigued in how this lovable celestial body came to be, you are in luck, we are going to recreate the mascot one step at a time.
 
@@ -73,17 +66,17 @@ A `<circle>` element with a nice shade of yellow seems like a good fit.
 
 Enough to get started with the body, at least.
 
-<div class="center">
-    {@html svg.body}
-</div>
+<Center>
+    <SVG key="body" />
+</Center>
 
 ### Cheeks
 
 Smaller circles with a stronger red hue help to refine the picture.
 
-<div class="center">
-    {@html svg.cheeks}
-</div>
+<Center>
+    <SVG key="cheeks" />
+</Center>
 
 Group elements prove to be helpful once more, so to avoid repeating attributes on multiple visuals:
 
@@ -130,7 +123,7 @@ The `d` attribute might look complex, but it's quite clear once you break down t
 
 Perhaps an interactive picture is worth more than a few words, however.
 
-<div class="center">
+<Center>
     <Commands
         x={-4}
         y={-3}
@@ -138,7 +131,7 @@ Perhaps an interactive picture is worth more than a few words, however.
         height={8}
         accentColor="#ff877a"
         commands="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z"/>
-</div>
+</Center>
 
 Add a stroke with rounded edges.
 
@@ -156,9 +149,9 @@ Add a stroke with rounded edges.
 
 And there you have it, a welcoming, soft mug.
 
-<div class="center">
-    {@html svg.mouth}
-</div>
+<Center>
+    <SVG key="mouth" />
+</Center>
 
 ### Eyes
 
@@ -181,15 +174,15 @@ Ultimately, I decided to add a small stroke matching the yellow shade of the bod
 
 You may not notice the outline — immediately.
 
-<div class="center">
+<Center>>
     <Eyes />
-</div>
+</Center>
 
 As later elements are drawn _on top_ of previous ones, however, the stroke works to have the eyes pop above the cheeks.
 
-<div class="center">
+<Center>
     <Eyes offset={2} />
-</div>
+</Center>
 
 ### Rays
 
@@ -221,9 +214,9 @@ Since we moved the origin of the canvas, you can actually rotate the visual and 
 
 It's almost magical when you try a different value.
 
-<div class="center">
-    <Rotate value={15} />
-</div>
+<Center>
+    <Angle value={15} />
+</Center>
 
 Repeat the line with different rotations.
 
@@ -236,9 +229,9 @@ Repeat the line with different rotations.
 
 And the drawing is complete.
 
-<div class="center">
-    {@html svg.rays}
-</div>
+<Center>
+    <SVG key="rays" />
+</Center>
 
 ## Drawing with Svelte
 
@@ -267,9 +260,9 @@ If 24 rays are too many you then change one line. One number.
 +const angles = Array(16)
 ```
 
-<div class="center">
-    <Drawing rays={16} />
-</div>
+<Center>
+    <Angles n={16} />
+</Center>
 
 What's 360 / 16? You don't really need to know now. And you can skip rotating lines at increments of {360 / 16} degrees. Oopsie.
 
@@ -342,9 +335,9 @@ const handleEnd = () => {
 
 Quite entertaining already.
 
-<div class="center">
+<Center>
     <Bounce />
-</div>
+</Center>
 
 ### Offsets
 
@@ -364,9 +357,9 @@ It would be possible to wrap the entire mascot in a group element, and have the 
 
 The effect is however far from ideal.
 
-<div class="center">
+<Center>
     <Offset />
-</div>
+</Center>
 
 The mascot follows the cursor — we'll get to how in a second — but in its entirety. We're almost spoiling all the work done so far.
 
@@ -384,9 +377,9 @@ The eyes, the cheeks and mouth should move, and certainly more than the body and
 
 You could move only the face, but I prefer animating the entire lot, just with different offset values.
 
-<div class="center">
+<Center>
     <Offsets />
-</div>
+</Center>
 
 ### Tracking
 
@@ -464,9 +457,9 @@ const y = (offsetY / h - 0.5) * 20;
 
 A lot of work, admittedly. But I'll go ahead and presume you appreciate the end result — just once more.
 
-<div class="center">
+<Center>
     <Ray y={-10} />
-</div>
+</Center>
 
 ## Finishing touches
 
@@ -547,36 +540,3 @@ Call it once more as the window changes in size — Svelte luckily provides a sp
 ```svelte
 <svelte:window on:resize={handleSize} />
 ```
-
-<style>
-    .float > * + * {
-        margin-top: 0.75em;
-    }
-
-    .float > :global(svg) {
-        shape-outside: circle();
-        float: right;
-        max-width: 20rem;
-        height: auto;
-    }
-
-    @media screen and (max-width: 28rem) {
-        .float {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .float > :global(svg) {
-            float: initial;
-            align-self: center;
-            order: 1;
-        }
-
-    }
-
-    .center {
-        max-width: 28rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>

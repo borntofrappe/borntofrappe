@@ -1,7 +1,7 @@
 <script>
-	export let rays = 24;
+	export let n = 24;
 
-	const angles = Array(rays)
+	const angles = Array(n)
 		.fill()
 		.map((_, i, { length }) => (360 / length) * i);
 </script>
