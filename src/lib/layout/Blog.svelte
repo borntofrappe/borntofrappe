@@ -35,7 +35,7 @@
 
 <svelte:head>
 	<title>
-		borntofrappe | blog - {title}
+		borntofrappe | {title}
 	</title>
 	<meta name="description" content={description} />
 </svelte:head>
