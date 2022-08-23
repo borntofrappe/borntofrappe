@@ -5,20 +5,19 @@ datetime: '2022-08-22T22:50'
 ---
 
 <script>
-    import Intro from './_Intro.svelte';
-    import Center from './_Center.svelte';
+    import Intro from './Intro.svelte';
+    import Center from './Center.svelte';
+	import Ray from './Ray.svelte';
 
-	import SVG from './_drawing/SVG.svelte';
-    import Commands from './_drawing/Commands.svelte';
-	import Eyes from './_drawing/Eyes.svelte';
-	import Angle from './_drawing/Angle.svelte';
-    import Angles from './_drawing/Angles.svelte';
+	import SVG from './drawing/SVG.svelte';
+    import Commands from './drawing/Commands.svelte';
+	import Eyes from './drawing/Eyes.svelte';
+	import Angle from './drawing/Angle.svelte';
+    import Angles from './drawing/Angles.svelte';
 	
-    import Bounce from './_interacting/Bounce.svelte';
-    import Offset from './_interacting/Offset.svelte';
-    import Offsets from './_interacting/Offsets.svelte';
-
-	import Ray from './_Ray.svelte';
+    import Bounce from './interacting/Bounce.svelte';
+    import Offset from './interacting/Offset.svelte';
+    import Offsets from './interacting/Offsets.svelte';
 </script>
 
 <Intro />

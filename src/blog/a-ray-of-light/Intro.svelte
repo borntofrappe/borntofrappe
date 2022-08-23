@@ -1,7 +1,7 @@
 <script>
 	import icons from '$lib/utils/icons.js';
 
-	import Ray from './_Ray.svelte';
+	import Ray from './Ray.svelte';
 </script>
 
 <div>
