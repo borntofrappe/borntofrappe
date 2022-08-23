@@ -6,14 +6,16 @@
 <div>
 	<header>
 		<h1>Hi there</h1>
+
 		<Ray />
+
 		<p>
 			Name's Gabriele Corti. <br />I'm the type of person who delights in writing code, be it for a
 			data visualization, a 2D game or a full-fledged website. <br />I enjoy different technologies,
 			and in this very moment I appreciate <abbr title="Scalable Vector Graphics">SVG</abbr>
-			{@html icons.svg} and Svelte {@html icons.svelte}
-			the most.
+			Svelte {@html icons.svelte} and {@html icons.svg} the most.
 		</p>
+
 		<h2>Why Svelte?</h2>
 		<p style:display="inline">Mainly for three reasons:</p>
 		<ol style:display="inline">
@@ -21,6 +23,7 @@
 			<li><abbr title="Cascading Style Sheets">CSS</abbr>{@html icons.css}</li>
 			<li>Javascript{@html icons.js}</li>
 		</ol>
+
 		<h2>Why SVG?</h2>
 		<p>
 			Take a look around this verty website and, fingers crossed, you'll find the answer in
