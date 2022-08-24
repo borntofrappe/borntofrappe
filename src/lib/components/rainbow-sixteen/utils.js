@@ -9,23 +9,22 @@ export const getColorHsv = ({ h = 0, s = 0.55, v = 0.92 } = {}) => {
 
 export const getPuzzle = ({ size, index, moves }) => {
 	const n = size * 2 - 1;
+	const colors = [];
 	const grid = Array(size)
 		.fill()
 		.map((_, row) => {
+			colors[row] = [];
 			return Array(size)
 				.fill()
 				.map((_, column) => {
 					const color = getColorHsv({ h: (360 * (column + row)) / n });
+					colors[row][column] = color;
 
 					return {
 						row,
 						column,
 						color,
-						hidden: false,
-						initial: {
-							row,
-							column
-						}
+						hidden: false
 					};
 				});
 		});
@@ -78,5 +77,5 @@ export const getPuzzle = ({ size, index, moves }) => {
 		);
 	}
 
-	return { grid, hiddenTile };
+	return { grid, hiddenTile, colors };
 };

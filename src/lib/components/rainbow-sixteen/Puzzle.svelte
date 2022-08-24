@@ -8,7 +8,7 @@
 	export let index = size ** 2 - 1;
 	export let moves = 4;
 
-	let { grid, hiddenTile } = getPuzzle({ size, index, moves });
+	let { grid, hiddenTile, colors } = getPuzzle({ size, index, moves });
 	let isSliding = false;
 	let isSolved = false;
 
@@ -59,9 +59,16 @@
 
 		hiddenTile = { row, column };
 
-		const hasSolved = grid
-			.reduce((acc, curr) => [...acc, ...curr], [])
-			.every(({ row, column, initial }) => row === initial.row && column === initial.column);
+		let hasSolved = true;
+		for (let row = 0; row < grid.length; row++) {
+			if (!hasSolved) break;
+			for (let column = 0; column < grid[row].length; column++) {
+				if (grid[row][column].color !== colors[row][column]) {
+					hasSolved = false;
+					break;
+				}
+			}
+		}
 
 		if (hasSolved) {
 			await reveal.set(1, { easing: backOut });
@@ -85,6 +92,7 @@
 		const puzzle = getPuzzle({ size, index, moves });
 		grid = puzzle.grid;
 		hiddenTile = puzzle.hiddenTile;
+		// colors = puzzle.colors;
 
 		await scale.set(1);
 		isSliding = false;
@@ -148,12 +156,12 @@
 
 	{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
 		<g transform="translate({column} {row})">
-			<g transform="scale({$scale})">
-				{#if hidden}
-					<g transform="scale({$reveal})">
-						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
-					</g>
-				{:else}
+			{#if hidden}
+				<g transform="scale({$reveal})">
+					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+				</g>
+			{:else}
+				<g transform="scale({$scale})">
 					<g
 						style:cursor={!isSliding && hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
 						on:click={() => {
@@ -185,8 +193,8 @@
 							/>
 						</g>
 					</g>
-				{/if}
-			</g>
+				</g>
+			{/if}
 		</g>
 	{/each}
 
