@@ -1,4 +1,7 @@
 <script>
+	import { tweened } from 'svelte/motion';
+	import { cubicInOut } from 'svelte/easing';
+
 	import { getColorHsv as getColor } from './utils.js';
 
 	export let size = 4;
@@ -23,45 +26,115 @@
 				});
 		});
 
-	const hiddenCoords = [Math.floor(index / size), index % size];
-	let [hr, hc] = hiddenCoords;
-	puzzle[hr][hc].hidden = true;
+	const hiddenRow = Math.floor(index / size);
+	const hiddenColumn = index % size;
+	puzzle[hiddenRow][hiddenColumn].hidden = true;
 
 	const neighbors = [
-		[0, -1],
-		[1, 0],
-		[0, 1],
-		[-1, 0]
+		{ row: -1, column: 0 },
+		{ row: 0, column: 1 },
+		{ row: 1, column: 0 },
+		{ row: 0, column: -1 }
 	];
 
-	let nextNeighbors = neighbors.map(([r, c]) => [r, c]);
+	let nextNeighbors = neighbors.map((neighbor) => ({ ...neighbor }));
+
+	const hiddenNeighbor = {
+		row: hiddenRow,
+		column: hiddenColumn
+	};
+
 	for (let i = 0; i < moves; i++) {
+		const { row: hiddenRow, column: hiddenColumn } = hiddenNeighbor;
+
 		const availableNeighbors = nextNeighbors.filter(
-			([nr, nc]) => puzzle[hr + nr] && puzzle[hr + nr][hc + nc]
+			({ row, column }) => puzzle[hiddenRow + row] && puzzle[hiddenRow + row][hiddenColumn + column]
 		);
-		const [nr, nc] = availableNeighbors[Math.floor(Math.random() * availableNeighbors.length)];
+		const { row: neighborRow, column: neighborColumn } =
+			availableNeighbors[Math.floor(Math.random() * availableNeighbors.length)];
 
-		const gr = hr + nr;
-		const gc = hc + nc;
+		const row = hiddenRow + neighborRow;
+		const column = hiddenColumn + neighborColumn;
 
-		puzzle[gr][gc].row = hr;
-		puzzle[gr][gc].column = hc;
-		puzzle[hr][hc].row = gr;
-		puzzle[hr][hc].column = gc;
+		puzzle[row][column].row = hiddenRow;
+		puzzle[row][column].column = hiddenColumn;
+		puzzle[hiddenRow][hiddenColumn].row = row;
+		puzzle[hiddenRow][hiddenColumn].column = column;
 
-		[puzzle[gr][gc], puzzle[hr][hc]] = [puzzle[hr][hc], puzzle[gr][gc]];
+		[puzzle[row][column], puzzle[hiddenRow][hiddenColumn]] = [
+			puzzle[hiddenRow][hiddenColumn],
+			puzzle[row][column]
+		];
 
-		hr = gr;
-		hc = gc;
-		nextNeighbors = neighbors.filter(([nnr, nnc]) => nnr !== nr * -1 || nnc !== nc * -1);
+		hiddenNeighbor.row = row;
+		hiddenNeighbor.column = column;
+
+		nextNeighbors = neighbors.filter(
+			({ row, column }) => row !== neighborRow * -1 || column !== neighborColumn * -1
+		);
 	}
+
+	const slideDuration = 125;
+	const slide = tweened(0, { duration: slideDuration, easing: cubicInOut });
+
+	let isSliding = false;
+
+	const hasHiddenNeighbor = ({ row, column }) => {
+		const { row: hiddenRow, column: hiddenColumn } = hiddenNeighbor;
+		return (
+			(Math.abs(row - hiddenRow) === 1 && column === hiddenColumn) ||
+			(Math.abs(column - hiddenColumn) === 1 && row === hiddenRow)
+		);
+	};
+
+	const updatePuzzle = async ({ row, column }) => {
+		if (isSliding) return;
+
+		if (!hasHiddenNeighbor({ row, column })) return;
+
+		isSliding = true;
+
+		const { row: hiddenRow, column: hiddenColumn } = hiddenNeighbor;
+		const offsetRow = hiddenRow - row;
+		const offsetColumn = hiddenColumn - column;
+
+		await slide.set(1, {
+			interpolate: (from, to) => (t) => {
+				const value = t * (to - from);
+				puzzle[row][column].row = row + offsetRow * value;
+				puzzle[row][column].column = column + offsetColumn * value;
+				return value;
+			}
+		});
+
+		puzzle[row][column].row = hiddenRow;
+		puzzle[row][column].column = hiddenColumn;
+		puzzle[hiddenRow][hiddenColumn].row = row;
+		puzzle[hiddenRow][hiddenColumn].column = column;
+
+		[puzzle[row][column], puzzle[hiddenRow][hiddenColumn]] = [
+			puzzle[hiddenRow][hiddenColumn],
+			puzzle[row][column]
+		];
+
+		hiddenNeighbor.row = row;
+		hiddenNeighbor.column = column;
+
+		slide.set(0, { duration: 0 });
+		isSliding = false;
+	};
 </script>
 
 <svg viewBox="0 0 {size} {size}">
 	{#each puzzle.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
 		<g transform="translate({column} {row})">
 			{#if !hidden}
-				<rect x="0.05" y="0.05" width="0.9" height="0.9" {fill} rx="0.15" />
+				<g
+					style:cursor={hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
+					on:click={() => updatePuzzle({ row, column })}
+				>
+					<rect x="0.05" y="0.05" width="0.9" height="0.9" {fill} rx="0.15" />
+				</g>
 			{/if}
 		</g>
 	{/each}
