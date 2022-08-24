@@ -1,6 +1,6 @@
 <script>
-	import Intro from '$lib/components/index/Intro.svelte';
-	import Outro from '$lib/components/index/Outro.svelte';
+	import Intro from './Intro.svelte';
+	import Outro from './Outro.svelte';
 </script>
 
 <svelte:head>
