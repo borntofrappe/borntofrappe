@@ -173,15 +173,28 @@
 </script>
 
 <svg
-	viewBox="-0.5 -0.5 {size} {size}"
+	viewBox="-0.55 -0.55 {size + 0.1} {size + 0.1}"
+	class="focusable"
 	tabindex="0"
 	aria-label="Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position."
 >
+	<g class="focus" opacity="0">
+		<rect
+			x="-0.5"
+			y="-0.5"
+			width={size}
+			height={size}
+			rx="0.15"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="0.05"
+		/>
+	</g>
 	{#each puzzle.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
 		<g transform="translate({column} {row})">
 			{#if hidden}
 				<g transform="scale({$reveal})">
-					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.2" />
 				</g>
 			{:else}
 				<g
@@ -202,6 +215,18 @@
 					}}
 				>
 					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+					<g class="focus" opacity="0">
+						<rect
+							x="-0.45"
+							y="-0.45"
+							width="0.9"
+							height="0.9"
+							rx="0.15"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="0.05"
+						/>
+					</g>
 				</g>
 			{/if}
 		</g>
@@ -213,20 +238,15 @@
 		display: block;
 	}
 
-	svg:focus:not(:focus-visible) {
-		outline: none;
-	}
-
 	.focusable {
-		stroke-width: 0.05px;
 		outline: none;
 	}
 
-	.focusable:focus {
-		stroke: currentColor;
+	.focusable:focus > .focus {
+		opacity: 1;
 	}
 
-	.focusable:focus:not(:focus-visible) {
-		stroke: none;
+	.focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
 	}
 </style>
