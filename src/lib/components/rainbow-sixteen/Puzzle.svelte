@@ -6,7 +6,7 @@
 
 	export let size = 4;
 	export let index = size ** 2 - 1;
-	export let moves = 20;
+	export let moves = 4;
 
 	const n = size * 2 - 1;
 	const puzzle = Array(size)
@@ -21,7 +21,11 @@
 						row,
 						column,
 						color,
-						hidden: false
+						hidden: false,
+						initial: {
+							row,
+							column
+						}
 					};
 				});
 		});
@@ -77,6 +81,9 @@
 	const slideDuration = 125;
 	const slide = tweened(0, { duration: slideDuration, easing: cubicInOut });
 
+	const revealDuration = 400;
+	const reveal = tweened(0, { duration: revealDuration, easing: cubicInOut });
+
 	let isSliding = false;
 
 	const hasHiddenNeighbor = ({ row, column }) => {
@@ -120,20 +127,36 @@
 		hiddenNeighbor.row = row;
 		hiddenNeighbor.column = column;
 
-		slide.set(0, { duration: 0 });
-		isSliding = false;
+		const hasWon = puzzle
+			.reduce((acc, curr) => [...acc, ...curr], [])
+			.every(({ row, column, initial }) => row === initial.row && column === initial.column);
+
+		if (hasWon) {
+			reveal.set(1);
+		} else {
+			slide.set(0, { duration: 0 });
+			isSliding = false;
+		}
 	};
 </script>
 
-<svg viewBox="0 0 {size} {size}">
+<svg viewBox="-0.5 -0.5 {size} {size}">
 	{#each puzzle.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
 		<g transform="translate({column} {row})">
-			{#if !hidden}
+			{#if hidden}
+				<g transform="scale({$reveal})">
+					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+				</g>
+			{:else}
 				<g
-					style:cursor={hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
-					on:click={() => updatePuzzle({ row, column })}
+					style:cursor={!isSliding && hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
+					on:click={() => {
+						if (!isSliding && hasHiddenNeighbor({ row, column })) {
+							updatePuzzle({ row, column });
+						}
+					}}
 				>
-					<rect x="0.05" y="0.05" width="0.9" height="0.9" {fill} rx="0.15" />
+					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
 				</g>
 			{/if}
 		</g>
