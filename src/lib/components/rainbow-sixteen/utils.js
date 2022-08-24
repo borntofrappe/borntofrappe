@@ -93,5 +93,68 @@ export const getPuzzle = ({ size, index, moves }) => {
 		);
 	}
 
+	while (hiddenRow !== hiddenTile.row) {
+		const { row, column } = hiddenTile;
+		const offset = hiddenRow - row > 0 ? 1 : -1;
+		const offsetRow = row + offset;
+
+		grid[offsetRow][column].row = row;
+		grid[row][column].row = offsetRow;
+
+		[grid[offsetRow][column], grid[row][column]] = [grid[row][column], grid[offsetRow][column]];
+
+		hiddenTile.row = offsetRow;
+	}
+
+	while (hiddenColumn !== hiddenTile.column) {
+		const { row, column } = hiddenTile;
+		const offset = hiddenColumn - column > 0 ? 1 : -1;
+		const offsetColumn = column + offset;
+
+		grid[row][offsetColumn].column = column;
+		grid[row][column].column = offsetColumn;
+
+		[grid[row][offsetColumn], grid[row][column]] = [grid[row][column], grid[row][offsetColumn]];
+
+		hiddenTile.column = offsetColumn;
+	}
+
+	let isSolved = true;
+	for (let row = 0; row < grid.length; row++) {
+		if (!isSolved) break;
+		for (let column = 0; column < grid[row].length; column++) {
+			if (grid[row][column].color !== colors[row][column]) {
+				isSolved = false;
+				break;
+			}
+		}
+	}
+
+	if (isSolved) {
+		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
+
+		const availableOffsets = offsets.filter(
+			({ row, column }) => grid[hiddenRow + row] && grid[hiddenRow + row][hiddenColumn + column]
+		);
+		const { row: neighborRow, column: neighborColumn } =
+			availableOffsets[Math.floor(Math.random() * availableOffsets.length)];
+
+		const row = hiddenRow + neighborRow;
+		const column = hiddenColumn + neighborColumn;
+
+		grid[row][column].row = hiddenRow;
+		grid[row][column].column = hiddenColumn;
+		grid[hiddenRow][hiddenColumn].row = row;
+		grid[hiddenRow][hiddenColumn].column = column;
+
+		[grid[row][column], grid[hiddenRow][hiddenColumn]] = [
+			grid[hiddenRow][hiddenColumn],
+			grid[row][column]
+		];
+
+		hiddenTile.row = row;
+		hiddenTile.column = column;
+	}
+
 	return { grid, hiddenTile, colors };
 };

@@ -6,7 +6,7 @@
 
 	export let size = 4;
 	export let index = size ** 2 - 1;
-	export let moves = 4;
+	export let moves = 42;
 
 	let { grid, hiddenTile, colors } = getPuzzle({ size, index, moves });
 	let isSliding = false;
