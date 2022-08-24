@@ -138,9 +138,45 @@
 			isSliding = false;
 		}
 	};
+
+	const handleKeydown = ({ event, row, column }) => {
+		if (isSliding) return;
+
+		if (!hasHiddenNeighbor({ row, column })) return;
+
+		const { key } = event;
+
+		if (key === 'Enter') {
+			event.preventDefault();
+
+			updatePuzzle({ row, column });
+		} else {
+			const neighbors = {
+				ArrowUp: { row: -1, column: 0 },
+				ArrowRight: { row: 0, column: 1 },
+				ArrowDown: { row: 1, column: 0 },
+				ArrowLeft: { row: 0, column: -1 }
+			};
+
+			const neighbor = neighbors[key];
+
+			if (neighbor) {
+				event.preventDefault();
+				const { row: neighborRow, column: neighborColumn } = neighbor;
+				const { row: hiddenRow, column: hiddenColumn } = hiddenNeighbor;
+				if (row === hiddenRow - neighborRow && column === hiddenColumn - neighborColumn) {
+					updatePuzzle({ row, column });
+				}
+			}
+		}
+	};
 </script>
 
-<svg viewBox="-0.5 -0.5 {size} {size}">
+<svg
+	viewBox="-0.5 -0.5 {size} {size}"
+	tabindex="0"
+	aria-label="Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position."
+>
 	{#each puzzle.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
 		<g transform="translate({column} {row})">
 			{#if hidden}
@@ -155,6 +191,15 @@
 							updatePuzzle({ row, column });
 						}
 					}}
+					class="focusable"
+					role="button"
+					aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
+					tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
+					on:keydown={(event) => {
+						if (!isSliding && hasHiddenNeighbor({ row, column })) {
+							handleKeydown({ event, row, column });
+						}
+					}}
 				>
 					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
 				</g>
@@ -166,5 +211,22 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	.focusable {
+		stroke-width: 0.05px;
+		outline: none;
+	}
+
+	.focusable:focus {
+		stroke: currentColor;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		stroke: none;
 	}
 </style>
