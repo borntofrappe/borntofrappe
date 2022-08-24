@@ -9,7 +9,7 @@
 </svelte:head>
 
 <article>
-	<Puzzle />
+	<Puzzle size={5} moves={100} />
 </article>
 
 <style>
