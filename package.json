@@ -1,13 +1,13 @@
 {
 	"name": "borntofrappe",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"package": "svelte-kit package",
 		"preview": "vite preview",
-		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -22,7 +22,7 @@
 		"rehype-slug": "^5.0.1",
 		"shiki": "^0.11.1",
 		"svelte": "^3.44.0",
-		"vite": "^3.0.0"
+		"vite": "^3.0.4"
 	},
 	"type": "module"
 }

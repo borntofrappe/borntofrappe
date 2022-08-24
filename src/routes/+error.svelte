@@ -1,20 +1,8 @@
-<script context="module">
-	export function load({ error, status }) {
-		return {
-			props: {
-				status,
-				message: error.message
-			}
-		};
-	}
-</script>
-
 <script>
+	import { page } from '$app/stores';
+
 	import { onMount } from 'svelte';
 	import icons from '$lib/utils/icons.js';
-
-	export let status;
-	export let message;
 
 	const encodings = [0x7e, 0x30, 0x6d, 0x79, 0x33, 0x5b, 0x5f, 0x70, 0x7f, 0x7b];
 
@@ -35,7 +23,7 @@
 			.split('')
 			.map((d) => parseInt(d, 10));
 
-	let digits = breakNumber(status);
+	let digits = breakNumber($page.status);
 	const { length } = digits;
 
 	let animationID, timeoutID;
@@ -45,7 +33,7 @@
 		if (!matches) {
 			animate();
 			timeoutID = setTimeout(() => {
-				digits = breakNumber(status);
+				digits = breakNumber($page.status);
 				cancelAnimationFrame(animationID);
 				clearTimeout(timeoutID);
 			}, 2500);
@@ -68,15 +56,15 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | {status}</title>
-	<meta name="description" content={message} />
+	<title>borntofrappe | {$page.status}</title>
+	<meta name="description" content={$page.error.message} />
 	<link rel="icon" href="/icons/error.svg" type="image/svg+xml" />
 </svelte:head>
 
 <div>
 	<article>
 		<svg viewBox="0 0 {width} {height}" {width} {height}>
-			<title>Status code {status}</title>
+			<title>Status code {$page.status}</title>
 			<defs>
 				<path id="segment" d="M 0 0 l 15 15 h 45 l 15 -15 -15 -15 h -45z" />
 
@@ -113,13 +101,13 @@
 		<p>Something quite unexpected has happened.<br /> Here the error message for context:</p>
 		<div class="code">
 			<span>code {@html icons.editor}</span>
-			<pre><code>{message}</code></pre>
+			<pre><code>{$page.error.message}</code></pre>
 		</div>
 		<p>
 			If you think this is a mistake and you feel up to it, please consider filing an issue <a
 				class="absolute"
-				href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{status}&body={message}&labels=bug"
-				>on GitHub</a
+				href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{$page.status}&body={$page
+					.error.message}&labels=bug">on GitHub</a
 			>.
 		</p>
 		<p>If you need some guidance, <em>home is always a good place to start.</em></p>
