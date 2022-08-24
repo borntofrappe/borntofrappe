@@ -11,13 +11,19 @@
 	let { grid, hiddenTile, colors } = getPuzzle({ size, index, moves });
 	let isSliding = false;
 	let isSolved = false;
+	let isAnimated = false;
 
-	const slideDuration = 125;
-	const slide = tweened(0, { duration: slideDuration, easing });
+	const durations = {
+		slide: 125,
+		scale: 500,
+		show: 500,
+		hide: 300
+	};
 
-	const sizeDuration = 400;
-	const reveal = tweened(0, { duration: sizeDuration, easing });
-	const scale = tweened(1, { duration: sizeDuration, easing });
+	const slide = tweened(0, { duration: durations.slide, easing });
+
+	const scale = tweened(1, { duration: durations.scale, easing });
+	const hiddenScale = tweened(0, { duration: durations.show, easing });
 
 	const hasHiddenNeighbor = ({ row, column }) => {
 		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
@@ -71,8 +77,12 @@
 		}
 
 		if (hasSolved) {
-			await reveal.set(1, { easing: backOut });
 			isSolved = true;
+			const { matches } = matchMedia('(prefers-reduced-motion: reduce)');
+			if (matches) {
+				await hiddenScale.set(1, { easing: backOut });
+				isAnimated = true;
+			}
 		} else {
 			slide.set(0, { duration: 0 });
 			isSliding = false;
@@ -80,13 +90,15 @@
 	};
 
 	const resetPuzzle = async ({ row, column }) => {
+		isAnimated = false;
 		isSolved = false;
+
 		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
 		grid[hiddenRow][hiddenColumn].hidden = false;
 		grid[row][column].hidden = true;
 
-		reveal.set(0, { duration: 300 });
-		await scale.set(0, { duration: 500 });
+		hiddenScale.set(0, { duration: durations.hide });
+		await scale.set(0);
 
 		const index = row * size + column;
 		const puzzle = getPuzzle({ size, index, moves });
@@ -130,16 +142,23 @@
 			}
 		}
 	};
+
+	const handleAnimationend = async () => {
+		if (isAnimated) return;
+		isAnimated = true;
+
+		const duration = (grid[0][0].animation.duration * 1000) / 2;
+		await hiddenScale.set(1, { easing: backOut, duration, delay: duration });
+	};
 </script>
 
 <svg
-	class:solved={isSolved}
 	viewBox="-0.55 -0.55 {size + 0.1} {size + 0.1}"
 	class="focusable"
 	tabindex="0"
-	aria-label={isSolved
-		? 'Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position.'
-		: 'Play a new round of rainbox sixteen. Focus on a tile and press enter to hide the matching color.'}
+	aria-label={isAnimated
+		? 'Play a new round of rainbox sixteen. Focus on a tile and press enter to hide the matching color.'
+		: 'Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position.'}
 >
 	<g class="focus" opacity="0">
 		<rect
@@ -154,51 +173,61 @@
 		/>
 	</g>
 
-	{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden }}
-		<g transform="translate({column} {row})">
-			{#if hidden}
-				<g transform="scale({$reveal})">
-					<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
-				</g>
-			{:else}
-				<g transform="scale({$scale})">
-					<g
-						style:cursor={!isSliding && hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
-						on:click={() => {
-							if (!isSliding && hasHiddenNeighbor({ row, column })) {
-								updatePuzzle({ row, column });
-							}
-						}}
-						class="focusable"
-						role="button"
-						aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
-						tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
-						on:keydown={(event) => {
-							if (!isSliding && hasHiddenNeighbor({ row, column })) {
-								handleKeydown({ event, row, column });
-							}
-						}}
-					>
-						<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
-						<g class="focus" opacity="0">
-							<rect
-								x="-0.45"
-								y="-0.45"
-								width="0.9"
-								height="0.9"
-								rx="0.15"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="0.05"
-							/>
+	<g class:solved={isSolved} on:animationend={handleAnimationend}>
+		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden, animation }}
+			<g transform="translate({column} {row})">
+				<g
+					class="scale"
+					style:animation-duration="{animation.duration}s"
+					style:animation-delay="{animation.delay}s"
+				>
+					{#if hidden}
+						<g transform="scale({$hiddenScale})">
+							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
 						</g>
-					</g>
+					{:else}
+						<g transform="scale({$scale})">
+							<g
+								style:cursor={!isSliding && hasHiddenNeighbor({ row, column })
+									? 'pointer'
+									: 'initial'}
+								on:click={() => {
+									if (!isSliding && hasHiddenNeighbor({ row, column })) {
+										updatePuzzle({ row, column });
+									}
+								}}
+								class="focusable"
+								role="button"
+								aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
+								tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
+								on:keydown={(event) => {
+									if (!isSliding && hasHiddenNeighbor({ row, column })) {
+										handleKeydown({ event, row, column });
+									}
+								}}
+							>
+								<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+								<g class="focus" opacity="0">
+									<rect
+										x="-0.45"
+										y="-0.45"
+										width="0.9"
+										height="0.9"
+										rx="0.15"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="0.05"
+									/>
+								</g>
+							</g>
+						</g>
+					{/if}
 				</g>
-			{/if}
-		</g>
-	{/each}
+			</g>
+		{/each}
+	</g>
 
-	{#if isSolved}
+	{#if isAnimated}
 		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill }}
 			<g transform="translate({column} {row})">
 				<g
@@ -253,5 +282,21 @@
 
 	.focusable:focus:not(:focus-visible) > .focus {
 		opacity: 0;
+	}
+
+	.solved .scale {
+		animation: pulse 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.solved .scale {
+			animation: none;
+		}
+	}
+
+	@keyframes pulse {
+		50% {
+			transform: scale(0.8);
+		}
 	}
 </style>

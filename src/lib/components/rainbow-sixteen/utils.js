@@ -9,7 +9,18 @@ export const getColorHsv = ({ h = 0, s = 0.55, v = 0.92 } = {}) => {
 
 export const getPuzzle = ({ size, index, moves }) => {
 	const n = size * 2 - 1;
+
+	const hiddenRow = Math.floor(index / size);
+	const hiddenColumn = index % size;
+
+	const dr = Math.max(size - hiddenRow - 1, hiddenRow);
+	const dc = Math.max(size - hiddenColumn - 1, hiddenColumn);
+	const dn = dr + dc;
+
 	const colors = [];
+
+	const duration = 0.75;
+
 	const grid = Array(size)
 		.fill()
 		.map((_, row) => {
@@ -20,18 +31,22 @@ export const getPuzzle = ({ size, index, moves }) => {
 					const color = getColorHsv({ h: (360 * (column + row)) / n });
 					colors[row][column] = color;
 
+					const delay =
+						duration -
+						(duration * (Math.abs(row - hiddenRow) + Math.abs(column - hiddenColumn))) / dn;
+
 					return {
 						row,
 						column,
 						color,
-						hidden: false
+						hidden: false,
+						animation: {
+							duration,
+							delay
+						}
 					};
 				});
 		});
-
-	const hiddenRow = Math.floor(index / size);
-	const hiddenColumn = index % size;
-	grid[hiddenRow][hiddenColumn].hidden = true;
 
 	const offsets = [
 		{ row: -1, column: 0 },
@@ -42,6 +57,7 @@ export const getPuzzle = ({ size, index, moves }) => {
 
 	let nextOffsets = [...offsets];
 
+	grid[hiddenRow][hiddenColumn].hidden = true;
 	const hiddenTile = {
 		row: hiddenRow,
 		column: hiddenColumn
