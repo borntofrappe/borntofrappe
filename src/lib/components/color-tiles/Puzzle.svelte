@@ -5,35 +5,42 @@
 	const h = 10;
 	const w = h * 2;
 	const d = 4;
-	const strokeWidth = 1;
+	const strokeWidth = 0;
 
 	const width = w * size * 2 + strokeWidth;
 	const height = h * size * 2 + d + strokeWidth;
 
-	const grid = Array(size ** 2)
+	const grid = Array(size)
 		.fill()
-		.map((_, i) => {
-			const column = i % size;
-			const row = Math.floor(i / size);
+		.map((_, row) =>
+			Array(size)
+				.fill()
+				.map((_, column) => {
+					const x = w * row * -1 + w * column;
+					const y = h * row + h * column;
+					return {
+						x,
+						y,
+						column,
+						row,
+						color: null
+					};
+				})
+		);
 
-			const x = w * row * -1 + w * column;
-			const y = h * row + h * column;
+	let color = colors[0];
+	const defaultColor = colors[colors.length - 1];
 
-			return {
-				x,
-				y,
-				color: colors[colors.length - 1]
-			};
-		});
-
-	console.log(grid);
-	grid[0].color = colors[0];
-	grid[grid.length - 2].color = colors[1];
+	const updateGrid = ({ row, column }) => {
+		grid[row][column].color = color;
+		color = color === colors[0] ? colors[1] : colors[0];
+	};
 </script>
 
 <svg
-	style:outline="1px solid"
 	viewBox="{(width / 2) * -1} {(strokeWidth / 2) * -1} {width} {height}"
+	tabindex="0"
+	aria-label="Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece."
 >
 	<defs>
 		<g id="color-tiles-tile">
@@ -52,19 +59,53 @@
 		</g>
 	</defs>
 	<g stroke="currentColor" stroke-width={strokeWidth}>
-		{#each grid as { x, y, color: fill }}
+		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
 			<g transform="translate({x} {y})">
 				<g>
-					<use href="#color-tiles-tile" {fill} />
+					{#if color}
+						<use href="#color-tiles-tile" fill={color} />
+					{:else}
+						<g
+							class="tile"
+							on:click={() => {
+								updateGrid({ column, row });
+							}}
+							style:outline="none"
+							tabindex="0"
+							aria-label="Row {row} and column {column}. Color {color}"
+							role="button"
+							on:keydown={(e) => {
+								const { key } = e;
+								if (key === 'Enter') {
+									e.preventDefault();
+									updateGrid({ column, row });
+								}
+							}}
+						>
+							<use href="#color-tiles-tile" fill={defaultColor} />
+						</g>
+					{/if}
 				</g>
 			</g>
 		{/each}
 	</g>
-	<circle r="1" fill="white" />
 </svg>
 
 <style>
 	svg {
 		display: block;
+	}
+
+	svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	.tile {
+		cursor: pointer;
+	}
+
+	.tile:hover,
+	.tile:focus {
+		filter: brightness(1.25);
 	}
 </style>
