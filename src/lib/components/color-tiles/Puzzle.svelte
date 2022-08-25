@@ -1,4 +1,7 @@
 <script>
+	import { tweened } from 'svelte/motion';
+	import { circInOut as easing } from 'svelte/easing';
+
 	export let size = 3;
 	export let colors = ['hsl(0, 68%, 67%)', 'hsl(54, 99%, 72%)', 'hsl(197, 87%, 73%)'];
 
@@ -7,8 +10,15 @@
 	const d = 4;
 	const strokeWidth = 0;
 
-	const width = w * size * 2 + strokeWidth;
-	const height = h * size * 2 + d + strokeWidth;
+	const whitespace = {
+		top: 0,
+		right: w,
+		bottom: h,
+		left: w
+	};
+
+	const width = w * size * 2 + strokeWidth + (whitespace.left + whitespace.right);
+	const height = h * size * 2 + d + strokeWidth + (whitespace.top + whitespace.bottom);
 
 	const grid = Array(size)
 		.fill()
@@ -28,12 +38,55 @@
 				})
 		);
 
-	let color = colors[0];
+	let deck = Array(size ** 2)
+		.fill()
+		.map((_, i) => {
+			const color = i % 2 === 0 ? colors[0] : colors[1];
+
+			const x = (width / 2) * -1 + w;
+			const y = height - h - h - d + d * i * -1;
+
+			return {
+				x,
+				y,
+				color
+			};
+		});
+
+	const tile = deck[deck.length - 1];
+	const { x, y } = tile;
+	let color = tile.color;
+
+	deck = deck.slice(0, -1);
+
+	const duration = 200;
+
+	const extraTile = tweened(
+		{
+			x,
+			y
+		},
+		{ duration, easing }
+	);
+
 	const defaultColor = colors[colors.length - 1];
 
 	const updateGrid = ({ row, column }) => {
 		grid[row][column].color = color;
-		color = color === colors[0] ? colors[1] : colors[0];
+
+		const tile = deck[deck.length - 1];
+
+		if (tile) {
+			const { x, y } = tile;
+			extraTile.set({ x, y }, { duration: 0 });
+			color = color === colors[0] ? colors[1] : colors[0];
+			deck = deck.slice(0, -1);
+		}
+	};
+
+	const updateTile = async ({ x, y, row, column }) => {
+		await extraTile.set({ x, y });
+		updateGrid({ row, column });
 	};
 </script>
 
@@ -68,7 +121,7 @@
 						<g
 							class="tile"
 							on:click={() => {
-								updateGrid({ column, row });
+								updateTile({ x, y, column, row });
 							}}
 							style:outline="none"
 							tabindex="0"
@@ -78,7 +131,7 @@
 								const { key } = e;
 								if (key === 'Enter') {
 									e.preventDefault();
-									updateGrid({ column, row });
+									updateTile({ x, y, column, row });
 								}
 							}}
 						>
@@ -88,6 +141,19 @@
 				</g>
 			</g>
 		{/each}
+	</g>
+	<g stroke="currentColor" stroke-width={strokeWidth}>
+		{#each deck as { x, y, color: fill }}
+			<g transform="translate({x} {y})">
+				<use href="#color-tiles-tile" {fill} />
+			</g>
+		{/each}
+	</g>
+
+	<g stroke="currentColor" stroke-width={strokeWidth}>
+		<g transform="translate({$extraTile.x} {$extraTile.y})">
+			<use href="#color-tiles-tile" fill={color} />
+		</g>
 	</g>
 </svg>
 
