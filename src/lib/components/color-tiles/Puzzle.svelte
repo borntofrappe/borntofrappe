@@ -13,12 +13,12 @@
 	const whitespace = {
 		top: 0,
 		right: w,
-		bottom: h,
+		bottom: 0,
 		left: w
 	};
 
-	const width = w * size * 2 + strokeWidth + (whitespace.left + whitespace.right);
-	const height = h * size * 2 + d + strokeWidth + (whitespace.top + whitespace.bottom);
+	const width = w * 2 * size + (whitespace.left + whitespace.right);
+	const height = h * 2 * size + d + (whitespace.top + whitespace.bottom);
 
 	const grid = Array(size)
 		.fill()
@@ -27,7 +27,7 @@
 				.fill()
 				.map((_, column) => {
 					const x = w * row * -1 + w * column;
-					const y = h * row + h * column;
+					const y = h - d + h * row + h * column;
 					return {
 						x,
 						y,
@@ -43,9 +43,8 @@
 		.map((_, i) => {
 			const color = i % 2 === 0 ? colors[0] : colors[1];
 
-			const x = (width / 2) * -1 + w;
-			const y = height - h - h - d + d * i * -1;
-
+			const x = (width / 2) * -1 + w / 2;
+			const y = height - ((i + 1) * d) / 2 - (h + d) / 2;
 			return {
 				x,
 				y,
@@ -91,32 +90,42 @@
 </script>
 
 <svg
-	viewBox="{(width / 2) * -1} {(strokeWidth / 2) * -1} {width} {height}"
+	viewBox="{((width + strokeWidth) / 2) * -1} {(strokeWidth / 2) * -1} {width +
+		strokeWidth} {height + strokeWidth}"
 	tabindex="0"
 	aria-label="Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece."
 >
 	<defs>
-		<g id="color-tiles-tile">
-			<path d="M 0 0 l {w} {h} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d * -1}z" />
-			<path
-				fill="black"
-				opacity="0.3"
-				d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1}z"
-			/>
-			<path
-				fill="none"
-				stroke="black"
-				d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d *
-					-1} {w} {h * -1} {w} {h * 1}"
-			/>
+		<g id="color-tiles-grid-tile">
+			<g transform="translate(0 {h * -1 + d})">
+				<path stroke="none" d="M 0 0 l {w} {h} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d * -1}z" />
+				<path
+					fill="black"
+					stroke="none"
+					opacity="0.3"
+					d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1}z"
+				/>
+				<path
+					fill="none"
+					d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d *
+						-1} {w} {h * -1} {w} {h}"
+				/>
+			</g>
 		</g>
+		<use id="color-tiles-color-tile" href="#color-tiles-grid-tile" transform="scale(0.5)" />
 	</defs>
-	<g stroke="currentColor" stroke-width={strokeWidth}>
+	<g
+		stroke="currentColor"
+		stroke-width={strokeWidth}
+		stroke-linejoin="round"
+		stroke-linecap="round"
+	>
 		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
 			<g transform="translate({x} {y})">
+				<use href="#color-tiles-grid-tile" fill={defaultColor} />
 				<g>
 					{#if color}
-						<use href="#color-tiles-tile" fill={color} />
+						<use href="#color-tiles-color-tile" fill={color} />
 					{:else}
 						<g
 							class="tile"
@@ -135,7 +144,7 @@
 								}
 							}}
 						>
-							<use href="#color-tiles-tile" fill={defaultColor} />
+							<use href="#color-tiles-grid-tile" fill={defaultColor} />
 						</g>
 					{/if}
 				</g>
@@ -145,14 +154,14 @@
 	<g stroke="currentColor" stroke-width={strokeWidth}>
 		{#each deck as { x, y, color: fill }}
 			<g transform="translate({x} {y})">
-				<use href="#color-tiles-tile" {fill} />
+				<use href="#color-tiles-color-tile" {fill} />
 			</g>
 		{/each}
 	</g>
 
 	<g stroke="currentColor" stroke-width={strokeWidth}>
 		<g transform="translate({$extraTile.x} {$extraTile.y})">
-			<use href="#color-tiles-tile" fill={color} />
+			<use href="#color-tiles-color-tile" fill={color} />
 		</g>
 	</g>
 </svg>
