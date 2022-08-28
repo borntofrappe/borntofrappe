@@ -5,62 +5,41 @@
 	export let size = 3;
 	export let colors = ['hsl(0, 68%, 67%)', 'hsl(54, 99%, 72%)', 'hsl(197, 87%, 73%)'];
 
-	const h = 10;
-	const w = h * 2;
-	const d = 4;
+	const thickness = 0.1;
 	const strokeWidth = 0;
+	const scale = 0.5;
 
-	const whitespaceX = w;
-	const whitespaceY = 0;
+	const width = size;
+	const height = width / 2 + thickness + thickness;
 
-	const gridWidth = w * 2 * size;
-	const gridHeight = h * 2 * size;
+	const hGrid = width / 2;
+	const vGrid = hGrid / 2;
 
-	const viewBoxWidth = gridWidth + strokeWidth + whitespaceX * 2;
-	const viewBoxHeight = gridHeight + strokeWidth + d + whitespaceY * 2;
-	const viewBoxX = (viewBoxWidth / 2) * -1;
-	const viewBoxY = ((strokeWidth + whitespaceY * 2) / 2) * -1;
+	const deckWidth = 1 * scale;
+	const deckHeight = (1 / 2) * scale + thickness * scale * size ** 2;
+	const viewBoxWidth = deckWidth + width + deckWidth;
+	const viewBoxHeight = height;
 
 	const defaultColor = colors[colors.length - 1];
-	const deckColors = Math.random() > 0.5 ? [colors[0], colors[1]] : [colors[1], colors[0]];
-
-	const grid = Array(size)
-		.fill()
-		.map((_, row) =>
-			Array(size)
-				.fill()
-				.map((_, column) => {
-					const x = w * row * -1 + w * column;
-					const y = h - d + h * row + h * column;
-					return {
-						x,
-						y,
-						column,
-						row,
-						color: null
-					};
-				})
-		);
+	const deckStartColors = Math.random() > 0.5 ? [colors[0], colors[1]] : [colors[1], colors[0]];
 
 	const decks = Array(2)
 		.fill()
 		.map((_, i) => {
-			const deckColor = i === 0 ? deckColors[0] : deckColors[1];
+			const deckStartColor = i === 0 ? deckStartColors[0] : deckStartColors[1];
 			return Array(size % 2 === 0 ? size ** 2 : size ** 2 + 1)
 				.fill()
 				.map((_, j) => {
 					let color;
 					if (j % 2 === 0) {
-						color = deckColor;
+						color = deckStartColor;
 					} else {
-						color = deckColor === colors[0] ? colors[1] : colors[0];
+						color = deckStartColor === colors[0] ? colors[1] : colors[0];
 					}
 
-					const x =
-						i === 0
-							? (gridWidth / 2) * -1 + w / 2 - whitespaceX
-							: gridWidth / 2 - w / 2 + whitespaceX;
-					const y = gridHeight - (j * d) / 2 - h / 2;
+					const x = i === 0 ? deckWidth / 2 : viewBoxWidth - deckWidth / 2;
+					//   const y = height - j * thickness * scale;
+					const y = height - j * thickness * scale - 0.25 * scale;
 
 					return {
 						x,
@@ -70,13 +49,31 @@
 				});
 		});
 
-	let iDeck = Math.floor(Math.random() * decks.length);
-	let deck = [...decks[iDeck]];
+	const grid = Array(size)
+		.fill()
+		.map((_, row) => {
+			return Array(size)
+				.fill()
+				.map((_, column) => {
+					const x = column * 0.5 - row * 0.5 + (-0.5 + width / 2) + 0.5 + deckWidth;
+					const y = column * 0.25 + row * 0.25 + thickness + 0.25;
+					return {
+						x,
+						y,
+						column,
+						row,
+						color: null
+					};
+				});
+		});
+
+	let deckIndex = Math.floor(Math.random() * decks.length);
+	let deck = [...decks[deckIndex]];
 
 	const tile = deck[deck.length - 1];
 	const { x, y } = tile;
-	let color = tile.color;
 
+	let color = tile.color;
 	deck = deck.slice(0, -1);
 
 	const duration = 200;
@@ -93,7 +90,6 @@
 		grid[row][column].color = color;
 
 		const tile = deck[deck.length - 1];
-
 		if (tile) {
 			const { x, y } = tile;
 			extraTile.set({ x, y }, { duration: 0 });
@@ -102,55 +98,58 @@
 		}
 	};
 
-	const updateTile = async ({ x, y, row, column }) => {
+	const animateTile = async ({ x, y, row, column }) => {
 		await extraTile.set({ x, y });
 		updateGrid({ row, column });
 	};
 </script>
 
 <svg
-	viewBox="{viewBoxX} {viewBoxY} {viewBoxWidth} {viewBoxHeight}"
+	viewBox="{(strokeWidth / 2) * -1} {(strokeWidth / 2) * -1} {viewBoxWidth +
+		strokeWidth} {viewBoxHeight + strokeWidth}"
 	class="focusable"
 	style:outline="none"
 	tabindex="0"
 	aria-label="Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece."
 >
 	<defs>
-		<g id="color-tiles-grid-tile">
-			<g transform="translate(0 {h * -1 + d})">
-				<path stroke="none" d="M 0 0 l {w} {h} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d * -1}z" />
+		<g id="color-tiles-tile-grid">
+			<g transform="translate(-0.5 -0.25)">
+				<path
+					stroke="none"
+					d="M 0.5 0 l 0.5 0.25 0 {thickness} -0.5 0.25 -0.5 -0.25 0 {thickness * -1}z"
+				/>
 				<path
 					fill="black"
 					stroke="none"
 					opacity="0.3"
-					d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1}z"
+					d="M 1 0.25 l 0 {thickness} -0.5 0.25 -0.5 -0.25 0 {thickness * -1} 0.5 0.25z"
 				/>
 				<path
 					fill="none"
-					d="M {w * -1} {h} l {w} {h} {w} {h * -1} 0 {d} {w * -1} {h} {w * -1} {h * -1} 0 {d *
-						-1} {w} {h * -1} {w} {h}"
+					d="M 0 0.25 l 0 {thickness} 0.5 0.25 0.5 -0.25 0 {thickness *
+						-1} -0.5 0.25 -0.5 -0.25 0.5 -0.25 0.5 0.25 m -0.5 0.25 0 {thickness}"
 				/>
 			</g>
 		</g>
-		<use id="color-tiles-color-tile" href="#color-tiles-grid-tile" transform="scale(0.5)" />
+		<use
+			id="color-tiles-tile-color"
+			href="#color-tiles-tile-grid"
+			transform="translate(0 {thickness * scale * -1}) scale({scale})"
+		/>
 	</defs>
-	<g
-		stroke="currentColor"
-		stroke-width={strokeWidth}
-		stroke-linejoin="round"
-		stroke-linecap="round"
-	>
-		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
-			<g transform="translate({x} {y})">
-				<use href="#color-tiles-grid-tile" fill={defaultColor} />
-				<g>
+	<g stroke="currentColor" stroke-width={strokeWidth} stroke-linejoin="round">
+		<g>
+			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
+				<g transform="translate({x} {y})">
+					<use fill={defaultColor} href="#color-tiles-tile-grid" />
 					{#if color}
-						<use href="#color-tiles-color-tile" fill={color} />
+						<use fill={color} href="#color-tiles-tile-color" />
 					{:else}
 						<g
 							class="tile"
 							on:click={() => {
-								updateTile({ x, y, column, row });
+								animateTile({ x, y, column, row });
 							}}
 							style:outline="none"
 							tabindex="0"
@@ -160,39 +159,38 @@
 								const { key } = e;
 								if (key === 'Enter') {
 									e.preventDefault();
-									updateTile({ x, y, column, row });
+									animateTile({ x, y, column, row });
 								}
 							}}
 						>
-							<use href="#color-tiles-grid-tile" fill={defaultColor} />
+							<use fill={defaultColor} href="#color-tiles-tile-grid" />
 						</g>
 					{/if}
 				</g>
+			{/each}
+		</g>
+
+		<g>
+			{#each deck as { x, y, color }}
+				<g transform="translate({x} {y})">
+					<use fill={color} href="#color-tiles-tile-color" />
+				</g>
+			{/each}
+		</g>
+
+		<g>
+			<g transform="translate({$extraTile.x} {$extraTile.y})">
+				<use fill={color} href="#color-tiles-tile-color" />
 			</g>
-		{/each}
+		</g>
 	</g>
 
 	<g style:pointer-events="none" class="focus" opacity="0">
 		<path
 			fill={defaultColor}
-			d="M {(gridWidth / 2) * -1} {gridHeight / 2} l 0 {d} {gridWidth / 2} {gridHeight /
-				2} {gridWidth / 2} {(gridHeight / 2) * -1} 0 {d * -1} {(gridWidth / 2) * -1} {gridHeight /
-				2}z"
+			d="M 0 {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid * -1} 0 {thickness *
+				-1} {hGrid * -1} {vGrid}z"
 		/>
-	</g>
-
-	<g stroke="currentColor" stroke-width={strokeWidth}>
-		{#each deck as { x, y, color: fill }}
-			<g transform="translate({x} {y})">
-				<use href="#color-tiles-color-tile" {fill} />
-			</g>
-		{/each}
-	</g>
-
-	<g stroke="currentColor" stroke-width={strokeWidth}>
-		<g transform="translate({$extraTile.x} {$extraTile.y})">
-			<use href="#color-tiles-color-tile" fill={color} />
-		</g>
 	</g>
 </svg>
 
