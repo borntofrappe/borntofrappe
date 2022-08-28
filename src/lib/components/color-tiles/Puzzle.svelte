@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion';
 	import { circInOut as easing } from 'svelte/easing';
 
-	export let size = 4;
+	export let size = 3;
 	export let colors = ['hsl(0, 68%, 67%)', 'hsl(54, 99%, 72%)', 'hsl(197, 87%, 73%)'];
 
 	const thickness = 0.1;
@@ -89,6 +89,8 @@
 		{ duration: durations.position, easing }
 	);
 
+	let isGameover = false;
+
 	const updateGrid = ({ row, column }) => {
 		grid[row][column].color = color;
 
@@ -98,6 +100,15 @@
 			extraTile.set({ x, y }, { duration: 0 });
 			color = color === colors[0] ? colors[1] : colors[0];
 			deck = deck.slice(0, -1);
+
+			// TODO check if the game is first won
+
+			const isFull = grid
+				.reduce((acc, curr) => [...acc, ...curr], [])
+				.every(({ color }) => color !== null);
+			if (isFull) {
+				isGameover = true;
+			}
 		}
 	};
 
@@ -127,6 +138,7 @@
 			animateDeck(n + 1);
 		} else {
 			deck = deck.slice(0, -1);
+			isGameover = false;
 		}
 	};
 
@@ -168,15 +180,15 @@
 	};
 </script>
 
-<button on:click={handleReset}>Reset</button>
-
 <svg
 	viewBox="{(strokeWidth / 2) * -1} {(strokeWidth / 2) * -1} {viewBoxWidth +
 		strokeWidth} {viewBoxHeight + strokeWidth}"
 	class="focusable"
 	style:outline="none"
 	tabindex="0"
-	aria-label="Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece."
+	aria-label={isGameover
+		? 'The game is over, but you can both play a new round. Focus on the grid and press enter to clear the board.'
+		: 'Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece.'}
 >
 	<defs>
 		<g id="color-tiles-tile-grid">
@@ -215,13 +227,17 @@
 						<g
 							class="tile"
 							on:click={() => {
+								if (isGameover) return;
+
 								animateTile({ x, y, column, row });
 							}}
 							style:outline="none"
-							tabindex="0"
+							tabindex={isGameover ? -1 : 0}
 							aria-label="Row {row} and column {column}. Color {color}"
 							role="button"
 							on:keydown={(e) => {
+								if (isGameover) return;
+
 								const { key } = e;
 								if (key === 'Enter') {
 									e.preventDefault();
@@ -254,10 +270,45 @@
 	<g style:pointer-events="none" class="focus" opacity="0">
 		<path
 			fill={defaultColor}
-			d="M 0 {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid * -1} 0 {thickness *
-				-1} {hGrid * -1} {vGrid}z"
+			d="M {deckWidth} {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid *
+				-1} 0 {thickness * -1} {hGrid * -1} {vGrid}z"
 		/>
 	</g>
+
+	{#if isGameover}
+		<g
+			on:click={() => {
+				handleReset();
+			}}
+			style:outline="none"
+			class="focusable"
+			tabindex="0"
+			aria-label="Reset game."
+			role="button"
+			on:keydown={(e) => {
+				const { key } = e;
+				if (key === 'Enter') {
+					e.preventDefault();
+					handleReset();
+				}
+			}}
+		>
+			<path
+				opacity="0"
+				style:cursor="pointer"
+				d="M {deckWidth + width / 2} {thickness} l {hGrid} {vGrid} 0 {thickness} {hGrid *
+					-1} {vGrid} {hGrid * -1} {vGrid * -1} 0 {thickness * -1}z"
+			/>
+
+			<g style:pointer-events="none" class="focus" opacity="0">
+				<path
+					fill={defaultColor}
+					d="M {deckWidth} {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid *
+						-1} 0 {thickness * -1} {hGrid * -1} {vGrid}z"
+				/>
+			</g>
+		</g>
+	{/if}
 </svg>
 
 <style>
