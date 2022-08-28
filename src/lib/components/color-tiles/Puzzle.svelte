@@ -90,6 +90,46 @@
 	);
 
 	let isGameover = false;
+	const gameoverCount = Math.min(4, size);
+	let gameoverTiles = [];
+
+	const getWinningTiles = (tiles) => {
+		if (tiles.length < gameoverCount) return [];
+
+		let winningColor;
+		let winningCount = 0;
+		const winningTiles = [];
+
+		for (let i = 0; i < tiles.length; i++) {
+			const { color } = tiles[i];
+			if (color && color === winningColor) {
+				winningCount++;
+			} else {
+				if (winningCount >= gameoverCount) {
+					winningTiles.push(
+						...Array(winningCount)
+							.fill()
+							.map((_, j) => tiles[i - j - 1])
+					);
+				} else if (tiles.length - i < gameoverCount) {
+					return [];
+				}
+
+				winningColor = color;
+				winningCount = 1;
+			}
+		}
+
+		if (winningCount >= gameoverCount) {
+			winningTiles.push(
+				...Array(winningCount)
+					.fill()
+					.map((_, j) => tiles[tiles.length - j - 1])
+			);
+		}
+
+		return winningTiles;
+	};
 
 	const updateGrid = ({ row, column }) => {
 		grid[row][column].color = color;
@@ -101,8 +141,69 @@
 			color = color === colors[0] ? colors[1] : colors[0];
 			deck = deck.slice(0, -1);
 
-			// TODO check if the game is first won
+			const winningTiles = [];
 
+			const rowStart = Math.max(0, row - gameoverCount + 1);
+			const rowEnd = Math.min(size - 1, row + gameoverCount - 1);
+			const columnStart = Math.max(0, column - gameoverCount + 1);
+			const columnEnd = Math.min(size - 1, column + gameoverCount - 1);
+
+			winningTiles.push(
+				...getWinningTiles(
+					Array(rowEnd - rowStart + 1)
+						.fill()
+						.map((_, i) => grid[rowStart + i][column])
+				)
+			);
+
+			winningTiles.push(
+				...getWinningTiles(
+					Array(columnEnd - columnStart + 1)
+						.fill()
+						.map((_, i) => grid[row][columnStart + i])
+				)
+			);
+
+			const diagonalOffsetStart = Math.min(column - columnStart, row - rowStart);
+			const diagonalOffsetEnd = Math.min(columnEnd - column, rowEnd - row);
+
+			winningTiles.push(
+				...getWinningTiles(
+					Array(diagonalOffsetStart + diagonalOffsetEnd + 1)
+						.fill()
+						.map((_, i) => {
+							const offset = i - diagonalOffsetStart;
+							return grid[row + offset][column + offset];
+						})
+				)
+			);
+
+			const antiDiagonalOffsetStart = Math.min(column - columnStart, rowEnd - row);
+			const antiDiagonalOffsetEnd = Math.min(columnEnd - column, row - rowStart);
+
+			winningTiles.push(
+				...getWinningTiles(
+					Array(antiDiagonalOffsetStart + antiDiagonalOffsetEnd + 1)
+						.fill()
+						.map(
+							(_, i) =>
+								grid[row + antiDiagonalOffsetStart - i][column - antiDiagonalOffsetStart + i]
+						)
+				)
+			);
+
+			if (winningTiles.length > 0) {
+				isGameover = true;
+				gameoverTiles = [...winningTiles];
+			} else {
+				const isFull = grid
+					.reduce((acc, curr) => [...acc, ...curr], [])
+					.every(({ color }) => color !== null);
+				if (isFull) {
+					isGameover = true;
+				}
+			}
+		} else {
 			const isFull = grid
 				.reduce((acc, curr) => [...acc, ...curr], [])
 				.every(({ color }) => color !== null);
@@ -176,6 +277,7 @@
 			deck = [...deck, { x, y, color }];
 		}
 		deckIndex = deckIndex === 0 ? 1 : 0;
+		gameoverTiles = [];
 		animateGrid();
 	};
 </script>
@@ -220,7 +322,12 @@
 		<g>
 			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
 				<g transform="translate({x} {y})">
-					<use fill={defaultColor} href="#color-tiles-tile-grid" />
+					<g
+						style:animation-delay="{(row + column) % 2 === 0 ? 0 : 0.1}s"
+						class:blink={gameoverTiles.some((tile) => tile.column === column && tile.row === row)}
+					>
+						<use fill={defaultColor} href="#color-tiles-tile-grid" />
+					</g>
 					{#if color}
 						<use fill={color} href="#color-tiles-tile-color" />
 					{:else}
@@ -277,7 +384,7 @@
 
 	{#if isGameover}
 		<g
-			on:click={() => {
+			on:click|once={() => {
 				handleReset();
 			}}
 			style:outline="none"
@@ -285,7 +392,7 @@
 			tabindex="0"
 			aria-label="Reset game."
 			role="button"
-			on:keydown={(e) => {
+			on:keydown|once={(e) => {
 				const { key } = e;
 				if (key === 'Enter') {
 					e.preventDefault();
@@ -319,6 +426,7 @@
 	.focusable:focus > .focus {
 		opacity: 1;
 	}
+
 	.focusable:not(:focus-visible):focus > .focus {
 		opacity: 0;
 	}
@@ -331,5 +439,16 @@
 	.tile:hover,
 	.tile:focus {
 		filter: brightness(1.25);
+	}
+
+	.blink {
+		animation: blink 0.25s 8 steps(2);
+		filter: brightness(1.25);
+	}
+
+	@keyframes blink {
+		100% {
+			filter: brightness(1);
+		}
 	}
 </style>
