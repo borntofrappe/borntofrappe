@@ -5,6 +5,11 @@
 	export let size = 3;
 	export let colors = ['hsl(0, 68%, 67%)', 'hsl(54, 99%, 72%)', 'hsl(197, 87%, 73%)'];
 
+	const durations = {
+		position: 200,
+		reset: 100
+	};
+
 	const thickness = 0.1;
 	const strokeWidth = 0;
 	const scale = 0.5;
@@ -38,7 +43,6 @@
 					}
 
 					const x = i === 0 ? deckWidth / 2 : viewBoxWidth - deckWidth / 2;
-					//   const y = height - j * thickness * scale;
 					const y = height - j * thickness * scale - 0.25 * scale;
 
 					return {
@@ -70,18 +74,12 @@
 	let deckIndex = Math.floor(Math.random() * decks.length);
 	let deck = [...decks[deckIndex]];
 
-	const tile = deck[deck.length - 1];
-	const { x, y } = tile;
+	const latestTile = deck[deck.length - 1];
 
-	let color = tile.color;
-	deck = deck.slice(0, -1);
+	let color = latestTile.color;
+	const { x, y } = latestTile;
 
-	const durations = {
-		position: 200,
-		reset: 100
-	};
-
-	const extraTile = tweened(
+	const tile = tweened(
 		{
 			x,
 			y
@@ -89,12 +87,14 @@
 		{ duration: durations.position, easing }
 	);
 
-	let isGameover = false;
-	const gameoverCount = Math.min(4, size);
-	let gameoverTiles = [];
+	deck = deck.slice(0, -1);
+
+	let isGameOver = false;
+	const gameOverCount = Math.min(4, size);
+	let gameOverTiles = [];
 
 	const getWinningTiles = (tiles) => {
-		if (tiles.length < gameoverCount) return [];
+		if (tiles.length < gameOverCount) return [];
 
 		let winningColor;
 		let winningCount = 0;
@@ -105,13 +105,13 @@
 			if (color && color === winningColor) {
 				winningCount++;
 			} else {
-				if (winningCount >= gameoverCount) {
+				if (winningCount >= gameOverCount) {
 					winningTiles.push(
 						...Array(winningCount)
 							.fill()
 							.map((_, j) => tiles[i - j - 1])
 					);
-				} else if (tiles.length - i < gameoverCount) {
+				} else if (tiles.length - i < gameOverCount) {
 					return [];
 				}
 
@@ -120,7 +120,7 @@
 			}
 		}
 
-		if (winningCount >= gameoverCount) {
+		if (winningCount >= gameOverCount) {
 			winningTiles.push(
 				...Array(winningCount)
 					.fill()
@@ -134,19 +134,19 @@
 	const updateGrid = ({ row, column }) => {
 		grid[row][column].color = color;
 
-		const tile = deck[deck.length - 1];
-		if (tile) {
-			const { x, y } = tile;
-			extraTile.set({ x, y }, { duration: 0 });
+		const latestTile = deck[deck.length - 1];
+		if (latestTile) {
+			const { x, y } = latestTile;
+			tile.set({ x, y }, { duration: 0 });
 			color = color === colors[0] ? colors[1] : colors[0];
 			deck = deck.slice(0, -1);
 
 			const winningTiles = [];
 
-			const rowStart = Math.max(0, row - gameoverCount + 1);
-			const rowEnd = Math.min(size - 1, row + gameoverCount - 1);
-			const columnStart = Math.max(0, column - gameoverCount + 1);
-			const columnEnd = Math.min(size - 1, column + gameoverCount - 1);
+			const rowStart = Math.max(0, row - gameOverCount + 1);
+			const rowEnd = Math.min(size - 1, row + gameOverCount - 1);
+			const columnStart = Math.max(0, column - gameOverCount + 1);
+			const columnEnd = Math.min(size - 1, column + gameOverCount - 1);
 
 			winningTiles.push(
 				...getWinningTiles(
@@ -193,28 +193,28 @@
 			);
 
 			if (winningTiles.length > 0) {
-				isGameover = true;
-				gameoverTiles = [...winningTiles];
+				isGameOver = true;
+				gameOverTiles = [...winningTiles];
 			} else {
-				const isFull = grid
+				const isGameTied = grid
 					.reduce((acc, curr) => [...acc, ...curr], [])
 					.every(({ color }) => color !== null);
-				if (isFull) {
-					isGameover = true;
+				if (isGameTied) {
+					isGameOver = true;
 				}
 			}
 		} else {
-			const isFull = grid
+			const isGameTied = grid
 				.reduce((acc, curr) => [...acc, ...curr], [])
 				.every(({ color }) => color !== null);
-			if (isFull) {
-				isGameover = true;
+			if (isGameTied) {
+				isGameOver = true;
 			}
 		}
 	};
 
 	const animateTile = async ({ x, y, row, column }) => {
-		await extraTile.set({ x, y });
+		await tile.set({ x, y });
 		updateGrid({ row, column });
 	};
 
@@ -222,45 +222,45 @@
 		const tileIndex = size % 2 === 0 ? size ** 2 - n - 1 : size ** 2 - n;
 		if (tileIndex >= 0) {
 			const deckTile = decks[deckIndex][n];
-			const tile = deck[tileIndex];
+			const latestTile = deck[tileIndex];
 
-			const { x: tileX, y: tileY, color: tileColor } = tile;
-			extraTile.set({ x: tileX, y: tileY }, { duration: 0 });
+			const { x: latestTileX, y: latestTileY, color: latestTileColor } = latestTile;
+			tile.set({ x: latestTileX, y: latestTileY }, { duration: 0 });
 
 			deck = [...deck.slice(0, tileIndex), ...deck.slice(tileIndex + 1)];
 
-			color = tileColor;
+			color = latestTileColor;
 
 			const { x, y } = deckTile;
-			await extraTile.set({ x, y }, { duration: durations.reset });
+			await tile.set({ x, y }, { duration: durations.reset });
 
 			deck = [...deck, { x, y, color }];
 
 			animateDeck(n + 1);
 		} else {
 			deck = deck.slice(0, -1);
-			isGameover = false;
+			isGameOver = false;
 		}
 	};
 
 	const animateGrid = async (n = 0) => {
 		const deckTile = decks[deckIndex][n];
 
-		const tile =
+		const gridTile =
 			deckTile &&
 			grid
 				.reduce((acc, curr) => [...acc, ...curr], [])
 				.find(({ color }) => color === deckTile.color);
-		if (tile) {
-			const { x: tileX, y: tileY, row, column, color: tileColor } = tile;
+		if (gridTile) {
+			const { x: gridTileX, y: gridTileY, row, column, color: gridTileColor } = gridTile;
 
-			extraTile.set({ x: tileX, y: tileY }, { duration: 0 });
+			tile.set({ x: gridTileX, y: gridTileY }, { duration: 0 });
 			grid[row][column].color = null;
 
-			color = tileColor;
+			color = gridTileColor;
 
 			const { x, y } = deckTile;
-			await extraTile.set({ x, y }, { duration: durations.reset });
+			await tile.set({ x, y }, { duration: durations.reset });
 
 			deck = [...deck, { x, y, color }];
 
@@ -271,13 +271,13 @@
 	};
 
 	const handleReset = () => {
-		const isOnDeck = $extraTile.x === decks[deckIndex][0].x;
+		const isOnDeck = $tile.x === decks[deckIndex][0].x;
 		if (isOnDeck) {
-			const { x, y } = $extraTile;
+			const { x, y } = $tile;
 			deck = [...deck, { x, y, color }];
 		}
 		deckIndex = deckIndex === 0 ? 1 : 0;
-		gameoverTiles = [];
+		gameOverTiles = [];
 		animateGrid();
 	};
 </script>
@@ -288,9 +288,9 @@
 	class="focusable"
 	style:outline="none"
 	tabindex="0"
-	aria-label={isGameover
-		? 'The game is over, but you can both play a new round. Focus on the grid and press enter to clear the board.'
-		: 'Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to position the piece.'}
+	aria-label={isGameOver
+		? 'The game is over, but you can both play a new round. Focus on the grid and press enter to start with a new deck.'
+		: 'Position tiles in the grid to create a line with the same color. Focus on a tile and press enter to place the tile on the specific column and row.'}
 >
 	<defs>
 		<g id="color-tiles-tile-grid">
@@ -324,7 +324,7 @@
 				<g transform="translate({x} {y})">
 					<g
 						style:animation-delay="{(row + column) % 2 === 0 ? 0 : 0.1}s"
-						class:blink={gameoverTiles.some((tile) => tile.column === column && tile.row === row)}
+						class:blink={gameOverTiles.some((tile) => tile.column === column && tile.row === row)}
 					>
 						<use fill={defaultColor} href="#color-tiles-tile-grid" />
 					</g>
@@ -334,16 +334,16 @@
 						<g
 							class="tile"
 							on:click={() => {
-								if (isGameover) return;
+								if (isGameOver) return;
 
 								animateTile({ x, y, column, row });
 							}}
 							style:outline="none"
-							tabindex={isGameover ? -1 : 0}
-							aria-label="Row {row} and column {column}. Color {color}"
+							tabindex={isGameOver ? '-1' : '0'}
+							aria-label="Position tile color {color} on row {row} and column {column}."
 							role="button"
 							on:keydown={(e) => {
-								if (isGameover) return;
+								if (isGameOver) return;
 
 								const { key } = e;
 								if (key === 'Enter') {
@@ -368,7 +368,7 @@
 		</g>
 
 		<g>
-			<g transform="translate({$extraTile.x} {$extraTile.y})">
+			<g transform="translate({$tile.x} {$tile.y})">
 				<use fill={color} href="#color-tiles-tile-color" />
 			</g>
 		</g>
@@ -382,7 +382,7 @@
 		/>
 	</g>
 
-	{#if isGameover}
+	{#if isGameOver}
 		<g
 			on:click|once={() => {
 				handleReset();
@@ -390,7 +390,7 @@
 			style:outline="none"
 			class="focusable"
 			tabindex="0"
-			aria-label="Reset game."
+			aria-label="Press enter to clear the board and play a new round."
 			role="button"
 			on:keydown|once={(e) => {
 				const { key } = e;
