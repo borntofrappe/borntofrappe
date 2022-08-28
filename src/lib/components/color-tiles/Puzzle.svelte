@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion';
 	import { circInOut as easing } from 'svelte/easing';
 
-	export let size = 3;
+	export let size = 4;
 	export let colors = ['hsl(0, 68%, 67%)', 'hsl(54, 99%, 72%)', 'hsl(197, 87%, 73%)'];
 
 	const thickness = 0.1;
@@ -76,14 +76,17 @@
 	let color = tile.color;
 	deck = deck.slice(0, -1);
 
-	const duration = 200;
+	const durations = {
+		position: 200,
+		reset: 100
+	};
 
 	const extraTile = tweened(
 		{
 			x,
 			y
 		},
-		{ duration, easing }
+		{ duration: durations.position, easing }
 	);
 
 	const updateGrid = ({ row, column }) => {
@@ -102,7 +105,70 @@
 		await extraTile.set({ x, y });
 		updateGrid({ row, column });
 	};
+
+	const animateDeck = async (n = 0) => {
+		const tileIndex = size % 2 === 0 ? size ** 2 - n - 1 : size ** 2 - n;
+		if (tileIndex >= 0) {
+			const deckTile = decks[deckIndex][n];
+			const tile = deck[tileIndex];
+
+			const { x: tileX, y: tileY, color: tileColor } = tile;
+			extraTile.set({ x: tileX, y: tileY }, { duration: 0 });
+
+			deck = [...deck.slice(0, tileIndex), ...deck.slice(tileIndex + 1)];
+
+			color = tileColor;
+
+			const { x, y } = deckTile;
+			await extraTile.set({ x, y }, { duration: durations.reset });
+
+			deck = [...deck, { x, y, color }];
+
+			animateDeck(n + 1);
+		} else {
+			deck = deck.slice(0, -1);
+		}
+	};
+
+	const animateGrid = async (n = 0) => {
+		const deckTile = decks[deckIndex][n];
+
+		const tile =
+			deckTile &&
+			grid
+				.reduce((acc, curr) => [...acc, ...curr], [])
+				.find(({ color }) => color === deckTile.color);
+		if (tile) {
+			const { x: tileX, y: tileY, row, column, color: tileColor } = tile;
+
+			extraTile.set({ x: tileX, y: tileY }, { duration: 0 });
+			grid[row][column].color = null;
+
+			color = tileColor;
+
+			const { x, y } = deckTile;
+			await extraTile.set({ x, y }, { duration: durations.reset });
+
+			deck = [...deck, { x, y, color }];
+
+			animateGrid(n + 1);
+		} else {
+			animateDeck(n);
+		}
+	};
+
+	const handleReset = () => {
+		const isOnDeck = $extraTile.x === decks[deckIndex][0].x;
+		if (isOnDeck) {
+			const { x, y } = $extraTile;
+			deck = [...deck, { x, y, color }];
+		}
+		deckIndex = deckIndex === 0 ? 1 : 0;
+		animateGrid();
+	};
 </script>
+
+<button on:click={handleReset}>Reset</button>
 
 <svg
 	viewBox="{(strokeWidth / 2) * -1} {(strokeWidth / 2) * -1} {viewBoxWidth +
