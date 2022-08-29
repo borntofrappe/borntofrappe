@@ -76,13 +76,6 @@ body {
 	color: var(--color);
 	background: var(--background);
 	accent-color: var(--accent);
-	text-rendering: optimizeSpeed;
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
-		helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-}
-
-code {
-	font-family: Inconsolata, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 }
 
 ::selection {
