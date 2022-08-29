@@ -173,7 +173,7 @@ Ultimately, I decided to add a small stroke matching the yellow shade of the bod
 
 You may not notice the outline — immediately.
 
-<Center>>
+<Center>
     <Eyes />
 </Center>
 
