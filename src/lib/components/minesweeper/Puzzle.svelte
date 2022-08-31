@@ -9,9 +9,35 @@
 	let puzzle = new Puzzle({ columns, rows, mines });
 
 	let flags = [];
+
+	const handleReset = () => {
+		puzzle = new Puzzle({ columns, rows, mines });
+		flags = [];
+	};
+
+	const handleReveal = ({ row, column }) => {
+		if (flags.some((flag) => flag.row === row && flag.column === column)) return;
+
+		puzzle.grid[row][column].isRevealed = true;
+	};
+
+	const handleFlag = ({ row, column }) => {
+		const i = flags.findIndex((flag) => flag.row === row && flag.column === column);
+		if (i === -1) {
+			if (flags.length < mines) flags = [...flags, { row, column }];
+		} else {
+			flags = [...flags.slice(0, i), ...flags.slice(i + 1)];
+		}
+	};
 </script>
 
-<svg viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}">
+<svg
+	viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}"
+	class="focusable"
+	style:outline="none"
+	tabindex="0"
+	aria-label="Avoid mines and clear the grid. Focus on a cell and press enter to reveal the content. Press f to toggle a flag and mark the cell as locked."
+>
 	<defs>
 		<linearGradient id="minesweeper-linear-gradient-stroke-se" x1="0" x2="1" y1="0" y2="1">
 			<stop stop-color="#ffffff" offset="0.5" />
@@ -147,6 +173,16 @@
 		height={rows + 3}
 	/>
 
+	<g class="focus" opacity="0">
+		<rect
+			fill="none"
+			stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+			stroke-width="0.2"
+			width={columns + 1}
+			height={rows + 3}
+		/>
+	</g>
+
 	<g
 		fill="#bbbbbb"
 		stroke="url(#minesweeper-linear-gradient-stroke-nw)"
@@ -190,26 +226,54 @@
 
 		<g transform="translate({columns / 2} 0)">
 			<g transform="translate(0 0.06)">
-				<rect
-					fill="#bbbbbb"
-					stroke="url(#minesweeper-linear-gradient-stroke-se)"
-					stroke-width="0.12"
-					x="-0.69"
-					width="1.38"
-					height="1.38"
-				/>
+				<g
+					style:cursor="pointer"
+					on:click={handleReset}
+					class="focusable"
+					style:outline="none"
+					role="button"
+					tabindex="0"
+					aria-label="Press enter to start a new puzzle."
+					on:keydown={(e) => {
+						const { key } = e;
+						if (key === 'Enter') {
+							e.preventDefault();
+							handleReset();
+						}
+					}}
+				>
+					<rect
+						fill="#bbbbbb"
+						stroke="url(#minesweeper-linear-gradient-stroke-se)"
+						stroke-width="0.12"
+						x="-0.69"
+						width="1.38"
+						height="1.38"
+					/>
 
-				<g transform="translate(0 0.69)">
-					<svg x="-0.45" y="-0.45" width="0.9" height="0.9">
-						<use href="#minesweeper-puzzle-win" />
-					</svg>
+					<g class="focus" opacity="0">
+						<rect
+							fill="none"
+							stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+							stroke-width="0.12"
+							x="-0.69"
+							width="1.38"
+							height="1.38"
+						/>
+					</g>
+
+					<g transform="translate(0 0.69)">
+						<svg x="-0.45" y="-0.45" width="0.9" height="0.9">
+							<use href="#minesweeper-puzzle-win" />
+						</svg>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 
 	<g transform="translate(0.5 2.5)">
-		<g>
+		<g on:contextmenu|preventDefault>
 			{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
 				<g transform="translate({column} {row})">
 					{#if isRevealed}
@@ -227,21 +291,60 @@
 							<use href="#minesweeper-cell-{state}" />
 						</svg>
 					{:else}
-						<rect
-							fill="#c3c3c3"
-							stroke="url(#minesweeper-linear-gradient-stroke-se)"
-							stroke-width="0.1"
-							x="0.05"
-							y="0.05"
-							width="0.9"
-							height="0.9"
-						/>
+						<g
+							style:cursor="pointer"
+							on:touchstart={() => {
+								handleReveal({ column, row });
+							}}
+							on:mousedown={({ button }) => {
+								if (button === 0) {
+									handleReveal({ column, row });
+								} else if (button === 2) {
+									handleFlag({ column, row });
+								}
+							}}
+							class="focusable"
+							style:outline="none"
+							role="button"
+							tabindex="0"
+							aria-label="Cell on row {row + 1} and column {column + 1}."
+							on:keydown={(e) => {
+								const { key } = e;
+								if (key === 'Enter') {
+									e.preventDefault();
+									handleReveal({ column, row });
+								} else if (key === 'f' || key === 'F') {
+									handleFlag({ column, row });
+								}
+							}}
+						>
+							<rect
+								fill="#c3c3c3"
+								stroke="url(#minesweeper-linear-gradient-stroke-se)"
+								stroke-width="0.1"
+								x="0.05"
+								y="0.05"
+								width="0.9"
+								height="0.9"
+							/>
+							<g class="focus" opacity="0">
+								<rect
+									fill="none"
+									stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+									stroke-width="0.1"
+									x="0.05"
+									y="0.05"
+									width="0.9"
+									height="0.9"
+								/>
+							</g>
+						</g>
 					{/if}
 				</g>
 			{/each}
 		</g>
 
-		<g>
+		<g style:pointer-events="none">
 			{#each flags as { column, row }}
 				<g transform="translate({column} {row})">
 					<svg x="0.2" y="0.2" width="0.6" height="0.6">
@@ -256,5 +359,13 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	.focusable:focus > .focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
 	}
 </style>

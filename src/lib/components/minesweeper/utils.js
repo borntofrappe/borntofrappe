@@ -46,7 +46,7 @@ export class Puzzle {
 				Array(columns)
 					.fill()
 					.map((_, column) => {
-						const isRevealed = true;
+						const isRevealed = false;
 						const state = targets.find((target) => target.column === column && target.row === row)
 							? 'mine'
 							: 0;
