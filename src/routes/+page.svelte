@@ -13,7 +13,7 @@
 </svelte:head>
 
 <div
-	style:background="inherit"
+	style:background="var(--background, hsl(40, 23%, 97%))"
 	style:min-height="100vh"
 	style:z-index="1"
 	style:position="relative"
