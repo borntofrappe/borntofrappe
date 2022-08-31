@@ -1,20 +1,23 @@
 <script>
 	import Display from './Display.svelte';
-	import { Puzzle } from './utils.js';
+	import { Puzzle, createTimer } from './utils.js';
 
 	export let rows = 10;
 	export let columns = 10;
 	export let mines = 10;
 
 	let puzzle = new Puzzle({ columns, rows, mines });
-	let state = 'wait';
 	let flags = [];
+
+	let state = 'wait';
+	const timer = createTimer();
 
 	const handleReset = () => {
 		puzzle = new Puzzle({ columns, rows, mines });
 		flags = [];
 
 		state = 'wait';
+		timer.reset();
 	};
 
 	const handleReveal = ({ row, column, firstContact = true }) => {
@@ -36,6 +39,7 @@
 				}
 
 				state = 'play';
+				timer.start();
 			}
 		}
 
@@ -50,8 +54,10 @@
 				)
 		) {
 			state = 'win';
+			timer.stop();
 		} else if (firstContact && puzzle.grid[row][column].state === 'mine') {
 			state = 'lose';
+			timer.stop();
 
 			for (let row = 0; row < puzzle.grid.length; row++) {
 				for (let column = 0; column < puzzle.grid[row].length; column++) {
@@ -96,6 +102,11 @@
 			flags = [...flags.slice(0, i), ...flags.slice(i + 1)];
 		}
 	};
+
+	$: if ($timer >= 999) {
+		state = 'lose';
+		timer.stop();
+	}
 </script>
 
 <svg
@@ -283,7 +294,13 @@
 			<rect fill="#040404" width="3" height="1.5" />
 			<g transform="translate(1.5 0.75)">
 				<g transform="translate(-1.25 -0.6)">
-					<Display value="000" color="#fa0202" width={2.5} height={1.2} gap={25} />
+					<Display
+						value={$timer.toString().padStart(3, '0')}
+						color="#fa0202"
+						width={2.5}
+						height={1.2}
+						gap={25}
+					/>
 				</g>
 			</g>
 		</g>
@@ -386,7 +403,7 @@
 							class="focusable"
 							style:outline="none"
 							role="button"
-							tabindex="0"
+							tabindex={state === 'win' || state === 'lose' ? '-1' : '0'}
 							aria-label="Cell on row {row + 1} and column {column + 1}."
 							on:keydown={(e) => {
 								const { key } = e;
