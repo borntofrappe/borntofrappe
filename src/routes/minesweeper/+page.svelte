@@ -9,7 +9,7 @@
 </svelte:head>
 
 <article>
-	<Puzzle />
+	<Puzzle columns={20} rows={12} mines={20} />
 </article>
 
 <style>
@@ -26,6 +26,6 @@
 	article > :global(svg) {
 		display: block;
 		width: 90vmin;
-		max-width: 36rem;
+		max-width: 52rem;
 	}
 </style>
