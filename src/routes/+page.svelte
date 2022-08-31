@@ -1,5 +1,6 @@
 <script>
 	import Intro from './Intro.svelte';
+	import Showcase from './Showcase.svelte';
 	import Outro from './Outro.svelte';
 </script>
 
@@ -18,6 +19,7 @@
 	style:position="relative"
 >
 	<Intro />
+	<Showcase />
 </div>
 <div style:position="sticky" style:bottom="0">
 	<Outro />
