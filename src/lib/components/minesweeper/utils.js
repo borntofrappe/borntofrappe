@@ -17,7 +17,7 @@ const shuffle = (array) => {
 };
 
 export class Puzzle {
-	constructor({ columns = 10, rows = 10, mines = 10 }) {
+	constructor({ columns = 10, rows = 10, mines = 10, empty = null }) {
 		const offsetsNeighbors = [
 			{ row: -1, column: 0 },
 			{ row: -1, column: 1 },
@@ -29,16 +29,51 @@ export class Puzzle {
 			{ row: -1, column: -1 }
 		];
 
-		const targets = shuffle(
-			Array(columns * rows)
-				.fill()
-				.map((_, i) => i)
-		)
-			.slice(0, mines)
-			.map((i) => ({
-				row: Math.floor(i / columns),
-				column: i % columns
-			}));
+		let targets = [];
+
+		if (empty) {
+			const { row: emptyRow, column: emptyColumn } = empty;
+
+			let indexes = shuffle(
+				Array(columns * rows)
+					.fill()
+					.map((_, i) => i)
+			);
+
+			while (targets.length < mines) {
+				const i = indexes.pop();
+				const row = Math.floor(i / columns);
+				const column = i % columns;
+
+				if (row === emptyRow && column === emptyColumn) continue;
+
+				let wouldHaveNumber = false;
+
+				for (const { row: offsetRow, column: offsetColumn } of offsetsNeighbors) {
+					const neighborRow = row + offsetRow;
+					const neighborColumn = column + offsetColumn;
+					if (neighborRow === emptyRow && neighborColumn === emptyColumn) {
+						wouldHaveNumber = true;
+						break;
+					}
+				}
+
+				if (wouldHaveNumber) continue;
+
+				targets.push({ row, column });
+			}
+		} else {
+			targets = shuffle(
+				Array(columns * rows)
+					.fill()
+					.map((_, i) => i)
+			)
+				.slice(0, mines)
+				.map((i) => ({
+					row: Math.floor(i / columns),
+					column: i % columns
+				}));
+		}
 
 		const grid = Array(rows)
 			.fill()

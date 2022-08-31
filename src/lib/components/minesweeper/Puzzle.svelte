@@ -7,14 +7,14 @@
 	export let mines = 10;
 
 	let puzzle = new Puzzle({ columns, rows, mines });
-	let state = 'play';
+	let state = 'wait';
 	let flags = [];
 
 	const handleReset = () => {
 		puzzle = new Puzzle({ columns, rows, mines });
 		flags = [];
 
-		state = 'play';
+		state = 'wait';
 	};
 
 	const handleReveal = ({ row, column, firstContact = true }) => {
@@ -24,6 +24,19 @@
 			if (state === 'lose' || state === 'win') return;
 
 			if (flags.some((flag) => flag.row === row && flag.column === column)) return;
+
+			if (state === 'wait') {
+				if (puzzle.grid[row][column].state !== 0) {
+					puzzle = new Puzzle({
+						columns,
+						rows,
+						mines,
+						empty: { row, column }
+					});
+				}
+
+				state = 'play';
+			}
 		}
 
 		puzzle.grid[row][column].isRevealed = true;
@@ -68,7 +81,7 @@
 				});
 
 			neighbors.forEach(({ row, column }) => {
-				handleReveal({ row, column });
+				handleReveal({ row, column, firstContact: false });
 			});
 		}
 	};
@@ -102,6 +115,19 @@
 			<stop stop-color="#ffffff" offset="0.5" />
 			<stop stop-color="#767676" offset="0.5" />
 		</linearGradient>
+
+		<symbol viewBox="-0.45 -0.45 0.9 0.9" id="minesweeper-puzzle-wait">
+			<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
+			<g>
+				<g fill="#040404" transform="translate(0 -0.11)">
+					<circle r="0.06" cx="-0.13" />
+					<circle r="0.06" cx="0.13" />
+				</g>
+				<g fill="none" stroke="#040404" stroke-width="0.05">
+					<path d="M -0.19 0.1 a 0.21 0.21 0 0 0 0.38 0" />
+				</g>
+			</g>
+		</symbol>
 
 		<symbol viewBox="-0.45 -0.45 0.9 0.9" id="minesweeper-puzzle-play">
 			<circle r="0.42" fill="#f7e700" stroke="#040404" stroke-width="0.05" />
