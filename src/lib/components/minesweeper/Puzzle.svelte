@@ -4,13 +4,11 @@
 
 	export let rows = 10;
 	export let columns = 10;
+	export let mines = 10;
 
-	let puzzle = new Puzzle({ columns, rows });
+	let puzzle = new Puzzle({ columns, rows, mines });
 
-	const flags = puzzle.grid
-		.reduce((acc, curr) => [...acc, ...curr], [])
-		.filter(({ isRevealed }) => !isRevealed && Math.random() > 0.75)
-		.map(({ row, column }) => ({ row, column }));
+	let flags = [];
 </script>
 
 <svg viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}">
@@ -179,7 +177,13 @@
 
 			<g transform="translate(1.5 0.75)">
 				<g transform="translate(-1.25 -0.6)">
-					<Display value="000" color="#fa0202" width={2.5} height={1.2} gap={25} />
+					<Display
+						value={mines.toString().padStart(3, '0')}
+						color="#fa0202"
+						width={2.5}
+						height={1.2}
+						gap={25}
+					/>
 				</g>
 			</g>
 		</g>
