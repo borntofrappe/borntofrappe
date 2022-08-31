@@ -7,21 +7,75 @@
 	export let mines = 10;
 
 	let puzzle = new Puzzle({ columns, rows, mines });
-
+	let state = 'play';
 	let flags = [];
 
 	const handleReset = () => {
 		puzzle = new Puzzle({ columns, rows, mines });
 		flags = [];
+
+		state = 'play';
 	};
 
-	const handleReveal = ({ row, column }) => {
-		if (flags.some((flag) => flag.row === row && flag.column === column)) return;
+	const handleReveal = ({ row, column, firstContact = true }) => {
+		if (puzzle.grid[row][column].isRevealed) return;
+
+		if (firstContact) {
+			if (state === 'lose' || state === 'win') return;
+
+			if (flags.some((flag) => flag.row === row && flag.column === column)) return;
+		}
 
 		puzzle.grid[row][column].isRevealed = true;
+
+		if (
+			puzzle.grid
+				.reduce((acc, curr) => [...acc, ...curr], [])
+				.every(
+					({ isRevealed, state }) =>
+						(state !== 'mine' && isRevealed) || (state === 'mine' && !isRevealed)
+				)
+		) {
+			state = 'win';
+		} else if (firstContact && puzzle.grid[row][column].state === 'mine') {
+			state = 'lose';
+
+			for (let row = 0; row < puzzle.grid.length; row++) {
+				for (let column = 0; column < puzzle.grid[row].length; column++) {
+					if (
+						!puzzle.grid[row][column].isRevealed &&
+						!flags.some((flag) => flag.row === row && flag.column === column)
+					) {
+						puzzle.grid[row][column].isRevealed = true;
+					}
+				}
+			}
+		} else if (puzzle.grid[row][column].state === 0) {
+			const neighbors = puzzle.offsetsNeighbors
+				.map(({ row: offsetRow, column: offsetColumn }) => ({
+					row: row + offsetRow,
+					column: column + offsetColumn
+				}))
+				.filter(({ row: neighborRow, column: neighborColumn }) => {
+					if (!puzzle.grid[neighborRow] || !puzzle.grid[neighborRow][neighborColumn]) return false;
+
+					const cell = puzzle.grid[neighborRow][neighborColumn];
+					return (
+						cell.state !== 'mine' &&
+						!cell.isRevealed &&
+						!flags.some((flag) => flag.row === neighborRow && flag.column === neighborColumn)
+					);
+				});
+
+			neighbors.forEach(({ row, column }) => {
+				handleReveal({ row, column });
+			});
+		}
 	};
 
 	const handleFlag = ({ row, column }) => {
+		if (state === 'lose' || state === 'win') return;
+
 		const i = flags.findIndex((flag) => flag.row === row && flag.column === column);
 		if (i === -1) {
 			if (flags.length < mines) flags = [...flags, { row, column }];
@@ -214,7 +268,7 @@
 			<g transform="translate(1.5 0.75)">
 				<g transform="translate(-1.25 -0.6)">
 					<Display
-						value={mines.toString().padStart(3, '0')}
+						value={(mines - flags.length).toString().padStart(3, '0')}
 						color="#fa0202"
 						width={2.5}
 						height={1.2}
@@ -264,7 +318,7 @@
 
 					<g transform="translate(0 0.69)">
 						<svg x="-0.45" y="-0.45" width="0.9" height="0.9">
-							<use href="#minesweeper-puzzle-win" />
+							<use href="#minesweeper-puzzle-{state}" />
 						</svg>
 					</g>
 				</g>

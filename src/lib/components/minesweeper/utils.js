@@ -74,5 +74,6 @@ export class Puzzle {
 		this.columns = columns;
 		this.rows = rows;
 		this.grid = grid;
+		this.offsetsNeighbors = offsetsNeighbors;
 	}
 }
