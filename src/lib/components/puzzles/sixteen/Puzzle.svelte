@@ -7,7 +7,8 @@
 
 	const size = 4;
 	const index = 15;
-	const moves = 5;
+	const moves = 50;
+
 	let { grid, hiddenTile, values } = getPuzzle({ size, index, moves });
 
 	let isSliding = false;

@@ -13,9 +13,9 @@
 </svelte:head>
 
 <div>
-	<header>
-		<TextTile element="h1" text="Sixteen" />
-	</header>
+	<!-- <header>
+		<TextTile element="h1" text="Puzzles" />
+	</header> -->
 
 	<Sixteen />
 </div>
