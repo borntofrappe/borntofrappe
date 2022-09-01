@@ -157,7 +157,7 @@
 	class="focusable"
 	tabindex="0"
 	aria-label={isAnimated
-		? 'Play a new round of rainbox sixteen. Focus on a tile and press enter to hide the matching color.'
+		? 'Play a new round of rainbow sixteen. Focus on a tile and press enter to hide the matching color.'
 		: 'Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position.'}
 >
 	<g class="focus" opacity="0">

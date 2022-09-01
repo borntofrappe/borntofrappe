@@ -27,7 +27,7 @@
 
 		<h2>Why SVG?</h2>
 		<p>
-			Take a look around this verty website and, fingers crossed, you'll find the answer in
+			Take a look around this very website and, fingers crossed, you'll find the answer in
 			applications worth exploring.
 		</p>
 	</header>
