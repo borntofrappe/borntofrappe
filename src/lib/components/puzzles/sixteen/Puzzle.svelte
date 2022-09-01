@@ -6,18 +6,22 @@
 	import Tile from '../Tile.svelte';
 
 	const size = 4;
-	let { grid, hiddenTile, values } = getPuzzle({ size, index: 15, moves: 10 });
+	const index = 15;
+	const moves = 5;
+	let { grid, hiddenTile, values } = getPuzzle({ size, index, moves });
 
 	let isSliding = false;
 	let isSolved = false;
 
 	const durations = {
 		slide: 125,
-		show: 500
+		scale: 500,
+		hide: 300
 	};
 
 	const slide = tweened(0, { duration: durations.slide, easing });
-	const hiddenScale = tweened(0, { duration: durations.show, easing });
+	const scale = tweened(1, { duration: durations.scale, easing });
+	const hiddenScale = tweened(0, { duration: durations.scale, easing });
 
 	const hasHiddenNeighbor = ({ row, column }) => {
 		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
@@ -71,13 +75,35 @@
 		}
 
 		if (hasSolved) {
-			isSolved = true;
+			await hiddenScale.set(1, { easing: backOut });
 
-			hiddenScale.set(1, { easing: backOut });
+			isSolved = true;
 		} else {
 			slide.set(0, { duration: 0 });
 			isSliding = false;
 		}
+	};
+
+	const resetPuzzle = async ({ row, column }) => {
+		isSolved = false;
+
+		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
+		grid[hiddenRow][hiddenColumn].hidden = false;
+		grid[row][column].hidden = true;
+
+		hiddenScale.set(0, { duration: durations.hide });
+		await scale.set(0);
+
+		const index = row * size + column;
+		const puzzle = getPuzzle({ size, index, moves });
+
+		grid = puzzle.grid;
+		hiddenTile = puzzle.hiddenTile;
+
+		await scale.set(1);
+
+		isSliding = false;
+		slide.set(0, { duration: 0 });
 	};
 
 	const handleKeydown = ({ event, row, column }) => {
@@ -117,7 +143,7 @@
 	viewBox="-0.5 -0.5 {size} {size}"
 	tabindex="0"
 	aria-label={isSolved
-		? "Congrats, you've completed a round of Sixteen."
+		? 'Play a new round of Sixteen. Focus on a tile and press enter to hide the matching number and start from scratch.'
 		: 'Slide the tiles so that the puzzle shows the number in ascending order. Press enter or one of the possible arrow keys to change the position of the focused number.'}
 	style:outline="none"
 	class="focusable"
@@ -136,21 +162,59 @@
 						</g>
 					</g>
 				{:else}
+					<g transform="scale({$scale})">
+						<g
+							style:cursor={!isSliding && hasHiddenNeighbor({ row, column })
+								? 'pointer'
+								: 'initial'}
+							on:click={() => {
+								if (!isSliding && hasHiddenNeighbor({ row, column })) {
+									updatePuzzle({ row, column });
+								}
+							}}
+							role="button"
+							tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
+							aria-label="Row {row + 1} and column {column + 1}. Tile number {value}."
+							style:outline="none"
+							class="focusable"
+							on:keydown={(event) => {
+								if (!isSliding && hasHiddenNeighbor({ row, column })) {
+									handleKeydown({ event, row, column });
+								}
+							}}
+						>
+							<g class="focus" opacity="0">
+								<circle r="0.5" fill="#f2eeef" opacity="0.2" />
+							</g>
+							<g transform="translate(-0.38 -0.38)">
+								<Tile width="0.76" height="0.76" char={value.toString()} />
+							</g>
+						</g>
+					</g>
+				{/if}
+			</g>
+		{/each}
+	</g>
+
+	{#if isSolved}
+		<g>
+			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, value }}
+				<g transform="translate({column} {row})">
 					<g
-						style:cursor={!isSliding && hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
+						style:cursor="pointer"
 						on:click={() => {
-							if (!isSliding && hasHiddenNeighbor({ row, column })) {
-								updatePuzzle({ row, column });
-							}
+							resetPuzzle({ row, column });
 						}}
 						role="button"
-						tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
+						tabindex="0"
 						aria-label="Row {row + 1} and column {column + 1}. Tile number {value}."
 						style:outline="none"
 						class="focusable"
 						on:keydown={(event) => {
-							if (!isSliding && hasHiddenNeighbor({ row, column })) {
-								handleKeydown({ event, row, column });
+							const { key } = event;
+							if (key === 'Enter') {
+								event.preventDefault();
+								resetPuzzle({ row, column });
 							}
 						}}
 					>
@@ -161,10 +225,10 @@
 							<Tile width="0.76" height="0.76" char={value.toString()} />
 						</g>
 					</g>
-				{/if}
-			</g>
-		{/each}
-	</g>
+				</g>
+			{/each}
+		</g>
+	{/if}
 </svg>
 
 <style>
