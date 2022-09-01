@@ -1,6 +1,7 @@
 <script>
 	import TextTile from '$lib/components/puzzles/TextTile.svelte';
 	import Sixteen from '$lib/components/puzzles/sixteen/Puzzle.svelte';
+	import AdditionSquare from '$lib/components/puzzles/addition-square/Puzzle.svelte';
 </script>
 
 <svelte:head>
@@ -17,7 +18,7 @@
 		<TextTile element="h1" text="Puzzles" />
 	</header> -->
 
-	<Sixteen />
+	<AdditionSquare />
 </div>
 
 <style>
