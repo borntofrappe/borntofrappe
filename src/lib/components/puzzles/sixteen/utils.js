@@ -131,5 +131,5 @@ export const getPuzzle = ({ size, index, moves }) => {
 		hiddenTile.column = column;
 	}
 
-	return { grid, hiddenTile };
+	return { grid, hiddenTile, values };
 };

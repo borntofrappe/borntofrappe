@@ -6,15 +6,18 @@
 	import Tile from '../Tile.svelte';
 
 	const size = 4;
-	let { grid, hiddenTile } = getPuzzle({ size, index: 15, moves: 100 });
+	let { grid, hiddenTile, values } = getPuzzle({ size, index: 15, moves: 10 });
 
 	let isSliding = false;
+	let isSolved = false;
 
 	const durations = {
-		slide: 125
+		slide: 125,
+		show: 500
 	};
 
 	const slide = tweened(0, { duration: durations.slide, easing });
+	const hiddenScale = tweened(0, { duration: durations.show, easing });
 
 	const hasHiddenNeighbor = ({ row, column }) => {
 		const { row: hiddenRow, column: hiddenColumn } = hiddenTile;
@@ -56,8 +59,25 @@
 
 		hiddenTile = { row, column };
 
-		slide.set(0, { duration: 0 });
-		isSliding = false;
+		let hasSolved = true;
+		for (let row = 0; row < grid.length; row++) {
+			if (!hasSolved) break;
+			for (let column = 0; column < grid[row].length; column++) {
+				if (grid[row][column].value !== values[row][column]) {
+					hasSolved = false;
+					break;
+				}
+			}
+		}
+
+		if (hasSolved) {
+			isSolved = true;
+
+			hiddenScale.set(1, { easing: backOut });
+		} else {
+			slide.set(0, { duration: 0 });
+			isSliding = false;
+		}
 	};
 
 	const handleKeydown = ({ event, row, column }) => {
@@ -96,7 +116,9 @@
 <svg
 	viewBox="-0.5 -0.5 {size} {size}"
 	tabindex="0"
-	aria-label="Slide the tiles so that the puzzle shows the number in ascending order."
+	aria-label={isSolved
+		? "Congrats, you've completed a round of Sixteen."
+		: 'Slide the tiles so that the puzzle shows the number in ascending order. Press enter or one of the possible arrow keys to change the position of the focused number.'}
 	style:outline="none"
 	class="focusable"
 >
@@ -107,7 +129,13 @@
 	<g>
 		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, value, hidden }}
 			<g transform="translate({column} {row})">
-				{#if !hidden}
+				{#if hidden}
+					<g transform="scale({$hiddenScale})">
+						<g transform="translate(-0.38 -0.38)">
+							<Tile width="0.76" height="0.76" char={value.toString()} />
+						</g>
+					</g>
+				{:else}
 					<g
 						style:cursor={!isSliding && hasHiddenNeighbor({ row, column }) ? 'pointer' : 'initial'}
 						on:click={() => {
