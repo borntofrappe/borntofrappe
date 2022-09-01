@@ -1,5 +1,6 @@
 <script>
 	import TextTile from '$lib/components/puzzles/TextTile.svelte';
+	import Sixteen from '$lib/components/puzzles/sixteen/Puzzle.svelte';
 </script>
 
 <svelte:head>
@@ -13,8 +14,10 @@
 
 <div>
 	<header>
-		<TextTile element="h1" text="Puzzles" />
+		<TextTile element="h1" text="Sixteen" />
 	</header>
+
+	<Sixteen />
 </div>
 
 <style>
