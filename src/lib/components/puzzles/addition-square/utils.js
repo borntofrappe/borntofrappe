@@ -16,18 +16,7 @@ const shuffle = (array) => {
 	return a;
 };
 
-export const getPuzzle = ({ size = 3 }) => {
-	/*
-      1  2  3  6 
-      4  5  6 15
-      7  8  9 24
-     12 15 18
-
-     [[1, 2, 3, 6]],
-     [[4, 5, 6, 15]],
-     [[7, 8, 9, 24]],
-     [[12, 15, 18]],
-    */
+export const getPuzzle = ({ size = 3, reveal = 0 }) => {
 	const grid = shuffle(
 		Array(size ** 2)
 			.fill()
@@ -64,5 +53,8 @@ export const getPuzzle = ({ size = 3 }) => {
 		[]
 	);
 
-	return { numbers, columns, rows };
+	const hints =
+		reveal > 0 ? shuffle(numbers.reduce((acc, curr) => [...acc, ...curr])).slice(0, reveal) : [];
+
+	return { numbers, columns, rows, hints };
 };

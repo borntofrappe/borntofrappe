@@ -4,29 +4,30 @@
 
 	export let size = 3;
 
-	const puzzle = getPuzzle({ size });
+	const puzzle = getPuzzle({ size, reveal: 3 });
 
-	const numbers = puzzle.numbers.map((array, row) =>
-		array.map((number, column) => ({
-			row,
-			column,
-			number,
-			show: Math.random() > 0.5
-		}))
+	const numbers = puzzle.numbers.map((row) =>
+		row.map((number) => {
+			const locked = puzzle.hints.includes(number);
+			return {
+				number,
+				value: locked ? number : 0,
+				locked
+			};
+		})
 	);
 
-	const columns = numbers.reduce((acc, curr, i) => {
+	const columns = numbers.reduce((acc, curr) => {
 		for (let i = 0; i < curr.length; i++) {
-			const { show, number } = curr[i];
-			const n = show ? number : 0;
-			acc[i] = acc[i] ? acc[i] + n : n;
+			const { value } = curr[i];
+			acc[i] = acc[i] ? acc[i] + value : value;
 		}
 
 		return acc;
 	}, []);
 
 	const rows = numbers.reduce(
-		(acc, curr) => [...acc, curr.reduce((a, { show, number }) => (show ? a + number : a), 0)],
+		(acc, curr) => [...acc, curr.reduce((a, { value }) => a + value, 0)],
 		[]
 	);
 </script>
@@ -58,9 +59,9 @@
 		<g transform="translate(1 0)">
 			{#each columns as number, column}
 				<g transform="translate({column} 0)">
-					<g opacity={number === puzzle.columns[column] ? 1 : 0.7}>
+					<g opacity={number === puzzle.columns[column] ? 1 : 0.5}>
 						<path
-							opacity="0.4"
+							opacity="0.25"
 							fill="none"
 							stroke="currentColor"
 							stroke-width="0.05"
@@ -79,12 +80,12 @@
 			{/each}
 		</g>
 
-		<g opacity="0.7" transform="translate(0 1)">
+		<g transform="translate(0 1)">
 			{#each rows as number, row}
 				<g transform="translate(0 {row})">
-					<g opacity={number === puzzle.rows[row] ? 1 : 0.7}>
+					<g opacity={number === puzzle.rows[row] ? 1 : 0.5}>
 						<path
-							opacity="0.4"
+							opacity="0.25"
 							fill="none"
 							stroke="currentColor"
 							stroke-width="0.05"
@@ -106,15 +107,17 @@
 
 	<g transform="translate(1 1)">
 		<g transform="translate(-0.35 -0.35)">
-			{#each numbers.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, number, show }}
-				<g transform="translate({column} {row})">
-					<Tile
-						width={0.7}
-						height={0.7}
-						tile={show ? '#fdd4ce' : '#f2eeef'}
-						char={show ? number.toString() : ''}
-					/>
-				</g>
+			{#each numbers as array, row}
+				{#each array as { value, locked }, column}
+					<g transform="translate({column} {row})">
+						<Tile
+							width={0.7}
+							height={0.7}
+							tile={locked ? '#fdd4ce' : '#f2eeef'}
+							char={value === 0 ? '' : value.toString()}
+						/>
+					</g>
+				{/each}
 			{/each}
 		</g>
 	</g>
