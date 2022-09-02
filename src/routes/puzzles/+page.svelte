@@ -1,7 +1,19 @@
 <script>
-	import TextTile from '$lib/components/puzzles/TextTile.svelte';
 	import Sixteen from '$lib/components/puzzles/sixteen/Puzzle.svelte';
 	import AdditionSquare from '$lib/components/puzzles/addition-square/Puzzle.svelte';
+
+	const options = [
+		{
+			name: 'Sixteen',
+			component: Sixteen
+		},
+		{
+			name: 'Addition square',
+			component: AdditionSquare
+		}
+	];
+
+	let selected = options[0];
 </script>
 
 <svelte:head>
@@ -14,11 +26,15 @@
 </svelte:head>
 
 <div>
-	<!-- <header>
-		<TextTile element="h1" text="Puzzles" />
-	</header> -->
+	<select bind:value={selected}>
+		{#each options as option}
+			<option value={option}>{option.name}</option>
+		{/each}
+	</select>
 
-	<AdditionSquare />
+	<article>
+		<svelte:component this={selected.component} />
+	</article>
 </div>
 
 <style>
@@ -37,7 +53,7 @@
 		align-items: center;
 	}
 
-	header {
-		max-width: 52rem;
+	div > * + * {
+		margin-top: 1em;
 	}
 </style>
