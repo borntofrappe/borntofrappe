@@ -57,5 +57,12 @@ export const getPuzzle = ({ size = 3 }) => {
 		return acc;
 	}, []);
 
-	return { grid };
+	const numbers = grid.slice(0, size).map((d) => d.slice(0, size));
+	const columns = [...grid[size]];
+	const rows = grid.reduce(
+		(acc, curr) => (curr.length === size + 1 ? [...acc, curr[curr.length - 1]] : [...acc]),
+		[]
+	);
+
+	return { numbers, columns, rows };
 };
