@@ -2,8 +2,8 @@
 	export let char = 't';
 	export let n = '';
 
-	export let width = 'auto';
-	export let height = 'auto';
+	export let width = '100%';
+	export let height = '100%';
 
 	export let tile = '#fdd4ce';
 	export let shadow = '#fea69c';
