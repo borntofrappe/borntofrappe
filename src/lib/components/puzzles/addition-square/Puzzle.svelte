@@ -1,14 +1,22 @@
 <script>
+	import { cubicInOut as easing } from 'svelte/easing';
+	import { tweened } from 'svelte/motion';
+
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
 	export let size = 3;
+	export let reveal = 7;
 
-	const puzzle = getPuzzle({ size, reveal: 3 });
+	const scale = tweened(1, { easing });
+	let puzzle = getPuzzle({ size, reveal });
+
+	let focus;
+
+	let isSolved = false;
 
 	let columns = [];
 	let rows = [];
-	let focus;
 
 	$: buttons = puzzle.numbers
 		.reduce((acc, curr) => [...acc, ...curr], [])
@@ -17,11 +25,11 @@
 
 	$: numbers = puzzle.numbers.map((row) =>
 		row.map((number) => {
-			const locked = puzzle.hints.includes(number);
+			const isLocked = puzzle.hints.includes(number);
 			return {
 				number,
-				value: locked ? number : 0,
-				locked
+				value: isLocked ? number : 0,
+				isLocked
 			};
 		})
 	);
@@ -37,6 +45,34 @@
 		}, []);
 
 		rows = numbers.reduce((acc, curr) => [...acc, curr.reduce((a, { value }) => a + value, 0)], []);
+
+		let totalsMatch = true;
+		for (let i = 0; i < columns.length; i++) {
+			if (columns[i] !== puzzle.columns[i]) {
+				totalsMatch = false;
+				break;
+			}
+		}
+
+		if (totalsMatch) {
+			for (let i = 0; i < rows.length; i++) {
+				if (rows[i] !== puzzle.rows[i]) {
+					totalsMatch = false;
+					break;
+				}
+			}
+		}
+
+		if (totalsMatch) {
+			const values = numbers.reduce((acc, curr) => [...acc, ...curr.map(({ value }) => value)], []);
+			isSolved = puzzle.numbers
+				.reduce((acc, curr) => [...acc, ...curr], [])
+				.every((d) => values.includes(d));
+
+			if (isSolved) {
+				handleBlur();
+			}
+		}
 	}
 
 	const handleFocus = ({ row, column }) => {
@@ -75,6 +111,14 @@
 		const { row, column } = focus;
 		numbers[row][column].value = number;
 	};
+
+	const handleReset = async () => {
+		await scale.set(0);
+		puzzle = getPuzzle({ size, reveal });
+
+		await scale.set(1);
+		isSolved = false;
+	};
 </script>
 
 <div>
@@ -82,11 +126,23 @@
 		viewBox="-0.5 -0.5 {size + 2} {size + 2}"
 		on:click={handleBlur}
 		tabindex="0"
-		aria-label="Fill the grid with the correct numbers."
+		aria-label={isSolved
+			? 'Continue playing with a new puzzle.'
+			: 'Fill the grid with the correct numbers.'}
 		on:focus={handleBlur}
 		class="focusable"
 		style:outline="none"
-		on:keydown={handleKeydown}
+		on:keydown={(e) => {
+			if (isSolved) {
+				const { key } = e;
+				if (key === 'Enter') {
+					e.preventDefault();
+					handleReset();
+				}
+			} else {
+				handleKeydown(e);
+			}
+		}}
 	>
 		<g class="focus" transform="translate(0.5 0.5)" opacity="0">
 			<rect width={size} height={size} rx="0.2" fill="#f2eeef" opacity="0.2" />
@@ -96,43 +152,7 @@
 				{#each puzzle.columns as number, column}
 					<g transform="translate({column} 0)">
 						<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
-						<text
-							text-anchor="middle"
-							dominant-baseline="central"
-							font-size="0.3"
-							fill="currentColor">{number}</text
-						>
-					</g>
-				{/each}
-			</g>
-
-			<g transform="translate({size + 1} 1)">
-				{#each puzzle.rows as number, row}
-					<g transform="translate(0 {row})">
-						<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
-						<text
-							text-anchor="middle"
-							dominant-baseline="central"
-							font-size="0.3"
-							fill="currentColor">{number}</text
-						>
-					</g>
-				{/each}
-			</g>
-
-			<g transform="translate(1 0)">
-				{#each columns as number, column}
-					<g transform="translate({column} 0)">
-						<g opacity={number === puzzle.columns[column] ? 1 : 0.5}>
-							<path
-								opacity="0.25"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="0.05"
-								d="M 0 1 v {rows.length - 1}"
-							/>
-
-							<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
+						<g transform="scale({$scale})">
 							<text
 								text-anchor="middle"
 								dominant-baseline="central"
@@ -144,10 +164,58 @@
 				{/each}
 			</g>
 
+			<g transform="translate({size + 1} 1)">
+				{#each puzzle.rows as number, row}
+					<g transform="translate(0 {row})">
+						<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
+						<g transform="scale({$scale})">
+							<text
+								text-anchor="middle"
+								dominant-baseline="central"
+								font-size="0.3"
+								fill="currentColor">{number}</text
+							>
+						</g>
+					</g>
+				{/each}
+			</g>
+
+			<g transform="translate(1 0)">
+				{#each columns as number, column}
+					<g transform="translate({column} 0)">
+						<g
+							opacity={number === puzzle.columns[column] ? 1 : 0.5}
+							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
+						>
+							<path
+								opacity="0.25"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="0.05"
+								d="M 0 1 v {rows.length - 1}"
+							/>
+
+							<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
+							<g transform="scale({$scale})">
+								<text
+									text-anchor="middle"
+									dominant-baseline="central"
+									font-size="0.3"
+									fill="currentColor">{number}</text
+								>
+							</g>
+						</g>
+					</g>
+				{/each}
+			</g>
+
 			<g transform="translate(0 1)">
 				{#each rows as number, row}
 					<g transform="translate(0 {row})">
-						<g opacity={number === puzzle.rows[row] ? 1 : 0.5}>
+						<g
+							opacity={number === puzzle.rows[row] ? 1 : 0.5}
+							style="transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1);"
+						>
 							<path
 								opacity="0.25"
 								fill="none"
@@ -157,12 +225,14 @@
 							/>
 
 							<circle r="0.35" fill="none" stroke="currentColor" stroke-width="0.02" />
-							<text
-								text-anchor="middle"
-								dominant-baseline="central"
-								font-size="0.3"
-								fill="currentColor">{number}</text
-							>
+							<g transform="scale({$scale})">
+								<text
+									text-anchor="middle"
+									dominant-baseline="central"
+									font-size="0.3"
+									fill="currentColor">{number}</text
+								>
+							</g>
 						</g>
 					</g>
 				{/each}
@@ -176,38 +246,51 @@
 				</g>
 			{/if}
 
-			<g transform="translate(-0.35 -0.35)">
-				{#each numbers as array, row}
-					{#each array as { value, locked }, column}
-						<g transform="translate({column} {row})">
-							{#if locked}
-								<Tile width={0.7} height={0.7} char={value.toString()} />
+			{#each numbers as array, row}
+				{#each array as { value, isLocked }, column}
+					<g transform="translate({column} {row})">
+						<g transform="scale({$scale})">
+							<g
+								class:solved={isSolved}
+								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
+								opacity="0"
+							>
+								<circle r="0.45" fill="#f2eeef" opacity="0.31" />
+							</g>
+							{#if isLocked}
+								<g transform="translate(-0.35 -0.35)">
+									<Tile width={0.7} height={0.7} char={value.toString()} />
+								</g>
 							{:else}
 								<g
-									style:cursor="pointer"
+									style:cursor={isSolved ? 'initial' : 'pointer'}
 									on:click|stopPropagation={() => {
+										if (isSolved) return;
 										handleFocus({ column, row });
 									}}
 									role="button"
-									tabindex="0"
+									tabindex={isSolved ? '-1' : '0'}
 									aria-label="Row {row + 1} and column {column + 1}."
 									on:focus={() => {
+										if (isSolved) return;
 										handleFocus({ column, row });
 									}}
 									style:outline="none"
 								>
-									<Tile
-										width={0.7}
-										height={0.7}
-										tile="#f2eeef"
-										char={value === 0 ? '' : value.toString()}
-									/>
+									<g transform="translate(-0.35 -0.35)">
+										<Tile
+											width={0.7}
+											height={0.7}
+											tile="#f2eeef"
+											char={value === 0 ? '' : value.toString()}
+										/>
+									</g>
 								</g>
 							{/if}
 						</g>
-					{/each}
+					</g>
 				{/each}
-			</g>
+			{/each}
 		</g>
 	</svg>
 
@@ -226,31 +309,55 @@
 			</button>
 		{/each}
 		<button
-			style:cursor={focus ? 'pointer' : 'initial'}
+			style:cursor={isSolved || focus ? 'pointer' : 'initial'}
 			on:click={() => {
-				if (!focus) return;
-
-				handleClear();
+				if (isSolved) {
+					handleReset();
+				} else if (focus) {
+					handleClear();
+				}
 			}}
 		>
-			<span class="visually-hidden">Remove the value from the focused cell.</span>
+			<span class="visually-hidden"
+				>{isSolved
+					? 'Continue playing with a new puzzle.'
+					: 'Remove the value from the focused cell.'}</span
+			>
 			<Tile char="" tile="#f2eeef" />
 		</button>
 	</section>
 </div>
 
 <style>
-	svg {
+	div {
+		max-width: 20rem;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	div > * + * {
+		margin-top: 0.5em;
+	}
+
+	div > svg {
 		display: block;
-		max-width: 30rem;
+		user-select: none;
 	}
 
-	.focusable:focus > .focus {
-		opacity: 1;
+	div > svg:focus {
+		outline: 0.2rem solid #f2eeef28;
+		border-radius: 0.5rem;
 	}
 
-	.focusable:focus:not(:focus-visible) > .focus {
-		opacity: 0;
+	div > svg:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	div > svg:focus:focus-visible {
+		outline: none;
+		background: #f2eeef28;
 	}
 
 	section {
@@ -285,5 +392,52 @@
 		background: none;
 		padding: 0;
 		margin: 0;
+	}
+
+	button > :global(svg) {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	button {
+		position: relative;
+		z-index: 0;
+	}
+
+	button::before {
+		position: absolute;
+		content: '';
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		background: #f2eeef;
+		transform: translate(-50%, -50%) scale(1.25);
+		border-radius: 50%;
+		opacity: 0;
+		z-index: -1;
+	}
+
+	button:focus {
+		outline: none;
+	}
+
+	button:focus::before {
+		opacity: 0.4;
+	}
+
+	button:focus:not(:focus-visible)::before {
+		opacity: 0;
+	}
+
+	.solved {
+		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	@keyframes flash {
+		50% {
+			opacity: 1;
+		}
 	}
 </style>
