@@ -1,6 +1,7 @@
 <script>
 	import Sixteen from '$lib/components/puzzles/sixteen/Puzzle.svelte';
 	import AdditionSquare from '$lib/components/puzzles/addition-square/Puzzle.svelte';
+	import FindThePattern from '$lib/components/puzzles/find-the-pattern/Puzzle.svelte';
 
 	const options = [
 		{
@@ -10,10 +11,14 @@
 		{
 			name: 'Addition square',
 			component: AdditionSquare
+		},
+		{
+			name: 'Find the pattern',
+			component: FindThePattern
 		}
 	];
 
-	let selected = options[0];
+	let selected = options[options.length - 1];
 </script>
 
 <svelte:head>
