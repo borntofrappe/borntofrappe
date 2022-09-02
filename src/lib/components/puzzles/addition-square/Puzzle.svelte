@@ -6,7 +6,7 @@
 	import { getPuzzle } from './utils.js';
 
 	export let size = 3;
-	export let reveal = 7;
+	export let reveal = size;
 
 	const scale = tweened(1, { easing });
 	let puzzle = getPuzzle({ size, reveal });
@@ -17,6 +17,7 @@
 
 	let columns = [];
 	let rows = [];
+	let issues = [];
 
 	$: buttons = puzzle.numbers
 		.reduce((acc, curr) => [...acc, ...curr], [])
@@ -46,6 +47,11 @@
 
 		rows = numbers.reduce((acc, curr) => [...acc, curr.reduce((a, { value }) => a + value, 0)], []);
 
+		const values = numbers.reduce((acc, curr) => [...acc, ...curr.map(({ value }) => value)], []);
+		issues = values.filter(
+			(d, i, array) => puzzle.hints.includes(d) || array.slice(i + 1).includes(d)
+		);
+
 		let totalsMatch = true;
 		for (let i = 0; i < columns.length; i++) {
 			if (columns[i] !== puzzle.columns[i]) {
@@ -64,7 +70,6 @@
 		}
 
 		if (totalsMatch) {
-			const values = numbers.reduce((acc, curr) => [...acc, ...curr.map(({ value }) => value)], []);
 			isSolved = puzzle.numbers
 				.reduce((acc, curr) => [...acc, ...curr], [])
 				.every((d) => values.includes(d));
@@ -124,14 +129,18 @@
 <div>
 	<svg
 		viewBox="-0.5 -0.5 {size + 2} {size + 2}"
-		on:click={handleBlur}
+		on:click={() => {
+			if (!isSolved) handleBlur();
+		}}
 		tabindex="0"
 		aria-label={isSolved
-			? 'Continue playing with a new puzzle.'
-			: 'Fill the grid with the correct numbers.'}
-		on:focus={handleBlur}
-		class="focusable"
+			? 'Play a new round of Addition Square. Press enter to start from scratch.'
+			: 'Complete the grid so that the numbers add up together to the values described in the columns and rows. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.'}
 		style:outline="none"
+		class="focusable"
+		on:focus={() => {
+			if (!isSolved) handleBlur();
+		}}
 		on:keydown={(e) => {
 			if (isSolved) {
 				const { key } = e;
@@ -147,6 +156,7 @@
 		<g class="focus" transform="translate(0.5 0.5)" opacity="0">
 			<rect width={size} height={size} rx="0.2" fill="#f2eeef" opacity="0.2" />
 		</g>
+
 		<g style:color="#f2eeef">
 			<g transform="translate(1 {size + 1})">
 				{#each puzzle.columns as number, column}
@@ -242,7 +252,7 @@
 		<g transform="translate(1 1)">
 			{#if focus}
 				<g transform="translate({focus.column} {focus.row})">
-					<circle r="0.45" fill="#f2eeef" opacity="0.3" />
+					<circle r="0.5" fill="#f2eeef" opacity="0.4" />
 				</g>
 			{/if}
 
@@ -255,7 +265,7 @@
 								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
 								opacity="0"
 							>
-								<circle r="0.45" fill="#f2eeef" opacity="0.31" />
+								<circle r="0.5" fill="#f2eeef" opacity="0.4" />
 							</g>
 							{#if isLocked}
 								<g transform="translate(-0.35 -0.35)">
@@ -265,23 +275,24 @@
 								<g
 									style:cursor={isSolved ? 'initial' : 'pointer'}
 									on:click|stopPropagation={() => {
-										if (isSolved) return;
-										handleFocus({ column, row });
+										if (!isSolved) handleFocus({ column, row });
 									}}
 									role="button"
 									tabindex={isSolved ? '-1' : '0'}
-									aria-label="Row {row + 1} and column {column + 1}."
-									on:focus={() => {
-										if (isSolved) return;
-										handleFocus({ column, row });
-									}}
+									aria-label="Add number on row {row + 1} and column {column + 1}.{value !== 0
+										? ` Or, delete number ${value}.`
+										: ''}"
 									style:outline="none"
+									on:focus={() => {
+										if (!isSolved) handleFocus({ column, row });
+									}}
 								>
 									<g transform="translate(-0.35 -0.35)">
 										<Tile
 											width={0.7}
 											height={0.7}
 											tile="#f2eeef"
+											outline={issues.includes(value) ? '#d91650' : '#07093a'}
 											char={value === 0 ? '' : value.toString()}
 										/>
 									</g>
@@ -297,7 +308,8 @@
 	<section>
 		{#each buttons as number}
 			<button
-				style:cursor={focus ? 'pointer' : 'initial'}
+				disabled={isSolved}
+				style:cursor={isSolved ? 'initial' : 'pointer'}
 				on:click={() => {
 					if (!focus) return;
 
@@ -309,7 +321,7 @@
 			</button>
 		{/each}
 		<button
-			style:cursor={isSolved || focus ? 'pointer' : 'initial'}
+			style:cursor="pointer"
 			on:click={() => {
 				if (isSolved) {
 					handleReset();
@@ -320,7 +332,7 @@
 		>
 			<span class="visually-hidden"
 				>{isSolved
-					? 'Continue playing with a new puzzle.'
+					? 'Play a new round of Addition Square.'
 					: 'Remove the value from the focused cell.'}</span
 			>
 			<Tile char="" tile="#f2eeef" />
@@ -330,7 +342,7 @@
 
 <style>
 	div {
-		max-width: 20rem;
+		max-width: 30rem;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -343,21 +355,14 @@
 
 	div > svg {
 		display: block;
-		user-select: none;
 	}
 
-	div > svg:focus {
-		outline: 0.2rem solid #f2eeef28;
-		border-radius: 0.5rem;
+	div > .focusable:focus > .focus {
+		opacity: 1;
 	}
 
-	div > svg:focus:not(:focus-visible) {
-		outline: none;
-	}
-
-	div > svg:focus:focus-visible {
-		outline: none;
-		background: #f2eeef28;
+	div > .focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
 	}
 
 	section {
