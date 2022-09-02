@@ -6,7 +6,11 @@
 
 	const puzzle = getPuzzle({ size, reveal: 3 });
 
-	const numbers = puzzle.numbers.map((row) =>
+	let columns = [];
+	let rows = [];
+	let focus;
+
+	let numbers = puzzle.numbers.map((row) =>
 		row.map((number) => {
 			const locked = puzzle.hints.includes(number);
 			return {
@@ -17,22 +21,62 @@
 		})
 	);
 
-	const columns = numbers.reduce((acc, curr) => {
-		for (let i = 0; i < curr.length; i++) {
-			const { value } = curr[i];
-			acc[i] = acc[i] ? acc[i] + value : value;
+	$: if (numbers) {
+		columns = numbers.reduce((acc, curr) => {
+			for (let i = 0; i < curr.length; i++) {
+				const { value } = curr[i];
+				acc[i] = acc[i] ? acc[i] + value : value;
+			}
+
+			return acc;
+		}, []);
+
+		rows = numbers.reduce((acc, curr) => [...acc, curr.reduce((a, { value }) => a + value, 0)], []);
+	}
+
+	const handleFocus = ({ row, column }) => {
+		focus = { row, column };
+	};
+
+	const handleBlur = () => {
+		focus = null;
+	};
+
+	const handleKeydown = (e) => {
+		if (!focus) return;
+
+		const { key } = e;
+		if (key === 'Backspace' || key === 'Delete') {
+			e.preventDefault();
+			const { row, column } = focus;
+			numbers[row][column].value = 0;
+		} else if (key === 'Escape') {
+			e.preventDefault();
+			handleBlur();
+		} else {
+			const value = parseInt(key, 10);
+			if (value) {
+				e.preventDefault();
+				const { row, column } = focus;
+				numbers[row][column].value = value;
+			}
 		}
-
-		return acc;
-	}, []);
-
-	const rows = numbers.reduce(
-		(acc, curr) => [...acc, curr.reduce((a, { value }) => a + value, 0)],
-		[]
-	);
+	};
 </script>
 
-<svg viewBox="-0.5 -0.5 {size + 2} {size + 2}">
+<svg
+	viewBox="-0.5 -0.5 {size + 2} {size + 2}"
+	on:click={handleBlur}
+	tabindex="0"
+	aria-label="Fill the grid with the correct numbers."
+	on:focus={handleBlur}
+	class="focusable"
+	style:outline="none"
+	on:keydown={handleKeydown}
+>
+	<g class="focus" transform="translate(0.5 0.5)" opacity="0">
+		<rect width={size} height={size} rx="0.2" fill="#f2eeef" opacity="0.2" />
+	</g>
 	<g style:color="#f2eeef">
 		<g transform="translate(1 {size + 1})">
 			{#each puzzle.columns as number, column}
@@ -106,16 +150,40 @@
 	</g>
 
 	<g transform="translate(1 1)">
+		{#if focus}
+			<g transform="translate({focus.column} {focus.row})">
+				<circle r="0.45" fill="#f2eeef" opacity="0.3" />
+			</g>
+		{/if}
+
 		<g transform="translate(-0.35 -0.35)">
 			{#each numbers as array, row}
 				{#each array as { value, locked }, column}
 					<g transform="translate({column} {row})">
-						<Tile
-							width={0.7}
-							height={0.7}
-							tile={locked ? '#fdd4ce' : '#f2eeef'}
-							char={value === 0 ? '' : value.toString()}
-						/>
+						{#if locked}
+							<Tile width={0.7} height={0.7} char={value.toString()} />
+						{:else}
+							<g
+								style:cursor="pointer"
+								on:click|stopPropagation={() => {
+									handleFocus({ column, row });
+								}}
+								role="button"
+								tabindex="0"
+								aria-label="Row {row + 1} and column {column + 1}."
+								on:focus={() => {
+									handleFocus({ column, row });
+								}}
+								style:outline="none"
+							>
+								<Tile
+									width={0.7}
+									height={0.7}
+									tile="#f2eeef"
+									char={value === 0 ? '' : value.toString()}
+								/>
+							</g>
+						{/if}
 					</g>
 				{/each}
 			{/each}
@@ -127,5 +195,13 @@
 	svg {
 		display: block;
 		max-width: 30rem;
+	}
+
+	.focusable:focus > .focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
 	}
 </style>
