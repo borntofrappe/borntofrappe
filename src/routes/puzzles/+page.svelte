@@ -18,7 +18,7 @@
 		}
 	];
 
-	let selected = options[0];
+	let selected = options[options.length - 1];
 </script>
 
 <svelte:head>
