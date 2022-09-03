@@ -5,11 +5,11 @@
 	export let width = '100%';
 	export let height = '100%';
 
-	export let tile = '#fdd4ce';
-	export let shadow = '#fea69c';
+	export let tile = 'hsl(8, 92%, 90%)';
+	export let shadow = 'hsl(6, 98%, 80%)';
 
-	export let text = '#f2eeef';
-	export let outline = '#07093a';
+	export let text = 'hsl(345, 13%, 94%)';
+	export let outline = 'hsl(19, 56%, 12%)';
 </script>
 
 <svg viewBox="0 0 1 1" {width} {height}>
@@ -22,7 +22,7 @@
 		stroke-linecap="round"
 		stroke-linejoin="round"
 		paint-order="stroke"
-		stroke-width="0.07"
+		stroke-width="0.1"
 		x="0.5"
 		y="0.45"
 		text-anchor="middle"

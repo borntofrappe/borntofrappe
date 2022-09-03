@@ -20,7 +20,9 @@
 >
 	{#each characters as { char, n }}
 		<span aria-hidden="true">
-			<Tile {char} {n} />
+			<span>
+				<Tile {char} {n} />
+			</span>
 		</span>
 	{/each}
 </svelte:element>
@@ -30,11 +32,15 @@
 		display: contents;
 	}
 
-	span:hover > :global(svg) {
+	span > span {
+		display: inline-block;
+	}
+
+	span:hover > span {
 		transform: translateY(-5px) rotate(3deg);
 	}
 
-	span:nth-of-type(odd):hover > :global(svg) {
+	span:nth-of-type(odd):hover > span {
 		transform: translateY(-4px) rotate(-3deg);
 	}
 </style>

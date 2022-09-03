@@ -133,9 +133,7 @@
 			if (!isSolved) handleBlur();
 		}}
 		tabindex="0"
-		aria-label={isSolved
-			? 'Play a new round of Addition Square. Press enter to start from scratch.'
-			: 'Complete the grid so that the numbers add up together to the values described in the columns and rows. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.'}
+		aria-labelledby="title-addition-square desc-addition-square"
 		style:outline="none"
 		class="focusable"
 		on:focus={() => {
@@ -153,11 +151,24 @@
 			}
 		}}
 	>
+		<title id="title-addition-square">Addition Square</title>
+		<desc id="desc-addition-square"
+			>{isSolved
+				? 'Continue playing with arithmatics. Press enter to clear the grid and start with a new set of numbers.'
+				: 'Complete the grid so that the numbers add up together to the values described in the columns and rows. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.'}</desc
+		>
+
 		<g class="focus" transform="translate(0.5 0.5)" opacity="0">
-			<rect width={size} height={size} rx="0.2" fill="#f2eeef" opacity="0.2" />
+			<rect
+				width={size}
+				height={size}
+				rx="0.2"
+				fill="var(--color-focus, hsl(345, 13%, 94%))"
+				opacity="0.4"
+			/>
 		</g>
 
-		<g style:color="#f2eeef">
+		<g style:color="var(--color-focus, hsl(345, 13%, 94%))">
 			<g transform="translate(1 {size + 1})">
 				{#each puzzle.columns as number, column}
 					<g transform="translate({column} 0)">
@@ -252,7 +263,7 @@
 		<g transform="translate(1 1)">
 			{#if focus}
 				<g transform="translate({focus.column} {focus.row})">
-					<circle r="0.5" fill="#f2eeef" opacity="0.4" />
+					<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
 				</g>
 			{/if}
 
@@ -265,11 +276,19 @@
 								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
 								opacity="0"
 							>
-								<circle r="0.5" fill="#f2eeef" opacity="0.4" />
+								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
 							</g>
 							{#if isLocked}
 								<g transform="translate(-0.35 -0.35)">
-									<Tile width={0.7} height={0.7} char={value.toString()} />
+									<Tile
+										tile="var(--color-tile, hsl(8, 92%, 90%))"
+										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+										text="var(--color-focus, hsl(345, 13%, 94%))"
+										outline="var(--color-text, hsl(19, 56%, 12%))"
+										width={0.7}
+										height={0.7}
+										char={value.toString()}
+									/>
 								</g>
 							{:else}
 								<g
@@ -279,7 +298,7 @@
 									}}
 									role="button"
 									tabindex={isSolved ? '-1' : '0'}
-									aria-label="Add number on row {row + 1} and column {column + 1}.{value !== 0
+									aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
 										? ` Or, delete number ${value}.`
 										: ''}"
 									style:outline="none"
@@ -289,10 +308,14 @@
 								>
 									<g transform="translate(-0.35 -0.35)">
 										<Tile
+											tile="var(--color-focus, hsl(345, 13%, 94%))"
+											shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+											text="var(--color-focus, hsl(345, 13%, 94%))"
+											outline={issues.includes(value)
+												? 'var(--color-issue, hsl(342, 82%, 47%))'
+												: 'var(--color-text, hsl(19, 56%, 12%))'}
 											width={0.7}
 											height={0.7}
-											tile="#f2eeef"
-											outline={issues.includes(value) ? '#d91650' : '#07093a'}
 											char={value === 0 ? '' : value.toString()}
 										/>
 									</g>
@@ -317,7 +340,13 @@
 				}}
 			>
 				<span class="visually-hidden">Add the number {number} on the focused cell.</span>
-				<Tile char={number.toString()} />
+				<Tile
+					tile="var(--color-tile, hsl(8, 92%, 90%))"
+					shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+					text="var(--color-focus, hsl(345, 13%, 94%))"
+					outline="var(--color-text, hsl(19, 56%, 12%))"
+					char={number.toString()}
+				/>
 			</button>
 		{/each}
 		<button
@@ -335,15 +364,19 @@
 					? 'Play a new round of Addition Square.'
 					: 'Remove the value from the focused cell.'}</span
 			>
-			<Tile char="" tile="#f2eeef" />
+			<Tile
+				tile="var(--color-focus, hsl(345, 13%, 94%))"
+				shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+				text="var(--color-focus, hsl(345, 13%, 94%))"
+				outline="var(--color-text, hsl(19, 56%, 12%))"
+				char=""
+			/>
 		</button>
 	</section>
 </div>
 
 <style>
 	div {
-		max-width: 30rem;
-		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -382,11 +415,13 @@
 	}
 
 	section::-webkit-scrollbar-track {
-		background: #f2eeef55;
+		background: var(--color-shadow, hsl(6, 98%, 80%));
+		border-radius: 0.25rem;
 	}
 
 	section::-webkit-scrollbar-thumb {
-		background: #f2eeef;
+		background: var(--color-tile, hsl(8, 92%, 90%));
+		border-radius: 0.25rem;
 	}
 
 	button {
@@ -417,7 +452,7 @@
 		left: 50%;
 		width: 100%;
 		height: 100%;
-		background: #f2eeef;
+		background: var(--color-focus, hsl(345, 13%, 94%));
 		transform: translate(-50%, -50%) scale(1.25);
 		border-radius: 50%;
 		opacity: 0;

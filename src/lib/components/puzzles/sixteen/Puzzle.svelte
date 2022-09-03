@@ -96,7 +96,7 @@
 		await scale.set(0);
 
 		const index = row * size + column;
-		const puzzle = getPuzzle({ size, index, moves });
+		const puzzle = getPuzzle({ size, index, moves: moves + Math.floor(Math.random() * 10) });
 
 		grid = puzzle.grid;
 		hiddenTile = puzzle.hiddenTile;
@@ -143,14 +143,26 @@
 <svg
 	viewBox="-0.5 -0.5 {size} {size}"
 	tabindex="0"
-	aria-label={isSolved
-		? 'Play a new round of Sixteen. Focus on a tile and press enter to hide the matching number and start from scratch.'
-		: 'Slide the tiles so that the puzzle shows the number in ascending order. Press enter or one of the possible arrow keys to change the position of the focused number.'}
+	aria-labelledby="title-sixteen desc-sixteen"
 	style:outline="none"
 	class="focusable"
 >
+	<title id="title-sixteen">Sixteen</title>
+	<desc id="desc-sixteen"
+		>{isSolved
+			? 'Continue playing with the sliding puzzle. Focus on a tile and press enter to hide the matching number and start anew.'
+			: 'Slide the tiles so that the puzzle shows the numbers in ascending order. Focus on a tile and press enter or one of the possible arrow keys to change the change its position.'}</desc
+	>
 	<g class="focus" opacity="0">
-		<rect x="-0.5" y="-0.5" width={size} height={size} rx="0.2" fill="#f2eeef" opacity="0.2" />
+		<rect
+			x="-0.5"
+			y="-0.5"
+			width={size}
+			height={size}
+			rx="0.2"
+			fill="var(--color-focus, hsl(345, 13%, 94%))"
+			opacity="0.4"
+		/>
 	</g>
 
 	<g>
@@ -159,7 +171,15 @@
 				{#if hidden}
 					<g transform="scale({$hiddenScale})">
 						<g transform="translate(-0.38 -0.38)">
-							<Tile width="0.76" height="0.76" char={value.toString()} />
+							<Tile
+								tile="var(--color-tile, hsl(8, 92%, 90%))"
+								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+								text="var(--color-focus, hsl(345, 13%, 94%))"
+								outline="var(--color-text, hsl(19, 56%, 12%))"
+								width="0.76"
+								height="0.76"
+								char={value.toString()}
+							/>
 						</g>
 					</g>
 				{:else}
@@ -175,7 +195,7 @@
 							}}
 							role="button"
 							tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
-							aria-label="Row {row + 1} and column {column + 1}. Tile number {value}."
+							aria-label="Slide tile {value} on row {row + 1} and column {column + 1}."
 							style:outline="none"
 							class="focusable"
 							on:keydown={(event) => {
@@ -185,10 +205,19 @@
 							}}
 						>
 							<g class="focus" opacity="0">
-								<circle r="0.5" fill="#f2eeef" opacity="0.2" />
+								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
 							</g>
+
 							<g transform="translate(-0.38 -0.38)">
-								<Tile width="0.76" height="0.76" char={value.toString()} />
+								<Tile
+									tile="var(--color-tile, hsl(8, 92%, 90%))"
+									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+									text="var(--color-focus, hsl(345, 13%, 94%))"
+									outline="var(--color-text, hsl(19, 56%, 12%))"
+									width="0.76"
+									height="0.76"
+									char={value.toString()}
+								/>
 							</g>
 						</g>
 					</g>
@@ -208,7 +237,7 @@
 						}}
 						role="button"
 						tabindex="0"
-						aria-label="Row {row + 1} and column {column + 1}. Tile number {value}."
+						aria-label="Hide tile number {value} on row {row + 1} and column {column + 1}."
 						style:outline="none"
 						class="focusable"
 						on:keydown={(event) => {
@@ -220,10 +249,18 @@
 						}}
 					>
 						<g class="focus" opacity="0">
-							<circle r="0.5" fill="#f2eeef" opacity="0.2" />
+							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
 						</g>
 						<g transform="translate(-0.38 -0.38)">
-							<Tile width="0.76" height="0.76" char={value.toString()} />
+							<Tile
+								tile="var(--color-tile, hsl(8, 92%, 90%))"
+								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+								text="var(--color-focus, hsl(345, 13%, 94%))"
+								outline="var(--color-text, hsl(19, 56%, 12%))"
+								width="0.76"
+								height="0.76"
+								char={value.toString()}
+							/>
 						</g>
 					</g>
 				</g>
@@ -235,7 +272,6 @@
 <style>
 	svg {
 		display: block;
-		max-width: 30rem;
 	}
 
 	.focusable:focus > .focus {

@@ -18,7 +18,7 @@
 		}
 	];
 
-	let selected = options[options.length - 1];
+	let selected = options[0];
 </script>
 
 <svelte:head>
@@ -44,8 +44,14 @@
 
 <style>
 	div {
-		color: hsl(238, 78%, 13%);
-		background: hsl(8, 83%, 54%);
+		--color-tile: hsl(8, 92%, 90%);
+		--color-shadow: hsl(6, 98%, 80%);
+		--color-focus: hsl(345, 13%, 94%);
+		--color-text: hsl(19, 56%, 12%);
+		--color-background: hsl(8, 83%, 54%);
+		--color-issue: hsl(342, 82%, 47%);
+		color: var(--color-text);
+		background: var(--color-background);
 		font-family: Source Code Pro, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
 			monospace;
 	}
@@ -54,11 +60,23 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
+		padding: 1rem;
 	}
 
-	div > * + * {
+	div > :global(* + *) {
 		margin-top: 1em;
+	}
+
+	select {
+		background: var(--color-tile);
+		border: none;
+		border-bottom: 0.25rem solid var(--color-shadow);
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+	}
+
+	article {
+		max-width: 32rem;
 	}
 </style>
