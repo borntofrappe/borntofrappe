@@ -1,4 +1,24 @@
-export const getPuzzle = ({ size = 5, values = 4 }) => {
+export const getPuzzle = ({ size = 5, pattern, values }) => {
+	const pValues =
+		values ||
+		Array(4)
+			.fill()
+			.map((_, i) => i + 1);
+
+	const { length } = pValues;
+
+	console.log(pValues);
+
+	let pPattern = pattern;
+	if (!pPattern) {
+		do {
+			pPattern = Array(3)
+				.fill()
+				.map((_) => pValues[Math.floor(Math.random() * length)]);
+		} while (pPattern.join('') === [...pPattern].reverse().join(''));
+	}
+
+	console.log(pPattern);
 	const grid = Array(size)
 		.fill()
 		.map((_, row) =>
@@ -7,9 +27,9 @@ export const getPuzzle = ({ size = 5, values = 4 }) => {
 				.map((_, column) => ({
 					row,
 					column,
-					value: Math.floor(Math.random() * values) + 1
+					value: pValues[Math.floor(Math.random() * length)]
 				}))
 		);
 
-	return { grid };
+	return { grid, pattern: pPattern };
 };
