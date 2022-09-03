@@ -10,6 +10,8 @@
 	const puzzle = getPuzzle({ size, pattern, values, minimum });
 
 	let focus = null;
+	let solutions = [];
+	let tiles = [];
 
 	const handleStart = ({ row, column }) => {
 		focus = {
@@ -29,7 +31,7 @@
 
 		focus.rowEnd = row;
 		focus.columnEnd = column;
-		// TODO: highlight the possible match
+		handlePattern();
 	};
 
 	const handleTouch = ({ row, column }) => {
@@ -46,7 +48,7 @@
 				focus.rowEnd = row;
 				focus.columnEnd = column;
 
-				// TODO: highlight the possible match
+				handlePattern();
 				focus = null;
 			}
 		}
@@ -94,9 +96,63 @@
 					focus.rowEnd = row;
 					focus.columnEnd = column;
 
-					// TODO: highlight the possible match
+					handlePattern();
 				}
 			}
+		}
+	};
+
+	const handlePattern = () => {
+		if (!focus) return;
+
+		const { rowStart, columnStart, rowEnd, columnEnd } = focus;
+		const solution = puzzle.solutions.find(
+			({
+				rowStart: rowStartSolution,
+				columnStart: columnStartSolution,
+				rowEnd: rowEndSolution,
+				columnEnd: columnEndSolution
+			}) => {
+				return (
+					(rowStart === rowStartSolution &&
+						columnStart === columnStartSolution &&
+						rowEnd === rowEndSolution &&
+						columnEnd === columnEndSolution) ||
+					(rowEnd === rowStartSolution &&
+						columnEnd === columnStartSolution &&
+						rowStart === rowEndSolution &&
+						columnStart === columnEndSolution)
+				);
+			}
+		);
+
+		if (solution) {
+			if (
+				solutions.find(
+					({
+						rowStart: rowStartSolution,
+						columnStart: columnStartSolution,
+						rowEnd: rowEndSolution,
+						columnEnd: columnEndSolution
+					}) => {
+						return (
+							(rowStart === rowStartSolution &&
+								columnStart === columnStartSolution &&
+								rowEnd === rowEndSolution &&
+								columnEnd === columnEndSolution) ||
+							(rowEnd === rowStartSolution &&
+								columnEnd === columnStartSolution &&
+								rowStart === rowEndSolution &&
+								columnStart === columnEndSolution)
+						);
+					}
+				)
+			)
+				return;
+
+			solutions = [...solutions, { rowStart, columnStart, rowEnd, columnEnd }];
+			tiles = [...tiles, ...solution.coordinates];
+			focus = null;
 		}
 	};
 </script>
@@ -111,7 +167,7 @@
 				outline="var(--color-text, hsl(19, 56%, 12%))"
 				width={0.68}
 				height={0.68}
-				char={puzzle.solutions.length}
+				char={puzzle.solutions.length - solutions.length}
 			/>
 		</g>
 	</g>
@@ -146,6 +202,19 @@
 	</g>
 
 	<g transform="translate(0 1)">
+		<g
+			opacity="0.2"
+			fill="none"
+			stroke="var(--color-focus, hsl(345, 13%, 94%))"
+			stroke-width="1"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			{#each solutions as { columnStart, rowStart, columnEnd, rowEnd }}
+				<path d="M {columnStart} {rowStart} {columnEnd} {rowEnd}" />
+			{/each}
+		</g>
+
 		{#if focus}
 			<path
 				fill="none"
@@ -187,7 +256,9 @@
 
 						<g transform="translate(-0.34 -0.34)">
 							<Tile
-								tile="var(--color-focus, hsl(345, 13%, 94%))"
+								tile={tiles.some((tile) => tile.row === row && tile.column === column)
+									? 'var(--color-tile, hsl(8, 92%, 90%))'
+									: 'var(--color-focus, hsl(345, 13%, 94%))'}
 								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 								text="var(--color-focus, hsl(345, 13%, 94%))"
 								outline="var(--color-text, hsl(19, 56%, 12%))"

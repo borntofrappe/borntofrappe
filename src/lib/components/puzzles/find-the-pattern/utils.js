@@ -1,22 +1,22 @@
 export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
-	const arrayValues =
+	const valuesArray =
 		values ||
 		Array(4)
 			.fill()
 			.map((_, i) => i + 1);
 
-	const { length: lengthValues } = arrayValues;
+	const { length: valuesLength } = valuesArray;
 
-	let arrayPattern = pattern;
-	if (!arrayPattern) {
+	let patternArray = pattern;
+	if (!patternArray) {
 		do {
-			arrayPattern = Array(3)
+			patternArray = Array(3)
 				.fill()
-				.map((_) => arrayValues[Math.floor(Math.random() * lengthValues)]);
-		} while (arrayPattern.join('') === [...arrayPattern].reverse().join(''));
+				.map((_) => valuesArray[Math.floor(Math.random() * valuesLength)]);
+		} while (patternArray.join('') === [...patternArray].reverse().join(''));
 	}
 
-	const { length: lengthPattern } = arrayPattern;
+	const { length: patternLength } = patternArray;
 
 	const directions = [
 		{ column: 0, row: -1 },
@@ -28,7 +28,7 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 		{ column: -1, row: 0 },
 		{ column: -1, row: -1 }
 	].map(({ row, column }) =>
-		Array(lengthPattern - 1)
+		Array(patternLength - 1)
 			.fill()
 			.map((_, i) => {
 				const offset = i + 1;
@@ -39,7 +39,7 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 	let solutions;
 	let candidates;
 	let grid = [];
-	const [firstValuePattern] = arrayPattern;
+	const [patternFirstValue] = patternArray;
 
 	do {
 		solutions = [];
@@ -51,9 +51,9 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 				Array(size)
 					.fill()
 					.map((_, column) => {
-						const value = arrayValues[Math.floor(Math.random() * lengthValues)];
+						const value = valuesArray[Math.floor(Math.random() * valuesLength)];
 
-						if (value === firstValuePattern) {
+						if (value === patternFirstValue) {
 							candidates.push({ row, column });
 						}
 
@@ -65,15 +65,15 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 					})
 			);
 
-		for (const { row: candidateRow, column: candidateColumn } of candidates) {
+		for (const { row: rowCandidate, column: columnCandidate } of candidates) {
 			for (const offsets of directions) {
 				let hasPattern = true;
-				const coordinates = [{ row: candidateRow, column: candidateColumn }];
+				const coordinates = [{ row: rowCandidate, column: columnCandidate }];
 
 				for (let i = 0; i < offsets.length; i++) {
-					const { row: offsetRow, column: offsetColumn } = offsets[i];
-					const row = candidateRow + offsetRow;
-					const column = candidateColumn + offsetColumn;
+					const { row: rowOffset, column: columnOffset } = offsets[i];
+					const row = rowCandidate + rowOffset;
+					const column = columnCandidate + columnOffset;
 
 					coordinates.push({ row, column });
 
@@ -82,7 +82,7 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 						row >= size ||
 						column < 0 ||
 						column >= size ||
-						grid[row][column].value !== arrayPattern[i + 1]
+						grid[row][column].value !== patternArray[i + 1]
 					) {
 						hasPattern = false;
 						break;
@@ -90,13 +90,13 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 				}
 
 				if (hasPattern) {
-					const { row: startRow, column: startColumn } = coordinates[0];
-					const { row: endRow, column: endColumn } = coordinates[coordinates.length - 1];
-					solutions.push({ startRow, startColumn, endRow, endColumn });
+					const { row: rowStart, column: columnStart } = coordinates[0];
+					const { row: rowEnd, column: columnEnd } = coordinates[coordinates.length - 1];
+					solutions.push({ rowStart, columnStart, rowEnd, columnEnd, coordinates });
 				}
 			}
 		}
 	} while (solutions.length < minimum);
 
-	return { pattern: arrayPattern, grid, solutions };
+	return { pattern: patternArray, grid, solutions };
 };
