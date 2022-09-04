@@ -115,7 +115,7 @@ const shuffle = (array) => {
 	return a;
 };
 
-export const getPuzzle = ({ size = 4, reveal = 0 }) => {
+export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 	if (!latinSquares[size])
 		throw new Error(
 			`\`size\` not supported. Value must be one of the following: ${Object.keys(latinSquares).join(
@@ -200,13 +200,70 @@ export const getPuzzle = ({ size = 4, reveal = 0 }) => {
 			});
 	}
 
+	let connections = [];
+	if (relate > 0) {
+		let numberConnections = relate;
+		const maxNumberConnections = Math.max(0, size ** 2 - reveal);
+		if (numberConnections > maxNumberConnections) {
+			console.warn(
+				`\`relate\` not respected considering the number of available spots. Value limited to ${maxNumberConnections}`
+			);
+			numberConnections = maxNumberConnections;
+		}
+
+		const offsets = [
+			{ row: -1, column: 0 },
+			{ row: 0, column: 1 },
+			{ row: 1, column: 0 },
+			{ row: 0, column: -1 }
+		];
+
+		while (connections.length < numberConnections) {
+			const column = Math.floor(Math.random() * size);
+			const row = Math.floor(Math.random() * size);
+
+			const availableOffsets = offsets.filter(
+				({ row: rowOffset, column: columnOffset }) =>
+					latinSquare[row + rowOffset] && latinSquare[row + rowOffset][column + columnOffset]
+			);
+
+			const { row: rowOffset, column: columnOffset } =
+				availableOffsets[Math.floor(Math.random() * availableOffsets.length)];
+
+			const direction = offsets.findIndex(
+				(offset) => offset.row === rowOffset && offset.column === columnOffset
+			);
+
+			const rowNeighbor = row + rowOffset;
+			const columnNeighbor = column + columnOffset;
+
+			const areBothRevealed =
+				hints.some((hint) => hint.row === row && hint.column === column) &&
+				hints.some((hint) => hint.row === rowNeighbor && hint.column === columnNeighbor);
+			if (!areBothRevealed) {
+				const sign = latinSquare[row][column] > latinSquare[rowNeighbor][columnNeighbor] ? 1 : -1;
+				connections.push({
+					row,
+					column,
+					direction,
+					sign,
+					neighbor: { row: rowNeighbor, column: columnNeighbor }
+				});
+			}
+		}
+	}
+
 	const grid = latinSquare.map((section, row) =>
 		section.map((number, column) => {
 			const isLocked = hints.some((hint) => hint.row === row && hint.column === column);
+			const relations = connections.filter(
+				(connection) => connection.row === row && connection.column === column
+			);
 			return {
 				number,
 				value: isLocked ? number : 0,
-				isLocked
+				isLocked,
+				relations
 			};
 		})
 	);

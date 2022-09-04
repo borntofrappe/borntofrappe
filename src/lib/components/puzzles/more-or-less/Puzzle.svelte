@@ -4,12 +4,13 @@
 
 	export let size = 4;
 	export let reveal = size;
-	const puzzle = getPuzzle({ size, reveal });
+	export let relate = size * 2;
+	const puzzle = getPuzzle({ size, reveal, relate });
 </script>
 
 <svg viewBox="-0.5 -0.5 {size} {size}">
 	{#each puzzle.grid as section, row}
-		{#each section as { value, isLocked }, column}
+		{#each section as { value, isLocked, relations }, column}
 			<g transform="translate({column} {row})">
 				{#if isLocked}
 					<g transform="translate(-0.3 -0.3)">
@@ -36,6 +37,23 @@
 						/>
 					</g>
 				{/if}
+
+				{#each relations as { direction, sign }}
+					<g transform="rotate({direction * 90})">
+						<g transform="translate(0 -0.5)">
+							<g transform="scale(1 {sign * 1})">
+								<path
+									d="M -0.07 0.035 l 0.07 -0.07 0.07 0.07"
+									fill="none"
+									stroke="var(--color-focus, hsl(345, 13%, 94%))"
+									stroke-width="0.07"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</g>
+						</g>
+					</g>
+				{/each}
 			</g>
 		{/each}
 	{/each}
