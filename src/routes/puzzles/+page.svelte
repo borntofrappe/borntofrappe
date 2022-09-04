@@ -2,6 +2,7 @@
 	import Sixteen from '$lib/components/puzzles/sixteen/Puzzle.svelte';
 	import AdditionSquare from '$lib/components/puzzles/addition-square/Puzzle.svelte';
 	import FindThePattern from '$lib/components/puzzles/find-the-pattern/Puzzle.svelte';
+	import MoreOrLess from '$lib/components/puzzles/more-or-less/Puzzle.svelte';
 
 	const options = [
 		{
@@ -15,6 +16,10 @@
 		{
 			name: 'Find the pattern',
 			component: FindThePattern
+		},
+		{
+			name: 'More or less',
+			component: MoreOrLess
 		}
 	];
 
