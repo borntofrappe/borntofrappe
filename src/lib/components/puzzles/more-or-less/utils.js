@@ -115,7 +115,7 @@ const shuffle = (array) => {
 	return a;
 };
 
-export const getPuzzle = ({ size = 4 }) => {
+export const getPuzzle = ({ size = 4, reveal = 0 }) => {
 	if (!latinSquares[size])
 		throw new Error(
 			`\`size\` not supported. Value must be one of the following: ${Object.keys(latinSquares).join(
@@ -123,7 +123,7 @@ export const getPuzzle = ({ size = 4 }) => {
 			)}.`
 		);
 
-	const values = Array(size)
+	const numbers = Array(size)
 		.fill()
 		.map((_, i) => i + 1);
 
@@ -141,7 +141,7 @@ export const getPuzzle = ({ size = 4 }) => {
 			break;
 		}
 
-		const row = shuffle(values);
+		const row = shuffle(numbers);
 
 		if (latinSquare.length > 0 && latinSquare.find((d) => d.join('') === row.join(''))) {
 			continue;
@@ -182,5 +182,34 @@ export const getPuzzle = ({ size = 4 }) => {
 		latinSquare.push(row);
 	}
 
-	return { grid: latinSquare };
+	let hints = [];
+	if (reveal > 0) {
+		hints = shuffle(
+			Array(size ** 2)
+				.fill()
+				.map((_, i) => i)
+		)
+			.slice(0, reveal)
+			.map((i) => {
+				const row = Math.floor(i / size);
+				const column = i % size;
+				return {
+					row,
+					column
+				};
+			});
+	}
+
+	const grid = latinSquare.map((section, row) =>
+		section.map((number, column) => {
+			const isLocked = hints.some((hint) => hint.row === row && hint.column === column);
+			return {
+				number,
+				value: isLocked ? number : 0,
+				isLocked
+			};
+		})
+	);
+
+	return { grid };
 };
