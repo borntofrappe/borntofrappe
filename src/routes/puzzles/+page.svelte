@@ -3,6 +3,7 @@
 	import AdditionSquare from '$lib/components/puzzles/addition-square/Puzzle.svelte';
 	import FindThePattern from '$lib/components/puzzles/find-the-pattern/Puzzle.svelte';
 	import MoreOrLess from '$lib/components/puzzles/more-or-less/Puzzle.svelte';
+	import ZerosAndOnes from '$lib/components/puzzles/zeros-and-ones/Puzzle.svelte';
 
 	const options = [
 		{
@@ -10,16 +11,20 @@
 			component: Sixteen
 		},
 		{
-			name: 'Addition square',
+			name: 'Addition Square',
 			component: AdditionSquare
 		},
 		{
-			name: 'Find the pattern',
+			name: 'Find the Pattern',
 			component: FindThePattern
 		},
 		{
-			name: 'More or less',
+			name: 'More or Less',
 			component: MoreOrLess
+		},
+		{
+			name: 'Zeros and Ones',
+			component: ZerosAndOnes
 		}
 	];
 
