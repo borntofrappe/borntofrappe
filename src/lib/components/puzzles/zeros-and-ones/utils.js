@@ -145,7 +145,7 @@ const shuffle = (array) => {
 	return a;
 };
 
-export const getPuzzle = ({ copies = 3 }) => {
+export const getPuzzle = ({ copies = 3, reveal = 7 }) => {
 	if (!binaryBoards[copies])
 		throw new Error(
 			`\`copies\` argument not supported. Value must be one of the following: ${Object.keys(
@@ -243,12 +243,34 @@ export const getPuzzle = ({ copies = 3 }) => {
 		binaryBoard.push(row);
 	}
 
+	const hints =
+		reveal > 0
+			? shuffle(
+					Array(size ** 2)
+						.fill()
+						.map((_, i) => i)
+			  )
+					.slice(0, reveal)
+					.map((i) => {
+						const row = Math.floor(i / size);
+						const column = i % size;
+						return {
+							row,
+							column
+						};
+					})
+			: [];
+
 	const grid = binaryBoard.map((section, row) =>
 		section.map((number, column) => {
+			const isLocked = hints.some((hint) => hint.row === row && hint.column === column);
+
 			return {
 				row,
 				column,
-				number
+				number,
+				value: isLocked ? number : null,
+				isLocked
 			};
 		})
 	);
