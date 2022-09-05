@@ -1,4 +1,7 @@
 <script>
+	import { tweened } from 'svelte/motion';
+	import { cubicInOut as easing } from 'svelte/easing';
+
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
@@ -6,7 +9,9 @@
 	export let reveal = size;
 	export let relate = size * 2;
 
-	const puzzle = getPuzzle({ size, reveal, relate });
+	let puzzle = getPuzzle({ size, reveal, relate });
+
+	const scale = tweened(1, { easing });
 
 	let focus = null;
 	let isSolved = false;
@@ -135,28 +140,55 @@
 		const { row, column } = focus;
 		puzzle.grid[row][column].value = number;
 	};
+
+	const handleReset = async () => {
+		await scale.set(0);
+
+		puzzle = getPuzzle({ size, reveal, relate });
+		// issues = []
+
+		await scale.set(1);
+
+		isSolved = false;
+	};
 </script>
 
 <div>
 	<svg
 		viewBox="-0.5 -0.5 {size} {size}"
 		on:click={() => {
-			handleBlur();
+			if (!isSolved) handleBlur();
 		}}
 		tabindex="0"
 		aria-labelledby="title-more-or-less desc-more-or-less"
 		style:outline="none"
 		class="focusable"
 		on:focus={() => {
-			handleBlur();
+			if (!isSolved) handleBlur();
 		}}
-		on:keydown={handleKeydown}
+		on:keydown={(e) => {
+			if (isSolved) {
+				const { key } = e;
+				if (key === 'Enter') {
+					e.preventDefault();
+					handleReset();
+				}
+			} else {
+				handleKeydown(e);
+			}
+		}}
 	>
-		<title id="title-addition-square">Addition Square</title>
-		<desc id="desc-addition-square"
-			>Complete the grid to create a latin square and respect the comparison between cells. Focus on
-			a cell and press a number key to include the corresponding value. Press delete to remove the
-			existing number.</desc
+		<title id="title-more-or-less">More or less</title>
+		<desc id="desc-more-or-less"
+			>{isSolved
+				? `Continue playing with numbers. Press enter to clear the grid and start with a new set of values.${
+						relate > 0 ? ' And a new set of comparisons.' : ''
+				  }`
+				: `Complete the grid while respecting a few constraints. Each row, each column must contain only one copy of the available numbers: ${puzzle.numbers.join(
+						', '
+				  )}.${
+						relate > 0 ? "What's more, the values should respect the comparison signs." : ''
+				  }. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.`}</desc
 		>
 
 		<g class="focus" transform="translate(-0.5 -0.5)" opacity="0">
@@ -165,14 +197,14 @@
 				height={size}
 				rx="0.2"
 				fill="var(--color-focus, hsl(345, 13%, 94%))"
-				opacity="0.4"
+				opacity="0.25"
 			/>
 		</g>
 
 		<g>
 			{#if focus}
 				<g transform="translate({focus.column} {focus.row})">
-					<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+					<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 				</g>
 			{/if}
 
@@ -184,65 +216,69 @@
 							style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
 							opacity="0"
 						>
-							<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+							<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 						</g>
 
-						{#if isLocked}
-							<g transform="translate(-0.3 -0.3)">
-								<Tile
-									tile="var(--color-tile, hsl(8, 92%, 90%))"
-									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
-									text="var(--color-focus, hsl(345, 13%, 94%))"
-									outline="var(--color-text, hsl(19, 56%, 12%))"
-									width={0.6}
-									height={0.6}
-									char={value.toString()}
-								/>
-							</g>
-						{:else}
-							<g
-								style:cursor="pointer"
-								on:click|stopPropagation={() => {
-									handleFocus({ column, row });
-								}}
-								role="button"
-								tabindex="0"
-								aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
-									? ` Or, delete number ${value}.`
-									: ''}"
-								style:outline="none"
-								on:focus={() => {
-									handleFocus({ column, row });
-								}}
-							>
+						<g transform="scale({$scale})">
+							{#if isLocked}
 								<g transform="translate(-0.3 -0.3)">
 									<Tile
-										tile="var(--color-focus, hsl(345, 13%, 94%))"
+										tile="var(--color-tile, hsl(8, 92%, 90%))"
 										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 										text="var(--color-focus, hsl(345, 13%, 94%))"
-										outline={issues.some((issue) => issue.column === column && issue.row === row)
-											? 'var(--color-issue, hsl(342, 82%, 47%))'
-											: 'var(--color-text, hsl(19, 56%, 12%))'}
+										outline="var(--color-text, hsl(19, 56%, 12%))"
 										width={0.6}
 										height={0.6}
-										char={value === 0 ? '' : value.toString()}
+										char={value.toString()}
 									/>
 								</g>
-							</g>
-						{/if}
+							{:else}
+								<g
+									style:cursor={isSolved ? 'initial' : 'pointer'}
+									on:click|stopPropagation={() => {
+										if (!isSolved) handleFocus({ column, row });
+									}}
+									role="button"
+									tabindex={isSolved ? '-1' : '0'}
+									aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
+										? ` Or, delete number ${value}.`
+										: ''}"
+									style:outline="none"
+									on:focus={() => {
+										if (!isSolved) handleFocus({ column, row });
+									}}
+								>
+									<g transform="translate(-0.3 -0.3)">
+										<Tile
+											tile="var(--color-focus, hsl(345, 13%, 94%))"
+											shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+											text="var(--color-focus, hsl(345, 13%, 94%))"
+											outline={issues.some((issue) => issue.column === column && issue.row === row)
+												? 'var(--color-issue, hsl(342, 82%, 47%))'
+												: 'var(--color-text, hsl(19, 56%, 12%))'}
+											width={0.6}
+											height={0.6}
+											char={value === 0 ? '' : value.toString()}
+										/>
+									</g>
+								</g>
+							{/if}
+						</g>
 
 						{#each relations as { direction, sign }}
 							<g transform="rotate({direction * 90})">
 								<g transform="translate(0 -0.5)">
 									<g transform="scale(1 {sign * 1})">
-										<path
-											d="M -0.07 0.035 l 0.07 -0.07 0.07 0.07"
-											fill="none"
-											stroke="var(--color-focus, hsl(345, 13%, 94%))"
-											stroke-width="0.07"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-										/>
+										<g transform="scale({$scale})">
+											<path
+												d="M -0.07 0.035 l 0.07 -0.07 0.07 0.07"
+												fill="none"
+												stroke="var(--color-focus, hsl(345, 13%, 94%))"
+												stroke-width="0.07"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											/>
+										</g>
 									</g>
 								</g>
 							</g>
@@ -256,7 +292,8 @@
 	<section>
 		{#each puzzle.numbers as number}
 			<button
-				style:cursor="pointer"
+				disabled={isSolved}
+				style:cursor={isSolved ? 'initial' : 'pointer'}
 				on:click={() => {
 					if (!focus) return;
 
@@ -276,10 +313,18 @@
 		<button
 			style:cursor="pointer"
 			on:click={() => {
-				handleClear();
+				if (isSolved) {
+					handleReset();
+				} else if (focus) {
+					handleClear();
+				}
 			}}
 		>
-			<span class="visually-hidden">Remove the value from the focused cell.</span>
+			<span class="visually-hidden"
+				>{isSolved
+					? 'Play a new round of More or less.'
+					: 'Remove the value from the focused cell.'}</span
+			>
 			<Tile
 				tile="var(--color-focus, hsl(345, 13%, 94%))"
 				shadow="var(--color-shadow, hsl(6, 98%, 80%))"
