@@ -118,9 +118,9 @@ const shuffle = (array) => {
 export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 	if (!latinSquares[size])
 		throw new Error(
-			`\`size\` not supported. Value must be one of the following: ${Object.keys(latinSquares).join(
-				', '
-			)}.`
+			`\`size\` argument not supported. Value must be one of the following: ${Object.keys(
+				latinSquares
+			).join(', ')}.`
 		);
 
 	const numbers = Array(size)
@@ -206,16 +206,16 @@ export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 		const maxNumberConnections = Math.max(0, size ** 2 - reveal);
 		if (numberConnections > maxNumberConnections) {
 			console.warn(
-				`\`relate\` not respected considering the number of available spots. Value limited to ${maxNumberConnections}`
+				`\`relate\` argument not respected considering the number of available spots. Value limited to ${maxNumberConnections}`
 			);
 			numberConnections = maxNumberConnections;
 		}
 
 		const offsets = [
-			{ row: -1, column: 0 },
-			{ row: 0, column: 1 },
-			{ row: 1, column: 0 },
-			{ row: 0, column: -1 }
+			{ row: -1, column: 0, direction: 0 },
+			{ row: 0, column: 1, direction: 1 },
+			{ row: 1, column: 0, direction: 2 },
+			{ row: 0, column: -1, direction: 3 }
 		];
 
 		while (connections.length < numberConnections) {
@@ -227,12 +227,11 @@ export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 					latinSquare[row + rowOffset] && latinSquare[row + rowOffset][column + columnOffset]
 			);
 
-			const { row: rowOffset, column: columnOffset } =
-				availableOffsets[Math.floor(Math.random() * availableOffsets.length)];
-
-			const direction = offsets.findIndex(
-				(offset) => offset.row === rowOffset && offset.column === columnOffset
-			);
+			const {
+				row: rowOffset,
+				column: columnOffset,
+				direction
+			} = availableOffsets[Math.floor(Math.random() * availableOffsets.length)];
 
 			const rowNeighbor = row + rowOffset;
 			const columnNeighbor = column + columnOffset;
@@ -268,5 +267,5 @@ export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 		})
 	);
 
-	return { grid };
+	return { grid, numbers };
 };
