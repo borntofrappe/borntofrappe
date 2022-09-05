@@ -2,13 +2,102 @@
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
-	export let size = 4;
+	export let size = 3;
 	export let reveal = size;
 	export let relate = size * 2;
 
 	const puzzle = getPuzzle({ size, reveal, relate });
 
 	let focus = null;
+	let isSolved = false;
+	let issues = [];
+
+	$: if (puzzle) {
+		const currentIssues = [];
+		const { grid } = puzzle;
+
+		const gridColumns = Array(size)
+			.fill()
+			.map((_, i) =>
+				Array(size)
+					.fill()
+					.map((_, j) => grid[j][i])
+			);
+
+		for (const gridColumn of gridColumns) {
+			for (const cell of gridColumn) {
+				const { value, row } = cell;
+				if (value !== 0) {
+					const duplicates = gridColumn.slice(row + 1).filter((d) => d.value === value);
+					if (duplicates.length > 0) {
+						for (const { row, column, isLocked } of [cell, ...duplicates]) {
+							if (
+								!isLocked &&
+								!currentIssues.some(
+									(currentIssue) => currentIssue.row === row && currentIssue.column === column
+								)
+							) {
+								currentIssues.push({ row, column });
+							}
+						}
+					}
+				}
+			}
+		}
+
+		for (const gridRow of grid) {
+			for (const cell of gridRow) {
+				const { value, column } = cell;
+				if (value !== 0) {
+					const duplicates = gridRow.slice(column + 1).filter((d) => d.value === value);
+					if (duplicates.length > 0) {
+						for (const { row, column, isLocked } of [cell, ...duplicates]) {
+							if (
+								!isLocked &&
+								!currentIssues.some(
+									(currentIssue) => currentIssue.row === row && currentIssue.column === column
+								)
+							) {
+								currentIssues.push({ row, column });
+							}
+						}
+					}
+
+					for (const { neighbor, sign } of cell.relations) {
+						const { row, column } = neighbor;
+						const neighborCell = grid[row][column];
+						const { value: neighborValue } = neighborCell;
+						if (
+							neighborValue !== 0 &&
+							((sign === 1 && value < neighborValue) || (sign === -1 && value > neighborValue))
+						) {
+							for (const { row, column, isLocked } of [cell, neighborCell]) {
+								if (
+									!isLocked &&
+									!currentIssues.some(
+										(currentIssue) => currentIssue.row === row && currentIssue.column === column
+									)
+								) {
+									currentIssues.push({ row, column });
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		issues = currentIssues;
+		isSolved =
+			currentIssues.length === 0 &&
+			grid
+				.reduce((acc, curr) => [...acc, ...curr.reduce((a, c) => [...a, c.value], [])], [])
+				.every((value) => value !== 0);
+
+		if (isSolved) {
+			focus = null;
+		}
+	}
 
 	const handleFocus = ({ row, column }) => {
 		focus = { row, column };
@@ -90,6 +179,14 @@
 			{#each puzzle.grid as section, row}
 				{#each section as { value, isLocked, relations }, column}
 					<g transform="translate({column} {row})">
+						<g
+							class:solved={isSolved}
+							style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
+							opacity="0"
+						>
+							<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+						</g>
+
 						{#if isLocked}
 							<g transform="translate(-0.3 -0.3)">
 								<Tile
@@ -123,7 +220,9 @@
 										tile="var(--color-focus, hsl(345, 13%, 94%))"
 										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 										text="var(--color-focus, hsl(345, 13%, 94%))"
-										outline="var(--color-text, hsl(19, 56%, 12%))"
+										outline={issues.some((issue) => issue.column === column && issue.row === row)
+											? 'var(--color-issue, hsl(342, 82%, 47%))'
+											: 'var(--color-text, hsl(19, 56%, 12%))'}
 										width={0.6}
 										height={0.6}
 										char={value === 0 ? '' : value.toString()}
@@ -286,5 +385,15 @@
 
 	button:focus:not(:focus-visible)::before {
 		opacity: 0;
+	}
+
+	.solved {
+		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	@keyframes flash {
+		50% {
+			opacity: 1;
+		}
 	}
 </style>

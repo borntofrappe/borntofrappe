@@ -259,6 +259,8 @@ export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 				(connection) => connection.row === row && connection.column === column
 			);
 			return {
+				row,
+				column,
 				number,
 				value: isLocked ? number : 0,
 				isLocked,
