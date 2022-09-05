@@ -2,12 +2,17 @@
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
-	export let size = 4;
-	const { grid } = getPuzzle({ size });
+	export let copies = 3;
+
+	for (let i = 0; i < 50; i++) {
+		getPuzzle({ copies });
+	}
+
+	const { grid, size } = getPuzzle({ copies });
 </script>
 
 <svg viewBox="-0.5 -0.5 {size} {size}">
-	{#each grid as { row, column, value }}
+	{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, number }}
 		<g transform="translate({column} {row})">
 			<g transform="translate(-0.35 -0.35)">
 				<Tile
@@ -17,7 +22,7 @@
 					outline="var(--color-text, hsl(19, 56%, 12%))"
 					width={0.7}
 					height={0.7}
-					char={value.toString()}
+					char={number.toString()}
 				/>
 			</g>
 		</g>
