@@ -5,7 +5,7 @@
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
-	export let size = 3;
+	export let size = 4;
 	export let reveal = size;
 	export let relate = size * 2;
 
@@ -178,16 +178,18 @@
 			}
 		}}
 	>
-		<title id="title-more-or-less">More or less</title>
+		<title id="title-more-or-less">More or Less</title>
 		<desc id="desc-more-or-less"
 			>{isSolved
-				? `Continue playing with numbers. Press enter to clear the grid and start with a new set of values.${
-						relate > 0 ? ' And a new set of comparisons.' : ''
+				? `The grid is filled, every rule is respected. Nicely done. Press enter to clear the grid and start with a new set of values.${
+						relate > 0 ? ' And a new set of comparisons signs.' : ''
 				  }`
-				: `Complete the grid while respecting a few constraints. Each row, each column must contain only one copy of the available numbers: ${puzzle.numbers.join(
+				: `Fill the grid with numbers. Be sure to respect a few rules, however. Each row, each column must contain only one copy of the available numbers: ${puzzle.numbers.join(
 						', '
 				  )}.${
-						relate > 0 ? "What's more, the values should respect the comparison signs." : ''
+						relate > 0
+							? "What's more, the numbers should respect the order set with the comparison signs."
+							: ''
 				  }. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.`}</desc
 		>
 
@@ -322,7 +324,7 @@
 		>
 			<span class="visually-hidden"
 				>{isSolved
-					? 'Play a new round of More or less.'
+					? 'Clear the grid and start with a new set of values.'
 					: 'Remove the value from the focused cell.'}</span
 			>
 			<Tile
@@ -425,7 +427,7 @@
 	}
 
 	button:focus::before {
-		opacity: 0.4;
+		opacity: 0.25;
 	}
 
 	button:focus:not(:focus-visible)::before {

@@ -150,7 +150,7 @@
 	<title id="title-sixteen">Sixteen</title>
 	<desc id="desc-sixteen"
 		>{isSolved
-			? 'Continue playing with the sliding puzzle. Focus on a tile and press enter to hide the matching number and start anew.'
+			? "Congrats! You sure had a lot of patience. If you'd like to, you can keep sliding tiles with a new puzzle. Focus on a tile and press enter to hide the matching number and start fresh."
 			: 'Slide the tiles so that the puzzle shows the numbers in ascending order. Focus on a tile and press enter or one of the possible arrow keys to change the change its position.'}</desc
 	>
 	<g class="focus" opacity="0">
@@ -161,7 +161,7 @@
 			height={size}
 			rx="0.2"
 			fill="var(--color-focus, hsl(345, 13%, 94%))"
-			opacity="0.4"
+			opacity="0.25"
 		/>
 	</g>
 
@@ -195,7 +195,7 @@
 							}}
 							role="button"
 							tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
-							aria-label="Slide tile {value} on row {row + 1} and column {column + 1}."
+							aria-label="Slide the tile number {value} from row {row + 1} and column {column + 1}."
 							style:outline="none"
 							class="focusable"
 							on:keydown={(event) => {
@@ -205,7 +205,7 @@
 							}}
 						>
 							<g class="focus" opacity="0">
-								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 							</g>
 
 							<g transform="translate(-0.38 -0.38)">
@@ -237,7 +237,7 @@
 						}}
 						role="button"
 						tabindex="0"
-						aria-label="Hide tile number {value} on row {row + 1} and column {column + 1}."
+						aria-label="Hide the tile number {value} on row {row + 1} and column {column + 1}."
 						style:outline="none"
 						class="focusable"
 						on:keydown={(event) => {
@@ -249,7 +249,7 @@
 						}}
 					>
 						<g class="focus" opacity="0">
-							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 						</g>
 						<g transform="translate(-0.38 -0.38)">
 							<Tile

@@ -205,13 +205,13 @@
 		}
 	}}
 >
-	<title id="title-find-the-pattern">Find the pattern</title>
+	<title id="title-find-the-pattern">Find the Pattern</title>
 	<desc id="desc-find-the-pattern"
 		>{isSolved
-			? 'Continue testing your keen eyes. Press enter to clear the grid and start with a new pattern and a whole set of numbers.'
-			: `Link numbers to match the pattern ${puzzle.pattern.join(
+			? 'You\'ve found every copy of the pattern, kudos. If you want to keep testing your keen eyes press enter to find a new pattern. In a sea of new numbers.'
+			: `Find the pattern ${puzzle.pattern.join(
 					' ,'
-			  )}. Focus on a cell and press enter to start a connection. Move with the arrow keys to join neighboring values.`}</desc
+			  )}. Focus on a cell and press enter to start linking value. Move with the arrow keys to link neighboring cells.`}</desc
 	>
 
 	<g class="focus" transform="translate(-0.5 0.5)" opacity="0">
@@ -220,7 +220,7 @@
 			height={size}
 			rx="0.2"
 			fill="var(--color-focus, hsl(345, 13%, 94%))"
-			opacity="0.4"
+			opacity="0.25"
 		/>
 	</g>
 
@@ -272,7 +272,7 @@
 	<g transform="translate(0 1)">
 		<g opacity={$tween}>
 			<g
-				opacity="0.2"
+				opacity="0.25"
 				fill="none"
 				stroke="var(--color-focus, hsl(345, 13%, 94%))"
 				stroke-width="1"
@@ -298,7 +298,7 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				d="M {focus.columnStart} {focus.rowStart} {focus.columnEnd} {focus.rowEnd}"
-				opacity="0.2"
+				opacity="0.25"
 			/>
 		{/if}
 		<g>
@@ -326,7 +326,7 @@
 						}}
 					>
 						<g class="focus" opacity="0">
-							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.2" />
+							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 						</g>
 
 						<g transform="scale({$tween})">
@@ -353,7 +353,7 @@
 	{#if isSolved}
 		<g transform="translate(-0.5 0.5)">
 			<g opacity="0" style:cursor="pointer" on:click={handleReset}>
-				<rect width={size} height={size} rx="0.2" />
+				<rect width={size} height={size} rx="0.25" />
 			</g>
 		</g>
 	{/if}

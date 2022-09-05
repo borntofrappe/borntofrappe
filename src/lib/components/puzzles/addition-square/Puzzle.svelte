@@ -154,7 +154,7 @@
 		<title id="title-addition-square">Addition Square</title>
 		<desc id="desc-addition-square"
 			>{isSolved
-				? 'Continue playing with arithmatics. Press enter to clear the grid and start with a new set of numbers.'
+				? "To sum things up, you've completed the puzzle. Congratulations. For additional practice, press enter and start with a new set of numbers."
 				: 'Complete the grid so that the numbers add up together to the values described in the columns and rows. Focus on a cell and press a number key to include the corresponding value. Press delete to remove the existing number.'}</desc
 		>
 
@@ -164,7 +164,7 @@
 				height={size}
 				rx="0.2"
 				fill="var(--color-focus, hsl(345, 13%, 94%))"
-				opacity="0.4"
+				opacity="0.25"
 			/>
 		</g>
 
@@ -263,7 +263,7 @@
 		<g transform="translate(1 1)">
 			{#if focus}
 				<g transform="translate({focus.column} {focus.row})">
-					<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+					<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 				</g>
 			{/if}
 
@@ -276,7 +276,7 @@
 								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
 								opacity="0"
 							>
-								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.4" />
+								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 							</g>
 							{#if isLocked}
 								<g transform="translate(-0.35 -0.35)">
@@ -361,7 +361,7 @@
 		>
 			<span class="visually-hidden"
 				>{isSolved
-					? 'Play a new round of Addition Square.'
+					? 'Clear the grid and start with a new set of values.'
 					: 'Remove the value from the focused cell.'}</span
 			>
 			<Tile
@@ -464,7 +464,7 @@
 	}
 
 	button:focus::before {
-		opacity: 0.4;
+		opacity: 0.25;
 	}
 
 	button:focus:not(:focus-visible)::before {
