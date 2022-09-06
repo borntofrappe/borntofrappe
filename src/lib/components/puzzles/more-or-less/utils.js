@@ -239,7 +239,20 @@ export const getPuzzle = ({ size = 4, reveal = 0, relate = 0 }) => {
 			const areBothRevealed =
 				hints.some((hint) => hint.row === row && hint.column === column) &&
 				hints.some((hint) => hint.row === rowNeighbor && hint.column === columnNeighbor);
-			if (!areBothRevealed) {
+
+			const isAlreadyConnected = connections.some(
+				(connection) =>
+					(connection.row === row &&
+						connection.column === column &&
+						connection.neighbor.row === rowNeighbor &&
+						connection.neighbor.column === columnNeighbor) ||
+					(connection.row === rowNeighbor &&
+						connection.column === columnNeighbor &&
+						connection.neighbor.row === row &&
+						connection.neighbor.column === column)
+			);
+
+			if (!areBothRevealed && !isAlreadyConnected) {
 				const sign = latinSquare[row][column] > latinSquare[rowNeighbor][columnNeighbor] ? 1 : -1;
 				connections.push({
 					row,
