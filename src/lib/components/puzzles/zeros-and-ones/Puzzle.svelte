@@ -1,11 +1,16 @@
 <script>
+	import { tweened } from 'svelte/motion';
+	import { cubicInOut as easing } from 'svelte/easing';
+
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
 	export let copies = 3;
 	export let reveal = 12;
 
-	const { grid, size } = getPuzzle({ copies, reveal });
+	let { grid, size } = getPuzzle({ copies, reveal });
+
+	const scale = tweened(1, { easing });
 
 	let isSolved = false;
 	let issues = [];
@@ -129,6 +134,17 @@
 
 		grid[row][column].value = value;
 	};
+
+	const handleReset = async () => {
+		await scale.set(0);
+
+		grid = getPuzzle({ copies, reveal }).grid;
+		// issues = []
+
+		await scale.set(1);
+
+		isSolved = false;
+	};
 </script>
 
 <svg
@@ -137,13 +153,21 @@
 	aria-labelledby="title-zeros-and-ones desc-zeros-and-ones"
 	style:outline="none"
 	class="focusable"
+	on:keydown={(e) => {
+		if (isSolved) {
+			const { key } = e;
+			if (key === 'Enter') {
+				e.preventDefault();
+				handleReset();
+			}
+		}
+	}}
 >
 	<title id="title-zeros-and-ones">Zeros and Ones</title>
 	<desc id="desc-zeros-and-ones"
-		>Fill the grid with zeros and ones while respecting a few constraints. Each row, each column
-		must contain a unique sequence of values. Moreover, no value should be repeated thrice. Finally,
-		each row and column should include an equal number of copies. Focus on a cell and press enter to
-		cycle through the available options.</desc
+		>{isSolved
+			? 'Nice job respecting all those rules. There were certainly a lot of them. To keep playing press enter and start with a new set of values.'
+			: 'Fill the grid with zeros and ones while respecting a few constraints. Each row, each column must contain a unique sequence of values. Moreover, no value should be repeated thrice. Finally, each row and column should include an equal number of copies. Focus on a cell and press enter to cycle through the available options.'}</desc
 	>
 	<g class="focus" opacity="0">
 		<rect
@@ -168,7 +192,7 @@
 					<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
 				</g>
 
-				<g>
+				<g transform="scale({$scale})">
 					{#if isLocked}
 						<g transform="translate(-0.35 -0.35)">
 							<Tile
@@ -229,6 +253,14 @@
 			</g>
 		{/each}
 	</g>
+
+	{#if isSolved}
+		<g transform="translate(-0.5 -0.5)">
+			<g opacity="0" style:cursor="pointer" on:click={handleReset}>
+				<rect width={size} height={size} rx="0.25" />
+			</g>
+		</g>
+	{/if}
 </svg>
 
 <style>
