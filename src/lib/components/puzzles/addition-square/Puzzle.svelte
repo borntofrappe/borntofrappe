@@ -5,8 +5,8 @@
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
-	export let size = 3;
-	export let reveal = size;
+	export let size = 4;
+	export let reveal = 7;
 
 	const scale = tweened(1, { easing });
 	let puzzle = getPuzzle({ size, reveal });
@@ -101,8 +101,18 @@
 			e.preventDefault();
 			handleBlur();
 		} else {
-			const number = parseInt(key, 10);
+			let number = parseInt(key, 10);
 			if (number) {
+				const { row, column } = focus;
+				const { value } = numbers[row][column];
+				if (value !== 0) {
+					const { length } = value.toString();
+					const total = value * 10 ** length + number;
+					if (total <= Math.max(...puzzle.numbers.reduce((acc, curr) => [...acc, ...curr], []))) {
+						number = total;
+					}
+				}
+
 				e.preventDefault();
 				handleNumber({ number });
 			}
