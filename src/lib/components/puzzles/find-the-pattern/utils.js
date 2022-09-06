@@ -98,5 +98,5 @@ export const getPuzzle = ({ size = 5, pattern, values, minimum = 1 }) => {
 		}
 	} while (solutions.length < minimum);
 
-	return { pattern: patternArray, grid, solutions };
+	return { grid, solutions, pattern: patternArray };
 };

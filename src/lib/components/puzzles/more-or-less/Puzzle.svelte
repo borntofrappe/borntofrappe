@@ -5,11 +5,11 @@
 	import Tile from '../Tile.svelte';
 	import { getPuzzle } from './utils.js';
 
-	export let size = 4;
-	export let reveal = size;
-	export let relate = size * 2;
+	export let size = 5;
+	export let reveal = 8;
+	export let relate = 12;
 
-	let puzzle = getPuzzle({ size, reveal, relate });
+	let { grid, numbers } = getPuzzle({ size, reveal, relate });
 
 	const scale = tweened(1, { easing });
 
@@ -17,9 +17,8 @@
 	let isSolved = false;
 	let issues = [];
 
-	$: if (puzzle) {
+	$: if (grid) {
 		const currentIssues = [];
-		const { grid } = puzzle;
 
 		const gridColumns = Array(size)
 			.fill()
@@ -124,7 +123,7 @@
 			handleBlur();
 		} else {
 			const number = parseInt(key, 10);
-			if (number && puzzle.numbers.includes(number)) {
+			if (number && numbers.includes(number)) {
 				e.preventDefault();
 				handleNumber({ number });
 			}
@@ -133,18 +132,18 @@
 
 	const handleClear = () => {
 		const { row, column } = focus;
-		puzzle.grid[row][column].value = 0;
+		grid[row][column].value = 0;
 	};
 
 	const handleNumber = ({ number }) => {
 		const { row, column } = focus;
-		puzzle.grid[row][column].value = number;
+		grid[row][column].value = number;
 	};
 
 	const handleReset = async () => {
 		await scale.set(0);
 
-		puzzle = getPuzzle({ size, reveal, relate });
+		grid = getPuzzle({ size, reveal, relate }).grid;
 		// issues = []
 
 		await scale.set(1);
@@ -184,7 +183,7 @@
 				? `The grid is filled, every rule is respected. Nicely done. Press enter to clear the grid and start with a new set of values.${
 						relate > 0 ? ' And a new set of comparisons signs.' : ''
 				  }`
-				: `Fill the grid with numbers. Be sure to respect a few rules, however. Each row, each column must contain only one copy of the available numbers: ${puzzle.numbers.join(
+				: `Fill the grid with numbers. Be sure to respect a few rules, however. Each row, each column must contain only one copy of the available numbers: ${numbers.join(
 						', '
 				  )}.${
 						relate > 0
@@ -210,89 +209,87 @@
 				</g>
 			{/if}
 
-			{#each puzzle.grid as section, row}
-				{#each section as { value, isLocked, relations }, column}
-					<g transform="translate({column} {row})">
-						<g
-							class:solved={isSolved}
-							style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
-							opacity="0"
-						>
-							<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
-						</g>
+			{#each grid.reduce( (acc, curr) => [...acc, ...curr] ) as { column, row, value, isLocked, relations }}
+				<g transform="translate({column} {row})">
+					<g
+						class:solved={isSolved}
+						style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
+						opacity="0"
+					>
+						<circle r="0.4" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
+					</g>
 
-						<g transform="scale({$scale})">
-							{#if isLocked}
+					<g transform="scale({$scale})">
+						{#if isLocked}
+							<g transform="translate(-0.3 -0.3)">
+								<Tile
+									tile="var(--color-tile, hsl(8, 92%, 90%))"
+									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+									text="var(--color-focus, hsl(345, 13%, 94%))"
+									outline="var(--color-text, hsl(19, 56%, 12%))"
+									width={0.6}
+									height={0.6}
+									char={value.toString()}
+								/>
+							</g>
+						{:else}
+							<g
+								style:cursor={isSolved ? 'initial' : 'pointer'}
+								on:click|stopPropagation={() => {
+									if (!isSolved) handleFocus({ row, column });
+								}}
+								role="button"
+								tabindex={isSolved ? '-1' : '0'}
+								aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
+									? ` Or, delete number ${value}.`
+									: ''}"
+								style:outline="none"
+								on:focus={() => {
+									if (!isSolved) handleFocus({ row, column });
+								}}
+							>
 								<g transform="translate(-0.3 -0.3)">
 									<Tile
-										tile="var(--color-tile, hsl(8, 92%, 90%))"
+										tile="var(--color-focus, hsl(345, 13%, 94%))"
 										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 										text="var(--color-focus, hsl(345, 13%, 94%))"
-										outline="var(--color-text, hsl(19, 56%, 12%))"
+										outline={issues.some((issue) => issue.column === column && issue.row === row)
+											? 'var(--color-issue, hsl(342, 82%, 47%))'
+											: 'var(--color-text, hsl(19, 56%, 12%))'}
 										width={0.6}
 										height={0.6}
-										char={value.toString()}
+										char={value === 0 ? '' : value.toString()}
 									/>
 								</g>
-							{:else}
-								<g
-									style:cursor={isSolved ? 'initial' : 'pointer'}
-									on:click|stopPropagation={() => {
-										if (!isSolved) handleFocus({ column, row });
-									}}
-									role="button"
-									tabindex={isSolved ? '-1' : '0'}
-									aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
-										? ` Or, delete number ${value}.`
-										: ''}"
-									style:outline="none"
-									on:focus={() => {
-										if (!isSolved) handleFocus({ column, row });
-									}}
-								>
-									<g transform="translate(-0.3 -0.3)">
-										<Tile
-											tile="var(--color-focus, hsl(345, 13%, 94%))"
-											shadow="var(--color-shadow, hsl(6, 98%, 80%))"
-											text="var(--color-focus, hsl(345, 13%, 94%))"
-											outline={issues.some((issue) => issue.column === column && issue.row === row)
-												? 'var(--color-issue, hsl(342, 82%, 47%))'
-												: 'var(--color-text, hsl(19, 56%, 12%))'}
-											width={0.6}
-											height={0.6}
-											char={value === 0 ? '' : value.toString()}
+							</g>
+						{/if}
+					</g>
+
+					{#each relations as { direction, sign }}
+						<g transform="rotate({direction * 90})">
+							<g transform="translate(0 -0.5)">
+								<g transform="scale(1 {sign * 1})">
+									<g transform="scale({$scale})">
+										<path
+											d="M -0.07 0.035 l 0.07 -0.07 0.07 0.07"
+											fill="none"
+											stroke="var(--color-focus, hsl(345, 13%, 94%))"
+											stroke-width="0.07"
+											stroke-linecap="round"
+											stroke-linejoin="round"
 										/>
 									</g>
 								</g>
-							{/if}
-						</g>
-
-						{#each relations as { direction, sign }}
-							<g transform="rotate({direction * 90})">
-								<g transform="translate(0 -0.5)">
-									<g transform="scale(1 {sign * 1})">
-										<g transform="scale({$scale})">
-											<path
-												d="M -0.07 0.035 l 0.07 -0.07 0.07 0.07"
-												fill="none"
-												stroke="var(--color-focus, hsl(345, 13%, 94%))"
-												stroke-width="0.07"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-											/>
-										</g>
-									</g>
-								</g>
 							</g>
-						{/each}
-					</g>
-				{/each}
+						</g>
+					{/each}
+				</g>
 			{/each}
 		</g>
 	</svg>
 
 	<section>
-		{#each puzzle.numbers as number}
+		{#each numbers as number}
 			<button
 				disabled={isSolved}
 				style:cursor={isSolved ? 'initial' : 'pointer'}

@@ -1,20 +1,20 @@
 export const getPuzzle = ({ size, index, moves }) => {
-	const values = [];
-	let value = 0;
+	const numbers = [];
+	let number = 0;
 
 	const grid = Array(size)
 		.fill()
 		.map((_, row) => {
-			values[row] = [];
+			numbers[row] = [];
 			return Array(size)
 				.fill()
 				.map((_, column) => {
-					values[row][column] = ++value;
+					numbers[row][column] = ++number;
 
 					return {
 						row,
 						column,
-						value,
+						number,
 						hidden: false
 					};
 				});
@@ -98,7 +98,7 @@ export const getPuzzle = ({ size, index, moves }) => {
 	for (let row = 0; row < grid.length; row++) {
 		if (!isSolved) break;
 		for (let column = 0; column < grid[row].length; column++) {
-			if (grid[row][column].value !== values[row][column]) {
+			if (grid[row][column].number !== numbers[row][column]) {
 				isSolved = false;
 				break;
 			}
@@ -131,5 +131,5 @@ export const getPuzzle = ({ size, index, moves }) => {
 		hiddenTile.column = column;
 	}
 
-	return { grid, hiddenTile, values };
+	return { grid, hiddenTile, numbers };
 };

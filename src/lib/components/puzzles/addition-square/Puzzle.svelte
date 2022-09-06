@@ -24,10 +24,12 @@
 		.filter((number) => !puzzle.hints.includes(number))
 		.sort((a, b) => a - b);
 
-	$: numbers = puzzle.numbers.map((row) =>
-		row.map((number) => {
+	$: numbers = puzzle.numbers.map((section, row) =>
+		section.map((number, column) => {
 			const isLocked = puzzle.hints.includes(number);
 			return {
+				row,
+				column,
 				number,
 				value: isLocked ? number : 0,
 				isLocked
@@ -267,63 +269,61 @@
 				</g>
 			{/if}
 
-			{#each numbers as array, row}
-				{#each array as { value, isLocked }, column}
-					<g transform="translate({column} {row})">
-						<g transform="scale({$scale})">
-							<g
-								class:solved={isSolved}
-								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
-								opacity="0"
-							>
-								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
+			{#each numbers.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, value, isLocked }}
+				<g transform="translate({column} {row})">
+					<g transform="scale({$scale})">
+						<g
+							class:solved={isSolved}
+							style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
+							opacity="0"
+						>
+							<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
+						</g>
+						{#if isLocked}
+							<g transform="translate(-0.35 -0.35)">
+								<Tile
+									tile="var(--color-tile, hsl(8, 92%, 90%))"
+									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+									text="var(--color-focus, hsl(345, 13%, 94%))"
+									outline="var(--color-text, hsl(19, 56%, 12%))"
+									width={0.7}
+									height={0.7}
+									char={value.toString()}
+								/>
 							</g>
-							{#if isLocked}
+						{:else}
+							<g
+								style:cursor={isSolved ? 'initial' : 'pointer'}
+								on:click|stopPropagation={() => {
+									if (!isSolved) handleFocus({ row, column });
+								}}
+								role="button"
+								tabindex={isSolved ? '-1' : '0'}
+								aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
+									? ` Or, delete number ${value}.`
+									: ''}"
+								style:outline="none"
+								on:focus={() => {
+									if (!isSolved) handleFocus({ row, column });
+								}}
+							>
 								<g transform="translate(-0.35 -0.35)">
 									<Tile
-										tile="var(--color-tile, hsl(8, 92%, 90%))"
+										tile="var(--color-focus, hsl(345, 13%, 94%))"
 										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 										text="var(--color-focus, hsl(345, 13%, 94%))"
-										outline="var(--color-text, hsl(19, 56%, 12%))"
+										outline={issues.includes(value)
+											? 'var(--color-issue, hsl(342, 82%, 47%))'
+											: 'var(--color-text, hsl(19, 56%, 12%))'}
 										width={0.7}
 										height={0.7}
-										char={value.toString()}
+										char={value === 0 ? '' : value.toString()}
 									/>
 								</g>
-							{:else}
-								<g
-									style:cursor={isSolved ? 'initial' : 'pointer'}
-									on:click|stopPropagation={() => {
-										if (!isSolved) handleFocus({ column, row });
-									}}
-									role="button"
-									tabindex={isSolved ? '-1' : '0'}
-									aria-label="Add a number on row {row + 1} and column {column + 1}.{value !== 0
-										? ` Or, delete number ${value}.`
-										: ''}"
-									style:outline="none"
-									on:focus={() => {
-										if (!isSolved) handleFocus({ column, row });
-									}}
-								>
-									<g transform="translate(-0.35 -0.35)">
-										<Tile
-											tile="var(--color-focus, hsl(345, 13%, 94%))"
-											shadow="var(--color-shadow, hsl(6, 98%, 80%))"
-											text="var(--color-focus, hsl(345, 13%, 94%))"
-											outline={issues.includes(value)
-												? 'var(--color-issue, hsl(342, 82%, 47%))'
-												: 'var(--color-text, hsl(19, 56%, 12%))'}
-											width={0.7}
-											height={0.7}
-											char={value === 0 ? '' : value.toString()}
-										/>
-									</g>
-								</g>
-							{/if}
-						</g>
+							</g>
+						{/if}
 					</g>
-				{/each}
+				</g>
 			{/each}
 		</g>
 	</svg>

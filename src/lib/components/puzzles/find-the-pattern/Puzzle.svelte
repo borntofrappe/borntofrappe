@@ -208,7 +208,7 @@
 	<title id="title-find-the-pattern">Find the Pattern</title>
 	<desc id="desc-find-the-pattern"
 		>{isSolved
-			? 'You\'ve found every copy of the pattern, kudos. If you want to keep testing your keen eyes press enter to find a new pattern. In a sea of new numbers.'
+			? "You've found every copy of the pattern, kudos. If you want to keep testing your keen eyes press enter to find a new pattern. In a sea of new numbers."
 			: `Find the pattern ${puzzle.pattern.join(
 					' ,'
 			  )}. Focus on a cell and press enter to start linking value. Move with the arrow keys to link neighboring cells.`}</desc
@@ -307,13 +307,13 @@
 					<g
 						style:cursor={isSolved ? 'initial' : 'pointer'}
 						on:mousedown|preventDefault={() => {
-							handleStart({ column, row });
+							handleStart({ row, column });
 						}}
 						on:mouseenter={() => {
-							handleIng({ column, row });
+							handleIng({ row, column });
 						}}
 						on:touchstart|preventDefault={() => {
-							handleTouch({ column, row });
+							handleTouch({ row, column });
 						}}
 						tabindex={isSolved ? '-1' : '0'}
 						role="button"
@@ -322,7 +322,7 @@
 						class="focusable"
 						on:focus={handleFocus}
 						on:keydown={(event) => {
-							handleKeydown({ event, column, row });
+							handleKeydown({ event, row, column });
 						}}
 					>
 						<g class="focus" opacity="0">

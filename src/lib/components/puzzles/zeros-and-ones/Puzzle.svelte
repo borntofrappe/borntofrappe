@@ -69,10 +69,10 @@
 			[...section, { column: -1, row: -1, value: -1 }]
 				.reduce(
 					(acc, curr) => {
-						const { column, row, value } = curr;
+						const { row, column, value } = curr;
 						if (value === acc.value) {
 							acc.counter++;
-							acc.cells = [...acc.cells, { column, row }];
+							acc.cells = [...acc.cells, { row, column }];
 						} else {
 							if (acc.value !== null && acc.counter >= 3) {
 								// cells and issues
@@ -80,7 +80,7 @@
 							}
 							acc.value = value;
 							acc.counter = 1;
-							acc.cells = [{ column, row }];
+							acc.cells = [{ row, column }];
 						}
 						return acc;
 					},
@@ -182,7 +182,7 @@
 	</g>
 
 	<g>
-		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, isLocked, value }}
+		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isLocked, value }}
 			<g transform="translate({column} {row})">
 				<g
 					class:solved={isSolved}
@@ -211,7 +211,7 @@
 							on:click={() => {
 								if (isSolved) return;
 
-								handleCell({ column, row });
+								handleCell({ row, column });
 							}}
 							role="button"
 							tabindex={isSolved ? '-1' : '0'}
@@ -224,7 +224,7 @@
 								const { key } = event;
 								if (key === 'Enter') {
 									event.preventDefault();
-									handleCell({ column, row });
+									handleCell({ row, column });
 								} else if (key === 'Escape') {
 									event.target.blur();
 								}

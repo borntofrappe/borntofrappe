@@ -9,7 +9,7 @@
 	const index = 15;
 	const moves = 50;
 
-	let { grid, hiddenTile, values } = getPuzzle({ size, index, moves });
+	let { grid, hiddenTile, numbers } = getPuzzle({ size, index, moves });
 
 	let isSliding = false;
 	let isSolved = false;
@@ -68,7 +68,7 @@
 		for (let row = 0; row < grid.length; row++) {
 			if (!hasSolved) break;
 			for (let column = 0; column < grid[row].length; column++) {
-				if (grid[row][column].value !== values[row][column]) {
+				if (grid[row][column].number !== numbers[row][column]) {
 					hasSolved = false;
 					break;
 				}
@@ -166,7 +166,7 @@
 	</g>
 
 	<g>
-		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, value, hidden }}
+		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, number, hidden }}
 			<g transform="translate({column} {row})">
 				{#if hidden}
 					<g transform="scale({$hiddenScale})">
@@ -178,7 +178,7 @@
 								outline="var(--color-text, hsl(19, 56%, 12%))"
 								width="0.76"
 								height="0.76"
-								char={value.toString()}
+								char={number.toString()}
 							/>
 						</g>
 					</g>
@@ -195,7 +195,8 @@
 							}}
 							role="button"
 							tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
-							aria-label="Slide the tile number {value} from row {row + 1} and column {column + 1}."
+							aria-label="Slide the tile number {number} from row {row + 1} and column {column +
+								1}."
 							style:outline="none"
 							class="focusable"
 							on:keydown={(event) => {
@@ -216,7 +217,7 @@
 									outline="var(--color-text, hsl(19, 56%, 12%))"
 									width="0.76"
 									height="0.76"
-									char={value.toString()}
+									char={number.toString()}
 								/>
 							</g>
 						</g>
@@ -228,7 +229,7 @@
 
 	{#if isSolved}
 		<g>
-			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, value }}
+			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, number }}
 				<g transform="translate({column} {row})">
 					<g
 						style:cursor="pointer"
@@ -237,7 +238,7 @@
 						}}
 						role="button"
 						tabindex="0"
-						aria-label="Hide the tile number {value} on row {row + 1} and column {column + 1}."
+						aria-label="Hide the tile number {number} on row {row + 1} and column {column + 1}."
 						style:outline="none"
 						class="focusable"
 						on:keydown={(event) => {
@@ -259,7 +260,7 @@
 								outline="var(--color-text, hsl(19, 56%, 12%))"
 								width="0.76"
 								height="0.76"
-								char={value.toString()}
+								char={number.toString()}
 							/>
 						</g>
 					</g>
