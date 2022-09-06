@@ -5,7 +5,7 @@
 	import { getPuzzle } from './utils.js';
 	import Tile from '../Tile.svelte';
 
-	const size = 4;
+	const size = 5;
 	const index = 15;
 	const moves = 50;
 
@@ -143,12 +143,12 @@
 <svg
 	viewBox="-0.5 -0.5 {size} {size}"
 	tabindex="0"
-	aria-labelledby="title-sixteen desc-sixteen"
+	aria-labelledby="title-sliding-tiles desc-sliding-tiles"
 	style:outline="none"
 	class="focusable"
 >
-	<title id="title-sixteen">Sixteen</title>
-	<desc id="desc-sixteen"
+	<title id="title-sliding-tiles">Sliding Tiles</title>
+	<desc id="desc-sliding-tiles"
 		>{isSolved
 			? "Congrats! You sure had a lot of patience. If you'd like to, you can keep sliding tiles with a new puzzle. Focus on a tile and press enter to hide the matching number and start fresh."
 			: 'Slide the tiles so that the puzzle shows the numbers in ascending order. Focus on a tile and press enter or one of the possible arrow keys to change the change its position.'}</desc
