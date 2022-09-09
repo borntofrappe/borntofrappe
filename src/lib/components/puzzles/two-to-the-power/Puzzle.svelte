@@ -6,6 +6,10 @@
 	import { scale } from './utils.js';
 
 	export let size = 5;
+	export let power = 10;
+
+	let state = 'play';
+	const maxValue = 2 ** power;
 
 	const tween = tweened(0, { easing });
 
@@ -43,6 +47,10 @@
 	};
 
 	const handleSlide = async (direction = 'left') => {
+		if (state !== 'play') return;
+
+		state = 'slide';
+
 		const dimension = direction === 'up' || direction === 'down' ? 'column' : 'row';
 		const oppositeDimension = dimension === 'row' ? 'column' : 'row';
 		const dimensionEnd = `${dimension}End`;
@@ -151,6 +159,62 @@
 				];
 			});
 			addCell();
+
+			if (add.some(({ value }) => value === maxValue)) {
+				state = 'win';
+			} else if (grid.length === size ** 2) {
+				const nestedGrid = Array(size)
+					.fill()
+					.map((_, row) =>
+						Array(size)
+							.fill()
+							.map((_, column) => 0)
+					);
+
+				grid.forEach(({ column, row, value }) => {
+					nestedGrid[row][column] = value;
+				});
+
+				let canMove = false;
+				const offsets = [
+					{ row: -1, column: 0 },
+					{ row: 0, column: 1 },
+					{ row: 1, column: 0 },
+					{ row: 0, column: -1 }
+				];
+
+				for (let row = 0; row < nestedGrid.length; row++) {
+					if (canMove) break;
+					for (let column = 0; column < nestedGrid[row].length; column++) {
+						const value = nestedGrid[row][column];
+						if (
+							offsets.some(({ row: rowOffset, column: columnOffset }) => {
+								const rowEnd = row + rowOffset;
+								const columnEnd = column + columnOffset;
+								return (
+									nestedGrid[rowEnd] &&
+									nestedGrid[rowEnd][columnEnd] &&
+									nestedGrid[rowEnd][columnEnd] === value
+								);
+							})
+						) {
+							canMove = true;
+							break;
+						}
+					}
+				}
+
+				if (canMove) {
+					state = 'play';
+				} else {
+					state = 'loss';
+				}
+			} else {
+				//
+				state = 'play';
+			}
+		} else {
+			state = 'play';
 		}
 	};
 
@@ -180,6 +244,8 @@
 			key: 'ArrowRight'
 		}
 	];
+
+	$: console.log(state);
 </script>
 
 <div>
