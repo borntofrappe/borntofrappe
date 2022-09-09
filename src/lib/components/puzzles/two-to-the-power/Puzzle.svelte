@@ -251,7 +251,16 @@
 	};
 
 	const handleReset = () => {
-		// TODO implement reset function
+		const smallestId = Math.min(...grid.map(({ id }) => id));
+		if (smallestId > 0) {
+			id = 0;
+		}
+		state = 'play';
+
+		grid = [];
+		for (let i = 0; i < 2; i++) {
+			grid = [...grid, getCell(grid)];
+		}
 	};
 </script>
 
