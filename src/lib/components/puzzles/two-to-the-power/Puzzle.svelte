@@ -1,8 +1,13 @@
 <script>
+	import { circInOut as easing } from 'svelte/easing';
+	import { tweened } from 'svelte/motion';
+
 	import Tile from '../Tile.svelte';
 	import { scale } from './utils.js';
 
 	export let size = 5;
+
+	const tween = tweened(0, { easing });
 
 	let id = 0;
 	const tiles = Array(size ** 2)
@@ -36,9 +41,94 @@
 	const addCell = () => {
 		grid = [...grid, getCell(grid)];
 	};
+
+	const handleShift = async () => {
+		const rows = grid.reduce((acc, curr, i) => {
+			const { row } = curr;
+			if (!acc[row]) acc[row] = [];
+
+			acc[row] = [...acc[row], { ...curr, i }].sort((a, b) => a.column - b.column);
+
+			return acc;
+		}, {});
+
+		const { cells, remove, add } = Object.values(rows).reduce(
+			(acc, curr) => {
+				let v = 0;
+				const row = [];
+				const cells = [];
+				for (const cell of curr) {
+					const { value } = cell;
+
+					if (value === v) {
+						const { columnEnd, id } = row[row.length - 1];
+
+						cells.push({ ...cell, columnEnd });
+						acc.remove.push(cell.id, id);
+						acc.add.push({
+							...cell,
+							column: columnEnd,
+							value: value + v
+						});
+						v = 0;
+					} else {
+						const columnEnd = row.length;
+						row.push({ ...cell, columnEnd });
+						cells.push({ ...cell, columnEnd });
+						v = value;
+					}
+				}
+
+				acc.cells.push(...cells);
+
+				return acc;
+			},
+			{
+				cells: [],
+				add: [],
+				remove: []
+			}
+		);
+
+		if (cells.some(({ column, columnEnd }) => column !== columnEnd)) {
+			await tween.set(1, {
+				interpolate: (from, to) => (t) => {
+					const value = (to - from) * t;
+					cells.forEach(({ column, columnEnd, i }) => {
+						grid[i].column = columnEnd + (column - columnEnd) * (1 - value);
+					});
+					return value;
+				}
+			});
+
+			cells.forEach(({ columnEnd, i }) => {
+				grid[i].column = columnEnd;
+			});
+
+			tween.set(0, { duration: 0 });
+
+			remove.forEach((id) => {
+				const i = grid.findIndex((cell) => cell.id === id);
+				grid = [...grid.slice(0, i), ...grid.slice(i + 1)];
+			});
+
+			add.forEach(({ column, row, value }) => {
+				grid = [
+					...grid,
+					{
+						column,
+						row,
+						value,
+						id: id++
+					}
+				];
+			});
+			addCell();
+		}
+	};
 </script>
 
-<button on:click={addCell}>Add</button>
+<button on:click={handleShift}>Slide (to the left)</button>
 
 <svg viewBox="-0.5 -0.5 {size} {size}">
 	<g>
