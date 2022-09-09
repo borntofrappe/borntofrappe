@@ -157,58 +157,117 @@
 	const moves = [
 		{
 			direction: 'up',
-			char: '↑'
+			char: '↑',
+			quadrant: 0,
+			key: 'ArrowUp'
 		},
 		{
 			direction: 'left',
-			char: '←'
+			char: '←',
+			quadrant: 3,
+			key: 'ArrowLeft'
 		},
 		{
 			direction: 'down',
-			char: '↓'
+			char: '↓',
+			quadrant: 2,
+			key: 'ArrowDown'
 		},
 		{
 			direction: 'right',
-			char: '→'
+			char: '→',
+			quadrant: 1,
+			key: 'ArrowRight'
 		}
 	];
 </script>
 
 <div>
-	<svg viewBox="-0.5 -0.5 {size} {size}">
-		<g>
-			{#each tiles as { column, row }}
-				<g transform="translate({column} {row})">
-					<g transform="translate(-0.35 -0.35)">
-						<Tile
-							tile="var(--color-focus, hsl(345, 13%, 94%))"
-							shadow="var(--color-shadow, hsl(6, 98%, 80%))"
-							text="var(--color-focus, hsl(345, 13%, 94%))"
-							outline="var(--color-text, hsl(19, 56%, 12%))"
-							width={0.7}
-							height={0.7}
-							char=""
-						/>
-					</g>
-				</g>
-			{/each}
+	<svg
+		viewBox="-0.5 -0.5 {size + 1} {size + 1}"
+		tabindex="0"
+		aria-labelledby="title-two-to-the-power desc-two-to-the-power"
+		style:outline="none"
+		class="focusable"
+		on:keydown={(e) => {
+			const move = moves.find(({ key }) => key === e.key);
+			if (move) {
+				handleSlide(move.direction);
+			}
+		}}
+	>
+		<title id="title-two-to-the-power">Two to the Power</title>
+		<desc id="desc-two-to-the-power"
+			>Slide tiles with the arrow keys or one of the buttons which follow.</desc
+		>
+
+		<g class="focus" opacity="0">
+			<rect
+				width={size}
+				height={size}
+				rx="0.2"
+				fill="var(--color-focus, hsl(345, 13%, 94%))"
+				opacity="0.25"
+			/>
 		</g>
 
-		<g>
-			{#each grid as { row, column, value, id } (id)}
-				<g transform="translate({column} {row})">
-					<g in:scale>
+		<g transform="translate(0.5 0.5)">
+			<g>
+				{#each tiles as { column, row }}
+					<g transform="translate({column} {row})">
 						<g transform="translate(-0.35 -0.35)">
 							<Tile
-								tile="var(--color-tile, hsl(8, 92%, 90%))"
+								tile="var(--color-focus, hsl(345, 13%, 94%))"
 								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 								text="var(--color-focus, hsl(345, 13%, 94%))"
 								outline="var(--color-text, hsl(19, 56%, 12%))"
 								width={0.7}
 								height={0.7}
-								char={value.toString()}
+								char=""
 							/>
 						</g>
+					</g>
+				{/each}
+			</g>
+
+			<g>
+				{#each grid as { row, column, value, id } (id)}
+					<g transform="translate({column} {row})">
+						<g in:scale>
+							<g transform="translate(-0.35 -0.35)">
+								<Tile
+									tile="var(--color-tile, hsl(8, 92%, 90%))"
+									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+									text="var(--color-focus, hsl(345, 13%, 94%))"
+									outline="var(--color-text, hsl(19, 56%, 12%))"
+									width={0.7}
+									height={0.7}
+									char={value.toString()}
+								/>
+							</g>
+						</g>
+					</g>
+				{/each}
+			</g>
+		</g>
+
+		<g transform="translate({size / 2} {size / 2})">
+			{#each moves as { direction, quadrant }}
+				<g transform="rotate({quadrant * 90})">
+					<g
+						class="hoverable"
+						style:cursor="pointer"
+						on:click={() => {
+							handleSlide(direction);
+						}}
+					>
+						<g class="hover" opacity="0" transform="translate(0 {(size / 2) * -1})">
+							<circle opacity="0.25" fill="var(--color-focus, hsl(345, 13%, 94%))" r="0.5" />
+						</g>
+						<path
+							opacity="0"
+							d="M 0 0 l {((size + 1) / 2) * -1} {((size + 1) / 2) * -1} h {size + 1}z"
+						/>
 					</g>
 				</g>
 			{/each}
@@ -248,6 +307,22 @@
 
 	div > svg {
 		display: block;
+	}
+
+	.focusable:focus > .focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
+	}
+
+	.hoverable .hover {
+		transition: 0.2s opacity cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	.hoverable:hover > .hover {
+		opacity: 1;
 	}
 
 	section {
