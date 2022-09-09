@@ -26,7 +26,8 @@
 		{
 			name: 'Zeros and Ones',
 			component: ZerosAndOnes
-		}, {
+		},
+		{
 			name: 'Two to the Power',
 			component: TwoToThePower
 		}
