@@ -42,44 +42,67 @@
 		grid = [...grid, getCell(grid)];
 	};
 
-	const handleShift = async () => {
-		const rows = grid.reduce((acc, curr, i) => {
-			const { row } = curr;
-			if (!acc[row]) acc[row] = [];
+	const handleSlide = async (direction = 'left') => {
+		const dimension = direction === 'up' || direction === 'down' ? 'column' : 'row';
+		const oppositeDimension = dimension === 'row' ? 'column' : 'row';
+		const dimensionEnd = `${dimension}End`;
+		const oppositeDimensionEnd = `${oppositeDimension}End`;
 
-			acc[row] = [...acc[row], { ...curr, i }].sort((a, b) => a.column - b.column);
+		const ascendingOrder = direction === 'down' || direction === 'right';
+
+		const sections = grid.reduce((acc, curr, i) => {
+			const section = curr[dimension];
+			if (!acc[section]) acc[section] = [];
+
+			acc[section].push({ ...curr, i });
 
 			return acc;
 		}, {});
 
-		const { cells, remove, add } = Object.values(rows).reduce(
+		const { cells, remove, add } = Object.values(sections).reduce(
 			(acc, curr) => {
 				let v = 0;
-				const row = [];
+				const section = [];
 				const cells = [];
-				for (const cell of curr) {
+
+				const currCells = ascendingOrder
+					? [...curr].sort((a, b) => b[oppositeDimension] - a[oppositeDimension])
+					: [...curr].sort((a, b) => a[oppositeDimension] - b[oppositeDimension]);
+
+				for (const cell of currCells) {
 					const { value } = cell;
 
 					if (value === v) {
-						const { columnEnd, id } = row[row.length - 1];
+						const { id } = section[section.length - 1];
+						const sectionEnd = section[section.length - 1][oppositeDimensionEnd];
 
-						cells.push({ ...cell, columnEnd });
+						const sectionCell = { ...cell };
+						sectionCell[oppositeDimensionEnd] = sectionEnd;
+						cells.push(sectionCell);
+
 						acc.remove.push(cell.id, id);
-						acc.add.push({
-							...cell,
-							column: columnEnd,
-							value: value + v
-						});
+
+						const addCell = { ...cell, value: value + v };
+						addCell[oppositeDimension] = sectionEnd;
+						acc.add.push(addCell);
 						v = 0;
 					} else {
-						const columnEnd = row.length;
-						row.push({ ...cell, columnEnd });
-						cells.push({ ...cell, columnEnd });
+						const sectionEnd = ascendingOrder ? size - section.length - 1 : section.length;
+						const sectionCell = { ...cell };
+						sectionCell[oppositeDimensionEnd] = sectionEnd;
+						section.push(sectionCell);
+						cells.push(sectionCell);
 						v = value;
 					}
 				}
 
-				acc.cells.push(...cells);
+				acc.cells.push(
+					...cells.map((cell) => {
+						const accCell = { ...cell };
+						accCell[dimensionEnd] = cell[dimension];
+						return accCell;
+					})
+				);
 
 				return acc;
 			},
@@ -90,18 +113,22 @@
 			}
 		);
 
-		if (cells.some(({ column, columnEnd }) => column !== columnEnd)) {
+		if (
+			cells.some(({ row, rowEnd, column, columnEnd }) => row !== rowEnd || column !== columnEnd)
+		) {
 			await tween.set(1, {
 				interpolate: (from, to) => (t) => {
 					const value = (to - from) * t;
-					cells.forEach(({ column, columnEnd, i }) => {
+					cells.forEach(({ row, rowEnd, column, columnEnd, i }) => {
+						grid[i].row = rowEnd + (row - rowEnd) * (1 - value);
 						grid[i].column = columnEnd + (column - columnEnd) * (1 - value);
 					});
 					return value;
 				}
 			});
 
-			cells.forEach(({ columnEnd, i }) => {
+			cells.forEach(({ rowEnd, columnEnd, i }) => {
+				grid[i].row = rowEnd;
 				grid[i].column = columnEnd;
 			});
 
@@ -128,7 +155,13 @@
 	};
 </script>
 
-<button on:click={handleShift}>Slide (to the left)</button>
+{#each ['up', 'right', 'down', 'left'] as direction}
+	<button
+		on:click={() => {
+			handleSlide(direction);
+		}}>{direction}</button
+	>
+{/each}
 
 <svg viewBox="-0.5 -0.5 {size} {size}">
 	<g>
