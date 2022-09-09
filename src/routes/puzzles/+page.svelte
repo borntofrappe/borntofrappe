@@ -4,6 +4,7 @@
 	import FindThePattern from '$lib/components/puzzles/find-the-pattern/Puzzle.svelte';
 	import MoreOrLess from '$lib/components/puzzles/more-or-less/Puzzle.svelte';
 	import ZerosAndOnes from '$lib/components/puzzles/zeros-and-ones/Puzzle.svelte';
+	import TwoToThePower from '$lib/components/puzzles/two-to-the-power/Puzzle.svelte';
 
 	const options = [
 		{
@@ -25,6 +26,9 @@
 		{
 			name: 'Zeros and Ones',
 			component: ZerosAndOnes
+		}, {
+			name: 'Two to the Power',
+			component: TwoToThePower
 		}
 	];
 
