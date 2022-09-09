@@ -6,7 +6,7 @@
 	import { scale } from './utils.js';
 
 	export let size = 5;
-	export let power = 10;
+	export let power = 9;
 
 	let state = 'play';
 	const maxValue = 2 ** power;
@@ -245,29 +245,45 @@
 		}
 	];
 
-	$: console.log(state);
+	const descriptions = {
+		win: `Congrats, you reached the grand value of ${maxValue}!`,
+		loss: 'Unfortunately, there are no moves left...'
+	};
+
+	const handleReset = () => {
+		// TODO implement reset function
+	};
 </script>
 
 <div>
 	<svg
-		viewBox="-0.5 -0.5 {size + 1} {size + 1}"
+		viewBox="-0.5 -0.5 {size + 1} {size + 1 + 0.5}"
 		tabindex="0"
 		aria-labelledby="title-two-to-the-power desc-two-to-the-power"
 		style:outline="none"
 		class="focusable"
 		on:keydown={(e) => {
-			const move = moves.find(({ key }) => key === e.key);
-			if (move) {
-				handleSlide(move.direction);
+			const { key } = e;
+			if (key === 'r' || key === 'R') {
+				e.preventDefault();
+				handleReset();
+			} else {
+				const move = moves.find((move) => move.key === key);
+				if (move) {
+					e.preventDefault();
+					handleSlide(move.direction);
+				}
 			}
 		}}
 	>
 		<title id="title-two-to-the-power">Two to the Power</title>
 		<desc id="desc-two-to-the-power"
-			>Slide tiles with the arrow keys or one of the buttons which follow.</desc
+			>{descriptions[state] ||
+				`Slide the tiles and combine them together to reach ${maxValue}. Press one of the arrow keys to
+			move the tiles in the matching direction.`} Press the "r" key to reset the puzzle and start anew.</desc
 		>
 
-		<g class="focus" opacity="0">
+		<g class="focus" opacity="0" transform="translate(0 0.5)">
 			<rect
 				width={size}
 				height={size}
@@ -277,77 +293,136 @@
 			/>
 		</g>
 
-		<g transform="translate(0.5 0.5)">
-			<g>
-				{#each tiles as { column, row }}
-					<g transform="translate({column} {row})">
+		<g>
+			<g transform="translate(0.5 0)">
+				<g transform="translate(-0.35 -0.35)">
+					<Tile
+						tile="var(--color-tile, hsl(8, 92%, 90%))"
+						shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+						text="var(--color-focus, hsl(345, 13%, 94%))"
+						outline="var(--color-text, hsl(19, 56%, 12%))"
+						width={0.7}
+						height={0.7}
+						char={2}
+					/>
+				</g>
+			</g>
+			<g transform="translate(1.5 0)">
+				<g transform="translate(-0.35 -0.35)">
+					<Tile
+						tile="var(--color-tile, hsl(8, 92%, 90%))"
+						shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+						text="var(--color-focus, hsl(345, 13%, 94%))"
+						outline="var(--color-text, hsl(19, 56%, 12%))"
+						width={0.5}
+						height={0.5}
+						char={power}
+					/>
+				</g>
+			</g>
+
+			{#if state === 'win'}
+				<g transform="translate({size - 0.5} 0)">
+					<g in:scale>
 						<g transform="translate(-0.35 -0.35)">
 							<Tile
-								tile="var(--color-focus, hsl(345, 13%, 94%))"
+								tile="var(--color-tile, hsl(8, 92%, 90%))"
 								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 								text="var(--color-focus, hsl(345, 13%, 94%))"
 								outline="var(--color-text, hsl(19, 56%, 12%))"
 								width={0.7}
 								height={0.7}
-								char=""
+								char={maxValue}
 							/>
 						</g>
 					</g>
-				{/each}
-			</g>
+				</g>
+			{/if}
+		</g>
 
-			<g>
-				{#each grid as { row, column, value, id } (id)}
-					<g transform="translate({column} {row})">
-						<g in:scale>
+		<g transform="translate(0 0.5)">
+			<g transform="translate(0.5 0.5)">
+				<g>
+					{#each tiles as { column, row }}
+						<g transform="translate({column} {row})">
+							<g
+								class:solved={state === 'win'}
+								style="animation-duration: 0.6s; animation-delay: {(row + column) % 2 ? 0 : 0.18}s"
+								opacity="0"
+							>
+								<circle r="0.5" fill="var(--color-focus, hsl(345, 13%, 94%))" opacity="0.25" />
+							</g>
 							<g transform="translate(-0.35 -0.35)">
 								<Tile
-									tile="var(--color-tile, hsl(8, 92%, 90%))"
+									tile="var(--color-focus, hsl(345, 13%, 94%))"
 									shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 									text="var(--color-focus, hsl(345, 13%, 94%))"
 									outline="var(--color-text, hsl(19, 56%, 12%))"
 									width={0.7}
 									height={0.7}
-									char={value.toString()}
+									char=""
 								/>
 							</g>
+						</g>
+					{/each}
+				</g>
+
+				<g>
+					{#each grid as { row, column, value, id } (id)}
+						<g transform="translate({column} {row})">
+							<g in:scale>
+								<g transform="translate(-0.35 -0.35)">
+									<Tile
+										tile="var(--color-tile, hsl(8, 92%, 90%))"
+										shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+										text="var(--color-focus, hsl(345, 13%, 94%))"
+										outline={state === 'loss'
+											? 'var(--color-issue, hsl(342, 82%, 47%))'
+											: 'var(--color-text, hsl(19, 56%, 12%))'}
+										width={0.7}
+										height={0.7}
+										char={value.toString()}
+									/>
+								</g>
+							</g>
+						</g>
+					{/each}
+				</g>
+			</g>
+
+			<g transform="translate({size / 2} {size / 2})">
+				{#each moves as { direction, quadrant }}
+					<g transform="rotate({quadrant * 90})">
+						<g
+							class:hoverable={state === 'play'}
+							style:cursor="pointer"
+							on:click={() => {
+								handleSlide(direction);
+							}}
+						>
+							<g class="hover" opacity="0" transform="translate(0 {(size / 2) * -1})">
+								<circle opacity="0.25" fill="var(--color-focus, hsl(345, 13%, 94%))" r="0.5" />
+							</g>
+							<path
+								opacity="0"
+								d="M 0 0 l {((size + 1) / 2) * -1} {((size + 1) / 2) * -1} h {size + 1}z"
+							/>
 						</g>
 					</g>
 				{/each}
 			</g>
-		</g>
-
-		<g transform="translate({size / 2} {size / 2})">
-			{#each moves as { direction, quadrant }}
-				<g transform="rotate({quadrant * 90})">
-					<g
-						class="hoverable"
-						style:cursor="pointer"
-						on:click={() => {
-							handleSlide(direction);
-						}}
-					>
-						<g class="hover" opacity="0" transform="translate(0 {(size / 2) * -1})">
-							<circle opacity="0.25" fill="var(--color-focus, hsl(345, 13%, 94%))" r="0.5" />
-						</g>
-						<path
-							opacity="0"
-							d="M 0 0 l {((size + 1) / 2) * -1} {((size + 1) / 2) * -1} h {size + 1}z"
-						/>
-					</g>
-				</g>
-			{/each}
 		</g>
 	</svg>
 
 	<section>
 		{#each moves as { direction, char }}
 			<button
+				disabled={state === 'win' || state === 'loss'}
 				on:click={() => {
 					handleSlide(direction);
 				}}
 			>
-				<span class="visually-hidden">slide {direction}</span>
+				<span class="visually-hidden">Slide the tiles {direction}.</span>
 				<Tile
 					tile="var(--color-tile, hsl(8, 92%, 90%))"
 					shadow="var(--color-shadow, hsl(6, 98%, 80%))"
@@ -357,6 +432,21 @@
 				/>
 			</button>
 		{/each}
+
+		<button
+			on:click={() => {
+				handleReset();
+			}}
+		>
+			<span class="visually-hidden">Reset the puzzle to start from scratch.</span>
+			<Tile
+				tile="var(--color-focus, hsl(345, 13%, 94%))"
+				shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+				text="var(--color-focus, hsl(345, 13%, 94%))"
+				outline="var(--color-text, hsl(19, 56%, 12%))"
+				char=""
+			/>
+		</button>
 	</section>
 </div>
 
@@ -462,5 +552,15 @@
 
 	button:focus:not(:focus-visible)::before {
 		opacity: 0;
+	}
+
+	.solved {
+		animation: flash 5 cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	@keyframes flash {
+		50% {
+			opacity: 1;
+		}
 	}
 </style>
