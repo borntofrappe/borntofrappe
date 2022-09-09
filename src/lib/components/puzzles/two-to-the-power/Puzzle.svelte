@@ -153,52 +153,173 @@
 			addCell();
 		}
 	};
+
+	const moves = [
+		{
+			direction: 'up',
+			char: '↑'
+		},
+		{
+			direction: 'left',
+			char: '←'
+		},
+		{
+			direction: 'down',
+			char: '↓'
+		},
+		{
+			direction: 'right',
+			char: '→'
+		}
+	];
 </script>
 
-{#each ['up', 'right', 'down', 'left'] as direction}
-	<button
-		on:click={() => {
-			handleSlide(direction);
-		}}>{direction}</button
-	>
-{/each}
-
-<svg viewBox="-0.5 -0.5 {size} {size}">
-	<g>
-		{#each tiles as { column, row }}
-			<g transform="translate({column} {row})">
-				<g transform="translate(-0.35 -0.35)">
-					<Tile
-						tile="var(--color-focus, hsl(345, 13%, 94%))"
-						shadow="var(--color-shadow, hsl(6, 98%, 80%))"
-						text="var(--color-focus, hsl(345, 13%, 94%))"
-						outline="var(--color-text, hsl(19, 56%, 12%))"
-						width={0.7}
-						height={0.7}
-						char=""
-					/>
-				</g>
-			</g>
-		{/each}
-	</g>
-
-	<g>
-		{#each grid as { row, column, value, id } (id)}
-			<g transform="translate({column} {row})">
-				<g in:scale>
+<div>
+	<svg viewBox="-0.5 -0.5 {size} {size}">
+		<g>
+			{#each tiles as { column, row }}
+				<g transform="translate({column} {row})">
 					<g transform="translate(-0.35 -0.35)">
 						<Tile
-							tile="var(--color-tile, hsl(8, 92%, 90%))"
+							tile="var(--color-focus, hsl(345, 13%, 94%))"
 							shadow="var(--color-shadow, hsl(6, 98%, 80%))"
 							text="var(--color-focus, hsl(345, 13%, 94%))"
 							outline="var(--color-text, hsl(19, 56%, 12%))"
 							width={0.7}
 							height={0.7}
-							char={value.toString()}
+							char=""
 						/>
 					</g>
 				</g>
-			</g>
+			{/each}
+		</g>
+
+		<g>
+			{#each grid as { row, column, value, id } (id)}
+				<g transform="translate({column} {row})">
+					<g in:scale>
+						<g transform="translate(-0.35 -0.35)">
+							<Tile
+								tile="var(--color-tile, hsl(8, 92%, 90%))"
+								shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+								text="var(--color-focus, hsl(345, 13%, 94%))"
+								outline="var(--color-text, hsl(19, 56%, 12%))"
+								width={0.7}
+								height={0.7}
+								char={value.toString()}
+							/>
+						</g>
+					</g>
+				</g>
+			{/each}
+		</g>
+	</svg>
+
+	<section>
+		{#each moves as { direction, char }}
+			<button
+				on:click={() => {
+					handleSlide(direction);
+				}}
+			>
+				<span class="visually-hidden">slide {direction}</span>
+				<Tile
+					tile="var(--color-tile, hsl(8, 92%, 90%))"
+					shadow="var(--color-shadow, hsl(6, 98%, 80%))"
+					text="var(--color-focus, hsl(345, 13%, 94%))"
+					outline="var(--color-text, hsl(19, 56%, 12%))"
+					{char}
+				/>
+			</button>
 		{/each}
-	</g>
-</svg>
+	</section>
+</div>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	div > * + * {
+		margin-top: 0.5em;
+	}
+
+	div > svg {
+		display: block;
+	}
+
+	section {
+		max-width: 100%;
+		display: flex;
+		gap: 0 1rem;
+		overflow-x: auto;
+		padding: 0.5rem 1rem;
+	}
+
+	section button {
+		flex-shrink: 0;
+	}
+
+	section::-webkit-scrollbar {
+		height: 0.25rem;
+	}
+
+	section::-webkit-scrollbar-track {
+		background: var(--color-shadow, hsl(6, 98%, 80%));
+		border-radius: 0.25rem;
+	}
+
+	section::-webkit-scrollbar-thumb {
+		background: var(--color-tile, hsl(8, 92%, 90%));
+		border-radius: 0.25rem;
+	}
+
+	button {
+		width: 3rem;
+		height: 3rem;
+		display: block;
+		border: none;
+		background: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	button > :global(svg) {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	button {
+		position: relative;
+		z-index: 0;
+	}
+
+	button::before {
+		position: absolute;
+		content: '';
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		background: var(--color-focus, hsl(345, 13%, 94%));
+		transform: translate(-50%, -50%) scale(1.25);
+		border-radius: 50%;
+		opacity: 0;
+		z-index: -1;
+	}
+
+	button:focus {
+		outline: none;
+	}
+
+	button:focus::before {
+		opacity: 0.25;
+	}
+
+	button:focus:not(:focus-visible)::before {
+		opacity: 0;
+	}
+</style>
