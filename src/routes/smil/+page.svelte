@@ -1,5 +1,6 @@
 <script>
 	import Defs from '$lib/components/smil/Defs.svelte';
+	import Text from '$lib/components/smil/Text.svelte';
 </script>
 
 <svelte:head>
@@ -11,23 +12,8 @@
 <Defs />
 
 <div>
-	<svg viewBox="-30 -30 60 60">
-		<g
-			font-family="sans-serif"
-			font-weight="700"
-			font-size="10"
-			text-anchor="middle"
-			dominant-baseline="central"
-			fill="url(#linear-gradient-text)"
-			stroke="#192d10"
-			stroke-width="2"
-			letter-spacing="1"
-			paint-order="stroke"
-			stroke-linejoin="round"
-			stroke-linecap="round"
-		>
-			<text>SMIL</text>
-		</g>
+	<svg viewBox="-20 -10 40 20">
+		<Text stroke="currentColor" fill="url(#linear-gradient-text)" />
 	</svg>
 </div>
 
