@@ -1,6 +1,6 @@
 <script>
 	import Defs from '$lib/components/smil/Defs.svelte';
-	import Text from '$lib/components/smil/Text.svelte';
+	import AnimatedText from '$lib/components/smil/AnimatedText.svelte';
 </script>
 
 <svelte:head>
@@ -13,7 +13,7 @@
 
 <div>
 	<svg viewBox="-20 -10 40 20">
-		<Text stroke="currentColor" fill="url(#linear-gradient-text)" />
+		<AnimatedText text="Hello world" stroke="currentColor" fill="url(#linear-gradient-text)" />
 	</svg>
 </div>
 
