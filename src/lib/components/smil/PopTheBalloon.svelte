@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const dBalloon = ({ radius = 7, protuberance = 2, points = 15 } = {}) => {
 		let p = points || radius * 2;
 		if (p % 2 !== 0) p++;
@@ -70,9 +73,10 @@
 		<use transform="translate(65 35)" href="#pop-the-balloon-cloud" />
 	</g>
 
-	<g transform="translate(40 28)">
+	<g transform="translate(40 30)">
 		<g>
 			<animateTransform
+				begin="popTheBalloonStart.begin"
 				end="popTheBalloonPopped.begin"
 				attributeName="transform"
 				type="translate"
@@ -83,6 +87,7 @@
 			<g stroke="currentColor" stroke-width="0.5">
 				<g>
 					<animateTransform
+						begin="popTheBalloonStart.begin"
 						end="popTheBalloonPopped.begin"
 						attributeName="transform"
 						type="translate"
@@ -142,5 +147,20 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="popTheBalloonStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Pop!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
