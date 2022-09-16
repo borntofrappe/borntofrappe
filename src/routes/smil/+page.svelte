@@ -27,12 +27,17 @@
 	div {
 		color: hsl(209, 61%, 16%);
 		background: hsl(210, 36%, 96%);
+		max-height: 100vh;
+		overflow-y: scroll;
+		scroll-snap-type: y mandatory;
 	}
 
 	article {
-		min-height: 100vh;
-		display: grid;
-		place-items: center;
+		scroll-snap-align: start;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		--_border-color: var(--border-color, currentColor);
 	}
 
