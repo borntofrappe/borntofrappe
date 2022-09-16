@@ -1,4 +1,6 @@
 <script>
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const sprites = 4;
 
 	const dCircle = ({ radius, points }) => {
@@ -116,6 +118,7 @@
 	<g transform="translate(40 25)">
 		<g style:cursor="pointer">
 			<animateTransform
+				id="pokeTheLadybugPoked"
 				begin="click"
 				attributeName="transform"
 				type="translate"
@@ -126,6 +129,8 @@
 			/>
 			<g>
 				<animateTransform
+					begin="pokeTheLadybugStart.begin"
+					end="pokeTheLadybugPoked.end"
 					attributeName="transform"
 					type="translate"
 					dur="{sprites * 0.15}s"
@@ -169,5 +174,50 @@
 				{/each}
 			</g>
 		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="pokeTheLadybugMessage"
+			begin="pokeTheLadybugPoked.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<AnimatedText
+				text="You did it!"
+				begin="pokeTheLadybugMessage.begin"
+				end="pokeTheLadybugEnd.begin"
+				fill="url(#linear-gradient-text)"
+			/>
+		</g>
+		<g style:cursor="pointer">
+			<set
+				id="pokeTheLadybugEnd"
+				begin="click"
+				attributeName="display"
+				to="none"
+				fill="freeze"
+				restart="never"
+			/>
+			<rect width="80" height="50" opacity="0" />
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="pokeTheLadybugStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
