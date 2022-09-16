@@ -1,3 +1,93 @@
+<script>
+	const dBalloon = ({ radius = 7, protuberance = 2, points = 15 } = {}) => {
+		let p = points || radius * 2;
+		if (p % 2 !== 0) p++;
+
+		const pts = Array(p)
+			.fill()
+			.map((_, i, { length }) => {
+				const distance = i % 2 !== 0 ? radius + Math.random() / 2 : radius - Math.random() / 2;
+				const angle = (((360 / length) * i) / 180) * Math.PI;
+				const x = Math.cos(angle) * distance;
+				const y =
+					angle > 0 && angle < Math.PI
+						? Math.sin(angle) * (distance + protuberance)
+						: Math.sin(angle) * distance;
+				return {
+					x,
+					y
+				};
+			});
+
+		return [...pts, { x: pts[0].x, y: pts[0].y }].reduce(
+			(acc, { x, y }, i) => (i % 2 === 0 ? `${acc} ${x} ${y}` : `${acc} Q ${x} ${y}`),
+			'M'
+		);
+	};
+</script>
+
 <svg viewBox="0 0 80 50">
+	<defs>
+		<pattern
+			id="pop-the-balloon-pattern-present"
+			viewBox="0 0 10 10"
+			width="4"
+			height="4"
+			patternUnits="userSpaceOnUse"
+		>
+			<rect width="10" height="10" fill="#f7f75a" />
+			<path
+				fill="#f7aa31"
+				d="M 0 0 3 0 0 3Z M 0 7 3 10 0 10Z M 7 0 10 3 10 0Z M 7 10 10 7 10 10Z M 2 5 5 2 8 5 5 8z"
+			/>
+		</pattern>
+	</defs>
+
 	<rect fill="#10c2ce" width="80" height="50" />
+
+	<g stroke-width="0.5">
+		<g transform="translate(15 15)">
+			<g id="pop-the-balloon-cloud">
+				<path
+					fill="#f7f7f7"
+					d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
+				/>
+				<path
+					fill="#bdbebd"
+					d="M -7 0 a 2 2 0 0 0 0 4 1.85 1.85 0 0 0 3.7 0 3.4 3.4 0 0 0 6.6 0 1.85 1.85 0 0 0 3.7 0 2 2 0 0 0 0 -4 a 1.5 1.5 0 0 1 -0.5 2.5 a 1.4 1.4 0 0 1 -3 -0.5 a 3.6 3.6 0 0 1 -7 0 a 1.4 1.4 0 0 1 -3 0.5 a 1.5 1.5 0 0 1 -0.5 -2.5"
+				/>
+				<path
+					fill="none"
+					stroke="currentColor"
+					d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
+				/>
+			</g>
+		</g>
+		<use transform="translate(65 35)" href="#pop-the-balloon-cloud" />
+	</g>
+
+	<g transform="translate(40 28)">
+		<g stroke="currentColor" stroke-width="0.5">
+			<g transform="translate(0 -3)">
+				<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
+
+				<g transform="translate(0 -10)">
+					<path fill="#f70000" d={dBalloon({ radius: 7, protuberance: 2, points: 16 })} />
+					<path
+						transform="translate(2 -2.5) rotate(-40)"
+						fill="#f7d794"
+						stroke="none"
+						d={dBalloon({ radius: 2, protuberance: 1, points: 10 })}
+					/>
+				</g>
+				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
+			</g>
+
+			<g fill="url(#pop-the-balloon-pattern-present)">
+				<rect x="-6" y="4" width="12" height="7" />
+				<rect x="-7" width="14" height="4" />
+			</g>
+			<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+		</g>
+	</g>
 </svg>
