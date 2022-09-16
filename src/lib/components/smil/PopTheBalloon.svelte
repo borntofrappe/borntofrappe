@@ -28,6 +28,8 @@
 		);
 	};
 
+	const d = dBalloon();
+
 	const angle = ((Math.floor(Math.random() * 180) + 180) / 180) * Math.PI;
 	const dx = Math.cos(angle) * 80;
 	const dy = Math.sin(angle) * 50;
@@ -48,6 +50,24 @@
 				d="M 0 0 3 0 0 3Z M 0 7 3 10 0 10Z M 7 0 10 3 10 0Z M 7 10 10 7 10 10Z M 2 5 5 2 8 5 5 8z"
 			/>
 		</pattern>
+
+		<pattern
+			id="pop-the-balloon-shreds"
+			viewBox="0 0 5 5"
+			width="1"
+			height="1"
+			patternUnits="userSpaceOnUse"
+		>
+			<g fill="black">
+				<circle r="1.5" cx="2.5" cy="2.5" />
+				<circle r="1.5" cx="2.5" cy="7.5" />
+			</g>
+		</pattern>
+
+		<mask id="pop-the-balloon-mask-shreds">
+			<path {d} fill="white" stroke="white" stroke-width="0.5" />
+			<path {d} fill="url(#pop-the-balloon-shreds)" stroke="white" stroke-width="0.5" />
+		</mask>
 	</defs>
 
 	<rect fill="#10c2ce" width="80" height="50" />
@@ -105,7 +125,7 @@
 								begin="click"
 								attributeName="transform"
 								type="translate"
-								values="160 0"
+								values="160 0; 320 0"
 								dur="0.1s"
 								calcMode="discrete"
 								fill="freeze"
@@ -114,13 +134,24 @@
 							<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
 
 							<g transform="translate(0 -10)">
-								<path fill="#f70000" d={dBalloon({ radius: 7, protuberance: 2, points: 16 })} />
+								<path fill="#f70000" {d} />
 								<path
 									transform="translate(2 -2.5) rotate(-40)"
 									fill="#f7d794"
 									stroke="none"
 									d={dBalloon({ radius: 2, protuberance: 1, points: 10 })}
 								/>
+								<g transform="translate(-160 0)">
+									<g mask="url(#pop-the-balloon-mask-shreds)">
+										<path fill="#f70000" {d} />
+										<path
+											transform="translate(2 -2.5) rotate(-40)"
+											fill="#f7d794"
+											stroke="none"
+											d={dBalloon({ radius: 2, protuberance: 1, points: 10 })}
+										/>
+									</g>
+								</g>
 							</g>
 							<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
 						</g>
