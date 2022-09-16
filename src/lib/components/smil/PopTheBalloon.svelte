@@ -76,6 +76,7 @@
 	<g transform="translate(40 30)">
 		<g>
 			<animateTransform
+				id="popTheBalloonFloat"
 				begin="popTheBalloonStart.begin"
 				end="popTheBalloonPopped.begin"
 				attributeName="transform"
@@ -146,6 +147,65 @@
 					<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
 				</g>
 			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="popTheBalloonMessage"
+			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g>
+			<g transform="translate(40 25)">
+				<g display="none">
+					<set
+						begin="popTheBalloonFall.end"
+						attributeName="display"
+						to="initial"
+						fill="freeze"
+						restart="never"
+					/>
+					<g>
+						<AnimatedText
+							text="That's a wrap!"
+							begin="popTheBalloonFall.end"
+							end="popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+				<g>
+					<set
+						begin="popTheBalloonFall.begin"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						restart="never"
+					/>
+					<g>
+						<AnimatedText
+							text="Far it goes..."
+							begin="popTheBalloonMessage.begin"
+							end="popTheBalloonFall.end; popTheBalloonEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="popTheBalloonEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+			</rect>
 		</g>
 	</g>
 
