@@ -1,3 +1,47 @@
+<script>
+	const dCircle = ({ radius, points }) => {
+		let p = points || radius * 2;
+		if (p % 2 !== 0) p++;
+
+		const pts = Array(p)
+			.fill()
+			.map((_, i, { length }) => {
+				const distance = i % 2 !== 0 ? radius + Math.random() / 2 : radius - Math.random() / 2;
+				const angle = (((360 / length) * i) / 180) * Math.PI;
+				const x = Math.cos(angle) * distance;
+				const y = Math.sin(angle) * distance;
+				return {
+					x,
+					y
+				};
+			});
+
+		return [...pts, { x: pts[0].x, y: pts[0].y }].reduce(
+			(acc, { x, y }, i) => (i % 2 === 0 ? `${acc} ${x} ${y}` : `${acc} Q ${x} ${y}`),
+			'M'
+		);
+	};
+
+	const dLine = ({ x1, y1, x2, y2, points }) => {
+		const p = points || Math.floor(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 / 2);
+
+		const dx = (x2 - x1) / p;
+		const dy = (y2 - y1) / p;
+
+		return `M ${x1} ${y1} ${Array(p)
+			.fill()
+			.map((_, i) => {
+				const x = x1 + dx * i + Math.random() - 0.5;
+				const y = y1 + dy * i + Math.random() - 0.5;
+				return {
+					x,
+					y
+				};
+			})
+			.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, '')} ${x2} ${y2}`;
+	};
+</script>
+
 <svg viewBox="0 0 80 50">
 	<defs>
 		<pattern
@@ -69,25 +113,30 @@
 
 	<g transform="translate(40 25)">
 		<g transform="translate(0 -8)">
-			<circle fill="#192d10" r="6" />
+			<path fill="#192d10" d={dCircle({ radius: 6 })} />
+
 			<g transform="translate(0 -3.5)">
 				<g fill="#f7f7f7">
-					<circle r="1.25" cx="-2" />
-					<circle r="1.25" cx="2" />
+					<path transform="translate(-2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
+					<path transform="translate(2 0)" d={dCircle({ radius: 1.25, points: 5 })} />
 				</g>
 			</g>
 		</g>
-		<circle fill="#f70000" r="10" />
+
+		<path fill="#f70000" stroke="none" stroke-width="0.5" d={dCircle({ radius: 10 })} />
+
 		<g fill="#192d10">
-			<circle cx="-5" cy="-1" r="3.6" />
-			<circle cx="5" cy="1" r="3.6" />
+			<path transform="translate(-5 -1)" d={dCircle({ radius: 3.6, points: 10 })} />
+			<path transform="translate(5 1)" d={dCircle({ radius: 3.6, points: 10 })} />
 		</g>
+
 		<path
 			fill="none"
 			stroke="#192d10"
 			stroke-width="0.5"
 			stroke-linecap="square"
-			d="M 0 -9.75 v 19.5"
+			stroke-linejoin="round"
+			d={dLine({ x1: 0, y1: -9.5, x2: -0, y2: 9.5, points: 7 })}
 		/>
 	</g>
 </svg>
