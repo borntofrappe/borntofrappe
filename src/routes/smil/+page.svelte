@@ -19,8 +19,8 @@
 
 <style>
 	div {
-		color: hsl(101, 48%, 12%);
-		background: hsl(0, 0%, 97%);
+		color: hsl(209, 61%, 16%);
+		background: hsl(210, 36%, 96%);
 	}
 
 	article {
@@ -37,7 +37,7 @@
 		max-width: 34rem;
 		height: auto;
 		border-radius: 0.25rem;
-		box-shadow: 0 -1em 1em hsla(0, 0%, 0%, 0.1), 0 0 0 0.05em hsl(0, 0%, 23%),
-			0 0 0 0.95em var(--_border-color), 0 0 0 1em hsl(0, 0%, 23%);
+		box-shadow: 0 -1em 1em hsla(209, 61%, 16%, 0.1), 0 0 0 0.05em hsl(209, 61%, 16%),
+			0 0 0 0.95em var(--_border-color), 0 0 0 1em hsl(209, 61%, 16%);
 	}
 </style>

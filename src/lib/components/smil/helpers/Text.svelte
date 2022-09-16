@@ -1,7 +1,7 @@
 <script>
 	export let fontSize = 6;
-	export let fill = '#f7f7f7';
-	export let stroke = '#192d10';
+	export let fill = '#f1f5f8';
+	export let stroke = '#102a42';
 </script>
 
 <g
