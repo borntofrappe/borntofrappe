@@ -1,6 +1,6 @@
 <script>
 	import Defs from '$lib/components/smil/helpers/Defs.svelte';
-	import AnimatedText from '$lib/components/smil/helpers/AnimatedText.svelte';
+	import PokeTheLadybug from '$lib/components/smil/PokeTheLadybug.svelte';
 </script>
 
 <svelte:head>
@@ -12,22 +12,25 @@
 <Defs />
 
 <div>
-	<svg viewBox="-20 -10 40 20">
-		<AnimatedText text="Hello world" stroke="currentColor" fill="url(#linear-gradient-text)" />
-	</svg>
+	<article>
+		<PokeTheLadybug />
+	</article>
 </div>
 
 <style>
 	div {
 		color: #192d10;
 		background: #f7f7f7;
+	}
+
+	article {
 		min-height: 100vh;
 		display: grid;
 		place-items: center;
 	}
 
-	svg {
-		max-width: 30rem;
+	article > :global(svg) {
 		display: block;
+		max-width: 34rem;
 	}
 </style>
