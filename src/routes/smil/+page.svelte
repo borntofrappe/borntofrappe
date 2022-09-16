@@ -1,6 +1,6 @@
 <script>
-	import Defs from '$lib/components/smil/Defs.svelte';
-	import AnimatedText from '$lib/components/smil/AnimatedText.svelte';
+	import Defs from '$lib/components/smil/helpers/Defs.svelte';
+	import AnimatedText from '$lib/components/smil/helpers/AnimatedText.svelte';
 </script>
 
 <svelte:head>
