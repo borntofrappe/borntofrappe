@@ -24,6 +24,10 @@
 			'M'
 		);
 	};
+
+	const angle = ((Math.floor(Math.random() * 180) + 180) / 180) * Math.PI;
+	const dx = Math.cos(angle) * 80;
+	const dy = Math.sin(angle) * 50;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -67,27 +71,76 @@
 	</g>
 
 	<g transform="translate(40 28)">
-		<g stroke="currentColor" stroke-width="0.5">
-			<g transform="translate(0 -3)">
-				<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
-
-				<g transform="translate(0 -10)">
-					<path fill="#f70000" d={dBalloon({ radius: 7, protuberance: 2, points: 16 })} />
-					<path
-						transform="translate(2 -2.5) rotate(-40)"
-						fill="#f7d794"
-						stroke="none"
-						d={dBalloon({ radius: 2, protuberance: 1, points: 10 })}
+		<g>
+			<animateTransform
+				end="popTheBalloonPopped.begin"
+				attributeName="transform"
+				type="translate"
+				to="{dx} {dy}"
+				dur="5s"
+				fill="freeze"
+			/>
+			<g stroke="currentColor" stroke-width="0.5">
+				<g>
+					<animateTransform
+						end="popTheBalloonPopped.begin"
+						attributeName="transform"
+						type="translate"
+						to="0 1"
+						dur="0.35s"
+						calcMode="discrete"
+						repeatCount="indefinite"
+						fill="freeze"
 					/>
-				</g>
-				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
-			</g>
+					<g transform="translate(0 -3)">
+						<g style:cursor="pointer">
+							<animateTransform
+								id="popTheBalloonPopped"
+								begin="click"
+								attributeName="transform"
+								type="translate"
+								values="160 0"
+								dur="0.1s"
+								calcMode="discrete"
+								fill="freeze"
+								restart="never"
+							/>
+							<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5" />
 
-			<g fill="url(#pop-the-balloon-pattern-present)">
-				<rect x="-6" y="4" width="12" height="7" />
-				<rect x="-7" width="14" height="4" />
+							<g transform="translate(0 -10)">
+								<path fill="#f70000" d={dBalloon({ radius: 7, protuberance: 2, points: 16 })} />
+								<path
+									transform="translate(2 -2.5) rotate(-40)"
+									fill="#f7d794"
+									stroke="none"
+									d={dBalloon({ radius: 2, protuberance: 1, points: 10 })}
+								/>
+							</g>
+							<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
+						</g>
+					</g>
+				</g>
+
+				<g>
+					<animateTransform
+						id="popTheBalloonFall"
+						begin="popTheBalloonPopped.begin"
+						attributeName="transform"
+						type="translate"
+						to="0 100"
+						dur="2s"
+						calcMode="spline"
+						keyTimes="0; 1"
+						keySplines="0.65 0 0.4 1"
+						fill="freeze"
+					/>
+					<g fill="url(#pop-the-balloon-pattern-present)">
+						<rect x="-6" y="4" width="12" height="7" />
+						<rect x="-7" width="14" height="4" />
+					</g>
+					<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+				</g>
 			</g>
-			<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
 		</g>
 	</g>
 </svg>
