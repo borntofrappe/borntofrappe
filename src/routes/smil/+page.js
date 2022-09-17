@@ -1,1 +1,1 @@
-export const hydrate = false;
+export const csr = false;
