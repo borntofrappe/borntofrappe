@@ -12,11 +12,31 @@
 	const x = getX();
 	const y = getY();
 
-	const coords = [{ x, y }];
+	const points = [{ x, y }];
 
 	const ribbon = {
 		x,
 		y
+	};
+
+	const getPath = ({ translateX, translateY, thresholdLength = 200 }) => {
+		let d = `M 0 0`;
+		let length = 0;
+
+		while (length < thresholdLength) {
+			const [px, py] = d
+				.match(/(-?\d+) (-?\d+)/)
+				.slice(1)
+				.map((p) => parseInt(p, 10));
+
+			const x = getX() - translateX;
+			const y = getY() - translateY;
+			const distance = ((x - px) ** 2 + (y - py) ** 2) ** 0.5;
+
+			d += ` ${x} ${y}`;
+			length += distance;
+		}
+		return `${d} 0 0`;
 	};
 
 	const butterflies = Array(targets)
@@ -26,8 +46,8 @@
 			let y = getY();
 			while (true) {
 				let overlaps = false;
-				for (const { x: cx, y: cy } of coords) {
-					if (x + size > cx && x < cx + size && y + size > cy && y < cy + size) {
+				for (const { x: px, y: py } of points) {
+					if (x + size > px && x < px + size && y + size > py && y < py + size) {
 						overlaps = true;
 						break;
 					}
@@ -36,7 +56,7 @@
 					x = getX();
 					y = getY();
 				} else {
-					coords.push({
+					points.push({
 						x,
 						y
 					});
@@ -46,7 +66,8 @@
 
 			return {
 				x,
-				y
+				y,
+				d: getPath({ translateX: x, translateY: y })
 			};
 		});
 </script>
@@ -86,8 +107,10 @@
 		</g>
 
 		<g>
-			{#each butterflies as { x, y }}
+			{#each butterflies as { x, y, d }}
 				<g transform="translate({x} {y}) scale({scale})">
+					<!-- REMOVE THIS PATH -->
+					<path {d} fill="none" stroke="currentColor" stroke-width="0.5" />
 					<g transform="translate(8 8)">
 						<g
 							stroke="currentColor"
