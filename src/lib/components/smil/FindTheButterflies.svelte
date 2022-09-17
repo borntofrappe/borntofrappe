@@ -67,7 +67,7 @@
 			return {
 				x,
 				y,
-				d: getPath({ translateX: x, translateY: y })
+				path: getPath({ translateX: x, translateY: y })
 			};
 		});
 </script>
@@ -107,48 +107,80 @@
 		</g>
 
 		<g>
-			{#each butterflies as { x, y, d }}
+			{#each butterflies as { x, y, path }, i}
 				<g transform="translate({x} {y}) scale({scale})">
-					<!-- REMOVE THIS PATH -->
-					<path {d} fill="none" stroke="currentColor" stroke-width="0.5" />
-					<g transform="translate(8 8)">
-						<g
-							stroke="currentColor"
-							stroke-width="0.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<g fill="#2969bd">
-								<g id="find-the-butterflies-butterfly-wing">
-									<use
-										transform="scale(1.05 1.08)"
-										fill="currentColor"
-										href="#find-the-butterflies-butterfly-wing-front"
-									/>
-									<path
-										id="find-the-butterflies-butterfly-wing-front"
-										d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1"
-									/>
+					<g style:cursor="pointer">
+						<animateMotion
+							id="findTheButterfliesButterfly{i}"
+							{path}
+							begin="click"
+							dur="12s"
+							repeatCount="indefinite"
+							fill="freeze"
+							restart="never"
+						/>
+						<g transform="translate(8 8)">
+							<g>
+								<animateTransform
+									begin="findTheButterfliesButterfly{i}.begin"
+									attributeName="transform"
+									type="scale"
+									values="1; 1.05"
+									dur="0.2s"
+									fill="freeze"
+								/>
+
+								<g
+									stroke="currentColor"
+									stroke-width="0.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<g fill="#2969bd">
+										<g>
+											<animateTransform
+												begin="findTheButterfliesButterfly{i}.begin"
+												attributeName="transform"
+												type="scale"
+												values="1 1; 0.6 1; 1 1"
+												dur="0.2s"
+												calcMode="discrete"
+												repeatCount="indefinite"
+												fill="freeze"
+											/>
+											<g id="find-the-butterflies-butterfly-wing">
+												<use
+													transform="scale(1.05 1.08)"
+													fill="currentColor"
+													href="#find-the-butterflies-butterfly-wing-front"
+												/>
+												<path
+													id="find-the-butterflies-butterfly-wing-front"
+													d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1"
+												/>
+											</g>
+											<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-wing" />
+										</g>
+									</g>
+									<path fill="#2969bd" d="M 0 -3 c 2.5 3 3.5 7 0 9 -3.5 -2 -2.5 -6 0 -9" />
+									<g fill="none">
+										<path
+											id="find-the-butterflies-butterfly-antenna"
+											transform="translate(0.5 -4) rotate(-40)"
+											d="M 0 -0 c 1 -2 5 -2 3.8 0 t -0.25 -1"
+										/>
+										<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-antenna" />
+									</g>
+									<path fill="#2969bd" d="M 0 -4.5 c -1 0 -3 3 0 3 3 0 1 -3 0 -3" />
+									<g fill="none">
+										<path
+											id="find-the-butterflies-butterfly-eye"
+											transform="translate(1.25 -3.5) rotate(-40)"
+											d="M 0 -0.8 q 2 0.8 0 1.6z"
+										/>
+										<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-eye" />
+									</g>
 								</g>
-								<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-wing" />
-							</g>
-							<path fill="#2969bd" d="M 0 -3 c 2.5 3 3.5 7 0 9 -3.5 -2 -2.5 -6 0 -9" />
-							<g fill="none">
-								<path
-									id="find-the-butterflies-butterfly-antenna"
-									transform="translate(0.5 -4) rotate(-40)"
-									d="M 0 -0 c 1 -2 5 -2 3.8 0 t -0.25 -1"
-								/>
-								<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-antenna" />
-							</g>
-							<path fill="#2969bd" d="M 0 -4.5 c -1 0 -3 3 0 3 3 0 1 -3 0 -3" />
-							<g fill="none">
-								<path
-									id="find-the-butterflies-butterfly-eye"
-									transform="translate(1.25 -3.5) rotate(-40)"
-									d="M 0 -0.8 q 2 0.8 0 1.6z"
-								/>
-								<use transform="scale(-1 1)" href="#find-the-butterflies-butterfly-eye" />
 							</g>
 						</g>
 					</g>
