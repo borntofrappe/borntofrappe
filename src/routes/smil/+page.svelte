@@ -3,6 +3,7 @@
 
 	import PokeTheLadybug from '$lib/components/smil/PokeTheLadybug.svelte';
 	import PopTheBalloon from '$lib/components/smil/PopTheBalloon.svelte';
+	import FindTheButterflies from '$lib/components/smil/FindTheButterflies.svelte';
 </script>
 
 <svelte:head>
@@ -14,12 +15,15 @@
 <Defs />
 
 <div>
-	<article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
+	<!-- <article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
 		<PokeTheLadybug />
 	</article>
 
 	<article style:background-color="hsl(46, 93%, 56%)" style:--border-color="hsl(41, 100%, 47%)">
 		<PopTheBalloon />
+	</article> -->
+	<article>
+		<FindTheButterflies />
 	</article>
 </div>
 
