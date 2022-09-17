@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const width = 80;
 	const height = 50;
 	const scale = 0.7;
@@ -114,6 +117,7 @@
 							id="findTheButterfliesButterfly{i}"
 							{path}
 							begin="click"
+							end="findTheButterfliesEnd.begin"
 							dur="12s"
 							repeatCount="indefinite"
 							fill="freeze"
@@ -140,6 +144,7 @@
 										<g>
 											<animateTransform
 												begin="findTheButterfliesButterfly{i}.begin"
+												end="findTheButterfliesEnd.begin"
 												attributeName="transform"
 												type="scale"
 												values="1 1; 0.6 1; 1 1"
@@ -187,5 +192,51 @@
 				</g>
 			{/each}
 		</g>
+	</g>
+
+	<g>
+		<g transform="translate({80 * butterflies.length * -1} 0)">
+			{#each butterflies as _, i}
+				<animateTransform
+					begin="findTheButterfliesButterfly{i}.begin"
+					attributeName="transform"
+					type="translate"
+					by="80 0"
+					fill="freeze"
+					dur="0.1s"
+					calcMode="discrete"
+				/>
+			{/each}
+
+			<g>
+				<g transform="translate(40 25)">
+					<AnimatedText
+						text="Found em all!"
+						begin="findTheButterfliesButterfly0.begin"
+						end="findTheButterfliesEnd.begin"
+						fill="url(#linear-gradient-text)"
+					/>
+				</g>
+
+				<rect style:cursor="pointer" width="80" height="50" opacity="0">
+					<set
+						id="findTheButterfliesEnd"
+						begin="click"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						restart="never"
+					/>
+				</rect>
+			</g>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set begin="click" attributeName="display" to="none" fill="freeze" restart="never" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Butterflies?</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
