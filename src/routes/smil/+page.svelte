@@ -4,6 +4,7 @@
 	import PokeTheLadybug from '$lib/components/smil/PokeTheLadybug.svelte';
 	import PopTheBalloon from '$lib/components/smil/PopTheBalloon.svelte';
 	import FindTheButterflies from '$lib/components/smil/FindTheButterflies.svelte';
+	import CrackTheEgg from '$lib/components/smil/CrackTheEgg.svelte';
 </script>
 
 <svelte:head>
@@ -15,7 +16,7 @@
 <Defs />
 
 <div>
-	<article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
+	<!-- <article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
 		<PokeTheLadybug />
 	</article>
 
@@ -25,6 +26,10 @@
 
 	<article style:background-color="hsl(211, 67%, 48%)" style:--border-color="hsl(172, 76%, 41%)">
 		<FindTheButterflies />
+	</article> -->
+
+	<article>
+		<CrackTheEgg />
 	</article>
 </div>
 
