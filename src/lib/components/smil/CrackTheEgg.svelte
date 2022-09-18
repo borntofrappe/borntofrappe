@@ -11,6 +11,33 @@
 		{ cx: -12, cy: -5, rx: 5, ry: 5, strokeWidth: 0 },
 		{ cx: -7.5, cy: -8, rx: 3, ry: 3, strokeWidth: 0 }
 	];
+
+	const eggCrack =
+		'M -16 -12.5 l 3 -2.5 4 2.5 l 3 -2.5 6 3 l 2.5 -2.5 2.5 2.5 2.5 -2.5 l 2.5 2.5 6 -3.5';
+
+	let [eggCrackX, eggCrackY] = eggCrack
+		.match(/(-?[\d\.]+) (-?[\d\.]+)/)
+		.slice(1)
+		.map((c) => parseFloat(c));
+
+	const eggCracks = eggCrack
+		.slice(eggCrack.indexOf('l') + 2)
+		.split(/ ?l ?/)
+		.reduce((acc, curr, i) => {
+			const d = `M ${eggCrackX} ${eggCrackY} l ${curr}`;
+
+			const offsets = curr.match(/-?[\d\.]+/g).map((c) => parseFloat(c));
+			for (let i = 0; i < offsets.length; i++) {
+				const offset = offsets[i];
+				if (i % 2 === 0) {
+					eggCrackX += offset;
+				} else {
+					eggCrackY += offset;
+				}
+			}
+
+			return [...acc, d];
+		}, []);
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -95,21 +122,6 @@
 
 	<g transform="translate(40 49.5)">
 		<g>
-			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
-
-			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
-				<g fill="#c54900" stroke="url(#crack-the-egg-pattern-spot)">
-					{#each eggSpots as { cx, cy, rx, ry, strokeWidth }}
-						<ellipse {cx} {cy} {rx} {ry} stroke-width={strokeWidth} />
-					{/each}
-				</g>
-			</g>
-
-			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
-		</g>
-
-		<!-- TODO: position _behind_ the egg -->
-		<g>
 			<g transform="translate(0 -2)">
 				<g stroke="currentColor">
 					<g fill="#f7f75a" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -120,6 +132,25 @@
 				</g>
 				<circle fill="currentColor" cx="-3.5" cy="-19" r="0.75" />
 			</g>
+		</g>
+
+		<g>
+			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
+
+			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+				<g fill="#c54900" stroke="url(#crack-the-egg-pattern-spot)">
+					{#each eggSpots as { cx, cy, rx, ry, strokeWidth }}
+						<ellipse {cx} {cy} {rx} {ry} stroke-width={strokeWidth} />
+					{/each}
+				</g>
+
+				<!-- <path d={eggCrack} fill="none" stroke="currentColor" opacity="0.5" /> -->
+				{#each eggCracks as d}
+					<path {d} fill="none" stroke="currentColor" opacity="1" stroke-linecap="round" />
+				{/each}
+			</g>
+
+			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
 		</g>
 	</g>
 </svg>
