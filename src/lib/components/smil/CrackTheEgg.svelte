@@ -20,23 +20,36 @@
 		.slice(1)
 		.map((c) => parseFloat(c));
 
-	const eggCracks = eggCrack
+	const eggFragments = eggCrack
 		.slice(eggCrack.indexOf('l') + 2)
 		.split(/ ?l ?/)
 		.reduce((acc, curr, i) => {
 			const d = `M ${eggCrackX} ${eggCrackY} l ${curr}`;
+
+			const x = eggCrackX;
+			let width = 0;
 
 			const offsets = curr.match(/-?[\d\.]+/g).map((c) => parseFloat(c));
 			for (let i = 0; i < offsets.length; i++) {
 				const offset = offsets[i];
 				if (i % 2 === 0) {
 					eggCrackX += offset;
+					width += offset;
 				} else {
 					eggCrackY += offset;
 				}
 			}
 
-			return [...acc, d];
+			return [
+				...acc,
+				{
+					d,
+					x,
+					y: -50,
+					width,
+					height: 100
+				}
+			];
 		}, []);
 </script>
 
@@ -144,8 +157,8 @@
 					{/each}
 				</g>
 
-				<!-- <path d={eggCrack} fill="none" stroke="currentColor" opacity="0.5" /> -->
-				{#each eggCracks as d}
+				{#each eggFragments as { d, x, y, width, height }}
+					<rect {x} {y} {width} {height} opacity="0.25" />
 					<path {d} fill="none" stroke="currentColor" opacity="1" stroke-linecap="round" />
 				{/each}
 			</g>
