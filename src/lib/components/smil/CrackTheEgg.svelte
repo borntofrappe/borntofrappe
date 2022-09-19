@@ -170,16 +170,12 @@
 				begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
 			/>
 
-			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
+			<g>
+				<set begin="crackTheEggOpen.begin" attributeName="display" to="none" fill="freeze" />
 
-			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
-				<g fill="#c54900" stroke="url(#crack-the-egg-pattern-spot)">
-					{#each eggSpots as { cx, cy, rx, ry, strokeWidth }}
-						<ellipse {cx} {cy} {rx} {ry} stroke-width={strokeWidth} />
-					{/each}
-				</g>
+				<use fill="#f7d794" href="#crack-the-egg-egg" />
 
-				<g>
+				<g clip-path="url(#crack-the-egg-clip-egg-shape)">
 					{#each eggFragments as { d, x, y, width, height }, i}
 						<g opacity="0">
 							<set
@@ -206,7 +202,32 @@
 				</g>
 			</g>
 
-			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
+			<g style:cursor="pointer">
+				<set id="crackTheEggOpen" begin="click" attributeName="display" to="none" fill="freeze" />
+
+				<g transform="translate(0 {100 * eggFragments.length * -1})">
+					{#each eggFragments as _, i}
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							by="0 100"
+							dur="0.1s"
+							begin="crackTheEggFragment{i}.begin"
+							fill="freeze"
+							calcMode="discrete"
+						/>
+					{/each}
+					<g>
+						<use href="#crack-the-egg-egg" />
+						<path
+							d={eggCrack}
+							clip-path="url(#crack-the-egg-clip-egg-shape)"
+							fill="none"
+							stroke="currentColor"
+						/>
+					</g>
+				</g>
+			</g>
 		</g>
 	</g>
 </svg>
