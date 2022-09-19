@@ -96,6 +96,20 @@
 		<clipPath id="crack-the-egg-clip-egg-shape">
 			<use href="#crack-the-egg-egg-shape" />
 		</clipPath>
+
+		<g id="crack-the-egg-egg">
+			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
+
+			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+				<g fill="#c54900" stroke="url(#crack-the-egg-pattern-spot)">
+					{#each eggSpots as { cx, cy, rx, ry, strokeWidth }}
+						<ellipse {cx} {cy} {rx} {ry} stroke-width={strokeWidth} />
+					{/each}
+				</g>
+			</g>
+
+			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
+		</g>
 	</defs>
 
 	<rect fill="url(#crack-the-egg-pattern-sky)" width="80" height="50" />
@@ -148,6 +162,14 @@
 		</g>
 
 		<g>
+			<animateTransform
+				attributeName="transform"
+				type="rotate"
+				values="0; 5; 0; -5; 0"
+				dur="0.3s"
+				begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
+			/>
+
 			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
 
 			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
@@ -157,10 +179,31 @@
 					{/each}
 				</g>
 
-				{#each eggFragments as { d, x, y, width, height }}
-					<rect {x} {y} {width} {height} opacity="0.25" />
-					<path {d} fill="none" stroke="currentColor" opacity="1" stroke-linecap="round" />
-				{/each}
+				<g>
+					{#each eggFragments as { d, x, y, width, height }, i}
+						<g opacity="0">
+							<set
+								begin="crackTheEggFragment{i}.begin"
+								attributeName="opacity"
+								to="1"
+								fill="freeze"
+							/>
+							<path {d} fill="none" stroke="currentColor" opacity="1" stroke-linecap="square" />
+						</g>
+
+						<g style:cursor="pointer">
+							<set
+								id="crackTheEggFragment{i}"
+								begin="click"
+								attributeName="display"
+								to="none"
+								fill="freeze"
+								restart="never"
+							/>
+							<rect {x} {y} {width} {height} opacity="0" />
+						</g>
+					{/each}
+				</g>
 			</g>
 
 			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
