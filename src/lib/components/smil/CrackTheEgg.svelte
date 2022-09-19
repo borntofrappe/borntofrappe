@@ -110,6 +110,14 @@
 
 			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
 		</g>
+
+		<clipPath id="crack-the-egg-clip-egg-top-half">
+			<path d="{eggCrack} l 80 -50 h -160 z" />
+		</clipPath>
+
+		<clipPath id="crack-the-egg-clip-egg-bottom-half">
+			<path d="{eggCrack} l 80 50 h -160 z" />
+		</clipPath>
 	</defs>
 
 	<rect fill="url(#crack-the-egg-pattern-sky)" width="80" height="50" />
@@ -202,9 +210,7 @@
 				</g>
 			</g>
 
-			<g style:cursor="pointer">
-				<set id="crackTheEggOpen" begin="click" attributeName="display" to="none" fill="freeze" />
-
+			<g>
 				<g transform="translate(0 {100 * eggFragments.length * -1})">
 					{#each eggFragments as _, i}
 						<animateTransform
@@ -218,13 +224,58 @@
 						/>
 					{/each}
 					<g>
-						<use href="#crack-the-egg-egg" />
-						<path
-							d={eggCrack}
-							clip-path="url(#crack-the-egg-clip-egg-shape)"
-							fill="none"
-							stroke="currentColor"
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							to="0 -50"
+							dur="0.35s"
+							calcMode="spline"
+							keySplines="0.8 0 0.25 1"
+							begin="crackTheEggOpen.begin"
+							fill="freeze"
 						/>
+						<g clip-path="url(#crack-the-egg-clip-egg-top-half)">
+							<use href="#crack-the-egg-egg" />
+							<path
+								d={eggCrack}
+								clip-path="url(#crack-the-egg-clip-egg-shape)"
+								fill="none"
+								stroke="currentColor"
+							/>
+						</g>
+					</g>
+
+					<g>
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							to="0 50"
+							dur="0.35s"
+							calcMode="spline"
+							keySplines="0.8 0 0.25 1"
+							begin="crackTheEggOpen.begin"
+							fill="freeze"
+						/>
+						<g clip-path="url(#crack-the-egg-clip-egg-bottom-half)">
+							<use href="#crack-the-egg-egg" />
+							<path
+								d={eggCrack}
+								clip-path="url(#crack-the-egg-clip-egg-shape)"
+								fill="none"
+								stroke="currentColor"
+							/>
+						</g>
+					</g>
+
+					<g style:cursor="pointer">
+						<set
+							id="crackTheEggOpen"
+							begin="click"
+							attributeName="display"
+							to="none"
+							fill="freeze"
+						/>
+						<use opacity="0" href="#crack-the-egg-egg" />
 					</g>
 				</g>
 			</g>
