@@ -5,6 +5,7 @@
 	import PopTheBalloon from '$lib/components/smil/PopTheBalloon.svelte';
 	import FindTheButterflies from '$lib/components/smil/FindTheButterflies.svelte';
 	import CrackTheEgg from '$lib/components/smil/CrackTheEgg.svelte';
+	import BattleTheEnemy from '$lib/components/smil/BattleTheEnemy.svelte';
 </script>
 
 <svelte:head>
@@ -30,6 +31,10 @@
 
 	<article style:background-color="hsl(60, 91%, 66%)" style:--border-color="hsl(171, 83%, 39%)">
 		<CrackTheEgg />
+	</article>
+
+	<article style:background-color="hsl(119, 30%, 49%)" style:--border-color="hsl(177, 65%, 52%)">
+		<BattleTheEnemy />
 	</article>
 </div>
 
