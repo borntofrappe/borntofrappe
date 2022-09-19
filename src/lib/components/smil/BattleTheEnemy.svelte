@@ -52,79 +52,125 @@
 		</g>
 	</g>
 
-	<g transform="translate(1 1)">
-		<rect fill="currentColor" stroke="#fff" width="20" height="11" rx="1" />
-		<g transform="translate(10 4.6)">
-			<g fill="#fff" font-family="sans-serif" font-size="4" font-weight="bold" text-anchor="middle">
-				<text>Enemy</text>
-				<text y="4.6">HP: 3</text>
+	<g display="none">
+		<set
+			begin="battleTheEnemyShow{hp - 1}.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(1 1)">
+			<rect fill="currentColor" stroke="#fff" width="20" height="11" rx="1" />
+			<g transform="translate(10 4.6)">
+				<g
+					fill="#fff"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<text>Enemy</text>
+					<text y="4.6"
+						>HP:
+						{#each Array(hp + 1) as _, i}
+							<tspan display={i === hp ? 'initial' : 'none'}>
+								{#if i !== hp}
+									<set
+										begin="battleTheEnemyHit{i}.begin"
+										attributeName="display"
+										to="initial"
+										fill="freeze"
+										restart="never"
+									/>
+								{/if}
+								{#if i > 0}
+									<set
+										begin="battleTheEnemyHit{i - 1}.begin"
+										attributeName="display"
+										to="none"
+										fill="freeze"
+										restart="never"
+									/>
+								{/if}
+								{i}
+							</tspan>
+						{/each}
+					</text>
+				</g>
 			</g>
 		</g>
-	</g>
 
-	<g transform="translate(1 38)">
-		<rect fill="currentColor" stroke="#fff" width="78" height="11" rx="1" />
-		<g transform="translate(39 6.8)">
-			<g fill="#fff" font-family="sans-serif" font-size="4" font-weight="bold" text-anchor="middle">
-				{#each Array(hp + 1) as _, j}
-					<g display={j === hp ? 'initial' : 'none'}>
-						{#if j !== hp}
-							<set
-								begin="battleTheEnemyHit{j}.begin"
-								attributeName="display"
-								to="initial"
-								fill="freeze"
-								restart="never"
-							/>
-						{/if}
-						{#if j > 0}
-							<set
-								begin="battleTheEnemyHit{j - 1}.begin"
-								attributeName="display"
-								to="none"
-								fill="freeze"
-								restart="never"
-							/>
-						{/if}
-						<text>
-							{#if j === hp}
-								{#each 'An enemy appeared!'.split('') as c, i}
-									<tspan fill-opacity="0">
-										<animate
-											id="battleTheEnemyMessage{j}Letter{i}"
-											begin={i === 0
-												? `battleTheEnemyShow${hp - 1}.begin`
-												: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
-											attributeName="fill-opacity"
-											to="1"
-											dur="0.025s"
-											fill="freeze"
-											calcMode="discrete"
-										/>
-										{c}
-									</tspan>
-								{/each}
-							{:else}
-								{#each `${j === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as c, i}
-									<tspan fill-opacity="0">
-										<animate
-											id="battleTheEnemyMessage{j}Letter{i}"
-											begin={i === 0
-												? `battleTheEnemyHit${j}.begin`
-												: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
-											attributeName="fill-opacity"
-											to="1"
-											dur="0.025s"
-											fill="freeze"
-											calcMode="discrete"
-										/>
-										{c}
-									</tspan>
-								{/each}
+		<g transform="translate(1 38)">
+			<rect fill="currentColor" stroke="#fff" width="78" height="11" rx="1" />
+			<g transform="translate(39 6.8)">
+				<g
+					fill="#fff"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					{#each Array(hp + 1) as _, j}
+						<g display={j === hp ? 'initial' : 'none'}>
+							{#if j !== hp}
+								<set
+									begin="battleTheEnemyHit{j}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+									restart="never"
+								/>
 							{/if}
-						</text>
-					</g>
-				{/each}
+							{#if j > 0}
+								<set
+									begin="battleTheEnemyHit{j - 1}.begin"
+									attributeName="display"
+									to="none"
+									fill="freeze"
+									restart="never"
+								/>
+							{/if}
+							<text>
+								{#if j === hp}
+									{#each 'An enemy appeared!'.split('') as c, i}
+										<tspan fill-opacity="0">
+											<animate
+												id="battleTheEnemyMessage{j}Letter{i}"
+												begin={i === 0
+													? `battleTheEnemyShow${hp - 1}.begin`
+													: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{c}
+										</tspan>
+									{/each}
+								{:else}
+									{#each `${j === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as c, i}
+										<tspan fill-opacity="0">
+											<animate
+												id="battleTheEnemyMessage{j}Letter{i}"
+												begin={i === 0
+													? `battleTheEnemyHit${j}.begin`
+													: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{c}
+										</tspan>
+									{/each}
+								{/if}
+							</text>
+						</g>
+					{/each}
+				</g>
 			</g>
 		</g>
 	</g>
