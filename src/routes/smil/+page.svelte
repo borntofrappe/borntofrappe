@@ -16,7 +16,7 @@
 <Defs />
 
 <div>
-	<!-- <article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
+	<article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
 		<PokeTheLadybug />
 	</article>
 
@@ -26,9 +26,9 @@
 
 	<article style:background-color="hsl(211, 67%, 48%)" style:--border-color="hsl(172, 76%, 41%)">
 		<FindTheButterflies />
-	</article> -->
+	</article>
 
-	<article>
+	<article style:background-color="hsl(60, 91%, 66%)" style:--border-color="hsl(171, 83%, 39%)">
 		<CrackTheEgg />
 	</article>
 </div>
