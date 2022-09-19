@@ -1,3 +1,7 @@
+<script>
+	const hp = 3;
+</script>
+
 <svg viewBox="0 0 80 50">
 	<rect fill="#86bded" width="80" height="50" />
 	<path fill="#f9e382" d="M 0 50 v -21 c 20 -5 60 -5 80 0 v 21" />
@@ -67,7 +71,9 @@
 						<tspan fill-opacity="0">
 							<animate
 								id="battleTheEnemyLetter{i}"
-								begin={i === 0 ? '1s' : `battleTheEnemyLetter${i - 1}.end`}
+								begin={i === 0
+									? `battleTheEnemyShow${hp - 1}.begin`
+									: `battleTheEnemyLetter${i - 1}.end`}
 								attributeName="fill-opacity"
 								to="1"
 								dur="0.025s"
@@ -84,13 +90,46 @@
 
 	<g transform="translate(40 22)">
 		<g fill="#fff" stroke="currentColor" stroke-width="0.75">
-			<path
-				d="M 3.5 -0.75 l 3.5 3.5 a 2 2 0 1 1 -2 2 l -1 -1 v 4 q 2 0 2 2 0 1 -1 1 h -2.5 q -2 0 -2 -2 v -1 q 0 -0.5 -0.5 -0.5 -0.5 0 -0.5 0.5 v 1 q 0 2 -2 2 h -2.5 q -1 0 -1 -1 0 -2 2 -2 v -4 l -1 1 a 2 2 0 1 1 -2 -2 l 3.5 -3.5"
-			/>
-			<circle cy="-2.5" r="5" />
-			<circle cx="1.8" cy="-3.5" r="0.9" />
-			<circle cx="-1.8" cy="-3.5" r="0.9" />
-			<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+			{#each Array(hp) as _, i}
+				<g display="none">
+					<set
+						id="battleTheEnemyShow{i}"
+						begin={i === hp - 1 ? '3s' : `battleTheEnemyHit${i + 1}.begin`}
+						attributeName="display"
+						to="initial"
+						fill="freeze"
+						restart="never"
+					/>
+					{#if i !== hp - 1}
+						<animate
+							begin="battleTheEnemyHit{i + 1}.begin"
+							attributeName="opacity"
+							values="1;0;1"
+							repeatCount="2"
+							dur="0.2s"
+							calcMode="discrete"
+						/>
+					{/if}
+
+					<set
+						id="battleTheEnemyHit{i}"
+						begin="click"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+						restart="never"
+					/>
+					<g style:cursor="pointer">
+						<path
+							d="M 3.5 -0.75 l 3.5 3.5 a 2 2 0 1 1 -2 2 l -1 -1 v 4 q 2 0 2 2 0 1 -1 1 h -2.5 q -2 0 -2 -2 v -1 q 0 -0.5 -0.5 -0.5 -0.5 0 -0.5 0.5 v 1 q 0 2 -2 2 h -2.5 q -1 0 -1 -1 0 -2 2 -2 v -4 l -1 1 a 2 2 0 1 1 -2 -2 l 3.5 -3.5"
+						/>
+						<circle cy="-2.5" r="5" />
+						<circle cx="1.8" cy="-3.5" r="0.9" />
+						<circle cx="-1.8" cy="-3.5" r="0.9" />
+						<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+					</g>
+				</g>
+			{/each}
 		</g>
 	</g>
 </svg>
