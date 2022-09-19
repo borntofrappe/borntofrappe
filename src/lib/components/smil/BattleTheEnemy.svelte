@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const hp = 3;
 </script>
 
@@ -61,10 +64,10 @@
 			restart="never"
 		/>
 		<g transform="translate(1 1)">
-			<rect fill="currentColor" stroke="#fff" width="20" height="11" rx="1" />
+			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
 			<g transform="translate(10 4.6)">
 				<g
-					fill="#fff"
+					fill="#f7f7f7"
 					font-family="sans-serif"
 					font-size="4"
 					font-weight="bold"
@@ -102,29 +105,29 @@
 		</g>
 
 		<g transform="translate(1 38)">
-			<rect fill="currentColor" stroke="#fff" width="78" height="11" rx="1" />
+			<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
 			<g transform="translate(39 6.8)">
 				<g
-					fill="#fff"
+					fill="#f7f7f7"
 					font-family="sans-serif"
 					font-size="4"
 					font-weight="bold"
 					text-anchor="middle"
 				>
-					{#each Array(hp + 1) as _, j}
-						<g display={j === hp ? 'initial' : 'none'}>
-							{#if j !== hp}
+					{#each Array(hp + 1) as _, i}
+						<g display={i === hp ? 'initial' : 'none'}>
+							{#if i !== hp}
 								<set
-									begin="battleTheEnemyHit{j}.begin"
+									begin="battleTheEnemyHit{i}.begin"
 									attributeName="display"
 									to="initial"
 									fill="freeze"
 									restart="never"
 								/>
 							{/if}
-							{#if j > 0}
+							{#if i > 0}
 								<set
-									begin="battleTheEnemyHit{j - 1}.begin"
+									begin="battleTheEnemyHit{i - 1}.begin"
 									attributeName="display"
 									to="none"
 									fill="freeze"
@@ -132,14 +135,14 @@
 								/>
 							{/if}
 							<text>
-								{#if j === hp}
-									{#each 'An enemy appeared!'.split('') as c, i}
+								{#if i === hp}
+									{#each 'An enemy appeared!'.split('') as c, j}
 										<tspan fill-opacity="0">
 											<animate
-												id="battleTheEnemyMessage{j}Letter{i}"
-												begin={i === 0
+												id="battleTheEnemyMessage{i}Letter{j}"
+												begin={j === 0
 													? `battleTheEnemyShow${hp - 1}.begin`
-													: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
+													: `battleTheEnemyMessage${i}Letter${j - 1}.end`}
 												attributeName="fill-opacity"
 												to="1"
 												dur="0.025s"
@@ -150,13 +153,13 @@
 										</tspan>
 									{/each}
 								{:else}
-									{#each `${j === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as c, i}
+									{#each `${i === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as c, j}
 										<tspan fill-opacity="0">
 											<animate
-												id="battleTheEnemyMessage{j}Letter{i}"
-												begin={i === 0
-													? `battleTheEnemyHit${j}.begin`
-													: `battleTheEnemyMessage${j}Letter${i - 1}.end`}
+												id="battleTheEnemyMessage{i}Letter{j}"
+												begin={j === 0
+													? `battleTheEnemyHit${i}.begin`
+													: `battleTheEnemyMessage${i}Letter${j - 1}.end`}
 												attributeName="fill-opacity"
 												to="1"
 												dur="0.025s"
@@ -176,12 +179,12 @@
 	</g>
 
 	<g transform="translate(40 22)">
-		<g fill="#fff" stroke="currentColor" stroke-width="0.75">
+		<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
 			{#each Array(hp) as _, i}
 				<g display="none">
 					<set
 						id="battleTheEnemyShow{i}"
-						begin={i === hp - 1 ? '3s' : `battleTheEnemyHit${i + 1}.begin`}
+						begin={i === hp - 1 ? 'battleTheEnemyStart.begin' : `battleTheEnemyHit${i + 1}.begin`}
 						attributeName="display"
 						to="initial"
 						fill="freeze"
@@ -218,5 +221,51 @@
 				</g>
 			{/each}
 		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="battleTheEnemyMessage"
+			begin="battleTheEnemyHit0.begin + 2s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g>
+			<g transform="translate(40 22)">
+				<AnimatedText
+					text="Level up!"
+					begin="battleTheEnemyMessage.begin"
+					end="battleTheEnemyEnd.begin"
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="battleTheEnemyEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+			</rect>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="battleTheEnemyStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Battle!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
