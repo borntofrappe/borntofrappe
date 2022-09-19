@@ -62,7 +62,22 @@
 		<rect fill="currentColor" stroke="#fff" width="78" height="11" rx="1" />
 		<g transform="translate(39 6.8)">
 			<g fill="#fff" font-family="sans-serif" font-size="4" font-weight="bold" text-anchor="middle">
-				<text>An enemy appeared!</text>
+				<text>
+					{#each 'An enemy appeared!'.split('') as c, i}
+						<tspan fill-opacity="0">
+							<animate
+								id="battleTheEnemyLetter{i}"
+								begin={i === 0 ? '1s' : `battleTheEnemyLetter${i - 1}.end`}
+								attributeName="fill-opacity"
+								to="1"
+								dur="0.025s"
+								fill="freeze"
+								calcMode="discrete"
+							/>
+							{c}
+						</tspan>
+					{/each}
+				</text>
 			</g>
 		</g>
 	</g>
