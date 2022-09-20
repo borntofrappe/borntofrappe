@@ -6,6 +6,27 @@
 		{ cx: 25, cy: 26, rx: 10, ry: 4 },
 		{ cx: 55, cy: 26, rx: 10, ry: 4 }
 	];
+
+	const targets = 3;
+
+	const delays = Array(targets)
+		.fill()
+		.map((_) => Math.floor(Math.random() * 3) + 1)
+		.reduce(
+			(acc, curr, i) => (i === 0 ? [...acc, curr] : [...acc, curr + acc[acc.length - 1]]),
+			[]
+		);
+
+	const rabbits = delays.map((delay) => {
+		const i = Math.floor(Math.random() * holes.length);
+		const { cx: x, cy: y } = holes[i];
+		return {
+			x,
+			y,
+			delay,
+			hole: i
+		};
+	});
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -113,12 +134,12 @@
 	</g>
 
 	<g>
-		{#each holes as { cx: x, cy: y }, i}
-			<g clip-path="url(#smash-the-rabbit-clip-hole-{i})">
+		{#each rabbits as { x, y, hole, delay }}
+			<g clip-path="url(#smash-the-rabbit-clip-hole-{hole})">
 				<g transform="translate({x} {y})">
 					<g transform="translate(0 20)">
 						<animateTransform
-							begin="2s"
+							begin="{delay}s"
 							attributeName="transform"
 							type="translate"
 							values="0 20; 0 0; 0 20"
@@ -128,7 +149,15 @@
 							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
 						/>
 						<svg x="-7.5" y="-10" width="15" height="15">
-							<use href="#smash-the-rabbit-rabbit" />
+							<use style:cursor="pointer" href="#smash-the-rabbit-rabbit">
+								<set
+									begin="click"
+									attributeName="href"
+									to="#smash-the-rabbit-rabbit-hit"
+									fill="freeze"
+									restart="never"
+								/>
+							</use>
 						</svg>
 					</g>
 				</g>
