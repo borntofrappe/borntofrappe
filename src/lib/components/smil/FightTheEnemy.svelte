@@ -1,3 +1,15 @@
+<script>
+	const hpYou = 3;
+
+	const hpDropDelays = Array(hpYou)
+		.fill()
+		.map((_) => Math.floor(Math.random() * 2 + 2))
+		.reduce(
+			(acc, curr, i) => (i === 0 ? [...acc, curr] : [...acc, curr + acc[acc.length - 1]]),
+			[]
+		);
+</script>
+
 <svg viewBox="0 0 80 50">
 	<rect width="80" height="50" fill="#faeab7" />
 	<g>
@@ -56,7 +68,31 @@
 				text-anchor="middle"
 			>
 				<text>You</text>
-				<text y="4.6">HP: <tspan>3</tspan></text>
+				<text y="4.6"
+					>HP:
+					{#each [0, ...[...hpDropDelays.reverse()]] as hpDropDelay, i}
+						<tspan display={i === hpDropDelays.length ? 'initial' : 'none'}>
+							{#if i > 0}
+								<set
+									id="fightTheEnemyHpDrop{i - 1}"
+									begin="{hpDropDelay}s"
+									attributeName="display"
+									to="none"
+									fill="freeze"
+									restart="never"
+								/>
+							{/if}
+							<set
+								begin="fightTheEnemyHpDrop{i}.begin"
+								attributeName="display"
+								to="initial"
+								fill="freeze"
+								restart="never"
+							/>
+							{i}
+						</tspan>
+					{/each}
+				</text>
 			</g>
 		</g>
 	</g>
@@ -79,6 +115,23 @@
 	<g transform="translate(40 21)">
 		<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
 			<g>
+				<animateTransform
+					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					attributeName="transform"
+					type="scale"
+					values="1; 1.2; 1"
+					dur="0.1s"
+				/>
+
+				<animateTransform
+					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 -2; 0 0"
+					dur="0.1s"
+					additive="sum"
+				/>
+
 				<path
 					d="M 5 -2 q 3 -5 5 -5 c 3 0 3 8 0 8 q -1.5 0 -1.5 -3 v 2 l -3.5 4.5 v 1 c 0 4 -2 7 -14 7 q 4 -2 4 -4 v -4 l -3.5 -4.5 v -2 q 0 3 -1.5 3 c -3 0 -3 -8 0 -8 q 2 0 5 5"
 				/>
