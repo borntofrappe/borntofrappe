@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const holes = [
 		{ cx: 15, cy: 40, rx: 10, ry: 4 },
 		{ cx: 40, cy: 40, rx: 10, ry: 4 },
@@ -140,7 +143,8 @@
 				<g transform="translate({x} {y})">
 					<g transform="translate(0 20)">
 						<animateTransform
-							begin="{delay}s"
+							id="smashTheRabbitRabbit{i}"
+							begin="smashTheRabbitStart.begin + {delay}s"
 							attributeName="transform"
 							type="translate"
 							values="0 20; 0 0; 0 25"
@@ -200,5 +204,70 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="smashTheRabbitMessage"
+			begin="smashTheRabbitRabbit{rabbits.length - 1}.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<g>
+			<g transform="translate(40 25)">
+				<g transform="translate({80 * rabbits.length * -1} 0)">
+					{#each Array(rabbits.length) as _, i}
+						<animateTransform
+							begin="smashTheRabbitRabbitHit{i}.begin"
+							attributeName="transform"
+							type="translate"
+							by="80 0"
+							fill="freeze"
+							dur="0.1s"
+							calcMode="discrete"
+						/>
+					{/each}
+
+					{#each Array(rabbits.length + 1) as _, i}
+						<g transform="translate({80 * i} 0)">
+							<AnimatedText
+								text={i < rabbits.length - winCondition + 1 ? 'And then some!' : 'Missed some...'}
+								begin="smashTheRabbitMessage.begin"
+								end="smashTheRabbitEnd.begin"
+								fill="url(#linear-gradient-text)"
+							/>
+						</g>
+					{/each}
+				</g>
+			</g>
+
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="smashTheRabbitEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+			</rect>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="smashTheRabbitStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Smash!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
