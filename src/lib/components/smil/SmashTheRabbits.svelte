@@ -134,7 +134,7 @@
 	</g>
 
 	<g>
-		{#each rabbits as { x, y, hole, delay }}
+		{#each rabbits as { x, y, hole, delay }, i}
 			<g clip-path="url(#smash-the-rabbit-clip-hole-{hole})">
 				<g transform="translate({x} {y})">
 					<g transform="translate(0 20)">
@@ -151,6 +151,7 @@
 						<svg x="-7.5" y="-10" width="15" height="15">
 							<use style:cursor="pointer" href="#smash-the-rabbit-rabbit">
 								<set
+									id="smashTheRabbitRabbitHit{i}"
 									begin="click"
 									attributeName="href"
 									to="#smash-the-rabbit-rabbit-hit"
@@ -163,5 +164,40 @@
 				</g>
 			</g>
 		{/each}
+	</g>
+
+	<g>
+		<g transform="translate(40 6)">
+			<g
+				fill="currentColor"
+				font-size="4"
+				font-weight="bold"
+				font-family="sans-serif"
+				text-anchor="middle"
+			>
+				<g transform="translate({80 * rabbits.length * -1} 0)">
+					{#each Array(rabbits.length) as _, i}
+						<animateTransform
+							begin="smashTheRabbitRabbitHit{i}.begin"
+							attributeName="transform"
+							type="translate"
+							by="80 0"
+							dur="0.01s"
+							calcMode="discrete"
+							fill="freeze"
+						/>
+					{/each}
+
+					{#each Array(rabbits.length + 1) as _, i}
+						<g transform="translate({80 * i} 0)">
+							<text>
+								<tspan fill="#bc4701">{i}</tspan>
+								more!
+							</text>
+						</g>
+					{/each}
+				</g>
+			</g>
+		</g>
 	</g>
 </svg>
