@@ -7,7 +7,8 @@
 		{ cx: 55, cy: 26, rx: 10, ry: 4 }
 	];
 
-	const targets = 3;
+	const winCondition = 3;
+	const targets = winCondition + 1 + Math.floor(Math.random() * 2);
 
 	const delays = Array(targets)
 		.fill()
@@ -142,7 +143,7 @@
 							begin="{delay}s"
 							attributeName="transform"
 							type="translate"
-							values="0 20; 0 0; 0 20"
+							values="0 20; 0 0; 0 25"
 							dur="{2 + Math.random()}s"
 							calcMode="spline"
 							keyTimes="0; 0.5; 1"
@@ -191,7 +192,7 @@
 					{#each Array(rabbits.length + 1) as _, i}
 						<g transform="translate({80 * i} 0)">
 							<text>
-								<tspan fill="#bc4701">{i}</tspan>
+								<tspan fill="#bc4701">{Math.max(0, i - (rabbits.length - winCondition))}</tspan>
 								more!
 							</text>
 						</g>
