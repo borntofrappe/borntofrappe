@@ -1,3 +1,13 @@
+<script>
+	const holes = [
+		{ cx: 15, cy: 40, rx: 10, ry: 4 },
+		{ cx: 40, cy: 40, rx: 10, ry: 4 },
+		{ cx: 65, cy: 40, rx: 10, ry: 4 },
+		{ cx: 25, cy: 26, rx: 10, ry: 4 },
+		{ cx: 55, cy: 26, rx: 10, ry: 4 }
+	];
+</script>
+
 <svg viewBox="0 0 80 50">
 	<defs>
 		<pattern
@@ -68,7 +78,15 @@
 				</g>
 			</g>
 		</symbol>
+
+		{#each holes as { cx, cy, rx, ry }, i}
+			<clipPath id="smash-the-rabbit-clip-hole-{i}">
+				<ellipse {cx} {cy} {rx} {ry} />
+				<path d="M {cx - rx} {cy} v -50 h {rx * 2} v 50z" />
+			</clipPath>
+		{/each}
 	</defs>
+
 	<rect fill="url(#smash-the-rabbit-pattern-grass)" width="80" height="50" />
 	<rect fill="#10c5ce" width="80" height="17" />
 	<g
@@ -84,24 +102,37 @@
 		<path transform="translate(80 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
 	</g>
 
-	<g transform="translate(20 {50 - 4})"
-		><!-- -4 based on ry -->
-		<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy="-4" rx="10" ry="4" />
-		<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy="-4" rx="10" ry="4" />
-		<ellipse fill="currentColor" cy="-4" rx="10" ry="4" />
-
-		<svg x="-5" y="-10" width="10" height="10">
-			<use href="#smash-the-rabbit-rabbit" />
-		</svg>
+	<g>
+		{#each holes as { cx: x, cy: y, rx, ry }}
+			<g transform="translate({x} {y + ry})">
+				<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy="-{ry}" {rx} {ry} />
+				<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy="-{ry}" {rx} {ry} />
+				<ellipse fill="currentColor" cy="-{ry}" {rx} {ry} />
+			</g>
+		{/each}
 	</g>
 
-	<g transform="translate(60 {50 - 4})">
-		<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy="-4" rx="10" ry="4" />
-		<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy="-4" rx="10" ry="4" />
-		<ellipse fill="currentColor" cy="-4" rx="10" ry="4" />
-
-		<svg x="-7.5" y="-15" width="15" height="15">
-			<use href="#smash-the-rabbit-rabbit-hit" />
-		</svg>
+	<g>
+		{#each holes as { cx: x, cy: y }, i}
+			<g clip-path="url(#smash-the-rabbit-clip-hole-{i})">
+				<g transform="translate({x} {y})">
+					<g transform="translate(0 20)">
+						<animateTransform
+							begin="2s"
+							attributeName="transform"
+							type="translate"
+							values="0 20; 0 0; 0 20"
+							dur="{2 + Math.random()}s"
+							calcMode="spline"
+							keyTimes="0; 0.5; 1"
+							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+						/>
+						<svg x="-7.5" y="-10" width="15" height="15">
+							<use href="#smash-the-rabbit-rabbit" />
+						</svg>
+					</g>
+				</g>
+			</g>
+		{/each}
 	</g>
 </svg>
