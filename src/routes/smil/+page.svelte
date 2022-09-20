@@ -7,6 +7,39 @@
 	import CrackTheEgg from '$lib/components/smil/CrackTheEgg.svelte';
 	import BattleTheEnemy from '$lib/components/smil/BattleTheEnemy.svelte';
 	import SmashTheRabbits from '$lib/components/smil/SmashTheRabbits.svelte';
+
+	const showcase = [
+		{
+			component: PokeTheLadybug,
+			backgroundColor: 'hsl(356, 89%, 71%)',
+			borderColor: 'hsl(153, 24%, 77%)'
+		},
+		{
+			component: PopTheBalloon,
+			backgroundColor: 'hsl(46, 93%, 56%)',
+			borderColor: 'hsl(41, 100%, 47%)'
+		},
+		{
+			component: FindTheButterflies,
+			backgroundColor: 'hsl(211, 67%, 48%)',
+			borderColor: 'hsl(172, 76%, 41%)'
+		},
+		{
+			component: CrackTheEgg,
+			backgroundColor: 'hsl(60, 91%, 66%)',
+			borderColor: 'hsl(171, 83%, 39%)'
+		},
+		{
+			component: BattleTheEnemy,
+			backgroundColor: 'hsl(119, 30%, 49%)',
+			borderColor: 'hsl(177, 65%, 52%)'
+		},
+		{
+			component: SmashTheRabbits,
+			backgroundColor: 'hsl(39, 91%, 55%)',
+			borderColor: 'hsl(143, 99%, 32%)'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -18,29 +51,11 @@
 <Defs />
 
 <div>
-	<article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
-		<PokeTheLadybug />
-	</article>
-
-	<article style:background-color="hsl(46, 93%, 56%)" style:--border-color="hsl(41, 100%, 47%)">
-		<PopTheBalloon />
-	</article>
-
-	<article style:background-color="hsl(211, 67%, 48%)" style:--border-color="hsl(172, 76%, 41%)">
-		<FindTheButterflies />
-	</article>
-
-	<article style:background-color="hsl(60, 91%, 66%)" style:--border-color="hsl(171, 83%, 39%)">
-		<CrackTheEgg />
-	</article>
-
-	<article style:background-color="hsl(119, 30%, 49%)" style:--border-color="hsl(177, 65%, 52%)">
-		<BattleTheEnemy />
-	</article>
-
-	<article style:background-color="hsl(39, 91%, 55%)" style:--border-color="hsl(143, 99%, 32%)">
-		<SmashTheRabbits />
-	</article>
+	{#each showcase as { component, backgroundColor, borderColor }}
+		<article style:background-color={backgroundColor} style:--border-color={borderColor}>
+			<svelte:component this={component} />
+		</article>
+	{/each}
 </div>
 
 <style>
