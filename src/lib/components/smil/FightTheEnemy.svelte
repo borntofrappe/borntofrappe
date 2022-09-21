@@ -1,5 +1,6 @@
 <script>
 	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
 
 	const hpEnemy = 3;
 
@@ -51,7 +52,6 @@
 				.fill()
 				.map((_, i) => `fightTheEnemyHpDrop${i}.begin`)
 				.join(';')}
-			end="fightTheEnemyHpHit0.begin"
 			attributeName="transform"
 			type="translate"
 			values="0 0; 1 0; 0 0; -1 0; 0 0"
@@ -340,6 +340,69 @@
 					{/each}
 				</g>
 			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			begin="fightTheEnemyHpHit0.begin; fightTheEnemyHpDrop0.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+
+		<g>
+			<g display="none">
+				<set
+					id="fightTheEnemyWin"
+					begin="fightTheEnemyHpHit0.begin + 2s"
+					attributeName="display"
+					to="initial"
+					fill="freeze"
+					restart="never"
+				/>
+				<g transform="translate(40 20)">
+					<AnimatedText
+						text="Level up!"
+						begin="fightTheEnemyWin.begin"
+						end="fightTheEnemyEnd.begin"
+						fill="url(#linear-gradient-text)"
+					/>
+				</g>
+			</g>
+
+			<g display="none">
+				<set
+					id="fightTheEnemyLoss"
+					begin="fightTheEnemyHpDrop0.begin + 2s"
+					attributeName="display"
+					to="initial"
+					fill="freeze"
+					restart="never"
+				/>
+				<g transform="translate(40 6)">
+					<AnimatedText
+						text="Oowoo..."
+						delay={0.1}
+						offset={0.5}
+						begin="fightTheEnemyLoss.begin"
+						end="fightTheEnemyEnd.begin"
+						fill="url(#linear-gradient-text)"
+					/>
+				</g>
+			</g>
+
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="fightTheEnemyEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+			</rect>
 		</g>
 	</g>
 
