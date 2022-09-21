@@ -7,6 +7,7 @@
 	import CrackTheEgg from '$lib/components/smil/CrackTheEgg.svelte';
 	import BattleTheEnemy from '$lib/components/smil/BattleTheEnemy.svelte';
 	import SmashTheRabbits from '$lib/components/smil/SmashTheRabbits.svelte';
+	import FightTheEnemy from '$lib/components/smil/FightTheEnemy.svelte';
 
 	const showcase = [
 		{
@@ -38,6 +39,11 @@
 			component: SmashTheRabbits,
 			backgroundColor: 'hsl(39, 91%, 55%)',
 			borderColor: 'hsl(143, 99%, 32%)'
+		},
+		{
+			component: FightTheEnemy,
+			backgroundColor: 'hsl(164, 16%, 32%)',
+			borderColor: 'hsl(158, 15%, 14%)'
 		}
 	];
 </script>
