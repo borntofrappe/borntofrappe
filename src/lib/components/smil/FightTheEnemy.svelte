@@ -145,7 +145,115 @@
 					font-weight="bold"
 					text-anchor="middle"
 				>
-					<text>An enemy appeared!</text>
+					<g>
+						{#each Array(hpYou) as _, i}
+							<g display="none">
+								<set
+									id="fightTheEnemyHpDropMessage{i}"
+									begin="fightTheEnemyHpDrop{i}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+									restart="never"
+								/>
+								<set
+									begin={`fightTheEnemyHpDrop${i - 1}.begin; ${Array(hpEnemy)
+										.fill()
+										.map((_, i) => `fightTheEnemyHpHitMessage${i}.begin`)
+										.join(';')}`}
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+								<text>
+									{#each `${i === 0 ? 'You were defeated...' : 'You are hit for 1 point!'}`.split('') as l, j}
+										<tspan fill-opacity="0">
+											<animate
+												id="fightTheEnemyHpDropMessage{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpDrop${i}.begin`
+													: `fightTheEnemyHpDropMessage${i}Letter${j - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{l}
+										</tspan>
+									{/each}
+								</text>
+							</g>
+						{/each}
+					</g>
+					<g
+						>{#each Array(hpEnemy) as _, i}
+							<g display="none">
+								<set
+									id="fightTheEnemyHpHitMessage{i}"
+									begin="fightTheEnemyHpHit{i}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+									restart="never"
+								/>
+								<set
+									begin={`fightTheEnemyHpHit${i - 1}.begin; ${Array(hpYou)
+										.fill()
+										.map((_, i) => `fightTheEnemyHpDropMessage${i}.begin`)
+										.join(';')}`}
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+								<text>
+									{#each `${i === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as l, j}
+										<tspan fill-opacity="0">
+											<animate
+												id="fightTheEnemyHpHitMessage{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpHit${i}.begin`
+													: `fightTheEnemyHpHitMessage${i}Letter${j - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{l}
+										</tspan>
+									{/each}
+								</text>
+							</g>
+						{/each}</g
+					>
+					<g>
+						<set
+							begin="fightTheEnemyHpHit{hpEnemy - 1}.begin; fightTheEnemyHpDrop{hpYou - 1}.begin"
+							attributeName="display"
+							to="none"
+							fill="freeze"
+							restart="never"
+						/>
+						<text>
+							{#each 'An enemy appeared!'.split('') as l, j}
+								<tspan fill-opacity="0">
+									<animate
+										id="fightTheEnemyMessageLetter{j}"
+										begin={j === 0
+											? `fightTheEnemyShow${hpEnemy - 1}.begin`
+											: `fightTheEnemyMessageLetter${j - 1}.end`}
+										attributeName="fill-opacity"
+										to="1"
+										dur="0.025s"
+										fill="freeze"
+										calcMode="discrete"
+									/>
+									{l}
+								</tspan>
+							{/each}
+						</text>
+					</g>
 				</g>
 			</g>
 		</g>
