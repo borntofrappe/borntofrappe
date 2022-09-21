@@ -3,7 +3,7 @@
 
 	const hpEnemy = 3;
 
-	const hpYou = 0;
+	const hpYou = 3;
 
 	const hpDropDelays = Array(hpYou)
 		.fill()
@@ -107,12 +107,13 @@
 					<text>You</text>
 					<text y="4.6"
 						>HP:
-						{#each [0, ...[...hpDropDelays.reverse()]] as hpDropDelay, i}
+						{#each [0, ...[...hpDropDelays].reverse()] as hpDropDelay, i}
 							<tspan display={i === hpDropDelays.length ? 'initial' : 'none'}>
 								{#if i > 0}
 									<set
 										id="fightTheEnemyHpDrop{i - 1}"
-										begin="{hpDropDelay}s"
+										begin="fightTheEnemyShow{hpEnemy - 1}.begin + {hpDropDelay}s"
+										end="fightTheEnemyHpHit0.begin"
 										attributeName="display"
 										to="none"
 										fill="freeze"
@@ -196,6 +197,7 @@
 
 							<set
 								id="fightTheEnemyHpHit{i}"
+								end="fightTheEnemyHpDrop0.begin"
 								begin="click"
 								attributeName="display"
 								to="none"
