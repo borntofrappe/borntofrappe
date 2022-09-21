@@ -46,6 +46,18 @@
 	</g>
 
 	<g display="none">
+		<animateTransform
+			begin={Array(hpYou)
+				.fill()
+				.map((_, i) => `fightTheEnemyHpDrop${i}.begin`)
+				.join(';')}
+			end="fightTheEnemyHpHit0.begin"
+			attributeName="transform"
+			type="translate"
+			values="0 0; 1 0; 0 0; -1 0; 0 0"
+			dur="0.1s"
+			repeatCount="2"
+		/>
 		<set
 			begin="fightTheEnemyShow{hpEnemy - 1}.begin"
 			attributeName="display"
