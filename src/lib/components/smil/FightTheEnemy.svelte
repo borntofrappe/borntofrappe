@@ -1,4 +1,6 @@
 <script>
+	import Text from './helpers/Text.svelte';
+
 	const hpEnemy = 3;
 
 	const hpYou = 0;
@@ -173,7 +175,9 @@
 						<g display="none">
 							<set
 								id="fightTheEnemyShow{i}"
-								begin={i === hpEnemy - 1 ? '2s' : `fightTheEnemyHpHit${i + 1}.begin`}
+								begin={i === hpEnemy - 1
+									? 'fightTheEnemyStart.begin'
+									: `fightTheEnemyHpHit${i + 1}.begin`}
 								attributeName="display"
 								to="initial"
 								fill="freeze"
@@ -215,5 +219,20 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="fightTheEnemyStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Fight!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
