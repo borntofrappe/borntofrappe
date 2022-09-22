@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const size = 9;
 	const padding = 2;
 
@@ -28,7 +31,7 @@
 
 	const length = Math.random() > 0.5 ? destinations.length - 1 : destinations.length - 3;
 
-	const gridY = 18; // where the grid is translated
+	const gridY = 18;
 	const gridWidth = width;
 	const gridHeight = height - gridY;
 
@@ -155,6 +158,7 @@
 				<rect x="1" y="1" width="1" height="1" />
 			</g>
 		</pattern>
+
 		<pattern id="pick-a-side-pattern-grid-1" width="0.1" height="0.1" viewBox="-0.05 -0.05 1.1 1.1">
 			<rect
 				fill="none"
@@ -200,7 +204,6 @@
 								-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 							dur="0.25s"
 							fill="freeze"
-							restart="never"
 							calcMode="spline"
 							keyTimes="0; 1"
 							keySplines="0.5 0 0.5 1;"
@@ -238,13 +241,7 @@
 					fill="freeze"
 					restart="never"
 				/>
-				<set
-					begin="pickASidePress2.begin"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set begin="pickASidePress2.begin" attributeName="display" to="none" fill="freeze" />
 				<rect
 					x="-{padding}"
 					y="-{padding}"
@@ -276,7 +273,6 @@
 								-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 							dur="0.25s"
 							fill="freeze"
-							restart="never"
 							calcMode="spline"
 							keyTimes="0; 1"
 							keySplines="0.5 0 0.5 1;"
@@ -314,13 +310,7 @@
 					fill="freeze"
 					restart="never"
 				/>
-				<set
-					begin="pickASidePress1.begin"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set begin="pickASidePress1.begin" attributeName="display" to="none" fill="freeze" />
 				<rect
 					x="-{padding}"
 					y="-{padding}"
@@ -342,7 +332,6 @@
 					to="50"
 					dur="0.25s"
 					fill="freeze"
-					restart="never"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.5 0 0.5 1;"
@@ -358,7 +347,6 @@
 						to="50"
 						dur="0.25s"
 						fill="freeze"
-						restart="never"
 						calcMode="spline"
 						keyTimes="0; 1"
 						keySplines="0.5 0 0.5 1;"
@@ -371,7 +359,8 @@
 
 	<g transform="translate(0 {height + spriteSize})">
 		<animateTransform
-			begin="2s"
+			id="pickASideStarted"
+			begin="pickASideStart.begin"
 			attributeName="transform"
 			type="translate"
 			to="0 0"
@@ -384,6 +373,7 @@
 		{#each sprites as { x, y, sprite, start, values, dur }}
 			<g transform="translate({start.x} {start.y})">
 				<animateTransform
+					begin="pickASideStarted.begin"
 					end="pickASidePressed1.end; pickASidePressed2.end"
 					attributeName="transform"
 					type="translate"
@@ -406,30 +396,63 @@
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
 				</svg>
-				<circle r="0.5" fill="green" />
 			</g>
 		{/each}
 	</g>
 
-	<!-- REPLACE WITH CUSTOM TEXT	 -->
-	<g transform="translate(2.5 18)" font-size="2">
+	<g display="none">
+		<set
+			begin="pickASidePressed1.end + 1.25s; pickASidePressed2.end + 1.25s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
 		<g display="none">
 			<set
+				id="pickASidePicked1"
 				begin="pickASidePressed1.end + 1.25s"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
 			/>
-			<text>{isMajorityOnSide1 ? 'right you are!' : 'not quite...'}</text>
+			<g transform="translate(40 19)">
+				<AnimatedText
+					begin="pickASidePicked1.begin"
+					end="pickASideEnd.begin"
+					text={isMajorityOnSide1 ? 'Right you are!' : 'Too fast?'}
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
 		</g>
+
 		<g display="none">
 			<set
+				id="pickASidePicked2"
 				begin="pickASidePressed2.end + 1.25s"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
 			/>
-			<text>{isMajorityOnSide1 ? 'not quite...' : 'right you are!'}</text>
+			<g transform="translate(40 19)">
+				<AnimatedText
+					begin="pickASidePicked2.begin"
+					end="pickASideEnd.begin"
+					text={isMajorityOnSide1 ? 'Too fast?' : 'Right you are!'}
+					fill="url(#linear-gradient-text)"
+				/>
+			</g>
 		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="pickASideEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="pickASideStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 28)">
+			<Text fill="url(#linear-gradient-text)">Majority!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
