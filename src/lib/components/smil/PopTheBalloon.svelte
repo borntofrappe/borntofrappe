@@ -193,13 +193,7 @@
 		<g>
 			<g transform="translate(40 25)">
 				<g display="none">
-					<set
-						begin="popTheBalloonFall.end"
-						attributeName="display"
-						to="initial"
-						fill="freeze"
-						restart="never"
-					/>
+					<set begin="popTheBalloonFall.end" attributeName="display" to="initial" fill="freeze" />
 					<g>
 						<AnimatedText
 							text="That's a wrap!"
@@ -210,13 +204,7 @@
 					</g>
 				</g>
 				<g>
-					<set
-						begin="popTheBalloonFall.begin"
-						attributeName="display"
-						to="none"
-						fill="freeze"
-						restart="never"
-					/>
+					<set begin="popTheBalloonFall.begin" attributeName="display" to="none" fill="freeze" />
 					<g>
 						<AnimatedText
 							text="Far it goes..."
@@ -228,27 +216,13 @@
 				</g>
 			</g>
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<set
-					id="popTheBalloonEnd"
-					begin="click"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set id="popTheBalloonEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="popTheBalloonStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="popTheBalloonStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Pop!</Text>
 		</g>

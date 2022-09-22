@@ -61,7 +61,6 @@
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			restart="never"
 		/>
 		<g transform="translate(1 1)">
 			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
@@ -84,7 +83,6 @@
 										attributeName="display"
 										to="initial"
 										fill="freeze"
-										restart="never"
 									/>
 								{/if}
 								{#if i > 0}
@@ -93,7 +91,6 @@
 										attributeName="display"
 										to="none"
 										fill="freeze"
-										restart="never"
 									/>
 								{/if}
 								{i}
@@ -122,7 +119,6 @@
 									attributeName="display"
 									to="initial"
 									fill="freeze"
-									restart="never"
 								/>
 							{/if}
 							{#if i > 0}
@@ -131,7 +127,6 @@
 									attributeName="display"
 									to="none"
 									fill="freeze"
-									restart="never"
 								/>
 							{/if}
 							<text>
@@ -188,7 +183,6 @@
 						attributeName="display"
 						to="initial"
 						fill="freeze"
-						restart="never"
 					/>
 					{#if i !== hp - 1}
 						<animate
@@ -207,7 +201,6 @@
 						attributeName="display"
 						to="none"
 						fill="freeze"
-						restart="never"
 					/>
 					<g style:cursor="pointer">
 						<path
@@ -230,7 +223,6 @@
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			restart="never"
 		/>
 		<g>
 			<g transform="translate(40 22)">
@@ -242,27 +234,13 @@
 				/>
 			</g>
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<set
-					id="battleTheEnemyEnd"
-					begin="click"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="battleTheEnemyStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="battleTheEnemyStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Battle!</Text>
 		</g>

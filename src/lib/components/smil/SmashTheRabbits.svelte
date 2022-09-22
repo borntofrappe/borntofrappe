@@ -213,7 +213,6 @@
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			restart="never"
 		/>
 		<g>
 			<g transform="translate(40 25)">
@@ -244,27 +243,13 @@
 			</g>
 
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<set
-					id="smashTheRabbitEnd"
-					begin="click"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set id="smashTheRabbitEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="smashTheRabbitStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="smashTheRabbitStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Smash!</Text>
 		</g>

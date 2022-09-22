@@ -63,7 +63,6 @@
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			restart="never"
 		/>
 		<g transform="translate(1 1)">
 			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
@@ -86,7 +85,6 @@
 										attributeName="display"
 										to="initial"
 										fill="freeze"
-										restart="never"
 									/>
 								{/if}
 								{#if i > 0}
@@ -95,7 +93,6 @@
 										attributeName="display"
 										to="none"
 										fill="freeze"
-										restart="never"
 									/>
 								{/if}
 								{i}
@@ -129,7 +126,6 @@
 										attributeName="display"
 										to="none"
 										fill="freeze"
-										restart="never"
 									/>
 								{/if}
 								<set
@@ -137,7 +133,6 @@
 									attributeName="display"
 									to="initial"
 									fill="freeze"
-									restart="never"
 								/>
 								{i}
 							</tspan>
@@ -166,7 +161,6 @@
 									attributeName="display"
 									to="initial"
 									fill="freeze"
-									restart="never"
 								/>
 								<set
 									begin={`fightTheEnemyHpDrop${i - 1}.begin; ${Array(hpEnemy)
@@ -207,7 +201,6 @@
 									attributeName="display"
 									to="initial"
 									fill="freeze"
-									restart="never"
 								/>
 								<set
 									begin={`fightTheEnemyHpHit${i - 1}.begin; ${Array(hpYou)
@@ -302,7 +295,6 @@
 								attributeName="display"
 								to="initial"
 								fill="freeze"
-								restart="never"
 							/>
 							{#if i !== hpEnemy - 1}
 								<animate
@@ -322,7 +314,6 @@
 								attributeName="display"
 								to="none"
 								fill="freeze"
-								restart="never"
 							/>
 							<g style:cursor="pointer">
 								<path
@@ -360,7 +351,6 @@
 					attributeName="display"
 					to="initial"
 					fill="freeze"
-					restart="never"
 				/>
 				<g transform="translate(40 20)">
 					<AnimatedText
@@ -379,7 +369,6 @@
 					attributeName="display"
 					to="initial"
 					fill="freeze"
-					restart="never"
 				/>
 				<g transform="translate(40 6)">
 					<AnimatedText
@@ -394,27 +383,13 @@
 			</g>
 
 			<rect style:cursor="pointer" width="80" height="50" opacity="0">
-				<set
-					id="fightTheEnemyEnd"
-					begin="click"
-					attributeName="display"
-					to="none"
-					fill="freeze"
-					restart="never"
-				/>
+				<set id="fightTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 			</rect>
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="fightTheEnemyStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="fightTheEnemyStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Fight!</Text>
 		</g>
