@@ -6,7 +6,7 @@
 	const width = 80;
 	const height = 50;
 
-	const destinations = Object.entries({
+	let destinations = Object.entries({
 		1: [
 			{ x: 8, y: 26 },
 			{ x: 32, y: 26 },
@@ -25,6 +25,17 @@
 		const [sprite, dest] = curr;
 		return [...acc, ...dest.map((d) => ({ ...d, sprite }))];
 	}, []);
+
+	const length = Math.random() > 0.5 ? destinations.length - 1 : destinations.length - 3;
+
+	const sprites = Array(length)
+		.fill()
+		.map((_) => {
+			const i = Math.floor(Math.random() * destinations.length);
+			const destination = destinations[i];
+			destinations = [...destinations.slice(0, i), ...destinations.slice(i + 1)];
+			return { ...destination };
+		});
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -310,7 +321,7 @@
 	</g>
 
 	<g>
-		{#each destinations as { x, y, sprite }}
+		{#each sprites as { x, y, sprite }}
 			<g transform="translate({x} {y})">
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
