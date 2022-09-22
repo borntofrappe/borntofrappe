@@ -82,6 +82,9 @@
 				dur
 			};
 		});
+
+	const isMajorityOnSide1 =
+		sprites.reduce((acc, curr) => (curr.sprite === '1' ? acc + 1 : acc), 0) > sprites.length / 2;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -403,9 +406,30 @@
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
 				</svg>
-				<!-- TEMP VISUAL -->
 				<circle r="0.5" fill="green" />
 			</g>
 		{/each}
+	</g>
+
+	<!-- REPLACE WITH CUSTOM TEXT	 -->
+	<g transform="translate(2.5 18)" font-size="2">
+		<g display="none">
+			<set
+				begin="pickASidePressed1.end + 1.25s"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
+			<text>{isMajorityOnSide1 ? 'right you are!' : 'not quite...'}</text>
+		</g>
+		<g display="none">
+			<set
+				begin="pickASidePressed2.end + 1.25s"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
+			<text>{isMajorityOnSide1 ? 'not quite...' : 'right you are!'}</text>
+		</g>
 	</g>
 </svg>
