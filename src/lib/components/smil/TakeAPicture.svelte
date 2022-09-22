@@ -28,7 +28,6 @@
 		{ y: lens.y + lens.height, text: 'Exceedingly late!' }
 	].map(({ y, text }) => ({
 		delay: ((Math.abs(y0) + y) / (y1 - y0)) * time,
-		y,
 		text
 	}));
 </script>
@@ -129,7 +128,14 @@
 			</g>
 
 			<g>
-				<animateMotion id="takeAPictureMotion" {path} dur="{time}s" fill="freeze" restart="never" />
+				<animateMotion
+					id="takeAPictureMotion"
+					end="takeAPictureShot.begin"
+					{path}
+					dur="{time}s"
+					fill="freeze"
+					restart="never"
+				/>
 				<svg width={size} height={size}>
 					<use href="#take-a-picture-sprite-{sprite}" />
 				</svg>
@@ -137,29 +143,38 @@
 		</g>
 	</g>
 
-	<!-- DEBUGGING VISUALS - REMOVE -->
-	<g fill="none" stroke="hsl(0, 0%, 100%)" stroke-width="0.5">
-		<path d={path} />
-		<circle r="3">
-			<animateMotion id="takeAPictureMotion" {path} dur="{time}s" fill="freeze" restart="never" />
-		</circle>
-	</g>
-
 	<g>
-		{#each frames as { y, delay, text }, i}
-			<g transform="translate(0 {y})">
-				<path fill="none" stroke="white" stroke-width="0.5" d="M 0 0 h 80" />
-			</g>
-
+		{#each frames as { delay, text }, i}
 			<g display="none">
-				<set attributeName="display" to="initial" begin="{delay}s" />
+				<set
+					id="takeAPictureFrame{i}"
+					attributeName="display"
+					to="initial"
+					begin="{delay}s"
+					end="takeAPictureShot.begin"
+					fill="freeze"
+				/>
 				{#if i < frames.length - 1}
-					<set attributeName="display" to="none" begin="{frames[i + 1].delay}s" />
+					<set
+						attributeName="display"
+						to="none"
+						begin="takeAPictureFrame{i + 1}.begin"
+						end="takeAPictureShot.begin"
+						fill="freeze"
+					/>
 				{/if}
+				<!-- TEMP - REPLACE WITH CUSTOM TEXT COMPONENT -->
 				<g fill="white" stroke="none" font-size="3" transform="translate(2 25)">
 					<text>{text}</text>
 				</g>
 			</g>
 		{/each}
+	</g>
+
+	<!-- TEMP - SET OPACITY TO 0 -->
+	<g style:cursor="pointer" opacity="0.25">
+		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" fill="freeze" />
+		<set begin="takeAPictureMotion.end" attributeName="display" to="none" fill="freeze" />
+		<rect width="80" height="50" />
 	</g>
 </svg>
