@@ -1,5 +1,6 @@
 <script>
 	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
 
 	const size = 12;
 	const width = 80;
@@ -177,20 +178,32 @@
 
 	<g display="none">
 		<set
+			id="takeAPictureMessage"
 			begin="takeAPictureMotion.end + 1s"
 			end="takeAPictureShot.begin"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
 		/>
-		<!-- TEMP - REPLACE WITH CUSTOM TEXT COMPONENT -->
-		<g fill="white" stroke="none" font-size="3" transform="translate(2 25)">
-			<text>The moment's gone...</text>
+		<g transform="translate(40 45)">
+			<AnimatedText
+				fill="currentColor"
+				stroke="#f7f7f7"
+				text="Moment's gone..."
+				begin="takeAPictureMessage.begin"
+				end="takeAPictureEnd.begin"
+			/>
 		</g>
 	</g>
 
 	<g display="none">
-		<set begin="takeAPictureFlash.end" attributeName="display" to="initial" fill="freeze" />
+		<set
+			id="takeAPictureFlashed"
+			begin="takeAPictureFlash.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
 		{#each frames as { delay, text }, i}
 			<g display="none">
 				<set
@@ -210,9 +223,14 @@
 						fill="freeze"
 					/>
 				{/if}
-				<!-- TEMP - REPLACE WITH CUSTOM TEXT COMPONENT -->
-				<g fill="white" stroke="none" font-size="3" transform="translate(2 25)">
-					<text>{text}</text>
+				<g transform="translate(40 45)">
+					<AnimatedText
+						fill="currentColor"
+						stroke="#f7f7f7"
+						{text}
+						begin="takeAPictureFlashed.begin"
+						end="takeAPictureEnd.begin"
+					/>
 				</g>
 			</g>
 		{/each}
@@ -242,6 +260,25 @@
 		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" fill="freeze" />
 		<set begin="takeAPictureMotion.end" attributeName="display" to="none" fill="freeze" />
 		<rect width="80" height="50" />
+	</g>
+
+	<g display="none">
+		<set
+			begin="takeAPictureMessage.begin; takeAPictureFlashed.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set
+				id="takeAPictureEnd"
+				begin="click"
+				attributeName="display"
+				to="none"
+				fill="freeze"
+				restart="never"
+			/>
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
