@@ -173,13 +173,21 @@
 	</g>
 
 	<g display="none">
-		<!-- CONSIDER SEPARATING THE TWO EVENTS WHICH TRIGGER THE DISPLAY -->
 		<set
-			begin="takeAPictureFlash.end; takeAPictureMotion.end"
+			begin="takeAPictureMotion.end + 1s"
+			end="takeAPictureShot.begin"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
 		/>
+		<!-- TEMP - REPLACE WITH CUSTOM TEXT COMPONENT -->
+		<g fill="white" stroke="none" font-size="3" transform="translate(2 25)">
+			<text>The moment's gone...</text>
+		</g>
+	</g>
+
+	<g display="none">
+		<set begin="takeAPictureFlash.end" attributeName="display" to="initial" fill="freeze" />
 		{#each frames as { delay, text }, i}
 			<g display="none">
 				<set
