@@ -28,6 +28,13 @@
 
 	const length = Math.random() > 0.5 ? destinations.length - 1 : destinations.length - 3;
 
+	const gridY = 18; // where the grid is translated
+	const gridWidth = width;
+	const gridHeight = height - gridY;
+
+	const getX = () => gridWidth / 4 + Math.floor((Math.random() * gridWidth) / 2);
+	const getY = () => gridY + gridHeight / 4 + Math.floor((Math.random() * gridHeight) / 2);
+
 	const sprites = Array(length)
 		.fill()
 		.map((_) => {
@@ -35,6 +42,19 @@
 			const destination = destinations[i];
 			destinations = [...destinations.slice(0, i), ...destinations.slice(i + 1)];
 			return { ...destination };
+		})
+		.map(({ x, y, sprite }) => {
+			const start = {
+				x: getX(),
+				y: getY()
+			};
+
+			return {
+				start,
+				x,
+				y,
+				sprite
+			};
 		});
 </script>
 
@@ -321,8 +341,8 @@
 	</g>
 
 	<g>
-		{#each sprites as { x, y, sprite }}
-			<g transform="translate({x} {y})">
+		{#each sprites as { x, y, sprite, start }}
+			<g transform="translate({start.x} {start.y})">
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
 				</svg>
