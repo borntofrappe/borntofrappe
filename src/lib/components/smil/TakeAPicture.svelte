@@ -1,5 +1,5 @@
 <script>
-	const size = 15;
+	const size = 16;
 	const width = 80;
 	const height = 50;
 
@@ -10,10 +10,29 @@
 
 	lens.x = width / 2 - lens.width / 2;
 	lens.y = height / 2 - lens.height / 2;
+
+	const y0 = -height;
+	const y1 = height;
+
+	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
+	const path = `M ${getX()} ${y0} ${getX()} ${y1}`;
 </script>
 
 <svg viewBox="0 0 80 50">
 	<defs>
+		<rect
+			id="take-a-picture-lens"
+			x={lens.x}
+			y={lens.y}
+			width={lens.width}
+			height={lens.height}
+			rx="2"
+		/>
+
+		<clipPath id="take-a-picture-clip-lens">
+			<use href="#take-a-picture-lens" />
+		</clipPath>
+
 		<symbol id="take-a-picture-sprite-0" viewBox="-2.25 -2.12 4.5 4.6">
 			<g stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round">
 				<g fill="none">
@@ -55,19 +74,6 @@
 				</g>
 			</g>
 		</symbol>
-
-		<rect
-			id="take-a-picture-lens"
-			x={lens.x}
-			y={lens.y}
-			width={lens.width}
-			height={lens.height}
-			rx="2"
-		/>
-
-		<clipPath id="take-a-picture-clip-lens">
-			<use href="#take-a-picture-lens" />
-		</clipPath>
 	</defs>
 
 	<rect fill="currentColor" width="80" height="50" />
@@ -107,11 +113,20 @@
 				</g>
 			</g>
 
-			<g transform="translate(40 25)">
-				<svg x={-size / 2} y={-size / 2} width={size} height={size}>
+			<g>
+				<animateMotion id="takeAPictureMotion" {path} dur="5s" fill="freeze" restart="never" />
+				<svg width={size} height={size}>
 					<use href="#take-a-picture-sprite-1" />
 				</svg>
 			</g>
 		</g>
+	</g>
+
+	<!-- DEBUGGING VISUAL - REMOVE -->
+	<g fill="none" stroke="hsl(0, 0%, 100%)" stroke-width="1">
+		<path d={path} />
+		<circle r="5">
+			<animateMotion id="takeAPictureMotion" {path} dur="5s" fill="freeze" restart="never" />
+		</circle>
 	</g>
 </svg>
