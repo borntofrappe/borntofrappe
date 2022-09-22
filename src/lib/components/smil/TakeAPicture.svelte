@@ -1,4 +1,6 @@
 <script>
+	import Text from './helpers/Text.svelte';
+
 	const size = 12;
 	const width = 80;
 	const height = 50;
@@ -158,6 +160,7 @@
 				<g>
 					<animateMotion
 						id="takeAPictureMotion"
+						begin="takeAPictureStart.begin"
 						end="takeAPictureShot.begin"
 						{path}
 						dur="{time}s"
@@ -194,7 +197,7 @@
 					id="takeAPictureFrame{i}"
 					attributeName="display"
 					to="initial"
-					begin="{delay}s"
+					begin="takeAPictureMotion.begin + {delay}s"
 					end="takeAPictureShot.begin"
 					fill="freeze"
 				/>
@@ -239,5 +242,20 @@
 		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" fill="freeze" />
 		<set begin="takeAPictureMotion.end" attributeName="display" to="none" fill="freeze" />
 		<rect width="80" height="50" />
+	</g>
+
+	<g style:cursor="pointer">
+		<set
+			id="takeAPictureStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Frame!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
