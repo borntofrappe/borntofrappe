@@ -1,5 +1,6 @@
 <script>
-	const size = 10;
+	const size = 9;
+	const padding = 2;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -95,22 +96,192 @@
 	<rect fill="url(#pick-a-side-pattern-grid-1)" y="18" width="40" height="40" />
 	<rect fill="url(#pick-a-side-pattern-grid-2)" x="40" y="18" width="40" height="40" />
 
-	<g transform="translate(20 5)">
-		<svg x={-size / 2} width={size} height={size}>
-			<use href="#pick-a-side-sprite-1" />
-		</svg>
+	<g transform="translate(20 {padding * 2})">
+		<g transform="translate({-size / 2} 0)">
+			<g transform="translate({-padding} {-padding})">
+				<g stroke="currentColor" stroke-width="0.5">
+					<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+					<path
+						fill="currentColor"
+						d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+					>
+						<animate
+							begin="pickASidePress1.begin"
+							attributeName="d"
+							to="M 0 {size +
+								padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+								-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+								-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+							dur="0.25s"
+							fill="freeze"
+							restart="never"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.5 0 0.5 1;"
+						/>
+					</path>
+				</g>
+			</g>
+
+			<g transform="translate(0 {-padding / 2})">
+				<animateTransform
+					id="pickASidePressed1"
+					begin="pickASidePress1.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 0"
+					dur="0.25s"
+					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.5 1;"
+				/>
+
+				<svg width={size} height={size}>
+					<use href="#pick-a-side-sprite-1" />
+				</svg>
+			</g>
+
+			<g style:cursor="pointer" opacity="0">
+				<set
+					id="pickASidePress1"
+					begin="click"
+					end="pickASidePress2.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+				<set
+					begin="pickASidePress2.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+				<rect
+					x="-{padding}"
+					y="-{padding}"
+					width={size + padding * 2}
+					height={size + padding * 2}
+					rx={padding}
+				/>
+			</g>
+		</g>
 	</g>
 
-	<g transform="translate(60 5)">
-		<svg x={-size / 2} width={size} height={size}>
-			<use href="#pick-a-side-sprite-2" />
-		</svg>
+	<g transform="translate(60 {padding * 2})">
+		<g transform="translate({-size / 2} 0)">
+			<g transform="translate({-padding} {-padding})">
+				<g stroke="currentColor" stroke-width="0.5">
+					<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+					<path
+						fill="currentColor"
+						d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+					>
+						<animate
+							begin="pickASidePress2.begin"
+							attributeName="d"
+							to="M 0 {size +
+								padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+								-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+								-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+							dur="0.25s"
+							fill="freeze"
+							restart="never"
+							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.5 0 0.5 1;"
+						/>
+					</path>
+				</g>
+			</g>
+
+			<g transform="translate(0 {-padding / 2})">
+				<animateTransform
+					id="pickASidePressed2"
+					begin="pickASidePress2.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 0"
+					dur="0.25s"
+					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.5 1;"
+				/>
+
+				<svg width={size} height={size}>
+					<use href="#pick-a-side-sprite-2" />
+				</svg>
+			</g>
+
+			<g style:cursor="pointer" opacity="0">
+				<set
+					id="pickASidePress2"
+					begin="click"
+					end="pickASidePress1.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+				<set
+					begin="pickASidePress1.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+					restart="never"
+				/>
+				<rect
+					x="-{padding}"
+					y="-{padding}"
+					width={size + padding * 2}
+					height={size + padding * 2}
+					rx={padding}
+				/>
+			</g>
+		</g>
 	</g>
 
 	<g transform="translate(40 10)">
 		<g stroke="currentColor" stroke-width="0.5">
-			<path fill="#f7ae42" d="M -2 0 h -5 v 3 h 3 v -3" />
-			<path transform="scale(-1 1)" fill="#21c6ce" d="M -2 0 h -5 v 3 h 3 v -3" />
+			<g>
+				<animateTransform
+					begin="pickASidePressed1.begin"
+					attributeName="transform"
+					type="rotate"
+					to="50"
+					dur="0.25s"
+					fill="freeze"
+					restart="never"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.5 1;"
+				/>
+				<path fill="#f7ae42" d="M -2 0 h -5 v 3 h 3 v -3" />
+			</g>
+			<g transform="scale(-1 1)">
+				<g>
+					<animateTransform
+						begin="pickASidePressed2.begin"
+						attributeName="transform"
+						type="rotate"
+						to="50"
+						dur="0.25s"
+						fill="freeze"
+						restart="never"
+						calcMode="spline"
+						keyTimes="0; 1"
+						keySplines="0.5 0 0.5 1;"
+					/>
+					<path fill="#21c6ce" d="M -2 0 h -5 v 3 h 3 v -3" />
+				</g>
+			</g>
 		</g>
 	</g>
 </svg>
