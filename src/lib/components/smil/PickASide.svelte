@@ -1,6 +1,30 @@
 <script>
 	const size = 9;
 	const padding = 2;
+
+	const spriteSize = 8;
+	const width = 80;
+	const height = 50;
+
+	const destinations = Object.entries({
+		1: [
+			{ x: 8, y: 26 },
+			{ x: 32, y: 26 },
+			{ x: 20, y: 34 },
+			{ x: 8, y: 42 },
+			{ x: 32, y: 42 }
+		],
+		2: [
+			{ x: 48, y: 26 },
+			{ x: 72, y: 26 },
+			{ x: 60, y: 34 },
+			{ x: 48, y: 42 },
+			{ x: 72, y: 42 }
+		]
+	}).reduce((acc, curr) => {
+		const [sprite, dest] = curr;
+		return [...acc, ...dest.map((d) => ({ ...d, sprite }))];
+	}, []);
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -283,5 +307,17 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g>
+		{#each destinations as { x, y, sprite }}
+			<g transform="translate({x} {y})">
+				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
+					<use href="#pick-a-side-sprite-{sprite}" />
+				</svg>
+				<!-- TEMP VISUAL -->
+				<circle r="0.5" fill="green" />
+			</g>
+		{/each}
 	</g>
 </svg>
