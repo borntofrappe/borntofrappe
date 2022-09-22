@@ -366,7 +366,18 @@
 		</g>
 	</g>
 
-	<g>
+	<g transform="translate(0 {height + spriteSize})">
+		<animateTransform
+			begin="2s"
+			attributeName="transform"
+			type="translate"
+			to="0 0"
+			dur="0.5s"
+			fill="freeze"
+			calcMode="spline"
+			keyTimes="0; 1"
+			keySplines="0.65 0 0.4 1"
+		/>
 		{#each sprites as { x, y, sprite, start, values, dur }}
 			<g transform="translate({start.x} {start.y})">
 				<animateTransform
@@ -377,6 +388,17 @@
 					{dur}
 					repeatCount="indefinite"
 					fill="freeze"
+				/>
+				<animateTransform
+					begin="pickASidePressed1.end; pickASidePressed2.end"
+					attributeName="transform"
+					type="translate"
+					to="{x} {y}"
+					dur="0.5s"
+					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.65 0 0.4 1"
 				/>
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
