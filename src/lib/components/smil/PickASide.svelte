@@ -49,11 +49,37 @@
 				y: getY()
 			};
 
-			return {
+			const moves = [
 				start,
+				...Array(10)
+					.fill()
+					.map((_) => ({
+						x: getX(),
+						y: getY()
+					})),
+				start
+			];
+
+			const distance = moves.reduce((acc, curr, i) => {
+				if (i === 0) return acc;
+				else {
+					const { x: x0, y: y0 } = moves[i - 1];
+					const { x: x1, y: y1 } = curr;
+					const d = ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5;
+					return acc + d;
+				}
+			}, 0);
+			const dur = `${Math.floor(1250 / distance)}s`;
+
+			const values = moves.map(({ x, y }) => `${x} ${y}`).join(';');
+
+			return {
 				x,
 				y,
-				sprite
+				sprite,
+				start,
+				values,
+				dur
 			};
 		});
 </script>
@@ -341,8 +367,17 @@
 	</g>
 
 	<g>
-		{#each sprites as { x, y, sprite, start }}
+		{#each sprites as { x, y, sprite, start, values, dur }}
 			<g transform="translate({start.x} {start.y})">
+				<animateTransform
+					end="pickASidePressed1.end; pickASidePressed2.end"
+					attributeName="transform"
+					type="translate"
+					{values}
+					{dur}
+					repeatCount="indefinite"
+					fill="freeze"
+				/>
 				<svg x={-spriteSize / 2} y={-spriteSize / 2} width={spriteSize} height={spriteSize}>
 					<use href="#pick-a-side-sprite-{sprite}" />
 				</svg>
