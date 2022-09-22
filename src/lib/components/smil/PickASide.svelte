@@ -402,7 +402,7 @@
 
 	<g display="none">
 		<set
-			begin="pickASidePressed1.end + 1.25s; pickASidePressed2.end + 1.25s"
+			begin="pickASidePressed1.end + 1.9s; pickASidePressed2.end + 1.9s"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
@@ -410,7 +410,7 @@
 		<g display="none">
 			<set
 				id="pickASidePicked1"
-				begin="pickASidePressed1.end + 1.25s"
+				begin="pickASidePressed1.end + 1.9s"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
@@ -428,7 +428,7 @@
 		<g display="none">
 			<set
 				id="pickASidePicked2"
-				begin="pickASidePressed2.end + 1.25s"
+				begin="pickASidePressed2.end + 1.9s"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
