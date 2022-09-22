@@ -1,5 +1,5 @@
 <script>
-	const size = 16;
+	const size = 12;
 	const width = 80;
 	const height = 50;
 
@@ -16,6 +16,21 @@
 
 	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
 	const path = `M ${getX()} ${y0} ${getX()} ${y1}`;
+
+	const time = 10;
+	const sprite = Math.floor(Math.random() * 2);
+
+	const frames = [
+		{ y: y0, text: 'Way too early!' },
+		{ y: lens.y - size, text: 'A touch early...' },
+		{ y: lens.y, text: 'Nice shot!' },
+		{ y: lens.y + lens.height - size + 1, text: 'A bit late...' },
+		{ y: lens.y + lens.height, text: 'Exceedingly late!' }
+	].map(({ y, text }) => ({
+		delay: ((Math.abs(y0) + y) / (y1 - y0)) * time,
+		y,
+		text
+	}));
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -114,19 +129,37 @@
 			</g>
 
 			<g>
-				<animateMotion id="takeAPictureMotion" {path} dur="5s" fill="freeze" restart="never" />
+				<animateMotion id="takeAPictureMotion" {path} dur="{time}s" fill="freeze" restart="never" />
 				<svg width={size} height={size}>
-					<use href="#take-a-picture-sprite-1" />
+					<use href="#take-a-picture-sprite-{sprite}" />
 				</svg>
 			</g>
 		</g>
 	</g>
 
-	<!-- DEBUGGING VISUAL - REMOVE -->
-	<g fill="none" stroke="hsl(0, 0%, 100%)" stroke-width="1">
+	<!-- DEBUGGING VISUALS - REMOVE -->
+	<g fill="none" stroke="hsl(0, 0%, 100%)" stroke-width="0.5">
 		<path d={path} />
-		<circle r="5">
-			<animateMotion id="takeAPictureMotion" {path} dur="5s" fill="freeze" restart="never" />
+		<circle r="3">
+			<animateMotion id="takeAPictureMotion" {path} dur="{time}s" fill="freeze" restart="never" />
 		</circle>
+	</g>
+
+	<g>
+		{#each frames as { y, delay, text }, i}
+			<g transform="translate(0 {y})">
+				<path fill="none" stroke="white" stroke-width="0.5" d="M 0 0 h 80" />
+			</g>
+
+			<g display="none">
+				<set attributeName="display" to="initial" begin="{delay}s" />
+				{#if i < frames.length - 1}
+					<set attributeName="display" to="none" begin="{frames[i + 1].delay}s" />
+				{/if}
+				<g fill="white" stroke="none" font-size="3" transform="translate(2 25)">
+					<text>{text}</text>
+				</g>
+			</g>
+		{/each}
 	</g>
 </svg>
