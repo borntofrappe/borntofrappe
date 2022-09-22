@@ -21,14 +21,15 @@
 	const sprite = Math.floor(Math.random() * 2);
 
 	const frames = [
-		{ y: y0, text: 'Way too early!' },
-		{ y: lens.y - size, text: 'A touch early...' },
-		{ y: lens.y, text: 'Nice shot!' },
-		{ y: lens.y + lens.height - size + 1, text: 'A bit late...' },
-		{ y: lens.y + lens.height, text: 'Exceedingly late!' }
-	].map(({ y, text }) => ({
+		{ y: y0, text: 'Way too early!', filter: true },
+		{ y: lens.y - size, text: 'A touch early...', filter: true },
+		{ y: lens.y, text: 'Nice shot!', filter: false },
+		{ y: lens.y + lens.height - size + 1, text: 'A bit late...', filter: true },
+		{ y: lens.y + lens.height, text: 'Exceedingly late!', filter: true }
+	].map(({ y, text, filter }) => ({
 		delay: ((Math.abs(y0) + y) / (y1 - y0)) * time,
-		text
+		text,
+		filter
 	}));
 </script>
 
@@ -88,62 +89,97 @@
 				</g>
 			</g>
 		</symbol>
+
+		<filter id="take-a-picture-filter">
+			<feColorMatrix
+				type="matrix"
+				values="-1 0 0 0 1 
+                0 -1 0 0 1 
+                0 0 -1 0 1
+                0 0 0 1 0"
+			/>
+			<feColorMatrix
+				type="matrix"
+				values="0.33 0.33 0.33 0 0
+                0.33 0.33 0.33 0 0
+                0.33 0.33 0.33 0 0
+                0 0 0 1 0"
+			/>
+		</filter>
 	</defs>
 
-	<rect fill="currentColor" width="80" height="50" />
-
 	<g>
-		<use href="#take-a-picture-lens" fill="none" stroke="#f7f7f7" stroke-width="2.5" />
-		<use href="#take-a-picture-lens" fill="none" stroke="currentColor" stroke-width="1" />
+		{#each frames as { filter }, i}
+			<set
+				begin="takeAPictureFrame{i}.end"
+				attributeName="filter"
+				to={filter ? 'url(#take-a-picture-filter)' : ''}
+				fill="freeze"
+			/>
+		{/each}
 
-		<g clip-path="url(#take-a-picture-clip-lens)">
-			<rect width="80" height="50" fill="#f7f7f7" />
+		<rect fill="currentColor" width="80" height="50" />
 
-			<g fill="#dfdfdf">
-				<circle cx="0" cy="0" r="25" />
-				<circle cx="25" cy="0" r="25" />
-				<circle cx="50" cy="-5" r="25" />
-				<circle cx="80" cy="-10" r="25" />
-				<circle cx="15" cy="20" r="12" />
-				<circle cx="30" cy="20" r="12" />
-				<circle cx="45" cy="15" r="12" />
-				<circle cx="65" cy="10" r="12" />
-			</g>
+		<g>
+			<use href="#take-a-picture-lens" fill="none" stroke="#f7f7f7" stroke-width="2.5" />
+			<use href="#take-a-picture-lens" fill="none" stroke="currentColor" stroke-width="1" />
 
-			<g stroke-width="0.5" stroke="#dfdfdf">
-				<path
-					fill="#f7f7f7"
-					d="M 0 21.5 29.5 28.5 35 50 45 50 39 25 80 5 80 0 74 0 37 18 32.5 0 22.5 0 28 20 0 14"
-				/>
-				<g fill="none">
-					<path d="M 0 21.5 29.5 28.5" stroke-dasharray="8" transform="translate(2 -3.5)" />
-					<path d="M 29.5 27 35 50" stroke-dasharray="12" transform="translate(2 1)" />
-					<g stroke-dasharray="10">
-						<path d="M 45 50 39 25" transform="translate(-4 -2)" />
-						<path d="M 39 25 80 5" transform="translate(4 -5)" />
-						<path d="M 37 18 32.5 0" transform="translate(-3 -2)" />
-						<path d="M 22.5 0 28 20" transform="translate(2 -1)" />
+			<g clip-path="url(#take-a-picture-clip-lens)">
+				<rect width="80" height="50" fill="#f7f7f7" />
+
+				<g fill="#dfdfdf">
+					<circle cx="0" cy="0" r="25" />
+					<circle cx="25" cy="0" r="25" />
+					<circle cx="50" cy="-5" r="25" />
+					<circle cx="80" cy="-10" r="25" />
+					<circle cx="15" cy="20" r="12" />
+					<circle cx="30" cy="20" r="12" />
+					<circle cx="45" cy="15" r="12" />
+					<circle cx="65" cy="10" r="12" />
+				</g>
+
+				<g stroke-width="0.5" stroke="#dfdfdf">
+					<path
+						fill="#f7f7f7"
+						d="M 0 21.5 29.5 28.5 35 50 45 50 39 25 80 5 80 0 74 0 37 18 32.5 0 22.5 0 28 20 0 14"
+					/>
+					<g fill="none">
+						<path d="M 0 21.5 29.5 28.5" stroke-dasharray="8" transform="translate(2 -3.5)" />
+						<path d="M 29.5 27 35 50" stroke-dasharray="12" transform="translate(2 1)" />
+						<g stroke-dasharray="10">
+							<path d="M 45 50 39 25" transform="translate(-4 -2)" />
+							<path d="M 39 25 80 5" transform="translate(4 -5)" />
+							<path d="M 37 18 32.5 0" transform="translate(-3 -2)" />
+							<path d="M 22.5 0 28 20" transform="translate(2 -1)" />
+						</g>
 					</g>
 				</g>
-			</g>
 
-			<g>
-				<animateMotion
-					id="takeAPictureMotion"
-					end="takeAPictureShot.begin"
-					{path}
-					dur="{time}s"
-					fill="freeze"
-					restart="never"
-				/>
-				<svg width={size} height={size}>
-					<use href="#take-a-picture-sprite-{sprite}" />
-				</svg>
+				<g>
+					<animateMotion
+						id="takeAPictureMotion"
+						end="takeAPictureShot.begin"
+						{path}
+						dur="{time}s"
+						fill="freeze"
+						restart="never"
+					/>
+					<svg width={size} height={size}>
+						<use href="#take-a-picture-sprite-{sprite}" />
+					</svg>
+				</g>
 			</g>
 		</g>
 	</g>
 
-	<g>
+	<g display="none">
+		<!-- CONSIDER SEPARATING THE TWO EVENTS WHICH TRIGGER THE DISPLAY -->
+		<set
+			begin="takeAPictureFlash.end; takeAPictureMotion.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
 		{#each frames as { delay, text }, i}
 			<g display="none">
 				<set
@@ -171,8 +207,27 @@
 		{/each}
 	</g>
 
-	<!-- TEMP - SET OPACITY TO 0 -->
-	<g style:cursor="pointer" opacity="0.25">
+	<g opacity="0">
+		<animate
+			id="takeAPictureFlash"
+			begin="takeAPictureShot.begin"
+			attributeName="opacity"
+			values="0; 1; 0"
+			dur="0.15s"
+			fill="freeze"
+			restart="never"
+		/>
+		<set
+			begin="takeAPictureFlash.end"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
+		<rect width="80" height="50" fill="#f7f7f7" />
+	</g>
+
+	<g style:cursor="pointer" opacity="0">
 		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" fill="freeze" />
 		<set begin="takeAPictureMotion.end" attributeName="display" to="none" fill="freeze" />
 		<rect width="80" height="50" />
