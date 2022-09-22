@@ -1,6 +1,8 @@
 <script>
 	const size = 12;
 
+	const patterns = ['star', 'moon', 'sun'];
+
 	const points = Array(10)
 		.fill()
 		.map((_, i, { length }) => {
@@ -81,6 +83,48 @@
 		<symbol id="match-in-pairs-card-flipped" viewBox="-0.25 -0.25 10.5 10.5">
 			<rect width="10" height="10" fill="#f7d794" stroke="#107c38" stroke-width="0.5" />
 		</symbol>
+
+		{#each patterns as pattern}
+			<g id="match-in-pairs-card-{pattern}">
+				<svg width={size} height={size}>
+					<use href="#match-in-pairs-card" />
+				</svg>
+				<g transform="translate(-80 0)">
+					<g transform="translate({size / 2} 0) scale(0.5 1) translate({(size / 2) * -1} 0)">
+						<svg width={size} height={size}>
+							<use href="#match-in-pairs-card" />
+							<g fill="none" stroke="#f7f7f7" stroke-width="0.3" stroke-linecap="round">
+								<path d="M {size / 12} {size / 2.5} {size / 2.5} {size / 9}" />
+								<path
+									transform="translate({size / 12} {size / 8})"
+									d="M {size / 12} {size / 2.5} {size / 2.5} {size / 9}"
+								/>
+							</g>
+						</svg>
+					</g>
+				</g>
+				<g transform="translate(-160 0)">
+					<g transform="translate({size / 2} 0) scale(0.5 1) translate({(size / 2) * -1} 0)">
+						<svg width={size} height={size}>
+							<use href="#match-in-pairs-card-flipped" />
+							<g fill="none" stroke="#f7f7f7" stroke-width="0.3" stroke-linecap="round">
+								<path d="M {size / 12} {size / 2.5} {size / 2.5} {size / 9}" />
+								<path
+									transform="translate({size / 12} {size / 8})"
+									d="M {size / 12} {size / 2.5} {size / 2.5} {size / 9}"
+								/>
+							</g>
+						</svg>
+					</g>
+				</g>
+				<g transform="translate(-240 0)">
+					<svg width={size} height={size}>
+						<use href="#match-in-pairs-card-flipped" />
+						<use href="#match-in-pairs-{pattern}" />
+					</svg>
+				</g>
+			</g>
+		{/each}
 	</defs>
 
 	<use
@@ -98,21 +142,40 @@
 	</g>
 
 	<g transform="translate(10 5)">
-		<svg width={size} height={size}>
-			<use href="#match-in-pairs-card" />
-		</svg>
-		<svg x={size} width={size} height={size}>
-			<use href="#match-in-pairs-card-flipped" />
-			<use href="#match-in-pairs-moon" />
-		</svg>
-		<svg y={size} width={size} height={size}>
-			<use href="#match-in-pairs-moon" />
-		</svg>
-		<svg x={size} y={size} width={size} height={size}>
-			<use href="#match-in-pairs-sun" />
-		</svg>
-		<svg x={size * 2} y={size} width={size} height={size}>
-			<use href="#match-in-pairs-star" />
-		</svg>
+		<g transform="translate(0 0)">
+			<use x="0" href="#match-in-pairs-card-sun" />
+		</g>
+		<g transform="translate({size} 0)">
+			<use x="80" href="#match-in-pairs-card-sun" />
+		</g>
+		<g transform="translate({size * 2} 0)">
+			<use x="160" href="#match-in-pairs-card-sun" />
+		</g>
+		<g transform="translate({size * 3} 0)">
+			<use x="240" href="#match-in-pairs-card-sun" />
+		</g>
+	</g>
+
+	<g transform="translate(10 20)">
+		<use x="0" href="#match-in-pairs-card-star">
+			<animate
+				id="matchInPairsCardFlip"
+				begin="click"
+				attributeName="x"
+				values="0; 80; 160; 240"
+				dur="0.2s"
+				calcMode="discrete"
+				fill="freeze"
+				restart="whenNotActive"
+			/>
+			<animate
+				begin="matchInPairsCardFlip.end + 1s"
+				attributeName="x"
+				values="240; 160; 80; 0"
+				dur="0.2s"
+				calcMode="discrete"
+				fill="freeze"
+			/>
+		</use>
 	</g>
 </svg>
