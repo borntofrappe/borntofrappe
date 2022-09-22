@@ -8,6 +8,7 @@
 	import BattleTheEnemy from '$lib/components/smil/BattleTheEnemy.svelte';
 	import SmashTheRabbits from '$lib/components/smil/SmashTheRabbits.svelte';
 	import FightTheEnemy from '$lib/components/smil/FightTheEnemy.svelte';
+	import TakeAPicture from '$lib/components/smil/TakeAPicture.svelte';
 
 	const showcase = [
 		{
@@ -44,6 +45,11 @@
 			component: FightTheEnemy,
 			backgroundColor: 'hsl(164, 16%, 32%)',
 			borderColor: 'hsl(158, 15%, 14%)'
+		},
+		{
+			component: TakeAPicture,
+			backgroundColor: 'hsl(120, 1%, 84%)',
+			borderColor: 'hsl(247, 6%, 27%)'
 		}
 	];
 </script>

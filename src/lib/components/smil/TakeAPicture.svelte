@@ -2,7 +2,7 @@
 	import Text from './helpers/Text.svelte';
 	import AnimatedText from './helpers/AnimatedText.svelte';
 
-	const size = 12;
+	const size = 15;
 	const width = 80;
 	const height = 50;
 
@@ -20,7 +20,7 @@
 	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
 	const path = `M ${getX()} ${y0} ${getX()} ${y1}`;
 
-	const time = 10;
+	const time = 4 + Math.floor(Math.random() * 3);
 	const sprite = Math.floor(Math.random() * 2);
 
 	const frames = [
@@ -38,19 +38,6 @@
 
 <svg viewBox="0 0 80 50">
 	<defs>
-		<rect
-			id="take-a-picture-lens"
-			x={lens.x}
-			y={lens.y}
-			width={lens.width}
-			height={lens.height}
-			rx="2"
-		/>
-
-		<clipPath id="take-a-picture-clip-lens">
-			<use href="#take-a-picture-lens" />
-		</clipPath>
-
 		<symbol id="take-a-picture-sprite-0" viewBox="-2.25 -2.12 4.5 4.6">
 			<g stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round">
 				<g fill="none">
@@ -92,6 +79,19 @@
 				</g>
 			</g>
 		</symbol>
+
+		<rect
+			id="take-a-picture-lens"
+			x={lens.x}
+			y={lens.y}
+			width={lens.width}
+			height={lens.height}
+			rx="2"
+		/>
+
+		<clipPath id="take-a-picture-clip-lens">
+			<use href="#take-a-picture-lens" />
+		</clipPath>
 
 		<filter id="take-a-picture-filter">
 			<feColorMatrix
@@ -166,7 +166,6 @@
 						{path}
 						dur="{time}s"
 						fill="freeze"
-						restart="never"
 					/>
 					<svg width={size} height={size}>
 						<use href="#take-a-picture-sprite-{sprite}" />
@@ -179,7 +178,7 @@
 	<g display="none">
 		<set
 			id="takeAPictureMessage"
-			begin="takeAPictureMotion.end + 1s"
+			begin="takeAPictureMotion.end + 0.5s"
 			end="takeAPictureShot.begin"
 			attributeName="display"
 			to="initial"
@@ -208,18 +207,18 @@
 			<g display="none">
 				<set
 					id="takeAPictureFrame{i}"
-					attributeName="display"
-					to="initial"
 					begin="takeAPictureMotion.begin + {delay}s"
 					end="takeAPictureShot.begin"
+					attributeName="display"
+					to="initial"
 					fill="freeze"
 				/>
 				{#if i < frames.length - 1}
 					<set
-						attributeName="display"
-						to="none"
 						begin="takeAPictureFrame{i + 1}.begin"
 						end="takeAPictureShot.begin"
+						attributeName="display"
+						to="none"
 						fill="freeze"
 					/>
 				{/if}
@@ -244,15 +243,8 @@
 			values="0; 1; 0"
 			dur="0.15s"
 			fill="freeze"
-			restart="never"
 		/>
-		<set
-			begin="takeAPictureFlash.end"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set begin="takeAPictureEnd.begin" attributeName="display" to="none" fill="freeze" />
 		<rect width="80" height="50" fill="#f7f7f7" />
 	</g>
 
@@ -270,26 +262,12 @@
 			fill="freeze"
 		/>
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set
-				id="takeAPictureEnd"
-				begin="click"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				restart="never"
-			/>
+			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="takeAPictureStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="takeAPictureStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Frame!</Text>
 		</g>
