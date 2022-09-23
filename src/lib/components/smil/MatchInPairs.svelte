@@ -5,7 +5,7 @@
 	const width = 80;
 	const height = 50;
 
-	const patterns = ['star', 'moon', 'sun'];
+	const symbols = ['star', 'moon', 'sun'];
 
 	const getX = () => padding + Math.floor(Math.random() * (width - size - padding * 2));
 	const getY = () => padding + Math.floor(Math.random() * (height - size - padding * 2));
@@ -14,7 +14,7 @@
 	let x = getX();
 	let y = getY();
 
-	while (coords.length < patterns.length * 2) {
+	while (coords.length < symbols.length * 2) {
 		let overlaps = false;
 		for (const { x: cx, y: cy } of coords) {
 			if (x + size + 1 > cx && x - 1 < cx + size && y + size + 1 > cy && y - 1 < cy + size) {
@@ -32,6 +32,21 @@
 			});
 		}
 	}
+
+	const cards = symbols.reduce((acc, curr, i) => {
+		const pair = Array(2)
+			.fill()
+			.map((_, j) => {
+				const { x, y } = coords[i * 2 + j];
+
+				return {
+					x,
+					y,
+					symbol: curr
+				};
+			});
+		return [...acc, ...pair];
+	}, []);
 
 	const points = Array(10)
 		.fill()
@@ -114,8 +129,8 @@
 			<rect width="10" height="10" fill="#f7d794" stroke="#107c38" stroke-width="0.5" />
 		</symbol>
 
-		{#each patterns as pattern}
-			<g id="match-in-pairs-card-{pattern}">
+		{#each symbols as symbol}
+			<g id="match-in-pairs-card-{symbol}">
 				<svg width={size} height={size}>
 					<use href="#match-in-pairs-card" />
 				</svg>
@@ -150,7 +165,7 @@
 				<g transform="translate(-240 0)">
 					<svg width={size} height={size}>
 						<use href="#match-in-pairs-card-flipped" />
-						<use href="#match-in-pairs-{pattern}" />
+						<use href="#match-in-pairs-{symbol}" />
 					</svg>
 				</g>
 			</g>
@@ -172,9 +187,9 @@
 	</g>
 
 	<g>
-		{#each coords as { x, y }, i}
+		{#each cards as { x, y, symbol }}
 			<g transform="translate({x} {y})">
-				<use x="240" href="#match-in-pairs-card-{patterns[i % patterns.length]}" />
+				<use x="240" href="#match-in-pairs-card-{symbol}" />
 			</g>
 		{/each}
 	</g>
