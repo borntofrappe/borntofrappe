@@ -39,10 +39,29 @@
 			.map((_, j) => {
 				const { x, y } = coords[i * 2 + j];
 
+				const id = `matchInPairsCard${i}${j}`;
+				const match = `matchInPairsCard${i}${j === 0 ? 1 : 0}`;
+
+				const resets = symbols
+					.map((_, k) => k)
+					.filter((k) => k !== i)
+					.reduce(
+						(a, c) => [
+							...a,
+							...Array(2)
+								.fill()
+								.map((_, z) => `matchInPairsCard${c}${z}`)
+						],
+						[]
+					);
+
 				return {
 					x,
 					y,
-					symbol: curr
+					symbol: curr,
+					id,
+					match,
+					resets
 				};
 			});
 		return [...acc, ...pair];
