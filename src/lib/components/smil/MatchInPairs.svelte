@@ -206,19 +206,44 @@
 	</g>
 
 	<g>
+		{#each cards as { x, y, symbol, id, match, resets }}
+			<g transform="translate({x} {y})">
+				<use style:cursor="pointer" href="#match-in-pairs-card-{symbol}">
+					<set {id} begin="click" attributeName="display" to="none" fill="freeze" />
+				</use>
+			</g>
+		{/each}
+	</g>
+
+	<g>
+		{#each cards as { x, y, symbol, id, match, resets }}
+			<g display="none">
+				<set begin="{id}.begin" attributeName="display" to="initial" fill="freeze" />
+				<g transform="translate({x} {y})">
+					<use style:cursor="pointer" href="#match-in-pairs-card-{symbol}">
+						<animate
+							begin="{id}.begin"
+							attributeName="x"
+							values="0; 80; 160; 240"
+							dur="0.2s"
+							calcMode="discrete"
+							fill="freeze"
+							restart="never"
+						/>
+					</use>
+				</g>
+			</g>
+		{/each}
+	</g>
+
+	<!-- TEMP VISUAL -->
+	<g>
 		{#each cards as { x, y, symbol }}
 			<g transform="translate({x} {y})">
-				<use href="#match-in-pairs-card-{symbol}">
-					<animate
-						begin="click"
-						attributeName="x"
-						values="0; 80; 160; 240"
-						dur="0.2s"
-						calcMode="discrete"
-						fill="freeze"
-						restart="never"
-					/>
-				</use>
+				<rect width="4" height="4" />
+				<svg width="4" height="4">
+					<use href="#match-in-pairs-{symbol}" />
+				</svg>
 			</g>
 		{/each}
 	</g>
