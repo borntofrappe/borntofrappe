@@ -294,15 +294,20 @@
 		{/each}
 	</g>
 
-	<!-- TEMP VISUAL -->
-	<g>
-		{#each cards as { x, y, symbol }}
-			<g transform="translate({x} {y})">
-				<rect width="4" height="4" />
-				<svg width="4" height="4">
-					<use href="#match-in-pairs-{symbol}" />
-				</svg>
-			</g>
+	<g transform="translate({80 * symbols.length * -1} 0)">
+		{#each cards as { id }}
+			<animateTransform
+				begin="{id}Overlay.begin + 1s"
+				attributeName="transform"
+				type="translate"
+				by="80 0"
+				dur="0.1s"
+				calcMode="discrete"
+				fill="freeze"
+			/>
 		{/each}
+		<g transform="translate(5 5)">
+			<text font-size="5">You won!!!</text>
+		</g>
 	</g>
 </svg>
