@@ -210,6 +210,14 @@
 			<g transform="translate({x} {y})">
 				<use style:cursor="pointer" href="#match-in-pairs-card-{symbol}">
 					<set {id} begin="click" attributeName="display" to="none" fill="freeze" />
+					<set begin="{id}Overlay.begin" attributeName="display" to="none" fill="freeze" />
+					<set
+						begin={resets.map((reset) => `${reset}Flip.end`).join(';')}
+						end="{match}Overlay.begin"
+						attributeName="display"
+						to="initial"
+						fill="freeze"
+					/>
 				</use>
 			</g>
 		{/each}
@@ -219,18 +227,68 @@
 		{#each cards as { x, y, symbol, id, match, resets }}
 			<g display="none">
 				<set begin="{id}.begin" attributeName="display" to="initial" fill="freeze" />
+				<set
+					begin={resets.map((reset) => `${reset}Flip.end`).join(';')}
+					end="{match}Overlay.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
 				<g transform="translate({x} {y})">
-					<use style:cursor="pointer" href="#match-in-pairs-card-{symbol}">
+					<use href="#match-in-pairs-card-{symbol}">
 						<animate
+							id="{id}Flip"
 							begin="{id}.begin"
 							attributeName="x"
 							values="0; 80; 160; 240"
 							dur="0.2s"
 							calcMode="discrete"
 							fill="freeze"
-							restart="never"
+						/>
+						<animate
+							begin={resets.map((reset) => `${reset}.begin`).join(';')}
+							end="{match}Overlay.begin"
+							attributeName="x"
+							values="240; 160; 80; 0"
+							dur="0.2s"
+							calcMode="discrete"
+							fill="freeze"
 						/>
 					</use>
+				</g>
+			</g>
+		{/each}
+	</g>
+
+	<g>
+		{#each cards as { x, y, symbol, id, match, resets }}
+			<g display="none">
+				<set begin="{match}.begin" attributeName="display" to="initial" fill="freeze" />
+				<set
+					begin={resets.map((reset) => `${reset}.begin`).join(';')}
+					end="{id}Overlay.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
+				<g transform="translate({x} {y})">
+					<g>
+						<use href="#match-in-pairs-card-{symbol}">
+							<animateTransform
+								begin="{id}Overlay.begin"
+								attributeName="transform"
+								type="translate"
+								values="0 0; 80 0; 160 0; 240 0"
+								dur="0.2s"
+								calcMode="discrete"
+								fill="freeze"
+							/>
+						</use>
+						<g style:cursor="pointer" opacity="0">
+							<set id="{id}Overlay" begin="click" attributeName="display" to="none" fill="freeze" />
+							<rect width={size} height={size} />
+						</g>
+					</g>
 				</g>
 			</g>
 		{/each}
