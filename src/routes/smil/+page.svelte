@@ -10,6 +10,7 @@
 	import FightTheEnemy from '$lib/components/smil/FightTheEnemy.svelte';
 	import TakeAPicture from '$lib/components/smil/TakeAPicture.svelte';
 	import PickASide from '$lib/components/smil/PickASide.svelte';
+	import MatchInPairs from '$lib/components/smil/MatchInPairs.svelte';
 
 	const showcase = [
 		{
@@ -56,6 +57,11 @@
 			component: PickASide,
 			backgroundColor: 'hsl(36, 93%, 56%)',
 			borderColor: 'hsl(23, 100%, 37%)'
+		},
+		{
+			component: MatchInPairs,
+			backgroundColor: 'hsl(27, 79%, 47%)',
+			borderColor: 'hsl(142, 100%, 31%)'
 		}
 	];
 </script>
