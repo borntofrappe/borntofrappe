@@ -1,7 +1,37 @@
 <script>
 	const size = 12;
+	const padding = 3;
+
+	const width = 80;
+	const height = 50;
 
 	const patterns = ['star', 'moon', 'sun'];
+
+	const getX = () => padding + Math.floor(Math.random() * (width - size - padding * 2));
+	const getY = () => padding + Math.floor(Math.random() * (height - size - padding * 2));
+
+	const coords = [];
+	let x = getX();
+	let y = getY();
+
+	while (coords.length < patterns.length * 2) {
+		let overlaps = false;
+		for (const { x: cx, y: cy } of coords) {
+			if (x + size + 1 > cx && x - 1 < cx + size && y + size + 1 > cy && y - 1 < cy + size) {
+				overlaps = true;
+				break;
+			}
+		}
+		if (overlaps) {
+			x = getX();
+			y = getY();
+		} else {
+			coords.push({
+				x,
+				y
+			});
+		}
+	}
 
 	const points = Array(10)
 		.fill()
@@ -141,23 +171,15 @@
 		<use href="#match-in-pairs-background" stroke="#bd4908" stroke-width="0.5" />
 	</g>
 
-	<g transform="translate(10 5)">
-		<g transform="translate(0 0)">
-			<use x="0" href="#match-in-pairs-card-sun" />
-		</g>
-		<g transform="translate({size} 0)">
-			<use x="80" href="#match-in-pairs-card-sun" />
-		</g>
-		<g transform="translate({size * 2} 0)">
-			<use x="160" href="#match-in-pairs-card-sun" />
-		</g>
-		<g transform="translate({size * 3} 0)">
-			<use x="240" href="#match-in-pairs-card-sun" />
-		</g>
+	<g>
+		{#each coords as { x, y }, i}
+			<g transform="translate({x} {y})">
+				<use x="240" href="#match-in-pairs-card-{patterns[i % patterns.length]}" />
+			</g>
+		{/each}
 	</g>
 
-	<g transform="translate(10 20)">
-		<use x="0" href="#match-in-pairs-card-star">
+	<!-- <use x="0" href="#match-in-pairs-card-star">
 			<animate
 				id="matchInPairsCardFlip"
 				begin="click"
@@ -176,6 +198,5 @@
 				calcMode="discrete"
 				fill="freeze"
 			/>
-		</use>
-	</g>
+		</use> -->
 </svg>
