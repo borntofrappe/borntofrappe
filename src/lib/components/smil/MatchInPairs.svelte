@@ -189,29 +189,18 @@
 	<g>
 		{#each cards as { x, y, symbol }}
 			<g transform="translate({x} {y})">
-				<use x="240" href="#match-in-pairs-card-{symbol}" />
+				<use href="#match-in-pairs-card-{symbol}">
+					<animate
+						begin="click"
+						attributeName="x"
+						values="0; 80; 160; 240"
+						dur="0.2s"
+						calcMode="discrete"
+						fill="freeze"
+						restart="never"
+					/>
+				</use>
 			</g>
 		{/each}
 	</g>
-
-	<!-- <use x="0" href="#match-in-pairs-card-star">
-			<animate
-				id="matchInPairsCardFlip"
-				begin="click"
-				attributeName="x"
-				values="0; 80; 160; 240"
-				dur="0.2s"
-				calcMode="discrete"
-				fill="freeze"
-				restart="whenNotActive"
-			/>
-			<animate
-				begin="matchInPairsCardFlip.end + 1s"
-				attributeName="x"
-				values="240; 160; 80; 0"
-				dur="0.2s"
-				calcMode="discrete"
-				fill="freeze"
-			/>
-		</use> -->
 </svg>
