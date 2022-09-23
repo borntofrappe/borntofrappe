@@ -1,4 +1,7 @@
 <script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
 	const size = 12;
 	const padding = 3;
 
@@ -306,8 +309,24 @@
 				fill="freeze"
 			/>
 		{/each}
-		<g transform="translate(5 5)">
-			<text font-size="5">You won!!!</text>
+		<g transform="translate(40 25)">
+			<AnimatedText
+				begin="{cards[0].id}Overlay.begin; {cards[1].id}Overlay.begin"
+				end="matchInPairsEnd.begin"
+				text="What a match!"
+				fill="url(#linear-gradient-text)"
+			/>
 		</g>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="matchInPairsEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
+	</g>
+
+	<g style:cursor="pointer">
+		<set begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Pair up!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
