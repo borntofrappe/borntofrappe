@@ -13,6 +13,9 @@
 	const crops = Array(targets)
 		.fill()
 		.map((_, i) => i * w);
+
+	const decay = 0.8;
+	const tops = 3;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -198,7 +201,24 @@
 		{#each crops as x}
 			<svg {x} width={w} height={h}>
 				<use href="#pick-up-produce-crop" />
-				<use href="#pick-up-produce-crop-top-0" />
+				<use href="#pick-up-produce-crop-top-0">
+					{#each Array(tops) as _, j}
+						<set
+							begin="{(j + 1) * decay}s"
+							attributeName="href"
+							to="#pick-up-produce-crop-top-{j}"
+							fill="freeze"
+							calcMode="discrete"
+						/>
+					{/each}
+					<set
+						begin="{(tops + 1) * decay}s"
+						attributeName="href"
+						to="#pick-up-produce-crop-top-spoiled"
+						fill="freeze"
+						calcMode="discrete"
+					/>
+				</use>
 			</svg>
 		{/each}
 	</g>
