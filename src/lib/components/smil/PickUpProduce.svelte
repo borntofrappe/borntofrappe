@@ -212,6 +212,13 @@
 	<g transform="translate({o} {yStart})">
 		{#each crops as { x, delay }, i}
 			<g>
+				<set
+					id="pickUpProduceHarvested{i}"
+					begin="pickUpProduceHarvest{i}.end"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
 				<g transform="translate(0 {h * 0.4})">
 					<animateTransform
 						id="pickUpProduceCrop{i}"
@@ -222,10 +229,11 @@
 						dur="0.35s"
 						fill="freeze"
 					/>
-					<g style:cursor="pointer">
+					<g>
 						<animateTransform
 							id="pickUpProduceHarvest{i}"
 							begin="click"
+							end="pickUpProduceSpoiled{i}.begin"
 							attributeName="transform"
 							type="translate"
 							to="0 {-yGap}"
@@ -234,7 +242,6 @@
 							restart="never"
 						/>
 						<svg {x} width={w} height={h}>
-							<rect width={w} height={h} opacity="0" />
 							<use href="#pick-up-produce-crop" />
 							<use href="#pick-up-produce-crop-top-0">
 								{#each Array(tops) as _, j}
@@ -244,10 +251,10 @@
 										attributeName="href"
 										to="#pick-up-produce-crop-top-{j}"
 										fill="freeze"
-										calcMode="discrete"
 									/>
 								{/each}
 								<set
+									id="pickUpProduceSpoiled{i}"
 									begin="pickUpProduceCrop{i}.end + {(tops + 1) * decay}s"
 									end="pickUpProduceHarvest{i}.begin"
 									attributeName="href"
@@ -255,6 +262,15 @@
 									fill="freeze"
 								/>
 							</use>
+							<g style:cursor="pointer" opacity="0">
+								<set
+									begin="pickUpProduceSpoiled{i}.begin"
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+								<rect width={w} height={h} />
+							</g>
 						</svg>
 					</g>
 				</g>
