@@ -1,0 +1,398 @@
+<script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
+	const hpEnemy = 3;
+
+	const hpYou = 3;
+
+	const hpDropDelays = Array(hpYou)
+		.fill()
+		.map((_) => Math.floor(Math.random() * 2 + 2))
+		.reduce(
+			(acc, curr, i) => (i === 0 ? [...acc, curr] : [...acc, curr + acc[acc.length - 1]]),
+			[]
+		);
+</script>
+
+<svg viewBox="0 0 80 50">
+	<rect width="80" height="50" fill="#faeab7" />
+	<g>
+		<path
+			d="m21.5 42.6c2.2-0.63 3.38 1.73 5.05 2.5 2.39-0.37-0.577-2.06-0.616-3.26-1.15-5.44-1.64-11-1.82-16.6-0.169-4.32 0.506-8.65 0.0443-13-1.43-1.8-2.32 1.46-2.62 2.41-1.23 1.54-0.511 3.7-0.803 5.51-0.0834 5.67 0.434 11.4-0.13 17-1.33 1.64-1.29-2.02-1.43-2.95-0.51-5.48-0.22-11-0.763-16.5-0.782-2.29-2.57 0.425-2.01 1.74-0.0997 2.45 0.654 4.83 0.745 7.27 0.417 2.88 1.34 6.07-0.232 8.77-1.53 1.52-5.07 1.17-5.47-1.22-0.0991-1.94 0.316-3.88 0.484-5.81 0.433-2.6 0.785-5.26 0.4-7.88 0.385-2.17-2.76-3.56-3.16-0.952-0.614 2.43-0.163 4.95-0.4 7.41 0.297 1.79-2.07 3.34-2.69 1.09-0.479-1.66 0.556-3.28 0.443-4.98 0.108-5.27 0.637-10.6-0.453-15.8-0.493-2.12-3.7-1.98-4.19 0.0883-0.958 2.12-0.594 4.52-0.821 6.77-0.102 4.92 0.601 9.8 0.85 14.7 0.0157 3.08 0.0459 6.19-0.357 9.24-0.573 1.91-1.42 4.65 0.752 5.9 2.81 1.9 6.37 1.08 9.42 0.303 3.21-0.831 6.42-1.96 9.78-1.84z"
+			fill="#85734f"
+		/>
+		<path
+			d="m6.77 4c-2.11-0.0931-2.7 2.36-2.56 4.04-0.0107 3.09 1.03 6.08 0.915 9.18 0.169 3.23-0.318 6.49 0.0474 9.7 0.164 1.54-1.36 2.39-2.49 1.49-1.59 0.374-2.95 1.87-2.68 3.57v18h22.6c1.49-1.21 3.82-2.29 3.68-4.54-0.0855-2.52-2.95-2.74-4.49-4.02-1.33-1.71-0.891-5-3.52-5.54-2.23-0.565-4.78 0.701-6.81-0.751-1.77-1.87-0.659-4.6-0.96-6.88 0.101-5.06 1.13-10.1 0.925-15.1 0.0949-3.12-0.363-6.86-3.13-8.78-0.449-0.253-0.967-0.396-1.48-0.368z"
+			fill="#313c2b"
+		/>
+		<path
+			d="m0 0v10c2 0.873 1.67 5.05 4.75 3.69 2.3 0.182 4.4-2.12 6.54-1.21 1.73 1.93 1.05 4.81 1.51 7.18 0.138 5.35 0.137 10.7-0.484 16.1-0.378 2.41-0.798 4.94-2.15 7.01-1.89 2.23-5.6 0.721-5.9-2.04-1.29-6.43-0.94-13-0.871-19.6-0.0508-2.83-1.04-5.74-3.22-7.61-0.395 0.892-0.0749 2.12-0.17 3.15v33.3h22.9c0.889-2.3-2.29-2.96-2.82-4.81-1.77-4.64-1.04-9.69-1.7-14.5-0.258-5.18-0.681-10.5 0.256-15.6 0.312-3.04 4.49-1.96 5.2-4.84 0.941-2.32 2.63-4.58 2.33-7.2-0.487-2.14-3.06-2.57-4.91-2.77-2.81-0.147-5.61-0.345-8.42-0.274h-12.8z"
+			fill="#192821"
+		/>
+	</g>
+	<g transform="translate(80 0) scale(-1 1)">
+		<path
+			d="m21.5 42.6c2.2-0.63 3.38 1.73 5.05 2.5 2.39-0.37-0.577-2.06-0.616-3.26-1.15-5.44-1.64-11-1.82-16.6-0.169-4.32 0.506-8.65 0.0443-13-1.43-1.8-2.32 1.46-2.62 2.41-1.23 1.54-0.511 3.7-0.803 5.51-0.0834 5.67 0.434 11.4-0.13 17-1.33 1.64-1.29-2.02-1.43-2.95-0.51-5.48-0.22-11-0.763-16.5-0.782-2.29-2.57 0.425-2.01 1.74-0.0997 2.45 0.654 4.83 0.745 7.27 0.417 2.88 1.34 6.07-0.232 8.77-1.53 1.52-5.07 1.17-5.47-1.22-0.0991-1.94 0.316-3.88 0.484-5.81 0.433-2.6 0.785-5.26 0.4-7.88 0.385-2.17-2.76-3.56-3.16-0.952-0.614 2.43-0.163 4.95-0.4 7.41 0.297 1.79-2.07 3.34-2.69 1.09-0.479-1.66 0.556-3.28 0.443-4.98 0.108-5.27 0.637-10.6-0.453-15.8-0.493-2.12-3.7-1.98-4.19 0.0883-0.958 2.12-0.594 4.52-0.821 6.77-0.102 4.92 0.601 9.8 0.85 14.7 0.0157 3.08 0.0459 6.19-0.357 9.24-0.573 1.91-1.42 4.65 0.752 5.9 2.81 1.9 6.37 1.08 9.42 0.303 3.21-0.831 6.42-1.96 9.78-1.84z"
+			fill="#85734f"
+		/>
+		<path
+			d="m6.77 4c-2.11-0.0931-2.7 2.36-2.56 4.04-0.0107 3.09 1.03 6.08 0.915 9.18 0.169 3.23-0.318 6.49 0.0474 9.7 0.164 1.54-1.36 2.39-2.49 1.49-1.59 0.374-2.95 1.87-2.68 3.57v18h22.6c1.49-1.21 3.82-2.29 3.68-4.54-0.0855-2.52-2.95-2.74-4.49-4.02-1.33-1.71-0.891-5-3.52-5.54-2.23-0.565-4.78 0.701-6.81-0.751-1.77-1.87-0.659-4.6-0.96-6.88 0.101-5.06 1.13-10.1 0.925-15.1 0.0949-3.12-0.363-6.86-3.13-8.78-0.449-0.253-0.967-0.396-1.48-0.368z"
+			fill="#313c2b"
+		/>
+		<path
+			d="m0 0v10c2 0.873 1.67 5.05 4.75 3.69 2.3 0.182 4.4-2.12 6.54-1.21 1.73 1.93 1.05 4.81 1.51 7.18 0.138 5.35 0.137 10.7-0.484 16.1-0.378 2.41-0.798 4.94-2.15 7.01-1.89 2.23-5.6 0.721-5.9-2.04-1.29-6.43-0.94-13-0.871-19.6-0.0508-2.83-1.04-5.74-3.22-7.61-0.395 0.892-0.0749 2.12-0.17 3.15v33.3h22.9c0.889-2.3-2.29-2.96-2.82-4.81-1.77-4.64-1.04-9.69-1.7-14.5-0.258-5.18-0.681-10.5 0.256-15.6 0.312-3.04 4.49-1.96 5.2-4.84 0.941-2.32 2.63-4.58 2.33-7.2-0.487-2.14-3.06-2.57-4.91-2.77-2.81-0.147-5.61-0.345-8.42-0.274h-12.8z"
+			fill="#192821"
+		/>
+	</g>
+
+	<g display="none">
+		<animateTransform
+			begin={Array(hpYou)
+				.fill()
+				.map((_, i) => `fightTheEnemyHpDrop${i}.begin`)
+				.join(';')}
+			attributeName="transform"
+			type="translate"
+			values="0 0; 1 0; 0 0; -1 0; 0 0"
+			dur="0.1s"
+			repeatCount="2"
+		/>
+		<set
+			begin="fightTheEnemyShow{hpEnemy - 1}.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<g transform="translate(1 1)">
+			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+			<g transform="translate(10 4.6)">
+				<g
+					fill="#f7f7f7"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<text>Enemy</text>
+					<text y="4.6"
+						>HP:
+						{#each Array(hpEnemy + 1) as _, i}
+							<tspan display={i === hpEnemy ? 'initial' : 'none'}>
+								{#if i !== hpEnemy}
+									<set
+										begin="fightTheEnemyHpHit{i}.begin"
+										attributeName="display"
+										to="initial"
+										fill="freeze"
+									/>
+								{/if}
+								{#if i > 0}
+									<set
+										begin="fightTheEnemyHpHit{i - 1}.begin"
+										attributeName="display"
+										to="none"
+										fill="freeze"
+									/>
+								{/if}
+								{i}
+							</tspan>
+						{/each}
+					</text>
+				</g>
+			</g>
+		</g>
+
+		<g transform="translate(59 25.5)">
+			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+			<g transform="translate(10 4.6)">
+				<g
+					fill="#f7f7f7"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<text>You</text>
+					<text y="4.6"
+						>HP:
+						{#each [0, ...[...hpDropDelays].reverse()] as hpDropDelay, i}
+							<tspan display={i === hpDropDelays.length ? 'initial' : 'none'}>
+								{#if i > 0}
+									<set
+										id="fightTheEnemyHpDrop{i - 1}"
+										begin="fightTheEnemyShow{hpEnemy - 1}.begin + {hpDropDelay}s"
+										end="fightTheEnemyHpHit0.begin"
+										attributeName="display"
+										to="none"
+										fill="freeze"
+									/>
+								{/if}
+								<set
+									begin="fightTheEnemyHpDrop{i}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+								/>
+								{i}
+							</tspan>
+						{/each}
+					</text>
+				</g>
+			</g>
+		</g>
+
+		<g transform="translate(1 38)">
+			<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
+			<g transform="translate(39 6.8)">
+				<g
+					fill="#f7f7f7"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<g>
+						{#each Array(hpYou) as _, i}
+							<g display="none">
+								<set
+									id="fightTheEnemyHpDropMessage{i}"
+									begin="fightTheEnemyHpDrop{i}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+								/>
+								<set
+									begin={`fightTheEnemyHpDrop${i - 1}.begin; ${Array(hpEnemy)
+										.fill()
+										.map((_, i) => `fightTheEnemyHpHitMessage${i}.begin`)
+										.join(';')}`}
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+								<text>
+									{#each `${i === 0 ? 'You were defeated...' : 'You are hit for 1 point!'}`.split('') as l, j}
+										<tspan fill-opacity="0">
+											<animate
+												id="fightTheEnemyHpDropMessage{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpDrop${i}.begin`
+													: `fightTheEnemyHpDropMessage${i}Letter${j - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{l}
+										</tspan>
+									{/each}
+								</text>
+							</g>
+						{/each}
+					</g>
+					<g
+						>{#each Array(hpEnemy) as _, i}
+							<g display="none">
+								<set
+									id="fightTheEnemyHpHitMessage{i}"
+									begin="fightTheEnemyHpHit{i}.begin"
+									attributeName="display"
+									to="initial"
+									fill="freeze"
+								/>
+								<set
+									begin={`fightTheEnemyHpHit${i - 1}.begin; ${Array(hpYou)
+										.fill()
+										.map((_, i) => `fightTheEnemyHpDropMessage${i}.begin`)
+										.join(';')}`}
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+								<text>
+									{#each `${i === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as l, j}
+										<tspan fill-opacity="0">
+											<animate
+												id="fightTheEnemyHpHitMessage{i}Letter{j}"
+												begin={j === 0
+													? `fightTheEnemyHpHit${i}.begin`
+													: `fightTheEnemyHpHitMessage${i}Letter${j - 1}.end`}
+												attributeName="fill-opacity"
+												to="1"
+												dur="0.025s"
+												fill="freeze"
+												calcMode="discrete"
+											/>
+											{l}
+										</tspan>
+									{/each}
+								</text>
+							</g>
+						{/each}</g
+					>
+					<g>
+						<set
+							begin="fightTheEnemyHpHit{hpEnemy - 1}.begin; fightTheEnemyHpDrop{hpYou - 1}.begin"
+							attributeName="display"
+							to="none"
+							fill="freeze"
+							restart="never"
+						/>
+						<text>
+							{#each 'An enemy appeared!'.split('') as l, j}
+								<tspan fill-opacity="0">
+									<animate
+										id="fightTheEnemyMessageLetter{j}"
+										begin={j === 0
+											? `fightTheEnemyShow${hpEnemy - 1}.begin`
+											: `fightTheEnemyMessageLetter${j - 1}.end`}
+										attributeName="fill-opacity"
+										to="1"
+										dur="0.025s"
+										fill="freeze"
+										calcMode="discrete"
+									/>
+									{l}
+								</tspan>
+							{/each}
+						</text>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g transform="translate(40 21)">
+		<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
+			<g>
+				<animateTransform
+					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					attributeName="transform"
+					type="scale"
+					values="1; 1.2; 1"
+					dur="0.1s"
+				/>
+
+				<animateTransform
+					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 -2; 0 0"
+					dur="0.1s"
+					additive="sum"
+				/>
+
+				<g>
+					{#each Array(hpEnemy) as _, i}
+						<g display="none">
+							<set
+								id="fightTheEnemyShow{i}"
+								begin={i === hpEnemy - 1
+									? 'fightTheEnemyStart.begin'
+									: `fightTheEnemyHpHit${i + 1}.begin`}
+								attributeName="display"
+								to="initial"
+								fill="freeze"
+							/>
+							{#if i !== hpEnemy - 1}
+								<animate
+									begin="fightTheEnemyHpHit{i + 1}.begin"
+									attributeName="opacity"
+									values="1;0;1"
+									repeatCount="2"
+									dur="0.2s"
+									calcMode="discrete"
+								/>
+							{/if}
+
+							<set
+								id="fightTheEnemyHpHit{i}"
+								end="fightTheEnemyHpDrop0.begin"
+								begin="click"
+								attributeName="display"
+								to="none"
+								fill="freeze"
+							/>
+							<g style:cursor="pointer">
+								<path
+									d="M 5 -2 q 3 -5 5 -5 c 3 0 3 8 0 8 q -1.5 0 -1.5 -3 v 2 l -3.5 4.5 v 1 c 0 4 -2 7 -14 7 q 4 -2 4 -4 v -4 l -3.5 -4.5 v -2 q 0 3 -1.5 3 c -3 0 -3 -8 0 -8 q 2 0 5 5"
+								/>
+								<circle cx="1.8" cy="-3.5" r="0.9" />
+								<circle cx="-1.8" cy="-3.5" r="0.9" />
+								<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+								<circle cy="-2.5" r="5" />
+								<circle cx="1.8" cy="-3.5" r="0.9" />
+								<circle cx="-1.8" cy="-3.5" r="0.9" />
+								<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+							</g>
+						</g>
+					{/each}
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			begin="fightTheEnemyHpHit0.begin; fightTheEnemyHpDrop0.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+
+		<g>
+			<g display="none">
+				<set
+					id="fightTheEnemyWin"
+					begin="fightTheEnemyHpHit0.begin + 2s"
+					attributeName="display"
+					to="initial"
+					fill="freeze"
+				/>
+				<g transform="translate(40 20)">
+					<AnimatedText
+						text="Level up!"
+						begin="fightTheEnemyWin.begin"
+						end="fightTheEnemyEnd.begin"
+						fill="url(#linear-gradient-text)"
+					/>
+				</g>
+			</g>
+
+			<g display="none">
+				<set
+					id="fightTheEnemyLoss"
+					begin="fightTheEnemyHpDrop0.begin + 2s"
+					attributeName="display"
+					to="initial"
+					fill="freeze"
+				/>
+				<g transform="translate(40 6)">
+					<AnimatedText
+						text="Oowoo..."
+						delay={0.1}
+						offset={0.5}
+						begin="fightTheEnemyLoss.begin"
+						end="fightTheEnemyEnd.begin"
+						fill="url(#linear-gradient-text)"
+					/>
+				</g>
+			</g>
+
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set id="fightTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			</rect>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="fightTheEnemyStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Fight!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
+	</g>
+</svg>

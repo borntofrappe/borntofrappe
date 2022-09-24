@@ -4,6 +4,78 @@
 	import PokeTheLadybug from '$lib/components/smil/PokeTheLadybug.svelte';
 	import PopTheBalloon from '$lib/components/smil/PopTheBalloon.svelte';
 	import FindTheButterflies from '$lib/components/smil/FindTheButterflies.svelte';
+	import CrackTheEgg from '$lib/components/smil/CrackTheEgg.svelte';
+	import BattleTheEnemy from '$lib/components/smil/BattleTheEnemy.svelte';
+	import SmashTheRabbits from '$lib/components/smil/SmashTheRabbits.svelte';
+	import FightTheEnemy from '$lib/components/smil/FightTheEnemy.svelte';
+	import TakeAPicture from '$lib/components/smil/TakeAPicture.svelte';
+	import PickASide from '$lib/components/smil/PickASide.svelte';
+	import MatchInPairs from '$lib/components/smil/MatchInPairs.svelte';
+	import TimeTheShots from '$lib/components/smil/TimeTheShots.svelte';
+	import PickUpProduce from '$lib/components/smil/PickUpProduce.svelte';
+
+	const showcase = [
+		{
+			component: PokeTheLadybug,
+			backgroundColor: 'hsl(356, 89%, 71%)',
+			borderColor: 'hsl(153, 24%, 77%)'
+		},
+		{
+			component: PopTheBalloon,
+			backgroundColor: 'hsl(46, 93%, 56%)',
+			borderColor: 'hsl(41, 100%, 47%)'
+		},
+		{
+			component: FindTheButterflies,
+			backgroundColor: 'hsl(211, 67%, 48%)',
+			borderColor: 'hsl(172, 76%, 41%)'
+		},
+		{
+			component: CrackTheEgg,
+			backgroundColor: 'hsl(60, 91%, 66%)',
+			borderColor: 'hsl(171, 83%, 39%)'
+		},
+		{
+			component: BattleTheEnemy,
+			backgroundColor: 'hsl(119, 30%, 49%)',
+			borderColor: 'hsl(177, 65%, 52%)'
+		},
+		{
+			component: SmashTheRabbits,
+			backgroundColor: 'hsl(39, 91%, 55%)',
+			borderColor: 'hsl(143, 99%, 32%)'
+		},
+		{
+			component: FightTheEnemy,
+			backgroundColor: 'hsl(164, 16%, 32%)',
+			borderColor: 'hsl(158, 15%, 14%)'
+		},
+		{
+			component: TakeAPicture,
+			backgroundColor: 'hsl(120, 1%, 84%)',
+			borderColor: 'hsl(247, 6%, 27%)'
+		},
+		{
+			component: PickASide,
+			backgroundColor: 'hsl(36, 93%, 56%)',
+			borderColor: 'hsl(23, 100%, 37%)'
+		},
+		{
+			component: MatchInPairs,
+			backgroundColor: 'hsl(27, 79%, 47%)',
+			borderColor: 'hsl(142, 100%, 31%)'
+		},
+		{
+			component: TimeTheShots,
+			backgroundColor: 'hsl(203, 82%, 59%)',
+			borderColor: 'hsl(212, 95%, 42%)'
+		},
+		{
+			component: PickUpProduce,
+			backgroundColor: 'hsl(38, 100%, 79%)',
+			borderColor: 'hsl(176, 67%, 53%)'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -15,17 +87,11 @@
 <Defs />
 
 <div>
-	<article style:background-color="hsl(356, 89%, 71%)" style:--border-color="hsl(153, 24%, 77%)">
-		<PokeTheLadybug />
-	</article>
-
-	<article style:background-color="hsl(46, 93%, 56%)" style:--border-color="hsl(41, 100%, 47%)">
-		<PopTheBalloon />
-	</article>
-
-	<article style:background-color="hsl(211, 67%, 48%)" style:--border-color="hsl(172, 76%, 41%)">
-		<FindTheButterflies />
-	</article>
+	{#each showcase as { component, backgroundColor, borderColor }}
+		<article style:background-color={backgroundColor} style:--border-color={borderColor}>
+			<svelte:component this={component} />
+		</article>
+	{/each}
 </div>
 
 <style>

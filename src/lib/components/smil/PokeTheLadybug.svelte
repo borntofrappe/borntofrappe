@@ -124,8 +124,8 @@
 				type="translate"
 				to="0 -50"
 				dur="2s"
-				restart="never"
 				fill="freeze"
+				restart="never"
 			/>
 			<g>
 				<animateTransform
@@ -183,7 +183,6 @@
 			attributeName="display"
 			to="initial"
 			fill="freeze"
-			restart="never"
 		/>
 		<g transform="translate(40 25)">
 			<AnimatedText
@@ -194,27 +193,13 @@
 			/>
 		</g>
 		<g style:cursor="pointer">
-			<set
-				id="pokeTheLadybugEnd"
-				begin="click"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-				restart="never"
-			/>
+			<set id="pokeTheLadybugEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 			<rect width="80" height="50" opacity="0" />
 		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="pokeTheLadybugStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
+		<set id="pokeTheLadybugStart" begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<AnimatedText text="Poke!" repeat={false} begin="2s" fill="url(#linear-gradient-text)" />
 		</g>

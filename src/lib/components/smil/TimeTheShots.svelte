@@ -1,0 +1,445 @@
+<script>
+	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
+
+	const width = 80;
+	const height = 50;
+
+	const sizes = {
+		cloud: [10, 12],
+		target: 12,
+		spaceship: 16,
+		overlay: 18
+	};
+
+	const durations = {
+		target: 8
+	};
+
+	const getXCloud = (size = 10) => 1 + Math.floor(Math.random() * (width - size - 2));
+
+	const clouds = [];
+
+	let yCloud = 1;
+	const parallax = height * 4;
+	const sizeCloud = Math.max(...sizes.cloud);
+	do {
+		const size = sizes.cloud[clouds.length % 2 === 0 ? 0 : 1];
+
+		clouds.push({
+			x: getXCloud(size),
+			y: yCloud,
+			size,
+			sprite: Math.floor(Math.random() * 2)
+		});
+
+		yCloud += size;
+	} while (yCloud < parallax - sizeCloud);
+
+	const getXTarget = (size = 10, i = 0, sizeOverlay = 10) => {
+		const x = Math.floor(Math.random() * (width / 2 - sizeOverlay / 2 - size));
+		return i % 2 === 0 ? x : x + width / 2 + sizeOverlay / 2;
+	};
+
+	const targets = Array(2)
+		.fill()
+		.map((_, i) => {
+			const size = sizes.target;
+
+			const x = getXTarget(size, i, sizes.overlay);
+			const y = i * sizes.target;
+
+			const duration = durations.target;
+
+			const movesRight = x + size < width / 2;
+			const moves = movesRight ? [x, width - size, 0, x] : [x, 0, width - size, x];
+			const values = moves.map((d) => `${d} 0`).join(';');
+
+			const distances = moves.slice(0, -1).map((d, i) => Math.abs(moves[i + 1] - d));
+			const distance = distances.reduce((acc, curr) => acc + curr, 0);
+			const times = distances.reduce(
+				(acc, curr) => [...acc, acc[acc.length - 1] + curr / distance],
+				[0]
+			);
+			times[times.length - 1] = 1;
+			const keyTimes = times.join(';');
+
+			const overlayDuration = (sizes.overlay / distance) * duration;
+			const recurrentGap = (width / 2 - sizes.overlay / 2) * 2 - size;
+			const initialGap = movesRight
+				? width / 2 - sizes.overlay / 2 - x - size
+				: x - width / 2 - sizes.overlay / 2;
+			const overlayDelays = [initialGap, recurrentGap].map((d) => (d / distance) * duration);
+
+			return {
+				x,
+				y,
+				size,
+				values,
+				duration,
+				keyTimes,
+				overlay: {
+					duration: overlayDuration,
+					delays: overlayDelays
+				}
+			};
+		});
+
+	const debris = Array(3)
+		.fill()
+		.map((_, i) => ({
+			r: Math.max(0, 5 - i),
+			offset: Math.min(9, 3 + i * 2)
+		}));
+
+	const { spaceship: size } = sizes;
+
+	const projectiles = [
+		{ cx: -size / 5, cy: size / 2.7, r: 1 },
+		{ cx: size / 5, cy: size / 2.7, r: 1 },
+		{ cx: 0, cy: size / 3.4, r: 1 }
+	];
+</script>
+
+<svg viewBox="0 0 80 50">
+	<defs>
+		<pattern id="time-the-shots-pattern-sea" viewBox="0 0 8 5" width="0.1" height="0.1">
+			<rect width="8" height="5" fill="#286bc6" />
+			<g fill="none" stroke="#43b5f1" stroke-width="0.5">
+				<path d="M 1 2.5 h 0.5 m 0 -0.5 h0.5 m 0 0.5 h1" />
+				<path d="M 4.5 1 h 0.5 m 0 -0.5 h0.5 m 0 0.5 h1" />
+				<path d="M 3.5 4 h 0.5 m 0 -0.5 h0.5 m 0 0.5 h1" />
+			</g>
+		</pattern>
+
+		<pattern
+			id="time-the-shots-pattern-overlay"
+			viewBox="0 0 2 2"
+			width="3"
+			height="3"
+			patternUnits="userSpaceOnUse"
+		>
+			<g opacity="0.4">
+				<rect width="1" height="1" />
+				<rect x="1" y="1" width="1" height="1" />
+			</g>
+		</pattern>
+
+		<g id="time-the-shots-cloud">
+			<path
+				d="M -6 -9.5 a 7.5 7.5 0 0 1 12 0 7.5 7.5 0 0 1 12 5 7 7 0 0 1 5 12 6.5 6.5 0 0 1 -11 6 7 7 0 0 1 -12 0 7 7 0 0 1 -12 0 6.5 6.5 0 0 1 -11 -6 7 7 0 0 1 5 -12 7.5 7.5 0 0 1 12 -5"
+			/>
+		</g>
+
+		<symbol id="time-the-shots-cloud-0" viewBox="-27 -14.5 54 33.5">
+			<g stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+				<path
+					d="M -6 -9.5 a 7.5 7.5 0 0 1 12 0 7.5 7.5 0 0 1 12 5 7 7 0 0 1 5 12 6.5 6.5 0 0 1 -11 6 7 7 0 0 1 -12 0 7 7 0 0 1 -12 0 6.5 6.5 0 0 1 -11 -6 7 7 0 0 1 5 -12 7.5 7.5 0 0 1 12 -5"
+				/>
+				<use href="#time-the-shots-cloud" fill="#f2f2f2" stroke="#c5c9cc" />
+				<use
+					href="#time-the-shots-cloud"
+					fill="url(#time-the-shots-pattern-overlay)"
+					stroke="url(#time-the-shots-pattern-overlay)"
+				/>
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-cloud-1" viewBox="-27 -14.5 54 33.5">
+			<g stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+				<path
+					d="M -6 -9.5 a 7.5 7.5 0 0 1 12 0 7.5 7.5 0 0 1 12 5 7 7 0 0 1 5 12 6.5 6.5 0 0 1 -11 6 7 7 0 0 1 -12 0 7 7 0 0 1 -12 0 6.5 6.5 0 0 1 -11 -6 7 7 0 0 1 5 -12 7.5 7.5 0 0 1 12 -5"
+				/>
+				<use href="#time-the-shots-cloud" fill="#c2c2c2" stroke="#808281" />
+				<use
+					href="#time-the-shots-cloud"
+					fill="url(#time-the-shots-pattern-overlay)"
+					stroke="url(#time-the-shots-pattern-overlay)"
+				/>
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-target" viewBox="-17.5 -19 35 26">
+			<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+				<g fill="#fec749">
+					<ellipse transform="translate(-7 -1)" rx="6.5" ry="5.5" />
+					<ellipse transform="translate(7 -1)" rx="6.5" ry="5.5" />
+					<ellipse transform="translate(0 0.5)" rx="6.5" ry="5.5" />
+				</g>
+				<path fill="#5589a3" d="M -9 -9.5 a 17 6.25 0 1 0 18 0 30 30 0 0 1 -18 0" />
+				<path fill="#3dbfb3" d="M -9 -9.5 a 9.1 9.1 0 0 1 18 0 30 30 0 0 1 -18 0" />
+			</g>
+		</symbol>
+
+		{#each debris as { r, offset }, i}
+			<symbol id="time-the-shots-debris-{i}" viewBox="-17.5 -19 35 26">
+				<g
+					transform="translate(0 -6)"
+					fill="#fc5157"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<circle {r} cx={offset} cy={offset} />
+					<circle {r} cx={offset * -1} cy={offset} />
+					<circle {r} cx={offset * -1} cy={offset * -1} />
+					<circle {r} cx={offset} cy={offset * -1} />
+					<circle {r} />
+				</g>
+			</symbol>
+		{/each}
+
+		<symbol id="time-the-shots-spaceship" viewBox="-20 -20 40 40">
+			<g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+				<g fill="currentColor">
+					<path d="M -18 9 a 25 25 0 0 1 16 -10 a 10 10 0 0 0 -16 10" />
+					<path transform="scale(-1 1)" d="M -18 9 a 25 25 0 0 1 16 -10 a 10 10 0 0 0 -16 10" />
+				</g>
+				<g fill="#fec749">
+					<ellipse cx="-6" cy="5.5" rx="4" ry="4" />
+					<ellipse cx="6" cy="5.5" rx="4" ry="4" />
+					<ellipse cy="7" rx="4.5" ry="4" />
+				</g>
+				<g fill="#cf6bef">
+					<ellipse transform="translate(-7.5 1)" rx="7" ry="6" />
+					<ellipse transform="translate(7.5 1)" rx="7" ry="6" />
+					<ellipse rx="9" ry="8" stroke-dasharray="14.5 6 35" stroke-dashoffset="-6" />
+				</g>
+			</g>
+		</symbol>
+
+		{#each projectiles as { cx, cy, r }, i}
+			<g id="time-the-shots-projectile-{i}">
+				<g fill="#d44e4a" stroke="currentColor" stroke-width="0.3">
+					<circle {cx} {cy} {r} />
+				</g>
+			</g>
+		{/each}
+	</defs>
+
+	<rect width="80" height="50" fill="url(#time-the-shots-pattern-sea)" />
+
+	<g>
+		<animateTransform
+			begin="timeTheShotsStart.begin"
+			end="timeTheShotsEnd.begin"
+			attributeName="transform"
+			type="translate"
+			to="0 {parallax}"
+			dur="10s"
+			repeatCount="indefinite"
+			fill="freeze"
+		/>
+		{#each clouds as { x, y, size, sprite }}
+			<svg {x} {y} width={size} height={size}>
+				<use href="#time-the-shots-cloud-{sprite}" />
+			</svg>
+			<svg {x} y={y - parallax} width={size} height={size}>
+				<use href="#time-the-shots-cloud-{sprite}" />
+			</svg>
+		{/each}
+	</g>
+
+	<g>
+		<animateTransform
+			id="timeTheShotsEscape"
+			begin="timeTheShotsTargetsMissed.end"
+			attributeName="transform"
+			type="translate"
+			to="0 {height * -1}"
+			dur="0.75s"
+			fill="freeze"
+		/>
+		{#each targets as { x, y, size, duration, values, keyTimes }, i}
+			<g transform="translate({x} 0)">
+				<animateTransform
+					begin="timeTheShotsStart.begin"
+					end="timeTheShotsMiss.begin; timeTheShotsTarget{i}Shot.end; timeTheShotsEnd.begin"
+					attributeName="transform"
+					type="translate"
+					{values}
+					{keyTimes}
+					dur="{duration}s"
+					repeatCount="indefinite"
+					fill="freeze"
+				/>
+				<svg {y} width={size} height={size}>
+					<use href="#time-the-shots-debris">
+						<animate
+							begin="timeTheShotsTarget{i}Shot.end"
+							attributeName="href"
+							values={debris.map((_, i) => `#time-the-shots-debris-${i}`).join(';')}
+							dur="0.12s"
+							calcMode="discrete"
+						/>
+					</use>
+					<use href="#time-the-shots-target">
+						<set
+							begin="timeTheShotsTarget{i}Shot.end"
+							attributeName="display"
+							to="none"
+							fill="freeze"
+						/>
+					</use>
+				</svg>
+			</g>
+		{/each}
+	</g>
+
+	<g transform="translate(40 {50 - size + 2})">
+		<g>
+			<animateTransform
+				id="timeTheShotsSpaceship"
+				begin="timeTheShotsStart.begin"
+				end="timeTheShotsEnd.begin"
+				attributeName="transform"
+				type="translate"
+				to="0 -0.5"
+				dur="0.3s"
+				calcMode="discrete"
+				repeatCount="indefinite"
+			/>
+
+			<g>
+				<animateTransform
+					id="timeTheShotsTargetsMissed"
+					begin="timeTheShotsMiss.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 {height * -1}"
+					dur="0.75s"
+					fill="freeze"
+				/>
+				<animateTransform
+					begin="timeTheShotsMercy.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 {height * -1}"
+					dur="0.75s"
+				/>
+				{#each targets as _, i}
+					<animateTransform
+						id="timeTheShotsTarget{i}Shot"
+						begin="timeTheShotsTarget{i}.begin"
+						attributeName="transform"
+						type="translate"
+						to="0 {height * -1 + 4 + sizes.target * (i + 1)}"
+						dur="{Math.max(0.2, 0.4 - 0.1 * i)}s"
+					/>
+				{/each}
+				{#each projectiles as _, i}
+					<use href="#time-the-shots-projectile-{i}" />
+				{/each}
+			</g>
+			<svg x={-size / 2} width={size} height={size}>
+				<use href="#time-the-shots-spaceship" />
+			</svg>
+		</g>
+	</g>
+
+	<g>
+		<g style:cursor="pointer" opacity="0">
+			<set id="timeTheShotsMiss" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" />
+		</g>
+
+		<g style:cursor="pointer" opacity="0">
+			<set id="timeTheShotsMercy" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" />
+		</g>
+
+		<g>
+			{#each targets as { overlay }, i}
+				{@const { duration, delays } = overlay}
+				<g style:cursor="pointer" opacity="0" display="none">
+					<set
+						id="timeTheShotsTarget{i}"
+						begin="click"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+					/>
+					<set
+						id="timeTheShotsTarget{i}Engage"
+						attributeName="display"
+						to="initial"
+						begin="timeTheShotsStart.begin + {delays[0]}s; timeTheShotsTarget{i}Disengage.begin + {delays[1]}s"
+						end="timeTheShotsTarget{i}.begin; timeTheShotsMiss.begin"
+					/>
+					<set
+						id="timeTheShotsTarget{i}Disengage"
+						attributeName="display"
+						to="none"
+						begin="timeTheShotsTarget{i}Engage.begin + {duration}s"
+						end="timeTheShotsTarget{i}.begin; timeTheShotsMiss.begin"
+					/>
+
+					<rect width="80" height="50" />
+				</g>
+			{/each}
+		</g>
+	</g>
+
+	<g>
+		<g transform="translate({targets.length * width * -1} 0)">
+			<animateTransform
+				begin="timeTheShotsEscape.end"
+				attributeName="transform"
+				type="translate"
+				to="0 0"
+				dur="0.1s"
+				fill="freeze"
+				calcMode="discrete"
+			/>
+			{#each targets as _, i}
+				<animateTransform
+					begin="timeTheShotsTarget{i}Shot.end"
+					attributeName="transform"
+					type="translate"
+					by="{width} 0"
+					dur="0.1s"
+					calcMode="discrete"
+					fill="freeze"
+				/>
+			{/each}
+
+			<g>
+				<rect width="80" height="50" opacity="0" />
+
+				<g display="none">
+					<set begin="timeTheShotsEscape.end" attributeName="display" to="initial" fill="freeze" />
+					<g transform="translate(40 25)">
+						<AnimatedText
+							text="Out of luck..."
+							begin="timeTheShotsEscape.end"
+							end="timeTheShotsEnd.begin"
+						/>
+					</g>
+				</g>
+
+				<g>
+					<set begin="timeTheShotsEscape.begin" attributeName="display" to="none" fill="freeze" />
+					<g transform="translate(40 25)">
+						<AnimatedText
+							text="Nice timing!"
+							begin="timeTheShotsTarget0Shot.end"
+							end="timeTheShotsEnd.begin; timeTheShotsEscape.begin"
+						/>
+					</g>
+				</g>
+
+				<rect style:cursor="pointer" width="80" height="50" opacity="0">
+					<set id="timeTheShotsEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+				</rect>
+			</g>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="timeTheShotsStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Shoot down!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
+	</g>
+</svg>

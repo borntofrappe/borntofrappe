@@ -225,7 +225,6 @@
 						attributeName="display"
 						to="none"
 						fill="freeze"
-						restart="never"
 					/>
 				</rect>
 			</g>
@@ -233,7 +232,7 @@
 	</g>
 
 	<g style:cursor="pointer">
-		<set begin="click" attributeName="display" to="none" fill="freeze" restart="never" />
+		<set begin="click" attributeName="display" to="none" fill="freeze" />
 		<g transform="translate(40 25)">
 			<Text fill="url(#linear-gradient-text)">Butterflies?</Text>
 		</g>
