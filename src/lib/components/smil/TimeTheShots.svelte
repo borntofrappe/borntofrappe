@@ -313,25 +313,41 @@
 		</g>
 	</g>
 
-	<!-- triggers -->
 	<g>
+		<g style:cursor="pointer" opacity="0">
+			<set id="timeTheShotsMiss" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" />
+		</g>
+
+		<g style:cursor="pointer" opacity="0">
+			<set id="timeTheShotsMercy" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" />
+		</g>
+
 		<g>
 			{#each targets as { overlay }, i}
 				{@const { duration, delays } = overlay}
 				<g style:cursor="pointer" opacity="0" display="none">
 					<set
+						id="timeTheShotsTarget{i}"
+						begin="click"
+						attributeName="display"
+						to="none"
+						fill="freeze"
+					/>
+					<set
 						id="timeTheShotsTarget{i}Engage"
 						attributeName="display"
 						to="initial"
 						begin="timeTheShotsStart.begin + {delays[0]}s; timeTheShotsTarget{i}Disengage.begin + {delays[1]}s"
-						end="timeTheShotsTarget{i}.begin"
+						end="timeTheShotsTarget{i}.begin; timeTheShotsMiss.begin"
 					/>
 					<set
 						id="timeTheShotsTarget{i}Disengage"
 						attributeName="display"
 						to="none"
 						begin="timeTheShotsTarget{i}Engage.begin + {duration}s"
-						end="timeTheShotsTarget{i}.begin"
+						end="timeTheShotsTarget{i}.begin; timeTheShotsMiss.begin"
 					/>
 
 					<rect width="80" height="50" />
