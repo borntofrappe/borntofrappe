@@ -1,5 +1,6 @@
 <script>
 	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
 
 	const width = 80;
 	const height = 50;
@@ -377,6 +378,61 @@
 					<rect width="80" height="50" />
 				</g>
 			{/each}
+		</g>
+	</g>
+
+	<g>
+		<g transform="translate({targets.length * 80 * -1} 0)">
+			<animateTransform
+				begin="timeTheShotsEscape.end"
+				attributeName="transform"
+				type="translate"
+				to="0 0"
+				dur="0.1s"
+				fill="freeze"
+				calcMode="discrete"
+			/>
+			{#each targets as _, i}
+				<animateTransform
+					begin="timeTheShotsTarget{i}Shot.end"
+					attributeName="transform"
+					type="translate"
+					by="80 0"
+					dur="0.1s"
+					calcMode="discrete"
+					fill="freeze"
+				/>
+			{/each}
+
+			<g>
+				<rect width="80" height="50" opacity="0" />
+
+				<g display="none">
+					<set begin="timeTheShotsEscape.end" attributeName="display" to="initial" fill="freeze" />
+					<g transform="translate(40 25)">
+						<AnimatedText
+							text="Out of luck..."
+							begin="timeTheShotsEscape.end"
+							end="timeTheShotsEnd.begin"
+						/>
+					</g>
+				</g>
+
+				<g>
+					<set begin="timeTheShotsEscape.begin" attributeName="display" to="none" fill="freeze" />
+					<g transform="translate(40 25)">
+						<AnimatedText
+							text="Nice timing!"
+							begin="timeTheShotsTarget0Shot.end"
+							end="timeTheShotsEnd.begin; timeTheShotsEscape.begin"
+						/>
+					</g>
+				</g>
+
+				<rect style:cursor="pointer" width="80" height="50" opacity="0">
+					<set id="timeTheShotsEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+				</rect>
+			</g>
 		</g>
 	</g>
 
