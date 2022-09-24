@@ -1,3 +1,20 @@
+<script>
+	const targets = 3;
+	const width = 80;
+	const height = 50;
+
+	const maxSize = 20;
+	const aspectRatio = 30 / 47;
+
+	const w = Math.min(maxSize, Math.floor(width / targets));
+	const h = w / aspectRatio;
+	const o = (width - w * targets) / 2;
+
+	const crops = Array(targets)
+		.fill()
+		.map((_, i) => i * w);
+</script>
+
 <svg viewBox="0 0 80 50">
 	<defs>
 		<pattern
@@ -177,7 +194,14 @@
 		</g>
 	</g>
 
-	<!-- crops here	 -->
+	<g transform="translate({o} {30 - h * 0.3})">
+		{#each crops as x}
+			<svg {x} width={w} height={h}>
+				<use href="#pick-up-produce-crop" />
+				<use href="#pick-up-produce-crop-top-0" />
+			</svg>
+		{/each}
+	</g>
 
 	<g>
 		<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -210,18 +234,5 @@
 				<path d="M 68 37 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
 			</g>
 		</g>
-	</g>
-
-	<g transform="translate(0 10)">
-		{#each Array(3) as _, i}
-			<svg x={i * 20} width="20" height="20">
-				<use href="#pick-up-produce-crop" />
-				<use href="#pick-up-produce-crop-top-{i}" />
-			</svg>
-		{/each}
-		<svg x="60" width="20" height="20">
-			<use href="#pick-up-produce-crop" />
-			<use href="#pick-up-produce-crop-top-spoiled" />
-		</svg>
 	</g>
 </svg>
