@@ -26,7 +26,8 @@
 				x,
 				delay
 			};
-		});
+		})
+		.sort((a, b) => b.delay - a.delay);
 
 	const decay = 0.8;
 	const tops = 3;
@@ -387,7 +388,7 @@
 					<g transform="translate(40 8)">
 						<AnimatedText
 							text={message}
-							begin="pickUpProduceStart.begin"
+							begin="pickUpProduceHighlight0.end; pickUpProduceSpoiled0.begin"
 							end="pickUpProduceEnd.begin"
 							fill="url(#linear-gradient-text)"
 						/>
