@@ -31,27 +31,41 @@
 		yCloud += size;
 	} while (yCloud < parallax - sizeCloud);
 
-	const getXTarget = (i = 0) => {
-		const x = Math.floor(Math.random() * (width / 2 - sizes.target));
+	const getXTarget = (size = 10, i = 0) => {
+		const x = Math.floor(Math.random() * (width / 2 - size));
 		return i % 2 === 0 ? x : x + width / 2;
 	};
 
 	const targets = Array(2)
 		.fill()
 		.map((_, i) => {
-			const x = getXTarget(i);
+			const size = sizes.target;
+
+			const x = getXTarget(size, i);
 			const y = i * sizes.target;
+
 			const duration = durations.target;
 
-			const movesRight = x + sizes.target < width / 2;
-			const moves = movesRight ? [x, width - sizes.target, 0, x] : [x, 0, width - sizes.target, x];
+			const movesRight = x + size < width / 2;
+			const moves = movesRight ? [x, width - size, 0, x] : [x, 0, width - size, x];
 			const values = moves.map((d) => `${d} 0`).join(';');
+
+			const distances = moves.slice(0, -1).map((d, i) => Math.abs(moves[i + 1] - d));
+			const distance = distances.reduce((acc, curr) => acc + curr, 0);
+			const times = distances.reduce(
+				(acc, curr) => [...acc, acc[acc.length - 1] + curr / distance],
+				[0]
+			);
+			times[times.length - 1] = 1;
+			const keyTimes = times.join(';');
 
 			return {
 				x,
 				y,
+				size,
 				values,
-				duration
+				duration,
+				keyTimes
 			};
 		});
 </script>
@@ -170,23 +184,22 @@
 	</g>
 
 	<g>
-		{#each targets as { x, y, duration, values }}
-			<g transform="translate(0 {y})">
-				<g transform="translate({x} 0)">
-					<animateTransform
-						begin="timeTheShotsStart.begin"
-						end="timeTheShotsEnd.begin"
-						attributeName="transform"
-						type="translate"
-						{values}
-						dur="{duration}s"
-						repeatCount="indefinite"
-						fill="freeze"
-					/>
-					<svg width={sizes.target} height={sizes.target}>
-						<use href="#time-the-shots-target" />
-					</svg>
-				</g>
+		{#each targets as { x, y, size, duration, values, keyTimes }}
+			<g transform="translate({x} 0)">
+				<animateTransform
+					begin="timeTheShotsStart.begin"
+					end="timeTheShotsEnd.begin"
+					attributeName="transform"
+					type="translate"
+					{values}
+					{keyTimes}
+					dur="{duration}s"
+					repeatCount="indefinite"
+					fill="freeze"
+				/>
+				<svg {y} width={size} height={size}>
+					<use href="#time-the-shots-target" />
+				</svg>
 			</g>
 		{/each}
 	</g>
@@ -200,7 +213,7 @@
 			fill="freeze"
 			restart="never"
 		/>
-		<!-- temp visual to avoid starting the animation immediately	 -->
+		<!-- temp visual	 -->
 		<g
 			transform="translate(40 25)"
 			text-anchor="middle"
