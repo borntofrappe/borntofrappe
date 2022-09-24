@@ -11,6 +11,8 @@
 	const w = Math.min(maxSize, Math.floor(width / targets));
 	const h = w / aspectRatio;
 	const o = (width - w * targets) / 2;
+	const yStart = 30 - h * 0.3;
+	const yGap = 20;
 
 	const crops = Array(targets)
 		.fill()
@@ -207,39 +209,55 @@
 		</g>
 	</g>
 
-	<g transform="translate({o} {30 - h * 0.3})">
+	<g transform="translate({o} {yStart})">
 		{#each crops as { x, delay }, i}
-			<g transform="translate(0 {h * 0.4})">
-				<animateTransform
-					id="pickUpProduceCrop{i}"
-					begin="pickUpProduceStart.begin + {delay}s"
-					attributeName="transform"
-					type="translate"
-					to="0 0"
-					dur="0.75s"
-					fill="freeze"
-				/>
-				<svg {x} width={w} height={h}>
-					<use href="#pick-up-produce-crop" />
-					<use href="#pick-up-produce-crop-top-0">
-						{#each Array(tops) as _, j}
-							<set
-								begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
-								attributeName="href"
-								to="#pick-up-produce-crop-top-{j}"
-								fill="freeze"
-								calcMode="discrete"
-							/>
-						{/each}
-						<set
-							begin="pickUpProduceCrop{i}.end + {(tops + 1) * decay}s"
-							attributeName="href"
-							to="#pick-up-produce-crop-top-spoiled"
+			<g>
+				<g transform="translate(0 {h * 0.4})">
+					<animateTransform
+						id="pickUpProduceCrop{i}"
+						begin="pickUpProduceStart.begin + {delay}s"
+						attributeName="transform"
+						type="translate"
+						to="0 0"
+						dur="0.35s"
+						fill="freeze"
+					/>
+					<g style:cursor="pointer">
+						<animateTransform
+							id="pickUpProduceHarvest{i}"
+							begin="click"
+							attributeName="transform"
+							type="translate"
+							to="0 {-yGap}"
+							dur="0.35s"
 							fill="freeze"
-							calcMode="discrete"
+							restart="never"
 						/>
-					</use>
-				</svg>
+						<svg {x} width={w} height={h}>
+							<rect width={w} height={h} opacity="0" />
+							<use href="#pick-up-produce-crop" />
+							<use href="#pick-up-produce-crop-top-0">
+								{#each Array(tops) as _, j}
+									<set
+										begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+										end="pickUpProduceHarvest{i}.begin"
+										attributeName="href"
+										to="#pick-up-produce-crop-top-{j}"
+										fill="freeze"
+										calcMode="discrete"
+									/>
+								{/each}
+								<set
+									begin="pickUpProduceCrop{i}.end + {(tops + 1) * decay}s"
+									end="pickUpProduceHarvest{i}.begin"
+									attributeName="href"
+									to="#pick-up-produce-crop-top-spoiled"
+									fill="freeze"
+								/>
+							</use>
+						</svg>
+					</g>
+				</g>
 			</g>
 		{/each}
 	</g>
