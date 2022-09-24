@@ -1,5 +1,6 @@
 <script>
 	import Text from './helpers/Text.svelte';
+	import AnimatedText from './helpers/AnimatedText.svelte';
 
 	const targets = 3;
 	const width = 80;
@@ -11,6 +12,7 @@
 	const w = Math.min(maxSize, Math.floor(width / targets));
 	const h = w / aspectRatio;
 	const o = (width - w * targets) / 2;
+
 	const yStart = 30 - h * 0.3;
 	const yGaps = [-20, -7.5];
 
@@ -28,6 +30,8 @@
 
 	const decay = 0.8;
 	const tops = 3;
+
+	const messages = ['The whole lot!', 'Almost all!', "That's a start...", 'Not mulch...'];
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -323,6 +327,7 @@
 					/>
 					<g transform="translate(0 {yGaps[0]})">
 						<animateTransform
+							id="pickUpProduceHighlight{i}"
 							begin="pickUpProduceHarvested{i}.begin"
 							attributeName="transform"
 							type="translate"
@@ -350,6 +355,49 @@
 				</g>
 			{/each}
 		</g>
+	</g>
+
+	<g transform="translate({80 * -1 * crops.length} 0)">
+		{#each crops as _, i}
+			<animateTransform
+				begin="pickUpProduceHighlight{i}.end; pickUpProduceSpoiled{i}.begin"
+				attributeName="transform"
+				type="translate"
+				by="80 0"
+				fill="freeze"
+				dur="0.1s"
+				calcMode="discrete"
+			/>
+		{/each}
+
+		<g transform="translate(0 {50 * -1 * crops.length})">
+			{#each crops as _, i}
+				<animateTransform
+					begin="pickUpProduceHighlight{i}.begin"
+					attributeName="transform"
+					type="translate"
+					by="0 50"
+					fill="freeze"
+					dur="0.1s"
+					calcMode="discrete"
+				/>
+			{/each}
+			{#each messages as message, i}
+				<g transform="translate(0 {50 * i})">
+					<g transform="translate(40 8)">
+						<AnimatedText
+							text={message}
+							begin="pickUpProduceStart.begin"
+							end="pickUpProduceEnd.begin"
+							fill="url(#linear-gradient-text)"
+						/>
+					</g>
+				</g>
+			{/each}
+		</g>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="pickUpProduceEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
