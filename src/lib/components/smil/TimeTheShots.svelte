@@ -311,7 +311,6 @@
 					fill="freeze"
 				/>
 				<animateTransform
-					id="timeTheShotsTargetsMercied"
 					begin="timeTheShotsMercy.begin"
 					attributeName="transform"
 					type="translate"
@@ -382,7 +381,7 @@
 	</g>
 
 	<g>
-		<g transform="translate({targets.length * 80 * -1} 0)">
+		<g transform="translate({targets.length * width * -1} 0)">
 			<animateTransform
 				begin="timeTheShotsEscape.end"
 				attributeName="transform"
@@ -397,7 +396,7 @@
 					begin="timeTheShotsTarget{i}Shot.end"
 					attributeName="transform"
 					type="translate"
-					by="80 0"
+					by="{width} 0"
 					dur="0.1s"
 					calcMode="discrete"
 					fill="freeze"

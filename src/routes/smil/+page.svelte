@@ -11,6 +11,7 @@
 	import TakeAPicture from '$lib/components/smil/TakeAPicture.svelte';
 	import PickASide from '$lib/components/smil/PickASide.svelte';
 	import MatchInPairs from '$lib/components/smil/MatchInPairs.svelte';
+	import TimeTheShots from '$lib/components/smil/TimeTheShots.svelte';
 
 	const showcase = [
 		{
@@ -62,6 +63,11 @@
 			component: MatchInPairs,
 			backgroundColor: 'hsl(27, 79%, 47%)',
 			borderColor: 'hsl(142, 100%, 31%)'
+		},
+		{
+			component: TimeTheShots,
+			backgroundColor: 'hsl(203, 82%, 59%)',
+			borderColor: 'hsl(212, 95%, 42%)'
 		}
 	];
 </script>
