@@ -1,4 +1,6 @@
 <script>
+	import Text from './helpers/Text.svelte';
+
 	const width = 80;
 	const height = 50;
 
@@ -33,9 +35,9 @@
 		yCloud += size;
 	} while (yCloud < parallax - sizeCloud);
 
-	const getXTarget = (size = 10, i = 0, overlay = 10) => {
-		const x = Math.floor(Math.random() * (width / 2 - overlay / 2 - size));
-		return i % 2 === 0 ? x : x + width / 2 + overlay / 2;
+	const getXTarget = (size = 10, i = 0, sizeOverlay = 10) => {
+		const x = Math.floor(Math.random() * (width / 2 - sizeOverlay / 2 - size));
+		return i % 2 === 0 ? x : x + width / 2 + sizeOverlay / 2;
 	};
 
 	const targets = Array(2)
@@ -253,24 +255,23 @@
 				/>
 				<svg {y} width={size} height={size}>
 					<use href="#time-the-shots-debris">
-						<animate
+						<!-- <animate
 							begin="timeTheShotsTarget{i}.begin"
 							attributeName="href"
 							values={debris.map((_, i) => `#time-the-shots-debris-${i}`).join(';')}
 							dur="0.12s"
 							calcMode="discrete"
-						/>
+						/> -->
 					</use>
-					<!-- temp trigger	 -->
-					<use style:cursor="pointer" href="#time-the-shots-target">
-						<set
+					<use href="#time-the-shots-target">
+						<!-- <set
 							id="timeTheShotsTarget{i}"
 							begin="click"
 							attributeName="display"
 							to="none"
 							fill="freeze"
 							restart="never"
-						/>
+						/> -->
 					</use>
 				</svg>
 			</g>
@@ -294,14 +295,14 @@
 			<g>
 				{#each projectiles as _, i}
 					<g>
-						<animateTransform
+						<!-- <animateTransform
 							begin="timeTheShotsProjectile{i}.begin"
 							attributeName="transform"
 							type="translate"
 							to="0 {-height}"
 							dur="1s"
 							fill="freeze"
-						/>
+						/> -->
 						<use href="#time-the-shots-projectile-{i}" />
 					</g>
 				{/each}
@@ -312,46 +313,37 @@
 		</g>
 	</g>
 
+	<!-- triggers -->
 	<g>
-		{#each targets as { overlay }, i}
-			{@const { duration, delays } = overlay}
-			<g style:cursor="pointer" opacity="0.2" display="none">
-				<set
-					id="timeTheShotsTarget{i}Engage"
-					attributeName="display"
-					to="initial"
-					begin="timeTheShotsStart.begin + {delays[0]}s; timeTheShotsTarget{i}Disengage.begin + {delays[1]}s"
-				/>
-				<set
-					id="timeTheShotsTarget{i}Disengage"
-					attributeName="display"
-					to="none"
-					begin="timeTheShotsTarget{i}Engage.begin + {duration}s"
-				/>
+		<g>
+			{#each targets as { overlay }, i}
+				{@const { duration, delays } = overlay}
+				<g style:cursor="pointer" opacity="0" display="none">
+					<set
+						id="timeTheShotsTarget{i}Engage"
+						attributeName="display"
+						to="initial"
+						begin="timeTheShotsStart.begin + {delays[0]}s; timeTheShotsTarget{i}Disengage.begin + {delays[1]}s"
+						end="timeTheShotsTarget{i}.begin"
+					/>
+					<set
+						id="timeTheShotsTarget{i}Disengage"
+						attributeName="display"
+						to="none"
+						begin="timeTheShotsTarget{i}Engage.begin + {duration}s"
+						end="timeTheShotsTarget{i}.begin"
+					/>
 
-				<rect width="80" height="50" />
-			</g>
-		{/each}
+					<rect width="80" height="50" />
+				</g>
+			{/each}
+		</g>
 	</g>
 
 	<g style:cursor="pointer">
-		<set
-			id="timeTheShotsStart"
-			begin="click"
-			attributeName="display"
-			to="none"
-			fill="freeze"
-			restart="never"
-		/>
-		<!-- temp visual	 -->
-		<g
-			transform="translate(40 25)"
-			text-anchor="middle"
-			dominant-baseline="central"
-			fill="hsl(0, 0%, 100%)"
-			font-size="5"
-		>
-			<text>click to start</text>
+		<set id="timeTheShotsStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Shoot down!</Text>
 		</g>
 		<rect width="80" height="50" opacity="0" />
 	</g>
