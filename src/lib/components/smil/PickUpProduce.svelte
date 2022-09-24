@@ -1,4 +1,6 @@
 <script>
+	import Text from './helpers/Text.svelte';
+
 	const targets = 3;
 	const width = 80;
 	const height = 50;
@@ -23,7 +25,7 @@
 		});
 
 	const decay = 0.8;
-	const decays = 3;
+	const tops = 3;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -210,7 +212,7 @@
 			<g transform="translate(0 {h * 0.4})">
 				<animateTransform
 					id="pickUpProduceCrop{i}"
-					begin="{delay}s"
+					begin="pickUpProduceStart.begin + {delay}s"
 					attributeName="transform"
 					type="translate"
 					to="0 0"
@@ -220,7 +222,7 @@
 				<svg {x} width={w} height={h}>
 					<use href="#pick-up-produce-crop" />
 					<use href="#pick-up-produce-crop-top-0">
-						{#each Array(decays) as _, j}
+						{#each Array(tops) as _, j}
 							<set
 								begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
 								attributeName="href"
@@ -230,7 +232,7 @@
 							/>
 						{/each}
 						<set
-							begin="pickUpProduceCrop{i}.end + {(decays + 1) * decay}s"
+							begin="pickUpProduceCrop{i}.end + {(tops + 1) * decay}s"
 							attributeName="href"
 							to="#pick-up-produce-crop-top-spoiled"
 							fill="freeze"
@@ -273,5 +275,13 @@
 				<path d="M 68 37 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
 			</g>
 		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="pickUpProduceStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<g transform="translate(40 25)">
+			<Text fill="url(#linear-gradient-text)">Harvest!</Text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
