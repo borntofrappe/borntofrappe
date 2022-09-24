@@ -12,7 +12,7 @@
 	const h = w / aspectRatio;
 	const o = (width - w * targets) / 2;
 	const yStart = 30 - h * 0.3;
-	const yGap = 20;
+	const yGaps = [-20, -7.5];
 
 	const crops = Array(targets)
 		.fill()
@@ -236,7 +236,7 @@
 							end="pickUpProduceSpoiled{i}.begin"
 							attributeName="transform"
 							type="translate"
-							to="0 {-yGap}"
+							to="0 {yGaps[0]}"
 							dur="0.35s"
 							fill="freeze"
 							restart="never"
@@ -308,6 +308,47 @@
 				<path d="M 58 40 l 2 -1 2 0 1 -2 2 0 0 2" />
 				<path d="M 68 37 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
 			</g>
+		</g>
+	</g>
+
+	<g style:pointer-events="none">
+		<g transform="translate({o} {yStart})">
+			{#each crops as { x }, i}
+				<g opacity="0">
+					<set
+						begin="pickUpProduceHarvested{i}.begin"
+						attributeName="opacity"
+						to="1"
+						fill="freeze"
+					/>
+					<g transform="translate(0 {yGaps[0]})">
+						<animateTransform
+							begin="pickUpProduceHarvested{i}.begin"
+							attributeName="transform"
+							type="translate"
+							to="0 {yGaps[1]}"
+							dur="0.35s"
+							fill="freeze"
+						/>
+						<g>
+							<svg {x} width={w} height={h}>
+								<use href="#pick-up-produce-crop" />
+								<use href="#pick-up-produce-crop-top-0">
+									{#each Array(tops) as _, j}
+										<set
+											begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+											end="pickUpProduceHarvest{i}.begin"
+											attributeName="href"
+											to="#pick-up-produce-crop-top-{j}"
+											fill="freeze"
+										/>
+									{/each}
+								</use>
+							</svg>
+						</g>
+					</g>
+				</g>
+			{/each}
 		</g>
 	</g>
 
