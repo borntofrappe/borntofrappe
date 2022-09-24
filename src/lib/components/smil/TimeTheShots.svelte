@@ -1,3 +1,32 @@
+<script>
+	const width = 80;
+	const height = 50;
+
+	const sizes = {
+		cloud: [10, 12]
+	};
+
+	const getXCloud = (size = 10) => 1 + Math.floor(Math.random() * (width - size - 2));
+
+	const clouds = [];
+
+	let yCloud = 1;
+	const parallax = height * 4;
+	const sizeCloud = Math.max(...sizes.cloud);
+	do {
+		const size = sizes.cloud[clouds.length % 2 === 0 ? 0 : 1];
+
+		clouds.push({
+			x: getXCloud(size),
+			y: yCloud,
+			size,
+			sprite: Math.floor(Math.random() * 2)
+		});
+
+		yCloud += size;
+	} while (yCloud < parallax - sizeCloud);
+</script>
+
 <svg viewBox="0 0 80 50">
 	<defs>
 		<pattern id="time-the-shots-pattern-sea" viewBox="0 0 8 5" width="0.1" height="0.1">
@@ -28,7 +57,7 @@
 			/>
 		</g>
 
-		<symbol id="time-the-shots-cloud-1" viewBox="-27 -14.5 54 33.5">
+		<symbol id="time-the-shots-cloud-0" viewBox="-27 -14.5 54 33.5">
 			<g stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 				<path
 					d="M -6 -9.5 a 7.5 7.5 0 0 1 12 0 7.5 7.5 0 0 1 12 5 7 7 0 0 1 5 12 6.5 6.5 0 0 1 -11 6 7 7 0 0 1 -12 0 7 7 0 0 1 -12 0 6.5 6.5 0 0 1 -11 -6 7 7 0 0 1 5 -12 7.5 7.5 0 0 1 12 -5"
@@ -42,7 +71,7 @@
 			</g>
 		</symbol>
 
-		<symbol id="time-the-shots-cloud-2" viewBox="-27 -14.5 54 33.5">
+		<symbol id="time-the-shots-cloud-1" viewBox="-27 -14.5 54 33.5">
 			<g stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 				<path
 					d="M -6 -9.5 a 7.5 7.5 0 0 1 12 0 7.5 7.5 0 0 1 12 5 7 7 0 0 1 5 12 6.5 6.5 0 0 1 -11 6 7 7 0 0 1 -12 0 7 7 0 0 1 -12 0 6.5 6.5 0 0 1 -11 -6 7 7 0 0 1 5 -12 7.5 7.5 0 0 1 12 -5"
@@ -90,18 +119,47 @@
 
 	<rect width="80" height="50" fill="url(#time-the-shots-pattern-sea)" />
 
-	<svg width="10" height="10">
-		<use href="#time-the-shots-cloud-1" />
-	</svg>
-	<svg y="10" width="10" height="10">
-		<use href="#time-the-shots-cloud-2" />
-	</svg>
+	<g>
+		<animateTransform
+			begin="timeTheShotsStart.begin"
+			end="timeTheShotsEnd.begin"
+			attributeName="transform"
+			type="translate"
+			to="0 {parallax}"
+			dur="10s"
+			repeatCount="indefinite"
+			fill="freeze"
+		/>
+		{#each clouds as { x, y, size, sprite }}
+			<svg {x} {y} width={size} height={size}>
+				<use href="#time-the-shots-cloud-{sprite}" />
+			</svg>
+			<svg {x} y={y - parallax} width={size} height={size}>
+				<use href="#time-the-shots-cloud-{sprite}" />
+			</svg>
+		{/each}
+	</g>
 
-	<svg x="10" width="10" height="10">
-		<use href="#time-the-shots-target" />
-	</svg>
+	<g style:cursor="pointer">
+		<set
+			id="timeTheShotsStart"
+			begin="click"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+			restart="never"
+		/>
 
-	<svg x="10" y="10" width="10" height="10">
-		<use href="#time-the-shots-spaceship" />
-	</svg>
+		<!-- temp visual to avoid starting the animation immediately	 -->
+		<g
+			transform="translate(40 25)"
+			text-anchor="middle"
+			dominant-baseline="central"
+			fill="hsl(0, 0%, 100%)"
+			font-size="5"
+		>
+			<text>click to start</text>
+		</g>
+		<rect width="80" height="50" opacity="0" />
+	</g>
 </svg>
