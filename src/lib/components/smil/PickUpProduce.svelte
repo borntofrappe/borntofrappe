@@ -33,6 +33,12 @@
 	const tops = 3;
 
 	const messages = ['The whole lot!', 'Almost all!', "That's a start...", 'Not mulch...'];
+
+	const mulch = Array(5)
+		.fill()
+		.map((_, i) => ({
+			spread: i
+		}));
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -174,6 +180,33 @@
 				</g>
 			</g>
 		</symbol>
+
+		{#each mulch as { spread }, i}
+			<symbol id="pick-up-produce-mulch-{i}" viewBox="-15 -21 30 47">
+				<g transform="translate(0 -5)">
+					<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+						<g>
+							<path
+								transform="translate({2.5 + spread / 2} {spread * 2 * -1})"
+								d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z"
+							/>
+							<path
+								transform="translate({5 + spread} {spread * -1})"
+								d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z"
+							/>
+							<path
+								transform="translate({(5 + spread) * -1} {spread * -1})"
+								d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z"
+							/>
+							<path
+								transform="translate({(2.5 + spread / 2) * -1} {spread * 2 * -1})"
+								d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z"
+							/>
+						</g>
+					</g>
+				</g>
+			</symbol>
+		{/each}
 	</defs>
 
 	<rect width="80" height="50" fill="#85dde1" />
@@ -279,6 +312,19 @@
 						</svg>
 					</g>
 				</g>
+			</g>
+			<g>
+				<svg {x} width={w} height={h}>
+					<use href="#pick-up-produce-mulch">
+						<animate
+							begin="pickUpProduceHarvest{i}.begin"
+							attributeName="href"
+							values={mulch.map((_, i) => `#pick-up-produce-mulch-${i}`).join(';')}
+							dur="0.15s"
+							calcMode="discrete"
+						/>
+					</use>
+				</svg>
 			</g>
 		{/each}
 	</g>
