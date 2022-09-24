@@ -240,6 +240,15 @@
 	</g>
 
 	<g>
+		<animateTransform
+			id="timeTheShotsEscape"
+			begin="timeTheShotsTargetsMissed.end"
+			attributeName="transform"
+			type="translate"
+			to="0 {height * -1}"
+			dur="0.75s"
+			fill="freeze"
+		/>
 		{#each targets as { x, y, size, duration, values, keyTimes }, i}
 			<g transform="translate({x} 0)">
 				<animateTransform
