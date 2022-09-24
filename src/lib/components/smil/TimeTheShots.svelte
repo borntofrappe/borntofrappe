@@ -244,7 +244,7 @@
 			<g transform="translate({x} 0)">
 				<animateTransform
 					begin="timeTheShotsStart.begin"
-					end="timeTheShotsTarget{i}.begin"
+					end="timeTheShotsMiss.begin; timeTheShotsTarget{i}Shot.end; timeTheShotsEnd.begin"
 					attributeName="transform"
 					type="translate"
 					{values}
@@ -255,23 +255,21 @@
 				/>
 				<svg {y} width={size} height={size}>
 					<use href="#time-the-shots-debris">
-						<!-- <animate
-							begin="timeTheShotsTarget{i}.begin"
+						<animate
+							begin="timeTheShotsTarget{i}Shot.end"
 							attributeName="href"
 							values={debris.map((_, i) => `#time-the-shots-debris-${i}`).join(';')}
 							dur="0.12s"
 							calcMode="discrete"
-						/> -->
+						/>
 					</use>
 					<use href="#time-the-shots-target">
-						<!-- <set
-							id="timeTheShotsTarget{i}"
-							begin="click"
+						<set
+							begin="timeTheShotsTarget{i}Shot.end"
 							attributeName="display"
 							to="none"
 							fill="freeze"
-							restart="never"
-						/> -->
+						/>
 					</use>
 				</svg>
 			</g>
@@ -293,18 +291,35 @@
 			/>
 
 			<g>
+				<animateTransform
+					id="timeTheShotsTargetsMissed"
+					begin="timeTheShotsMiss.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 {height * -1}"
+					dur="0.75s"
+					fill="freeze"
+				/>
+				<animateTransform
+					id="timeTheShotsTargetsMercied"
+					begin="timeTheShotsMercy.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 {height * -1}"
+					dur="0.75s"
+				/>
+				{#each targets as _, i}
+					<animateTransform
+						id="timeTheShotsTarget{i}Shot"
+						begin="timeTheShotsTarget{i}.begin"
+						attributeName="transform"
+						type="translate"
+						to="0 {height * -1 + 4 + sizes.target * (i + 1)}"
+						dur="{Math.max(0.2, 0.4 - 0.1 * i)}s"
+					/>
+				{/each}
 				{#each projectiles as _, i}
-					<g>
-						<!-- <animateTransform
-							begin="timeTheShotsProjectile{i}.begin"
-							attributeName="transform"
-							type="translate"
-							to="0 {-height}"
-							dur="1s"
-							fill="freeze"
-						/> -->
-						<use href="#time-the-shots-projectile-{i}" />
-					</g>
+					<use href="#time-the-shots-projectile-{i}" />
 				{/each}
 			</g>
 			<svg x={-size / 2} width={size} height={size}>
