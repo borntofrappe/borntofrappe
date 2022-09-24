@@ -70,6 +70,13 @@
 			};
 		});
 
+	const debris = Array(3)
+		.fill()
+		.map((_, i) => ({
+			r: Math.max(0, 5 - i),
+			offset: Math.min(9, 3 + i * 2)
+		}));
+
 	const { spaceship: size } = sizes;
 </script>
 
@@ -143,6 +150,24 @@
 			</g>
 		</symbol>
 
+		{#each debris as { r, offset }, i}
+			<symbol id="time-the-shots-debris-{i}" viewBox="-17.5 -19 35 26">
+				<g
+					transform="translate(0 -6)"
+					fill="#fc5157"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<circle {r} cx={offset} cy={offset} />
+					<circle {r} cx={offset * -1} cy={offset} />
+					<circle {r} cx={offset * -1} cy={offset * -1} />
+					<circle {r} cx={offset} cy={offset * -1} />
+					<circle {r} />
+				</g>
+			</symbol>
+		{/each}
+
 		<symbol id="time-the-shots-spaceship" viewBox="-20 -20 40 40">
 			<g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
 				<g fill="currentColor">
@@ -187,11 +212,11 @@
 	</g>
 
 	<g>
-		{#each targets as { x, y, size, duration, values, keyTimes }}
+		{#each targets as { x, y, size, duration, values, keyTimes }, i}
 			<g transform="translate({x} 0)">
 				<animateTransform
 					begin="timeTheShotsStart.begin"
-					end="timeTheShotsEnd.begin"
+					end="timeTheShotsTarget{i}.begin"
 					attributeName="transform"
 					type="translate"
 					{values}
@@ -201,13 +226,32 @@
 					fill="freeze"
 				/>
 				<svg {y} width={size} height={size}>
-					<use href="#time-the-shots-target" />
+					<use href="#time-the-shots-debris">
+						<animate
+							begin="timeTheShotsTarget{i}.begin"
+							attributeName="href"
+							values={debris.map((_, i) => `#time-the-shots-debris-${i}`).join(';')}
+							dur="0.12s"
+							calcMode="discrete"
+						/>
+					</use>
+					<!-- temp trigger -->
+					<use style:cursor="pointer" href="#time-the-shots-target">
+						<set
+							id="timeTheShotsTarget{i}"
+							begin="click"
+							attributeName="display"
+							to="none"
+							fill="freeze"
+							restart="never"
+						/>
+					</use>
 				</svg>
 			</g>
 		{/each}
 	</g>
 
-	<g transform="translate(40 {50 - size + 2})">
+	<g transform="translate(40 52)">
 		<g>
 			<animateTransform
 				id="timeTheShotsSpaceship"
@@ -220,7 +264,7 @@
 				calcMode="discrete"
 				repeatCount="indefinite"
 			/>
-			<svg x={-size / 2} width={size} height={size}>
+			<svg x={-size / 2} y={-size} width={size} height={size}>
 				<use href="#time-the-shots-spaceship" />
 			</svg>
 		</g>
