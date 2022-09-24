@@ -78,6 +78,12 @@
 		}));
 
 	const { spaceship: size } = sizes;
+
+	const projectiles = [
+		{ cx: -size / 5, cy: size / 2.7, r: 1 },
+		{ cx: size / 5, cy: size / 2.7, r: 1 },
+		{ cx: 0, cy: size / 3.4, r: 1 }
+	];
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -186,6 +192,14 @@
 				</g>
 			</g>
 		</symbol>
+
+		{#each projectiles as { cx, cy, r }, i}
+			<g id="time-the-shots-projectile-{i}">
+				<g fill="#d44e4a" stroke="currentColor" stroke-width="0.3">
+					<circle {cx} {cy} {r} />
+				</g>
+			</g>
+		{/each}
 	</defs>
 
 	<rect width="80" height="50" fill="url(#time-the-shots-pattern-sea)" />
@@ -235,7 +249,7 @@
 							calcMode="discrete"
 						/>
 					</use>
-					<!-- temp trigger -->
+					<!-- temp trigger	 -->
 					<use style:cursor="pointer" href="#time-the-shots-target">
 						<set
 							id="timeTheShotsTarget{i}"
@@ -251,7 +265,7 @@
 		{/each}
 	</g>
 
-	<g transform="translate(40 52)">
+	<g transform="translate(40 {50 - size + 2})">
 		<g>
 			<animateTransform
 				id="timeTheShotsSpaceship"
@@ -264,10 +278,41 @@
 				calcMode="discrete"
 				repeatCount="indefinite"
 			/>
-			<svg x={-size / 2} y={-size} width={size} height={size}>
+
+			<g>
+				{#each projectiles as _, i}
+					<g>
+						<animateTransform
+							begin="timeTheShotsProjectile{i}.begin"
+							attributeName="transform"
+							type="translate"
+							to="0 {-height}"
+							dur="1s"
+							fill="freeze"
+						/>
+						<use href="#time-the-shots-projectile-{i}" />
+					</g>
+				{/each}
+			</g>
+			<svg x={-size / 2} width={size} height={size}>
 				<use href="#time-the-shots-spaceship" />
 			</svg>
 		</g>
+	</g>
+
+	<g>
+		{#each projectiles as _, i}
+			<g style:cursor="pointer" opacity="0">
+				<set
+					id="timeTheShotsProjectile{i}"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
+				<rect width="80" height="50" />
+			</g>
+		{/each}
 	</g>
 
 	<g style:cursor="pointer">
