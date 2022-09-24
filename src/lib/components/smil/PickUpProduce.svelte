@@ -12,10 +12,18 @@
 
 	const crops = Array(targets)
 		.fill()
-		.map((_, i) => i * w);
+		.map((_, i) => {
+			const x = i * w;
+			const delay = Math.floor(Math.random() * 5) + 2;
+
+			return {
+				x,
+				delay
+			};
+		});
 
 	const decay = 0.8;
-	const tops = 3;
+	const decays = 3;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -198,28 +206,39 @@
 	</g>
 
 	<g transform="translate({o} {30 - h * 0.3})">
-		{#each crops as x}
-			<svg {x} width={w} height={h}>
-				<use href="#pick-up-produce-crop" />
-				<use href="#pick-up-produce-crop-top-0">
-					{#each Array(tops) as _, j}
+		{#each crops as { x, delay }, i}
+			<g transform="translate(0 {h * 0.4})">
+				<animateTransform
+					id="pickUpProduceCrop{i}"
+					begin="{delay}s"
+					attributeName="transform"
+					type="translate"
+					to="0 0"
+					dur="0.75s"
+					fill="freeze"
+				/>
+				<svg {x} width={w} height={h}>
+					<use href="#pick-up-produce-crop" />
+					<use href="#pick-up-produce-crop-top-0">
+						{#each Array(decays) as _, j}
+							<set
+								begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+								attributeName="href"
+								to="#pick-up-produce-crop-top-{j}"
+								fill="freeze"
+								calcMode="discrete"
+							/>
+						{/each}
 						<set
-							begin="{(j + 1) * decay}s"
+							begin="pickUpProduceCrop{i}.end + {(decays + 1) * decay}s"
 							attributeName="href"
-							to="#pick-up-produce-crop-top-{j}"
+							to="#pick-up-produce-crop-top-spoiled"
 							fill="freeze"
 							calcMode="discrete"
 						/>
-					{/each}
-					<set
-						begin="{(tops + 1) * decay}s"
-						attributeName="href"
-						to="#pick-up-produce-crop-top-spoiled"
-						fill="freeze"
-						calcMode="discrete"
-					/>
-				</use>
-			</svg>
+					</use>
+				</svg>
+			</g>
 		{/each}
 	</g>
 
