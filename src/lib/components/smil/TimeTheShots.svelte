@@ -5,7 +5,8 @@
 	const sizes = {
 		cloud: [10, 12],
 		target: 12,
-		spaceship: 16
+		spaceship: 16,
+		overlay: 18
 	};
 
 	const durations = {
@@ -32,9 +33,9 @@
 		yCloud += size;
 	} while (yCloud < parallax - sizeCloud);
 
-	const getXTarget = (size = 10, i = 0) => {
-		const x = Math.floor(Math.random() * (width / 2 - size));
-		return i % 2 === 0 ? x : x + width / 2;
+	const getXTarget = (size = 10, i = 0, overlay = 10) => {
+		const x = Math.floor(Math.random() * (width / 2 - overlay / 2 - size));
+		return i % 2 === 0 ? x : x + width / 2 + overlay / 2;
 	};
 
 	const targets = Array(2)
@@ -42,7 +43,7 @@
 		.map((_, i) => {
 			const size = sizes.target;
 
-			const x = getXTarget(size, i);
+			const x = getXTarget(size, i, sizes.overlay);
 			const y = i * sizes.target;
 
 			const duration = durations.target;
@@ -60,13 +61,24 @@
 			times[times.length - 1] = 1;
 			const keyTimes = times.join(';');
 
+			const overlayDuration = (sizes.overlay / distance) * duration;
+			const recurrentGap = (width / 2 - sizes.overlay / 2) * 2 - size;
+			const initialGap = movesRight
+				? width / 2 - sizes.overlay / 2 - x - size
+				: x - width / 2 - sizes.overlay / 2;
+			const overlayDelays = [initialGap, recurrentGap].map((d) => (d / distance) * duration);
+
 			return {
 				x,
 				y,
 				size,
 				values,
 				duration,
-				keyTimes
+				keyTimes,
+				overlay: {
+					duration: overlayDuration,
+					delays: overlayDelays
+				}
 			};
 		});
 
@@ -301,15 +313,22 @@
 	</g>
 
 	<g>
-		{#each projectiles as _, i}
-			<g style:cursor="pointer" opacity="0">
+		{#each targets as { overlay }, i}
+			{@const { duration, delays } = overlay}
+			<g style:cursor="pointer" opacity="0.2" display="none">
 				<set
-					id="timeTheShotsProjectile{i}"
-					begin="click"
+					id="timeTheShotsTarget{i}Engage"
+					attributeName="display"
+					to="initial"
+					begin="timeTheShotsStart.begin + {delays[0]}s; timeTheShotsTarget{i}Disengage.begin + {delays[1]}s"
+				/>
+				<set
+					id="timeTheShotsTarget{i}Disengage"
 					attributeName="display"
 					to="none"
-					fill="freeze"
+					begin="timeTheShotsTarget{i}Engage.begin + {duration}s"
 				/>
+
 				<rect width="80" height="50" />
 			</g>
 		{/each}
