@@ -16,6 +16,8 @@
 	const yStart = 30 - h * 0.3;
 	const yGaps = [-20, -7.5];
 
+	const tops = 3;
+	const decay = 0.8;
 	const crops = Array(targets)
 		.fill()
 		.map((_, i) => {
@@ -24,13 +26,13 @@
 
 			return {
 				x,
-				delay
+				delay,
+				decays: Array(tops)
+					.fill()
+					.map((_, i) => (i + 1) * decay)
 			};
 		})
 		.sort((a, b) => b.delay - a.delay);
-
-	const decay = 0.8;
-	const tops = 3;
 
 	const messages = ['The whole lot!', 'Almost all!', "That's a start...", 'Not mulch...'];
 
@@ -248,7 +250,7 @@
 	</g>
 
 	<g transform="translate({o} {yStart})">
-		{#each crops as { x, delay }, i}
+		{#each crops as { x, delay, decays }, i}
 			<g>
 				<set
 					id="pickUpProduceHarvested{i}"
@@ -265,6 +267,8 @@
 						type="translate"
 						to="0 0"
 						dur="0.35s"
+						calcMode="spline"
+						keySplines="0.5 0 0.5 1;"
 						fill="freeze"
 					/>
 					<g>
@@ -275,16 +279,18 @@
 							attributeName="transform"
 							type="translate"
 							to="0 {yGaps[0]}"
-							dur="0.35s"
+							dur="0.25s"
+							calcMode="spline"
+							keySplines="0.5 0 0.5 1;"
 							fill="freeze"
 							restart="never"
 						/>
 						<svg {x} width={w} height={h}>
 							<use href="#pick-up-produce-crop" />
 							<use href="#pick-up-produce-crop-top-0">
-								{#each Array(tops) as _, j}
+								{#each decays as decay, j}
 									<set
-										begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+										begin="pickUpProduceCrop{i}.end + {decay}s"
 										end="pickUpProduceHarvest{i}.begin"
 										attributeName="href"
 										to="#pick-up-produce-crop-top-{j}"
@@ -293,7 +299,7 @@
 								{/each}
 								<set
 									id="pickUpProduceSpoiled{i}"
-									begin="pickUpProduceCrop{i}.end + {(tops + 1) * decay}s"
+									begin="pickUpProduceCrop{i}.end + {(decays.length + 1) * decay}s"
 									end="pickUpProduceHarvest{i}.begin"
 									attributeName="href"
 									to="#pick-up-produce-crop-top-spoiled"
@@ -320,7 +326,7 @@
 							begin="pickUpProduceHarvest{i}.begin"
 							attributeName="href"
 							values={mulch.map((_, i) => `#pick-up-produce-mulch-${i}`).join(';')}
-							dur="0.15s"
+							dur="0.25s"
 							calcMode="discrete"
 						/>
 					</use>
@@ -364,7 +370,7 @@
 
 	<g style:pointer-events="none">
 		<g transform="translate({o} {yStart})">
-			{#each crops as { x }, i}
+			{#each crops as { x, decays }, i}
 				<g opacity="0">
 					<set
 						begin="pickUpProduceHarvested{i}.begin"
@@ -380,15 +386,17 @@
 							type="translate"
 							to="0 {yGaps[1]}"
 							dur="0.35s"
+							calcMode="spline"
+							keySplines="0.5 0 0.5 1;"
 							fill="freeze"
 						/>
 						<g>
 							<svg {x} width={w} height={h}>
 								<use href="#pick-up-produce-crop" />
 								<use href="#pick-up-produce-crop-top-0">
-									{#each Array(tops) as _, j}
+									{#each decays as decay, j}
 										<set
-											begin="pickUpProduceCrop{i}.end + {(j + 1) * decay}s"
+											begin="pickUpProduceCrop{i}.end + {decay}s"
 											end="pickUpProduceHarvest{i}.begin"
 											attributeName="href"
 											to="#pick-up-produce-crop-top-{j}"
