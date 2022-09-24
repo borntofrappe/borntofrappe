@@ -3,7 +3,12 @@
 	const height = 50;
 
 	const sizes = {
-		cloud: [10, 12]
+		cloud: [10, 12],
+		target: 12
+	};
+
+	const durations = {
+		target: 8
 	};
 
 	const getXCloud = (size = 10) => 1 + Math.floor(Math.random() * (width - size - 2));
@@ -25,6 +30,30 @@
 
 		yCloud += size;
 	} while (yCloud < parallax - sizeCloud);
+
+	const getXTarget = (i = 0) => {
+		const x = Math.floor(Math.random() * (width / 2 - sizes.target));
+		return i % 2 === 0 ? x : x + width / 2;
+	};
+
+	const targets = Array(2)
+		.fill()
+		.map((_, i) => {
+			const x = getXTarget(i);
+			const y = i * sizes.target;
+			const duration = durations.target;
+
+			const movesRight = x + sizes.target < width / 2;
+			const moves = movesRight ? [x, width - sizes.target, 0, x] : [x, 0, width - sizes.target, x];
+			const values = moves.map((d) => `${d} 0`).join(';');
+
+			return {
+				x,
+				y,
+				values,
+				duration
+			};
+		});
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -140,6 +169,28 @@
 		{/each}
 	</g>
 
+	<g>
+		{#each targets as { x, y, duration, values }}
+			<g transform="translate(0 {y})">
+				<g transform="translate({x} 0)">
+					<animateTransform
+						begin="timeTheShotsStart.begin"
+						end="timeTheShotsEnd.begin"
+						attributeName="transform"
+						type="translate"
+						{values}
+						dur="{duration}s"
+						repeatCount="indefinite"
+						fill="freeze"
+					/>
+					<svg width={sizes.target} height={sizes.target}>
+						<use href="#time-the-shots-target" />
+					</svg>
+				</g>
+			</g>
+		{/each}
+	</g>
+
 	<g style:cursor="pointer">
 		<set
 			id="timeTheShotsStart"
@@ -149,7 +200,6 @@
 			fill="freeze"
 			restart="never"
 		/>
-
 		<!-- temp visual to avoid starting the animation immediately	 -->
 		<g
 			transform="translate(40 25)"
