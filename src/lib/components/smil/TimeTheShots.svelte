@@ -4,7 +4,8 @@
 
 	const sizes = {
 		cloud: [10, 12],
-		target: 12
+		target: 12,
+		spaceship: 16
 	};
 
 	const durations = {
@@ -68,6 +69,8 @@
 				keyTimes
 			};
 		});
+
+	const { spaceship: size } = sizes;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -202,6 +205,25 @@
 				</svg>
 			</g>
 		{/each}
+	</g>
+
+	<g transform="translate(40 {50 - size + 2})">
+		<g>
+			<animateTransform
+				id="timeTheShotsSpaceship"
+				begin="timeTheShotsStart.begin"
+				end="timeTheShotsEnd.begin"
+				attributeName="transform"
+				type="translate"
+				to="0 -0.5"
+				dur="0.3s"
+				calcMode="discrete"
+				repeatCount="indefinite"
+			/>
+			<svg x={-size / 2} width={size} height={size}>
+				<use href="#time-the-shots-spaceship" />
+			</svg>
+		</g>
 	</g>
 
 	<g style:cursor="pointer">
