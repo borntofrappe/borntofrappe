@@ -250,7 +250,13 @@
 
 	<g style:cursor="pointer" opacity="0">
 		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" fill="freeze" />
-		<set begin="takeAPictureMotion.end" attributeName="display" to="none" fill="freeze" />
+		<set
+			begin="takeAPictureMotion.end"
+			end="takeAPictureShot.begin"
+			attributeName="display"
+			to="none"
+			fill="freeze"
+		/>
 		<rect width="80" height="50" />
 	</g>
 
