@@ -52,6 +52,7 @@
 				.fill()
 				.map((_, i) => `fightTheEnemyHpDrop${i}.begin`)
 				.join(';')}
+			end="fightTheEnemyHpHit0.begin"
 			attributeName="transform"
 			type="translate"
 			values="0 0; 1 0; 0 0; -1 0; 0 0"
@@ -130,6 +131,7 @@
 								{/if}
 								<set
 									begin="fightTheEnemyHpDrop{i}.begin"
+									end="fightTheEnemyHpHit0.begin"
 									attributeName="display"
 									to="initial"
 									fill="freeze"
@@ -158,6 +160,7 @@
 								<set
 									id="fightTheEnemyHpDropMessage{i}"
 									begin="fightTheEnemyHpDrop{i}.begin"
+									end="fightTheEnemyHpHit0.begin"
 									attributeName="display"
 									to="initial"
 									fill="freeze"
@@ -203,14 +206,22 @@
 									fill="freeze"
 								/>
 								<set
-									begin={`fightTheEnemyHpHit${i - 1}.begin; ${Array(hpYou)
-										.fill()
-										.map((_, i) => `fightTheEnemyHpDropMessage${i}.begin`)
-										.join(';')}`}
+									begin="fightTheEnemyHpHit{i - 1}.begin"
 									attributeName="display"
 									to="none"
 									fill="freeze"
 								/>
+								<set
+									begin={Array(hpYou)
+										.fill()
+										.map((_, i) => `fightTheEnemyHpDropMessage${i}.begin`)
+										.join(';')}
+									end="fightTheEnemyHpHit0.begin"
+									attributeName="display"
+									to="none"
+									fill="freeze"
+								/>
+
 								<text>
 									{#each `${i === 0 ? 'You defeated the enemy!' : 'You hit for 1 point!'}`.split('') as l, j}
 										<tspan fill-opacity="0">
@@ -269,6 +280,7 @@
 			<g>
 				<animateTransform
 					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					end="fightTheEnemyHpHit0.begin"
 					attributeName="transform"
 					type="scale"
 					values="1; 1.2; 1"
@@ -277,6 +289,7 @@
 
 				<animateTransform
 					begin={hpDropDelays.map((_, i) => `fightTheEnemyHpDrop${i}.begin`).join(';')}
+					end="fightTheEnemyHpHit0.begin"
 					attributeName="transform"
 					type="translate"
 					values="0 0; 0 -2; 0 0"
@@ -336,7 +349,15 @@
 
 	<g display="none">
 		<set
-			begin="fightTheEnemyHpHit0.begin; fightTheEnemyHpDrop0.begin"
+			begin="fightTheEnemyHpHit0.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<set
+			begin="fightTheEnemyHpDrop0.begin"
+			end="fightTheEnemyHpHit0.begin"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
@@ -366,6 +387,7 @@
 				<set
 					id="fightTheEnemyLoss"
 					begin="fightTheEnemyHpDrop0.begin + 2s"
+					end="fightTheEnemyHpHit0.begin"
 					attributeName="display"
 					to="initial"
 					fill="freeze"
