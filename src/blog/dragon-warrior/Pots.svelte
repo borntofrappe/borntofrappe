@@ -109,3 +109,45 @@
 
 	<p>What's this? The Herb?</p>
 </div>
+
+<style>
+	div {
+		max-width: 32rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	div > * + * {
+		margin-top: 0.75em;
+	}
+
+	fieldset {
+		display: flex;
+		justify-content: space-evenly;
+		padding: 0.75rem 0.5rem;
+		border: 0.2rem solid currentColor;
+		border-radius: 0.25rem;
+	}
+
+	legend {
+		padding: 0 1rem;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem 0;
+	}
+
+	input {
+		accent-color: currentColor;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	svg {
+		width: 64px;
+		height: auto;
+	}
+</style>
