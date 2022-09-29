@@ -1,4 +1,5 @@
 <script>
+	import { typewriter } from './utils';
 	const talks = ['Keys! Keys that open any door!', 'Begone, you fool!', 'Fwah-fwah-fwah-fwah!'];
 
 	let checked = false;
@@ -83,7 +84,7 @@
 	<p>
 		<span aria-hidden="true">{talk || talks[0]}</span>
 		{#if talk}
-			<span>{talk}</span>
+			<span in:typewriter>{talk}</span>
 		{/if}
 	</p>
 </div>
