@@ -1,5 +1,5 @@
 <script>
-	let checked = false;
+	let checked = true;
 </script>
 
 <div>
@@ -79,3 +79,30 @@
 	</form>
 	<p>Begone you fool!</p>
 </div>
+
+<style>
+	div {
+		display: inline-flex;
+		flex-direction: column-reverse;
+		gap: 1rem;
+	}
+
+	svg {
+		width: 100%;
+		height: auto;
+		max-width: 80px;
+	}
+
+	p {
+		line-height: initial;
+		padding: 0.35rem 0.5rem;
+		border: 0.2rem solid currentColor;
+		border-radius: 0.25rem;
+	}
+
+	input {
+		accent-color: currentColor;
+		width: 1rem;
+		height: 1rem;
+	}
+</style>
