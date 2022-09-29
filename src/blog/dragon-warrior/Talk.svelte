@@ -1,5 +1,8 @@
 <script>
-	let checked = true;
+	const talks = ['Keys! Keys that open any door!', 'Begone, you fool!', 'Fwah-fwah-fwah-fwah!'];
+
+	let checked = false;
+	$: talk = checked && talks[Math.floor(Math.random() * talks.length)];
 </script>
 
 <div>
@@ -77,7 +80,12 @@
 			<span>Talk</span>
 		</label>
 	</form>
-	<p>Begone you fool!</p>
+	<p>
+		<span aria-hidden="true">{talk || talks[0]}</span>
+		{#if talk}
+			<span>{talk}</span>
+		{/if}
+	</p>
 </div>
 
 <style>
@@ -95,14 +103,34 @@
 
 	p {
 		line-height: initial;
-		padding: 0.35rem 0.5rem;
-		border: 0.2rem solid currentColor;
-		border-radius: 0.25rem;
 	}
 
 	input {
 		accent-color: currentColor;
 		width: 1rem;
 		height: 1rem;
+	}
+
+	p {
+		position: relative;
+	}
+
+	p > span {
+		display: inline-block;
+		padding: 0.35rem 0.5rem;
+		border: 0.2rem solid currentColor;
+		border-radius: 0.25rem;
+	}
+
+	p > span:nth-of-type(1) {
+		opacity: 0;
+	}
+
+	p > span:nth-of-type(2) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 </style>
