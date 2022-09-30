@@ -48,7 +48,7 @@
 >
 	<defs>
 		<symbol id="dragon-warrior-vase" viewBox="0 0 16 16">
-			<g fill="#0c1019">
+			<g fill="hsl(0, 0%, 13%)">
 				<rect x="5" width="6" height="1" />
 				<rect x="4" y="1" width="1" height="1" />
 				<rect x="11" y="1" width="1" height="1" />
@@ -91,7 +91,7 @@
 				<rect x="9" y="14" width="4" height="1" />
 				<rect x="4" y="15" width="8" height="1" />
 			</g>
-			<g fill="#a4773e">
+			<g fill="hsl(22, 78%, 55%)">
 				<rect x="5" y="1" width="1" height="1" />
 				<rect x="9" y="1" width="2" height="1" />
 				<rect x="11" y="2" width="1" height="1" />
@@ -129,7 +129,7 @@
 				<rect x="6" y="14" width="1" height="1" />
 				<rect x="8" y="14" width="1" height="1" />
 			</g>
-			<g fill="#ffe489">
+			<g fill="hsl(22, 100%, 95%)">
 				<rect x="6" y="1" width="3" height="1" />
 				<rect x="4" y="2" width="1" height="1" />
 				<rect x="3" y="3" width="1" height="1" />

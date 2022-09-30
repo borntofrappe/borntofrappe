@@ -75,7 +75,7 @@
 	>
 		<defs>
 			<symbol id="dragon-warrior-hero-1" viewBox="0 0 16 16">
-				<g fill="#0c1019">
+				<g fill="hsl(0, 0%, 13%)">
 					<rect width="1" height="3" />
 					<rect x="1" width="1" height="1" />
 					<rect x="5" width="6" height="1" />
@@ -121,7 +121,7 @@
 					<rect x="3" y="15" width="1" height="1" />
 					<rect x="8" y="15" width="4" height="1" />
 				</g>
-				<g fill="#f5be86">
+				<g fill="hsl(22, 92%, 76%)">
 					<rect x="1" y="1" width="1" height="2" />
 					<rect x="6" y="1" width="4" height="1" />
 					<rect x="14" y="1" width="1" height="2" />
@@ -152,7 +152,7 @@
 					<rect x="12" y="14" width="3" height="1" />
 					<rect x="4" y="15" width="4" height="1" />
 				</g>
-				<g fill="#035f90">
+				<g fill="hsl(215, 96%, 32%)">
 					<rect x="6" y="2" width="4" height="1" />
 					<rect x="5" y="3" width="6" height="1" />
 					<rect x="4" y="5" width="1" height="3" />
@@ -171,7 +171,7 @@
 				</g>
 			</symbol>
 			<symbol id="dragon-warrior-hero-2" viewBox="0 0 16 16">
-				<g fill="#0c1019">
+				<g fill="hsl(0, 0%, 13%)">
 					<rect width="1" height="3" />
 					<rect x="1" width="1" height="1" />
 					<rect x="5" width="6" height="1" />
@@ -218,7 +218,7 @@
 					<rect x="4" y="15" width="4" height="1" />
 					<rect x="12" y="15" width="1" height="1" />
 				</g>
-				<g fill="#f5be86">
+				<g fill="hsl(22, 92%, 76%)">
 					<rect x="1" y="1" width="1" height="1" />
 					<rect x="6" y="1" width="4" height="1" />
 					<rect x="14" y="1" width="1" height="2" />
@@ -249,7 +249,7 @@
 					<rect x="14" y="14" width="1" height="1" />
 					<rect x="8" y="15" width="4" height="1" />
 				</g>
-				<g fill="#035f90">
+				<g fill="hsl(215, 96%, 32%)">
 					<rect x="6" y="2" width="4" height="1" />
 					<rect x="5" y="3" width="6" height="1" />
 					<rect x="4" y="5" width="1" height="1" />
@@ -269,7 +269,7 @@
 			</symbol>
 
 			<symbol id="dragon-warrior-swamp" viewBox="0 0 16 8">
-				<g fill="#0c1019">
+				<g fill="hsl(0, 0%, 23%)">
 					<rect y="1" width="16" height="1" />
 					<rect y="3" width="16" height="1" />
 					<rect y="5" width="16" height="1" />
@@ -290,7 +290,7 @@
 					<rect x="8" y="6" width="1" height="1" />
 					<rect x="13" y="6" width="2" height="1" />
 				</g>
-				<g fill="#9d0542">
+				<g fill="hsl(336, 67%, 32%)">
 					<rect x="1" width="1" height="1" />
 					<rect x="5" width="1" height="1" />
 					<rect x="7" width="2" height="1" />
@@ -315,7 +315,7 @@
 					<rect x="12" y="6" width="1" height="1" />
 					<rect x="15" y="6" width="1" height="1" />
 				</g>
-				<g fill="#fd5a39">
+				<g fill="hsl(5, 78%, 56%)">
 					<rect x="2" width="3" height="1" />
 					<rect x="12" width="2" height="1" />
 					<rect y="2" width="2" height="1" />
@@ -332,7 +332,7 @@
 			</symbol>
 
 			<symbol id="dragon-warrior-loto-seal" viewBox="0 0 10 10">
-				<g fill="#0c1019">
+				<g fill="hsl(0, 0%, 13%)">
 					<rect x="4" width="4" height="1" />
 					<rect x="2" y="1" width="2" height="1" />
 					<rect x="8" y="1" width="1" height="1" />
@@ -346,7 +346,7 @@
 					<rect x="1" y="8" width="7" height="1" />
 					<rect x="2" y="9" width="4" height="1" />
 				</g>
-				<g fill="#c38900">
+				<g fill="hsl(42, 87%, 55%)">
 					<rect x="4" y="1" width="1" height="1" />
 					<rect x="6" y="1" width="2" height="1" />
 					<rect x="6" y="2" width="3" height="1" />
@@ -359,7 +359,7 @@
 					<rect x="5" y="5" width="1" height="3" />
 					<rect x="2" y="7" width="2" height="1" />
 				</g>
-				<g fill="#ffb700">
+				<g fill="hsl(48, 94%, 68%)">
 					<rect x="5" y="1" width="1" height="1" />
 					<rect x="2" y="2" width="4" height="1" />
 					<rect x="4" y="3" width="1" height="1" />
@@ -415,7 +415,7 @@
 			{@html feedback}
 		</p>
 	{:else if state === 'find'}
-		<div in:fly={{ delay: 750 }}>
+		<div in:fly={{ delay: 1250 }}>
 			<p>
 				You found <strong>Loto Seal</strong>. Congratulations!
 			</p>
@@ -447,7 +447,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		color: hsl(0, 0%, 23%);
+		color: hsl(0, 0%, 13%);
 		background: hsl(0, 0%, 97%);
 		padding: 0.35rem 0.75rem;
 		border-radius: 0.35rem;

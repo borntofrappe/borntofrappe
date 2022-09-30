@@ -15,7 +15,7 @@
 >
 	<defs>
 		<symbol id="dragon-warrior-sage" viewBox="0 0 16 16">
-			<g fill="#0c1019">
+			<g fill="hsl(0, 0%, 13%)">
 				<rect x="5" width="7" height="1" />
 				<rect x="3" y="1" width="2" height="1" />
 				<rect x="12" y="1" width="1" height="5" />
@@ -39,7 +39,7 @@
 				<rect x="10" y="15" width="2" height="1" />
 			</g>
 
-			<g fill="#101cae">
+			<g fill="hsl(205, 87%, 29%)">
 				<rect x="5" y="1" width="7" height="1" />
 				<rect x="3" y="2" width="9" height="1" />
 				<rect x="4" y="3" width="3" height="1" />
@@ -62,7 +62,7 @@
 				<rect x="5" y="13" width="9" height="1" />
 				<rect x="7" y="14" width="6" height="1" />
 			</g>
-			<g fill="#f8fefc">
+			<g fill="hsl(205, 79%, 92%)">
 				<rect x="7" y="3" width="1" height="1" />
 				<rect x="10" y="3" width="1" height="1" />
 				<rect x="6" y="4" width="1" height="3" />
