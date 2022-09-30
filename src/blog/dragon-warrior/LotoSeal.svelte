@@ -1,5 +1,6 @@
 <script>
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
+	import { quadOut as easing } from 'svelte/easing';
 	const columns = 10;
 	const rows = 7;
 
@@ -63,7 +64,7 @@
 
 <article>
 	{#if state === 'wait'}
-		<p in:fade style:pointer-events="none">
+		<p style:pointer-events="none">
 			<strong>Loto Seal</strong> is around here. <br /> It might be just a tile distant.
 		</p>
 	{/if}
@@ -401,7 +402,7 @@
 
 		{#if state === 'find'}
 			<g transform="translate({column} {row})">
-				<g in:fly={{ y: 1 }}>
+				<g in:fly={{ y: 1, delay: 200, easing }}>
 					<svg y="-1" width="1" height="1">
 						<use href="#dragon-warrior-loto-seal" />
 					</svg>
@@ -411,11 +412,13 @@
 	</svg>
 
 	{#if state === 'play'}
-		<p in:fade style:pointer-events="none">
-			{@html feedback}
-		</p>
+		{#key feedback}
+			<p in:fly={{ duration: 750, delay: 200, easing }} style:pointer-events="none">
+				{@html feedback}
+			</p>
+		{/key}
 	{:else if state === 'find'}
-		<div in:fly={{ delay: 1250 }}>
+		<div in:fly={{ duration: 750, delay: 2000, easing }}>
 			<p>
 				You found <strong>Loto Seal</strong>. Congratulations!
 			</p>
@@ -461,6 +464,8 @@
 	button {
 		cursor: pointer;
 		color: inherit;
+		font-family: inherit;
+		padding: 0;
 		border: none;
 		background: none;
 		display: flex;
