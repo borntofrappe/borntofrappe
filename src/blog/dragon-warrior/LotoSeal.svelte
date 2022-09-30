@@ -3,8 +3,8 @@
 	const columns = 10;
 	const rows = 7;
 
-	const column = Math.floor(Math.random() * columns);
-	const row = Math.floor(Math.random() * (rows - 1)) + 1;
+	let column = Math.floor(Math.random() * columns);
+	let row = Math.floor(Math.random() * (rows - 1)) + 1;
 
 	let element = null;
 
@@ -52,6 +52,13 @@
 			feedback = f;
 		}
 	};
+
+	const handleReset = (e) => {
+		column = Math.floor(Math.random() * columns);
+		row = Math.floor(Math.random() * (rows - 1)) + 1;
+		state = 'wait';
+		handleClick(e);
+	};
 </script>
 
 <article>
@@ -67,199 +74,197 @@
 		shape-rendering="crispEdges"
 	>
 		<defs>
-			<symbol id="dragon-warrior-hero" viewBox="0 0 32 16">
-				<g>
-					<g fill="#0c1019">
-						<rect width="1" height="3" />
-						<rect x="1" width="1" height="1" />
-						<rect x="5" width="6" height="1" />
-						<rect x="14" width="1" height="1" />
-						<rect x="15" width="1" height="3" />
-						<rect x="2" y="1" width="4" height="1" />
-						<rect x="10" y="1" width="4" height="1" />
-						<rect x="4" y="2" width="1" height="1" />
-						<rect x="11" y="2" width="1" height="1" />
-						<rect x="1" y="3" width="3" height="1" />
-						<rect x="12" y="3" width="1" height="1" />
-						<rect x="14" y="3" width="1" height="1" />
-						<rect x="1" y="4" width="1" height="4" />
-						<rect x="3" y="4" width="2" height="1" />
-						<rect x="11" y="4" width="3" height="1" />
-						<rect x="3" y="5" width="1" height="4" />
-						<rect x="5" y="5" width="6" height="1" />
-						<rect x="12" y="5" width="1" height="3" />
-						<rect x="6" y="6" width="1" height="2" />
-						<rect x="9" y="6" width="1" height="2" />
-						<rect y="8" width="2" height="1" />
-						<rect x="4" y="8" width="1" height="1" />
-						<rect x="8" y="8" width="7" height="1" />
-						<rect y="9" width="1" height="3" />
-						<rect x="4" y="9" width="2" height="1" />
-						<rect x="8" y="9" width="1" height="1" />
-						<rect x="14" y="9" width="1" height="2" />
-						<rect x="1" y="10" width="3" height="1" />
-						<rect x="8" y="10" width="1" height="1" />
-						<rect x="3" y="11" width="4" height="1" />
-						<rect x="8" y="11" width="2" height="1" />
-						<rect x="13" y="11" width="2" height="1" />
-						<rect x="1" y="12" width="2" height="1" />
-						<rect x="4" y="12" width="1" height="2" />
-						<rect x="9" y="12" width="2" height="1" />
-						<rect x="12" y="12" width="2" height="1" />
-						<rect y="13" width="1" height="1" />
-						<rect x="2" y="13" width="1" height="1" />
-						<rect x="10" y="13" width="3" height="1" />
-						<rect x="14" y="13" width="1" height="1" />
-						<rect x="3" y="14" width="5" height="1" />
-						<rect x="11" y="14" width="1" height="1" />
-						<rect x="3" y="15" width="1" height="1" />
-						<rect x="8" y="15" width="4" height="1" />
-					</g>
-					<g fill="#f5be86">
-						<rect x="1" y="1" width="1" height="2" />
-						<rect x="6" y="1" width="4" height="1" />
-						<rect x="14" y="1" width="1" height="2" />
-						<rect x="2" y="2" width="2" height="1" />
-						<rect x="5" y="2" width="1" height="1" />
-						<rect x="10" y="2" width="1" height="1" />
-						<rect x="12" y="2" width="2" height="1" />
-						<rect x="4" y="3" width="1" height="1" />
-						<rect x="11" y="3" width="1" height="1" />
-						<rect x="13" y="3" width="1" height="1" />
-						<rect x="2" y="4" width="1" height="5" />
-						<rect x="5" y="4" width="6" height="1" />
-						<rect x="5" y="6" width="1" height="2" />
-						<rect x="7" y="6" width="2" height="2" />
-						<rect x="10" y="6" width="1" height="2" />
-						<rect x="6" y="8" width="2" height="1" />
-						<rect x="1" y="9" width="3" height="1" />
-						<rect x="9" y="9" width="2" height="1" />
-						<rect x="12" y="9" width="2" height="1" />
-						<rect x="10" y="10" width="3" height="1" />
-						<rect x="1" y="11" width="2" height="1" />
-						<rect x="7" y="11" width="1" height="1" />
-						<rect x="11" y="11" width="1" height="2" />
-						<rect x="3" y="12" width="1" height="2" />
-						<rect x="1" y="13" width="1" height="1" />
-						<rect x="13" y="13" width="1" height="1" />
-						<rect y="14" width="3" height="1" />
-						<rect x="12" y="14" width="3" height="1" />
-						<rect x="4" y="15" width="4" height="1" />
-					</g>
-					<g fill="#035f90">
-						<rect x="6" y="2" width="4" height="1" />
-						<rect x="5" y="3" width="6" height="1" />
-						<rect x="4" y="5" width="1" height="3" />
-						<rect x="11" y="5" width="1" height="3" />
-						<rect x="5" y="8" width="1" height="1" />
-						<rect x="6" y="9" width="2" height="1" />
-						<rect x="11" y="9" width="1" height="1" />
-						<rect x="4" y="10" width="4" height="1" />
-						<rect x="9" y="10" width="1" height="1" />
-						<rect x="13" y="10" width="1" height="1" />
-						<rect x="10" y="11" width="1" height="1" />
-						<rect x="12" y="11" width="1" height="1" />
-						<rect x="5" y="12" width="4" height="1" />
-						<rect x="5" y="13" width="5" height="1" />
-						<rect x="8" y="14" width="3" height="1" />
-					</g>
+			<symbol id="dragon-warrior-hero-1" viewBox="0 0 16 16">
+				<g fill="#0c1019">
+					<rect width="1" height="3" />
+					<rect x="1" width="1" height="1" />
+					<rect x="5" width="6" height="1" />
+					<rect x="14" width="1" height="1" />
+					<rect x="15" width="1" height="3" />
+					<rect x="2" y="1" width="4" height="1" />
+					<rect x="10" y="1" width="4" height="1" />
+					<rect x="4" y="2" width="1" height="1" />
+					<rect x="11" y="2" width="1" height="1" />
+					<rect x="1" y="3" width="3" height="1" />
+					<rect x="12" y="3" width="1" height="1" />
+					<rect x="14" y="3" width="1" height="1" />
+					<rect x="1" y="4" width="1" height="4" />
+					<rect x="3" y="4" width="2" height="1" />
+					<rect x="11" y="4" width="3" height="1" />
+					<rect x="3" y="5" width="1" height="4" />
+					<rect x="5" y="5" width="6" height="1" />
+					<rect x="12" y="5" width="1" height="3" />
+					<rect x="6" y="6" width="1" height="2" />
+					<rect x="9" y="6" width="1" height="2" />
+					<rect y="8" width="2" height="1" />
+					<rect x="4" y="8" width="1" height="1" />
+					<rect x="8" y="8" width="7" height="1" />
+					<rect y="9" width="1" height="3" />
+					<rect x="4" y="9" width="2" height="1" />
+					<rect x="8" y="9" width="1" height="1" />
+					<rect x="14" y="9" width="1" height="2" />
+					<rect x="1" y="10" width="3" height="1" />
+					<rect x="8" y="10" width="1" height="1" />
+					<rect x="3" y="11" width="4" height="1" />
+					<rect x="8" y="11" width="2" height="1" />
+					<rect x="13" y="11" width="2" height="1" />
+					<rect x="1" y="12" width="2" height="1" />
+					<rect x="4" y="12" width="1" height="2" />
+					<rect x="9" y="12" width="2" height="1" />
+					<rect x="12" y="12" width="2" height="1" />
+					<rect y="13" width="1" height="1" />
+					<rect x="2" y="13" width="1" height="1" />
+					<rect x="10" y="13" width="3" height="1" />
+					<rect x="14" y="13" width="1" height="1" />
+					<rect x="3" y="14" width="5" height="1" />
+					<rect x="11" y="14" width="1" height="1" />
+					<rect x="3" y="15" width="1" height="1" />
+					<rect x="8" y="15" width="4" height="1" />
 				</g>
-				<g transform="translate(16 0)">
-					<g fill="#0c1019">
-						<rect width="1" height="3" />
-						<rect x="1" width="1" height="1" />
-						<rect x="5" width="6" height="1" />
-						<rect x="14" width="1" height="1" />
-						<rect x="15" width="1" height="3" />
-						<rect x="2" y="1" width="4" height="1" />
-						<rect x="10" y="1" width="4" height="1" />
-						<rect x="1" y="2" width="1" height="1" />
-						<rect x="4" y="2" width="1" height="1" />
-						<rect x="11" y="2" width="1" height="1" />
-						<rect x="1" y="3" width="3" height="1" />
-						<rect x="12" y="3" width="1" height="1" />
-						<rect x="14" y="3" width="1" height="1" />
-						<rect x="1" y="4" width="1" height="3" />
-						<rect x="3" y="4" width="2" height="1" />
-						<rect x="11" y="4" width="3" height="1" />
-						<rect x="3" y="5" width="1" height="2" />
-						<rect x="5" y="5" width="6" height="1" />
-						<rect x="12" y="5" width="1" height="3" />
-						<rect x="4" y="6" width="1" height="2" />
-						<rect x="6" y="6" width="1" height="2" />
-						<rect x="9" y="6" width="1" height="2" />
-						<rect y="7" width="1" height="1" />
-						<rect y="8" width="5" height="1" />
-						<rect x="10" y="8" width="2" height="1" />
-						<rect y="9" width="1" height="1" />
-						<rect x="3" y="9" width="3" height="1" />
-						<rect x="8" y="9" width="7" height="1" />
-						<rect x="1" y="10" width="1" height="1" />
-						<rect x="3" y="10" width="1" height="1" />
-						<rect x="8" y="10" width="1" height="1" />
-						<rect x="14" y="10" width="1" height="1" />
-						<rect x="2" y="11" width="5" height="1" />
-						<rect x="8" y="11" width="1" height="1" />
-						<rect x="14" y="11" width="1" height="1" />
-						<rect x="1" y="12" width="1" height="2" />
-						<rect x="4" y="12" width="1" height="3" />
-						<rect x="8" y="12" width="2" height="1" />
-						<rect x="13" y="12" width="3" height="1" />
-						<rect x="9" y="13" width="2" height="1" />
-						<rect x="12" y="13" width="2" height="1" />
-						<rect y="14" width="1" height="1" />
-						<rect x="8" y="14" width="6" height="1" />
-						<rect x="4" y="15" width="4" height="1" />
-						<rect x="12" y="15" width="1" height="1" />
-					</g>
-					<g fill="#f5be86">
-						<rect x="1" y="1" width="1" height="1" />
-						<rect x="6" y="1" width="4" height="1" />
-						<rect x="14" y="1" width="1" height="2" />
-						<rect x="2" y="2" width="2" height="1" />
-						<rect x="5" y="2" width="1" height="1" />
-						<rect x="10" y="2" width="1" height="1" />
-						<rect x="12" y="2" width="2" height="1" />
-						<rect x="4" y="3" width="1" height="1" />
-						<rect x="11" y="3" width="1" height="1" />
-						<rect x="13" y="3" width="1" height="1" />
-						<rect x="2" y="4" width="1" height="3" />
-						<rect x="5" y="4" width="6" height="1" />
-						<rect x="5" y="6" width="1" height="2" />
-						<rect x="7" y="6" width="2" height="2" />
-						<rect x="10" y="6" width="1" height="2" />
-						<rect x="1" y="7" width="3" height="1" />
-						<rect x="6" y="8" width="4" height="1" />
-						<rect x="1" y="9" width="2" height="1" />
-						<rect x="9" y="10" width="2" height="1" />
-						<rect x="2" y="10" width="1" height="1" />
-						<rect x="12" y="10" width="2" height="1" />
-						<rect x="10" y="11" width="3" height="1" />
-						<rect x="7" y="11" width="1" height="1" />
-						<rect x="2" y="12" width="2" height="2" />
-						<rect x="11" y="12" width="1" height="2" />
-						<rect x="14" y="13" width="2" height="1" />
-						<rect x="1" y="14" width="3" height="1" />
-						<rect x="14" y="14" width="1" height="1" />
-						<rect x="8" y="15" width="4" height="1" />
-					</g>
-					<g fill="#035f90">
-						<rect x="6" y="2" width="4" height="1" />
-						<rect x="5" y="3" width="6" height="1" />
-						<rect x="4" y="5" width="1" height="1" />
-						<rect x="11" y="5" width="1" height="3" />
-						<rect x="5" y="8" width="1" height="1" />
-						<rect x="6" y="9" width="2" height="1" />
-						<rect x="11" y="10" width="1" height="1" />
-						<rect x="4" y="10" width="4" height="1" />
-						<rect x="9" y="11" width="1" height="1" />
-						<rect x="13" y="11" width="1" height="1" />
-						<rect x="5" y="12" width="3" height="1" />
-						<rect x="10" y="12" width="1" height="1" />
-						<rect x="12" y="12" width="1" height="1" />
-						<rect x="5" y="13" width="4" height="1" />
-						<rect x="5" y="14" width="3" height="1" />
-					</g>
+				<g fill="#f5be86">
+					<rect x="1" y="1" width="1" height="2" />
+					<rect x="6" y="1" width="4" height="1" />
+					<rect x="14" y="1" width="1" height="2" />
+					<rect x="2" y="2" width="2" height="1" />
+					<rect x="5" y="2" width="1" height="1" />
+					<rect x="10" y="2" width="1" height="1" />
+					<rect x="12" y="2" width="2" height="1" />
+					<rect x="4" y="3" width="1" height="1" />
+					<rect x="11" y="3" width="1" height="1" />
+					<rect x="13" y="3" width="1" height="1" />
+					<rect x="2" y="4" width="1" height="5" />
+					<rect x="5" y="4" width="6" height="1" />
+					<rect x="5" y="6" width="1" height="2" />
+					<rect x="7" y="6" width="2" height="2" />
+					<rect x="10" y="6" width="1" height="2" />
+					<rect x="6" y="8" width="2" height="1" />
+					<rect x="1" y="9" width="3" height="1" />
+					<rect x="9" y="9" width="2" height="1" />
+					<rect x="12" y="9" width="2" height="1" />
+					<rect x="10" y="10" width="3" height="1" />
+					<rect x="1" y="11" width="2" height="1" />
+					<rect x="7" y="11" width="1" height="1" />
+					<rect x="11" y="11" width="1" height="2" />
+					<rect x="3" y="12" width="1" height="2" />
+					<rect x="1" y="13" width="1" height="1" />
+					<rect x="13" y="13" width="1" height="1" />
+					<rect y="14" width="3" height="1" />
+					<rect x="12" y="14" width="3" height="1" />
+					<rect x="4" y="15" width="4" height="1" />
+				</g>
+				<g fill="#035f90">
+					<rect x="6" y="2" width="4" height="1" />
+					<rect x="5" y="3" width="6" height="1" />
+					<rect x="4" y="5" width="1" height="3" />
+					<rect x="11" y="5" width="1" height="3" />
+					<rect x="5" y="8" width="1" height="1" />
+					<rect x="6" y="9" width="2" height="1" />
+					<rect x="11" y="9" width="1" height="1" />
+					<rect x="4" y="10" width="4" height="1" />
+					<rect x="9" y="10" width="1" height="1" />
+					<rect x="13" y="10" width="1" height="1" />
+					<rect x="10" y="11" width="1" height="1" />
+					<rect x="12" y="11" width="1" height="1" />
+					<rect x="5" y="12" width="4" height="1" />
+					<rect x="5" y="13" width="5" height="1" />
+					<rect x="8" y="14" width="3" height="1" />
+				</g>
+			</symbol>
+			<symbol id="dragon-warrior-hero-2" viewBox="0 0 16 16">
+				<g fill="#0c1019">
+					<rect width="1" height="3" />
+					<rect x="1" width="1" height="1" />
+					<rect x="5" width="6" height="1" />
+					<rect x="14" width="1" height="1" />
+					<rect x="15" width="1" height="3" />
+					<rect x="2" y="1" width="4" height="1" />
+					<rect x="10" y="1" width="4" height="1" />
+					<rect x="1" y="2" width="1" height="1" />
+					<rect x="4" y="2" width="1" height="1" />
+					<rect x="11" y="2" width="1" height="1" />
+					<rect x="1" y="3" width="3" height="1" />
+					<rect x="12" y="3" width="1" height="1" />
+					<rect x="14" y="3" width="1" height="1" />
+					<rect x="1" y="4" width="1" height="3" />
+					<rect x="3" y="4" width="2" height="1" />
+					<rect x="11" y="4" width="3" height="1" />
+					<rect x="3" y="5" width="1" height="2" />
+					<rect x="5" y="5" width="6" height="1" />
+					<rect x="12" y="5" width="1" height="3" />
+					<rect x="4" y="6" width="1" height="2" />
+					<rect x="6" y="6" width="1" height="2" />
+					<rect x="9" y="6" width="1" height="2" />
+					<rect y="7" width="1" height="1" />
+					<rect y="8" width="5" height="1" />
+					<rect x="10" y="8" width="2" height="1" />
+					<rect y="9" width="1" height="1" />
+					<rect x="3" y="9" width="3" height="1" />
+					<rect x="8" y="9" width="7" height="1" />
+					<rect x="1" y="10" width="1" height="1" />
+					<rect x="3" y="10" width="1" height="1" />
+					<rect x="8" y="10" width="1" height="1" />
+					<rect x="14" y="10" width="1" height="1" />
+					<rect x="2" y="11" width="5" height="1" />
+					<rect x="8" y="11" width="1" height="1" />
+					<rect x="14" y="11" width="1" height="1" />
+					<rect x="1" y="12" width="1" height="2" />
+					<rect x="4" y="12" width="1" height="3" />
+					<rect x="8" y="12" width="2" height="1" />
+					<rect x="13" y="12" width="3" height="1" />
+					<rect x="9" y="13" width="2" height="1" />
+					<rect x="12" y="13" width="2" height="1" />
+					<rect y="14" width="1" height="1" />
+					<rect x="8" y="14" width="6" height="1" />
+					<rect x="4" y="15" width="4" height="1" />
+					<rect x="12" y="15" width="1" height="1" />
+				</g>
+				<g fill="#f5be86">
+					<rect x="1" y="1" width="1" height="1" />
+					<rect x="6" y="1" width="4" height="1" />
+					<rect x="14" y="1" width="1" height="2" />
+					<rect x="2" y="2" width="2" height="1" />
+					<rect x="5" y="2" width="1" height="1" />
+					<rect x="10" y="2" width="1" height="1" />
+					<rect x="12" y="2" width="2" height="1" />
+					<rect x="4" y="3" width="1" height="1" />
+					<rect x="11" y="3" width="1" height="1" />
+					<rect x="13" y="3" width="1" height="1" />
+					<rect x="2" y="4" width="1" height="3" />
+					<rect x="5" y="4" width="6" height="1" />
+					<rect x="5" y="6" width="1" height="2" />
+					<rect x="7" y="6" width="2" height="2" />
+					<rect x="10" y="6" width="1" height="2" />
+					<rect x="1" y="7" width="3" height="1" />
+					<rect x="6" y="8" width="4" height="1" />
+					<rect x="1" y="9" width="2" height="1" />
+					<rect x="9" y="10" width="2" height="1" />
+					<rect x="2" y="10" width="1" height="1" />
+					<rect x="12" y="10" width="2" height="1" />
+					<rect x="10" y="11" width="3" height="1" />
+					<rect x="7" y="11" width="1" height="1" />
+					<rect x="2" y="12" width="2" height="2" />
+					<rect x="11" y="12" width="1" height="2" />
+					<rect x="14" y="13" width="2" height="1" />
+					<rect x="1" y="14" width="3" height="1" />
+					<rect x="14" y="14" width="1" height="1" />
+					<rect x="8" y="15" width="4" height="1" />
+				</g>
+				<g fill="#035f90">
+					<rect x="6" y="2" width="4" height="1" />
+					<rect x="5" y="3" width="6" height="1" />
+					<rect x="4" y="5" width="1" height="1" />
+					<rect x="11" y="5" width="1" height="3" />
+					<rect x="5" y="8" width="1" height="1" />
+					<rect x="6" y="9" width="2" height="1" />
+					<rect x="11" y="10" width="1" height="1" />
+					<rect x="4" y="10" width="4" height="1" />
+					<rect x="9" y="11" width="1" height="1" />
+					<rect x="13" y="11" width="1" height="1" />
+					<rect x="5" y="12" width="3" height="1" />
+					<rect x="10" y="12" width="1" height="1" />
+					<rect x="12" y="12" width="1" height="1" />
+					<rect x="5" y="13" width="4" height="1" />
+					<rect x="5" y="14" width="3" height="1" />
 				</g>
 			</symbol>
 
@@ -410,9 +415,20 @@
 			{@html feedback}
 		</p>
 	{:else if state === 'find'}
-		<p in:fade>
-			You found <strong>Loto Seal</strong>. Congratulations!
-		</p>
+		<div in:fly={{ delay: 750 }}>
+			<p>
+				You found <strong>Loto Seal</strong>. Congratulations!
+			</p>
+			<button on:click={handleReset}>
+				Play again?
+				<svg width="1em" height="1em" viewBox="0 0 16 16" shape-rendering="crispEdges">
+					<g>
+						<use href="#dragon-warrior-hero-1" />
+						<use x="-16" href="#dragon-warrior-hero-2" />
+					</g>
+				</svg>
+			</button>
+		</div>
 	{/if}
 </article>
 
@@ -421,15 +437,50 @@
 		position: relative;
 	}
 
-	article > p {
+	article > svg {
+		display: block;
+	}
+
+	article > p,
+	article > div {
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		transform: translate(-50%, -50%);
 		color: hsl(0, 0%, 23%);
 		background: hsl(0, 0%, 97%);
 		padding: 0.35rem 0.75rem;
 		border-radius: 0.35rem;
 		border: 0.2rem solid currentColor;
-		transform: translate(-50%, -50%);
+	}
+
+	article > div > * + * {
+		margin-top: 0.75em;
+	}
+
+	button {
+		cursor: pointer;
+		color: inherit;
+		border: none;
+		background: none;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	button > svg {
+		width: 32px;
+		height: auto;
+	}
+
+	button:hover > svg > g {
+		animation: step 0.4s step-end infinite;
+	}
+
+	@keyframes step {
+		50% {
+			transform: translateX(16px);
+		}
 	}
 </style>
