@@ -6,7 +6,7 @@ datetime: '2022-09-29T18:14'
 
 <script>
   import Talk from "./Talk.svelte"
-  import Pots from "./Pots.svelte"
+  import Vases from "./Vases.svelte"
   import LotoSeal from "./LotoSeal.svelte"
 </script>
 
@@ -43,7 +43,7 @@ In Tantegel castle the game prompts you to talk to everybody. On the first floor
 The handful of pots you find mere steps away from the king's room is enough to get addicted to the practice. Those pots and the nagging,
 evil suspicion that they might not hold anything useful, but maybe just this time.
 
-<Pots />
+<Vases />
 
 The series actually doubles down on the feature. Beside opening treasure chests and the obligatory door, you'll soon look into everything,
 be it a drawer, a closet, and yes, sometimes even seemingly unimportant, empty tiles.
