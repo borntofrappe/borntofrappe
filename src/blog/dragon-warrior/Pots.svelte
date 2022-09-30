@@ -1,11 +1,31 @@
+<script>
+	const vases = [
+		"What's this? The Herb?",
+		"What's this? The Cloth?",
+		"What's this? The STRseed?",
+		"What's this? The DEFseed?",
+		'But nothing was found.'
+	];
+
+	const n = 4;
+	const options = Array(n)
+		.fill()
+		.map((_, i) => ({
+			value: vases[Math.floor(Math.random() * vases.length)],
+			id: i
+		}));
+
+	let vase = null;
+</script>
+
 <div>
 	<form on:submit|preventDefault>
 		<fieldset>
 			<legend> Peer into a vase </legend>
 
-			{#each Array(4) as _}
+			{#each options as { id }}
 				<label>
-					<input type="radio" />
+					<input type="radio" bind:group={vase} value={id} />
 					<svg viewBox="0 0 16 16" width="1em" height="1em" shape-rendering="crispEdges">
 						<g fill="#0c1019">
 							<rect x="5" width="6" height="1" />
@@ -107,7 +127,12 @@
 		</fieldset>
 	</form>
 
-	<p>What's this? The Herb?</p>
+	<p>
+		<span aria-hidden="true">{vase === null ? options[0].value : options[vase].value}</span>
+		{#if vase !== null}
+			<span>{options[vase].value}</span>
+		{/if}
+	</p>
 </div>
 
 <style>
@@ -149,5 +174,25 @@
 	svg {
 		width: 64px;
 		height: auto;
+	}
+
+	p {
+		position: relative;
+	}
+
+	p > span {
+		display: inline-block;
+	}
+
+	p > span:nth-of-type(1) {
+		opacity: 0;
+	}
+
+	p > span:nth-of-type(2) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 </style>
