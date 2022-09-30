@@ -1,9 +1,10 @@
 <script>
+	import { fly } from 'svelte/transition';
 	const columns = 10;
 	const rows = 7;
 
 	const column = Math.floor(Math.random() * columns);
-	const row = Math.floor(Math.random() * rows);
+	const row = Math.floor(Math.random() * (rows - 1)) + 1;
 
 	let element = null;
 	let isFound = false;
@@ -355,22 +356,13 @@
 
 	<rect width={columns} height={rows} fill="url(#dragon-warrior-pattern-swamp)" />
 
-	<!-- HIDE LOTO SEAL -->
 	{#if isFound}
 		<g transform="translate({column} {row})">
-			<svg width="1" height="1">
-				<use href="#dragon-warrior-loto-seal" />
-			</svg>
+			<g in:fly={{ y: 1 }}>
+				<svg y="-1" width="1" height="1">
+					<use href="#dragon-warrior-loto-seal" />
+				</svg>
+			</g>
 		</g>
 	{/if}
-
-	<!-- REMOVE GRID LINES -->
-	<g fill="none" stroke="#ffffff" stroke-width="0.05">
-		{#each Array(rows) as _, i}
-			<path d="M 0 {i} h {columns}" />
-		{/each}
-		{#each Array(columns) as _, i}
-			<path d="M {i} 0 v {rows}" />
-		{/each}
-	</g>
 </svg>
