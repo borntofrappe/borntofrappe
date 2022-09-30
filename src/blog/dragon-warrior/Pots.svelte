@@ -1,21 +1,32 @@
 <script>
 	const vases = [
-		"What's this? The Herb?",
-		"What's this? The Cloth?",
-		"What's this? The STRseed?",
-		"What's this? The DEFseed?",
-		'But nothing was found.'
-	];
+		{ value: "What's this? The Herb?", odds: 0.2 },
+		{ value: "What's this? The Cloth?", odds: 0.1 },
+		{ value: "What's this? The STRseed?", odds: 0.05 },
+		{ value: "What's this? The DEFseed?", odds: 0.05 },
+		{ value: 'But nothing was found.', odds: 0.6 }
+	].reduce((acc, curr, i) => {
+		if (i === 0) {
+			return [...acc, { ...curr }];
+		} else {
+			const { odds } = curr;
+			return [...acc, { ...curr, odds: odds + acc[i - 1].odds }];
+		}
+	}, []);
 
 	const n = 4;
 	const options = Array(n)
 		.fill()
-		.map((_, i) => ({
-			value: vases[Math.floor(Math.random() * vases.length)],
-			id: i
-		}));
+		.map((_, i) => {
+			const odds = Math.random();
+			const { value } = vases.find((vase) => odds < vase.odds);
+			return {
+				value,
+				i
+			};
+		});
 
-	let vase = null;
+	let index = null;
 </script>
 
 <div>
@@ -23,9 +34,9 @@
 		<fieldset>
 			<legend> Peer into a vase </legend>
 
-			{#each options as { id }}
+			{#each options as { i }}
 				<label>
-					<input type="radio" bind:group={vase} value={id} />
+					<input type="radio" bind:group={index} value={i} />
 					<svg viewBox="0 0 16 16" width="1em" height="1em" shape-rendering="crispEdges">
 						<g fill="#0c1019">
 							<rect x="5" width="6" height="1" />
@@ -128,9 +139,9 @@
 	</form>
 
 	<p>
-		<span aria-hidden="true">{vase === null ? options[0].value : options[vase].value}</span>
-		{#if vase !== null}
-			<span>{options[vase].value}</span>
+		<span aria-hidden="true">{index === null ? options[0].value : options[index].value}</span>
+		{#if index !== null}
+			<span>{options[index].value}</span>
 		{/if}
 	</p>
 </div>
