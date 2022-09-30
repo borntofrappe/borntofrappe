@@ -4,9 +4,34 @@
 
 	const column = Math.floor(Math.random() * columns);
 	const row = Math.floor(Math.random() * rows);
+
+	let element = null;
+	let isFound = false;
+	const handleClick = (e) => {
+		if (isFound) return;
+
+		const { clientX, clientY } = e;
+		const { top, left, width, height } = element.getBoundingClientRect();
+
+		const c = Math.floor(((clientX - left) / width) * columns);
+		const r = Math.floor(((clientY - top) / height) * rows);
+
+		console.log(c, r);
+
+		if (c === column && r === row) {
+			isFound = true;
+		}
+	};
+
+	console.log(column, row);
 </script>
 
-<svg viewBox="0 0 {columns} {rows}" shape-rendering="crispEdges">
+<svg
+	on:click={handleClick}
+	bind:this={element}
+	viewBox="0 0 {columns} {rows}"
+	shape-rendering="crispEdges"
+>
 	<defs>
 		<symbol id="dragon-warrior-hero" viewBox="0 0 32 16">
 			<g>
@@ -331,11 +356,13 @@
 	<rect width={columns} height={rows} fill="url(#dragon-warrior-pattern-swamp)" />
 
 	<!-- HIDE LOTO SEAL -->
-	<g transform="translate({column} {row})">
-		<svg width="1" height="1">
-			<use href="#dragon-warrior-loto-seal" />
-		</svg>
-	</g>
+	{#if isFound}
+		<g transform="translate({column} {row})">
+			<svg width="1" height="1">
+				<use href="#dragon-warrior-loto-seal" />
+			</svg>
+		</g>
+	{/if}
 
 	<!-- REMOVE GRID LINES -->
 	<g fill="none" stroke="#ffffff" stroke-width="0.05">
