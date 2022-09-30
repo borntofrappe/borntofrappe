@@ -14,19 +14,27 @@
 		}
 	}, []);
 
+	const getOptions = (n = 4) =>
+		Array(n)
+			.fill()
+			.map((_, i) => {
+				const odds = Math.random();
+				const { value } = vases.find((vase) => odds < vase.odds);
+				return {
+					value,
+					i
+				};
+			});
+
 	const n = 4;
-	const options = Array(n)
-		.fill()
-		.map((_, i) => {
-			const odds = Math.random();
-			const { value } = vases.find((vase) => odds < vase.odds);
-			return {
-				value,
-				i
-			};
-		});
+
+	let options = getOptions(n);
 
 	let index = null;
+
+	$: if (index) {
+		options = getOptions(n);
+	}
 </script>
 
 <div>
