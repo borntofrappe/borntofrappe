@@ -1,4 +1,6 @@
 <script>
+	import { typewriter } from './utils';
+
 	const vases = [
 		{ value: "What's this? The Herb?", odds: 0.2 },
 		{ value: "What's this? The Cloth?", odds: 0.1 },
@@ -149,7 +151,9 @@
 	<p>
 		<span aria-hidden="true">{index === null ? options[0].value : options[index].value}</span>
 		{#if index !== null}
-			<span>{options[index].value}</span>
+			{#key index}
+				<span in:typewriter>{options[index].value}</span>
+			{/key}
 		{/if}
 	</p>
 </div>
