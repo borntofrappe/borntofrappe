@@ -93,5 +93,6 @@
 
 	article {
 		max-width: 32rem;
+		width: 100%;
 	}
 </style>
