@@ -8,7 +8,7 @@ I'm a software developer focused on Svelte 🧡 and SVG ✨.
 
 Norther Italy 🌍.
 
-<!-- Also:
+Also:
 
 - [Twitter](https://twitter.com/borntofrappe) 🐦
 
@@ -16,6 +16,6 @@ Norther Italy 🌍.
 
 - [freeCodeCamp](https://www.freecodecamp.org/borntofrappe) 🔥
 
-And rather proudly: [borntofrappe.netlify.app](https://borntofrappe.netlify.app/) 🙌. -->
+And rather proudly: [borntofrappe.netlify.app](https://borntofrappe.netlify.app/) 🙌.
 
 ![That's all for now. 👋🏻👋🏻](./outro.svg)
