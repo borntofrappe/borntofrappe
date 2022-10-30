@@ -160,6 +160,11 @@
 		? 'Play a new round of rainbow sixteen. Focus on a tile and press enter to hide the matching color.'
 		: 'Slide the tiles so that the colors are in the correct order. Focus on a tile and press enter or one of the possible arrow keys to change its position.'}
 >
+	<defs>
+		<symbol id="rainbow-sixteen-tile" viewbox="0 0 1 1">
+			<path d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" />
+		</symbol>
+	</defs>
 	<g class="focus" opacity="0">
 		<rect
 			x="-0.5"
@@ -183,7 +188,14 @@
 				>
 					{#if hidden}
 						<g transform="scale({$hiddenScale})">
-							<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+							<use
+								href="#rainbow-sixteen-tile"
+								x="-0.45"
+								y="-0.45"
+								width="0.9"
+								height="0.9"
+								{fill}
+							/>
 						</g>
 					{:else}
 						<g transform="scale({$scale})">
@@ -206,7 +218,14 @@
 									}
 								}}
 							>
-								<rect x="-0.45" y="-0.45" width="0.9" height="0.9" {fill} rx="0.15" />
+								<use
+									href="#rainbow-sixteen-tile"
+									x="-0.45"
+									y="-0.45"
+									width="0.9"
+									height="0.9"
+									{fill}
+								/>
 								<g class="focus" opacity="0">
 									<rect
 										x="-0.45"
@@ -248,14 +267,21 @@
 						}
 					}}
 				>
-					<rect opacity="0" x="-0.45" y="-0.45" width="0.9" height="0.9" rx="0.15" />
+					<use
+						href="#rainbow-sixteen-tile"
+						opacity="0"
+						x="-0.45"
+						y="-0.45"
+						width="0.9"
+						height="0.9"
+					/>
 					<g class="focus" opacity="0">
-						<rect
+						<use
+							href="#rainbow-sixteen-tile"
 							x="-0.45"
 							y="-0.45"
 							width="0.9"
 							height="0.9"
-							rx="0.15"
 							fill="none"
 							stroke="currentColor"
 							stroke-width="0.05"
