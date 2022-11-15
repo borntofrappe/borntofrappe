@@ -149,6 +149,7 @@
 
 <svg
 	viewBox="-0.5 -0.5 {size} {size}"
+	role="menu"
 	tabindex="0"
 	aria-labelledby="title-zeros-and-ones desc-zeros-and-ones"
 	style:outline="none"
@@ -256,7 +257,7 @@
 
 	{#if isSolved}
 		<g transform="translate(-0.5 -0.5)">
-			<g opacity="0" style:cursor="pointer" on:click={handleReset}>
+			<g opacity="0" style:cursor="pointer" on:click={handleReset} on:keydown>
 				<rect width={size} height={size} rx="0.25" />
 			</g>
 		</g>

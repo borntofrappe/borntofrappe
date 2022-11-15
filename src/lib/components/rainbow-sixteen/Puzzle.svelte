@@ -155,6 +155,7 @@
 <svg
 	viewBox="-0.55 -0.55 {size + 0.1} {size + 0.1}"
 	class="focusable"
+	role="menu"
 	tabindex="0"
 	aria-label={isAnimated
 		? 'Play a new round of rainbow sixteen. Focus on a tile and press enter to hide the matching color.'

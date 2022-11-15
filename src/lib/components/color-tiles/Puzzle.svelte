@@ -287,6 +287,7 @@
 		strokeWidth} {viewBoxHeight + strokeWidth}"
 	class="focusable"
 	style:outline="none"
+	role="menu"
 	tabindex="0"
 	aria-label={isGameOver
 		? 'The game is over, but you can both play a new round. Focus on the grid and press enter to start with a new deck.'

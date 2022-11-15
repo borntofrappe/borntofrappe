@@ -158,6 +158,7 @@
 		on:click={() => {
 			if (!isSolved) handleBlur();
 		}}
+		role="menu"
 		tabindex="0"
 		aria-labelledby="title-more-or-less desc-more-or-less"
 		style:outline="none"
@@ -247,6 +248,7 @@
 								on:focus={() => {
 									if (!isSolved) handleFocus({ row, column });
 								}}
+								on:keydown
 							>
 								<g transform="translate(-0.3 -0.3)">
 									<Tile

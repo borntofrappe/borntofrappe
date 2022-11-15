@@ -113,6 +113,7 @@
 	viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}"
 	class="focusable"
 	style:outline="none"
+	role="menu"
 	tabindex="0"
 	aria-label="Avoid mines and clear the grid. Focus on a cell and press enter to reveal the content. Press f to toggle a flag and mark the cell as locked."
 >

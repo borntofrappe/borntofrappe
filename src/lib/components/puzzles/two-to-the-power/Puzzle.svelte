@@ -268,6 +268,7 @@
 <div>
 	<svg
 		viewBox="-0.5 -0.5 {size} {size + 1}"
+		role="menu"
 		tabindex="0"
 		aria-labelledby="title-two-to-the-power desc-two-to-the-power"
 		style:outline="none"
@@ -405,6 +406,7 @@
 						on:click={() => {
 							handleSlide(direction);
 						}}
+						on:keydown
 					>
 						<path opacity="0" d="M 0 0 l {(size / 2) * -1} {(size / 2) * -1} h {size}z" />
 					</g>

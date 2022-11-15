@@ -144,6 +144,7 @@
 		on:click={() => {
 			if (!isSolved) handleBlur();
 		}}
+		role="menu"
 		tabindex="0"
 		aria-labelledby="title-addition-square desc-addition-square"
 		style:outline="none"
@@ -316,6 +317,7 @@
 								on:focus={() => {
 									if (!isSolved) handleFocus({ row, column });
 								}}
+								on:keydown
 							>
 								<g transform="translate(-0.35 -0.35)">
 									<Tile

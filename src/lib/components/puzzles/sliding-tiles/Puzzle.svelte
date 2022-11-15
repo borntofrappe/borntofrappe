@@ -143,6 +143,7 @@
 <svg
 	viewBox="-0.5 -0.5 {size} {size}"
 	tabindex="0"
+	role="menu"
 	aria-labelledby="title-sliding-tiles desc-sliding-tiles"
 	style:outline="none"
 	class="focusable"

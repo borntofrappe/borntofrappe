@@ -277,6 +277,7 @@
 		bind:this={element}
 		viewBox="0 0 {columns} {rows}"
 		shape-rendering="crispEdges"
+		on:keydown
 	>
 		<defs>
 			<symbol id="dragon-warrior-swamp" viewBox="0 0 16 8">

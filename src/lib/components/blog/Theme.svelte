@@ -221,6 +221,7 @@
 		on:mouseleave={handleEnd}
 		on:mousemove={handleMove}
 		opacity="0"
+		on:keydown
 	>
 		<rect width="120" height="53" />
 	</g>
