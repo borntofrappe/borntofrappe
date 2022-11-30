@@ -1,7 +1,7 @@
 <script>
 	export let text = 'Hello world';
 
-	const lines = text.split(' ').map((d) => d.toUpperCase().split(''));
+	const lines = text.split(' ').map((d) => d.split(''));
 
 	const squircle = 50;
 	const inset = 20;
@@ -43,8 +43,13 @@
 				font-size={squircle / 2}
 				font-weight="700"
 			>
-				{#each line as letter, i}
-					<tspan x={squircle * i}>
+				{#each line as letter, j}
+					<tspan
+						x={squircle * j}
+						class="fade"
+						style:animation-delay="{0.4 + 0.16 * (i + j)}s"
+						style:animation-duration="0.3s"
+					>
 						{letter}
 					</tspan>
 				{/each}
@@ -64,17 +69,23 @@
 	<g transform="translate({squircle / 2 + inset / 2} {squircle / 2 + inset / 2})">
 		{#each lines as line, i}
 			<g transform="translate(0 {squircle * i})">
-				{#each line as _, i}
-					<g transform="translate({squircle * i} 0)">
-						<use
-							transform="rotate(45)"
-							href="#squircle-{id}"
-							x={-squircle / 2}
-							y={-squircle / 2}
-							width={squircle}
-							height={squircle}
-							fill="#38311e"
-						/>
+				{#each line as _, j}
+					<g transform="translate({squircle * j} 0)">
+						<g
+							class="transform"
+							style:animation-delay="{0.2 * (i + j)}s"
+							style:animation-duration="1s"
+						>
+							<use
+								transform="rotate(45)"
+								href="#squircle-{id}"
+								x={-squircle / 2}
+								y={-squircle / 2}
+								width={squircle}
+								height={squircle}
+								fill="currentColor"
+							/>
+						</g>
 					</g>
 				{/each}
 			</g>
@@ -89,7 +100,7 @@
 						attributeName="transform"
 						type="translate"
 						to={overlay}
-						dur="10s"
+						dur="30s"
 						repeatCount="indefinite"
 					/>
 					<g transform="translate(-{overlay / 2} -{overlay / 2})">
@@ -107,3 +118,33 @@
 		{/each}
 	</g>
 </svg>
+
+<style>
+	.fade {
+		animation: fade cubic-bezier(0.37, 0, 0.63, 1) both;
+	}
+
+	@keyframes fade {
+		from {
+			fill-opacity: 0;
+		}
+		to {
+			fill-opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.transform {
+			animation: transform cubic-bezier(0.34, 1.56, 0.64, 1) both;
+		}
+
+		@keyframes transform {
+			from {
+				transform: scale(0);
+			}
+			to {
+				transform: scale(1) rotate(1turn);
+			}
+		}
+	}
+</style>
