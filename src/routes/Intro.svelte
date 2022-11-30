@@ -1,13 +1,14 @@
 <script>
 	import Ray from '$lib/components/mignon/Ray.svelte';
 	import icons from '$lib/utils/icons';
+	import Heading from './Heading.svelte';
 </script>
 
-<div>
+<div class="container">
 	<header>
-		<h1>Hi there</h1>
+		<Heading text="Hi there" />
 
-		<Ray />
+		<div class="float"><Ray /></div>
 
 		<p>
 			Name's Gabriele Corti. <br />I'm the type of person who delights in writing code, be it for a
@@ -34,7 +35,7 @@
 </div>
 
 <style>
-	div {
+	.container {
 		color: hsl(44, 30%, 17%);
 		background: hsl(41, 100%, 97%);
 		min-height: 100vh;
@@ -52,7 +53,11 @@
 	}
 
 	header > * + * {
-		margin-top: 0.75em;
+		margin-top: 0.8em;
+	}
+
+	header > :global(svg) {
+		max-width: 40ch;
 	}
 
 	p {
@@ -77,13 +82,11 @@
 		content: ',';
 	}
 
-	header > :global(svg) {
+	header > .float {
 		float: right;
 		shape-outside: circle();
-		display: block;
 		max-width: 24rem;
 		width: 100%;
-		height: auto;
 	}
 
 	@media screen and (max-width: 36rem) {
@@ -92,7 +95,7 @@
 			flex-direction: column;
 		}
 
-		header > :global(svg) {
+		header > .float {
 			order: 1;
 			align-self: center;
 		}
