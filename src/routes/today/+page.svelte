@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 
-	const days = new Date().getDate();
+	const today = new Date();
+	const days = today.getDate();
 
 	const markings = Array(days)
 		.fill()
@@ -44,9 +45,47 @@
 
 				marks[i].setAttribute('stroke-dashoffset', '0');
 			}
+
 			clearTimeout(timeout);
 		}, initialDelay);
 	});
+
+	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+
+	const addSuffix = (days) => {
+		const suffixes = {
+			'1': 'st',
+			'2': 'nd',
+			'3': 'rd'
+		};
+
+		const [u, uu] = days.toString().split('').reverse();
+		const suffix = uu !== '1' && suffixes[u];
+		return suffix || 'th';
+	};
+
+	const format = (date) => {
+		const day = date.getDay();
+		const days = date.getDate();
+		const month = date.getMonth();
+		const year = date.getFullYear();
+
+		return `${weekdays[day]}, ${days}${addSuffix(days)} of ${months[month]} ${year}`;
+	};
 </script>
 
 <svelte:head>
@@ -58,18 +97,13 @@
 </svelte:head>
 
 <div>
+	<h1>{format(today)}</h1>
 	<svg bind:this={svg} viewBox="-0.25 -0.25 {5 * markings.length} 5">
 		<title>Today is day number {days}</title>
 		<defs>
 			<filter id="filter" filterUnits="userSpaceOnUse">
-				<feTurbulence type="turbulence" baseFrequency="0.2" numOctaves="2" result="turbulence" />
-				<feDisplacementMap
-					in2="turbulence"
-					in="SourceGraphic"
-					scale="1"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
+				<feTurbulence type="turbulence" baseFrequency="0.18" numOctaves="10" result="turbulence" />
+				<feDisplacementMap in2="turbulence" in="SourceGraphic" scale="1.25" />
 			</filter>
 
 			{#each Array(4) as _, i}
@@ -104,12 +138,39 @@
 		background: hsl(0, 0%, 17%);
 		min-height: 100vh;
 		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem 0;
+		padding: 1rem;
 	}
 
 	div > svg {
-		max-width: 36rem;
-		width: 80vmin;
+		max-width: 30rem;
+		width: 90vw;
+		height: auto;
 		display: block;
-		margin: auto;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		filter: url('data:image/svg+xml,\
+			<svg xmlns="http://www.w3.org/2000/svg">\
+			<filter id="filter">\
+			<feTurbulence\
+                type="turbulence"\
+                baseFrequency="0.7"\
+                numOctaves="5"\
+                result="turbulence" />\
+			<feDisplacementMap\
+                in2="turbulence"\
+                in="SourceGraphic"\
+                scale="3" />\
+			</filter>\
+        </svg>#filter');
+	}
+
+	h1::selection {
+		background: hsl(0, 0%, 92%, 0.4);
 	}
 </style>
