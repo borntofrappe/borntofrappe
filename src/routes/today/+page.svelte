@@ -13,6 +13,7 @@
 
 <style>
 	main {
+		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -20,10 +21,21 @@
 		min-height: 100vh;
 		color: hsl(0, 0%, 92%);
 		background: hsl(0, 0%, 17%);
+		position: relative;
+	}
+
+	main::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: hsl(0, 0%, 100%);
+		opacity: 0.35;
+		filter: url(#filter-noise);
 	}
 
 	main ::selection {
-		background: hsl(0, 0%, 10%);
+		background: hsl(0, 0%, 17%);
 	}
 
 	h1 {
