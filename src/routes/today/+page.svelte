@@ -1,6 +1,7 @@
 <script>
 	import { format } from './utils.js';
 	import Defs from './Defs.svelte';
+	import Marks from './Marks.svelte';
 
 	const date = new Date();
 </script>
@@ -9,12 +10,14 @@
 
 <main>
 	<h1>{format(date)}</h1>
+	<Marks n={date.getDate()} />
 </main>
 
 <style>
 	main {
 		padding: 1rem;
 		display: flex;
+		gap: 0.5rem 0;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -41,6 +44,16 @@
 	h1 {
 		text-align: center;
 		font-size: 4rem;
+	}
+
+	main > :global(svg) {
+		display: block;
+		max-height: 16rem;
+		width: auto;
+		max-width: 100%;
+	}
+
+	main > :global(*) {
 		filter: url(#filter-chalkboard);
 	}
 </style>
