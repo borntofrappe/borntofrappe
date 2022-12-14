@@ -6,6 +6,15 @@
 	const date = new Date();
 </script>
 
+<svelte:head>
+	<title>borntofrappe | Today</title>
+	<meta
+		name="description"
+		content="What day is today? Here's a direct answer to the often puzzling question."
+	/>
+	<link rel="icon" href="/icons/today.svg" type="image/svg+xml" />
+</svelte:head>
+
 <Defs />
 
 <main>
