@@ -70,3 +70,21 @@ Seemingly solid.
 npm run build
 npm run preview
 ```
+
+## debugging
+
+build fails
+
+```text
+notsup Required {"node":"^12.22.0 || ^14.17.0 || >=16.0.0"}
+```
+
+More config.
+
+```toml
+[build.environment]
+  NODE_VERSION = "18.13.0"
+  NPM_VERSION:  "9.2.0"
+```
+
+npm seemingly unnecessary, but I like the options paired.
