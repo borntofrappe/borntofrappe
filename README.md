@@ -21,3 +21,9 @@ npm create svelte@latest
 - no playwright
 
 - no vitest
+
+## hello world
+
+A custom icon.
+
+A makeshift landing page.
