@@ -88,3 +88,12 @@ More config.
 ```
 
 npm seemingly unnecessary, but I like the options paired.
+
+Oopsie.
+
+```diff
+-NPM_VERSION:  "9.2.0"
++NPM_VERSION = "9.2.0"
+```
+
+better off on alone?
