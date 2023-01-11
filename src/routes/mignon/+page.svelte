@@ -1,10 +1,13 @@
 <script>
-	import Ray from './mignon/Ray.svelte';
+	import Ray from './Ray.svelte';
 </script>
 
 <svelte:head>
-	<title>borntofrappe</title>
-	<meta name="description" content="Let's keep smiling." />
+	<title>borntofrappe | Mignon</title>
+	<meta
+		name="description"
+		content="This website has a mascot. It comes from the small village of Mignon, highly reputed for its whimsy and charm. Name's Ray."
+	/>
 </svelte:head>
 
 <main>

@@ -112,3 +112,5 @@ git remote set-head origin -a
 Just remember to update the production branch in the build & deploy section.
 
 ## Day 1: a ray of light
+
+Add an interactive, animated mascot. Create a dedicated route and dedicated component.

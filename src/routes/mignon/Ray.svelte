@@ -106,9 +106,31 @@
 
 		<g transform="translate({$offset.x * 1.1} {$offset.y * 1.1})">
 			<g fill="#38311e" stroke="#ffdb47" stroke-width="1">
-				<circle r="2" cx="-5" />
-				<circle r="2" cx="5" />
+				<g transform="translate(-5 0)">
+					<circle class="blink" r="2" />
+				</g>
+				<g transform="translate(5 0)">
+					<circle class="blink" r="2" />
+				</g>
 			</g>
 		</g>
 	</g>
 </svg>
+
+<style>
+	.blink {
+		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	@keyframes blink {
+		8%,
+		12% {
+			transform: scaleY(0);
+		}
+		6%,
+		10%,
+		14% {
+			transform: scaleY(1);
+		}
+	}
+</style>
