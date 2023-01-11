@@ -118,3 +118,5 @@ Add an interactive, animated mascot. Create a dedicated route and dedicated comp
 Include svg icons in static/icons. Reference on a need-to-have basis.
 
 Add global stylesheet. Import from layout file for all routes.
+
+Introduce landing page with a descriptive header.
