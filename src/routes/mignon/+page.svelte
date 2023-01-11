@@ -8,6 +8,7 @@
 		name="description"
 		content="This website has a mascot. It comes from the small village of Mignon, highly reputed for its whimsy and charm. Name's Ray."
 	/>
+	<link rel="icon" href="icons/mignon.svg" type="image/svg+xml" />
 </svelte:head>
 
 <main>
