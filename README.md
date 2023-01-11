@@ -2,7 +2,7 @@
 
 Restarting from scratch. Restarting from kit v1.0. Restarting at 10.02 PM.
 
-# Day 0: a fresh start
+## Day 0: a fresh start
 
 ```bash
 npm create svelte@latest
@@ -22,13 +22,13 @@ npm create svelte@latest
 
 - no vitest
 
-## hello world
+### hello world
 
 A custom icon.
 
 A makeshift landing page.
 
-## deploy <!-- fingers crossed -->
+### deploy <!-- fingers crossed -->
 
 Adapter fit for netlify
 
@@ -71,7 +71,7 @@ npm run build
 npm run preview
 ```
 
-## debugging
+### debugging
 
 build fails
 
@@ -97,3 +97,18 @@ Oopsie.
 ```
 
 better off on alone?
+
+## bonus
+
+Rename master branch, just cause.
+
+```bash
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
+Just remember to update the production branch in the build & deploy section.
+
+## Day 1: a ray of light
