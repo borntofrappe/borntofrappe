@@ -111,7 +111,7 @@ git remote set-head origin -a
 
 Just remember to update the production branch in the build & deploy section.
 
-## Day 1: a ray of light
+## Day 1: a mascot, a global stylesheet and a few font files
 
 Add an interactive, animated mascot. Create a dedicated route and dedicated component.
 
@@ -120,3 +120,5 @@ Include svg icons in static/icons. Reference on a need-to-have basis.
 Add global stylesheet. Import from layout file for all routes.
 
 Introduce landing page with a descriptive header.
+
+Font loading: [mulish](https://fonts.google.com/specimen/Mulish), 4 faces (regular, italic, extra bold, extra bold italic), woff2, [two stage loading strategy](https://www.zachleat.com/web/css-tricks-web-fonts/) with a subset and a more featured version <!-- worth a more detailed write-up to remember the process -->

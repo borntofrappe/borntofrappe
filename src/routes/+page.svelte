@@ -32,9 +32,13 @@
 		</ol>
 
 		<h2>Why SVG?</h2>
+		<p>I'm building an answer at this very moment. Come back soon for a few entertaining demos.</p>
 		<p>
-			Take a look around this very website and, fingers crossed, you'll find the answer in
-			applications worth exploring.
+			Dated <time datetime="2023-01-11T15:11">January 11th 2023</time>. Feel free to
+			<a
+				href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Dated%20content&body=Please%20update%20the%20website"
+				>file an issue</a
+			> if this message becomes too old.
 		</p>
 	</header>
 </div>
