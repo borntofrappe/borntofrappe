@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+	margin: 0;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+:root {
+	--size-300: 0.8rem;
+	--size-400: 1rem;
+	--size-500: 1.25rem;
+	--size-600: 1.56rem;
+	--size-700: 1.95rem;
+	--size-800: 2.44rem;
+	--size-900: 3.05rem;
+
+	--color-000: hsl(341, 100%, 95%);
+	--color-100: hsl(338, 100%, 86%);
+	--color-200: hsl(336, 100%, 77%);
+	--color-300: hsl(334, 86%, 67%);
+	--color-400: hsl(330, 79%, 56%);
+	--color-500: hsl(328, 85%, 46%);
+	--color-600: hsl(326, 90%, 39%);
+	--color-700: hsl(324, 93%, 33%);
+	--color-800: hsl(322, 93%, 27%);
+	--color-900: hsl(320, 100%, 19%);
+
+	--grey-000: hsl(40, 23%, 97%);
+	--grey-100: hsl(43, 13%, 90%);
+	--grey-200: hsl(40, 15%, 80%);
+	--grey-300: hsl(39, 11%, 69%);
+	--grey-400: hsl(41, 8%, 61%);
+	--grey-500: hsl(41, 8%, 48%);
+	--grey-600: hsl(40, 10%, 30%);
+	--grey-700: hsl(37, 12%, 22%);
+	--grey-800: hsl(38, 13%, 17%);
+	--grey-900: hsl(30, 13%, 9%);
+}
+
+body {
+	--color: var(--grey-900);
+	--background: var(--grey-000);
+	--accent: var(--color-500);
+	color: var(--color);
+	background: var(--background);
+	accent-color: var(--accent);
+}
+
+::selection {
+	color: var(--grey-000);
+	background: var(--color-500);
+}
+
+body::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--background);
+}
+
+body::-webkit-scrollbar-thumb {
+	border: 0.2rem solid var(--background);
+	border-radius: 0.4rem;
+	background: var(--accent);
+}
+
+a {
+	color: inherit;
+	font-weight: 700;
+}
+
+p {
+	line-height: 1.75;
+}
+
+h1 {
+	font-size: 2.44rem;
+	font-size: var(--size-800);
+}
+
+h2 {
+	font-size: 1.56rem;
+	font-size: var(--size-600);
+}
+
+h3 {
+	font-size: 1.56rem;
+	font-size: var(--size-600);
+}
+
+@media (min-width: 42rem) {
+	body {
+		font-size: 1.25rem;
+		font-size: var(--size-500);
+	}
+
+	h1 {
+		font-size: 3.05rem;
+		font-size: var(--size-900);
+	}
+
+	h2 {
+		font-size: 1.95rem;
+		font-size: var(--size-700);
+	}
+
+	h3 {
+		font-size: 1.95rem;
+		font-size: var(--size-700);
+	}
+}
+
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}

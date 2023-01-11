@@ -114,3 +114,7 @@ Just remember to update the production branch in the build & deploy section.
 ## Day 1: a ray of light
 
 Add an interactive, animated mascot. Create a dedicated route and dedicated component.
+
+Include svg icons in static/icons. Reference on a need-to-have basis.
+
+Add global stylesheet. Import from layout file for all routes.
