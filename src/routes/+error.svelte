@@ -8,6 +8,7 @@
 <svelte:head>
 	<title>borntofrappe | {$page.status}</title>
 	<meta name="description" content={$page.error.message} />
+	<link rel="icon" href="icons/error.svg" type="image/svg+xml" />
 </svelte:head>
 
 <div id="root">
