@@ -138,10 +138,18 @@
 
 			<g fill="#acacfa">
 				<g transform="translate(12.5 -2.5)">
-					<circle transform="scale({$bounce})" r="3" />
+					<g transform="scale({$bounce})">
+						<g class="blink">
+							<circle r="3" />
+						</g>
+					</g>
 				</g>
 				<g transform="translate(-12.5 -2.5)">
-					<circle transform="scale({$bounce})" r="3" />
+					<g transform="scale({$bounce})">
+						<g class="blink">
+							<circle r="3" />
+						</g>
+					</g>
 				</g>
 			</g>
 
@@ -179,6 +187,22 @@
 	@keyframes raindrop {
 		to {
 			transform: translateY(10px);
+		}
+	}
+
+	.blink {
+		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	@keyframes blink {
+		8%,
+		12% {
+			transform: scaleY(0);
+		}
+		6%,
+		10%,
+		14% {
+			transform: scaleY(1);
 		}
 	}
 </style>
