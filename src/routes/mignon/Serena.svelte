@@ -9,10 +9,14 @@
 	let w;
 
 	onMount(() => {
+		handleSize();
+	});
+
+	const handleSize = () => {
 		const { left, width } = svg.getBoundingClientRect();
 		l = left;
 		w = width;
-	});
+	};
 
 	const scale = spring(0, {
 		stiffness: 0.2,
@@ -60,6 +64,8 @@
 	const handleMouseup = () => bounce.set(1);
 </script>
 
+<svelte:window on:resize={handleSize} />
+
 <svg
 	viewBox="-60 -30 120 130"
 	class:start
@@ -71,6 +77,12 @@
 	on:mousedown={handleMousedown}
 	on:mouseup={handleMouseup}
 	on:mousemove={handleMove}
+	on:touchmove|preventDefault={(e) => {
+		const { pageX: x } = e.touches[0];
+		handleMove({
+			offsetX: x - l
+		});
+	}}
 >
 	<defs>
 		<pattern id="p" viewBox="-8 -8 16 16" width="10" height="10" patternUnits="userSpaceOnUse">
