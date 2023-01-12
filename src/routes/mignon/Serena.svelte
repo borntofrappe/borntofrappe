@@ -1,11 +1,17 @@
 <script>
-	import { spring } from 'svelte/motion';
+	import { tweened, spring } from 'svelte/motion';
+	import { elasticOut as easing } from 'svelte/easing';
 
 	let start;
 
 	const scale = spring(0, {
 		stiffness: 0.2,
 		damping: 0.5
+	});
+
+	const bounce = tweened(1, {
+		duration: 1000,
+		easing
 	});
 
 	const handleStart = () => {
@@ -17,6 +23,9 @@
 		start = false;
 		scale.set(0);
 	};
+
+	const handleMousedown = () => bounce.set(1.1);
+	const handleMouseup = () => bounce.set(1);
 </script>
 
 <svg
@@ -26,11 +35,15 @@
 	on:mouseleave={handleEnd}
 	on:touchstart|preventDefault={handleStart}
 	on:touchend|preventDefault={handleEnd}
+	on:mousedown={handleMousedown}
+	on:mouseup={handleMouseup}
 >
 	<defs>
 		<pattern id="p" viewBox="-8 -8 16 16" width="10" height="10" patternUnits="userSpaceOnUse">
-			<g transform="scale({$scale})">
-				<path fill="#35cce9" d="M 0 0 q 2 2 2 4 a 2 2 0 0 1 -4 0 q 0 -2 2 -4" />
+			<g transform="scale({$bounce ** 3})">
+				<g transform="scale({$scale})">
+					<path fill="#35cce9" d="M 0 0 q 2 2 2 4 a 2 2 0 0 1 -4 0 q 0 -2 2 -4" />
+				</g>
 			</g>
 		</pattern>
 		<circle id="c" r="11" />
@@ -61,37 +74,41 @@
 		<rect fill="url(#p)" x="-30" width="60" height="100" />
 	</g>
 
-	<use href="#ccc" transform="scale(1.2)" />
+	<g transform="scale({$bounce})">
+		<use href="#ccc" transform="scale(1.2)" />
 
-	<g fill="#f9a3c6">
-		<g transform="translate(12.5 3)">
-			<ellipse transform="scale({$scale})" rx="4" ry="2" />
+		<g fill="#f9a3c6">
+			<g transform="translate(12.5 3)">
+				<ellipse transform="scale({$scale})" rx="4" ry="2" />
+			</g>
+			<g transform="translate(-12.5 3)">
+				<ellipse transform="scale({$scale})" rx="4" ry="2" />
+			</g>
 		</g>
-		<g transform="translate(-12.5 3)">
-			<ellipse transform="scale({$scale})" rx="4" ry="2" />
-		</g>
-	</g>
 
-	<g fill="#acacfa">
-		<g transform="translate(12.5 -2.5)">
-			<circle r="3" />
+		<g fill="#acacfa">
+			<g transform="translate(12.5 -2.5)">
+				<circle transform="scale({$bounce})" r="3" />
+			</g>
+			<g transform="translate(-12.5 -2.5)">
+				<circle transform="scale({$bounce})" r="3" />
+			</g>
 		</g>
-		<g transform="translate(-12.5 -2.5)">
-			<circle r="3" />
-		</g>
-	</g>
 
-	<g
-		fill="#acacfa"
-		stroke="#acacfa"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	>
-		<g transform="translate(0 10)">
-			<path d="M -2 0 h 4" />
-			<g transform="scale({$scale})">
-				<path d="M -2 0 v 2 a 2 2 0 0 0 4 0 v -2z" />
+		<g
+			fill="#acacfa"
+			stroke="#acacfa"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<g transform="translate(0 10)">
+				<path d="M -2 0 h 4" />
+				<g transform="scale({$bounce})">
+					<g transform="scale({$scale})">
+						<path d="M -2 0 v 2 a 2 2 0 0 0 4 0 v -2z" />
+					</g>
+				</g>
 			</g>
 		</g>
 	</g>
