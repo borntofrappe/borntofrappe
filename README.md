@@ -98,7 +98,7 @@ Oopsie.
 
 better off on alone?
 
-## bonus
+### bonus
 
 Rename master branch, just cause.
 
@@ -122,3 +122,9 @@ Add global stylesheet. Import from layout file for all routes.
 Introduce landing page with a descriptive header.
 
 Font loading: [mulish](https://fonts.google.com/specimen/Mulish), 4 faces (regular, italic, extra bold, extra bold italic), woff2, [two stage loading strategy](https://www.zachleat.com/web/css-tricks-web-fonts/) with a subset and a more featured version <!-- worth a more detailed write-up to remember the process -->
+
+## Day 2: icons
+
+Create a helper project to read `.svg` files syntax and create an object of name-svg key-value pairs.
+
+Export object from `lib/utils`. Import where needed and inject with `{@html}`.
