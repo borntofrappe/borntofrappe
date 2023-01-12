@@ -1,0 +1,9 @@
+{
+	"name": "helper",
+	"description": "little scripts to make frequent tasks slightly more automated",
+	"version": "0.0.1",
+	"scripts": {
+		"icons": "cd icons && node script.js"
+	},
+	"type": "module"
+}
