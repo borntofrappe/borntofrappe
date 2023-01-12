@@ -46,39 +46,42 @@
 		</style>
 
 		<script>
-			(() => {
-				if ('fonts' in document) {
-					const regular = new FontFace(
-						'Mulish',
-						"url(/fonts/Mulish-Regular-hint-features.woff2) format('woff2')"
-					);
-					const italic = new FontFace(
-						'Mulish',
-						"url(/fonts/Mulish-Italic-hint-features.woff2) format('woff2')",
-						{ style: 'italic' }
-					);
-					const extraBold = new FontFace(
-						'Mulish',
-						"url(/fonts/Mulish-ExtraBold-hint-features.woff2) format('woff2')",
-						{ weight: '700' }
-					);
-					const extraBoldItalic = new FontFace(
-						'Mulish',
-						"url(/fonts/Mulish-ExtraBoldItalic-hint-features.woff2) format('woff2')",
-						{ weight: '700', style: 'italic' }
-					);
+			(async () => {
+				if (!'fonts' in document) return;
 
-					Promise.all([
-						regular.load(),
-						italic.load(),
-						extraBold.load(),
-						extraBoldItalic.load()
-					]).then(function (fonts) {
-						fonts.forEach(function (font) {
-							document.fonts.add(font);
-						});
-					});
-				}
+				const regular = new FontFace(
+					'Mulish',
+					"url(/fonts/Mulish-Regular-hint-features.woff2) format('woff2')"
+				);
+
+				const italic = new FontFace(
+					'Mulish',
+					"url(/fonts/Mulish-Italic-hint-features.woff2) format('woff2')",
+					{ style: 'italic' }
+				);
+
+				const extraBold = new FontFace(
+					'Mulish',
+					"url(/fonts/Mulish-ExtraBold-hint-features.woff2) format('woff2')",
+					{ weight: '700' }
+				);
+
+				const extraBoldItalic = new FontFace(
+					'Mulish',
+					"url(/fonts/Mulish-ExtraBoldItalic-hint-features.woff2) format('woff2')",
+					{ weight: '700', style: 'italic' }
+				);
+
+				const fonts = await Promise.all([
+					regular.load(),
+					italic.load(),
+					extraBold.load(),
+					extraBoldItalic.load()
+				]);
+
+				fonts.forEach((font) => {
+					document.fonts.add(font);
+				});
 			})();
 		</script>
 
