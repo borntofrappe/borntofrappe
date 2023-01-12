@@ -97,7 +97,7 @@
 		width: 100%;
 	}
 
-	@media screen and (max-width: 36rem) {
+	@media (max-width: 36rem) {
 		header {
 			display: flex;
 			flex-direction: column;
