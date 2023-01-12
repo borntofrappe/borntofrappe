@@ -10,12 +10,14 @@
 	<link rel="icon" href="icons/error.svg" type="image/svg+xml" />
 </svelte:head>
 
-<div>
+<div id="root">
 	<main>
 		<h1>Oopsie</h1>
-		<p>Something quite unexpected has happened.<br /> Here the error message for context:</p>
+		<p>
+			Something quite unexpected has happened.<br />Here's a possibly helpful message for context:
+		</p>
 		<div class="code">
-			<span>code {@html icons.editor}</span>
+			<span>error {@html icons.bug}</span>
 			<pre><code>{$page.error.message}</code></pre>
 		</div>
 		<p>
@@ -31,6 +33,17 @@
 </div>
 
 <style>
+	#root {
+		color: hsl(209, 61%, 16%);
+		background: hsl(210, 36%, 97%);
+		min-height: 100vh;
+	}
+
+	#root ::selection {
+		color: hsl(210, 36%, 96%);
+		background: hsl(209, 23%, 60%);
+	}
+
 	main {
 		max-width: 42rem;
 		margin-inline: auto;
@@ -38,6 +51,55 @@
 	}
 
 	main > * + * {
-		margin-top: 1em;
+		margin-top: 0.75em;
+	}
+
+	.code {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.code pre,
+	.code > span {
+		color: #e0def4;
+		background: #232136;
+	}
+
+	.code pre {
+		margin-top: 0;
+		padding: 1rem;
+		border-radius: 1rem;
+		line-height: 1.75;
+	}
+
+	.code > span {
+		align-self: flex-end;
+		display: inline-flex;
+		align-items: center;
+		gap: 0 0.5rem;
+		transform: translateX(-1.5rem);
+		border-top-left-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
+		padding: 0.4rem 1rem;
+		font-weight: 700;
+	}
+
+	.code > span > :global(svg) {
+		display: block;
+		height: 1em;
+		width: auto;
+	}
+
+	.code pre {
+		overflow-x: auto;
+	}
+
+	.code pre::-webkit-scrollbar {
+		height: 0.4rem;
+	}
+
+	.code pre::-webkit-scrollbar-thumb {
+		background: var(--accent);
+		border-radius: 0.2rem;
 	}
 </style>
