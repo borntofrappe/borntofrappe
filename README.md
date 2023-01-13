@@ -130,3 +130,7 @@ Create a helper project to read `.svg` files syntax and create an object of name
 Export object from `lib/utils`. Import where needed and inject with `{@html}`.
 
 Add a service worker to cache only the fonts in the static folder.
+
+## Day 3: error page
+
+Create another mascot in the /mignon route. Add component in the error page after the status code and error message.

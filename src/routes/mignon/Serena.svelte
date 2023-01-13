@@ -44,14 +44,17 @@
 	});
 
 	const handleStart = () => {
-		start = true;
 		scale.set(1);
+		start = true;
 	};
 
 	const handleEnd = () => {
-		start = false;
 		scale.set(0);
+		start = false;
 	};
+
+	const handleBounceStart = () => bounce.set(1.1);
+	const handleBounceEnd = () => bounce.set(1);
 
 	const handleMove = ({ offsetX }) => {
 		const x = offsetX / w - 0.5;
@@ -59,23 +62,26 @@
 		translate.set(x * 30);
 		skewX.set(x * 10 * -1);
 	};
-
-	const handleMousedown = () => bounce.set(1.1);
-	const handleMouseup = () => bounce.set(1);
 </script>
 
 <svelte:window on:resize={handleSize} />
 
 <svg
-	viewBox="-60 -30 120 130"
-	class:start
+	viewBox="-55 -30 110 100"
 	bind:this={svg}
+	class:start
+	on:mousedown={handleBounceStart}
+	on:mouseup={handleBounceEnd}
 	on:mouseenter={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchstart|preventDefault={handleStart}
-	on:touchend|preventDefault={handleEnd}
-	on:mousedown={handleMousedown}
-	on:mouseup={handleMouseup}
+	on:touchstart|preventDefault={() => {
+		handleStart();
+		handleBounceStart();
+	}}
+	on:touchend|preventDefault={() => {
+		handleEnd();
+		handleBounceEnd();
+	}}
 	on:mousemove={handleMove}
 	on:touchmove|preventDefault={(e) => {
 		const { pageX: x } = e.touches[0];
@@ -88,7 +94,7 @@
 		<pattern id="p" viewBox="-8 -8 16 16" width="10" height="10" patternUnits="userSpaceOnUse">
 			<g transform="scale({$bounce ** 3})">
 				<g transform="scale({$scale})">
-					<path fill="#35cce9" d="M 0 0 q 2 2 2 4 a 2 2 0 0 1 -4 0 q 0 -2 2 -4" />
+					<path fill="#35cce9" d="M 0 -3.5 q 2 2 2 4 a 2 2 0 0 1 -4 0 q 0 -2 2 -4" />
 				</g>
 			</g>
 		</pattern>
@@ -103,7 +109,14 @@
 			<use href="#c" />
 			<use href="#c" fill="black" mask="url(#m)" opacity="0.1" />
 		</g>
-		<g id="ccc">
+	</defs>
+
+	<g transform="translate({$translate} 0)">
+		<g transform="skewX({$skewX})">
+			<rect x="-30" width="60" height="70" fill="url(#p)" />
+		</g>
+
+		<g transform="scale({$bounce})">
 			<g fill="#ebf3f5">
 				<use href="#c" />
 				<use transform="translate(-12.5 -5)" href="#c" />
@@ -115,40 +128,37 @@
 				<use transform="translate(15 10) rotate(-10)" href="#cc" />
 				<use transform="translate(0 15)" href="#cc" />
 			</g>
-		</g>
-	</defs>
-	<g transform="translate({$translate} 0)">
-		<g transform="skewX({$skewX})">
-			<g class="raindrop">
-				<rect fill="url(#p)" x="-30" width="60" height="100" />
-			</g>
-		</g>
-
-		<g transform="scale({$bounce})">
-			<use href="#ccc" transform="scale(1.2)" />
 
 			<g fill="#f9a3c6">
-				<g transform="translate(12.5 3)">
-					<ellipse transform="scale({$scale})" rx="4" ry="2" />
+				<g transform="translate(10 0)">
+					<g transform="rotate({$rotate ** 0.5})">
+						<g transform="translate(0 2.5)">
+							<g transform="scale({$scale})">
+								<ellipse rx="2.5" ry="1.4" />
+							</g>
+						</g>
+					</g>
 				</g>
-				<g transform="translate(-12.5 3)">
-					<ellipse transform="scale({$scale})" rx="4" ry="2" />
+				<g transform="translate(-10 0)">
+					<g transform="rotate({$rotate ** 0.5})">
+						<g transform="translate(0 2.5)">
+							<g transform="scale({$scale})">
+								<ellipse rx="2.5" ry="1.4" />
+							</g>
+						</g>
+					</g>
 				</g>
 			</g>
 
 			<g fill="#acacfa">
-				<g transform="translate(12.5 -2.5)">
+				<g transform="translate(10 -2.5)">
 					<g transform="scale({$bounce})">
-						<g class="blink">
-							<circle r="3" />
-						</g>
+						<circle class="blink" r="2.5" />
 					</g>
 				</g>
-				<g transform="translate(-12.5 -2.5)">
+				<g transform="translate(-10 -2.5)">
 					<g transform="scale({$bounce})">
-						<g class="blink">
-							<circle r="3" />
-						</g>
+						<circle class="blink" r="2.5" />
 					</g>
 				</g>
 			</g>
@@ -160,7 +170,7 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			>
-				<g transform="translate(0 10)">
+				<g transform="translate(0 8)">
 					<path d="M -2 0 h 4" />
 					<g transform="scale({$bounce})">
 						<g transform="scale({$scale})">
@@ -174,17 +184,16 @@
 </svg>
 
 <style>
-	svg .raindrop {
-		opacity: 1;
-		animation: raindrop 0.75s linear infinite;
+	svg rect {
+		animation: translate 1s linear infinite;
 		animation-play-state: paused;
 	}
 
-	svg.start .raindrop {
+	svg.start rect {
 		animation-play-state: running;
 	}
 
-	@keyframes raindrop {
+	@keyframes translate {
 		to {
 			transform: translateY(10px);
 		}

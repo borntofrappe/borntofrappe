@@ -114,6 +114,7 @@
 		width: 100vmin;
 		margin-inline: auto;
 	}
+
 	#mascot > :global(svg) {
 		display: block;
 		width: 100%;
