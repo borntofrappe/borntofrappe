@@ -4,9 +4,13 @@
 	const lines = text.split(' ').map((d) => d.split(''));
 
 	const squircle = 50;
-	const inset = 20;
-	const width = squircle * Math.max(...lines.map((d) => d.length)) + inset;
-	const height = squircle * lines.length + inset;
+	const padding = 50;
+
+	const columns = Math.max(...lines.map((d) => d.length));
+	const rows = lines.length;
+	const width = squircle * (columns - 1) + padding * 2;
+	const height = squircle * (rows - 1) + padding * 2;
+
 	const overlay = (width ** 2 + height ** 2) ** 0.5;
 
 	const id = text.toLowerCase().replace(/\s/g, '-');
@@ -32,89 +36,78 @@
 			<stop stop-color="hsl(360, 75.976%, 66.7%)" offset="1" />
 		</linearGradient>
 
-		{#each lines as line, i}
-			<g
-				id="line-{i}-{id}"
-				transform="translate({squircle / 2 + inset / 2} {squircle / 2 + inset / 2 + squircle * i})"
-			>
-				{#each line as letter, j}
-					<g transform="translate({squircle * j} 0)">
-						<g
-							class="transform"
-							style:animation-delay="{0.1 + delays * (i + j)}s"
-							style:animation-duration="{duration}s"
-						>
-							<g
-								class="fade"
-								style:animation-delay="{delays * (i + j)}s"
-								style:animation-duration="{duration}s"
-							>
-								<text
-									text-anchor="middle"
-									dominant-baseline="hanging"
-									font-size={squircle / 2}
-									y={-squircle / 2 / 2}
-									font-weight="700"
-								>
-									{letter}
-								</text>
-							</g>
-						</g>
-					</g>
-				{/each}
-			</g>
-		{/each}
-
-		{#each lines as line, i}
-			<g id="squircles-{i}-{id}">
-				<g
-					transform="translate({squircle / 2 + inset / 2} {squircle / 2 +
-						inset / 2 +
-						squircle * i})"
-				>
-					{#each line as _, j}
-						<g transform="translate({squircle * j} 0)">
-							<g
-								class="transform"
-								style:animation-delay="{delays * (i + j)}s"
-								style:animation-duration="{duration}s"
-							>
-								<use
-									transform="rotate(45)"
-									href="#squircle-{id}"
-									x={-squircle / 2}
-									y={-squircle / 2}
-									width={squircle}
-									height={squircle}
-								/>
-							</g>
+		<g id="squircles-{id}">
+			<g transform="translate({padding} {padding})">
+				<g fill="currentColor">
+					{#each lines as line, i}
+						<g transform="translate(0 {i * squircle})">
+							{#each line as _, j}
+								<g transform="translate( {j * squircle} 0)">
+									<g
+										class="transform"
+										style:animation-delay="{0.1 + delays * (i + j)}s"
+										style:animation-duration="{duration}s"
+									>
+										<use
+											transform="rotate(45)"
+											href="#squircle-{id}"
+											x={-squircle / 2}
+											y={-squircle / 2}
+											width={squircle}
+											height={squircle}
+										/>
+									</g>
+								</g>
+							{/each}
 						</g>
 					{/each}
 				</g>
 			</g>
-		{/each}
+		</g>
 
-		<mask id="mask-{id}">
-			<rect {width} {height} />
-			<g fill="white">
-				{#each lines as _, i}
-					<use href="#line-{i}-{id}" />
+		<g id="lines-{id}">
+			<g transform="translate({padding} {padding})">
+				{#each lines as line, i}
+					<g transform="translate(0 {i * squircle})">
+						{#each line as character, j}
+							<g transform="translate( {j * squircle} 0)">
+								<g
+									class="transform"
+									style:animation-delay="{0.1 + delays * (i + j)}s"
+									style:animation-duration="{duration}s"
+								>
+									<g
+										class="fade"
+										style:animation-delay="{delays * (i + j)}s"
+										style:animation-duration="{duration}s"
+									>
+										<text
+											text-anchor="middle"
+											dominant-baseline="hanging"
+											font-size={squircle / 2}
+											y={-squircle / 4}
+											font-weight="700">{character}</text
+										>
+									</g>
+								</g>
+							</g>
+						{/each}
+					</g>
 				{/each}
 			</g>
+		</g>
+
+		<mask id="mask-{id}">
+			<rect {width} {height} fill="black" />
+			<use href="#lines-{id}" fill="white" />
 		</mask>
 	</defs>
 
-	<g>
-		{#each lines as _, i}
-			<use fill="currentColor" href="#squircles-{i}-{id}" />
-			<use href="#line-{i}-{id}" />
-		{/each}
-	</g>
-
-	<g mask="url(#mask-{id})" fill="url(#gradient-{id})" style:pointer-events="none">
+	<use href="#squircles-{id}" />
+	<g mask="url(#mask-{id})" fill="url(#gradient-{id})">
 		<g transform="translate({width / 2} {height / 2})">
 			<g transform="rotate(40)">
-				<g transform="translate(0 0)">
+				<g>
 					<animateTransform
 						attributeName="transform"
 						type="translate"
