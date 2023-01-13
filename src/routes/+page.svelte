@@ -1,4 +1,5 @@
 <script>
+	import Heading from '$lib/components/Heading.svelte';
 	import Ray from './mignon/Ray.svelte';
 	import icons from '$lib/utils/icons.js';
 </script>
@@ -9,7 +10,7 @@
 </svelte:head>
 
 <header>
-	<h1>Hi there</h1>
+	<Heading text="Hi there" />
 
 	<div class="float">
 		<Ray />
@@ -32,16 +33,19 @@
 	</ol>
 
 	<h2>Why SVG?</h2>
-	<p>I'm building an answer at this very moment. Come back soon for a few entertaining demos.</p>
+	<p>I'm building an answer at this very moment. Come back soon for an intriguing reply.</p>
+</header>
+
+<footer>
 	<p>
-		Dated <time datetime="2023-01-11T15:11">January 11th 2023 {@html icons.calendar}</time>. Feel
-		free to
+		Updated <time datetime="2023-01-13T14:54">January 13th 2023 {@html icons.calendar}</time>.<br
+		/>Feel free to
 		<a
 			href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Dated%20content&body=Please%20update%20the%20website"
 			>file an issue {@html icons.bug}</a
 		> if this message becomes too old.
 	</p>
-</header>
+</footer>
 
 <style>
 	header {

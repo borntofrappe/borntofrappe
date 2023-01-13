@@ -131,6 +131,8 @@ Export object from `lib/utils`. Import where needed and inject with `{@html}`.
 
 Add a service worker to cache only the fonts in the static folder.
 
-## Day 3: error page
+## Day 3: error page and custom heading
 
 Create another mascot in the /mignon route. Add component in the error page after the status code and error message.
+
+Create Heading.svelte to render text in a colorful SVG visual.
