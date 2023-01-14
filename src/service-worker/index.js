@@ -1,12 +1,12 @@
 import { files } from '$service-worker';
 
-const CACHE = 'cache-woff2';
-const ASSETS = files.filter((file) => file.endsWith('.woff2'));
+const cacheFontFiles = 'cache-font-files';
+const fontFiles = files.filter((file) => file.endsWith('.woff2'));
 
 self.addEventListener('install', (e) => {
 	const addFilesToCache = async () => {
-		const cache = await caches.open(CACHE);
-		await cache.addAll(ASSETS);
+		const cache = await caches.open(cacheFontFiles);
+		await cache.addAll(fontFiles);
 	};
 
 	e.waitUntil(addFilesToCache());
@@ -14,8 +14,11 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('activate', (e) => {
 	const deleteOldCaches = async () => {
-		for (const key of await caches.keys()) {
-			if (key !== CACHE) await caches.delete(key);
+		const keys = await caches.keys();
+		for (const key of keys) {
+			if (key !== cacheFontFiles) {
+				await caches.delete(key);
+			}
 		}
 	};
 
@@ -26,10 +29,10 @@ self.addEventListener('fetch', (e) => {
 	const respond = async () => {
 		if (e.request.method !== 'GET') return;
 
-		const url = new URL(e.request.url);
+		const { pathname } = new URL(e.request.url);
 
-		if (ASSETS.includes(url.pathname)) {
-			const cache = await caches.open(CACHE);
+		if (fontFiles.includes(pathname)) {
+			const cache = await caches.open(cacheFontFiles);
 			return cache.match(e.request);
 		}
 
