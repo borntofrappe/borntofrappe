@@ -136,3 +136,7 @@ Add a service worker to cache only the fonts in the static folder.
 Create another mascot in the /mignon route. Add component in the error page after the status code and error message.
 
 Create Heading.svelte to render text in a colorful SVG visual.
+
+## Day 4 & 5: break and write-ups
+
+Take a moment to consider the current progress. Try to jot down a few notes on the features implemented so far.

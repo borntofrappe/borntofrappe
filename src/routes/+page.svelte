@@ -40,12 +40,12 @@
 
 <footer>
 	<p>
-		Updated <time datetime="2023-01-13T14:54">January 13th 2023 {@html icons.calendar}</time>.<br
+		Updated <time datetime="2023-01-14T11:03">January 14th 2023 {@html icons.calendar}</time>.<br
 		/>Feel free to
 		<a
 			href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Dated%20content&body=Please%20update%20the%20website"
-			>file an issue {@html icons.bug}</a
-		> if this message becomes too old.
+			>file an issue</a
+		> if the message becomes too old.
 	</p>
 </footer>
 
