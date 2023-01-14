@@ -10,7 +10,9 @@
 </svelte:head>
 
 <header>
-	<Heading text="Hi there" />
+	<div style:display="inline-block" style:max-width="40ch" style:width="100%">
+		<Heading level="h1" text="Hi there" />
+	</div>
 
 	<div class="float">
 		<Ray />
@@ -25,8 +27,8 @@
 	</p>
 
 	<h2>Why Svelte?</h2>
-	<p style:display="inline">Mainly for three reasons:</p>
-	<ol style:display="inline">
+	<p style:display="inline-block">Mainly for three reasons:</p>
+	<ol>
 		<li><abbr title="HyperText Markup Language">HTML</abbr>{@html icons.html}</li>
 		<li><abbr title="Cascading Style Sheets">CSS</abbr>{@html icons.css}</li>
 		<li>Javascript{@html icons.js}</li>
@@ -58,15 +60,12 @@
 		margin-block-start: 0.8em;
 	}
 
-	header > :global(svg) {
-		max-width: 40ch;
-	}
-
 	p {
 		line-height: 2;
 	}
 
 	ol {
+		display: inline;
 		padding: 0;
 	}
 
@@ -89,6 +88,7 @@
 		shape-outside: circle();
 		max-width: 24rem;
 		width: 100%;
+		margin-block-start: 0;
 	}
 
 	@media (max-width: 36rem) {
