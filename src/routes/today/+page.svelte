@@ -11,6 +11,7 @@
 		name="description"
 		content="What day is today? Here's a direct answer to an often puzzling question."
 	/>
+	<link rel="icon" href="/icons/today.svg" type="image/svg+xml" />
 </svelte:head>
 
 <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
