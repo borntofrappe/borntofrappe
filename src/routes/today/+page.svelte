@@ -27,7 +27,7 @@
 
 <main>
 	<h1>{format(date)}</h1>
-	<Marks />
+	<Marks n={date.getDate()} />
 </main>
 
 <style>
