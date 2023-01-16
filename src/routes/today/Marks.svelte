@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from 'svelte';
+
 	export let n = 7;
 
 	const marks = Array(n)
@@ -10,9 +12,47 @@
 			acc[acc.length - 1].push(curr);
 			return acc;
 		}, []);
+
+	let svg;
+	const duration = 480 / 1000;
+	const initialDelay = 700;
+
+	onMount(async () => {
+		const { matches } = matchMedia('(prefers-reduced-motion: reduce)');
+		if (matches) return;
+
+		const ticks = [...svg.querySelectorAll('use')]
+			.reduce((acc, curr, i) => {
+				if (i % 5 === 0) acc.push([]);
+
+				acc[acc.length - 1].push(curr);
+				return acc;
+			}, [])
+			.pop();
+
+		const { length } = ticks;
+		for (const tick of ticks) {
+			tick.setAttribute('stroke-dasharray', '1');
+			tick.setAttribute('stroke-dashoffset', '1');
+		}
+
+		const timeout = setTimeout(() => {
+			for (let i = 0; i < length; i++) {
+				ticks[i].style.transition = `${duration}s ${
+					duration * i
+				}s stroke-dashoffset cubic-bezier(0.5, 1, 0.89, 1)`;
+
+				ticks[i].setAttribute('stroke-dashoffset', '0');
+			}
+
+			clearTimeout(timeout);
+		}, initialDelay);
+
+		return () => clearTimeout(timeout);
+	});
 </script>
 
-<svg viewBox="0 0 {5 * marks.length} 5">
+<svg bind:this={svg} viewBox="0 0 {5 * marks.length} 5">
 	<defs>
 		{#each Array(4) as _, i}
 			<g id="mark-{i}">
