@@ -1,5 +1,6 @@
 <script>
 	import { format } from './utils';
+	import Marks from './Marks.svelte';
 
 	const date = new Date();
 </script>
@@ -26,6 +27,7 @@
 
 <main>
 	<h1>{format(date)}</h1>
+	<Marks />
 </main>
 
 <style>
@@ -59,6 +61,16 @@
 	h1 {
 		text-align: center;
 		font-size: 4rem;
+	}
+
+	main > :global(svg) {
+		display: block;
+		width: 100vmin;
+		height: auto;
+		max-height: 16rem;
+	}
+
+	main > :global(*) {
 		filter: url(#filter-chalk);
 	}
 </style>
