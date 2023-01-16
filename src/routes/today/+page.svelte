@@ -1,5 +1,7 @@
 <script>
+	import { format } from './utils';
+
 	const date = new Date();
 </script>
 
-{date.toDateString()}
+{format(date)}
