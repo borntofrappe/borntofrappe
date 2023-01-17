@@ -45,3 +45,49 @@ p > code {
 	margin-block: 0.2rem;
 	border-block-end: 0.2rem solid var(--accent);
 }
+
+.code {
+	display: flex;
+	flex-direction: column;
+}
+
+.code pre {
+	margin-block-start: 0;
+	padding: 1.25rem;
+	border-radius: 1rem;
+	line-height: 1.75;
+	tab-size: 2;
+}
+
+.code > span {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	gap: 0 0.5rem;
+	transform: translateX(-1.5rem);
+	border-start-start-radius: 0.5rem;
+	border-start-end-radius: 0.5rem;
+	padding: 0.4rem 1rem;
+	color: var(--theme-color, #e0def4);
+	background: var(--theme-background, #232136);
+	font-weight: 700;
+}
+
+.code > span > svg {
+	display: block;
+	width: 1em;
+	height: auto;
+}
+
+.code pre {
+	overflow-x: auto;
+}
+
+.code pre::-webkit-scrollbar {
+	height: 0.4rem;
+}
+
+.code pre::-webkit-scrollbar-thumb {
+	background: var(--accent);
+	border-radius: 0.2rem;
+}
