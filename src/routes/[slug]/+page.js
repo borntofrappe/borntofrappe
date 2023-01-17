@@ -1,19 +1,17 @@
 import { error } from '@sveltejs/kit';
 
-export async function load({ params }) {
+export async function load({ fetch, params }) {
+	const response = await fetch('/blog');
+	const { blog } = await response.json();
+
+	const post = blog.find(({ slug }) => slug === params.slug);
+
+	if (!post) throw error(404, `'/${params.slug}' page does not exist.`);
+
 	const modules = import.meta.glob('$blog/**/*.{md,svx}');
+	const { default: Component } = await modules[post.path]();
 
-	for (const path in modules) {
-		const [slug] = path.split('/').pop().split('.');
-
-		if (params.slug === slug) {
-			const { default: Component } = await modules[path]();
-
-			return {
-				Component
-			};
-		}
-	}
-
-	throw error(404, `'/${params.slug}' page does not exist.`);
+	return {
+		Component
+	};
 }
