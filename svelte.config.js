@@ -10,7 +10,10 @@ const config = {
 		adapter: adapter({
 			edge: false,
 			split: false
-		})
+		}),
+		alias: {
+			$blog: 'src/blog'
+		}
 	}
 };
 
