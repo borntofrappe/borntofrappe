@@ -1,4 +1,5 @@
 <script>
+	import '$lib/styles/blog.css';
 	export let title;
 	export let description;
 </script>
@@ -22,15 +23,5 @@
 	header {
 		padding: 3rem 1rem;
 		text-align: center;
-	}
-
-	main {
-		max-width: 60ch;
-		margin-inline: auto;
-		padding: 1rem;
-	}
-
-	main > :global(* + *) {
-		margin-block-start: 1em;
 	}
 </style>
