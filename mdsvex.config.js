@@ -11,8 +11,14 @@ const layout = {
 	blog: 'src/lib/layout/Blog.svelte'
 };
 
+const theme = 'rose-pine-moon';
+let shikiHighlighter;
+(async () => {
+	shikiHighlighter = await getHighlighter({ theme });
+})();
+
 const highlighter = async (code, lang) => {
-	const shikiHighlighter = await getHighlighter({ theme: 'rose-pine-moon' });
+	if (!shikiHighlighter) shikiHighlighter = await getHighlighter({ theme });
 	const shikiCode = shikiHighlighter.codeToHtml(code, { lang });
 
 	return `<div class="code">
