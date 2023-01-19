@@ -19,7 +19,12 @@
 	let background = color.background;
 	let position = positions[timeOfDay] || positions.day;
 
+	let svg;
+	let w, h;
+
 	onMount(() => {
+		handleSize();
+
 		if (!timeOfDay) {
 			const hours = new Date().getHours();
 
@@ -36,9 +41,43 @@
 			position = positions[timeOfDay];
 		}
 	});
+
+	const handleSize = () => {
+		const { width, height } = svg.getBoundingClientRect();
+		w = width;
+		h = height;
+	};
+
+	let isDragging = false;
+
+	const handlePosition = ({ offsetX, offsetY }) => {
+		// viewBox="0 0 120 60"
+		const x = (offsetX / w) * 120;
+		const y = (offsetY / h) * 60;
+
+		console.log(x, y);
+	};
+
+	const handleStart = (e) => {
+		isDragging = true;
+
+		handlePosition(e);
+	};
+
+	const handleEnd = () => {
+		isDragging = false;
+	};
+
+	const handleMove = (e) => {
+		if (!isDragging) return;
+
+		handlePosition(e);
+	};
 </script>
 
-<svg style:background viewBox="0 0 120 60">
+<svelte:window on:resize={handleSize} />
+
+<svg style:background bind:this={svg} viewBox="0 0 120 60">
 	<defs>
 		<g id="theme-day-cloud">
 			<circle r="4" />
@@ -123,9 +162,16 @@
 		</g>
 	</g>
 
-	<g />
-
-	<g opacity="0">
+	<g
+		style:cursor={isDragging ? 'grabbing' : 'pointer'}
+		on:click={handlePosition}
+		on:mousedown={handleStart}
+		on:mouseup={handleEnd}
+		on:mouseleave={handleEnd}
+		on:mousemove={handleMove}
+		on:keydown
+		opacity="0"
+	>
 		<rect width="120" height="53" />
 	</g>
 
