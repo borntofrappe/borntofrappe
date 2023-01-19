@@ -4,14 +4,24 @@
 	export let title;
 	export let description;
 
-	const timeOfDay = 'morning';
 	const colors = {
 		morning: { foreground: '#838ac5', background: '#9cb2ce' },
 		day: { foreground: '#639aef', background: '#73d2e6' },
 		night: { foreground: '#7369b5', background: '#838ace' }
 	};
 
-	let { foreground, background } = colors[timeOfDay];
+	let timeOfDay;
+	const hours = new Date().getHours();
+
+	if (hours > 2 && hours < 10) {
+		timeOfDay = 'morning';
+	} else if (hours < 18) {
+		timeOfDay = 'day';
+	} else {
+		timeOfDay = 'night';
+	}
+
+	let { background } = colors[timeOfDay];
 </script>
 
 <svelte:head>
@@ -21,7 +31,7 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<div>
+<div class={timeOfDay}>
 	<header style:background>
 		<h1>{title}</h1>
 		<Theme {timeOfDay} {colors} />
@@ -38,6 +48,21 @@
 
 	div > :global(* + *) {
 		margin-top: 1em;
+	}
+
+	.morning {
+		color: var(--grey-700);
+		background: var(--grey-100);
+	}
+
+	.day {
+		color: var(--grey-900);
+		background: var(--grey-000);
+	}
+
+	.night {
+		color: var(--grey-200);
+		background: var(--grey-900);
 	}
 
 	header {
