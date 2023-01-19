@@ -22,6 +22,13 @@
 	}
 
 	let { foreground, background } = colors[timeOfDay];
+
+	const handleChange = (e) => {
+		const { detail: change } = e;
+		timeOfDay = change.timeOfDay;
+		background = change.background;
+		foreground = change.foreground;
+	};
 </script>
 
 <svelte:head>
@@ -53,7 +60,7 @@
 <div class={timeOfDay}>
 	<header style:background>
 		<h1 style:filter="url(#filter-outline)">{title}</h1>
-		<Theme {timeOfDay} {colors} />
+		<Theme {timeOfDay} {colors} on:change={handleChange} />
 	</header>
 	<main>
 		<slot />

@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let timeOfDay;
 	export let colors = {
@@ -47,13 +50,16 @@
 			} else {
 				timeOfDay = 'night';
 			}
-
-			foreground = color.foreground;
-			background = color.background;
 		}
 
 		const { x, y } = positions[timeOfDay];
 		position.set({ x, y });
+
+		dispatch('change', {
+			timeOfDay,
+			foreground,
+			background
+		});
 	});
 
 	const handleSize = () => {
@@ -70,6 +76,18 @@
 		const y = (offsetY / h) * 60;
 
 		position.set({ x, y });
+
+		const dx = 60 - x;
+		const dy = 60 - y;
+		const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+		if (angle < 60) {
+			timeOfDay = 'morning';
+		} else if (angle < 120) {
+			timeOfDay = 'day';
+		} else {
+			timeOfDay = 'night';
+		}
 	};
 
 	const handleStart = (e) => {
@@ -87,6 +105,18 @@
 
 		handlePosition(e);
 	};
+
+	$: if (timeOfDay) {
+		const color = colors[timeOfDay];
+		foreground = color.foreground;
+		background = color.background;
+
+		dispatch('change', {
+			timeOfDay,
+			foreground,
+			background
+		});
+	}
 </script>
 
 <svelte:window on:resize={handleSize} />
