@@ -62,6 +62,7 @@ body {
 	--color: var(--grey-900);
 	--background: var(--grey-000);
 	--accent: var(--color-500);
+	--shadow: var(--color-000);
 	--theme-color: #e0def4;
 	--theme-background: #232136;
 	color: var(--color);

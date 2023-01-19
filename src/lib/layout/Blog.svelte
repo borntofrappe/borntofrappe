@@ -67,6 +67,26 @@
 		--vertical-rhythm: var(--size-600);
 	}
 
+	main :global(a) {
+		color: inherit;
+		transition: color 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	main :global(a:hover) {
+		color: var(--accent);
+	}
+
+	main :global(blockquote) {
+		max-width: 50ch;
+		margin-inline: auto;
+		font-style: italic;
+		font-weight: 700;
+		line-height: 2;
+		padding: 0.75rem 1.25rem;
+		background: var(--shadow);
+		border-radius: 0.5rem;
+	}
+
 	main :global(p > code) {
 		margin-block: 0.2rem;
 		border-block-end: 0.2rem solid var(--accent);
@@ -106,6 +126,8 @@
 	}
 
 	main :global(.code pre) {
+		color: var(--theme-color, #e0def4);
+		background: var(--theme-background, #232136);
 		overflow-x: auto;
 	}
 
@@ -145,6 +167,45 @@
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(blockquote) {
+			padding-block: 1em;
+		}
+
+		main :global(blockquote::before) {
+			content: '';
+			width: 2em;
+			height: 2em;
+			background: var(--accent);
+			float: left;
+			margin-inline-end: 0.4rem;
+			mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <defs>\
+            <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
+          </defs>\
+          <g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
+            <use href="%23star" />\
+            <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
+            <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
+            <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
+            <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
+          </g>\
+        </svg>');
+			-webkit-mask-image: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+          <defs>\
+            <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
+          </defs>\
+          <g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
+            <use href="%23star" />\
+            <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
+            <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
+            <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
+            <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
+          </g>\
+        </svg>');
+		}
+
 		main :global(:is(h2, h3, h4)[id] a) {
 			width: 0.9em;
 			height: 0.9em;
