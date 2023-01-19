@@ -93,6 +93,11 @@
 		padding: 3rem 1rem 0;
 	}
 
+	header > :global(svg) {
+		max-width: 36rem;
+		margin-inline: auto;
+	}
+
 	h1 {
 		color: inherit;
 		text-align: center;

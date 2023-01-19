@@ -1,5 +1,7 @@
 <script>
-	export let timeOfDay = 'day';
+	import { onMount } from 'svelte';
+
+	export let timeOfDay;
 	export let colors = {
 		morning: { foreground: '#838ac5', background: '#9cb2ce' },
 		day: { foreground: '#639aef', background: '#73d2e6' },
@@ -7,18 +9,36 @@
 	};
 
 	const positions = {
-		morning: { x: 30, y: 45 },
-		day: { x: 60, y: 30 },
-		night: { x: 90, y: 45 }
+		morning: { x: 30, y: 35 },
+		day: { x: 60, y: 25 },
+		night: { x: 90, y: 35 }
 	};
 
 	const color = colors[timeOfDay] || colors.day;
 	let foreground = color.foreground;
 	let background = color.background;
-	let position = positions[timeOfDay];
+	let position = positions[timeOfDay] || positions.day;
+
+	onMount(() => {
+		if (!timeOfDay) {
+			const hours = new Date().getHours();
+
+			if (hours > 2 && hours < 10) {
+				timeOfDay = 'morning';
+			} else if (hours < 18) {
+				timeOfDay = 'day';
+			} else {
+				timeOfDay = 'night';
+			}
+
+			foreground = color.foreground;
+			background = color.background;
+			position = positions[timeOfDay];
+		}
+	});
 </script>
 
-<svg viewBox="0 0 120 60">
+<svg style:background viewBox="0 0 120 60">
 	<defs>
 		<g id="theme-day-cloud">
 			<circle r="4" />
