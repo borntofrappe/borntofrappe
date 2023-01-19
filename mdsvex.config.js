@@ -14,7 +14,23 @@ const highlight = false;
 
 const remarkPlugins = [remarkCode];
 
-const rehypePlugins = [rehypeSlug, rehypeAutolinkHeadings];
+const rehypePlugins = [
+	rehypeSlug,
+	[
+		rehypeAutolinkHeadings,
+		{
+			behavior: 'append',
+			properties: {},
+			content: {
+				type: 'element',
+				tagName: 'span',
+				properties: { className: 'visually-hidden' },
+				children: [{ type: 'text', value: 'Permalink' }]
+			},
+			test: (node) => node.tagName !== 'h1'
+		}
+	]
+];
 
 export default {
 	extensions,
