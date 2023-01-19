@@ -238,9 +238,18 @@
 		role="menu"
 		tabindex="0"
 		aria-label="Change the time of day with the arrow keys."
+		class="focusable"
 		opacity="0"
 	>
-		<rect width="120" height="53" />
+		<g opacity="0">
+			<rect width="120" height="53" />
+		</g>
+
+		<g style:pointer-events="none" opacity="0.1">
+			<g transform="translate(60 85)">
+				<circle r="37" />
+			</g>
+		</g>
 	</g>
 
 	<g transform="translate(60 85)">
@@ -254,5 +263,17 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	.focusable {
+		outline: none;
+	}
+
+	.focusable:focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) {
+		opacity: 0;
 	}
 </style>
