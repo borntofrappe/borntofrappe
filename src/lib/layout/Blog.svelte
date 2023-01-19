@@ -21,7 +21,7 @@
 		timeOfDay = 'night';
 	}
 
-	let { background } = colors[timeOfDay];
+	let { foreground, background } = colors[timeOfDay];
 </script>
 
 <svelte:head>
@@ -31,9 +31,28 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
+<svg aria-hidden="true" style:position="absolute" style:width="0" style:height="0">
+	<defs>
+		<filter id="filter-outline">
+			<feFlood flood-color={foreground || 'currentColor'} result="l1-color" />
+			<feFlood flood-color="#63616b" result="l2-color" />
+			<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
+			<feMorphology in="SourceAlpha" operator="dilate" radius="2" result="l2-outline" />
+			<feComposite in="l1-color" in2="l1-outline" operator="in" result="l1-color-outline" />
+			<feComposite in="l2-color" in2="l2-outline" operator="in" result="l2-color-outline" />
+
+			<feMerge>
+				<feMergeNode in="l1-color-outline" />
+				<feMergeNode in="l2-color-outline" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
+</svg>
+
 <div class={timeOfDay}>
 	<header style:background>
-		<h1>{title}</h1>
+		<h1 style:filter="url(#filter-outline)">{title}</h1>
 		<Theme {timeOfDay} {colors} />
 	</header>
 	<main>
@@ -53,25 +72,29 @@
 	.morning {
 		color: var(--grey-700);
 		background: var(--grey-100);
+		--shadow: var(--color-100);
 	}
 
 	.day {
 		color: var(--grey-900);
 		background: var(--grey-000);
+		--shadow: var(--color-200);
 	}
 
 	.night {
 		color: var(--grey-200);
 		background: var(--grey-900);
+		--shadow: var(--color-900);
 	}
 
 	header {
-		padding: 3rem 1rem 0;
+		color: #f7f7f7;
 		background: #838ace;
+		padding: 3rem 1rem 0;
 	}
 
 	h1 {
-		color: #f7f7f7;
+		color: inherit;
 		text-align: center;
 	}
 
