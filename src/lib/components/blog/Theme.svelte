@@ -45,7 +45,7 @@
 
 			if (hours > 2 && hours < 10) {
 				timeOfDay = 'morning';
-			} else if (hours < 18) {
+			} else if (hours <= 18) {
 				timeOfDay = 'day';
 			} else {
 				timeOfDay = 'night';
@@ -104,6 +104,27 @@
 		if (!isDragging) return;
 
 		handlePosition(e);
+	};
+
+	const handleKey = (e) => {
+		const { key } = e;
+		if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
+
+		const timeOfDays = ['morning', 'day', 'night'];
+		const index = timeOfDays.findIndex((d) => d === timeOfDay);
+
+		let next;
+		if (key === 'ArrowRight') {
+			next = (index + 1) % timeOfDays.length;
+		} else {
+			next = index > 0 ? index - 1 : timeOfDays.length - 1;
+		}
+
+		timeOfDay = timeOfDays[next];
+
+		const { x, y } = positions[timeOfDay];
+
+		position.set({ x, y });
 	};
 
 	$: if (timeOfDay) {
@@ -213,7 +234,10 @@
 		on:mouseup={handleEnd}
 		on:mouseleave={handleEnd}
 		on:mousemove={handleMove}
-		on:keydown
+		on:keydown={handleKey}
+		role="menu"
+		tabindex="0"
+		aria-label="Change the time of day with the arrow keys."
 		opacity="0"
 	>
 		<rect width="120" height="53" />

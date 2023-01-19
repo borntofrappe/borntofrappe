@@ -15,7 +15,7 @@
 
 	if (hours > 2 && hours < 10) {
 		timeOfDay = 'morning';
-	} else if (hours < 18) {
+	} else if (hours <= 18) {
 		timeOfDay = 'day';
 	} else {
 		timeOfDay = 'night';
@@ -100,14 +100,14 @@
 		padding: 3rem 1rem 0;
 	}
 
-	header > :global(svg) {
-		max-width: 36rem;
-		margin-inline: auto;
-	}
-
 	h1 {
 		color: inherit;
 		text-align: center;
+	}
+
+	header > :global(svg) {
+		max-width: 36rem;
+		margin-inline: auto;
 	}
 
 	main {
