@@ -1,6 +1,17 @@
 <script>
+	import Theme from '$lib/components/blog/Theme.svelte';
+
 	export let title;
 	export let description;
+
+	const timeOfDay = 'morning';
+	const colors = {
+		morning: { foreground: '#838ac5', background: '#9cb2ce' },
+		day: { foreground: '#639aef', background: '#73d2e6' },
+		night: { foreground: '#7369b5', background: '#838ace' }
+	};
+
+	let { foreground, background } = colors[timeOfDay];
 </script>
 
 <svelte:head>
@@ -10,17 +21,32 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<header>
-	<h1>{title}</h1>
-</header>
-
-<main>
-	<slot />
-</main>
+<div>
+	<header style:background>
+		<h1>{title}</h1>
+		<Theme {timeOfDay} {colors} />
+	</header>
+	<main>
+		<slot />
+	</main>
+</div>
 
 <style>
+	div {
+		min-height: 100vh;
+	}
+
+	div > :global(* + *) {
+		margin-top: 1em;
+	}
+
 	header {
-		padding: 3rem 1rem;
+		padding: 3rem 1rem 0;
+		background: #838ace;
+	}
+
+	h1 {
+		color: #f7f7f7;
 		text-align: center;
 	}
 
