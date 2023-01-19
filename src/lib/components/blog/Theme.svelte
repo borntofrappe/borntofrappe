@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { spring } from 'svelte/motion';
 
 	export let timeOfDay;
 	export let colors = {
@@ -8,16 +9,27 @@
 		night: { foreground: '#7369b5', background: '#838ace' }
 	};
 
+	const color = colors[timeOfDay] || colors.day;
+	let foreground = color.foreground;
+	let background = color.background;
+
+	// viewBox="0 0 120 60"
 	const positions = {
 		morning: { x: 30, y: 35 },
 		day: { x: 60, y: 25 },
 		night: { x: 90, y: 35 }
 	};
 
-	const color = colors[timeOfDay] || colors.day;
-	let foreground = color.foreground;
-	let background = color.background;
-	let position = positions[timeOfDay] || positions.day;
+	// viewBox="0 0 120 60"
+	const position = spring(
+		{
+			x: 60,
+			y: 60
+		},
+		{
+			damping: 0.4
+		}
+	);
 
 	let svg;
 	let w, h;
@@ -38,8 +50,10 @@
 
 			foreground = color.foreground;
 			background = color.background;
-			position = positions[timeOfDay];
 		}
+
+		const { x, y } = positions[timeOfDay];
+		position.set({ x, y });
 	});
 
 	const handleSize = () => {
@@ -55,7 +69,7 @@
 		const x = (offsetX / w) * 120;
 		const y = (offsetY / h) * 60;
 
-		console.log(x, y);
+		position.set({ x, y });
 	};
 
 	const handleStart = (e) => {
@@ -138,7 +152,7 @@
 		</g>
 	{/if}
 
-	<g transform="translate({position.x} {position.y})">
+	<g transform="translate({$position.x} {$position.y})">
 		<g>
 			<circle r="7" fill={foreground} />
 			<circle r="6" fill="#f7f7f7" stroke="#63616b" stroke-width="0.75" />
