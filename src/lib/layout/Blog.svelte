@@ -117,4 +117,57 @@
 		background: var(--accent);
 		border-radius: 0.2rem;
 	}
+
+	main :global(:is(h2, h3, h4)[id]) {
+		display: flex;
+		align-items: center;
+		gap: 0 0.5rem;
+	}
+
+	main :global(:is(h2, h3, h4)[id] a) {
+		width: 1rem;
+		height: 1rem;
+		border-radius: 0.5rem;
+		opacity: 0.3;
+		background: currentColor;
+		transition-duration: 0.25s;
+		transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+		transition-property: opacity, color;
+	}
+
+	main :global(:is(h2, h3, h4)[id] a:focus) {
+		opacity: 1;
+	}
+
+	main :global(:is(h2, h3, h4)[id] a:hover) {
+		color: var(--accent);
+		opacity: 1;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(:is(h2, h3, h4)[id] a) {
+			width: 0.9em;
+			height: 0.9em;
+			border-radius: initial;
+			position: relative;
+			-webkit-mask-image: url('data:image/svg+xml,\
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+				<g transform="rotate(-45)">\
+				<g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+					<path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+					<use href="%23link" transform="scale(-1 -1)" />\
+				</g>\
+				</g>\
+			</svg>');
+			mask-image: url('data:image/svg+xml,\
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+				<g transform="rotate(-45)">\
+				<g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+					<path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+					<use href="%23link" transform="scale(-1 -1)" />\
+				</g>\
+				</g>\
+			</svg>');
+		}
+	}
 </style>
