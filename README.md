@@ -28,6 +28,4 @@
 
 - [route] `/feed`
 
-- [blog] custom remark plugin
-
 - [blog] `Serena.svelte` mascot
