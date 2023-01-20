@@ -1,6 +1,6 @@
 import { remark } from 'remark';
 import remarkHtml from 'remark-html';
-import { remarkCode as remarkPlugin } from './plugins.js';
+import { remarkCodeHighlight as remarkPlugin } from './plugins.js';
 import { readFileSync, writeFileSync } from 'fs';
 
 (async () => {
@@ -81,6 +81,7 @@ import { readFileSync, writeFileSync } from 'fs';
           border-top-right-radius: 0;
           color: var(--code-color);
           background: var(--code-background);
+          overflow-x: auto;
         }
       </style>
       </head>

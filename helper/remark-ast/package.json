@@ -12,6 +12,7 @@
 	"devDependencies": {
 		"remark": "^14.0.2",
 		"remark-html": "^15.0.1",
+		"shiki": "^0.12.1",
 		"unist-util-visit": "^4.1.1"
 	},
 	"type": "module"
