@@ -11,9 +11,15 @@ export const rehypeCodeHighlight = () => async (tree) => {
 	const htmlParser = unified().use(rehypeParse, { fragment: true });
 	const svgParser = unified().use(rehypeParse, { fragment: true, space: 'svg' });
 
+	const classPrefix = 'language-';
+
 	visit(tree, 'element', (node) => {
 		if (node.tagName !== 'pre') return;
-		if (node.properties && node.properties.className && node.properties.className.includes('shiki'))
+		if (
+			node.properties &&
+			node.properties.className &&
+			node.properties.className.startsWith(classPrefix)
+		)
 			return;
 
 		const [child] = node.children;
@@ -22,7 +28,7 @@ export const rehypeCodeHighlight = () => async (tree) => {
 
 		let lang = 'text';
 		if (child.properties && child.properties.className) {
-			lang = child.properties.className[0].split(/language-?/)[1];
+			lang = child.properties.className[0].split(classPrefix)[1];
 		}
 
 		const { value } = child.children[0];
@@ -51,6 +57,10 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		);
 
 		const { children } = root;
+
+		children[0].properties = {
+			className: `${classPrefix}${lang}`
+		};
 
 		node.tagName = 'div';
 		node.properties = {
