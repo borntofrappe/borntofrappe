@@ -1,7 +1,7 @@
 ---
-title: A remarkable introduction to AST
+title: A remarkable introduction to ASTs
+description: I drastically improved the time it takes to build this website by learning about abstract syntax trees. Let me share a few notes.
 date: 2023-01-20 17:59:01
-description: Abstract syntax trees offer powerful features.
 ---
 
 On January 18th, at precisely 11:59:29 AM, this website was built in 57.6 seconds.
@@ -17,7 +17,7 @@ What might be more useful is the journey behind the dramatic improvement, explai
 You have a markdown file, similar to the one you are actually reading at this very moment.
 
 ```md
-# A remarkable introduction to AST
+# A remarkable introduction to ASTs
 
 On January 18th, at precisely 11:59:29 AM, this website was built in 57.6 seconds.
 ```
@@ -25,7 +25,7 @@ On January 18th, at precisely 11:59:29 AM, this website was built in 57.6 second
 You want to process the content into HTML elements.
 
 ```html
-<h1>A remarkable introduction to AST</h1>
+<h1>A remarkable introduction to ASTs</h1>
 <p>On January 18th, at precisely 11:59:29 AM, this website was built in 57.6 seconds.</p>
 ```
 
@@ -64,7 +64,7 @@ Import in the script.
 
 ```js
 import { remark } from 'remark';
-import remarkHTML from 'remark-html';
+import remarkHtml from 'remark-html';
 ```
 
 Invoke the `remark` function to process the markdown contents.
@@ -87,7 +87,7 @@ Without further instructions you add the text as-is, as a string. Almost as if `
 However, include the `remark-html` plugin through the `use` method.
 
 ```js
-const result = remark().use(remarkHTML).processSync(md);
+const result = remark().use(remarkHtml).processSync(md);
 ```
 
 And suddenly, the sequence of characters is framed in familiar HTML syntax. Almost as if `remark` was doing something after all.
@@ -120,7 +120,7 @@ Objects like the heading.
   "depth": 1,
   "children": {
     "type": "text",
-    "value": "A remarkable introduction to AST",
+    "value": "A remarkable introduction to ASTs",
     "position": { "start", "end" },
   },
 };
@@ -182,9 +182,7 @@ visit(tree, 'heading');
 With a third argument you describe a function, a callback function which takes as argument the found node.
 
 ```js
-visit(tree, 'heading', (heading) => {
-	//
-});
+visit(tree, 'heading', (heading) => {});
 ```
 
 There are several levels of headings, but here we care about `<h1>` elements only. Access the `depth` property to further filter the nodes.
@@ -192,16 +190,13 @@ There are several levels of headings, but here we care about `<h1>` elements onl
 ```js
 visit(tree, 'heading', (heading) => {
 	if (heading.depth !== 1) return;
-	//
 });
 ```
 
 Past the first filter, call once again the `visit` function to look for the paragraph immediately following the heading.
 
 ```js
-visit(tree, 'paragraph', (paragraph) => {
-	//
-});
+visit(tree, 'paragraph', (paragraph) => {});
 ```
 
 How to consider only the first, successive paragraph? You will find a much better solution, but here's how I continued.
@@ -225,9 +220,7 @@ Had enough visiting for one day? Unfortunately, there is one last stop on the sc
 Visit the paragraph instead of the parent tree, looking for the specific node.
 
 ```js
-visit(paragraph, 'text', (node, k) => {
-	//
-});
+visit(paragraph, 'text', (node, k) => {});
 ```
 
 Here we care about the first instance.
@@ -263,8 +256,8 @@ Run the script with the plugins.
 <!-- prettier-ignore -->
 ```js
 const result = remark()
-  .use(remarkHTML)
-  .use(remarkPlugin)
+  .use(remarkHtml)
+  .use(remarkFirstLetter)
   .processSync(md);
 ```
 
@@ -275,8 +268,8 @@ This is ultimately because `remark-html` strips HTML through the `sanitize` opti
 Change the default value of `true` to see the markup appear once again.
 
 ```diff
--.use(remarkHTML)
-+.use(remarkHTML, { sanitize: false })
+-.use(remarkHtml)
++.use(remarkHtml, { sanitize: false })
 ```
 
 A questionable choice which works to highlight the potential of interacting with abstract syntax trees, to stress the need for much more research.
