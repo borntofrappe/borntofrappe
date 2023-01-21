@@ -9,6 +9,7 @@ export const rehypeCodeHighlight = () => async (tree) => {
 	const highlighter = await getHighlighter({ theme });
 
 	const htmlParser = unified().use(rehypeParse, { fragment: true });
+	const svgParser = unified().use(rehypeParse, { fragment: true, space: 'svg' });
 
 	visit(tree, 'element', (node) => {
 		if (node.tagName !== 'pre') return;
@@ -35,6 +36,8 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		const html = highlighter.codeToHtml(code, { lang });
 
 		const root = htmlParser.parse(html);
+		const icon = icons[lang] || icons.editor;
+		const { children: svg } = svgParser.parse(icon);
 
 		visit(
 			root,
@@ -62,7 +65,8 @@ export const rehypeCodeHighlight = () => async (tree) => {
 					{
 						type: 'text',
 						value: lang
-					}
+					},
+					...svg
 				]
 			},
 			...children
