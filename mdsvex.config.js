@@ -1,4 +1,4 @@
-import { remarkCode } from './plugins.js';
+import { rehypeCodeHighlight } from './plugins.js';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
@@ -12,9 +12,8 @@ const layout = {
 
 const highlight = false;
 
-const remarkPlugins = [remarkCode];
-
 const rehypePlugins = [
+	rehypeCodeHighlight,
 	rehypeSlug,
 	[
 		rehypeAutolinkHeadings,
@@ -37,6 +36,5 @@ export default {
 	smartypants,
 	layout,
 	highlight,
-	remarkPlugins,
 	rehypePlugins
 };
