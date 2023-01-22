@@ -10,7 +10,7 @@ export const remarkFirstLetter = () => (tree) => {
 
 				const { value } = node;
 				node.type = 'html';
-				node.value = `<strong>${value[0]}</strong>${value.slice(1)}`;
+				node.value = `<b>${value[0]}</b>${value.slice(1)}`;
 			});
 		});
 	});

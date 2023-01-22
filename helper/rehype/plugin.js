@@ -13,9 +13,9 @@ export const rehypeFirstLetter = () => (tree) => {
 
 		const { value } = children[textIndex];
 
-		const strong = {
+		const b = {
 			type: 'element',
-			tagName: 'strong',
+			tagName: 'b',
 			children: [
 				{
 					type: 'text',
@@ -31,7 +31,7 @@ export const rehypeFirstLetter = () => (tree) => {
 
 		paragraph.children = [
 			...children.slice(0, textIndex),
-			strong,
+			b,
 			text,
 			...children.slice(textIndex + 1)
 		];
