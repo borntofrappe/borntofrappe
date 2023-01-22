@@ -1,5 +1,5 @@
 ---
-title: A webfont you may see
+title: The webfont you may see
 date: 2023-01-12 10:21:20
 description: This website relies on a webfont. Here a few notes on how, just in case you fancy a change.
 ---

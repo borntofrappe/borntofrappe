@@ -7,8 +7,8 @@
 
 	<p>
 		I am pleased to introduce <em>Ray</em>, the first and most delightful mascot for this very
-		website. It is charming in its simplicity, it hides a whimsical interaction and, what's more, it
-		works to showcase the fitting union of SVG and Svelte.
+		website. Charming in its simplicity, it hides a whimsical interaction and, what's more, it works
+		to showcase the fitting union of SVG and Svelte.
 	</p>
 </div>
 

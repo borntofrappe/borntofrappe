@@ -1,5 +1,5 @@
 ---
-title: A ray of light
+title: Ray of light
 date: 2023-01-11 09:39:37
 description: How to introduce a personal website of a rather pessimistic character? Why, with an uplifting mascot and hope for things to come.
 ---
