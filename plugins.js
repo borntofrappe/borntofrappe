@@ -83,3 +83,34 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		];
 	});
 };
+
+export const remarkCodeHighlight = () => async (tree) => {
+	const theme = 'rose-pine-moon';
+	const highlighter = await getHighlighter({ theme });
+
+	const classPrefix = 'language-';
+
+	visit(tree, 'code', (node) => {
+		const code = node.value
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&#123;/g, '{')
+			.replace(/&#125;/g, '}');
+
+		const lang = node.lang || 'text';
+		const classAttribute = `class="${classPrefix}${lang}"`;
+
+		const string = highlighter
+			.codeToHtml(code, { lang })
+			.replace(/{/g, '&#123;')
+			.replace(/}/g, '&#125;')
+			.replace(/class=".+?"/, classAttribute);
+
+		const html = `<div class="code"><span>${lang}${
+			icons[lang] || icons.editor
+		}</span>${string}</div>`;
+
+		node.type = 'html';
+		node.value = html;
+	});
+};
