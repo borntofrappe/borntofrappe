@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | Today</title>
+	<title>Today | borntofrappe</title>
 	<meta
 		name="description"
 		content="What day is today? Here's a direct answer to an often puzzling question."

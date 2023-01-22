@@ -33,7 +33,7 @@
 
 <svelte:head>
 	<title>
-		borntofrappe | {title}
+		{title} | borntofrappe
 	</title>
 	<meta name="description" content={description} />
 </svelte:head>

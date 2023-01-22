@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>borntofrappe | {$page.status}</title>
+	<title>Status code {$page.status} | borntofrappe</title>
 	<meta name="description" content={$page.error.message} />
 	<link rel="icon" href="icons/error.svg" type="image/svg+xml" />
 </svelte:head>

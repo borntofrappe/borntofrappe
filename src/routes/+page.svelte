@@ -40,7 +40,7 @@
 
 <footer>
 	<p>
-		Updated <time datetime="2023-01-19T21:42">January 19th 2023 {@html icons.calendar}</time>.<br
+		Updated <time datetime="2023-01-22T18:14:31">January 22nd 2023 {@html icons.calendar}</time>.<br
 		/>Feel free to
 		<a
 			href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Dated%20content&body=Please%20update%20the%20website"
