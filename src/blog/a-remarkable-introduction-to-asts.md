@@ -1,6 +1,6 @@
 ---
 title: A remarkable introduction to ASTs
-description: I drastically improved the time it takes to build this website by learning about abstract syntax trees. Let me share a few notes.
+description: I learned about abstract syntax trees to improve the time it takes to build this website. Let me share a few notes.
 date: 2023-01-20 17:59:01
 ---
 
@@ -54,7 +54,7 @@ Eventually you are going to rely on the file's contents, but the instructions sh
 
 ## Remark
 
-Install two remark libraries `remark` itself and `remark-html`.
+Install two remark libraries: `remark` itself and `remark-html`.
 
 ```bash
 npm i -D remark remark-html
@@ -116,27 +116,31 @@ Objects like the heading.
 
 ```json
 {
-  "type": "heading",
-  "depth": 1,
-  "children": {
-    "type": "text",
-    "value": "A remarkable introduction to ASTs",
-    "position": { "start", "end" },
-  },
-};
+	"type": "heading",
+	"depth": 1,
+	"children": [
+		{
+			"type": "text",
+			"value": "A remarkable introduction to ASTs",
+			"position": {}
+		}
+	]
+}
 ```
 
 Or again the paragraph.
 
 ```json
 {
-  "type": "paragraph",
-  "children": {
-    "type": "text",
-    "value": "On January 18th, at ...",
-    "position": { "start", "end" },
-  },
-};
+	"type": "paragraph",
+	"children": [
+		{
+			"type": "text",
+			"value": "On January 18th, at ...",
+			"position": {}
+		}
+	]
+}
 ```
 
 It is _through_ the information contained in these objects, _through_ the tree that the installed plugin conjures up the HTML elements.
@@ -147,7 +151,7 @@ It is again through this tree that you are able to access the information and ch
 
 We could just mock the tree directly and see the change take place immediately, but let's try to implement one feature, no matter how trivial.
 
-The goal is to take the first letter of the first paragraph following the main heading and wrap it in a `<strong>` element.
+The goal is to take the first letter of the first paragraph following the main heading and wrap it in a `<b>` element. Normally, you'd rely on CSS to style the specific character, but the tag works to provide immediate feedback.
 
 ```js
 const remarkFirstLetter = () => (tree) => {};
@@ -246,7 +250,7 @@ node.type = 'html';
 And, a different value altogether.
 
 ```js
-node.value = `<strong>${value[0]}</strong>${value.slice(1)}`;
+node.value = `<b>${value[0]}</b>${value.slice(1)}`;
 ```
 
 ## Onwards and upwards
