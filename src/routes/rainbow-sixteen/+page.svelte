@@ -8,6 +8,7 @@
 <svelte:head>
 	<title>Rainbow sixteen | borntofrappe</title>
 	<meta name="description" content="Slide the tiles to complete the colors of the rainbow." />
+	<link rel="icon" href="/icons/rainbow-sixteen.svg" type="image/svg+xml" />
 </svelte:head>
 
 <header class="visually-hidden">
