@@ -5,6 +5,7 @@
 <svelte:head>
 	<title>Color tiles | borntofrappe</title>
 	<meta name="description" content="Line tiles of the same color." />
+	<link rel="icon" href="/icons/color-tiles.svg" type="image/svg+xml" />
 </svelte:head>
 
 <header class="visually-hidden">
