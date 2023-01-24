@@ -289,7 +289,7 @@
 	tabindex="0"
 	aria-label={isGameOver
 		? 'The game is over, but you can both play a new round. Focus on the grid and press enter to start with a new deck.'
-		: 'Line up tiles of the same color. Focus on a tile and press enter to place the tile on the specific column and row.'}
+		: 'Place your tiles in a colorful line. Focus on a spot and press enter to position the tile on the specific column and row.'}
 >
 	<defs>
 		<g id="color-tiles-tile-grid">

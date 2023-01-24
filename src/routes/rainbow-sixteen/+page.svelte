@@ -13,7 +13,7 @@
 
 <header class="visually-hidden">
 	<h1>Rainbow sixteen</h1>
-	<p>Slide the tiles to complete the colors of the rainbow</p>
+	<p>Slide the tiles to complete the colors of the rainbow.</p>
 </header>
 
 <article>

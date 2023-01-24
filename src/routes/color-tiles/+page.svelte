@@ -4,13 +4,16 @@
 
 <svelte:head>
 	<title>Color tiles | borntofrappe</title>
-	<meta name="description" content="Line tiles of the same color." />
+	<meta
+		name="description"
+		content="Compete to place your tiles in a colorful line. To each player its turn!"
+	/>
 	<link rel="icon" href="/icons/color-tiles.svg" type="image/svg+xml" />
 </svelte:head>
 
 <header class="visually-hidden">
 	<h1>Color tiles</h1>
-	<p>Line tiles of the same color.</p>
+	<p>Compete to place your tiles in a colorful line. To each player its turn!</p>
 </header>
 
 <article>
