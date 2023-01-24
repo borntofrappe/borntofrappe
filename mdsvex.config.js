@@ -1,6 +1,4 @@
 import { rehypePermalink, rehypeCodeHighlight } from './plugins.js';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const extensions = ['.md', '.svx'];
 
