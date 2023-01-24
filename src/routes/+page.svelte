@@ -1,6 +1,7 @@
 <script>
 	import Heading from '$lib/components/Heading.svelte';
 	import Ray from './mignon/Ray.svelte';
+	import Showcase from './Showcase.svelte';
 	import icons from '$lib/utils/icons.js';
 </script>
 
@@ -37,6 +38,8 @@
 	<h2>Why SVG?</h2>
 	<p>I'm building an answer at this very moment. Come back soon for an intriguing reply.</p>
 </header>
+
+<Showcase />
 
 <footer>
 	<p>
