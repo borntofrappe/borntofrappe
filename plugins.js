@@ -3,6 +3,52 @@ import { getHighlighter } from 'shiki';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
 import icons from './src/lib/utils/icons.js';
+import slug from 'slug';
+
+export const rehypePermalink = () => (tree) => {
+	const tagNames = ['h2', 'h3', 'h4'];
+	visit(tree, 'element', (node) => {
+		if (!tagNames.includes(node.tagName)) return;
+
+		let value = '';
+
+		visit(node, 'text', (text) => {
+			value += text.value;
+		});
+
+		const id = slug(value);
+		const href = `#${id}`;
+
+		node.properties.id = id;
+		if (!node.properties.className) node.properties.className = [];
+		node.properties.className.push('permalink');
+
+		const span = {
+			type: 'element',
+			tagName: 'span',
+			properties: {
+				className: 'visually-hidden'
+			},
+			children: [
+				{
+					type: 'text',
+					value: 'Permalink'
+				}
+			]
+		};
+
+		const a = {
+			type: 'element',
+			tagName: 'a',
+			properties: {
+				href
+			},
+			children: [span]
+		};
+
+		node.children = [...node.children, a];
+	});
+};
 
 export const rehypeCodeHighlight = () => async (tree) => {
 	const theme = 'rose-pine-moon';

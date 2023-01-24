@@ -22,6 +22,7 @@
 		"rehype-parse": "^8.0.4",
 		"rehype-slug": "^5.1.0",
 		"shiki": "^0.12.1",
+		"slug": "^8.2.2",
 		"svelte": "^3.54.0",
 		"unified": "^10.1.2",
 		"unist-util-visit": "^4.1.1",

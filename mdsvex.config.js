@@ -1,4 +1,4 @@
-import { rehypeCodeHighlight } from './plugins.js';
+import { rehypePermalink, rehypeCodeHighlight } from './plugins.js';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
@@ -12,24 +12,7 @@ const layout = {
 
 const highlight = false;
 
-const rehypePlugins = [
-	rehypeCodeHighlight,
-	rehypeSlug,
-	[
-		rehypeAutolinkHeadings,
-		{
-			behavior: 'append',
-			properties: {},
-			content: {
-				type: 'element',
-				tagName: 'span',
-				properties: { className: 'visually-hidden' },
-				children: [{ type: 'text', value: 'Permalink' }]
-			},
-			test: (node) => node.tagName !== 'h1'
-		}
-	]
-];
+const rehypePlugins = [rehypePermalink, rehypeCodeHighlight];
 
 export default {
 	extensions,
