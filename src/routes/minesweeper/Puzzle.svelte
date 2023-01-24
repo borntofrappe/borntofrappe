@@ -1,16 +1,18 @@
 <script>
 	import Display from './Display.svelte';
-	import { createTimer } from './utils.js';
+	import { createTimer, getPuzzle } from './utils.js';
 
 	const timer = createTimer();
 
 	export let rows = 10;
 	export let columns = 10;
 	export let mines = 10;
+
+	let puzzle = getPuzzle({ columns, rows, mines });
+	console.log(puzzle);
 </script>
 
 <svg viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}">
-	<!--  -->
 	<defs>
 		<linearGradient id="minesweeper-linear-gradient-stroke-se" x1="0" x2="1" y1="0" y2="1">
 			<stop stop-color="#ffffff" offset="0.5" />
@@ -226,61 +228,22 @@
 	</g>
 
 	<g transform="translate(0.5 2.5)">
-		<!-- background -->
-		<rect
-			fill="#bcbcbc"
-			stroke="#767676"
-			stroke-width="0.05"
-			x="0.025"
-			y="0.025"
-			width="0.95"
-			height="0.95"
-		/>
-		<g transform="translate(1 0)">
-			<rect
-				fill="#bcbcbc"
-				stroke="#767676"
-				stroke-width="0.05"
-				x="0.025"
-				y="0.025"
-				width="0.95"
-				height="0.95"
-			/>
-
-			<svg x="0.2" y="0.2" width="0.6" height="0.6">
-				<use href="#minesweeper-cell-mine" />
-			</svg>
-		</g>
-		<g transform="translate(2 0)">
-			<rect
-				fill="#bcbcbc"
-				stroke="#767676"
-				stroke-width="0.05"
-				x="0.025"
-				y="0.025"
-				width="0.95"
-				height="0.95"
-			/>
-
-			<svg x="0.2" y="0.2" width="0.6" height="0.6">
-				<use href="#minesweeper-cell-1" />
-			</svg>
-		</g>
-		<g transform="translate(3 0)">
-			<rect
-				fill="#c3c3c3"
-				stroke="url(#minesweeper-linear-gradient-stroke-se)"
-				stroke-width="0.1"
-				x="0.05"
-				y="0.05"
-				width="0.9"
-				height="0.9"
-			/>
-
-			<svg x="0.2" y="0.2" width="0.6" height="0.6">
-				<use href="#minesweeper-flag" />
-			</svg>
-		</g>
+		{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
+			<g transform="translate({column} {row})">
+				<rect
+					fill="#bcbcbc"
+					stroke="#767676"
+					stroke-width="0.05"
+					x="0.025"
+					y="0.025"
+					width="0.95"
+					height="0.95"
+				/>
+				<svg x="0.2" y="0.2" width="0.6" height="0.6">
+					<use href="#minesweeper-cell-{state}" />
+				</svg>
+			</g>
+		{/each}
 	</g>
 </svg>
 
