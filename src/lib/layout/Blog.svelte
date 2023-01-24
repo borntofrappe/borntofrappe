@@ -226,13 +226,13 @@
 		border-radius: 0.2rem;
 	}
 
-	main :global(:is(h2, h3, h4)[id]) {
+	main :global(.permalink) {
 		display: flex;
 		align-items: center;
 		gap: 0 0.5rem;
 	}
 
-	main :global(:is(h2, h3, h4)[id] a) {
+	main :global(.permalink a) {
 		width: 1rem;
 		height: 1rem;
 		border-radius: 0.5rem;
@@ -243,11 +243,11 @@
 		transition-property: opacity, color;
 	}
 
-	main :global(:is(h2, h3, h4)[id] a:focus) {
+	main :global(.permalink a:focus) {
 		opacity: 1;
 	}
 
-	main :global(:is(h2, h3, h4)[id] a:hover) {
+	main :global(.permalink a:hover) {
 		color: var(--accent);
 		opacity: 1;
 	}
@@ -292,7 +292,7 @@
         </svg>');
 		}
 
-		main :global(:is(h2, h3, h4)[id] a) {
+		main :global(.permalink a) {
 			width: 0.9em;
 			height: 0.9em;
 			border-radius: initial;
