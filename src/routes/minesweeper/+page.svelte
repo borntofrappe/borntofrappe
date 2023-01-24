@@ -15,7 +15,7 @@
 
 <article>
 	<div>
-		<Puzzle />
+		<Puzzle columns={20} rows={12} mines={20} />
 	</div>
 </article>
 
