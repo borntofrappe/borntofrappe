@@ -1,5 +1,10 @@
 <script>
-	export let value = '0123456789';
+	export let value = '72';
+	export let gap = 20;
+	export let color = 'currentColor';
+	export let width = 100;
+	export let height = 100;
+
 	$: digits = value.split('').map((d) => parseInt(d, 10));
 
 	const encodings = [0x7e, 0x30, 0x6d, 0x79, 0x33, 0x5b, 0x5f, 0x70, 0x7f, 0x7b];
@@ -26,8 +31,7 @@
 	];
 </script>
 
-<svg viewBox="0 0 {115 * digits.length} 200">
-	<!--  -->
+<svg viewBox="0 0 {(115 + gap) * digits.length - gap} 200" {width} {height}>
 	<defs>
 		<path id="minesweeper-display-segment" d="M 0 0 l 15 15 h 45 l 15 -15 -15 -15 h -45z" />
 		{#each transforms as { x, y, a }, i}
@@ -39,9 +43,9 @@
 		{/each}
 	</defs>
 
-	<g fill="currentColor">
+	<g fill={color}>
 		{#each digits as digit, i}
-			<g transform="translate({115 * i} 0)">
+			<g transform="translate({(115 + gap) * i} 0)">
 				{#each Array(7) as _, j}
 					<g opacity="0.1">
 						<use href="#minesweeper-display-segment-{j}" />
