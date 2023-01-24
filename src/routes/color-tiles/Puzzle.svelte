@@ -318,7 +318,7 @@
 		/>
 	</defs>
 	<g stroke="currentColor" stroke-width={strokeWidth} stroke-linejoin="round">
-		<g>
+		<g role="group">
 			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { x, y, column, row, color }}
 				<g transform="translate({x} {y})">
 					<g
@@ -339,7 +339,7 @@
 							}}
 							tabindex={isGameOver ? '-1' : '0'}
 							aria-label="Position tile color {color} on row {row} and column {column}."
-							role="button"
+							role="menuitem"
 							on:keydown={(e) => {
 								if (isGameOver) return;
 
@@ -386,7 +386,7 @@
 			class="focusable"
 			tabindex="0"
 			aria-label="Press enter to clear the board and play a new round."
-			role="button"
+			role="menuitem"
 			on:keydown|once={(e) => {
 				const { key } = e;
 				if (key === 'Enter') {

@@ -181,45 +181,16 @@
 	</g>
 
 	<g class:solved={isSolved} on:animationend={handleAnimationend}>
-		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden, animation }}
-			<g transform="translate({column} {row})">
-				<g
-					class="scale"
-					style:animation-duration="{animation.duration}s"
-					style:animation-delay="{animation.delay}s"
-				>
-					{#if hidden}
-						<g transform="scale({$hiddenScale})">
-							<use
-								href="#rainbow-sixteen-tile"
-								x="-0.45"
-								y="-0.45"
-								width="0.9"
-								height="0.9"
-								{fill}
-							/>
-						</g>
-					{:else}
-						<g transform="scale({$scale})">
-							<g
-								style:cursor={!isSliding && hasHiddenNeighbor({ row, column })
-									? 'pointer'
-									: 'initial'}
-								on:click={() => {
-									if (!isSliding && hasHiddenNeighbor({ row, column })) {
-										updatePuzzle({ row, column });
-									}
-								}}
-								class="focusable"
-								role="button"
-								aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
-								tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
-								on:keydown={(event) => {
-									if (!isSliding && hasHiddenNeighbor({ row, column })) {
-										handleKeydown({ event, row, column });
-									}
-								}}
-							>
+		<g role="group">
+			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill, hidden, animation }}
+				<g transform="translate({column} {row})">
+					<g
+						class="scale"
+						style:animation-duration="{animation.duration}s"
+						style:animation-delay="{animation.delay}s"
+					>
+						{#if hidden}
+							<g transform="scale({$hiddenScale})">
 								<use
 									href="#rainbow-sixteen-tile"
 									x="-0.45"
@@ -228,70 +199,103 @@
 									height="0.9"
 									{fill}
 								/>
-								<g class="focus" opacity="0">
-									<rect
+							</g>
+						{:else}
+							<g transform="scale({$scale})">
+								<g
+									style:cursor={!isSliding && hasHiddenNeighbor({ row, column })
+										? 'pointer'
+										: 'initial'}
+									on:click={() => {
+										if (!isSliding && hasHiddenNeighbor({ row, column })) {
+											updatePuzzle({ row, column });
+										}
+									}}
+									class="focusable"
+									role="menuitem"
+									aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
+									tabindex={!isSliding && hasHiddenNeighbor({ row, column }) ? '0' : '-1'}
+									on:keydown={(event) => {
+										if (!isSliding && hasHiddenNeighbor({ row, column })) {
+											handleKeydown({ event, row, column });
+										}
+									}}
+								>
+									<use
+										href="#rainbow-sixteen-tile"
 										x="-0.45"
 										y="-0.45"
 										width="0.9"
 										height="0.9"
-										rx="0.15"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="0.05"
+										{fill}
 									/>
+									<g class="focus" opacity="0">
+										<rect
+											x="-0.45"
+											y="-0.45"
+											width="0.9"
+											height="0.9"
+											rx="0.15"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="0.05"
+										/>
+									</g>
 								</g>
 							</g>
-						</g>
-					{/if}
+						{/if}
+					</g>
 				</g>
-			</g>
-		{/each}
+			{/each}
+		</g>
 	</g>
 
 	{#if isAnimated}
-		{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill }}
-			<g transform="translate({column} {row})">
-				<g
-					style:cursor="pointer"
-					on:click={() => {
-						resetPuzzle({ row, column });
-					}}
-					class="focusable"
-					role="button"
-					aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
-					tabindex="0"
-					on:keydown={(event) => {
-						const { key } = event;
-						if (key === 'Enter') {
-							event.preventDefault();
-
+		<g role="group">
+			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill }}
+				<g transform="translate({column} {row})">
+					<g
+						style:cursor="pointer"
+						on:click={() => {
 							resetPuzzle({ row, column });
-						}
-					}}
-				>
-					<use
-						href="#rainbow-sixteen-tile"
-						opacity="0"
-						x="-0.45"
-						y="-0.45"
-						width="0.9"
-						height="0.9"
-					/>
-					<g class="focus" opacity="0">
+						}}
+						class="focusable"
+						role="menuitem"
+						aria-label="Row {row + 1} and column {column + 1}. Color {fill}."
+						tabindex="0"
+						on:keydown={(event) => {
+							const { key } = event;
+							if (key === 'Enter') {
+								event.preventDefault();
+
+								resetPuzzle({ row, column });
+							}
+						}}
+					>
 						<use
 							href="#rainbow-sixteen-tile"
+							opacity="0"
 							x="-0.45"
 							y="-0.45"
 							width="0.9"
 							height="0.9"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="0.05"
 						/>
+						<g class="focus" opacity="0">
+							<use
+								href="#rainbow-sixteen-tile"
+								x="-0.45"
+								y="-0.45"
+								width="0.9"
+								height="0.9"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="0.05"
+							/>
+						</g>
 					</g>
 				</g>
-			</g>
-		{/each}
+			{/each}
+		</g>
 	{/if}
 </svg>
 
