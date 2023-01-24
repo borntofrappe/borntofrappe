@@ -9,10 +9,114 @@
 	export let mines = 10;
 
 	let puzzle = getPuzzle({ columns, rows, mines });
-	console.log(puzzle);
+
+	let state = 'wait';
+	let flags = [];
+
+	const handleReset = () => {
+		puzzle = getPuzzle({ columns, rows, mines });
+
+		state = 'wait';
+		flags = [];
+		timer.reset();
+	};
+
+	const handleReveal = ({ row, column, firstContact = true }) => {
+		if (puzzle.grid[row][column].isRevealed) return;
+
+		if (firstContact) {
+			if (state === 'lose' || state === 'win') return;
+
+			if (flags.some((flag) => flag.row === row && flag.column === column)) return;
+
+			if (state === 'wait') {
+				if (puzzle.grid[row][column].state !== 0) {
+					puzzle = getPuzzle({
+						columns,
+						rows,
+						mines,
+						empty: { row, column }
+					});
+				}
+
+				state = 'play';
+				timer.start();
+			}
+		}
+
+		puzzle.grid[row][column].isRevealed = true;
+
+		if (
+			puzzle.grid
+				.reduce((acc, curr) => [...acc, ...curr], [])
+				.every(
+					({ isRevealed, state }) =>
+						(state !== 'mine' && isRevealed) || (state === 'mine' && !isRevealed)
+				)
+		) {
+			state = 'win';
+			timer.stop();
+		} else if (firstContact && puzzle.grid[row][column].state === 'mine') {
+			state = 'lose';
+			timer.stop();
+
+			for (let row = 0; row < puzzle.grid.length; row++) {
+				for (let column = 0; column < puzzle.grid[row].length; column++) {
+					if (
+						!puzzle.grid[row][column].isRevealed &&
+						!flags.some((flag) => flag.row === row && flag.column === column)
+					) {
+						puzzle.grid[row][column].isRevealed = true;
+					}
+				}
+			}
+		} else if (puzzle.grid[row][column].state === 0) {
+			const neighbors = puzzle.offsetsNeighbors
+				.map(({ row: offsetRow, column: offsetColumn }) => ({
+					row: row + offsetRow,
+					column: column + offsetColumn
+				}))
+				.filter(({ row: neighborRow, column: neighborColumn }) => {
+					if (!puzzle.grid[neighborRow] || !puzzle.grid[neighborRow][neighborColumn]) return false;
+
+					const cell = puzzle.grid[neighborRow][neighborColumn];
+					return (
+						cell.state !== 'mine' &&
+						!cell.isRevealed &&
+						!flags.some((flag) => flag.row === neighborRow && flag.column === neighborColumn)
+					);
+				});
+
+			neighbors.forEach(({ row, column }) => {
+				handleReveal({ row, column, firstContact: false });
+			});
+		}
+	};
+
+	const handleFlag = ({ row, column }) => {
+		if (state === 'lose' || state === 'win') return;
+
+		const i = flags.findIndex((flag) => flag.row === row && flag.column === column);
+		if (i === -1) {
+			if (flags.length < mines) flags = [...flags, { row, column }];
+		} else {
+			flags = [...flags.slice(0, i), ...flags.slice(i + 1)];
+		}
+	};
+
+	$: if ($timer >= 999) {
+		state = 'lose';
+		timer.stop();
+	}
 </script>
 
-<svg viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}">
+<svg
+	viewBox="-0.1 -0.1 {columns + 0.2 + 1} {rows + 0.2 + 3}"
+	class="focusable"
+	role="menu"
+	tabindex="0"
+	aria-label="Avoid mines and clear the grid. Focus on a cell and press enter to reveal the contents. Press f to toggle a flag and mark the cell as locked."
+>
 	<defs>
 		<linearGradient id="minesweeper-linear-gradient-stroke-se" x1="0" x2="1" y1="0" y2="1">
 			<stop stop-color="#ffffff" offset="0.5" />
@@ -161,6 +265,16 @@
 		height={rows + 3}
 	/>
 
+	<g class="focus" opacity="0">
+		<rect
+			fill="none"
+			stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+			stroke-width="0.2"
+			width={columns + 1}
+			height={rows + 3}
+		/>
+	</g>
+
 	<g
 		fill="#bbbbbb"
 		stroke="url(#minesweeper-linear-gradient-stroke-nw)"
@@ -197,7 +311,7 @@
 			<g transform="translate(1.5 0.75)">
 				<g transform="translate(-1.25 -0.6)">
 					<Display
-						value={mines.toString().padStart(3, '0')}
+						value={(mines - flags.length).toString().padStart(3, '0')}
 						color="#fa0202"
 						width={2.5}
 						height={1.2}
@@ -209,46 +323,149 @@
 
 		<g transform="translate({columns / 2} 0)">
 			<g transform="translate(0 0.06)">
-				<rect
-					fill="#bbbbbb"
-					stroke="url(#minesweeper-linear-gradient-stroke-se)"
-					stroke-width="0.12"
-					x="-0.69"
-					width="1.38"
-					height="1.38"
-				/>
+				<g
+					style:cursor="pointer"
+					on:click={handleReset}
+					class="focusable"
+					role="button"
+					tabindex="0"
+					aria-label="Press enter to reset the grid and start a new round."
+					on:keydown={(e) => {
+						const { key } = e;
+						if (key === 'Enter') {
+							e.preventDefault();
+							handleReset();
+						}
+					}}
+				>
+					<rect
+						fill="#bbbbbb"
+						stroke="url(#minesweeper-linear-gradient-stroke-se)"
+						stroke-width="0.12"
+						x="-0.69"
+						width="1.38"
+						height="1.38"
+					/>
 
-				<g transform="translate(0 0.69)">
-					<svg x="-0.45" y="-0.45" width="0.9" height="0.9">
-						<use href="#minesweeper-puzzle-wait" />
-					</svg>
+					<g class="focus" opacity="0">
+						<rect
+							fill="none"
+							stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+							stroke-width="0.12"
+							x="-0.69"
+							width="1.38"
+							height="1.38"
+						/>
+					</g>
+
+					<g transform="translate(0 0.69)">
+						<svg x="-0.45" y="-0.45" width="0.9" height="0.9">
+							<use href="#minesweeper-puzzle-{state}" />
+						</svg>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 
 	<g transform="translate(0.5 2.5)">
-		{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
-			<g transform="translate({column} {row})">
-				<rect
-					fill="#bcbcbc"
-					stroke="#767676"
-					stroke-width="0.05"
-					x="0.025"
-					y="0.025"
-					width="0.95"
-					height="0.95"
-				/>
-				<svg x="0.2" y="0.2" width="0.6" height="0.6">
-					<use href="#minesweeper-cell-{state}" />
-				</svg>
-			</g>
-		{/each}
+		<g on:contextmenu|preventDefault>
+			{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
+				<g transform="translate({column} {row})">
+					{#if isRevealed}
+						<rect
+							fill="#bcbcbc"
+							stroke="#767676"
+							stroke-width="0.05"
+							x="0.025"
+							y="0.025"
+							width="0.95"
+							height="0.95"
+						/>
+
+						<svg x="0.2" y="0.2" width="0.6" height="0.6">
+							<use href="#minesweeper-cell-{state}" />
+						</svg>
+					{:else}
+						<g
+							style:cursor="pointer"
+							on:touchstart={() => {
+								handleReveal({ column, row });
+							}}
+							on:mousedown={({ button }) => {
+								if (button === 0) {
+									handleReveal({ column, row });
+								} else if (button === 2) {
+									handleFlag({ column, row });
+								}
+							}}
+							class="focusable"
+							role="button"
+							tabindex={state === 'win' || state === 'lose' ? '-1' : '0'}
+							aria-label="Cell on row {row + 1} and column {column + 1}."
+							on:keydown={(e) => {
+								const { key } = e;
+								if (key === 'Enter') {
+									e.preventDefault();
+									handleReveal({ column, row });
+								} else if (key === 'f' || key === 'F') {
+									handleFlag({ column, row });
+								}
+							}}
+						>
+							<rect
+								fill="#c3c3c3"
+								stroke="url(#minesweeper-linear-gradient-stroke-se)"
+								stroke-width="0.1"
+								x="0.05"
+								y="0.05"
+								width="0.9"
+								height="0.9"
+							/>
+
+							<g class="focus" opacity="0">
+								<rect
+									fill="none"
+									stroke="url(#minesweeper-linear-gradient-stroke-nw)"
+									stroke-width="0.1"
+									x="0.05"
+									y="0.05"
+									width="0.9"
+									height="0.9"
+								/>
+							</g>
+						</g>
+					{/if}
+				</g>
+			{/each}
+		</g>
+
+		<g style:pointer-events="none">
+			{#each flags as { column, row }}
+				<g transform="translate({column} {row})">
+					<svg x="0.2" y="0.2" width="0.6" height="0.6">
+						<use href="#minesweeper-flag" />
+					</svg>
+				</g>
+			{/each}
+		</g>
 	</g>
 </svg>
 
 <style>
 	svg {
 		display: block;
+	}
+
+	.focusable:focus {
+		outline: none;
+	}
+
+	.focusable:focus > .focus {
+		opacity: 1;
+	}
+
+	.focusable:focus:not(:focus-visible) > .focus {
+		opacity: 0;
 	}
 </style>
