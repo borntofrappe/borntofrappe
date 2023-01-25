@@ -39,8 +39,12 @@ export default () => (tree) => {
 		};
 
 		node.properties.id = id;
+
 		if (!node.properties.className) node.properties.className = [];
+		if (typeof node.properties.className === 'string')
+			node.properties.className = [node.properties.className];
 		node.properties.className.push('permalink');
+
 		node.children = [...node.children, a];
 	});
 };
