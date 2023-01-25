@@ -19,10 +19,6 @@ export const rehypePermalink = () => (tree) => {
 		const id = slug(value);
 		const href = `#${id}`;
 
-		node.properties.id = id;
-		if (!node.properties.className) node.properties.className = [];
-		node.properties.className.push('permalink');
-
 		const span = {
 			type: 'element',
 			tagName: 'span',
@@ -45,6 +41,13 @@ export const rehypePermalink = () => (tree) => {
 			},
 			children: [span]
 		};
+
+		node.properties.id = id;
+
+		if (!node.properties.className) node.properties.className = [];
+		if (typeof node.properties.className === 'string')
+			node.properties.className = [node.properties.className];
+		node.properties.className.push('permalink');
 
 		node.children = [...node.children, a];
 	});
