@@ -1,0 +1,67 @@
+---
+title: Why Svelte? Why SVG?
+description: Mere words are not be enough to answer the self-proposed question.
+date: 2023-01-26 17:27:13
+---
+
+<script>
+    import Center from './Center.svelte'
+
+    import Rects from './Rects.svelte'
+    import Hue from './Hue.svelte'
+    import Grid from './Grid.svelte'
+    import Colors from './Colors.svelte'
+    import Input from './Input.svelte'
+    import Circles from './Circles.svelte'
+    import Animation from './Animation.svelte'
+    import Delays from './Delays.svelte'
+
+	let size = 5
+    const handleChange = (e) => {
+        size = e.detail.size
+    }
+</script>
+
+In its current iteration the landing page of this website tries to answer a couple of questions, among which "_Why Svelte? Why SVG?_".
+
+I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to add more context with an introductory post, a crisp visual and a few interactive demos to boot.
+
+You are more than welcomed to code along, perhaps in Svelte's own [<abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/). You'll be thoroughly entertained by the experience.
+
+<Center>
+    <Rects />
+</Center>
+
+<Hue />
+
+<Center>
+    <Grid />
+</Center>
+
+<Center>
+    <Colors />
+</Center>
+
+<Center>
+    <Colors offset={1} />
+</Center>
+
+<Center>
+    <Input {size} on:change={handleChange} />
+</Center>
+
+<Center>
+    <Circles />
+</Center>
+
+<Center>
+    <Circles offset={0.5} />
+</Center>
+
+<Center>
+    <Animation />
+</Center>
+
+<Center>
+    <Delays />
+</Center>
