@@ -27,7 +27,9 @@
 
 <svg viewBox="{offset * -1} {offset * -1} {size} {size}">
 	{#each grid as { row, column, color }}
-		<circle fill={color} r="0.45" cx={column} cy={row} />
+		<g transform="translate({column} {row})">
+			<circle fill={color} r="0.45" />
+		</g>
 	{/each}
 </svg>
 

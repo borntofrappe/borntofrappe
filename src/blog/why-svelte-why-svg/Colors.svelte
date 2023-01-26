@@ -26,7 +26,9 @@
 
 <svg viewBox="0 0 {size} {size}">
 	{#each grid as { row, column, color }}
-		<rect fill={color} x={column} y={row} width="1" height="1" />
+		<g transform="translate({column} {row})">
+			<rect fill={color} width="1" height="1" />
+		</g>
 	{/each}
 </svg>
 

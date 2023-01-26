@@ -28,7 +28,9 @@
 		dominant-baseline="middle"
 	>
 		{#each grid as { row, column, sum }}
-			<text x={column} y={row}>{sum}</text>
+			<g transform="translate({column} {row})">
+				<text>{sum}</text>
+			</g>
 		{/each}
 	</g>
 </svg>

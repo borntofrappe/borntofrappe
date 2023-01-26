@@ -5,14 +5,21 @@
 		.map((_, row) =>
 			Array(size)
 				.fill()
-				.map((_, column) => ({ row, column }))
+				.map((_, column) => {
+					return {
+						row,
+						column
+					};
+				})
 		)
 		.flat();
 </script>
 
 <svg viewBox="0 0 {size} {size}">
 	{#each grid as { row, column }}
-		<rect x={column} y={row} width="1" height="1" />
+		<g transform="translate({column} {row})">
+			<rect width="1" height="1" />
+		</g>
 	{/each}
 </svg>
 
