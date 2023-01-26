@@ -1,7 +1,7 @@
 ---
 title: Why Svelte? Why SVG?
-description: Mere words are not be enough to answer the self-proposed question.
-date: 2023-01-26 17:27:13
+description:
+date: 2023-01-26 21:29:06
 ---
 
 <script>
@@ -26,9 +26,9 @@ date: 2023-01-26 17:27:13
 
 In its first iteration the landing page of this website tries to answer a couple of questions, among which "_Why Svelte? Why SVG?_".
 
-I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to support the statement further, with a crisp visual and a few interactive demos to boot.
+I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to support the statement with a few words, a crisp visual and interactive demos to boot.
 
-You are more than welcomed to code along, perhaps in Svelte's own [<abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/). You'll be thoroughly entertained by the experience.
+You are more than welcome to open Svelte's own [<abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/) and code along. You'll be thoroughly entertained by the experience.
 
 ## A grid of squares
 
@@ -80,7 +80,7 @@ Enough logic, however. Create an `<svg>` element and include the size of the arr
 
 In the specific instance this means the SVG canvas is 5 unit wide, 5 unit talls — you'll soon realize how convenient this is.
 
-Loop through the now-one-dimensional array with an `{#each}` block.
+Loop through the one dimensional array with an `{#each}` block.
 
 ```svelte
 <svg viewBox="0 0 {size} {size}">
@@ -115,7 +115,7 @@ Where? In the cell designated by the column and row.
 {/each}
 ```
 
-The shapes are placed at increments of 1 filling the tightly-knit canvas.
+The shapes are placed at increments of 1, filling the tightly-knit canvas.
 
 <Center>
     <Rects />
@@ -131,9 +131,9 @@ With a fixed value for the saturation and lightness, all you need is to update t
 
 <Hue />
 
-To have the rainbow go from the top left corner to the bottom right section, then, you need to calculate the hue as a function of the column and row.
+To have the rainbow go from the top left corner to the bottom right section, then, calculate the hue as a function of the column and row.
 
-If you sum the two values you might notice a pattern.
+If you sum the two values you realize how.
 
 <Center>
     <Grid />
@@ -141,14 +141,14 @@ If you sum the two values you might notice a pattern.
 
 The sum goes from 0 up to, and including, twice the maximum number of dimensions. Remember JavaScript starts to count from zero.
 
-With this in mind, compute the maximum value starting from the size.
+With this in mind, compute the maximum value.
 
 ```js
 const size = 5;
 const max = (size - 1) * 2;
 ```
 
-For each item in the array, then, sum up the row and column.
+For each item in the array, then, sum up the coordinates.
 
 ```js
 const sum = row + column;
@@ -160,13 +160,13 @@ If you divide this value by the maximum, you get a number between 0 and 1. Multi
 const hue = (sum / max) * 360;
 ```
 
-I'll pick a saturation and lightness value, but feel free to experiment.
+I'll pick a saturation and lightness value, but experiment at will.
 
 ```js
 const color = hsl(${hue}, 78%, 68%);
 ```
 
-Add the color to the object and ultimately in the `fill` attribute.
+Add the color alongside the coordinates and inject the value through the `fill` attribute.
 
 ```svelte
 {#each grid as { row, column, color }}
@@ -180,9 +180,9 @@ Add the color to the object and ultimately in the `fill` attribute.
     <Colors />
 </Center>
 
-You might notice the last square matches the first one. This is because the hue goes from red through green, blue, back to red — `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
+You might notice the last square matches the first one. This is because the hue in the HSL color space goes from red to green, to blue, back to red. `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
 
-If you prefer a touch more variety increment the maximum value.
+If you prefer a touch more variety, increment the maximum value.
 
 ```diff
 -const max = (size - 1) * 2
@@ -193,20 +193,20 @@ If you prefer a touch more variety increment the maximum value.
     <Colors offset={1} />
 </Center>
 
-I'm quite partial to that shade of pink, so the rest of the article will keep the offset.
+I'm quite partial to that shade of pink, so the rest of the article will keep the updated value.
 
 ## Multiple squares
 
-Tired of 25 squares? You can start changing the value in the script, but Svelte makes it exceedingly easy to set up a playground.
+Tired of 25 squares? You can start changing the size in the script, but Svelte makes it exceedingly easy to set up a playground.
 
-Make size into a variable you can change.
+Make `size` into a variable you can change.
 
 ```diff
 -const size = 5
 +let size = 5
 ```
 
-Add a `<input>` element to change the size.
+Add an `<input>` element to change the number.
 
 ```html
 <label>
@@ -215,13 +215,13 @@ Add a `<input>` element to change the size.
 </label>
 ```
 
-Associate the size through a `bind:value` directive.
+Associate the size through the `bind:value` directive.
 
 ```svelte
 <input type="range" min="2" max="15" bind:value={size} />
 ```
 
-And, enjoy your grid of {colors} colors.
+And, enjoy your grid of <b>{colors}</b> colors.
 
 <Center>
     <Input {size} on:change={handleChange} />
@@ -229,9 +229,9 @@ And, enjoy your grid of {colors} colors.
 
 ## A grid of circles
 
-Let's go back one step and explore a different dierection. Circles might provide a more comforting visual.
+Let's go back one step and try a different direction.
 
-Replace the rectangles with a `<circle>` element.
+Replace the rectangles with `<circle>` elements.
 
 ```diff
 -<rect fill={color} width="1" height="1" />
@@ -252,7 +252,7 @@ In terms of SVG you need just one attribute to draw a circle, one attribute for 
     <Circles />
 </Center>
 
-Ugh, something's definitely off with the picture. Unlike rectangles, drawn from the top left corner, circles are drawn from their respective center — hence the _c_ in the positioning attributes.
+Ugh, something's definitely off with the picture. Unlike rectangles, drawn from the top left corner, circles are drawn from their center.
 
 You have several ways to fix this:
 
@@ -288,15 +288,15 @@ Take your pick.
 
 Circles are certainly more welcoming than the previous, sharp shapes, but the visual is starting to feel rather dull.
 
-Let's try a CSS animation in between `<style>` tags.
+Let's explore CSS between `<style>` tags.
 
 ```svelte
 <style>
-	/**/
+	/* */
 </style>
 ```
 
-Define the animation to change the scale of the circles.
+Define an animation to change the scale of the circles.
 
 ```css
 @keyframes pulse {
@@ -315,7 +315,7 @@ circle {
 }
 ```
 
-We don't want to be obnoxious and run the animation without end. To test out the feature, let's animate the circles only when the elements have a specific class.
+We don't want to be obnoxious and run the animation without end. To test out change, let's animate the circles only when the elements have a specific class.
 
 ```css
 circle.animate {
@@ -352,7 +352,7 @@ Finally, toggle the class through the `class:` directive.
 <circle class:animate />
 ```
 
-Too convenient? Indeed. If you need to wrap your head around the syntax, consider that between curly braces you can include variables, but JavaScript expressions as well.
+Too simple? Indeed. If you need to wrap your head around the syntax, consider that between curly braces you can add variables, but JavaScript expressions as well.
 
 You can toggle the class with a ternary operator.
 
@@ -370,7 +370,7 @@ The animation pauses and resumes instead of picking up from the very beginning. 
 
 ## Staggered circles
 
-Let me indulge in one last feature. Smooth as it may be, the animation is certainly uniform. Too uniform.
+Smooth as it may be, the change in scale is certainly uniform. Too uniform.
 
 Initialize a variable for the duration.
 
@@ -378,7 +378,7 @@ Initialize a variable for the duration.
 const duration = 2;
 ```
 
-We want to delay the circles in the same direction of the rainbow. What luck, the sum value comes back to help. Just as you find the hue.
+We want to delay the circles in the same direction of the rainbow. Just as you found the hue.
 
 ```js
 const hue = (sum / max) * 360;
@@ -404,7 +404,7 @@ In the loop, lean on a `style:` directive to set the two properties, `animation-
 {/each}
 ```
 
-Need to remove the duration in the `<style>` tags? Not really. The values are included with inline styles.
+Need to remove the duration in the `<style>` tags? Not really. Svelte adds the values with inline styles.
 
 ```html
 <circle style="animation-duration: 2s"></circle>
@@ -422,6 +422,6 @@ The entire article was concocted in the Svelte <abbr title="Read-eval-print loop
 
 This brings me back to the title of the post, and one of the traits which lead me to adopt Svelte wholeheartedly.
 
-HTML elements, CSS animations, JavaScript arrays. Svelte works to expand, to enhance what you can do with the core ingredients of the web.
+HTML elements, CSS animations, JavaScript arrays. Starting from what you already know about the core ingredients of the web, Svelte just works as an extremely convenient utility.
 
 SVG? That's just my personal preference to paint a pretty picture.
