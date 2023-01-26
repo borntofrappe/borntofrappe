@@ -1,6 +1,6 @@
 ---
 title: Why Svelte? Why SVG?
-description:
+description: Let me answer the self-proposed question with a few words, a crisp visual and interactive demos to boot.
 date: 2023-01-26 21:29:06
 ---
 
@@ -26,9 +26,9 @@ date: 2023-01-26 21:29:06
 
 In its first iteration the landing page of this website tries to answer a couple of questions, among which "_Why Svelte? Why SVG?_".
 
-I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to support the statement with a few words, a crisp visual and interactive demos to boot.
+I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to support the statement with first-hand experience.
 
-You are more than welcome to open Svelte's own [<abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/) and code along. You'll be thoroughly entertained by the experience.
+As a matter of fact, you are more than welcome to open [a Svelte <abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/) and code along. You'll be thoroughly entertained by the journey.
 
 ## A grid of squares
 
@@ -180,7 +180,7 @@ Add the color alongside the coordinates and inject the value through the `fill` 
     <Colors />
 </Center>
 
-You might notice the last square matches the first one. This is because the hue in the HSL color space goes from red to green, to blue, back to red. `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
+You might have noticed the last square matches the first one. This is because the hue in the HSL color space goes from red to green, to blue, back to red. `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
 
 If you prefer a touch more variety, increment the maximum value.
 
@@ -221,7 +221,7 @@ Associate the size through the `bind:value` directive.
 <input type="range" min="2" max="15" bind:value={size} />
 ```
 
-And, enjoy your grid of <b>{colors}</b> colors.
+And, enjoy your grid of **{colors}** colors.
 
 <Center>
     <Input {size} on:change={handleChange} />
@@ -418,7 +418,7 @@ One cheer for CSS specificity! Feel free to follow the wave and raise your arms 
 
 ## Wrapping up
 
-The entire article was concocted in the Svelte <abbr title="Read-eval-print loop">REPL</abbr>. Every instruction ran in `.svelte` components. That being said, you might have noticed the code snippets reported different extensions.
+The entire article was concocted in the Svelte <abbr title="Read-eval-print loop">REPL</abbr>. Every instruction ran in `.svelte` components. That being said, you might have spotted the code snippets reported different extensions.
 
 This brings me back to the title of the post, and one of the traits which lead me to adopt Svelte wholeheartedly.
 
