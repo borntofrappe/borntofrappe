@@ -6,21 +6,17 @@
 
 - `/`: landing page
 
-- `/today`: what day is today?
-
-- `/mignon`: mascot(s)
-
 - `/[slug]`: blog post
 
+- `/blog`: blog API
+
+- `/color-tiles`, `/minesweeper`, `/rainbow-sixteen`: showcase
+
+- `/mignon`: mascot
+
+- `/today`: current day
+
 ## up next
-
-- [feature] SVG showcase
-
-  - [route] `/rainbow-sixteen`
-
-  - [route] `/color-tiles`
-
-  - [route] `/minesweeper`
 
 - [feature] blog index
 
@@ -28,4 +24,6 @@
 
 - [route] `/feed`
 
-- [blog] `Serena.svelte` mascot
+- [blog] Serene skies ahead
+
+- [blog] Why Svelte? Why SVG?
