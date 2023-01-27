@@ -73,7 +73,7 @@
 	}
 
 	div > :global(* + *) {
-		margin-top: 1em;
+		margin-block-start: 1em;
 	}
 
 	.morning {
@@ -116,6 +116,10 @@
 		padding: 1rem;
 	}
 
+	main > :global(p) {
+		line-height: 1.75;
+	}
+
 	main > :global(* + *) {
 		margin-block-start: 1em;
 		margin-block-start: var(--vertical-rhythm, 1em);
@@ -128,29 +132,29 @@
 
 	main :global(h2),
 	main :global(h3) {
-		--vertical-rhythm: var(--size-800);
+		--vertical-rhythm: var(--size-600);
 	}
 
 	main :global(h2 + *),
 	main :global(h3 + *) {
-		--vertical-rhythm: var(--size-300);
+		--vertical-rhythm: var(--size-200);
 	}
 
 	main :global(blockquote),
 	main :global(blockquote + *),
 	main :global(figure),
 	main :global(figure + *) {
-		--vertical-rhythm: var(--size-700);
+		--vertical-rhythm: var(--size-400);
 	}
 
 	main :global(table),
 	main :global(table + *) {
-		--vertical-rhythm: var(--size-700);
+		--vertical-rhythm: var(--size-400);
 	}
 
 	main :global(pre),
 	main :global(pre + *) {
-		--vertical-rhythm: var(--size-600);
+		--vertical-rhythm: var(--size-300);
 	}
 
 	main :global(a) {

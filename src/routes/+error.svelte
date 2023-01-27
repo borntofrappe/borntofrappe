@@ -57,7 +57,7 @@
 	}
 
 	main > * + * {
-		margin-top: 0.75em;
+		margin-block-start: 0.75em;
 	}
 
 	.code {
@@ -72,7 +72,7 @@
 	}
 
 	.code pre {
-		margin-top: 0;
+		margin-block-start: 0;
 		padding: 1rem;
 		border-radius: 1rem;
 		line-height: 1.75;

@@ -122,7 +122,7 @@
 	}
 
 	article > * + * {
-		margin-top: 0.75em;
+		margin-block-start: 0.75em;
 	}
 
 	p {
@@ -130,7 +130,7 @@
 	}
 
 	ol > li + li {
-		margin-top: 0.5em;
+		margin-block-start: 0.5em;
 	}
 
 	li {

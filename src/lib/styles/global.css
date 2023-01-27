@@ -103,6 +103,10 @@ body::-webkit-scrollbar-thumb {
 	background: var(--accent);
 }
 
+body {
+	font-size: var(--step-200);
+}
+
 h1 {
 	font-size: 2.07rem;
 	font-size: var(--step-600);
@@ -125,8 +129,6 @@ h4 {
 
 p {
 	line-height: 1.5;
-	font-size: 1rem;
-	font-size: var(--step-200);
 }
 
 a {
