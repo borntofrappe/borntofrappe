@@ -26,6 +26,7 @@
 		font-family="inherit"
 		text-anchor="middle"
 		dominant-baseline="middle"
+		fill="currentColor"
 	>
 		{#each grid as { row, column, sum }}
 			<g transform="translate({column} {row})">
