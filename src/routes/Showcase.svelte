@@ -126,7 +126,7 @@
 	}
 
 	p {
-		line-height: 2;
+		line-height: 1.75;
 	}
 
 	ol > li + li {
