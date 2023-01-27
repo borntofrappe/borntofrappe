@@ -57,12 +57,14 @@
 	</defs>
 </svg>
 
+<a href="#content" class="skip-to-content visually-hidden">Skip to content</a>
+
 <div class={timeOfDay}>
 	<header style:background>
 		<h1 style:filter="url(#filter-outline)">{title}</h1>
 		<Theme {timeOfDay} {colors} on:change={handleChange} />
 	</header>
-	<main>
+	<main id="content">
 		<slot />
 	</main>
 </div>
@@ -319,6 +321,53 @@
 				</g>\
 				</g>\
 			</svg>');
+		}
+	}
+
+	.skip-to-content {
+		font-size: var(--size-200);
+		color: var(--background);
+		background: var(--color);
+		padding: 0.4rem 0.8rem;
+		border-radius: 1rem;
+		text-decoration: none;
+		position: absolute;
+		top: 0.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		outline: none;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		.skip-to-content {
+			display: inline-flex;
+			align-items: center;
+			gap: 0 0.4rem;
+		}
+
+		.skip-to-content::after {
+			content: '';
+			width: 1em;
+			height: 1em;
+			background: currentColor;
+			mask-image: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+        <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+          <path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+          <path d="M -45 -20 h 28" />\
+          <path d="M -45 0 h 28" />\
+          <path d="M -45 20 h 28" />\
+        </g>\
+      </svg>');
+			-webkit-mask-image: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+        <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+          <path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+          <path d="M -45 -20 h 28" />\
+          <path d="M -45 0 h 28" />\
+          <path d="M -45 20 h 28" />\
+        </g>\
+      </svg>');
 		}
 	}
 </style>
