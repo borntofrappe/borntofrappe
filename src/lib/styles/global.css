@@ -27,13 +27,27 @@ select {
 }
 
 :root {
-	--size-300: 0.8rem;
-	--size-400: 1rem;
-	--size-500: 1.25rem;
-	--size-600: 1.56rem;
-	--size-700: 1.95rem;
-	--size-800: 2.44rem;
-	--size-900: 3.05rem;
+	--size-000: 0.69rem;
+	--size-100: 0.83rem;
+	--size-200: 1rem;
+	--size-300: 1.2rem;
+	--size-400: 1.44rem;
+	--size-500: 1.73rem;
+	--size-600: 2.07rem;
+	--size-700: 2.49rem;
+	--size-800: 2.99rem;
+	--size-900: 3.58rem;
+
+	--step-000: clamp(0.69rem, calc(0.63rem + 0.3vw), 0.87rem);
+	--step-100: clamp(0.83rem, calc(0.76rem + 0.36vw), 1.04rem);
+	--step-200: clamp(1rem, calc(0.91rem + 0.43vw), 1.25rem);
+	--step-300: clamp(1.2rem, calc(1.1rem + 0.52vw), 1.5rem);
+	--step-400: clamp(1.44rem, calc(1.31rem + 0.63vw), 1.8rem);
+	--step-500: clamp(1.73rem, calc(1.58rem + 0.75vw), 2.16rem);
+	--step-600: clamp(2.07rem, calc(1.89rem + 0.9vw), 2.59rem);
+	--step-700: clamp(2.49rem, calc(2.27rem + 1.08vw), 3.11rem);
+	--step-800: clamp(2.99rem, calc(2.73rem + 1.3vw), 3.73rem);
+	--step-900: clamp(3.58rem, calc(3.27rem + 1.56vw), 4.48rem);
 
 	--color-000: hsl(341, 100%, 95%);
 	--color-100: hsl(338, 100%, 86%);
@@ -89,50 +103,35 @@ body::-webkit-scrollbar-thumb {
 	background: var(--accent);
 }
 
-a {
-	color: inherit;
-	font-weight: 700;
-}
-
-p {
-	line-height: 1.75;
-}
-
 h1 {
-	font-size: 2.44rem;
-	font-size: var(--size-800);
+	font-size: 2.07rem;
+	font-size: var(--step-600);
 }
 
 h2 {
-	font-size: 1.56rem;
-	font-size: var(--size-600);
+	font-size: 1.73rem;
+	font-size: var(--step-500);
 }
 
 h3 {
-	font-size: 1.56rem;
-	font-size: var(--size-600);
+	font-size: 1.44rem;
+	font-size: var(--step-400);
 }
 
-@media (min-width: 42rem) {
-	body {
-		font-size: 1.25rem;
-		font-size: var(--size-500);
-	}
+h4 {
+	font-size: 1.2rem;
+	font-size: var(--step-300);
+}
 
-	h1 {
-		font-size: 3.05rem;
-		font-size: var(--size-900);
-	}
+p {
+	line-height: 1.5;
+	font-size: 1rem;
+	font-size: var(--step-200);
+}
 
-	h2 {
-		font-size: 1.95rem;
-		font-size: var(--size-700);
-	}
-
-	h3 {
-		font-size: 1.95rem;
-		font-size: var(--size-700);
-	}
+a {
+	color: inherit;
+	font-weight: 700;
 }
 
 .visually-hidden:not(:focus):not(:active) {
