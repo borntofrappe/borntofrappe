@@ -51,42 +51,44 @@
 	}
 
 	main {
-		max-width: 42rem;
+		max-width: 70ch;
 		margin-inline: auto;
-		padding: 2rem 1rem;
+		padding: var(--step-space-200);
 	}
 
 	main > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 1em;
 	}
 
 	.code {
 		display: flex;
 		flex-direction: column;
+		font-size: var(--step-size-200);
 	}
 
 	.code pre,
 	.code > span {
-		color: #e0def4;
-		background: #232136;
+		color: var(--theme-color, #e0def4);
+		background: var(--theme-background, #232136);
 	}
 
 	.code pre {
 		margin-block-start: 0;
-		padding: 1rem;
+		padding: var(--step-space-300);
 		border-radius: 1rem;
 		line-height: 1.75;
+		tab-size: 2;
 	}
 
 	.code > span {
 		align-self: flex-end;
 		display: inline-flex;
 		align-items: center;
-		gap: 0 0.5rem;
-		transform: translateX(-1.5rem);
-		border-top-left-radius: 0.5rem;
-		border-top-right-radius: 0.5rem;
-		padding: 0.4rem 1rem;
+		gap: 0 var(--step-space-100);
+		border-start-start-radius: 0.5rem;
+		border-start-end-radius: 0.5rem;
+		margin-inline-end: var(--step-space-200);
+		padding: var(--step-space-000) var(--step-space-200);
 		font-weight: 700;
 	}
 

@@ -33,9 +33,9 @@
 
 <style>
 	main {
-		padding: 1rem;
+		padding: var(--step-space-200);
 		display: flex;
-		gap: 0.5rem 0;
+		gap: var(--step-space-100) 0;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -61,7 +61,7 @@
 
 	h1 {
 		text-align: center;
-		font-size: 4rem;
+		font-size: var(--step-size-900);
 	}
 
 	main > :global(svg) {

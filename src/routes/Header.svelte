@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<div style:display="inline-block" style:max-width="40ch" style:width="100%">
+	<div style:display="inline-block" style:max-width="30rem" style:width="100%">
 		<Heading level="h1" text="Hi there" />
 	</div>
 
@@ -13,10 +13,14 @@
 		<Ray />
 	</div>
 
+	<p>Name's Gabriele Corti.</p>
 	<p>
-		Name's Gabriele Corti. <br />I'm the type of person who delights in writing code, be it for a
-		data visualization, a 2D game or a full-fledged website. <br />I enjoy different technologies,
-		and in this very moment I appreciate Svelte {@html icons.svelte} and
+		I'm the type of person who delights in writing code, be it for a data visualization, a 2D game
+		or a full-fledged website.
+	</p>
+	<p>
+		I enjoy different technologies, and in this very moment I appreciate Svelte {@html icons.svelte}
+		and
 		<abbr title="Scalable Vector Graphics">SVG</abbr>
 		{@html icons.svg} the most.
 	</p>
@@ -38,16 +42,12 @@
 <style>
 	header {
 		max-width: 60rem;
-		padding: 4rem 1rem;
+		padding: var(--step-space-600) var(--step-space-300);
 		margin-inline: auto;
 	}
 
 	header > * + * {
-		margin-block-start: 0.8em;
-	}
-
-	p {
-		line-height: 2;
+		margin-block-start: 1em;
 	}
 
 	ol {
@@ -77,7 +77,7 @@
 		margin-block-start: 0;
 	}
 
-	@media (max-width: 36rem) {
+	@media (max-width: 38rem) {
 		header {
 			display: flex;
 			flex-direction: column;

@@ -47,7 +47,6 @@
 	style:color="hsl(200, 47%, 96%)"
 	style:background="hsl(203, 23%, 18%)"
 	style:--max-width="32rem"
-	style:--margin="3rem"
 	style:--shape-outside="polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%)"
 >
 	<article>
@@ -117,20 +116,21 @@
 	}
 
 	article {
-		padding: 4rem 1rem;
-		max-width: 64rem;
+		padding: var(--step-space-600) var(--step-space-300);
+		max-width: 68rem;
+		width: 100%;
 	}
 
 	article > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 1em;
 	}
 
-	p {
-		line-height: 1.75;
+	ol {
+		font-size: var(--step-size-200);
 	}
 
 	ol > li + li {
-		margin-block-start: 0.5em;
+		margin-block-start: 0.75em;
 	}
 
 	li {
@@ -140,8 +140,8 @@
 	article > div {
 		float: right;
 		width: 100%;
+		margin: var(--step-space-400);
 		max-width: var(--max-width, 24rem);
-		margin: var(--margin, 2rem);
 		shape-outside: var(--shape-outside, initial);
 	}
 
