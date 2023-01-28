@@ -47,7 +47,6 @@
 	style:color="hsl(200, 47%, 96%)"
 	style:background="hsl(203, 23%, 18%)"
 	style:--max-width="32rem"
-	style:--shape-outside="polygon(0% 0%, 100% 0%, 100% 50%, 50% 100%, 0% 50%)"
 >
 	<article>
 		<h2>Color tiles</h2>
