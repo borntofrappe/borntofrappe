@@ -47,7 +47,7 @@
 	style:color="hsl(200, 47%, 96%)"
 	style:background="hsl(203, 23%, 18%)"
 	style:--max-width="32rem"
-	style:--shape-outside="polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%)"
+	style:--shape-outside="polygon(0% 0%, 100% 0%, 100% 50%, 50% 100%, 0% 50%)"
 >
 	<article>
 		<h2>Color tiles</h2>
@@ -116,7 +116,7 @@
 	}
 
 	article {
-		padding: var(--step-space-600) var(--step-space-300);
+		padding: var(--step-space-700) var(--step-space-300);
 		max-width: 68rem;
 		width: 100%;
 	}
@@ -125,8 +125,26 @@
 		margin-block-start: 1em;
 	}
 
+	article h2 {
+		display: inline-block;
+	}
+
+	article > div {
+		float: left;
+		width: 100%;
+		margin: var(--step-space-400);
+		margin-block-start: initial;
+		max-width: var(--max-width, 24rem);
+		shape-outside: var(--shape-outside, initial);
+	}
+
+	section:nth-of-type(even) article > div {
+		float: right;
+	}
+
 	ol {
 		font-size: var(--step-size-200);
+		list-style-position: inside;
 	}
 
 	ol > li + li {
@@ -137,26 +155,20 @@
 		line-height: 1.5;
 	}
 
-	article > div {
-		float: right;
-		width: 100%;
-		margin: var(--step-space-400);
-		max-width: var(--max-width, 24rem);
-		shape-outside: var(--shape-outside, initial);
-	}
-
-	section:nth-of-type(even) article > div {
-		float: left;
-	}
-
 	@media screen and (max-width: 38rem) {
-		article {
-			display: flex;
-			flex-direction: column;
+		article > * + * {
+			margin-block-start: initial;
 		}
 
 		article > div {
 			align-self: center;
+			margin: initial;
+		}
+
+		article {
+			display: flex;
+			flex-direction: column;
+			gap: 1em 0;
 		}
 
 		article > div,
