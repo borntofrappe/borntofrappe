@@ -26,14 +26,6 @@
 			Can you arrange them in the correct order?
 		</p>
 
-		<img
-			style:align-self="center"
-			style:width="2em"
-			style:height="2em"
-			alt="The colors of the rainbow are arranged from the top left corner to the bottom right angle."
-			src="/icons/rainbow-sixteen.svg"
-		/>
-
 		<p>
 			If you have patience and keen eyes you are in luck, there are bound to be <a
 				href="/rainbow-sixteen"
@@ -115,64 +107,63 @@
 	}
 
 	article {
-		padding: var(--step-space-700) var(--step-space-300);
-		max-width: 68rem;
 		width: 100%;
+		max-width: 68rem;
+		padding: var(--step-space-700) var(--step-space-300);
+	}
+
+	article {
+		display: flex;
+		flex-direction: column;
+	}
+
+	article > div,
+	article > p:last-of-type {
+		order: 1;
 	}
 
 	article > * + * {
 		margin-block-start: 1em;
 	}
 
-	article h2 {
-		display: inline-block;
-	}
-
-	article > div {
-		float: left;
+	div {
 		width: 100%;
-		margin: var(--step-space-400);
-		margin-block-start: initial;
 		max-width: var(--max-width, 24rem);
-		shape-outside: var(--shape-outside, initial);
-	}
-
-	section:nth-of-type(even) article > div {
-		float: right;
+		margin-inline: auto;
 	}
 
 	ol {
 		font-size: var(--step-size-200);
 		list-style-position: inside;
+		padding: 0;
 	}
 
 	ol > li + li {
 		margin-block-start: 0.75em;
 	}
 
-	li {
-		line-height: 1.5;
-	}
-
-	@media screen and (max-width: 38rem) {
-		article > * + * {
-			margin-block-start: initial;
+	@media (min-width: 40rem) {
+		article {
+			display: initial;
 		}
 
 		article > div {
-			align-self: center;
-			margin: initial;
+			margin-inline: initial;
+			margin-block-start: initial;
 		}
 
-		article {
-			display: flex;
-			flex-direction: column;
-			gap: 1em 0;
+		article h2 {
+			display: inline-block;
 		}
 
-		article > div,
-		article > p:last-of-type {
-			order: 1;
+		article > div {
+			float: left;
+			shape-outside: var(--shape-outside, initial);
+			margin: var(--step-space-400);
+		}
+
+		section:nth-of-type(even) article > div {
+			float: right;
 		}
 	}
 </style>
