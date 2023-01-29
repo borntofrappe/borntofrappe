@@ -153,6 +153,7 @@
 
 			{#each options as { i }}
 				<label>
+					<span class="visually-hidden">Vase number {i}</span>
 					<input type="radio" bind:group={index} value={i} />
 					<svg viewBox="0 0 16 16">
 						<use href="#dragon-warrior-vase" />

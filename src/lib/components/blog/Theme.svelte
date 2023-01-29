@@ -12,7 +12,9 @@
 		night: { foreground: '#7369b5', background: '#838ace' }
 	};
 
-	const color = colors[timeOfDay] || colors.day;
+	$: timeOfDays = Object.keys(colors);
+
+	const color = colors[timeOfDay] || colors[timeOfDays[0]];
 	let foreground = color.foreground;
 	let background = color.background;
 
@@ -110,7 +112,6 @@
 		const { key } = e;
 		if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
 
-		const timeOfDays = ['morning', 'day', 'night'];
 		const index = timeOfDays.findIndex((d) => d === timeOfDay);
 
 		let next;
@@ -235,7 +236,11 @@
 		on:mouseleave={handleEnd}
 		on:mousemove={handleMove}
 		on:keydown={handleKey}
-		role="menu"
+		role="spinbutton"
+		aria-valuemin={0}
+		aria-valuenow={timeOfDays.findIndex((d) => d === timeOfDay)}
+		aria-valuemax={timeOfDays.length - 1}
+		aria-valuetext={timeOfDay}
 		tabindex="0"
 		aria-label="Change the time of day with the arrow keys."
 		class="focusable"
