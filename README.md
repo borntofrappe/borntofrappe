@@ -20,10 +20,8 @@
 
 - [feature] blog index
 
+- [route] `/blog`
+
 - [route] `/tangram`
 
 - [route] `/feed`
-
-- [blog] Serene skies ahead
-
-- [blog] Why Svelte? Why SVG?
