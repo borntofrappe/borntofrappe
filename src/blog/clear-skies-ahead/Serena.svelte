@@ -31,28 +31,28 @@
 	on:touchend|preventDefault={handleEnd}
 >
 	<defs>
-		<circle id="c" r="11" />
-		<mask id="mask">
-			<use fill="white" href="#c" />
-			<use fill="black" y="-2" href="#c" />
+		<circle id="serena-c" r="11" />
+		<mask id="serena-mask">
+			<use fill="white" href="#serena-c" />
+			<use fill="black" y="-2" href="#serena-c" />
 		</mask>
-		<g id="cc">
-			<use href="#c" />
-			<use href="#c" mask="url(#mask)" fill="black" opacity="0.1" />
+		<g id="serena-cc">
+			<use href="#serena-c" />
+			<use href="#serena-c" mask="url(#serena-mask)" fill="black" opacity="0.1" />
 		</g>
 	</defs>
 
 	<g transform="scale({$bounce})">
 		<g fill="#ebf3f5">
-			<use href="#c" />
-			<use transform="translate(-12.5 -5)" href="#c" />
-			<use transform="translate(12.5 -5)" href="#c" />
-			<use transform="translate(0 -10)" href="#c" />
-			<use transform="translate(-20 0)" href="#cc" />
-			<use transform="translate(20 0)" href="#cc" />
-			<use transform="translate(-15 10)" href="#cc" />
-			<use transform="translate(15 10)" href="#cc" />
-			<use transform="translate(0 15)" href="#cc" />
+			<use href="#serena-c" />
+			<use transform="translate(-12.5 -5)" href="#serena-c" />
+			<use transform="translate(12.5 -5)" href="#serena-c" />
+			<use transform="translate(0 -10)" href="#serena-c" />
+			<use transform="translate(-20 0)" href="#serena-cc" />
+			<use transform="translate(20 0)" href="#serena-cc" />
+			<use transform="translate(-15 10)" href="#serena-cc" />
+			<use transform="translate(15 10)" href="#serena-cc" />
+			<use transform="translate(0 15)" href="#serena-cc" />
 		</g>
 
 		<g fill="#f9a3c6">

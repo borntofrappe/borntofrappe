@@ -17,27 +17,27 @@
 
 <svg viewBox="-40 -25 80 55" on:mouseenter={handleStart} on:mouseleave={handleEnd}>
 	<defs>
-		<circle id="c" r="11" />
-		<mask id="mask">
-			<use fill="white" href="#c" />
-			<use fill="black" y="-2" href="#c" />
+		<circle id="serene-c" r="11" />
+		<mask id="serene-mask">
+			<use fill="white" href="#serene-c" />
+			<use fill="black" y="-2" href="#serene-c" />
 		</mask>
-		<g id="cc">
-			<use href="#c" />
-			<use href="#c" mask="url(#mask)" fill="black" opacity="0.1" />
+		<g id="serene-cc">
+			<use href="#serene-c" />
+			<use href="#serene-c" mask="url(#serene-mask)" fill="black" opacity="0.1" />
 		</g>
 	</defs>
 
 	<g fill="#ebf3f5">
-		<use href="#c" />
-		<use transform="translate(-12.5 -5)" href="#c" />
-		<use transform="translate(12.5 -5)" href="#c" />
-		<use transform="translate(0 -10)" href="#c" />
-		<use transform="translate(-20 0)" href="#cc" />
-		<use transform="translate(20 0)" href="#cc" />
-		<use transform="translate(-15 10)" href="#cc" />
-		<use transform="translate(15 10)" href="#cc" />
-		<use transform="translate(0 15)" href="#cc" />
+		<use href="#serene-c" />
+		<use transform="translate(-12.5 -5)" href="#serene-c" />
+		<use transform="translate(12.5 -5)" href="#serene-c" />
+		<use transform="translate(0 -10)" href="#serene-c" />
+		<use transform="translate(-20 0)" href="#serene-cc" />
+		<use transform="translate(20 0)" href="#serene-cc" />
+		<use transform="translate(-15 10)" href="#serene-cc" />
+		<use transform="translate(15 10)" href="#serene-cc" />
+		<use transform="translate(0 15)" href="#serene-cc" />
 	</g>
 
 	<g fill="#f9a3c6">

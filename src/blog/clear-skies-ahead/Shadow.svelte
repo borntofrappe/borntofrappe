@@ -23,7 +23,9 @@
 		</mask>
 	</defs>
 
-	<use mask="url(#shadow-mask)" href="#shadow-c" />
+	<g fill="currentColor">
+		<use mask="url(#shadow-mask)" href="#shadow-c" />
+	</g>
 </svg>
 
 <style>
