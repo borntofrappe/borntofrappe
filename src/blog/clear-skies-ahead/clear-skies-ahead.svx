@@ -6,12 +6,15 @@ description: How to handle a delicate situation such as an error page? Why, with
 
 <script>
     import Intro from './Intro.svelte';
+
     import SVG from './SVG.svelte';
     import Shadow from './Shadow.svelte';
     import Colors from './Colors.svelte';
     import Face from './Face.svelte';
     import Serene from './Serene.svelte';
     import Serena from './Serena.svelte';
+
+    import Center from './Center.svelte';
 </script>
 
 <Intro />
@@ -69,7 +72,9 @@ That being said, _where_ to place the circles is up to interpretation, and part 
 </g>
 ```
 
-<SVG key="circles" />
+<Center>
+	<SVG key="circles" />
+</Center>
 
 There's a cloud. A bit _flat_, but convincing enough.
 
@@ -102,7 +107,9 @@ Once you then apply the mask to the actual drawing, you show the portions descri
 <use href="#c" mask="url(#mask)" />
 ```
 
-<SVG key="mask" />
+<Center>
+	<SVG key="mask" />
+</Center>
 
 I promise you, there is a veritable `<svg>` element in the page, not just an empty box. You only see whitespace because of the mask. Trust me, there's also a point to the discussion.
 
@@ -127,7 +134,9 @@ Update the mask to:
 
 You offset the black circle to create a rather familiar sliver. Our shadow! Feel free to experiment with the handles and create your custom eclipse.
 
-<Shadow />
+<Center>
+	<Shadow />
+</Center>
 
 The best thing about this sliver is that it will never exceed the boundaries of the circle.
 
@@ -168,7 +177,9 @@ Use the new shape in place of the previous circle and there you have it. Perspec
 </g>
 ```
 
-<SVG key="masked" />
+<Center>
+	<SVG key="masked" />
+</Center>
 
 Too much effort for an exceedingly small change? You'll be the judge. In the end you have a working shadow. What is more, the syntax is versatile enough to work with lots of bright colors — you need to update just the `fill` attribute the moment you use the shape.
 
@@ -177,13 +188,17 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 +<g fill="#eb6a6a">
 ```
 
-<Colors />
+<Center>
+	<Colors />
+</Center>
 
 ## Cloud
 
 We now have two shapes, `c` and `cc`.
 
-<SVG key="shapes" />
+<Center>
+	<SVG key="shapes" />
+</Center>
 
 For the newly and improved cloud, it is helpful to actually use both; the flat circle in the top half, the darker variant in the section below.
 
@@ -201,7 +216,9 @@ For the newly and improved cloud, it is helpful to actually use both; the flat c
 </g>
 ```
 
-<SVG key="cloud" />
+<Center>
+	<SVG key="cloud" />
+</Center>
 
 ## Faces
 
@@ -252,7 +269,9 @@ One horizontal line smack in the center is enough to introduce the mouth, and co
 </g>
 ```
 
-<Face />
+<Center>
+	<Face />
+</Center>
 
 Now, let's try to cheer things up with a few shapes. Add two ellipses below the eyes, two colorful cheeks.
 
@@ -277,7 +296,9 @@ Immediately after the horizontal line add a cheerful mug with a slightly more co
 
 Why on top of the line? It'll make sense soon enough. Right now, let's enjoy the remarkable change brought by these small tweaks.
 
-<Face trueColors={true} />
+<Center>
+	<Face trueColors={true} />
+</Center>
 
 ## Interaction
 
@@ -342,13 +363,17 @@ Call the functions following the `mouseenter` and `mouseleave` events respective
 
 And reap the rewards.
 
-<Serene />
+<Center>
+	<Serene />
+</Center>
 
 ## Finishing touches
 
 [As with Ray](/ray-of-light), I hope you won't' mind a couple of extra features, baked in this final version.
 
-<Serena  />
+<Center>
+	<Serena  />
+</Center>
 
 ### Bounce more
 
