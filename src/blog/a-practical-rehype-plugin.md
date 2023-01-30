@@ -324,6 +324,6 @@ I don't believe the plugin to be _the_ answer to add permalinks to headings.
 
 Prior to the custom logic I relied on [rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings), and the necessary [rehype-slug](https://github.com/rehypejs/rehype-slug) to create a similar markup, and the two certainly offer more options.
 
-What `remarkPermalink` realizes, however, is a specific vision. Once you appreciate abstract syntax trees, once you understand how HTML (or markdown) nodes work, you become the architect for any structure you may need. An empowering feeling.
+What `rehypePermalink` realizes, however, is a specific vision. Once you appreciate abstract syntax trees, once you understand how HTML (or markdown) nodes work, you become the architect for any structure you may need. An empowering feeling.
 
 If you need the entire plugin I keep a reference in a helper folder [on GitHub](https://github.com/borntofrappe/borntofrappe/blob/main/helper/rehype-permalink/rehype-permalink.js), but don't limit yourself to the script. Create your own version, the one which fits your wants and wishes.
