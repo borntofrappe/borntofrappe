@@ -9,7 +9,7 @@
 		have to look for trouble to find it, however.
 	</p>
 
-	<div style:max-width="24rem" style:margin-inline="auto">
+	<div style:max-width="24rem" style:margin-inline="auto" style:margin-block="2em">
 		<Serena />
 	</div>
 
