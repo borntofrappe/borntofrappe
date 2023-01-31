@@ -6,8 +6,8 @@
 	<defs>
 		<circle id="face-c" r="11" />
 		<mask id="face-mask">
-			<use fill="white" href="#face-c" />
-			<use fill="black" y="-2" href="#face-c" />
+			<use href="#face-c" fill="white" />
+			<use href="#face-c" y="-2" fill="black" />
 		</mask>
 		<g id="face-cc">
 			<use href="#face-c" />
@@ -17,14 +17,14 @@
 
 	<g fill="#ebf3f5">
 		<use href="#face-c" />
-		<use transform="translate(-12.5 -5)" href="#face-c" />
-		<use transform="translate(12.5 -5)" href="#face-c" />
-		<use transform="translate(0 -10)" href="#face-c" />
-		<use transform="translate(-20 0)" href="#face-cc" />
-		<use transform="translate(20 0)" href="#face-cc" />
-		<use transform="translate(-15 10)" href="#face-cc" />
-		<use transform="translate(15 10)" href="#face-cc" />
-		<use transform="translate(0 15)" href="#face-cc" />
+		<use href="#face-c" transform="translate(-12.5 -5)" />
+		<use href="#face-c" transform="translate(12.5 -5)" />
+		<use href="#face-c" transform="translate(0 -10)" />
+		<use href="#face-cc" transform="translate(-20 0)" />
+		<use href="#face-cc" transform="translate(20 0)" />
+		<use href="#face-cc" transform="translate(-15 10)" />
+		<use href="#face-cc" transform="translate(15 10)" />
+		<use href="#face-cc" transform="translate(0 15)" />
 	</g>
 
 	<g fill="#acacfa">
@@ -62,3 +62,9 @@
 		</g>
 	{/if}
 </svg>
+
+<style>
+	svg {
+		display: block;
+	}
+</style>

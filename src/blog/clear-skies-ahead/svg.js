@@ -1,5 +1,5 @@
 export default {
-	circles: `<svg viewBox="-50 -50 100 100">
+	circles: `<svg style="display: block" viewBox="-50 -50 100 100">
 	<defs>
 	  <circle id="circles-c" r="11" />
 	</defs>
@@ -16,7 +16,7 @@ export default {
 	  <use href="#circles-c" transform="translate(0 15)" />
 	</g>
   </svg>`,
-	mask: `<svg style="outline: 1px solid currentColor" viewBox="-25 -25 50 50">
+	mask: `<svg style="display: block; outline: 1px solid currentColor" viewBox="-25 -25 50 50">
   <defs>
     <circle id="mask-c" r="11" />
     <mask id="mask-mask">
@@ -27,9 +27,8 @@ export default {
   <g fill="#ebf3f5">
     <use mask="url(#mask-mask)" href="#mask-c" />
   </g>
-</svg>
-`,
-	masked: `<svg viewBox="-25 -25 50 50">
+  </svg>`,
+	masked: `<svg style="display: block" viewBox="-25 -25 50 50">
 	<defs>
 	  <circle id="masked-c" r="11" />
 	  <mask id="masked-mask">
@@ -50,9 +49,8 @@ export default {
 	<g fill="#ebf3f5">
 	  <use href="#masked-cc" />
 	</g>
-  </svg>
-  `,
-	shapes: `<svg viewBox="-55 -15 110 45">
+  </svg>`,
+	shapes: `<svg style="display: block" viewBox="-55 -20 110 50">
 	<defs>
 	  <circle id="shapes-c" r="11" />
 	  <mask id="shapes-mask">
@@ -88,9 +86,8 @@ export default {
 		<text x="28">&lt;use href="#cc"/&gt;</text>
 	  </g>
 	</g>
-  </svg>
-  `,
-	cloud: `<svg viewBox="-50 -50 100 100">
+  </svg>`,
+	cloud: `<svg style="display: block" viewBox="-50 -50 100 100">
 	<defs>
 	  <circle id="cloud-c" r="11" />
 	  <mask id="cloud-mask">
@@ -114,6 +111,5 @@ export default {
 	  <use transform="translate(15 10)" href="#cloud-cc" />
 	  <use transform="translate(0 15)" href="#cloud-cc" />
 	</g>
-  </svg>
-  `
+  </svg>`
 };

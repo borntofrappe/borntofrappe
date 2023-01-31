@@ -18,13 +18,13 @@
 	<defs>
 		<circle id="shadow-c" r="11" />
 		<mask id="shadow-mask">
-			<use fill="white" href="#shadow-c" />
-			<use fill="black" {x} {y} href="#shadow-c" />
+			<use href="#shadow-c" fill="white" />
+			<use href="#shadow-c" {x} {y} fill="black" />
 		</mask>
 	</defs>
 
 	<g fill="currentColor">
-		<use mask="url(#shadow-mask)" href="#shadow-c" />
+		<use href="#shadow-c" mask="url(#shadow-mask)" />
 	</g>
 </svg>
 
@@ -45,5 +45,9 @@
 
 	input {
 		width: 100%;
+	}
+
+	svg {
+		display: block;
 	}
 </style>

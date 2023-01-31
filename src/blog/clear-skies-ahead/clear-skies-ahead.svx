@@ -374,6 +374,10 @@ And, reap the rewards.
 
 [As with Ray](/ray-of-light), I hope you won't mind a couple of extra features, baked in the first version blessing this article.
 
+<Center>
+	<Serena />
+</Center>
+
 ### Bounce more
 
 Always from the `svelte/motion` module import the `tweened` function. From the `/easing` module, on the other hand, refer to a responsive timing function.

@@ -24,8 +24,8 @@
 	<defs>
 		<circle id="colors-c" r="11" />
 		<mask id="colors-mask">
-			<use fill="white" href="#colors-c" />
-			<use fill="black" y="-2" href="#colors-c" />
+			<use href="#colors-c" fill="white" />
+			<use href="#colors-c" y="-2" fill="black" />
 		</mask>
 
 		<g id="colors-cc">
@@ -62,5 +62,9 @@
 
 	button:active {
 		transform: scale(0.95);
+	}
+
+	svg {
+		display: block;
 	}
 </style>
