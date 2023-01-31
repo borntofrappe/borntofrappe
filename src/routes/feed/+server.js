@@ -27,7 +27,7 @@ export async function GET({ fetch }) {
                 <link href="${origin}/${slug}"/>
                 <id>${origin}/${slug}</id>
                 <updated>${new Date(date).toISOString()}</updated>
-                <content type="html"><![CDATA[${description}]]></content>
+                <summary>${description}</summary>
             </entry>`).join('')}
     </feed>`;
 
