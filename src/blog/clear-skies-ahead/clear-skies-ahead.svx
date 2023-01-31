@@ -5,8 +5,6 @@ description: How to handle a delicate situation such as an error page? Why, with
 ---
 
 <script>
-    import Intro from './Intro.svelte';
-
     import SVG from './SVG.svelte';
     import Shadow from './Shadow.svelte';
     import Colors from './Colors.svelte';
@@ -17,7 +15,13 @@ description: How to handle a delicate situation such as an error page? Why, with
     import Center from './Center.svelte';
 </script>
 
-<Intro />
+Luck is relative. Take this website for instance. If you have never stumbled on an error page, you might have never enjoyed the comforting presence of a shy, but helpful character. You don't have to look for trouble to find it, however.
+
+<Center>
+	<Serena />
+</Center>
+
+What fortune then. You don't even have to wonder too much how to create a similar mascot, nor how to reveal its true colors.
 
 ## SVG canvas
 
@@ -76,7 +80,7 @@ That being said, _where_ to place the circles is up to interpretation, and part 
 	<SVG key="circles" />
 </Center>
 
-There's a cloud. A bit _flat_, but convincing enough.
+There's a cloud. A bit _flat_, but convincing.
 
 ## Shadows
 
@@ -97,11 +101,11 @@ In a mask you draw shapes, similarly to the body of the `<svg>` element. White s
 
 ```html
 <mask id="mask">
-	<use fill="black" href="#c" />
+	<use href="#c" fill="black" />
 </mask>
 ```
 
-Once you then apply the mask to the actual drawing, you show the portions described as white, while you progressively hide the darker areas. The black sections? Those are completely removed from sight. Case in point, add the mask through the `mask` attribute on a singular instance of the circle.
+Once you then apply the mask to the actual drawing, you show the portions described as white, while you progressively hide darker and darker areas. The black sections? Those are completely removed from sight. Case in point, reference the mask in the `mask` attribute on a single instance of the circle.
 
 ```html
 <use href="#c" mask="url(#mask)" />
@@ -111,7 +115,7 @@ Once you then apply the mask to the actual drawing, you show the portions descri
 	<SVG key="mask" />
 </Center>
 
-I promise you, there is a veritable `<svg>` element in the page, not just an empty box. You only see whitespace because of the mask. Trust me, there's also a point to the discussion.
+I promise you, there is a veritable `<svg>` element in the page, not just an empty box. You only see the outline because of the mask. Trust me, there's also a point to the discussion.
 
 Update the mask to:
 
@@ -119,7 +123,7 @@ Update the mask to:
 
    ```html
    <mask id="mask">
-   	<use fill="white" href="#c" />
+   	<use href="#c" fill="white" />
    </mask>
    ```
 
@@ -127,8 +131,8 @@ Update the mask to:
 
    ```html
    <mask id="mask">
-   	<use fill="white" href="#c" />
-   	<use fill="black" y="-2" href="#c" />
+   	<use href="#c" fill="white" />
+   	<use href="#c" y="-2" fill="black" />
    </mask>
    ```
 
@@ -188,7 +192,7 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 +<g fill="#eb6a6a">
 ```
 
-<Center>
+<Center maxWidth="32rem">
 	<Colors />
 </Center>
 
@@ -200,19 +204,20 @@ We now have two shapes, `c` and `cc`.
 	<SVG key="shapes" />
 </Center>
 
-For the newly and improved cloud, it is helpful to actually use both; the flat circle in the top half, the darker variant in the section below.
+For the newly and improved cloud, it is helpful to actually use both: the flat version above, the elaborate circle below.
 
 ```html
 <g fill="#ebf3f5">
 	<use href="#c" />
-	<use transform="translate(-12.5 -5)" href="#c" />
-	<use transform="translate(12.5 -5)" href="#c" />
-	<use transform="translate(0 -10)" href="#c" />
-	<use transform="translate(-20 0)" href="#cc" />
-	<use transform="translate(20 0)" href="#cc" />
-	<use transform="translate(-15 10)" href="#cc" />
-	<use transform="translate(15 10)" href="#cc" />
-	<use transform="translate(0 15)" href="#cc" />
+	<use href="#c" transform="translate(-12.5 -5)" />
+	<use href="#c" transform="translate(12.5 -5)" />
+	<use href="#c" transform="translate(0 -10)" />
+
+	<use href="#cc" transform="translate(-20 0)" />
+	<use href="#cc" transform="translate(20 0)" />
+	<use href="#cc" transform="translate(-15 10)" />
+	<use href="#cc" transform="translate(15 10)" />
+	<use href="#cc" transform="translate(0 15)" />
 </g>
 ```
 
@@ -222,9 +227,7 @@ For the newly and improved cloud, it is helpful to actually use both; the flat c
 
 ## Faces
 
-It may come to a surprise, if you weren't curious enough to interact with the mascot, but there are actually two versions of the cloud.
-
-Let's start with the more stern character, the one which certainly did not escape your gaze.
+It may come to a surprise, but there are actually two versions of the cloud. Let's start with the more stern character, the one which certainly did not escape your gaze.
 
 Two circles on either side make up the eyes.
 
@@ -294,15 +297,15 @@ Immediately after the horizontal line add a cheerful mug with a slightly more co
 <path d="M -2 0 v 2 a 2 2 0 0 0 4 0 v -2z" />
 ```
 
-Why on top of the line? It'll make sense soon enough. Right now, let's enjoy the remarkable change brought by these small tweaks.
+Why drawing on top of the previous path? It'll make sense soon enough. Right now, let's enjoy the remarkable change brought by these small tweaks.
 
 <Center>
 	<Face trueColors={true} />
 </Center>
 
-## Interaction
+## Changes
 
-As prefaced, you don't see the jolly face immediately. The plan is to show the somber character by default, and lift the mood only as the cursor enters the `<svg>` element. Time for Svelte to show its luster.
+As hinted, you don't see the jolly face, at least not immediately. The plan is to show the somber character by default, and lift the mood only as the cursor enters the `<svg>` element.
 
 In the `<script>` tags import the `spring` function from the `svelte/motion` module.
 
@@ -312,7 +315,7 @@ In the `<script>` tags import the `spring` function from the `svelte/motion` mod
 </script>
 ```
 
-Create an instance to describe a change scale, with an initial value of 0. You may already see where this is going.
+Create an instance to describe a change scale, with an initial value of 0.
 
 ```js
 const scale = spring(0, {
@@ -321,7 +324,7 @@ const scale = spring(0, {
 });
 ```
 
-Use the value directly in the markup, to scale the shapes into oblivion. Hide the cheeks.
+Use the value directly in the markup, to scale a few elements into oblivion. Hide the cheeks.
 
 ```svelte
 <!-- both ellipses -->
@@ -330,7 +333,7 @@ Use the value directly in the markup, to scale the shapes into oblivion. Hide th
 </g>
 ```
 
-Hide the expanded mouth, effectively returning to the first face.
+Hide the expanded mouth, effectively returning to the first face — not for long, however.
 
 ```svelte
 <g transform="scale({$scale})">
@@ -338,7 +341,7 @@ Hide the expanded mouth, effectively returning to the first face.
 </g>
 ```
 
-Not for long however. Define helper functions to change the spring's value: one to reach 1, and have the shapes return, one to move back to 0, and hide them back.
+Define helper functions to change the spring's value: one to reach 1, and have the shapes return, one to move back to 0, and hide them back.
 
 ```js
 const handleStart = () => {
@@ -361,7 +364,7 @@ Call the functions following the `mouseenter` and `mouseleave` events respective
 </svg>
 ```
 
-And reap the rewards.
+And, reap the rewards.
 
 <Center>
 	<Serene />
@@ -369,22 +372,16 @@ And reap the rewards.
 
 ## Finishing touches
 
-[As with Ray](/ray-of-light), I hope you won't' mind a couple of extra features, baked in this final version.
-
-<Center>
-	<Serena  />
-</Center>
+[As with Ray](/ray-of-light), I hope you won't mind a couple of extra features, baked in the first version blessing this article.
 
 ### Bounce more
 
-The change in scale is impressive, no doubt. However, we can build on the spring with another animation, and make a very receptive mascot in the process.
-
-Always from the `svelte/motion` module import function `tweened`. From the `/easing` module, on the other hand, import a responsive timing function.
+Always from the `svelte/motion` module import the `tweened` function. From the `/easing` module, on the other hand, refer to a responsive timing function.
 
 ```svelte
 <script>
 	import { tweened, spring } from 'svelte/motion';
-	import { elasticOut as easing } from 'svelte/easing';
+	import { elasticOut } from 'svelte/easing';
 </script>
 ```
 
@@ -393,11 +390,11 @@ Create an instance with an initial value of 1 and the chosen easing.
 ```js
 const bounce = tweened(1, {
 	duration: 1000,
-	easing
+	easing: elasticOut
 });
 ```
 
-Wrap the entire composition in a group element to scale everything from the center.
+Wrap the entire composition in a group element to scale everything up.
 
 ```svelte
 <g transform="scale({$bounce})">
@@ -419,7 +416,7 @@ const handleEnd = () => {
 };
 ```
 
-The effect is nice enough you might just consider additional group elements. Care to have the eyes pop?
+The effect is nice enough you might just consider additional group elements. Care to have the eyes pop even more?
 
 ```svelte
 <!-- both circles -->
@@ -430,7 +427,7 @@ The effect is nice enough you might just consider additional group elements. Car
 
 ### Touch events
 
-This one is short and sweet. Consider two additional events: `touchstart` and `touchend`.
+Consider two additional events: `touchstart` and `touchend`.
 
 <!-- prettier-ignore -->
 ```svelte
@@ -441,4 +438,4 @@ This one is short and sweet. Consider two additional events: `touchstart` and `t
 </svg>
 ```
 
-The effect is not exactly the same, but at least you extend the interaction to support mobile devices. All that's needed is a tap. You decide how long to keep smiling.
+The effect is not exactly the same, but at least you extend the interaction to mobile devices. All that's needed is a tap — you decide how long to keep smiling.
