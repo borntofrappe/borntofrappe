@@ -20,20 +20,20 @@ export default {
   <defs>
     <circle id="mask-c" r="11" />
     <mask id="mask-mask">
-      <use fill="black" href="#mask-c" />
+      <use href="#mask-c" fill="black" />
     </mask>
   </defs>
 
   <g fill="#ebf3f5">
-    <use mask="url(#mask-mask)" href="#mask-c" />
+    <use href="#mask-c" mask="url(#mask-mask)" />
   </g>
   </svg>`,
 	masked: `<svg style="display: block" viewBox="-25 -25 50 50">
 	<defs>
 	  <circle id="masked-c" r="11" />
 	  <mask id="masked-mask">
-		<use fill="white" href="#masked-c" />
-		<use fill="black" y="-2" href="#masked-c" />
+		<use href="#masked-c" fill="white" />
+		<use href="#masked-c" y="-2" fill="black" />
 	  </mask>
 	  <g id="masked-cc">
 		<use href="#masked-c" />
@@ -54,8 +54,8 @@ export default {
 	<defs>
 	  <circle id="shapes-c" r="11" />
 	  <mask id="shapes-mask">
-		<use fill="white" href="#shapes-c" />
-		<use fill="black" y="-2" href="#shapes-c" />
+		<use href="#shapes-c" fill="white" />
+		<use href="#shapes-c" y="-2" fill="black" />
 	  </mask>
 	  <g id="shapes-cc">
 		<use href="#shapes-c" />
@@ -69,8 +69,8 @@ export default {
 	</defs>
   
 	<g fill="#ebf3f5">
-	  <use x="-28" href="#shapes-c" />
-	  <use x="28" href="#shapes-cc" />
+	  <use href="#shapes-c" x="-28" />
+	  <use href="#shapes-cc" x="28" />
 	</g>
   
 	<g
@@ -91,8 +91,8 @@ export default {
 	<defs>
 	  <circle id="cloud-c" r="11" />
 	  <mask id="cloud-mask">
-		<use fill="white" href="#cloud-c" />
-		<use fill="black" y="-2" href="#cloud-c" />
+		<use href="#cloud-c" fill="white" />
+		<use href="#cloud-c" fill="black" y="-2" />
 	  </mask>
 	  <g id="cloud-cc">
 		<use href="#cloud-c" />
@@ -102,14 +102,14 @@ export default {
   
 	<g fill="#ebf3f5">
 	  <use href="#cloud-c" />
-	  <use transform="translate(-12.5 -5)" href="#cloud-c" />
-	  <use transform="translate(12.5 -5)" href="#cloud-c" />
-	  <use transform="translate(0 -10)" href="#cloud-c" />
-	  <use transform="translate(-20 0)" href="#cloud-cc" />
-	  <use transform="translate(20 0)" href="#cloud-cc" />
-	  <use transform="translate(-15 10)" href="#cloud-cc" />
-	  <use transform="translate(15 10)" href="#cloud-cc" />
-	  <use transform="translate(0 15)" href="#cloud-cc" />
+	  <use href="#cloud-c" transform="translate(-12.5 -5)" />
+	  <use href="#cloud-c" transform="translate(12.5 -5)" />
+	  <use href="#cloud-c" transform="translate(0 -10)" />
+	  <use href="#cloud-cc" transform="translate(-20 0)" />
+	  <use href="#cloud-cc" transform="translate(20 0)" />
+	  <use href="#cloud-cc" transform="translate(-15 10)" />
+	  <use href="#cloud-cc" transform="translate(15 10)" />
+	  <use href="#cloud-cc" transform="translate(0 15)" />
 	</g>
   </svg>`
 };
