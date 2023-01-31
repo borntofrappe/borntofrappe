@@ -96,7 +96,7 @@ Four, separated, vertical lines. Add the missing horizontal mark to close the gr
 <path d="M 0 3.5 l 5 -1" />
 ```
 
-One unfortunate mishap is that the line is cropped at either end. If you tinker with the `viewBox` attribute you can work around the issue expanding the visible area.
+One unfortunate mishap is that the line is cropped at either end. If you tinker with the `viewBox` attribute you can work around the issue by expanding the visible area.
 
 ```diff
 -<svg viewBox="0 0 5 5">
@@ -121,7 +121,7 @@ Define the marks in a `<defs>` block.
 </defs>
 ```
 
-Safely tucked in the element the visual are not rendered until you reference them by `id` and through a `<use>` element.
+Safely tucked in the element the visuals are not rendered until you reference them by `id` and through a `<use>` element.
 
 ```html
 <use href="#mark-0" />
@@ -147,7 +147,7 @@ Define an array of incrementing numbers.
 const marks = [0, 1, 2];
 ```
 
-The each block allows to iterate through the collection, accessing the number with the first argument. The second argument describes the index, which would lead you to the previous snippet, but let's continue.
+The `each` block allows to iterate through the collection, accessing the number with the first argument. The second argument describes the index, which would lead you to the previous snippet, but let's continue.
 
 ```svelte
 {#each marks as number}
@@ -278,7 +278,7 @@ marks.reduce((acc, curr) => {}, []);
 
 In the body of the callback function you have access to `acc`, the array, and `curr`, the integer values.
 
-When the integer is 0 return the collection with an additional nested array, including 0 itself.
+When the integer is 0, return the collection with an additional nested array, including 0 itself.
 
 ```js
 arr.reduce((acc, curr) => {

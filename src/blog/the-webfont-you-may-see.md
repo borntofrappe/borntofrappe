@@ -237,13 +237,13 @@ Further, you don't realize that you actually have a typo.
 +fetch(event.request)
 ```
 
-Well, before you find the quick fix you end up with a completely unusable website. Every request fails as the browser becomes more befuddled than you, and every page prompts to the same cruel message: "_Failed to load resource_". Worse yet, you need a new service worker altogether. _And_, any existing window, any open tab would continue to serve the unservable app.
+Well, before you find the quick fix you end up with a completely unusable website. Every request fails as the browser becomes more befuddled than you, and every page prompts the same cruel message: "_Failed to load resource_". Worse yet, you need a new service worker altogether. _And_, any existing window, any open tab would continue to serve the unservable app.
 
 Would never happen, right?
 
 Just use TypeScript? Thank you for the input, I hope to soon join you in the comfy realm of strict typing and helpful error messages. Unfortunately, it is beside the point.
 
-The point being you should to be careful with a service worker, evaluate the risks and rewards.
+The point being you should be careful with a service worker, evaluate the risks and rewards.
 
 Once again the limited scope of the website helps to make a decision. In trying to optimize _only_ the fonts, you want to:
 
@@ -334,7 +334,7 @@ Just remember to double-check the spelling.
 
 ### Possibly delete old caches
 
-You could stop and consider only the `install` and `fetch` event, but you'd fell short of the intent of this article — having a process to load and serve a font today, a different asset later on.
+You could stop and consider only the `install` and `fetch` event, but you'd fall short of the intent of this article — having a process to load and serve a font today, a different asset later on.
 
 To cache new files you change the name of the cache.
 
