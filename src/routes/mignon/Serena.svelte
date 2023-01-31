@@ -45,16 +45,15 @@
 
 	const handleStart = () => {
 		scale.set(1);
+		bounce.set(1.1);
 		start = true;
 	};
 
 	const handleEnd = () => {
 		scale.set(0);
+		bounce.set(1);
 		start = false;
 	};
-
-	const handleBounceStart = () => bounce.set(1.1);
-	const handleBounceEnd = () => bounce.set(1);
 
 	const handleMove = ({ offsetX }) => {
 		const x = offsetX / w - 0.5;
@@ -70,18 +69,10 @@
 	viewBox="-55 -30 110 100"
 	bind:this={svg}
 	class:start
-	on:mousedown={handleBounceStart}
-	on:mouseup={handleBounceEnd}
 	on:mouseenter={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchstart|preventDefault={() => {
-		handleStart();
-		handleBounceStart();
-	}}
-	on:touchend|preventDefault={() => {
-		handleEnd();
-		handleBounceEnd();
-	}}
+	on:touchstart|preventDefault={handleStart}
+	on:touchend|preventDefault={handleEnd}
 	on:mousemove={handleMove}
 	on:touchmove|preventDefault={(e) => {
 		const { pageX: x } = e.touches[0];
@@ -119,14 +110,14 @@
 		<g transform="scale({$bounce})">
 			<g fill="#ebf3f5">
 				<use href="#c" />
-				<use transform="translate(-12.5 -5)" href="#c" />
-				<use transform="translate(12.5 -5)" href="#c" />
-				<use transform="translate(0 -10)" href="#c" />
-				<use transform="translate(-20 0) rotate(20)" href="#cc" />
-				<use transform="translate(20 0) rotate(-20)" href="#cc" />
-				<use transform="translate(-15 10) rotate(10)" href="#cc" />
-				<use transform="translate(15 10) rotate(-10)" href="#cc" />
-				<use transform="translate(0 15)" href="#cc" />
+				<use href="#c" transform="translate(-12.5 -5)" />
+				<use href="#c" transform="translate(12.5 -5)" />
+				<use href="#c" transform="translate(0 -10)" />
+				<use href="#cc" transform="translate(-20 0) rotate(20)" />
+				<use href="#cc" transform="translate(20 0) rotate(-20)" />
+				<use href="#cc" transform="translate(-15 10) rotate(10)" />
+				<use href="#cc" transform="translate(15 10) rotate(-10)" />
+				<use href="#cc" transform="translate(0 15)" />
 			</g>
 
 			<g fill="#f9a3c6">
