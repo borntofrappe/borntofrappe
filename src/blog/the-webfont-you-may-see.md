@@ -1,7 +1,7 @@
 ---
 title: The webfont you may see
-date: 2023-01-12 10:21:20
 description: This website relies on a webfont. Here a few notes on how, just in case you fancy a change.
+date: 2023-01-12 10:21:20
 ---
 
 You may spot this website has a preference for [Mulish](https://fonts.google.com/specimen/Mulish), a sans-serif font which I believe to be easy on the eyes. It has a rather low x-height and wide characters, to compensate for the verbose sentences which are bound to populate every page. Moreover, letters have soft curvatures, to match the comfortable, welcoming tone the application tries to instill.

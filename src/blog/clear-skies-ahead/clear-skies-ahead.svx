@@ -1,7 +1,7 @@
 ---
 title: Clear skies ahead
-date: 2023-01-30 21:57:22
 description: How to handle a delicate situation such as an error page? Why, with a caring mascot and a way forward.
+date: 2023-01-30 21:57:22
 ---
 
 <script>
