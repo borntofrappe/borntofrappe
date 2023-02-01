@@ -1,9 +1,12 @@
 <script>
+	import site from '$lib/utils/site.js';
+	const { title } = site;
+
 	import Puzzle from './Puzzle.svelte';
 </script>
 
 <svelte:head>
-	<title>Minesweeper | borntofrappe</title>
+	<title>Minesweeper | {title}</title>
 	<meta name="description" content="Play a nostalgia-filled version of a classic puzzle game." />
 	<link rel="icon" href="/icons/minesweeper.svg" type="image/svg+xml" />
 </svelte:head>

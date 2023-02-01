@@ -1,4 +1,7 @@
 <script>
+	import site from '$lib/utils/site.js';
+	const { title } = site;
+
 	import Puzzle from './Puzzle.svelte';
 
 	const size = 5;
@@ -6,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Rainbow sixteen | borntofrappe</title>
+	<title>Rainbow sixteen | {title}</title>
 	<meta name="description" content="Slide the tiles to complete the colors of the rainbow." />
 	<link rel="icon" href="/icons/rainbow-sixteen.svg" type="image/svg+xml" />
 </svelte:head>

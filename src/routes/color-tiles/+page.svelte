@@ -1,9 +1,12 @@
 <script>
+	import site from '$lib/utils/site.js';
+	const { title } = site;
+
 	import Puzzle from './Puzzle.svelte';
 </script>
 
 <svelte:head>
-	<title>Color tiles | borntofrappe</title>
+	<title>Color tiles | {title}</title>
 	<meta
 		name="description"
 		content="Compete to place your tiles in a colorful line. To each player its turn!"

@@ -1,9 +1,12 @@
 <script>
+	import site from '$lib/utils/site.js';
+	const { title } = site;
+
 	import Ray from './Ray.svelte';
 </script>
 
 <svelte:head>
-	<title>Mignon | borntofrappe</title>
+	<title>Mignon | {title}</title>
 	<meta
 		name="description"
 		content="This website has a mascot. It comes from the small village of Mignon, highly reputed for its whimsy and charm. Name's Ray."

@@ -1,4 +1,6 @@
 <script>
+	import site from '$lib/utils/site.js';
+
 	import Theme from '$lib/components/blog/Theme.svelte';
 
 	export let title;
@@ -33,7 +35,7 @@
 
 <svelte:head>
 	<title>
-		{title} | borntofrappe
+		{title} | {site.title}
 	</title>
 	<meta name="description" content={description} />
 </svelte:head>

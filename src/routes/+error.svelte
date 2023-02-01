@@ -1,4 +1,7 @@
 <script>
+	import site from '$lib/utils/site.js';
+	const { title } = site;
+
 	import { page } from '$app/stores';
 
 	import Serena from './mignon/Serena.svelte';
@@ -6,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Status code {$page.status} | borntofrappe</title>
+	<title>Status code {$page.status} | {title}</title>
 	<meta name="description" content={$page.error.message} />
 	<link rel="icon" href="icons/error.svg" type="image/svg+xml" />
 </svelte:head>
