@@ -25,8 +25,8 @@ export async function GET() {
 			.map(
 				({ url, title, date, description }) => `<entry>
 			<title>${title}</title>
-			<link href="${url}" />
-			<id>${url}</id>
+			<link href="${url}/" />
+			<id>${url}/</id>
 			<updated>${date.toISOString()}</updated>
 			<summary>${description}</summary>
 		</entry>`
