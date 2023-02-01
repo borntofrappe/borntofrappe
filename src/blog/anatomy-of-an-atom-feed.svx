@@ -4,13 +4,7 @@ description: A few notes on a possibly working Atom feed served with SvelteKit.
 date: 2023-02-01T18:37:46
 ---
 
-<script>
-	import site from '$lib/utils/site.js';
-	const { origin } = site;
-
-</script>
-
-Visit [a specific page]({origin}/feed.xml) and this website _should_ serve an Atom feed. Checked?
+Visit <a data-sveltekit-reload href="/feed.xml">a specific page</a> and this website _should_ serve an Atom feed. Checked?
 
 <details open>
     <summary>
