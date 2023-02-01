@@ -10,18 +10,22 @@
 
 - `/blog`: blog API
 
+- `/feed.xml`: Atom feed
+
 - `/color-tiles`, `/minesweeper`, `/rainbow-sixteen`: showcase
 
 - `/mignon`: mascot
 
 - `/today`: current day
 
-## up next
+## wishlist
 
-- [feature] blog index
+- feature | blog index
 
-- [route] `/blog`
+- route | `/blog` archive
 
-- [route] `/tangram`
+- route | `/tangram`
 
-- [route] `/feed`
+- route | `/puzzles`
+
+- route | `/smil`
