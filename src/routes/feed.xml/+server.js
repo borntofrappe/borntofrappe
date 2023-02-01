@@ -23,30 +23,31 @@ export async function GET() {
 		})
 	);
 
-	// prettier-ignore
 	const feed = `<?xml version="1.0" encoding="utf-8"?>
-    <feed xmlns="http://www.w3.org/2005/Atom">
-        <title>${title}</title>
-        <subtitle>${description}</subtitle>
-        <link href="${origin}/feed.xml" rel="self" />
-        <link href="${origin}" />
-        <updated>${new Date().toISOString()}</updated>
-        <id>${origin}/</id>
-        <author>
-        <name>${name}</name>
-        <email>${email}</email>
+	<feed xmlns="http://www.w3.org/2005/Atom">
+		<title>${title}</title>
+		<subtitle>${description}</subtitle>
+		<link href="${origin}/feed.xml" rel="self" />
+		<link href="${origin}/" />
+		<id>${origin}/</id>
+		<updated>${new Date().toISOString()}</updated>
+		<author>
+			<name>${name}</name>
+			<email>${email}</email>
         </author>
-        ${blog
+		${blog
 			.sort((a, b) => b.date - a.date)
-			.map(({ url, title, date, description }) => `
-            <entry>
-                <title>${title}</title>
-                <link href="${url}"/>
-                <id>${url}</id>
-                <updated>${new Date(date).toISOString()}</updated>
-                <summary>${description}</summary>
-            </entry>`).join('')}
-    </feed>`;
+			.map(
+				({ url, title, date, description }) => `<entry>
+			<title>${title}</title>
+			<link href="${url}" />
+			<id>${url}</id>
+			<updated>${date.toISOString()}</updated>
+			<summary>${description}</summary>
+		</entry>`
+			)
+			.join('')}
+	</feed>`;
 
 	return new Response(feed, {
 		headers: {
