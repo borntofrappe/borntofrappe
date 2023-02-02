@@ -8,6 +8,7 @@ date: 2023-02-02T21:23:01
     import SVG from './SVG.svelte';
     import FlipScale from './FlipScale.svelte';
     import Degrees from './Degrees.svelte';
+    import Nette from './Nette.svelte';
 </script>
 
 Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
@@ -265,3 +266,7 @@ angle.set(degrees);
 And enjoy the responsive mascot.
 
 <Degrees />
+
+## Finishing touches
+
+<Nette />
