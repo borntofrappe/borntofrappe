@@ -1,0 +1,15 @@
+---
+title: Wish you luck
+description: In times of distress, count on Svelte and SVG to cheer things up.
+date: 2023-02-02T21:23:01
+---
+
+Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
+
+Now set up an SVG canvas and see how to make that vision into reality.
+
+```html
+<svg viewBox="-50 -50 100 100">
+	<!-- -->
+</svg>
+```
