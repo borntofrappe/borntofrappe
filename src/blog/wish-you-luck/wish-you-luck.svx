@@ -7,6 +7,7 @@ date: 2023-02-02T21:23:01
 <script>
     import SVG from './SVG.svelte';
     import FlipScale from './FlipScale.svelte';
+    import Degrees from './Degrees.svelte';
 </script>
 
 Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
@@ -185,3 +186,82 @@ If you need to wrap your head around the feat, here's a small playground. I've o
 If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
 
 <SVG key="body" />
+
+## Degrees
+
+Let's dive into the world of whimsy offered by spring animations and the `svelte/motion` module.
+
+```svelte
+<script>
+	import { spring } from 'svelte/motion';
+</script>
+```
+
+The goal is to have a value for the angle.
+
+```js
+const angle = spring(0);
+```
+
+Map this value to follow the cursor and use the number to rotate our beloved beetle.
+
+```svelte
+<g transform="rotate({$angle})">
+	<!-- ladybird -->
+</g>
+```
+
+Now for the nitty-gritty. To follow the cursor, listen to the `mousemove` event on the larger SVG.
+
+```svelte
+<svg viewBox="-50 -50 100 100" on:mousemove={handleMove}>
+	<!--  -->
+</svg>
+```
+
+Among the _many_ values you find in the event, extract the offset from the top left corner.
+
+```js
+const handleMove = (e) => {
+	const { offsetX, offsetY } = e;
+	console.log(offsetX, offsetY);
+};
+```
+
+Unfortunately, the values are relative to the size of the `<svg>` element as it is rendered on your page. We already encountered the problem [in a previous article](/ray-of-light#tracking), where we resolved to find the width and height and store the values in two variables, `w` and `h`. If you don't mind then, I'll proceed assuming we know the numbers.
+
+With the width and height, consider `x` and `y` coordinates in the `[0, 1]` range.
+
+```js
+const x = offsetX / w - 0.5;
+const y = offsetY / h - 0.5;
+```
+
+You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into often challenging world of trigonometry, and introduce `Math.atan2` as the function you need.
+
+```js
+const tetha = Math.atan2(y, x);
+```
+
+The value is in radians, meaning you need to convert the measure in the degrees the `transform` attribute expects.
+
+```js
+const degrees = (tetha * 180) / Math.PI;
+```
+
+Second hiccup, the number falls in the `[-180, 180]` range, while we'd like the `[-90, 270]` interval instead. This is ultimately because the ladybird looks north.
+
+```diff
+-const degrees = tetha * 180 / Math.PI
++const degrees = tetha * 180 / Math.PI + 90
+```
+
+Update the angle.
+
+```js
+angle.set(degrees);
+```
+
+And enjoy the responsive mascot.
+
+<Degrees />
