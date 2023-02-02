@@ -4,6 +4,11 @@ description: In times of distress, count on Svelte and SVG to cheer things up.
 date: 2023-02-02T21:23:01
 ---
 
+<script>
+    import SVG from './SVG.svelte';
+    import FlipScale from './FlipScale.svelte';
+</script>
+
 Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
 
 Now set up an SVG canvas and see how to make that vision into reality.
@@ -13,3 +18,170 @@ Now set up an SVG canvas and see how to make that vision into reality.
 	<!-- -->
 </svg>
 ```
+
+## Head
+
+Draw a circle. A nice, dark grey circle.
+
+```html
+<circle fill="#38311e" r="14" />
+```
+
+Add two lines, protruding from the center and outside of the round shape.
+
+```html
+<g fill="none" stroke="#38311e" stroke-width="1.5">
+	<path d="M 0 0 l 12 -14" />
+	<path d="M 0 0 l -12 -14" />
+</g>
+```
+
+SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an intinguishable mass.
+
+<SVG key="head" />
+
+You could smooth the ends of the segments with the `stroke-linecap` property, but we can treat ourselves with a `<marker>`. There's plenty to know about the element, but let me focus on the essential parts for our most practical use case.
+
+Define the marker with a specific `id` — we'll get to its structure in a couple of paragraphs.
+
+```html
+<defs>
+	<marker id="marker">
+		<!-- -->
+	</marker>
+</defs>
+```
+
+Reference the visual through the `marker-end` attribute.
+
+```html
+<path d="M 0 0 l 12 -14" marker-end="url(#marker)" />
+```
+
+The result is that the marker is added at the very end of the line, at the end of the antenna.
+
+Back to the marker, the element works similarly to the parent `<svg>`. Past the `id` set up the canvas devoted to the marker.
+
+```html
+<marker id="marker" viewBox="-1 -1 2 2">
+	<!-- -->
+</marker>
+```
+
+The shapes are then measured relative to the specific `viewBox`. The curious set of values? Enough to center a circle with a radius of 1, and have it occupy the entirety of the frame.
+
+```html
+<marker id="marker" viewBox="-1 -1 2 2">
+	<circle r="1" />
+</marker>
+```
+
+<SVG key="marker" />
+
+Impressive as the effect is, there is one inconvenience. You do need to set the color for the circle in the marker itself.
+
+```diff
+-<circle r="1" />
++<circle r="1" fill="#38311e" />
+```
+
+On the positive side, you can add the attribute on the group element to have the visual appear on both segments.
+
+```html
+<g fill="none" stroke="#38311e" stroke-width="1.5" marker-end="url(#marker)">
+	<!-- paths -->
+</g>
+```
+
+<SVG key="markers" />
+
+## Body
+
+One last note on the head. We are going to draw the body right after the previous section, effectively _on top_. In light of this, wrap the elements in a common group element.
+
+```html
+<g>
+	<!-- head -->
+</g>
+```
+
+In the moment you need to update its position, you can then move the entire head with a shared translation.
+
+On to the body. Start with a larger, scarlet circle.
+
+```html
+<circle fill="#ff6c6c" r="25" />
+```
+
+For the polka dot pattern, follow up with smaller, darker circles. The color picked for the head is a safe choice.
+
+```html
+<g fill="#38311e">
+	<circle cx="4" cy="-18" r="2" />
+	<circle cx="8" cy="-8" r="4" />
+	<circle cx="17" cy="-1" r="3" />
+	<circle cx="9" cy="4" r="3" />
+	<circle cx="14" cy="12" r="2" />
+</g>
+```
+
+<SVG key="half" />
+
+Something's quite off with the picture, however.
+
+For starters, the head has disappeared. We already discussed the point, but it's always better to have the first-hand experience. Move the shapes up to have them pop behind the larger corpus.
+
+```diff
+-<g>
++<g transform="translate(0 -20)">
+```
+
+Then again, there are dots only on one side. Notice how we position the circles through the `cx` and `cy` attributes, and the horizontal coordinate is always positive.
+
+To complete the symmetry you have a couple of options:
+
+1. repeat the circles on the left side, repeat the elements with the opposite `cx` value
+
+2. prepared to be befuddled by the section which follows. Be warned, we are diving into more advanced SVG syntax
+
+SVG offers the `<use>` element to repeat visuals. Generally, you define the visuals in `<defs>` tags, to avoid drawing them immediately, and include them by reference.
+
+```html
+<defs>
+	<circle id="c" r="1" />
+</defs>
+
+<use href="#c" />
+```
+
+Here's the nice part, however. You can repeat visuals which have already been drawn, always through the `id` attribute.
+
+Wrap the smaller circles in a common group element.
+
+```html
+<g id="dots">
+	<!-- -->
+</g>
+```
+
+And you can repeat them afterwards.
+
+```html
+<use href="#dots" />
+```
+
+Pointless? It rarely is. As we draw the dots _from the center_ of the canvas, to the right, you can repeat them to the left by changing the horizontal scale.
+
+```html
+<use transform="scale(-1 1)" href="#dots" />
+```
+
+In essence you flip the entire coordinate system. With the transformation applied, positive offsets no longer move you to the right, but to the left instead.
+
+If you need to wrap your head around the feat, here's a small playground. I've omitted the `id` to save space, but the `<use>` element refers to the `<circle>` you move with the handle.
+
+<FlipScale />
+
+If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
+
+<SVG key="body" />
