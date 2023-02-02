@@ -39,7 +39,7 @@ const feed = `<?xml version="1.0" encoding="utf-8"?>
 
 </details>
 
-You might notice a JavaScript expressions here and there, but assuming those are valid, I want to focus on a selection of values.
+You might notice a JavaScript expression here and there, but assuming those are valid, I want to focus on a selection of values.
 
 ## Canonical URI
 
