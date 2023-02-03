@@ -57,14 +57,18 @@
 	on:mousedown={handleStart}
 	on:mouseup={handleEnd}
 	on:mouseleave={handleEnd}
-	on:mousemove={handleMove}
+	on:mousemove={({ offsetX, offsetY }) => {
+		handleMove({ offsetX, offsetY });
+	}}
 	on:touchstart|preventDefault={handleStart}
 	on:touchend|preventDefault={handleEnd}
 	on:touchmove|preventDefault={(e) => {
 		const { pageX: x, pageY: y } = e.touches[0];
+		const offsetX = x - l;
+		const offsetY = y - t;
 		handleMove({
-			offsetX: x - l,
-			offsetY: y - t
+			offsetX,
+			offsetY
 		});
 	}}
 >

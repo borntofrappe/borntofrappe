@@ -2,14 +2,14 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	let svg;
-	let w, h;
-	let l, t;
-
 	const angle = spring(0, {
 		stiffness: 0.1,
 		damping: 0.25
 	});
+
+	let svg;
+	let w, h;
+	let l, t;
 
 	onMount(() => {
 		handleSize();
