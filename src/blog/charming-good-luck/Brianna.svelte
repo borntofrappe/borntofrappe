@@ -42,12 +42,19 @@
 <svg
 	viewBox="-50 -50 100 100"
 	bind:this={svg}
+	on:mousemove={(e) => {
+		const { offsetX, offsetY } = e;
+		handleMove({ offsetX, offsetY });
+	}}
 	on:mousemove={handleMove}
 	on:touchmove|preventDefault={(e) => {
-		const { pageX: x, pageY: y } = e.touches[0];
+		const touch = e.touches[0];
+		const { pageX: x, pageY: y } = touch;
+		const offsetX = x - l;
+		const offsetY = y - t;
 		handleMove({
-			offsetX: x - l,
-			offsetY: y - t
+			offsetX,
+			offsetY
 		});
 	}}
 >
