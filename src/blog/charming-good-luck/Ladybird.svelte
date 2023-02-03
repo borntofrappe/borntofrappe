@@ -11,6 +11,12 @@
 		handleSize();
 	});
 
+	const handleSize = () => {
+		const { width, height } = svg.getBoundingClientRect();
+		w = width;
+		h = height;
+	};
+
 	const handleMove = (e) => {
 		const { offsetX, offsetY } = e;
 		const x = offsetX / w - 0.5;
@@ -20,12 +26,6 @@
 		const degrees = (tetha * 180) / Math.PI + 90;
 
 		angle.set(degrees);
-	};
-
-	const handleSize = () => {
-		const { width, height } = svg.getBoundingClientRect();
-		w = width;
-		h = height;
 	};
 </script>
 
@@ -45,17 +45,20 @@
 			</g>
 			<circle fill="#38311e" r="14" />
 		</g>
-		<circle fill="#ff6c6c" r="25" />
-		<g fill="#38311e">
-			<g id="ladybird-dots">
-				<circle cx="4" cy="-18" r="2" />
-				<circle cx="8" cy="-8" r="4" />
-				<circle cx="18" cy="-1" r="3" />
-				<circle cx="6" cy="5" r="3" />
-				<circle cx="14" cy="12" r="2" />
-				<circle cx="4" cy="18" r="2" />
+
+		<g>
+			<circle fill="#ff6c6c" r="25" />
+			<g fill="#38311e">
+				<g id="ladybird-dots">
+					<circle cx="4" cy="-18" r="2" />
+					<circle cx="8" cy="-8" r="4" />
+					<circle cx="18" cy="-1" r="3" />
+					<circle cx="6" cy="5" r="3" />
+					<circle cx="14" cy="12" r="2" />
+					<circle cx="4" cy="18" r="2" />
+				</g>
+				<use href="#ladybird-dots" transform="scale(-1 1)" />
 			</g>
-			<use href="#ladybird-dots" transform="scale(-1 1)" />
 		</g>
 	</g>
 </svg>

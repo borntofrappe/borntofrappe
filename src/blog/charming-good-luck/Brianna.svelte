@@ -65,17 +65,19 @@
 			<circle fill="#38311e" r="14" />
 		</g>
 
-		<circle fill="#ff6c6c" r="25" />
-		<g fill="#38311e">
-			<g id="brianna-dots">
-				<circle cx="4" cy="-18" r="2" />
-				<circle cx="8" cy="-8" r="4" />
-				<circle cx="18" cy="-1" r="3" />
-				<circle cx="6" cy="5" r="3" />
-				<circle cx="14" cy="12" r="2" />
-				<circle cx="4" cy="18" r="2" />
+		<g>
+			<circle fill="#ff6c6c" r="25" />
+			<g fill="#38311e">
+				<g id="brianna-dots">
+					<circle cx="4" cy="-18" r="2" />
+					<circle cx="8" cy="-8" r="4" />
+					<circle cx="18" cy="-1" r="3" />
+					<circle cx="6" cy="5" r="3" />
+					<circle cx="14" cy="12" r="2" />
+					<circle cx="4" cy="18" r="2" />
+				</g>
+				<use href="#brianna-dots" transform="scale(-1 1)" />
 			</g>
-			<use href="#brianna-dots" transform="scale(-1 1)" />
 		</g>
 	</g>
 </svg>

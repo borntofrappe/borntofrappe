@@ -134,9 +134,10 @@ Something's quite off with the picture, however.
 
 For starters, the head has disappeared. We already discussed the point, but it's always better to have the first-hand experience. Move the shapes up to have them pop behind the larger corpus.
 
-```diff
--<g>
-+<g transform="translate(0 -20)">
+```html
+<g transform="translate(0 -20)">
+	<!-- head -->
+</g>
 ```
 
 Then again, there are dots only on one side. Notice how we position the circles through the `cx` and `cy` attributes, and the horizontal coordinate is always positive.
