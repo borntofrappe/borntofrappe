@@ -189,7 +189,7 @@ If the discussion made little sense, again, there's always the first option. Whi
 
 <SVG key="body" />
 
-## Direction
+## Spring
 
 Let's dive in the enchanting possibilities offered by spring animations and the `svelte/motion` module.
 
