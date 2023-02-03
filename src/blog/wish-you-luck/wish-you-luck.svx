@@ -1,14 +1,13 @@
 ---
-title: Wish you luck
-description: In times of distress, count on Svelte and SVG to cheer things up.
-date: 2023-02-02T21:23:01
+title: Charming good luck
+description: In times of distress, count on Svelte and SVG to cheer you up.
+date: 2023-02-03T09:17:06
 ---
 
 <script>
     import SVG from './SVG.svelte';
-    import FlipScale from './FlipScale.svelte';
+    import Transform from './Transform.svelte';
     import Degrees from './Degrees.svelte';
-    import Nette from './Nette.svelte';
 </script>
 
 Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
@@ -162,11 +161,11 @@ Wrap the smaller circles in a common group element.
 
 ```html
 <g id="dots">
-	<!-- -->
+	<!-- circles -->
 </g>
 ```
 
-And you can repeat them afterwards.
+And, you can repeat them afterwards.
 
 ```html
 <use href="#dots" />
@@ -180,17 +179,17 @@ Pointless? It rarely is. As we draw the dots _from the center_ of the canvas, to
 
 In essence you flip the entire coordinate system. With the transformation applied, positive offsets no longer move you to the right, but to the left instead.
 
-If you need to wrap your head around the feat, here's a small playground. I've omitted the `id` to save space, but the `<use>` element refers to the `<circle>` you move with the handle.
+If you need to wrap your head around the feat, here's a small playground. I've omitted the `id` to save space, but the `<use>` element refers to the circle you move with the handle.
 
-<FlipScale />
+<Transform />
 
 If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
 
 <SVG key="body" />
 
-## Degrees
+## Direction
 
-Let's dive into the world of whimsy offered by spring animations and the `svelte/motion` module.
+Let's dive in the enchanting possibilities offered by spring animations and the `svelte/motion` module.
 
 ```svelte
 <script>
@@ -229,16 +228,16 @@ const handleMove = (e) => {
 };
 ```
 
-Unfortunately, the values are relative to the size of the `<svg>` element as it is rendered on your page. We already encountered the problem [in a previous article](/ray-of-light#tracking), where we resolved to find the width and height and store the values in two variables, `w` and `h`. If you don't mind then, I'll proceed assuming we know the numbers.
+Unfortunately, the values are relative to the size of the `<svg>` element as it is rendered on your screen. We already encountered the problem [in a previous article](/ray-of-light#tracking), where we resolved to find the width and height and store the values in two variables, `w` and `h`. If you don't mind then, I'll proceed assuming we know the numbers.
 
-With the width and height, consider `x` and `y` coordinates in the `[0, 1]` range.
+With the width and height, consider the coordinates in the `[-0.5, 0.5]` range.
 
 ```js
 const x = offsetX / w - 0.5;
 const y = offsetY / h - 0.5;
 ```
 
-You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into often challenging world of trigonometry, and introduce `Math.atan2` as the function you need.
+You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into often challenging world of trigonometry, and introduce `Math.atan2`.
 
 ```js
 const tetha = Math.atan2(y, x);
@@ -250,14 +249,18 @@ The value is in radians, meaning you need to convert the measure in the degrees 
 const degrees = (tetha * 180) / Math.PI;
 ```
 
-Second hiccup, the number falls in the `[-180, 180]` range, while we'd like the `[-90, 270]` interval instead. This is ultimately because the ladybird looks north.
+Second hiccup, the number falls in the `[-180, 180]` range, starting with 0 on the right axis.
+
+<Degrees />
+
+Since the creature looks straight up, we'd rather explore the `[-90, 270]` range instead.
 
 ```diff
 -const degrees = tetha * 180 / Math.PI
 +const degrees = tetha * 180 / Math.PI + 90
 ```
 
-Update the angle.
+Update the spring.
 
 ```js
 angle.set(degrees);
@@ -265,8 +268,4 @@ angle.set(degrees);
 
 And enjoy the responsive mascot.
 
-<Degrees />
-
-## Finishing touches
-
-<Nette />
+<Ladybird />

@@ -1,61 +1,79 @@
 <script>
-	import { onMount } from 'svelte';
-	import { spring } from 'svelte/motion';
+	let x = Math.floor(Math.random() * 50) * -1;
+	let y = Math.floor(Math.random() * 50) * -1;
 
-	let svg;
-	let w, h;
-
-	const angle = spring(0);
-
-	onMount(() => {
-		handleSize();
-	});
-
-	const handleMove = (e) => {
-		const { offsetX, offsetY } = e;
-		const x = offsetX / w - 0.5;
-		const y = offsetY / h - 0.5;
-
-		const tetha = Math.atan2(y, x);
-		const degrees = (tetha * 180) / Math.PI + 90;
-
-		angle.set(degrees);
-	};
-
-	const handleSize = () => {
-		const { width, height } = svg.getBoundingClientRect();
-		w = width;
-		h = height;
-	};
+	$: angle = Math.atan2(y, x);
 </script>
 
-<svelte:window on:resize={handleSize} />
+<p>Change the coordinates to find the angle computed with <code>Math.atan2</code>.</p>
 
-<svg viewBox="-50 -50 100 100" bind:this={svg} on:mousemove={handleMove}>
-	<defs>
-		<marker id="degrees-m" viewBox="-1 -1 2 2">
-			<circle r="1" fill="#38311e" />
-		</marker>
-	</defs>
-	<g transform="rotate({$angle})">
-		<g transform="translate(0 -20)">
-			<g fill="none" stroke="#38311e" stroke-width="1.5" marker-end="url(#degrees-m)">
-				<path d="M 0 0 l 12 -14" />
-				<path d="M 0 0 l -12 -14" />
+<form on:submit|preventDefault>
+	<label>
+		x
+		<input type="range" min="-50" max="50" bind:value={x} />
+	</label>
+	<label>
+		y
+		<input type="range" min="-50" max="50" bind:value={y} />
+	</label>
+</form>
+
+<svg viewBox="-60 -60 120 120">
+	<g fill="none" stroke="currentColor">
+		<g stroke-width="0.25">
+			<g stroke-dasharray="1">
+				<path d="M 0 -50 v 100" />
+				<path d="M -50 0 h 100" />
 			</g>
-			<circle fill="#38311e" r="14" />
 		</g>
-		<circle fill="#ff6c6c" r="25" />
-		<g fill="#38311e">
-			<g id="degrees-dots">
-				<circle cx="4" cy="-18" r="2" />
-				<circle cx="8" cy="-8" r="4" />
-				<circle cx="18" cy="-1" r="3" />
-				<circle cx="6" cy="5" r="3" />
-				<circle cx="14" cy="12" r="2" />
-				<circle cx="4" cy="18" r="2" />
+		<g>
+			<g stroke-width="0.5">
+				<path d="M 0 0 h 50" />
 			</g>
-			<use href="#degrees-dots" transform="scale(-1 1)" />
+			<path d="M 0 0 {x} {y}" />
 		</g>
 	</g>
+
+	<g fill="currentColor">
+		<g text-anchor="middle">
+			<g font-size="4.5">
+				<text y="8">(0, 0)</text>
+				<text {x} y={y - 5}>({x}, {y})</text>
+			</g>
+			<text dominant-baseline="middle" font-size="16" font-weight="bold" x="25" y="25"
+				>{Math.floor((angle * 180) / Math.PI)}°</text
+			>
+		</g>
+		<circle r="1.2" />
+		<circle cx={x} cy={y} r="1.2" />
+	</g>
 </svg>
+
+<style>
+	form * {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+	}
+
+	form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	input {
+		accent-color: currentColor;
+	}
+
+	svg {
+		display: block;
+	}
+</style>
