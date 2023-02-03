@@ -26,10 +26,8 @@
 				<path d="M -50 0 h 100" />
 			</g>
 		</g>
-		<g>
-			<g stroke-width="0.5">
-				<path d="M 0 0 h 50" />
-			</g>
+		<g stroke-width="0.5">
+			<path d="M 0 0 h 50" />
 			<path d="M 0 0 {x} {y}" />
 		</g>
 	</g>

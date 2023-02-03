@@ -11,7 +11,7 @@
 	</label>
 </form>
 
-<svg viewBox="-65 -15 130 30">
+<svg viewBox="-65 -18 130 36">
 	<g fill="none" stroke="currentColor" stroke-width="0.2" stroke-dasharray="1">
 		<path d="M 0 -15 v 30" />
 	</g>
@@ -36,6 +36,7 @@
 
 	label {
 		display: flex;
+		justify-content: center;
 		align-items: center;
 		gap: 0.5rem;
 	}
