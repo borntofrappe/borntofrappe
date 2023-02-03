@@ -22,7 +22,7 @@
 		const x = offsetX / w - 0.5;
 		const y = offsetY / h - 0.5;
 
-		const tetha = Math.atan2(y, x);
+		const theta = Math.atan2(y, x);
 		const degrees = (tetha * 180) / Math.PI + 90;
 
 		angle.set(degrees);

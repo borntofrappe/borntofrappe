@@ -23,15 +23,15 @@
 		t = top;
 	};
 
-	const handleMove = (e) => {
-		const { offsetX, offsetY } = e;
+	const handleMove = (offset) => {
+		const { offsetX, offsetY } = offset;
 		const x = offsetX / w - 0.5;
 		const y = offsetY / h - 0.5;
 
 		if (y > 0) return;
 
-		const tetha = Math.atan2(y, x);
-		const degrees = (tetha * 180) / Math.PI + 90;
+		const theta = Math.atan2(y, x);
+		const degrees = (theta * 180) / Math.PI + 90;
 
 		angle.set(degrees);
 	};
@@ -46,7 +46,6 @@
 		const { offsetX, offsetY } = e;
 		handleMove({ offsetX, offsetY });
 	}}
-	on:mousemove={handleMove}
 	on:touchmove|preventDefault={(e) => {
 		const touch = e.touches[0];
 		const { pageX: x, pageY: y } = touch;

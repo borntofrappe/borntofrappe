@@ -1,7 +1,7 @@
 ---
 title: Charming good luck
 description: In times of distress, count on Svelte and SVG to cheer you up.
-date: 2023-02-03T09:17:06
+date: 2023-02-03T15:50:21
 ---
 
 <script>
@@ -24,7 +24,7 @@ Now set up an SVG canvas and see how to make that vision into reality.
 
 ## Head
 
-Draw a circle. A nice, dark grey circle.
+Draw a circle. A nice, dark gray circle.
 
 ```html
 <circle fill="#38311e" r="14" />
@@ -39,7 +39,7 @@ Add two lines, protruding from the center and outside of the round shape.
 </g>
 ```
 
-SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an intinguishable mass.
+SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an indistinguishable mass.
 
 <SVG key="head" />
 
@@ -240,16 +240,16 @@ const x = offsetX / w - 0.5;
 const y = offsetY / h - 0.5;
 ```
 
-You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into often challenging world of trigonometry, and introduce `Math.atan2`.
+You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into the often challenging world of trigonometry, and introduce `Math.atan2`.
 
 ```js
-const tetha = Math.atan2(y, x);
+const theta = Math.atan2(y, x);
 ```
 
 The value is in radians, meaning you need to convert the measure in the degrees the `transform` attribute expects.
 
 ```js
-const degrees = (tetha * 180) / Math.PI;
+const degrees = (theta * 180) / Math.PI;
 ```
 
 Second hiccup, the number falls in the `[-180, 180]` range, starting with 0 on the right axis.
@@ -259,8 +259,8 @@ Second hiccup, the number falls in the `[-180, 180]` range, starting with 0 on t
 Since the creature looks straight up, we'd rather explore the `[-90, 270]` range instead.
 
 ```diff
--const degrees = tetha * 180 / Math.PI
-+const degrees = tetha * 180 / Math.PI + 90
+-const degrees = theta * 180 / Math.PI
++const degrees = theta * 180 / Math.PI + 90
 ```
 
 Update the spring.
@@ -277,7 +277,7 @@ And enjoy the inquisitive insect.
 
 Truth be told, I wish I were more proud of the resulting animation. As you rotate the shapes toward the left, the angle jumps between -90 and 270, meaning the bug jumps in the opposite direction to assume the positive value. Retrace your steps counter-clockwise and the same issue takes place in reverse.
 
-At the time of writing, I do not have a solution, only a cheeky workaround. To avoid ending in a sour note, however, let me embellish the article with a couple extra features.
+At the time of writing, I do not have a solution, only a cheeky workaround. To avoid ending on a sour note, however, let me embellish the article with a couple extra features.
 
 ### Spring options
 
@@ -290,7 +290,7 @@ const angle = spring(0, {
 });
 ```
 
-How to pick the values? As per Svelte's [tutorial](https://svelte.dev/tutorial/spring), the best way is to just try.
+How to pick the values? As per Svelte [tutorial](https://svelte.dev/tutorial/spring), the best way is to just try.
 
 ### Touch event
 
@@ -302,7 +302,7 @@ The interaction is limited to mouse events, but the `touchmove` event promises t
 </svg>
 ```
 
-Unfortunately, calling the same function does not work. Touch events do not have the same properties as the mouse counterpart, and you can attest yourself looking through event object.
+Unfortunately, calling the same function does not work. Touch events do not have the same properties as the mouse counterpart, and you can attest yourself looking through the event object.
 
 ```svelte
 <svg
@@ -371,7 +371,7 @@ handleMove({
 });
 ```
 
-You may want to refactor `handleMove`, perhaps you are not to keen to have it work both with a mouse event and an object with just two properties. In the end, all that's needed is the offset.
+You may want to refactor `handleMove`, perhaps you are not too keen to have it work both with a mouse event and an object with just two properties. In the end, all that's needed is the offset.
 
 ```js
 const handleMove = (offset) => {
@@ -379,7 +379,7 @@ const handleMove = (offset) => {
 };
 ```
 
-If you are really finnicky, then, you can explicit the logic for the mouse event. Then again, this is up to your coding preference.
+If you are really finicky, then you can explicit the logic for the mouse event. Then again, this is up to your coding preference.
 
 ```svelte
 <svg
