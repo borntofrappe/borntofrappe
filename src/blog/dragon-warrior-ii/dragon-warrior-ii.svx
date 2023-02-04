@@ -3,3 +3,12 @@ title: Dragon Warrior II
 description: The natural expansion of often frustrating, always rewarding journey.
 date: 2023-02-04 13:57:45
 ---
+
+<script>
+ import Heroes from './Heroes.svelte'
+</script>
+
+<div style:text-align="center">
+  <Heroes />
+</div>
+
