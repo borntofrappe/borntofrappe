@@ -7,6 +7,7 @@ date: 2023-02-04 13:57:45
 <script>
  import Heroes from './Heroes.svelte'
  import JailKey from './JailKey.svelte'
+ import SlotTokens from './SlotTokens.svelte'
 </script>
 
 <div style:text-align="center">
@@ -15,4 +16,8 @@ date: 2023-02-04 13:57:45
 
 <div style:max-inline-size="32rem" style:margin-inline="auto">
   <JailKey />
+</div>
+
+<div style:max-inline-size="24rem" style:margin-inline="auto">
+  <SlotTokens />
 </div>
