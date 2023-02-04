@@ -129,36 +129,9 @@
 
 	button > svg {
 		display: block;
-		width: 100%;
-		height: auto;
 	}
 
-	button {
-		position: relative;
-	}
-
-	button::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border-radius: inherit;
-		background: currentColor;
-		opacity: 0;
-		z-index: -1;
-	}
-
-	button:focus {
+	button:focus:not(:focus-visible) {
 		outline: none;
-	}
-
-	button:focus::before {
-		opacity: 0.1;
-	}
-
-	button:focus:not(:focus-visible)::before {
-		opacity: 0;
 	}
 </style>
