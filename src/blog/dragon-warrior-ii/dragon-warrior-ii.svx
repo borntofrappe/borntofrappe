@@ -6,9 +6,15 @@ date: 2023-02-04 13:57:45
 
 <script>
  import Heroes from './Heroes.svelte'
+ import JailKey from './JailKey.svelte'
 </script>
 
 <div style:text-align="center">
   <Heroes />
 </div>
+
+<div style:max-inline-size="32rem" style:margin-inline="auto">
+<JailKey />
+</div>
+
 
