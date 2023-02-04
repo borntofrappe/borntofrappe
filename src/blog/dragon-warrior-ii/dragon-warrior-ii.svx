@@ -11,6 +11,24 @@ date: 2023-02-04 13:57:45
  import SailingShip from './SailingShip.svelte'
 </script>
 
+The second title in the Dragon Quest series flows organically [from the previous chapter](/dragon-warrior), and in many ways feels like a natural expansion of the first episode.
+
+The evil force going by the name of Hargon destroys the kingdom of Moonbrook.
+
+The king perishes trying to save princess Beth.
+
+A lone, wounded messenger manages to bring news to Lorasia castle, and succumbs in front of your princely gaze.
+
+It is here where your quest begins. As the descendant of Loto you venture forth in the now-expanded continent.
+
+## Encounters
+
+Outside of the castle's boundaries the first random encounter tests your mettle. One on one battles are no longer, and you face now a multitude of slimes, now a multitude of slugs.
+
+To compensate the increased opposition your solitary journey ends in a few travels. You are soon paired with the erring prince Gary and the faithful princess Beth. The one and the same. Both characters have a rather roundabout manner to join your party, but eventually create a cohesive unit.
+
+A powerful mixture of might, magic and healing powers.
+
 <div style:text-align="center">
   <Heroes />
 </div>
