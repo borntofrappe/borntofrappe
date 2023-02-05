@@ -33,23 +33,23 @@
 
 <style>
 	main {
-		padding: var(--step-space-200);
 		display: flex;
 		gap: var(--step-space-100) 0;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		min-height: 100vh;
+		min-block-size: 100vh;
 		color: hsl(0, 0%, 92%);
 		background: hsl(0, 0%, 17%);
+		padding: var(--step-space-200);
 		position: relative;
 	}
 
 	main::before {
 		content: '';
 		position: absolute;
-		width: 100%;
-		height: 100%;
+		inline-size: 100%;
+		block-size: 100%;
 		background: hsl(0, 0%, 100%);
 		opacity: 0.35;
 		filter: url(#filter-noise);
@@ -66,9 +66,9 @@
 
 	main > :global(svg) {
 		display: block;
-		width: 100vmin;
-		height: auto;
-		max-height: 16rem;
+		inline-size: 100vmin;
+		block-size: auto;
+		max-block-size: 16rem;
 	}
 
 	main > :global(*) {

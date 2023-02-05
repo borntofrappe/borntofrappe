@@ -16,15 +16,13 @@
 
 <div
 	class="box"
-	style:min-height="100vh"
 	style:--padding="1rem"
-	style:padding-block-end="0"
 	style:--color="hsl(209, 61%, 16%)"
 	style:--background="hsl(210, 36%, 97%)"
 	style:--selection-color="hsl(210, 36%, 96%)"
 	style:--selection-background="hsl(205, 65%, 55%)"
 >
-	<div class="center stack" style:--measure="70ch" style:--leading="0">
+	<div class="center stack" style:--leading="0">
 		<main class="flow">
 			<h1>Oopsie</h1>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>

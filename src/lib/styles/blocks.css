@@ -14,11 +14,12 @@
 	margin-block-start: 0;
 	padding: var(--step-space-300);
 	border-radius: 1rem;
-	line-height: 1.75;
 	tab-size: 2;
 }
 
 .code > span {
+	line-height: 1.25;
+	font-weight: 700;
 	align-self: flex-end;
 	display: inline-flex;
 	align-items: center;
@@ -27,13 +28,12 @@
 	border-start-end-radius: 0.5rem;
 	margin-inline-end: var(--step-space-200);
 	padding: var(--step-space-000) var(--step-space-200);
-	font-weight: 700;
 }
 
 .code > span > :global(svg) {
 	display: block;
-	height: 1em;
-	width: auto;
+	block-size: 1em;
+	inline-size: auto;
 }
 
 .code pre {

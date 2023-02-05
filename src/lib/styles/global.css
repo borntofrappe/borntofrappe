@@ -2,6 +2,7 @@ body {
 	color: var(--grey-900);
 	background: var(--grey-000);
 	accent-color: var(--color-500);
+	font-size: var(--step-size-200);
 }
 
 h1 {
@@ -20,38 +21,24 @@ h4 {
 	font-size: var(--step-size-300);
 }
 
-p {
-	font-size: var(--step-size-200);
-}
-
 body {
-	line-height: 1.5;
-}
-
-h1,
-h2,
-h3 {
-	line-height: 1.2;
-}
-
-blockquote {
 	line-height: 1.75;
 }
 
 h1,
 h2,
-h3 {
-	max-inline-size: 20ch;
-}
-
-p,
-li,
-blockquote {
-	max-inline-size: 60ch;
+h3,
+h4 {
+	line-height: 1.2;
 }
 
 a {
 	color: inherit;
+	font-weight: 700;
+}
+
+a:hover {
+	text-decoration: none;
 }
 
 :focus {
