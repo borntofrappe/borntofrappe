@@ -30,8 +30,8 @@
 }
 
 .centered {
-	min-block-size: var(--size, 100vh);
 	display: flex;
+	min-block-size: var(--size, 100vh);
 }
 
 .centered > * {

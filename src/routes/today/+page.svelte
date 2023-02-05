@@ -14,7 +14,7 @@
 	<link rel="icon" href="/icons/today.svg" type="image/svg+xml" />
 </svelte:head>
 
-<svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+<svg style="position: absolute; inline-size: 0; block-size: 0;" aria-hidden="true">
 	<defs>
 		<filter id="filter-chalk">
 			<feTurbulence type="turbulence" baseFrequency="0.6" numOctaves="3" result="turbulence" />
