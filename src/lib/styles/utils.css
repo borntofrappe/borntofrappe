@@ -29,6 +29,15 @@
 	padding-inline: var(--leading, 1.5rem);
 }
 
+.centered {
+	min-block-size: var(--size, 100vh);
+	display: flex;
+}
+
+.centered > * {
+	margin: auto;
+}
+
 .flow {
 	display: block;
 }
