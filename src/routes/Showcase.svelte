@@ -9,10 +9,10 @@
 	style:--color="hsl(203, 23%, 18%)"
 	style:--background="hsl(218, 100%, 98%)"
 >
-	<article class="box" style:--padding="var(--step-space-700) var(--step-space-300)">
-		<h2>Rainbow sixteen</h2>
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+		<h2 style:display="inline-block">Rainbow sixteen</h2>
 
-		<div class="float">
+		<div class="bottom float" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
 		</div>
 
@@ -30,7 +30,7 @@
 			Can you arrange them in the correct order?
 		</p>
 
-		<p>
+		<p class="bottom">
 			If you have patience and keen eyes you are in luck, there are bound to be
 			<a href="/rainbow-sixteen">more colors</a> to discover.
 		</p>
@@ -42,13 +42,14 @@
 	style:--color="hsl(200, 47%, 96%)"
 	style:--background="hsl(203, 23%, 18%)"
 >
-	<article class="box" style:--padding="var(--step-space-700) var(--step-space-300)">
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2>Color tiles</h2>
 
 		<div
-			class="float"
+			class="bottom float"
 			style:--measure="30rem"
 			style:--shape-outside="polygon(0% 50%, 50% 0%, 100% 50%, 100% 100%, 0% 100%)"
+			style:--space="var(--space-500)"
 		>
 			<ColorTiles />
 		</div>
@@ -61,7 +62,7 @@
 
 		<p>So grab a friend and play a round or two; you'll both get a chance to start first.</p>
 
-		<p>
+		<p class="bottom">
 			If you need more of a challenge, then, you can try to match four in
 			<a href="/color-tiles">a larger board</a>.
 		</p>
@@ -69,10 +70,10 @@
 </section>
 
 <section class="box centered" style:--color="hsl(0, 0%, 2%)" style:--background="hsl(0, 0%, 75%)">
-	<article class="box" style:--padding="var(--step-space-700) var(--step-space-300)">
-		<h2>Minesweeper</h2>
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+		<h2 style:display="inline-block">Minesweeper</h2>
 
-		<div class="float">
+		<div class="bottom float" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />
 		</div>
 
@@ -95,7 +96,7 @@
 
 		<p>It may not emit a sound, but the result almost speaks for itself.</p>
 
-		<p>
+		<p class="bottom">
 			If you answered positively to both questions, by happenstance, there's always
 			<a href="/minesweeper">room for growth</a>.
 		</p>
@@ -103,55 +104,8 @@
 </section>
 
 <style>
-	article {
-		display: flex;
-		flex-direction: column;
-		inline-size: 100%;
-		max-inline-size: 68rem;
-	}
-
-	article > * + * {
-		margin-block-start: var(--space, 1em);
-	}
-
-	article > .float {
-		width: 100%;
-		max-inline-size: var(--measure, 24rem);
-		align-self: center;
-	}
-
-	article > .float,
-	article > :last-child {
-		--space: var(--step-space-500);
-		order: 1;
-	}
-
 	ol {
 		padding: 0;
 		list-style-position: inside;
-	}
-
-	@media (min-width: 42rem) {
-		article {
-			display: initial;
-		}
-
-		article > :first-child {
-			display: inline-block;
-		}
-
-		article > :last-child {
-			--space: inherit;
-		}
-
-		article > .float {
-			float: left;
-			shape-outside: var(--shape-outside, initial);
-			margin: var(--step-space-400);
-		}
-
-		section:nth-of-type(even) article > .float {
-			float: right;
-		}
 	}
 </style>
