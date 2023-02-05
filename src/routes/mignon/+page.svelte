@@ -14,24 +14,12 @@
 	<link rel="icon" href="icons/mignon.svg" type="image/svg+xml" />
 </svelte:head>
 
-<main>
-	<Ray />
+<main
+	class="box centered"
+	style:--color="hsl(44, 30%, 17%)"
+	style:--background="hsl(41, 100%, 97%)"
+>
+	<div style:inline-size="100vmin" style:max-inline-size="32rem">
+		<Ray />
+	</div>
 </main>
-
-<style>
-	main {
-		color: hsl(44, 30%, 17%);
-		background: hsl(41, 100%, 97%);
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	main > :global(svg) {
-		display: block;
-		max-width: 30rem;
-		width: 100vmin;
-		height: auto;
-	}
-</style>
