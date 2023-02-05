@@ -47,7 +47,7 @@ h3 {
 p,
 li,
 blockquote {
-	max-inline-size: 50ch;
+	max-inline-size: 60ch;
 }
 
 a {

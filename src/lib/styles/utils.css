@@ -7,3 +7,48 @@
 	position: absolute;
 	white-space: nowrap;
 }
+
+.box {
+	color: var(--color, inherit);
+	background: var(--background, inherit);
+	padding: var(--padding, 0);
+}
+
+.box ::selection {
+	color: var(--selection-color, inherit);
+	background: var(--selection-background, inherit);
+}
+
+.box * {
+	color: inherit;
+}
+
+.center {
+	max-inline-size: var(--measure, 60ch);
+	margin-inline: auto;
+	padding-inline: var(--leading, 1.5rem);
+}
+
+.flow {
+	display: block;
+}
+
+.flow > * {
+	margin-block: 0;
+}
+
+.flow > * + * {
+	margin-block-start: var(--space, 1em);
+}
+
+.stack {
+	display: block;
+}
+
+.stack > * {
+	margin-block: 0;
+}
+
+.stack > * + * {
+	margin-block-start: var(--space, 1.5rem);
+}

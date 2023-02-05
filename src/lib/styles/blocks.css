@@ -1,0 +1,41 @@
+.code {
+	display: flex;
+	flex-direction: column;
+	font-size: var(--step-size-200);
+}
+
+.code pre,
+.code > span {
+	color: var(--theme-color, #e0def4);
+	background: var(--theme-background, #232136);
+}
+
+.code pre {
+	margin-block-start: 0;
+	padding: var(--step-space-300);
+	border-radius: 1rem;
+	line-height: 1.75;
+	tab-size: 2;
+}
+
+.code > span {
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	gap: 0 var(--step-space-100);
+	border-start-start-radius: 0.5rem;
+	border-start-end-radius: 0.5rem;
+	margin-inline-end: var(--step-space-200);
+	padding: var(--step-space-000) var(--step-space-200);
+	font-weight: 700;
+}
+
+.code > span > :global(svg) {
+	display: block;
+	height: 1em;
+	width: auto;
+}
+
+.code pre {
+	overflow-x: auto;
+}
