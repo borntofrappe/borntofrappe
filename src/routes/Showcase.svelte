@@ -154,49 +154,4 @@
 			float: right;
 		}
 	}
-
-	/* @media (min-width: 42rem) {
-		article {
-			display: block;
-		}
-
-		article > .float {
-			--space: 0;
-		}
-
-		article > .float + * {
-			--space: inherit;
-		}
-
-		article > .float {
-			float: right;
-			width: 100%;
-			max-width: 24rem;
-		}
-	} */
-
-	/* @media (min-width: 40rem) {
-		article {
-			display: initial;
-		}
-
-		article > div {
-			margin-inline: initial;
-			margin-block-start: initial;
-		}
-
-		article h2 {
-			display: inline-block;
-		}
-
-		article > div {
-			float: left;
-			shape-outside: var(--shape-outside, initial);
-			margin: var(--step-space-400);
-		}
-
-		section:nth-of-type(even) article > div {
-			float: right;
-		}
-	} */
 </style>
