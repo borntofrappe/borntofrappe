@@ -86,19 +86,34 @@
 	.morning {
 		--color: var(--grey-700);
 		--background: var(--grey-100);
+
+		--accent: var(--color-300);
 		--shadow: var(--color-100);
+
+		--selection-color: var(--grey-700);
+		--selection-background: var(--color-200);
 	}
 
 	.day {
 		--color: var(--grey-900);
 		--background: var(--grey-000);
+
+		--accent: var(--color-400);
 		--shadow: var(--color-200);
+
+		--selection-color: var(--grey-900);
+		--selection-background: var(--color-300);
 	}
 
 	.night {
 		--color: var(--grey-200);
 		--background: var(--grey-900);
-		--shadow: var(--color-900);
+
+		--accent: var(--color-600);
+		--shadow: var(--color-700);
+
+		--selection-color: var(--grey-200);
+		--selection-background: var(--color-800);
 	}
 
 	main :global(h2),
