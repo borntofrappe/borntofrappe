@@ -1,22 +1,13 @@
 <script>
+	import themes from '$lib/utils/themes.js';
+
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
-	export let timeOfDay;
-	export let colors = {
-		morning: { foreground: '#838ac5', background: '#9cb2ce' },
-		day: { foreground: '#639aef', background: '#73d2e6' },
-		night: { foreground: '#7369b5', background: '#838ace' }
-	};
-
-	$: timeOfDays = Object.keys(colors);
-
-	const color = colors[timeOfDay] || colors[timeOfDays[0]];
-	let foreground = color.foreground;
-	let background = color.background;
+	let { timeOfDay, foreground, background } = themes[1];
 
 	// viewBox="0 0 120 60"
 	const positions = {
@@ -42,17 +33,12 @@
 	onMount(() => {
 		handleSize();
 
-		if (!timeOfDay) {
-			const hours = new Date().getHours();
+		const value = localStorage.getItem('timeOfDay');
+		if (value) timeOfDay = value;
 
-			if (hours > 2 && hours < 10) {
-				timeOfDay = 'morning';
-			} else if (hours <= 18) {
-				timeOfDay = 'day';
-			} else {
-				timeOfDay = 'night';
-			}
-		}
+		const theme = themes.find((d) => d.timeOfDay === timeOfDay);
+		foreground = theme.foreground;
+		background = theme.background;
 
 		const { x, y } = positions[timeOfDay];
 		position.set({ x, y });
@@ -72,26 +58,6 @@
 
 	let isDragging = false;
 
-	const handlePosition = ({ offsetX, offsetY }) => {
-		// viewBox="0 0 120 60"
-		const x = (offsetX / w) * 120;
-		const y = (offsetY / h) * 60;
-
-		position.set({ x, y });
-
-		const dx = 60 - x;
-		const dy = 60 - y;
-		const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-
-		if (angle < 60) {
-			timeOfDay = 'morning';
-		} else if (angle < 120) {
-			timeOfDay = 'day';
-		} else {
-			timeOfDay = 'night';
-		}
-	};
-
 	const handleStart = (e) => {
 		isDragging = true;
 
@@ -108,37 +74,63 @@
 		handlePosition(e);
 	};
 
+	const handlePosition = ({ offsetX, offsetY }) => {
+		// viewBox="0 0 120 60"
+		const x = (offsetX / w) * 120;
+		const y = (offsetY / h) * 60;
+
+		position.set({ x, y });
+
+		const dx = 60 - x;
+		const dy = 60 - y;
+
+		const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+		const angles = Array(themes.length)
+			.fill()
+			.map((_, i, { length }) => (180 / length) * (i + 1));
+
+		const index = angles.findIndex((d) => angle <= d);
+
+		let { timeOfDay: value } = themes[index];
+
+		if (value !== timeOfDay) handleValue(value);
+	};
+
 	const handleKey = (e) => {
 		const { key } = e;
 		if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
 
-		const index = timeOfDays.findIndex((d) => d === timeOfDay);
+		const index = themes.findIndex((d) => d.timeOfDay === timeOfDay);
 
 		let next;
 		if (key === 'ArrowRight') {
-			next = (index + 1) % timeOfDays.length;
+			next = (index + 1) % themes.length;
 		} else {
-			next = index > 0 ? index - 1 : timeOfDays.length - 1;
+			next = index > 0 ? index - 1 : themes.length - 1;
 		}
 
-		timeOfDay = timeOfDays[next];
-
-		const { x, y } = positions[timeOfDay];
-
+		const { timeOfDay: value } = themes[next];
+		const { x, y } = positions[value];
 		position.set({ x, y });
+
+		handleValue(value);
 	};
 
-	$: if (timeOfDay) {
-		const color = colors[timeOfDay];
-		foreground = color.foreground;
-		background = color.background;
+	const handleValue = (value) => {
+		timeOfDay = value;
+
+		const theme = themes.find((d) => d.timeOfDay === timeOfDay);
+		foreground = theme.foreground;
+		background = theme.background;
 
 		dispatch('change', {
 			timeOfDay,
 			foreground,
 			background
 		});
-	}
+
+		localStorage.setItem('timeOfDay', timeOfDay);
+	};
 </script>
 
 <svelte:window on:resize={handleSize} />
@@ -238,8 +230,8 @@
 		on:keydown={handleKey}
 		role="spinbutton"
 		aria-valuemin={0}
-		aria-valuenow={timeOfDays.findIndex((d) => d === timeOfDay)}
-		aria-valuemax={timeOfDays.length - 1}
+		aria-valuenow={themes.findIndex((d) => d === timeOfDay)}
+		aria-valuemax={themes.length - 1}
 		aria-valuetext={timeOfDay}
 		tabindex="0"
 		aria-label="Change the time of day with the arrow keys."

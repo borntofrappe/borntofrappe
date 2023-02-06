@@ -1,35 +1,20 @@
 <script>
 	import site from '$lib/utils/site.js';
+	import themes from '$lib/utils/themes.js';
 
 	import Theme from '$lib/components/blog/Theme.svelte';
 
 	export let title;
 	export let description;
 
-	const colors = {
-		morning: { foreground: '#838ac5', background: '#9cb2ce' },
-		day: { foreground: '#639aef', background: '#73d2e6' },
-		night: { foreground: '#7369b5', background: '#838ace' }
-	};
+	let { timeOfDay, foreground, background } = themes[1];
 
-	let timeOfDay;
-	const hours = new Date().getHours();
+	const handleChange = ({ detail }) => {
+		if (detail.timeOfDay === timeOfDay) return;
 
-	if (hours > 2 && hours < 10) {
-		timeOfDay = 'morning';
-	} else if (hours <= 18) {
-		timeOfDay = 'day';
-	} else {
-		timeOfDay = 'night';
-	}
-
-	let { foreground, background } = colors[timeOfDay];
-
-	const handleChange = (e) => {
-		const { detail: change } = e;
-		timeOfDay = change.timeOfDay;
-		background = change.background;
-		foreground = change.foreground;
+		timeOfDay = detail.timeOfDay;
+		foreground = detail.foreground;
+		background = detail.background;
 	};
 </script>
 
@@ -72,7 +57,7 @@
 			{title}
 		</h1>
 		<div class="center" style:--measure="40rem">
-			<Theme {timeOfDay} {colors} on:change={handleChange} />
+			<Theme on:change={handleChange} />
 		</div>
 	</header>
 	<div class="box" style:padding="var(--step-space-200) var(--step-space-100)">
