@@ -14,16 +14,12 @@
 	padding: var(--padding, 0);
 }
 
-.box ::selection {
-	color: var(--selection-color, inherit);
-	background: var(--selection-background, inherit);
-}
-
 .box * {
 	color: inherit;
 }
 
 .center {
+	display: block;
 	max-inline-size: var(--measure, 70ch);
 	margin-inline: auto;
 	padding-inline: var(--leading, 1.5rem);

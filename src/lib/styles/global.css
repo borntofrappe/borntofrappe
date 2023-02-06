@@ -1,8 +1,13 @@
 body {
-	color: var(--grey-900);
-	background: var(--grey-000);
-	accent-color: var(--color-500);
+	color: var(--color);
+	background: var(--background);
+	accent-color: var(--accent);
 	font-size: var(--step-size-200);
+}
+
+::selection {
+	color: var(--selection-color);
+	background: var(--selection-background);
 }
 
 h1 {
