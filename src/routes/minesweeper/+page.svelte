@@ -16,23 +16,14 @@
 	<p>Play a nostalgia-filled version of a classic puzzle game.</p>
 </header>
 
-<article>
-	<div>
+<main
+	class="box centered"
+	style:--color="hsl(0, 0%, 2%)"
+	style:--background="hsl(0, 0%, 75%)"
+	style:--selection-color="hsl(0, 0%, 2%)"
+	style:--selection-background="hsl(0, 0%, 81%)"
+>
+	<div style:inline-size="90vmin" style:max-inline-size="52rem">
 		<Puzzle columns={20} rows={12} mines={20} />
 	</div>
-</article>
-
-<style>
-	article {
-		color: hsl(0, 0%, 2%);
-		background: hsl(0, 0%, 75%);
-		min-height: 100vh;
-		display: flex;
-	}
-
-	article div {
-		margin: auto;
-		width: 90vmin;
-		max-width: 52rem;
-	}
-</style>
+</main>

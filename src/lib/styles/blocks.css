@@ -1,0 +1,144 @@
+.code {
+	display: flex;
+	flex-direction: column;
+	font-size: var(--step-size-200);
+}
+
+.code pre,
+.code > span {
+	color: var(--theme-color, #e0def4);
+	background: var(--theme-background, #232136);
+}
+
+.code pre {
+	margin-block-start: 0;
+	padding: var(--step-space-300);
+	border-radius: 1rem;
+	tab-size: 2;
+}
+
+.code > span {
+	line-height: 1.25;
+	font-weight: 700;
+	align-self: flex-end;
+	display: inline-flex;
+	align-items: center;
+	gap: 0 var(--step-space-100);
+	border-start-start-radius: 0.5rem;
+	border-start-end-radius: 0.5rem;
+	margin-inline-end: var(--step-space-200);
+	padding: var(--step-space-000) var(--step-space-200);
+}
+
+.code > span > svg {
+	display: block;
+	block-size: 1em;
+	inline-size: auto;
+}
+
+.code pre {
+	overflow-x: auto;
+}
+
+.code pre::-webkit-scrollbar {
+	block-size: 0.4rem;
+}
+
+.code pre::-webkit-scrollbar-thumb {
+	border-radius: 0.2rem;
+	background: var(--accent);
+}
+
+.skip-to-content {
+	font-size: var(--size-200);
+	color: var(--background);
+	background: var(--color);
+	padding: var(--space-100) var(--space-300);
+	border-radius: 2rem;
+	text-decoration: none;
+	position: absolute;
+	top: var(--step-space-100);
+	left: 50%;
+	transform: translateX(-50%);
+	outline: none;
+	z-index: 5;
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	.skip-to-content {
+		display: inline-flex;
+		align-items: center;
+		gap: 0 var(--step-space-100);
+	}
+
+	.skip-to-content::after {
+		content: '';
+		inline-size: 1em;
+		block-size: 1em;
+		background: currentColor;
+		mask-image: url('data:image/svg+xml,\
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+	  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+		<path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+		<path d="M -45 -20 h 28" />\
+		<path d="M -45 0 h 28" />\
+		<path d="M -45 20 h 28" />\
+	  </g>\
+	</svg>');
+		-webkit-mask-image: url('data:image/svg+xml,\
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+	  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+		<path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+		<path d="M -45 -20 h 28" />\
+		<path d="M -45 0 h 28" />\
+		<path d="M -45 20 h 28" />\
+	  </g>\
+	</svg>');
+	}
+}
+
+.permalink {
+	display: flex;
+	align-items: center;
+	gap: 0 var(--step-space-100);
+}
+
+.permalink a {
+	inline-size: 1rem;
+	block-size: 1rem;
+	border-radius: 0.5rem;
+	opacity: 0.3;
+	background: currentColor;
+	transition: opacity 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+.permalink a:focus {
+	opacity: 1;
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	.permalink a {
+		inline-size: 1em;
+		block-size: 1em;
+		border-radius: initial;
+		position: relative;
+		-webkit-mask-image: url('data:image/svg+xml,\
+		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+			  <g transform="rotate(-45)">\
+			  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+				  <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+				  <use href="%23link" transform="scale(-1 -1)" />\
+			  </g>\
+			  </g>\
+		  </svg>');
+		mask-image: url('data:image/svg+xml,\
+		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+			  <g transform="rotate(-45)">\
+			  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+				  <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+				  <use href="%23link" transform="scale(-1 -1)" />\
+			  </g>\
+			  </g>\
+		  </svg>');
+	}
+}

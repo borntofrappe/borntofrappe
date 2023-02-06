@@ -14,7 +14,7 @@
 	<link rel="icon" href="/icons/today.svg" type="image/svg+xml" />
 </svelte:head>
 
-<svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+<svg style="position: absolute; inline-size: 0; block-size: 0;" aria-hidden="true">
 	<defs>
 		<filter id="filter-chalk">
 			<feTurbulence type="turbulence" baseFrequency="0.6" numOctaves="3" result="turbulence" />
@@ -27,48 +27,45 @@
 </svg>
 
 <main>
-	<h1>{format(date)}</h1>
+	<h1 class="font-size:biggest">{format(date)}</h1>
 	<Marks n={date.getDate()} />
 </main>
 
 <style>
 	main {
-		padding: var(--step-space-200);
 		display: flex;
 		gap: var(--step-space-100) 0;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		min-height: 100vh;
+		text-align: center;
+		min-block-size: 100vh;
 		color: hsl(0, 0%, 92%);
 		background: hsl(0, 0%, 17%);
+		padding: var(--step-space-200);
 		position: relative;
+	}
+
+	main ::selection {
+		color: hsl(0, 0%, 92%);
+		background: hsl(0, 0%, 17%);
 	}
 
 	main::before {
 		content: '';
 		position: absolute;
-		width: 100%;
-		height: 100%;
+		inline-size: 100%;
+		block-size: 100%;
 		background: hsl(0, 0%, 100%);
 		opacity: 0.35;
 		filter: url(#filter-noise);
 	}
 
-	main ::selection {
-		background: hsl(0, 0%, 17%);
-	}
-
-	h1 {
-		text-align: center;
-		font-size: var(--step-size-900);
-	}
-
 	main > :global(svg) {
 		display: block;
-		width: 100vmin;
-		height: auto;
-		max-height: 16rem;
+		inline-size: 100vmin;
+		block-size: auto;
+		max-block-size: 16rem;
 	}
 
 	main > :global(*) {

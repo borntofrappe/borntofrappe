@@ -1,0 +1,101 @@
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	inline-size: 1px;
+	block-size: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}
+
+.box {
+	color: var(--color, inherit);
+	background: var(--background, inherit);
+	padding: var(--padding, 0);
+}
+
+.box * {
+	color: inherit;
+}
+
+.center {
+	display: block;
+	max-inline-size: var(--measure, 70ch);
+	margin-inline: auto;
+	padding-inline: var(--leading, 1.5rem);
+}
+
+.centered {
+	display: flex;
+	min-block-size: var(--size, 100vh);
+}
+
+.centered > * {
+	margin: auto;
+}
+
+.flow {
+	display: block;
+}
+
+.flow > * {
+	margin-block: 0;
+}
+
+.flow > * + * {
+	margin-block-start: var(--space, 1em);
+}
+
+.stack {
+	display: block;
+}
+
+.stack > * {
+	margin-block: 0;
+}
+
+.stack > * + * {
+	margin-block-start: var(--space, 1.5rem);
+}
+
+.floating {
+	display: flex;
+	flex-direction: column;
+	inline-size: 100%;
+	max-inline-size: var(--measure, 68rem);
+}
+
+.floating > * + * {
+	margin-block-start: var(--space, 1em);
+}
+
+.floating > .float {
+	margin-block: var(--space, 1em);
+	width: 100%;
+	max-inline-size: var(--measure, 24rem);
+	align-self: center;
+}
+
+.floating > .top {
+	order: -1;
+}
+
+.floating > .bottom {
+	order: 1;
+}
+
+@media (min-width: 42rem) {
+	.floating {
+		display: initial;
+	}
+
+	.floating > .float {
+		float: var(--float, right);
+		shape-outside: var(--shape-outside, initial);
+		margin: var(--space, 1rem);
+	}
+}
+
+.font-size\:biggest {
+	font-size: var(--step-size-900);
+}

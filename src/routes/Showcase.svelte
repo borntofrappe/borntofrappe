@@ -4,11 +4,17 @@
 	import Minesweeper from './minesweeper/Puzzle.svelte';
 </script>
 
-<section style:color="hsl(203, 23%, 18%)" style:background="hsl(218, 100%, 98%)">
-	<article>
-		<h2>Rainbow sixteen</h2>
+<section
+	class="box centered"
+	style:--color="hsl(203, 23%, 18%)"
+	style:--background="hsl(218, 100%, 98%)"
+	style:--selection-color="hsl(203, 23%, 18%)"
+	style:--selection-background="hsl(200, 71%, 80%)"
+>
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+		<h2 style:display="inline-block">Rainbow sixteen</h2>
 
-		<div>
+		<div class="bottom float" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
 		</div>
 
@@ -26,47 +32,58 @@
 			Can you arrange them in the correct order?
 		</p>
 
-		<p>
-			If you have patience and keen eyes you are in luck, there are bound to be <a
-				href="/rainbow-sixteen"
-				>more colors
-			</a> to discover.
+		<p class="bottom">
+			If you have patience and keen eyes you are in luck, there are bound to be
+			<a href="/rainbow-sixteen">more colors</a> to discover.
 		</p>
 	</article>
 </section>
 
 <section
-	style:color="hsl(200, 47%, 96%)"
-	style:background="hsl(203, 23%, 18%)"
-	style:--max-width="32rem"
+	class="box centered"
+	style:--color="hsl(200, 47%, 96%)"
+	style:--background="hsl(203, 23%, 18%)"
+	style:--selection-color="hsl(200, 47%, 96%)"
+	style:--selection-background="hsl(209, 34%, 30%)"
 >
-	<article>
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2>Color tiles</h2>
 
-		<div>
+		<div
+			class="bottom float"
+			style:--measure="30rem"
+			style:--shape-outside="polygon(0% 50%, 50% 0%, 100% 50%, 100% 100%, 0% 100%)"
+			style:--space="var(--space-500)"
+		>
 			<ColorTiles />
 		</div>
 
 		<p>
-			Tic Tac Toe logic asks to place a marker to create a link in a column, row, or again diagonal. <br
-			/>The game might always end in a draw, but is always a source of entertainment.
+			Tic Tac Toe logic asks to place a marker to create a link in a column, row, or again diagonal.
 		</p>
+
+		<p>The game might always end in a draw, but is always a source of entertainment.</p>
 
 		<p>So grab a friend and play a round or two; you'll both get a chance to start first.</p>
 
-		<p>
-			If you need more of a challenge, then, you can try to match four in <a href="/color-tiles"
-				>a larger board</a
-			>.
+		<p class="bottom">
+			If you need more of a challenge, then, you can try to match four in
+			<a href="/color-tiles">a larger board</a>.
 		</p>
 	</article>
 </section>
 
-<section style:color="hsl(0, 0%, 2%)" style:background="hsl(0, 0%, 75%)">
-	<article>
-		<h2>Minesweeper</h2>
+<section
+	class="box centered"
+	style:--color="hsl(0, 0%, 2%)"
+	style:--background="hsl(0, 0%, 75%)"
+	style:--selection-color="hsl(0, 0%, 2%)"
+	style:--selection-background="hsl(0, 0%, 81%)"
+>
+	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+		<h2 style:display="inline-block">Minesweeper</h2>
 
-		<div>
+		<div class="bottom float" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />
 		</div>
 
@@ -77,93 +94,28 @@
 
 		<p>There are only two questions left:</p>
 
-		<ol>
+		<ol class="flow" style:--space="0.75em">
 			<li>how well do you deal with high-pressure situations?</li>
 			<li>how much nostalgia can you tolerate?</li>
 		</ol>
 
 		<p>
 			This particular pastime is designed to resemble the title from a very popular operating
-			system, as closely as possible.<br /> It may not emit a sound, but the result almost speaks for
-			itself.
+			system, as closely as possible.
 		</p>
 
-		<p>
-			If you answered positively to both questions, by happenstance, there's always <a
-				href="/minesweeper">room for growth</a
-			>.
+		<p>It may not emit a sound, but the result almost speaks for itself.</p>
+
+		<p class="bottom">
+			If you answered positively to both questions, by happenstance, there's always
+			<a href="/minesweeper">room for growth</a>.
 		</p>
 	</article>
 </section>
 
 <style>
-	section {
-		min-height: 100vh;
-		display: flex;
-	}
-
-	section > article {
-		margin: auto;
-	}
-
-	article {
-		width: 100%;
-		max-width: 68rem;
-		padding: var(--step-space-700) var(--step-space-300);
-	}
-
-	article {
-		display: flex;
-		flex-direction: column;
-	}
-
-	article > div,
-	article > p:last-of-type {
-		order: 1;
-	}
-
-	article > * + * {
-		margin-block-start: 1em;
-	}
-
-	div {
-		width: 100%;
-		max-width: var(--max-width, 24rem);
-		margin-inline: auto;
-	}
-
 	ol {
-		font-size: var(--step-size-200);
-		list-style-position: inside;
 		padding: 0;
-	}
-
-	ol > li + li {
-		margin-block-start: 0.75em;
-	}
-
-	@media (min-width: 40rem) {
-		article {
-			display: initial;
-		}
-
-		article > div {
-			margin-inline: initial;
-			margin-block-start: initial;
-		}
-
-		article h2 {
-			display: inline-block;
-		}
-
-		article > div {
-			float: left;
-			shape-outside: var(--shape-outside, initial);
-			margin: var(--step-space-400);
-		}
-
-		section:nth-of-type(even) article > div {
-			float: right;
-		}
+		list-style-position: inside;
 	}
 </style>
