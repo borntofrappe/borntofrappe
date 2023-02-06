@@ -40,6 +40,15 @@
 	overflow-x: auto;
 }
 
+.code pre::-webkit-scrollbar {
+	block-size: 0.4rem;
+}
+
+.code pre::-webkit-scrollbar-thumb {
+	border-radius: 0.2rem;
+	background: var(--accent);
+}
+
 .skip-to-content {
 	font-size: var(--size-200);
 	color: var(--background);

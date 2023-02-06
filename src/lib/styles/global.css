@@ -3,6 +3,20 @@ body {
 	background: var(--background);
 	accent-color: var(--accent);
 	font-size: var(--step-size-200);
+	scrollbar-color: #999 #333;
+}
+
+body::-webkit-scrollbar {
+	inline-size: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb {
+	border-radius: 0.25rem;
+	background: var(--accent);
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--background);
 }
 
 ::selection {
