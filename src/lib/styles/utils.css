@@ -95,3 +95,7 @@
 		margin: var(--space, 1rem);
 	}
 }
+
+.font-size\:biggest {
+	font-size: var(--step-size-900);
+}

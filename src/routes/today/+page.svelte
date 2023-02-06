@@ -27,7 +27,7 @@
 </svg>
 
 <main>
-	<h1>{format(date)}</h1>
+	<h1 class="font-size:biggest">{format(date)}</h1>
 	<Marks n={date.getDate()} />
 </main>
 
@@ -38,11 +38,17 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		text-align: center;
 		min-block-size: 100vh;
 		color: hsl(0, 0%, 92%);
 		background: hsl(0, 0%, 17%);
 		padding: var(--step-space-200);
 		position: relative;
+	}
+
+	main ::selection {
+		color: hsl(0, 0%, 92%);
+		background: hsl(0, 0%, 17%);
 	}
 
 	main::before {
@@ -53,15 +59,6 @@
 		background: hsl(0, 0%, 100%);
 		opacity: 0.35;
 		filter: url(#filter-noise);
-	}
-
-	main ::selection {
-		background: hsl(0, 0%, 17%);
-	}
-
-	h1 {
-		text-align: center;
-		font-size: var(--step-size-900);
 	}
 
 	main > :global(svg) {
