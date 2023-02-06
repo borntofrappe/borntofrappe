@@ -3,7 +3,11 @@ body {
 	background: var(--background);
 	accent-color: var(--accent);
 	font-size: var(--step-size-200);
-	scrollbar-color: #999 #333;
+}
+
+::selection {
+	color: var(--selection-color);
+	background: var(--selection-background);
 }
 
 body::-webkit-scrollbar {
@@ -17,11 +21,6 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-track {
 	background: var(--background);
-}
-
-::selection {
-	color: var(--selection-color);
-	background: var(--selection-background);
 }
 
 h1 {

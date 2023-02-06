@@ -18,6 +18,8 @@
 	class="box centered"
 	style:--color="hsl(44, 30%, 17%)"
 	style:--background="hsl(41, 100%, 97%)"
+	style:--selection-color="hsl(44, 30%, 17%)"
+	style:--selection-background="hsl(43, 90%, 76%)"
 >
 	<div style:inline-size="100vmin" style:max-inline-size="32rem">
 		<Ray />

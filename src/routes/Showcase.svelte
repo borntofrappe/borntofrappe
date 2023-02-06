@@ -8,6 +8,8 @@
 	class="box centered"
 	style:--color="hsl(203, 23%, 18%)"
 	style:--background="hsl(218, 100%, 98%)"
+	style:--selection-color="hsl(203, 23%, 18%)"
+	style:--selection-background="hsl(200, 71%, 80%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Rainbow sixteen</h2>
@@ -41,6 +43,8 @@
 	class="box centered"
 	style:--color="hsl(200, 47%, 96%)"
 	style:--background="hsl(203, 23%, 18%)"
+	style:--selection-color="hsl(200, 47%, 96%)"
+	style:--selection-background="hsl(209, 34%, 30%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2>Color tiles</h2>
@@ -69,7 +73,13 @@
 	</article>
 </section>
 
-<section class="box centered" style:--color="hsl(0, 0%, 2%)" style:--background="hsl(0, 0%, 75%)">
+<section
+	class="box centered"
+	style:--color="hsl(0, 0%, 2%)"
+	style:--background="hsl(0, 0%, 75%)"
+	style:--selection-color="hsl(0, 0%, 2%)"
+	style:--selection-background="hsl(0, 0%, 81%)"
+>
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Minesweeper</h2>
 
