@@ -61,15 +61,16 @@
 
 <a href="#content" class="skip-to-content visually-hidden">Skip to content</a>
 
-<div class="flow {timeOfDay}">
+<div class="box stack {timeOfDay}">
 	<header
 		class="box"
-		style:--color="#f7f7f7"
-		style:--background="#838ace"
 		style:--padding="var(--step-space-300) var(--step-space-200) 0"
+		style:color="#f7f7f7"
 		style:background
 	>
-		<h1 style:text-align="center" style:filter="url(#filter-outline)">{title}</h1>
+		<h1 style:text-align="center" style:filter="url(#filter-outline)">
+			{title}
+		</h1>
 		<div class="center" style:--measure="40rem">
 			<Theme {timeOfDay} {colors} on:change={handleChange} />
 		</div>
@@ -83,20 +84,20 @@
 
 <style>
 	.morning {
-		color: var(--grey-700);
-		background: var(--grey-100);
+		--color: var(--grey-700);
+		--background: var(--grey-100);
 		--shadow: var(--color-100);
 	}
 
 	.day {
-		color: var(--grey-900);
-		background: var(--grey-000);
+		--color: var(--grey-900);
+		--background: var(--grey-000);
 		--shadow: var(--color-200);
 	}
 
 	.night {
-		color: var(--grey-200);
-		background: var(--grey-900);
+		--color: var(--grey-200);
+		--background: var(--grey-900);
 		--shadow: var(--color-900);
 	}
 
@@ -138,7 +139,6 @@
 		font-style: italic;
 		font-weight: 700;
 		padding: var(--step-space-200) var(--step-space-400);
-		background: var(--color-000);
 		border-radius: 0.5rem;
 	}
 
