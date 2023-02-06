@@ -51,7 +51,6 @@
 <svelte:window on:resize={handleSize} />
 
 <svg
-	style:max-width="15rem"
 	viewBox="-50 -50 100 100"
 	bind:this={svg}
 	on:mousedown={handleStart}
