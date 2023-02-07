@@ -8,7 +8,16 @@
 	const shapes = Object.keys(styles);
 
 	let tangram = true;
-	let [shape] = shapes;
+	let [, shape] = shapes;
+
+	$: if (!tangram) {
+		let newShape = '';
+		do {
+			newShape = shapes[Math.floor(Math.random() * shapes.length)];
+		} while (newShape === shape);
+
+		shape = newShape;
+	}
 </script>
 
 <svelte:head>
@@ -27,13 +36,13 @@
 			{tangram ? 'Position the pieces into a particular shape.' : 'Move the pieces back together.'}
 		</span>
 		<input bind:checked={tangram} type="checkbox" />
-		<Tangram {shape} padding={2} />
+		<Tangram {shape} />
 	</label>
 </main>
 
 <style>
 	label {
-		--size: 100vmin;
+		--size: 99vmin;
 		--max-size: 52rem;
 		display: block;
 		background: none;
@@ -53,10 +62,6 @@
 		block-size: 100%;
 		inline-size: 100%;
 		opacity: 0;
-	}
-
-	label:focus:not(:focus-visible) {
-		outline: none;
 	}
 
 	label > :global(svg path) {
