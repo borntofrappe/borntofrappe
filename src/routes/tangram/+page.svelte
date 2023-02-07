@@ -1,5 +1,6 @@
 <script>
 	import site from '$lib/utils/site.js';
+
 	import Tangram from './Tangram.svelte';
 	import styles from './styles.js';
 
@@ -8,7 +9,7 @@
 	const shapes = Object.keys(styles);
 
 	let tangram = true;
-	let [, shape] = shapes;
+	let [shape] = shapes;
 
 	$: if (!tangram) {
 		let newShape = '';
@@ -22,9 +23,17 @@
 
 <svelte:head>
 	<title>Tangram | {title}</title>
-	<meta name="description" content="" />
+	<meta
+		name="description"
+		content="Shuffle the pieces of a tangram puzzle to create interesting visuals."
+	/>
 	<link rel="icon" href="/icons/tangram.svg" type="image/svg+xml" />
 </svelte:head>
+
+<header class="visually-hidden">
+	<h1>Tangram</h1>
+	<p>Shuffle the pieces of a tangram puzzle to create interesting visuals.</p>
+</header>
 
 <main
 	class="box centered"
@@ -33,7 +42,7 @@
 >
 	<label class:tangram>
 		<span class="visually-hidden">
-			{tangram ? 'Position the pieces into a particular shape.' : 'Move the pieces back together.'}
+			{tangram ? 'Move the pieces to create a new shape.' : 'Move the pieces back together.'}
 		</span>
 		<input bind:checked={tangram} type="checkbox" />
 		<Tangram {shape} />
