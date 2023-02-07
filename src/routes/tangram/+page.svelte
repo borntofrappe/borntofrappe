@@ -1,28 +1,29 @@
 <script>
 	import site from '$lib/utils/site.js';
-	import styles from './styles.js';
+	import Tangram from './Tangram.svelte';
+	// import styles from './styles.js';
 
 	const { title } = site;
 
-	let [shape] = Object.keys(styles);
-	let padding = 5;
+	// let [shape] = Object.keys(styles);
+	// let padding = 5;
 
-	const pieces = [
-		{ d: 'M 0 0 l 2 2 l 2 -2', fill: '#71c49a' },
-		{ d: 'M 0 0 l 2 2 l -2 2', fill: '#f6e48e' },
-		{ d: 'M 0 0 l 1 -1 l 0 2', fill: '#ef847a' },
-		{ d: 'M 0 0 l 1 -1 l 1 1', fill: '#ef847a' },
-		{ d: 'M 0 0 l 2 -2 l 0 2', fill: '#abdcc7' },
-		{ d: 'M 0 0 l 1 -1 l 1 1 l -1 1', fill: '#71c49a' },
-		{ d: 'M 0 0 l 1 -1 l 2 0 l -1 1', fill: '#f6e48e' }
-	];
+	// const pieces = [
+	// 	{ d: 'M 0 0 l 2 2 l 2 -2', fill: '#71c49a' },
+	// 	{ d: 'M 0 0 l 2 2 l -2 2', fill: '#f6e48e' },
+	// 	{ d: 'M 0 0 l 1 -1 l 0 2', fill: '#ef847a' },
+	// 	{ d: 'M 0 0 l 1 -1 l 1 1', fill: '#ef847a' },
+	// 	{ d: 'M 0 0 l 2 -2 l 0 2', fill: '#abdcc7' },
+	// 	{ d: 'M 0 0 l 1 -1 l 1 1 l -1 1', fill: '#71c49a' },
+	// 	{ d: 'M 0 0 l 1 -1 l 2 0 l -1 1', fill: '#f6e48e' }
+	// ];
 
-	$: paths = pieces.map((piece, i) => ({
-		...piece,
-		style: styles[shape][i]
-	}));
+	// $: paths = pieces.map((piece, i) => ({
+	// 	...piece,
+	// 	style: styles[shape][i]
+	// }));
 
-	let tangram = true;
+	// let tangram = true;
 </script>
 
 <svelte:head>
@@ -31,17 +32,20 @@
 	<link rel="icon" href="/icons/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
-<input bind:checked={tangram} type="checkbox" />
+<!-- <input bind:checked={tangram} type="checkbox" /> -->
 <main
 	class="box centered"
 	style:--color="hsl(216, 33%, 97%)"
 	style:--background="hsl(210, 24%, 16%)"
 >
+	<!--
 	<svg class:tangram viewBox="{padding * -1} {padding * -1} {4 + padding * 2} {4 + padding * 2}">
 		{#each paths as { d, fill, style }}
 			<path {d} {fill} {style} />
 		{/each}
 	</svg>
+-->
+	<Tangram />
 </main>
 
 <style>
