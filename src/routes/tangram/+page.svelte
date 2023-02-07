@@ -17,11 +17,11 @@
 	<svg viewBox="0 0 4 4">
 		<path d="M 0 0 l 2 2 l 2 -2" fill="#71c49a" />
 		<path d="M 0 0 l 2 2 l -2 2" fill="#f6e48e" />
-		<path d="M 3 1 l 1 -1 l 0 2" fill="#ef847a" />
-		<path d="M 1 3 l 1 -1 l 1 1" fill="#ef847a" />
-		<path d="M 2 4 l 2 -2 l 0 2" fill="#abdcc7" />
-		<path d="M 2 2 l 1 -1 l 1 1 l -1 1" fill="#71c49a" />
-		<path d="M 0 4 l 1 -1 l 2 0 l -1 1" fill="#f6e48e" />
+		<path d="M 0 0 l 1 -1 l 0 2" fill="#ef847a" />
+		<path d="M 0 0 l 1 -1 l 1 1" fill="#ef847a" />
+		<path d="M 0 0 l 2 -2 l 0 2" fill="#abdcc7" />
+		<path d="M 0 0 l 1 -1 l 1 1 l -1 1" fill="#71c49a" />
+		<path d="M 0 0 l 1 -1 l 2 0 l -1 1" fill="#f6e48e" />
 	</svg>
 </main>
 
@@ -29,5 +29,27 @@
 	svg {
 		display: block;
 		max-width: 42rem;
+	}
+
+	svg path:nth-of-type(1) {
+		transform: translate(0px, 0px);
+	}
+	svg path:nth-of-type(2) {
+		transform: translate(0px, 0px);
+	}
+	svg path:nth-of-type(3) {
+		transform: translate(3px, 1px);
+	}
+	svg path:nth-of-type(4) {
+		transform: translate(1px, 3px);
+	}
+	svg path:nth-of-type(5) {
+		transform: translate(2px, 4px);
+	}
+	svg path:nth-of-type(6) {
+		transform: translate(2px, 2px);
+	}
+	svg path:nth-of-type(7) {
+		transform: translate(0px, 4px);
 	}
 </style>
