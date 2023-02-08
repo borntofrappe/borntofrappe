@@ -5,7 +5,8 @@ date: 2023-02-08T21:45:29
 ---
 
 <script>
-    import SVG from './SVG.svelte';
+    import svg from './svg.js';
+    import Center from '$lib/components/blog/Center.svelte';
     import Commands from './Commands.svelte';
     import Paths from './Paths.svelte';
     import Angle from './Angle.svelte';
@@ -28,7 +29,9 @@ I would argue in terms of commands:
 
 - `l 2 -2`: line to (4, 0)
 
-<Commands viewBox="-1 -1 6 4" commands="M 0 0 l 2 2 2 -2z" strokeWidth={0.2} />
+<Center>
+	<Commands viewBox="-1 -1 6 4" commands="M 0 0 l 2 2 2 -2z" strokeWidth={0.2} />
+</Center>
 
 Conveniently, you don't need to repeat the `l` character after the first instance. The browser assumes the same instruction until told otherwise.
 
@@ -63,7 +66,9 @@ As a matter of fact, there's another triangle as big. Let's start from the origi
 <path d="M 0 0 l 2 2 -2 2" />
 ```
 
-<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2"]} />
+<Center>
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2"]} />
+</Center>
 
 Moving on to smaller pieces, there are two miniscule triangles we can paint in increments.
 
@@ -73,7 +78,9 @@ Moving on to smaller pieces, there are two miniscule triangles we can paint in i
 <path d="M 1 3 l 1 -1 1 1" />
 ```
 
-<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1"]} />
+<Center>
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1"]} />
+</Center>
 
 One beefier triangle ties up the bottom right corner.
 
@@ -81,7 +88,9 @@ One beefier triangle ties up the bottom right corner.
 <path d="M 2 4 l 2 -2 0 2" />
 ```
 
-<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2"]} />
+<Center>
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2"]} />
+</Center>
 
 A solitary square tipped on its side glues the section together.
 
@@ -89,7 +98,9 @@ A solitary square tipped on its side glues the section together.
 <path d="M 2 2 l 1 -1 1 1 -1 1" />
 ```
 
+<Center>
 <Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1"]} />
+</Center>
 
 One oblong trapezoid completes the set.
 
@@ -97,13 +108,17 @@ One oblong trapezoid completes the set.
 <path d="M 0 4 l 1 -1 2 0 -1 1" />
 ```
 
-<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1", "M 0 4 l 1 -1 2 0 -1 1"]} />
+<Center>
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1", "M 0 4 l 1 -1 2 0 -1 1"]} />
+</Center>
 
 Turns out, 4 by 4 was more than enough.
 
 We can color the pieces through the `fill` attribute to make the shapes more appealing, but the puzzle is set.
 
-<SVG key="tangram-set" />
+<Center>
+	{@html svg['tangram-set']}
+</Center>
 
 ## SVG transform
 
@@ -115,7 +130,9 @@ The most immediate way to shuffle the shapes around comes from the `transform` a
 
 One small hiccup, however. Rotate the triangle in the snippet and the operation takes place as expected.
 
-<SVG key="rotate-large-triangle" />
+<Center>
+	{@html svg['rotate-large-triangle']}
+</Center>
 
 Rotate one of the other shapes, one which is not drawn from the origin like the square, and well, the result is certainly not the same.
 
@@ -123,11 +140,15 @@ Rotate one of the other shapes, one which is not drawn from the origin like the 
 <path transform="rotate(45)" d="M 2 2 l 1 -1 1 1 -1 1" />
 ```
 
-<SVG key="rotate-tilted-square" />
+<Center>
+	{@html svg['rotate-tilted-square']}
+</Center>
 
 Your eyes do not deceive you. The square is drawn in its entirety, but parts of it are just outside of the visible area. Increase the angle and you'll see the square slowly moving out of position.
 
-<Angle />
+<Center>
+	<Angle />
+</Center>
 
 In the mesmerizing realm of the SVG coordinate system, transformations are applied from an origin point, beginning with the value described by the `viewBox` attribute — in our example (0, 0).
 
@@ -154,7 +175,9 @@ The moment you then apply the rotation, inside the group, this one works to rota
 </g>
 ```
 
-<Angle applyTransformation={true} />
+<Center>
+	<Angle applyTransformation={true} />
+</Center>
 
 There's nothing inherently wrong with the first transformation. There might come a day you'll want to move elements from a different advantage point. In this tangram puzzle, however, we want to scatter the pieces from their initial (x, y) value.
 
@@ -182,7 +205,9 @@ The order matters, but we'll see how later, with a more practical example.
 
 Draw every shape from (0, 0).
 
-<SVG key="draw-from-origin" />
+<Center>
+	{@html svg['draw-from-origin']}
+</Center>
 
 The pieces stack one above the other, with later elements drawn on top of the previous shapes.
 
@@ -198,7 +223,9 @@ In order to return to the compact configuration, wrap the elements in a group, a
 | M 0 0 l 1 -1 1 1 -1 1 | translate(2 2) |
 | M 0 0 l 1 -1 2 0 -1 1 | translate(0 4) |
 
-<SVG key="draw-from-translated-origin" />
+<Center>
+	{@html svg['draw-from-translated-origin']}
+</Center>
 
 If you feel cheated you've already seen the set, do not fret. We are going to move the pieces around in a brand new visual. This one is going to exceed the visible area, so we need to first adjust the `viewBox`.
 
@@ -209,7 +236,9 @@ If you feel cheated you've already seen the set, do not fret. We are going to mo
 
 The update is fairly technical, but in essence, you inset the canvas by 2 units and expand its size by twice the amount, 4. In this manner you have some space around the centered `<path>`s.
 
-<SVG key="expand-viewbox" />
+<Center>
+	{@html svg['expand-viewbox']}
+</Center>
 
 On to the sliding practice. The shape of a heart makes for a perfect candidate.
 
@@ -221,7 +250,9 @@ Slide the first piece slightly to the right, slightly to the bottom.
 </g>
 ```
 
-<SVG key="heart-set-1" />
+<Center>
+	{@html svg['heart-set-1']}
+</Center>
 
 The second, large triangle should sit right above, and we can achieve this in two steps:
 
@@ -235,15 +266,21 @@ The second, large triangle should sit right above, and we can achieve this in tw
 </g>
 ```
 
-<SVG key="heart-set-2" />
+<Center>
+	{@html svg['heart-set-2']}
+</Center>
 
 As mentioned in the previous section, the order of the operations matters. Consider the steps in increments.
 
-<Transformations />
+<Center>
+	<Transformations />
+</Center>
 
 If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in a completely different spot.
 
-<Transformations isReversed={true} />
+<Center>
+	<Transformations isReversed={true} />
+</Center>
 
 When you apply the rotation, you rotate the coordinate system. Every instruction which follows will be tilted accordingly. Once more, you may want to, just not today.
 
@@ -255,7 +292,9 @@ The first small triangle fits nicely at the top of the left side.
 </g>
 ```
 
-<SVG key="heart-set-3" />
+<Center>
+	{@html svg['heart-set-3']}
+</Center>
 
 The second smaller unit could go pretty much anywhere, but the oblong piece surely fits nicely in the empty space.
 
@@ -265,7 +304,9 @@ The second smaller unit could go pretty much anywhere, but the oblong piece sure
 </g>
 ```
 
-<SVG key="heart-set-4" />
+<Center>
+	{@html svg['heart-set-4']}
+</Center>
 
 The remaining triangles mirror the image on the left side.
 
@@ -279,7 +320,9 @@ The remaining triangles mirror the image on the left side.
 </g>
 ```
 
-<SVG key="heart-set-5" />
+<Center>
+	{@html svg['heart-set-5']}
+</Center>
 
 Finally, the square tucks the visual at the very bottom. No rotation required.
 
@@ -289,7 +332,9 @@ Finally, the square tucks the visual at the very bottom. No rotation required.
 </g>
 ```
 
-<SVG key="heart-set-complete" />
+<Center>
+	{@html svg['heart-set-complete']}
+</Center>
 
 ## CSS transform
 
@@ -321,7 +366,9 @@ svg > g:nth-of-type(6) {
 
 Do not forget the compulsory comma between the two offsets as well.
 
-<SVG key="translate-with-css-one" />
+<Center>
+	{@html svg['translate-with-css-one']}
+</Center>
 
 Ultimately, the element is translated in the context of the `viewBox` attribute — the piece slides 1 unit to the right, 1 unit to the left. That being said, the `px` suffix requires a small mental adjustment compared to the SVG, unitless version.
 
@@ -351,7 +398,9 @@ svg > g:nth-of-type(7) {
 }
 ```
 
-<SVG key="translate-with-css-all" />
+<Center>
+	{@html svg['translate-with-css-all']}
+</Center>
 
 ## CSS transition
 
@@ -368,7 +417,9 @@ svg.tangram > g:nth-of-type(7) {
 
 Toggle the class and immediately you go from one configuration to the next.
 
-<Toggle />
+<Center>
+	<Toggle />
+</Center>
 
 Apply a transition on the direct children.
 
@@ -380,7 +431,9 @@ svg > g {
 
 And the shapes move smoothly over time.
 
-<Toggle transition={true} />
+<Center>
+	<Toggle transition={true} />
+</Center>
 
 Job done? Not really. I tested the code on FireFox and, at the time of writing, the browser doesn't seem to handle the change between SVG attributes and CSS properties that well.
 
@@ -405,4 +458,6 @@ svg.tangram > g:nth-of-type(6) {
 
 And then you are really, finally done. And free to experiment with different timing functions.
 
-<Transition />
+<Center>
+	<Transition />
+</Center>
