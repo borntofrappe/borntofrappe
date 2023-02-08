@@ -1,0 +1,60 @@
+<script>
+	export let applyTransformation = false;
+	let angle = 0;
+</script>
+
+<div>
+	<form on:submit|preventDefault>
+		<label>
+			<span>Drag the handle to rotate the shape.</span>
+			<input type="range" min="0" max="45" bind:value={angle} />
+		</label>
+	</form>
+
+	<svg viewBox="0 0 4 4">
+		<g
+			transform="translate(1 1)"
+			text-anchor="middle"
+			dominant-baseline="middle"
+			font-size="1"
+			font-weight="700"
+			fill="currentColor"
+		>
+			<text>{angle}°</text>
+		</g>
+
+		<g fill="hsl(254, 78%, 68%)">
+			{#if applyTransformation}
+				<g transform="translate(2 2)">
+					<path transform="rotate({angle})" d="M 0 0 l 1 -1 1 1 -1 1" />
+				</g>
+			{:else}
+				<path transform="rotate({angle})" d="M 2 2 l 1 -1 1 1 -1 1" />
+			{/if}
+		</g>
+	</svg>
+</div>
+
+<style>
+	div * {
+		padding: 0;
+		margin: 0;
+	}
+
+	div > * + * {
+		margin-block-start: 1em;
+	}
+
+	form label > * + * {
+		margin-block-start: 0.75em;
+	}
+
+	form input {
+		display: block;
+		inline-size: 100%;
+	}
+
+	svg {
+		display: block;
+	}
+</style>
