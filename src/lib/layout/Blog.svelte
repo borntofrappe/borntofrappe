@@ -147,6 +147,31 @@
 		border-block-end: 0.2rem solid var(--shadow);
 	}
 
+	main :global(table) {
+		table-layout: fixed;
+		border-collapse: collapse;
+		inline-size: 100%;
+		border: 0.2rem solid var(--theme-background);
+	}
+
+	main :global(table td),
+	main :global(table th) {
+		padding: var(--step-space-000);
+	}
+
+	main :global(table thead) {
+		color: var(--theme-color);
+		background: var(--theme-background);
+	}
+
+	main :global(table thead th) {
+		text-align: start;
+	}
+
+	main :global(table tbody tr:not(:first-of-type)) {
+		border-block-start: 0.2rem solid var(--theme-background);
+	}
+
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
 		main :global(blockquote) {
 			padding-block: 1.5em;
