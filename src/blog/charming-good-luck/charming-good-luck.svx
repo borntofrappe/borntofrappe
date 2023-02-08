@@ -5,7 +5,7 @@ date: 2023-02-03T15:50:21
 ---
 
 <script>
-    import SVG from './SVG.svelte';
+    import svg from './svg.js';
     import Transform from './Transform.svelte';
     import Degrees from './Degrees.svelte';
     import Spring from './Spring.svelte';
@@ -41,7 +41,7 @@ Add two lines, protruding from the center and outside of the round shape.
 
 SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an indistinguishable mass.
 
-<SVG key="head" />
+{@html svg['head']}
 
 You could smooth the ends of the segments with the `stroke-linecap` property, but we can treat ourselves with a `<marker>`. There's plenty to know about the element, but let me focus on the essential parts for our most practical use case.
 
@@ -79,7 +79,7 @@ The shapes are then measured relative to the specific `viewBox`. The curious set
 </marker>
 ```
 
-<SVG key="marker" />
+{@html svg['marker']}
 
 Impressive as the effect is, there is one inconvenience. You do need to set the color for the circle in the marker itself.
 
@@ -96,7 +96,7 @@ On the positive side, you can add the attribute on the group element to have the
 </g>
 ```
 
-<SVG key="markers" />
+{@html svg['markers']}
 
 ## Body
 
@@ -128,7 +128,7 @@ For the polka dot pattern, follow up with smaller, darker circles. The color pic
 </g>
 ```
 
-<SVG key="half" />
+{@html svg['half']}
 
 Something's quite off with the picture, however.
 
@@ -188,7 +188,7 @@ If you need to wrap your head around the feat, here's a small playground. I've o
 
 If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
 
-<SVG key="body" />
+{@html svg['body']}
 
 ## Spring
 

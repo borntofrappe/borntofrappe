@@ -5,7 +5,7 @@ date: 2023-01-26 21:29:06
 ---
 
 <script>
-    import Center from './Center.svelte'
+    import Center from '$lib/components/blog/Center.svelte';
 
     import Rects from './Rects.svelte'
     import Hue from './Hue.svelte'
