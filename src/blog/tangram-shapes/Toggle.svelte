@@ -52,7 +52,7 @@
 	}
 
 	svg.transition > g {
-		transition: transform 1s ease-in-out;
+		transition: transform 0.75s ease-in-out;
 	}
 
 	svg.tangram > g:nth-of-type(1) {

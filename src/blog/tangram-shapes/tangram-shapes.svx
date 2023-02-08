@@ -380,7 +380,7 @@ svg > g {
 
 And the shapes move smoothly over time.
 
-<Toggle applyTransition={true} />
+<Toggle transition={true} />
 
 Job done? Not really. I tested the code on FireFox and, at the time of writing, the browser doesn't seem to handle the change between SVG attributes and CSS properties that well.
 
