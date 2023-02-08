@@ -125,7 +125,7 @@ Rotate one of the other shapes, one which is not drawn from the origin like the 
 
 <SVG key="rotate-tilted-square" />
 
-Your eyes do not deceive you. The square is drawn is its entirety, but parts of it are just outside of the visible area. Increase the angle and you'll see the square slowly moving out of position.
+Your eyes do not deceive you. The square is drawn in its entirety, but parts of it are just outside of the visible area. Increase the angle and you'll see the square slowly moving out of position.
 
 <Angle />
 
@@ -146,7 +146,7 @@ Since you moved the origin, draw the path from (0, 0).
 +<path d="M 0 0 l 1 -1 1 1 -1 1" />
 ```
 
-In the moment you then apply the rotation, inside the group, this one works to rotate the element from the starting coordinate.
+The moment you then apply the rotation, inside the group, this one works to rotate the element from the starting coordinate.
 
 ```html
 <g transform="translate(2 2)">
@@ -241,7 +241,7 @@ As mentioned in the previous section, the order of the operations matters. Consi
 
 <Transformations />
 
-If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in an completely different spot.
+If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in a completely different spot.
 
 <Transformations isReversed={true} />
 
@@ -325,7 +325,7 @@ Do not forget the compulsory comma between the two offsets as well.
 
 Ultimately, the element is translated in the context of the `viewBox` attribute — the piece slides 1 unit to the right, 1 unit to the left. That being said, the `px` suffix requires a small mental adjustment compared to the SVG, unitless version.
 
-More interestingly, I did not mention anything about the `transform` attribute on the group. The SVG version is still there, but the `transform` property takes precedence. CSS specificity at works. This means we can recreate the compact set with the original translations in the stylesheet.
+More interestingly, I did not mention anything about the `transform` attribute on the group. The SVG version is still there, but the `transform` property takes precedence. CSS specificity at work. This means we can recreate the compact set with the original translations in the stylesheet.
 
 ```css
 svg > g:nth-of-type(1) {
@@ -357,7 +357,7 @@ svg > g:nth-of-type(7) {
 
 There is a point in introducing CSS and the overriding syntax. Say you want to smoothly move the shapes, from the compact set to the heart-warming sight.
 
-With this in mind, condition the CSS property to a class on the `<svg>` element.
+One way to achieve this goal is to condition the CSS property to a class, right on the `<svg>` element.
 
 ```css
 /* for all paths */
@@ -382,7 +382,7 @@ And the shapes move smoothly over time.
 
 <Toggle applyTransition={true} />
 
-Job done? Not really. I tested the code on FireFox and, at least the time of writing, the browser doesn't seem to handle the change between SVG attributes and CSS properties that well.
+Job done? Not really. I tested the code on FireFox and, at the time of writing, the browser doesn't seem to handle the change between SVG attributes and CSS properties that well.
 
 The discovery doesn't spoil the entire exercise, however, and is a perfect excuse to discuss CSS specificity one last time.
 
