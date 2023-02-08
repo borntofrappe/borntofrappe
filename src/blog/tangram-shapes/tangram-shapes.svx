@@ -1,0 +1,7 @@
+---
+title: Tangram shapes
+description: A thorough exploration of the SVG coordinate system, transformations, CSS transitions and specificity
+date: 2023-02-08T21:45:29
+---
+
+When drawing vector graphics I often struggle to describe measurements.
