@@ -5,7 +5,7 @@ date: 2023-01-17 22:31:00
 ---
 
 <script>
-    import Paths from './Paths.svelte';
+    import svg from './svg.js';
     import Defs from './Defs.svelte';
     import DefsAlt from './DefsAlt.svelte';
     import ClustersAddon from './ClustersAddon.svelte';
@@ -105,7 +105,7 @@ One unfortunate mishap is that the line is cropped at either end. If you tinker 
 
 You zoom out to highlight the nice grouping of 5 paths elements.
 
-<Paths />
+{@html svg['expand-viewbox']}
 
 ## Repeat lines
 

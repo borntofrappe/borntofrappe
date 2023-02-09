@@ -31,3 +31,9 @@
 		<circle r="2" cx="5" />
 	</g>
 </svg>
+
+<style>
+	svg {
+		display: block;
+	}
+</style>
