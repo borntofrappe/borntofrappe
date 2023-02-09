@@ -39,6 +39,8 @@
 	class="box centered"
 	style:--color="hsl(216, 33%, 97%)"
 	style:--background="hsl(210, 24%, 16%)"
+	style:--selection-color="hsl(216, 33%, 97%)"
+	style:--selection-background="hsl(212, 34%, 30%)"
 >
 	<label class:tangram>
 		<span class="visually-hidden">

@@ -41,10 +41,10 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(200, 47%, 96%)"
-	style:--background="hsl(203, 23%, 18%)"
-	style:--selection-color="hsl(200, 47%, 96%)"
-	style:--selection-background="hsl(209, 34%, 30%)"
+	style:--color="hsl(216, 33%, 97%)"
+	style:--background="hsl(210, 24%, 16%)"
+	style:--selection-color="hsl(216, 33%, 97%)"
+	style:--selection-background="hsl(212, 34%, 30%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2>Color tiles</h2>

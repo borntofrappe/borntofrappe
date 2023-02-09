@@ -34,14 +34,6 @@
 	margin: auto;
 }
 
-.flow {
-	display: block;
-}
-
-.flow > * {
-	margin-block: 0;
-}
-
 .flow > * + * {
 	margin-block-start: var(--space, 1em);
 }
@@ -114,4 +106,8 @@
 
 .font-size\:biggest {
 	font-size: var(--step-size-900);
+}
+
+.text-align\:center {
+	text-align: center;
 }
