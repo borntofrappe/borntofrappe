@@ -458,7 +458,7 @@ Thankfully, the change requires a minor tweak to the syntax.
 | `translate(2 2)` | `translate(2px, 2px)` |
 | `translate(0 4)` | `translate(0px, 4px)` |
 
-In the stylesheet override the values with the `!important` flag. The only option to triumph over the highly specific, inline styles.
+In the stylesheet override the values with the `!important` flag. The only option to triumph over the highly specific inline styles.
 
 ```css
 svg.tangram > g:nth-of-type(6) {
