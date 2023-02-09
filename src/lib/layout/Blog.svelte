@@ -182,7 +182,7 @@
 			inline-size: 3em;
 			block-size: 3em;
 			background: var(--accent);
-			float: inline-start;
+			float: left;
 			mask-image: url('data:image/svg+xml,\
 		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
 			<defs>\
@@ -209,6 +209,12 @@
 			  <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
 			</g>\
 		  </svg>');
+		}
+
+		@supports (float: inline-start) {
+			main :global(blockquote::before) {
+				float: inline-start;
+			}
 		}
 	}
 </style>

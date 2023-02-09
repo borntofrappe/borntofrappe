@@ -14,7 +14,7 @@
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Rainbow sixteen</h2>
 
-		<div class="float end" style:--float="inline-start" style:--space="var(--space-500)">
+		<div class="float end" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
 		</div>
 
@@ -83,7 +83,7 @@
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Minesweeper</h2>
 
-		<div class="float end" style:--float="inline-start" style:--space="var(--step-space-500)">
+		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />
 		</div>
 

@@ -98,7 +98,7 @@
 	}
 
 	.floating > .float {
-		float: var(--float, inline-end);
+		float: var(--float, right);
 		shape-outside: var(--shape-outside, initial);
 		margin: var(--space, 1rem);
 	}
