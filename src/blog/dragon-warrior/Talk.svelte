@@ -114,9 +114,9 @@
 	}
 
 	svg {
-		width: 100%;
-		height: auto;
-		max-width: 80px;
+		inline-size: 100%;
+		block-size: auto;
+		max-inline-size: 80px;
 	}
 
 	p {
@@ -125,8 +125,8 @@
 
 	input {
 		accent-color: currentColor;
-		width: 1rem;
-		height: 1rem;
+		inline-size: 1rem;
+		block-size: 1rem;
 	}
 
 	p {
@@ -146,9 +146,9 @@
 
 	p > span:nth-of-type(2) {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset-inline-start: 0;
+		inset-block-start: 0;
+		inline-size: 100%;
+		block-size: 100%;
 	}
 </style>

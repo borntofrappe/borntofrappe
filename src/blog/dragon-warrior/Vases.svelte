@@ -175,7 +175,7 @@
 
 <style>
 	div {
-		max-width: 32rem;
+		max-inline-size: 32rem;
 		margin-inline: auto;
 		box-sizing: border-box;
 	}
@@ -211,13 +211,13 @@
 
 	input {
 		accent-color: currentColor;
-		width: 1rem;
-		height: 1rem;
+		inline-size: 1rem;
+		block-size: 1rem;
 	}
 
 	svg {
-		width: 64px;
-		height: auto;
+		inline-size: 64px;
+		block-size: auto;
 	}
 
 	p {
@@ -234,9 +234,9 @@
 
 	p > span:nth-of-type(2) {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset-inline-start: 0;
+		inset-block-start: 0;
+		inline-size: 100%;
+		block-size: 100%;
 	}
 </style>

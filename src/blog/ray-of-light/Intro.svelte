@@ -15,9 +15,8 @@
 <style>
 	div > :global(svg) {
 		shape-outside: circle();
-		float: right;
-		max-width: 20rem;
-		height: auto;
+		float: inline-end;
+		max-inline-size: 20rem;
 	}
 
 	@media screen and (max-width: 28rem) {

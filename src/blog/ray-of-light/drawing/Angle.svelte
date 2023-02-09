@@ -44,7 +44,7 @@
 	}
 
 	input {
-		width: 100%;
+		inline-size: 100%;
 		margin: 0.75em 0;
 	}
 </style>

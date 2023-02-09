@@ -448,7 +448,7 @@
 
 <style>
 	article {
-		max-width: 40rem;
+		max-inline-size: 40rem;
 		margin-inline: auto;
 		position: relative;
 		box-sizing: border-box;
@@ -466,8 +466,8 @@
 	article > p,
 	article > div {
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		inset-block-start: 50%;
+		inset-inline-start: 50%;
 		transform: translate(-50%, -50%);
 		color: hsl(0, 0%, 13%);
 		background: hsl(0, 0%, 97%);
@@ -494,8 +494,7 @@
 	}
 
 	button > svg {
-		width: 32px;
-		height: auto;
+		inline-size: 32px;
 	}
 
 	button:hover > svg > g {
