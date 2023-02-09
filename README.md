@@ -16,6 +16,8 @@
 
 - `/mignon`: mascot
 
+- `/tangram`: tangram shapes
+
 - `/today`: current day
 
 ## wishlist
@@ -23,8 +25,6 @@
 - feature | blog index
 
 - route | `/blog` archive
-
-- route | `/tangram`
 
 - route | `/puzzles`
 
