@@ -76,12 +76,20 @@
 	align-self: center;
 }
 
-.floating > .top {
+.floating > .start {
 	order: -1;
 }
 
-.floating > .bottom {
+.floating > .end {
 	order: 1;
+}
+
+.floating > .start {
+	margin-block-end: var(--space, 1em);
+}
+
+.floating > .start:not(:first-child) {
+	margin-block-start: unset;
 }
 
 @media (min-width: 42rem) {
@@ -89,8 +97,16 @@
 		display: initial;
 	}
 
+	.floating > .start {
+		margin-block-end: unset;
+	}
+
+	.floating > .start:not(:first-child) {
+		margin-block-start: var(--space, 1em);
+	}
+
 	.floating > .float {
-		float: var(--float, right);
+		float: var(--float, inline-end);
 		shape-outside: var(--shape-outside, initial);
 		margin: var(--space, 1rem);
 	}

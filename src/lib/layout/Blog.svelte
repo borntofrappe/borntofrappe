@@ -182,8 +182,7 @@
 			inline-size: 3em;
 			block-size: 3em;
 			background: var(--accent);
-			float: left;
-			margin-inline-end: var(--step-space-100);
+			float: inline-start;
 			mask-image: url('data:image/svg+xml,\
 		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
 			<defs>\

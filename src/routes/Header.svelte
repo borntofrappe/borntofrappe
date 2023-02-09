@@ -10,7 +10,7 @@
 			<Heading level="h1" text="Hi there" />
 		</div>
 
-		<div class="bottom float" style:--shape-outside="circle()">
+		<div class="float end" style:--shape-outside="circle()">
 			<Ray />
 		</div>
 
