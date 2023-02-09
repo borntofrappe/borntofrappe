@@ -5,10 +5,8 @@
 
 <div>
 	<form on:submit|preventDefault>
-		<label>
-			<span>Drag the handle to rotate the shape.</span>
-			<input type="range" min="0" max="45" bind:value={angle} />
-		</label>
+		<p>Drag the handle to rotate the shape.</p>
+		<input type="range" min="0" max="45" bind:value={angle} />
 	</form>
 
 	<svg viewBox="0 0 4 4">
@@ -44,11 +42,11 @@
 	}
 
 	div > * + * {
-		margin-block-start: 1em;
+		margin-block-start: 0.75em;
 	}
 
-	form label > * + * {
-		margin-block-start: 0.75em;
+	form > * + * {
+		margin-block-start: 0.5em;
 	}
 
 	form input {

@@ -4,10 +4,8 @@
 
 <div>
 	<form on:submit|preventDefault>
-		<label>
-			<input type="checkbox" bind:checked={tangram} />
-			<span>{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class.</span>
-		</label>
+		<input type="checkbox" bind:checked={tangram} />
+		<p>{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class.</p>
 	</form>
 
 	<svg class:tangram viewBox="-2 -2 8 8">
@@ -43,7 +41,16 @@
 	}
 
 	div > * + * {
-		margin-block-start: 1em;
+		margin-block-start: 0.75em;
+	}
+
+	form input {
+		inline-size: 1em;
+		block-size: 1em;
+	}
+
+	form p {
+		display: inline;
 	}
 
 	svg {

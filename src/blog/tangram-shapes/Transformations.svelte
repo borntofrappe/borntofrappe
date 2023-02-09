@@ -1,18 +1,16 @@
 <script>
-	export let isReversed = false;
+	export let reverse = true;
 	export let accentColor = 'hsl(328, 85%, 46%)';
 
 	const transformations = ['translate(1 1)', 'rotate(-90)'];
-	let operations = isReversed ? [...transformations].reverse() : transformations;
+	let operations = reverse ? [...transformations].reverse() : transformations;
 	let index = 0;
 </script>
 
 <div>
 	<form on:submit|preventDefault>
-		<label>
-			<span>Drag the handle to apply the transformations.</span>
-			<input type="range" min="0" max={operations.length} bind:value={index} />
-		</label>
+		<p>Drag the handle to apply the transformations.</p>
+		<input type="range" min="0" max={operations.length} bind:value={index} />
 	</form>
 
 	<svg viewBox="-2 -2 8 8">
@@ -38,11 +36,11 @@
 	}
 
 	div > * + * {
-		margin-block-start: 1em;
+		margin-block-start: 0.75em;
 	}
 
-	form label > * + * {
-		margin-block-start: 0.75em;
+	form > * + * {
+		margin-block-start: 0.5em;
 	}
 
 	form input {

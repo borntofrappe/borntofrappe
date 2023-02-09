@@ -16,20 +16,19 @@
 
 <div>
 	<form on:submit|preventDefault>
-		<label>
-			<span
-				>Drag the handle to draw the <code>&lt;path&gt;</code> element in {steps.length}
-				steps.</span
-			>
-			<input
-				style:accent-color={accentColor}
-				type="range"
-				min={0}
-				max={steps.length}
-				step={1}
-				bind:value
-			/>
-		</label>
+		<p>
+			Drag the handle to draw the <code>&lt;path&gt;</code> element in {steps.length}
+			steps.
+		</p>
+
+		<input
+			style:accent-color={accentColor}
+			type="range"
+			min={0}
+			max={steps.length}
+			step={1}
+			bind:value
+		/>
 	</form>
 
 	<svg {viewBox}>
@@ -77,11 +76,11 @@
 	}
 
 	div > * + * {
-		margin-block-start: 1em;
+		margin-block-start: 0.75em;
 	}
 
-	form label > * + * {
-		margin-block-start: 0.75em;
+	form > * + * {
+		margin-block-start: 0.5em;
 	}
 
 	form input {

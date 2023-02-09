@@ -232,6 +232,5 @@ export default {
 	<g transform="translate(-1 1)">
 	  <path d="M 0 0 l 1 -1 2 0 -1 1" fill="hsl(308, 78%, 68%)" />
 	</g>
-  </svg>
-  `
+  </svg>`
 };
