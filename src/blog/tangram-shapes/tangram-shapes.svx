@@ -211,7 +211,7 @@ The pieces stack one above the other, with later elements drawn on top of the pr
 
 In order to return to the compact configuration, wrap the elements in a group, and translate them by the now-unnecessary offset.
 
-| path                    | transform        |
+| d                       | transform        |
 | ----------------------- | ---------------- |
 | `M 0 0 l 2 2 2 -2`      | `translate(0 0)` |
 | `M 0 0 l 2 2 -2 2`      | `translate(0 0)` |
@@ -277,7 +277,7 @@ As mentioned in the previous section, the order of the operations matters. Consi
 If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in a completely different spot.
 
 <Center>
-	<Transformations isReversed={true} />
+	<Transformations reverse={true} />
 </Center>
 
 When you apply the rotation, you rotate the coordinate system. Every instruction which follows will be tilted accordingly. Once more, you may want to, just not today.
@@ -445,6 +445,8 @@ Update the markup to replace the attributes with inline styles. From SVG to CSS.
 -<g transform="translate(1 3)">
 +<g style="transform: translate(1px, 3px)">
 ```
+
+Thankfully, the change requires a minor tweak to the syntax.
 
 | transform        | style="transform"     |
 | ---------------- | --------------------- |

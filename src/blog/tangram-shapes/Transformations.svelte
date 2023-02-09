@@ -1,5 +1,5 @@
 <script>
-	export let reverse = true;
+	export let reverse = false;
 	export let accentColor = 'hsl(328, 85%, 46%)';
 
 	const transformations = ['translate(1 1)', 'rotate(-90)'];
