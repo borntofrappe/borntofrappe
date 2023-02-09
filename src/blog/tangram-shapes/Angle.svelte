@@ -1,5 +1,5 @@
 <script>
-	export let applyTransformation = false;
+	export let translate = false;
 	let angle = 0;
 </script>
 
@@ -24,12 +24,14 @@
 		</g>
 
 		<g fill="hsl(254, 78%, 68%)">
-			{#if applyTransformation}
-				<g transform="translate(2 2)">
-					<path transform="rotate({angle})" d="M 0 0 l 1 -1 1 1 -1 1" />
+			{#if translate}
+				<g transform="translate(2 2) rotate({angle})">
+					<path d="M 0 0 l 1 -1 1 1 -1 1" />
 				</g>
 			{:else}
-				<path transform="rotate({angle})" d="M 2 2 l 1 -1 1 1 -1 1" />
+				<g transform="rotate({angle})">
+					<path d="M 2 2 l 1 -1 1 1 -1 1" />
+				</g>
 			{/if}
 		</g>
 	</svg>

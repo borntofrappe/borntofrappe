@@ -10,12 +10,16 @@ export default {
 	</svg>`,
 	'rotate-large-triangle': `<svg style="display: block" viewBox="0 0 4 4">
 	<g fill="currentColor">
-		<path transform="rotate(45)" d="M 0 0 l 2 2 2 -2" fill="hsl(0, 78%, 68%)" />
+	  <g transform="rotate(45)">
+		<path d="M 0 0 l 2 2 2 -2" fill="hsl(0, 78%, 68%)" />
+	  </g>
 	</g>
   </svg>`,
 	'rotate-tilted-square': `<svg style="display: block" viewBox="0 0 4 4">
   <g fill="currentColor">
-	  <path transform="rotate(45)" d="M 2 2 l 1 -1 1 1 -1 1" fill="hsl(254, 78%, 68%)" />
+    <g transform="rotate(45)">
+	  <path d="M 2 2 l 1 -1 1 1 -1 1" fill="hsl(254, 78%, 68%)" />
+    </g>
   </g>
   </svg>`,
 	'draw-from-origin': `<svg style="display: block" viewBox="0 0 4 4">
