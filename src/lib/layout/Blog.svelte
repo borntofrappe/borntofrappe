@@ -133,6 +133,53 @@
 		margin-block-start: 0.75em;
 	}
 
+	main :global(code) {
+		font-weight: 700;
+	}
+
+	main :global(table) {
+		--padding: 1rem;
+		--border-radius: 0.5rem;
+		table-layout: fixed;
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	main :global(table th) {
+		text-align: start;
+	}
+
+	main :global(table th),
+	main :global(table td) {
+		color: var(--theme-color);
+		background: var(--theme-background);
+		padding: var(--padding);
+	}
+
+	main :global(table tbody > tr:nth-of-type(even) td) {
+		background: var(--theme-background--1);
+	}
+
+	main :global(table tbody > tr:nth-of-type(odd) td) {
+		background: var(--theme-background--2);
+	}
+
+	main :global(table thead > tr > th:first-of-type) {
+		border-start-start-radius: var(--border-radius);
+	}
+
+	main :global(table thead > tr > th:last-of-type) {
+		border-start-end-radius: var(--border-radius);
+	}
+
+	main :global(table tbody > tr:last-of-type > td:first-of-type) {
+		border-end-start-radius: var(--border-radius);
+	}
+
+	main :global(tbody > tr:last-of-type > td:last-of-type) {
+		border-end-end-radius: var(--border-radius);
+	}
+
 	main :global(blockquote) {
 		max-inline-size: 50ch;
 		margin-inline: auto;
@@ -140,36 +187,6 @@
 		font-weight: 700;
 		padding: var(--step-space-200) var(--step-space-400);
 		border-radius: 0.5rem;
-	}
-
-	main :global(p > code) {
-		margin-block: var(--step-space-000);
-		border-block-end: 0.2rem solid var(--shadow);
-	}
-
-	main :global(table) {
-		table-layout: fixed;
-		border-collapse: collapse;
-		inline-size: 100%;
-		border: 0.2rem solid var(--theme-background);
-	}
-
-	main :global(table td),
-	main :global(table th) {
-		padding: var(--step-space-000);
-	}
-
-	main :global(table thead) {
-		color: var(--theme-color);
-		background: var(--theme-background);
-	}
-
-	main :global(table thead th) {
-		text-align: start;
-	}
-
-	main :global(table tbody tr:not(:first-of-type)) {
-		border-block-start: 0.2rem solid var(--theme-background);
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {

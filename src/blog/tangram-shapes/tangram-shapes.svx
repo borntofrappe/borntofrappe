@@ -211,7 +211,7 @@ The pieces stack one above the other, with later elements drawn on top of the pr
 
 In order to return to the compact configuration, wrap the elements in a group, and translate them by the now-unnecessary offset.
 
-| d                       | transform        |
+| `d`                     | `transform`      |
 | ----------------------- | ---------------- |
 | `M 0 0 l 2 2 2 -2`      | `translate(0 0)` |
 | `M 0 0 l 2 2 -2 2`      | `translate(0 0)` |
@@ -448,7 +448,7 @@ Update the markup to replace the attributes with inline styles. From SVG to CSS.
 
 Thankfully, the change requires a minor tweak to the syntax.
 
-| transform        | style="transform"     |
+| `transform`      | `style="transform"`   |
 | ---------------- | --------------------- |
 | `translate(0 0)` | `translate(0px, 0px)` |
 | `translate(0 0)` | `translate(0px, 0px)` |
