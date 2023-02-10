@@ -13,6 +13,14 @@
 		<input type="range" min="0" max={operations.length} bind:value={index} />
 	</form>
 
+	<p>
+		<code
+			>transform="<span style:border-block-end="0.2rem solid {accentColor}"
+				>{operations.slice(0, index).join(' ')}</span
+			>"</code
+		>
+	</p>
+
 	<svg viewBox="-2 -2 8 8">
 		<g transform="translate(1 1)">
 			<path d="M 0 0 l 2 2 2 -2" fill="hsl(0, 78%, 68%)" />
@@ -21,12 +29,6 @@
 			<path d="M 0 0 l 2 2 -2 2" fill="hsl(51, 78%, 68%)" />
 		</g>
 	</svg>
-
-	<p>
-		transform: <strong style:border-bottom="0.2rem solid {accentColor}"
-			>{operations.slice(0, index).join(' ')}</strong
-		>
-	</p>
 </div>
 
 <style>

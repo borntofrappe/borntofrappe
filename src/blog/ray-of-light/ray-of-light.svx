@@ -132,7 +132,6 @@ Perhaps an interactive picture is worth more than a few words, however.
         y={-3}
         width={8}
         height={8}
-        accentColor="#ff877a"
         commands="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z"/>
 </Center>
 

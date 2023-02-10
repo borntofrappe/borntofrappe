@@ -31,6 +31,8 @@
 		/>
 	</form>
 
+	<p><code>d="<span style:border-block-end="0.2rem solid {accentColor}">{d}</span>"</code></p>
+
 	<svg {viewBox}>
 		<defs>
 			<pattern
@@ -64,10 +66,6 @@
 		</g>
 	</svg>
 </div>
-
-<p>
-	d: <strong style:border-bottom="0.2rem solid {accentColor}">{d}</strong>
-</p>
 
 <style>
 	div * {
