@@ -9,8 +9,10 @@
 
 <div>
 	<form on:submit|preventDefault>
-		<p>Drag the handle to apply the transformations.</p>
-		<input type="range" min="0" max={operations.length} bind:value={index} />
+		<label>
+			Drag the handle to apply the transformations.
+			<input type="range" min="0" max={operations.length} bind:value={index} />
+		</label>
 	</form>
 
 	<p>
@@ -41,11 +43,8 @@
 		margin-block-start: 0.75em;
 	}
 
-	form > * + * {
+	label input {
 		margin-block-start: 0.5em;
-	}
-
-	form input {
 		display: block;
 		inline-size: 100%;
 	}

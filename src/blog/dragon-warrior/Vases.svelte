@@ -41,8 +41,8 @@
 
 <svg
 	aria-hidden="true"
-	style:width="0"
-	style:height="0"
+	style:inline-size="0"
+	style:block-size="0"
 	style:position="absolute"
 	shape-rendering="crispEdges"
 >
@@ -174,15 +174,20 @@
 </div>
 
 <style>
-	div {
-		max-inline-size: 32rem;
-		margin-inline: auto;
+	div,
+	div :global(*) {
 		box-sizing: border-box;
 	}
 
 	div :global(*) {
-		box-sizing: border-box;
 		margin: 0;
+		padding: 0;
+	}
+
+	div {
+		max-inline-size: 32rem;
+		margin-inline: auto;
+		box-sizing: border-box;
 	}
 
 	div > * + * {
@@ -210,7 +215,6 @@
 	}
 
 	input {
-		accent-color: currentColor;
 		inline-size: 1rem;
 		block-size: 1rem;
 	}

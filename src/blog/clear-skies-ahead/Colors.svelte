@@ -48,12 +48,12 @@
 	button {
 		background: none;
 		border: none;
-		border-radius: 1rem;
+		border-radius: 2rem;
 		color: inherit;
 		font-weight: 700;
-		padding: 0.3rem 0.75rem;
-		background: hsl(0, 0%, 10%);
+		padding: 0.25rem 1rem;
 		color: hsl(0, 0%, 92%);
+		background: hsl(0, 0%, 10%);
 		display: flex;
 		align-items: center;
 		gap: 0 0.5rem;

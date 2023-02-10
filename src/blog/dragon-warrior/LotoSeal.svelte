@@ -64,8 +64,8 @@
 
 <svg
 	aria-hidden="true"
-	style:width="0"
-	style:height="0"
+	style:inline-size="0"
+	style:block-size="0"
 	style:position="absolute"
 	shape-rendering="crispEdges"
 >
@@ -447,16 +447,20 @@
 </article>
 
 <style>
-	article {
-		max-inline-size: 40rem;
-		margin-inline: auto;
-		position: relative;
+	article,
+	article :global(*) {
 		box-sizing: border-box;
 	}
 
 	article :global(*) {
-		box-sizing: border-box;
 		margin: 0;
+		padding: 0;
+	}
+
+	article {
+		max-inline-size: 40rem;
+		margin-inline: auto;
+		position: relative;
 	}
 
 	article > svg {

@@ -17,19 +17,12 @@
 
 <div>
 	<form on:submit|preventDefault>
-		<p>
+		<label>
 			Drag the handle to draw the <code>&lt;path&gt;</code> element in {steps.length}
 			steps.
-		</p>
 
-		<input
-			style:accent-color={accentColor}
-			type="range"
-			min={0}
-			max={steps.length}
-			step={1}
-			bind:value
-		/>
+			<input type="range" min={0} max={steps.length} step={1} bind:value />
+		</label>
 	</form>
 
 	<p><code>d="<span style:border-block-end="0.2rem solid {accentColor}">{d}</span>"</code></p>
@@ -82,11 +75,8 @@
 		margin-block-start: 0.75em;
 	}
 
-	form > * + * {
+	label input {
 		margin-block-start: 0.5em;
-	}
-
-	form input {
 		display: block;
 		inline-size: 100%;
 	}

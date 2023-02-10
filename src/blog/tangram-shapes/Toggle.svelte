@@ -54,10 +54,6 @@
 		block-size: 1em;
 	}
 
-	input:focus:not(:focus-visible) {
-		outline: none;
-	}
-
 	svg {
 		display: block;
 	}
