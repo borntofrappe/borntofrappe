@@ -67,3 +67,7 @@ a:hover {
 :target {
 	scroll-margin-block-start: 2ex;
 }
+
+:focus:not(:focus-visible) {
+	outline: none;
+}
