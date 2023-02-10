@@ -37,7 +37,14 @@
 }
 
 .code pre {
-	overflow-inline: auto;
+	overflow-x: auto;
+}
+
+@supports (overflow-inline: auto) {
+	.code pre {
+		overflow-x: initial;
+		overflow-inline: auto;
+	}
 }
 
 .code pre::-webkit-scrollbar {
