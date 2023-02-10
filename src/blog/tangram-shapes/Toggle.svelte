@@ -8,7 +8,7 @@
 		<label>
 			<input type="checkbox" bind:checked={tangram} />
 			<span>
-				{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class.
+				{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class
 			</span>
 		</label>
 	</form>

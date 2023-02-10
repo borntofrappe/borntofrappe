@@ -31,7 +31,7 @@
 <div>
 	<form on:submit|preventDefault>
 		<label>
-			Resize grid
+			Drag the handle to resize grid.
 			<input type="range" min={2} max={15} bind:value={size} />
 		</label>
 	</form>

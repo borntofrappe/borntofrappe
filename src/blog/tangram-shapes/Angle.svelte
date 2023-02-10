@@ -6,7 +6,7 @@
 <div>
 	<form on:submit|preventDefault>
 		<label>
-			Drag the handle to rotate the shape
+			Drag the handle to rotate the shape.
 			<input type="range" min="0" max="45" bind:value={angle} />
 		</label>
 	</form>
