@@ -75,7 +75,7 @@ Enough to get started with the body, at least.
 Smaller circles with a stronger red hue help to refine the picture.
 
 <Center>
-	{@html svg['cheecks']}
+	{@html svg['cheeks']}
 </Center>
 
 Group elements prove to be helpful once more, so to avoid repeating attributes on multiple visuals:
