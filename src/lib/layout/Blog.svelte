@@ -128,6 +128,11 @@
 		--space: var(--step-space-300);
 	}
 
+	main > :global(svg),
+	main > :global(svg + *) {
+		--space: var(--step-space-400);
+	}
+
 	main :global(ul > * + *),
 	main :global(ol > * + *) {
 		margin-block-start: 0.75em;
