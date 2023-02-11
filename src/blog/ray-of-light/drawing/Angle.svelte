@@ -1,6 +1,6 @@
 <script>
 	export let value = 0;
-	export let accentColor = 'hsl(328, 85%, 46%)';
+	export let accentColor = 'hotpink';
 </script>
 
 <div>

@@ -6,7 +6,7 @@
 	export let patternHeight = 1;
 	export let strokeWidth = 0.5;
 
-	export let accentColor = 'hsl(328, 85%, 46%)';
+	export let accentColor = 'hotpink';
 
 	let value = 0;
 	$: [x, y, width, height] = viewBox.match(/[-\d+.]+/g).map((d) => parseFloat(d));

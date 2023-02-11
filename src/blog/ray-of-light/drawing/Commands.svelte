@@ -6,7 +6,7 @@
 	export let patternWidth = 1;
 	export let patternHeight = 1;
 	export let commands = 'M 2 2 h 6 v 6 h -6 z';
-	export let accentColor = 'hsl(328, 85%, 46%)';
+	export let accentColor = 'hotpink';
 
 	$: viewBox = `${x} ${y} ${width} ${height}`;
 
