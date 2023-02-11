@@ -22,7 +22,7 @@ On a cold, slightly depressing evening I opened up a [Svelte REPL](https://svelt
 </svg>
 ```
 
-And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the crisp visual by the end the post.
+And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the crisp visual by the end of the post.
 
 ## SVG canvas
 
@@ -36,7 +36,7 @@ Indubitably, I did not come up with the `viewBox` attribute from the start. The 
 
 ## Circle points
 
-You may not believe me, but the `<path />` begins with circle. To draw a round shape with SVG you have a few options. Among which:
+You may not believe me, but the `<path />` begins with a circle. To draw a round shape with SVG you have a few options. Among which:
 
 - the `<circle>` element
 
