@@ -22,11 +22,11 @@ On a cold, slightly depressing evening I opened up a [Svelte REPL](https://svelt
 </svg>
 ```
 
-And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the crisp visual.
+And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the crisp visual by the end the post.
 
 ## SVG canvas
 
-Indubitably, I did not came up with the `viewBox` attribute from the start. The journey begins instead with a squared canvas, centering the drawing in a comfortably large space.
+Indubitably, I did not come up with the `viewBox` attribute from the start. The journey begins instead with a squared canvas, centering the drawing in a comfortably large space.
 
 ```html
 <svg viewBox="-50 -50 100 100">
@@ -36,7 +36,7 @@ Indubitably, I did not came up with the `viewBox` attribute from the start. The 
 
 ## Circle points
 
-Believe me not, but the icon started out as a circle. To draw a round shape with SVG you have a few options. Among which:
+You may not believe me, but the `<path />` begins with circle. To draw a round shape with SVG you have a few options. Among which:
 
 - the `<circle>` element
 
@@ -54,7 +54,7 @@ Either approach leads you to a perfectly crisp circle.
 
 {@html svg['circle']}
 
-The second option, however, opens a world of possibilities. The arc syntax conveniently creates the swooping curves, but with a multiple points you can draw the shape connecting the dots, literally.
+The second option, however, opens a world of possibilities. The arc syntax conveniently creates the swooping curves, but with multiple points you can draw the shape connecting the dots, literally.
 
 In a `<script>` element initialize an array for the magic numbers.
 
@@ -73,23 +73,23 @@ const points = Array(n)
 	});
 ```
 
-The goal is to find an angle in the `[0, 360]` range and move between polar and cartesian coordinates. You walk around the center to compute the coordinates with `Math.cos` and `Math.sin`.
+The goal is to find an angle in the [0, 360] range and move between polar and cartesian coordinates. You walk around the center to compute the coordinates with `Math.cos` and `Math.sin`.
 
-Find the angle through the incrementing index and the length of the array. You need the value in radians, meaning you either explore the `[0, Math.PI * 2]` interval or indulge in a quick conversion.
+Find the angle through the incrementing index and the length of the array. You need the value in radians, meaning you either explore the [0, Math.PI * 2] interval or indulge in a quick conversion.
 
 ```js
 const angle = (360 / length) * i;
 const radians = (angle / 180) * Math.PI;
 ```
 
-Calculate the coordinates with an arbitrary offset. 35 to match the radius of previous circle.
+Calculate the coordinates with an arbitrary offset. 35 to match the radius of the previous circle.
 
 ```js
 const x = Math.cos(radians) * 35;
 const y = Math.sin(radians) * 35;
 ```
 
-Return the values with the array, so that `points` resolves to be an array of `[x, y]` coordinates.
+Return the values with the array, so that `points` resolves to be an array of [x, y] coordinates.
 
 ```js
 return [x, y];
@@ -119,7 +119,7 @@ const y = Math.floor(Math.sin(radians) * 35);
 
 ## Line points
 
-Once again you have again several options. The most immediate relates to the `<polyline>` element and its compulsory `points` attribute.
+Once again you have several options. The most immediate relates to the `<polyline>` element and its compulsory `points` attribute.
 
 ```svelte
 <polyline points={points.join(' ')} />
@@ -138,7 +138,7 @@ As an alternative, prefer the flexible `<path>` element and the often cryptic `d
 <path d="M " />
 ```
 
-Continute with the sequence of points.
+Continue with the sequence of points.
 
 ```svelte
 <path d="M {points.join(' ')}" />
@@ -147,7 +147,7 @@ Continute with the sequence of points.
 
 <LinePoints />
 
-Both lines lead to a filled, rugged visual, tracing the outline of the first circle. That being said, you know have access to the individual points.
+Both lines lead to a filled, rugged visual, tracing the outline of the first circle. That being said, you now have access to the individual points.
 
 ## Offset values
 
@@ -159,21 +159,21 @@ const x = Math.floor(Math.cos(radians) * offset);
 const y = Math.floor(Math.sin(radians) * offset);
 ```
 
-At once, the title of this article starts to makes sense.
+At once, the title of this article starts to make sense.
 
 <figure>
   <OffsetValues />
   <figcaption>Looks convincing?</figcaption>
 </figure>
 
-The shape is tilted on its side, and not by accident. Navigating the `[0, 360]` range you start from the right, from the positive x axis and walk around the circle in a clockwise manner. To have the leftmost edge at the very top offset the angle to move a quarter forward.
+The shape is tilted on its side, and not by accident. Navigating the [0, 360] range you start from the right, from the positive x axis and walk around the circle in a clockwise manner. To have the leftmost edge at the very top offset the angle to move a quarter forward.
 
 ```diff
 -const angle = (360 / length) * i;
 +const angle = (360 / length) * i + 90;
 ```
 
-Effectively, the angle falls in the `[90, 450]` range, producing the more orthodox shape.
+Effectively, the angle falls in the [90, 450] range, producing the more orthodox shape.
 
 <OffsetValues rotate={true} />
 
@@ -239,7 +239,7 @@ if (i % 2 !== 0) {
 }
 ```
 
-Ten points, you skip the first, nine iterations. This means you end with the `Q` character referring to the last point. To wrap things up, follow the the loop with the original pair.
+Ten points, you skip the first, nine iterations. This means you end with the `Q` character referring to the last point. To wrap things up, follow the loop with the original pair.
 
 ```js
 d += ` ${points[0][0]} ${points[0][1]}`;
