@@ -1,0 +1,13 @@
+---
+title: A star is born
+description: The making of a little vector graphic which rapidly became a personal favorite.
+date: 2023-02-13T09:23:05
+---
+
+On a cold, slightly depressing evening I opened up a [Svelte REPL](https://svelte.dev/repl) and created a small SVG marvel. Here's the syntax in its entirety.
+
+```html
+<svg viewBox="-23.204545974731445 -24 45.409088134765625 43.56756591796875">
+	<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
+</svg>
+```
