@@ -62,15 +62,9 @@
 	};
 </script>
 
-<svg
-	aria-hidden="true"
-	style:inline-size="0"
-	style:block-size="0"
-	style:position="absolute"
-	shape-rendering="crispEdges"
->
+<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
 	<defs>
-		<symbol id="dragon-warrior-hero-1" viewBox="0 0 16 16">
+		<symbol id="dragon-warrior-hero-1" viewBox="0 0 16 16" shape-rendering="crispEdges">
 			<g fill="hsl(0, 0%, 13%)">
 				<rect width="1" height="3" />
 				<rect x="1" width="1" height="1" />
@@ -166,7 +160,7 @@
 				<rect x="8" y="14" width="3" height="1" />
 			</g>
 		</symbol>
-		<symbol id="dragon-warrior-hero-2" viewBox="0 0 16 16">
+		<symbol id="dragon-warrior-hero-2" viewBox="0 0 16 16" shape-rendering="crispEdges">
 			<g fill="hsl(0, 0%, 13%)">
 				<rect width="1" height="3" />
 				<rect x="1" width="1" height="1" />
@@ -272,15 +266,9 @@
 			<strong>Loto Seal</strong> is around here. <br /> It might be just a tile distant.
 		</p>
 	{/if}
-	<svg
-		on:click={handleClick}
-		bind:this={element}
-		viewBox="0 0 {columns} {rows}"
-		shape-rendering="crispEdges"
-		on:keydown
-	>
+	<svg on:click={handleClick} bind:this={element} viewBox="0 0 {columns} {rows}" on:keydown>
 		<defs>
-			<symbol id="dragon-warrior-swamp" viewBox="0 0 16 8">
+			<symbol id="dragon-warrior-swamp" viewBox="0 0 16 8" shape-rendering="crispEdges">
 				<g fill="hsl(0, 0%, 23%)">
 					<rect y="1" width="16" height="1" />
 					<rect y="3" width="16" height="1" />
@@ -342,8 +330,7 @@
 					<rect x="10" y="6" width="2" height="1" />
 				</g>
 			</symbol>
-
-			<symbol id="dragon-warrior-loto-seal" viewBox="0 0 10 10">
+			<symbol id="dragon-warrior-loto-seal" viewBox="0 0 10 10" shape-rendering="crispEdges">
 				<g fill="hsl(0, 0%, 13%)">
 					<rect x="4" width="4" height="1" />
 					<rect x="2" y="1" width="2" height="1" />
@@ -387,7 +374,6 @@
 					<rect x="4" y="7" width="1" height="1" />
 				</g>
 			</symbol>
-
 			<pattern
 				id="dragon-warrior-pattern-swamp"
 				viewBox="0 0 16 16"
@@ -448,18 +434,15 @@
 
 <style>
 	article,
-	article :global(*) {
-		box-sizing: border-box;
-	}
-
-	article :global(*) {
-		margin: 0;
+	article * {
 		padding: 0;
 	}
 
+	article * {
+		margin: 0;
+	}
+
 	article {
-		max-inline-size: 40rem;
-		margin-inline: auto;
 		position: relative;
 	}
 
@@ -498,7 +481,9 @@
 	}
 
 	button > svg {
+		display: block;
 		inline-size: 32px;
+		block-size: auto;
 	}
 
 	button:hover > svg > g {
