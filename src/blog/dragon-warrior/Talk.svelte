@@ -6,15 +6,9 @@
 	$: talk = checked && talks[Math.floor(Math.random() * talks.length)];
 </script>
 
-<svg
-	aria-hidden="true"
-	style:inline-size="0"
-	style:block-size="0"
-	style:position="absolute"
-	shape-rendering="crispEdges"
->
+<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
 	<defs>
-		<symbol id="dragon-warrior-sage" viewBox="0 0 16 16">
+		<symbol id="dragon-warrior-sage" viewBox="0 0 16 16" shape-rendering="crispEdges">
 			<g fill="hsl(0, 0%, 13%)">
 				<rect x="5" width="7" height="1" />
 				<rect x="3" y="1" width="2" height="1" />
@@ -93,7 +87,7 @@
 		</label>
 	</form>
 	<p>
-		<span aria-hidden="true">{talk || talks[0]}</span>
+		<span aria-hidden="true" style:opacity="0" style:visibility="none">{talk || talks[0]}</span>
 		{#if talk}
 			<span in:typewriter>{talk}</span>
 		{/if}
@@ -102,20 +96,23 @@
 
 <style>
 	div,
-	div :global(*) {
+	div * {
 		box-sizing: border-box;
+		padding: 0;
 	}
 
-	div :global(*) {
+	div * {
 		margin: 0;
-		padding: 0;
+	}
+
+	p {
+		line-height: initial;
 	}
 
 	div {
 		display: inline-flex;
 		flex-direction: column-reverse;
 		gap: 1rem;
-		box-sizing: border-box;
 	}
 
 	svg {
@@ -123,13 +120,9 @@
 		block-size: auto;
 	}
 
-	p {
-		line-height: initial;
-	}
-
 	input {
-		inline-size: 1rem;
-		block-size: 1rem;
+		inline-size: 1em;
+		block-size: 1em;
 	}
 
 	p {

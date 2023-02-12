@@ -39,15 +39,9 @@
 	}
 </script>
 
-<svg
-	aria-hidden="true"
-	style:inline-size="0"
-	style:block-size="0"
-	style:position="absolute"
-	shape-rendering="crispEdges"
->
+<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
 	<defs>
-		<symbol id="dragon-warrior-vase" viewBox="0 0 16 16">
+		<symbol id="dragon-warrior-vase" viewBox="0 0 16 16" shape-rendering="crispEdges">
 			<g fill="hsl(0, 0%, 13%)">
 				<rect x="5" width="6" height="1" />
 				<rect x="4" y="1" width="1" height="1" />
@@ -164,7 +158,9 @@
 	</form>
 
 	<p>
-		<span aria-hidden="true">{index === null ? options[0].value : options[index].value}</span>
+		<span aria-hidden="true" style:opacity="0" style:visibility="none"
+			>{index === null ? options[0].value : options[index].value}</span
+		>
 		{#if index !== null}
 			{#key index}
 				<span in:typewriter>{options[index].value}</span>
@@ -175,19 +171,13 @@
 
 <style>
 	div,
-	div :global(*) {
+	div * {
 		box-sizing: border-box;
-	}
-
-	div :global(*) {
-		margin: 0;
 		padding: 0;
 	}
 
-	div {
-		max-inline-size: 32rem;
-		margin-inline: auto;
-		box-sizing: border-box;
+	div * {
+		margin: 0;
 	}
 
 	div > * + * {
@@ -215,11 +205,12 @@
 	}
 
 	input {
-		inline-size: 1rem;
-		block-size: 1rem;
+		inline-size: 1em;
+		block-size: 1em;
 	}
 
 	svg {
+		display: block;
 		inline-size: 64px;
 		block-size: auto;
 	}
