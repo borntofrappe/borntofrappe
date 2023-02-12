@@ -113,7 +113,7 @@
 	};
 </script>
 
-<svg style="width: 0; height: 0; position: absolute;" aria-hidden="true">
+<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
 	<defs>
 		<rect id="p" width="1" height="1" />
 		<symbol shape-rendering="crispEdges" id="sea" viewBox="0 0 16 16">
@@ -213,7 +213,6 @@
 				<use href="#p" x="5" y="15" />
 			</g>
 		</symbol>
-
 		<symbol shape-rendering="crispEdges" id="boat-d-0" viewBox="0 -0.5 16 16">
 			<path
 				stroke="#000000"
