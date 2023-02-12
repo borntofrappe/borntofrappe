@@ -26,6 +26,4 @@ To compensate the increased opposition your solitary journey ends in a few trave
 
 A powerful mixture of might, magic and healing powers.
 
-<div style:text-align="center">
-  <Heroes />
-</div>
+<Heroes />
