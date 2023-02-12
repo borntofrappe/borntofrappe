@@ -33,8 +33,8 @@
 <div>
 	<form on:submit|preventDefault>
 		<label>
-			Toggle animation
 			<input type="checkbox" bind:checked={scale} />
+			Toggle animation
 		</label>
 	</form>
 
@@ -54,12 +54,18 @@
 </div>
 
 <style>
+	div * {
+		padding: 0;
+		margin: 0;
+	}
+
 	div > * + * {
-		margin-block-start: 0.5em;
+		margin-block-start: 0.75em;
 	}
 
 	input {
-		accent-color: currentColor;
+		inline-size: 1em;
+		block-size: 1em;
 	}
 
 	svg {

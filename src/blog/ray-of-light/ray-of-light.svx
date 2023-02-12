@@ -5,11 +5,12 @@ date: 2023-01-11 09:39:37
 ---
 
 <script>
+    import Center from '$lib/components/blog/Center.svelte';
+
     import Intro from './Intro.svelte';
-    import Center from './Center.svelte';
 	import Ray from './Ray.svelte';
 
-	import SVG from './drawing/SVG.svelte';
+	import svg from './drawing/svg.js';
     import Commands from './drawing/Commands.svelte';
 	import Eyes from './drawing/Eyes.svelte';
 	import Angle from './drawing/Angle.svelte';
@@ -66,7 +67,7 @@ A `<circle>` element with a nice shade of yellow seems like a good fit.
 Enough to get started with the body, at least.
 
 <Center>
-    <SVG key="body" />
+	{@html svg['body']}
 </Center>
 
 ### Cheeks
@@ -74,7 +75,7 @@ Enough to get started with the body, at least.
 Smaller circles with a stronger red hue help to refine the picture.
 
 <Center>
-    <SVG key="cheeks" />
+	{@html svg['cheeks']}
 </Center>
 
 Group elements prove to be helpful once more, so to avoid repeating attributes on multiple visuals:
@@ -131,7 +132,6 @@ Perhaps an interactive picture is worth more than a few words, however.
         y={-3}
         width={8}
         height={8}
-        accentColor="#ff877a"
         commands="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z"/>
 </Center>
 
@@ -146,7 +146,7 @@ Add a stroke with rounded edges.
 And there you have it, a welcoming, soft mug.
 
 <Center>
-    <SVG key="mouth" />
+	{@html svg['mouth']}
 </Center>
 
 ### Eyes
@@ -220,7 +220,7 @@ Repeat the line with different rotations.
 And the drawing is complete.
 
 <Center>
-    <SVG key="rays" />
+	{@html svg['rays']}
 </Center>
 
 ## Drawing with Svelte

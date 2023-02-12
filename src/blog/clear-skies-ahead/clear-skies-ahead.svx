@@ -5,14 +5,14 @@ date: 2023-01-30 21:57:22
 ---
 
 <script>
-    import SVG from './SVG.svelte';
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
     import Shadow from './Shadow.svelte';
     import Colors from './Colors.svelte';
     import Face from './Face.svelte';
     import Serene from './Serene.svelte';
     import Serena from './Serena.svelte';
-
-    import Center from './Center.svelte';
 </script>
 
 Luck is relative. Take this website for instance. If you have never stumbled on an error page, you might have never enjoyed the comforting presence of a shy, but helpful character. You don't have to look for trouble to find it, however.
@@ -77,7 +77,7 @@ That being said, _where_ to place the circles is up to interpretation, and part 
 ```
 
 <Center>
-	<SVG key="circles" />
+	{@html svg['circles']}
 </Center>
 
 There's a cloud. A bit _flat_, but convincing.
@@ -112,7 +112,7 @@ Once you then apply the mask to the actual drawing, you show the portions descri
 ```
 
 <Center>
-	<SVG key="mask" />
+	{@html svg['mask']}
 </Center>
 
 I promise you, there is a veritable `<svg>` element in the page, not just an empty box. You only see the outline because of the mask. Trust me, there's also a point to the discussion.
@@ -182,7 +182,7 @@ Use the new shape in place of the previous circle and there you have it. Perspec
 ```
 
 <Center>
-	<SVG key="masked" />
+	{@html svg['masked']}
 </Center>
 
 Too much effort for an exceedingly small change? You'll be the judge. In the end you have a working shadow. What is more, the syntax is versatile enough to work with lots of bright colors — you need to update just the `fill` attribute the moment you use the shape.
@@ -201,7 +201,7 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 We now have two shapes, `c` and `cc`.
 
 <Center>
-	<SVG key="shapes" />
+	{@html svg['shapes']}
 </Center>
 
 For the newly and improved cloud, it is helpful to actually use both: the flat version above, the elaborate circle below.
@@ -222,7 +222,7 @@ For the newly and improved cloud, it is helpful to actually use both: the flat v
 ```
 
 <Center>
-	<SVG key="cloud" />
+	{@html svg['cloud']}
 </Center>
 
 ## Faces

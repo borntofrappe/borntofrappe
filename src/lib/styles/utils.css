@@ -34,14 +34,6 @@
 	margin: auto;
 }
 
-.flow {
-	display: block;
-}
-
-.flow > * {
-	margin-block: 0;
-}
-
 .flow > * + * {
 	margin-block-start: var(--space, 1em);
 }
@@ -62,7 +54,7 @@
 	display: flex;
 	flex-direction: column;
 	inline-size: 100%;
-	max-inline-size: var(--measure, 68rem);
+	max-inline-size: var(--max-inline-size, 70rem);
 }
 
 .floating > * + * {
@@ -76,17 +68,33 @@
 	align-self: center;
 }
 
-.floating > .top {
+.floating > .start {
 	order: -1;
 }
 
-.floating > .bottom {
+.floating > .end {
 	order: 1;
+}
+
+.floating > .start {
+	margin-block-end: var(--space, 1em);
+}
+
+.floating > .start:not(:first-child) {
+	margin-block-start: unset;
 }
 
 @media (min-width: 42rem) {
 	.floating {
 		display: initial;
+	}
+
+	.floating > .start {
+		margin-block-end: unset;
+	}
+
+	.floating > .start:not(:first-child) {
+		margin-block-start: var(--space, 1em);
 	}
 
 	.floating > .float {

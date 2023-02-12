@@ -1,16 +1,15 @@
 <script>
-	export let x = 0;
-	export let y = 0;
-	export let width = 10;
-	export let height = 10;
+	export let viewBox = '-1 -1 12 12';
+	export let commands = 'M 0 0 l 0 10 l 10 0 l 0 -10 z';
+
 	export let patternWidth = 1;
 	export let patternHeight = 1;
-	export let commands = 'M 2 2 h 6 v 6 h -6 z';
+	export let strokeWidth = 0.5;
+
 	export let accentColor = 'hsl(328, 85%, 46%)';
 
-	$: viewBox = `${x} ${y} ${width} ${height}`;
-
 	let value = 0;
+	$: [x, y, width, height] = viewBox.match(/[-\d+.]+/g).map((d) => parseFloat(d));
 	$: steps = commands.match(/[a-zA-Z]([^a-zA-Z]+)?/g);
 	$: d = steps.slice(0, value).join('');
 </script>
@@ -20,8 +19,14 @@
 		<label>
 			Drag the handle to draw the <code>&lt;path&gt;</code> element in {steps.length}
 			steps.
-
-			<input type="range" min={0} max={steps.length} step={1} bind:value />
+			<input
+				style:accent-color={accentColor}
+				type="range"
+				min={0}
+				max={steps.length}
+				step={1}
+				bind:value
+			/>
 		</label>
 	</form>
 
@@ -36,25 +41,21 @@
 				height={patternHeight}
 				patternUnits="userSpaceOnUse"
 			>
-				<g
-					fill="none"
-					stroke="currentColor"
-					stroke-width={Math.min(patternWidth, patternHeight) / 30}
-				>
+				<g fill="none" stroke="currentColor" stroke-width="0.01">
 					<rect width="1" height="1" />
 				</g>
 			</pattern>
 
-			<marker id="marker-dot" viewBox="-1 -1 2 2">
-				<circle fill={accentColor} r="1" />
+			<marker id="marker-dot" viewBox="-0.5 -0.5 1 1">
+				<circle fill={accentColor} r="0.5" />
 			</marker>
 		</defs>
 		<rect fill="url(#commands-pattern-grid)" {x} {y} {width} {height} />
 
 		<g fill="none" stroke="currentColor">
-			<path d={commands} stroke-width={Math.min(width, height) / 60} />
+			<path d={commands} stroke-width={strokeWidth / 2} />
 			<path
-				stroke-width={Math.min(width, height) / 50}
+				stroke-width={strokeWidth}
 				stroke={accentColor}
 				{d}
 				marker-start="url(#marker-dot)"

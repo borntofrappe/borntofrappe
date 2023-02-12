@@ -8,8 +8,8 @@
 
 <svg
 	aria-hidden="true"
-	style:width="0"
-	style:height="0"
+	style:inline-size="0"
+	style:block-size="0"
 	style:position="absolute"
 	shape-rendering="crispEdges"
 >
@@ -101,6 +101,16 @@
 </div>
 
 <style>
+	div,
+	div :global(*) {
+		box-sizing: border-box;
+	}
+
+	div :global(*) {
+		margin: 0;
+		padding: 0;
+	}
+
 	div {
 		display: inline-flex;
 		flex-direction: column-reverse;
@@ -108,15 +118,9 @@
 		box-sizing: border-box;
 	}
 
-	div :global(*) {
-		box-sizing: border-box;
-		margin: 0;
-	}
-
 	svg {
-		width: 100%;
-		height: auto;
-		max-width: 80px;
+		inline-size: 80px;
+		block-size: auto;
 	}
 
 	p {
@@ -124,9 +128,8 @@
 	}
 
 	input {
-		accent-color: currentColor;
-		width: 1rem;
-		height: 1rem;
+		inline-size: 1rem;
+		block-size: 1rem;
 	}
 
 	p {
@@ -146,9 +149,9 @@
 
 	p > span:nth-of-type(2) {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset-inline-start: 0;
+		inset-block-start: 0;
+		inline-size: 100%;
+		block-size: 100%;
 	}
 </style>

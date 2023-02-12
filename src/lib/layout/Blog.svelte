@@ -133,6 +133,53 @@
 		margin-block-start: 0.75em;
 	}
 
+	main :global(code) {
+		font-weight: 700;
+	}
+
+	main :global(table) {
+		--padding: 1rem;
+		--border-radius: 0.5rem;
+		table-layout: fixed;
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	main :global(table th) {
+		text-align: start;
+	}
+
+	main :global(table th),
+	main :global(table td) {
+		color: var(--theme-color);
+		background: var(--theme-background);
+		padding: var(--padding);
+	}
+
+	main :global(table tbody > tr:nth-of-type(even) td) {
+		background: var(--theme-background--1);
+	}
+
+	main :global(table tbody > tr:nth-of-type(odd) td) {
+		background: var(--theme-background--2);
+	}
+
+	main :global(table thead > tr > th:first-of-type) {
+		border-start-start-radius: var(--border-radius);
+	}
+
+	main :global(table thead > tr > th:last-of-type) {
+		border-start-end-radius: var(--border-radius);
+	}
+
+	main :global(table tbody > tr:last-of-type > td:first-of-type) {
+		border-end-start-radius: var(--border-radius);
+	}
+
+	main :global(tbody > tr:last-of-type > td:last-of-type) {
+		border-end-end-radius: var(--border-radius);
+	}
+
 	main :global(blockquote) {
 		max-inline-size: 50ch;
 		margin-inline: auto;
@@ -140,11 +187,6 @@
 		font-weight: 700;
 		padding: var(--step-space-200) var(--step-space-400);
 		border-radius: 0.5rem;
-	}
-
-	main :global(p > code) {
-		margin-block: var(--step-space-000);
-		border-block-end: 0.2rem solid var(--shadow);
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
@@ -158,7 +200,6 @@
 			block-size: 3em;
 			background: var(--accent);
 			float: left;
-			margin-inline-end: var(--step-space-100);
 			mask-image: url('data:image/svg+xml,\
 		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
 			<defs>\
@@ -185,6 +226,12 @@
 			  <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
 			</g>\
 		  </svg>');
+		}
+
+		@supports (float: inline-start) {
+			main :global(blockquote::before) {
+				float: inline-start;
+			}
 		}
 	}
 </style>

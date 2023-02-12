@@ -31,7 +31,7 @@
 <div>
 	<form on:submit|preventDefault>
 		<label>
-			Resize grid
+			Drag the handle to resize grid.
 			<input type="range" min={2} max={15} bind:value={size} />
 		</label>
 	</form>
@@ -46,24 +46,19 @@
 </div>
 
 <style>
-	div > * + * {
-		margin-block-start: 0.5em;
-	}
-
-	form * {
-		box-sizing: border-box;
+	div * {
 		padding: 0;
 		margin: 0;
 	}
 
-	label {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+	div > * + * {
+		margin-block-start: 0.75em;
 	}
 
-	input {
-		accent-color: currentColor;
+	label input {
+		margin-block-start: 0.5em;
+		display: block;
+		inline-size: 100%;
 	}
 
 	svg {

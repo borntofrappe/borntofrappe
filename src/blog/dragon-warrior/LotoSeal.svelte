@@ -64,8 +64,8 @@
 
 <svg
 	aria-hidden="true"
-	style:width="0"
-	style:height="0"
+	style:inline-size="0"
+	style:block-size="0"
 	style:position="absolute"
 	shape-rendering="crispEdges"
 >
@@ -447,16 +447,20 @@
 </article>
 
 <style>
-	article {
-		max-width: 40rem;
-		margin-inline: auto;
-		position: relative;
+	article,
+	article :global(*) {
 		box-sizing: border-box;
 	}
 
 	article :global(*) {
-		box-sizing: border-box;
 		margin: 0;
+		padding: 0;
+	}
+
+	article {
+		max-inline-size: 40rem;
+		margin-inline: auto;
+		position: relative;
 	}
 
 	article > svg {
@@ -466,8 +470,8 @@
 	article > p,
 	article > div {
 		position: absolute;
-		top: 50%;
-		left: 50%;
+		inset-block-start: 50%;
+		inset-inline-start: 50%;
 		transform: translate(-50%, -50%);
 		color: hsl(0, 0%, 13%);
 		background: hsl(0, 0%, 97%);
@@ -494,8 +498,7 @@
 	}
 
 	button > svg {
-		width: 32px;
-		height: auto;
+		inline-size: 32px;
 	}
 
 	button:hover > svg > g {

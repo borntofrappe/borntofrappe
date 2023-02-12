@@ -22,3 +22,9 @@
 		</g>
 	</g>
 </svg>
+
+<style>
+	svg {
+		display: block;
+	}
+</style>
