@@ -8,6 +8,7 @@ date: 2023-02-04 13:57:45
  import Heroes from './Heroes.svelte'
  import JailKey from './JailKey.svelte'
  import SailingShip from './SailingShip.svelte'
+ import TokenWheel from './TokenWheel.svelte'
 </script>
 
 The second title in the Dragon Quest series flows organically [from the previous chapter](/dragon-warrior), and in many ways feels like a natural expansion of the first episode.
@@ -33,3 +34,9 @@ A powerful mixture of might, magic and healing powers.
 <JailKey />
 
 <SailingShip />
+
+<div style:display="flex" style:flex-wrap="wrap" style:justify-content="center" style:gap="0.25rem" >
+	<TokenWheel />
+	<TokenWheel />
+	<TokenWheel />
+</div>
