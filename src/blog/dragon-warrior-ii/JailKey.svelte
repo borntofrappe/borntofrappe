@@ -67,10 +67,14 @@
 		content: '*: ';
 	}
 
+	p > span:nth-of-type(1) {
+		opacity: 0;
+	}
+
 	p > span:nth-of-type(2) {
 		position: absolute;
-		inset-block-start: 0;
 		inset-inline-start: 0;
+		inset-block-start: 0;
 		inline-size: 100%;
 		block-size: 100%;
 	}
