@@ -1,11 +1,11 @@
 <script>
 	import { animate } from './utils.js';
 
-	export let height = '64px';
+	export let blockSize = '64px';
 	const heroes = ['prince', 'gary', 'beth'];
 </script>
 
-<svg style="width: 0; height: 0; position: absolute;" aria-hidden="true">
+<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
 	<defs>
 		<symbol id="prince-0" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
@@ -96,7 +96,12 @@
 	</defs>
 </svg>
 
-<svg style:height style:width={height * heroes.length} use:animate viewBox="0 0 {heroes.length} 1">
+<svg
+	use:animate
+	style:block-size={blockSize}
+	style:inline-size={blockSize * heroes.length}
+	viewBox="0 0 {heroes.length} 1"
+>
 	{#each heroes as hero, x}
 		<use {x} href="#{hero}-0" width="1" height="1">
 			<animate

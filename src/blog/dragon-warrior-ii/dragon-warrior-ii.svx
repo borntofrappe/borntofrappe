@@ -6,9 +6,6 @@ date: 2023-02-04 13:57:45
 
 <script>
  import Heroes from './Heroes.svelte'
- import JailKey from './JailKey.svelte'
- import SlotTokens from './SlotTokens.svelte'
- import SailingShip from './SailingShip.svelte'
 </script>
 
 The second title in the Dragon Quest series flows organically [from the previous chapter](/dragon-warrior), and in many ways feels like a natural expansion of the first episode.
@@ -31,16 +28,4 @@ A powerful mixture of might, magic and healing powers.
 
 <div style:text-align="center">
   <Heroes />
-</div>
-
-<div style:max-inline-size="32rem" style:margin-inline="auto">
-  <JailKey />
-</div>
-
-<div style:max-inline-size="24rem" style:margin-inline="auto">
-  <SlotTokens />
-</div>
-
-<div style:max-inline-size="28rem" style:margin-inline="auto">
-  <SailingShip />
 </div>
