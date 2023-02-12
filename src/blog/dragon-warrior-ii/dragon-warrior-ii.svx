@@ -6,6 +6,7 @@ date: 2023-02-04 13:57:45
 
 <script>
  import Heroes from './Heroes.svelte'
+ import JailKey from './JailKey.svelte'
 </script>
 
 The second title in the Dragon Quest series flows organically [from the previous chapter](/dragon-warrior), and in many ways feels like a natural expansion of the first episode.
@@ -27,3 +28,5 @@ To compensate the increased opposition your solitary journey ends in a few trave
 A powerful mixture of might, magic and healing powers.
 
 <Heroes />
+
+<JailKey />
