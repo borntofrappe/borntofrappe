@@ -48,7 +48,6 @@
 	div,
 	div * {
 		box-sizing: border-box;
-		line-height: initial;
 		padding: 0;
 	}
 
@@ -83,7 +82,7 @@
 	}
 
 	form > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 0.5em;
 	}
 
 	label {
