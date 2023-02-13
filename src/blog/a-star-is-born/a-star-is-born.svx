@@ -189,7 +189,7 @@ Effectively, the angle falls in the [90, 450] range, producing the more orthodox
 
 Keep drawing the shape with a `<path>` and you can replace the sharp segments with smooth curves.
 
-In this regard, there are two pertinent command: `Q` for a quadratic bezier curve and `C` for a cubic bezier curve. Both work through the concept of _control points_, but the latter has actually two of them. To make life easier, we are going to stick with the safer, simpler instruction.
+In this regard, there are two pertinent commands: `Q` for a quadratic bezier curve and `C` for a cubic bezier curve. Both work through the concept of _control points_, but the latter has actually two of them. To make life easier, we are going to stick with the safer, simpler instruction.
 
 When you specify two points after the `M` command SVG assumes the `L` character. The instruction creates a line from the previous coordinate to the new pair.
 
