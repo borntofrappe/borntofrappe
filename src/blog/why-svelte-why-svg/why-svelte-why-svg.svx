@@ -117,7 +117,7 @@ Where? In the cell designated by the column and row.
 
 The shapes are placed at increments of 1, filling the tightly-knit canvas.
 
-<Center>
+<Center maxInlineSize="26rem">
     <Rects />
 </Center>
 
@@ -129,13 +129,15 @@ We are going to paint with the colors of the rainbow leaning on the HSL color fo
 
 With a fixed value for the saturation and lightness, all you need is to update the hue in the `[0-360]` range. A visual might explain the concept better, however.
 
-<Hue />
+<Center maxInlineSize="36rem">
+	<Hue />
+</Center>
 
 To have the rainbow go from the top left corner to the bottom right section, then, calculate the hue as a function of the column and row.
 
 If you sum the two values you realize how.
 
-<Center>
+<Center maxInlineSize="28rem">
     <Grid />
 </Center>
 
@@ -176,7 +178,7 @@ Add the color alongside the coordinates and inject the value through the `fill` 
 {/each}
 ```
 
-<Center>
+<Center maxInlineSize="28rem">
     <Colors />
 </Center>
 
@@ -189,7 +191,7 @@ If you prefer a touch more variety, increment the maximum value.
 +const max = (size - 1) * 2 + 1
 ```
 
-<Center>
+<Center maxInlineSize="28rem">
     <Colors offset={1} />
 </Center>
 
@@ -223,7 +225,7 @@ Associate the size through the `bind:value` directive.
 
 And, enjoy your grid of **{colors}** colors.
 
-<Center>
+<Center maxInlineSize="32rem">
     <Input {size} on:change={handleChange} />
 </Center>
 
@@ -248,7 +250,7 @@ In terms of SVG you need just one attribute to draw a circle, one attribute for 
 {/each}
 ```
 
-<Center>
+<Center maxInlineSize="28rem">
     <Circles />
 </Center>
 
@@ -280,7 +282,7 @@ You have several ways to fix this:
 
 Take your pick.
 
-<Center>
+<Center maxInlineSize="28rem">
     <Circles offset={0.5} />
 </Center>
 
@@ -362,7 +364,7 @@ You can toggle the class with a ternary operator.
 
 Or go for the directive instead. Either way, off to the races!
 
-<Center>
+<Center maxInlineSize="28rem">
     <Animation />
 </Center>
 
@@ -412,7 +414,7 @@ Need to remove the duration in the `<style>` tags? Not really. Svelte adds the v
 
 One cheer for CSS specificity! Feel free to follow the wave and raise your arms in celebration.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Delays />
 </Center>
 

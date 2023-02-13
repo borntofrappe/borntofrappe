@@ -66,7 +66,7 @@ A `<circle>` element with a nice shade of yellow seems like a good fit.
 
 Enough to get started with the body, at least.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['body']}
 </Center>
 
@@ -74,7 +74,7 @@ Enough to get started with the body, at least.
 
 Smaller circles with a stronger red hue help to refine the picture.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['cheeks']}
 </Center>
 
@@ -126,7 +126,7 @@ The `d` attribute might look complex, but it becomes clearer once you break down
 
 Perhaps an interactive picture is worth more than a few words, however.
 
-<Center>
+<Center maxInlineSize="32rem">
     <Commands
         x={-4}
         y={-3}
@@ -145,7 +145,7 @@ Add a stroke with rounded edges.
 
 And there you have it, a welcoming, soft mug.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['mouth']}
 </Center>
 
@@ -170,13 +170,13 @@ Ultimately, I decided to add a small stroke matching the yellow shade of the bod
 
 You may not notice the outline — immediately.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Eyes />
 </Center>
 
 As later elements are drawn _on top_ of previous ones, however, the stroke works to have the eyes pop above the cheeks.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Eyes offset={2} />
 </Center>
 
@@ -204,7 +204,7 @@ Since we moved the origin of the canvas, you can actually rotate the visual and 
 
 It's almost magical when you try a different value.
 
-<Center>
+<Center maxInlineSize="32rem">
     <Angle value={15} />
 </Center>
 
@@ -219,7 +219,7 @@ Repeat the line with different rotations.
 
 And the drawing is complete.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['rays']}
 </Center>
 
@@ -250,7 +250,7 @@ If 24 rays are too many, you then change one line. One number.
 +const angles = Array(16)
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
     <Angles n={16} />
 </Center>
 
@@ -325,7 +325,7 @@ const handleEnd = () => {
 
 Quite entertaining already.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Bounce />
 </Center>
 
@@ -347,7 +347,7 @@ It would be possible to wrap the entire mascot in a group element, and have the 
 
 The effect is however far from ideal.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Offset />
 </Center>
 
@@ -371,7 +371,7 @@ The eyes, the cheeks and mouth should move, and certainly more than the body and
 
 You could move only the face, but I prefer animating the entire lot, just with different offset values.
 
-<Center>
+<Center maxInlineSize="30rem">
     <Offsets />
 </Center>
 
@@ -458,7 +458,7 @@ const y = (offsetY / h - 0.5) * m;
 
 A lot of work, admittedly. But I'll go ahead and presume you appreciate the end result — just once more.
 
-<Center>
+<Center maxInlineSize="32rem">
     <Ray y={-10} />
 </Center>
 

@@ -5,6 +5,8 @@ date: 2023-01-17 22:31:00
 ---
 
 <script>
+	import Center from '$lib/components/blog/Center.svelte';
+
     import svg from './svg.js';
     import Defs from './Defs.svelte';
     import DefsAlt from './DefsAlt.svelte';
@@ -105,7 +107,9 @@ One unfortunate mishap is that the line is cropped at either end. If you tinker 
 
 You zoom out to highlight the nice grouping of 5 paths elements.
 
-{@html svg['expand-viewbox']}
+<Center maxInlineSize="28rem">
+	{@html svg['expand-viewbox']}
+</Center>
 
 ## Repeat lines
 
@@ -137,7 +141,9 @@ In Svelte, you can achieve this step with a `each` block, iterating with an empt
 {/each}
 ```
 
-<Defs />
+<Center maxInlineSize="28rem">
+	<Defs />
+</Center>
 
 If the syntax looks a bit alien, it might be helpful to illustrate an alternative.
 
@@ -163,7 +169,9 @@ At this point Svelte repeats the markup for each number, and you inject the inte
 
 Similar logic, same result.
 
-<DefsAlt />
+<Center maxInlineSize="28rem">
+	<DefsAlt />
+</Center>
 
 ## Repeat clusters
 
@@ -203,7 +211,9 @@ Moving the group 5 to the right means moving the marks outside of the canvas. Re
 
 From 6 to 11. Growing by 5.
 
-<ClustersAddon />
+<Center maxInlineSize="32rem">
+	<ClustersAddon />
+</Center>
 
 ## Nested repeats
 
@@ -244,7 +254,9 @@ The last missing piece relates to the size of the canvas. How wide? 5 times as n
 <svg viewBox="-0.5 -0.5 {5 * marks.length + 1} 6" />
 ```
 
-<Clusters />
+<Center maxInlineSize="32rem">
+	<Clusters />
+</Center>
 
 Looks the same? Perfect.
 
@@ -300,7 +312,9 @@ Eventually, `reduce` would find the next 0 and add another array, leading to the
 
 Need proof? Let's try with the current day. Mine, however. 17 is a high enough number to show off.
 
-<Marks n={17} />
+<Center maxInlineSize="36rem">
+	<Marks n={17} />
+</Center>
 
 Need _your_ proof? You can try with [today](/today). There might be a surprise there, as I decided to explore additional features.
 

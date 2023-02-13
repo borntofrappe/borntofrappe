@@ -56,7 +56,7 @@ To draw a round shape with SVG you have a few options. Among which:
 
 Either approach leads you to a perfectly crisp circle.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['circle']}
 </Center>
 
@@ -109,7 +109,7 @@ In the `<svg>` element draw a small dot for every single point.
 {/each}
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	<CirclePoints />
 </Center>
 
@@ -150,7 +150,7 @@ Continue with the sequence of points.
 <!-- <path d="M {points}" /> -->
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	<LinePoints />
 </Center>
 
@@ -168,7 +168,7 @@ const y = Math.floor(Math.sin(radians) * offset);
 
 At once, the title of this article starts to make sense.
 
-<Center>
+<Center maxInlineSize="30rem">
   <OffsetValues />
 </Center>
 
@@ -181,7 +181,7 @@ The shape is tilted on its side, and not by accident. Navigating the [0, 360] ra
 
 Effectively, the angle falls in the [90, 450] range, producing the more orthodox shape.
 
-<Center>
+<Center maxInlineSize="30rem">
 	<OffsetValues rotate={true} />
 </Center>
 
@@ -202,7 +202,7 @@ When you specify two points after the `M` command SVG assumes the `L` character.
 </svg>
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['line']}
 </Center>
 
@@ -213,7 +213,7 @@ With the `Q` character you rely on four numbers instead, two for the position of
 <path d="M 5 25 Q 25 5 45 25" />
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	<ControlPoint />
 </Center>
 
@@ -265,7 +265,7 @@ Inject the string in the `<path>` element.
 
 And enjoy a satisfying success.
 
-<Center>
+<Center maxInlineSize="30rem">
 	<Star />
 </Center>
 
@@ -311,6 +311,6 @@ Now, for the final set of options. You could explore the clipboard API and fabri
 
 I won't judge. The final sight is too delightful to wait further.
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['star']}
 </Center>

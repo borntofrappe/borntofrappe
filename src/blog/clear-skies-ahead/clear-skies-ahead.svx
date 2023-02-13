@@ -17,7 +17,7 @@ date: 2023-01-30 21:57:22
 
 Luck is relative. Take this website for instance. If you have never stumbled on an error page, you might have never enjoyed the comforting presence of a shy, but helpful character. You don't have to look for trouble to find it, however.
 
-<Center>
+<Center maxInlineSize="30rem">
 	<Serena />
 </Center>
 
@@ -76,7 +76,7 @@ That being said, _where_ to place the circles is up to interpretation, and part 
 </g>
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['circles']}
 </Center>
 
@@ -111,7 +111,7 @@ Once you then apply the mask to the actual drawing, you show the portions descri
 <use href="#c" mask="url(#mask)" />
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['mask']}
 </Center>
 
@@ -138,7 +138,7 @@ Update the mask to:
 
 You offset the black circle to create a rather familiar sliver. Our shadow! Feel free to experiment with the handles and create your custom eclipse.
 
-<Center>
+<Center maxInlineSize="36rem">
 	<Shadow />
 </Center>
 
@@ -181,7 +181,7 @@ Use the new shape in place of the previous circle and there you have it. Perspec
 </g>
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['masked']}
 </Center>
 
@@ -192,7 +192,7 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 +<g fill="#eb6a6a">
 ```
 
-<Center maxWidth="32rem">
+<Center maxInlineSize="32rem">
 	<Colors />
 </Center>
 
@@ -200,7 +200,7 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 
 We now have two shapes, `c` and `cc`.
 
-<Center>
+<Center maxInlineSize="36rem">
 	{@html svg['shapes']}
 </Center>
 
@@ -221,7 +221,7 @@ For the newly and improved cloud, it is helpful to actually use both: the flat v
 </g>
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	{@html svg['cloud']}
 </Center>
 
@@ -272,7 +272,7 @@ One horizontal line smack in the center is enough to introduce the mouth, and co
 </g>
 ```
 
-<Center>
+<Center maxInlineSize="30rem">
 	<Face />
 </Center>
 
@@ -299,7 +299,7 @@ Immediately after the horizontal line add a cheerful mug with a slightly more co
 
 Why drawing on top of the previous path? It'll make sense soon enough. Right now, let's enjoy the remarkable change brought by these small tweaks.
 
-<Center>
+<Center maxInlineSize="30rem">
 	<Face trueColors={true} />
 </Center>
 
@@ -366,7 +366,7 @@ Call the functions following the `mouseenter` and `mouseleave` events respective
 
 And, reap the rewards.
 
-<Center>
+<Center maxInlineSize="30rem">
 	<Serene />
 </Center>
 
@@ -374,7 +374,7 @@ And, reap the rewards.
 
 [As with Ray](/ray-of-light), I hope you won't mind a couple of extra features, baked in the first version blessing this article.
 
-<Center>
+<Center maxInlineSize="32rem">
 	<Serena />
 </Center>
 
