@@ -73,32 +73,32 @@
 		--background: var(--grey-100);
 
 		--accent: var(--color-300);
-		--shadow: var(--color-100);
+		--shadow: var(--color-200);
 
 		--selection-color: var(--grey-700);
-		--selection-background: var(--color-200);
+		--selection-background: var(--color-100);
 	}
 
 	.day {
-		--color: var(--grey-900);
+		--color: var(--grey-800);
 		--background: var(--grey-000);
 
 		--accent: var(--color-400);
 		--shadow: var(--color-200);
 
-		--selection-color: var(--grey-900);
-		--selection-background: var(--color-300);
+		--selection-color: var(--grey-700);
+		--selection-background: var(--color-200);
 	}
 
 	.night {
-		--color: var(--grey-200);
+		--color: var(--grey-300);
 		--background: var(--grey-900);
 
 		--accent: var(--color-600);
-		--shadow: var(--color-700);
+		--shadow: var(--color-600);
 
-		--selection-color: var(--grey-200);
-		--selection-background: var(--color-800);
+		--selection-color: var(--grey-300);
+		--selection-background: var(--grey-800);
 	}
 
 	main :global(h2),

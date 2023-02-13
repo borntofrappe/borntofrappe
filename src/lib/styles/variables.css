@@ -21,14 +21,14 @@
 	--grey-800: hsl(38, 13%, 17%);
 	--grey-900: hsl(30, 13%, 9%);
 
-	--color: var(--grey-900);
+	--color: var(--grey-800);
 	--background: var(--grey-000);
 
 	--accent: var(--color-400);
 	--shadow: var(--color-200);
 
-	--selection-color: var(--grey-900);
-	--selection-background: var(--color-300);
+	--selection-color: var(--grey-700);
+	--selection-background: var(--color-200);
 
 	--theme-color: #e0def4;
 	--theme-background: #232136;

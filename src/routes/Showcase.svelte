@@ -6,10 +6,10 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(203, 23%, 18%)"
-	style:--background="hsl(218, 100%, 98%)"
-	style:--selection-color="hsl(203, 23%, 18%)"
-	style:--selection-background="hsl(200, 71%, 80%)"
+	style:--color="hsl(209, 61%, 16%)"
+	style:--background="hsl(210, 42%, 96%)"
+	style:--selection-color="hsl(211, 39%, 23%)"
+	style:--selection-background="hsl(210, 31%, 80%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Rainbow sixteen</h2>
@@ -41,10 +41,10 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(216, 33%, 97%)"
+	style:--color="hsl(210, 16%, 82%)"
 	style:--background="hsl(210, 24%, 16%)"
-	style:--selection-color="hsl(216, 33%, 97%)"
-	style:--selection-background="hsl(212, 34%, 30%)"
+	style:--selection-color="hsl(210, 16%, 82%)"
+	style:--selection-background="hsl(209, 34%, 30%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2>Color tiles</h2>
@@ -75,10 +75,10 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(0, 0%, 2%)"
+	style:--color="hsl(0, 0%, 13%)"
 	style:--background="hsl(0, 0%, 75%)"
-	style:--selection-color="hsl(0, 0%, 2%)"
-	style:--selection-background="hsl(0, 0%, 81%)"
+	style:--selection-color="hsl(0, 0%, 13%)"
+	style:--selection-background="hsl(0, 0%, 63%)"
 >
 	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<h2 style:display="inline-block">Minesweeper</h2>

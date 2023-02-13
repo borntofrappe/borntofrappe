@@ -18,9 +18,9 @@
 	class="box"
 	style:--padding="1rem"
 	style:--color="hsl(209, 61%, 16%)"
-	style:--background="hsl(210, 36%, 97%)"
-	style:--selection-color="hsl(210, 36%, 96%)"
-	style:--selection-background="hsl(205, 65%, 55%)"
+	style:--background="hsl(210, 42%, 96%)"
+	style:--selection-color="hsl(211, 39%, 23%)"
+	style:--selection-background="hsl(210, 31%, 80%)"
 >
 	<div class="center stack" style:--leading="0">
 		<main class="flow">

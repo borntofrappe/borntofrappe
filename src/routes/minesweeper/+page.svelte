@@ -18,10 +18,10 @@
 
 <main
 	class="box centered"
-	style:--color="hsl(0, 0%, 2%)"
+	style:--color="hsl(0, 0%, 13%)"
 	style:--background="hsl(0, 0%, 75%)"
-	style:--selection-color="hsl(0, 0%, 2%)"
-	style:--selection-background="hsl(0, 0%, 81%)"
+	style:--selection-color="hsl(0, 0%, 13%)"
+	style:--selection-background="hsl(0, 0%, 63%)"
 >
 	<div style:inline-size="90vmin" style:max-inline-size="52rem">
 		<Puzzle columns={20} rows={12} mines={20} />
