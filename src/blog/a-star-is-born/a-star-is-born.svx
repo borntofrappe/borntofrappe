@@ -19,15 +19,18 @@ On a cold, slightly depressing evening I opened up a [Svelte REPL](https://svelt
 
 ```html
 <svg viewBox="-23.204545974731445 -24 45.409088134765625 43.56756591796875">
-	<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
+	<path
+		fill="#ffdb47"
+		d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15"
+	/>
 </svg>
 ```
 
-And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the crisp visual by the end of the post.
+And here's how I came up with the numbers, decimals included. Be sure, there's intent behind the values, and little left to random chance. And fret not, your patience will be rewarded with the colorful visual by the end of the post.
 
 ## SVG canvas
 
-Indubitably, I did not come up with the `viewBox` attribute from the start. The journey begins instead with a squared canvas, centering the drawing in a comfortably large space.
+Indubitably, I did not come up with the `viewBox` attribute from the get go. The journey begins instead with a squared canvas, centering the upcoming work of art in a comfortably large space.
 
 ```html
 <svg viewBox="-50 -50 100 100">
@@ -37,7 +40,7 @@ Indubitably, I did not come up with the `viewBox` attribute from the start. The 
 
 ## Circle points
 
-You may not believe me, but the `<path />` begins with a circle. To draw a round shape with SVG you have a few options. Among which:
+To draw a round shape with SVG you have a few options. Among which:
 
 - the `<circle>` element
 
@@ -59,7 +62,7 @@ Either approach leads you to a perfectly crisp circle.
 
 The second option, however, opens a world of possibilities. The arc syntax conveniently creates the swooping curves, but with multiple points you can draw the shape connecting the dots, literally.
 
-In a `<script>` element initialize an array for the magic numbers.
+In a `<script>` initialize an array for the magic numbers.
 
 ```js
 const n = 10;
@@ -127,7 +130,7 @@ Once again you have several options. The most immediate relates to the `<polylin
 <polyline points={points.join(' ')} />
 ```
 
-I join the coordinates to have a string of values, `x0 y0 x1 y1 ... x9 y9`, but it seems the element is robust enough to handle the nested arrays as-is.
+I join the coordinates to have a string of values, `x0 y0 x1 y1 ... x9 y9`, but it seems the markup is robust enough to handle the nested arrays as-is.
 
 ```svelte
 <polyline points={points.join(' ')} />
@@ -169,7 +172,7 @@ At once, the title of this article starts to make sense.
   <OffsetValues />
 </Center>
 
-The shape is tilted on its side, and not by accident. Navigating the [0, 360] range you start from the right, from the positive x axis and walk around the circle in a clockwise manner. To have the leftmost edge at the very top offset the angle to move a quarter forward.
+The shape is tilted on its side, and not by accident. Navigating the [0, 360] range you start from the right, from the positive x axis, and walk around the circle in a clockwise manner. To have the leftmost edge at the very top offset the angle to move a quarter forward.
 
 ```diff
 -const angle = (360 / length) * i;
@@ -184,9 +187,9 @@ Effectively, the angle falls in the [90, 450] range, producing the more orthodox
 
 ## Bezier curves
 
-Keep drawing the shape with the `<path>` element and you can replace the sharp segments with smooth curves.
+Keep drawing the shape with a `<path>` and you can replace the sharp segments with smooth curves.
 
-There are two pertinent commands in SVG: `Q` for a quadratic bezier curve and `C` for a cubic bezier curve. Both work through the concept of _control points_, but the latter has actually two of them. To make life easier, we are going to stick with the safer, simpler instruction.
+In this regard, there are two pertinent command: `Q` for a quadratic bezier curve and `C` for a cubic bezier curve. Both work through the concept of _control points_, but the latter has actually two of them. To make life easier, we are going to stick with the safer, simpler instruction.
 
 When you specify two points after the `M` command SVG assumes the `L` character. The instruction creates a line from the previous coordinate to the new pair.
 
@@ -203,7 +206,7 @@ When you specify two points after the `M` command SVG assumes the `L` character.
 	{@html svg['line']}
 </Center>
 
-With the `Q` character specify four values instead, two for the position of the control point, two for the final coordinate. The path connects the start and end values influenced by the intermediate step.
+With the `Q` character you rely on four numbers instead, two for the position of the control point, two for the final position. The path connects the start and end values influenced by the intermediate step.
 
 ```html
 <!-- Q cx cy x y -->
@@ -214,7 +217,7 @@ With the `Q` character specify four values instead, two for the position of the 
 	<ControlPoint />
 </Center>
 
-Back to the almost-illuminated object. Let's build the more complex `d` attribute in the `<script>` element and one step at a time.
+Back to the almost-illuminated object. Let's build the more complex `d` attribute in the `<script>`, one step at a time.
 
 Start with the first point.
 
@@ -222,7 +225,7 @@ Start with the first point.
 let d = `M ${points[0][0]} ${points[0][1]}`;
 ```
 
-Continue with the remaining array.
+Continue with the remaining items in the array.
 
 ```js
 for (let i = 1; i < points.length; i++) {
@@ -230,7 +233,7 @@ for (let i = 1; i < points.length; i++) {
 }
 ```
 
-Past the origin you want to alternate between the control point and the end coordinates. Begin with the control point.
+Past the origin you want to alternate between control points and end coordinates. First, describe the control point.
 
 ```js
 if (i % 2 !== 0) {
@@ -238,7 +241,7 @@ if (i % 2 !== 0) {
 }
 ```
 
-In the iteration which follows specify the end point.
+In the iteration which follows, complete the instruction with the end point.
 
 ```js
 if (i % 2 !== 0) {
@@ -248,7 +251,7 @@ if (i % 2 !== 0) {
 }
 ```
 
-Ten points, you skip the first, nine iterations. This means you end with the `Q` character referring to the last point. To wrap things up, follow the loop with the original pair.
+Ten points, you skip the first, nine iterations. This means you end with the `Q` character referring to the last position. To wrap things up, follow the loop with the original pair.
 
 ```js
 d += ` ${points[0][0]} ${points[0][1]}`;
@@ -260,7 +263,7 @@ Inject the string in the `<path>` element.
 <path {d} />
 ```
 
-And enjoy the rewarding result.
+And enjoy a satisfying success.
 
 <Center>
 	<Star />
@@ -270,7 +273,7 @@ And enjoy the rewarding result.
 
 The arbitrary `viewBox` finally proves to be excessive. Luckily, the drawing is complete, and the accurate measurements are within reach.
 
-You need access to the actual SVG element. With Svelte, this means you need to:
+You need access to the actual `<svg>` element. With Svelte, achieve this in two steps:
 
 1. associate a variable through the `bind:this` directive
 
@@ -284,7 +287,7 @@ You need access to the actual SVG element. With Svelte, this means you need to:
    </svg>
    ```
 
-2. wait for the element to exist, pending the `onMount` lifecycle function
+2. wait for the element to exist pending the `onMount` lifecycle function
 
    ```svelte
    <script>
@@ -292,7 +295,7 @@ You need access to the actual SVG element. With Svelte, this means you need to:
 
    	let svg;
    	onMount(() => {
-   		// svg
+   		console.log(svg); // <svg viewB....
    	});
    </script>
    ```
@@ -304,7 +307,7 @@ const { x, y, width, height } = svg.getBBox();
 const viewBox = `${x} ${y} ${width} ${height}`;
 ```
 
-Now, for the final set of options. You could explore the clipboard API and fabricate a button to copy the entire string with a single press. Or, realize it's way too late, you're just too tired, and manually select the text yourself.
+Now, for the final set of options. You could explore the clipboard API and fabricate a button to extract the string with a single press. Or, realize it's way too late, you're just too tired, and a manual copy-paste will just do.
 
 I won't judge. The final sight is too delightful to wait further.
 

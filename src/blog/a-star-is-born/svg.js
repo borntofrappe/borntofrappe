@@ -6,7 +6,6 @@ export default {
 </svg>`,
 	line: `<svg style="display: block" viewBox="0 0 50 50">
 <g fill="none" stroke="currentColor" stroke-width="0.5">
-  <!-- <path d="M 5 25 45 25" /> -->
   <path d="M 5 25 L 45 25" />
 </g>
 <g fill="currentColor">
@@ -15,10 +14,9 @@ export default {
 </g>
 </svg>`,
 	star: `<svg style="display: block" viewBox="-23.204545974731445 -24 45.409088134765625 43.56756591796875">
-  <g fill="#ffdb47">
-  <path
-  d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15"
-/>
-</g>
+	<path
+		fill="#ffdb47"
+		d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15"
+	/>
 </svg>`
 };
