@@ -3,13 +3,13 @@
 	const addon = [0, 1];
 </script>
 
-<svg viewBox="-0.5 -0.5 11 6">
+<svg viewBox="0 0 10 5">
 	<defs>
-		<path id="clusters-addon-mark-0" d="M 1 1 v 4" />
-		<path id="clusters-addon-mark-1" d="M 2 1 v 4" />
-		<path id="clusters-addon-mark-2" d="M 3 1 v 4" />
-		<path id="clusters-addon-mark-3" d="M 4 1 v 4" />
-		<path id="clusters-addon-mark-4" d="M 0 3.5 l 5 -1" />
+		<path id="clusters-addon-mark-0" d="M 1 1 v 3" />
+		<path id="clusters-addon-mark-1" d="M 2 1 v 3" />
+		<path id="clusters-addon-mark-2" d="M 3 1 v 3" />
+		<path id="clusters-addon-mark-3" d="M 4 1 v 3" />
+		<path id="clusters-addon-mark-4" d="M 0.5 3.4 l 4 -1.8" />
 	</defs>
 	<g stroke="currentColor" stroke-width="0.5">
 		{#each marks as number}

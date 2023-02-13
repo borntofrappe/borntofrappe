@@ -58,28 +58,28 @@ Create an `<svg>` element with a very specific `viewBox` attribute.
 Draw a line with the always flexible `<path>` element.
 
 ```html
-<path d="M 1 1 v 4 />
+<path d="M 1 1 v 3 />
 ```
 
 To show the line set a visible stroke.
 
 ```html
-<path d="M 1 1 v 4" stroke="currentColor" />
+<path d="M 1 1 v 3" stroke="currentColor" />
 ```
 
 And, repeat. Four lines, side by side, changing the origin with the x coordinate.
 
 ```html
-<path d="M 2 1 v 4" stroke="currentColor" />
-<path d="M 3 1 v 4" stroke="currentColor" />
-<path d="M 4 1 v 4" stroke="currentColor" />
+<path d="M 2 1 v 3" stroke="currentColor" />
+<path d="M 3 1 v 3" stroke="currentColor" />
+<path d="M 4 1 v 3" stroke="currentColor" />
 ```
 
 Instead of repeating the common attribute, collect the shapes in the same group element, setting the value just once.
 
 ```html
 <g stroke="currentColor">
-	<path d="M 1 1 v 4" />
+	<path d="M 1 1 v 3" />
 	<!-- ...paths -->
 </g>
 ```
@@ -92,23 +92,14 @@ By default the stroke has a width of 1, which doesn't leave much separation betw
 </g>
 ```
 
-Four, separated, vertical lines. Add the missing horizontal mark to close the group. For a bit of variety I went for a slightly diagonal segment, spanning the canvas from left to right.
+Four, separated, vertical lines. Add the missing horizontal mark to close the group. For a bit of variety I went for a slightly diagonal segment, completing the drawing from left to right.
 
 ```html
-<path d="M 0 3.5 l 5 -1" />
+<path d="M 0.5 3.4 l 4 -1.8" />
 ```
-
-One unfortunate mishap is that the line is cropped at either end. If you tinker with the `viewBox` attribute you can work around the issue by expanding the visible area.
-
-```diff
--<svg viewBox="0 0 5 5">
-+<svg viewBox="-0.5 -0.5 6 6">
-```
-
-You zoom out to highlight the nice grouping of 5 paths elements.
 
 <Center maxInlineSize="28rem">
-	{@html svg['expand-viewbox']}
+	{@html svg['tally-marks']}
 </Center>
 
 ## Repeat lines
@@ -119,8 +110,8 @@ Define the marks in a `<defs>` block.
 
 ```html
 <defs>
-	<path id="mark-0" d="M 1 1 v 4" />
-	<path id="mark-1" d="M 2 1 v 4" />
+	<path id="mark-0" d="M 1 1 v 3" />
+	<path id="mark-1" d="M 2 1 v 3" />
 	<!-- -->
 </defs>
 ```
@@ -206,10 +197,10 @@ I know you are clamoring for a better solution with a nested array. First, howev
 Moving the group 5 to the right means moving the marks outside of the canvas. Resolve the issue expanding the `<svg>` element horizontally.
 
 ```html
-<svg viewBox="-0.5 -0.5 11 6"></svg>
+<svg viewBox="0 0 10 5"></svg>
 ```
 
-From 6 to 11. Growing by 5.
+From 5 to 10. Growing by 5.
 
 <Center maxInlineSize="32rem">
 	<ClustersAddon />
@@ -248,10 +239,10 @@ With a nested loop add the marks, this time referring to the `id`.
 
 Hopefully the roundabout way we reached this point makes the instruction clearer.
 
-The last missing piece relates to the size of the canvas. How wide? 5 times as necessary, 5 times as there are clusters. Plus the 1 used earlier to expand the `viewBox`.
+The last missing piece relates to the size of the canvas. How wide? 5 times as necessary, 5 times as there are clusters.
 
 ```svelte
-<svg viewBox="-0.5 -0.5 {5 * marks.length + 1} 6" />
+<svg viewBox="0 0 {5 * marks.length} 5" />
 ```
 
 <Center maxInlineSize="32rem">
