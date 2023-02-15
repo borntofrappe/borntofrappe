@@ -50,7 +50,7 @@
 <svelte:window on:resize={handleSize} />
 
 <svg
-	viewBox="-55 -60 110 100"
+	viewBox="-60 -70 120 120"
 	bind:this={svg}
 	on:mousemove={({ offsetY }) => {
 		handleMove({ offsetY });
