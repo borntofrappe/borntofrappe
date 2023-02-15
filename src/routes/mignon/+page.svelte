@@ -3,6 +3,7 @@
 	const { title } = site;
 
 	import Ray from './Ray.svelte';
+	import Mayo from './Mayo.svelte';
 </script>
 
 <svelte:head>
@@ -16,6 +17,6 @@
 
 <main class="centered">
 	<div style:inline-size="100vmin" style:max-inline-size="32rem">
-		<Ray />
+		<Mayo />
 	</div>
 </main>
