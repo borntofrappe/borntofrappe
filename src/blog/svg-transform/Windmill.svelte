@@ -6,7 +6,7 @@
 	<form on:submit|preventDefault>
 		<label>
 			<input type="checkbox" bind:checked={wind} />
-			<span>{wind ? 'Stop wind' : 'Add wind'}</span>
+			<span>{wind ? 'Pause' : 'Let the wind blow'}</span>
 		</label>
 	</form>
 
