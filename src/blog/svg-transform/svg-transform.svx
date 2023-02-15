@@ -1,17 +1,36 @@
 ---
 title: SVG transform
-description: A soft introduction to SVG transformations
-date: 2023-02-15 17:31:53
+description: A soft introduction to SVG transformations and the precious concept of transform origin
+date: 2023-02-15 21:31:53
 ---
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
-    import Windmill from './Windmill.svelte';
+	import Windmill from './Windmill.svelte';
+	import DrinkingBird from './DrinkingBird.svelte';
 </script>
 
-With a basic grasp of source order and the `transform` attribute you can create pretty little decorations.
+With a basic grasp of source order and SVG transformations you are able to create quite the impressive visuals. CSS animations, then, are just a step away.
 
 <Center maxInlineSize="20rem">
-    <Windmill />
+	<Windmill />
+</Center>
+
+Do not worry. This article won't over-extend into the land of cascading stylesheets. It will, however, show you the remarkable potential of SVG in neat little increments. Better yet, it will do so with a brand new vector to keep supsense.
+
+## Setup
+
+Start with a large, blank canvas.
+
+```html
+<svg viewBox="0 0 100 100"></svg>
+```
+
+## Wrapping up
+
+Let me grab a coaster and offer you a refreshing beverage.
+
+<Center maxInlineSize="20rem">
+	<DrinkingBird />
 </Center>

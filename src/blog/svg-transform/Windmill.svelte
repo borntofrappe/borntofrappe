@@ -10,7 +10,7 @@
 		</label>
 	</form>
 
-	<svg class:wind role="img" viewBox="-50 -45 100 100">
+	<svg class:wind viewBox="-50 -45 100 100">
 		<title>A charming windmill waiting for a gentle breeze</title>
 		<defs>
 			<g id="windmill-sail">
