@@ -1,0 +1,7 @@
+---
+title: SVG transform
+description: A soft introduction to SVG transformations
+date: 2023-02-15 17:31:53
+---
+
+With a basic grasp of source order and the `transform` attribute you can create pretty little decorations.
