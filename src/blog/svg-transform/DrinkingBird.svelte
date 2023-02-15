@@ -52,24 +52,23 @@
 			<use href="#glass" />
 		</g>
 
-		<g fill="none" stroke="#632b2a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-			<path d="M 50 50 v 35 h -10 h 20" />
-		</g>
-		<g fill="#632b2a">
-			<circle cx="50" cy="50" r="4" />
+		<g>
+			<g
+				fill="none"
+				stroke="#632b2a"
+				stroke-width="4"
+				stroke-linejoin="round"
+				stroke-linecap="round"
+			>
+				<path d="M 50 50 v 35 h -10 h 20" />
+			</g>
+			<circle fill="#632b2a" cx="50" cy="50" r="4" />
 		</g>
 
 		<g transform="translate(50 50)">
 			<g class="bird">
 				<path fill="none" stroke="#db9756" stroke-width="4" d="M 0 -40 v 60" />
-				<circle
-					fill="#db9756"
-					stroke="#db9756"
-					stroke-width="2"
-					stroke-linejoin="round"
-					cy="20"
-					r="10"
-				/>
+				<circle fill="#db9756" cy="20" r="11" />
 				<ellipse fill="#f5e0c1" cy="16" rx="5" ry="4" />
 				<g fill="#914c3c" stroke="#914c3c" stroke-width="2" stroke-linejoin="round">
 					<g transform="translate(0 -35)">
@@ -91,7 +90,7 @@
 	}
 
 	div > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 0.75rem;
 	}
 
 	input {
