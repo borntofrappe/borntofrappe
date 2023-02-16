@@ -227,7 +227,7 @@ But the result is one and the same. The interactive version? Equally entertainin
 
 In the end, we limited ourselves to elementary shapes, mostly lines and circles. The last `<path>` element completed the precious toy, but you have to thank SVG transformations for the fancy result.
 
-With enough patience, with enough care you can spoil yourself drawing a more convincing picture. Perhaps even consider CSS animations once more. I might have mentioned it, but these are well within reach. Let me grab a coaster and prove it with a refreshing visual.
+With enough patience, with enough care you can spoil yourself drawing a more convincing picture. Perhaps even consider CSS animations once more. I might have mentioned it, but these are well within reach. Let me grab a coaster and prove it with a refreshing beverage.
 
 <Center maxInlineSize="30rem">
 	<DrinkingBird />
