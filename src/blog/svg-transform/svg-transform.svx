@@ -20,7 +20,7 @@ With a basic understanding of SVG syntax you are able to create quite impressive
 	<Windmill />
 </Center>
 
-Do not worry. The article won't over-extend into the land of cascading stylesheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector to keep supsense.
+Do not worry. The article won't over-extend into the land of cascading style sheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector to keep supsense.
 
 ## Getting started
 
@@ -102,7 +102,7 @@ This is because the rotation is relative to (0, 0), to the origin of the SVG can
 	<Origin />
 </Center>
 
-Enters the `transform-origin` attribute. Here you specify the new origin similarly to the equally-named CSS property.
+Enter the `transform-origin` attribute. Here you specify the new origin similarly to the equally-named CSS property.
 
 ```html
 <g transform-origin="50 50" transform="rotate(25)">
