@@ -56,7 +56,7 @@
 	}
 
 	div > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 0.75rem;
 	}
 
 	p {
@@ -86,7 +86,7 @@
 	}
 
 	form > * + * {
-		margin-block-start: 0.5em;
+		margin-block-start: 0.5rem;
 	}
 
 	label {

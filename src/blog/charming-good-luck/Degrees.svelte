@@ -58,7 +58,7 @@
 	}
 
 	div > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 0.75rem;
 	}
 
 	form {
@@ -72,7 +72,7 @@
 	}
 
 	label input {
-		margin-block-start: 0.5em;
+		margin-block-start: 0.5rem;
 		display: block;
 		inline-size: 100%;
 	}

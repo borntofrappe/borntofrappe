@@ -60,7 +60,7 @@
 	}
 
 	div > * + * {
-		margin-block-start: 0.75em;
+		margin-block-start: 0.75rem;
 	}
 
 	input {
