@@ -1,7 +1,7 @@
 ---
 title: SVG transform
 description: A soft introduction to SVG transformations and the precious concept of transform origin
-date: 2023-02-15 22:27:35
+date: 2023-02-16 9:08:27
 ---
 
 <script>
@@ -14,13 +14,13 @@ date: 2023-02-15 22:27:35
 	import DrinkingBird from './DrinkingBird.svelte';
 </script>
 
-With a basic understanding of SVG syntax you are able to create quite impressive visuals. CSS animations, then, are just a step away.
+With a basic understanding of SVG syntax you are able to create quite the impressive visuals. CSS animations, then, are just a step away.
 
 <Center maxInlineSize="26rem">
 	<Windmill />
 </Center>
 
-Do not worry. The article won't over-extend into the land of cascading style sheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector to keep supsense.
+Do not worry. The article won't over-extend into the land of cascading style sheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector as a treat.
 
 ## Getting started
 
@@ -96,7 +96,7 @@ Perhaps expectedly, applying the rotation directly won't work.
 	{@html svg['transform-rotate']}
 </Center>
 
-This is because the rotation is relative to (0, 0), to the origin of the SVG canvas.
+This is because the rotation is relative to (0, 0), to the origin of the SVG.
 
 <Center maxInlineSize="30rem">
 	<Origin />
@@ -116,11 +116,11 @@ Only one question remains: does it actually work?
 	{@html svg['transform-origin']}
 </Center>
 
-It seems the feature [is not widespread](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), but as the attribute becomes ubiquitous, as you see the sharp stick properly tilted in the center of the canvas, you won't have to look for alternatives. You won't have to read the next section either.
+It seems the feature [is not widespread](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), but as the attribute becomes ubiquitous, as you see the sharp stick properly tilted around the center of the canvas, you won't have to look for alternatives. You won't have to read the next section either.
 
 ## Transform translate
 
-Barring the `transform-origin` attribute you'll have to meddle with the markup. The idea is to apply a translation _before_ the rotation.
+Barring the `transform-origin` attribute you need to meddle with the markup. The idea is to apply a translation _before_ the rotation.
 
 ```html
 <g transform="translate(50 50)">
@@ -130,7 +130,7 @@ Barring the `transform-origin` attribute you'll have to meddle with the markup. 
 </g>
 ```
 
-The rotation is then relative to the new, offset coordinate. Update the `<path>` to draw the line from the new point.
+The rotation is then relative to the offset coordinate. Update the `<path>` to draw the line from the new point.
 
 ```diff
 -<path d="M 50 10 v 60" />
@@ -217,7 +217,7 @@ That's right, a beautiful trapezoid. Since the elements have the same fill, the 
 </g>
 ```
 
-But the result is one and the same. The playground? Equally entertaining.
+But the result is one and the same. The interactive version? Equally entertaining.
 
 <Center maxInlineSize="30rem">
 	<Composition />
@@ -225,7 +225,9 @@ But the result is one and the same. The playground? Equally entertaining.
 
 ## Wrapping up
 
-Let me grab a coaster and offer you a refreshing visual.
+In the end, we limited ourselves to elementary shapes, mostly lines and circles. The last `<path>` element completed the precious toy, but you have to thank SVG transformations for the fancy result.
+
+With enough patience, with enough care you can spoil yourself drawing a more convincing picture. Perhaps even consider CSS animations once more. I might have mentioned it, but these are well within reach. Let me grab a coaster and prove it with a refreshing visual.
 
 <Center maxInlineSize="30rem">
 	<DrinkingBird />
