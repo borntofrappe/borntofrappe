@@ -71,3 +71,18 @@ a:hover {
 :focus:not(:focus-visible) {
 	outline: none;
 }
+
+[data-state] {
+	transition: opacity 0.5s cubic-bezier(0.37, 0, 0.63, 1),
+		transform 0.75s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+[data-state='hidden'] {
+	opacity: 0;
+	transform: translateY(1rem);
+}
+
+[data-state='visible'] {
+	opacity: 1;
+	transform: translateY(0);
+}

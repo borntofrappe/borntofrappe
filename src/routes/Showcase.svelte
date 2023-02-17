@@ -2,6 +2,8 @@
 	import RainbowSixteen from './rainbow-sixteen/Puzzle.svelte';
 	import ColorTiles from './color-tiles/Puzzle.svelte';
 	import Minesweeper from './minesweeper/Puzzle.svelte';
+
+	import { observeState } from '$lib/utils/actions.js';
 </script>
 
 <section
@@ -11,7 +13,11 @@
 	style:--selection-color="hsl(211, 39%, 23%)"
 	style:--selection-background="hsl(210, 31%, 80%)"
 >
-	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+	<article
+		use:observeState={{ dataState: ['hidden', 'visible'] }}
+		class="box floating"
+		style:--padding="var(--step-space-700) var(--step-space-300)"
+	>
 		<h2 style:display="inline-block">Rainbow sixteen</h2>
 
 		<div class="float end" style:--float="left" style:--space="var(--space-500)">
@@ -46,7 +52,11 @@
 	style:--selection-color="hsl(210, 16%, 82%)"
 	style:--selection-background="hsl(209, 34%, 30%)"
 >
-	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+	<article
+		use:observeState={{ dataState: ['hidden', 'visible'] }}
+		class="box floating"
+		style:--padding="var(--step-space-700) var(--step-space-300)"
+	>
 		<h2>Color tiles</h2>
 
 		<div
@@ -80,7 +90,11 @@
 	style:--selection-color="hsl(0, 0%, 13%)"
 	style:--selection-background="hsl(0, 0%, 63%)"
 >
-	<article class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
+	<article
+		use:observeState={{ dataState: ['hidden', 'visible'] }}
+		class="box floating"
+		style:--padding="var(--step-space-700) var(--step-space-300)"
+	>
 		<h2 style:display="inline-block">Minesweeper</h2>
 
 		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
