@@ -4,7 +4,7 @@ description: Transition elements into view with the help of the intersection obs
 date: 2023-02-07T15:14:53
 ---
 
-There is one nice effect, especially on landing pages, where content is revealed as you scroll along. Text and images appear from the aether to make the page feel responsive, receptive. Almost alive.
+There is one nice effect, especially on landing pages, where content is revealed as you scroll along. Text and images appear from the ether to make the page feel responsive, receptive. Almost alive.
 
 You don't even need to be fancy with the introduction. Even a subtle, fade-in transition is impressive enough.
 
@@ -16,7 +16,7 @@ You can work locally — all you need is an `.html` file opened in a web browser
 
 ## HTML
 
-If you are familiar with [Emmet](https://blog.codepen.io/2013/04/24/emmet-on-codepen/) the following cryptic line will do the trick.
+If you are familiar with [Emmet](https://blog.codepen.io/2013/04/24/emmet-on-codepen/) the following cryptic line will do.
 
 ```html
 div*4>p>lorem10
@@ -44,7 +44,7 @@ div {
 }
 ```
 
-For a bit of flair we then change the background color of the child elements, even add a hint of padding.
+For a bit of flair, then, we are going to change the background color of the child elements, even add a hint of padding.
 
 ```css
 p {
@@ -71,7 +71,7 @@ To manage the state you could rely on classes, but I rather enjoy the construct 
 }
 ```
 
-Two `data-state` selectors. One to hide the content, and slightly nudge it down for good measure. One to show the content back.
+Two `data-state` selectors. One to hide the content, and slightly nudge it down for good measure. One to show the content anew.
 
 For the transition add a final selector, targeting all the elements bearing the `data-state` attribute.
 
@@ -85,7 +85,7 @@ The intent should be clear. With JavaScript, the idea is to manage the state thr
 
 ## Javascript
 
-The intersection observer API is [well supported](https://caniuse.com/intersectionobserver), but it never hurts to check the feature first. One checkup is well worth the hassle.
+The intersection observer API is [well supported](https://caniuse.com/intersectionobserver), but it never hurts to test the feature first. One checkup is well worth the hassle.
 
 ```js
 if (IntersectionObserver) {
@@ -93,7 +93,7 @@ if (IntersectionObserver) {
 }
 ```
 
-If you care for self-invoking functions you could replace the statement testing the opposite instance, the lack of feature.
+If you care for self-invoking functions you could replace the statement testing the opposite instance, the lack of the feature.
 
 ```js
 (() => {
@@ -102,7 +102,7 @@ If you care for self-invoking functions you could replace the statement testing 
 })();
 ```
 
-Either way, let's continue the logic with the participation of the API.
+Either way, let's continue the logic with the available API.
 
 Set up an instance of `IntersectionObserver`.
 
@@ -132,9 +132,9 @@ Finally, direct the observer to the element.
 observer.observe(paragraph);
 ```
 
-If you test the result, the text disappears as intended. It's the job of the callback to have the paragraphs re-appear.
+Refresh the page and the text disappears as intended. It's the job of the callback to have the paragraphs return.
 
-The callback function takes as argument an array of _entries_, and the observer itself.
+The callback function takes as argument an array of entries, and the observer itself.
 
 ```js
 const callback = (entries, observer) => {
@@ -195,12 +195,12 @@ I personally have a lighter conscience knowing the observer has completed its ta
 
 ## Svelte
 
-Open up a Svelte app, perhaps [through the REPL](https://svelte.dev/repl), and copy-paste the markup.
+Open up a Svelte app, perhaps [through a REPL](https://svelte.dev/repl), and copy-paste the markup.
 
 ```svelte
 <div>
-	<p>Lorem ipsum d <!-- ... --></p>
-</div>
+	<p>Lorem ipsum d<!-- ... --></p>
+<!-- ... -->
 ```
 
 In between `<style>` tags continue the copying with CSS.
@@ -211,12 +211,13 @@ In between `<style>` tags continue the copying with CSS.
 		min-block-size: 100vh;
 		/* ... */
 	}
+	/* ... */
 </style>
 ```
 
-The compiler here complains about _Unsed CSS selectors_, with a reference to the `data-state` attributes.
+The compiler here complains about _"Unused CSS selectors"_, with a reference to the `data-state` attributes.
 
-For better, and this time for worse, Svelte considers only the styles applicable to the component, to the existing markup. There is no element with a `data-state` attribute, nor one with the specific values, and the instructions are not processed.
+For better, and this time for worse, Svelte considers only the styles applicable to the component, to the existing markup. There is no element with the `data-state` attribute, nor one with the specific values, and the instructions are not processed.
 
 The quickest way around the issue is through Svelte `:global` syntax. In this manner you target all possible nodes, and the properties are preserved.
 
@@ -225,7 +226,7 @@ The quickest way around the issue is through Svelte `:global` syntax. In this ma
 +:global([data-state="hidden"]) {
 ```
 
-Moving on to the logic, Svelte offers [actions](https://svelte.dev/docs#template-syntax-element-directives-use-action) as a most helpful feature. You create the action as a function and associate it to an element through the `use:` directive.
+Moving on to the logic, Svelte offers [actions](https://svelte.dev/docs#template-syntax-element-directives-use-action) as a most helpful feature. You create an action with a function and associate it to an element through the `use:` directive.
 
 ```svelte
 <script>
@@ -234,10 +235,10 @@ Moving on to the logic, Svelte offers [actions](https://svelte.dev/docs#template
 	};
 </script>
 
-<p use:observeState>Lorem ipsum d <!-- ... --></p>
+<p use:observeState>Lorem ipsum d<!-- ... --></p>
 ```
 
-The function is called as the element is created, giving you access to the HTML node.
+The function is called as the element is created, giving you access to the node.
 
 ```js
 const observeState = (node) => {
@@ -245,13 +246,13 @@ const observeState = (node) => {
 };
 ```
 
-Knowing this, the biggest challenge is to adapt the previous script, for all paragraphs, to consider a single node. As you'll see, this will take only JavaScript.
+Knowing this, the biggest challenge is to adapt the previous script, for all paragraphs, to consider a single element. As you'll see, this will take only JavaScript.
 
 Past the customary feature-detection, repeat the code to create the observer.
 
 ```js
 const callback = (entries, observer) => {
-	//
+	// ...
 };
 
 const observer = new IntersectionObserver(callback);
@@ -264,7 +265,7 @@ node.setAttribute('data-state', 'hidden');
 observer.observe(node);
 ```
 
-In the callback function iterate through `entries`, exactly as in the previous version, or consider only the first object.
+In the callback function iterate through `entries`, exactly as in the previous version, or test the first object only.
 
 ```js
 /*
@@ -299,6 +300,4 @@ const observeState = (node) => {
 };
 ```
 
-Once again, feel free to examine the code, this time [in the REPL](https://svelte.dev/repl/104b8f01b2b146f39890d81a2c26a920?version=3.55.1).
-
-And feel free to scroll to your heart's content.
+Once again, feel free to examine the code, this time [in the REPL](https://svelte.dev/repl/104b8f01b2b146f39890d81a2c26a920?version=3.55.1). Feel free to scroll to your heart's content.
