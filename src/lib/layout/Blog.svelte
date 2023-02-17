@@ -142,6 +142,19 @@
 		font-weight: 700;
 	}
 
+	main :global(a) {
+		text-decoration: none;
+		background: linear-gradient(transparent 80%, var(--accent) 80%),
+			linear-gradient(transparent 80%, var(--shadow) 90%);
+		background-size: 0% 100%, 100% 100%;
+		background-repeat: no-repeat;
+		transition: background-size 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	main :global(a:hover) {
+		background-size: 100% 100%, 100% 100%;
+	}
+
 	main :global(table) {
 		--padding: 1rem;
 		--border-radius: 0.5rem;
