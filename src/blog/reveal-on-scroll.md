@@ -1,6 +1,6 @@
 ---
 title: Reveal on scroll
-description: Reveal content as you scroll the page with the intersection observer API and a sprinkling of Svelte
+description: Transition elements into view with the help of the intersection observer API and a sprinkling of Svelte
 date: 2023-02-07T15:14:53
 ---
 
@@ -12,11 +12,11 @@ You don't even need to be fancy with the introduction. Even a subtle, fade-in tr
 
 We are going to touch Svelte in a later section, but let's start with solid foundations. Let's begin with HTML, CSS and Javascript.
 
-You can work locally — all you need is an an `.html` file opened in a web browser — but you might enjoy a playground like [CodePen](https://codepen.io/pen/) a tad more. The split between the three panels, between the three languages certainly helps to frame the feature.
+You can work locally — all you need is an `.html` file opened in a web browser — but you might enjoy a playground like [CodePen](https://codepen.io/pen/) a tad more. The split between the three panels, between the three languages certainly helps to frame the feature.
 
 ## HTML
 
-If you are familiar with [Emmet](https://blog.codepen.io/2013/04/24/emmet-on-codepen/) the following, cryptic set of instruction will do the trick.
+If you are familiar with [Emmet](https://blog.codepen.io/2013/04/24/emmet-on-codepen/) the following cryptic line will do the trick.
 
 ```html
 div*4>p>lorem10
@@ -26,7 +26,7 @@ The result is a markup structure with five `<div>` containers, wrapping around a
 
 ## CSS
 
-To force scrolling target the `<div>` elements and stretch them to fill the viewport.
+To force scrolling, target the `<div>` elements and stretch them to fill the viewport.
 
 ```css
 div {
@@ -93,7 +93,7 @@ if (IntersectionObserver) {
 }
 ```
 
-If you care for self-invoking functions you could replace the instruction testing the opposite instance, the lack of feature.
+If you care for self-invoking functions you could replace the statement testing the opposite instance, the lack of feature.
 
 ```js
 (() => {
@@ -142,7 +142,7 @@ const callback = (entries, observer) => {
 };
 ```
 
-[A single entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) carries plenty of helpful details.
+[A single entry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) gives you plenty of information.
 
 ```js
 entries.forEach((entry) => {
@@ -225,7 +225,7 @@ The quickest way around the issue is through Svelte `:global` syntax. In this ma
 +:global([data-state="hidden"]) {
 ```
 
-Moving on to the logic, Svelte offers [actions](https://svelte.dev/docs#template-syntax-element-directives-use-action) as a power feature. You create the action with a function and execute its logic through the `use:` directive.
+Moving on to the logic, Svelte offers [actions](https://svelte.dev/docs#template-syntax-element-directives-use-action) as a most helpful feature. You create the action as a function and associate it to an element through the `use:` directive.
 
 ```svelte
 <script>
@@ -245,7 +245,7 @@ const observeState = (node) => {
 };
 ```
 
-Knowing this, the biggest challenge is to adapt the previous set of instructions, for all paragraphs, to consider a single node. As you'll see, this will take only JavaScript.
+Knowing this, the biggest challenge is to adapt the previous script, for all paragraphs, to consider a single node. As you'll see, this will take only JavaScript.
 
 Past the customary feature-detection, repeat the code to create the observer.
 
