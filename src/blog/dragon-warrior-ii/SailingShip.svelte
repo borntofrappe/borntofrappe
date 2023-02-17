@@ -113,7 +113,7 @@
 	};
 </script>
 
-<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<rect id="p" width="1" height="1" />
 		<symbol shape-rendering="crispEdges" id="sea" viewBox="0 0 16 16">

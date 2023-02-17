@@ -56,7 +56,7 @@
 	};
 </script>
 
-<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<symbol id="life" viewBox="-0.5 -0.5 8 8" shape-rendering="crispEdges">
 			<path stroke="currentColor" d="M1 1h2M4 1h2M0 2h7M0 3h7M0 4h7M1 5h5M2 6h3M3 7h1" />

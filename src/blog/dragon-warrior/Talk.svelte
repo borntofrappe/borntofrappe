@@ -6,7 +6,7 @@
 	$: talk = checked && talks[Math.floor(Math.random() * talks.length)];
 </script>
 
-<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<symbol id="dragon-warrior-sage" viewBox="0 0 16 16" shape-rendering="crispEdges">
 			<g fill="hsl(0, 0%, 13%)">

@@ -5,7 +5,7 @@
 	const heroes = ['prince', 'gary', 'beth'];
 </script>
 
-<svg aria-hidden="true" style="width: 0; height: 0; position: absolute">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<symbol id="prince-0" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path

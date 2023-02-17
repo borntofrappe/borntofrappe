@@ -25,7 +25,7 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<svg aria-hidden="true" style:position="absolute" style:inline-size="0" style:block-size="0">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<filter id="filter-outline">
 			<feFlood flood-color={foreground || 'currentColor'} result="l1-color" />
