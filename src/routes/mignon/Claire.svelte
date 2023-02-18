@@ -18,8 +18,12 @@
 				<path d="M -2.5 0 l 1.5 1 1 1.5 1 -1.5 1.5 -1 -1.5 -1 -1 -1.5 -1 1.5z" />
 			</g>
 		</symbol>
-
 		<use id="star" href="#star-symbol" x="-4" y="-4" width="8" height="8" />
+
+		<circle id="moon" r="28" />
+		<clipPath id="moon-clip" class="translate">
+			<use href="#moon" />
+		</clipPath>
 	</defs>
 
 	<g fill="#dad35f">
@@ -43,7 +47,7 @@
 	</g>
 
 	<g>
-		<circle r="28" fill="#dad35f" />
+		<use href="#moon" fill="#dad35f" />
 		<g stroke="#bfb5f5">
 			<g transform="translate(0 -4)">
 				<use href="#eyelash" x="-10" />
@@ -56,16 +60,15 @@
 			<circle r="1" cx="13.25" cy="21.5" />
 
 			<g transform="translate(0 10)">
-				<g transform="scale(1)">
-					<g stroke="#bfb5f5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-						<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
-					</g>
+				<g stroke="#bfb5f5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+					<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
 				</g>
 			</g>
 		</g>
 	</g>
-	<g opacity="0">
-		<circle r="28" fill="#f2ec64" />
+
+	<g clip-path="url(#moon-clip)">
+		<use href="#moon" fill="#f2ec64" />
 		<g fill="#dad35f">
 			<g transform="translate(0 -3)">
 				<circle r="4.5" cx="10" />
