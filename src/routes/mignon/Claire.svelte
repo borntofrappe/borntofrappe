@@ -12,7 +12,35 @@
 				</g>
 			</g>
 		</g>
+
+		<symbol id="star-symbol" viewBox="-3 -3 6 6">
+			<g stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+				<path d="M -2.5 0 l 1.5 1 1 1.5 1 -1.5 1.5 -1 -1.5 -1 -1 -1.5 -1 1.5z" />
+			</g>
+		</symbol>
+
+		<use id="star" href="#star-symbol" x="-4" y="-4" width="8" height="8" />
 	</defs>
+
+	<g fill="#dad35f">
+		<circle cx="-48" cy="-46" r="1" />
+		<circle cx="-40" cy="-38" r="1.1" />
+		<circle cx="-43" cy="-42" r="0.9" />
+		<circle cx="-38" cy="-46" r="1.8" />
+		<circle cx="-34" cy="-40" r="1.2" />
+		<circle cx="39" cy="-42" r="0.9" />
+		<circle cx="35" cy="-38" r="1" />
+		<circle cx="34" cy="-45" r="0.75" />
+		<circle cx="42" cy="44" r="0.75" />
+		<circle cx="-33" cy="35" r="1" />
+		<g stroke="#dad35f">
+			<use transform="translate(35 -38)" href="#star" />
+			<use transform="translate(-38 28) scale(0.8)" href="#star" />
+			<use transform="translate(29 38) scale(0.7)" href="#star" />
+			<use transform="translate(35 45) scale(0.5)" href="#star" />
+			<use transform="translate(38 35) scale(0.6)" href="#star" />
+		</g>
+	</g>
 
 	<g>
 		<circle r="28" fill="#dad35f" />
