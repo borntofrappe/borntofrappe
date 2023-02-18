@@ -14,6 +14,19 @@
 			};
 		});
 
+	const scale = spring(1, {
+		stiffness: 0.1,
+		damping: 0.2
+	});
+
+	const offset = spring(
+		{ x: 0, y: 0 },
+		{
+			stiffness: 0.1,
+			damping: 0.25
+		}
+	);
+
 	let svg;
 	let w, h;
 	const m = 20;
@@ -27,19 +40,6 @@
 		w = width;
 		h = height;
 	};
-
-	const scale = spring(1, {
-		stiffness: 0.1,
-		damping: 0.2
-	});
-
-	const offset = spring(
-		{ x: 0, y: 0 },
-		{
-			stiffness: 0.1,
-			damping: 0.25
-		}
-	);
 
 	const handleStart = () => {
 		scale.set(1.1);
@@ -118,6 +118,10 @@
 </svg>
 
 <style>
+	svg {
+		display: block;
+	}
+
 	.blink {
 		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
 	}

@@ -175,6 +175,10 @@
 </svg>
 
 <style>
+	svg {
+		display: block;
+	}
+
 	svg rect {
 		animation: translate 1s linear infinite;
 		animation-play-state: paused;
