@@ -115,7 +115,7 @@
 	</g>
 
 	<g transform="scale({$scale})">
-		<g transform="translate({$offset.x * 0.7} {$offset.y * 0.7})">
+		<g transform="translate({$offset.x * 0.75} {$offset.y * 0.75})">
 			<g>
 				<use href="#moon" fill="#dad35f" />
 				<g fill="#bfb5f5">
@@ -151,11 +151,12 @@
 				</g>
 				<g transform="translate({$offset.x} {$offset.y})">
 					<g fill="#dad35f">
-						<g transform="translate(0 -3)">
-							<circle r="4.5" cx="10" />
-							<circle r="4.5" cx="-10" />
+						<g transform="translate(-10 -3)">
+							<circle class="blink" r="4.5" />
 						</g>
-
+						<g transform="translate(10 -3)">
+							<circle class="blink" r="4.5" />
+						</g>
 						<g transform="translate(0 10)">
 							<g transform="scale(1.25)">
 								<g transform="scale({$scale ** 2})">
@@ -184,7 +185,11 @@
 
 	.translate {
 		transform: translate(100px, -45px);
-		animation: translate 30s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+		animation: translate 35s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+	}
+
+	.blink {
+		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
 	}
 
 	@keyframes translate {
@@ -201,6 +206,18 @@
 		87.5%,
 		100% {
 			transform: translate(-100px, 40px);
+		}
+	}
+
+	@keyframes blink {
+		8%,
+		12% {
+			transform: scaleY(0);
+		}
+		6%,
+		10%,
+		14% {
+			transform: scaleY(1);
 		}
 	}
 </style>
