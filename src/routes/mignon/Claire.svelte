@@ -94,4 +94,26 @@
 	svg {
 		display: block;
 	}
+
+	.translate {
+		transform: translate(100px, -45px);
+		animation: translate 30s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+	}
+
+	@keyframes translate {
+		0%,
+		12.5% {
+			transform: translate(100px, -45px);
+		}
+
+		37.5%,
+		62.5% {
+			transform: translate(0px, 0px);
+		}
+
+		87.5%,
+		100% {
+			transform: translate(-100px, 40px);
+		}
+	}
 </style>
