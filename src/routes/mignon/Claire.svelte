@@ -64,6 +64,13 @@
 	on:keydown
 >
 	<defs>
+		<symbol id="star-symbol" viewBox="-4.5 -4.5 9 9">
+			<g stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+				<path d="M -4 0 l 2.5 1.5 1.5 2.5 1.5 -2.5 2.5 -1.5 -2.5 -1.5 -1.5 -2.5 -1.5 2.5z" />
+			</g>
+		</symbol>
+		<use id="star" href="#star-symbol" x="-4" y="-4" width="8" height="8" />
+
 		<g id="eyelash">
 			<g fill="none" stroke-linejoin="round" stroke-linecap="round">
 				<path stroke-width="1.5" d="M -4 0 a 4 4 0 0 0 8 0" />
@@ -76,13 +83,6 @@
 				</g>
 			</g>
 		</g>
-
-		<symbol id="star-symbol" viewBox="-3 -3 6 6">
-			<g stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
-				<path d="M -2.5 0 l 1.5 1 1 1.5 1 -1.5 1.5 -1 -1.5 -1 -1 -1.5 -1 1.5z" />
-			</g>
-		</symbol>
-		<use id="star" href="#star-symbol" x="-4" y="-4" width="8" height="8" />
 
 		<circle id="moon" r="28" />
 		<clipPath id="moon-clip" class="translate">
@@ -151,11 +151,13 @@
 				</g>
 				<g transform="translate({$offset.x} {$offset.y})">
 					<g fill="#dad35f">
-						<g transform="translate(-10 -3)">
-							<circle class="blink" r="4.5" />
-						</g>
-						<g transform="translate(10 -3)">
-							<circle class="blink" r="4.5" />
+						<g transform="translate(0 -3)">
+							<g transform="translate(-10 0)">
+								<circle class="blink" r="4.5" />
+							</g>
+							<g transform="translate(10 0)">
+								<circle class="blink" r="4.5" />
+							</g>
 						</g>
 						<g transform="translate(0 10)">
 							<g transform="scale(1.25)">
