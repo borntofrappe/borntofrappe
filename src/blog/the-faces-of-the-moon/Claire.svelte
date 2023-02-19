@@ -212,7 +212,7 @@
 	}
 
 	.applyTransition clipPath {
-		animation: translate 20s paused;
+		animation: translate 20s infinite paused;
 	}
 
 	.applyTransition.transition clipPath {
