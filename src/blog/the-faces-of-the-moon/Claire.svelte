@@ -3,7 +3,9 @@
 	import { spring } from 'svelte/motion';
 
 	export let applyTransition = true;
+
 	$: id = applyTransition ? 'claire-transition' : 'claire';
+
 	let transition = false;
 
 	const scale = spring(1, {
@@ -100,7 +102,6 @@
 				<use href="#{id}-face-circle" />
 			</clipPath>
 		</defs>
-
 		<g fill="#dad35f">
 			<g transform="translate({$offset.x * 0.1} {$offset.y * 0.1})">
 				<circle cx="-48" cy="-46" r="1" />
