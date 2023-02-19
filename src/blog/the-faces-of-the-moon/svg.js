@@ -83,7 +83,7 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	eyelash: `<svg style="display: block" viewBox="-20 -20 40 40">
+	eyelash: `<svg style="display: block" viewBox="-15 -12 30 30">
 	<g fill="none" stroke="#bfb5f5" stroke-linejoin="round" stroke-linecap="round">
 		<path stroke-width="1.5" d="M -4 0 a 4 4 0 0 0 8 0" />
 		<g stroke-width="1">
