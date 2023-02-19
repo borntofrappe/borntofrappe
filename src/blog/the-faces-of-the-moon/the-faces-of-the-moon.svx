@@ -37,7 +37,7 @@ But let's proceed in order, let's start from the top.
 
 ## Face
 
-There is nothing inherently unique in the first visual. Just a series of overlapping `<circle>`s with a precise color. For the body, the eyes, but also the small craters adding detail in the bottom right section.
+There is nothing inherently unique in the first visual. Just a series of overlapping `<circle>`s with a precise color. For the body, the eyes, but also the small craters adding detail in the bottom right portion.
 
 Circles and a `<path>` element for a cheerful mug.
 
@@ -109,7 +109,7 @@ You move the star in position, and change its scale in the precise (x, y) coordi
 Perhaps expectedly, the mascot hides a side. For the alternative, start with a darker body and and even darker details.
 
 <Center maxInlineSize="28rem">
-  {@html svg['claire-face']}
+  {@html svg['setup-dark']}
 </Center>
 
 These are the same shapes with a grave fill and stroke.
@@ -188,13 +188,13 @@ Use and repeat.
 <use href="#eyelash" x="10" y="-4" />
 ```
 
-Added in the top half, the two complete the sombre look.
+In the top half section, the two complete the sombre look.
 
 <Center maxInlineSize="28rem">
   {@html svg['claire-dark']}
 </Center>
 
-## Clip path
+## Clip
 
 We have to faces, but show only one at a time. The goal is to move from one to the other, slowly, but smoothly. This calls for a CSS animation, but first, a way to hide SVG elements.
 
@@ -312,9 +312,9 @@ The faces describes the sides of the same body and, barring a minor interaction,
 </clipPath>
 ```
 
-That's the result we were looking for.
-
 <ClipPath x={20} y={-20} transformClip={true} />
+
+That's the result we were looking for.
 
 ## Transition
 
