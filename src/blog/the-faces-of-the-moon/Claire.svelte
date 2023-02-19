@@ -87,6 +87,7 @@
 				stroke-linecap="round"
 				d="M -4 0 l 2.5 1.5 1.5 2.5 1.5 -2.5 2.5 -1.5 -2.5 -1.5 -1.5 -2.5 -1.5 2.5z"
 			/>
+
 			<g id="{id}-eyelash" fill="none" stroke-linejoin="round" stroke-linecap="round">
 				<path stroke-width="1.5" d="M -4 0 a 4 4 0 0 0 8 0" />
 				<g stroke-width="1">
@@ -97,11 +98,13 @@
 					<path transform="rotate(30)" d="M 0 4 v 2" />
 				</g>
 			</g>
-			<circle id="{id}-face-circle" r="28" />
-			<clipPath id="{id}-face-clip">
-				<use href="#{id}-face-circle" />
+
+			<circle id="{id}-circle-moon" r="28" />
+			<clipPath id="{id}-clip-moon">
+				<use href="#{id}-circle-moon" />
 			</clipPath>
 		</defs>
+
 		<g fill="#dad35f">
 			<g transform="translate({$offset.x * 0.1} {$offset.y * 0.1})">
 				<circle cx="-48" cy="-46" r="1" />
@@ -125,10 +128,11 @@
 				</g>
 			</g>
 		</g>
+
 		<g transform="scale({$scale})">
 			<g transform="translate({$offset.x * 0.75} {$offset.y * 0.75})">
 				<g>
-					<use href="#{id}-face-circle" fill="#dad35f" />
+					<use href="#{id}-circle-moon" fill="#dad35f" />
 					<g fill="#bfb5f5">
 						<circle r="1.75" cx="19.75" cy="14" />
 						<circle r="1.5" cx="16.5" cy="18.5" />
@@ -154,8 +158,9 @@
 						</g>
 					</g>
 				</g>
-				<g clip-path="url(#{id}-face-clip)">
-					<use href="#{id}-face-circle" fill="#f2ec64" />
+
+				<g clip-path="url(#{id}-clip-moon)">
+					<use href="#{id}-circle-moon" fill="#f2ec64" />
 					<g fill="#dad35f">
 						<circle r="1.75" cx="19.75" cy="14" />
 						<circle r="1.5" cx="16.5" cy="18.5" />

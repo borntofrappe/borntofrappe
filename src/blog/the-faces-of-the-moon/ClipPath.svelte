@@ -34,13 +34,15 @@
 					<path transform="rotate(30)" d="M 0 4 v 2" />
 				</g>
 			</g>
-			<circle id="{id}-circle" r="28" />
-			<clipPath id="{id}-clip" transform={transformClip ? transform : ''}>
-				<use href="#{id}-circle" />
+
+			<circle id="{id}-circle-moon" r="28" />
+			<clipPath id="{id}-clip-moon" transform={transformClip ? transform : ''}>
+				<use href="#{id}-circle-moon" />
 			</clipPath>
 		</defs>
+
 		<g>
-			<use href="#{id}-circle" fill="#dad35f" />
+			<use href="#{id}-circle-moon" fill="#dad35f" />
 			<g fill="#bfb5f5">
 				<circle r="1.75" cx="19.75" cy="14" />
 				<circle r="1.5" cx="16.5" cy="18.5" />
@@ -62,9 +64,10 @@
 				</g>
 			</g>
 		</g>
-		<g clip-path="url(#{id}-clip)">
+
+		<g clip-path="url(#{id}-clip-moon)">
 			<g transform={transformClip ? '' : transform}>
-				<use href="#{id}-circle" fill="#f2ec64" />
+				<use href="#{id}-circle-moon" fill="#f2ec64" />
 				<g fill="#dad35f">
 					<circle r="1.75" cx="19.75" cy="14" />
 					<circle r="1.5" cx="16.5" cy="18.5" />

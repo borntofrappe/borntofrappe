@@ -22,7 +22,6 @@ export default {
     <defs>
         <path
             id="claire-stars-star"
-            stroke="#dad35f"
             stroke-width="1"
             stroke-linejoin="round"
             stroke-linecap="round"
@@ -40,11 +39,13 @@ export default {
         <circle cx="34" cy="-45" r="0.75" />
         <circle cx="42" cy="44" r="0.75" />
         <circle cx="-33" cy="35" r="1" />
-        <use href="#claire-stars-star" x="35" y="-38" />
-        <use href="#claire-stars-star" transform="translate(-38 28) scale(0.8)" />
-        <use href="#claire-stars-star" transform="translate(29 38) scale(0.7)" />
-        <use href="#claire-stars-star" transform="translate(35 45) scale(0.5)" />
-        <use href="#claire-stars-star" transform="translate(38 35) scale(0.6)" />
+		<g stroke="#dad35f">
+			<use href="#claire-stars-star" x="35" y="-38" />
+			<use href="#claire-stars-star" transform="translate(-38 28) scale(0.8)" />
+			<use href="#claire-stars-star" transform="translate(29 38) scale(0.7)" />
+			<use href="#claire-stars-star" transform="translate(35 45) scale(0.5)" />
+			<use href="#claire-stars-star" transform="translate(38 35) scale(0.6)" />
+		</g>
     </g>
     <circle r="28" fill="#f2ec64" />
     <g fill="#dad35f">
@@ -100,7 +101,6 @@ export default {
 		<g
 			id="claire-dark-eyelash"
 			fill="none"
-			stroke="#bfb5f5"
 			stroke-linejoin="round"
 			stroke-linecap="round"
 		>
@@ -120,8 +120,10 @@ export default {
 		<circle r="1.5" cx="16.5" cy="18.5" />
 		<circle r="1" cx="13.25" cy="21.5" />
 	</g>
-	<use href="#claire-dark-eyelash" x="-10" y="-4" />
-	<use href="#claire-dark-eyelash" x="10" y="-4" />
+	<g stroke="#bfb5f5">
+		<use href="#claire-dark-eyelash" x="-10" y="-4" />
+		<use href="#claire-dark-eyelash" x="10" y="-4" />
+	</g>
 	<g
 		fill="#bfb5f5"
 		stroke="#bfb5f5"
@@ -139,7 +141,6 @@ export default {
 		<g
 			id="face-overlap-eyelash"
 			fill="none"
-			stroke="#bfb5f5"
 			stroke-linejoin="round"
 			stroke-linecap="round"
 		>
@@ -160,8 +161,10 @@ export default {
 			<circle r="1.5" cx="16.5" cy="18.5" />
 			<circle r="1" cx="13.25" cy="21.5" />
 		</g>
-		<use href="#face-overlap-eyelash" x="-10" y="-4" />
-		<use href="#face-overlap-eyelash" x="10" y="-4" />
+		<g stroke="#bfb5f5">
+			<use href="#face-overlap-eyelash" x="-10" y="-4" />
+			<use href="#face-overlap-eyelash" x="10" y="-4" />
+		</g>
 		<g
 			fill="#bfb5f5"
 			stroke="#bfb5f5"
@@ -199,7 +202,6 @@ export default {
 		<g
 			id="face-clip-eyelash"
 			fill="none"
-			stroke="#bfb5f5"
 			stroke-linejoin="round"
 			stroke-linecap="round"
 		>
@@ -212,7 +214,7 @@ export default {
 				<path transform="rotate(30)" d="M 0 4 v 2" />
 			</g>
 		</g>
-		<clipPath id="face-clip-clip">
+		<clipPath id="face-clip-clip-moon">
             <!-- ... -->
         </clipPath>
 	</defs>
@@ -223,8 +225,10 @@ export default {
 			<circle r="1.5" cx="16.5" cy="18.5" />
 			<circle r="1" cx="13.25" cy="21.5" />
 		</g>
-		<use href="#face-clip-eyelash" x="-10" y="-4" />
-		<use href="#face-clip-eyelash" x="10" y="-4" />
+		<g stroke="#bfb5f5">
+			<use href="#face-clip-eyelash" x="-10" y="-4" />
+			<use href="#face-clip-eyelash" x="10" y="-4" />
+		</g>
 		<g
 			fill="#bfb5f5"
 			stroke="#bfb5f5"
@@ -237,7 +241,7 @@ export default {
 			</g>
 		</g>
 	</g>
-	<g clip-path="url(#face-clip-clip)">
+	<g clip-path="url(#face-clip-clip-moon)">
 		<circle r="28" fill="#f2ec64" />
 		<g fill="#dad35f">
 			<circle r="1.75" cx="19.75" cy="14" />
