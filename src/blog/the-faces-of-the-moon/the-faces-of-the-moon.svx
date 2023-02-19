@@ -29,9 +29,9 @@ Surrounded by stars which differ in size and details.
 
 Joyfully bouncing and following the approaching cursor.
 
-<Claire transition={false} />
+<Claire applyTransition={false} />
 
-The result doesn't stray from the radiant counterpart, but it will by the end of the article. Especially if you have the time to take a breather and wait for a handful of seconds. And maybe a handful more.
+You may think this a shallow copy of the radiant character, but not by the end of the article. Especially if you have the time to take a breather and wait for a handful of seconds. And maybe a handful more.
 
 But let's proceed in order, let's start from the top.
 
@@ -41,8 +41,14 @@ There is nothing inherently unique in the first visual. Just a series of overlap
 
 Circles and a `<path>` element for a cheerful mug.
 
+<!-- prettier-ignore -->
 ```html
-<g fill="#dad35f" stroke="#dad35f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+<g 
+    fill="#dad35f" 
+    stroke="#dad35f" 
+    stroke-width="2" 
+    stroke-linejoin="round" 
+    stroke-linecap="round">
 	<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
 </g>
 ```
@@ -59,7 +65,7 @@ There are a few stars so distant to make the `<circle>` element a good fit.
 </g>
 ```
 
-There are other, however, which shimmer brightly in a more distinct shape.
+There are other, however, which shimmer with a more distinct shape.
 
 ```html
 <path
@@ -72,7 +78,7 @@ There are other, however, which shimmer brightly in a more distinct shape.
 />
 ```
 
-I repeat the shape here and there, in different spots and sizes, making a case for an SVG definition. Define the path early, in a `<defs>` block to avoid drawing the shape immediately.
+I repeat the shape here and there, in different spots and sizes, making a case for an SVG definition. Define the path early, in a `<defs>` block to avoid drawing the element immediately.
 
 ```html
 <defs>
@@ -90,7 +96,7 @@ Repeat the custom visual through the `<use>` element, referencing the `id` attri
 <use href="#star" x="35" y="-38" />
 ```
 
-You can place the element through the `x` and `y` attributes, but also with a translation. This option is rather useful the moment you want to change the size of the star.
+You can place the element through the `x` and `y` attributes, but also with a translation. This option is rather useful the moment you want to change the size.
 
 ```html
 <use href="#star" transform="translate(-38 28) scale(0.8)" />
@@ -100,13 +106,13 @@ You move the star in position, and change its scale in the precise (x, y) coordi
 
 ## Faces
 
-Perhaps expectedly, the mascot hides a side. To draw the new face start with a darker body and an even darker mug.
+Perhaps expectedly, the mascot hides a side. For the alternative, start with a darker body and and even darker details.
 
 <Center maxInlineSize="28rem">
   {@html svg['claire-face']}
 </Center>
 
-These are the same shapes with a touch of shade, a grave fill and stroke.
+These are the same shapes with a grave fill and stroke.
 
 ```diff
 -<circle r="28" fill="#f2ec64" />
@@ -118,8 +124,14 @@ These are the same shapes with a touch of shade, a grave fill and stroke.
 
 But wait, no circles for the eyes? Unlike the energy-filled center of the galaxy, our satellite enjoys the occasional break. In a moment of pause the eyes close and all you see is an outline, a nice set of eyelashes. These are shapes shown in stroke only.
 
+<!-- prettier-ignore -->
 ```html
-<g fill="none" stroke="#bfb5f5" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+<g 
+    fill="none" 
+    stroke="#bfb5f5" 
+    stroke-width="1" 
+    stroke-linejoin="round" 
+    stroke-linecap="round">
 	<!--  -->
 </g>
 ```
@@ -147,7 +159,7 @@ Repeat the segment rotating the `<path>` at different angles.
 
 As you rotate the path, from the center of the arc, the vertical piece is drawn now on the left, now on the right, completing the rather convincing visual.
 
-<Center maxInlineSize="24rem">
+<Center maxInlineSize="20rem">
   {@html svg['eyelash']}
 </Center>
 
@@ -163,7 +175,7 @@ Since you need a pair, it helps to rehearse the logic introduced with the stars.
 		stroke-linejoin="round"
 		stroke-linecap="round"
 	>
-		<!-- paths -->
+		<!-- ... -->
 	</g>
 </defs>
 ```
@@ -184,7 +196,7 @@ Added in the top half, the two complete the sombre look.
 
 ## Clip path
 
-We have to faces, but show only one at a time. The goal is to move from one to the other, slowly, but smoothly. This calls for a CSS transition, but first, a way to hide SVG elements.
+We have to faces, but show only one at a time. The goal is to move from one to the other, slowly, but smoothly. This calls for a CSS animation, but first, a way to hide SVG elements.
 
 Indeed, the moment you draw the two faces.
 
@@ -200,7 +212,7 @@ Indeed, the moment you draw the two faces.
 </g>
 ```
 
-You'll spot only the last one.
+You'll see only the last one.
 
 <Center maxInlineSize="28rem">
   {@html svg['face-overlap']}
@@ -210,7 +222,7 @@ You see the lighter variant, but the other side is effectively drawn. Just earli
 
 To hide the bright face, and grant that long-awaited break, SVG offers the `<clipPath>` element.
 
-Technically, you don't need to add the element in a `<defs>` block — a clip doesn't show anything on the screen. That being said, I like to keep things separate, I prefer to define the helper alongside the other shapes.
+Technically, you don't need to add the element in the `<defs>` block — a clip doesn't show anything on the screen. That being said, I like to keep things separate, I prefer to define the helper alongside the other shapes.
 
 ```html
 <defs>
@@ -229,7 +241,7 @@ Regardless, you create clip and then apply the same through the `clip-path` attr
 </g>
 ```
 
-The result is that the area described by the clip dictates what is actually shown on screen. Shapes falling inside of the clip will be visible, while other will be, well, clipped.
+The area described by the clip dictates what is actually shown on screen. Shapes falling inside of this area will be visible, while other will be, well, clipped.
 
 In this specific instance, the result is that the bright face completely disappears.
 
@@ -237,7 +249,7 @@ In this specific instance, the result is that the bright face completely disappe
   {@html svg['face-clip']}
 </Center>
 
-The `<clipPath>` is empty, there is no clippable area, and every shape is removed from sight.
+The `<clipPath>` is empty, there is no clippable area, and the entire face is removed from sight.
 
 ```html
 <clipPath id="clip">
@@ -245,7 +257,7 @@ The `<clipPath>` is empty, there is no clippable area, and every shape is remove
 </clipPath>
 ```
 
-A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the answer, but this calls for a minor tweak to the SVG syntax.
+A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the value, but suggests a minor tweak to the SVG syntax.
 
 We are going to repeat the circle at least thrice, in the clip and in each of the two faces. We are going to _use_ the shape again and again. It is therefore convenient to fall back in the `<defs>` block. It is convenient to define the circle once and for all.
 
@@ -286,11 +298,13 @@ Allow to change the position of the clipped, light face.
 </g>
 ```
 
-And there you have it, a momentous, small reveal.
+And there you have it, a momentous reveal.
 
-<ClipPath x={5} y={-5} transformClip={false} />
+<ClipPath x={20} y={-20} transformClip={false} />
 
-Something is quite off, however... In the ideal picture, the face would not move. The clip should.
+Except that, something is quite off...
+
+The faces describes the sides of the same body and, barring a minor interaction, should stay in place. What should move is the area revealing the hidden shapes. What should move is the clip.
 
 ```html
 <clipPath id="clip" transform="translate(5 -5)">
@@ -300,11 +314,11 @@ Something is quite off, however... In the ideal picture, the face would not move
 
 That's the result we were looking for.
 
-<ClipPath x={5} y={-5} transformClip={true} />
+<ClipPath x={20} y={-20} transformClip={true} />
 
 ## Transition
 
-Updating the position manually is already entertaining, but CSS offers one last, possibly more rewarding visual.
+Updating the position manually is already entertaining, but with CSS we are able to change the values over time.
 
 Target the clip, be it through the element or a selector of your choosing, and apply the animation.
 
@@ -335,8 +349,6 @@ Finally, create the animation to have the clip move from the top right, pause in
 }
 ```
 
-A good point to add the stars back, perhaps the interaction as well, and enjoy the resulting picture.
+The perfect point to add the stars back, perhaps the interaction as well. All leading up to the finally distinct, unique presence in the sky.
 
 <Claire transition={true} />
-
-Leading up to the finally distinct, unique presence in the sky.
