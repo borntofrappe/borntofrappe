@@ -5,6 +5,7 @@
 
 	$: transform = `translate(${x} ${y})`;
 	$: target = transformClip ? 'the clip' : 'the face';
+	$: id = transformClip ? 'clip-path-clip' : 'clip-path-face';
 </script>
 
 <div>
@@ -23,7 +24,7 @@
 
 	<svg viewBox="-55 -55 110 110">
 		<defs>
-			<g id="clip-path-eyelash" fill="none" stroke-linejoin="round" stroke-linecap="round">
+			<g id="{id}-eyelash" fill="none" stroke-linejoin="round" stroke-linecap="round">
 				<path stroke-width="1.5" d="M -4 0 a 4 4 0 0 0 8 0" />
 				<g stroke-width="1">
 					<path d="M 0 4 v 2" />
@@ -33,21 +34,21 @@
 					<path transform="rotate(30)" d="M 0 4 v 2" />
 				</g>
 			</g>
-			<circle id="clip-path-face-circle" r="28" />
-			<clipPath id="clip-path-face-clip" transform={transformClip ? transform : ''}>
-				<use href="#clip-path-face-circle" />
+			<circle id="{id}-circle" r="28" />
+			<clipPath id="{id}-clip" transform={transformClip ? transform : ''}>
+				<use href="#{id}-circle" />
 			</clipPath>
 		</defs>
 		<g>
-			<use href="#clip-path-face-circle" fill="#dad35f" />
+			<use href="#{id}-circle" fill="#dad35f" />
 			<g fill="#bfb5f5">
 				<circle r="1.75" cx="19.75" cy="14" />
 				<circle r="1.5" cx="16.5" cy="18.5" />
 				<circle r="1" cx="13.25" cy="21.5" />
 			</g>
 			<g stroke="#bfb5f5">
-				<use href="#clip-path-eyelash" x="-10" y="-4" />
-				<use href="#clip-path-eyelash" x="10" y="-4" />
+				<use href="#{id}-eyelash" x="-10" y="-4" />
+				<use href="#{id}-eyelash" x="10" y="-4" />
 			</g>
 			<g transform="translate(0 10)">
 				<g
@@ -61,9 +62,9 @@
 				</g>
 			</g>
 		</g>
-		<g clip-path="url(#clip-path-face-clip)">
+		<g clip-path="url(#{id}-clip)">
 			<g transform={transformClip ? '' : transform}>
-				<use href="#clip-path-face-circle" fill="#f2ec64" />
+				<use href="#{id}-circle" fill="#f2ec64" />
 				<g fill="#dad35f">
 					<circle r="1.75" cx="19.75" cy="14" />
 					<circle r="1.5" cx="16.5" cy="18.5" />
