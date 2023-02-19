@@ -65,7 +65,7 @@ There are a few stars so distant to make the `<circle>` element a good fit.
 </g>
 ```
 
-There are other, however, which shimmer with a more distinct shape.
+There are others, however, which shimmer with a more distinct shape.
 
 ```html
 <path
@@ -106,7 +106,7 @@ You move the star in position, and change its scale in the precise (x, y) coordi
 
 ## Faces
 
-Perhaps expectedly, the mascot hides a side. For the alternative, start with a darker body and and even darker details.
+Perhaps expectedly, the mascot hides a side. For the alternative, start with a darker body and even darker details.
 
 <Center maxInlineSize="28rem">
   {@html svg['setup-dark']}
@@ -132,7 +132,7 @@ But wait, no circles for the eyes? Unlike the energy-filled center of the galaxy
     stroke-width="1" 
     stroke-linejoin="round" 
     stroke-linecap="round">
-	<!--  -->
+	<!-- ... -->
 </g>
 ```
 
@@ -188,7 +188,7 @@ Use and repeat.
 <use href="#eyelash" x="10" y="-4" />
 ```
 
-In the top half section, the two complete the sombre look.
+In the top half section, the two complete the somber look.
 
 <Center maxInlineSize="28rem">
   {@html svg['claire-dark']}
@@ -196,7 +196,7 @@ In the top half section, the two complete the sombre look.
 
 ## Clip
 
-We have to faces, but show only one at a time. The goal is to move from one to the other, slowly, but smoothly. This calls for a CSS animation, but first, a way to hide SVG elements.
+We have two faces, but show only one at a time. The goal is to move from one to the other, slowly, but smoothly. This calls for a CSS animation, but first, a way to hide SVG elements.
 
 Indeed, the moment you draw the two faces.
 
@@ -232,7 +232,7 @@ Technically, you don't need to add the element in the `<defs>` block — a clip 
 </defs>
 ```
 
-Regardless, you create clip and then apply the same through the `clip-path` attribute, say on the lighter, later face.
+Regardless, you create a clip and then apply the same through the `clip-path` attribute, say on the lighter, later face.
 
 ```html
 <g clip-path="url(#clip)">
@@ -241,7 +241,7 @@ Regardless, you create clip and then apply the same through the `clip-path` attr
 </g>
 ```
 
-The area described by the clip dictates what is actually shown on screen. Shapes falling inside of this area will be visible, while other will be, well, clipped.
+The area described by the clip dictates what is actually shown on screen. Shapes falling inside of this area will be visible, while others will be, well, clipped.
 
 In this specific instance, the result is that the bright face completely disappears.
 
@@ -257,7 +257,7 @@ The `<clipPath>` is empty, there is no clippable area, and the entire face is re
 </clipPath>
 ```
 
-A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the value, but suggests a minor tweak to the SVG syntax.
+A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the value, but this prompts a minor tweak to the SVG syntax.
 
 We are going to repeat the circle at least thrice, in the clip and in each of the two faces. We are going to _use_ the shape again and again. It is therefore convenient to fall back in the `<defs>` block. It is convenient to define the circle once and for all.
 
@@ -304,7 +304,7 @@ And there you have it, a momentous reveal.
 
 Except that, something is quite off...
 
-The faces describes the sides of the same body and, barring a minor interaction, should stay in place. What should move is the area revealing the hidden shapes. What should move is the clip.
+The faces describe the sides of the same body and, barring a minor interaction, should stay in place. What should move is the area revealing the hidden shapes. What should move is the clip.
 
 ```html
 <clipPath id="clip" transform="translate(5 -5)">
