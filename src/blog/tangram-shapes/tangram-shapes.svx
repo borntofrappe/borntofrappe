@@ -1,6 +1,6 @@
 ---
 title: Tangram shapes
-description: A playful exploration of the SVG coordinate system, spruced up with CSS transitions and specificity
+description: A playful exploration of the SVG coordinate system, spruced up with CSS transitions and specificity.
 date: 2023-02-08T21:45:29
 ---
 

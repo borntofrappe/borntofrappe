@@ -1,6 +1,6 @@
 ---
 title: Reveal on scroll
-description: Transition elements into view with the help of the intersection observer API and a sprinkling of Svelte
+description: Transition elements into view with the help of the intersection observer API and a sprinkling of Svelte.
 date: 2023-02-07T15:14:53
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: SVG definitions
-description: A geeky note on path, symbol, use, and use elements
+description: A geeky note on path, symbol, use, and use elements.
 date: 2023-02-20T15:35:47
 ---
 

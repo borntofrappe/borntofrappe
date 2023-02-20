@@ -1,6 +1,6 @@
 ---
 title: SVG transform
-description: A soft introduction to SVG transformations and the precious concept of transform origin
+description: A soft introduction to SVG transformations and the precious concept of transform origin.
 date: 2023-02-16 9:08:27
 ---
 
