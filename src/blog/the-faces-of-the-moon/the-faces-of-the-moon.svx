@@ -1,7 +1,7 @@
 ---
 title: The faces of the moon
-description: Crafting a new vector graphic
-date: 2023-02-20T09:23:27
+description: How to create a distinct mascot? Why, with more SVG and a touch of CSS.
+date: 2023-02-20T09:08:01
 ---
 
 <script>
@@ -37,9 +37,9 @@ But let's proceed in order, let's start from the top.
 
 ## Face
 
-There is nothing inherently unique in the first visual. Just a series of overlapping `<circle>`s with a precise color. For the body, the eyes, but also the small craters adding detail in the bottom right portion.
+There is nothing inherently unique in the first visual. Just a series of overlapping `<circle>`s with a specific color. For the body, the eyes, but also the small craters adding detail in the bottom right edge.
 
-Circles and a `<path>` element for a cheerful mug.
+Circles and a `<path>` element tracing the cheerful mug.
 
 <!-- prettier-ignore -->
 ```html
@@ -65,7 +65,7 @@ There are a few stars so distant to make the `<circle>` element a good fit.
 </g>
 ```
 
-There are others, however, which shimmer with a more distinct shape.
+There are others, however, which shimmer with a more distinct mass.
 
 ```html
 <path
@@ -84,7 +84,9 @@ I repeat the shape here and there, in different spots and sizes, making a case f
 <defs>
 	<path
 		id="star"
-		...
+		stroke-width="1"
+		stroke-linejoin="round"
+		stroke-linecap="round"
 		d="M -4 0 l 2.5 1.5 1.5 2.5 1.5 -2.5 2.5 -1.5 -2.5 -1.5 -1.5 -2.5 -1.5 2.5z"
 	/>
 </defs>
@@ -93,13 +95,19 @@ I repeat the shape here and there, in different spots and sizes, making a case f
 Repeat the custom visual through the `<use>` element, referencing the `id` attribute.
 
 ```html
-<use href="#star" x="35" y="-38" />
+<g fill="#dad35f" stroke="#dad35f">
+	<use href="#star" x="35" y="-38" />
+	<!-- ... -->
+</g>
 ```
 
-You can place the element through the `x` and `y` attributes, but also with a translation. This option is rather useful the moment you want to change the size.
+You can place the element through the `x` and `y` attributes, but also with a translation. This option is particularly useful the moment you want to change the size.
 
 ```html
-<use href="#star" transform="translate(-38 28) scale(0.8)" />
+<g fill="#dad35f" stroke="#dad35f">
+	<!-- ... -->
+	<use href="#star" transform="translate(-38 28) scale(0.8)" />
+</g>
 ```
 
 You move the star in position, and change its scale in the precise (x, y) coordinate.
@@ -112,7 +120,7 @@ Perhaps expectedly, the mascot hides a side. For the alternative, start with a d
   {@html svg['setup-dark']}
 </Center>
 
-These are the same shapes with a grave fill and stroke.
+These are the same shapes with a gloomier fill and stroke.
 
 ```diff
 -<circle r="28" fill="#f2ec64" />
@@ -122,14 +130,13 @@ These are the same shapes with a grave fill and stroke.
 +<g fill="#bfb5f5">
 ```
 
-But wait, no circles for the eyes? Unlike the energy-filled center of the galaxy, our satellite enjoys the occasional break. In a moment of pause the eyes close and all you see is an outline, a nice set of eyelashes. These are shapes shown in stroke only.
+But wait, no round eyes? Exactly. Unlike the restless center of the galaxy, our satellite enjoys the occasional break. In a moment of pause the eyes close and all you see is an outline, a nice set of eyelashes. These are shapes shown in stroke only.
 
 <!-- prettier-ignore -->
 ```html
 <g 
     fill="none" 
     stroke="#bfb5f5" 
-    stroke-width="1" 
     stroke-linejoin="round" 
     stroke-linecap="round">
 	<!-- ... -->
@@ -142,22 +149,36 @@ Start with an arc.
 <path stroke-width="1.5" d="M -4 0 a 4 4 0 0 0 8 0" />
 ```
 
-Continue with a line escaping the semicircle from below.
+Continue with thinner lines.
 
 ```html
-<path d="M 0 4 v 2" />
+<g stroke-width="1">
+	<!-- ... -->
+</g>
 ```
 
-Repeat the segment rotating the `<path>` at different angles.
+A line escaping the semicircle from below.
 
 ```html
-<path transform="rotate(-60)" d="M 0 4 v 2" />
-<path transform="rotate(60)" d="M 0 4 v 2" />
-<path transform="rotate(-30)" d="M 0 4 v 2" />
-<path transform="rotate(30)" d="M 0 4 v 2" />
+<g stroke-width="1">
+	<path d="M 0 4 v 2" />
+	<!-- ... -->
+</g>
 ```
 
-As you rotate the path, from the center of the arc, the vertical piece is drawn now on the left, now on the right, completing the rather convincing visual.
+And then the same segment, rotated at different angles.
+
+```html
+<g stroke-width="1">
+	<path d="M 0 4 v 2" />
+	<path transform="rotate(-60)" d="M 0 4 v 2" />
+	<path transform="rotate(60)" d="M 0 4 v 2" />
+	<path transform="rotate(-30)" d="M 0 4 v 2" />
+	<path transform="rotate(30)" d="M 0 4 v 2" />
+</g>
+```
+
+As you rotate the path, from the center of the arc, the vertical piece leaves the area now on the left, now on the right, completing the rather convincing visual.
 
 <Center maxInlineSize="20rem">
   {@html svg['eyelash']}
@@ -165,13 +186,13 @@ As you rotate the path, from the center of the arc, the vertical piece is drawn 
 
 Since you need a pair, it helps to rehearse the logic introduced with the stars. Define the shape, this time with the group element wrapping around the multiple `<path>`s.
 
+<!-- prettier-ignore -->
 ```html
 <defs>
 	<g
 		id="eyelash"
 		fill="none"
 		stroke-width="1"
-		stroke="#bfb5f5"
 		stroke-linejoin="round"
 		stroke-linecap="round"
 	>
@@ -182,10 +203,11 @@ Since you need a pair, it helps to rehearse the logic introduced with the stars.
 
 Use and repeat.
 
-<!-- prettier-ignore -->
 ```html
-<use href="#eyelash" x="-10" y="-4" />
-<use href="#eyelash" x="10" y="-4" />
+<g stroke="#bfb5f5">
+	<use href="#eyelash" x="-10" y="-4" />
+	<use href="#eyelash" x="10" y="-4" />
+</g>
 ```
 
 In the top half section, the two complete the somber look.
@@ -218,15 +240,15 @@ You'll see only the last one.
   {@html svg['face-overlap']}
 </Center>
 
-You see the lighter variant, but the other side is effectively drawn. Just earlier. Just behind.
+You see the lighter variant, but the other side is drawn. Just earlier. Just behind.
 
 To hide the bright face, and grant that long-awaited break, SVG offers the `<clipPath>` element.
 
-Technically, you don't need to add the element in the `<defs>` block — a clip doesn't show anything on the screen. That being said, I like to keep things separate, I prefer to define the helper alongside the other shapes.
+Technically, you don't need to add the element with the other definitions — a clip doesn't show anything on the screen. That being said, I like to keep things separate, I prefer to group the helper structures in between the `<defs>` tags.
 
 ```html
 <defs>
-	<clipPath id="clip">
+	<clipPath id="clip-moon">
 		<!-- ... -->
 	</clipPath>
 </defs>
@@ -235,7 +257,7 @@ Technically, you don't need to add the element in the `<defs>` block — a clip 
 Regardless, you create a clip and then apply the same through the `clip-path` attribute, say on the lighter, later face.
 
 ```html
-<g clip-path="url(#clip)">
+<g clip-path="url(#clip-moon)">
 	<circle r="28" fill="#f2ec64" />
 	<!-- ... -->
 </g>
@@ -243,7 +265,7 @@ Regardless, you create a clip and then apply the same through the `clip-path` at
 
 The area described by the clip dictates what is actually shown on screen. Shapes falling inside of this area will be visible, while others will be, well, clipped.
 
-In this specific instance, the result is that the bright face completely disappears.
+In this instance, the result is that the bright face completely disappears.
 
 <Center maxInlineSize="28rem">
   {@html svg['face-clip']}
@@ -252,20 +274,20 @@ In this specific instance, the result is that the bright face completely disappe
 The `<clipPath>` is empty, there is no clippable area, and the entire face is removed from sight.
 
 ```html
-<clipPath id="clip">
-	<!-- ... -->
+<clipPath id="clip-moon">
+	<!-- clip area -->
 </clipPath>
 ```
 
-A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the value, but this prompts a minor tweak to the SVG syntax.
+A good measure for the clip is the area described by the larger circle. What was the radius, however? We could look up the value, but this prompts a tweak to the SVG syntax.
 
-We are going to repeat the circle at least thrice, in the clip and in each of the two faces. We are going to _use_ the shape again and again. It is therefore convenient to fall back in the `<defs>` block. It is convenient to define the circle once and for all.
+We are going to repeat the circle at least thrice, in the clip and in each of the two faces. We are going to _use_ the shape again and again. It is therefore convenient to fall back to the `<defs>` block. It is convenient to define the circle once and for all.
 
 Define.
 
 ```html
 <defs>
-	<circle id="face-circle" r="28" />
+	<circle id="circle-moon" r="28" />
 </defs>
 ```
 
@@ -274,25 +296,25 @@ Use:
 - in the clip
 
   ```html
-  <clipPath id="clip">
-  	<use href="#face-circle" />
+  <clipPath id="clip-moon">
+  	<use href="#circle-moon" />
   </clipPath>
   ```
 
 - for the two faces
 
   ```html
-  <use href="#face-circle" fill="#dad35f" />
+  <use href="#circle-moon" fill="#dad35f" />
 
-  <use href="#face-circle" fill="#f2ec64" />
+  <use href="#circle-moon" fill="#f2ec64" />
   ```
 
-Allow to change the position of the clipped, light face.
+Allow to change the position of the clipped face.
 
 ```html
-<g clip-path="url(#clip)">
+<g clip-path="url(#clip-moon)">
 	<g transform="translate(5 -5)">
-		<use href="#face-circle" fill="#f2ec64" />
+		<use href="#circle-moon" fill="#f2ec64" />
 		<!-- ... -->
 	</g>
 </g>
@@ -304,11 +326,11 @@ And there you have it, a momentous reveal.
 
 Except that, something is quite off...
 
-The faces describe the sides of the same body and, barring a minor interaction, should stay in place. What should move is the area revealing the hidden shapes. What should move is the clip.
+The faces describe the sides of the same body and, barring a minor interaction, are not supposed to stray from the center. What should move is the area revealing the hidden shapes. What should move is the clip.
 
 ```html
-<clipPath id="clip" transform="translate(5 -5)">
-	<use href="#face-circle" />
+<clipPath id="clip-moon" transform="translate(5 -5)">
+	<use href="#circle-moon" />
 </clipPath>
 ```
 
@@ -328,7 +350,7 @@ clipPath {
 }
 ```
 
-Finally, create the animation to have the clip move from the top right, pause in the center, and then retreat in the bottom left corner.
+Fittingly, create the animation to have the clip move from the top right, pause in the center, and then retreat in the bottom left corner.
 
 ```css
 @keyframes translate {
@@ -349,6 +371,6 @@ Finally, create the animation to have the clip move from the top right, pause in
 }
 ```
 
-The perfect point to add the stars back, perhaps the interaction as well. All leading up to the finally distinct, unique presence in the sky.
+The perfect point to add the stars back, perhaps the interaction as well. Culminating in the finally unique presence in the sky.
 
 <Claire transition={true} />
