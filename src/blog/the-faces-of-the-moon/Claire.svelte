@@ -105,7 +105,7 @@
 			</clipPath>
 		</defs>
 
-		<g fill="#dad35f">
+		<g fill="#d1bfae">
 			<g transform="translate({$offset.x * 0.1} {$offset.y * 0.1})">
 				<circle cx="-48" cy="-46" r="1" />
 				<circle cx="-40" cy="-38" r="1.1" />
@@ -119,7 +119,7 @@
 				<circle cx="-33" cy="35" r="1" />
 			</g>
 			<g transform="translate({$offset.x * 0.3} {$offset.y * 0.3})">
-				<g stroke="#dad35f">
+				<g stroke="#d1bfae">
 					<use transform="translate(35 -38)" href="#{id}-star" />
 					<use transform="translate(-38 28) scale(0.8)" href="#{id}-star" />
 					<use transform="translate(29 38) scale(0.7)" href="#{id}-star" />
@@ -132,22 +132,22 @@
 		<g transform="scale({$scale})">
 			<g transform="translate({$offset.x * 0.75} {$offset.y * 0.75})">
 				<g>
-					<use href="#{id}-circle-moon" fill="#dad35f" />
-					<g fill="#bfb5f5">
+					<use href="#{id}-circle-moon" fill="#d1bfae" />
+					<g fill="#a49191">
 						<circle r="1.75" cx="19.75" cy="14" />
 						<circle r="1.5" cx="16.5" cy="18.5" />
 						<circle r="1" cx="13.25" cy="21.5" />
 					</g>
 					<g transform="translate({$offset.x} {$offset.y})">
-						<g stroke="#bfb5f5">
+						<g stroke="#a49191">
 							<use href="#{id}-eyelash" x="-10" y="-4" />
 							<use href="#{id}-eyelash" x="10" y="-4" />
 						</g>
 						<g transform="translate(0 10)">
 							<g transform="scale({$scale ** 1.5})">
 								<g
-									fill="#bfb5f5"
-									stroke="#bfb5f5"
+									fill="#a49191"
+									stroke="#a49191"
 									stroke-width="2"
 									stroke-linejoin="round"
 									stroke-linecap="round"
@@ -160,14 +160,14 @@
 				</g>
 
 				<g clip-path="url(#{id}-clip-moon)">
-					<use href="#{id}-circle-moon" fill="#f2ec64" />
-					<g fill="#dad35f">
+					<use href="#{id}-circle-moon" fill="#e3d3ba" />
+					<g fill="#d1bfae">
 						<circle r="1.75" cx="19.75" cy="14" />
 						<circle r="1.5" cx="16.5" cy="18.5" />
 						<circle r="1" cx="13.25" cy="21.5" />
 					</g>
 					<g transform="translate({$offset.x} {$offset.y})">
-						<g fill="#dad35f">
+						<g fill="#d1bfae">
 							<g transform="translate(0 -3)">
 								<circle r="4.5" cx="10" />
 								<circle r="4.5" cx="-10" />
@@ -175,7 +175,7 @@
 							<g transform="translate(0 10)">
 								<g transform="scale({$scale ** 2})">
 									<g
-										stroke="#dad35f"
+										stroke="#d1bfae"
 										stroke-width="2"
 										stroke-linejoin="round"
 										stroke-linecap="round"

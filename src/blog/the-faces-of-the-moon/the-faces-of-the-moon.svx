@@ -44,8 +44,8 @@ Circles and a `<path>` element tracing the cheerful mug.
 <!-- prettier-ignore -->
 ```html
 <g 
-    fill="#dad35f" 
-    stroke="#dad35f" 
+    fill="#d1bfae" 
+    stroke="#d1bfae" 
     stroke-width="2" 
     stroke-linejoin="round" 
     stroke-linecap="round">
@@ -58,7 +58,7 @@ Circles and a `<path>` element tracing the cheerful mug.
 There are a few stars so distant to make the `<circle>` element a good fit.
 
 ```html
-<g fill="#dad35f">
+<g fill="#d1bfae">
 	<circle cx="-48" cy="-46" r="1" />
 	<circle cx="-40" cy="-38" r="1.1" />
 	<!-- ... -->
@@ -69,8 +69,8 @@ There are others, however, which shimmer with a more distinct mass.
 
 ```html
 <path
-	fill="#dad35f"
-	stroke="#dad35f"
+	fill="#d1bfae"
+	stroke="#d1bfae"
 	stroke-width="1"
 	stroke-linejoin="round"
 	stroke-linecap="round"
@@ -95,7 +95,7 @@ I repeat the shape here and there, in different spots and sizes, making a case f
 Repeat the custom visual through the `<use>` element, referencing the `id` attribute.
 
 ```html
-<g fill="#dad35f" stroke="#dad35f">
+<g fill="#d1bfae" stroke="#d1bfae">
 	<use href="#star" x="35" y="-38" />
 	<!-- ... -->
 </g>
@@ -104,7 +104,7 @@ Repeat the custom visual through the `<use>` element, referencing the `id` attri
 You can place the element through the `x` and `y` attributes, but also with a translation. This option is particularly useful the moment you want to change the size.
 
 ```html
-<g fill="#dad35f" stroke="#dad35f">
+<g fill="#d1bfae" stroke="#d1bfae">
 	<!-- ... -->
 	<use href="#star" transform="translate(-38 28) scale(0.8)" />
 </g>
@@ -123,11 +123,11 @@ Perhaps expectedly, the mascot hides a side. For the alternative, start with a d
 These are the same shapes with a gloomier fill and stroke.
 
 ```diff
--<circle r="28" fill="#f2ec64" />
-+<circle r="28" fill="#dad35f" />
+-<circle r="28" fill="#e3d3ba" />
++<circle r="28" fill="#d1bfae" />
 
--<g fill="#dad35f">
-+<g fill="#bfb5f5">
+-<g fill="#d1bfae">
++<g fill="#a49191">
 ```
 
 But wait, no round eyes? Exactly. Unlike the restless center of the galaxy, our satellite enjoys the occasional break. In a moment of pause the eyes close and all you see is an outline, a nice set of eyelashes. These are shapes shown in stroke only.
@@ -136,7 +136,7 @@ But wait, no round eyes? Exactly. Unlike the restless center of the galaxy, our 
 ```html
 <g 
     fill="none" 
-    stroke="#bfb5f5" 
+    stroke="#a49191" 
     stroke-linejoin="round" 
     stroke-linecap="round">
 	<!-- ... -->
@@ -204,7 +204,7 @@ Since you need a pair, it helps to rehearse the logic introduced with the stars.
 Use and repeat.
 
 ```html
-<g stroke="#bfb5f5">
+<g stroke="#a49191">
 	<use href="#eyelash" x="-10" y="-4" />
 	<use href="#eyelash" x="10" y="-4" />
 </g>
@@ -224,12 +224,12 @@ Indeed, the moment you draw the two faces.
 
 ```html
 <g>
-	<circle r="28" fill="#dad35f" />
+	<circle r="28" fill="#d1bfae" />
 	<!-- ... -->
 </g>
 
 <g>
-	<circle r="28" fill="#f2ec64" />
+	<circle r="28" fill="#e3d3ba" />
 	<!-- ... -->
 </g>
 ```
@@ -258,7 +258,7 @@ Regardless, you create a clip and then apply the same through the `clip-path` at
 
 ```html
 <g clip-path="url(#clip-moon)">
-	<circle r="28" fill="#f2ec64" />
+	<circle r="28" fill="#e3d3ba" />
 	<!-- ... -->
 </g>
 ```
@@ -304,9 +304,9 @@ Use:
 - for the two faces
 
   ```html
-  <use href="#circle-moon" fill="#dad35f" />
+  <use href="#circle-moon" fill="#d1bfae" />
 
-  <use href="#circle-moon" fill="#f2ec64" />
+  <use href="#circle-moon" fill="#e3d3ba" />
   ```
 
 Allow to change the position of the clipped face.
@@ -314,7 +314,7 @@ Allow to change the position of the clipped face.
 ```html
 <g clip-path="url(#clip-moon)">
 	<g transform="translate(5 -5)">
-		<use href="#circle-moon" fill="#f2ec64" />
+		<use href="#circle-moon" fill="#e3d3ba" />
 		<!-- ... -->
 	</g>
 </g>

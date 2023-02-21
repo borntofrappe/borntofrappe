@@ -42,20 +42,20 @@
 		</defs>
 
 		<g>
-			<use href="#{id}-circle-moon" fill="#dad35f" />
-			<g fill="#bfb5f5">
+			<use href="#{id}-circle-moon" fill="#d1bfae" />
+			<g fill="#a49191">
 				<circle r="1.75" cx="19.75" cy="14" />
 				<circle r="1.5" cx="16.5" cy="18.5" />
 				<circle r="1" cx="13.25" cy="21.5" />
 			</g>
-			<g stroke="#bfb5f5">
+			<g stroke="#a49191">
 				<use href="#{id}-eyelash" x="-10" y="-4" />
 				<use href="#{id}-eyelash" x="10" y="-4" />
 			</g>
 			<g transform="translate(0 10)">
 				<g
-					fill="#bfb5f5"
-					stroke="#bfb5f5"
+					fill="#a49191"
+					stroke="#a49191"
 					stroke-width="2"
 					stroke-linejoin="round"
 					stroke-linecap="round"
@@ -67,19 +67,19 @@
 
 		<g clip-path="url(#{id}-clip-moon)">
 			<g transform={transformClip ? '' : transform}>
-				<use href="#{id}-circle-moon" fill="#f2ec64" />
-				<g fill="#dad35f">
+				<use href="#{id}-circle-moon" fill="#e3d3ba" />
+				<g fill="#d1bfae">
 					<circle r="1.75" cx="19.75" cy="14" />
 					<circle r="1.5" cx="16.5" cy="18.5" />
 					<circle r="1" cx="13.25" cy="21.5" />
 				</g>
-				<g fill="#dad35f">
+				<g fill="#d1bfae">
 					<g transform="translate(0 -3)">
 						<circle r="4.5" cx="10" />
 						<circle r="4.5" cx="-10" />
 					</g>
 					<g transform="translate(0 10)">
-						<g stroke="#dad35f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+						<g stroke="#d1bfae" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
 							<path d="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z" />
 						</g>
 					</g>
