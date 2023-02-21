@@ -101,7 +101,7 @@ Thankfully, the rows have all the same length. You can pick any line and rest as
 
 By adding the values directly in the `viewBox` you end up with a canvas where 1 unit is enough to describe a cell. A rectangle 1 wide, 1 tall will be enough to show the filled value.
 
-But enough reflection. In the body of the `<svg>` element loop through the grid to get the rows.
+But enough reflection. In the body of the `<svg>` element, loop through the grid to get the rows.
 
 ```svelte
 <g fill="currentColor">
@@ -109,7 +109,7 @@ But enough reflection. In the body of the `<svg>` element loop through the grid 
 </g>
 ```
 
-The `#each` block bless us with two values, the items in the array, but also the index. This maps directly to the `y` coordinate to draw at increments of 1: 0, 1, 2, 3...
+The `#each` block blesses us with two values, the items in the array, but also the index. This maps directly to the `y` coordinate to draw at increments of 1: 0, 1, 2, 3...
 
 Loop again, through the row, to find the cells and the horizontal coordinate.
 
@@ -139,7 +139,7 @@ It may all look like magic, but take the attributes in sequence and it makes a w
 <rect x="3" y="0" width="1" height="1" />
 ```
 
-If you enjoy being concise, Svelte has even a shorthand up its sleeve. Since the `x`, `y` variables match the attributes in name inject the value directly between curly brackets.
+If you enjoy being concise, Svelte has even a shorthand up its sleeve. Since the `x`, `y` variables match the attributes in name , inject the value directly between curly brackets.
 
 ```svelte
 <!-- sorcery! -->
@@ -148,7 +148,7 @@ If you enjoy being concise, Svelte has even a shorthand up its sleeve. Since the
 
 ## Coordinates
 
-Personally, I get fidgety adding logic in the markup. Let's revisit the logic to keep things separate and isolated to the `<script>` block.
+Personally, I get fidgety with the logic in the markup. Let's revisit the logic to keep things separate and isolated to the `<script>` block.
 
 The grid helps us tremendously, separating the characters and describing the width and height of the canvas. We can however create a separate data structure, just for the characters we need to draw, just for the \_o_s.
 
