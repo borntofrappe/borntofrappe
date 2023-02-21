@@ -1,0 +1,7 @@
+---
+title: Picross 2D
+description: Re-discovering nonograms, and the possible ways to visualize puzzles with Svelte and SVG.
+date: 2023-02-21T11:39:22
+---
+
+I recently had the inkling to revisit _Picross 3D_, a most entertaining title for the Nintendo DS system. Then I got the urge to experiment with SVG syntax, tinkering with the possible ways to visualize the solved puzzles.
