@@ -4,4 +4,21 @@ description: Re-discovering nonograms, and the possible ways to visualize puzzle
 date: 2023-02-21T11:39:22
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Level from './Level.svelte'
+	import Grid from './Grid.svelte'
+	import Coordinates from './Coordinates.svelte'
+	import Reduce from './Reduce.svelte'
+</script>
+
 I recently had the inkling to revisit _Picross 3D_, a most entertaining title for the Nintendo DS system. Then I got the urge to experiment with SVG syntax, tinkering with the possible ways to visualize the solved puzzles.
+
+<Level />
+
+<Grid />
+
+<Coordinates />
+
+<Reduce />
