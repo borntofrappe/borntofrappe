@@ -2,6 +2,7 @@
 	import levels from './levels';
 
 	export let key = 'giraffe';
+	export let color = 'currentColor';
 
 	const grid = levels[key].split('\n').map((row) => row.split(''));
 
@@ -26,7 +27,7 @@
 	const height = y1 + Math.abs(y0) + 1;
 </script>
 
-<svg viewBox="0 {y0} {width} {height}">
+<svg style:color viewBox="0 {y0} {width} {height}">
 	<g fill="currentColor">
 		{#each [...coordinates].reverse() as { x, y }}
 			<use {x} {y} href="#cube" />
@@ -37,5 +38,9 @@
 <style>
 	svg {
 		display: block;
+	}
+
+	svg use:hover {
+		filter: brightness(2);
 	}
 </style>

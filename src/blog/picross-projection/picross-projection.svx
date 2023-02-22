@@ -302,17 +302,17 @@ Shift the entire puzzle down to avoid cropping. And finally, you complete the pi
 Hope you don't mind if I pick this occasion to add color and a small showcase.
 
 <Center maxInlineSize="28rem">
-    <Puzzle key="clover" />
+    <Puzzle key="clover" color="hsl(123, 53%, 55%)" />
 </Center>
 
 <Center maxInlineSize="28rem">
-    <Puzzle key="apple" />
+    <Puzzle key="apple" color="hsl(0, 83%, 62%)" />
 </Center>
 
 <Center maxInlineSize="28rem">
-    <Puzzle key="sea-horse" />
+    <Puzzle key="sea-horse" color="hsl(160, 51%, 49%)" />
 </Center>
 
 <Center maxInlineSize="28rem">
-    <Puzzle key="butterfly" />
+    <Puzzle key="butterfly" color="hsl(334, 86%, 67%)" />
 </Center>
