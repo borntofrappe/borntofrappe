@@ -1,0 +1,7 @@
+---
+title: Picross projection
+description: Adding perspective to otherwise 2D pictures
+date: 2023-02-22T21:29:02
+---
+
+With [Picross 2D](/picross-2d) we visualized solved nonogram puzzles with a grid. Columns and rows peppered with rectangles to create rudimentary, but rather believable, paintings in two dimensions. With a bit of ingenuity, experimentation and a good dose of patience, it is possible to extend the two-dimensional picture and create the illusion of depth. Only with SVG.
