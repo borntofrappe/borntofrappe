@@ -9,6 +9,7 @@ date: 2023-02-22T21:29:02
 
 	import svg from './svg.js'
 	import Level from './Level.svelte'
+	import Puzzle from './Puzzle.svelte'
 </script>
 
 {@html svg['defs']}
@@ -125,7 +126,9 @@ To understand how consider the following grid as a reference, beyond a nice patt
     {@html svg['isometric-grid']}
 </Center>
 
-The moment you have a row of neighboring cubes. You realize the excessive horizontal whitespace.
+The moment you have a row of neighboring cubes. You realize the excessive horizontal whitespace.. I expanded the canvas to avoid one annoying mishap: use the width and height from the previous version.
+
+<Level padding={0} />
 
 ```html
 <use x="0" y="0" href="#cube" />
@@ -273,3 +276,43 @@ Or again reverse the shallow copy as you draw the elements.
 Whichever way suits your coding style best.
 
 ## Canvas
+
+Most assuredly, it did not escape your eyes that the visual is off center.
+
+I expanded the canvas to avoid one annoying mishap: use the width and height from the 2D grid and, perhaps expectedly, the values do not fit the composition.
+
+<Center maxInlineSize="28rem">
+    <Level offset={true} reverse={true} padding={0} />
+</Center>
+
+There is certainly a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
+
+`coordinates` describes the position of the cubes. What is the width of the canvas? That would be the greatest `x` value _plus_ 1. 1 for the size of the cube itself.
+
+What is the height? The logic is similar, but not the same. As you lift the cubes up, some of them assume a negative offset.
+
+The height is therefore the sum of these two values. Plust 1. Always plus 1 to account for that very last `<use />` element.
+
+Shift the entire puzzle down to avoid cropping. And finally, you complete the picture.
+
+<Center maxInlineSize="28rem">
+    <Puzzle />
+</Center>
+
+Hope you don't mind if I pick this occasion to add color and a small showcase.
+
+<Center maxInlineSize="28rem">
+    <Puzzle key="clover" />
+</Center>
+
+<Center maxInlineSize="28rem">
+    <Puzzle key="apple" />
+</Center>
+
+<Center maxInlineSize="28rem">
+    <Puzzle key="sea-horse" />
+</Center>
+
+<Center maxInlineSize="28rem">
+    <Puzzle key="butterfly" />
+</Center>
