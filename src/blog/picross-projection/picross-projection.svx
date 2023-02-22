@@ -108,3 +108,83 @@ Let's try and replace the `<rect>` element with our custom cube.
 <Level />
 
 And let's call this a solid starting point.
+
+## Projection
+
+We need to position the elements in the perspective afforded by the cube, into the context of an _isometric_ projection.
+
+To understand how consider the following grid as a reference, beyond a nice pattern for bathroom tiles.
+
+{@html svg['isometric-grid']}
+
+The moment you have a row of neighboring cubes. You realize the excessive horizontal whitespace.
+
+```html
+<use x="0" y="0" href="#cube" />
+<use x="1" y="0" href="#cube" />
+<use x="2" y="0" href="#cube" />
+```
+
+{@html svg['cubes']}
+
+We want to position the elements at increments of half the width: 0.5, 1, 1.5 and so forth.
+
+```html
+<use x="0" y="0" href="#cube" />
+<use x="0.5" y="0" href="#cube" />
+<use x="1" y="0" href="#cube" />
+```
+
+{@html svg['offset-x']}
+
+In terms of SVG, later shapes are drawn above previous ones, meaning you need to reverse the order.
+
+```html
+<use x="1" y="0" href="#cube" />
+<use x="0.5" y="0" href="#cube" />
+<use x="0" y="0" href="#cube" />
+```
+
+But halving the offset is enough to realize the tight fit.
+
+{@html svg['reverse']}
+
+Vertically, we want to lift up each successive tile with a consistent ascension.
+
+```html
+<use x="1" y="-0.5" href="#cube" />
+<use x="0.5" y="-0.25" href="#cube" />
+<use x="0" y="0" href="#cube" />
+```
+
+Each column is raised by half the horizontal offset: 0.25, 0.5 and so on.
+
+{@html svg['offsets-y']}
+
+Enough to complete a row. Say you have additional rows, however.
+
+```html
+<use x="0" y="1" href="#cube" />
+<use x="0" y="2" href="#cube" />
+<!-- ...use -->
+```
+
+And once again the unitary increment proves to be excessive.
+
+{@html svg['rows']}
+
+Place the elements at increments of half the height.
+
+```html
+<use x="0" y="1" href="#cube" />
+<use x="0" y="0.5" href="#cube" />
+<!-- ...use -->
+```
+
+And the graphical projection is complete.
+
+{@html svg['offsets']}
+
+Notice again the order. You start from the bottom-most element to draw the preceding rows effectively on top.
+
+## Level
