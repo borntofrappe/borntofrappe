@@ -4,4 +4,57 @@ description: Adding perspective to otherwise 2D pictures
 date: 2023-02-22T21:29:02
 ---
 
+<script>
+	import svg from './svg.js'
+</script>
+
+{@html svg['defs']}
+
 With [Picross 2D](/picross-2d) we visualized solved nonogram puzzles with a grid. Columns and rows peppered with rectangles to create rudimentary, but rather believable, paintings in two dimensions. With a bit of ingenuity, experimentation and a good dose of patience, it is possible to extend the two-dimensional picture and create the illusion of depth. Only with SVG.
+
+## Cube
+
+The key of this article is a `<path>` element tracing the contours of a cube.
+
+```html
+<svg viewBox="0 0 1 1">
+	<path fill="currentColor" d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
+</svg>
+```
+
+We create the element to fit in a rectangle 1 unit wide, 1 unit tall. Conceptually, this matches the size of a single cell in the previous 2D grid.
+
+{@html svg['cube']}
+
+To further the sense of depth, add shadows in the form of black, translucent faces.
+
+```html
+<g fill="black">
+	<path opacity="0.5" d="M 0 0.25 l 0.5 0.25 0 0.5 -0.5 -0.25" />
+	<path opacity="0.25" d="M 0.5 0.5 l 0.5 -0.25 0 0.5 -0.5 0.25" />
+</g>
+```
+
+Added on top of the first shape, the two emulate a light source from north-east. Something which becomes the more evident the lighter the color.
+
+{@html svg['shadow']}
+
+Turns out, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
+
+Define the shape in a helpful `<defs>` block.
+
+```html
+<defs>
+	<g id="cube">
+		<!-- paths -->
+	</g>
+</defs>
+```
+
+And you'll be able to add the fancy shape in the SVG document through the `<use>` element.
+
+```html
+<g fill="currentColor">
+	<use href="#cube" />
+</g>
+```
