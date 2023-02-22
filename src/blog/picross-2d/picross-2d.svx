@@ -230,7 +230,7 @@ const coordinates = grid.reduce((acc, curr, y) => {
 }, []);
 ```
 
-Consider it a homework of sorts to understand it all. And perhaps remove the `return` keyword if you enjoy being really, wickedly short.
+Consider it a homework of sorts to understand it all. Perhaps remove the `return` keyword if you enjoy being really, wickedly short.
 
 And consider this final level as your eventual reward.
 
