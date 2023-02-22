@@ -188,3 +188,62 @@ And the graphical projection is complete.
 Notice again the order. You start from the bottom-most element to draw the preceding rows effectively on top.
 
 ## Level
+
+Let's dive back into the more elaborate grid proposed by the string of characters.
+
+Instead of using the index for the coordinates.
+
+```js
+for (let y = 0; y < grid.length; y++) {
+	for (let x = 0; x < grid[0].length; x++) {
+		coordinates.push({ x, y });
+	}
+}
+```
+
+Rename the variables to generic counter names.
+
+```js
+for (let i = 0; i < grid.length; i++) {
+	for (let j = 0; j < grid[0].length; j++) {
+		//
+	}
+}
+```
+
+As per the smaller example, compute the two now-offset, values for the coordinates.
+
+```js
+const x = j / 2;
+const y = i / 2 - x / 2;
+
+coordinates.push({ x, y });
+```
+
+<Level offset={true} />
+
+Impressed, but not completely? You certainly remember the note about the source order. Reverse the order of the final array.
+
+```js
+coordinates.reverse();
+```
+
+And the puzzle assumes its rightful, three dimensional shape.
+
+<Level offset={true} reverse={true} />
+
+The `reverse` method modifies the original data structure. If you don't fancy the feature, you might prefer creating a separate collection.
+
+```js
+const drawCoordinates = [...coordinates].reverse();
+```
+
+Or again reverse the shallow copy as you draw the elements.
+
+```svelte
+{#each [...coordinates].reverse() as { x, y }}
+	<use {x} {y} href="#cube" />
+{/each}
+```
+
+Whichever way suits your coding style best.
