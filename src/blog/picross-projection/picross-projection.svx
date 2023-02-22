@@ -5,6 +5,8 @@ date: 2023-02-22T21:29:02
 ---
 
 <script>
+    import Center from '$lib/components/blog/Center.svelte'
+
 	import svg from './svg.js'
 	import Level from './Level.svelte'
 </script>
@@ -25,7 +27,9 @@ The key of this article is a `<path>` element tracing the contours of a cube.
 
 We create the element to fit in a rectangle 1 unit wide, 1 unit tall. Conceptually, this matches the size of a single cell in the previous 2D grid.
 
-{@html svg['cube']}
+<Center maxInlineSize="18rem">
+    {@html svg['cube']}
+</Center>
 
 To further the sense of depth, add shadows in the form of black, translucent faces.
 
@@ -38,7 +42,9 @@ To further the sense of depth, add shadows in the form of black, translucent fac
 
 Added on top of the first shape, the two emulate a light source from north-east. Something which becomes the more evident the lighter the color.
 
-{@html svg['shadow']}
+<Center maxInlineSize="24rem">
+    {@html svg['shadow']}
+</Center>
 
 Turns out, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
 
@@ -115,7 +121,9 @@ We need to position the elements in the perspective afforded by the cube, into t
 
 To understand how consider the following grid as a reference, beyond a nice pattern for bathroom tiles.
 
-{@html svg['isometric-grid']}
+<Center maxInlineSize="28rem">
+    {@html svg['isometric-grid']}
+</Center>
 
 The moment you have a row of neighboring cubes. You realize the excessive horizontal whitespace.
 
@@ -125,7 +133,9 @@ The moment you have a row of neighboring cubes. You realize the excessive horizo
 <use x="2" y="0" href="#cube" />
 ```
 
-{@html svg['cubes']}
+<Center maxInlineSize="24rem">
+    {@html svg['cubes']}
+</Center>
 
 We want to position the elements at increments of half the width: 0.5, 1, 1.5 and so forth.
 
@@ -135,7 +145,9 @@ We want to position the elements at increments of half the width: 0.5, 1, 1.5 an
 <use x="1" y="0" href="#cube" />
 ```
 
-{@html svg['offset-x']}
+<Center maxInlineSize="24rem">
+    {@html svg['offset-x']}
+</Center>
 
 In terms of SVG, later shapes are drawn above previous ones, meaning you need to reverse the order.
 
@@ -147,7 +159,9 @@ In terms of SVG, later shapes are drawn above previous ones, meaning you need to
 
 But halving the offset is enough to realize the tight fit.
 
-{@html svg['reverse']}
+<Center maxInlineSize="24rem">
+    {@html svg['reverse']}
+</Center>
 
 Vertically, we want to lift up each successive tile with a consistent ascension.
 
@@ -159,7 +173,9 @@ Vertically, we want to lift up each successive tile with a consistent ascension.
 
 Each column is raised by half the horizontal offset: 0.25, 0.5 and so on.
 
-{@html svg['offsets-y']}
+<Center maxInlineSize="24rem">
+    {@html svg['offsets-y']}
+</Center>
 
 Enough to complete a row. Say you have additional rows, however.
 
@@ -171,7 +187,9 @@ Enough to complete a row. Say you have additional rows, however.
 
 And once again the unitary increment proves to be excessive.
 
-{@html svg['rows']}
+<Center maxInlineSize="24rem">
+    {@html svg['rows']}
+</Center>
 
 Place the elements at increments of half the height.
 
@@ -183,7 +201,9 @@ Place the elements at increments of half the height.
 
 And the graphical projection is complete.
 
-{@html svg['offsets']}
+<Center maxInlineSize="24rem">
+    {@html svg['offsets']}
+</Center>
 
 Notice again the order. You start from the bottom-most element to draw the preceding rows effectively on top.
 
@@ -220,7 +240,9 @@ const y = i / 2 - x / 2;
 coordinates.push({ x, y });
 ```
 
-<Level offset={true} />
+<Center maxInlineSize="28rem">
+    <Level offset={true} />
+</Center>
 
 Impressed, but not completely? You certainly remember the note about the source order. Reverse the order of the final array.
 
@@ -230,7 +252,9 @@ coordinates.reverse();
 
 And the puzzle assumes its rightful, three dimensional shape.
 
-<Level offset={true} reverse={true} />
+<Center maxInlineSize="28rem">
+    <Level offset={true} reverse={true} />
+</Center>
 
 The `reverse` method modifies the original data structure. If you don't fancy the feature, you might prefer creating a separate collection.
 
@@ -247,3 +271,5 @@ Or again reverse the shallow copy as you draw the elements.
 ```
 
 Whichever way suits your coding style best.
+
+## Canvas

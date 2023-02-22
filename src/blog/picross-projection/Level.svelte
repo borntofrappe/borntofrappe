@@ -1,5 +1,4 @@
 <script>
-	export let padding = 4;
 	export let offset = false;
 	export let reverse = false;
 
@@ -35,6 +34,8 @@ oxxox`;
 					}, [])
 				];
 		  }, []);
+
+	const padding = 4;
 </script>
 
 <svg viewBox="{(padding / 2) * -1} {(padding / 2) * -1} {width + padding} {height + padding}">
