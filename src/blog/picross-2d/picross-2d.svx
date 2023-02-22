@@ -220,7 +220,7 @@ And here's the most ready result.
 Care to test your luck with a `reduce` method or two? Here's a version I created in a few steps.
 
 ```js
-const coords = grid.reduce((acc, curr, y) => {
+const coordinates = grid.reduce((acc, curr, y) => {
 	return [
 		...acc,
 		...curr.reduce((a, c, x) => {
