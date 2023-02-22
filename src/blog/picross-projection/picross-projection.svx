@@ -6,6 +6,7 @@ date: 2023-02-22T21:29:02
 
 <script>
 	import svg from './svg.js'
+	import Level from './Level.svelte'
 </script>
 
 {@html svg['defs']}
@@ -58,3 +59,52 @@ And you'll be able to add the fancy shape in the SVG document through the `<use>
 	<use href="#cube" />
 </g>
 ```
+
+## Coordinates
+
+A small recap for the two-dimensional project.
+
+Based on a string of characters, separating the rows with new line characters and highlighting filled squares with `o`s characters.
+
+```js
+const level = `xxxoo
+xxxox
+xxxox
+xxoox
+oooox
+oooox
+oxxox
+oxxox`;
+```
+
+We created `grid` to encapsulate the letters in a 2D array.
+
+```js
+const grid = level.split('\n').map((row) => row.split(''));
+```
+
+This collection gave us the width and height of the canvas.
+
+```js
+const height = grid.length;
+const width = grid[0].length;
+```
+
+And ultimately the coordinates of the round character in a one-dimensional array — `coordinates`. I'll refer you [to the article](/picross-2d#coordinates) once more to find the logic for the (x, y) values, but based on this structure we finally drew the level with rectangles.
+
+```svelte
+{#each coordinates as { x, y }}
+	<rect {x} {y} width="1" height="1" />
+{/each}
+```
+
+Let's try and replace the `<rect>` element with our custom cube.
+
+```diff
+-<rect {x} {y} width="1" height="1" />
++<use {x} {y} href="#cube" />
+```
+
+<Level />
+
+And let's call this a solid starting point.
