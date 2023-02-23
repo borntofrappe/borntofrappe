@@ -4,22 +4,22 @@
 	const showcase = [
 		{
 			key: 'clover',
-			color: 'hsl(123, 53%, 55%)',
+			color: 'limegreen',
 			caption: 'A good luck charm'
 		},
 		{
 			key: 'apple',
-			color: 'hsl(0, 83%, 62%)',
+			color: 'crimson',
 			caption: 'A savory apple'
 		},
 		{
 			key: 'sea-horse',
-			color: 'hsl(160, 51%, 49%)"',
+			color: 'mediumspringgreen',
 			caption: 'A hopping creature'
 		},
 		{
 			key: 'butterfly',
-			color: 'hotpink',
+			color: 'orchid',
 			caption: 'A fanciful critter'
 		}
 	];
