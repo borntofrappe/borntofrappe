@@ -1,5 +1,4 @@
 <script>
-	import levels from './levels.js';
 	import Level from './Level.svelte';
 
 	const showcase = [
