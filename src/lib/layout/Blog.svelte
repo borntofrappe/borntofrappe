@@ -142,7 +142,7 @@
 		font-weight: 700;
 	}
 
-	main :global(a) {
+	main :global(p > a) {
 		text-decoration: none;
 		background: linear-gradient(transparent 80%, var(--accent) 80%),
 			linear-gradient(transparent 80%, var(--shadow) 90%);
@@ -151,7 +151,7 @@
 		transition: background-size 0.25s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
-	main :global(a:hover) {
+	main :global(p > a:hover) {
 		background-size: 100% 100%, 100% 100%;
 	}
 
@@ -250,6 +250,52 @@
 			main :global(blockquote::before) {
 				float: inline-start;
 			}
+		}
+	}
+
+	main :global(.permalink) {
+		display: flex;
+		align-items: center;
+		gap: 0 var(--step-space-100);
+	}
+
+	main :global(.permalink a) {
+		inline-size: 1rem;
+		block-size: 1rem;
+		border-radius: 0.5rem;
+		opacity: 0.3;
+		background: currentColor;
+		transition: opacity 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	main :global(.permalink a:focus) {
+		opacity: 1;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(.permalink a) {
+			inline-size: 1em;
+			block-size: 1em;
+			border-radius: initial;
+			position: relative;
+			-webkit-mask-image: url('data:image/svg+xml,\
+		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+			  <g transform="rotate(-45)">\
+			  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+				  <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+				  <use href="%23link" transform="scale(-1 -1)" />\
+			  </g>\
+			  </g>\
+		  </svg>');
+			mask-image: url('data:image/svg+xml,\
+		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+			  <g transform="rotate(-45)">\
+			  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">\
+				  <path id="link" stroke-dasharray="140 26" stroke-dashoffset="-20" d="M -21 9 a 21 21 0 0 1 0 -42 h 26 a 21 21 0 0 1 0 42 h -26" />\
+				  <use href="%23link" transform="scale(-1 -1)" />\
+			  </g>\
+			  </g>\
+		  </svg>');
 		}
 	}
 </style>
