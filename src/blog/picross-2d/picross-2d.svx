@@ -30,7 +30,7 @@ oxxox
 oxxox`;
 ```
 
-The most immediate way to show the level is directly through the \_x_s and \_o_s — plot the string in a `<pre>` element to preserve whitespace.
+The most immediate way to show the level is directly through the `x`s and `o`s — plot the string in a `<pre>` element to preserve whitespace.
 
 ```svelte
 <pre>
@@ -66,7 +66,7 @@ For the nested construct, loop through the rows, these are again strings of char
 const grid = level.split('\n').map((row) => row.split(''));
 ```
 
-There you have it. A 2D array hiding the characters in a comforting grid.
+There you have it. A 2D array hiding the letters in a comforting grid.
 
 ```js
 /*
@@ -112,9 +112,9 @@ But enough reflection. In the body of the `<svg>` element, loop through the grid
 </g>
 ```
 
-The `#each` block blesses us with two values, the items in the array, but also the index. This maps directly to the `y` coordinate to draw at increments of 1: 0, 1, 2, 3...
+The `#each` block blesses us with two values, the items in the array, but also the index. The value maps directly to the y coordinate to draw at increments of 1: 0, 1, 2, 3...
 
-Loop again, through the row, to find the cells and the horizontal coordinate.
+Loop again, through the row, to find the cells and the horizontal offset.
 
 ```svelte
 {#each grid as row, y}
@@ -124,7 +124,7 @@ Loop again, through the row, to find the cells and the horizontal coordinate.
 {/each}
 ```
 
-Finally, draw a rectangle, but only if the cell includes the arbitrary _o_ character.
+Finally, draw a rectangle, but only if the cell includes the arbitrary `o` character.
 
 <!-- prettier-ignore -->
 ```svelte
@@ -139,7 +139,7 @@ A definite improvement, wouldn't you agree?
     <Grid />
 </Center>
 
-It may all look like magic, but take the attributes in sequence and it makes a world of sense. The first _o_ character is tucked in the first row, `y` equal to 0, and fourth cell, `x` equal to 3. This means you draw the unitary rectangle in the matching coordinates.
+It may all look like magic, but take the attributes in sequence and it makes a world of sense. The first `o` character is tucked in the first row, `y` equal to 0, and fourth cell, `x` equal to 3. This means you draw the unitary rectangle in the matching coordinates.
 
 ```html
 <rect x="3" y="0" width="1" height="1" />
@@ -156,7 +156,7 @@ If you enjoy being concise, Svelte has even a shorthand up its sleeve. Since the
 
 Personally, I get fidgety with the logic in the markup. Let's revisit the logic to keep things separate and isolated to the `<script>` block.
 
-The grid helps us tremendously, separating the characters and describing the width and height of the canvas. We can however create a separate data structure, just for the characters we need to draw, just for the \_o_s.
+The grid helps us tremendously, separating the characters and describing the width and height of the canvas. We can however create a separate data structure, just for the characters we need to draw, just for the `o`s.
 
 ```js
 // grid = level.split(...)
