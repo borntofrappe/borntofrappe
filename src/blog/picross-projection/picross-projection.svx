@@ -1,7 +1,7 @@
 ---
 title: Picross projection
-description: Adding perspective to otherwise 2D pictures
-date: 2023-02-22T21:29:02
+description: Continuing the exploration of solved nonogram puzzles. In higher dimensions. Always with SVG.
+date: 2023-02-23T10:47:49
 ---
 
 <script>
@@ -55,7 +55,7 @@ Define the shape in a helpful `<defs>` block.
 ```html
 <defs>
 	<g id="cube">
-		<!-- paths -->
+		<!-- <path>s -->
 	</g>
 </defs>
 ```
@@ -72,7 +72,7 @@ And you'll be able to add the fancy shape in the SVG document through the `<use>
 
 A small recap for the two-dimensional project.
 
-Based on a string of characters, separating the rows with new line characters and highlighting filled squares with `o`s characters.
+Based on a string of characters, `x`s and `o`s.
 
 ```js
 const level = `xxxoo
@@ -91,14 +91,14 @@ We created `grid` to isolate the letters in a 2D array.
 const grid = level.split('\n').map((row) => row.split(''));
 ```
 
-This collection gave us the width and height of the canvas.
+The collection gave us the width and height of the canvas.
 
 ```js
 const height = grid.length;
 const width = grid[0].length;
 ```
 
-And ultimately the coordinates of the round character in a one-dimensional array — `coordinates`. I'll refer you [to the article](/picross-2d#coordinates) once more to find the logic for the (x, y) values, but based on this structure we finally drew the level with rectangles.
+And ultimately the coordinates of the round character in a one-dimensional array — `coordinates`. I'll refer you [to the article](/picross-2d#coordinates) once more to find the logic for the (x, y) values, but based on the structure we finally drew the level with rectangles.
 
 ```svelte
 {#each coordinates as { x, y }}
@@ -123,7 +123,7 @@ We need to position the elements in the perspective afforded by the cube, into t
 
 To understand how, consider the following grid as a reference, beyond a stylish pattern for a modern living room.
 
-<Center maxInlineSize="28rem">
+<Center maxInlineSize="34rem">
     {@html svg['isometric-grid']}
 </Center>
 
@@ -184,7 +184,7 @@ Enough to complete a row. Say you have additional rows, however.
 ```html
 <use x="0" y="1" href="#cube" />
 <use x="0" y="2" href="#cube" />
-<!-- ...use -->
+<!-- <use>s -->
 ```
 
 And once again the unitary increment proves to be excessive.
@@ -198,7 +198,7 @@ Once again, you need to place the elements per the projection, at increments of 
 ```html
 <use x="0" y="1" href="#cube" />
 <use x="0" y="0.5" href="#cube" />
-<!-- ...use -->
+<!-- <use>s -->
 ```
 
 Completing the graphical projection.
@@ -207,7 +207,7 @@ Completing the graphical projection.
     {@html svg['offsets']}
 </Center>
 
-Notice again the order. You start from the bottom-most element to draw the preceding rows effectively on top.
+Notice again the arrangement in the snippet. You start from the bottom-most element to draw the preceding rows effectively on top.
 
 ## Level
 
@@ -226,7 +226,7 @@ Rename the variables to generic counter labels.
 ```js
 for (let i = 0; i < grid.length; i++) {
 	for (let j = 0; j < grid[0].length; j++) {
-		//
+		// ...
 	}
 }
 ```
@@ -282,7 +282,7 @@ I expanded the canvas to avoid one annoying mishap: use the width and height fro
     <Coordinates offset={true} reverse={true} padding={0} />
 </Center>
 
-There is certainly a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
+There must be a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
 
 `coordinates` describes the position of the cubes. Consider the x and y values in two sorted arrays.
 
@@ -328,13 +328,13 @@ Finally, translate the picture per the initial, smallest coordinate.
 </svg>
 ```
 
-The horizontal coordinate begins at 0, so the instruction is here superfluous, but the vertical values do become smaller — consider how the cells are projected upwards. This last instruction moves the visual down, perfectly encapsulating the multi-dimensional level.
+The horizontal coordinate begins at 0, so the instruction is superfluous, but the vertical values do become smaller — consider how the cells are projected upwards. This last instruction moves the visual down, perfectly encapsulating the multi-dimensional level.
 
 <Center maxInlineSize="28rem">
     <Level />
 </Center>
 
-If you want to rely on the only on the `viewBox` attribute you might translate the origin of the entire SVG at the very top.
+If you want to rely only on the `viewBox` attribute you might translate the origin of the entire SVG at the very top.
 
 ```svelte
 <svg viewBox="{x0} {y0} {width} {height}">
@@ -344,6 +344,6 @@ If you want to rely on the only on the `viewBox` attribute you might translate t
 
 But that's the last piece of SVG I will propose for the time being.
 
-It wouldn't be fair to end on this note, however. After all, the 2D article proposed a handful of levels more. Let me offer them back, with a touch of color and a brand new perspective.
+It wouldn't be fair to end on this note, however. After all, the 2D article proposed a handful of levels more. Let me propose them in force, with a touch of color and a brand new perspective.
 
 <Showcase />
