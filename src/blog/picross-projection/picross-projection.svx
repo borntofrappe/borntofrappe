@@ -8,8 +8,9 @@ date: 2023-02-22T21:29:02
     import Center from '$lib/components/blog/Center.svelte'
 
 	import svg from './svg.js'
+	import Coordinates from './Coordinates.svelte'
 	import Level from './Level.svelte'
-	import Puzzle from './Puzzle.svelte'
+	import Showcase from './Showcase.svelte'
 </script>
 
 {@html svg['defs']}
@@ -18,7 +19,7 @@ With [Picross 2D](/picross-2d) we visualized solved nonogram puzzles with a grid
 
 ## Cube
 
-The key of this article is a `<path>` element tracing the contours of a cube.
+The key to add perspective is a `<path>` element tracing the contours of a cube.
 
 ```html
 <svg viewBox="0 0 1 1">
@@ -41,13 +42,13 @@ To further the sense of depth, add shadows in the form of black, translucent fac
 </g>
 ```
 
-Added on top of the first shape, the two emulate a light source from north-east. Something which becomes the more evident the lighter the color.
+On top of the first shape, the two emulate a light source from north-east. Something which becomes the more evident the lighter the color.
 
 <Center maxInlineSize="24rem">
     {@html svg['shadow']}
 </Center>
 
-Turns out, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
+And surprise surprise, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
 
 Define the shape in a helpful `<defs>` block.
 
@@ -84,7 +85,7 @@ oxxox
 oxxox`;
 ```
 
-We created `grid` to encapsulate the letters in a 2D array.
+We created `grid` to isolate the letters in a 2D array.
 
 ```js
 const grid = level.split('\n').map((row) => row.split(''));
@@ -112,7 +113,7 @@ Let's try and replace the `<rect>` element with our custom cube.
 +<use {x} {y} href="#cube" />
 ```
 
-<Level />
+<Coordinates />
 
 And let's call this a solid starting point.
 
@@ -120,15 +121,13 @@ And let's call this a solid starting point.
 
 We need to position the elements in the perspective afforded by the cube, into the context of an _isometric_ projection.
 
-To understand how consider the following grid as a reference, beyond a nice pattern for bathroom tiles.
+To understand how, consider the following grid as a reference, beyond a stylish pattern for a modern living room.
 
 <Center maxInlineSize="28rem">
     {@html svg['isometric-grid']}
 </Center>
 
-The moment you have a row of neighboring cubes. You realize the excessive horizontal whitespace.. I expanded the canvas to avoid one annoying mishap: use the width and height from the previous version.
-
-<Level padding={0} />
+The moment you have a row of neighboring cubes.
 
 ```html
 <use x="0" y="0" href="#cube" />
@@ -140,7 +139,7 @@ The moment you have a row of neighboring cubes. You realize the excessive horizo
     {@html svg['cubes']}
 </Center>
 
-We want to position the elements at increments of half the width: 0.5, 1, 1.5 and so forth.
+You want to position the elements at increments of half the width: 0.5, 1, 1.5 and so forth.
 
 ```html
 <use x="0" y="0" href="#cube" />
@@ -166,7 +165,7 @@ But halving the offset is enough to realize the tight fit.
     {@html svg['reverse']}
 </Center>
 
-Vertically, we want to lift up each successive tile with a consistent ascension.
+Vertically, we want to lift up each successive tile to create a consistent ascension.
 
 ```html
 <use x="1" y="-0.5" href="#cube" />
@@ -212,7 +211,7 @@ Notice again the order. You start from the bottom-most element to draw the prece
 
 ## Level
 
-Let's dive back into the more elaborate grid proposed by the string of characters.
+Let's dive back into the more elaborate grid proposed by the string of characters and adapt the position per the projection.
 
 Instead of using the index for the coordinates.
 
@@ -224,7 +223,7 @@ for (let y = 0; y < grid.length; y++) {
 }
 ```
 
-Rename the variables to generic counter names.
+Rename the variables to generic counter labels.
 
 ```js
 for (let i = 0; i < grid.length; i++) {
@@ -234,7 +233,7 @@ for (let i = 0; i < grid.length; i++) {
 }
 ```
 
-As per the smaller example, compute the two now-offset, values for the coordinates.
+As per the smaller example, compute the two now-offset, values for the coordinates. X equal to half the index, y equal to half its own index detracted by half the horizontal offset.
 
 ```js
 const x = j / 2;
@@ -244,7 +243,7 @@ coordinates.push({ x, y });
 ```
 
 <Center maxInlineSize="28rem">
-    <Level offset={true} />
+    <Coordinates offset={true} />
 </Center>
 
 Impressed, but not completely? You certainly remember the note about the source order. Reverse the order of the final array.
@@ -256,10 +255,10 @@ coordinates.reverse();
 And the puzzle assumes its rightful, three dimensional shape.
 
 <Center maxInlineSize="28rem">
-    <Level offset={true} reverse={true} />
+    <Coordinates offset={true} reverse={true} />
 </Center>
 
-The `reverse` method modifies the original data structure. If you don't fancy the feature, you might prefer creating a separate collection.
+The `reverse` method technically modifies the original data structure, and if you don't fancy the feature, you might prefer creating a separate collection.
 
 ```js
 const drawCoordinates = [...coordinates].reverse();
@@ -277,42 +276,34 @@ Whichever way suits your coding style best.
 
 ## Canvas
 
-Most assuredly, it did not escape your eyes that the visual is off center.
+Most assuredly, it did not escape your eyes that the visual is off center, swarmed by a sea of unnecessary white-space.
 
 I expanded the canvas to avoid one annoying mishap: use the width and height from the 2D grid and, perhaps expectedly, the values do not fit the composition.
 
 <Center maxInlineSize="28rem">
-    <Level offset={true} reverse={true} padding={0} />
+    <Coordinates offset={true} reverse={true} padding={0} />
 </Center>
 
 There is certainly a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
 
-`coordinates` describes the position of the cubes. What is the width of the canvas? That would be the greatest `x` value _plus_ 1. 1 for the size of the cube itself.
+`coordinates` describes the position of the cubes. Consider the x and y values in two sorted arrays.
 
-What is the height? The logic is similar, but not the same. As you lift the cubes up, some of them assume a negative offset.
+What is the width, what is the height of the canvas? That would be the space between the first and last cube.
 
-The height is therefore the sum of these two values. Plust 1. Always plus 1 to account for that very last `<use />` element.
+Horizontally and vertically.
 
-Shift the entire puzzle down to avoid cropping. And finally, you complete the picture.
+Plus 1.Plus 1 to account for the size of the cube itself. You can't very well forget the last column, the last row.
 
-<Center maxInlineSize="28rem">
-    <Puzzle />
-</Center>
+Update the canvas with the new dimensions.
 
-Hope you don't mind if I pick this occasion to add color and a small showcase.
+Finally, translate the picture per the initial, smallest coordinate.
 
-<Center maxInlineSize="28rem">
-    <Puzzle key="clover" color="hsl(123, 53%, 55%)" />
-</Center>
+The horizontal coordinate begins at 0,so the instruction is here superfluous, but the vertical values do become smaller -- consider how the cells are projected upwards. This last instruction moves the visual down, perfectly encapsulating the multi-dimensional level.
 
-<Center maxInlineSize="28rem">
-    <Puzzle key="apple" color="hsl(0, 83%, 62%)" />
-</Center>
+If you want to rely on the powerful viewBox attribute only you might translate the origin of the entire coordinate system.
 
-<Center maxInlineSize="28rem">
-    <Puzzle key="sea-horse" color="hsl(160, 51%, 49%)" />
-</Center>
+But that's the last piece of SVG I will propose for the time being.
 
-<Center maxInlineSize="28rem">
-    <Puzzle key="butterfly" color="hsl(334, 86%, 67%)" />
-</Center>
+It wouldn't be fair to end on this note, however. After all, the 2d article proposed a handful of levels more. Let me offer them back, with a touch of color and a brand new perspective.
+
+<Showcase />
