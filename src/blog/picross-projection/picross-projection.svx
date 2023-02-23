@@ -345,3 +345,5 @@ If you want to rely on the only on the `viewBox` attribute you might translate t
 But that's the last piece of SVG I will propose for the time being.
 
 It wouldn't be fair to end on this note, however. After all, the 2D article proposed a handful of levels more. Let me offer them back, with a touch of color and a brand new perspective.
+
+<Showcase />
