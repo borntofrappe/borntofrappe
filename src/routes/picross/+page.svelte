@@ -19,6 +19,16 @@
 </svelte:head>
 
 <main>
+	<label>
+		<span class="visually-hidden">Select level</span>
+
+		<select bind:value={key}>
+			{#each keys as value}
+				<option {value}>{value}</option>
+			{/each}
+		</select>
+	</label>
+
 	<div>
 		<Picross {...levels[key]} />
 	</div>
