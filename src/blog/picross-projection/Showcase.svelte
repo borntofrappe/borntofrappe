@@ -46,7 +46,7 @@
 	div {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
+		gap: 1.5rem;
 		justify-content: center;
 	}
 
@@ -56,7 +56,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 0.5rem;
 	}
 
 	figure > :global(*:first-child) {
