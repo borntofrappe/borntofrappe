@@ -7,7 +7,6 @@
 <div>
 	{#each colors as fill}
 		<button
-			type="button"
 			on:click={() => {
 				color = fill;
 			}}
