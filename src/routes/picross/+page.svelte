@@ -1,5 +1,6 @@
 <script>
 	import site from '$lib/utils/site.js';
+	import Picross from './Picross.svelte';
 
 	const { title } = site;
 </script>
@@ -13,7 +14,11 @@
 	<link rel="icon" href="/icons/picross.svg" type="image/svg+xml" />
 </svelte:head>
 
-<main />
+<main>
+	<div>
+		<Picross />
+	</div>
+</main>
 
 <style>
 	main {
@@ -24,5 +29,10 @@
 	<circle r="0.5" fill="%23d2dbe0" />\
 </svg>');
 		background-size: 2rem;
+	}
+
+	div {
+		inline-size: 90vmin;
+		max-inline-size: 28rem;
 	}
 </style>
