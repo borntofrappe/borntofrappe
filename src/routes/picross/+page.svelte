@@ -2,6 +2,7 @@
 	import site from '$lib/utils/site.js';
 	import Picross from './Picross.svelte';
 	import levels from './levels.js';
+	import { scale } from 'svelte/transition';
 
 	const { title } = site;
 
@@ -29,9 +30,11 @@
 		</select>
 	</label>
 
-	<div>
-		<Picross {...levels[key]} />
-	</div>
+	{#key key}
+		<div in:scale style:backface-visibility="hidden">
+			<Picross {...levels[key]} />
+		</div>
+	{/key}
 </main>
 
 <style>
