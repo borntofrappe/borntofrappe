@@ -124,7 +124,7 @@
 		}
 		62%,
 		100% {
-			transform: translateX(16px);
+			transform: translateX(-16px);
 		}
 	}
 </style>
