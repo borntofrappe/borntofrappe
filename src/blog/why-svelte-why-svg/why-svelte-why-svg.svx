@@ -129,9 +129,7 @@ We are going to paint with the colors of the rainbow leaning on the HSL color fo
 
 With a fixed value for the saturation and lightness, all you need is to update the hue in the `[0-360]` range. A visual might explain the concept better, however.
 
-<Center maxInlineSize="36rem">
-	<Hue />
-</Center>
+<Hue />
 
 To have the rainbow go from the top left corner to the bottom right section, then, calculate the hue as a function of the column and row.
 

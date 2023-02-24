@@ -107,3 +107,8 @@
 .font-size\:biggest {
 	font-size: var(--step-size-900);
 }
+
+.--space\:wide,
+.--space\:wide + * {
+	--space: var(--step-space-400);
+}

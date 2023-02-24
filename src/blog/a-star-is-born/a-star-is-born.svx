@@ -213,7 +213,7 @@ With the `Q` character you rely on four numbers instead, two for the position of
 <path d="M 5 25 Q 25 5 45 25" />
 ```
 
-<Center maxInlineSize="30rem">
+<Center maxInlineSize="36rem">
 	<ControlPoint />
 </Center>
 
