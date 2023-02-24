@@ -1,6 +1,7 @@
 export default {
 	'shiba-inu': {
-		color: 'tomato',
+		title: 'Shiba Inu',
+		color: '#b88d27',
 		solution: [
 			`
 xxoxx
@@ -26,7 +27,8 @@ oooxo
 		]
 	},
 	boar: {
-		color: '#b94353',
+		title: 'Boar',
+		color: '#b64855',
 		solution: [
 			`
 xxxxoxxxxx
@@ -71,7 +73,8 @@ xxxxoxxxxo
 		]
 	},
 	boxfish: {
-		color: '#ac83bf',
+		title: 'Boxfish',
+		color: '#288aa5',
 		solution: [
 			`
 xoxxxxxx
@@ -101,7 +104,8 @@ xxxxxxxx
 		]
 	},
 	bulldog: {
-		color: '#d3ca63',
+		title: 'Bulldog',
+		color: '#b88d27',
 		solution: [
 			`
 xxoxxx
@@ -141,7 +145,8 @@ xoxxxo
 		]
 	},
 	cake: {
-		color: '#94c255',
+		title: 'Cake',
+		color: '#835792',
 		solution: [
 			`
 xxoxoxx
@@ -181,7 +186,8 @@ xooooox
 		]
 	},
 	calculator: {
-		color: '#559b65',
+		title: 'Calculator',
+		color: '#67972a',
 		solution: [
 			`
 xxxxxxxooo
@@ -222,7 +228,8 @@ oooooooooo
 		]
 	},
 	cherries: {
-		color: '#60bcd1',
+		title: 'Cherries',
+		color: '#b64855',
 		solution: [
 			`
 xxxxxxxx
@@ -272,7 +279,8 @@ xxxxxxxx
 		]
 	},
 	chick: {
-		color: '#4685d4',
+		title: 'Chick',
+		color: '#b88d27',
 		solution: [
 			`
 xxxxxx
@@ -317,7 +325,8 @@ xxoxxx
 		]
 	},
 	dolphin: {
-		color: '#2988a4',
+		title: 'Dolphin',
+		color: '#1d569b',
 		solution: [
 			`
 xxxxxxx
@@ -340,7 +349,8 @@ xxxxxxo
 		]
 	},
 	duck: {
-		color: '#b64855',
+		title: 'Duck',
+		color: '#b88d27',
 		solution: [
 			`
 xxxxxxxx
@@ -373,6 +383,7 @@ xxoooxxx
 		]
 	},
 	'eight-note': {
+		title: 'Eight note',
 		color: '#835792',
 		solution: [
 			`
@@ -405,7 +416,8 @@ xooxxxx
 		]
 	},
 	'game-controller': {
-		color: '#b88d27',
+		title: 'Game controller',
+		color: '#67972a',
 		solution: [
 			`
 xxoxxx
@@ -438,7 +450,8 @@ xoooxx
 		]
 	},
 	'hammerhead-shark': {
-		color: '#67972a',
+		title: 'Hammerhead shark',
+		color: '#288aa5',
 		solution: [
 			`
 xxxxxxxxx
@@ -485,7 +498,8 @@ ooxooxxxo
 		]
 	},
 	heart: {
-		color: '#25733f',
+		title: 'Heart',
+		color: '#b64855',
 		solution: [
 			`
 xxxxxx
@@ -518,7 +532,8 @@ xxxoox
 		]
 	},
 	kettle: {
-		color: '#288aa5',
+		title: 'Kettle',
+		color: '#25733f',
 		solution: [
 			`
 xxxxxxxx
@@ -568,7 +583,8 @@ xxxoooox
 		]
 	},
 	ladybird: {
-		color: '#1d569b',
+		title: 'Ladybird',
+		color: '#b64855',
 		solution: [
 			`
 xxxxxxxx
@@ -608,7 +624,8 @@ xxxoooox
 		]
 	},
 	'magic-lamp': {
-		color: 'tomato',
+		title: 'Magic lamp',
+		color: '#835792',
 		solution: [
 			`
 xxxxxxxxxx
@@ -658,7 +675,8 @@ xxxxxxxxxx
 		]
 	},
 	platypus: {
-		color: 'tomato',
+		title: 'Platypus',
+		color: '#greenish',
 		solution: [
 			`
 xxxxxxxxxx
@@ -698,7 +716,8 @@ xxxxxxxxxx
 		]
 	},
 	'race-car': {
-		color: 'tomato',
+		title: 'Race car',
+		color: '#835792',
 		solution: [
 			`
 xxxxxxxxoo
@@ -728,7 +747,8 @@ oooxooooox
 		]
 	},
 	snail: {
-		color: 'tomato',
+		title: 'Snail',
+		color: '#67972a',
 		solution: [
 			`
 oxxxxx
@@ -754,7 +774,8 @@ xxooxx
 		]
 	},
 	sparrow: {
-		color: 'tomato',
+		title: 'Sparrow',
+		color: '#b64855',
 		solution: [
 			`
 xxxxxxxx
@@ -791,7 +812,8 @@ oxxxxoxx
 		]
 	},
 	'torii-gate': {
-		color: 'tomato',
+		title: 'Torii gate',
+		color: '#835792',
 		solution: [
 			`
 xxxxxx
@@ -823,7 +845,8 @@ ooxxoo
 		]
 	},
 	tucan: {
-		color: 'tomato',
+		title: 'Tucan',
+		color: '#25733f',
 		solution: [
 			`
 xxxxxxxxx
@@ -868,7 +891,8 @@ xxxxxxxxx
 		]
 	},
 	'watering-can': {
-		color: 'tomato',
+		title: 'Watering can',
+		color: '#835792',
 		solution: [
 			`
 xxxxxxxx
@@ -894,7 +918,8 @@ xxxoooxx
 		]
 	},
 	whistle: {
-		color: 'tomato',
+		title: 'Whistle',
+		color: '#67972a',
 		solution: [
 			`
 xxooooo
