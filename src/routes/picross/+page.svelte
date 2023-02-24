@@ -1,8 +1,12 @@
 <script>
 	import site from '$lib/utils/site.js';
 	import Picross from './Picross.svelte';
+	import levels from './levels.js';
 
 	const { title } = site;
+
+	const keys = Object.keys(levels);
+	let [, , key] = keys;
 </script>
 
 <svelte:head>
@@ -16,7 +20,7 @@
 
 <main>
 	<div>
-		<Picross />
+		<Picross {...levels[key]} />
 	</div>
 </main>
 

@@ -1,7 +1,7 @@
 <script>
 	export let title = 'Shiba Inu';
 	export let color = 'currentColor';
-	export let level = [
+	export let solution = [
 		`
 xxoxx
 xooxx
@@ -32,7 +32,7 @@ oooxo
 	let height = 0;
 
 	$: {
-		coordinates = level.reduce((accumulator, current, z) => {
+		coordinates = solution.reduce((accumulator, current, z) => {
 			return [
 				...current
 					.trim()
