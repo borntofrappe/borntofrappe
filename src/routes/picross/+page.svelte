@@ -6,7 +6,7 @@
 	const { title } = site;
 
 	const keys = Object.keys(levels);
-	let [, , key] = keys;
+	let [key] = keys;
 </script>
 
 <svelte:head>
@@ -23,8 +23,8 @@
 		<span class="visually-hidden">Select level</span>
 
 		<select bind:value={key}>
-			{#each keys as value}
-				<option {value}>{value}</option>
+			{#each keys as key}
+				<option value={key}>{levels[key].title}</option>
 			{/each}
 		</select>
 	</label>
