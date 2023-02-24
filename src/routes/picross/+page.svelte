@@ -35,7 +35,7 @@
 			in:scale
 			style:backface-visibility="hidden"
 			style:inline-size="90vmin"
-			style:max-inline-size="30rem"
+			style:max-inline-size="28rem"
 		>
 			<Picross {...levels[key]} />
 		</div>
@@ -44,6 +44,9 @@
 
 <style>
 	main {
+		color: hsl(42, 15%, 13%);
+		background: hsl(40, 23%, 97%);
+		--hint: hsl(41, 8%, 61%);
 		padding: 1rem;
 		display: flex;
 		gap: 2rem;
@@ -56,26 +59,29 @@
 		background-size: 2rem;
 	}
 
+	main div {
+		margin-block: auto;
+	}
+
 	select {
-		--hint: hsl(214, 53%, 22%);
 		--transition-duration: 0.2s;
 		padding: 0.75rem 1rem;
-		color: hsl(240, 50%, 96%);
-		background: hsl(41, 65%, 44%);
+		color: hsl(49, 100%, 96%);
+		background: hsl(42, 63%, 48%);
 		border-radius: 0;
 		border: none;
 		font-weight: 700;
 		text-transform: uppeercase;
 		outline-offset: 0.2rem;
-		text-shadow: -1px -1px var(--hint, hsl(214, 53%, 22%));
-		box-shadow: 0.25rem 0.25rem 0 var(--hint, hsl(214, 53%, 22%));
+		text-shadow: -1px -1px var(--hint, hsl(41, 8%, 61%));
+		box-shadow: 0.25rem 0.25rem 0 var(--hint, hsl(41, 8%, 61%));
 		transition: outline var(--transition-duration, 0.25s) 0s cubic-bezier(0.37, 0, 0.63, 1),
 			box-shadow var(--transition-duration, 0.25s) 0s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	select:focus {
-		outline: 0.2rem solid var(--hint, hsl(214, 53%, 22%));
-		box-shadow: 0rem 0rem 0 var(--hint, hsl(214, 53%, 22%));
+		outline: 0.2rem solid var(--hint, hsl(41, 8%, 61%));
+		box-shadow: 0rem 0rem 0 var(--hint, hsl(41, 8%, 61%));
 		transition-delay: var(--transition-duration, 0.25s), 0s;
 	}
 </style>

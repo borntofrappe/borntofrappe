@@ -1,7 +1,7 @@
 export default {
 	'shiba-inu': {
 		title: 'Shiba Inu',
-		color: '#b88d27',
+		color: 'hsl(22, 78%, 55%)',
 		solution: [
 			`
 xxoxx
@@ -28,7 +28,7 @@ oooxo
 	},
 	boar: {
 		title: 'Boar',
-		color: '#b64855',
+		color: 'hsl(22, 79%, 31%)',
 		solution: [
 			`
 xxxxoxxxxx
@@ -74,7 +74,7 @@ xxxxoxxxxo
 	},
 	boxfish: {
 		title: 'Boxfish',
-		color: '#288aa5',
+		color: 'hsl(42, 63%, 48%)',
 		solution: [
 			`
 xoxxxxxx
@@ -105,7 +105,7 @@ xxxxxxxx
 	},
 	bulldog: {
 		title: 'Bulldog',
-		color: '#b88d27',
+		color: 'hsl(22, 74%, 38%)',
 		solution: [
 			`
 xxoxxx
@@ -146,7 +146,7 @@ xoxxxo
 	},
 	cake: {
 		title: 'Cake',
-		color: '#835792',
+		color: 'hsl(294, 60%, 38%)',
 		solution: [
 			`
 xxoxoxx
@@ -187,7 +187,7 @@ xooooox
 	},
 	calculator: {
 		title: 'Calculator',
-		color: '#67972a',
+		color: 'hsl(211, 10%, 53%)',
 		solution: [
 			`
 xxxxxxxooo
@@ -229,7 +229,7 @@ oooooooooo
 	},
 	cherries: {
 		title: 'Cherries',
-		color: '#b64855',
+		color: 'hsl(360, 67%, 44%)',
 		solution: [
 			`
 xxxxxxxx
@@ -280,7 +280,7 @@ xxxxxxxx
 	},
 	chick: {
 		title: 'Chick',
-		color: '#b88d27',
+		color: 'hsl(43, 89%, 70%)',
 		solution: [
 			`
 xxxxxx
@@ -326,7 +326,7 @@ xxoxxx
 	},
 	dolphin: {
 		title: 'Dolphin',
-		color: '#1d569b',
+		color: 'hsl(200, 54%, 49%)',
 		solution: [
 			`
 xxxxxxx
@@ -350,7 +350,7 @@ xxxxxxo
 	},
 	duck: {
 		title: 'Duck',
-		color: '#b88d27',
+		color: 'hsl(21, 83%, 64%)',
 		solution: [
 			`
 xxxxxxxx
@@ -384,7 +384,7 @@ xxoooxxx
 	},
 	'eight-note': {
 		title: 'Eight note',
-		color: '#835792',
+		color: 'hsl(209, 18%, 30%)',
 		solution: [
 			`
 xxxxxxx
@@ -417,7 +417,7 @@ xooxxxx
 	},
 	'game-controller': {
 		title: 'Game controller',
-		color: '#67972a',
+		color: 'hsl(210, 22%, 49%)',
 		solution: [
 			`
 xxoxxx
@@ -451,7 +451,7 @@ xoooxx
 	},
 	'hammerhead-shark': {
 		title: 'Hammerhead shark',
-		color: '#288aa5',
+		color: 'hsl(22, 83%, 19%)',
 		solution: [
 			`
 xxxxxxxxx
@@ -499,7 +499,7 @@ ooxooxxxo
 	},
 	heart: {
 		title: 'Heart',
-		color: '#b64855',
+		color: 'hsl(354, 85%, 44%)',
 		solution: [
 			`
 xxxxxx
@@ -533,7 +533,7 @@ xxxoox
 	},
 	kettle: {
 		title: 'Kettle',
-		color: '#25733f',
+		color: 'hsl(185, 81%, 29%)',
 		solution: [
 			`
 xxxxxxxx
@@ -584,7 +584,7 @@ xxxoooox
 	},
 	ladybird: {
 		title: 'Ladybird',
-		color: '#b64855',
+		color: 'hsl(360, 83%, 62%)',
 		solution: [
 			`
 xxxxxxxx
@@ -625,7 +625,7 @@ xxxoooox
 	},
 	'magic-lamp': {
 		title: 'Magic lamp',
-		color: '#835792',
+		color: 'hsl(44, 92%, 63%)',
 		solution: [
 			`
 xxxxxxxxxx
@@ -676,7 +676,7 @@ xxxxxxxxxx
 	},
 	platypus: {
 		title: 'Platypus',
-		color: '#greenish',
+		color: 'hsl(15, 86%, 30%)',
 		solution: [
 			`
 xxxxxxxxxx
@@ -717,7 +717,7 @@ xxxxxxxxxx
 	},
 	'race-car': {
 		title: 'Race car',
-		color: '#835792',
+		color: 'hsl(294, 60%, 38%)',
 		solution: [
 			`
 xxxxxxxxoo
@@ -748,7 +748,7 @@ oooxooooox
 	},
 	snail: {
 		title: 'Snail',
-		color: '#67972a',
+		color: 'hsl(162, 63%, 41%)',
 		solution: [
 			`
 oxxxxx
@@ -775,7 +775,7 @@ xxooxx
 	},
 	sparrow: {
 		title: 'Sparrow',
-		color: '#b64855',
+		color: 'hsl(186, 91%, 29%)',
 		solution: [
 			`
 xxxxxxxx
@@ -813,7 +813,7 @@ oxxxxoxx
 	},
 	'torii-gate': {
 		title: 'Torii gate',
-		color: '#835792',
+		color: 'hsl(360, 64%, 55%)',
 		solution: [
 			`
 xxxxxx
@@ -846,7 +846,7 @@ ooxxoo
 	},
 	tucan: {
 		title: 'Tucan',
-		color: '#25733f',
+		color: 'hsl(262, 48%, 46%)',
 		solution: [
 			`
 xxxxxxxxx
@@ -892,7 +892,7 @@ xxxxxxxxx
 	},
 	'watering-can': {
 		title: 'Watering can',
-		color: '#835792',
+		color: 'hsl(330, 63%, 47%)',
 		solution: [
 			`
 xxxxxxxx
@@ -919,7 +919,7 @@ xxxoooxx
 	},
 	whistle: {
 		title: 'Whistle',
-		color: '#67972a',
+		color: 'hsl(211, 10%, 53%)',
 		solution: [
 			`
 xxooooo
