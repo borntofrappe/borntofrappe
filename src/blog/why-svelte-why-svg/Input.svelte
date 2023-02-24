@@ -28,31 +28,22 @@
 	$: dispatch('change', { size });
 </script>
 
-<div>
-	<form on:submit|preventDefault>
-		<label>
-			Drag the handle to resize grid.
-			<input type="range" min={2} max={15} bind:value={size} />
-		</label>
-	</form>
+<label>
+	Drag the handle to resize grid.
+	<input type="range" min={2} max={15} bind:value={size} />
+</label>
 
-	<svg viewBox="0 0 {size} {size}">
-		{#each grid as { row, column, color }}
-			<g transform="translate({column} {row})">
-				<rect fill={color} width="1" height="1" />
-			</g>
-		{/each}
-	</svg>
-</div>
+<svg viewBox="0 0 {size} {size}">
+	{#each grid as { row, column, color }}
+		<g transform="translate({column} {row})">
+			<rect fill={color} width="1" height="1" />
+		</g>
+	{/each}
+</svg>
 
 <style>
-	div * {
-		padding: 0;
-		margin: 0;
-	}
-
-	div > * + * {
-		margin-block-start: 0.75rem;
+	label {
+		display: block;
 	}
 
 	label input {

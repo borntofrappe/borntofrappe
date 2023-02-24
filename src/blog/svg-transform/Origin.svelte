@@ -10,70 +10,47 @@
 	}
 </script>
 
-<div>
-	<form on:submit|preventDefault>
-		<label>
-			Drag the handle to update the angle
-			<input min="0" max="90" step="1" type="range" bind:value={angle} />
-		</label>
+<label>
+	Drag the handle to update the angle
+	<input min="0" max="90" step="1" type="range" bind:value={angle} />
+</label>
 
-		<label>
-			<input type="checkbox" bind:checked={origin} />
-			Highlight origin
-		</label>
-	</form>
+<label>
+	<input type="checkbox" bind:checked={origin} />
+	Highlight origin
+</label>
 
-	<svg viewBox="0 0 100 100">
-		<g transform="translate(90 25)">
-			<g fill="currentColor" font-size="20" font-weight="700" text-anchor="end">
-				<text>{angle}°</text>
-			</g>
+<svg viewBox="0 0 100 100">
+	<g transform="translate(90 25)">
+		<g fill="currentColor" font-size="20" font-weight="700" text-anchor="end">
+			<text>{angle}°</text>
 		</g>
-		<g>
-			<g
-				fill="none"
-				stroke="#632b2a"
-				stroke-width="4"
-				stroke-linejoin="round"
-				stroke-linecap="round"
-			>
-				<path d="M 50 50 v 35 h -10 h 20" />
-			</g>
-			<circle fill="#632b2a" cx="50" cy="50" r="4" />
+	</g>
+	<g>
+		<g fill="none" stroke="#632b2a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+			<path d="M 50 50 v 35 h -10 h 20" />
 		</g>
+		<circle fill="#632b2a" cx="50" cy="50" r="4" />
+	</g>
 
-		{#if origin}
-			<g {transform}>
-				<circle fill="currentColor" r="4" />
-				<path stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" d="M -200 0 h 400" />
-			</g>
-		{/if}
-
+	{#if origin}
 		<g {transform}>
-			<path
-				fill="none"
-				stroke="#db9756"
-				stroke-width="4"
-				d={offset ? 'M 0 -40 v 60' : 'M 50 10 v 60'}
-			/>
+			<circle fill="currentColor" r="4" />
+			<path stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" d="M -200 0 h 400" />
 		</g>
-	</svg>
-</div>
+	{/if}
+
+	<g {transform}>
+		<path
+			fill="none"
+			stroke="#db9756"
+			stroke-width="4"
+			d={offset ? 'M 0 -40 v 60' : 'M 50 10 v 60'}
+		/>
+	</g>
+</svg>
 
 <style>
-	div * {
-		padding: 0;
-		margin: 0;
-	}
-
-	div > * + * {
-		margin-block-start: 0.75rem;
-	}
-
-	form > * + * {
-		margin-block-start: 0.5rem;
-	}
-
 	label {
 		display: block;
 	}

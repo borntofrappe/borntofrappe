@@ -13,52 +13,36 @@
 </script>
 
 <div>
-	<form on:submit|preventDefault>
-		<p>Anything else for you today?</p>
+	<p>Anything else for you today?</p>
 
-		{#each inventory as { name, price }}
-			<label>
-				<input bind:group={value} type="radio" value={name} />
-				<span>{name}</span>
-				<span>{price}</span>
-				<svg viewBox="-0.4 -0.4 3.8 4.8" width="15" height="20">
-					<path
-						stroke="currentColor"
-						stroke-width="0.8"
-						fill="none"
-						d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z"
-					/>
-				</svg>
-				<svg viewBox="0 0 3 4" width="15" height="20">
-					<path fill="currentColor" d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z" />
-				</svg>
-			</label>
-		{/each}
-	</form>
-
-	<p>
-		<span aria-hidden="true" style:opacity="0" style:visibility="none">{secret}</span>
-		{#if reveal}
-			<span in:typewriter>{secret}</span>
-		{/if}
-	</p>
+	{#each inventory as { name, price }}
+		<label>
+			<input bind:group={value} type="radio" value={name} />
+			<span>{name}</span>
+			<span>{price}</span>
+			<svg viewBox="-0.4 -0.4 3.8 4.8" width="15" height="20">
+				<path
+					stroke="currentColor"
+					stroke-width="0.8"
+					fill="none"
+					d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z"
+				/>
+			</svg>
+			<svg viewBox="0 0 3 4" width="15" height="20">
+				<path fill="currentColor" d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z" />
+			</svg>
+		</label>
+	{/each}
 </div>
 
+<p>
+	<span aria-hidden="true" style:opacity="0" style:visibility="none">{secret}</span>
+	{#if reveal}
+		<span in:typewriter>{secret}</span>
+	{/if}
+</p>
+
 <style>
-	div,
-	div * {
-		box-sizing: border-box;
-		padding: 0;
-	}
-
-	div * {
-		margin: 0;
-	}
-
-	div > * + * {
-		margin-block-start: 0.75rem;
-	}
-
 	p {
 		position: relative;
 	}
@@ -79,13 +63,13 @@
 		block-size: 100%;
 	}
 
-	form {
+	div {
 		border-radius: 0.25rem;
 		border: 0.2rem solid currentColor;
 		padding: 0.75rem 1rem;
 	}
 
-	form > * + * {
+	div > * + * {
 		margin-block-start: 0.5rem;
 	}
 

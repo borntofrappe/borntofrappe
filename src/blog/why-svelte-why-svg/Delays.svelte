@@ -30,37 +30,28 @@
 	let scale = false;
 </script>
 
-<div>
-	<form on:submit|preventDefault>
-		<label>
-			<input type="checkbox" bind:checked={scale} />
-			Toggle animation
-		</label>
-	</form>
+<label>
+	<input type="checkbox" bind:checked={scale} />
+	Toggle animation
+</label>
 
-	<svg viewBox="-0.5 -0.5 {size} {size}">
-		{#each grid as { row, column, color, delay }}
-			<g transform="translate({column} {row})">
-				<circle
-					style:animation-duration="{duration}s"
-					style:animation-delay="{delay}s"
-					class:scale
-					fill={color}
-					r="0.45"
-				/>
-			</g>
-		{/each}
-	</svg>
-</div>
+<svg viewBox="-0.5 -0.5 {size} {size}">
+	{#each grid as { row, column, color, delay }}
+		<g transform="translate({column} {row})">
+			<circle
+				style:animation-duration="{duration}s"
+				style:animation-delay="{delay}s"
+				class:scale
+				fill={color}
+				r="0.45"
+			/>
+		</g>
+	{/each}
+</svg>
 
 <style>
-	div * {
-		padding: 0;
-		margin: 0;
-	}
-
-	div > * + * {
-		margin-block-start: 0.75rem;
+	label {
+		display: block;
 	}
 
 	input {

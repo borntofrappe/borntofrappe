@@ -77,15 +77,14 @@
 </svg>
 
 <div>
-	<form on:submit|preventDefault>
-		<label>
-			<svg viewBox="0 0 16 16">
-				<use href="#dragon-warrior-sage" />
-			</svg>
-			<input type="checkbox" bind:checked />
-			<span>Talk</span>
-		</label>
-	</form>
+	<label>
+		<svg viewBox="0 0 16 16">
+			<use href="#dragon-warrior-sage" />
+		</svg>
+		<input type="checkbox" bind:checked />
+		<span>Talk</span>
+	</label>
+
 	<p>
 		<span aria-hidden="true" style:opacity="0" style:visibility="none">{talk || talks[0]}</span>
 		{#if talk}
@@ -118,6 +117,10 @@
 	svg {
 		inline-size: 80px;
 		block-size: auto;
+	}
+
+	label {
+		display: block;
 	}
 
 	input {

@@ -140,50 +140,32 @@
 	</defs>
 </svg>
 
-<div>
-	<form on:submit|preventDefault>
-		<fieldset>
-			<legend> Peer into a vase </legend>
+<fieldset>
+	<legend> Peer into a vase </legend>
 
-			{#each options as { i }}
-				<label>
-					<span class="visually-hidden">Vase number {i}</span>
-					<input type="radio" bind:group={index} value={i} />
-					<svg viewBox="0 0 16 16">
-						<use href="#dragon-warrior-vase" />
-					</svg>
-				</label>
-			{/each}
-		</fieldset>
-	</form>
+	{#each options as { i }}
+		<label>
+			<span class="visually-hidden">Vase number {i}</span>
+			<input type="radio" bind:group={index} value={i} />
+			<svg viewBox="0 0 16 16">
+				<use href="#dragon-warrior-vase" />
+			</svg>
+		</label>
+	{/each}
+</fieldset>
 
-	<p>
-		<span aria-hidden="true" style:opacity="0" style:visibility="none"
-			>{index === null ? options[0].value : options[index].value}</span
-		>
-		{#if index !== null}
-			{#key index}
-				<span in:typewriter>{options[index].value}</span>
-			{/key}
-		{/if}
-	</p>
-</div>
+<p>
+	<span aria-hidden="true" style:opacity="0" style:visibility="none"
+		>{index === null ? options[0].value : options[index].value}</span
+	>
+	{#if index !== null}
+		{#key index}
+			<span in:typewriter>{options[index].value}</span>
+		{/key}
+	{/if}
+</p>
 
 <style>
-	div,
-	div * {
-		box-sizing: border-box;
-		padding: 0;
-	}
-
-	div * {
-		margin: 0;
-	}
-
-	div > * + * {
-		margin-block-start: 0.75rem;
-	}
-
 	fieldset {
 		display: flex;
 		justify-content: space-evenly;
