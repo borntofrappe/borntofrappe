@@ -31,7 +31,12 @@
 	</label>
 
 	{#key key}
-		<div in:scale style:backface-visibility="hidden">
+		<div
+			in:scale
+			style:backface-visibility="hidden"
+			style:inline-size="90vmin"
+			style:max-inline-size="30rem"
+		>
 			<Picross {...levels[key]} />
 		</div>
 	{/key}
@@ -39,17 +44,38 @@
 
 <style>
 	main {
-		min-block-size: 100vh;
-		background: #fefefe;
-		color: #1a3455;
+		padding: 1rem;
+		display: flex;
+		gap: 2rem;
+		flex-direction: column;
+		align-items: center;
+		min-height: 100vh;
 		background-image: url('data:image/svg+xml;utf8,<svg viewBox="-5 -5 10 10"\ xmlns="http://www.w3.org/2000/svg">\
 	<circle r="0.5" fill="%23d2dbe0" />\
 </svg>');
 		background-size: 2rem;
 	}
 
-	div {
-		inline-size: 90vmin;
-		max-inline-size: 28rem;
+	select {
+		--hint: hsl(214, 53%, 22%);
+		--transition-duration: 0.2s;
+		padding: 0.75rem 1rem;
+		color: hsl(240, 50%, 96%);
+		background: hsl(41, 65%, 44%);
+		border-radius: 0;
+		border: none;
+		font-weight: 700;
+		text-transform: uppeercase;
+		outline-offset: 0.2rem;
+		text-shadow: -1px -1px var(--hint, hsl(214, 53%, 22%));
+		box-shadow: 0.25rem 0.25rem 0 var(--hint, hsl(214, 53%, 22%));
+		transition: outline var(--transition-duration, 0.25s) 0s cubic-bezier(0.37, 0, 0.63, 1),
+			box-shadow var(--transition-duration, 0.25s) 0s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	select:focus {
+		outline: 0.2rem solid var(--hint, hsl(214, 53%, 22%));
+		box-shadow: 0rem 0rem 0 var(--hint, hsl(214, 53%, 22%));
+		transition-delay: var(--transition-duration, 0.25s), 0s;
 	}
 </style>
