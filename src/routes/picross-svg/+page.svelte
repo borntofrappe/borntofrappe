@@ -6,8 +6,8 @@
 
 	const { title } = site;
 
-	const keys = Object.keys(levels);
-	let [key] = keys;
+	const entries = Object.entries(levels);
+	let value = entries[0][0];
 </script>
 
 <svelte:head>
@@ -28,21 +28,21 @@
 	<label>
 		<span class="visually-hidden">Select level</span>
 
-		<select bind:value={key}>
-			{#each keys as key}
-				<option value={key}>{levels[key].title}</option>
+		<select bind:value>
+			{#each entries as [key, level]}
+				<option value={key}>{level.title}</option>
 			{/each}
 		</select>
 	</label>
 
-	{#key key}
+	{#key value}
 		<div
 			in:scale
 			style:backface-visibility="hidden"
 			style:inline-size="90vmin"
 			style:max-inline-size="28rem"
 		>
-			<Picross {...levels[key]} />
+			<Picross {...levels[value]} />
 		</div>
 	{/key}
 </main>
