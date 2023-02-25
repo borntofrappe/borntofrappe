@@ -49,9 +49,8 @@
 
 <style>
 	main {
-		color: hsl(210, 24%, 16%);
-		background: hsl(216, 33%, 97%);
-		--hint: hsl(211, 13%, 65%);
+		color: hsl(42, 15%, 13%);
+		background: hsl(40, 23%, 97%);
 		padding: 1rem;
 		display: flex;
 		gap: 2rem;
@@ -59,7 +58,7 @@
 		align-items: center;
 		min-height: 100vh;
 		background-image: url('data:image/svg+xml;utf8,<svg viewBox="-5 -5 10 10"\ xmlns="http://www.w3.org/2000/svg">\
-	<circle r="0.5" fill="%23d2dbe0" />\
+	<circle r="0.5" fill="hsl(43, 13%, 90%)" />\
 </svg>');
 		background-size: 2rem;
 	}
@@ -70,6 +69,7 @@
 
 	select {
 		--transition-duration: 0.2s;
+		--hint: hsl(41, 8%, 61%);
 		padding: 0.75rem 1rem;
 		color: hsl(49, 100%, 96%);
 		background: hsl(42, 63%, 48%);
