@@ -218,19 +218,6 @@
 			block-size: 3em;
 			background: var(--accent);
 			float: left;
-			mask-image: url('data:image/svg+xml,\
-		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
-			<defs>\
-			  <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
-			</defs>\
-			<g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
-			  <use href="%23star" />\
-			  <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
-			  <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
-			  <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
-			  <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
-			</g>\
-		  </svg>');
 			-webkit-mask-image: url('data:image/svg+xml,\
 		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
 			<defs>\
@@ -244,6 +231,23 @@
 			  <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
 			</g>\
 		  </svg>');
+			mask-image: url('data:image/svg+xml,\
+		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+			<defs>\
+			  <path id="star" d="M -10 0 a 10 10 0 0 0 10 -10 10 10 0 0 0 10 10 10 10 0 0 0 -10 10 10 10 0 0 0 -10 -10" />\
+			</defs>\
+			<g fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">\
+			  <use href="%23star" />\
+			  <use href="%23star" transform="translate(-20 -20) scale(0.9)"/>\
+			  <use href="%23star" transform="translate(20 -25) scale(0.5)"/>\
+			  <use href="%23star" transform="translate(15 25) scale(0.8)"/>\
+			  <use href="%23star" transform="translate(-15 20) scale(0.4)"/>\
+			</g>\
+		  </svg>');
+			-webkit-mask-size: 100%;
+			mask-size: 100%;
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
 		}
 
 		@supports (float: inline-start) {
@@ -296,6 +300,10 @@
 			  </g>\
 			  </g>\
 		  </svg>');
+			-webkit-mask-size: 100%;
+			mask-size: 100%;
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
 		}
 	}
 </style>
