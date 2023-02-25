@@ -16,7 +16,7 @@
 		name="description"
 		content="Explore solved nonogram puzzles with crisp visuals and in multiple dimensions."
 	/>
-	<link rel="icon" href="/icons/picross.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/picross-svg.svg" type="image/svg+xml" />
 </svelte:head>
 
 <header class="visually-hidden">
@@ -49,9 +49,9 @@
 
 <style>
 	main {
-		color: hsl(42, 15%, 13%);
-		background: hsl(40, 23%, 97%);
-		--hint: hsl(41, 8%, 61%);
+		color: hsl(210, 24%, 16%);
+		background: hsl(216, 33%, 97%);
+		--hint: hsl(211, 13%, 65%);
 		padding: 1rem;
 		display: flex;
 		gap: 2rem;
@@ -76,7 +76,6 @@
 		border-radius: 0;
 		border: none;
 		font-weight: 700;
-		text-transform: uppeercase;
 		outline-offset: 0.2rem;
 		text-shadow: -1px -1px var(--hint, hsl(41, 8%, 61%));
 		box-shadow: 0.25rem 0.25rem 0 var(--hint, hsl(41, 8%, 61%));
