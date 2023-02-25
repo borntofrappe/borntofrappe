@@ -16,6 +16,8 @@
 
 - `/mignon`: mascot
 
+- `/picross-svg`: solved nonogram puzzles
+
 - `/tangram`: tangram shapes
 
 - `/today`: current day

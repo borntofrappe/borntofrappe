@@ -11,13 +11,18 @@
 </script>
 
 <svelte:head>
-	<title>Picross | {title}</title>
+	<title>Picross SVG | {title}</title>
 	<meta
 		name="description"
 		content="Explore solved nonogram puzzles with crisp visuals and in multiple dimensions."
 	/>
 	<link rel="icon" href="/icons/picross.svg" type="image/svg+xml" />
 </svelte:head>
+
+<header class="visually-hidden">
+	<h1>Picross SVG</h1>
+	<p>Explore solved nonogram puzzles with crisp visuals and in multiple dimensions.</p>
+</header>
 
 <main>
 	<label>
