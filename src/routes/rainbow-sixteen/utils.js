@@ -1,9 +1,8 @@
-const getColorHsl = ({ h = 0, s = 0.9, l = 0.6 } = {}) => `hsl(${h}, ${s * 100}%, ${l * 100}%)`;
-
-const getColorHsv = ({ h = 0, s = 0.55, v = 0.92 } = {}) => {
-	const l = v * (1 - s / 2);
-	const sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
-	return `hsl(${h}, ${sl * 100}%, ${l * 100}%)`;
+const getColor = ({ h = 0 } = {}) => {
+	const s = 75;
+	const c = 6;
+	const l = 67 - (c - Math.cos(((Math.PI * 2) / 120) * (h % 120)) * c) / 2;
+	return `hsl(${h}, ${s}%, ${l}%)`;
 };
 
 export const getPuzzle = ({ size, index, moves }) => {
@@ -27,7 +26,7 @@ export const getPuzzle = ({ size, index, moves }) => {
 			return Array(size)
 				.fill()
 				.map((_, column) => {
-					const color = getColorHsv({ h: (360 * (column + row)) / n });
+					const color = getColor({ h: (360 * (column + row)) / n });
 					colors[row][column] = color;
 
 					const delay =
