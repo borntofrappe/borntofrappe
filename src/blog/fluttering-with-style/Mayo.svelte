@@ -1,0 +1,186 @@
+<script>
+	let flutter = false;
+</script>
+
+<label>
+	<input type="checkbox" bind:checked={flutter} />
+	<span>{flutter ? 'Pause' : 'Take a leap'}</span>
+</label>
+
+<svg class:flutter viewBox="-50 -60 100 100">
+	<defs>
+		<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
+		<path id="leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+	</defs>
+
+	<g class="lift">
+		<g
+			fill="#fd971b"
+			stroke="#fd971b"
+			stroke-width="4"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<g transform="translate(0 17)">
+				<use href="#leg" x="-12" />
+				<use href="#leg" x="12" />
+			</g>
+		</g>
+
+		<g class="jump">
+			<g
+				fill="#f0d584"
+				stroke="#f0d584"
+				stroke-width="8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<g transform="translate(0 -10)">
+					<g transform="translate(25 0)">
+						<use class="flap" href="#wing" transform="rotate(90)" />
+					</g>
+					<g transform="scale(-1 1) translate(25 0)">
+						<use class="flap" href="#wing" transform="rotate(90)" />
+					</g>
+				</g>
+			</g>
+
+			<g>
+				<ellipse fill="#f9f5d0" rx="28" ry="25" />
+				<g
+					fill="#f9f5d0"
+					stroke="#f9f5d0"
+					stroke-width="4"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<g transform="translate(0 -30)">
+						<path d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0" />
+						<g transform="translate(0 -20)">
+							<path stroke-width="3" d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
+						</g>
+					</g>
+				</g>
+			</g>
+
+			<g fill="#542b19">
+				<g transform="translate(12 -30)">
+					<circle class="blink" r="2.75" />
+				</g>
+				<g transform="translate(-12 -30)">
+					<circle class="blink" r="2.75" />
+				</g>
+			</g>
+
+			<g transform="translate(0 -20)">
+				<g stroke-linecap="round" stroke-linejoin="round">
+					<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
+						<path d="M -9 -2 c 6 6 12 6 18 0 c -7 -5 -11 -5 -18 0" />
+					</g>
+					<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
+						<path d="M -6 -2 c 3 4 9 4 12 0 c -4 1 -8 1 -12 0" />
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
+
+<style>
+	svg {
+		--duration: 3.5s;
+	}
+
+	.blink,
+	.flap,
+	.jump,
+	.lift {
+		animation-duration: var(--duration, 5s);
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-out;
+		animation-play-state: paused;
+	}
+
+	.flutter .blink,
+	.flutter .flap,
+	.flutter .jump,
+	.flutter .lift {
+		animation-play-state: running;
+	}
+
+	.blink {
+		animation-name: blink;
+	}
+
+	.flap {
+		animation-name: flap;
+	}
+
+	.jump {
+		animation-name: jump;
+	}
+
+	.lift {
+		animation-name: lift;
+	}
+
+	@keyframes blink {
+		30%,
+		34% {
+			transform: scaleY(0);
+		}
+		28%,
+		32%,
+		36% {
+			transform: scaleY(1);
+		}
+	}
+
+	@keyframes flap {
+		0%,
+		65%,
+		75%,
+		85%,
+		100% {
+			transform: rotate(90deg);
+		}
+		70%,
+		80%,
+		90% {
+			transform: rotate(0deg);
+		}
+	}
+
+	@keyframes jump {
+		0%,
+		50% {
+			transform: translateY(0px);
+		}
+		65% {
+			transform: translateY(5px);
+		}
+		98% {
+			transform: translateY(2px);
+		}
+		70%,
+		92%,
+		100% {
+			transform: translateY(0px);
+		}
+	}
+
+	@keyframes lift {
+		0%,
+		65%,
+		100% {
+			transform: translateY(0px);
+		}
+		70%,
+		90% {
+			transform: translateY(-2px);
+		}
+		98% {
+			transform: translateY(1px);
+		}
+	}
+</style>
