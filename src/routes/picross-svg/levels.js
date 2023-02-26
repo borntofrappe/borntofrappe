@@ -1,7 +1,7 @@
 export default {
 	'shiba-inu': {
 		title: 'Shiba Inu',
-		color: 'hsl(0, 78%, 64%)',
+		color: 'hsl(36, 75%, 63.07294901687516%)',
 		solution: [
 			`
 xxoxx
@@ -28,7 +28,7 @@ oooxo
 	},
 	boar: {
 		title: 'Boar',
-		color: 'hsl(30, 72%, 64%)',
+		color: 'hsl(108, 75%, 66.42705098312484%)',
 		solution: [
 			`
 xxxxoxxxxx
@@ -74,7 +74,7 @@ xxxxoxxxxo
 	},
 	boxfish: {
 		title: 'Boxfish',
-		color: 'hsl(120, 72%, 64%)',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
 		solution: [
 			`
 xoxxxxxx
@@ -105,7 +105,7 @@ xxxxxxxx
 	},
 	bulldog: {
 		title: 'Bulldog',
-		color: 'hsl(0, 72%, 64%)',
+		color: 'hsl(36, 75%, 63.07294901687516%)',
 		solution: [
 			`
 xxoxxx
@@ -146,7 +146,7 @@ xoxxxo
 	},
 	cake: {
 		title: 'Cake',
-		color: 'hsl(270, 72%, 64%)',
+		color: 'hsl(324, 75%, 63.07294901687516%)',
 		solution: [
 			`
 xxoxoxx
@@ -187,7 +187,7 @@ xooooox
 	},
 	calculator: {
 		title: 'Calculator',
-		color: 'hsl(240, 72%, 64%)',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
 		solution: [
 			`
 xxxxxxxooo
@@ -229,7 +229,7 @@ oooooooooo
 	},
 	cherries: {
 		title: 'Cherries',
-		color: 'hsl(0, 72%, 64%)',
+		color: 'hsl(0, 75%, 67%)',
 		solution: [
 			`
 xxxxxxxx
@@ -280,7 +280,7 @@ xxxxxxxx
 	},
 	chick: {
 		title: 'Chick',
-		color: 'hsl(60, 72%, 64%)',
+		color: 'hsl(72, 75%, 61.57294901687516%)',
 		solution: [
 			`
 xxxxxx
@@ -326,7 +326,7 @@ xxoxxx
 	},
 	dolphin: {
 		title: 'Dolphin',
-		color: 'hsl(210, 72%, 64%)',
+		color: 'hsl(180, 75%, 61%)',
 		solution: [
 			`
 xxxxxxx
@@ -350,7 +350,7 @@ xxxxxxo
 	},
 	duck: {
 		title: 'Duck',
-		color: 'hsl(90, 72%, 64%)',
+		color: 'hsl(36, 75%, 63.07294901687516%)',
 		solution: [
 			`
 xxxxxxxx
@@ -384,7 +384,7 @@ xxoooxxx
 	},
 	'eight-note': {
 		title: 'Eight note',
-		color: 'hsl(240, 72%, 64%)',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
 		solution: [
 			`
 xxxxxxx
@@ -417,7 +417,7 @@ xooxxxx
 	},
 	'game-controller': {
 		title: 'Game controller',
-		color: 'hsl(270, 72%, 64%)',
+		color: 'hsl(288, 75%, 61.57294901687516%)',
 		solution: [
 			`
 xxoxxx
@@ -451,7 +451,7 @@ xoooxx
 	},
 	'hammerhead-shark': {
 		title: 'Hammerhead shark',
-		color: 'hsl(150, 72%, 64%)',
+		color: 'hsl(216, 75%, 64.92705098312484%)',
 		solution: [
 			`
 xxxxxxxxx
@@ -499,7 +499,7 @@ ooxooxxxo
 	},
 	heart: {
 		title: 'Heart',
-		color: 'hsl(0, 72%, 64%)',
+		color: 'hsl(0, 75%, 67%)',
 		solution: [
 			`
 xxxxxx
@@ -533,7 +533,7 @@ xxxoox
 	},
 	kettle: {
 		title: 'Kettle',
-		color: 'hsl(240, 72%, 64%)',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
 		solution: [
 			`
 xxxxxxxx
@@ -584,7 +584,7 @@ xxxoooox
 	},
 	ladybird: {
 		title: 'Ladybird',
-		color: 'hsl(0, 72%, 64%)',
+		color: 'hsl(0, 75%, 67%)',
 		solution: [
 			`
 xxxxxxxx
@@ -625,7 +625,7 @@ xxxoooox
 	},
 	'magic-lamp': {
 		title: 'Magic lamp',
-		color: 'hsl(60, 72%, 64%)',
+		color: 'hsl(72, 75%, 61.57294901687516%)',
 		solution: [
 			`
 xxxxxxxxxx
@@ -676,7 +676,7 @@ xxxxxxxxxx
 	},
 	platypus: {
 		title: 'Platypus',
-		color: 'hsl(150, 72%, 64%)',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
 		solution: [
 			`
 xxxxxxxxxx
@@ -717,7 +717,7 @@ xxxxxxxxxx
 	},
 	'race-car': {
 		title: 'Race car',
-		color: 'hsl(270, 72%, 64%)',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
 		solution: [
 			`
 xxxxxxxxoo
@@ -748,7 +748,7 @@ oooxooooox
 	},
 	snail: {
 		title: 'Snail',
-		color: 'hsl(90, 72%, 64%)',
+		color: 'hsl(108, 75%, 66.42705098312484%)',
 		solution: [
 			`
 oxxxxx
@@ -775,7 +775,7 @@ xxooxx
 	},
 	sparrow: {
 		title: 'Sparrow',
-		color: 'hsl(300, 72%, 64%)',
+		color: 'hsl(324, 75%, 63.07294901687516%)',
 		solution: [
 			`
 xxxxxxxx
@@ -813,7 +813,7 @@ oxxxxoxx
 	},
 	'torii-gate': {
 		title: 'Torii gate',
-		color: 'hsl(0, 72%, 64%)',
+		color: 'hsl(0, 75%, 67%)',
 		solution: [
 			`
 xxxxxx
@@ -846,7 +846,7 @@ ooxxoo
 	},
 	tucan: {
 		title: 'Tucan',
-		color: 'hsl(270, 72%, 64%)',
+		color: 'hsl(288, 75%, 61.57294901687516%)',
 		solution: [
 			`
 xxxxxxxxx
@@ -892,7 +892,7 @@ xxxxxxxxx
 	},
 	'watering-can': {
 		title: 'Watering can',
-		color: 'hsl(210, 72%, 64%)',
+		color: 'hsl(216, 75%, 64.92705098312484%)',
 		solution: [
 			`
 xxxxxxxx
@@ -919,7 +919,7 @@ xxxoooxx
 	},
 	whistle: {
 		title: 'Whistle',
-		color: 'hsl(330, 72%, 64%)',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
 		solution: [
 			`
 xxooooo
