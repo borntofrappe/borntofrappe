@@ -76,11 +76,20 @@
 			<path
 				transform="rotate({(startAngle * -1) / 2})"
 				id="l"
-				d="M -2 -1 v 7 m 0 0 l 7 7 -7 -4 -7 4z v8"
+				d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z"
 			/>
 		</g>
 	</defs>
 	<g transform="scale({$bounce})">
+		<g fill="none" stroke="#fd971b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+			<g transform="translate(12 17)">
+				<use href="#l" />
+			</g>
+			<g transform="scale(-1 1) translate(12 17)">
+				<use href="#l" />
+			</g>
+		</g>
+
 		<g
 			fill="#f0d584"
 			stroke="#f0d584"
@@ -96,28 +105,15 @@
 			</g>
 		</g>
 
-		<g fill="none" stroke="#fd971b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-			<g transform="translate(12 18)">
-				<use href="#l" />
-			</g>
-			<g transform="scale(-1 1) translate(12 18)">
-				<use href="#l" />
-			</g>
-		</g>
-
 		<g fill="#f9f5d0">
 			<ellipse rx="28" ry="25" />
 			<g stroke="#f9f5d0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
 				<g transform="translate(0 -30)">
 					<path d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0" />
-				</g>
-				<g transform="translate(0 -49.5)">
-					<g transform="scale({$scale})">
-						<path
-							transform="scale(1.2)"
-							stroke-width="3"
-							d="M -5 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2"
-						/>
+					<g transform="translate(0 -20)">
+						<g transform="scale({$scale})">
+							<path stroke-width="3" d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
+						</g>
 					</g>
 				</g>
 			</g>
