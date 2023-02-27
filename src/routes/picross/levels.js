@@ -58,13 +58,13 @@ xxxxxxxxx
 ooooooooo
 xxooooxxx
 ooooooooo
-xxxxxxxxx
+xxoxxxoxx
 `,
 			`
 ooooooooo
 xxxoooxxx
 ooooooooo
-xxoxxxoxx
+xxxxxxxxx
 `,
 			`
 xxxxxxxxx
