@@ -87,7 +87,7 @@
 	fieldset {
 		border-radius: 0.25rem;
 		border: 0.15rem solid currentColor;
-		padding: 0.25rem 0.75rem;
+		padding: 0.5rem 1rem;
 	}
 
 	legend {

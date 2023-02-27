@@ -4,4 +4,25 @@ description: Paint with vector graphics and take a leap with CSS animations.
 date: 2023-02-27T09:43:08
 ---
 
+<script>
+	import Commands from './Commands.svelte'
+	import ControlPoint from './ControlPoint.svelte'
+	import ControlPoints from './ControlPoints.svelte'
+	
+	import Mayo from './Mayo.svelte'
+</script>
+
 Explore SVG syntax and you are able to draw close to anything directly in a text editor. Lean on CSS and then, then you can almost learn how to fly.
+
+<Commands
+    x={-8}
+    y={-1}
+    width={16}
+    height={16}
+    commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7z" />
+
+<ControlPoint />
+
+<ControlPoints />
+
+<Mayo />
