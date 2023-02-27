@@ -26,6 +26,32 @@ oooxo
 `
 		]
 	},
+	bat: {
+		title: 'Bat',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
+		solution: [
+			`
+oooooooxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxooxxxx
+xxxxooxxxx
+xxxxxxxxxx
+`,
+			`
+oooooooxxx
+xxxxooxxxx
+xxxooooxxx
+oxooooooxo
+oooooooooo
+xooxooxoox
+xxxxooxxxx
+xxxoxxoxxx
+`
+		]
+	},
 	biplane: {
 		title: 'Biplane',
 		color: 'hsl(0, 75%, 67%)',
@@ -176,7 +202,7 @@ xxxxoxxxxo
 	},
 	boxfish: {
 		title: 'Boxfish',
-		color: 'hsl(144, 75%, 64.92705098312484%)',
+		color: 'hsl(72, 75%, 61.57294901687516%)',
 		solution: [
 			`
 xoxxxxxx
@@ -526,6 +552,47 @@ xxxxxxxxx
 `
 		]
 	},
+	dice: {
+		title: 'Dice',
+		color: 'hsl(288, 75%, 61.57294901687516%)',
+		solution: [
+			`
+ooooo
+oxoxo
+ooooo
+oxoxo
+ooooo
+`,
+			`
+ooooo
+xoooo
+ooooo
+xxoox
+oxoxo
+`,
+			`
+ooxoo
+ooooo
+xoxoo
+oxooo
+oxoxo
+`,
+			`
+ooooo
+xooxx
+ooooo
+xxooo
+oxoxo
+`,
+			`
+ooooo
+oooxo
+ooxoo
+oxooo
+ooooo
+`
+		]
+	},
 	dolphin: {
 		title: 'Dolphin',
 		color: 'hsl(180, 75%, 61%)',
@@ -614,6 +681,40 @@ xxxxxxx
 xooxxxx
 ooooxxx
 xooxxxx
+`
+		]
+	},
+	'frying-pan': {
+		title: 'Frying pan',
+		color: 'hsl(216, 75%, 64.92705098312484%)',
+		solution: [
+			`
+xxxxxoooxx
+xxxxxxxxxx
+`,
+			`
+xxxxoxxxox
+xxxxxoooxx
+`,
+			`
+xxxoxxooxo
+xxxxooooox
+`,
+			`
+ooooxxooxo
+xxxxooooox
+`,
+			`
+xxxoxxooxo
+xxxxooooox
+`,
+			`
+xxxxoxxxox
+xxxxxoooxx
+`,
+			`
+xxxxxoooxx
+xxxxxxxxxx
 `
 		]
 	},
@@ -873,6 +974,52 @@ xxxxoooxxx
 xxxxxxxxxx
 xxxxxxxxxx
 xxxxxxxxxx
+`
+		]
+	},
+	mouse: {
+		title: 'Mouse',
+		color: 'hsl(36, 75%, 63.07294901687516%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxxoxxxxxx
+xxxoxxxxxx
+xxxxxxxoox
+xxxxoxxoox
+xxxooxooox
+`,
+			`
+xxxxxxxxxx
+xxxoxxxxxx
+xxxoxoooox
+xxooooooox
+xoooooooox
+xxxxxoooxx
+`,
+			`
+xxxxxxoooo
+xxxxxxxxxo
+xxxxxooooo
+xxoooooooo
+ooooooooox
+xxxxxoooxx
+`,
+			`
+xxxxxxxxxx
+xxxoxxxxxx
+xxxoxoooox
+xxooooooox
+xoooooooox
+xxxxxoooxx
+`,
+			`
+xxxxxxxxxx
+xxxoxxxxxx
+xxxoxxxxxx
+xxxxxxxoox
+xxxxoxxoox
+xxxooxooox
 `
 		]
 	},
@@ -1217,6 +1364,32 @@ ooxxxoxx
 			`
 xxxxxxxx
 oxxxxoxx
+`
+		]
+	},
+	stopwatch: {
+		title: 'Stopwatch',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
+		solution: [
+			`
+xxxoxxx
+oxoooxx
+xooooox
+ooooooo
+ooooooo
+ooooooo
+xooooox
+xxoooxx
+`,
+			`
+xxxxxxx
+xxoooxx
+xoxoxox
+oxxoxxo
+oxxoxxo
+oxxxxxo
+xoxxxox
+xxoooxx
 `
 		]
 	},
