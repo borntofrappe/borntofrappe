@@ -1,18 +1,19 @@
 ---
 title: A coy introduction to SMIL
-description: Introducing SMIL animation with a cutsy crisp visual
-date: 2023-02-27T20:34:20
+description: Easing into SVG animation to illustrate a striking change.
+date: 2023-02-27T22:11:47
 ---
 
 <script>
     import Center from '$lib/components/blog/Center.svelte';
 	
 	import svg from './svg.js'
+	import Koinobori from './Koinobori.svelte'
 </script>
 
 In the process of learning the syntax for the `<path>` element I created little vector graphics like the following.
 
-<Center maxInlineSize="28rem">
+<Center maxInlineSize="26rem">
 	{@html svg['koinobori']}
 </Center>
 
@@ -24,7 +25,7 @@ If you inspect the source code for the streamer the _many_ instructions in the `
 />
 ```
 
-In reality, the values are the result of much exploration and tinkering. Once I settled on the different commands to draw curves and arcs, I adjusted the position for the coordinates, the control points, the radii. More than once. As a matter of fact, here's one of the previous versions.
+In reality, the values are the result of much exploration and tinkering. Once I settled on the different commands to draw curves and arcs, I adjusted the numbers for the coordinates, the control points, the radii. More than once. As a matter of fact, here's one of the previous versions.
 
 ```html
 <path
@@ -57,7 +58,7 @@ And you are able to animate any attribute. Such as, the most-pertinent `d`.
 </path>
 ```
 
-The animation would start immediately, move to new version and then jump back to the initial state. For the sake of showboating, however, we can detail the element further.
+The animation would start immediately, move to the value specified in the `to` attribute and then jump back to the initial state. For the sake of showboating, however, we can detail the element further.
 
 Set `repeatCount` to have the animation run without end.
 
@@ -78,7 +79,7 @@ To move between the two versions, remove the `to` attribute.
     />
 ```
 
-Replace the directive with the more permissive `values`. Here you separate the values with semicolons.
+Then replace the directive with the more permissive `values`. Here you separate the options with semicolons.
 
 <!-- prettier-ignore -->
 ```html
@@ -94,11 +95,13 @@ Replace the directive with the more permissive `values`. Here you separate the v
 
 The path starts with the familiar look, moves to the alternative and then back to the default version. Care to pick a favorite?
 
-<Koinobori />
+<Center maxInlineSize="26rem">
+    <Koinobori />
+</Center>
 
-Being the cheeky developer that am I went ahead and added a couple of tweaks to the syntax, and not just to allow you to take a break from the endless, relentless loop. The core of the animation remains, however. And the three to four attributes are all that's required for smooth change.
+Being the particular developer that I am, I went ahead and added a couple of tweaks to the syntax, and not just to allow you to take a break from the endless, relentless loop. The core of the animation remains, however. And the three to four attributes are all that's required for smooth change.
 
-I just coulnd't help myself to attempt and change the timing with an easing function.
+I felt the default, linear, timing a tad too robotic, and just just couldn't help myself with a different easing function.
 
 <!-- prettier-ignore -->
 ```html
