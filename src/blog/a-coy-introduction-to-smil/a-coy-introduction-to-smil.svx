@@ -4,4 +4,14 @@ description: Introducing SMIL animation with a cutsy crisp visual
 date: 2023-02-27T20:34:20
 ---
 
-In the process of learning the SVG syntax for the `<path>` element I drew little vector graphics.
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import svg from './svg.js'
+</script>
+
+In the process of learning the SVG syntax for the `<path>` element I created little vector graphics like the following.
+
+<Center maxInlineSize="28rem">
+	{@html svg['koi']}
+</Center>
