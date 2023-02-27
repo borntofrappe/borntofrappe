@@ -26,6 +26,108 @@ oooxo
 `
 		]
 	},
+	biplane: {
+		title: 'Biplane',
+		color: 'hsl(0, 75%, 67%)',
+		solution: [
+			`
+xxxxoxxxx
+xxxxoxxxx
+xxoooooxx
+xxxxxxxxx
+`,
+			`
+xxxxxxxxx
+xxxxoxxxx
+xxxoooxxx
+xxxxxxxxx
+`,
+			`
+xxxxxxxxx
+xxxxxxxxx
+xxxxoxxxx
+xxxxxxxxx
+`,
+			`
+xxxxxxxxx
+xxxxoxxxx
+xxxxoxxxx
+xxxxxxxxx
+`,
+			`
+ooooooooo
+xxooooxxx
+ooooooooo
+xxxxxxxxx
+`,
+			`
+ooooooooo
+xxxoooxxx
+ooooooooo
+xxoxxxoxx
+`,
+			`
+xxxxxxxxx
+xxxoooxxx
+xxxoooxxx
+xxxxxxxxx
+`,
+			`
+xxxoxxxxx
+xxxxoxxxx
+xxxxxoxxx
+xxxxxxxxx
+`
+		]
+	},
+	bison: {
+		title: 'Bison',
+		color: 'hsl(108, 75%, 66.42705098312484%)',
+		solution: [
+			`
+xxxxxxxxx
+ooxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+`,
+			`
+xxxoooxxx
+xoxooooxx
+xxxooooxx
+xxooxxoox
+xxoxxxxox
+`,
+			`
+xxooooxxx
+xooooooxx
+xooooooxo
+xxoxxxxxo
+xxxxxxxxx
+`,
+			`
+xxooooxxx
+xooooooox
+xooooooxx
+xxoxxxxxx
+xxxxxxxxx
+`,
+			`
+xxxoooxxx
+xoxooooxo
+xxxooooxx
+xxxxoxoox
+xxxxoxxox
+`,
+			`
+xxxxxxxxx
+ooxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+	`
+		]
+	},
 	boar: {
 		title: 'Boar',
 		color: 'hsl(108, 75%, 66.42705098312484%)',
@@ -321,6 +423,106 @@ xxxxxx
 xxxoxx
 xxxxxx
 xxoxxx
+`
+		]
+	},
+	crocodile: {
+		title: 'Crocodile',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxxxxxxoxx
+xxxxxxxxxx
+xxxxxxxxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxox
+xxxxxxxxxx
+xxxoxxxxox
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxo
+xxxxoxxoxx
+xxxxxxxoxx
+`,
+			`
+xxxoxxxxxx
+ooooxxxxxo
+oxxooooooo
+ooooooooxx
+`,
+			`
+xxxoxxxxxx
+ooooooooox
+xxxooooooo
+ooooooooox
+`,
+			`
+xxxoxxxxxx
+ooooxxxxxo
+oxxoooooox
+ooooooxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxooxoxx
+xxxxxxxoxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxoxxox
+`
+		]
+	},
+	cruiser: {
+		title: 'Cruiser',
+		color: 'hsl(252, 75%, 66.42705098312484%)',
+		solution: [
+			`
+xxxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+xxxooooox
+xxxooooox
+xxxxxxxxx
+`,
+			`
+xxxxxxxxx
+xxxxxxxxx
+xxxxoooxx
+xooxoooxo
+xxooooooo
+xxxooooox
+`,
+			`
+xxxxxxoxx
+xxxxxoxxx
+xxxxoooxx
+oxxxooxxo
+xoooooooo
+xxoooooox
+`,
+			`
+xxxxxxxxx
+xxxxxxxxx
+xxxxoooxx
+xooxoooxo
+xxooooooo
+xxxooooox
+`,
+			`
+xxxxxxxxx
+xxxxxxxxx
+xxxxxxxxx
+xxxooooox
+xxxooooox
+xxxxxxxxx
 `
 		]
 	},
@@ -674,6 +876,66 @@ xxxxxxxxxx
 `
 		]
 	},
+	peacock: {
+		title: 'Peacock',
+		color: 'hsl(324, 75%, 63.07294901687516%)',
+		solution: [
+			`
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxoxoxx
+xxxoxxx
+`,
+			`
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxoxoxx
+xxoxoxx
+xxxoxxx
+`,
+			`
+xxoooxx
+xooooox
+ooooooo
+ooooooo
+ooooooo
+ooooooo
+xxoxoxx
+`,
+			`
+xxxxxxx
+xxxoxxx
+xxxxxxx
+xxxxxxx
+xxxoxxx
+xxxoxxx
+xxoxoxx
+`,
+			`
+xxxxxxx
+xxxxxxx
+xxxoxxx
+xxxoxxx
+xxxoxxx
+xxxoxxx
+xxxxxxx
+`,
+			`
+xxxxxxx
+xxxxxxx
+xxxoxxx
+xxxxxxx
+xxxxxxx
+xxxxxxx
+xxxxxxx
+`
+		]
+	},
 	platypus: {
 		title: 'Platypus',
 		color: 'hsl(144, 75%, 64.92705098312484%)',
@@ -715,6 +977,58 @@ xxxxxxxxxx
 `
 		]
 	},
+	'polar-bear': {
+		title: 'Polar bear',
+		color: 'hsl(216, 75%, 64.92705098312484%)',
+		solution: [
+			`
+xxxoxxxxxx
+xxxxxoooox
+xxxxoooooo
+xxxxoooooo
+xxxxoooooo
+xxxxooxoox
+xxxxooxoox
+`,
+			`
+xxxxxxxxxx
+xxooooooox
+xooooooooo
+xooooooooo
+xxoooooooo
+xxooxxxxoo
+xxooxxxxoo
+`,
+			`
+xxxxxxxxxx
+xxoooooooo
+oooooooooo
+xooooooooo
+xxxooooooo
+xxxxxxxxxx
+xxxxxxxxxx
+`,
+
+			`
+xxxxxxxxxx
+xxooooooox
+xooooooooo
+xooooooooo
+xxoooooooo
+xxooxxxxoo
+xxooxxxxoo
+`,
+			`
+xxxoxxxxxx
+xxxxxoooox
+xxxxoooooo
+xxxxoooooo
+xxxxoooooo
+xxxxooxoox
+xxxxooxoox
+`
+		]
+	},
 	'race-car': {
 		title: 'Race car',
 		color: 'hsl(144, 75%, 64.92705098312484%)',
@@ -743,6 +1057,101 @@ oxxoooooxx
 xxxxxxxxoo
 xooxooooox
 oooxooooox
+`
+		]
+	},
+	rhinoceros: {
+		title: 'Rhinoceros',
+		color: 'hsl(288, 75%, 61.57294901687516%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxxxxooxxx
+xxxxxooxoo
+xxxxxooxoo
+xxxxxooxoo
+xxxxxoxxxo
+`,
+			`
+xxxoxooxxx
+xxxxoooooo
+xxxooooooo
+xxoooooooo
+xooooooooo
+xxxxxxxxxx
+`,
+			`
+xxxxxoooox
+xxxxoooooo
+oxoooooooo
+oooooooooo
+oooooooooo
+xxxxxxxxxx
+`,
+			`
+xxxoxooxxx
+xxxxoooooo
+xxxooooooo
+xxoooooooo
+xooooooooo
+xxxxxxxxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxooxxx
+xxxxxooxoo
+xxxxxooxoo
+xxxxxooxoo
+xxxxxxoxxo
+	`
+		]
+	},
+	'rhinoceros-beetle': {
+		title: 'Rhinoceros beetle',
+		color: 'hsl(108, 75%, 66.42705098312484%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxoxoxxxox
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxoxoxoxx
+`,
+			`
+xxxxxoooxx
+xxxxooooox
+oxxoooooox
+xxxxxxxxxx
+`,
+			`
+xxxoooooxx
+xxxxooooox
+ooooooooox
+xxxxxxxxxx
+`,
+			`
+xxxxxoooxx
+xxxxooooox
+oxxoooooox
+xxxxxxxxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxoxoxox
+`,
+
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxoxxxoxo
 `
 		]
 	},
@@ -808,6 +1217,36 @@ ooxxxoxx
 			`
 xxxxxxxx
 oxxxxoxx
+`
+		]
+	},
+	sunflower: {
+		title: 'Sunflower',
+		color: 'hsl(72, 75%, 61.57294901687516%)',
+		solution: [
+			`
+xxoooxx
+xooooox
+ooooooo
+ooooooo
+xooooox
+xxoooxx
+ooxoxxx
+ooxoxxx
+xxooxxx
+xxxoxxx
+`,
+			`
+xxxxxxx
+xxoooxx
+xooooox
+xooooox
+xxoooxx
+xxxxxoo
+xxxxxoo
+xxxxoxx
+xxxxxxx
+xxxxxxx
 `
 		]
 	},

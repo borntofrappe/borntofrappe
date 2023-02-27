@@ -16,7 +16,7 @@
 
 - `/mignon`: mascot
 
-- `/picross-svg`: solved nonogram puzzles
+- `/picross`: solved nonogram puzzles
 
 - `/tangram`: tangram shapes
 
