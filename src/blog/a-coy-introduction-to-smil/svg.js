@@ -1,5 +1,5 @@
 export default {
-	koi: `<svg style="display: block;" viewBox="0 0 30 25">
+	koinobori: `<svg style="display: block;" viewBox="0 0 30 25">
 	<g
 		fill="none"
 		stroke="currentColor"
