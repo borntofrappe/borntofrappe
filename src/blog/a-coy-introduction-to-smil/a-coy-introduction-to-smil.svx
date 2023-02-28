@@ -1,0 +1,116 @@
+---
+title: A coy introduction to SMIL
+description: Easing into SVG animation to illustrate a striking change.
+date: 2023-02-27T22:11:47
+---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import svg from './svg.js'
+	import Koinobori from './Koinobori.svelte'
+</script>
+
+In the process of learning the syntax for the `<path>` element I created little vector graphics like the following.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['koinobori']}
+    <figcaption>A stylized koinobori.</figcaption>
+</Center>
+
+If you inspect the source code for the streamer the _many_ instructions in the `d` attribute may appear to be intentional, the fruit of thoughtful consideration.
+
+```html
+<path
+	d="M 0 0 q 2 0.5 4 0 m 1.5 -4 c 6 2 14 -2 20 0 q 2 0 -2 3 2 1 3 3 c -14 -0.5 -14 2 -21 1 q 4 -3.5 0 -7 -4 4 0 7 m 4.5 -5 a 1 1 0 0 0 0 2 1 1 0 0 0 0 -2 m 3 -1 q 1 3.5 0 5.5 m 2 -6 q 1 3.5 0.5 5.5 h 0.5 a 1.5 1.5 0 0 0 0 -3 1.5 1.5 0 0 0 0 -3 h 2 a 1.5 1.5 0 0 1 0 3 h -1 h 1 a 1.5 1.5 0 0 1 0 3 m 0 -6 h 2 a 1.5 1.5 0 0 1 0 3 h -1 h 1 a 1.5 1.5 0 0 1 0 3"
+/>
+```
+
+In reality, the values are the result of much exploration and tinkering. Once I settled on the different commands to draw curves and arcs, I adjusted the numbers for the coordinates, the control points, the radii. More than once.
+
+As a matter of fact, here's one of the previous versions.
+
+```html
+<path
+	d="M 0 0 q 3 0 4.5 -1 m 0.5 -4 c 6 -3 14 0 20 -1 q 2 0 -2 3.5 0 1 3 2.5 c -14 0.5 -10 -2 -20 2 q 3 -3.5 -1 -7 -3 4 1 7 m 4.5 -6.5 a 1 1 0 0 0 0 2 1 1 0 0 0 0 -2 m 3.5 -1.5 q 1.5 2 0 5.5 m 2 -5.5 q 1 2 0 5.5 h 1 a 1.3 1.3 0 0 0 0 -2.6 1.25 1.25 0 0 0 0 -2.5 h 2 a 1.3 1.3 0 0 1 0 2.6 h -1 h 0.5 a 1.3 1.3 0 0 1 0 2.7 m 0 -5.4 h 2 a 1.3 1.3 0 0 1 0 2.8 h -1.5 h 1.25 a 1.4 1.4 0 0 1 0 2.9"
+/>
+```
+
+Both attributes realize the dumbfounded fish, but each with its own little twist. And what better pretext to explore SMIL animation? In this manner I can show you the two versions at once. Both versions in the same, dynamic visual.
+
+## Animate
+
+There are a couple of animation-related elements, among which `<animate>`. Add an instance in the `<path>` element.
+
+```html
+<path d="M 0 0 q 2 0.5 4 0 ...">
+	<animate />
+</path>
+```
+
+And you are able to animate any attribute. Such as, the most-pertinent `d`.
+
+<!-- prettier-ignore -->
+```html
+<path d="M 0 0 q 2 0.5 4 0 ...">
+	<animate
+        attributeName="d" 
+		dur="2s" 
+		to="M 0 0 q 3 0 4.5 -1 ..."
+    />
+</path>
+```
+
+The animation would start immediately, move to the value specified in the `to` attribute and then jump back to the initial state. For the sake of showboating, however, we can detail the element further.
+
+Set `repeatCount` to have the animation run without end.
+
+<!-- prettier-ignore -->
+```html
+<animate
+    ...
+    repeatCount="indefinite"
+    />
+```
+
+To move between the two versions, remove the `to` attribute.
+
+```diff
+<animate
+    ...
+-   to="M 0 0 q 3 0 4.5 -1 ..."
+    />
+```
+
+Then replace the directive with the more permissive `values`. Here you separate the options with semicolons.
+
+<!-- prettier-ignore -->
+```html
+<animate
+	...
+	values="
+        M 0 0 q 2 0.5 4 0 ...;
+        M 0 0 q 3 0 4.5 -1 ...;
+        M 0 0 q 2 0.5 4 0 ...;
+        "
+/>
+```
+
+The path starts with the familiar look, moves to the alternative and then back to the default version. Care to pick a favorite?
+
+<Center maxInlineSize="26rem">
+    <Koinobori />
+</Center>
+
+Being the particular developer that I am, I went ahead and added a couple of tweaks to the syntax, and not just to allow you to take a break from the otherwise relentless loop. The core of the animation remains, however. And the three to four attributes are all that's required for smooth change.
+
+I felt the default, linear, timing a tad too robotic, and just just couldn't help myself with a different easing function.
+
+<!-- prettier-ignore -->
+```html
+<animate
+	...
+	calcMode="spline"
+    keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+/>
+```
