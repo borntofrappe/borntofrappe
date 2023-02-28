@@ -29,7 +29,7 @@
 <svg viewBox="-12 -2 64 34">
 	<g fill="none" stroke="currentColor">
 		<g stroke-dasharray="1" stroke-width="0.25">
-			<path d="M 0 0 l {cx} {cy}" />
+			<path d="M 0 0 {cx} {cy}" />
 			<path d="M 40 0 {cx} {cy}" />
 		</g>
 		<path stroke-width="0.5" d="M 0 0 q {cx} {cy} 40 0" />

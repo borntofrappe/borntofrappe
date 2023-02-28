@@ -1,4 +1,5 @@
 <script>
+	export let animations = ['jump', 'flap', 'lift'];
 	let flutter = false;
 </script>
 
@@ -9,11 +10,11 @@
 
 <svg class:flutter viewBox="-50 -60 100 100">
 	<defs>
-		<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
 		<path id="leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+		<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
 	</defs>
 
-	<g class="lift">
+	<g class:lift={animations.includes('lift')}>
 		<g
 			fill="#fd971b"
 			stroke="#fd971b"
@@ -27,7 +28,7 @@
 			</g>
 		</g>
 
-		<g class="jump">
+		<g class:jump={animations.includes('jump')}>
 			<g
 				fill="#f0d584"
 				stroke="#f0d584"
@@ -37,10 +38,10 @@
 			>
 				<g transform="translate(0 -10)">
 					<g transform="translate(25 0)">
-						<use class="flap" href="#wing" transform="rotate(90)" />
+						<use class:flap={animations.includes('flap')} href="#wing" transform="rotate(90)" />
 					</g>
 					<g transform="scale(-1 1) translate(25 0)">
-						<use class="flap" href="#wing" transform="rotate(90)" />
+						<use class:flap={animations.includes('flap')} href="#wing" transform="rotate(90)" />
 					</g>
 				</g>
 			</g>
@@ -92,8 +93,8 @@
 	}
 
 	.blink,
-	.flap,
 	.jump,
+	.flap,
 	.lift {
 		animation-duration: var(--duration, 5s);
 		animation-iteration-count: infinite;
@@ -102,8 +103,8 @@
 	}
 
 	.flutter .blink,
-	.flutter .flap,
 	.flutter .jump,
+	.flutter .flap,
 	.flutter .lift {
 		animation-play-state: running;
 	}
@@ -112,12 +113,12 @@
 		animation-name: blink;
 	}
 
-	.flap {
-		animation-name: flap;
-	}
-
 	.jump {
 		animation-name: jump;
+	}
+
+	.flap {
+		animation-name: flap;
 	}
 
 	.lift {
@@ -136,21 +137,6 @@
 		}
 	}
 
-	@keyframes flap {
-		0%,
-		65%,
-		75%,
-		85%,
-		100% {
-			transform: rotate(90deg);
-		}
-		70%,
-		80%,
-		90% {
-			transform: rotate(0deg);
-		}
-	}
-
 	@keyframes jump {
 		0%,
 		50% {
@@ -166,6 +152,21 @@
 		92%,
 		100% {
 			transform: translateY(0px);
+		}
+	}
+
+	@keyframes flap {
+		0%,
+		65%,
+		75%,
+		85%,
+		100% {
+			transform: rotate(90deg);
+		}
+		70%,
+		80%,
+		90% {
+			transform: rotate(0deg);
 		}
 	}
 
