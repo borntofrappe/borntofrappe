@@ -8,6 +8,7 @@ date: 2023-02-27T09:43:08
 	import Commands from './Commands.svelte'
 	import ControlPoint from './ControlPoint.svelte'
 	import ControlPoints from './ControlPoints.svelte'
+	import ClockwiseFlag from './ClockwiseFlag.svelte'
 	
 	import Mayo from './Mayo.svelte'
 </script>
@@ -24,5 +25,7 @@ Explore SVG syntax and you are able to draw close to anything directly in a text
 <ControlPoint />
 
 <ControlPoints />
+
+<ClockwiseFlag />
 
 <Mayo />
