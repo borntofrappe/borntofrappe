@@ -88,7 +88,17 @@
 </svg>
 
 <style>
+	label {
+		display: block;
+	}
+
+	input {
+		inline-size: 1em;
+		block-size: 1em;
+	}
+
 	svg {
+		display: block;
 		--duration: 3.5s;
 	}
 
