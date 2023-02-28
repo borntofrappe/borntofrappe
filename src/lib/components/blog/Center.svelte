@@ -1,7 +1,13 @@
 <script>
 	export let maxInlineSize = '30rem';
+	export let element = 'div';
 </script>
 
-<div class="center flow --space:wide" style:--measure={maxInlineSize} style:--leading="0">
+<svelte:element
+	this={element}
+	class="center flow --space:wide"
+	style:--measure={maxInlineSize}
+	style:--leading="0"
+>
 	<slot />
-</div>
+</svelte:element>
