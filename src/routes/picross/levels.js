@@ -26,6 +26,82 @@ oooxo
 `
 		]
 	},
+	'alarm-clock': {
+		title: 'Alarm clock',
+		color: 'hsl(288, 75%, 61.57294901687516%)',
+		solution: [
+			`
+xoo
+xoo
+xxx
+ooo
+ooo
+ooo
+xxx	
+xox	
+`,
+			`
+xoo
+xoo
+ooo
+xoo
+xoo
+xoo
+ooo
+xxx		
+`,
+			`
+xxx
+ooo
+xoo
+xoo
+ooo
+xoo
+xoo
+ooo		
+`,
+			`
+xxx
+ooo
+ooo
+ooo
+ooo
+xoo
+xoo
+ooo		
+`,
+			`
+xxx
+ooo
+xoo
+xoo
+xoo
+xoo
+xoo
+ooo		
+`,
+			`
+xoo
+xoo
+ooo
+xoo
+xoo
+xoo
+ooo
+xxx		
+`,
+			`
+xoo
+xoo
+xxx
+ooo
+ooo
+ooo
+xxx		
+xox		
+`
+		]
+	},
 	bat: {
 		title: 'Bat',
 		color: 'hsl(144, 75%, 64.92705098312484%)',
@@ -449,6 +525,66 @@ xxxxxx
 xxxoxx
 xxxxxx
 xxoxxx
+`
+		]
+	},
+	cow: {
+		title: 'Cow',
+		color: 'hsl(324, 75%, 63.07294901687516%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxoxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+`,
+			`
+xxoxxxxxxx
+xxoxooooox
+xooxooooox
+xooxooooox
+xxxxooooox
+xxxxoxxxoo
+xxxxoxxxxo
+`,
+			`
+xxxxooooxx
+xoooooooox
+oooooooooo
+oooooooooo
+xxxxooooox
+xxxxxxooxx
+xxxxxxxxxx
+`,
+			`
+xxxxooooxx
+xoooooooox
+ooooooooox
+ooooooooox
+xxxxoooooo
+xxxxxxooxx
+xxxxxxxxxx
+`,
+			`
+xxoxxxxxxx
+xxoxooooox
+xooxooooox
+xooxooooox
+xxxxooooox
+xxxooxxxoo
+xxxoxxxxxo
+`,
+			`
+xxxxxxxxxx
+xxoxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
 `
 		]
 	},
@@ -1364,6 +1500,66 @@ ooxxxoxx
 			`
 xxxxxxxx
 oxxxxoxx
+`
+		]
+	},
+	spider: {
+		title: 'Spider',
+		color: 'hsl(144, 75%, 64.92705098312484%)',
+		solution: [
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxoxxxoxxx
+xxoxxxoxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+oxxoxoxxoo
+oxxxxxxxxo
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xooxoxooxx
+xxxxxxxxxx
+`,
+			`
+xxxxxxooox
+xxxooxooox
+xxooooooox
+xxxxxxxxxx
+`,
+			`
+xxxxxxooox
+xxxoooooox
+xxooooooox
+xxxxxxxxxx
+`,
+			`
+xxxxxxooox
+xxxooxooox
+xxooooooox
+xxxxxxxxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xooxoxooxx
+xxxxxxxxxx
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+oxxoxoxxoo
+oxxxxxxxxo
+`,
+			`
+xxxxxxxxxx
+xxxxxxxxxx
+xxoxxxoxxx
+xxoxxxoxxx
 `
 		]
 	},
