@@ -31,7 +31,7 @@ Circles have a radius.
 To get started, however, draw a round-ish shape with an `<ellipse>`.
 
 ```html
-<svg viewBox="-50 -50 100 100">
+<svg viewBox="-60 -60 120 120">
 	<ellipse fill="#f9f5d0" rx="28" ry="25" />
 </svg>
 ```
@@ -39,3 +39,106 @@ To get started, however, draw a round-ish shape with an `<ellipse>`.
 Creating a wider-than taller base.
 
 {@html svg['mayo-1']}
+
+## Legs
+
+Let's support the body with a couple of legs. In this context, there is no element more flexible than `<path>`.
+
+Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit. To ease into the syntax, begin with only straight lines.
+
+## Legs
+
+To support the figure with a couple of legs. In this context, there is no element more flexible than `<path>`.
+
+Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit. To ease into the syntax, begin with only straight lines.
+
+```html
+<path d="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 l -3 -5.5 l 3 7 -7z" />
+```
+
+Don't be deterred by the long sequence of characters. As you break down the steps, the instruction are elementary:
+
+- start from (0, 0) — `M 0 0`
+
+- draw a line 7 units down — `l 0 7`
+
+- continue drawing lines per the pair of coordinates; first 7 to the right and 7 down, then 5.5 left and 3 up
+
+- finally, close the path, linking back to the very beginning
+
+<Commands
+        x={-8}
+        y={-1}
+        width={16}
+        height={16}
+        commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7z" />
+
+Conveniently, you need to specify just the first `l` character. The browser assumes the same instruction until told otherwise.
+
+```html
+<path d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+```
+
+Add a highly saturated fill and the stand is close to complete.
+
+{@html svg['leg']}
+
+We can't see the first straight line, however. Also, the sharp edges are at odds with the overall theme, they clash with the previous base. By default `<path>` elements don't have a stroke. Beef up the shape with a solid outline, and a couple of stroke-related attributes help to round up the visual.
+
+```html
+<path
+	...
+	fill="#fd971b"
+	stroke="#fd971b"
+	stroke-width="3"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+/>
+```
+
+A perfect way to match the ellipse.
+
+{@html svg['leg-stroke']}
+
+Of course you need two legs, and you want them tucked at the bottom of the body. To solve the first issue, define the shape in a `<defs>` element.
+
+```html
+<defs>
+	<path id="leg" d="M 0 0 l 0 7 7 7..." />
+</defs>
+```
+
+To then draw the visual back, refefence the `id` attribute in a `<use>` element instead.
+
+```html
+<use href="#leg" />
+```
+
+Adding a couple instances is a matter of repeating the element. Now on the left, now on the right.
+
+<!-- prettier-ignore -->
+```html
+<use href="#leg" x="-12" />
+<use href="#leg" x="12" />
+```
+
+Wrap the legs in a group element, then, and you are able to tackle the second problem as well.
+
+```html
+<g>
+	<use href="#leg" x="-12" />
+	<use href="#leg" x="12" />
+</g>
+```
+
+Indeed, the group is a fitting place for common attributes — `fill`, `stroke` and the like — but also a convenient element to move the legs in the bottom half of the canvas.
+
+```html
+<g transform="translate(0 17)" fill="..." stroke="...">
+	<!-- ...<use> -->
+</g>
+```
+
+Add the group _before_ the ellipse, drawing the legs effectively behind, and half of the picture is already done.
+
+{@html svg['mayo-2']}
