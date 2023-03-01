@@ -370,7 +370,7 @@ With the negative scale and the flipped coordinate system, you don't even need t
 
 <Transform transformRotate={true} />
 
-Transformations are often one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens [a world of possibilities](/svg-transform).
+Transformations are likely one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens [a world of possibilities](/svg-transform).
 
 Back to the mascot at hand. Incorporate the wings before the body, slightly above the center of the ellipse.
 
@@ -411,7 +411,7 @@ Add the branded stroke to mask imperfections.
 
 Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a different twist to the character.
 
-{@html svg['majo-6']}
+{@html svg['mayo-6']}
 
 ## CSS animations
 
@@ -489,7 +489,7 @@ Through the class selector, then, refer to the animation with your favorite easi
 
 The succession of keyframes makes the decision less than decisive, but there's always a place for a sine function.
 
-<Mayo animations={[]}>
+<Mayo animations={[]} />
 
 ### Jump
 
@@ -540,7 +540,7 @@ Refer to the animation through the respective class.
 
 You are free to explore different durations and easing curves, but the same values chosen for the eyes work to create the incrementally impressive effect.
 
-<Mayo animations={["jump"]}>
+<Mayo animations={["jump"]} />
 
 ### Flap
 
@@ -593,4 +593,14 @@ And then have fun adding as many flaps as you can possibly tolerate.
 
 Ready to be impressed?
 
-<Mayo animations={["jump", "flap"]}>
+<Mayo animations={["jump", "flap"]} />
+
+## Finishing touches
+
+Do not worry, the animation is done, and the article is close to being over.
+
+What is left is reaping the rewards of such a long, laborious journey. What is left is up to your imagination and your sense of whimsy. Shorten the duration, experiment with a different bezier curve, be it in a `<path>` element or through the `animation-timing-function` property.
+
+Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move just a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the small bounce was worth the effort.
+
+<Mayo />
