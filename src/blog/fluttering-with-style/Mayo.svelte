@@ -46,39 +46,45 @@
 				</g>
 			</g>
 
-			<g>
-				<ellipse fill="#f9f5d0" rx="28" ry="25" />
-				<g transform="translate(0 -30)">
-					<g
+			<ellipse rx="28" ry="25" fill="#f9f5d0" />
+
+			<g transform="translate(0 -30)">
+				<g transform="translate(0 -20)">
+					<path
+						d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2"
 						fill="#f9f5d0"
 						stroke="#f9f5d0"
-						stroke-width="4"
+						stroke-width="3"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-					>
-						<path d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0" />
-						<g transform="translate(0 -20)">
-							<path stroke-width="3" d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
-						</g>
-					</g>
+					/>
+				</g>
 
-					<g fill="#542b19">
-						<g transform="translate(12 0)">
-							<circle class="blink" r="2.75" />
-						</g>
-						<g transform="translate(-12 0)">
-							<circle class="blink" r="2.75" />
-						</g>
-					</g>
+				<path
+					d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0"
+					fill="#f9f5d0"
+					stroke="#f9f5d0"
+					stroke-width="4"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
 
-					<g transform="translate(0 8)">
-						<g stroke-linecap="round" stroke-linejoin="round">
-							<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
-								<path d="M -9 0 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
-							</g>
-							<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
-								<path d="M -6 0 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
-							</g>
+				<g fill="#542b19">
+					<g transform="translate(12 0)">
+						<circle class="blink" r="2.75" />
+					</g>
+					<g transform="translate(-12 0)">
+						<circle class="blink" r="2.75" />
+					</g>
+				</g>
+
+				<g transform="translate(0 8)">
+					<g stroke-linecap="round" stroke-linejoin="round">
+						<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
+							<path d="M -9 0 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
+						</g>
+						<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
+							<path d="M -6 0 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
 						</g>
 					</g>
 				</g>

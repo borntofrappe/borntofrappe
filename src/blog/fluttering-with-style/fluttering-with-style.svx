@@ -32,7 +32,7 @@ To get started, however, draw a round-ish shape with an `<ellipse>`.
 
 ```html
 <svg viewBox="-60 -60 120 120">
-	<ellipse fill="#f9f5d0" rx="28" ry="25" />
+	<ellipse rx="28" ry="25" fill="#f9f5d0" />
 </svg>
 ```
 
@@ -268,7 +268,7 @@ Place both elements slightly below the eyes.
 </g>
 ```
 
-And the face of the continuously more adorable character is complete.
+And the face of the continuously more adorable chicklet is complete.
 
 {@html svg['mayo-4']}
 
@@ -383,3 +383,30 @@ Back to the mascot at hand. Incorporate the wings before the body, slightly abov
 Rotate the elements 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
 
 {@html svg['majo-5']}
+
+## Crest
+
+If there is one thing you can blame me is trying to be exceedingly symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
+
+Case in point, take a misshapen `<path>` element.
+
+```html
+<path d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
+```
+
+Add the branded stroke to mask imperfections.
+
+```html
+<path
+	d="M ..."
+	fill="#f9f5d0"
+	stroke="#f9f5d0"
+	stroke-width="3"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+/>
+```
+
+Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a different twist to the character.
+
+{@html svg['majo-6']}
