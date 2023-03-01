@@ -489,4 +489,52 @@ Through the class selector, then, refer to the animation with your favorite easi
 
 The succession of keyframes makes the decision less than decisive, but there's always a place for a sine function.
 
-<Mayo />
+<Mayo animations={[]}>
+
+### Jump
+
+Moving on to more impressive changes, the goal is to move the mascot down as if flexing its muscles and then up in a small, but evident leap.
+
+Wrap the wings, body and head in a common group element for the translation. Not the legs as you want to give the impression of the animal approaching the ground.
+
+```html
+<!-- legs -->
+<g class="jump">
+	<!-- wings -->
+	<!-- body -->
+	<!-- head -->
+</g>
+```
+
+Define the animation to implement the desired motion.
+
+```css
+@keyframes jump {
+	0%,
+	50% {
+		transform: translateY(0px);
+	}
+	65% {
+		transform: translateY(5px);
+	}
+	75%,
+	95% {
+		transform: translateY(-2px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+```
+
+Refer to the animation through the respective class.
+
+```css
+.jump {
+	animation: jump 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+```
+
+You are free to explore different durations and easing curves, but the same values chosen for the eyes work to create the incrementally impressive effect.
+
+<Mayo animations={["jump"]}>
