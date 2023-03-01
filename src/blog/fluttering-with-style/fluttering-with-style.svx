@@ -1,7 +1,7 @@
 ---
 title: Fluttering with style
 description: Paint with SVG and its many elements. Take a leap with CSS animations.
-date: 2023-03-01T11:43:08
+date: 2023-03-01T15:43:08
 ---
 
 <script>
@@ -46,17 +46,11 @@ Let's support the body with a couple of legs. In this context, there is no eleme
 
 Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit. To ease into the syntax, begin with only straight lines.
 
-## Legs
-
-To support the figure with a couple of legs. In this context, there is no element more flexible than `<path>`.
-
-Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit. To ease into the syntax, begin with only straight lines.
-
 ```html
-<path d="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 l -3 -5.5 l 3 7 -7z" />
+<path d="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 l -3 -5.5 l 3 7 -7" />
 ```
 
-Don't be deterred by the long sequence of characters. As you break down the steps, the instruction are elementary:
+Don't be deterred by the long sequence of characters. Break down the steps and the instruction become elementary:
 
 - start from (0, 0) — `M 0 0`
 
@@ -64,33 +58,31 @@ Don't be deterred by the long sequence of characters. As you break down the step
 
 - continue drawing lines per the pair of coordinates; first 7 to the right and 7 down, then 5.5 left and 3 up
 
-- finally, close the path, linking back to the very beginning
-
 <Commands
-        x={-8}
-        y={-1}
-        width={16}
-        height={16}
-        commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7z" />
+	x={-8}
+	y={-1}
+	width={16}
+	height={16}
+	commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7" />
 
 Conveniently, you need to specify just the first `l` character. The browser assumes the same instruction until told otherwise.
 
 ```html
-<path d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+<path d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 ```
 
 Add a highly saturated fill and the stand is close to complete.
 
 {@html svg['leg']}
 
-We can't see the first straight line, however. Also, the sharp edges are at odds with the overall theme, they clash with the previous base. By default `<path>` elements don't have a stroke. Beef up the shape with a solid outline, and a couple of stroke-related attributes help to round up the visual.
+We can't see the first straight line, however. Also, the sharp edges are at odds with the overall theme, they clash with the soft base. By default `<path>` elements don't have a stroke. Beef up the shape with a solid outline, and a couple of stroke-related attributes help to round up the visual.
 
 ```html
 <path
-	...
+	d="M ..."
 	fill="#fd971b"
 	stroke="#fd971b"
-	stroke-width="3"
+	stroke-width="4"
 	stroke-linecap="round"
 	stroke-linejoin="round"
 />
@@ -108,7 +100,7 @@ Of course you need two legs, and you want them tucked at the bottom of the body.
 </defs>
 ```
 
-To then draw the visual back, refefence the `id` attribute in a `<use>` element instead.
+To draw the visual back, refefence the `id` attribute in a `<use>` element instead.
 
 ```html
 <use href="#leg" />
@@ -133,8 +125,11 @@ Wrap the legs in a group element, then, and you are able to tackle the second pr
 
 Indeed, the group is a fitting place for common attributes — `fill`, `stroke` and the like — but also a convenient element to move the legs in the bottom half of the canvas.
 
+<!-- prettier-ignore -->
 ```html
-<g transform="translate(0 17)" fill="..." stroke="...">
+<g 
+	...
+	transform="translate(0 17)" >
 	<!-- ...<use> -->
 </g>
 ```
@@ -145,13 +140,13 @@ Add the group _before_ the ellipse, drawing the legs effectively behind, and hal
 
 ## Head
 
-Let's move in the opposite direction to elaborate the head. To continue the exploration of SVG syntax, introduce a `<path>` slightly off-center, to the left.
+Let's create the head with a more elaborate shape. Introduce a `<path>` slightly off-center, to the left.
 
 ```html
 <path d="M -20 0" />
 ```
 
-To draw curves you have access to a couple of instructions: `q` and `c`.
+To draw curves you have access to a couple of most pertinent instructions: `q` and `c`.
 
 Use `q` and you draw a _quadratic bezier_ curve, connecting the start and end coordinates with the help of a control point.
 
@@ -164,15 +159,10 @@ Prefer `c` and you realize a _cubic bezier_ curve, linking the positions with th
 Both instructions work to outline the bone structure for the bottom of the face, but the more complex syntax emulates a couple of round cheecks as well.
 
 ```html
-<path
-	d="
-    M -20 0 
-    c -18 24 58 24 40 0
-    "
-/>
+<path d="M -20 0 c -18 24 58 24 40 0" />
 ```
 
-In the `d` attribute curve are perhaps the most complex instructions, so let's complete the upper half with a simpler command. Wrap up the head with an arc and specifically a semicircle back to the origin.
+Curve are perhaps the most complex instructions, so let's complete the upper half with a simpler command. Wrap up the head with an arc and specifically a semicircle back to the origin.
 
 ```html
 <path
@@ -184,9 +174,9 @@ In the `d` attribute curve are perhaps the most complex instructions, so let's c
 />
 ```
 
-There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them. The first pair describes the radius of the arc in either dimension, while last couple of numbers point to the end coordinate. Have the former exactly half as the latter and the half is complete.
+There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them. The first pair describes the radius of the arc in either dimension, while last couple of numbers point to the end coordinate. Have the radii exactly half as the distance and the connection is complete.
 
-In between these numbers you have three boolean values to toggle a few options. For the sake of the semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise manner.
+In between the numbers you have three boolean values to toggle a few options. For the sake of the semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise, manner.
 
 <ClockwiseFlag />
 
@@ -236,7 +226,7 @@ Two, dark circles for the eyes.
 </g>
 ```
 
-Two `<path>`s for the beak and more evident tongue. These share a common rounded stroke.
+Two `<path>`s for the beak and more evident tongue. These share a common, rounded stroke.
 
 ```html
 <g stroke-linecap="round" stroke-linejoin="round">
@@ -244,7 +234,7 @@ Two `<path>`s for the beak and more evident tongue. These share a common rounded
 </g>
 ```
 
-But dinstinguish themselves in terms of color and the thickness of the stroke.
+But dinstinguish themselves in terms of color and the stroke thickness.
 
 ```html
 <g fill="#fd971b" stroke="#fd971b" stroke-width="3">
@@ -259,14 +249,26 @@ And in terms of `d` attribute, the two provide an excellent excuse to practice w
 
 ```html
 <g fill="#fd971b" stroke="#fd971b" stroke-width="3">
-	<path d="M -9 8 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
+	<path d="M -9 0 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
 </g>
 <g fill="#fc531c" stroke="#fc531c" stroke-width="1">
-	<path d="M -6 8 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
+	<path d="M -6 0 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
 </g>
 ```
 
-The beak is slightly thicker, the curvature is wider, completing the face of the continuously more adorable character.
+The beak is slightly thicker, the curvature is wider, adding a bit of nuance.
+
+Place both elements slightly below the eyes.
+
+```html
+<!-- head -->
+<!-- eyes -->
+<g transform="translate(0 8)">
+	<!-- beak and tongue -->
+</g>
+```
+
+And the face of the continuously more adorable character is complete.
 
 {@html svg['mayo-4']}
 
@@ -274,19 +276,17 @@ The beak is slightly thicker, the curvature is wider, completing the face of the
 
 Wings allow to rehearse almost every concept included so far.
 
-Create one single wing protruding to the right with a couple of tentative curves.
+Create a single wing protruding to the right with a couple of tentative curves.
 
 ```html
 <path d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
 ```
 
-{@html svg['wing']
-
 Add the now familiar and even more important stroke.
 
 ```html
 <path
-	d="M..."
+	d="M ..."
 	fill="#f0d584"
 	stroke="#f0d584"
 	stroke-width="8"
@@ -297,9 +297,9 @@ Add the now familiar and even more important stroke.
 
 With the rounded joints, with the smooth edges the shape looks right at home.
 
-{@html svg['wing-stroke']}
+{@html svg['wing']}
 
-What is more, the numbers no longer seem the result of trial and error, but rather the deliberate choice of a full-fledged artist.
+What is more, the numbers no longer seem arbitrary, but the result of a careful design, the realization of a full-fledged artist.
 
 Similarly to the legs, define the shape in the `<defs>` block.
 
@@ -342,11 +342,11 @@ For the one on the left, however, we want the wing to point in the opposite dire
 
 And the coordinate system _for the wing_ is essentially flipped. The instructions previously drawing the curve to the right compose the shape to the left.
 
-Similarly, the offset moves the instance in away from the center.
+Similarly, the offset moves the instance westward, away from the center.
 
 <Transform  />
 
-There's an added benefit to the setup. As you update the origin of the wing — the small black dot in the visual, any transformation applied on the instance takes place from the new spot.
+There's an added benefit to the setup. As you update the origin — the small black dot in the visual — any transformation applied on the wings takes place from the new spot.
 
 Rotate the wing on the right and the element tips downwards.
 
@@ -356,7 +356,7 @@ Rotate the wing on the right and the element tips downwards.
 </g>
 ```
 
-Rotate the mirror image on the left and the effect is one and the same.
+Rotate the mirror image on the left and the effect is the one and the same.
 
 ```html
 <g transform="scale(-1 1) translate(25 0)">
@@ -368,7 +368,7 @@ With the negative scale and the flipped coordinate system, you don't even need t
 
 <Transform transformRotate={true} />
 
-SVG transformations are often one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens a [world of possibilities](/svg-transform).
+Transformations are often one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens [a world of possibilities](/svg-transform).
 
 Back to the mascot at hand. Incorporate the wings before the body, slightly above the center of the ellipse.
 
@@ -380,6 +380,6 @@ Back to the mascot at hand. Incorporate the wings before the body, slightly abov
 <!-- body -->
 ```
 
-Rotate the wings 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
+Rotate the elements 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
 
 {@html svg['majo-5']}
