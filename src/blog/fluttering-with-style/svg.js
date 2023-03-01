@@ -37,5 +37,38 @@ export default {
 	stroke-linejoin="round"
 />
 </g>
+</svg>`,
+	'mayo-4': `<svg viewBox="-60 -60 120 120">
+<defs>
+<path id="mayo-4-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+</defs>
+<g transform="translate(0 17)" fill="#fd971b" stroke="#fd971b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<use href="#mayo-4-leg" x="-12" />
+<use href="#mayo-4-leg" x="12" />
+</g>
+<ellipse fill="#f9f5d0" rx="28" ry="25" />
+<g transform="translate(0 -30)">
+<path
+    d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0"
+	fill="#f9f5d0"
+	stroke="#f9f5d0"
+	stroke-width="4"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+/>
+<g fill="#542b19">
+<circle r="2.75" cx="-12" />
+<circle r="2.75" cx="12" />
+</g>
+
+<g stroke-linecap="round" stroke-linejoin="round">
+<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
+  <path d="M -9 8 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
+</g>
+<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
+<path d="M -6 8 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
+</g>
+</g>
+</g>
 </svg>`
 };

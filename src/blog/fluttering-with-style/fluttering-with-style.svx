@@ -215,3 +215,57 @@ Move the `<path>` up in a more fitting position.
 And the composition assumes a new identity.
 
 {@html svg['mayo-3']}
+
+## Face
+
+Let's add a few more details to complete the head. These are tightly coupled with the `<path>` element, so it is reasonable to have them in the same, translated group.
+
+```html
+<g transform="translate(0 -30)">
+	<!-- <path> -->
+	<!-- ...details -->
+</g>
+```
+
+Two, dark circles for the eyes.
+
+```html
+<g fill="#542b19">
+	<circle r="2.75" cx="-12" />
+	<circle r="2.75" cx="12" />
+</g>
+```
+
+Two `<path>`s for the beak and more evident tongue. These share a common rounded stroke.
+
+```html
+<g stroke-linecap="round" stroke-linejoin="round">
+	<!-- ...<path> -->
+</g>
+```
+
+But dinstinguish themselves in terms of color and the thickness of the stroke.
+
+```html
+<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
+	<!-- beak -->
+</g>
+<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
+	<!-- tongue -->
+</g>
+```
+
+And in terms of `d` attribute, the two provide an excellent excuse to practice with cubic bezier curves.
+
+```html
+<g fill="#fd971b" stroke="#fd971b" stroke-width="3">
+	<path d="M -9 8 c 6 6 12 6 18 0 -7 -5 -11 -5 -18 0" />
+</g>
+<g fill="#fc531c" stroke="#fc531c" stroke-width="1">
+	<path d="M -6 8 c 3 4 9 4 12 0 -4 1 -8 1 -12 0" />
+</g>
+```
+
+The beak is slightly thicker, the curvature is wider, completing the face of the continuously more adorable character.
+
+{@html svg['mayo-4']}
