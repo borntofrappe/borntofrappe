@@ -269,3 +269,117 @@ And in terms of `d` attribute, the two provide an excellent excuse to practice w
 The beak is slightly thicker, the curvature is wider, completing the face of the continuously more adorable character.
 
 {@html svg['mayo-4']}
+
+## Wings
+
+Wings allow to rehearse almost every concept included so far.
+
+Create one single wing protruding to the right with a couple of tentative curves.
+
+```html
+<path d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
+```
+
+{@html svg['wing']
+
+Add the now familiar and even more important stroke.
+
+```html
+<path
+	d="M..."
+	fill="#f0d584"
+	stroke="#f0d584"
+	stroke-width="8"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+/>
+```
+
+With the rounded joints, with the smooth edges the shape looks right at home.
+
+{@html svg['wing-stroke']}
+
+What is more, the numbers no longer seem the result of trial and error, but rather the deliberate choice of a full-fledged artist.
+
+Similarly to the legs, define the shape in the `<defs>` block.
+
+```html
+<defs>
+	<!-- leg -->
+	<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
+</defs>
+```
+
+Add a couple of instances with `<use>` elements.
+
+<!-- prettier-ignore -->
+```html
+<g 
+	fill="#f0d584"
+	stroke="#f0d584"
+	stroke-width="8"
+	stroke-linecap="round"
+	stroke-linejoin="round">
+	<!-- wings -->
+</g>
+```
+
+The one on the right is good as-is, and would require only an horizontal offset.
+
+```html
+<g transform="translate(25 0)">
+  <use href="#wing">
+</g>
+```
+
+For the one on the left, however, we want the wing to point in the opposite direction. Instead of creating an entirely different `<path>`, the trick is to lean on SVG transformations. Scale the shape horizontally and with a negative value.
+
+```html
+<g transform="scale(-1 1)">
+  <use href="#wing">
+</g>
+```
+
+And the coordinate system _for the wing_ is essentially flipped. The instructions previously drawing the curve to the right compose the shape to the left.
+
+Similarly, the offset moves the instance in away from the center.
+
+<Transform  />
+
+There's an added benefit to the setup. As you update the origin of the wing — the small black dot in the visual, any transformation applied on the instance takes place from the new spot.
+
+Rotate the wing on the right and the element tips downwards.
+
+```html
+<g transform="translate(25 0)">
+  <use transform="rotate(30)" href="#wing">
+</g>
+```
+
+Rotate the mirror image on the left and the effect is one and the same.
+
+```html
+<g transform="scale(-1 1) translate(25 0)">
+  <use transform="rotate(30)" href="#wing">
+</g>
+```
+
+With the negative scale and the flipped coordinate system, you don't even need to consider a rotation in the opposite direction.
+
+<Transform transformRotate={true} />
+
+SVG transformations are often one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens a [world of possibilities](/svg-transform).
+
+Back to the mascot at hand. Incorporate the wings before the body, slightly above the center of the ellipse.
+
+```html
+<!-- legs -->
+<g transform="translate(0 -10)">
+	<!-- ...wings -->
+</g>
+<!-- body -->
+```
+
+Rotate the wings 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
+
+{@html svg['majo-5']}
