@@ -18,13 +18,7 @@
 
 <svg viewBox="-35 -35 70 70">
 	<g fill="currentColor">
-		<path
-			d="
-    M -20 0 
-    c -18 24 58 24 40 0
-    a 20 20 0 0 {clockwise ? 1 : 0} -40 0
-    "
-		/>
+		<path d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 {clockwise ? 1 : 0} -40 0" />
 	</g>
 </svg>
 

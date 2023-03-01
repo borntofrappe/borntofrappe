@@ -17,10 +17,6 @@
 {/if}
 
 <svg viewBox="-60 -26 120 52">
-	<defs>
-		<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
-	</defs>
-
 	<g fill="none" stroke="currentColor" stroke-width="0.2" stroke-dasharray="1">
 		<path d="M 0 -18 v 36" />
 	</g>
@@ -33,11 +29,17 @@
 		stroke-linejoin="round"
 	>
 		<g transform="translate({x} 0)">
-			<use transform="rotate({angle})" href="#wing" />
+			<path
+				transform="rotate({angle})"
+				d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10"
+			/>
 			<circle r="0.8" fill="black" stroke="none" />
 		</g>
 		<g transform="scale(-1 1) translate({x} 0)">
-			<use transform="rotate({angle})" href="#wing" />
+			<path
+				transform="rotate({angle})"
+				d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10"
+			/>
 			<circle r="0.8" fill="black" stroke="none" />
 		</g>
 	</g>
