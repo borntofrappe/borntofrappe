@@ -12,7 +12,9 @@ Explore SVG syntax and you are able to draw close to anything directly in a text
 
 To fulfill this natural premise, let's create a mascot with a country good look.
 
-## Body
+## SVG syntax
+
+### Body
 
 Within the context of an `<svg>` element you have access to a few helper constructs, elements such as `<rect>` and `<circle>` to draw the matching shapes with a convenient set of attributes.
 
@@ -40,7 +42,7 @@ Creating a wider-than taller base.
 
 {@html svg['mayo-1']}
 
-## Legs
+### Legs
 
 Let's support the body with a couple of legs. In this context, there is no element more flexible than `<path>`.
 
@@ -138,7 +140,7 @@ Add the group _before_ the ellipse, drawing the legs effectively behind, and hal
 
 {@html svg['mayo-2']}
 
-## Head
+### Head
 
 Let's create the head with a more elaborate shape. Introduce a `<path>` slightly off-center, to the left.
 
@@ -206,7 +208,7 @@ And the composition assumes a new identity.
 
 {@html svg['mayo-3']}
 
-## Face
+### Face
 
 Let's add a few more details to complete the head. These are tightly coupled with the `<path>` element, so it is reasonable to have them in the same, translated group.
 
@@ -272,7 +274,7 @@ And the face of the continuously more adorable chicklet is complete.
 
 {@html svg['mayo-4']}
 
-## Wings
+### Wings
 
 Wings allow to rehearse almost every concept included so far.
 
@@ -384,7 +386,7 @@ Rotate the elements 90 degrees to hide them for a brief moment and the mascot is
 
 {@html svg['majo-5']}
 
-## Crest
+### Crest
 
 If there is one thing you can blame me is trying to be exceedingly symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
 
@@ -410,3 +412,81 @@ Add the branded stroke to mask imperfections.
 Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a different twist to the character.
 
 {@html svg['majo-6']}
+
+## CSS animations
+
+### Blink
+
+The mascot is unquestionably adorable, but the fixed gaze is bound to unnerve after a short while.
+
+Consider the markup for the eyes, for instance, the right one.
+
+```html
+<circle r="2.75" cx="12" />
+```
+
+We want to scale the element, but unfortunately, it is not as simple as to change the size through the `transform` property.
+
+```css
+circle {
+	transform: scale(0.5);
+}
+```
+
+Rather selflishly, the issue is a chance to reiterate [a previous article](/svg-transform), but let me try to summarize the problem in a few words.
+
+Within the bounds of an `<svg>` element, transformations are applied from an origin first described by the `viewBox`. The most solid way to update this origin is through the `transform` attribute, for instance with a translation — just as we positioned the shapes around the canvas.
+
+```html
+<g transform="translate(0 -30)">
+	<!-- head -->
+</g>
+```
+
+Scale the circles, and the transformation takes place from the center of the head, not the center of the specific element. To fix visual, annoying, bug, remove the `cx` attribute in favor of a previous translation.
+
+```diff
+-<circle r="2.75" cx="12" />
++<g transform="translate(12 0)">
++	<circle r="2.75" />
++</g>
+```
+
+Thankfully, that's the biggest change you'll need in terms of SVG syntax. Add a class to the now-centered eyes to be expressive.
+
+```diff
+-<circle r="2.75" />
++<circle class="blink" r="2.75" />
+```
+
+And let's finally work with CSS. A fitting animation would have the eyes disappear ever so briefly, but give enough time between iterations.
+
+Add keyframes to rapidly scale the elements into nothing, before returning back to the initial state.
+
+```css
+@keyframes blink {
+	30%,
+	34% {
+		transform: scaleY(0);
+	}
+	28%,
+	32%,
+	36% {
+		transform: scaleY(1);
+	}
+}
+```
+
+Targeting only the y axis should work to give the impression of the eyes actually closing.
+
+Through the class selector, then, refer to the animation with your favorite easing.
+
+```css
+.blink {
+	animation: blink 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+```
+
+The succession of keyframes makes the decision less than decisive, but there's always a place for a sine function.
+
+<Mayo />
