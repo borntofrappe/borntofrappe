@@ -142,3 +142,76 @@ Indeed, the group is a fitting place for common attributes — `fill`, `stroke` 
 Add the group _before_ the ellipse, drawing the legs effectively behind, and half of the picture is already done.
 
 {@html svg['mayo-2']}
+
+## Head
+
+Let's move in the opposite direction to elaborate the head. To continue the exploration of SVG syntax, introduce a `<path>` slightly off-center, to the left.
+
+```html
+<path d="M -20 0" />
+```
+
+To draw curves you have access to a couple of instructions: `q` and `c`.
+
+Use `q` and you draw a _quadratic bezier_ curve, connecting the start and end coordinates with the help of a control point.
+
+<ControlPoint />
+
+Prefer `c` and you realize a _cubic bezier_ curve, linking the positions with the guidance of _two_ control points.
+
+<ControlPoints />
+
+Both instructions work to outline the bone structure for the bottom of the face, but the more complex syntax emulates a couple of round cheecks as well.
+
+```html
+<path
+	d="
+    M -20 0 
+    c -18 24 58 24 40 0
+    "
+/>
+```
+
+In the `d` attribute curve are perhaps the most complex instructions, so let's complete the upper half with a simpler command. Wrap up the head with an arc and specifically a semicircle back to the origin.
+
+```html
+<path
+	d="
+    M -20 0 
+    c -18 24 58 24 40 0
+    a 20 20 0 0 0 -40 0
+    "
+/>
+```
+
+There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them. The first pair describes the radius of the arc in either dimension, while last couple of numbers point to the end coordinate. Have the former exactly half as the latter and the half is complete.
+
+In between these numbers you have three boolean values to toggle a few options. For the sake of the semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise manner.
+
+<ClockwiseFlag />
+
+Enough logic, however. Add a noticeable, rounded outline as with the legs.
+
+```html
+<path
+	d="M ..."
+	fill="#f9f5d0"
+	stroke="#f9f5d0"
+	stroke-width="4"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+/>
+```
+
+Move the `<path>` up in a more fitting position.
+
+```html
+<!-- ...body -->
+<g transform="translate(0 -30)">
+	<!-- <path> -->
+</g>
+```
+
+And the composition assumes a new identity.
+
+{@html svg['mayo-3']}

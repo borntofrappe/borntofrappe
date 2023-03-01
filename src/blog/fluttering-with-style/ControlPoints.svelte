@@ -73,6 +73,7 @@
 
 	div > * {
 		flex-grow: 1;
+		flex-basis: calc((25rem - 100%) * 999);
 	}
 
 	fieldset {

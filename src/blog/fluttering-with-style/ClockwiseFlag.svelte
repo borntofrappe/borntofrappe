@@ -8,11 +8,13 @@
 	<span>Toggle clockwise flag</span>
 </label>
 
-<code
-	>d="... a 20 20 0 0
-	<span style:border-block-end="0.2rem solid {accentColor}">{clockwise ? 1 : 0}</span>
-	-40 0"
-</code>
+<p>
+	<code
+		>d="... a 20 20 0 0
+		<span style:border-block-end="0.2rem solid {accentColor}">{clockwise ? 1 : 0}</span>
+		-40 0"
+	</code>
+</p>
 
 <svg viewBox="-35 -35 70 70">
 	<g fill="currentColor">
