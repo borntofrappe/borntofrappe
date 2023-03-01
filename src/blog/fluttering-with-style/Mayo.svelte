@@ -185,17 +185,21 @@
 
 	@keyframes flap {
 		0%,
-		60%,
+		60% {
+			transform: rotate(90deg);
+		}
+
+		65%,
+		75%,
+		85% {
+			transform: rotate(0deg);
+		}
+
 		70%,
 		80%,
 		95%,
 		100% {
 			transform: rotate(90deg);
-		}
-		65%,
-		75%,
-		85% {
-			transform: rotate(0deg);
 		}
 	}
 

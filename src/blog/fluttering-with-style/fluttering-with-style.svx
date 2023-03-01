@@ -1,7 +1,7 @@
 ---
 title: Fluttering with style
 description: Paint with SVG and its many elements. Take a leap with CSS animations.
-date: 2023-03-01T15:43:08
+date: 2023-03-01T21:17:03
 ---
 
 <script>
@@ -25,7 +25,7 @@ To fulfill this natural premise, let's create a mascot with a country good look.
 
 ### Body
 
-Within the context of an `<svg>` element you have access to a few helper constructs, elements such as `<rect>` and `<circle>` to draw the matching shapes with a convenient set of attributes.
+Within the context of an `<svg>` element you have access to a few helper constructs. Elements such as `<rect>` and `<circle>` to draw the matching figures with a convenient set of attributes.
 
 Rectangles have a width and a height.
 
@@ -57,7 +57,9 @@ Creating a wider-than taller base.
 
 Let's support the body with a couple of legs. In this context, there is no element more flexible than `<path>`.
 
-Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit. To ease into the syntax, begin with only straight lines.
+Within the boundaries of the `d` attribute you instruct the browser how to draw. Lines, curves, arcs — the sky is the limit.
+
+To ease into the syntax, begin with only straight lines.
 
 ```html
 <path d="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 l -3 -5.5 l 3 7 -7" />
@@ -69,7 +71,7 @@ Don't be deterred by the long sequence of characters. Break down the steps and t
 
 - draw a line 7 units down — `l 0 7`
 
-- continue drawing lines per the pair of coordinates; first 7 to the right and 7 down, then 5.5 left and 3 up
+- continue drawing lines per the pair of coordinates; first 7 to the right and 7 down, then 5.5 left and 3 up...
 
 <Center maxInlineSize="30rem">
 	<Commands
@@ -92,7 +94,9 @@ Add a highly saturated fill and the stand is close to complete.
 	{@html svg['leg']}
 </Center>
 
-We can't see the first straight line, however. Also, the sharp edges are at odds with the overall theme, they clash with the soft base. By default `<path>` elements don't have a stroke. Beef up the shape with a solid outline, and a couple of stroke-related attributes help to round up the visual.
+We can't see the first line, however. Also, the sharp edges are at odds with the overall theme, they clash with the softer base.
+
+By default `<path>` elements don't have a stroke. Beef up the shape with a solid outline, and a couple of stroke-related attributes help to round up the visual.
 
 ```html
 <path
@@ -111,7 +115,7 @@ A perfect way to match the ellipse.
 	{@html svg['leg-stroke']}
 </Center>
 
-Of course you need two legs, and you want them tucked at the bottom of the body. To solve the first issue, define the shape in a `<defs>` element.
+Of course you need two legs, and you want them at the bottom of the body. To solve the first issue, define the shape in a `<defs>` element.
 
 ```html
 <defs>
@@ -119,7 +123,7 @@ Of course you need two legs, and you want them tucked at the bottom of the body.
 </defs>
 ```
 
-To draw the visual back, refefence the `id` attribute in a `<use>` element instead.
+To draw the lines back, reference the `id` attribute in a `<use>` element instead.
 
 ```html
 <use href="#leg" />
@@ -135,20 +139,15 @@ Adding a couple instances is a matter of repeating the element. Now on the left,
 
 Wrap the legs in a group element, then, and you are able to tackle the second problem as well.
 
-```html
-<g>
-	<use href="#leg" x="-12" />
-	<use href="#leg" x="12" />
-</g>
-```
-
-Indeed, the group is a fitting place for common attributes — `fill`, `stroke` and the like — but also a convenient element to move the legs in the bottom half of the canvas.
+Indeed, the `<g>` element is a fitting place for common attributes — `fill`, `stroke` and the like — but also a convenient element to move the legs in the bottom half of the canvas.
 
 <!-- prettier-ignore -->
 ```html
 <g 
-	...
-	transform="translate(0 17)" >
+	transform="translate(0 17)"
+	fill="#fd971b"
+	stroke="#fd971b"
+	...>
 	<!-- ...<use> -->
 </g>
 ```
@@ -181,13 +180,13 @@ Prefer `c` and you realize a _cubic bezier_ curve, linking the positions with th
 	<ControlPoints />
 </Center>
 
-Both instructions work to outline the bone structure for the bottom of the face, but the more complex syntax emulates a couple of round cheecks as well.
+Both strings work to outline the bone structure for the mouth, but the more complex syntax emulates a couple of round cheeks as well.
 
 ```html
 <path d="M -20 0 c -18 24 58 24 40 0" />
 ```
 
-Curve are perhaps the most complex instructions, so let's complete the upper half with a simpler command. Wrap up the head with an arc and specifically a semicircle back to the origin.
+In the `d` attribute curves are perhaps the most complex command, so let's complete the upper half with a simpler instruction. Wrap up the head with an arc and specifically a semicircle back to the origin.
 
 ```html
 <path
@@ -199,7 +198,11 @@ Curve are perhaps the most complex instructions, so let's complete the upper hal
 />
 ```
 
-There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them. The first pair describes the radius of the arc in either dimension, while last couple of numbers point to the end coordinate. Have the radii exactly half as the distance and the connection is complete.
+There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them.
+
+The first pair describes the radius of the arc in either dimension, while the last couple of numbers point to the end coordinate.
+
+Have the radii exactly half as the distance and the connection is complete.
 
 In between the numbers you have three boolean values to toggle a few options. For the sake of the semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise, manner.
 
@@ -263,7 +266,7 @@ Two `<path>`s for the beak and more evident tongue. These share a common, rounde
 </g>
 ```
 
-But dinstinguish themselves in terms of color and the stroke thickness.
+But distinguish themselves in terms of color and the stroke thickness.
 
 ```html
 <g fill="#fd971b" stroke="#fd971b" stroke-width="3">
@@ -297,7 +300,7 @@ Place both elements slightly below the eyes.
 </g>
 ```
 
-And the face of the continuously more adorable chicklet is complete.
+And the face of the ever more adorable chicklet is complete.
 
 <Center maxInlineSize="28rem">
 	{@html svg['mayo-4']}
@@ -305,13 +308,23 @@ And the face of the continuously more adorable chicklet is complete.
 
 ### Wings
 
-Wings allow to rehearse almost every concept included so far.
+Wings allow you to rehearse almost every concept included so far.
 
 Create a single wing protruding to the right with a couple of tentative curves.
 
+<!-- prettier-ignore -->
 ```html
-<path d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
+<path 
+	d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" 
+	fill="#f0d584" 
+/>
 ```
+
+Leading to a rather rugged visual.
+
+<Center maxInlineSize="28rem">
+	{@html svg['wing']}
+</Center>
 
 Add the now familiar and even more important stroke.
 
@@ -326,10 +339,10 @@ Add the now familiar and even more important stroke.
 />
 ```
 
-With the rounded joints, with the smooth edges the shape looks right at home.
+And with the rounded joints, with the smooth edges the shape looks right at home.
 
 <Center maxInlineSize="28rem">
-	{@html svg['wing']}
+	{@html svg['wing-stroke']}
 </Center>
 
 What is more, the numbers no longer seem arbitrary, but the result of a careful design, the realization of a full-fledged artist.
@@ -381,7 +394,7 @@ Similarly, the offset moves the instance westward, away from the center.
 	<Transform  />
 </Center>
 
-There's an added benefit to the setup. As you update the origin — the small black dot in the visual — any transformation applied on the wings takes place from the new spot.
+There's an added benefit to the setup. As you translate the shapes — refer to the black dot in the visual — any transformation applied on the wings takes place from the new spot.
 
 Rotate the wing on the right and the element tips downwards.
 
@@ -391,7 +404,7 @@ Rotate the wing on the right and the element tips downwards.
 </g>
 ```
 
-Rotate the mirror image on the left and the effect is the one and the same.
+Rotate the mirror image on the left and the effect is one and the same.
 
 ```html
 <g transform="scale(-1 1) translate(25 0)">
@@ -420,12 +433,12 @@ Back to the mascot at hand. Incorporate the wings before the body, slightly abov
 Rotate the elements 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
 
 <Center maxInlineSize="28rem">
-	{@html svg['majo-5']}
+	{@html svg['mayo-5']}
 </Center>
 
 ### Crest
 
-If there is one thing you can blame me is trying to be exceedingly symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
+If there is one thing for which you can blame is trying to be exceedingly symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
 
 Case in point, take a misshapen `<path>` element.
 
@@ -433,7 +446,7 @@ Case in point, take a misshapen `<path>` element.
 <path d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
 ```
 
-Add the branded stroke to mask imperfections.
+Add the staple stroke to mask imperfections.
 
 ```html
 <path
@@ -446,7 +459,7 @@ Add the branded stroke to mask imperfections.
 />
 ```
 
-Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a different twist to the character.
+Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a twist to the character.
 
 <Center maxInlineSize="28rem">
 	{@html svg['mayo-6']}
@@ -472,9 +485,9 @@ circle {
 }
 ```
 
-Rather selflishly, the issue is a chance to reiterate [a previous article](/svg-transform), but let me try to summarize the problem in a few words.
+The issue links back to the discussion around the `<path>` elements devoted to the wings, and rather selfishly, is also a chance to reiterate a previous article on the topic of [SVG transformations](/svg-transform). That being said, let me try to summarize the problem in a few words.
 
-Within the bounds of an `<svg>` element, transformations are applied from an origin first described by the `viewBox`. The most solid way to update this origin is through the `transform` attribute, for instance with a translation — just as we positioned the shapes around the canvas.
+Within the bounds of an `<svg>` element, transformations are applied from an origin first described by the `viewBox`. The fireproof way to update this origin is through the `transform` attribute, for instance with a translation — just as we positioned the shapes around the canvas.
 
 ```html
 <g transform="translate(0 -30)">
@@ -482,7 +495,7 @@ Within the bounds of an `<svg>` element, transformations are applied from an ori
 </g>
 ```
 
-Scale the circles, and the transformation takes place from the center of the head, not the center of the specific element. To fix visual, annoying, bug, remove the `cx` attribute in favor of a previous translation.
+Scale the circles in their current state, and the transformation takes place from the center of the head, not the center of the elements. To fix visual, annoying, mishap, remove the `cx` attribute in favor of a previous translation.
 
 ```diff
 -<circle r="2.75" cx="12" />
@@ -491,7 +504,7 @@ Scale the circles, and the transformation takes place from the center of the hea
 +</g>
 ```
 
-Thankfully, that's the biggest change you'll need in terms of SVG syntax. Add a class to the now-centered eyes to be expressive.
+Thankfully, that's the most drastic change you'll need in terms of SVG syntax. Add a class to the now-centered eyes.
 
 ```diff
 -<circle r="2.75" />
@@ -500,7 +513,7 @@ Thankfully, that's the biggest change you'll need in terms of SVG syntax. Add a 
 
 And let's finally work with CSS. A fitting animation would have the eyes disappear ever so briefly, but give enough time between iterations.
 
-Add keyframes to rapidly scale the elements into nothing, before returning back to the initial state.
+Structure the keyframes to rapidly scale the elements into nothing, before returning back to the initial scale.
 
 ```css
 @keyframes blink {
@@ -518,15 +531,15 @@ Add keyframes to rapidly scale the elements into nothing, before returning back 
 
 Targeting only the y axis should work to give the impression of the eyes actually closing.
 
-Through the class selector, then, refer to the animation with your favorite easing.
+Through the class selector, then, point to the animation with your favorite easing.
 
 ```css
 .blink {
-	animation: blink 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+	animation: blink 4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 ```
 
-The succession of keyframes makes the decision less than decisive, but there's always a place for a sine function.
+The rapid succession makes the decision less than decisive, but there's always a place for a sine function.
 
 <Center maxInlineSize="30rem">
 	<Mayo animations={[]} />
@@ -534,7 +547,7 @@ The succession of keyframes makes the decision less than decisive, but there's a
 
 ### Jump
 
-Moving on to more impressive changes, the goal is to move the mascot down as if flexing its muscles and then up in a small, but evident leap.
+Moving on to more impressive changes, the goal is to move the mascot down as if flexing its muscles and then up in a small, but evident, leap.
 
 Wrap the wings, body and head in a common group element for the translation. Not the legs as you want to give the impression of the animal approaching the ground.
 
@@ -571,11 +584,13 @@ Define the animation to implement the desired motion.
 }
 ```
 
-Refer to the animation through the respective class.
+Honorable mention goes to the penultimate percentage, nudging the group every so lightly before the resting state.
+
+Finally, pair the animation through the respective class.
 
 ```css
 .jump {
-	animation: jump 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+	animation: jump 4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 ```
 
@@ -587,7 +602,7 @@ You are free to explore different durations and easing curves, but the same valu
 
 ### Flap
 
-To complete the visual let's finally work on the wings. These are already structured so that rotation takes place from their respective origin, meaning you need just the class selector.
+To complete the visual let's work on the wings. These are already structured so that rotation takes place from their respective origin, meaning you need just the class selector.
 
 ```css
 <use class="flap" href="#wing" />
@@ -597,13 +612,13 @@ To animate the pair.
 
 ```css
 .flap {
-	animation: flap 5s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+	animation: flap 4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 ```
 
-By repeating the duration of the previous animation we are able to follow the logic of the jump.
+By repeating the duration of the previous animation we are able to follow the steps of the jump.
 
-Frame the element to preserve the initial, tucked-in rotation. Up until the leap is about to occur.
+Frame the element to preserve the initial, tucked-in rotation. Up until the leap is about to take place.
 
 ```css
 @keyframes flap {
@@ -619,22 +634,26 @@ And then have fun adding as many flaps as you can possibly tolerate.
 ```css
 @keyframes flap {
 	0%,
-	60%,
+	60% {
+		transform: rotate(90deg);
+	}
+
+	65%,
+	75%,
+	85% {
+		transform: rotate(0deg);
+	}
+
 	70%,
 	80%,
 	95%,
 	100% {
 		transform: rotate(90deg);
 	}
-	65%,
-	75%,
-	85% {
-		transform: rotate(0deg);
-	}
 }
 ```
 
-Ready to be impressed?
+Ready to be delighted?
 
 <Center maxInlineSize="30rem">
 	<Mayo animations={["jump", "flap"]} />
@@ -644,9 +663,9 @@ Ready to be impressed?
 
 Do not worry, the animation is done, and the article is close to being over.
 
-What is left is reaping the rewards of such a long, laborious journey. What is left is up to your imagination and your sense of whimsy. Shorten the duration, experiment with a different bezier curve, be it in a `<path>` element or through the `animation-timing-function` property.
+What is left is reaping the rewards of such a long, laborious journey. What is left is up to your imagination and your sense of whimsy. Shorten the duration, experiment with a different bezier curve, be it in the `d` attribute or through the `animation-timing-function` property.
 
-Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move just a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the small bounce was worth the effort.
+Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the extra bounce was worth the effort.
 
 <Center maxInlineSize="30rem">
 	<Mayo />

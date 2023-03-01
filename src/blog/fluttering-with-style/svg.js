@@ -1,11 +1,11 @@
 export default {
-	'mayo-1': `<svg viewBox="-60 -60 120 120">
+	'mayo-1': `<svg style="display: block;" viewBox="-60 -60 120 120">
 	<ellipse rx="28" ry="25" fill="#f9f5d0" />
 </svg>`,
-	leg: `<svg viewBox="-20 -15 40 40">
+	leg: `<svg style="display: block;" viewBox="-20 -15 40 40">
 	<path d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" fill="#fd971b" />
 </svg>`,
-	'leg-stroke': `<svg viewBox="-20 -15 40 40">
+	'leg-stroke': `<svg style="display: block;" viewBox="-20 -15 40 40">
 	<path
 		d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7"
 		fill="#fd971b"
@@ -15,7 +15,7 @@ export default {
 		stroke-linejoin="round"
 	/>
 </svg>`,
-	'mayo-2': `<svg viewBox="-60 -60 120 120">
+	'mayo-2': `<svg style="display: block;" viewBox="-60 -60 120 120">
 	<defs>
 		<path id="mayo-2-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 	</defs>
@@ -32,7 +32,7 @@ export default {
 	</g>
 	<ellipse rx="28" ry="25" fill="#f9f5d0" />
 </svg>`,
-	'mayo-3': `<svg viewBox="-60 -70 120 120">
+	'mayo-3': `<svg style="display: block;" viewBox="-60 -70 120 120">
 	<defs>
 		<path id="mayo-3-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 	</defs>
@@ -59,7 +59,7 @@ export default {
 		/>
 	</g>
 </svg>`,
-	'mayo-4': `<svg viewBox="-60 -70 120 120">
+	'mayo-4': `<svg style="display: block;" viewBox="-60 -70 120 120">
 	<defs>
 		<path id="mayo-4-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 	</defs>
@@ -98,7 +98,13 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	wing: `<svg viewBox="-30 -30 60 60">
+	wing: `<svg style="display: block;" viewBox="-30 -30 60 60">
+	<path
+		d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10"
+		fill="#f0d584"
+	/>
+</svg>`,
+	'wing-stroke': `<svg style="display: block;" viewBox="-30 -30 60 60">
 	<path
 		d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10"
 		fill="#f0d584"
@@ -108,7 +114,7 @@ export default {
 		stroke-linejoin="round"
 	/>
 </svg>`,
-	'mayo-5': `<svg viewBox="-60 -70 120 120">
+	'mayo-5': `<svg style="display: block;" viewBox="-60 -70 120 120">
 	<defs>
 		<path id="mayo-5-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 		<path id="mayo-5-wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
@@ -162,7 +168,7 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	'mayo-6': `<svg viewBox="-60 -70 120 120">
+	'mayo-6': `<svg style="display: block;" viewBox="-60 -70 120 120">
 	<defs>
 		<path id="mayo-6-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 		<path id="mayo-6-wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
