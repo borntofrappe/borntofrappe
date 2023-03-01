@@ -67,7 +67,7 @@
 	on:touchend|preventDefault={handleEnd}
 >
 	<defs>
-		<path id="l" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7z" />
+		<path id="l" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
 		<path id="w" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
 	</defs>
 
@@ -112,23 +112,30 @@
 			</g>
 		</g>
 
-		<ellipse fill="#f9f5d0" rx="28" ry="25" />
+		<ellipse rx="28" ry="25" fill="#f9f5d0" />
 
 		<g transform="translate(0 -30)">
-			<g
+			<g transform="translate(0 -20)">
+				<g transform="scale({$scale})">
+					<path
+						d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2"
+						fill="#f9f5d0"
+						stroke="#f9f5d0"
+						stroke-width="3"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
+				</g>
+			</g>
+
+			<path
+				d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0"
 				fill="#f9f5d0"
 				stroke="#f9f5d0"
 				stroke-width="4"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-			>
-				<path d="M -20 0 c -18 24 58 24 40 0 a 20 20 0 0 0 -40 0" />
-				<g transform="translate(0 -20)">
-					<g transform="scale({$scale})">
-						<path stroke-width="3" d="M 0 0 c 5 0 11 -2 11 -5 0 5 2.5 5 5 3 0 5 -10 7 -16 2" />
-					</g>
-				</g>
-			</g>
+			/>
 
 			<g fill="#542b19">
 				<g transform="translate(12 0)">
