@@ -1,17 +1,19 @@
 <script>
 	export let animations = ['jump', 'flap', 'lift'];
 	let flutter = false;
+
+	const id = `mayo-${animations.join('-')}`;
 </script>
 
 <label>
 	<input type="checkbox" bind:checked={flutter} />
-	<span>{flutter ? 'Pause' : 'Take a leap'}</span>
+	<span>Toggle animation</span>
 </label>
 
-<svg class:flutter viewBox="-50 -60 100 100">
+<svg class:flutter viewBox="-60 -70 120 120">
 	<defs>
-		<path id="leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
-		<path id="wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
+		<path id="{id}-leg" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
+		<path id="{id}-wing" d="M 0 0 c 6 -5 14 -8 20 0 -5 5 -2 10 -12 10 -2 0 -8 0 -8 -10" />
 	</defs>
 
 	<g class:lift={animations.includes('lift')}>
@@ -23,8 +25,8 @@
 			stroke-linejoin="round"
 		>
 			<g transform="translate(0 17)">
-				<use href="#leg" x="-12" />
-				<use href="#leg" x="12" />
+				<use href="#{id}-leg" x="-12" />
+				<use href="#{id}-leg" x="12" />
 			</g>
 		</g>
 
@@ -38,10 +40,18 @@
 			>
 				<g transform="translate(0 -10)">
 					<g transform="translate(25 0)">
-						<use class:flap={animations.includes('flap')} href="#wing" transform="rotate(90)" />
+						<use
+							class:flap={animations.includes('flap')}
+							href="#{id}-wing"
+							transform="rotate(90)"
+						/>
 					</g>
 					<g transform="scale(-1 1) translate(25 0)">
-						<use class:flap={animations.includes('flap')} href="#wing" transform="rotate(90)" />
+						<use
+							class:flap={animations.includes('flap')}
+							href="#{id}-wing"
+							transform="rotate(90)"
+						/>
 					</g>
 				</g>
 			</g>
@@ -112,9 +122,9 @@
 	.jump,
 	.flap,
 	.lift {
-		animation-duration: var(--duration, 5s);
+		animation-duration: var(--duration, 4s);
 		animation-iteration-count: infinite;
-		animation-timing-function: ease-out;
+		animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
 		animation-play-state: paused;
 	}
 
@@ -155,17 +165,19 @@
 
 	@keyframes jump {
 		0%,
-		50% {
+		45% {
 			transform: translateY(0px);
 		}
-		65% {
+		55% {
 			transform: translateY(5px);
 		}
-		98% {
-			transform: translateY(2px);
-		}
 		70%,
-		92%,
+		90% {
+			transform: translateY(-2px);
+		}
+		95% {
+			transform: translateY(1px);
+		}
 		100% {
 			transform: translateY(0px);
 		}
@@ -173,31 +185,34 @@
 
 	@keyframes flap {
 		0%,
-		65%,
-		75%,
-		85%,
+		60%,
+		70%,
+		80%,
+		95%,
 		100% {
 			transform: rotate(90deg);
 		}
-		70%,
-		80%,
-		90% {
+		65%,
+		75%,
+		85% {
 			transform: rotate(0deg);
 		}
 	}
 
 	@keyframes lift {
 		0%,
-		65%,
-		100% {
+		55% {
 			transform: translateY(0px);
 		}
 		70%,
 		90% {
-			transform: translateY(-2px);
+			transform: translateY(-1px);
 		}
-		98% {
+		95% {
 			transform: translateY(1px);
+		}
+		100% {
+			transform: translateY(0px);
 		}
 	}
 </style>
