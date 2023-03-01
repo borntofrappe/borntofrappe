@@ -1,31 +1,41 @@
 ---
 title: Fluttering with style
-description: Paint with vector graphics and take a leap with CSS animations.
-date: 2023-02-27T09:43:08
+description: Paint with SVG and its many elements. Take a leap with CSS animations.
+date: 2023-03-01T11:43:08
 ---
 
 <script>
-	import Commands from './Commands.svelte'
-	import ControlPoint from './ControlPoint.svelte'
-	import ControlPoints from './ControlPoints.svelte'
-	import ClockwiseFlag from './ClockwiseFlag.svelte'
-	
-	import Mayo from './Mayo.svelte'
+	import svg from './svg.js'
 </script>
 
 Explore SVG syntax and you are able to draw close to anything directly in a text editor. Lean on CSS and then, then you can almost learn how to fly.
 
-<Commands
-    x={-8}
-    y={-1}
-    width={16}
-    height={16}
-    commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7z" />
+To fulfill this natural premise, let's create a mascot with a country good look.
 
-<ControlPoint />
+## Body
 
-<ControlPoints />
+Within the context of an `<svg>` element you have access to a few helper constructs, elements such as `<rect>` and `<circle>` to draw the matching shapes with a convenient set of attributes.
 
-<ClockwiseFlag />
+Rectangles have a width and a height.
 
-<Mayo />
+```html
+<rect width="10" height="10" />
+```
+
+Circles have a radius.
+
+```html
+<circle r="5" />
+```
+
+To get started, however, draw a round-ish shape with an `<ellipse>`.
+
+```html
+<svg viewBox="-50 -50 100 100">
+	<ellipse fill="#f9f5d0" rx="28" ry="25" />
+</svg>
+```
+
+Creating a wider-than taller base.
+
+{@html svg['mayo-1']}
