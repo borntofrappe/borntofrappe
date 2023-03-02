@@ -14,15 +14,10 @@
 			<Ray />
 		</div>
 
-		<p>Name's Gabriele Corti.</p>
+		<p>Name's Gabriele Corti. I write delightful code.</p>
 
 		<p>
-			I'm the type of person who delights in writing code, be it for a data visualization, a 2D game
-			or a full-fledged website.
-		</p>
-
-		<p>
-			I enjoy different technologies, and in this very moment I appreciate Svelte {@html icons.svelte}
+			I dabble in different technologies, and in this very moment I appreciate Svelte {@html icons.svelte}
 			and
 			<abbr title="Scalable Vector Graphics">SVG</abbr>
 			{@html icons.svg} the most.

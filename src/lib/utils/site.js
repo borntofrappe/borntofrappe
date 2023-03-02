@@ -1,6 +1,6 @@
 export default {
 	title: 'borntofrappe',
-	description: "Let's keep smiling.",
+	description: 'Personal website for Gabriele Corti, web developer with a focuc on Svelte and SVG.',
 	origin: 'https://borntofrappe.netlify.app',
 	author: {
 		name: 'Gabriele Corti',
