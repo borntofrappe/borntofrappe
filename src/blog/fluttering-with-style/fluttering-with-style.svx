@@ -49,7 +49,7 @@ To get started, however, draw a round-ish shape with an `<ellipse>`.
 
 Realizing a wider-than taller base.
 
-<Center maxInlineSize="26rem">
+<Center element="figure" maxInlineSize="26rem">
 	{@html svg['mayo-1']}
 </Center>
 
@@ -94,7 +94,7 @@ Conveniently, you need to specify just the first `l` character. The browser assu
 
 With a highly saturated fill and the stand is close to complete.
 
-<Center maxInlineSize="26rem">
+<Center element="figure" maxInlineSize="26rem">
 	{@html svg['leg']}
 </Center>
 
@@ -115,7 +115,7 @@ By default `<path>` elements don't have a stroke. Beef up the shape with a solid
 
 A perfect way to match the ellipse.
 
-<Center maxInlineSize="26rem">
+<Center element="figure" maxInlineSize="26rem">
 	{@html svg['leg-stroke']}
 </Center>
 
@@ -158,7 +158,7 @@ Indeed, the `<g>` element is a fitting place for common attributes — `fill`, `
 
 Add the group _before_ the body, drawing the legs effectively behind, and half of the picture is already done.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['mayo-2']}
 </Center>
 
@@ -238,7 +238,7 @@ Move the `<path>` up in a more fitting position.
 
 And the composition assumes a new identity.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['mayo-3']}
 </Center>
 
@@ -306,7 +306,7 @@ Place both elements slightly below the eyes.
 
 And the face of the ever more adorable chicklet is complete.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['mayo-4']}
 </Center>
 
@@ -326,7 +326,7 @@ Create a single wing protruding to the right with a couple of tentative curves.
 
 Leading to a rather rugged visual.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['wing']}
 </Center>
 
@@ -345,7 +345,7 @@ Add the now familiar and even more important stroke.
 
 And with the rounded joints, with the smooth edges the shape looks right at home.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['wing-stroke']}
 </Center>
 
@@ -436,7 +436,7 @@ Back to the composition. Include the wings before the body, slightly above the c
 
 Rotate the elements 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['mayo-5']}
 </Center>
 
@@ -465,7 +465,7 @@ Add the staple stroke to mask imperfections.
 
 Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a twist to the character.
 
-<Center maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['mayo-6']}
 </Center>
 
