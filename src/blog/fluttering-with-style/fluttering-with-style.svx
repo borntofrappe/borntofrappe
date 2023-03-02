@@ -47,7 +47,7 @@ To get started, however, draw a round-ish shape with an `<ellipse>`.
 </svg>
 ```
 
-Creating a wider-than taller base.
+Realizing a wider-than taller base.
 
 <Center maxInlineSize="26rem">
 	{@html svg['mayo-1']}
@@ -65,7 +65,7 @@ To ease into the syntax, begin with only straight lines.
 <path d="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 l -3 -5.5 l 3 7 -7" />
 ```
 
-Don't be deterred by the long sequence of characters. Break down the steps and the instruction become elementary:
+Don't be deterred by the long sequence of characters. Break down the steps and the instructions become elementary:
 
 - start from (0, 0) — `M 0 0`
 
@@ -82,13 +82,17 @@ Don't be deterred by the long sequence of characters. Break down the steps and t
 		commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7" />
 </Center>
 
-Conveniently, you need to specify just the first `l` character. The browser assumes the same instruction until told otherwise.
+Conveniently, you need to specify just the first `l` character. The browser assumes the same directive until told otherwise.
 
+<!-- prettier-ignore -->
 ```html
-<path d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />
+<path 
+	d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" 
+	fill="#fd971b" 
+/>
 ```
 
-Add a highly saturated fill and the stand is close to complete.
+With a highly saturated fill and the stand is close to complete.
 
 <Center maxInlineSize="26rem">
 	{@html svg['leg']}
@@ -115,7 +119,7 @@ A perfect way to match the ellipse.
 	{@html svg['leg-stroke']}
 </Center>
 
-Of course you need two legs, and you want them at the bottom of the body. To solve the first issue, define the shape in a `<defs>` element.
+Of course you need two legs, and you want them below the ellipse. To solve the first issue, define the shape in a `<defs>` element.
 
 ```html
 <defs>
@@ -152,7 +156,7 @@ Indeed, the `<g>` element is a fitting place for common attributes — `fill`, `
 </g>
 ```
 
-Add the group _before_ the ellipse, drawing the legs effectively behind, and half of the picture is already done.
+Add the group _before_ the body, drawing the legs effectively behind, and half of the picture is already done.
 
 <Center maxInlineSize="28rem">
 	{@html svg['mayo-2']}
@@ -160,13 +164,13 @@ Add the group _before_ the ellipse, drawing the legs effectively behind, and hal
 
 ### Head
 
-Let's create the head with a more elaborate shape. Introduce a `<path>` slightly off-center, to the left.
+The head offers a good opportunity to explore the `d` attribute further. Introduce a `<path>` slightly off-center, to the left.
 
 ```html
 <path d="M -20 0" />
 ```
 
-To draw curves you have access to a couple of most pertinent instructions: `q` and `c`.
+The moment you want to level up from straight lines to draw curves you have access to a couple of most pertinent instructions: `q` and `c`.
 
 Use `q` and you draw a _quadratic bezier_ curve, connecting the start and end coordinates with the help of a control point.
 
@@ -180,13 +184,13 @@ Prefer `c` and you realize a _cubic bezier_ curve, linking the positions with th
 	<ControlPoints />
 </Center>
 
-Both strings work to outline the bone structure for the mouth, but the more complex syntax emulates a couple of round cheeks as well.
+Both strings outline the bone structure for the mouth, but the more complex syntax emulates a couple of round cheeks as well.
 
 ```html
 <path d="M -20 0 c -18 24 58 24 40 0" />
 ```
 
-In the `d` attribute curves are perhaps the most complex command, so let's complete the upper half with a simpler instruction. Wrap up the head with an arc and specifically a semicircle back to the origin.
+In the `d` attribute curves are perhaps the most complex command, so let's complete the upper half with a simpler instruction. Wrap up the head with a semicircle back to the origin.
 
 ```html
 <path
@@ -200,11 +204,11 @@ In the `d` attribute curves are perhaps the most complex command, so let's compl
 
 There's a plethora of numbers for the `a` character, but to draw a semicircle you can get by understanding only a few of them.
 
-The first pair describes the radius of the arc in either dimension, while the last couple of numbers point to the end coordinate.
+The first pair describes the radius of the arc in either dimension, while the last couple of numbers points to the end coordinate.
 
-Have the radii exactly half as the distance and the connection is complete.
+Have the radii exactly half as the distance covered and the connection is complete.
 
-In between the numbers you have three boolean values to toggle a few options. For the sake of the semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise, manner.
+In between the numbers you have three boolean values to toggle a few options. For the sake of a semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise, manner.
 
 <Center maxInlineSize="28rem">
 	<ClockwiseFlag />
@@ -240,12 +244,12 @@ And the composition assumes a new identity.
 
 ### Face
 
-Let's add a few more details to complete the head. These are tightly coupled with the `<path>` element, so it is reasonable to have them in the same, translated group.
+The face is tightly coupled with the `<path>` element for the head, so it is reasonable to have the elements in the same, translated group.
 
 ```html
 <g transform="translate(0 -30)">
 	<!-- <path> -->
-	<!-- ...details -->
+	<!-- ...face -->
 </g>
 ```
 
@@ -345,7 +349,7 @@ And with the rounded joints, with the smooth edges the shape looks right at home
 	{@html svg['wing-stroke']}
 </Center>
 
-What is more, the numbers no longer seem arbitrary, but the result of a careful design, the realization of a full-fledged artist.
+What is more, the numbers no longer seem arbitrary, but the result of a careful design. The realization of a full-fledged artist.
 
 Similarly to the legs, define the shape in the `<defs>` block.
 
@@ -418,9 +422,9 @@ With the negative scale and the flipped coordinate system, you don't even need t
 	<Transform transformRotate={true} />
 </Center>
 
-Transformations are likely one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens [a world of possibilities](/svg-transform).
+Transformations are likely one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens a world of possibilities.
 
-Back to the mascot at hand. Incorporate the wings before the body, slightly above the center of the ellipse.
+Back to the composition. Include the wings before the body, slightly above the center of the ellipse.
 
 ```html
 <!-- legs -->
@@ -438,7 +442,7 @@ Rotate the elements 90 degrees to hide them for a brief moment and the mascot is
 
 ### Crest
 
-If there is one thing for which you can blame is trying to be exceedingly symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
+If there is one thing for which you can blame is trying to be exceesively symmetrical. Admittedly, I enjoy drawing most vector graphics in horizontal harmony, but there is a case for asymmetry.
 
 Case in point, take a misshapen `<path>` element.
 
@@ -485,9 +489,9 @@ circle {
 }
 ```
 
-The issue links back to the discussion around the `<path>` elements devoted to the wings, and rather selfishly, is also a chance to reiterate a previous article on the topic of [SVG transformations](/svg-transform). That being said, let me try to summarize the problem in a few words.
+The issue links back to the discussion around the `<path>` elements devoted to the wings, and is also a chance to gingerly propose an article on the topic of [SVG transformations](/svg-transform). That being said, let me try to summarize the problem in a few words.
 
-Within the bounds of an `<svg>` element, transformations are applied from an origin first described by the `viewBox`. The fireproof way to update this origin is through the `transform` attribute, for instance with a translation — just as we positioned the shapes around the canvas.
+Within the bounds of an `<svg>` element, transformations are applied from an origin first described by the `viewBox`. A fireproof way to update this origin is through the `transform` attribute, for instance with a translation — just as we positioned the shapes around the canvas.
 
 ```html
 <g transform="translate(0 -30)">
@@ -495,7 +499,7 @@ Within the bounds of an `<svg>` element, transformations are applied from an ori
 </g>
 ```
 
-Scale the circles in their current state, and the transformation takes place from the center of the head, not the center of the elements. To fix visual, annoying, mishap, remove the `cx` attribute in favor of a previous translation.
+Scale the circles in their current state, and the transformation takes place from the center of the head, not the center of the elements. To fix visual mishap, remove the `cx` attribute in favor of an earlier translation.
 
 ```diff
 -<circle r="2.75" cx="12" />
@@ -539,7 +543,7 @@ Through the class selector, then, point to the animation with your favorite easi
 }
 ```
 
-The rapid succession makes the decision less than decisive, but there's always a place for a sine function.
+The rapid succession means the choice is less than impactful, but there's always a place for a sine function.
 
 <Center maxInlineSize="30rem">
 	<Mayo animations={[]} />
@@ -547,7 +551,7 @@ The rapid succession makes the decision less than decisive, but there's always a
 
 ### Jump
 
-Moving on to more impressive changes, the goal is to move the mascot down as if flexing its muscles and then up in a small, but evident, leap.
+Continuing with more evident changes, the goal is to move the mascot down as if flexing its muscles and then up in a small, but evident, leap.
 
 Wrap the wings, body and head in a common group element for the translation. Not the legs as you want to give the impression of the animal approaching the ground.
 
@@ -584,9 +588,9 @@ Define the animation to implement the desired motion.
 }
 ```
 
-Honorable mention goes to the penultimate percentage, nudging the group every so lightly before the resting state.
+Honorable mention goes to the penultimate percentage, nudging the group ever so lightly before the resting state.
 
-Finally, pair the animation through the respective class.
+Finally, pair the animation through the dedicated class.
 
 ```css
 .jump {
@@ -629,7 +633,7 @@ Frame the element to preserve the initial, tucked-in rotation. Up until the leap
 }
 ```
 
-And then have fun adding as many flaps as you can possibly tolerate.
+And then have fun detailing as many flaps as you can possibly tolerate.
 
 ```css
 @keyframes flap {
@@ -665,7 +669,7 @@ Do not worry, the animation is done, and the article is close to being over.
 
 What is left is reaping the rewards of such a long, laborious journey. What is left is up to your imagination and your sense of whimsy. Shorten the duration, experiment with a different bezier curve, be it in the `d` attribute or through the `animation-timing-function` property.
 
-Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the extra bounce was worth the effort.
+Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the extra bounce is worth the effort.
 
 <Center maxInlineSize="30rem">
 	<Mayo />
