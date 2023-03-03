@@ -3,3 +3,13 @@ title: Bee's in motion
 description: Smile.
 date: 2023-03-03T21:41:10
 ---
+
+<script>
+	import svg from './svg.js'
+</script>
+
+Consider the following visual.
+
+{@html svg['bee-s-motion']}
+
+With a selection of SVG elements and attributes you are able to add a touch of animation while making the graphic receptive, responsive to touch. Talk about convincing premise.
