@@ -63,7 +63,7 @@ One `<animateMotion>` element describing how long the animation should take and 
 />
 ```
 
-You don't need to include the `<path>` itself, but let me keep it is a helpful reference right behind.
+You don't need to include the `<path>` itself, but let me keep it as a helpful reference right behind.
 
 <AnimateMotion />
 
@@ -101,7 +101,7 @@ And the browser will take care of the rest.
 
 {@html svg['bee-motion']}
 
-The `restart` attribute makes it possible the animation plays out only when the bee is idle and ready. You don't need to erraticaly tap the screen and attempt to break the feature.
+The `restart` attribute makes it possible the animation plays out only when the bee is idle and ready. You don't need to erratically tap the screen and attempt to break the feature.
 
 <!-- prettier-ignore -->
 ```html
@@ -116,7 +116,7 @@ You just need to wonder, has the first graphic been interactive all along? I won
 
 {@html svg['bee-s-motion']}
 
-Noticed something special? Why, the insect is rotated from the very beginning, on line with the now-hidden path. The trick is based on the fact that `begin` attribute accepts multiple values, separated by semicolon. That and knowing a negative value forces the animation to start midway through.
+Noticed something special? Why, the insect is rotated from the very beginning, on line with the now-hidden path. The trick is based on the fact that the `begin` attribute accepts multiple values, separated with a semicolon. That and knowing a negative value forces the animation to start midway through.
 
 Run the animation for a very brief moment, enough to complete the first loop.
 
