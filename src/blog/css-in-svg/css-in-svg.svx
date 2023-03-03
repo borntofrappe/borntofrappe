@@ -1,0 +1,7 @@
+---
+title: CSS in SVG
+description: Well...
+date: 2023-03-03T11:47:28
+---
+
+Vector graphics are most suited for icons, stylized drawings scattered here and there and embellishing flowing text.
