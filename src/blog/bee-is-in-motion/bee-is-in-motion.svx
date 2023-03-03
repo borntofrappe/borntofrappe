@@ -18,7 +18,7 @@ Consider the following visual.
 
 With a selection of SVG syntax you are able to add a touch of animation while making the graphic receptive, responsive to touch.
 
-To demonstrate how, focus on the hero of our story, our little idle bee.
+To demonstrate how, focus on the hero of our story, our little bee.
 
 {@html svg['bee']}
 
@@ -38,7 +38,7 @@ The goal is to have the creature buzz around the canvas in a couple of nice, swo
 
 If you are familiar with the syntax for the `d` attribute you'll immediately spot the sequence cubic bezier curves, tracing the path first to the left, then to the right.
 
-Notice also where the element starts, from the point (0, 0). The moment we draw the path from the same spot as our bee.
+Notice also where the element starts, from the point (0, 0). The moment we have the path start from the same spot as our patient animal.
 
 {@html svg['bee-trajectory']}
 
@@ -54,7 +54,7 @@ All you need to have the creature follow the path's guidance is one `<animateMot
 </g>
 ```
 
-One `<animateMotion>` element describing how long the animation should take and pointing to the very same string through the `path` attribute.
+One `<animateMotion>` element describing how long the animation should take and pointing to the string through the `path` attribute.
 
 ```html
 <animateMotion
@@ -63,7 +63,7 @@ One `<animateMotion>` element describing how long the animation should take and 
 />
 ```
 
-You don't need to include the `<path>` itself, but let me keep it as a helpful reference right behind.
+You don't need to include the `<path>` itself, but let me keep it as a helpful reference in the background.
 
 <AnimateMotion />
 
