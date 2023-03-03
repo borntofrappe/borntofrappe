@@ -6,10 +6,126 @@ date: 2023-03-03T21:41:10
 
 <script>
 	import svg from './svg.js'
+
+	import MotionPath from './MotionPath.svelte'
 </script>
+
+{@html svg['defs']}
 
 Consider the following visual.
 
 {@html svg['bee-s-motion']}
 
-With a selection of SVG elements and attributes you are able to add a touch of animation while making the graphic receptive, responsive to touch. Talk about convincing premise.
+With a selection of SVG syntax you are able to add a touch of animation while making the graphic receptive, responsive to touch.
+
+To demonstrate how, focus on the hero of our story, our little idle bee.
+
+{@html svg['bee']}
+
+The goal is to have the creature buzz around the canvas in a couple of nice, swooping turns. Here's a `<path>` for a possible trajectory.
+
+```html
+<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
+```
+
+If you are familiar with the syntax for the `d` attribute you'll immediately spot the sequence cubic bezier curves, tracing the path first to the left, then to the right.
+
+```text
+c 	-10 -20 -40 -20 -40 0
+	0 20 30 20 40 0
+	10 -20 40 -20 40 0 0
+	20 -30 20 -40 0
+```
+
+Notice also where the element starts, from the point (0, 0). The moment we draw the path from the same spot as our bee.
+
+{@html svg['bee-trajectory']}
+
+All you need to have the creature follow the path's guidance is one `<animateMotion>` element.
+
+<!-- prettier-ignore -->
+```html
+<g>
+	<animateMotion 
+		dur="4s" 
+/>
+	<!-- ...bee -->
+</g>
+<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
+```
+
+One `<animateMotion>` element describing how long the animation should take and pointing to the very same string through the `path` attribute.
+
+```html
+<animateMotion
+	dur="4s"
+	path="M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0"
+/>
+```
+
+You don't need to include the `<path>` itself, but let me keep it is a helpful reference right behind.
+
+<MotionPath />
+
+And that's the core of the animation. You can refine the movement to have the creature actually rotate with the path.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	...
+	rotate="auto"
+/>
+```
+
+And with the `fill` attribute you can have the shape pause at the appropriate angle.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	...
+	fill="freeze"
+/>
+```
+
+The interaction? You'll be delighted and most impressed to discover the button is ultimately unnecessary, as well as the JavaScript I conjured up to implement the feature. Animation elements in SVG have a remarkable attribute named `begin`. Set a value of `click`.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	...
+	begin="click"
+/>
+```
+
+And the browser will take care of the rest.
+
+{@html svg['bee-motion']}
+
+The `restart` attribute makes it possible the animation plays out only when the bee is idle and ready. You don't need to erraticaly tap the screen and attempt to break the smooth change.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	...
+	begin="click"
+	restart="whenNotActive"
+/>
+```
+
+You just need to wonder, was the first graphic interactive all along? I won't force you to scroll to find out, but rather propose it one final time for your merriment.
+
+{@html svg['bee-s-motion']}
+
+Notice something different? Yes, the bee is rotated from the very beginning, on line with the now-hidden path. The trick is based on the fact that `begin` attribute accepts multiple values, separated by semicolon. That and knowing a negative value forces the animation to start from the previous iteration.
+
+Run the animation for a very brief moment, enough to complete the first loop.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	dur="4s"
+	begin="-3.999s; click"
+/>
+```
+
+And thanks for the `fill` attribute freezing the bee is place the magic is complete.
