@@ -63,9 +63,9 @@
 
 <style>
 	button {
+		cursor: pointer;
 		display: block;
 		padding: 0.5rem 0.75rem;
-		margin: 0;
 		margin-inline: auto;
 		color: inherit;
 		background: hsl(0, 0%, 12%);

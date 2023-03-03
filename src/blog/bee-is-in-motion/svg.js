@@ -35,7 +35,7 @@ export default {
 			<path d="M 0 0 q 5 10 5 45" />
 		</g>
 
-		<g transform="rotate(-5) scale(1 0.96)" fill="#FAF9F7" stroke="#FAF9F7">
+		<g transform="rotate(-5) scale(1 0.96)" fill="#D64545" stroke="#D64545">
 			<path d="M 0 0 l 7 14 a 6.5 7 0 0 1 -15 0z" />
 			<path d="M 0 0 l 7 14 a 6.5 7 0 0 1 -15 0z" transform="rotate(45)" />
 			<path d="M 0 0 l 7 14 a 6.5 7 0 0 1 -15 0z" transform="rotate(90)" />
@@ -54,7 +54,7 @@ export default {
 		</g>
 	</g>
 
-	<g>
+	<g style="cursor: pointer">
 		<animateMotion
 			id="motion"
 			dur="4s"
@@ -182,7 +182,7 @@ export default {
 		<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
 	</g>
 
-	<g>
+	<g style="cursor: pointer">
 		<animateMotion
 			dur="4s"
 			path="M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0"
