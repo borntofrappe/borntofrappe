@@ -5,9 +5,9 @@ date: 2023-03-03T11:47:28
 ---
 
 <script>
-	import svg from './svg.js'
+import svg from './svg.js'
 
-    import CurrentColor from './CurrentColor.svelte'
+import CurrentColor from './CurrentColor.svelte'
 </script>
 
 Vector graphics are most suited for icons, stylized drawings scattered here and there and embellishing flowing text {@html svg['rocket']}.
@@ -26,3 +26,97 @@ In this context the value of `currentColor` makes the format all the more flexib
 Change the `color` property and the `<path>` will follow its guidance to the letter.
 
 <CurrentColor />
+
+The moment you have a more elaborate composition with multiple colors it is still possible to be flexible through CSS custom properties. While also exploring different artistic styles.
+
+Take a most colorful butterfly. The design is simple, but the colors abound.
+
+<figure>
+	{@html svg['butterfly']}
+</figure>
+
+Here you have a pair of wide-ranging wings.
+
+```html
+<g fill="#233887" stroke=" #1c1f62">
+	<!-- ...wings -->
+</g>
+```
+
+A couple of dots in the top half.
+
+```html
+<g fill="#e89d38" stroke=" #e2be80">
+	<!-- ...upper dots -->
+</g>
+```
+
+Two smaller circles in the bottom section.
+
+```html
+<g fill="#3fb38e" stroke=" #3c8b98">
+	<!-- ...lower dots -->
+</g>
+```
+
+Instead of a fixed value for the `fill` and `stroke` attribute add a custom property.
+
+<!-- prettier-ignore -->
+```html
+<g 
+fill="var(--wings-fill)"
+stroke="var(--wings-stroke)"
+>
+<!-- ... -->
+</g>
+```
+
+If you feel so inclined, include the previous, thoughtful pick as a fallback. Just to be safe.
+
+<!-- prettier-ignore -->
+```html
+<g 
+fill="var(--wings-fill, #233887)"
+stroke="var(--wings-stroke, #1c1f62)"
+>
+<!-- ... -->
+</g>
+```
+
+All you need is to then update the property in the stylesheet.
+
+```css
+svg {
+	--wings-fill: #f3e0ff;
+	--wings-stroke: #3f343a;
+	--upper-dots-fill: #fab5e1;
+	--upper-dots-stroke: #f6607d;
+	--lower-dots-fill: #d7b3f0;
+	--lower-dots-stroke: #6378b7;
+}
+```
+
+To find an entirely different flair.
+
+<figure class="alt">
+	{@html svg['']}
+</figure>
+
+You might be wondering which color I preferred for the body. In a possibly predictable twist, it is actually `currentColor`, the very same. Only time will tell if that's a sound choice.
+
+<style>
+	figure {
+		display: block;
+		max-inline-size: 32rem;
+		margin-inline: auto;
+	}
+
+	figure.alt {
+		--wings-fill: #f3e0ff;
+		--wings-stroke: #3f343a;
+		--upper-dots-fill: #fab5e1;
+		--upper-dots-stroke: #f6607d;
+		--lower-dots-fill: #d7b3f0;
+		--lower-dots-stroke: #6378b7;
+	}
+</style>
