@@ -6,6 +6,23 @@ date: 2023-03-03T11:47:28
 
 <script>
 	import svg from './svg.js'
+
+    import CurrentColor from './CurrentColor.svelte'
 </script>
 
 Vector graphics are most suited for icons, stylized drawings scattered here and there and embellishing flowing text {@html svg['rocket']}.
+
+In this context the value of `currentColor` makes the format all the more flexible.
+
+```html
+<path
+	fill="currentColor"
+	stroke="currentColor"
+	stroke-width="10"
+	d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0"
+/>
+```
+
+Change the `color` property and the `<path>` will follow its guidance to the letter.
+
+<CurrentColor />
