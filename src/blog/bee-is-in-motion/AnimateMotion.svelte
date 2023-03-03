@@ -67,9 +67,9 @@
 		display: block;
 		padding: 0.5rem 0.75rem;
 		margin-inline: auto;
-		color: inherit;
-		background: hsl(0, 0%, 12%);
 		color: hsl(0, 0%, 97%);
+		background: hsl(0, 0%, 12%);
+		border: none;
 		font-weight: 700;
 		border-radius: 0.25rem;
 		transition: opacity 0.2s cubic-bezier(0.37, 0, 0.63, 1),
