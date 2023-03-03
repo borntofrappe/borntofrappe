@@ -1,16 +1,16 @@
 ---
 title: CSS in SVG
-description: Well...
-date: 2023-03-03T11:47:28
+description: Leave it to CSS to make SVG all the more flexible.
+date: 2023-03-03T11:41:10
 ---
 
 <script>
-import svg from './svg.js'
+	import svg from './svg.js'
 
-import CurrentColor from './CurrentColor.svelte'
+	import CurrentColor from './CurrentColor.svelte'
 </script>
 
-Vector graphics are most suited for icons, stylized drawings scattered here and there and embellishing flowing text {@html svg['rocket']}.
+Vector graphics are most suited for icons, stylized drawings scattered here and there alongside flowing text {@html svg['rocket']}.
 
 In this context the value of `currentColor` makes the format all the more flexible.
 
@@ -29,7 +29,7 @@ Change the `color` property and the `<path>` will follow its guidance to the let
 
 The moment you have a more elaborate composition with multiple colors it is still possible to be flexible through CSS custom properties. While also exploring different artistic styles.
 
-Take a most colorful butterfly. The design is simple, but the colors abound.
+Consider a helpful butterfly. The design is simple, but the colors abound.
 
 <figure>
 	{@html svg['butterfly']}
@@ -59,27 +59,19 @@ Two smaller circles in the bottom section.
 </g>
 ```
 
-Instead of a fixed value for the `fill` and `stroke` attribute add a custom property.
+Instead of a fixed value for the `fill` and `stroke` attributes add a custom property.
 
-<!-- prettier-ignore -->
 ```html
-<g 
-fill="var(--wings-fill)"
-stroke="var(--wings-stroke)"
->
-<!-- ... -->
+<g fill="var(--wings-fill)" stroke="var(--wings-stroke)">
+	<!-- ... -->
 </g>
 ```
 
 If you feel so inclined, include the previous, thoughtful pick as a fallback. Just to be safe.
 
-<!-- prettier-ignore -->
 ```html
-<g 
-fill="var(--wings-fill, #233887)"
-stroke="var(--wings-stroke, #1c1f62)"
->
-<!-- ... -->
+<g fill="var(--wings-fill, #233887)" stroke="var(--wings-stroke, #1c1f62)">
+	<!-- ... -->
 </g>
 ```
 
@@ -99,10 +91,10 @@ svg {
 To find an entirely different flair.
 
 <figure class="alt">
-	{@html svg['']}
+	{@html svg['butterfly']}
 </figure>
 
-You might be wondering which color I preferred for the body. In a possibly predictable twist, it is actually `currentColor`, the very same. Only time will tell if that's a sound choice.
+You might be wondering which color I preferred for the body. In a possibly predictable twist, it is actually `currentColor`, the very same.
 
 <style>
 	figure {
