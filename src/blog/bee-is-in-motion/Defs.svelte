@@ -1,23 +1,4 @@
-export default {
-	defs: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
-	<defs>
-		<radialGradient
-			id="bee-gradient"
-			spreadMethod="reflect"
-			r="0.2"
-			cx="1.25"
-			fx="1.25"
-			cy="0.5"
-			fy="0.5"
-		>
-			<stop stop-color="#F7C948" offset="0" />
-			<stop stop-color="#F7C948" offset="0.45" />
-			<stop stop-color="#513C06" offset="0.55" />
-			<stop stop-color="#513C06" offset="1" />
-		</radialGradient>
-	</defs>
-</svg>`,
-	'bee-s-motion': `<svg style="display: block;" viewBox="-55 -27.5 110 80">
+<svg style="display: block;" viewBox="-55 -27.5 110 80">
 	<g transform="translate(-2 1.5)">
 		<g
 			fill="#3F9142"
@@ -106,12 +87,10 @@ export default {
 					</g>
 				</g>
 			</g>
-			<ellipse rx="4.45" ry="4.2" fill="#513C06" />
 			<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
 			<circle cx="3.5" r="2.8" fill="#513C06" />
 
 			<circle r="10" opacity="0" />
 		</g>
 	</g>
-</svg>`
-};
+</svg>
