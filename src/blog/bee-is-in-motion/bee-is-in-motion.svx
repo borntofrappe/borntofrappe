@@ -1,6 +1,6 @@
 ---
 title: Bee's in motion
-description: Discovering just enough SVG syntax to make you smile.
+description: Discovering just enough SVG syntax to animate, interact and make you smile.
 date: 2023-03-03T23:28:31
 ---
 
@@ -14,11 +14,13 @@ Consider the following visual.
 
 {@html svg['defs']}
 
-{@html svg['bee-s-motion']}
+<figure>
+	{@html svg['bee-s-motion']}
+</figure>
 
-With a selection of SVG syntax you are able to add a touch of animation while making the graphic receptive, responsive to touch.
+With a selection of SVG syntax you are able to add a touch of animation while making the graphic receptive, responsive to touch. Intriguing enough to keep you interested.
 
-To demonstrate how, focus on the hero of our story, our little bee.
+Let's focus on the hero of our story, our little bee.
 
 {@html svg['bee']}
 
@@ -36,7 +38,7 @@ The goal is to have the creature buzz around the canvas in a couple of nice, swo
 />
 ```
 
-If you are familiar with the syntax for the `d` attribute you'll immediately spot the sequence cubic bezier curves, tracing the path first to the left, then to the right.
+If you are familiar with the syntax for the `d` attribute you'll immediately spot the sequence cubic bezier curves, tracing the outline of an eight on its side.
 
 Notice also where the element starts, from the point (0, 0). The moment we have the path start from the same spot as our patient animal.
 
@@ -77,7 +79,7 @@ And that's the core of the animation. You can refine the movement to have the cr
 />
 ```
 
-And with the `fill` attribute force the inset to stop at the appropriate angle.
+And with the `fill` attribute force the insect to stop at the appropriate angle.
 
 <!-- prettier-ignore -->
 ```html
@@ -87,7 +89,7 @@ And with the `fill` attribute force the inset to stop at the appropriate angle.
 />
 ```
 
-The interaction? You'll be delighted and most impressed to discover the button is ultimately unnecessary, as well as the JavaScript I conjured up to wait for your input. Animation elements in SVG have a remarkable attribute named `begin`. Set a value of `click`.
+The interaction? You'll be delighted and most impressed to discover the button is ultimately unnecessary. The button and all the JavaScript code I conjured up to wait for your input. Animation elements in SVG have a remarkable attribute named `begin`. Set a value of `click`.
 
 <!-- prettier-ignore -->
 ```html
@@ -101,7 +103,7 @@ And the browser will take care of the rest.
 
 {@html svg['bee-motion']}
 
-The `restart` attribute makes it possible the animation plays out only when the bee is idle and ready. You don't need to erratically tap the screen and attempt to break the feature.
+The `restart` attribute makes it possible the animation plays out only when the bee is idle and ready. You don't need to frantically tap the screen and attempt to break the feature.
 
 <!-- prettier-ignore -->
 ```html
@@ -116,7 +118,7 @@ You just need to wonder, has the first graphic been interactive all along? I won
 
 {@html svg['bee-s-motion']}
 
-Noticed something special? Why, the insect is rotated from the very beginning, on line with the now-hidden path. The trick is based on the fact that the `begin` attribute accepts multiple values, separated with a semicolon. That and knowing a negative value forces the animation to start midway through.
+Noticed something special? Why, the insect was tilted from the very beginning, in line with its ultimate path. The trick is based on the fact that the `begin` attribute accepts multiple values separated with a semicolon. That and knowing a negative number of seconds forces the animation to start midway through.
 
 Run the animation for a very brief moment, enough to complete the first loop.
 
@@ -128,4 +130,4 @@ Run the animation for a very brief moment, enough to complete the first loop.
 />
 ```
 
-And the `fill` attribute freezes the scene for the next, smooth iteration.
+And the `fill` attribute frames the scene for your next, smooth iteration.
