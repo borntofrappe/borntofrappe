@@ -19,7 +19,7 @@
 			{stroke}
 			font-size="7"
 			stroke-width="1.4"
-			letter-spacing="0.1"
+			letter-spacing="0.25"
 			paint-order="stroke"
 			stroke-linejoin="round"
 			stroke-linecap="round"
