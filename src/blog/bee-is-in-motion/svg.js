@@ -17,7 +17,7 @@ export default {
 		</radialGradient>
 	</defs>
 </svg>`,
-	'bee-s-motion': `<svg style="display: block;" viewBox="-55 -27.5 110 80">
+	'bee-is-in-motion': `<svg style="display: block;" viewBox="-55 -27.5 110 80">
 	<g transform="translate(-2 1.5)">
 		<g
 			fill="#3F9142"
@@ -172,12 +172,10 @@ export default {
 		<circle cx="3.5" r="2.8" fill="#513C06" />
 	</g>
 	<g fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-linecap="round">
-		<path
-			d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0"
-		/>
+		<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
 	</g>
 </svg>`,
-	'bee-motion': `<svg style="display: block;" viewBox="-50 -40 100 80">
+	'animate-motion': `<svg style="display: block;" viewBox="-50 -40 100 80">
 	<g fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-linecap="round">
 		<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
 	</g>
