@@ -1,9 +1,11 @@
 <script>
+	import Subheading from '$lib/components/Subheading.svelte';
+
+	import { observeState } from '$lib/utils/actions.js';
+
 	import RainbowSixteen from './rainbow-sixteen/Puzzle.svelte';
 	import ColorTiles from './color-tiles/Puzzle.svelte';
 	import Minesweeper from './minesweeper/Puzzle.svelte';
-
-	import { observeState } from '$lib/utils/actions.js';
 </script>
 
 <section
@@ -18,7 +20,9 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<h2 style:display="inline-block">Rainbow sixteen</h2>
+		<Subheading stroke="var(--color)" fill="var(--background)" inlineSize="60"
+			>Rainbow sixteen</Subheading
+		>
 
 		<div class="float end" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
@@ -57,7 +61,7 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<h2>Color tiles</h2>
+		<Subheading stroke="var(--color)" fill="var(--background)">Color tiles</Subheading>
 
 		<div
 			class="float end"
@@ -95,7 +99,7 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<h2 style:display="inline-block">Minesweeper</h2>
+		<Subheading stroke="var(--color)" fill="var(--background)">Minesweeper</Subheading>
 
 		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />
@@ -128,6 +132,9 @@
 </section>
 
 <style>
+	article :global(h2) {
+		display: inline-block;
+	}
 	ol {
 		padding: 0;
 		list-style-position: inside;

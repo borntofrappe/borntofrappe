@@ -1,7 +1,10 @@
 <script>
 	import Heading from '$lib/components/Heading.svelte';
-	import Ray from './mignon/Ray.svelte';
+	import Subheading from '$lib/components/Subheading.svelte';
+
 	import icons from '$lib/utils/icons.js';
+
+	import Ray from './mignon/Ray.svelte';
 </script>
 
 <div class="centered">
@@ -23,7 +26,7 @@
 			{@html icons.svg} the most.
 		</p>
 
-		<h2>Why Svelte?</h2>
+		<Subheading stroke="var(--color)" fill="var(--background)">Why Svelte?</Subheading>
 
 		<p style:display="inline-block">Mainly for three reasons:</p>
 
@@ -33,7 +36,7 @@
 			<li>Javascript{@html icons.js}</li>
 		</ol>
 
-		<h2>Why SVG?</h2>
+		<Subheading stroke="var(--color)" fill="var(--background)">Why SVG?</Subheading>
 
 		<p>
 			Take a look around this very website. You might find the answer in applications worth
