@@ -3,16 +3,16 @@
 	export let level = 'h2';
 	export let fill = '#f1f5f8';
 	export let stroke = '#102a42';
-	export let width = 51.94300308227539;
+	export let inlineSize = 51.94300308227539;
 
 	let text = null;
 	onMount(() => {
-		width = text.getComputedTextLength() + 1.4;
+		inlineSize = text.getComputedTextLength() + 1.4;
 	});
 </script>
 
 <svelte:element this={level}>
-	<svg viewBox="-0.7 -0.7 {width} 10">
+	<svg viewBox="-0.7 -0.7 {inlineSize} 10">
 		<g
 			font-weight="700"
 			{fill}
@@ -34,7 +34,7 @@
 <style>
 	svg {
 		display: block;
-		height: 1.42em;
-		width: auto;
+		block-size: 1.42em;
+		inline-size: auto;
 	}
 </style>
