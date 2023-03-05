@@ -26,7 +26,7 @@
 >
 	<div class="center stack" style:--leading="0">
 		<main class="flow">
-			<InlineHeading element="h1" stroke="var(--color)" fill="var(--background)">
+			<InlineHeading level="h1" stroke="var(--color)" fill="var(--background)">
 				Oopsie
 			</InlineHeading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>

@@ -20,7 +20,7 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading stroke="var(--color)" fill="var(--background)" inlineSize="60">
+		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)" inlineSize="60">
 			Rainbow sixteen
 		</InlineHeading>
 
@@ -61,7 +61,9 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading stroke="var(--color)" fill="var(--background)">Color tiles</InlineHeading>
+		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
+			Color tiles
+		</InlineHeading>
 
 		<div
 			class="float end"
@@ -99,7 +101,9 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading stroke="var(--color)" fill="var(--background)">Minesweeper</InlineHeading>
+		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
+			Minesweeper
+		</InlineHeading>
 
 		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />
