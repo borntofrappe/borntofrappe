@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
-	export let level = 'h2';
+	export let level = 'h1';
 	export let fill = '#f1f5f8';
 	export let stroke = '#102a42';
-	export let inlineSize = 51.94300308227539;
+	export let inlineSize = 55.20924606323242;
 
 	let text = null;
 	onMount(() => {
@@ -19,7 +19,7 @@
 			{stroke}
 			font-size="7"
 			stroke-width="1.4"
-			letter-spacing="0.25"
+			letter-spacing="0.28"
 			paint-order="stroke"
 			stroke-linejoin="round"
 			stroke-linecap="round"
