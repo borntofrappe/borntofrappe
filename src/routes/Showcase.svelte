@@ -12,9 +12,10 @@
 	class="box centered"
 	style="
 		--color: hsl(209, 61%, 16%); 
-		--background: hsl(210, 42%, 96%); 
+		--background: hsl(210, 36%, 96%); 
 		--selection-color: hsl(211, 39%, 23%); 
 		--selection-background: hsl(210, 31%, 80%);
+		--highlight: hsl(212, 33%, 89%);
 	"
 >
 	<article
@@ -26,7 +27,7 @@
 			level="h2"
 			style="display: inline-block;"
 			stroke="var(--color)"
-			fill="var(--background)"
+			fill="var(--highlight)"
 			inlineSize="60"
 		>
 			Rainbow sixteen
@@ -63,7 +64,8 @@
 		--color: hsl(210, 16%, 82%); 
 		--background: hsl(210, 24%, 16%); 
 		--selection-color: hsl(210, 16%, 82%); 
-		--selection-background: hsl(209, 34%, 30%);
+		--selection-background: hsl(209, 18%, 30%);
+		--highlight: hsl(209, 20%, 25%);
 	"
 >
 	<article
@@ -75,7 +77,7 @@
 			level="h2"
 			style="display: inline-block;"
 			stroke="var(--color)"
-			fill="var(--background)"
+			fill="var(--highlight)"
 		>
 			Color tiles
 		</Heading>
@@ -113,6 +115,7 @@
 		--background: hsl(0, 0%, 75%); 
 		--selection-color: hsl(0, 0%, 13%); 
 		--selection-background: hsl(0, 0%, 63%);
+		--highlight: hsl(0, 0%, 85%);
 	"
 >
 	<article
@@ -124,7 +127,7 @@
 			level="h2"
 			style="display: inline-block;"
 			stroke="var(--color)"
-			fill="var(--background)"
+			fill="var(--highlight)"
 		>
 			Minesweeper
 		</Heading>

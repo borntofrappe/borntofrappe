@@ -26,6 +26,7 @@
 
 	--accent: var(--color-400);
 	--shadow: var(--color-200);
+	--highlight: var(--grey-100);
 
 	--selection-color: var(--grey-700);
 	--selection-background: var(--color-200);
