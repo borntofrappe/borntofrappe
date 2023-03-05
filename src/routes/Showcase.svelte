@@ -132,9 +132,6 @@
 </section>
 
 <style>
-	article :global(h2) {
-		display: inline-block;
-	}
 	ol {
 		padding: 0;
 		list-style-position: inside;

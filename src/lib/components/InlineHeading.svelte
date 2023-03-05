@@ -11,7 +11,7 @@
 	});
 </script>
 
-<svelte:element this={level}>
+<svelte:element this={level} style="display: inline-block;">
 	<svg viewBox="-0.7 -0.7 {inlineSize} 10">
 		<g
 			font-weight="700"
