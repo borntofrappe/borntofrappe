@@ -43,7 +43,7 @@
 				>.
 			</p>
 			<p>If you need some guidance, <em>home is always a good place to start.</em></p>
-			<p>Cheer up and <a href="/">go to home, page</a></p>
+			<p>Cheer up and <a href="/">go to home, page</a>.</p>
 		</main>
 
 		<div class="center" style="--measure: 32rem;">
