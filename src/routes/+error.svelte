@@ -1,5 +1,7 @@
 <script>
+	import InlineHeading from '$lib/components/InlineHeading.svelte';
 	import site from '$lib/utils/site.js';
+
 	const { title } = site;
 
 	import { page } from '$app/stores';
@@ -24,7 +26,9 @@
 >
 	<div class="center stack" style:--leading="0">
 		<main class="flow">
-			<h1>Oopsie</h1>
+			<InlineHeading element="h1" stroke="var(--color)" fill="var(--background)">
+				Oopsie
+			</InlineHeading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
 			<p>Here's a possibly helpful message for context:</p>
 			<div class="code">
