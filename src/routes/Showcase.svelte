@@ -1,5 +1,5 @@
 <script>
-	import InlineHeading from '$lib/components/InlineHeading.svelte';
+	import Heading from '$lib/components/Heading.svelte';
 
 	import { observeState } from '$lib/utils/actions.js';
 
@@ -20,9 +20,15 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)" inlineSize="60">
+		<Heading
+			level="h2"
+			style="display: inline-block;"
+			stroke="var(--color)"
+			fill="var(--background)"
+			inlineSize="60"
+		>
 			Rainbow sixteen
-		</InlineHeading>
+		</Heading>
 
 		<div class="float end" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
@@ -61,9 +67,14 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
+		<Heading
+			level="h2"
+			style="display: inline-block;"
+			stroke="var(--color)"
+			fill="var(--background)"
+		>
 			Color tiles
-		</InlineHeading>
+		</Heading>
 
 		<div
 			class="float end"
@@ -101,9 +112,14 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
+		<Heading
+			level="h2"
+			style="display: inline-block;"
+			stroke="var(--color)"
+			fill="var(--background)"
+		>
 			Minesweeper
-		</InlineHeading>
+		</Heading>
 
 		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />

@@ -1,6 +1,6 @@
 <script>
+	import AnimatedHeading from '$lib/components/AnimatedHeading.svelte';
 	import Heading from '$lib/components/Heading.svelte';
-	import InlineHeading from '$lib/components/InlineHeading.svelte';
 
 	import icons from '$lib/utils/icons.js';
 
@@ -10,7 +10,7 @@
 <div class="centered">
 	<header class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
 		<div style:display="inline-block" style:inline-size="100%" style:max-inline-size="34rem">
-			<Heading level="h1" text="Hi there" />
+			<AnimatedHeading level="h1" text="Hi there" />
 		</div>
 
 		<div class="float end" style:--shape-outside="circle()">
@@ -26,9 +26,7 @@
 			{@html icons.svg} the most.
 		</p>
 
-		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
-			Why Svelte?
-		</InlineHeading>
+		<Heading level="h2" stroke="var(--color)" fill="var(--background)">Why Svelte?</Heading>
 
 		<p style:display="inline-block">Mainly for three reasons:</p>
 
@@ -38,9 +36,7 @@
 			<li>Javascript{@html icons.js}</li>
 		</ol>
 
-		<InlineHeading level="h2" stroke="var(--color)" fill="var(--background)">
-			Why SVG?
-		</InlineHeading>
+		<Heading level="h2" stroke="var(--color)" fill="var(--background)">Why SVG?</Heading>
 
 		<p>
 			Take a look around this very website. You might find the answer in applications worth
