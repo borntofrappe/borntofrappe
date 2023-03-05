@@ -1,5 +1,5 @@
 <script>
-	import Subheading from '$lib/components/Subheading.svelte';
+	import InlineHeading from '$lib/components/InlineHeading.svelte';
 
 	import { observeState } from '$lib/utils/actions.js';
 
@@ -20,9 +20,9 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<Subheading stroke="var(--color)" fill="var(--background)" inlineSize="60"
-			>Rainbow sixteen</Subheading
-		>
+		<InlineHeading stroke="var(--color)" fill="var(--background)" inlineSize="60">
+			Rainbow sixteen
+		</InlineHeading>
 
 		<div class="float end" style:--float="left" style:--space="var(--space-500)">
 			<RainbowSixteen />
@@ -61,7 +61,7 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<Subheading stroke="var(--color)" fill="var(--background)">Color tiles</Subheading>
+		<InlineHeading stroke="var(--color)" fill="var(--background)">Color tiles</InlineHeading>
 
 		<div
 			class="float end"
@@ -99,7 +99,7 @@
 		class="box floating"
 		style:--padding="var(--step-space-700) var(--step-space-300)"
 	>
-		<Subheading stroke="var(--color)" fill="var(--background)">Minesweeper</Subheading>
+		<InlineHeading stroke="var(--color)" fill="var(--background)">Minesweeper</InlineHeading>
 
 		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
 			<Minesweeper />

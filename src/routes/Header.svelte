@@ -1,6 +1,6 @@
 <script>
 	import Heading from '$lib/components/Heading.svelte';
-	import Subheading from '$lib/components/Subheading.svelte';
+	import InlineHeading from '$lib/components/InlineHeading.svelte';
 
 	import icons from '$lib/utils/icons.js';
 
@@ -26,7 +26,7 @@
 			{@html icons.svg} the most.
 		</p>
 
-		<Subheading stroke="var(--color)" fill="var(--background)">Why Svelte?</Subheading>
+		<InlineHeading stroke="var(--color)" fill="var(--background)">Why Svelte?</InlineHeading>
 
 		<p style:display="inline-block">Mainly for three reasons:</p>
 
@@ -36,7 +36,7 @@
 			<li>Javascript{@html icons.js}</li>
 		</ol>
 
-		<Subheading stroke="var(--color)" fill="var(--background)">Why SVG?</Subheading>
+		<InlineHeading stroke="var(--color)" fill="var(--background)">Why SVG?</InlineHeading>
 
 		<p>
 			Take a look around this very website. You might find the answer in applications worth
