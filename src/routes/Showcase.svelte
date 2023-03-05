@@ -10,15 +10,17 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(209, 61%, 16%)"
-	style:--background="hsl(210, 42%, 96%)"
-	style:--selection-color="hsl(211, 39%, 23%)"
-	style:--selection-background="hsl(210, 31%, 80%)"
+	style="
+		--color: hsl(209, 61%, 16%); 
+		--background: hsl(210, 42%, 96%); 
+		--selection-color: hsl(211, 39%, 23%); 
+		--selection-background: hsl(210, 31%, 80%);
+	"
 >
 	<article
 		use:observeState={{ dataState: ['hidden', 'visible'] }}
 		class="box floating"
-		style:--padding="var(--step-space-700) var(--step-space-300)"
+		style="--padding: var(--step-space-700) var(--step-space-300);"
 	>
 		<Heading
 			level="h2"
@@ -30,7 +32,7 @@
 			Rainbow sixteen
 		</Heading>
 
-		<div class="float end" style:--float="left" style:--space="var(--space-500)">
+		<div class="float end" style="--float: left; --space: var(--space-500);">
 			<RainbowSixteen />
 		</div>
 
@@ -57,15 +59,17 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(210, 16%, 82%)"
-	style:--background="hsl(210, 24%, 16%)"
-	style:--selection-color="hsl(210, 16%, 82%)"
-	style:--selection-background="hsl(209, 34%, 30%)"
+	style="
+		--color: hsl(210, 16%, 82%); 
+		--background: hsl(210, 24%, 16%); 
+		--selection-color: hsl(210, 16%, 82%); 
+		--selection-background: hsl(209, 34%, 30%);
+	"
 >
 	<article
 		use:observeState={{ dataState: ['hidden', 'visible'] }}
 		class="box floating"
-		style:--padding="var(--step-space-700) var(--step-space-300)"
+		style="--padding: var(--step-space-700) var(--step-space-300);"
 	>
 		<Heading
 			level="h2"
@@ -78,9 +82,11 @@
 
 		<div
 			class="float end"
-			style:--measure="30rem"
-			style:--shape-outside="polygon(0% 50%, 50% 0%, 100% 50%, 100% 100%, 0% 100%)"
-			style:--space="var(--space-500)"
+			style="
+				--measure: 30rem; 
+				--shape-outside: polygon(0% 50%, 50% 0%, 100% 50%, 100% 100%, 0% 100%); 
+				--space: var(--space-500);
+			"
 		>
 			<ColorTiles />
 		</div>
@@ -102,15 +108,17 @@
 
 <section
 	class="box centered"
-	style:--color="hsl(0, 0%, 13%)"
-	style:--background="hsl(0, 0%, 75%)"
-	style:--selection-color="hsl(0, 0%, 13%)"
-	style:--selection-background="hsl(0, 0%, 63%)"
+	style="
+		--color: hsl(0, 0%, 13%); 
+		--background: hsl(0, 0%, 75%); 
+		--selection-color: hsl(0, 0%, 13%); 
+		--selection-background: hsl(0, 0%, 63%);
+	"
 >
 	<article
 		use:observeState={{ dataState: ['hidden', 'visible'] }}
 		class="box floating"
-		style:--padding="var(--step-space-700) var(--step-space-300)"
+		style="--padding: var(--step-space-700) var(--step-space-300);"
 	>
 		<Heading
 			level="h2"
@@ -121,7 +129,7 @@
 			Minesweeper
 		</Heading>
 
-		<div class="float end" style:--float="left" style:--space="var(--step-space-500)">
+		<div class="float end" style="--float: left; --space: var(--step-space-500);">
 			<Minesweeper />
 		</div>
 
@@ -132,7 +140,7 @@
 
 		<p>There are only two questions left:</p>
 
-		<ol class="flow" style:--space="0.75em">
+		<ol class="flow" style="--space: 0.75em;">
 			<li>how well do you deal with high-pressure situations?</li>
 			<li>how much nostalgia can you tolerate?</li>
 		</ol>

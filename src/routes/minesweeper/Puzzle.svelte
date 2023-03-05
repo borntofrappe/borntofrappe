@@ -324,7 +324,7 @@
 		<g transform="translate({columns / 2} 0)">
 			<g transform="translate(0 0.06)">
 				<g
-					style:cursor="pointer"
+					style="cursor: pointer;"
 					on:click={handleReset}
 					class="focusable"
 					role="menuitem"
@@ -389,7 +389,7 @@
 							</svg>
 						{:else}
 							<g
-								style:cursor="pointer"
+								style="cursor: pointer;"
 								on:touchstart={() => {
 									handleReveal({ column, row });
 								}}
@@ -442,7 +442,7 @@
 			</g>
 		</g>
 
-		<g style:pointer-events="none">
+		<g style="pointer-events: none;">
 			{#each flags as { column, row }}
 				<g transform="translate({column} {row})">
 					<svg x="0.2" y="0.2" width="0.6" height="0.6">

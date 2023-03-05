@@ -13,15 +13,22 @@
 </svelte:head>
 
 <div
-	style:background="var(--background, hsl(40, 23%, 97%))"
-	style:min-height="100vh"
-	style:z-index="1"
-	style:position="relative"
+	style="
+		background: var(--background, hsl(40, 23%, 97%));
+		min-height: 100vh;
+		z-index: 1;
+		position: relative;
+	"
 >
 	<Header />
 	<Showcase />
 </div>
 
-<div style:position="sticky" style:bottom="0">
+<div
+	style="
+		position: sticky;
+		bottom: 0;
+	"
+>
 	<Footer />
 </div>

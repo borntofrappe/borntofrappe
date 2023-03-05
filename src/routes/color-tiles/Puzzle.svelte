@@ -370,7 +370,7 @@
 		</g>
 	</g>
 
-	<g style:pointer-events="none" class="focus" opacity="0">
+	<g style="pointer-events: none;" class="focus" opacity="0">
 		<path
 			fill={defaultColor}
 			d="M {deckWidth} {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid *
@@ -397,12 +397,12 @@
 		>
 			<path
 				opacity="0"
-				style:cursor="pointer"
+				style="cursor: pointer;"
 				d="M {deckWidth + width / 2} {thickness} l {hGrid} {vGrid} 0 {thickness} {hGrid *
 					-1} {vGrid} {hGrid * -1} {vGrid * -1} 0 {thickness * -1}z"
 			/>
 
-			<g style:pointer-events="none" class="focus" opacity="0">
+			<g style="pointer-events: none;" class="focus" opacity="0">
 				<path
 					fill={defaultColor}
 					d="M {deckWidth} {vGrid + thickness} l 0 {thickness} {hGrid} {vGrid} {hGrid} {vGrid *

@@ -18,13 +18,15 @@
 
 <div
 	class="box"
-	style:--padding="1rem"
-	style:--color="hsl(209, 61%, 16%)"
-	style:--background="hsl(210, 42%, 96%)"
-	style:--selection-color="hsl(211, 39%, 23%)"
-	style:--selection-background="hsl(210, 31%, 80%)"
+	style="
+		--padding: 1rem;
+		--color: hsl(209, 61%, 16%); 
+		--background: hsl(210, 42%, 96%); 
+		--selection-color: hsl(211, 39%, 23%); 
+		--selection-background: hsl(210, 31%, 80%);
+	"
 >
-	<div class="center stack" style:--leading="0">
+	<div class="center stack" style="--leading: 0;">
 		<main class="flow">
 			<Heading level="h1" stroke="var(--color)" fill="var(--background)">Oopsie</Heading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
@@ -44,7 +46,7 @@
 			<p>Cheer up and <a href="/">go to home, page</a></p>
 		</main>
 
-		<div class="center" style:--measure="32rem">
+		<div class="center" style="--measure: 32rem;">
 			<Serena />
 		</div>
 	</div>

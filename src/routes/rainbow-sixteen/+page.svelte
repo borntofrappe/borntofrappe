@@ -21,12 +21,14 @@
 
 <main
 	class="box centered"
-	style:--color="hsl(209, 61%, 16%)"
-	style:--background="hsl(210, 42%, 96%)"
-	style:--selection-color="hsl(211, 39%, 23%)"
-	style:--selection-background="hsl(210, 31%, 80%)"
+	style="
+		--color: hsl(209, 61%, 16%); 
+		--background: hsl(210, 42%, 96%); 
+		--selection-color: hsl(211, 39%, 23%); 
+		--selection-background: hsl(210, 31%, 80%);
+	"
 >
-	<div style:inline-size="90vmin" style:max-inline-size="52rem">
+	<div style="inline-size: 90vmin; max-inline-size: 52rem;">
 		<Puzzle {size} {moves} />
 	</div>
 </main>

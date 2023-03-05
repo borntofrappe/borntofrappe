@@ -8,12 +8,18 @@
 </script>
 
 <div class="centered">
-	<header class="box floating" style:--padding="var(--step-space-700) var(--step-space-300)">
-		<div style:display="inline-block" style:inline-size="100%" style:max-inline-size="34rem">
+	<header class="box floating" style="--padding: var(--step-space-700) var(--step-space-300);">
+		<div
+			style="
+			display: inline-block;
+			inline-size: 100%;
+			max-inline-size: 34rem;
+		"
+		>
 			<AnimatedHeading level="h1" text="Hi there" />
 		</div>
 
-		<div class="float end" style:--shape-outside="circle()">
+		<div class="float end" style="--shape-outside: circle();">
 			<Ray />
 		</div>
 
@@ -28,7 +34,7 @@
 
 		<Heading level="h2" stroke="var(--color)" fill="var(--background)">Why Svelte?</Heading>
 
-		<p style:display="inline-block">Mainly for three reasons:</p>
+		<p style="display: inline-block;">Mainly for three reasons:</p>
 
 		<ol>
 			<li><abbr title="HyperText Markup Language">HTML</abbr>{@html icons.html}</li>

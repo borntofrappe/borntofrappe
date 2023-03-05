@@ -37,10 +37,12 @@
 
 <main
 	class="box centered"
-	style:--color="hsl(210, 16%, 82%)"
-	style:--background="hsl(210, 24%, 16%)"
-	style:--selection-color="hsl(210, 16%, 82%)"
-	style:--selection-background="hsl(209, 34%, 30%)"
+	style="
+		--color: hsl(210, 16%, 82%); 
+		--background: hsl(210, 24%, 16%); 
+		--selection-color: hsl(210, 16%, 82%); 
+		--selection-background: hsl(209, 34%, 30%);
+	"
 >
 	<label class:tangram>
 		<span class="visually-hidden">

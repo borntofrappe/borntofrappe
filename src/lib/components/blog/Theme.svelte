@@ -242,7 +242,7 @@
 			<rect width="120" height="53" />
 		</g>
 
-		<g style:pointer-events="none" opacity="0.1">
+		<g style="pointer-events: none;" opacity="0.1">
 			<g transform="translate(60 85)">
 				<circle r="37" />
 			</g>

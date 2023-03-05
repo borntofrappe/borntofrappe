@@ -18,12 +18,14 @@
 
 <main
 	class="box centered"
-	style:--color="hsl(0, 0%, 13%)"
-	style:--background="hsl(0, 0%, 75%)"
-	style:--selection-color="hsl(0, 0%, 13%)"
-	style:--selection-background="hsl(0, 0%, 63%)"
+	style="
+		--color: hsl(0, 0%, 13%); 
+		--background: hsl(0, 0%, 75%); 
+		--selection-color: hsl(0, 0%, 13%); 
+		--selection-background: hsl(0, 0%, 63%);
+	"
 >
-	<div style:inline-size="90vmin" style:max-inline-size="52rem">
+	<div style="inline-size: 90vmin; max-inline-size: 52rem;">
 		<Puzzle columns={20} rows={12} mines={20} />
 	</div>
 </main>

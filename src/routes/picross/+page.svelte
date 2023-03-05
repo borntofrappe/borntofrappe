@@ -38,9 +38,11 @@
 	{#key value}
 		<div
 			in:scale
-			style:backface-visibility="hidden"
-			style:inline-size="90vmin"
-			style:max-inline-size="28rem"
+			style="
+				backface-visibility: hidden; 
+				inline-size: 90vmin; 
+				max-inline-size: 28rem;
+			"
 		>
 			<Picross {...levels[value]} />
 		</div>

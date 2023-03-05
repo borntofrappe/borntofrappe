@@ -15,7 +15,7 @@
 </svelte:head>
 
 <main class="centered">
-	<div style:inline-size="100vmin" style:max-inline-size="32rem">
+	<div style="inline-size: 100vmin; max-inline-size: 32rem;">
 		<Ray />
 	</div>
 </main>

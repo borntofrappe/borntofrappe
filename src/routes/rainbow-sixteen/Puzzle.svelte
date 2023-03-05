@@ -255,7 +255,7 @@
 			{#each grid.reduce((acc, curr) => [...acc, ...curr], []) as { row, column, color: fill }}
 				<g transform="translate({column} {row})">
 					<g
-						style:cursor="pointer"
+						style="cursor: pointer;"
 						on:click={() => {
 							resetPuzzle({ row, column });
 						}}
