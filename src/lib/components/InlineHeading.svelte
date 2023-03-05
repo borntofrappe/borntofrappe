@@ -4,6 +4,7 @@
 	export let fill = '#f1f5f8';
 	export let stroke = '#102a42';
 	export let inlineSize = 55.20924606323242;
+	export let style;
 
 	let text = null;
 	onMount(() => {
@@ -11,7 +12,7 @@
 	});
 </script>
 
-<svelte:element this={level} style="display: inline-block;">
+<svelte:element this={level} {style}>
 	<svg viewBox="-0.7 -0.7 {inlineSize} 10">
 		<g
 			font-weight="700"
