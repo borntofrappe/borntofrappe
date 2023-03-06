@@ -45,7 +45,7 @@ Much of the `.json` file is up to your preference, but you do need a field to sp
 }
 ```
 
-A basic script also helps to have Vite serve the the project with one short `npm` directive.
+A basic script also helps to have Vite serve the project with one short `npm` directive.
 
 ```json
 {
@@ -106,7 +106,7 @@ Past this final step, however, you are officially done.
 npm run dev
 ```
 
-Discussed in increments and in such detail, the sequence may seem laborious, but as you examine the folder the application is preciously small. 
+Discussed in increments and in such detail, the sequence may seem laborious, but as you examine the folder the application is preciously small.
 
 ```text
 |- src
