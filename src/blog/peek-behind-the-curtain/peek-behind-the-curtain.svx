@@ -16,7 +16,7 @@ If you ever wondered how I come up with the scalable vector graphics illuminatin
 
 Today's visual is the realization of an idea, suddenly popping into my head with a bit of a delay.
 
-As I researched the `<animate>` and `<animateTransform>` elements for a way to toggle the animation with Javascript, I noticed how the elements raised a few events. Events such as `begin`, `end`, `repeat`, evoked at key moments of the animation. I didn't think much of it, as I implemented the toggle with the `beginElement` and `endElement` methods, but eventually, the feature came back as I realized a potential application.
+As I researched the `<animate>` and `<animateTransform>` elements for a way to toggle the animation with Javascript, I noticed how the elements raised a few events. Events such as `beginEvent`, `endEvent`, `repeatEvent`, evoked at key moments of the animation. I didn't think much of it, as I implemented the toggle with the `beginElement` and `endElement` methods, but eventually, the feature came back as I realized a potential application.
 
 Say you set up a looping animation. With Javascript you could then listen to the `repeat` event and tweak the visual to add a touch of variety with each iteration.
 
@@ -37,12 +37,12 @@ The goal is to have the creature move from side to side.
 As you translate the shapes in and out of sight, you have the opportunity to change its appearance and give the impression of an endless, streaming flock.
 
 <Center element="figure" maxInlineSize="36rem">
-    <AnimateTransform repeatEvent={false} />
+    <AnimateTransform />
 </Center>
 
 Here I change only one trait, the color of the wool, but the concept is already validated.
 
-It is a bit unnerving to have the animal pop in and disappear between invisible walls, but unfortunately you can't account for the wide range of screen sizes in which the `<svg>` element will be rendered.
+It is unnerving to have the animal pop in and disappear between invisible walls, but unfortunately you can't account for the wide range of screen sizes in which the `<svg>` element will be rendered.
 
 You can, however, set up a scene to trick the eyes. Wrap up the visual with a background, a couple of details and a set of lush drapes.
 
