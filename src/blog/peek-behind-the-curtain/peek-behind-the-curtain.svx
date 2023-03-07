@@ -1,0 +1,7 @@
+---
+title: Peek behind the curtain
+description: Illustrating one of the ways I come up with silly vector graphics.
+date: 2023-03-07 14:24:59
+---
+
+If you ever wondered how I come up with the scalable vector graphics illuminating this very website you have found the right article. If not, well , at least you'll get a possibly entertaining demo by the end of it.
