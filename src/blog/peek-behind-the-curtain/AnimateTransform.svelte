@@ -61,7 +61,7 @@
 				<circle r="8" cx="-10" cy="1" />
 			</g>
 			<g transform="translate(8 -5) rotate(-10)">
-				<ellipse fill="#F8C4FE" stroke="#F8C4FE" rx="6.5" ry="7.5" />
+				<ellipse fill="#FACDCD" stroke="#FACDCD" rx="6.5" ry="7.5" />
 				<g stroke="#27241D" stroke-linecap="round" stroke-linejoin="round">
 					<path d="M 0 5 v 1 q 0.5 0.5 1 0 m -1 0 q -0.5 0.5 -1 0" fill="none" stroke-width="0.4" />
 					<path
