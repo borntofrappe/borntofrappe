@@ -4,4 +4,50 @@ description: Illustrating one of the ways I come up with silly vector graphics.
 date: 2023-03-07 14:24:59
 ---
 
-If you ever wondered how I come up with the scalable vector graphics illuminating this very website you have found the right article. If not, well , at least you'll get a possibly entertaining demo by the end of it.
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+    import AnimateTransform from './AnimateTransform.svelte';
+    import Scene from './Scene.svelte';
+</script>
+
+If you ever wondered how I come up with the scalable vector graphics illuminating this very website you have found the right article. If not, well, at least you'll get a possibly entertaining demo by the end of it.
+
+Today's visual is the realization of an idea, suddenly popping into my head with a bit of a delay.
+
+As I researched the `<animate>` and `<animateTransform>` elements for a way to toggle the animation with Javascript, I noticed how the elements raised a few events. Events such as `begin`, `end`, `repeat`, evoked at key moments of the animation. I didn't think much of it, as I implemented the toggle with the `beginElement` and `endElement` methods, but eventually, the feature came back as I realized a potential application.
+
+Say you set up a looping animation. With Javascript you could then listen to the `repeat` event and tweak the visual to add a touch of variety with each iteration.
+
+Wouldn't that be neat?
+
+"All" that was left was a proof of concept. In line with recent graphics I resolved to draw up a puffy small sheep.
+
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['sheep']}
+</Center>
+
+The goal is to have the creature move from side to side.
+
+<Center element="figure" maxInlineSize="36rem">
+    <AnimateTransform repeatEvent={false} />
+</Center>
+
+As you translate the shapes in and out of sight, you have the opportunity to change its appearance and give the impression of an endless, streaming flock.
+
+<Center element="figure" maxInlineSize="36rem">
+    <AnimateTransform repeatEvent={false} />
+</Center>
+
+Here I change only one trait, the color of the wool, but the concept is already validated.
+
+It is a bit unnerving to have the animal pop in and disappear between invisible walls, but unfortunately you can't account for the wide range of screen sizes in which the `<svg>` element will be rendered.
+
+You can, however, set up a scene to trick the eyes. Wrap up the visual with a background, a couple of details and a set of lush drapes.
+
+<Center element="figure" maxInlineSize="36rem">
+    <Scene />
+</Center>
+
+And there you have it. A makeshift theater where it is only natural to have the creature — or creatures? — enter and leave. Cherry on top, a fitting visual for a most appropriate title.
