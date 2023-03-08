@@ -22,7 +22,7 @@ Say you set up a looping animation. With Javascript you could then listen to the
 
 Wouldn't that be neat?
 
-"All" that was left was a proof of concept. In line with recent graphics I resolved to draw up a puffy small sheep.
+"All" that was left was a proof of concept. In line with recent nature-inspired graphics I resolved to draw up a puffy small sheep.
 
 <Center element="figure" maxInlineSize="28rem">
     {@html svg['sheep']}
@@ -34,7 +34,7 @@ The goal is to have the creature move from side to side.
     <AnimateTransform repeatEvent={false} />
 </Center>
 
-As you translate the shapes in and out of sight, you have the opportunity to change its appearance and give the impression of an endless, streaming flock.
+As you translate the shapes in and out of sight, you have the opportunity to change the appearance and give the impression of an endless, streaming flock.
 
 <Center element="figure" maxInlineSize="36rem">
     <AnimateTransform />
@@ -42,12 +42,12 @@ As you translate the shapes in and out of sight, you have the opportunity to cha
 
 Here I change only one trait, the color of the wool, but the concept is already validated.
 
-It is unnerving to have the animal pop in and disappear between invisible walls, but unfortunately you can't account for the wide range of screen sizes in which the `<svg>` element will be rendered.
+It is unnerving to have the cattle drive between invisible walls, but unfortunately you can't account for the wide range of screen sizes in which the `<svg>` element will be rendered.
 
 You can, however, set up a scene to trick the eyes. Wrap up the visual with a background, a couple of details and a set of lush drapes.
 
-<Center element="figure" maxInlineSize="36rem">
+<Center element="figure" maxInlineSize="32rem">
     <Scene />
 </Center>
 
-And there you have it. A makeshift theater where it is only natural to have the creature — or creatures? — enter and leave. Cherry on top, a fitting visual for a most appropriate title.
+And there you have it. An improvised theater where it is only natural to have the creature — or creatures? — enter and leave. Cherry on top, a fitting visual for a most appropriate title.
