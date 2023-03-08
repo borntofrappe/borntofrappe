@@ -3,7 +3,7 @@
 	export let level = 'h1';
 	export let fill = '#f1f5f8';
 	export let stroke = '#102a42';
-	export let inlineSize = 55.20924606323242;
+	export let inlineSize = 58.46172180175781;
 	export let style = '';
 
 	let text = null;
@@ -13,14 +13,14 @@
 </script>
 
 <svelte:element this={level} {style}>
-	<svg viewBox="-0.7 -0.7 {inlineSize} 10">
+	<svg viewBox="-0.7 -0.7 {inlineSize} 11">
 		<g
 			font-weight="700"
 			{fill}
 			{stroke}
 			font-size="7"
 			stroke-width="1.4"
-			letter-spacing="0.28"
+			letter-spacing="0.5"
 			paint-order="stroke"
 			stroke-linejoin="round"
 			stroke-linecap="round"
@@ -35,7 +35,7 @@
 <style>
 	svg {
 		display: block;
-		block-size: 1.42em;
+		block-size: 1.57em;
 		inline-size: auto;
 	}
 </style>

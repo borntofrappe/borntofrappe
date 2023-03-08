@@ -28,7 +28,7 @@
 			style="display: inline-block;"
 			stroke="var(--color)"
 			fill="var(--highlight)"
-			inlineSize="60"
+			inlineSize="70"
 		>
 			Rainbow sixteen
 		</Heading>
