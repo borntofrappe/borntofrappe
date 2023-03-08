@@ -1,9 +1,0 @@
-{
-	"name": "helper",
-	"description": "little scripts and useful projects",
-	"version": "0.0.1",
-	"scripts": {
-		"icons": "cd icons && node script.js"
-	},
-	"type": "module"
-}
