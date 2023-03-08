@@ -326,4 +326,4 @@ Prior to the custom logic I relied on [rehype-autolink-headings](https://github.
 
 What `rehypePermalink` realizes, however, is a specific vision. Once you appreciate abstract syntax trees, once you understand how HTML (or markdown) nodes work, you become the architect for any structure you may need. An empowering feeling.
 
-If you need the entire plugin I keep a reference in a helper folder [on GitHub](https://github.com/borntofrappe/borntofrappe/blob/main/helper/rehype-permalink/rehype-permalink.js), but don't limit yourself to the script. Create your own version, the one which fits your wants and wishes.
+If you need the entire plugin I keep a reference in a helper folder [on GitHub](https://github.com/borntofrappe/utils/blob/main/rehype-permalink/rehype-permalink.js), but don't limit yourself to the script. Create your own version, the one which fits your wants and wishes.
