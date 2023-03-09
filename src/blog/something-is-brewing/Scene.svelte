@@ -1,5 +1,5 @@
 <script>
-	export let animations = ['flicker'];
+	export let animations = ['flicker', 'float'];
 	let light = false;
 
 	const id = `scene-${animations.join('-')}`;
@@ -32,9 +32,27 @@
 			<circle r="1.5" cx="1" cy="-1" fill="#f1daae" />
 		</g>
 	</defs>
-	<use transform="translate(10 -16)" href="#{id}-bubble" />
-	<use transform="translate(-2 -10) scale(0.8)" href="#{id}-bubble" />
-	<use transform="translate(-12 -20) scale(0.6)" href="#{id}-bubble" />
+	<g transform="translate(10 -16)">
+		<g class="float" style="animation-delay: 3s;" transform="translate(0 26)">
+			<use href="#{id}-bubble" />
+		</g>
+	</g>
+	<g transform="translate(-3 -10)">
+		<g class="float" style="animation-delay: 1s;" transform="translate(0 20)">
+			<use transform="scale(0.8)" href="#{id}-bubble" />
+		</g>
+	</g>
+	<g transform="translate(-12 -20)">
+		<g class="float" transform="translate(0 30)">
+			<use transform="scale(0.6)" href="#{id}-bubble" />
+		</g>
+	</g>
+	<g transform="translate(2 -20)">
+		<g class="float" style="animation-delay: 5s;" transform="translate(0 35)">
+			<use transform="scale(0.7)" href="#{id}-bubble" />
+		</g>
+	</g>
+
 	<g transform="translate(0 22)">
 		<g transform="rotate(-30)">
 			<path d="M 0 0 v -30" fill="none" stroke="#e18434" stroke-width="5" stroke-linecap="round" />
@@ -78,13 +96,24 @@
 		animation: flicker infinite 6s paused;
 	}
 
-	.light .flicker {
+	.float {
+		animation: float infinite 10s paused;
+	}
+
+	.light .flicker,
+	.light .float {
 		animation-play-state: running;
 	}
 
 	@keyframes flicker {
 		50% {
 			transform: scale(1);
+		}
+	}
+
+	@keyframes float {
+		to {
+			transform: translateY(0px);
 		}
 	}
 </style>
