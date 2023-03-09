@@ -121,3 +121,13 @@ And with the now-familiar scale keyword you can even reduce the size as you move
 How much to angle, how much to scale down each additional pair is a matter of taste, and one of the most entertaining parts of writing SVG in a code editor. Experiment with different values until you find a heart-warming visual.
 
 {@html svg['flames']}
+
+## Goo
+
+It doesn't take much to embellish the visual. Consider the simple cauldron, for instance. Add colorful lines on the right end — these are `<path>` elements with a noticeable, yellow-ish stroke
+
+And the concoction becomes much more believable.
+
+{@html svg['goo']}
+
+You can't see inside, but you can almost believe the exquisite elixir is going to reach the surface and escape the setting. Especially with such kindling.

@@ -49,5 +49,53 @@ export default {
 	<use transform="translate(4 0) rotate(16) scale(0.9)" href="#flames-flame" />
 	<use transform="translate(-4 0) rotate(-16) scale(0.9)" href="#flames-flame" />
 	<use href="#flames-flame" />
+</svg>`,
+	goo: `<svg style="display: block; outline: 1px solid" viewBox="-40 -15 80 70">
+<defs>
+    <g id="goo-flame">
+        <g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+                        fill="#f04545"
+                        stroke="#f04545"
+                        d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+                        />
+            <path
+                        transform="scale(0.6)"
+                        fill="#e8da38"
+                        stroke="#e8da38"
+                        d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+                        />
+        </g>
+    </g>
+</defs>
+<g>
+    <g fill="#2e2e2c">
+        <rect x="-20" width="40" height="8" rx="4" />
+        <path d="M -16 4 a 22 22 0 1 0 32 0" />
+    </g>
+    <g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
+        <path d="M -5 20 l -10 20" />
+        <path d="M 5 20 l 10 20" />
+    </g>
+
+    <g>
+        <g fill="none" stroke="#edb927" stroke-linecap="round">
+            <path d="M -4 0 h 16" stroke-width="5"  />
+            <g stroke-width="4">
+                <path d="M 0 0 v 7" />
+                <path d="M 5 0 v 10" />
+                <path d="M 10 0 v 6" />
+            </g>
+        </g>
+    </g>
+</g>
+
+<g transform="translate(0 42)">
+    <use transform="translate(8 0) rotate(28) scale(0.8)" href="#goo-flame" />
+    <use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#goo-flame" />
+    <use transform="translate(4 0) rotate(16) scale(0.9)" href="#goo-flame" />
+    <use transform="translate(-4 0) rotate(-16) scale(0.9)" href="#goo-flame" />
+    <use href="#goo-flame" />
+</g>
 </svg>`
 };
