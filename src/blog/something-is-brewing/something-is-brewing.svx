@@ -8,6 +8,7 @@ date: 2023-03-09 21:54:02
     import Center from '$lib/components/blog/Center.svelte';
 
     import svg from './svg.js';
+    import Scene from './Scene.svelte';
 </script>
 
 The problem: you need a visual to pair the assuredly brief, but inevitable delay a page needs to load.
@@ -191,3 +192,69 @@ One last detail before we dive in the entertaining realm of cascading stylesheet
 </Center>
 
 And the scene is set. After all, it would be irresponsible to leave the preparation unattended.
+
+## CSS properties
+
+As in the kitchen, it is helpful to have a plan. The goal here is to update the visual in a few ways, but always through the `transform` attribute. Or, to be technical, through the `transform` property.
+
+```css
+.element {
+	transform: scale(1.25);
+}
+```
+
+In the stylesheet, thanks to the concept of specificity, the transformation takes precedence on whichever value is set in the markup.
+
+Back to the plan. It would be most charming to have the flames grow in size and perhaps even flicker. On top of this animation we can then treat ourself. Thicker gooey lines, bubbles actually floating, the spoon helpfully stirring the mixture.
+
+### Flicker
+
+To scale the flames you could update the `<use>` elements. Add a class on the instances.
+
+```html
+<use class="flicker" href="#flames" />
+```
+
+Resize the copy with the appropriate function.
+
+```css
+.flicker {
+	transform: scale(0.7);
+}
+```
+
+This works swimmingly for the central flame, but for the neighboring copies you would need to meddle with the SVG syntax to update the origin point, the point from where the animation takes place.
+
+```html
+<g transform="translate(8 0) rotate(28) scale(0.8)">
+	<use class="flicker" href="#flames" />
+</g>
+```
+
+I'll refer you to [a previous article](/svg-transform) for a more detailed explanation of the concept. There is a simpler way, however, at least for the current project. Add the class _on the definition_ itself.
+
+```html
+<defs>
+	<g class="flicker" id="flame">
+		<!-- ...paths -->
+	</g>
+</defs>
+```
+
+If you are satisfied changing every instance in the same manner, you can then move on to the actual animation.
+
+Easing functions, durations. Even the structure of the keyframes is ground for exploration. For the possibly simplest change restore the size to the original measure.
+
+```css
+@keyframes flicker {
+	50% {
+		transform: scale(1);
+	}
+}
+```
+
+A subtle effect with hopefully grander consequences.
+
+<Center element="figure" maxInlineSize="30rem">
+    <Scene animations={['flicker']} />
+</Center>
