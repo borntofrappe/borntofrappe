@@ -3,3 +3,47 @@ title: Something is brewing
 description: Draw and animate vector graphics to create a charming loader.
 date: 2023-03-09 21:54:02
 ---
+
+<script>
+    import svg from './svg.js';
+</script>
+
+The problem: you need a visual to pair the assuredly brief, but inevitable delay a page needs to load.
+
+The tagline: SVG and CSS to the rescue.
+
+## SVG syntax
+
+The page in question offers a series of recipes, factual or otherwise, so it is only natural to conjure up SVG elements to draw a piece of kitchenware.
+
+### Pot
+
+A few elements allow to draw a convincing cauldron with just a few instructions. First a rounded rectangle for the edge.
+
+```html
+<g fill="#2e2e2c">
+	<rect x="-20" width="40" height="8" rx="4" />
+</g>
+```
+
+Having the `rx` attribute exactly as half the smaller size, as half the height, means the ends are perfectly round. Past the rectangle, a path making justice to the rotund container with an overblown arc.
+
+```html
+<g fill="#2e2e2c">
+	<!-- ... -->
+	<path d="M -16 4 a 22 22 0 1 0 32 0" />
+</g>
+```
+
+Finally, two rounded lines protruding on either end to support the piece.
+
+```html
+<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
+	<path d="M -5 20 l -10 20" />
+	<path d="M 5 20 l 10 20" />
+</g>
+```
+
+With the same color in the `fill` and `stroke` attributes the elements coalesce in the solid recipient.
+
+{@html svg['cauldron']}
