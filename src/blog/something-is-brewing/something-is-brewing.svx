@@ -131,3 +131,41 @@ And the concoction becomes much more believable.
 {@html svg['goo']}
 
 You can't see inside, but you can almost believe the exquisite elixir is going to reach the surface and escape the setting. Especially with such kindling.
+
+## Bubbles
+
+Let's exaggerate further. Reaching the boiling point it is only natural to spot a few bubbles, and a perfect opportunity to rehearse the workflow of the flames. One circle element works as a base.
+
+```html
+<circle r="4" fill="#f6c159" />
+```
+
+A smaller, lighter circle slightly off center gives the illusion of a light source.
+
+<!-- prettier-ignore -->
+```html
+<circle r="4" fill="#f6c159" />
+<circle r="1.5" cx="1" cy="-1" fill="#f1daae" />
+```
+
+As with the flames we enjoy more than one copy, so you might be familiar with the sequence. One definition.
+
+```html
+<defs>
+	<g id="bubble">
+		<!-- ...circles -->
+	</g>
+</defs>
+```
+
+Multiple use elements.
+
+```html
+<use transform="translate(10 -16)" href="#bubble" />
+<use transform="translate(-2 -10) scale(0.8)" href="#bubble" />
+<use transform="translate(-12 -20) scale(0.6)" href="#bubble" />
+```
+
+Positioned and scaled to your heart's content.
+
+{@html svg['bubbles']}
