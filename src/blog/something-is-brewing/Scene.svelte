@@ -1,5 +1,5 @@
 <script>
-	export let animations = ['flicker', 'float'];
+	export let animations = ['flicker', 'float', 'stir'];
 	let light = false;
 
 	const id = `scene-${animations.join('-')}`;
@@ -54,7 +54,7 @@
 	</g>
 
 	<g transform="translate(0 22)">
-		<g transform="rotate(-30)">
+		<g class="stir" transform="rotate(-30)">
 			<path d="M 0 0 v -30" fill="none" stroke="#e18434" stroke-width="5" stroke-linecap="round" />
 		</g>
 	</g>
@@ -100,8 +100,13 @@
 		animation: float infinite 10s paused;
 	}
 
+	.stir {
+		animation: stir infinite 6s paused;
+	}
+
 	.light .flicker,
-	.light .float {
+	.light .float,
+	.light .stir {
 		animation-play-state: running;
 	}
 
@@ -114,6 +119,12 @@
 	@keyframes float {
 		to {
 			transform: translateY(0px);
+		}
+	}
+
+	@keyframes stir {
+		50% {
+			transform: rotate(30deg);
 		}
 	}
 </style>
