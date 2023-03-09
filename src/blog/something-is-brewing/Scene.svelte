@@ -1,8 +1,10 @@
 <script>
 	export let animations = ['flicker', 'float', 'stir'];
-	let light = false;
+	export let transition = true;
 
 	const id = `scene-${animations.join('-')}`;
+
+	let light = false;
 </script>
 
 <label>
@@ -12,7 +14,7 @@
 
 <svg class:light viewBox="-40 -25 80 70">
 	<defs>
-		<g class="flicker" id="{id}-flame">
+		<g class:flicker={animations.includes('flicker')} id="{id}-flame">
 			<g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path
 					fill="#f04545"
@@ -33,28 +35,40 @@
 		</g>
 	</defs>
 	<g transform="translate(10 -16)">
-		<g class="float" style="animation-delay: 3s;" transform="translate(0 26)">
+		<g
+			class:float={animations.includes('float')}
+			style="animation-delay: 3s;"
+			transform="translate(0 26)"
+		>
 			<use href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(-3 -10)">
-		<g class="float" style="animation-delay: 1s;" transform="translate(0 20)">
+		<g
+			class:float={animations.includes('float')}
+			style="animation-delay: 1s;"
+			transform="translate(0 20)"
+		>
 			<use transform="scale(0.8)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(-12 -20)">
-		<g class="float" transform="translate(0 30)">
+		<g class:float={animations.includes('float')} transform="translate(0 30)">
 			<use transform="scale(0.6)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(2 -20)">
-		<g class="float" style="animation-delay: 5s;" transform="translate(0 35)">
+		<g
+			class:float={animations.includes('float')}
+			style="animation-delay: 5s;"
+			transform="translate(0 35)"
+		>
 			<use transform="scale(0.7)" href="#{id}-bubble" />
 		</g>
 	</g>
 
 	<g transform="translate(0 22)">
-		<g class="stir" transform="rotate(-30)">
+		<g class:stir={animations.includes('stir')} transform="rotate(-30)">
 			<path d="M 0 0 v -30" fill="none" stroke="#e18434" stroke-width="5" stroke-linecap="round" />
 		</g>
 	</g>
@@ -71,9 +85,9 @@
 		<g fill="none" stroke="#edb927" stroke-linecap="round">
 			<path d="M -4 0 h 16" stroke-width="5" />
 			<g stroke-width="4">
-				<path d="M 0 0 v 7" />
-				<path d="M 5 0 v 10" />
-				<path d="M 10 0 v 6" />
+				<path class:goo={transition} d="M 0 0 v 7" />
+				<path class:goo={transition} d="M 5 0 v 10" />
+				<path class:goo={transition} d="M 10 0 v 6" />
 			</g>
 		</g>
 	</g>
@@ -93,21 +107,30 @@
 
 	.flicker {
 		transform: scale(0.7);
-		animation: flicker infinite 6s paused;
+		animation: flicker infinite 6s paused cubic-bezier(0.45, 0, 0.55, 1);
 	}
 
 	.float {
-		animation: float infinite 10s paused;
+		animation: float infinite 10s paused cubic-bezier(0.33, 1, 0.68, 1);
 	}
 
 	.stir {
-		animation: stir infinite 6s paused;
+		animation: stir infinite 6s paused cubic-bezier(0.65, 0, 0.35, 1);
 	}
 
 	.light .flicker,
 	.light .float,
 	.light .stir {
 		animation-play-state: running;
+	}
+
+	.goo {
+		transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+
+	.light .goo {
+		transition-delay: 0.2s;
+		transform: scaleY(1.2);
 	}
 
 	@keyframes flicker {
