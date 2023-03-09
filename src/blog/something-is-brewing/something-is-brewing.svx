@@ -169,3 +169,11 @@ Multiple use elements.
 Positioned and scaled to your heart's content.
 
 {@html svg['bubbles']}
+
+## Spoon
+
+One last detail before we dive in the entertaining realm of cascading stylesheets. Add a line just behind the cauldron.
+
+{@html svg['scene']}
+
+And the scene is set. After all, it would be irresponsible to leave the preparation unattended.
