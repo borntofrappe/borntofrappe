@@ -10,5 +10,44 @@ export default {
 		<path d="M 5 20 l 10 20" />
 	</g>
 	</g>
+</svg>`,
+	flame: `<svg style="display: block; outline: 1px solid" viewBox="-20 -10 40 14">
+	<g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		<path
+					fill="#f04545"
+					stroke="#f04545"
+					d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+					/>
+		<path
+					transform="scale(0.5)"
+					fill="#e8da38"
+					stroke="#e8da38"
+					d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+					/>
+	</g>
+</svg>`,
+	flames: `<svg style="display: block; outline: 1px solid" viewBox="-20 -10 40 14">
+	<defs>
+		<g id="flames-flame">
+			<g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path
+							fill="#f04545"
+							stroke="#f04545"
+							d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+							/>
+				<path
+							transform="scale(0.5)"
+							fill="#e8da38"
+							stroke="#e8da38"
+							d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+							/>
+			</g>
+		</g>
+	</defs>
+	<use transform="translate(8 0) rotate(28) scale(0.8)" href="#flames-flame" />
+	<use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#flames-flame" />
+	<use transform="translate(4 0) rotate(16) scale(0.9)" href="#flames-flame" />
+	<use transform="translate(-4 0) rotate(-16) scale(0.9)" href="#flames-flame" />
+	<use href="#flames-flame" />
 </svg>`
 };

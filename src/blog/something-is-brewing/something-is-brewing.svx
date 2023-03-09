@@ -47,3 +47,77 @@ Finally, two rounded lines protruding on either end to support the piece.
 With the same color in the `fill` and `stroke` attributes the elements coalesce in the solid recipient.
 
 {@html svg['cauldron']}
+
+## Flames
+
+The `<path>` element is once more equipped for the heat source. A couple of bezier curves, pointing upwards, work to create a single candle-like flame.
+
+```html
+<path fill="#f04545" d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5" />
+```
+
+To detail the piece you can add another, smaller visual right on top. Another set of curves shining brightly in the heart of the larger whole. Here you can pick and choose a `d` attribute with smaller values. Or, use the very same string and scale the result.
+
+```html
+<!-- ...path -->
+<path
+	transform="scale(0.5)"
+	fill="#e8da38"
+	d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5"
+/>
+```
+
+As you draw the shape from the bottom, the scaling operation has the second path reduce itself from the low origin.
+
+Add a soft stroke around both shapes.
+
+```html
+<g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+	<!-- ...paths -->
+</g>
+```
+
+And making sure to use the same color as the `fill` attribute, the sparkle is lit and alight.
+
+{@html svg['flame']}
+
+No matter how beautiful, a solitary flame is not enogh for our cooking needs, though. You can actually give an `id` attribute to the shape and repeat it right afterwards, but for the sake of clarity, define a group in a <defs> element.
+
+```html
+<defs>
+	<g id="flame">
+		<!-- ...paths -->
+	</g>
+</defs>
+```
+
+To show the single flame back refer to the identifier through the `<use>` element. To complete the set repeat the instructions with different horizontal offsets.
+
+The order here matters. To have the outer shapes behind include the copies _before_ the flames in the middle.
+
+```html
+<use transform="translate(8 0)" href="#flame" />
+<use transform="translate(-8 0)" href="#flame" />
+<use transform="translate(4 0)" href="#flame" />
+<use transform="translate(-4 0)" href="#flame" />
+<use href="#flame" />
+```
+
+SVG transformations help tremendously. Not only you are able to place the flames wherever needed. Through the rotate function you can spread the fire outwards.
+
+```html
+<use transform="translate(8 0) rotate(28)" href="#flame" />
+<use transform="translate(-8 0) rotate(-28)" href="#flame" />
+<!-- ... -->
+```
+
+And with the now-familiar scale keyword you can even reduce the size as you move away from the center.
+
+```html
+<use transform="translate(8 0) rotate(28) scale(0.8)" href="#flame" />
+<!-- ... -->
+```
+
+How much to angle, how much to scale down each additional pair is a matter of taste, and one of the most entertaining parts of writing SVG in a code editor. Experiment with different values until you find a heart-warming visual.
+
+{@html svg['flames']}
