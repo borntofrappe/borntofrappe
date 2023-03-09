@@ -5,6 +5,8 @@ date: 2023-03-09 21:54:02
 ---
 
 <script>
+    import Center from '$lib/components/blog/Center.svelte';
+
     import svg from './svg.js';
 </script>
 
@@ -46,7 +48,9 @@ Finally, two rounded lines protruding on either end to support the piece.
 
 With the same color in the `fill` and `stroke` attributes the elements coalesce in the solid recipient.
 
-{@html svg['cauldron']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['cauldron']}
+</Center>
 
 ## Flames
 
@@ -79,7 +83,9 @@ Add a soft stroke around both shapes.
 
 And making sure to use the same color as the `fill` attribute, the sparkle is lit and alight.
 
-{@html svg['flame']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['flame']}
+</Center>
 
 No matter how beautiful, a solitary flame is not enogh for our cooking needs, though. You can actually give an `id` attribute to the shape and repeat it right afterwards, but for the sake of clarity, define a group in a <defs> element.
 
@@ -120,7 +126,9 @@ And with the now-familiar scale keyword you can even reduce the size as you move
 
 How much to angle, how much to scale down each additional pair is a matter of taste, and one of the most entertaining parts of writing SVG in a code editor. Experiment with different values until you find a heart-warming visual.
 
-{@html svg['flames']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['flames']}
+</Center>
 
 ## Goo
 
@@ -128,7 +136,9 @@ It doesn't take much to embellish the visual. Consider the simple cauldron, for 
 
 And the concoction becomes much more believable.
 
-{@html svg['goo']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['goo']}
+</Center>
 
 You can't see inside, but you can almost believe the exquisite elixir is going to reach the surface and escape the setting. Especially with such kindling.
 
@@ -168,12 +178,16 @@ Multiple use elements.
 
 Positioned and scaled to your heart's content.
 
-{@html svg['bubbles']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['bubbles']}
+</Center>
 
 ## Spoon
 
 One last detail before we dive in the entertaining realm of cascading stylesheets. Add a line just behind the cauldron.
 
-{@html svg['scene']}
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['scene']}
+</Center>
 
 And the scene is set. After all, it would be irresponsible to leave the preparation unattended.
