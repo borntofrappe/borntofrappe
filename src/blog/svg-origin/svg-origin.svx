@@ -5,10 +5,10 @@ date: 2023-03-10 19:08:12
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
+	import Center from '$lib/components/blog/Center.svelte';
 
-    import svg from './svg.js';
-    import Ray from './Ray.svelte';
+	import svg from './svg.js';
+	import Ray from './Ray.svelte';
 </script>
 
 As I find myself often pointing to [a previous article](/svg-transform) illustrating the topic of SVG transformations I decided to rehearse the concept of origin within the `<svg>` element. From the top. Left.
@@ -29,11 +29,11 @@ The first two numbers describe the origin of the SVG canvas, x and y. The latter
 	{@html svg['viewBox']}
 </Center>
 
-SVG transformations are relative to the point, but you have options to change the value. SVG 2 introduces the [`transform-origin`](https://drafts.csswg.org/css-transforms/#transform-origin-property) attribute, but [pending wider support](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), your safest best is manual, and relies on the `transform` attribute instead.
+SVG transformations are relative to the point, but you have options to change the value. SVG 2 offers the [`transform-origin`](https://drafts.csswg.org/css-transforms/#transform-origin-property) attribute, but [pending wider support](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), your safest best is manual, and relies on the `transform` attribute instead.
 
 ## transform
 
-Add a group element with to translate the nested visuals.
+Add a group element to translate the nested visuals.
 
 ```html
 <svg viewBox="0 0 100 100">
@@ -57,7 +57,7 @@ As an example, draw a line 30 units up, always within the boundaries of the grou
 </g>
 ```
 
-If you were to then rotate the shape before-hand, the line would rotate releative to the fresh origin.
+If you were to then rotate the shape, the line would rotate relative to the fresh origin.
 
 ```html
 <g transform="translate(50 80)">
@@ -67,15 +67,15 @@ If you were to then rotate the shape before-hand, the line would rotate releativ
 </g>
 ```
 
-Care to guess how the line is going to be drawn? The question may be too easy  the straight segment is only angled 40 degrees clockwise  so let me pose a more challenging quandary. Care to guess the new origin?
+Care to guess how the line is going to be drawn? The question may be too easy — the straight segment is only angled 40 degrees clockwise — so let me pose a more challenging quandary. Care to guess the new origin?
 
 <Center element="figure" maxInlineSize="22rem">
 	{@html svg['rotate']}
 </Center>
 
-The position is the same. And without the surrounding visuals it would seem the origin was left untouched. However, the origin has changed, in angle instead of place. Every element nested within the group is rotated with the line.
+The position is the same. And without the surrounding visuals it would seem the origin was left untouched. However, the origin has changed, in angle instead of place. Every element nested within the group is rotated as the line.
 
-What if you wanted to draw a circle at the very end of the line? You don't need to revisit the Pythagorean theorem to find the answer. As the rotation is apllied _to every element_, it is enough to position the circle 30 units up.
+What if you wanted to draw a circle at the very end of the line? You don't need to revisit the Pythagorean theorem to find the answer. As the rotation is applied _to every element_, it is enough to position the circle 30 units up.
 
 ```html
 <g transform="rotate(40)">
@@ -130,7 +130,7 @@ And the line is angled further down.
 	{@html svg['rotate-further']}
 </Center>
 
-With a negative value you can even force the segment back to its most upright configuration  rotate the group by the opposite of the previous, inherited, rotation.
+With a negative value you can even force the segment back to its most upright version — rotate the group by the opposite of the previous, inherited, angle.
 
 ```html
 <g transform="rotate(40)">
@@ -148,7 +148,7 @@ Double the value and the line even moves in the opposite direction.
 	{@html svg['rotate-opposite']}
 </Center>
 
-Trivial? Perhaps. However, by repeating the exercise, by breaking down the steps in details, it should be clearer as to how the concept of origin works in SVG.
+Trivial? Perhaps. However, by repeating the exercise, by breaking down the steps in detail, it should be clearer as to how the concept of origin works in SVG.
 
 And on second thought, there might be more to the visual. Perhaps a way to celebrate the comeback of a remarkable video game after 12 long years?
 
