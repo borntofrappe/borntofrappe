@@ -1,7 +1,7 @@
 ---
 title: Something is brewing
 description: Draw and animate vector graphics to create a charming loader.
-date: 2023-03-10 10:54:48
+date: 2023-03-11 11:54:48
 ---
 
 <script>
@@ -133,7 +133,7 @@ How much to angle, how much to scale down each additional pair is a matter of ta
 
 ### Goo
 
-It doesn't take much to embellish the visual. Consider the simple cauldron, for instance. Add colorful lines on the right end — these are `<path>` elements with a noticeable, yellow-ish stroke
+It doesn't take much to embellish the visual. Consider the stylized cauldron, for instance. Add colorful lines on the right end — these are `<path>` elements with a noticeable, yellow-ish stroke
 
 And the concoction becomes much more believable.
 
@@ -263,3 +263,72 @@ A subtle effect with hopefully grander consequences.
 <Center element="figure" maxInlineSize="30rem">
     <Scene animations={['flicker']} transition={false} />
 </Center>
+
+<!--
+### Float
+
+The translate function is more than enough to move the bubbles vertically. The effect is simple, but becomes much more impressive with a bit of trickery. Since SVG elements are drawn in sequence, with later shapes above previous one, add the bubbldes _before_ the cauldron.
+
+```html
+<svg>
+	...bubbles
+	...cauldron set
+</svg>
+```
+
+Translate the shapes in the bottom half, in the same area covered by the large container and the circles disappear from sight.
+
+```html
+<g>
+	<use class="float" transform="translate(0 20)" href="#bubble">
+</g>
+```
+
+All you need in CSS is to then move the bubbles back in the original position.
+
+```css
+.float {
+	animation: float 10s;
+}
+
+@keyframes float {
+	to {
+		transform: translateY(0px);
+	}
+}
+```
+
+Beyond the duration and easing functions you can refine the effect adding a delay.
+
+<Center element="figure" maxInlineSize="30rem">
+    <Scene animations={['flicker', 'float']} transition={false} />
+</Center>
+
+### Stir
+
+```html
+<path d="M 0 0 v -30" />
+```
+
+```css
+.stir {
+	transform: rotate(-35deg);
+	animation: stir 6s;
+}
+@keyframes stir {
+	50% {
+		transform: rotate(35deg);
+	}
+}
+```
+
+<Center element="figure" maxInlineSize="30rem">
+    <Scene animations={['flicker', 'float', 'stir']} transition={false} />
+</Center>
+
+## Finishing touches
+
+<Center element="figure" maxInlineSize="30rem">
+    <Scene  />
+</Center>
+-->
