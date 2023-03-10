@@ -2,7 +2,7 @@
 	export let animations = ['flicker', 'float', 'stir'];
 	export let transition = true;
 
-	const id = `scene-${animations.join('-')}`;
+	const id = `scene-${animations.join('-')}${transition ? '' : '-overflow'}`;
 
 	let light = false;
 </script>
@@ -37,8 +37,9 @@
 	<g transform="translate(10 -16)">
 		<g
 			class:float={animations.includes('float')}
-			style="animation-delay: 3s;"
-			transform="translate(0 26)"
+			style={animations.includes('float')
+				? 'transform: translate(0, 26px); animation-delay: 3s;'
+				: ''}
 		>
 			<use href="#{id}-bubble" />
 		</g>
@@ -46,22 +47,27 @@
 	<g transform="translate(-3 -10)">
 		<g
 			class:float={animations.includes('float')}
-			style="animation-delay: 1s;"
-			transform="translate(0 20)"
+			style={animations.includes('float')
+				? 'transform: translate(0, 20px); animation-delay: 1s;'
+				: ''}
 		>
 			<use transform="scale(0.8)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(-12 -20)">
-		<g class:float={animations.includes('float')} transform="translate(0 30)">
+		<g
+			class:float={animations.includes('float')}
+			style={animations.includes('float') ? 'transform: translate(0, 30px);' : ''}
+		>
 			<use transform="scale(0.6)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(2 -20)">
 		<g
 			class:float={animations.includes('float')}
-			style="animation-delay: 5s;"
-			transform="translate(0 35)"
+			style={animations.includes('float')
+				? 'transform: translate(0, 35px); animation-delay: 5s;'
+				: ''}
 		>
 			<use transform="scale(0.7)" href="#{id}-bubble" />
 		</g>
@@ -115,16 +121,16 @@
 
 	.flicker {
 		transform: scale(0.7);
-		animation: flicker infinite 6s paused cubic-bezier(0.45, 0, 0.55, 1);
+		animation: flicker infinite 6s cubic-bezier(0.45, 0, 0.55, 1) paused;
 	}
 
 	.float {
-		animation: float infinite 10s paused cubic-bezier(0.33, 1, 0.68, 1);
+		animation: float infinite 6s cubic-bezier(0.45, 0, 0.55, 1) paused;
 	}
 
 	.stir {
 		transform: rotate(-32deg);
-		animation: stir infinite 6s paused cubic-bezier(0.65, 0, 0.35, 1);
+		animation: stir infinite 6s cubic-bezier(0.65, 0, 0.35, 1) paused;
 	}
 
 	.light .flicker,
