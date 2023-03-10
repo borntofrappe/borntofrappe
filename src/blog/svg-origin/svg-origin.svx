@@ -1,0 +1,7 @@
+---
+title: SVG origin
+description: Practice with SVG transformation to better understand the concept of origin
+date: 2023-03-10 19:08:12
+---
+
+As I find myself often pointing to [a previous article](/svg-transform) illustrating the topic of SVG transformations I decided to rehearse the concept of origin within the `<svg>` element. From the top. Left.
