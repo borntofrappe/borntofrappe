@@ -1,5 +1,6 @@
 export default {
 	viewBox: `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g>
 		<circle r="4" fill="none" stroke="currentColor" stroke-dasharray="1.5 2" />
 		<path
@@ -21,6 +22,7 @@ export default {
 	</g>
 </svg>`,
 	translate: `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g transform="translate(50 80)">
 		<g>
 			<circle r="4" fill="none" stroke="currentColor" stroke-dasharray="1.5 2" />
@@ -44,6 +46,7 @@ export default {
 	</g>
 </svg>`,
 	rotate: `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g transform="translate(50 80)">
 		<g transform="rotate(40)">
 			<g>
@@ -70,6 +73,7 @@ export default {
 	</g>
 </svg>`,
 	circle: `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g transform="translate(50 80)">
 		<g transform="rotate(40)">
 			<g>
@@ -97,6 +101,7 @@ export default {
 	</g>
 </svg>`,
 	'rotate-further': `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g transform="translate(50 80)">
 		<g transform="rotate(40)">
 			<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
@@ -130,6 +135,7 @@ export default {
 	</g>
 </svg>`,
 	'rotate-opposite': `<svg style="display: block;" viewBox="0 0 100 100">
+	<rect x="0.375" y="0.375" width="99.25" height="99.25" fill="none" stroke="currentColor" stroke-width="0.75" />
 	<g transform="translate(50 80)">
 		<g transform="rotate(40)">
 			<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
