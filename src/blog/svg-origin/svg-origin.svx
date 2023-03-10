@@ -116,11 +116,11 @@ Then draw the line.
 
 Rotate the innermost space.
 
-```
+```html
 <g transform="translate(0 -30)">
-<g transform="rotate(20)">
-<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
-</g>
+	<g transform="rotate(20)">
+		<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+	</g>
 </g>
 ```
 
