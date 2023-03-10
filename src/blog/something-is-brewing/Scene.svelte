@@ -14,7 +14,7 @@
 
 <svg class:light viewBox="-40 -25 80 70">
 	<defs>
-		<g class:flicker={animations.includes('flicker')} id="{id}-flame">
+		<g id="{id}-flame">
 			<g stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path
 					fill="#f04545"
@@ -85,18 +85,26 @@
 		<g fill="none" stroke="#edb927" stroke-linecap="round">
 			<path d="M -4 0 h 16" stroke-width="5" />
 			<g stroke-width="4">
-				<path class:goo={transition} d="M 0 0 v 7" />
-				<path class:goo={transition} d="M 5 0 v 10" />
-				<path class:goo={transition} d="M 10 0 v 6" />
+				<path class:overflow={transition} d="M 0 0 v 7" />
+				<path class:overflow={transition} d="M 5 0 v 10" />
+				<path class:overflow={transition} d="M 10 0 v 6" />
 			</g>
 		</g>
 	</g>
 	<g transform="translate(0 42)">
-		<use transform="translate(8 0) rotate(28) scale(0.8)" href="#{id}-flame" />
-		<use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#{id}-flame" />
-		<use transform="translate(4 0) rotate(16) scale(0.9)" href="#{id}-flame" />
-		<use transform="translate(-4 0) rotate(-16) scale(0.9)" href="#{id}-flame" />
-		<use href="#{id}-flame" />
+		<g transform="translate(8 0) rotate(28) scale(0.8)">
+			<use class:flicker={animations.includes('flicker')} href="#{id}-flame" />
+		</g>
+		<g transform="translate(-8 0) rotate(-28) scale(0.8)">
+			<use class:flicker={animations.includes('flicker')} href="#{id}-flame" />
+		</g>
+		<g transform="translate(4 0) rotate(16) scale(0.9)">
+			<use class:flicker={animations.includes('flicker')} href="#{id}-flame" />
+		</g>
+		<g transform="translate(-4 0) rotate(-16) scale(0.9)">
+			<use class:flicker={animations.includes('flicker')} href="#{id}-flame" />
+		</g>
+		<use class:flicker={animations.includes('flicker')} href="#{id}-flame" />
 	</g>
 </svg>
 
@@ -115,6 +123,7 @@
 	}
 
 	.stir {
+		transform: rotate(-32deg);
 		animation: stir infinite 6s paused cubic-bezier(0.65, 0, 0.35, 1);
 	}
 
@@ -124,12 +133,12 @@
 		animation-play-state: running;
 	}
 
-	.goo {
-		transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	.overflow {
+		transition: transform 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 	}
 
-	.light .goo {
-		transition-delay: 0.2s;
+	.light .overflow {
+		transition-delay: 0.5s;
 		transform: scaleY(1.2);
 	}
 
@@ -147,7 +156,7 @@
 
 	@keyframes stir {
 		50% {
-			transform: rotate(30deg);
+			transform: rotate(32deg);
 		}
 	}
 </style>
