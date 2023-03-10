@@ -1,7 +1,7 @@
 ---
 title: Something is brewing
 description: Draw and animate vector graphics to create a charming loader.
-date: 2023-03-09 21:54:02
+date: 2023-03-10 10:54:48
 ---
 
 <script>
@@ -29,7 +29,7 @@ A few elements allow to draw a convincing cauldron with just a few instructions.
 </g>
 ```
 
-Having the `rx` attribute exactly as half the smaller size, as half the height, means the ends are perfectly round. Past the rectangle, a path making justice to the rotund container with an overblown arc.
+Having the `rx` attribute exactly as half the smaller size, as half the height, means the ends are perfectly round. Past the rectangle, a path crafting the rotund container with an overblown arc.
 
 ```html
 <g fill="#2e2e2c">
@@ -38,7 +38,7 @@ Having the `rx` attribute exactly as half the smaller size, as half the height, 
 </g>
 ```
 
-Finally, two rounded lines protruding on either end to support the piece.
+Finally, two rounded lines protruding from either end to support the piece.
 
 ```html
 <g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
@@ -53,7 +53,7 @@ With the same color in the `fill` and `stroke` attributes the elements coalesce 
     {@html svg['cauldron']}
 </Center>
 
-## Flames
+### Flames
 
 The `<path>` element is once more equipped for the heat source. A couple of bezier curves, pointing upwards, work to create a single candle-like flame.
 
@@ -61,7 +61,7 @@ The `<path>` element is once more equipped for the heat source. A couple of bezi
 <path fill="#f04545" d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5" />
 ```
 
-To detail the piece you can add another, smaller visual right on top. Another set of curves shining brightly in the heart of the larger whole. Here you can pick and choose a `d` attribute with smaller values. Or, use the very same string and scale the result.
+To detail the visual we want to add another, smaller shape right on top. Another set of curves shining brightly in the heart of the larger whole. Here you can pick and choose a `d` attribute with smaller values. Or, use the very same string and scale the result down.
 
 ```html
 <!-- ...path -->
@@ -131,7 +131,7 @@ How much to angle, how much to scale down each additional pair is a matter of ta
     {@html svg['flames']}
 </Center>
 
-## Goo
+### Goo
 
 It doesn't take much to embellish the visual. Consider the simple cauldron, for instance. Add colorful lines on the right end — these are `<path>` elements with a noticeable, yellow-ish stroke
 
@@ -143,7 +143,7 @@ And the concoction becomes much more believable.
 
 You can't see inside, but you can almost believe the exquisite elixir is going to reach the surface and escape the setting. Especially with such kindling.
 
-## Bubbles
+### Bubbles
 
 Let's exaggerate further. Reaching the boiling point it is only natural to spot a few bubbles, and a perfect opportunity to rehearse the workflow of the flames. One circle element works as a base.
 
@@ -183,7 +183,7 @@ Positioned and scaled to your heart's content.
     {@html svg['bubbles']}
 </Center>
 
-## Spoon
+### Spoon
 
 One last detail before we dive in the entertaining realm of cascading stylesheets. Add a line just behind the cauldron.
 
@@ -231,7 +231,7 @@ This works swimmingly for the central flame, but for the neighboring copies you 
 </g>
 ```
 
-I'll refer you to [a previous article](/svg-transform) for a more detailed explanation of the concept. There is a simpler way, however, at least for the current project. Add the class _on the definition_ itself.
+I'll refer you to [a previous article](/svg-transform) for a more detailed explanation of the concept. In essence, you would need to apply a transformation beforehand, so that you scale the flame as you resized the first `<path>` to draw the brighter body, from the bottom. That being said, and at least for the current current project, there is a better way. Add the class _on the definition_ itself.
 
 ```html
 <defs>
@@ -246,6 +246,11 @@ If you are satisfied changing every instance in the same manner, you can then mo
 Easing functions, durations. Even the structure of the keyframes is ground for exploration. For the possibly simplest change restore the size to the original measure.
 
 ```css
+.flicker {
+	transform: scale(0.7);
+	animation: flicker 6s;
+}
+
 @keyframes flicker {
 	50% {
 		transform: scale(1);
@@ -256,5 +261,5 @@ Easing functions, durations. Even the structure of the keyframes is ground for e
 A subtle effect with hopefully grander consequences.
 
 <Center element="figure" maxInlineSize="30rem">
-    <Scene animations={['flicker']} />
+    <Scene animations={['flicker']} transition={false} />
 </Center>
