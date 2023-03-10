@@ -1,6 +1,6 @@
 ---
 title: SVG origin
-description: Practice with SVG transformation to better understand the concept of origin
+description: Practice with SVG transformation to better understand the concept of origin.
 date: 2023-03-10 19:08:12
 ---
 
@@ -25,7 +25,9 @@ An `<svg>` element begins with a `viewBox` attribute. You may not set it explici
 
 The first two numbers describe the origin of the SVG canvas, x and y. The latter pair details the dimensions, width and height. With this in mind, the origin starts out in the precise (x, y) coordinate.
 
-{@html svg['viewBox']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['viewBox']}
+</Center>
 
 SVG transformations are relative to the point, but you have options to change the value. SVG 2 introduces the [`transform-origin`](https://drafts.csswg.org/css-transforms/#transform-origin-property) attribute, but [pending wider support](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), your safest best is manual, and relies on the `transform` attribute instead.
 
@@ -43,7 +45,9 @@ Add a group element with to translate the nested visuals.
 
 Within the set of `<g>` tags the origin moves to the new position. Every element is drawn from the updated coordinates. Every transformation is relative to the different (x, y) set.
 
-{@html svg['translate']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['translate']}
+</Center>
 
 As an example, draw a line 30 units up, always within the boundaries of the group element.
 
@@ -65,7 +69,9 @@ If you were to then rotate the shape before-hand, the line would rotate releativ
 
 Care to guess how the line is going to be drawn? The question may be too easy  the straight segment is only angled 40 degrees clockwise  so let me pose a more challenging quandary. Care to guess the new origin?
 
-{@html svg['rotate']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['rotate']}
+</Center>
 
 The position is the same. And without the surrounding visuals it would seem the origin was left untouched. However, the origin has changed, in angle instead of place. Every element nested within the group is rotated with the line.
 
@@ -87,7 +93,9 @@ The markup requires a bit of a mental shift, but perhaps it helps to remove the 
 
 In this sense it is almost obvious to find the circle right above the line. No matter the angle.
 
-{@html svg['circle']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['circle']}
+</Center>
 
 Of course you can stretch the concept even further. What if you wanted to draw another segment from the end of the line _and_ have it rotate relative to its very origin? Add another group element to first translate the turning point.
 
@@ -118,7 +126,9 @@ Rotate the innermost space.
 
 And the line is angled further down.
 
-{@html svg['rotate-further']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['rotate-further']}
+</Center>
 
 With a negative value you can even force the segment back to its most upright configuration  rotate the group by the opposite of the previous, inherited, rotation.
 
@@ -134,10 +144,14 @@ With a negative value you can even force the segment back to its most upright co
 
 Double the value and the line even moves in the opposite direction.
 
-{@html svg['rotate-opposite']}
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['rotate-opposite']}
+</Center>
 
 Trivial? Perhaps. However, by repeating the exercise, by breaking down the steps in details, it should be clearer as to how the concept of origin works in SVG.
 
 And on second thought, there might be more to the visual. Perhaps a way to celebrate the comeback of a remarkable video game after 12 long years?
 
-<Ray />
+<Center element="figure" maxInlineSize="28rem">
+	<Ray />
+</Center>
