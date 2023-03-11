@@ -9,7 +9,7 @@ date: 2023-03-13 9:24:48
 
     import svg from './svg.js';
     import Scene from './Scene.svelte';
-    import Tram from './Tram.svelte';
+    import TransformRotate from './TransformRotate.svelte';
 </script>
 
 The problem: you need a visual to pair the assuredly brief, but inevitable delay a page needs to load.
@@ -332,7 +332,7 @@ A horizontal translation would be enough, but another function offers a differen
 If you then rotate the element, the line rotates around the specific turning point. Much similarly to a windshield wiper.
 
 <Center maxInlineSize="20rem">
-	<Tram />
+	<TransformRotate />
 </Center>
 
 You do need to position the path first, so that it is visible behind the cauldron, but the result promises to be worth the effort.

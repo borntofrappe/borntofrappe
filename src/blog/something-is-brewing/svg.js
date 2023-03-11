@@ -68,15 +68,15 @@ export default {
 			</g>
 		</g>
 	</defs>
-	<g fill="#2e2e2c">
-		<rect x="-20" width="40" height="8" rx="4" />
-		<path d="M -16 4 a 22 22 0 1 0 32 0" />
-	</g>
-	<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
-		<path d="M -5 20 l -10 20" />
-		<path d="M 5 20 l 10 20" />
-	</g>
 	<g>
+		<g fill="#2e2e2c">
+			<rect x="-20" width="40" height="8" rx="4" />
+			<path d="M -16 4 a 22 22 0 1 0 32 0" />
+		</g>
+		<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
+			<path d="M -5 20 l -10 20" />
+			<path d="M 5 20 l 10 20" />
+		</g>
 		<g fill="none" stroke="#edb927" stroke-linecap="round">
 			<path d="M -4 0 h 16" stroke-width="5" />
 			<g stroke-width="4">
@@ -86,6 +86,7 @@ export default {
 			</g>
 		</g>
 	</g>
+
 	<g transform="translate(0 42)">
 		<use transform="translate(8 0) rotate(28) scale(0.8)" href="#goo-flame" />
 		<use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#goo-flame" />
@@ -119,16 +120,16 @@ export default {
 	<use transform="translate(10 -16)" href="#bubbles-bubble" />
 	<use transform="translate(-2 -10) scale(0.8)" href="#bubbles-bubble" />
 	<use transform="translate(-12 -20) scale(0.6)" href="#bubbles-bubble" />
-	<g fill="#2e2e2c">
-		<rect x="-20" width="40" height="8" rx="4" />
-		<path d="M -16 4 a 22 22 0 1 0 32 0" />
-	</g>
-	<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
-		<path d="M -5 20 l -10 20" />
-		<path d="M 5 20 l 10 20" />
-	</g>
 
 	<g>
+		<g fill="#2e2e2c">
+			<rect x="-20" width="40" height="8" rx="4" />
+			<path d="M -16 4 a 22 22 0 1 0 32 0" />
+		</g>
+		<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
+			<path d="M -5 20 l -10 20" />
+			<path d="M 5 20 l 10 20" />
+		</g>
 		<g fill="none" stroke="#edb927" stroke-linecap="round">
 			<path d="M -4 0 h 16" stroke-width="5" />
 			<g stroke-width="4">
@@ -138,6 +139,7 @@ export default {
 			</g>
 		</g>
 	</g>
+
 	<g transform="translate(0 42)">
 		<use transform="translate(8 0) rotate(28) scale(0.8)" href="#bubbles-flame" />
 		<use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#bubbles-flame" />
@@ -171,21 +173,22 @@ export default {
 	<use transform="translate(10 -16)" href="#scene-bubble" />
 	<use transform="translate(-2 -10) scale(0.8)" href="#scene-bubble" />
 	<use transform="translate(-12 -20) scale(0.6)" href="#scene-bubble" />
+
 	<g transform="translate(0 22)">
 		<g transform="rotate(-30)">
 			<path d="M 0 0 v -30" fill="none" stroke="#e18434" stroke-width="5" stroke-linecap="round" />
 		</g>
 	</g>
 
-	<g fill="#2e2e2c">
-		<rect x="-20" width="40" height="8" rx="4" />
-		<path d="M -16 4 a 22 22 0 1 0 32 0" />
-	</g>
-	<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
-		<path d="M -5 20 l -10 20" />
-		<path d="M 5 20 l 10 20" />
-	</g>
 	<g>
+		<g fill="#2e2e2c">
+			<rect x="-20" width="40" height="8" rx="4" />
+			<path d="M -16 4 a 22 22 0 1 0 32 0" />
+		</g>
+		<g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
+			<path d="M -5 20 l -10 20" />
+			<path d="M 5 20 l 10 20" />
+		</g>
 		<g fill="none" stroke="#edb927" stroke-linecap="round">
 			<path d="M -4 0 h 16" stroke-width="5" />
 			<g stroke-width="4">
@@ -195,6 +198,7 @@ export default {
 			</g>
 		</g>
 	</g>
+
 	<g transform="translate(0 42)">
 		<use transform="translate(8 0) rotate(28) scale(0.8)" href="#scene-flame" />
 		<use transform="translate(-8 0) rotate(-28) scale(0.8)" href="#scene-flame" />
