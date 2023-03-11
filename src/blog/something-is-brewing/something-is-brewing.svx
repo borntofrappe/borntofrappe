@@ -9,6 +9,7 @@ date: 2023-03-13 9:24:48
 
     import svg from './svg.js';
     import Scene from './Scene.svelte';
+    import Tram from './Tram.svelte';
 </script>
 
 The problem: you need a visual to pair the assuredly brief, but inevitable delay a page needs to load.
@@ -260,75 +261,118 @@ Easing functions, durations. Even the structure of the keyframes is ground for e
 
 A subtle effect with hopefully grander consequences.
 
-<Center element="figure" maxInlineSize="30rem">
+<Center maxInlineSize="30rem">
     <Scene animations={['flicker']} transition={false} />
 </Center>
 
-<!--
 ### Float
 
-The translate function is more than enough to move the bubbles vertically. The effect is simple, but becomes much more impressive with a bit of trickery. Since SVG elements are drawn in sequence, with later shapes above previous one, add the bubbldes _before_ the cauldron.
+Growing with more impressive changes, we are going to move the bubbles with the translate function. Here we'd like to change the instances directly, so first place the circles with a prior group element.
 
 ```html
-<svg>
-	...bubbles
-	...cauldron set
-</svg>
-```
-
-Translate the shapes in the bottom half, in the same area covered by the large container and the circles disappear from sight.
-
-```html
-<g>
-	<use class="float" transform="translate(0 20)" href="#bubble">
+<g transform="translate">
+	<use class="float" href="#bubble" />
 </g>
 ```
 
-All you need in CSS is to then move the bubbles back in the original position.
+The effect is then simple, but remarkable as you consider the source order. The moment you draw the shapes _before_ the cauldron.
+
+```html
+<svg>
+	<!-- ...bubbles -->
+	<!-- ...cauldron set -->
+</svg>
+```
+
+A translation moves the circles down, but also behind. Out of sight.
 
 ```css
 .float {
+	transform: translate(0px, 30px);
+}
+```
+
+Animating the value back to the first coordinate works to then have the bubbles surface back up.
+
+```css
+.float {
+	transform: translate(0px, 30px);
 	animation: float 10s;
 }
 
 @keyframes float {
 	to {
-		transform: translateY(0px);
+		transform: translate(0px, 0px);
 	}
 }
 ```
 
-Beyond the duration and easing functions you can refine the effect adding a delay.
+Here you can continue the exploration of CSS properties. Again different durations, specific timing functions, but also custom delays on the individual use elements.
 
-<Center element="figure" maxInlineSize="30rem">
-    <Scene animations={['flicker', 'float']} transition={false} />
+```html
+<use class="float" style="animation-delay: 3s;" href="#bubble" />
+```
+
+Small tweaks which add variety and are bound to delight the eye.
+
+<Center maxInlineSize="30rem">
+	<Scene animations={['flicker', 'float']} transition={false} />
 </Center>
 
 ### Stir
+
+The wooden utensil patiently waits on the left side of the cauldron, but we finally want to move the spoon to and fro, from side to side.
+
+A horizontal translation would be enough, but another function offers a different twist. Say you draw the line not as a diagonal, but a vertical segment. From thet bottom.
 
 ```html
 <path d="M 0 0 v -30" />
 ```
 
+If you then rotate the element, the line rotates around the specific turning point. Much similarly to a windshield wiper.
+
+<Center maxInlineSize="20rem">
+	<Tram />
+</Center>
+
+You do need to position the path first, so that it is visible behind the cauldron, but the result promises to be worth the effort.
+
+```html
+<g transform="translate(...)">
+	<path class="stir" d="M 0 0 v -30" />
+</g>
+```
+
+Target the element with your dearest selector and apply the rotation with a most daring animation.
+
 ```css
 .stir {
-	transform: rotate(-35deg);
-	animation: stir 6s;
+	transform: rotate(-30deg);
+	animation: stir 6s infinite;
 }
 @keyframes stir {
 	50% {
-		transform: rotate(35deg);
+		transform: rotate(30deg);
 	}
 }
 ```
 
-<Center element="figure" maxInlineSize="30rem">
-    <Scene animations={['flicker', 'float', 'stir']} transition={false} />
+Scale, translate, rotate. I introduced the functions one at a time, but as a final playground you can try and mix them up. You could rotate with a smaller angle _and_ translate the element at the same time.
+
+<Center maxInlineSize="30rem">
+	<Scene animations={['flicker', 'float', 'stir']} transition={false} />
 </Center>
 
-## Finishing touches
+## Wrapping up
 
-<Center element="figure" maxInlineSize="30rem">
-    <Scene  />
+A handful of SVG elements. A handful of CSS properties. Hopefully you are able to get past my verbose ramblings and see how much is possible with the small shopping list.
+
+You now have a sweet loading animation, and unlike most recipes, a considerable amount of freedom to achieve much more.
+
+Thicker gooey lines? Nice catch, I almost forgot the feature. Let me add it on as a one time change, as the animation begins.
+
+<Center maxInlineSize="30rem">
+	<Scene />
 </Center>
--->
+
+Once again a small change with a disproportionate result, completing the loader with a certain, oozing flair.
