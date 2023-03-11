@@ -112,7 +112,7 @@
 	}
 
 	.stir {
-		transform: rotate(-32deg);
+		transform: translate(0px, 0px) rotate(-30deg);
 		animation: stir infinite 6s cubic-bezier(0.65, 0, 0.35, 1) paused;
 	}
 
@@ -145,7 +145,7 @@
 
 	@keyframes stir {
 		50% {
-			transform: rotate(32deg);
+			transform: translate(5px, 1px) rotate(20deg);
 		}
 	}
 </style>
