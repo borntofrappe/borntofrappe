@@ -35,40 +35,22 @@
 		</g>
 	</defs>
 	<g transform="translate(10 -16)">
-		<g
-			class:float={animations.includes('float')}
-			style={animations.includes('float')
-				? 'transform: translate(0, 26px); animation-delay: 3s;'
-				: ''}
-		>
+		<g class:float={animations.includes('float')} style="animation-delay: 3s;">
 			<use href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(-3 -10)">
-		<g
-			class:float={animations.includes('float')}
-			style={animations.includes('float')
-				? 'transform: translate(0, 20px); animation-delay: 1s;'
-				: ''}
-		>
+		<g class:float={animations.includes('float')} style="animation-delay: 1s;">
 			<use transform="scale(0.8)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(-12 -20)">
-		<g
-			class:float={animations.includes('float')}
-			style={animations.includes('float') ? 'transform: translate(0, 30px);' : ''}
-		>
+		<g class:float={animations.includes('float')}>
 			<use transform="scale(0.6)" href="#{id}-bubble" />
 		</g>
 	</g>
 	<g transform="translate(2 -20)">
-		<g
-			class:float={animations.includes('float')}
-			style={animations.includes('float')
-				? 'transform: translate(0, 35px); animation-delay: 5s;'
-				: ''}
-		>
+		<g class:float={animations.includes('float')} style="animation-delay: 5s;">
 			<use transform="scale(0.7)" href="#{id}-bubble" />
 		</g>
 	</g>
@@ -125,6 +107,7 @@
 	}
 
 	.float {
+		transform: translate(0px, 30px);
 		animation: float infinite 6s cubic-bezier(0.45, 0, 0.55, 1) paused;
 	}
 
@@ -144,7 +127,7 @@
 	}
 
 	.light .overflow {
-		transition-delay: 0.5s;
+		transition-delay: 0.45s;
 		transform: scaleY(1.2);
 	}
 
@@ -156,7 +139,7 @@
 
 	@keyframes float {
 		to {
-			transform: translateY(0px);
+			transform: translate(0px, 0px);
 		}
 	}
 
