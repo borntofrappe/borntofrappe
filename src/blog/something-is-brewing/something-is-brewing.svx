@@ -1,6 +1,6 @@
 ---
 title: Something is brewing
-description: Draw and animate vector graphics to realize a smooth loader.
+description: Create a stylish loader with animated vector graphics and a considerably flexible recipe.
 date: 2023-03-13 9:21:28
 ---
 
@@ -89,7 +89,7 @@ And making sure to use the same color as the `fill` attribute, you eventually br
     {@html svg['flame']}
 </Center>
 
-No matter how beautiful, a solitary flame is not enogh for our cooking needs, though. You can actually give an `id` attribute to the shape and repeat it right afterwards, but for the sake of clarity, define a group in a <defs> element.
+No matter how beautiful, a solitary flame is not enough for our cooking needs, though. You can actually give an `id` attribute to the shape and repeat it right afterwards, but for the sake of clarity, define a group in a <defs> element.
 
 ```html
 <defs>
@@ -204,7 +204,7 @@ As in the kitchen, it is helpful to have a plan. The goal is to update the visua
 
 Thanks to CSS specificity, the transformation takes precedence on whichever value is set in the markup.
 
-Back to the plan. It would be most charming to have the flames grow in size and perhaps even flicker. On top of this animation we can then treat ourself. Thicker gooey lines, bubbles actually floating, the spoon helpfully stirring the mixture/potion. You might be suprised how much is possible with just a few functions.
+Back to the plan. It would be most charming to have the flames grow in size and perhaps even flicker. On top of this animation we can then treat ourselves. Thicker gooey lines, bubbles actually floating, the spoon helpfully stirring the mixture/potion. You might be surprised how much is possible with just a few functions.
 
 ### Flicker
 
@@ -232,7 +232,7 @@ This works swimmingly for the central flame, but for the neighboring copies you 
 
 For a more detailed explanation, I'll gladly refer you to a couple of articles devoted to [SVG transformations](/svg-transform) and the concept of [origin](/svg-origin), but in a few words, you would need to apply a transformation beforehand so that you scale the flame from the bottom. Exactly as you first resized the `<path>` to draw the brighter body.
 
-However, and at least for the current current project, there is a better way. Add the class _on the definition_ itself.
+However, and at least for the current project, there is a better way. Add the class _on the definition_ itself.
 
 ```html
 <defs>
@@ -325,7 +325,7 @@ As the elements reach the top the animation starts immediately and from the bott
 
 The wooden utensil patiently waits on the left side of the cauldron, but we finally want to move the spoon to and fro, from side to side.
 
-A horizontal translation would be enough, but another function offers a different twist. Say you draw the line not as a diagonal, but a vertical segment. From thet bottom.
+A horizontal translation would be enough, but another function offers a different twist. Say you draw the line not as a diagonal, but a vertical segment. From the bottom.
 
 ```html
 <path d="M 0 0 v -30" />
