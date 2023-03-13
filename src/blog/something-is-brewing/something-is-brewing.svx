@@ -1,7 +1,7 @@
 ---
 title: Something is brewing
-description: Draw and animate vector graphics to create a charming loader.
-date: 2023-03-13 9:24:48
+description: Draw and animate vector graphics to realize a smooth loader.
+date: 2023-03-13 9:21:28
 ---
 
 <script>
@@ -39,7 +39,7 @@ Having the `rx` attribute exactly as half the smaller size, as half the height, 
 </g>
 ```
 
-Finally, two rounded lines protruding from the sides to support the piece.
+Finally, two rounded lines extending from the sides to support the piece.
 
 ```html
 <g fill="none" stroke="#2e2e2c" stroke-width="6" stroke-linecap="round">
@@ -62,7 +62,7 @@ The `<path>` element is once more equipped for the heat source. A couple of bezi
 <path fill="#f04545" d="M 0 0 c -3.5 0 -4.5 -4.5 0 -6.5 4.5 1.5 3.5 6.5 0 6.5" />
 ```
 
-To detail the visual you can add another, smaller shape right on top. Another set of curves shining brightly in the heart of the larger whole. Here you can carefully manicure a `d` attribute with smaller values. Or, use the very same string and scale the result down.
+To detail the visual you can add another, smaller shape right on top. Another set of curves shining in the heart of the larger whole. Here you can carefully manicure a `d` attribute with smaller values. Or, use the very same string and scale the result down.
 
 ```html
 <!-- ...path -->
@@ -83,7 +83,7 @@ Add a soft stroke around both shapes.
 </g>
 ```
 
-And making sure to use the same color as the `fill` attribute, you eventually light the fire.
+And making sure to use the same color as the `fill` attribute, you eventually breathe life into the fire.
 
 <Center element="figure" maxInlineSize="28rem">
     {@html svg['flame']}
@@ -111,7 +111,7 @@ The order here matters. To have the outer shapes behind include the copies _befo
 <use href="#flame" />
 ```
 
-Aside from the source order, SVG transformations help tremendously. Not only you are able to place the flames wherever needed. Through the rotate function you can spread the fire outwards.
+Beside the source order, SVG transformations help tremendously. Not only you are able to place the flames wherever needed. Through the rotate function you can spread the fire outwards.
 
 ```html
 <use transform="translate(8 0) rotate(28)" href="#flame" />
@@ -134,7 +134,7 @@ How much to angle, how much to scale down each additional pair is a matter of ta
 
 ### Goo
 
-Even with a limited number of SVG elements, it doesn't take much to embellish the visual. Consider the stylized cauldron, for instance. Add a few colorful lines on the right end — perhaps through `<path>` elements with a noticeable, yellow-ish stroke — and the concoction becomes much more believable.
+Even with a limited number of SVG elements, it doesn't take much to embellish the visual. Consider the stylized cauldron. Add a few colorful lines on the right end — perhaps through `<path>` elements with a noticeable, yellow-ish stroke — and the concoction becomes much more believable.
 
 <Center element="figure" maxInlineSize="28rem">
     {@html svg['goo']}
@@ -150,7 +150,7 @@ Let's exaggerate further. Reaching the boiling point it is only natural to spot 
 <circle r="4" fill="#f6c159" />
 ```
 
-A smaller, lighter circle slightly off center details the solid shape with a tentative light source.
+A smaller, lighter circle slightly off center promises a light source from above.
 
 <!-- prettier-ignore -->
 ```html
@@ -194,7 +194,7 @@ And the scene is set. After all, it would be irresponsible to leave the preparat
 
 ## CSS properties
 
-As in the kitchen, it is helpful to have a plan. The goal here is to update the visual in a few ways, but always through the `transform` attribute. Or, to be technical, through the `transform` property.
+As in the kitchen, it is helpful to have a plan. The goal is to update the visual in a few ways, but always through the `transform` attribute. Or, to be technical, through the `transform` property.
 
 ```css
 .element {
@@ -202,9 +202,9 @@ As in the kitchen, it is helpful to have a plan. The goal here is to update the 
 }
 ```
 
-In the stylesheet, thanks to the concept of specificity, the transformation takes precedence on whichever value is set in the markup.
+Thanks to CSS specificity, the transformation takes precedence on whichever value is set in the markup.
 
-Back to the plan. It would be most charming to have the flames grow in size and perhaps even flicker. On top of this animation we can then treat ourself. Thicker gooey lines, bubbles actually floating, the spoon helpfully stirring the mixture. You might be suprised how much is possible with just a few functions.
+Back to the plan. It would be most charming to have the flames grow in size and perhaps even flicker. On top of this animation we can then treat ourself. Thicker gooey lines, bubbles actually floating, the spoon helpfully stirring the mixture/potion. You might be suprised how much is possible with just a few functions.
 
 ### Flicker
 
@@ -222,7 +222,7 @@ Resize the copy with the appropriate function.
 }
 ```
 
-This works swimmingly for the central flame, but for the neighboring copies you would need to meddle with the SVG syntax to update the origin point, the point from where the animation takes place.
+This works swimmingly for the central flame, but for the neighboring copies you would need to meddle with the SVG syntax to update the origin point. The point from where the animation takes place.
 
 ```html
 <g transform="translate(8 0) rotate(28) scale(0.8)">
@@ -244,7 +244,7 @@ However, and at least for the current current project, there is a better way. Ad
 
 And accepting you are going to change every instance in the same manner, you can then move on to the actual animation.
 
-Easing functions, durations. Even the structure of the keyframes is ground for exploration. For the possibly simplest change restore the size to the original measure.
+Easing functions, durations. Even the structure of the keyframes is ground for exploration. For the possibly simplest change scale the flame down and restore the size to the original measure.
 
 ```css
 .flicker {
@@ -270,7 +270,7 @@ A subtle effect with hopefully grander consequences.
 Growing with more impressive changes, we are going to move the bubbles with the translate function. Here we'd like to change the instances directly, so first place the circles with a prior group element.
 
 ```html
-<g transform="translate">
+<g transform="translate(10 - 16)">
 	<use class="float" href="#bubble" />
 </g>
 ```
@@ -297,7 +297,7 @@ Animating the value back to the first coordinate works to then have the bubbles 
 ```css
 .float {
 	transform: translate(0px, 30px);
-	animation: float 10s;
+	animation: float 10s infinite;
 }
 
 @keyframes float {
@@ -313,11 +313,13 @@ Here you can continue the exploration of CSS properties. Again different duratio
 <use class="float" style="animation-delay: 3s;" href="#bubble" />
 ```
 
-Small tweaks which add variety and are bound to delight the eye.
+Little tweaks which add variety and are bound to delight the eye.
 
 <Center maxInlineSize="30rem">
 	<Scene animations={['flicker', 'float']} transition={false} />
 </Center>
+
+As the elements reach the top the animation starts immediately and from the bottom. It's only natural, however, to see the bubbles pop out of existence.
 
 ### Stir
 
@@ -329,7 +331,7 @@ A horizontal translation would be enough, but another function offers a differen
 <path d="M 0 0 v -30" />
 ```
 
-If you then rotate the element, the line rotates around the specific turning point. Much similarly to a windshield wiper.
+If you then rotate the element, the line turns around the specific hinge. Much similarly to a windshield wiper.
 
 <Center maxInlineSize="20rem">
 	<TransformRotate />
@@ -357,7 +359,7 @@ Target the element with your dearest selector and apply the rotation with a most
 }
 ```
 
-Scale, translate, rotate. I introduced the functions one at a time, but as a final playground you can try and mix them up. You could rotate with a smaller angle _and_ translate the element at the same time.
+Translate, rotate. I mentioned the functions one at a time, but as a final playground you can try and mix them up. You could translate the spoon _and_ tip it at the same time, perhaps with a smaller angle. Enough to stir character in the animation.
 
 <Center maxInlineSize="30rem">
 	<Scene animations={['flicker', 'float', 'stir']} transition={false} />
@@ -365,14 +367,14 @@ Scale, translate, rotate. I introduced the functions one at a time, but as a fin
 
 ## Wrapping up
 
-A handful of SVG elements. A handful of CSS properties. Hopefully you are able to get past my verbose ramblings and see how much is possible with the small shopping list.
+A handful of SVG elements. A handful of CSS properties. Hopefully you are able to get past the verbose ramblings and see how much is possible even with a short shopping list.
 
 You now have a sweet loading animation, and unlike most recipes, a considerable amount of freedom to achieve much more.
 
-Thicker gooey lines? Nice catch, I almost forgot the feature. Let me add it on as a one time change, as the animation begins.
+Starting with the gooey lines. I almost forgot to have them grow in size, so let me add the feature without much explanation. A one time change as the animation begins.
 
 <Center maxInlineSize="30rem">
 	<Scene />
 </Center>
 
-Once again a small change with a disproportionate result, completing the loader with a certain, oozing flair.
+Once again a small update with a disproportionate result, completing a loader which oozes in flair.
