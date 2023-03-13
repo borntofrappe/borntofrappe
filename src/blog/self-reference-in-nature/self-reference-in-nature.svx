@@ -1,0 +1,11 @@
+---
+title: Self reference in nature
+description: Consider SVG syntax and enough Svelte features to draw with recursive beauty
+date: 2023-03-14 9:21:32
+---
+
+<script>
+	import Tree from './Tree.svelte';
+</script>
+
+<Tree />
