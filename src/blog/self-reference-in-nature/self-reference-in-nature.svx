@@ -65,7 +65,7 @@ And in each group, repeat the same structure.
 
 I wasn't expecting much, but knowing the flexible and forgiving nature of HTML, the hope was the window would try and draw the branch, at least a handful of times before calling it quits.
 
-Unfortunately, but reasonably, the specification for SVG is firm on the subject. [Circular references](https://svgwg.org/svg2-draft/linking.html#TermCircularReference) are dropped, ignored, throwing the possibly ill-conceived idea out of the window.
+Unfortunately, but reasonably, the specification for SVG is firm on the subject. [Circular references](https://svgwg.org/svg2-draft/linking.html#TermCircularReference) are dropped, ignored, throwing the possibly ill-conceived concept out of the window.
 
 You could use the path itself, repeating the line at different angles. And ultimately, this is exactly the markup structure you would find on the page.
 
@@ -83,7 +83,7 @@ To handle more than one level, however, and save a few keystrokes at least in th
 
 ## Components
 
-Let's start with the canvas, a structure we are definitely not going to repeat over and over.
+Start with the canvas, a structure you are definitely not going to repeat over and over.
 
 ```html
 <svg viewBox="0 0 80 50">
@@ -91,7 +91,7 @@ Let's start with the canvas, a structure we are definitely not going to repeat o
 </svg>
 ```
 
-To materialize the line set a visible stroke. Thick enough to be visible, but not enough to overwhelm the length of the line.
+To materialize the line, set a visible stroke. Thick enough to be visible, but not enough to overwhelm the length of the line.
 
 ```html
 <g stroke="#8a6f68" stroke-width="1" stroke-linecap="square">
@@ -99,7 +99,7 @@ To materialize the line set a visible stroke. Thick enough to be visible, but no
 </g>
 ```
 
-`stroke-linecap` helps to have the multiple lines tightly connected. Past this preference, include a reference to component to-be.
+`stroke-linecap` helps to have the multiple lines tightly connected. Past this preference, include a reference to a component to-be.
 
 ```svelte
 <g stroke="#8a6f68" stroke-width="1" stroke-linecap="square">
@@ -164,7 +164,7 @@ And this is where Svelte truly shines. Not only you are able to handle the logic
 </g>
 ```
 
-Just be sure to reduce the variable to mercifully end the loop.
+Just be sure to update the variable to mercifully end the loop.
 
 <Center element="figure" maxInlineSize="32rem">
 	<Canvas animate={false} />
@@ -173,7 +173,7 @@ Just be sure to reduce the variable to mercifully end the loop.
 
 ## Animation
 
-The static picture is already impressive, but as you draw the branches with HTML you are able to animate the elements with CSS. What is more, through the mighty `<path>` element you can actually show the line in increments.
+The static picture is already impressive, but as you create the branches with HTML you are able to animate the elements with CSS. What is more, through the mighty `<path>` element you can actually draw the line in increments.
 
 Start by specifying the length of the segment with the `pathLength` attribute.
 
@@ -191,7 +191,7 @@ With the fixed measure the idea is to add dashes of the same length.
 }
 ```
 
-Through the `stroke-dasharray` property you instruct the browser to draw a dash of length 1, then a gap of with the same value. You could be explicit and detail the pair.
+Through the `stroke-dasharray` property you instruct the browser to draw a dash of length 1, then a gap with the same value. You could be explicit and detail the pair.
 
 ```css
 .line {
@@ -208,7 +208,7 @@ But the two snippets are ultimately equivalent. You draw dashes separated by a s
 }
 ```
 
-The dash disappears in favour of the void space. It's actually quite the nifty operation.
+The dash disappears in favor of the void space. It's actually quite the nifty operation.
 
 <Center maxInlineSize="30rem">
 	<Dashoffset offset={0.2} />
@@ -236,7 +236,7 @@ From 1 to 0.
 }
 ```
 
-Hold your excitment for a brief moment, however. With the current setup the lines are going to be drawn, but all at the same time. To really sell the effect we'd like to animate the elements in sequence.
+Hold your excitement for a brief moment, however. With the current setup the lines are going to be drawn, but all at the same time. To really sell the effect we'd like to animate the elements in sequence.
 
 In the branch component add a property to consider the level of the different instances.
 
@@ -260,7 +260,7 @@ You are then able to set the growing delay.
 <path class="line" style="animation-delay: {generation}s" ... />
 ```
 
-Note that the value is included as a number, and the accompanied by the`s` character to describe the unit of measure — seconds. It's not a typo to have the letter outside of the curly braces. Just a happy accident.
+Note that the value is included as a number, and is then accompanied by the`s` character to describe the unit of measure — seconds. It's not a typo to have the letter outside of the curly braces. Just a happy accident.
 
 Since the animation lasts exactly 1 second you can get by using the counter as-is, but to be more flexible you could use a separate variable for the precise duration.
 
@@ -280,9 +280,9 @@ At the end of the day, what matters the most is that the warm season is almost u
 	<Canvas />
 </Center>
 
-Small note: to give you the opportunity of playing the animation at your leisure I had to recreate the effect with JavaScript and the Web animation API. If you code along, however, CSS is able to complete the effect all of its own.
+Small note: to give you the opportunity of playing the animation at your leisure I had to recreate the effect with JavaScript and the Web animation API. If you code along, however, CSS is able to complete the effect all on its own.
 
-Additional, Svelte-related note: you may want to add the CSS in the scope of the parent component, the one where you add the `<svg>` element. To then apply the properties instruct Svelte to keep the values through the `:global` helper.
+Additional, Svelte-related note: you may want to add the CSS in the scope of the parent component, the one where you specify the `<svg>` element. To then apply the animation, instruct Svelte to keep the properties through the `:global` helper.
 
 ```svelte
 <style>
@@ -310,7 +310,7 @@ If the width of the stroke allows it, we are more than glad to repeat ourselves.
 {/if}
 ```
 
-At this juncture we can draw something else, like a fitting, blooming flower. I'll let you design your own blossom, but for my version, I took inspiration from a [previous article](/a-star-is-born) devoted to a cherished celestial body.
+At this juncture we can draw something else, like a fitting, blooming flower. I'll let you design your own blossom, but for my version, I took inspiration from a [previous article](/a-star-is-born) dedicated to a cherished celestial body.
 
 <Center maxInlineSize="32rem">
 	<Tree />
