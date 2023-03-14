@@ -256,8 +256,12 @@ And making sure to increment the value with each generation.
 
 You are then able to set the growing delay.
 
+<!-- prettier-ignore -->
 ```svelte
-<path class="line" style="animation-delay: {generation}s" ... />
+<path 
+	class="line" 
+	style="animation-delay: {generation}s" 
+	... />
 ```
 
 Note that the value is included as a number, and is then accompanied by the`s` character to describe the unit of measure — seconds. It's not a typo to have the letter outside of the curly braces. Just a happy accident.
