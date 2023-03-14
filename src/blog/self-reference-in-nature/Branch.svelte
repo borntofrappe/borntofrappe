@@ -25,7 +25,7 @@
 		</g>
 	{:else}
 		<g transform="translate(0 -{length})">
-			<use class="blossom" data-generation={generation} href="#tree-blossom" />
+			<use class="blossom" data-generation={generation} href="#blossom" />
 		</g>
 	{/if}
 </g>
