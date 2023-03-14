@@ -68,15 +68,13 @@
 	button {
 		display: block;
 		margin-inline: auto;
-		background: none;
-		border: none;
-		border-radius: 2rem;
-		color: inherit;
-		font-weight: 700;
-		padding: 0.25rem 0.75rem;
 		color: hsl(0, 0%, 92%);
 		background: hsl(0, 0%, 10%);
-		transition: transform 0.1s ease-in-out;
+		border: none;
+		border-radius: 2rem;
+		font-weight: 700;
+		padding: 0.25rem 0.75rem;
+		transition: transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	button:active {

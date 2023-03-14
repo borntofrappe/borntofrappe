@@ -45,18 +45,16 @@
 	}
 
 	button {
-		background: none;
-		border: none;
-		border-radius: 2rem;
-		color: inherit;
-		font-weight: 700;
-		padding: 0.25rem 1rem;
-		color: hsl(0, 0%, 92%);
-		background: hsl(0, 0%, 10%);
 		display: flex;
 		align-items: center;
 		gap: 0 0.5rem;
-		transition: transform 0.1s ease-in-out;
+		color: hsl(0, 0%, 92%);
+		background: hsl(0, 0%, 10%);
+		border: none;
+		border-radius: 2rem;
+		font-weight: 700;
+		padding: 0.25rem 1rem;
+		transition: transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	button:active {
