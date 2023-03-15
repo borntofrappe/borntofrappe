@@ -65,7 +65,10 @@ export default {
 		<path d="M 1 1 h 4 M 2 2 h 4 M 3 3 h 4 M 3 4 h 4 M 3 5 h 4 M 2 6 h 4 M 1 7 h 4" />
 	</g>
 </svg>`,
-	boy: `<svg style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;" viewBox="0 -0.5 16 16">
+	boy: `<svg
+	style="display: block; --c0: hsl(0, 0%, 14%); --c1: hsl(123, 30%, 47%); --c2: hsl(60, 33%, 99%);"
+	viewBox="0 -0.5 16 16"
+>
 	<title>Boy</title>
 	<g fill="none" stroke="currentColor">
 		<g stroke="var(--c0, hsl(0, 0%, 10%))">
@@ -209,13 +212,17 @@ export default {
 		</symbol>
 	</defs>
 </svg>`,
-	boys: `<svg viewBox="0 0 2 1" style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;" shape-rendering="crispEdges">
+	boys: `<svg
+	viewBox="0 0 2 1"
+	style="display: block; --c0: hsl(0, 0%, 14%); --c1: hsl(123, 30%, 47%); --c2: hsl(60, 33%, 99%);"
+	shape-rendering="crispEdges"
+>
 	<title>Boys</title>
-<use href="#d0" width="1" height="1" />
-<use href="#d1" x="1" width="1" height="1" />
+	<use href="#d0" width="1" height="1" />
+	<use href="#d1" x="1" width="1" height="1" />
 </svg>`,
 	step: `<svg
-	style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;"
+	style="display: block; --c0: hsl(0, 0%, 14%); --c1: hsl(123, 30%, 47%); --c2: hsl(60, 33%, 99%);"
 	shape-rendering="crispEdges"
 	viewBox="0 0 1 1"
 >
@@ -232,7 +239,7 @@ export default {
 	</use>
 </svg>`,
 	walk: `<svg
-	style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;"
+	style="display: block; --c0: hsl(0, 0%, 14%); --c1: hsl(123, 30%, 47%); --c2: hsl(60, 33%, 99%);"
 	shape-rendering="crispEdges"
 	viewBox="0 0 2 2"
 >

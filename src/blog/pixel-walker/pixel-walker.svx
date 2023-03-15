@@ -176,9 +176,9 @@ And experiment with different styles by changing the properties.
 
 ```css
 svg {
-	--c0: #242424;
-	--c1: #549b57;
-	--c2: #fdfdfb;
+	--c0: hsl(0, 0%, 14%);
+	--c1: hsl(123, 30%, 47%);
+	--c2: hsl(60, 33%, 99%);
 }
 ```
 
