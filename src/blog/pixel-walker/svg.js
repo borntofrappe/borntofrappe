@@ -51,9 +51,11 @@ export default {
 	offset: `<svg style="display: block;" viewBox="0 0 8 8">
 	<title>Off by 0.5</title>
 	<g stroke="currentColor">
-	<g stroke-width="0.025">
-		<path d="M 0 0 h 8 M 0 1 h 8 M 0 2 h 8 M 0 3 h 8 M 0 4 h 8 M 0 5 h 8 M 0 6 h 8 M 0 7 h 8 M 0 8 h 8" />
-	</g>
+		<g stroke-width="0.025">
+			<path
+				d="M 0 0 h 8 M 0 1 h 8 M 0 2 h 8 M 0 3 h 8 M 0 4 h 8 M 0 5 h 8 M 0 6 h 8 M 0 7 h 8 M 0 8 h 8"
+			/>
+		</g>
 		<path d="M 1 1 h 4 M 2 2 h 4 M 3 3 h 4" />
 	</g>
 </svg>`,
@@ -63,7 +65,27 @@ export default {
 		<path d="M 1 1 h 4 M 2 2 h 4 M 3 3 h 4 M 3 4 h 4 M 3 5 h 4 M 2 6 h 4 M 1 7 h 4" />
 	</g>
 </svg>`,
-	defs: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;" viewBox="0 0 16 16">
+	boy: `<svg style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;" viewBox="0 -0.5 16 16">
+	<title>Boy</title>
+	<g fill="none" stroke="currentColor">
+		<g stroke="var(--c0, hsl(0, 0%, 10%))">
+			<path
+				d="M 5 0 h 6 M 4 1 h 9 M 4 2 h 10 M 3 3 h 10 M 3 4 h 12 M 4 5 h 10 M 4 6 h 9 M 1 7 h 14 M 0 8 h 16 M 1 9 h 15 M 1 10 h 15 M 1 11 h 15 M 2 12 h 14 M 3 13 h 12 M 5 14 h 9 M 4 15 h 8"
+			/>
+		</g>
+		<g stroke="var(--c1, hsl(0, 0%, 48%))">
+			<path
+				d="M 5 5 h 2 M 8 5 h 2 M 1 8 h 4 M 5 9 h 1 M 13 9 h 2 M 5 10 h 2 M 9 10 h 2 M 14 10 h 1 M 3 11 h 1 M 6 11 h 5 M 14 11 h 1 M 14 12 h 1 M 5 13 h 2 M 8 13 h 3 M 13 13 h 1 M 8 14 h 2"
+			/>
+		</g>
+		<g stroke="var(--c2, hsl(0, 0%, 92%))">
+			<path
+				d="M 5 3 h 1 M 5 4 h 1 M 8 4 h 1 M 7 6 h 1 M 5 7 h 1 M 7 7 h 2 M 10 7 h 1 M 6 8 h 4 M 3 9 h 1 M 11 9 h 2 M 2 10 h 2 M 11 10 h 1 M 2 11 h 1 M 4 11 h 1 M 11 11 h 1 M 3 12 h 2 M 11 12 h 1 M 12 13 h 1"
+			/>
+		</g>
+	</g>
+</svg>`,
+	spritesheet: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;" viewBox="0 0 16 16">
 	<defs>
 		<symbol viewBox="0 -0.5 16 16" id="d0">
 			<g fill="none" stroke="currentColor">
@@ -187,32 +209,17 @@ export default {
 		</symbol>
 	</defs>
 </svg>`,
-	boy: `<svg style="display: block;" viewBox="0 -0.5 16 16">
-	<title>Boy</title>
-	<g fill="none" stroke="currentColor">
-		<g stroke="var(--c0, hsl(0, 0%, 10%))">
-			<path
-				d="M 5 0 h 6 M 4 1 h 9 M 4 2 h 10 M 3 3 h 10 M 3 4 h 12 M 4 5 h 10 M 4 6 h 9 M 1 7 h 14 M 0 8 h 16 M 1 9 h 15 M 1 10 h 15 M 1 11 h 15 M 2 12 h 14 M 3 13 h 12 M 5 14 h 9 M 4 15 h 8"
-			/>
-		</g>
-		<g stroke="var(--c1, hsl(0, 0%, 48%))">
-			<path
-				d="M 5 5 h 2 M 8 5 h 2 M 1 8 h 4 M 5 9 h 1 M 13 9 h 2 M 5 10 h 2 M 9 10 h 2 M 14 10 h 1 M 3 11 h 1 M 6 11 h 5 M 14 11 h 1 M 14 12 h 1 M 5 13 h 2 M 8 13 h 3 M 13 13 h 1 M 8 14 h 2"
-			/>
-		</g>
-		<g stroke="var(--c2, hsl(0, 0%, 92%))">
-			<path
-				d="M 5 3 h 1 M 5 4 h 1 M 8 4 h 1 M 7 6 h 1 M 5 7 h 1 M 7 7 h 2 M 10 7 h 1 M 6 8 h 4 M 3 9 h 1 M 11 9 h 2 M 2 10 h 2 M 11 10 h 1 M 2 11 h 1 M 4 11 h 1 M 11 11 h 1 M 3 12 h 2 M 11 12 h 1 M 12 13 h 1"
-			/>
-		</g>
-	</g>
+	boys: `<svg viewBox="0 0 2 1" style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;" shape-rendering="crispEdges">
+	<title>Boys</title>
+<use href="#d0" width="1" height="1" />
+<use href="#d1" x="1" width="1" height="1" />
 </svg>`,
 	step: `<svg
 	style="display: block; --c0: #242424; --c1: #549b57; --c2: #fdfdfb;"
 	shape-rendering="crispEdges"
 	viewBox="0 0 1 1"
 >
-	<title>Colorful boy</title>
+	<title>Stepping boy</title>
 	<use style="cursor: pointer;" href="#d0" width="1" height="1">
 		<animate
 			attributeName="href"
