@@ -33,7 +33,7 @@ In the `<svg>` element, the most immediate way to draw pixelated pictures goes t
 <rect x="2" y="2" width="3" height="1" />
 ```
 
-In the moment you have neighboring cells you can save a few keystrokes and stretch the shape horizontally, but that's it.
+The moment you have neighboring cells you can save a few keystrokes and stretch the shape horizontally, but that's it.
 
 <Center element="figure" maxInlineSize="16rem">
     {@html svg['sun']}
@@ -41,7 +41,7 @@ In the moment you have neighboring cells you can save a few keystrokes and stret
 
 ## Pixels
 
-It is certainly a hassle to repeat the `<rect>` element. And it may not seem like it, but the duplication of the the width and height attributes adds up. To try and solve the issue, define a square early.
+It is certainly a hassle to repeat the `<rect>` element. And it may not seem like it, but the duplication of the width and height attributes adds up. To try and reduce the issue, define a square early.
 
 ```html
 <defs>
@@ -88,7 +88,7 @@ In the `d`attribute the instructions are then imperative and clear: start at a p
 <path d="M 1 1" />
 ```
 
-Follow up with an horizontal rule.
+Follow up with a horizontal rule.
 
 ```html
 <path d="M 1 1 h 4" />
@@ -106,7 +106,7 @@ If you are maniacally attached to brevity you can remove most whitespace. You ju
 <path d="M1 1h4M2 2h4M3 3h4" />
 ```
 
-With or without the change, however the solution puts the previous sections to shame.
+With or without the change, however, the solution puts the previous sections to shame.
 
 There is one, outstanding issue, evident as you sketch out the rows.
 
@@ -114,11 +114,13 @@ There is one, outstanding issue, evident as you sketch out the rows.
     {@html svg['offset']}
 </Center>
 
-As the stroke of `<path>` elements is drawn from the center, the line is drawn at the precise y offset, but half above, half below. To compensate for the visual mishap, knock the line down by exactly half the stroke's width.
+As the stroke of `<path>` elements is drawn from the center, the line is drawn at the precise y offset, but half above, half below.
+
+To compensate, knock the line down by exactly half the stroke's width.
 
 ```html
 <g transform="translate(0 0.5)">
-	<!-- ... -->
+	<!-- ...path -->
 </g>
 ```
 
@@ -127,7 +129,7 @@ If you fancy the `viewBox` attribute you can change the origin of the entire vis
 ```html
 <svg viewBox="0 -0.5 8 8">
 	<g stroke="currentColor">
-		<!-- ... -->
+		<!-- ...path -->
 	</g>
 </svg>
 ```
@@ -150,7 +152,7 @@ Drawing more complex sprites is a matter of expanding the `viewBox`, and indubit
 </svg>
 ```
 
-For more elaborate compositions, then, you can multiply the effort with additional `<path>` elements.
+For more elaborate compositions, then, multiply the effort with additional `<path>` elements.
 
 ```html
 <g stroke="hsl(0, 0%, 10%)">
@@ -165,10 +167,10 @@ HSL helps to distinguish between layers just by changing the lightness value, bu
 
 ```html
 <g stroke="var(--c0, hsl(0, 0%, 10%))">
-	<!-- ... -->
+	<!-- ...path -->
 </g>
 <g stroke="var(--c1, hsl(0, 0%, 50%))">
-	<!-- ... -->
+	<!-- ...path -->
 </g>
 ```
 
@@ -192,40 +194,42 @@ Care to guess the drawing I've conjured up this time with the three colored laye
 
 It should be evident I developed a preference for `<path>` elements, and that I've also indulged in another role-playing game from the Game Boy era, tracing the roots of the Sword of Mana series.
 
-Parenthesis aside, the detour on`<use>` elements comes back to help to create a full-blown spritesheet.
+Parenthesis aside, the detour on `<use>` elements comes back to help to create a full-blown spritesheet.
 
 {@html svg['spritesheet']}
 
-Consider the sprites as independent units. With this in mind you can encapsulate the drawing logic in `<symbol>` elements.
+Consider the sprites as independent units. With this in mind, encapsulate the drawing logic in `<symbol>` elements.
 
 ```html
 <symbol id="d0" viewBox="0 -0.5 16 16">
-	<g>
-		<!-- ... -->
-	</g>
+	<!-- ...gs -->
 </symbol>
 <symbol id="d1" viewBox="0 -0.5 16 16">
-	<g>
-		<!-- ... -->
-	</g>
+	<!-- ...gs -->
 </symbol>
 ```
 
-A symbol works similarly to the larger SVG in that you are able to define a canvas through the `viewBox` attribute; in between the tags, the elements will follow the specific dimensions.
+A symbol works similarly to the larger SVG in that you are able to define a canvas through the `viewBox` attribute; in between the tags, the elements will follow the specific rule.
 
-Unlike the wrapping `<svg>`, however, nothing is rendered on screen. Note even outside of the safe, defining boundaries of the `<defs>` element.
+Unlike the wrapping `<svg>`, however, nothing is rendered on screen. Not even outside of the safe, defining boundaries of the `<defs>` element.
 
 ```html
 <svg>
 	<symbol id="d0" viewBox="0 -0.5 16 16">
-		<!-- ...  -->
+		<!-- ...gs  -->
 	</symbol>
 </svg>
 ```
 
-To show the sprite back, as thinly referenced as it may have been, point to the symbol through the `<use>` element.
+To show the sprite back, as thinly referenced as it may have been, point to the sprite through the `<use>` element.
 
-Not only you are able to inject the sprite in one concise declaration. Through the `width`and `height` attributes you can resize the image to fit in the scope of the SVG at hand. For the sake of argument, you can set up a canvas as an exceedingly small rectangle.
+```html
+<use href="#d0" />
+```
+
+Not only you are able to inject the symbol in one concise declaration. Through the `width`and `height` attributes you can resize the image to fit in the scope of the SVG at hand.
+
+For the sake of argument, you can set up a canvas as an exceedingly small rectangle.
 
 ```html
 <svg viewBox="0 0 2 1">
@@ -233,7 +237,7 @@ Not only you are able to inject the sprite in one concise declaration. Through t
 </svg>
 ```
 
-And show two sprites with `<use>` elements 1 unit wide and tall.
+And show multiple sprites with `<use>` elements 1 unit wide and tall.
 
 ```html
 <svg viewBox="0 0 2 1">
@@ -251,9 +255,9 @@ Enough to prove you did take the time to draw a slightly different version to cr
 
 ## Animation
 
-It would be cruel to mention movement and not explore with an animation or two.
+It would be cruel to mention movement and not explore the concept with an animation or two.
 
-A first animation suggests a much better way to show the two sprites, in succession instead of side by side.
+A first animation leads to a much better way to show the two sprites, in succession instead of side by side.
 
 Resize the canvas to show just one character.
 
@@ -264,7 +268,7 @@ Resize the canvas to show just one character.
 </svg>
 ```
 
-Instead of closing the `<use>` element immediately, add an instance of the `<animate>` element.
+Instead of closing the `<use>` element immediately, add the `<animate>` element between the opening and closing tags.
 
 ```html
 <use href="#d0" width="1" height="1">
@@ -272,26 +276,40 @@ Instead of closing the `<use>` element immediately, add an instance of the `<ani
 </use>
 ```
 
-With Smil animation and the element in particular you are able to update whichever attribute, including the reference to the spritesheet.
+With SMIL animation and the element in particular you are able to update whichever attribute, including the reference to the spritesheet.
 
+<!-- prettier-ignore -->
 ```html
 <use href="#d0" width="1" height="1">
-	<animate attributeName="href" values="#d0; #d1" dur="0.4s" />
+	<animate 
+		attributeName="href" 
+		values="#d0; #d1" 
+		dur="0.4s"
+	/>
 </use>
 ```
 
-The `calcMode` attribute technically describes how to interpolate between values, and if you were to be particular you could detail a value of `discrete`.
+Theoretically, the `calcMode` attribute describes how to interpolate between values, and if you were to be particular you could detail a value of `discrete`.
 
+<!-- prettier-ignore -->
 ```html
-<animate ... calcMode="discrete" />
+<animate 
+	... 
+	calcMode="discrete"
+/>
 ```
 
 But the browser is smart enough to move from reference to reference without much second guessing.
 
 All you need is to admire the result. And if you really wanted to show off, add the `begin` attribute so that the animation plays out whenever you choose to tap the screen.
 
+<!-- prettier-ignore -->
 ```html
-<animate ... begin="click" restart="whenNotActive" />
+<animate 
+	... 
+	begin="click" 
+	restart="whenNotActive"
+/>
 ```
 
 Do you have enough energy left for a few steps?
@@ -300,11 +318,11 @@ Do you have enough energy left for a few steps?
     {@html svg['step']}
 </Center>
 
-There are different ways to animate sprites, and you could achieve a similar effect just with CSS. You could keep the two sprites side by side, only show one and rapidly move between the images. As flipping through multiple pages.
+There are different ways to animate sprites, and you could achieve a similar effect just with CSS. You could keep the two sprites side by side, only show one and rapidly move between the images. As if flipping through barely different pages.
 
-That being said, SMIL animation has plenty more to offer, includind synchronized animations. The hope is that this final demo will convince you to that.
+That being said, SMIL animation has plenty more to offer, including synchronized animations. The hope is that this final demo will convince you of that.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="36rem">
     {@html svg['walk']}
 </Center>
 
