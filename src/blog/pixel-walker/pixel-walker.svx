@@ -3,3 +3,47 @@ title: Pixel walker
 description: SVG has a lot to offer, down to the smallest pixel.
 date: 2023-03-15 17:23:17
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+</script>
+
+{@html svg['defs']}
+
+## Rectangles
+
+<Center element="figure" maxInlineSize="16rem">
+    {@html svg['sun']}
+</Center>
+
+## Pixel
+
+<Center element="figure" maxInlineSize="16rem">
+    {@html svg['star']}
+</Center>
+
+## Paths
+
+<Center element="figure" maxInlineSize="16rem">
+    {@html svg['moon']}
+</Center>
+
+## Layers
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['boy']}
+</Center>
+
+## animate
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['step']}
+</Center>
+
+## animateTransform
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['walk']}
+</Center>
