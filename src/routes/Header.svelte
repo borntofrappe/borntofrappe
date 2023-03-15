@@ -1,5 +1,5 @@
 <script>
-	import AnimatedHeading from '$lib/components/AnimatedHeading.svelte';
+	import MainHeading from '$lib/components/MainHeading.svelte';
 	import Heading from '$lib/components/Heading.svelte';
 
 	import icons from '$lib/utils/icons.js';
@@ -16,7 +16,7 @@
 			max-inline-size: 34rem;
 		"
 		>
-			<AnimatedHeading level="h1" text="Hi there" />
+			<MainHeading level="h1" text="Hi there" />
 		</div>
 
 		<div class="float end" style="--shape-outside: circle();">
