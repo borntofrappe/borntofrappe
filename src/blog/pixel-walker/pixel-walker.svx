@@ -1,0 +1,5 @@
+---
+title: Pixel walker
+description: SVG has a lot to offer, down to the smallest pixel.
+date: 2023-03-15 17:23:17
+---
