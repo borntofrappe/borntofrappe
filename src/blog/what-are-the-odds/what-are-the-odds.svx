@@ -1,0 +1,7 @@
+---
+title: What are the odds?
+description: If you roll the dice you might be surprised to find that the result is not always four.
+date: 2023-03-17 20:39:21
+---
+
+In the context of a pixelated game I stumbled on a rather interesting challenge: how to simulate a roll of the dice in two dimensions. With SVG syntax. The solution I discovered may not be clever, but ingenious enough to be worth documenting. And certainly, beautiful enough to be worth an example or two.
