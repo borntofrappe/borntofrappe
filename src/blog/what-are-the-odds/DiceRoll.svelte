@@ -2,7 +2,7 @@
 	const id = Math.random().toString().slice(-4);
 
 	const value = `#dice-${Math.floor(Math.random() * 6) + 1}`;
-	$: values = [
+	const values = [
 		...Array(28)
 			.fill()
 			.map((_, i) => `#roll-${i + 1}`),
