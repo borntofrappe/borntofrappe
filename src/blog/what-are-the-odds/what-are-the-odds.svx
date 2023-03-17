@@ -4,4 +4,66 @@ description: If you roll the dice you might be surprised to find that the result
 date: 2023-03-17 20:39:21
 ---
 
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+    import DiceRoll from './DiceRoll.svelte';
+</script>
+
 In the context of a pixelated game I stumbled on a rather interesting challenge: how to simulate a roll of the dice in two dimensions. With SVG syntax. The solution I discovered may not be clever, but ingenious enough to be worth documenting. And certainly, beautiful enough to be worth an example or two.
+
+## Dice
+
+The first step is innocently time-consuming: designing the faces of a single die.
+
+<Center element="figure" maxInlineSize="38rem">
+    {@html svg['faces']}
+    <figcaption>The faces of a 16-bit die</figcaption>
+</Center>
+
+If you are interested in the code I'll refer you to [a previous article](/pixel-walker) exploring different ways to draw pixel art with SVG syntax. Briefly, each face is drawn with three `<path>` elements, filling the canvas in rows and columns. First a dark base, then the bright white face, finally the noticeable dots.
+
+You are going to show just one face at a time, and immediately find the critical issue. There is no concept of perspective when working with vector graphics. There is no counterpart to the `perspective` property from CSS.
+
+You can create the illusion of depth, as seen [in another puzzling project](/picross-projection), and if you were discouraged by the time it took to draw the first six sides, you may already cringe at the suggestion.
+
+There are no shortcuts about it, however, and this time the effort is really demanding: desining the sprites for a single, rolling die.
+
+How many? As many as you can tolerate, times the number of rolls you actually want to show.
+
+<Center element="figure" maxInlineSize="38rem">
+    {@html svg['sprites']}
+    <figcaption>The sprites of a rolling 16-bit die</figcaption>
+</Center>
+
+I ended up with 28, but you can spot a pattern in the shape, in the angle of the pretend cube. The biggest difference is marked by the number of points you see for a brief moment, zooming toward you before falling down, out of sight.
+
+## Roll
+
+You have six faces. You have plenty more sprites. Show these last rapidly, one after the other in quick succession and the dice is cast.
+
+Thanks to [SMIL animation](/bee-is-in-motion), you just need a tap.
+
+<Center maxInlineSize="20rem">
+    {@html svg['roll']}
+</Center>
+
+One, six, five, almost four? Do not worry, I haven't cheated you by skipping the last sprite. At least not yet. The die is about to show you the result, and it is at this instant where you play a trick.
+
+Past the last sprite pick a face from the original six-pack. At random.
+
+<Center maxInlineSize="20rem">
+    <DiceRoll />
+</Center>
+
+You may notice the sudden jump. You may notice the four dots suddenly swapped into place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
+
+Add an overlapping animation, however, and even if you know about the sleight of hands, you cannot help but excitedly roll a few of them. One of them might just be a four in the end.
+
+<div style="max-inline-size: 36rem; margin-inline: auto; display: flex; gap: 0.5rem; justify-content: center;">
+    <DiceRoll />
+    <DiceRoll />
+    <DiceRoll />
+    <DiceRoll />
+</div>
