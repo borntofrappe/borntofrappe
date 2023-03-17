@@ -62,7 +62,7 @@ Past the last sprite, pick a face from the original six-pack. At random.
 
 You may notice the sudden jump. You may notice the four dots suddenly swapped into place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
 
-Add an overlapping animation, however, and even if you know about the sleight of hands, you cannot help but excitedly roll a few of them. One of them might just be a four in the end.
+Have the die bounce, however, and even if you know about the sleight of hands, you cannot help but excitedly take a few rolls. Just this once, one of them might just be a four.
 
 <div style="max-inline-size: 38rem; margin-inline: auto; display: flex; gap: 0.5rem; justify-content: center;">
     <DiceRoll />
