@@ -8,10 +8,13 @@ date: 2023-03-17 20:39:21
     import Center from '$lib/components/blog/Center.svelte';
 
     import svg from './svg.js';
+    import Roll from './Roll.svelte';
     import DiceRoll from './DiceRoll.svelte';
 </script>
 
 In the context of a pixelated game I stumbled on a rather interesting challenge: how to simulate a roll of the dice in two dimensions. With SVG syntax. The solution I discovered may not be clever, but ingenious enough to be worth documenting. And certainly, beautiful enough to be worth an example or two.
+
+{@html svg['defs']}
 
 ## Dice
 
@@ -28,7 +31,7 @@ You are going to show just one face at a time, and immediately find the critical
 
 You can create the illusion of depth, as seen [in another puzzling project](/picross-projection), and if you were discouraged by the time it took to draw the first six sides, you may already cringe at the suggestion.
 
-There are no shortcuts about it, however, and this time the effort is really demanding: desining the sprites for a single, rolling die.
+There are no shortcuts about it, however, and this time the effort is really demanding: designing the sprites for a single, rolling die.
 
 How many? As many as you can tolerate, times the number of rolls you actually want to show.
 
@@ -51,17 +54,17 @@ Thanks to [SMIL animation](/bee-is-in-motion), you just need a tap.
 
 One, six, five, almost four? Do not worry, I haven't cheated you by skipping the last sprite. At least not yet. The die is about to show you the result, and it is at this instant where you play a trick.
 
-Past the last sprite pick a face from the original six-pack. At random.
+Past the last sprite, pick a face from the original six-pack. At random.
 
 <Center maxInlineSize="20rem">
-    <DiceRoll />
+    <Roll />
 </Center>
 
 You may notice the sudden jump. You may notice the four dots suddenly swapped into place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
 
 Add an overlapping animation, however, and even if you know about the sleight of hands, you cannot help but excitedly roll a few of them. One of them might just be a four in the end.
 
-<div style="max-inline-size: 36rem; margin-inline: auto; display: flex; gap: 0.5rem; justify-content: center;">
+<div style="max-inline-size: 38rem; margin-inline: auto; display: flex; gap: 0.5rem; justify-content: center;">
     <DiceRoll />
     <DiceRoll />
     <DiceRoll />
