@@ -360,8 +360,8 @@ export default {
 		</symbol>
 	</defs>
 </svg>`,
-	faces: `<svg viewBox="0 0 6 1">
-	<title>The faces of a six-sided die</title>
+	faces: `<svg style="display: block;" viewBox="0 0 6 1">
+	<title>The faces of a 16-bit die</title>
 	<use href="#dice-1" width="1" height="1" />
 	<use href="#dice-2" x="1" width="1" height="1" />
 	<use href="#dice-3" x="2" width="1" height="1" />
@@ -369,8 +369,8 @@ export default {
 	<use href="#dice-5" x="4" width="1" height="1" />
 	<use href="#dice-6" x="5" width="1" height="1" />
 </svg>`,
-	sprites: `<svg viewBox="0 0 7 4">
-	<title>The sprites of a rolling, six-sided die</title>
+	sprites: `<svg style="display: block;" viewBox="0 0 7 4">
+	<title>The sprites of a rolling 16-bit die</title>
 	<use href="#roll-1" width="1" height="1" />
 	<use href="#roll-2" x="1" width="1" height="1" />
 	<use href="#roll-3" x="2" width="1" height="1" />
@@ -400,7 +400,7 @@ export default {
 	<use href="#roll-27" x="5" y="3" width="1" height="1" />
 	<use href="#roll-28" x="6" y="3" width="1" height="1" />
 </svg>`,
-	roll: `<svg viewBox="0 0 1 1">
+	roll: `<svg style="display: block;" viewBox="0 0 1 1">
 	<use href="#roll-1" width="1" height="1">
 		<animate
 			attributeName="href"

@@ -1,7 +1,7 @@
 <script>
 	const id = Math.random().toString().slice(-4);
 
-	let value = `#dice-${Math.floor(Math.random() * 6) + 1}`;
+	const value = `#dice-${Math.floor(Math.random() * 6) + 1}`;
 	$: values = [
 		...Array(28)
 			.fill()
