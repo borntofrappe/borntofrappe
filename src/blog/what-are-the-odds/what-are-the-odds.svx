@@ -60,9 +60,9 @@ Past the last sprite, pick a face from the original six-pack. At random.
     <Roll />
 </Center>
 
-You may notice the sudden jump. You may notice the four dots suddenly swapped into place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
+You may notice the sudden jump. You may notice the four dots suddenly swapped out of place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
 
-Have the die bounce, however, and even if you know about the sleight of hands, you cannot help but excitedly take a few rolls. Just this once, one of them might just be a four.
+Have the die bounce, however, and even if you know about the sleight of hands, you cannot help but excitedly take a few rolls. Just once. One of them might just be a four.
 
 <div style="max-inline-size: 38rem; margin-inline: auto; display: flex; gap: 0.5rem; justify-content: center;">
     <DiceRoll />
