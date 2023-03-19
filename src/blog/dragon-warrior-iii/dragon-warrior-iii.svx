@@ -1,0 +1,5 @@
+---
+title: Dragon Warrior III
+description: A fitting conclusion to a proper trilogy.
+date: 2023-02-26 21:13:10
+---
