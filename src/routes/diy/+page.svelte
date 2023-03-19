@@ -1,5 +1,6 @@
 <script>
 	import site from '$lib/utils/site.js';
+	import Title from './Title.svelte';
 	const { title } = site;
 </script>
 
@@ -11,3 +12,18 @@
 	/>
 	<link rel="icon" href="/icons/diy.svg" type="image/svg+xml" />
 </svelte:head>
+
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
+	<defs>
+		<linearGradient id="linear-gradient-text" x1="0" x2="0" y1="0" y2="1">
+			<stop stop-color="#f1f5f8" offset="0.33" />
+			<stop stop-color="#dae2ec" offset="0.33" />
+			<stop stop-color="#dae2ec" offset="0.67" />
+			<stop stop-color="#bcccdc" offset="0.67" />
+		</linearGradient>
+	</defs>
+</svg>
+
+<svg viewBox="0 0 80 50">
+	<Title fill="url(#linear-gradient-text)">Do it yourself!</Title>
+</svg>
