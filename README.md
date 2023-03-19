@@ -2,32 +2,14 @@
 
 > Project restarted on January 10th 2023. At 10:02 PM. With SvelteKit 1.0.
 
-## routes
+Features **I need** to implement:
 
-- `/`: landing page
+- `/blog` route to list articles
 
-- `/[slug]`: blog post
+- blog section in landing page to short list articles
 
-- `/blog`: blog API
+Features I'd be most glad to have:
 
-- `/feed.xml`: Atom feed
+- `/diy` route to showcase SMIL animations
 
-- `/color-tiles`, `/minesweeper`, `/rainbow-sixteen`: showcase
-
-- `/mignon`: mascot
-
-- `/picross`: solved nonogram puzzles
-
-- `/tangram`: tangram shapes
-
-- `/today`: current day
-
-## wishlist
-
-- feature | blog index
-
-- route | `/blog` archive
-
-- route | `/puzzles`
-
-- route | `/smil`
+- `dragon-warrior-iii` article to conclude the dragon warrior trilogy <!-- deadline 2023-03-26 -->
