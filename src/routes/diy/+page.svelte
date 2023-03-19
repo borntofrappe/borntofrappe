@@ -1,5 +1,6 @@
 <script>
 	import site from '$lib/utils/site.js';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 	import Title from './Title.svelte';
 	const { title } = site;
 </script>
@@ -25,5 +26,10 @@
 </svg>
 
 <svg viewBox="0 0 80 50">
-	<Title fill="url(#linear-gradient-text)">Do it yourself!</Title>
+	<AnimatedTitle
+		fill="url(#linear-gradient-text)"
+		text="Do it yourself!"
+		begin="0.2s"
+		repeatCount="3"
+	/>
 </svg>
