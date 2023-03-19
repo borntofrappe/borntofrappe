@@ -1,7 +1,7 @@
 <script>
 	export let fontSize = 7;
-	export let fill = '#f1f5f8';
-	export let stroke = '#102a42';
+	export let fill = 'hsl(206, 33%, 96%)';
+	export let stroke = 'hsl(209, 61%, 16%)';
 
 	const strokeWidth = fontSize * 0.2;
 	const letterSpacing = fontSize * 0.1;
