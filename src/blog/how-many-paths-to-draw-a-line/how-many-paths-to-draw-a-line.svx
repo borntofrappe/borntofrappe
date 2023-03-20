@@ -4,4 +4,18 @@ description: Last time 120. The history of a beautifully animated silhouette. Wi
 date: 2023-03-20 18:27:30
 ---
 
-With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a few charming features floating at the entrance of a few shops, charming the windows of a few houses. Pin wheels, wind chimes, and a most delightful cardboard cutout spiraling with the wind.
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+</script>
+
+With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a few charming features floating at the entrance of a few shops, charming the windows of a few houses. Pin wheels, wind chimes, and a most delightful cardboard cutout spiraling with the wind. Much similar to the following vector graphic.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['silhouette']}
+</Center>
+
+In terms of SVG syntax all you need to draw the picture is a series of `<path>` elements — and enough patience to comprehend the `d` attribute to draw curves.
+
+The visual is already effective in describing the static piece of craft, but with SMIL animation we can go further and emulate the gentle breeze. With JavaScript, then, we can go deeper and gain much more control.
