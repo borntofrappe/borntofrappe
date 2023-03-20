@@ -1,0 +1,7 @@
+---
+title: How many paths to draw a line?
+description: Last time 120. The history of a beautifully animated silhouette. With SMIL magic and JavaScript control.
+date: 2023-03-20 18:27:30
+---
+
+With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a few charming features floating at the entrance of a few shops, charming the windows of a few houses. Pin wheels, wind chimes, and a most delightful cardboard cutout spiraling with the wind.
