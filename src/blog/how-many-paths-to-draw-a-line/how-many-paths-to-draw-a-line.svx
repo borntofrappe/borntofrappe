@@ -8,6 +8,7 @@ date: 2023-03-20 18:27:30
     import Center from '$lib/components/blog/Center.svelte';
 
     import svg from './svg.js';
+    import AnimateScale from './AnimateScale.svelte';
 </script>
 
 With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a few charming features floating at the entrance of a few shops, charming the windows of a few houses. Pin wheels, wind chimes, and a most delightful cardboard cutout spiraling with the wind. Much similar to the following vector graphic.
@@ -22,4 +23,8 @@ The visual is already effective in describing the static piece of craft, but wit
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['tail']}
+</Center>
+
+<Center element="figure" maxInlineSize="20rem">
+	<AnimateScale />
 </Center>
