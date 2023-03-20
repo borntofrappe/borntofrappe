@@ -19,3 +19,7 @@ With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted
 In terms of SVG syntax all you need to draw the picture is a series of `<path>` elements — and enough patience to comprehend the `d` attribute to draw curves.
 
 The visual is already effective in describing the static piece of craft, but with SMIL animation we can go further and emulate the gentle breeze. With JavaScript, then, we can go deeper and gain much more control.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['tail']}
+</Center>

@@ -24,5 +24,14 @@ export default {
 			</g>
 		</g>
 	</g>
+</svg>`,
+	tail: `<svg style="display: block;" viewBox="-20 0 40 40">
+	<g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+		<g stroke-width="5">
+			<g transform="translate(0 5)">
+				<path d="M 0 0 c -4 5 -3 12 0 15 5 5 10 15 -4 15 2 -5 5 -10 0 -15 -4 -5 -4 -10 4 -15" />
+			</g>
+		</g>
+	</g>
 </svg>`
 };
