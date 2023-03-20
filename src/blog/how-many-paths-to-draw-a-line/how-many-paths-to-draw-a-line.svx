@@ -1,6 +1,6 @@
 ---
 title: How many paths to draw a line?
-description: Last time I checked, 60. Find the answer for an evocative silhouette, animated with SMIL, examined with Javascript.
+description: Find the answer for an evocative silhouette, animated with SMIL, examined with Javascript.
 date: 2023-03-20 21:47:38
 ---
 
@@ -14,7 +14,7 @@ date: 2023-03-20 21:47:38
     import ControlSilhouette from './ControlSilhouette.svelte';
 </script>
 
-With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a series of floating features charming the entrance of a few shops, the windows of a few houses. Pin wheels, wind chimes, and a most delightful cardboard cutout spiraling with the gentlest breeze. A cutout similar to the following vector graphic.
+With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a series of floating features at the entrance of a few shops, on the windows of a few houses. Pinwheels, wind chimes, and a most delightful cardboard cutout spiraling with the gentlest breeze. A cutout similar to the following vector graphic.
 
 <Center element="figure" maxInlineSize="26rem">
 	{@html svg['silhouette']}
@@ -35,12 +35,12 @@ There's just one element behind the visual. One `<path>` with a handful of curve
 ```html
 <path
 	d="
-M 0 0 
-c -4 5 -3 12 0 15 
-c 5 5 10 15 -4 15 
-c 2 -5 5 -10 0 -15 
-c -4 -5 -4 -10 4 -15
-"
+    M 0 0 
+    c -4 5 -3 12 0 15 
+    c 5 5 10 15 -4 15 
+    c 2 -5 5 -10 0 -15 
+    c -4 -5 -4 -10 4 -15
+    "
 />
 ```
 
@@ -49,7 +49,7 @@ We want the shape to rotate around the y axis, but alas, there is [no perspectiv
 You can pretend to rotate the path by changing the horizontal scale.
 
 ```html
-<path d="..." transform="scale(0.5 1)" />
+<path transform="scale(0.5 1)" d="..." />
 ```
 
 And with CSS you can even animate the value between 1 and -1.
@@ -73,13 +73,15 @@ But the result makes for a rather lackluster workaround.
 	<AnimateScale />
 </Center>
 
-As the scale reaches zero the path disappears and then grows back again on the opposite side. What we want, however, is to maintain the visual, the path throug the entire sequence.
+As the scale reaches zero the path disappears and then grows back on the opposite side. What we want, however, is to maintain the visual, the path through the entire sequence.
 
-Enters SMIL animation. If we come up with the `d` attribute for the start and end state, making sure to use the same number of points.
+Enters SMIL animation.
 
-```html
-<path d="M 0 0 c -4 5 -3 12 0 15 c 5 5 10 15 -4 15 c 2 -5 5 -10 0 -15 c -4 -5 -4 -10 4 -15" />
-<path d="M 0 0 c 4 5 3 12 0 15 c -5 5 -10 15 4 15 c -2 -5 -5 -10 0 -15 c 4 -5 4 -10 -4 -15" />
+If we come up with the `d` attribute for the start and end state, making sure to use the same number of points.
+
+```text
+"M 0 0 c -4 5 -3 12 0 15 c 5 5 10 15 -4 15 c 2 -5 5 -10 0 -15 c -4 -5 -4 -10 4 -15"
+"M 0 0 c 4 5 3 12 0 15 c -5 5 -10 15 4 15 c -2 -5 -5 -10 0 -15 c 4 -5 4 -10 -4 -15"
 ```
 
 The `<animate>` element interpolates between the two curves in a much more impressive manner.
@@ -103,10 +105,10 @@ Between the attributes, then, specify the duration and the values, leaning on th
 	attributeName="d"
 	dur="2s"
 	values="
-M 0 0 c -4 5 -3 12 0 15...;
-M 0 0 c 4 5 3 12 0 15;
-M 0 0 c -4 5 -3 12 0 15...;
-"
+        M 0 0 c -4 5 -3 12 0 15...;
+        M 0 0 c 4 5 3 12 0 15;
+        M 0 0 c -4 5 -3 12 0 15...;
+    "
 />
 ```
 
@@ -120,7 +122,7 @@ You can experiment with different timing functions through the `keySplines` and 
 
 ## Lines
 
-Say you are delighted with the SMIL animation, but would like to know more about the `d` attribute. Say you want to display one specific version of the tail in between the two, interpolated values. Say you are now intrigued by the now puzzling question: just how many versions are there?
+Say you are delighted with the SMIL animation, but would like to know more about the `d` attribute. Say you want to display one specific version of the tail in between the two, interpolated values, or you are now intrigued by the now puzzling question: just how many versions are there?
 
 The answer is hidden in the `<path>` element, but you won't find it by inspecting the DOM tree. Run the animation and the node keeps displaying the hard-coded string.
 
@@ -130,12 +132,12 @@ The answer is hidden in the `<path>` element, but you won't find it by inspectin
 </path>
 ```
 
-This might surprise you coming from CSS animations. After all, keyframes and the `animation` property update the markup directly. You see the changing metric. What is even more surprising, however, is that CSS gives a way forward.
+This is perhaps expected. And certainly more expected than finding a solution with CSS.
 
 There is no `d` property.
 
 ```css
-/* does not work */
+/* no such thing! */
 path {
 	d: 'M 0 0 h 20';
 }
@@ -151,15 +153,15 @@ getComputedStyle(path)['d'];
 */
 ```
 
-With this in mind, what you need to do is to let the animation run. And, erratically run the instruction in the developer console.
+With this in mind, what you need to do is to let the animation run. And, repeat the instruction in the developer tools. Without delay.
 
-Kidding aside, the suggestion does help to validate the concept —here's one of the values I found while testing the code.
+Kidding aside, the suggestion does help to validate the concept — here's one of the values I found while testing the code.
 
 ```text
 'path("M 0 0 C 3.71653 5 2.7874 12 0 15 C -4.64566 20 -9.29132 30 3.71653 30 C 1.85826 25 -0.929132 20 3.71653 15 C 7.43306 10 7.43306 5 0 0")'
 ```
 
-You have a way to find _all_ the possible paths, however, through the `<animate>` element.
+To find _all_ the possible paths, however, focus on the `<animate>` element.
 
 ```js
 const animate = path.querySelector('animate');
@@ -173,7 +175,7 @@ animate.addEventListener('beginEvent', () => {
 });
 ```
 
-When the animation end.
+When the same ends.
 
 ```js
 animate.addEventListener('endEvent', () => {
@@ -181,7 +183,8 @@ animate.addEventListener('endEvent', () => {
 });
 ```
 
-What you then need is to save the `d` attribute in between the two instants.
+What you then need is to save the `d` attribute between the two instants.
+
 Personally, I resolved to use `requestAnimationFrame`, calling a helper function over and over.
 
 ```js
@@ -202,7 +205,7 @@ animate.addEventListener('beginEvent', () => {
 });
 ```
 
-And stop the looping directive when the same ends.
+And stop the looping directive when no longer needed.
 
 ```js
 animate.addEventListener('endEvent', () => {
@@ -210,7 +213,7 @@ animate.addEventListener('endEvent', () => {
 });
 ```
 
-Direct the `<animate>` over the span of 1 second, and you'll finally find that paths is now an array filled with strings. Roughly 60 of them.
+Direct the `<animate>` over the span of 1 second, and you'll finally find an array filled with strings. Roughly 60 of them.
 
 You can take my word for it. Or, consider the initial visual one last time. Now with a touch of interaction.
 
