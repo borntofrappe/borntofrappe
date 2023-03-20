@@ -1,5 +1,6 @@
 export default {
 	silhouette: `<svg style="display: block;" viewBox="-44 -25 88 88">
+	<title>A curvy silhouette</title>
 	<g fill="none" stroke="currentColor" stroke-width="0.5">
 		<path d="M 0 -5 v 5 M 0 25 v 5" />
 	</g>
@@ -26,6 +27,7 @@ export default {
 	</g>
 </svg>`,
 	tail: `<svg style="display: block;" viewBox="-20 0 40 40">
+	<title>A puffy tail</title>
 	<g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
 		<g stroke-width="5">
 			<g transform="translate(0 5)">

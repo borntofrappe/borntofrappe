@@ -42,13 +42,7 @@
 			<g transform="translate(0 30)">
 				<path
 					bind:this={path}
-					d="
-								 M 0 0 
-								 c -4 5 -3 12 0 15 
-								 c 5 5 10 15 -4 15 
-								 c 2 -5 5 -10 0 -15 
-								 c -4 -5 -4 -10 4 -15
-								 "
+					d="M 0 0 c -4 5 -3 12 0 15 c 5 5 10 15 -4 15 c 2 -5 5 -10 0 -15 c -4 -5 -4 -10 4 -15"
 				>
 					<animate
 						attributeName="d"

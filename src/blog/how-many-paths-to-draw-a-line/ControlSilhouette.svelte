@@ -10,7 +10,7 @@
 	<input type="range" min="0" max={ds.length - 1} bind:value={index} />
 </label>
 
-<svg style="display: block; backface-visibility: hidden;" viewBox="-44 -25 88 88">
+<svg viewBox="-44 -25 88 88">
 	<g fill="none" stroke="currentColor" stroke-width="0.5">
 		<path d="M 0 -5 v 5 M 0 25 v 5" />
 	</g>
