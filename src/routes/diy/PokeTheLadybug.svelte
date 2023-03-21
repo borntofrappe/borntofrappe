@@ -155,7 +155,7 @@
 	</g>
 
 	<g transform="translate(40 25)">
-		<g style="cursor: pointer;">
+		<g style="cursor: pointer;" transform="translate(0 0)">
 			<animateTransform
 				id="pokeTheLadybugPoked"
 				begin="click"
@@ -169,6 +169,7 @@
 			<use {href}>
 				<animate
 					begin="pokeTheLadybugStart.begin"
+					end="pokeTheLadybugPoked.end"
 					attributeName="href"
 					{values}
 					{dur}
