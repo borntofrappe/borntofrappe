@@ -17,11 +17,11 @@
 
 		const roll = Math.floor(Math.random() * 6 + 1);
 
-		const value = `#dice-${roll}`;
+		const value = `#dice-face-${roll}`;
 		const values = [
 			...Array(28)
 				.fill()
-				.map((_, i) => `#roll-${i + 1}`),
+				.map((_, i) => `#dice-roll-${i + 1}`),
 			value
 		].join(';');
 
@@ -217,7 +217,7 @@
 				calcMode="spline"
 				keySplines="0.2 0 0.5 1; 0.75 0 0.75 1; 0.3 0 0.5 1; 0.75 0 0.75 1; 0.4 0 0.5 1; 0.75 0 0.75 1"
 			/>
-			<use href="#roll-1" y="2" width="1" height="1">
+			<use href="#dice-roll-1" y="2" width="1" height="1">
 				<animate begin="indefinite" attributeName="href" dur="1.8s" />
 			</use>
 		</g>
