@@ -168,7 +168,7 @@
 			/>
 			<use {href}>
 				<animate
-					end="pokeTheLadybugPoked.end"
+					begin="pokeTheLadybugStart.begin"
 					attributeName="href"
 					{values}
 					{dur}
@@ -180,5 +180,13 @@
 
 			<use {href} opacity="0" />
 		</g>
+	</g>
+
+	<g style="cursor: pointer;">
+		<set id="pokeTheLadybugStart" begin="click" attributeName="display" to="none" fill="freeze" />
+
+		<AnimatedTitle text="Poke!" fill="url(#linear-gradient-text)" begin="0.5s" repeatCount="2" />
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
