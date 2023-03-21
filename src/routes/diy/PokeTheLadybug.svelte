@@ -182,6 +182,29 @@
 		</g>
 	</g>
 
+	<g display="none">
+		<set
+			id="pokeTheLadybugMessage"
+			begin="pokeTheLadybugPoked.end + 0.75s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+
+		<AnimatedTitle
+			text="You did it!"
+			fill="url(#linear-gradient-text)"
+			begin="pokeTheLadybugMessage.begin"
+			end="pokeTheLadybugEnd.begin"
+			repeatCount="indefinite"
+		/>
+
+		<g style:cursor="pointer">
+			<set id="pokeTheLadybugEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" opacity="0" />
+		</g>
+	</g>
+
 	<g style="cursor: pointer;">
 		<set id="pokeTheLadybugStart" begin="click" attributeName="display" to="none" fill="freeze" />
 
