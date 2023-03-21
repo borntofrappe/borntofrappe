@@ -75,7 +75,7 @@ But the result makes for a rather lackluster workaround.
 
 As the scale reaches zero the path disappears and then grows back on the opposite side. What we want, however, is to maintain the visual, to show the path through the entire sequence.
 
-Enters SMIL animation.
+Enters [SMIL animation](/a-coy-introduction-to-smil).
 
 If we come up with the `d` attribute for the start and end state, making sure to use the same number of points.
 
