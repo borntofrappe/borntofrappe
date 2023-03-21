@@ -622,5 +622,108 @@ export default {
 			<path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 6 13 h 4 " />
 		</symbol>
 	</defs>
+</svg>`,
+	board: `<svg aria-hidden="true" style="width: 0; height: 0; position: absolute;">
+	<defs>
+		<pattern id="board-pattern-grass" viewBox="0 0 8 8" width="0.25" height="0.25">
+			<rect width="8" height="8" fill="#9abc35" />
+			<g transform="translate(0 0.5)" stroke="#030f00">
+				<path d="M 5 1 h 1 M 2 2 h 1 M 4 4 h 1 M 1 5 h 1 M 6 6 h 1" />
+			</g>
+		</pattern>
+		<symbol id="board-player-0" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+			<g fill="none">
+				<g stroke="var(--c0, hsl(0, 0%, 10%))">
+					<path
+						d="M 3 0 h 1 M 12 0 h 1 M 2 1 h 3 M 6 1 h 4 M 11 1 h 3 M 2 2 h 12 M 3 3 h 10 M 3 4 h 10 M 3 5 h 10 M 3 6 h 10 M 3 7 h 10 M 2 8 h 13 M 1 9 h 15 M 1 10 h 15 M 1 11 h 12 M 3 12 h 10 M 3 13 h 10 M 4 14 h 9 M 5 15 h 7"
+					/>
+				</g>
+				<g stroke="var(--c1, hsl(0, 0%, 47%))">
+					<path
+						d="M 3 1 h 1 M 12 1 h 1 M 4 2 h 1 M 6 2 h 1 M 9 2 h 1 M 11 2 h 1 M 5 3 h 1 M 10 3 h 1 M 4 4 h 3 M 9 4 h 3 M 5 5 h 1 M 10 5 h 1 M 4 6 h 2 M 7 6 h 2 M 10 6 h 2 M 5 7 h 1 M 10 7 h 1 M 3 8 h 1 M 12 8 h 1 M 2 9 h 4 M 10 9 h 4 M 3 10 h 1 M 11 10 h 1 M 13 10 h 1 M 4 11 h 1 M 11 11 h 1 M 4 12 h 1 M 11 12 h 1 M 4 13 h 2 M 10 13 h 2 M 5 14 h 2 M 8 14 h 4"
+					/>
+				</g>
+				<g stroke="var(--c2, hsl(0, 0%, 92%))">
+					<path
+						d="M 3 2 h 1 M 12 2 h 1 M 6 7 h 1 M 9 7 h 1 M 6 8 h 4 M 14 9 h 1 M 2 10 h 1 M 5 10 h 1 M 7 10 h 2 M 10 10 h 1 M 5 11 h 2 M 9 11 h 2 M 5 12 h 6 M 6 13 h 4 M 9 15 h 2"
+					/>
+				</g>
+			</g>
+		</symbol>
+		<symbol id="board-player-1" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+			<g fill="none">
+				<g stroke="var(--c0, hsl(0, 0%, 10%))">
+					<path
+						d="M 3 0 h 1 M 12 0 h 1 M 2 1 h 3 M 6 1 h 4 M 11 1 h 3 M 2 2 h 12 M 3 3 h 10 M 3 4 h 10 M 3 5 h 10 M 3 6 h 10 M 3 7 h 10 M 1 8 h 13 M 0 9 h 15 M 0 10 h 15 M 3 11 h 12 M 3 12 h 10 M 3 13 h 10 M 3 14 h 9 M 4 15 h 7"
+					/>
+				</g>
+				<g stroke="var(--c1, hsl(0, 0%, 47%))">
+					<path
+						d="M 3 1 h 1 M 12 1 h 1 M 4 2 h 1 M 6 2 h 1 M 9 2 h 1 M 11 2 h 1 M 5 3 h 1 M 10 3 h 1 M 4 4 h 3 M 9 4 h 3 M 5 5 h 1 M 10 5 h 1 M 4 6 h 2 M 7 6 h 2 M 10 6 h 2 M 5 7 h 1 M 10 7 h 1 M 3 8 h 1 M 12 8 h 1 M 2 9 h 4 M 10 9 h 4 M 2 10 h 1 M 4 10 h 1 M 12 10 h 1  M 4 11 h 1 M 11 11 h 1 M 4 12 h 1 M 11 12 h 1 M 4 13 h 2 M 10 13 h 2 M 4 14 h 4 M 9 14 h 2"
+					/>
+				</g>
+				<g stroke="var(--c2, hsl(0, 0%, 92%))">
+					<path
+						d="M 3 2 h 1 M 12 2 h 1 M 6 7 h 1 M 9 7 h 1 M 6 8 h 4 M 1 9 h 1 M 13 10 h 1 M 5 10 h 1 M 7 10 h 2 M 10 10 h 1 M 5 11 h 2 M 9 11 h 2 M 5 12 h 6 M 6 13 h 4 M 5 15 h 2"
+					/>
+				</g>
+			</g>
+		</symbol>
+		<symbol id="board-key" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+			<g stroke="var(--c0, hsl(0, 0%, 10%))">
+				<path
+					d="M 7 0 h 2 M 6 1 h 4 M 5 2 h 6 M 4 3 h 8 M 3 4 h 10 M 2 5 h 12 M 2 6 h 12 M 3 7 h 10 M 4 8 h 8 M 6 9 h 4 M 6 10 h 4 M 6 11 h 5 M 6 12 h 6 M 6 13 h 5 M 6 14 h 6 M 6 15 h 5"
+				/>
+			</g>
+			<g stroke="var(--c1, hsl(0, 0%, 47%))">
+				<path
+					d="M 7 2 h 2 M 6 3 h 4 M 6 4 h 1 M 9 4 h 1 M 4 5 h 2 M 10 5 h 2 M 3 6 h 3 M 10 6 h 3 M 4 7 h 3 M 9 7 h 3 M 6 8 h 4 M 8 9 h 1 M 8 10 h 1 M 8 11 h 1 M 8 12 h 2 M 8 13 h 2 M 8 14 h 2"
+				/>
+			</g>
+			<g stroke="var(--c2, hsl(0, 0%, 92%))">
+				<path
+					d="M 7 1 h 2 M 6 2 h 1 M 9 2 h 1 M 4 4 h 2 M 10 4 h 2 M 3 5 h 1 M 12 5 h 1 M 6 6 h 1 M 9 6 h 1 M 7 7 h 2 M 7 9 h 1 M 7 10 h 1 M 7 11 h 1 M 7 12 h 1 M 10 12 h 1 M 7 13 h 1 M 7 14 h 1 M 10 14 h 1"
+				/>
+			</g>
+		</symbol>
+		<symbol id="board-chest" viewBox="0 0 16 16" shape-rendering="crispEdges">
+			<g fill="var(--c0, hsl(0, 0%, 10%))">
+				<rect width="16" height="15" />
+				<rect x="1" y="15" width="14" height="1" />
+			</g>
+			<g transform="translate(0 1.5)">
+				<g stroke="var(--c1, hsl(0, 0%, 47%))">
+					<path
+						d="M 2 0 h 1 M 5 0 h 6 M 13 0 h 1 M 2 1 h 1 M 5 1 h 6 M 13 1 h 1 M 2 2 h 1 M 5 2 h 6 M 13 2 h 1 M 2 3 h 1 M 5 3 h 6 M 13 3 h 1 M 2 4 h 1 M 7 4 h 2 M 13 4 h 1 M 2 9 h 1 M 5 9 h 1 M 10 9 h 1 M 13 9 h 1 M 2 10 h 1 M 5 10 h 6 M 13 10 h 1 M 6 11 h 4 M 7 12 h 2"
+					/>
+				</g>
+				<g stroke="var(--c2, hsl(0, 0%, 92%))">
+					<path
+						d="M 1 0 h 1 M 3 0 h 2 M 11 0 h 2 M 14 0 h 1 M 1 1 h 1 M 3 1 h 2 M 11 1 h 2 M 14 1 h 1 M 1 2 h 1 M 3 2 h 2 M 11 2 h 2 M 14 2 h 1 M 1 3 h 1 M 3 3 h 2 M 11 3 h 2 M 14 3 h 1 M 1 4 h 1 M 3 4 h 4 M 9 4 h 4 M 14 4 h 1 M 1 5 h 1 M 3 5 h 2 M 7 5 h 2 M 11 5 h 2 M 14 5 h 1 M 1 6 h 14 M 1 7 h 14 M 1 8 h 3 M 5 8 h 2 M 9 8 h 2 M 12 8 h 1 M 14 8 h 1 M 1 9 h 1 M 3 9 h 2 M 6 9 h 4 M 11 9 h 2 M 14 9 h 1 M 1 10 h 1 M 3 10 h 2 M 11 10 h 2 M 14 10 h 1 M 1 11 h 5 M 10 11 h 5 M 1 12 h 1 M 3 12 h 2 M 6 12 h 1 M 9 12 h 1 M 11 12 h 2 M 14 12 h 1 M 1 13 h 14"
+					/>
+				</g>
+			</g>
+		</symbol>
+		<symbol id="board-tile-grass" viewBox="-6 -6 112 112" shape-rendering="crispEdges">
+			<rect fill="var(--c0, hsl(0, 0%, 10%))" x="-6" y="-6" width="112" height="112" />
+			<rect fill="url(#board-pattern-grass)" x="6" y="6" width="88" height="88" />
+			<g fill="none" stroke="var(--c2, hsl(0, 0%, 92%))" stroke-width="4">
+				<path d="M 4 0 l 92 0 0 4 4 0 0 92 -4 0 0 4 -92 0 0 -4 -4 0 0 -92 4 0z" />
+			</g>
+		</symbol>
+		<symbol id="board-tile-action" viewBox="-6 -6 112 112" shape-rendering="crispEdges">
+			<rect fill="var(--c0, hsl(0, 0%, 10%))" x="-6" y="-6" width="112" height="112" />
+			<rect fill="var(--c1, hsl(0, 0%, 47%))" x="2" y="2" width="96" height="96" />
+			<g fill="none" stroke="var(--c2, hsl(0, 0%, 92%))" stroke-width="4">
+				<path d="M 4 0 l 92 0 0 4 4 0 0 92 -4 0 0 4 -92 0 0 -4 -4 0 0 -92 4 0z" />
+				<path d="M 22 8 l 56 0 0 14 14 0 0 56 -14 0 0 14 -56 0 0 -14 -14 0 0 -56 14 0z" />
+				<path d="M 30 16 l 40 0 0 14 14 0 0 40 -14 0 0 14 -40 0 0 -14 -14 0 0 -40 14 0z" />
+				<path transform="translate(14 14) rotate(0)" d="M 0 0 l -8 0 8 0 0 -8z" />
+				<path transform="translate(86 14) rotate(90)" d="M 0 0 l -8 0 8 0 0 -8z" />
+				<path transform="translate(86 86) rotate(180)" d="M 0 0 l -8 0 8 0 0 -8z" />
+				<path transform="translate(14 86) rotate(270)" d="M 0 0 l -8 0 8 0 0 -8z" />
+			</g>
+		</symbol>
+	</defs>
 </svg>`
 };
