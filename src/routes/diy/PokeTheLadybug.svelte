@@ -1,6 +1,8 @@
 <script>
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
+	const sprites = 4;
+
 	const dCircle = ({ radius = 20, points = 20, noise = 1 } = {}) => {
 		const p = points % 2 === 0 ? points : points + 1;
 		const coords = Array(p)
@@ -111,34 +113,60 @@
 	</g>
 
 	<g transform="translate(40 25)">
-		<g transform="translate(0 -8)">
-			<path d={dCircle({ radius: 6, points: 16, noise: 0.4 })} fill="#192d10" />
-			<g transform="translate(0 -3.25)">
-				<g fill="#f7f7f7">
-					<path transform="translate(-2 0)" d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })} />
-					<path transform="translate(2 0)" d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })} />
+		<g>
+			<animateTransform
+				attributeName="transform"
+				type="translate"
+				values={Array(sprites)
+					.fill()
+					.map((_, i) => `${i * 80} 0`)
+					.join(';')}
+				dur="1s"
+				calcMode="discrete"
+				repeatCount="indefinite"
+			/>
+			{#each Array(sprites) as _, i}
+				<g transform="translate({80 * i * -1} 0)">
+					<g transform="translate(0 -8)">
+						<path d={dCircle({ radius: 6, points: 16, noise: 0.4 })} fill="#192d10" />
+						<g transform="translate(0 -3.25)">
+							<g fill="#f7f7f7">
+								<path
+									transform="translate(-2 0)"
+									d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })}
+								/>
+								<path
+									transform="translate(2 0)"
+									d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })}
+								/>
+							</g>
+						</g>
+					</g>
+
+					<path
+						d={dCircle({ radius: 10, points: 22, noise: 0.6 })}
+						fill="#f70000"
+						stroke="none"
+						stroke-width="0.5"
+					/>
+
+					<g fill="#192d10">
+						<path
+							transform="translate(-5 -2)"
+							d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })}
+						/>
+						<path transform="translate(5 2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
+					</g>
+
+					<path
+						d={dLine({ x1: 0, y1: -10, x2: 0, y2: 9.5, noise: 0.7 })}
+						fill="none"
+						stroke="#192d10"
+						stroke-width="0.5"
+						stroke-linecap="square"
+					/>
 				</g>
-			</g>
+			{/each}
 		</g>
-
-		<path
-			d={dCircle({ radius: 10, points: 22, noise: 0.6 })}
-			fill="#f70000"
-			stroke="none"
-			stroke-width="0.5"
-		/>
-
-		<g fill="#192d10">
-			<path transform="translate(-5 -2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
-			<path transform="translate(5 2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
-		</g>
-
-		<path
-			d={dLine({ x1: 0, y1: -10, x2: 0, y2: 9.5, noise: 0.7 })}
-			fill="none"
-			stroke="#192d10"
-			stroke-width="0.5"
-			stroke-linecap="square"
-		/>
 	</g>
 </svg>
