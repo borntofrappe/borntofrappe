@@ -1,8 +1,6 @@
 <script>
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
-	const sprites = 4;
-
 	const dCircle = ({ radius = 20, points = 20, noise = 1 } = {}) => {
 		const p = points % 2 === 0 ? points : points + 1;
 		const coords = Array(p)
@@ -45,6 +43,27 @@
 
 		return coords.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, 'M');
 	};
+
+	const sprites = 4;
+
+	const ids = Array(sprites)
+		.fill()
+		.map((_, i) => `poke-the-ladybug-ladybug-${i}`);
+	const hrefs = ids.map((id) => `#${id}`);
+	const [href] = hrefs;
+	const values = hrefs.join(';');
+	const dur = `${ids.length * 0.14}s`;
+
+	const objects = ids.map((id) => ({
+		id,
+		body: dCircle({ radius: 10, points: 22, noise: 0.6 }),
+		head: dCircle({ radius: 6, points: 16, noise: 0.4 }),
+		eyeLeft: dCircle({ radius: 1.2, points: 5, noise: 0.3 }),
+		eyeRight: dCircle({ radius: 1.2, points: 5, noise: 0.3 }),
+		dotLeft: dCircle({ radius: 3.5, points: 12, noise: 0.4 }),
+		dotRight: dCircle({ radius: 3.5, points: 12, noise: 0.4 }),
+		line: dLine({ x1: 0, y1: -10, x2: 0, y2: 9.5, noise: 0.7 })
+	}));
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -100,43 +119,26 @@
 			</g>
 		</g>
 
-		{#each Array(sprites) as _, i}
-			<g id="poke-the-ladybug-ladybug-{i}">
+		{#each objects as { id, body, head, eyeLeft, eyeRight, dotLeft, dotRight, line }}
+			<g {id}>
 				<g transform="translate(0 -8)">
-					<path d={dCircle({ radius: 6, points: 16, noise: 0.4 })} fill="#192d10" />
+					<path d={head} fill="#192d10" />
 					<g transform="translate(0 -3.25)">
 						<g fill="#f7f7f7">
-							<path
-								transform="translate(-2 0)"
-								d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })}
-							/>
-							<path
-								transform="translate(2 0)"
-								d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })}
-							/>
+							<path transform="translate(-2 0)" d={eyeLeft} />
+							<path transform="translate(2 0)" d={eyeRight} />
 						</g>
 					</g>
 				</g>
 
-				<path
-					d={dCircle({ radius: 10, points: 22, noise: 0.6 })}
-					fill="#f70000"
-					stroke="none"
-					stroke-width="0.5"
-				/>
+				<path d={body} fill="#f70000" stroke="none" stroke-width="0.5" />
 
 				<g fill="#192d10">
-					<path transform="translate(-5 -2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
-					<path transform="translate(5 2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
+					<path transform="translate(-5 -2)" d={dotLeft} />
+					<path transform="translate(5 2)" d={dotRight} />
 				</g>
 
-				<path
-					d={dLine({ x1: 0, y1: -10, x2: 0, y2: 9.5, noise: 0.7 })}
-					fill="none"
-					stroke="#192d10"
-					stroke-width="0.5"
-					stroke-linecap="square"
-				/>
+				<path d={line} fill="none" stroke="#192d10" stroke-width="0.5" stroke-linecap="square" />
 			</g>
 		{/each}
 	</defs>
@@ -154,17 +156,8 @@
 
 	<g transform="translate(40 25)">
 		<g>
-			<use href="#poke-the-ladybug-ladybug-0">
-				<animate
-					attributeName="href"
-					values={Array(sprites)
-						.fill()
-						.map((_, i) => `#poke-the-ladybug-ladybug-${i}`)
-						.join(';')}
-					dur="1s"
-					calcMode="discrete"
-					repeatCount="indefinite"
-				/>
+			<use {href}>
+				<animate attributeName="href" {values} {dur} calcMode="discrete" repeatCount="indefinite" />
 			</use>
 		</g>
 	</g>
