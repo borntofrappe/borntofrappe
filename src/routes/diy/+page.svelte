@@ -1,7 +1,7 @@
 <script>
 	import site from '$lib/utils/site.js';
-	import AnimatedTitle from './AnimatedTitle.svelte';
-	import Title from './Title.svelte';
+	import PokeTheLadybug from './PokeTheLadybug.svelte';
+
 	const { title } = site;
 </script>
 
@@ -34,20 +34,18 @@
 </svg>
 
 <div>
-	<svg viewBox="0 0 80 50">
-		<AnimatedTitle
-			fill="url(#linear-gradient-text)"
-			text="Do it yourself!"
-			begin="0.2s"
-			repeatCount="3"
-		/>
-	</svg>
+	<article style="background: hsl(356, 89%, 71%); --border-color: hsl(153, 24%, 77%);">
+		<PokeTheLadybug />
+	</article>
 </div>
 
 <style>
 	div {
 		color: hsl(209, 61%, 16%);
 		background: hsl(206, 33%, 96%);
+	}
+
+	article {
 		block-size: 100vh;
 		display: flex;
 		justify-content: center;
@@ -55,7 +53,7 @@
 		--_border-color: var(--border-color, currentColor);
 	}
 
-	div > svg {
+	article > :global(svg) {
 		display: block;
 		inline-size: 90vmin;
 		max-inline-size: 36rem;
