@@ -155,10 +155,30 @@
 	</g>
 
 	<g transform="translate(40 25)">
-		<g>
+		<g style="cursor: pointer;">
+			<animateTransform
+				id="pokeTheLadybugPoked"
+				begin="click"
+				attributeName="transform"
+				type="translate"
+				to="0 -50"
+				dur="2s"
+				fill="freeze"
+				restart="never"
+			/>
 			<use {href}>
-				<animate attributeName="href" {values} {dur} calcMode="discrete" repeatCount="indefinite" />
+				<animate
+					end="pokeTheLadybugPoked.end"
+					attributeName="href"
+					{values}
+					{dur}
+					calcMode="discrete"
+					repeatCount="indefinite"
+					fill="freeze"
+				/>
 			</use>
+
+			<use {href} opacity="0" />
 		</g>
 	</g>
 </svg>
