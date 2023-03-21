@@ -1,5 +1,48 @@
 <script>
 	import AnimatedTitle from './AnimatedTitle.svelte';
+
+	const dCircle = ({ radius = 20, points = 20, noise = 1 } = {}) => {
+		const p = points % 2 === 0 ? points : points + 1;
+		const coords = Array(p)
+			.fill()
+			.map((_, i, { length }) => {
+				const n = Math.random() * noise;
+				const distance = i % 2 !== 0 ? radius + n : radius - n;
+				const angle = (((360 / length) * i) / 180) * Math.PI;
+				const x = Math.cos(angle) * distance;
+				const y = Math.sin(angle) * distance;
+				return {
+					x,
+					y
+				};
+			});
+
+		const { x, y } = coords[0];
+		return [...coords, { x, y }].reduce(
+			(acc, { x, y }, i) => (i % 2 === 0 ? `${acc} ${x} ${y}` : `${acc} Q ${x} ${y}`),
+			'M'
+		);
+	};
+
+	const dLine = ({ x1 = 0, y1 = 0, x2 = 10, y2 = 10, noise = 1, points } = {}) => {
+		const p = points || Math.floor(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 / 2);
+
+		const sx = (x2 - x1) / (p - 1);
+		const sy = (y2 - y1) / (p - 1);
+
+		const coords = Array(p)
+			.fill()
+			.map((_, i) => {
+				const x = x1 + sx * i + (Math.random() * noise - noise / 2);
+				const y = y1 + sy * i + (Math.random() * noise - noise / 2);
+				return {
+					x,
+					y
+				};
+			});
+
+		return coords.reduce((acc, { x, y }) => `${acc} ${x} ${y}`, 'M');
+	};
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -65,5 +108,37 @@
 		<use href="#poke-the-ladybug-rock" transform="translate(25 35) scale(-1 1)" />
 		<use href="#poke-the-ladybug-rock" transform="translate(70 35) scale(-1 1)" />
 		<use href="#poke-the-ladybug-rock" transform="translate(65 40) scale(-1 1)" />
+	</g>
+
+	<g transform="translate(40 25)">
+		<g transform="translate(0 -8)">
+			<path d={dCircle({ radius: 6, points: 16, noise: 0.4 })} fill="#192d10" />
+			<g transform="translate(0 -3.25)">
+				<g fill="#f7f7f7">
+					<path transform="translate(-2 0)" d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })} />
+					<path transform="translate(2 0)" d={dCircle({ radius: 1.2, points: 5, noise: 0.3 })} />
+				</g>
+			</g>
+		</g>
+
+		<path
+			d={dCircle({ radius: 10, points: 22, noise: 0.6 })}
+			fill="#f70000"
+			stroke="none"
+			stroke-width="0.5"
+		/>
+
+		<g fill="#192d10">
+			<path transform="translate(-5 -2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
+			<path transform="translate(5 2)" d={dCircle({ radius: 3.5, points: 12, noise: 0.4 })} />
+		</g>
+
+		<path
+			d={dLine({ x1: 0, y1: -10, x2: 0, y2: 9.5, noise: 0.7 })}
+			fill="none"
+			stroke="#192d10"
+			stroke-width="0.5"
+			stroke-linecap="square"
+		/>
 	</g>
 </svg>
