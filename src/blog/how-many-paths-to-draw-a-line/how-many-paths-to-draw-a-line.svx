@@ -1,6 +1,6 @@
 ---
-title: How many paths to draw a line?
-description: Find the answer for an evocative silhouette, animated with SMIL, examined with Javascript.
+title: How many paths?
+description: Find the answer for an evocative silhouette, animated with SMIL and examined with Javascript.
 date: 2023-03-20 21:47:38
 ---
 
@@ -14,7 +14,7 @@ date: 2023-03-20 21:47:38
     import ControlSilhouette from './ControlSilhouette.svelte';
 </script>
 
-With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a series of floating features at the entrance of a few shops, on the windows of a few houses. Pinwheels, wind chimes, and a most delightful cardboard cutout spiraling with the gentlest breeze. A cutout similar to the following vector graphic.
+With the unfolding of [the pleasant season](/self-reference-in-nature) I spotted a series of floating features at the entrance of a few shops, on the windows of a few houses. Pinwheels, wind chimes, and a delightful cardboard cut-out spiraling with the gentlest breeze. A cutout similar to the following vector graphic.
 
 <Center element="figure" maxInlineSize="26rem">
 	{@html svg['silhouette']}
@@ -24,7 +24,7 @@ The visual itself is already effective to describe the static piece of craft, bu
 
 ## Animation
 
-Focus on the bottom section, on the puffy tail bound to rotate with the wind.
+Focus on the bottom section, on the puffy tail bound to rotate with the most feeble gust.
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['tail']}
@@ -44,7 +44,7 @@ There's just one element behind the visual. One `<path>` with a handful of curve
 />
 ```
 
-We want the shape to rotate around the y axis, but alas, there is [no perspective in SVG](what-are-the-odds).
+We want the shape to rotate around the y axis, but as you might know, there is [no perspective in SVG](/what-are-the-odds).
 
 You can pretend to rotate the path by changing the horizontal scale.
 
@@ -73,7 +73,7 @@ But the result makes for a rather lackluster workaround.
 	<AnimateScale />
 </Center>
 
-As the scale reaches zero the path disappears and then grows back on the opposite side. What we want, however, is to maintain the visual, the path through the entire sequence.
+As the scale reaches zero the path disappears and then grows back on the opposite side. What we want, however, is to maintain the visual, to show the path through the entire sequence.
 
 Enters SMIL animation.
 
@@ -118,7 +118,7 @@ There are actually three strings so that the animation moves temporarily to the 
 	<AnimateSilhouette />
 </Center>
 
-You can experiment with different timing functions through the `keySplines` and `calcMode` attributes. You can animate the entire silhouette to softly move as well. I'll let you explore these routes at your leisure, however, and consider a different road.
+You can experiment with different timing functions through the `keySplines` and `calcMode` attributes. You can animate the entire silhouette to softly move as well. I'll let you explore these routes on your own, however, and consider a different road.
 
 ## Lines
 
@@ -167,7 +167,7 @@ To find _all_ the possible paths, however, focus on the `<animate>` element.
 const animate = path.querySelector('animate');
 ```
 
-As the animation unfolds, you are able to listen to different events. When the animation starts.
+As the animation takes place, you are able to listen to different events. When the animation starts.
 
 ```js
 animate.addEventListener('beginEvent', () => {
@@ -197,7 +197,7 @@ const getPath = () => {
 };
 ```
 
-Start the recording process as the animation begins.
+Start the recording process when the animation begins.
 
 ```js
 animate.addEventListener('beginEvent', () => {
@@ -221,4 +221,4 @@ You can take my word for it. Or, consider the initial visual one last time. Now 
 	<ControlSilhouette />
 </Center>
 
-Inspect the DOM tree and you will see the attribute does change. After all, I did register all possible paths.
+Inspect the DOM and you will see the attribute does change. After all, I did register all possible paths.
