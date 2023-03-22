@@ -1,6 +1,6 @@
 <script>
 	import { tweened } from 'svelte/motion';
-	import { linear as easing } from 'svelte/easing';
+	import { sineInOut as easing } from 'svelte/easing';
 
 	import svg from './svg.js';
 
@@ -14,7 +14,6 @@
 
 				return {
 					href,
-					ltr,
 					action: null
 				};
 			});
@@ -50,10 +49,11 @@
 		for (let i = 0; i < board.length; i++) {
 			const row = Math.floor(i / columns);
 			const even = row % 2 === 0;
-			const alt = even ? ltr : !ltr;
-			const column = alt ? i % columns : columns - 1 - (i % columns);
+			const flow = even ? ltr : !ltr;
+			const column = flow ? i % columns : columns - 1 - (i % columns);
 			board[i].row = row;
 			board[i].column = column;
+			board[i].ltr = flow;
 		}
 
 		return board;
@@ -82,21 +82,22 @@
 		}
 	);
 
+	const handleWin = () => {
+		console.log('win');
+	};
+
 	const handleMove = async (roll, direction = 1) => {
 		const { column, row } = $position;
 		const { ltr } = board.find((cell) => cell.column === column && cell.row === row);
 
+		let dc = ltr ? direction : direction * -1;
 		let dr = 0;
-		const even = row % 2 === 0;
-		const alt = even ? ltr : !ltr;
-		let dc = alt ? direction : direction * -1;
 		if ((column === 0 && dc === -1) || (column === columns - 1 && dc === 1)) {
-			dr = direction;
 			dc = 0;
+			dr = direction;
 		}
 
-		const value = `#dice-face-${roll}`;
-		dice.querySelector('use').setAttribute('href', value);
+		dice.querySelector('use').setAttribute('href', `#dice-face-${roll}`);
 
 		player.querySelector('animate').setAttribute('repeatCount', 2);
 		player.querySelector('animate').setAttribute('dur', `${duration / 1000 / 2}s`);
@@ -107,11 +108,28 @@
 			row: row + dr
 		});
 
-		console.log($position);
-
 		if (roll === 1) {
-			// evaluate tile
-			state = 'wait';
+			const { column, row } = $position;
+
+			const { action } = board.find((cell) => cell.column === column && cell.row === row);
+			switch (action) {
+				case 'goal':
+					state = 'win';
+					handleWin();
+					break;
+				case 1:
+				case 2:
+				case 3:
+					handleMove(action);
+					break;
+				case -1:
+				case -2:
+				case -3:
+					handleMove(Math.abs(action), -1);
+					break;
+				default:
+					state = 'wait';
+			}
 		} else {
 			const { column, row } = $position;
 			const { action } = board.find((cell) => cell.column === column && cell.row === row);
