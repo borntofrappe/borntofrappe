@@ -1,4 +1,7 @@
 <script>
+	import { tweened } from 'svelte/motion';
+	import { linear as easing } from 'svelte/easing';
+
 	import svg from './svg.js';
 
 	const getBoard = ({ columns = 4, rows = 3, ltr = true } = {}) => {
@@ -56,8 +59,6 @@
 		return board;
 	};
 
-	let dice = null;
-	let state = 'wait';
 	const columns = 4;
 	const rows = 3;
 	const ltr = true;
@@ -65,8 +66,61 @@
 	const board = getBoard({ columns, rows, ltr });
 	const { column, row } = board.find((d) => d.action === 'start');
 
-	const handleMove = (roll) => {
-		console.log(roll);
+	let dice = null;
+	let player = null;
+	let state = 'wait';
+
+	const duration = 750;
+	const position = tweened(
+		{
+			column,
+			row
+		},
+		{
+			duration,
+			easing
+		}
+	);
+
+	const handleMove = async (roll, direction = 1) => {
+		const { column, row } = $position;
+		const { ltr } = board.find((cell) => cell.column === column && cell.row === row);
+
+		let dr = 0;
+		const even = row % 2 === 0;
+		const alt = even ? ltr : !ltr;
+		let dc = alt ? direction : direction * -1;
+		if ((column === 0 && dc === -1) || (column === columns - 1 && dc === 1)) {
+			dr = direction;
+			dc = 0;
+		}
+
+		const value = `#dice-face-${roll}`;
+		dice.querySelector('use').setAttribute('href', value);
+
+		player.querySelector('animate').setAttribute('repeatCount', 2);
+		player.querySelector('animate').setAttribute('dur', `${duration / 1000 / 2}s`);
+		player.querySelector('animate').beginElement();
+
+		await position.set({
+			column: column + dc,
+			row: row + dr
+		});
+
+		console.log($position);
+
+		if (roll === 1) {
+			// evaluate tile
+			state = 'wait';
+		} else {
+			const { column, row } = $position;
+			const { action } = board.find((cell) => cell.column === column && cell.row === row);
+			if (action === 'goal') {
+				handleMove(roll - 1, -1);
+			} else {
+				handleMove(roll - 1, direction);
+			}
+		}
 	};
 
 	const handleRoll = async () => {
@@ -207,9 +261,10 @@
 		</g>
 	{/each}
 
-	<g transform="translate({column} {row})">
+	<g transform="translate({$position.column} {$position.row})">
 		<g transform="translate(0.5 0.5)">
 			<use
+				bind:this={player}
 				style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
 				href="#board-player-0"
 				x="-0.25"
@@ -218,10 +273,10 @@
 				height="0.5"
 			>
 				<animate
+					begin="indefinite"
 					attributeName="href"
 					values="#board-player-0; #board-player-1"
 					dur="0.25s"
-					begin="click"
 					repeatCount="2"
 				/>
 			</use>
