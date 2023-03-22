@@ -213,163 +213,176 @@
 {@html svg['dice']}
 {@html svg['board']}
 
-<svg viewBox="0 0 {columns} {rows}">
-	<defs>
-		<use
-			id="pachisi-grass"
-			style="--c0: #030f00; --c2: #eef2d9;"
-			href="#board-tile-grass"
-			width="1"
-			height="1"
-		/>
+<article>
+	<div>
+		<button on:click={handleRoll}> Roll </button>
+		<svg
+			bind:this={dice}
+			style="display: block; --c0: #030f00; --c1: #ac3232; --c2: #eef2d9;"
+			viewBox="0 0 1 3"
+		>
+			<g>
+				<animateTransform
+					begin="indefinite"
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 -2; 0 0; 0 -1.4; 0 0; 0 -0.6; 0 0"
+					dur="1.8s"
+					calcMode="spline"
+					keySplines="0.2 0 0.5 1; 0.75 0 0.75 1; 0.3 0 0.5 1; 0.75 0 0.75 1; 0.4 0 0.5 1; 0.75 0 0.75 1"
+				/>
+				<use href="#dice-roll-1" y="2" width="1" height="1">
+					<animate begin="indefinite" attributeName="href" dur="1.8s" />
+				</use>
+			</g>
+		</svg>
+	</div>
 
-		<g id="pachisi-action-goal">
+	<svg viewBox="0 0 {columns} {rows}">
+		<defs>
 			<use
-				style="--c0: #030f00; --c1: #8c03ff; --c2: #eef2d9;"
-				href="#board-tile-action"
+				id="pachisi-grass"
+				style="--c0: #030f00; --c2: #eef2d9;"
+				href="#board-tile-grass"
 				width="1"
 				height="1"
 			/>
-			<g transform="translate(0 0)">
-				<g transform="translate(0.5 0.5)">
+
+			<g id="pachisi-action-goal">
+				<use
+					style="--c0: #030f00; --c1: #8c03ff; --c2: #eef2d9;"
+					href="#board-tile-action"
+					width="1"
+					height="1"
+				/>
+				<g transform="translate(0 0)">
+					<g transform="translate(0.5 0.5)">
+						<use
+							style="--c0: #030f00; --c1: #93ca27; --c2: #eef2d9;"
+							href="#board-key"
+							x="-0.25"
+							y="-0.25"
+							width="0.5"
+							height="0.5"
+						/>
+					</g>
+				</g>
+			</g>
+
+			{#each Array(3) as _, i}
+				<g id="pachisi-action-{i + 1}">
 					<use
-						style="--c0: #030f00; --c1: #93ca27; --c2: #eef2d9;"
-						href="#board-key"
-						x="-0.25"
-						y="-0.25"
-						width="0.5"
-						height="0.5"
+						style="--c0: #030f00; --c1: #da3900; --c2: #eef2d9;"
+						href="#board-tile-action"
+						width="1"
+						height="1"
 					/>
+					<g transform="translate(0.5 0.5)">
+						<path
+							d="M 0 -0.25 l 0.075 0 0 0.1 0.05 0 0 0.05 -0.1 0.1 -0.05 0 -0.1 -0.1 0 -0.05 0.05 0 0 -0.1"
+							fill="#f3f6f5"
+						/>
+						<g
+							transform="translate(0 0.2)"
+							fill="#d39854"
+							stroke="#030f00"
+							paint-order="stroke"
+							stroke-width="0.06"
+							stroke-linejoin="bevel"
+							text-anchor="middle"
+							font-size="0.25"
+							word-spacing="-0.12"
+							font-family="monospace"
+						>
+							<text>+ {i + 1}</text>
+						</g>
+					</g>
+					<g />
 				</g>
-			</g>
-		</g>
-
-		{#each Array(3) as _, i}
-			<g id="pachisi-action-{i + 1}">
-				<use
-					style="--c0: #030f00; --c1: #da3900; --c2: #eef2d9;"
-					href="#board-tile-action"
-					width="1"
-					height="1"
-				/>
-				<g transform="translate(0.5 0.5)">
-					<path
-						d="M 0 -0.25 l 0.075 0 0 0.1 0.05 0 0 0.05 -0.1 0.1 -0.05 0 -0.1 -0.1 0 -0.05 0.05 0 0 -0.1"
-						fill="#f3f6f5"
+				<g id="pachisi-action-{(i + 1) * -1}">
+					<use
+						style="--c0: #030f00; --c1: #1348ee; --c2: #eef2d9;"
+						href="#board-tile-action"
+						width="1"
+						height="1"
 					/>
-					<g
-						transform="translate(0 0.2)"
-						fill="#d39854"
-						stroke="#030f00"
-						paint-order="stroke"
-						stroke-width="0.06"
-						stroke-linejoin="bevel"
-						text-anchor="middle"
-						font-size="0.25"
-						word-spacing="-0.12"
-						font-family="monospace"
-					>
-						<text>+ {i + 1}</text>
+					<g transform="translate(0.5 0.5)">
+						<path
+							transform="translate(0 -0.25) rotate(180)"
+							d="M 0 -0.25 l 0.075 0 0 0.1 0.05 0 0 0.05 -0.1 0.1 -0.05 0 -0.1 -0.1 0 -0.05 0.05 0 0 -0.1"
+							fill="#f3f6f5"
+						/>
+						<g
+							transform="translate(0 0.2)"
+							fill="#d39854"
+							stroke="#030f00"
+							paint-order="stroke"
+							stroke-width="0.06"
+							stroke-linejoin="bevel"
+							text-anchor="middle"
+							font-size="0.25"
+							word-spacing="-0.12"
+							font-family="monospace"
+						>
+							<text>- {i + 1}</text>
+						</g>
 					</g>
 				</g>
-				<g />
-			</g>
-			<g id="pachisi-action-{(i + 1) * -1}">
-				<use
-					style="--c0: #030f00; --c1: #1348ee; --c2: #eef2d9;"
-					href="#board-tile-action"
-					width="1"
-					height="1"
-				/>
-				<g transform="translate(0.5 0.5)">
-					<path
-						transform="translate(0 -0.25) rotate(180)"
-						d="M 0 -0.25 l 0.075 0 0 0.1 0.05 0 0 0.05 -0.1 0.1 -0.05 0 -0.1 -0.1 0 -0.05 0.05 0 0 -0.1"
-						fill="#f3f6f5"
-					/>
-					<g
-						transform="translate(0 0.2)"
-						fill="#d39854"
-						stroke="#030f00"
-						paint-order="stroke"
-						stroke-width="0.06"
-						stroke-linejoin="bevel"
-						text-anchor="middle"
-						font-size="0.25"
-						word-spacing="-0.12"
-						font-family="monospace"
-					>
-						<text>- {i + 1}</text>
-					</g>
-				</g>
-			</g>
-		{/each}
-	</defs>
+			{/each}
+		</defs>
 
-	<g transform="translate(0 {$offset})">
-		<g transform="translate(0 {rows})">
-			{#each newBoard as { column, row, href }}
+		<g transform="translate(0 {$offset})">
+			<g transform="translate(0 {rows})">
+				{#each newBoard as { column, row, href }}
+					<g transform="translate({column} {row})">
+						<use {href} />
+					</g>
+				{/each}
+			</g>
+
+			{#each board as { column, row, href }}
 				<g transform="translate({column} {row})">
 					<use {href} />
 				</g>
 			{/each}
-		</g>
 
-		{#each board as { column, row, href }}
-			<g transform="translate({column} {row})">
-				<use {href} />
+			<g transform="translate({$position.column} {$position.row})">
+				<g transform="translate(0.5 0.5)">
+					<use
+						bind:this={player}
+						style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
+						href="#board-player-0"
+						x="-0.25"
+						y="-0.25"
+						width="0.5"
+						height="0.5"
+					>
+						<animate
+							begin="indefinite"
+							attributeName="href"
+							values="#board-player-0; #board-player-1"
+							dur="0.25s"
+							repeatCount="2"
+						/>
+					</use>
+				</g>
 			</g>
-		{/each}
-
-		<g transform="translate({$position.column} {$position.row})">
-			<g transform="translate(0.5 0.5)">
-				<use
-					bind:this={player}
-					style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
-					href="#board-player-0"
-					x="-0.25"
-					y="-0.25"
-					width="0.5"
-					height="0.5"
-				>
-					<animate
-						begin="indefinite"
-						attributeName="href"
-						values="#board-player-0; #board-player-1"
-						dur="0.25s"
-						repeatCount="2"
-					/>
-				</use>
-			</g>
-		</g>
-	</g>
-</svg>
-
-<div>
-	<button on:click={handleRoll}> Roll </button>
-	<svg
-		bind:this={dice}
-		style="display: block; --c0: #030f00; --c1: #ac3232; --c2: #eef2d9;"
-		viewBox="0 0 1 3"
-	>
-		<g>
-			<animateTransform
-				begin="indefinite"
-				attributeName="transform"
-				type="translate"
-				values="0 0; 0 -2; 0 0; 0 -1.4; 0 0; 0 -0.6; 0 0"
-				dur="1.8s"
-				calcMode="spline"
-				keySplines="0.2 0 0.5 1; 0.75 0 0.75 1; 0.3 0 0.5 1; 0.75 0 0.75 1; 0.4 0 0.5 1; 0.75 0 0.75 1"
-			/>
-			<use href="#dice-roll-1" y="2" width="1" height="1">
-				<animate begin="indefinite" attributeName="href" dur="1.8s" />
-			</use>
 		</g>
 	</svg>
-</div>
+</article>
 
 <style>
+	article {
+		color: #030f00;
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	article > svg {
+		min-inline-size: 18rem;
+		inline-size: 100%;
+	}
+
 	div {
 		display: inline-flex;
 		flex-direction: column-reverse;
@@ -384,6 +397,7 @@
 	}
 
 	div button {
+		color: inherit;
 		background: none;
 		margin: 0;
 		display: block;
