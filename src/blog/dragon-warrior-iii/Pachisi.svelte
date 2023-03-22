@@ -63,7 +63,7 @@
 	const rows = 3;
 	const ltr = true;
 
-	const board = getBoard({ columns, rows, ltr });
+	let board = getBoard({ columns, rows, ltr });
 	const { column, row } = board.find((d) => d.action === 'start');
 
 	let dice = null;
@@ -82,8 +82,41 @@
 		}
 	);
 
-	const handleWin = () => {
-		console.log('win');
+	const offset = tweened(0);
+	let newBoard = [];
+
+	const handleWin = async () => {
+		const duration = 1000;
+		const delay = 2000;
+
+		const { column } = $position;
+
+		const { ltr } = board.find(({ action }) => action === 'goal');
+		newBoard = getBoard({ columns, rows, ltr: !ltr });
+
+		position.set(
+			{
+				column,
+				row: rows
+			},
+			{
+				duration,
+				delay,
+				easing
+			}
+		);
+		await offset.set(rows * -1, {
+			duration,
+			delay,
+			easing
+		});
+
+		board = newBoard;
+		newBoard = [];
+		offset.set(0, { duration: 0 });
+		position.set({ column, row: 0 }, { duration: 0 });
+
+		state = 'wait';
 	};
 
 	const handleMove = async (roll, direction = 1) => {
@@ -273,31 +306,41 @@
 		{/each}
 	</defs>
 
-	{#each board as { column, row, href }}
-		<g transform="translate({column} {row})">
-			<use {href} />
+	<g transform="translate(0 {$offset})">
+		<g transform="translate(0 {rows})">
+			{#each newBoard as { column, row, href }}
+				<g transform="translate({column} {row})">
+					<use {href} />
+				</g>
+			{/each}
 		</g>
-	{/each}
 
-	<g transform="translate({$position.column} {$position.row})">
-		<g transform="translate(0.5 0.5)">
-			<use
-				bind:this={player}
-				style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
-				href="#board-player-0"
-				x="-0.25"
-				y="-0.25"
-				width="0.5"
-				height="0.5"
-			>
-				<animate
-					begin="indefinite"
-					attributeName="href"
-					values="#board-player-0; #board-player-1"
-					dur="0.25s"
-					repeatCount="2"
-				/>
-			</use>
+		{#each board as { column, row, href }}
+			<g transform="translate({column} {row})">
+				<use {href} />
+			</g>
+		{/each}
+
+		<g transform="translate({$position.column} {$position.row})">
+			<g transform="translate(0.5 0.5)">
+				<use
+					bind:this={player}
+					style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
+					href="#board-player-0"
+					x="-0.25"
+					y="-0.25"
+					width="0.5"
+					height="0.5"
+				>
+					<animate
+						begin="indefinite"
+						attributeName="href"
+						values="#board-player-0; #board-player-1"
+						dur="0.25s"
+						repeatCount="2"
+					/>
+				</use>
+			</g>
 		</g>
 	</g>
 </svg>
