@@ -59,7 +59,7 @@
 		return board;
 	};
 
-	const columns = 4;
+	const columns = 5;
 	const rows = 3;
 	const leftToRight = true;
 
@@ -390,12 +390,13 @@
 	article {
 		color: #030f00;
 		display: flex;
-		gap: 0.5rem;
+		gap: 0.75rem;
 	}
 
 	article > svg {
 		min-inline-size: 18rem;
 		inline-size: 100%;
+		display: block;
 	}
 
 	div {
@@ -407,7 +408,7 @@
 
 	div > svg {
 		display: block;
-		inline-size: 4rem;
+		inline-size: 3.5rem;
 		block-size: auto;
 	}
 
