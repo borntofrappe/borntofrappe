@@ -7,9 +7,14 @@ date: 2023-03-24 10:58:59
 <script>
     import Center from '$lib/components/blog/Center.svelte';
 
+	import Chroma from './Chroma.svelte'
 	import svg from './svg.js'
 </script>
 
-<Center element="figure" maxInlineSize="26rem">
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['chroma']}
+</Center>
+
+<Center element="figure" maxInlineSize="28rem">
+	<Chroma />
 </Center>
