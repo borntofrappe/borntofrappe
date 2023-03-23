@@ -4,7 +4,7 @@
 
 	import svg from './svg.js';
 
-	const getBoard = ({ columns = 4, rows = 3, ltr = true } = {}) => {
+	const getBoard = ({ columns = 4, rows = 3, leftToRight = true } = {}) => {
 		const actionPool = [1, 1, 1, 1, -1, -1, -1, -1, 2, 2, -2, -2, 3, -3];
 
 		const board = Array(rows * columns)
@@ -34,8 +34,8 @@
 			const stepAction = step + action;
 
 			if (
-				stepAction > 0 &&
-				stepAction < length &&
+				stepAction > 1 &&
+				stepAction < length - 1 &&
 				board[step].action === null &&
 				board[stepAction].action === null
 			) {
@@ -48,12 +48,12 @@
 
 		for (let i = 0; i < board.length; i++) {
 			const row = Math.floor(i / columns);
-			const even = row % 2 === 0;
-			const flow = even ? ltr : !ltr;
-			const column = flow ? i % columns : columns - 1 - (i % columns);
+			const ltr = row % 2 === 0 ? leftToRight : !leftToRight;
+			const column = ltr ? i % columns : columns - 1 - (i % columns);
+
 			board[i].row = row;
 			board[i].column = column;
-			board[i].ltr = flow;
+			board[i].ltr = ltr;
 		}
 
 		return board;
@@ -61,9 +61,9 @@
 
 	const columns = 4;
 	const rows = 3;
-	const ltr = true;
+	const leftToRight = true;
 
-	let board = getBoard({ columns, rows, ltr });
+	let board = getBoard({ columns, rows, leftToRight });
 	const { column, row } = board.find((d) => d.action === 'start');
 
 	let dice = null;
@@ -92,7 +92,7 @@
 		const { column } = $position;
 
 		const { ltr } = board.find(({ action }) => action === 'goal');
-		newBoard = getBoard({ columns, rows, ltr: !ltr });
+		newBoard = getBoard({ columns, rows, leftToRight: !ltr });
 
 		position.set(
 			{
@@ -142,27 +142,33 @@
 		});
 
 		if (roll === 1) {
-			const { column, row } = $position;
+			const delay = 150;
 
-			const { action } = board.find((cell) => cell.column === column && cell.row === row);
-			switch (action) {
-				case 'goal':
-					state = 'win';
-					handleWin();
-					break;
-				case 1:
-				case 2:
-				case 3:
-					handleMove(action);
-					break;
-				case -1:
-				case -2:
-				case -3:
-					handleMove(Math.abs(action), -1);
-					break;
-				default:
-					state = 'wait';
-			}
+			setTimeout(() => {
+				const { column, row } = $position;
+
+				const { action } = board.find((cell) => cell.column === column && cell.row === row);
+				switch (action) {
+					case 'goal':
+						state = 'win';
+						handleWin();
+						break;
+					case 1:
+					case 2:
+					case 3:
+						state = 'move';
+						handleMove(action);
+						break;
+					case -1:
+					case -2:
+					case -3:
+						state = 'move';
+						handleMove(Math.abs(action), -1);
+						break;
+					default:
+						state = 'wait';
+				}
+			}, delay);
 		} else {
 			const { column, row } = $position;
 			const { action } = board.find((cell) => cell.column === column && cell.row === row);
@@ -205,6 +211,7 @@
 		animate.beginElement();
 
 		setTimeout(() => {
+			state = 'move';
 			handleMove(roll);
 		}, duration);
 	};
@@ -392,17 +399,16 @@
 
 	div > svg {
 		display: block;
-		inline-size: 3.5rem;
+		inline-size: 4rem;
 		block-size: auto;
 	}
 
 	div button {
 		color: inherit;
 		background: none;
-		margin: 0;
 		display: block;
+		margin: 0;
 		padding: 0.2rem 0.5rem;
-		font: inherit;
 		line-height: 1;
 		letter-spacing: 0.5px;
 		font-weight: 700;
