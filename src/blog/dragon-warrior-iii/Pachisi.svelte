@@ -89,6 +89,13 @@
 		const duration = 1000;
 		const delay = 2000;
 
+		const totalDuration = duration + delay;
+		const stepDuration = 350;
+		const repeatCount = Math.ceil(totalDuration / stepDuration);
+		player.querySelector('animate').setAttribute('repeatCount', repeatCount);
+		player.querySelector('animate').setAttribute('dur', `${stepDuration / 1000}s`);
+		player.querySelector('animate').beginElement();
+
 		const { column } = $position;
 
 		const { ltr } = board.find(({ action }) => action === 'goal');
@@ -141,10 +148,11 @@
 			row: row + dr
 		});
 
-		if (roll === 1) {
-			const delay = 150;
+		dice.querySelector('use').setAttribute('href', `#dice-face-${Math.max(1, roll - 1)}`);
 
-			setTimeout(() => {
+		const delay = roll === 1 ? 150 : 75;
+		setTimeout(() => {
+			if (roll === 1) {
 				const { column, row } = $position;
 
 				const { action } = board.find((cell) => cell.column === column && cell.row === row);
@@ -157,7 +165,7 @@
 					case 2:
 					case 3:
 						state = 'move';
-						handleMove(action);
+						handleMove(action, 1);
 						break;
 					case -1:
 					case -2:
@@ -168,16 +176,16 @@
 					default:
 						state = 'wait';
 				}
-			}, delay);
-		} else {
-			const { column, row } = $position;
-			const { action } = board.find((cell) => cell.column === column && cell.row === row);
-			if (action === 'goal') {
-				handleMove(roll - 1, -1);
 			} else {
-				handleMove(roll - 1, direction);
+				const { column, row } = $position;
+				const { action } = board.find((cell) => cell.column === column && cell.row === row);
+				if (action === 'goal') {
+					handleMove(roll - 1, -1);
+				} else {
+					handleMove(roll - 1, direction);
+				}
 			}
-		}
+		}, delay);
 	};
 
 	const handleRoll = async () => {
