@@ -3,3 +3,13 @@ title: Chroma chameleon
 description: Add life and the colors of the rainbow to an adorable lizard.
 date: 2023-03-24 10:58:59
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js'
+</script>
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['chroma']}
+</Center>
