@@ -19,9 +19,9 @@ Ask me to paint you a color-changing lizard and I would sketch you something lik
 	{@html svg['chameleon']}
 </Center>
 
-Circles for the eye popping prominently on one side. `<path>` elements for the round-ish body and the limbs on the other. The visual is already enough to convince you: before you sits a simple, adorable, chameleon.
+Circles for the evident, glaring eye. `<path>` elements for the round-ish head, body and the limbs. The setup is simple, but enough to convince you: before you sits a adorable chameleon.
 
-It isn't doing a very good job in hiding, but this particular creature is a bit of a show-off. It doesn't mind being seen, and as a matter of fact, it delights in showing its full range of colors.
+It isn't doing a very good job in hiding, but this particular reptile is a bit of a show-off. It doesn't mind being seen, and as a matter of fact, it delights in showing its full range of colors.
 
 <Center element="figure" maxInlineSize="28rem">
 	<Chroma />
@@ -37,7 +37,7 @@ How? Always with SVG. Let me set up a canvas with one conspicuous rectangle and 
 
 ## Colors
 
-With the `fill` attribute you are able to paint the rectangle with a color. Any CSS-valid value will do.
+With the `fill` attribute you are able to color the rectangle. Any CSS-valid value will do.
 
 ```html
 <rect fill="hsl(0, 0%, 30%)" width="100" height="100" />
@@ -83,7 +83,7 @@ And you eventually find the finest rectangle.
 
 Ultimately, we want to animate the rainbow to move horizontally, in a seemingly endless stream of colors. And to this end, SVG has a few tricks, or better yet attributes, up its sleeve.
 
-Go back to the linear gradient. Past the `id` attribute we specify the coordinates for the gradient itself.
+Going back to the linear gradient, past the `id` attribute we can specify the coordinates for the gradient itself.
 
 <!-- prettier-ignore -->
 ```html
@@ -124,7 +124,7 @@ And instead of completing the rectangle with the final value the second half mir
 	{@html svg['spread-method']}
 </Center>
 
-The result is charming, but you might anticipate just how essential the change is for our animation. Repeat a rectangle to the left, essentially a copy outside of the visible area.
+The result is charming, but you might anticipate how essential the change is for our animation. Repeat a rectangle to the left — essentially a copy just outside of the visible area.
 
 ```html
 <rect fill="url(#gradient)" width="100" height="100" />
@@ -151,7 +151,7 @@ Animate the change with CSS and voilà, the effect is complete.
 	<Animate />
 </Center>
 
-The animation itself is endless, moving the two rectangles to the right before resuming the original coordinate.
+The animation itself is endless, moving the two rectangles to the right before resuming the original offset.
 
 ```css
 g {
@@ -165,9 +165,9 @@ g {
 }
 ```
 
-But since the gradient begins exactly as it ends, the jump is imperceptible.
+Since the gradient begins exactly as it ends, however, the jump is imperceptible.
 
-One more detail works to sell the illusion: the timing function. By default animations slow down to reach the final value, but in our project, there is no such thing. You might know of the two rectangles, but to the untrained eye the rainbow continues indefinitely. In light of this, have the animation move linearly.
+One more detail works to sell the illusion: the timing function. By default animations slow down to reach the final value, but in our project, there is no such thing. You might know of the two rectangles, but to the untrained eye the rainbow continues indefinitely. In light of this, update the position linearly.
 
 ```css
 g {
@@ -175,17 +175,17 @@ g {
 }
 ```
 
-The gradient begins as it ends, and so should the movement.
+The gradient begins as it ends, and so does the movement. From red to red, from 0 to 0.
 
 ## Clip
 
-Colored, animated. The canvas resembles the chromatic lizard more and more. But there are no rectangles in the original picture, are there? Well, in fact, there are two of them, with the same gradient and the same horizontal translation.
+Colored, animated. The canvas resembles the chromatic lizard more and more. But there are no rectangles in the original picture, are there? Well, in fact, there are exactly two of them, with the same gradient and the same horizontal translation.
 
 I decided to animate the shapes only as the lizard appears on screen with JavaScript and the intersection observer API, but that's not the first thing you notice.
 
 You see the outline of the lizard, not regular polygons.
 
-SVG offers here the `clipPath>`element. Add one similarly to the linear gradient.
+SVG offers here the `clipPath>`element. Define one similarly to the gradient.
 
 ```html
 <clipPath id="clip">
@@ -193,7 +193,7 @@ SVG offers here the `clipPath>`element. Add one similarly to the linear gradient
 </clipPath>
 ```
 
-And apply the same with the `clip-path` attribute.
+And refer to the same with the `clip-path` attribute.
 
 ```html
 <g clip-path="url(#clip)">
@@ -207,7 +207,7 @@ The shapes you add in the clip describe the visible area. Consider for instance 
 	{@html svg['path']}
 </Center>
 
-If you were to include the shape not in the SVG, but in the boundaries of the clip.
+Include the shape not in the SVG, but in the boundaries of the clip.
 
 ```html
 <clipPath id="clip">
@@ -215,12 +215,13 @@ If you were to include the shape not in the SVG, but in the boundaries of the cl
 </clipPath>
 ```
 
-The rectangles are clipped in a familiar manner.
+And the rectangles are clipped accordingly.
 
 <Center element="figure" maxInlineSize="22rem">
 	{@html svg['clip-path']}
+	<figcaption>A multicolored <span lang="fr">arc-en-ciel</span>.</figcaption>
 </Center>
 
 This is exactly what happens with the lizard. Instead of one arc, however, the clip includes the `<path>`s for the head, body and limbs.
 
-Shapes which are finally repeated with a solid stroke, perfectly framing the evident, and suddenly more secretive, creature.
+Shapes which are finally repeated with a solid stroke, perfectly framing the evident, and suddenly more cryptic creature.
