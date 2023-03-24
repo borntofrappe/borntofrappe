@@ -1,5 +1,6 @@
 export default {
 	chameleon: `<svg style="display: block;" viewBox="0 0 100 100">
+	<title>A nice chameleon</title>
 	<g stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
 		<path
 			transform="translate(48 36)"
@@ -46,6 +47,25 @@ export default {
 		</linearGradient>
 	</defs>
 	<rect fill="url(#linear-gradient-gradient)" width="100" height="100" />
+</svg>`,
+	'x-coordinates': `<svg style="display: block" viewBox="0 0 100 100">
+	<defs>
+		<linearGradient
+			id="x-coordinates-gradient"
+			x1="0"
+			x2="0.5"
+			y1="0"
+			y2="0"
+		>
+			<stop offset="0" stop-color="hsl(0, 85%, 72%)" />
+			<stop offset="0.2" stop-color="hsl(60, 85%, 72%)" />
+			<stop offset="0.4" stop-color="hsl(120, 85%, 72%)" />
+			<stop offset="0.6" stop-color="hsl(180, 85%, 72%)" />
+			<stop offset="0.8" stop-color="hsl(240, 85%, 72%)" />
+			<stop offset="1" stop-color="hsl(300, 85%, 72%)" />
+		</linearGradient>
+	</defs>
+	<rect fill="url(#x-coordinates-gradient)" width="100" height="100" />
 </svg>`,
 	'spread-method': `<svg style="display: block" viewBox="0 0 100 100">
 	<defs>
