@@ -18,9 +18,8 @@
 	<defs>
 		<linearGradient
 			id="chroma-gradient-rainbow"
-			gradientUnits="userSpaceOnUse"
 			x1="0"
-			x2="150"
+			x2="0.5"
 			y1="0"
 			y2="0"
 			spreadMethod="reflect"
@@ -82,14 +81,12 @@
 		/>
 	</g>
 
-	<g
-		fill="url(#chroma-gradient-rainbow)"
-		stroke="url(#chroma-gradient-rainbow)"
-		clip-path="url(#chroma-clip-chameleon)"
-	>
+	<g clip-path="url(#chroma-clip-chameleon)">
 		<g class="translate" transform="translate(0 0)">
-			<rect x="-300" width="300" height="100" />
-			<rect width="300" height="100" />
+			<g fill="url(#chroma-gradient-rainbow)" stroke="url(#chroma-gradient-rainbow)">
+				<rect x="-300" width="300" height="100" />
+				<rect width="300" height="100" />
+			</g>
 		</g>
 	</g>
 
