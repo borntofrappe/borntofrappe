@@ -12,9 +12,25 @@ date: 2023-03-24 10:58:59
 </script>
 
 <Center element="figure" maxInlineSize="28rem">
-	{@html svg['chroma']}
+	{@html svg['chameleon']}
 </Center>
 
 <Center element="figure" maxInlineSize="28rem">
 	<Chroma />
+</Center>
+
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['linear-gradient']}
+</Center>
+
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['spread-method']}
+</Center>
+
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['path']}
+</Center>
+
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['clip-path']}
 </Center>
