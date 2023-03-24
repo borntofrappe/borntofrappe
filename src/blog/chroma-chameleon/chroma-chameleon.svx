@@ -7,10 +7,10 @@ date: 2023-03-24 17:54:56
 <script>
     import Center from '$lib/components/blog/Center.svelte';
 
+	import svg from './svg.js'
 	import Chroma from './Chroma.svelte'
 	import Translate from './Translate.svelte'
 	import Animate from './Animate.svelte'
-	import svg from './svg.js'
 </script>
 
 Ask me to paint you a color-changing lizard and I would sketch you something like the following SVG.
@@ -139,7 +139,7 @@ Add a group around both shapes.
 </g>
 ```
 
-In the moment you translate the element you are re-introduced to the colors. From left to right.
+The moment you translate the element you are re-introduced to the colors. From left to right.
 
 <Center maxInlineSize="22rem">
 	<Translate />
@@ -205,7 +205,7 @@ The shapes you add in the clip describe the visible area. Consider for instance 
 
 <Center element="figure" maxInlineSize="22rem">
 	{@html svg['path']}
-</Center
+</Center>
 
 If you were to include the shape not in the SVG, but in the boundaries of the clip.
 
