@@ -211,7 +211,7 @@ Include the shape not in the SVG, but in the boundaries of the clip.
 
 ```html
 <clipPath id="clip">
-	<path d="M 10 70 a 40 40 0 0 1 80 0 l -20 0 a 20 20 0 0 0 -40 0z" />
+	<path d="M 0 75 a 50 50 0 0 1 100 0 l -25 0 a 25 25 0 0 0 -50 0z" />
 </clipPath>
 ```
 

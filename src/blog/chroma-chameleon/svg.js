@@ -99,7 +99,7 @@ export default {
 		</linearGradient>
 	</defs>
 	<rect fill="url(#path-gradient)" width="100" height="100" />
-	<path fill="hsl(0, 0%, 28%)" d="M 10 70 a 40 40 0 0 1 80 0 l -20 0 a 20 20 0 0 0 -40 0z" />
+	<path fill="hsl(0, 0%, 28%)" d="M 0 75 a 50 50 0 0 1 100 0 l -25 0 a 25 25 0 0 0 -50 0z" />
 </svg>`,
 	'clip-path': `<svg style="display: block" viewBox="0 0 100 100">
 	<defs>
@@ -112,7 +112,7 @@ export default {
 			<stop offset="1" stop-color="hsl(300, 85%, 72%)" />
 		</linearGradient>
 		<clipPath id="clip-path-clip">
-			<path d="M 10 70 a 40 40 0 0 1 80 0 l -20 0 a 20 20 0 0 0 -40 0z" />
+			<path d="M 0 75 a 50 50 0 0 1 100 0 l -25 0 a 25 25 0 0 0 -50 0z" />
 		</clipPath>
 	</defs>
 	<g clip-path="url(#clip-path-clip)">
