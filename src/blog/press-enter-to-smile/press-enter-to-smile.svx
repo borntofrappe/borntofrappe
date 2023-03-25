@@ -1,0 +1,5 @@
+---
+title: Press enter to smile
+description: Animate SVG on click and keypress.
+date: 2023-03-27 15:21:57
+---
