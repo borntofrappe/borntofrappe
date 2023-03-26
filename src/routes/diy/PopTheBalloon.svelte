@@ -73,7 +73,7 @@
 				/>
 				<g transform="translate(0 -3)">
 					<g style:cursor="pointer">
-						<set id="popTheBalloonPopped" begin="click" />
+						<set id="popTheBalloonPopped" begin="click" attributeName="display" to="none" />
 						<g stroke="currentColor" stroke-width="0.5">
 							<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
 							<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5z" />
@@ -83,12 +83,25 @@
 				</g>
 			</g>
 
-			<g stroke="currentColor" stroke-width="0.5">
-				<g fill="url(#pop-the-balloon-pattern-present)">
-					<rect x="-6" y="4" width="12" height="7" />
-					<rect x="-7" width="14" height="4" />
+			<g>
+				<animateTransform
+					begin="popTheBalloonPopped.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 100"
+					dur="2s"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.2 1"
+					fill="freeze"
+				/>
+				<g stroke="currentColor" stroke-width="0.5">
+					<g fill="url(#pop-the-balloon-pattern-present)">
+						<rect x="-6" y="4" width="12" height="7" />
+						<rect x="-7" width="14" height="4" />
+					</g>
+					<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
 				</g>
-				<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
 			</g>
 		</g>
 	</g>
