@@ -1,5 +1,6 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const angle = ((Math.floor(Math.random() * 180) + 180) / 180) * Math.PI;
 	const dx = Math.cos(angle) * 80;
@@ -50,6 +51,7 @@
 	<g transform="translate(40 30)">
 		<g>
 			<animateTransform
+				id="popTheBalloonFloat"
 				begin="popTheBalloonStart.begin"
 				end="popTheBalloonPopped.begin"
 				attributeName="transform"
@@ -85,6 +87,7 @@
 
 			<g>
 				<animateTransform
+					id="popTheBalloonFall"
 					begin="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
@@ -104,6 +107,23 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="popTheBalloonMessage"
+			begin="popTheBalloonFall.end + 0.5s; popTheBalloonFloat.end + 0.5s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+			restart="never"
+		/>
+		<AnimatedTitle
+			text="That's a wrap!"
+			fill="url(#linear-gradient-text)"
+			begin="popTheBalloonMessage.begin + 0.5s"
+			repeatCount="2"
+		/>
 	</g>
 
 	<g style:cursor="pointer">
