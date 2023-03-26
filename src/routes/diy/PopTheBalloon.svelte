@@ -22,9 +22,41 @@
 				d="M -7 0 a 2 2 0 0 1 4 -2 3 3 0 0 1 6 0 2 2 0 0 1 4 2 2 2 0 0 1 0 4 1.85 1.85 0 0 1 -3.7 0 3.4 3.4 0 0 1 -6.6 0 1.85 1.85 0 0 1 -3.7 0 2 2 0 0 1 0 -4"
 			/>
 		</g>
+
+		<pattern
+			id="pop-the-balloon-pattern-present"
+			viewBox="0 0 10 10"
+			width="4"
+			height="4"
+			patternUnits="userSpaceOnUse"
+		>
+			<rect width="10" height="10" fill="#f7f75a" />
+			<path
+				fill="#f7aa31"
+				d="M 0 0 3 0 0 3Z M 0 7 3 10 0 10Z M 7 0 10 3 10 0Z M 7 10 10 7 10 10Z M 2 5 5 2 8 5 5 8z"
+			/>
+		</pattern>
 	</defs>
 	<rect fill="#10c2ce" width="80" height="50" />
 
 	<use transform="translate(15 15)" href="#pop-the-balloon-cloud" />
 	<use transform="translate(65 35)" href="#pop-the-balloon-cloud" />
+
+	<g transform="translate(40 30)">
+		<g transform="translate(0 -3)">
+			<g stroke="currentColor" stroke-width="0.5">
+				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
+				<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5z" />
+				<ellipse fill="#f70000" rx="7" ry="8" cy="-9" />
+			</g>
+		</g>
+
+		<g stroke="currentColor" stroke-width="0.5">
+			<g fill="url(#pop-the-balloon-pattern-present)">
+				<rect x="-6" y="4" width="12" height="7" />
+				<rect x="-7" width="14" height="4" />
+			</g>
+			<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+		</g>
+	</g>
 </svg>
