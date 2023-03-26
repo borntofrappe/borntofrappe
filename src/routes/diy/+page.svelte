@@ -1,6 +1,7 @@
 <script>
 	import site from '$lib/utils/site.js';
 	import PokeTheLadybug from './PokeTheLadybug.svelte';
+	import PopTheBalloon from './PopTheBalloon.svelte';
 
 	const { title } = site;
 </script>
@@ -36,6 +37,10 @@
 <div>
 	<article style="background: hsl(356, 89%, 71%); --border-color: hsl(153, 24%, 77%);">
 		<PokeTheLadybug />
+	</article>
+
+	<article style="background: hsl(46, 93%, 56%); --border-color: hsl(41, 100%, 47%);">
+		<PopTheBalloon />
 	</article>
 </div>
 
