@@ -1,5 +1,10 @@
 <script>
 	import Title from './Title.svelte';
+
+	const angle = ((Math.floor(Math.random() * 180) + 180) / 180) * Math.PI;
+	const dx = Math.cos(angle) * 80;
+	const dy = Math.sin(angle) * 50;
+	const dur = '5s';
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -43,20 +48,48 @@
 	<use transform="translate(65 35)" href="#pop-the-balloon-cloud" />
 
 	<g transform="translate(40 30)">
-		<g transform="translate(0 -3)">
-			<g stroke="currentColor" stroke-width="0.5">
-				<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
-				<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5z" />
-				<ellipse fill="#f70000" rx="7" ry="8" cy="-9" />
-			</g>
-		</g>
+		<g>
+			<animateTransform
+				begin="1s"
+				end="popTheBalloonPopped.begin"
+				attributeName="transform"
+				type="translate"
+				to="{dx} {dy}"
+				{dur}
+				fill="freeze"
+			/>
 
-		<g stroke="currentColor" stroke-width="0.5">
-			<g fill="url(#pop-the-balloon-pattern-present)">
-				<rect x="-6" y="4" width="12" height="7" />
-				<rect x="-7" width="14" height="4" />
+			<g>
+				<animateTransform
+					begin="1s"
+					end="popTheBalloonPopped.begin"
+					attributeName="transform"
+					type="translate"
+					to="0 1"
+					dur="0.35s"
+					calcMode="discrete"
+					repeatCount="indefinite"
+					fill="freeze"
+				/>
+				<g transform="translate(0 -3)">
+					<g style:cursor="pointer">
+						<set id="popTheBalloonPopped" begin="click" />
+						<g stroke="currentColor" stroke-width="0.5">
+							<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
+							<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5z" />
+							<ellipse fill="#f70000" rx="7" ry="8" cy="-9" />
+						</g>
+					</g>
+				</g>
 			</g>
-			<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+
+			<g stroke="currentColor" stroke-width="0.5">
+				<g fill="url(#pop-the-balloon-pattern-present)">
+					<rect x="-6" y="4" width="12" height="7" />
+					<rect x="-7" width="14" height="4" />
+				</g>
+				<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
+			</g>
 		</g>
 	</g>
 </svg>
