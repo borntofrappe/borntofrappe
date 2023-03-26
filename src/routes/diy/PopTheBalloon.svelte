@@ -45,8 +45,8 @@
 	</defs>
 	<rect fill="#10c2ce" width="80" height="50" />
 
-	<use transform="translate(15 15)" href="#pop-the-balloon-cloud" />
-	<use transform="translate(65 35)" href="#pop-the-balloon-cloud" />
+	<use transform="translate(15 12)" href="#pop-the-balloon-cloud" />
+	<use transform="translate(65 38)" href="#pop-the-balloon-cloud" />
 
 	<g transform="translate(40 30)">
 		<g>
@@ -112,18 +112,36 @@
 	<g display="none">
 		<set
 			id="popTheBalloonMessage"
-			begin="popTheBalloonFall.end + 0.5s; popTheBalloonFloat.end + 0.5s"
+			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
 			restart="never"
 		/>
-		<AnimatedTitle
-			text="That's a wrap!"
-			fill="url(#linear-gradient-text)"
-			begin="popTheBalloonMessage.begin + 0.5s"
-			repeatCount="2"
-		/>
+		<g display="none">
+			<set begin="popTheBalloonFall.end" attributeName="display" to="initial" fill="freeze" />
+			<AnimatedTitle
+				text="That's a wrap!"
+				fill="url(#linear-gradient-text)"
+				begin="popTheBalloonFall.end"
+				end="popTheBalloonEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+		<g>
+			<set begin="popTheBalloonFall.begin" attributeName="display" to="none" fill="freeze" />
+			<AnimatedTitle
+				text="Far it goes..."
+				fill="url(#linear-gradient-text)"
+				begin="popTheBalloonMessage.begin"
+				end="popTheBalloonFall.end; popTheBalloonEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="popTheBalloonEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
