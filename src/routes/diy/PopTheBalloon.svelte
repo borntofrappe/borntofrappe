@@ -50,7 +50,7 @@
 	<g transform="translate(40 30)">
 		<g>
 			<animateTransform
-				begin="1s"
+				begin="popTheBalloonStart.begin"
 				end="popTheBalloonPopped.begin"
 				attributeName="transform"
 				type="translate"
@@ -61,7 +61,7 @@
 
 			<g>
 				<animateTransform
-					begin="1s"
+					begin="popTheBalloonStart.begin"
 					end="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
@@ -91,5 +91,13 @@
 				<rect fill="#73ce3a" x="-2" y="-0.5" width="4" height="11.5" />
 			</g>
 		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="popTheBalloonStart" begin="click" attributeName="display" to="none" fill="freeze" />
+
+		<Title fill="url(#linear-gradient-text)">Pop!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
