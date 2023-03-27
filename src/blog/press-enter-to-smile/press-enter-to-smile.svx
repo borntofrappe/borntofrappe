@@ -181,13 +181,13 @@ if (e.key === 'Enter') {
 }
 ```
 
-Elaborate? To be sure. It would have been much easier to rely on a single directive. But with JavaScript and a few carefully-chosen attributes we managed to extend the interaction to keyboard users.
+Elaborate? To be sure, it would have been much easier to rely on a single directive. But with JavaScript and a few carefully-chosen attributes we managed to extend the interaction to keyboard users.
 
 The code is not excessively complex either.
 
 And since we have access to JavaScript, since we have a function reacting to the event, we might just go ahead and spruce up the visual as the animation rolls out.
 
-On click and key press.
+On click and a bright enter key.
 
 <Center maxInlineSize="48rem">
 	<PressEnter />
