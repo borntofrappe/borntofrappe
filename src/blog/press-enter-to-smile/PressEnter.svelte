@@ -24,9 +24,8 @@
 </script>
 
 <svg viewBox="0 0 100 80">
-	<title>Press enter to smile</title>
 	<defs>
-		<g id="keycap">
+		<g id="press-enter-keycap">
 			<path
 				fill="hsl(0, 0%, 69%)"
 				stroke="hsl(0, 0%, 69%)"
@@ -121,7 +120,6 @@
 							d="M 0 0 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
 						>
 							<animateTransform
-								id="enter"
 								attributeName="transform"
 								type="translate"
 								values="0 0; 0 1; 0 0"
@@ -134,26 +132,25 @@
 							/>
 						</path>
 					</g>
-					<use href="#keycap" />
-					<use href="#keycap" x="10" />
-					<use href="#keycap" x="20" />
-					<!-- 		<use href="#keycap" x="30" /> -->
-					<!-- 		<use href="#keycap" x="40" /> -->
+					<g>
+						<use href="#press-enter-keycap" />
+						<use href="#press-enter-keycap" x="10" />
+						<use href="#press-enter-keycap" x="20" />
+					</g>
 
 					<g transform="translate(0 9.5)">
-						<use href="#keycap" />
-						<use href="#keycap" x="10" />
-						<use href="#keycap" x="20" />
-						<use href="#keycap" x="30" />
-						<!-- 			<use href="#keycap" x="40" /> -->
+						<use href="#press-enter-keycap" />
+						<use href="#press-enter-keycap" x="10" />
+						<use href="#press-enter-keycap" x="20" />
+						<use href="#press-enter-keycap" x="30" />
 					</g>
 
 					<g transform="translate(0 19)">
-						<use href="#keycap" />
-						<use href="#keycap" x="10" />
-						<use href="#keycap" x="20" />
-						<use href="#keycap" x="30" />
-						<use href="#keycap" x="40" />
+						<use href="#press-enter-keycap" />
+						<use href="#press-enter-keycap" x="10" />
+						<use href="#press-enter-keycap" x="20" />
+						<use href="#press-enter-keycap" x="30" />
+						<use href="#press-enter-keycap" x="40" />
 					</g>
 				</g>
 			</g>
