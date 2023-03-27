@@ -68,7 +68,7 @@
 							transform="translate(0 4)"
 							font-size="11"
 							font-family="sans-serif"
-							fill="hsl(0, 0%, 69%)"
+							fill="hsl(0, 0%, 81%)"
 							font-weight="700"
 							stroke-linejoin="round"
 							stroke-linecap="round"
