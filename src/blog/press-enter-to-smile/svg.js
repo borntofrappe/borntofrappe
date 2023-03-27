@@ -15,7 +15,7 @@ export default {
 		</g>
 	</defs>
 </svg>`,
-	keyboard: `<svg style="display: block" viewBox="0 0 55 35.5">
+	keyboard: `<svg style="display: block" viewBox="-2.5 -2.5 60 40.5">
 	<g transform="translate(4.5 0.5)">
 		<g transform="translate(3 3)">
 			<g fill="currentColor" stroke="currentColor" stroke-linejoin="round">
@@ -31,6 +31,9 @@ export default {
 						d="M 1.5 -0.5 h -2 -2 a 2 2 0 0 0 -2 2 v 23.5 a 2 2 0 0 0 2 2 h 45 a 2 2 0 0 0 2 -2 v -23.5 a 2 2 0 0 0 -2 -2z"
 					/>
 				</g>
+				<use href="#keycap" />
+				<use href="#keycap" x="10" />
+				<use href="#keycap" x="20" />
 				<g transform="translate(30 0)">
 					<path
 						fill="hsl(42, 63%, 48%)"
@@ -43,9 +46,6 @@ export default {
 						d="M 0 0 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
 					/>
 				</g>
-				<use href="#keycap" />
-				<use href="#keycap" x="10" />
-				<use href="#keycap" x="20" />
 				<g transform="translate(0 9.5)">
 					<use href="#keycap" />
 					<use href="#keycap" x="10" />
@@ -63,7 +63,7 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	click: `<svg style="display: block" viewBox="0 0 55 35.5">
+	click: `<svg style="display: block" viewBox="-2.5 -2.5 60 40.5">
 	<g transform="translate(4.5 0.5)">
 		<g transform="translate(3 3)">
 			<g fill="currentColor" stroke="currentColor" stroke-linejoin="round">
@@ -79,6 +79,9 @@ export default {
 						d="M 1.5 -0.5 h -2 -2 a 2 2 0 0 0 -2 2 v 23.5 a 2 2 0 0 0 2 2 h 45 a 2 2 0 0 0 2 -2 v -23.5 a 2 2 0 0 0 -2 -2z"
 					/>
 				</g>
+				<use href="#keycap" />
+				<use href="#keycap" x="10" />
+				<use href="#keycap" x="20" />
 				<g transform="translate(30 0)">
 					<path
 						fill="hsl(42, 63%, 48%)"
@@ -100,9 +103,6 @@ export default {
 						/>
 					</path>
 				</g>
-				<use href="#keycap" />
-				<use href="#keycap" x="10" />
-				<use href="#keycap" x="20" />
 				<g transform="translate(0 9.5)">
 					<use href="#keycap" />
 					<use href="#keycap" x="10" />
@@ -120,7 +120,7 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	keydown: `<svg style="display: block" viewBox="0 0 55 35.5">
+	keydown: `<svg style="display: block" viewBox="-2.5 -2.5 60 40.5">
 	<g transform="translate(4.5 0.5)">
 		<g transform="translate(3 3)">
 			<g fill="currentColor" stroke="currentColor" stroke-linejoin="round">
@@ -136,6 +136,9 @@ export default {
 						d="M 1.5 -0.5 h -2 -2 a 2 2 0 0 0 -2 2 v 23.5 a 2 2 0 0 0 2 2 h 45 a 2 2 0 0 0 2 -2 v -23.5 a 2 2 0 0 0 -2 -2z"
 					/>
 				</g>
+				<use href="#keycap" />
+				<use href="#keycap" x="10" />
+				<use href="#keycap" x="20" />
 				<g transform="translate(30 0)">
 					<path
 						fill="hsl(42, 63%, 48%)"
@@ -160,9 +163,6 @@ export default {
 						/>
 					</path>
 				</g>
-				<use href="#keycap" />
-				<use href="#keycap" x="10" />
-				<use href="#keycap" x="20" />
 				<g transform="translate(0 9.5)">
 					<use href="#keycap" />
 					<use href="#keycap" x="10" />

@@ -105,37 +105,38 @@
 						/>
 					</g>
 
-					<g transform="translate(30 0)">
-						<path
-							fill="hsl(42, 63%, 48%)"
-							stroke="hsl(42, 63%, 48%)"
-							d="M 0 1.5 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
-						/>
-						<path
-							on:click={handlePress}
-							on:keydown
-							style="cursor: pointer;"
-							fill="hsl(42, 78%, 60%)"
-							stroke="hsl(42, 78%, 60%)"
-							d="M 0 0 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
-						>
-							<animateTransform
-								attributeName="transform"
-								type="translate"
-								values="0 0; 0 1; 0 0"
-								begin="click"
-								dur="0.35s"
-								restart="whenNotActive"
-								calcMode="spline"
-								keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
-								keyTimes="0; 0.4; 1"
-							/>
-						</path>
-					</g>
 					<g>
 						<use href="#press-enter-keycap" />
 						<use href="#press-enter-keycap" x="10" />
 						<use href="#press-enter-keycap" x="20" />
+
+						<g transform="translate(30 0)">
+							<path
+								fill="hsl(42, 63%, 48%)"
+								stroke="hsl(42, 63%, 48%)"
+								d="M 0 1.5 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
+							/>
+							<path
+								on:click={handlePress}
+								on:keydown
+								style="cursor: pointer;"
+								fill="hsl(42, 78%, 60%)"
+								stroke="hsl(42, 78%, 60%)"
+								d="M 0 0 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
+							>
+								<animateTransform
+									attributeName="transform"
+									type="translate"
+									values="0 0; 0 1; 0 0"
+									begin="click"
+									dur="0.35s"
+									restart="whenNotActive"
+									calcMode="spline"
+									keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+									keyTimes="0; 0.4; 1"
+								/>
+							</path>
+						</g>
 					</g>
 
 					<g transform="translate(0 9.5)">
