@@ -62,6 +62,10 @@
 	const columns = 5;
 	const rows = 3;
 	const leftToRight = true;
+	const fireworks = Array(15)
+		.fill()
+		.map((_, i) => `#firework-${i}`)
+		.join(';');
 
 	let board = getBoard({ columns, rows, leftToRight });
 	const { column, row } = board.find((d) => d.action === 'start');
@@ -70,7 +74,7 @@
 	let player = null;
 	let state = 'wait';
 
-	const duration = 750;
+	const duration = 700;
 	const position = tweened(
 		{
 			column,
@@ -92,9 +96,12 @@
 		const totalDuration = duration + delay;
 		const stepDuration = 350;
 		const repeatCount = Math.ceil(totalDuration / stepDuration);
-		player.querySelector('animate').setAttribute('repeatCount', repeatCount);
-		player.querySelector('animate').setAttribute('dur', `${stepDuration / 1000}s`);
-		player.querySelector('animate').beginElement();
+
+		player.querySelectorAll('animate').forEach((animate) => animate.beginElement());
+		const animate = player.querySelector('animate');
+		animate.setAttribute('repeatCount', repeatCount);
+		animate.setAttribute('dur', `${stepDuration / 1000}s`);
+		animate.beginElement();
 
 		const { column } = $position;
 
@@ -362,24 +369,46 @@
 			{/each}
 
 			<g transform="translate({$position.column} {$position.row})">
-				<g transform="translate(0.5 0.5)">
-					<use
-						bind:this={player}
-						style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
-						href="#board-player-0"
-						x="-0.25"
-						y="-0.25"
-						width="0.5"
-						height="0.5"
-					>
-						<animate
-							begin="indefinite"
-							attributeName="href"
-							values="#board-player-0; #board-player-1"
-							dur="0.25s"
-							repeatCount="2"
-						/>
-					</use>
+				<g bind:this={player}>
+					<g transform="translate(0.5 0.5)">
+						<use
+							style="--c0: #030f00; --c1: #b15116; --c2: #eef2d9;"
+							href="#board-player-0"
+							x="-0.25"
+							y="-0.25"
+							width="0.5"
+							height="0.5"
+						>
+							<animate
+								begin="indefinite"
+								attributeName="href"
+								values="#board-player-0; #board-player-1"
+								dur="0.25s"
+								repeatCount="2"
+							/>
+						</use>
+					</g>
+					<g style="--c2: #eef2d9;">
+						<use href="#firework-0" x="-0.2" y="0.1" width="0.8" height="0.8">
+							<animate begin="indefinite" attributeName="href" values={fireworks} dur="1s" />
+						</use>
+						<use href="#firework-0" x="0.2" y="-0.2" width="0.8" height="0.8">
+							<animate
+								begin="indefinite"
+								attributeName="href"
+								values="#;#;#;{fireworks}"
+								dur="1.2s"
+							/>
+						</use>
+						<use href="#firework-0" x="0.3" y="0.3" width="0.7" height="0.7">
+							<animate
+								begin="indefinite"
+								attributeName="href"
+								values="#;#;#;#;#;#;#;#;#;{fireworks}"
+								dur="1.8s"
+							/>
+						</use>
+					</g>
 				</g>
 			</g>
 		</g>
