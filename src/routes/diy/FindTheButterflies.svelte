@@ -1,5 +1,49 @@
 <script>
 	import Title from './Title.svelte';
+
+	const width = 80;
+	const height = 50;
+	const size = 12;
+	const targets = 3;
+
+	const getX = () => Math.floor(Math.random() * (width - size));
+	const getY = () => Math.floor(Math.random() * (height - size));
+
+	const x = getX();
+	const y = getY();
+
+	const points = [{ x, y }];
+
+	const butterflies = Array(targets)
+		.fill()
+		.map(() => {
+			let x = getX();
+			let y = getY();
+			while (true) {
+				let overlaps = false;
+				for (const { x: px, y: py } of points) {
+					if (x + size > px && x < px + size && y + size > py && y < py + size) {
+						overlaps = true;
+						break;
+					}
+				}
+				if (overlaps) {
+					x = getX();
+					y = getY();
+				} else {
+					points.push({
+						x,
+						y
+					});
+					break;
+				}
+			}
+
+			return {
+				x,
+				y
+			};
+		});
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -71,13 +115,15 @@
 
 	<rect fill="url(#find-the-butterflies-pattern-bricks)" width="80" height="50" />
 
-	<g transform="translate(20 20)">
-		<use x="-8" y="-8" width="16" height="16" href="#find-the-butterflies-ribbon" />
+	<g transform="translate({x} {y})">
+		<use width={size} height={size} href="#find-the-butterflies-ribbon" />
 	</g>
 
-	<g transform="translate(60 20)">
-		<use x="-8" y="-8" width="16" height="16" href="#find-the-butterflies-butterfly" />
-	</g>
+	{#each butterflies as { x, y }}
+		<g transform="translate({x} {y})">
+			<use width={size} height={size} href="#find-the-butterflies-butterfly" />
+		</g>
+	{/each}
 
 	<g style:cursor="pointer">
 		<set begin="click" attributeName="display" to="none" fill="freeze" />
