@@ -3,6 +3,7 @@
 	import svg from './svg.js';
 	import PokeTheLadybug from './PokeTheLadybug.svelte';
 	import PopTheBalloon from './PopTheBalloon.svelte';
+	import FindTheButterflies from './FindTheButterflies.svelte';
 
 	const { title } = site;
 </script>
@@ -33,6 +34,10 @@
 
 	<article style="background: hsl(46, 93%, 56%); --border-color: hsl(41, 100%, 47%);">
 		<PopTheBalloon />
+	</article>
+
+	<article style="background: hsl(211, 67%, 48%); --border-color: hsl(172, 76%, 41%);">
+		<FindTheButterflies />
 	</article>
 </div>
 
