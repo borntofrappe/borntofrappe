@@ -42,6 +42,26 @@
 				d="M 0 0 3 0 0 3Z M 0 7 3 10 0 10Z M 7 0 10 3 10 0Z M 7 10 10 7 10 10Z M 2 5 5 2 8 5 5 8z"
 			/>
 		</pattern>
+
+		<pattern
+			id="pop-the-balloon-pattern-shreds"
+			viewBox="-5 -5 10 10"
+			width="2"
+			height="2"
+			patternUnits="userSpaceOnUse"
+		>
+			<circle cx="2.5" cy="-3" r="2" />
+			<circle cx="-3" r="1.75" />
+			<circle cx="4" cy="2" r="1" />
+			<circle cy="3.5" r="1.5" />
+		</pattern>
+
+		<mask id="pop-the-balloon-mask-shreds">
+			<rect fill="white" x="-40" y="-25" width="80" height="50" />
+			<rect fill="url(#pop-the-balloon-pattern-shreds)" x="-40" y="-25" width="80" height="50" />
+		</mask>
+
+		<mask id="pop-the-balloon-mask-pop" />
 	</defs>
 	<rect fill="#10c2ce" width="80" height="50" />
 
@@ -73,11 +93,27 @@
 				/>
 				<g transform="translate(0 -3)">
 					<g style:cursor="pointer">
-						<set id="popTheBalloonPopped" begin="click" attributeName="display" to="none" />
+						<animate
+							id="popTheBalloonPopped"
+							begin="click"
+							attributeName="mask"
+							values="url(#pop-the-balloon-mask-shreds);url(#pop-the-balloon-mask-pop)"
+							calcMode="discrete"
+							dur="0.12s"
+							fill="freeze"
+							restart="never"
+						/>
 						<g stroke="currentColor" stroke-width="0.5">
 							<path fill="none" d="M 0 0 q -0.75 0.75 0 1.5 t 0 1.5" />
 							<path fill="currentColor" d="M -1.25 0 h 2.5 q 0 -1.5 -1.25 -1.5 t -1.25 1.5z" />
 							<ellipse fill="#f70000" rx="7" ry="8" cy="-9" />
+							<ellipse
+								fill="#F29B9B"
+								stroke="none"
+								transform="translate(2 -12) rotate(-35)"
+								rx="2"
+								ry="2.75"
+							/>
 						</g>
 					</g>
 				</g>
@@ -90,7 +126,7 @@
 					attributeName="transform"
 					type="translate"
 					to="0 100"
-					dur="2s"
+					dur="1.9s"
 					calcMode="spline"
 					keyTimes="0; 1"
 					keySplines="0.5 0 0.2 1"
