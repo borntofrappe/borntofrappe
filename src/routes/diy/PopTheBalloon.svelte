@@ -53,7 +53,6 @@
 			<animateTransform
 				id="popTheBalloonFloat"
 				begin="popTheBalloonStart.begin"
-				end="popTheBalloonPopped.begin"
 				attributeName="transform"
 				type="translate"
 				to="{dx} {dy}"
@@ -64,7 +63,6 @@
 			<g>
 				<animateTransform
 					begin="popTheBalloonStart.begin"
-					end="popTheBalloonPopped.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 1"
@@ -111,7 +109,6 @@
 
 	<g display="none">
 		<set
-			id="popTheBalloonMessage"
 			begin="popTheBalloonFall.end; popTheBalloonFloat.end"
 			attributeName="display"
 			to="initial"
@@ -119,22 +116,34 @@
 			restart="never"
 		/>
 		<g display="none">
-			<set begin="popTheBalloonFall.end" attributeName="display" to="initial" fill="freeze" />
+			<set
+				id="popTheBalloonWin"
+				begin="popTheBalloonFall.end"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
 			<AnimatedTitle
 				text="That's a wrap!"
-				fill="url(#linear-gradient-text)"
-				begin="popTheBalloonFall.end"
+				begin="popTheBalloonWin.begin"
 				end="popTheBalloonEnd.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
-		<g>
-			<set begin="popTheBalloonFall.begin" attributeName="display" to="none" fill="freeze" />
+
+		<g display="none">
+			<set
+				id="popTheBalloonLose"
+				begin="popTheBalloonFloat.end"
+				end="popTheBalloonPopped.begin"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
 			<AnimatedTitle
 				text="Far it goes..."
-				fill="url(#linear-gradient-text)"
-				begin="popTheBalloonMessage.begin"
-				end="popTheBalloonFall.end; popTheBalloonEnd.begin"
+				begin="popTheBalloonLose.begin"
+				end="popTheBalloonEnd.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
