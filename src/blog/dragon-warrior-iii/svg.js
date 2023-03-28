@@ -684,94 +684,94 @@ export default {
 				<path transform="translate(14 86) rotate(270)" d="M 0 0 l -8 0 8 0 0 -8z" />
 			</g>
 		</symbol>
-		<symbol id="firework-1" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-1" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 31 29 h 2 M 30 30 h 4 M 29 31 h 6 M 29 32 h 6 M 30 33 h 4 M 31 34 h 2"
+				d="M 15 13 h 2 M 14 14 h 4 M 13 15 h 6 M 13 16 h 6 M 14 17 h 4 M 15 18 h 2"
 			/>
 		</symbol>
-		<symbol id="firework-2" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-2" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 29 25 h 6 M 27 26 h 2 M 35 26 h 2 M 26 27 h 1 M 37 27 h 1 M 25 28 h 1 M 31 28 h 2 M 38 28 h 1 M 25 29 h 1 M 29 29 h 6 M 38 29 h 1 M 24 30 h 1 M 29 30 h 6 M 39 30 h 1 M 24 31 h 1 M 28 31 h 8 M 39 31 h 1 M 24 32 h 1 M 28 32 h 8 M 39 32 h 1 M 24 33 h 1 M 29 33 h 6 M 39 33 h 1 M 25 34 h 1 M 29 34 h 6 M 38 34 h 1 M 25 35 h 1 M 31 35 h 2 M 38 35 h 1 M 26 36 h 1 M 37 36 h 1 M 27 37 h 2 M 35 37 h 2 M 29 38 h 6"
+				d="M 13 9 h 6 M 11 10 h 2 M 19 10 h 2 M 10 11 h 1 M 21 11 h 1 M 9 12 h 1 M 15 12 h 2 M 22 12 h 1 M 9 13 h 1 M 13 13 h 6 M 22 13 h 1 M 8 14 h 1 M 13 14 h 6 M 23 14 h 1 M 8 15 h 1 M 12 15 h 8 M 23 15 h 1 M 8 16 h 1 M 12 16 h 8 M 23 16 h 1 M 8 17 h 1 M 13 17 h 6 M 23 17 h 1 M 9 18 h 1 M 13 18 h 6 M 22 18 h 1 M 9 19 h 1 M 15 19 h 2 M 22 19 h 1 M 10 20 h 1 M 21 20 h 1 M 11 21 h 2 M 19 21 h 2 M 13 22 h 6"
 			/>
 		</symbol>
-		<symbol id="firework-3" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-3" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 29 25 h 1 M 31 25 h 2 M 34 25 h 1 M 28 26 h 8 M 26 27 h 1 M 28 27 h 8 M 37 27 h 1 M 25 28 h 14 M 26 29 h 12 M 24 30 h 16 M 25 31 h 14 M 25 32 h 14 M 24 33 h 16 M 26 34 h 12 M 25 35 h 14 M 26 36 h 12 M 27 37 h 1 M 29 37 h 6 M 36 37 h 1 M 29 38 h 1 M 31 38 h 2 M 34 38 h 1"
+				d="M 13 9 h 1 M 15 9 h 2 M 18 9 h 1 M 12 10 h 8 M 10 11 h 1 M 12 11 h 8 M 21 11 h 1 M 9 12 h 14 M 10 13 h 12 M 8 14 h 16 M 9 15 h 14 M 9 16 h 14 M 8 17 h 16 M 10 18 h 12 M 9 19 h 14 M 10 20 h 12 M 11 21 h 1 M 13 21 h 6 M 20 21 h 1 M 13 22 h 1 M 15 22 h 2 M 18 22 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-4" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-4" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 31 23 h 2 M 27 24 h 1 M 30 24 h 1 M 33 24 h 1 M 36 24 h 1 M 26 25 h 1 M 29 25 h 1 M 31 25 h 2 M 34 25 h 1 M 37 25 h 1 M 25 26 h 1 M 28 26 h 8 M 38 26 h 1 M 26 27 h 1 M 28 27 h 8 M 37 27 h 1 M 25 28 h 14 M 23 29 h 1 M 26 29 h 12 M 40 29 h 1 M 24 30 h 16 M 22 31 h 1 M 25 31 h 14 M 41 31 h 1 M 23 32 h 1 M 25 32 h 14 M 40 32 h 1 M 22 33 h 1 M 24 33 h 16 M 41 33 h 1 M 26 34 h 12 M 23 35 h 1 M 25 35 h 14 M 40 35 h 1 M 26 36 h 12 M 24 37 h 1 M 27 37 h 1 M 29 37 h 6 M 36 37 h 1 M 39 37 h 1 M 26 38 h 1 M 29 38 h 1 M 31 38 h 2 M 34 38 h 1 M 37 38 h 1 M 28 39 h 1 M 35 39 h 1 M 30 40 h 1 M 33 40 h 1"
+				d="M 15 7 h 2 M 11 8 h 1 M 14 8 h 1 M 17 8 h 1 M 20 8 h 1 M 10 9 h 1 M 13 9 h 1 M 15 9 h 2 M 18 9 h 1 M 21 9 h 1 M 9 10 h 1 M 12 10 h 8 M 22 10 h 1 M 10 11 h 1 M 12 11 h 8 M 21 11 h 1 M 9 12 h 14 M 7 13 h 1 M 10 13 h 12 M 24 13 h 1 M 8 14 h 16 M 6 15 h 1 M 9 15 h 14 M 25 15 h 1 M 7 16 h 1 M 9 16 h 14 M 24 16 h 1 M 6 17 h 1 M 8 17 h 16 M 25 17 h 1 M 10 18 h 12 M 7 19 h 1 M 9 19 h 14 M 24 19 h 1 M 10 20 h 12 M 8 21 h 1 M 11 21 h 1 M 13 21 h 6 M 20 21 h 1 M 23 21 h 1 M 10 22 h 1 M 13 22 h 1 M 15 22 h 2 M 18 22 h 1 M 21 22 h 1 M 12 23 h 1 M 19 23 h 1 M 14 24 h 1 M 17 24 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-5" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-5" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 28 21 h 1 M 35 21 h 1 M 30 22 h 1 M 33 22 h 1 M 26 23 h 2 M 31 23 h 2 M 36 23 h 2 M 25 24 h 1 M 27 24 h 1 M 30 24 h 1 M 33 24 h 1 M 36 24 h 1 M 38 24 h 1 M 24 25 h 1 M 26 25 h 1 M 29 25 h 1 M 31 25 h 2 M 34 25 h 1 M 37 25 h 1 M 39 25 h 1 M 23 26 h 3 M 28 26 h 8 M 38 26 h 3 M 22 27 h 1 M 24 27 h 1 M 26 27 h 1 M 28 27 h 8 M 37 27 h 1 M 39 27 h 1 M 41 27 h 1 M 25 28 h 14 M 23 29 h 1 M 26 29 h 12 M 40 29 h 1 M 21 30 h 1 M 24 30 h 16 M 42 30 h 1 M 22 31 h 1 M 25 31 h 14 M 41 31 h 1 M 22 32 h 2 M 25 32 h 14 M 40 32 h 2 M 22 33 h 1 M 24 33 h 16 M 41 33 h 1 M 21 34 h 1 M 26 34 h 12 M 42 34 h 1 M 23 35 h 1 M 25 35 h 14 M 40 35 h 1 M 22 36 h 1 M 26 36 h 12 M 41 36 h 1 M 23 37 h 2 M 27 37 h 1 M 29 37 h 6 M 36 37 h 1 M 39 37 h 2 M 24 38 h 1 M 26 38 h 1 M 30 38 h 1 M 33 38 h 1 M 37 38 h 1 M 39 38 h 1 M 25 39 h 1 M 28 39 h 1 M 35 39 h 1 M 38 39 h 1 M 26 40 h 1 M 28 40 h 1 M 30 40 h 1 M 33 40 h 1 M 35 40 h 1 M 37 40 h 1 M 25 41 h 1 M 27 41 h 1 M 29 41 h 1 M 31 41 h 2 M 34 41 h 1 M 36 41 h 1 M 38 41 h 1 M 30 42 h 1 M 33 42 h 1"
+				d="M 12 5 h 1 M 19 5 h 1 M 14 6 h 1 M 17 6 h 1 M 10 7 h 2 M 15 7 h 2 M 20 7 h 2 M 9 8 h 1 M 11 8 h 1 M 14 8 h 1 M 17 8 h 1 M 20 8 h 1 M 22 8 h 1 M 8 9 h 1 M 10 9 h 1 M 13 9 h 1 M 15 9 h 2 M 18 9 h 1 M 21 9 h 1 M 23 9 h 1 M 7 10 h 3 M 12 10 h 8 M 22 10 h 3 M 6 11 h 1 M 8 11 h 1 M 10 11 h 1 M 12 11 h 8 M 21 11 h 1 M 23 11 h 1 M 25 11 h 1 M 9 12 h 14 M 7 13 h 1 M 10 13 h 12 M 24 13 h 1 M 5 14 h 1 M 8 14 h 16 M 26 14 h 1 M 6 15 h 1 M 9 15 h 14 M 25 15 h 1 M 6 16 h 2 M 9 16 h 14 M 24 16 h 2 M 6 17 h 1 M 8 17 h 16 M 25 17 h 1 M 5 18 h 1 M 10 18 h 12 M 26 18 h 1 M 7 19 h 1 M 9 19 h 14 M 24 19 h 1 M 6 20 h 1 M 10 20 h 12 M 25 20 h 1 M 7 21 h 2 M 11 21 h 1 M 13 21 h 6 M 20 21 h 1 M 23 21 h 2 M 8 22 h 1 M 10 22 h 1 M 14 22 h 1 M 17 22 h 1 M 21 22 h 1 M 23 22 h 1 M 9 23 h 1 M 12 23 h 1 M 19 23 h 1 M 22 23 h 1 M 10 24 h 1 M 12 24 h 1 M 14 24 h 1 M 17 24 h 1 M 19 24 h 1 M 21 24 h 1 M 9 25 h 1 M 11 25 h 1 M 13 25 h 1 M 15 25 h 2 M 18 25 h 1 M 20 25 h 1 M 22 25 h 1 M 14 26 h 1 M 17 26 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-6" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-6" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 31 21 h 2 M 30 22 h 4 M 26 23 h 1 M 30 23 h 4 M 37 23 h 1 M 25 24 h 3 M 31 24 h 2 M 36 24 h 3 M 24 25 h 1 M 26 25 h 1 M 29 25 h 1 M 34 25 h 1 M 37 25 h 1 M 39 25 h 1 M 23 26 h 3 M 28 26 h 3 M 33 26 h 3 M 38 26 h 3 M 22 27 h 1 M 24 27 h 1 M 29 27 h 1 M 31 27 h 2 M 34 27 h 1 M 39 27 h 1 M 41 27 h 1 M 26 28 h 1 M 29 28 h 6 M 37 28 h 1 M 28 29 h 1 M 30 29 h 1 M 33 29 h 1 M 35 29 h 1 M 21 30 h 1 M 24 30 h 1 M 26 30 h 2 M 29 30 h 2 M 33 30 h 2 M 36 30 h 2 M 39 30 h 1 M 42 30 h 1 M 22 31 h 1 M 25 31 h 1 M 27 31 h 3 M 31 31 h 2 M 34 31 h 3 M 38 31 h 1 M 41 31 h 1 M 22 32 h 2 M 26 32 h 3 M 30 32 h 1 M 33 32 h 1 M 35 32 h 3 M 40 32 h 2 M 22 33 h 1 M 24 33 h 3 M 28 33 h 1 M 30 33 h 1 M 33 33 h 1 M 35 33 h 1 M 37 33 h 3 M 41 33 h 1 M 21 34 h 1 M 27 34 h 2 M 30 34 h 1 M 33 34 h 1 M 35 34 h 2 M 42 34 h 1 M 23 35 h 1 M 25 35 h 2 M 30 35 h 1 M 33 35 h 1 M 37 35 h 2 M 40 35 h 1 M 22 36 h 1 M 26 36 h 3 M 30 36 h 1 M 33 36 h 1 M 35 36 h 3 M 41 36 h 1 M 23 37 h 1 M 27 37 h 1 M 29 37 h 6 M 36 37 h 1 M 40 37 h 1 M 30 38 h 1 M 33 38 h 1 M 24 39 h 3 M 37 39 h 3 M 25 40 h 1 M 27 40 h 1 M 30 40 h 1 M 33 40 h 1 M 36 40 h 1 M 38 40 h 1 M 26 41 h 3 M 31 41 h 2 M 35 41 h 3 M 30 42 h 4"
+				d="M 15 5 h 2 M 14 6 h 4 M 10 7 h 1 M 14 7 h 4 M 21 7 h 1 M 9 8 h 3 M 15 8 h 2 M 20 8 h 3 M 8 9 h 1 M 10 9 h 1 M 13 9 h 1 M 18 9 h 1 M 21 9 h 1 M 23 9 h 1 M 7 10 h 3 M 12 10 h 3 M 17 10 h 3 M 22 10 h 3 M 6 11 h 1 M 8 11 h 1 M 13 11 h 1 M 15 11 h 2 M 18 11 h 1 M 23 11 h 1 M 25 11 h 1 M 10 12 h 1 M 13 12 h 6 M 21 12 h 1 M 12 13 h 1 M 14 13 h 1 M 17 13 h 1 M 19 13 h 1 M 5 14 h 1 M 8 14 h 1 M 10 14 h 2 M 13 14 h 2 M 17 14 h 2 M 20 14 h 2 M 23 14 h 1 M 26 14 h 1 M 6 15 h 1 M 9 15 h 1 M 11 15 h 3 M 15 15 h 2 M 18 15 h 3 M 22 15 h 1 M 25 15 h 1 M 6 16 h 2 M 10 16 h 3 M 14 16 h 1 M 17 16 h 1 M 19 16 h 3 M 24 16 h 2 M 6 17 h 1 M 8 17 h 3 M 12 17 h 1 M 14 17 h 1 M 17 17 h 1 M 19 17 h 1 M 21 17 h 3 M 25 17 h 1 M 5 18 h 1 M 11 18 h 2 M 14 18 h 1 M 17 18 h 1 M 19 18 h 2 M 26 18 h 1 M 7 19 h 1 M 9 19 h 2 M 14 19 h 1 M 17 19 h 1 M 21 19 h 2 M 24 19 h 1 M 6 20 h 1 M 10 20 h 3 M 14 20 h 1 M 17 20 h 1 M 19 20 h 3 M 25 20 h 1 M 7 21 h 1 M 11 21 h 1 M 13 21 h 6 M 20 21 h 1 M 24 21 h 1 M 14 22 h 1 M 17 22 h 1 M 8 23 h 3 M 21 23 h 3 M 9 24 h 1 M 11 24 h 1 M 14 24 h 1 M 17 24 h 1 M 20 24 h 1 M 22 24 h 1 M 10 25 h 3 M 15 25 h 2 M 19 25 h 3 M 14 26 h 4"
 			/>
 		</symbol>
-		<symbol id="firework-7" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-7" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 29 20 h 1 M 34 20 h 1 M 28 21 h 3 M 33 21 h 3 M 37 21 h 1 M 26 22 h 1 M 29 22 h 1 M 31 22 h 2 M 34 22 h 1 M 36 22 h 3 M 25 23 h 3 M 30 23 h 1 M 33 23 h 1 M 37 23 h 1 M 39 23 h 1 M 24 24 h 1 M 26 24 h 1 M 31 24 h 2 M 38 24 h 3 M 23 25 h 3 M 29 25 h 1 M 34 25 h 1 M 39 25 h 1 M 22 26 h 1 M 24 26 h 1 M 28 26 h 3 M 33 26 h 3 M 41 26 h 1 M 21 27 h 3 M 29 27 h 1 M 31 27 h 2 M 34 27 h 1 M 40 27 h 3 M 22 28 h 1 M 26 28 h 1 M 29 28 h 6 M 37 28 h 1 M 41 28 h 1 M 20 29 h 1 M 28 29 h 1 M 30 29 h 1 M 33 29 h 1 M 35 29 h 1 M 43 29 h 1 M 19 30 h 3 M 24 30 h 1 M 26 30 h 2 M 29 30 h 2 M 33 30 h 2 M 36 30 h 2 M 39 30 h 1 M 42 30 h 3 M 20 31 h 1 M 22 31 h 1 M 25 31 h 1 M 27 31 h 3 M 31 31 h 2 M 34 31 h 3 M 38 31 h 1 M 41 31 h 1 M 43 31 h 1 M 22 32 h 2 M 26 32 h 3 M 30 32 h 1 M 33 32 h 1 M 35 32 h 3 M 40 32 h 2 M 22 33 h 1 M 24 33 h 3 M 28 33 h 1 M 30 33 h 1 M 33 33 h 1 M 35 33 h 1 M 37 33 h 3 M 41 33 h 1 M 21 34 h 1 M 27 34 h 2 M 30 34 h 1 M 33 34 h 1 M 35 34 h 2 M 42 34 h 1 M 23 35 h 1 M 25 35 h 2 M 30 35 h 1 M 33 35 h 1 M 37 35 h 2 M 40 35 h 1 M 22 36 h 1 M 26 36 h 3 M 30 36 h 1 M 33 36 h 1 M 35 36 h 3 M 41 36 h 1 M 23 37 h 1 M 27 37 h 1 M 29 37 h 6 M 36 37 h 1 M 40 37 h 1 M 30 38 h 1 M 33 38 h 1 M 24 39 h 3 M 37 39 h 3 M 23 40 h 1 M 25 40 h 1 M 27 40 h 1 M 30 40 h 1 M 33 40 h 1 M 36 40 h 1 M 38 40 h 1 M 40 40 h 1 M 22 41 h 3 M 26 41 h 1 M 31 41 h 2 M 37 41 h 1 M 39 41 h 3 M 23 42 h 1 M 28 42 h 1 M 30 42 h 1 M 33 42 h 1 M 35 42 h 1 M 40 42 h 1 M 27 43 h 3 M 34 43 h 3 M 28 44 h 1 M 35 44 h 1"
+				d="M 13 4 h 1 M 18 4 h 1 M 12 5 h 3 M 17 5 h 3 M 21 5 h 1 M 10 6 h 1 M 13 6 h 1 M 15 6 h 2 M 18 6 h 1 M 20 6 h 3 M 9 7 h 3 M 14 7 h 1 M 17 7 h 1 M 21 7 h 1 M 23 7 h 1 M 8 8 h 1 M 10 8 h 1 M 15 8 h 2 M 22 8 h 3 M 7 9 h 3 M 13 9 h 1 M 18 9 h 1 M 23 9 h 1 M 6 10 h 1 M 8 10 h 1 M 12 10 h 3 M 17 10 h 3 M 25 10 h 1 M 5 11 h 3 M 13 11 h 1 M 15 11 h 2 M 18 11 h 1 M 24 11 h 3 M 6 12 h 1 M 10 12 h 1 M 13 12 h 6 M 21 12 h 1 M 25 12 h 1 M 4 13 h 1 M 12 13 h 1 M 14 13 h 1 M 17 13 h 1 M 19 13 h 1 M 27 13 h 1 M 3 14 h 3 M 8 14 h 1 M 10 14 h 2 M 13 14 h 2 M 17 14 h 2 M 20 14 h 2 M 23 14 h 1 M 26 14 h 3 M 4 15 h 1 M 6 15 h 1 M 9 15 h 1 M 11 15 h 3 M 15 15 h 2 M 18 15 h 3 M 22 15 h 1 M 25 15 h 1 M 27 15 h 1 M 6 16 h 2 M 10 16 h 3 M 14 16 h 1 M 17 16 h 1 M 19 16 h 3 M 24 16 h 2 M 6 17 h 1 M 8 17 h 3 M 12 17 h 1 M 14 17 h 1 M 17 17 h 1 M 19 17 h 1 M 21 17 h 3 M 25 17 h 1 M 5 18 h 1 M 11 18 h 2 M 14 18 h 1 M 17 18 h 1 M 19 18 h 2 M 26 18 h 1 M 7 19 h 1 M 9 19 h 2 M 14 19 h 1 M 17 19 h 1 M 21 19 h 2 M 24 19 h 1 M 6 20 h 1 M 10 20 h 3 M 14 20 h 1 M 17 20 h 1 M 19 20 h 3 M 25 20 h 1 M 7 21 h 1 M 11 21 h 1 M 13 21 h 6 M 20 21 h 1 M 24 21 h 1 M 14 22 h 1 M 17 22 h 1 M 8 23 h 3 M 21 23 h 3 M 7 24 h 1 M 9 24 h 1 M 11 24 h 1 M 14 24 h 1 M 17 24 h 1 M 20 24 h 1 M 22 24 h 1 M 24 24 h 1 M 6 25 h 3 M 10 25 h 1 M 15 25 h 2 M 21 25 h 1 M 23 25 h 3 M 7 26 h 1 M 12 26 h 1 M 14 26 h 1 M 17 26 h 1 M 19 26 h 1 M 24 26 h 1 M 11 27 h 3 M 18 27 h 3 M 12 28 h 1 M 19 28 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-8" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-8" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 24 17 h 1 M 27 17 h 1 M 31 17 h 2 M 36 17 h 1 M 39 17 h 1 M 23 18 h 3 M 30 18 h 4 M 38 18 h 3 M 24 19 h 1 M 30 19 h 4 M 39 19 h 1 M 21 20 h 1 M 27 20 h 1 M 31 20 h 2 M 36 20 h 1 M 42 20 h 1 M 20 21 h 3 M 24 21 h 1 M 26 21 h 3 M 35 21 h 3 M 39 21 h 1 M 41 21 h 3 M 21 22 h 1 M 27 22 h 1 M 36 22 h 1 M 38 22 h 1 M 42 22 h 1 M 31 23 h 2 M 39 23 h 1 M 21 24 h 1 M 24 24 h 1 M 31 24 h 2 M 39 24 h 2 M 42 24 h 1 M 23 25 h 3 M 29 25 h 1 M 34 25 h 1 M 38 25 h 3 M 19 26 h 1 M 24 26 h 1 M 28 26 h 3 M 33 26 h 3 M 39 26 h 1 M 44 26 h 1 M 18 27 h 3 M 25 27 h 1 M 29 27 h 1 M 31 27 h 2 M 34 27 h 1 M 38 27 h 1 M 43 27 h 3 M 19 28 h 1 M 24 28 h 3 M 31 28 h 2 M 37 28 h 3 M 44 28 h 1 M 25 29 h 1 M 28 29 h 1 M 35 29 h 1 M 38 29 h 1 M 30 30 h 1 M 33 30 h 1 M 20 31 h 1 M 27 31 h 1 M 29 31 h 1 M 31 31 h 2 M 34 31 h 1 M 36 31 h 1 M 43 31 h 1 M 24 32 h 1 M 30 32 h 1 M 33 32 h 1 M 39 32 h 1 M 23 33 h 3 M 29 33 h 1 M 34 33 h 1 M 38 33 h 3 M 21 34 h 1 M 24 34 h 1 M 27 34 h 1 M 30 34 h 4 M 36 34 h 1 M 39 34 h 1 M 42 34 h 1 M 20 35 h 3 M 41 35 h 3 M 21 36 h 1 M 26 36 h 1 M 31 36 h 2 M 37 36 h 1 M 42 36 h 1 M 23 37 h 1 M 25 37 h 3 M 30 37 h 4 M 36 37 h 3 M 40 37 h 1 M 26 38 h 1 M 30 38 h 4 M 37 38 h 1 M 31 39 h 2 M 23 40 h 1 M 40 40 h 1 M 22 41 h 3 M 26 41 h 1 M 29 41 h 1 M 34 41 h 1 M 37 41 h 1 M 39 41 h 3 M 23 42 h 1 M 28 42 h 3 M 33 42 h 3 M 40 42 h 1 M 29 43 h 1 M 34 43 h 1 M 27 44 h 1 M 36 44 h 1 M 26 45 h 3 M 35 45 h 3 M 27 46 h 1 M 36 46 h 1"
+				d="M 8 1 h 1 M 11 1 h 1 M 15 1 h 2 M 20 1 h 1 M 23 1 h 1 M 7 2 h 3 M 14 2 h 4 M 22 2 h 3 M 8 3 h 1 M 14 3 h 4 M 23 3 h 1 M 5 4 h 1 M 11 4 h 1 M 15 4 h 2 M 20 4 h 1 M 26 4 h 1 M 4 5 h 3 M 8 5 h 1 M 10 5 h 3 M 19 5 h 3 M 23 5 h 1 M 25 5 h 3 M 5 6 h 1 M 11 6 h 1 M 20 6 h 1 M 22 6 h 1 M 26 6 h 1 M 15 7 h 2 M 23 7 h 1 M 5 8 h 1 M 8 8 h 1 M 15 8 h 2 M 23 8 h 2 M 26 8 h 1 M 7 9 h 3 M 13 9 h 1 M 18 9 h 1 M 22 9 h 3 M 3 10 h 1 M 8 10 h 1 M 12 10 h 3 M 17 10 h 3 M 23 10 h 1 M 28 10 h 1 M 2 11 h 3 M 9 11 h 1 M 13 11 h 1 M 15 11 h 2 M 18 11 h 1 M 22 11 h 1 M 27 11 h 3 M 3 12 h 1 M 8 12 h 3 M 15 12 h 2 M 21 12 h 3 M 28 12 h 1 M 9 13 h 1 M 12 13 h 1 M 19 13 h 1 M 22 13 h 1 M 14 14 h 1 M 17 14 h 1 M 4 15 h 1 M 11 15 h 1 M 13 15 h 1 M 15 15 h 2 M 18 15 h 1 M 20 15 h 1 M 27 15 h 1 M 8 16 h 1 M 14 16 h 1 M 17 16 h 1 M 23 16 h 1 M 7 17 h 3 M 13 17 h 1 M 18 17 h 1 M 22 17 h 3 M 5 18 h 1 M 8 18 h 1 M 11 18 h 1 M 14 18 h 4 M 20 18 h 1 M 23 18 h 1 M 26 18 h 1 M 4 19 h 3 M 25 19 h 3 M 5 20 h 1 M 10 20 h 1 M 15 20 h 2 M 21 20 h 1 M 26 20 h 1 M 7 21 h 1 M 9 21 h 3 M 14 21 h 4 M 20 21 h 3 M 24 21 h 1 M 10 22 h 1 M 14 22 h 4 M 21 22 h 1 M 15 23 h 2 M 7 24 h 1 M 24 24 h 1 M 6 25 h 3 M 10 25 h 1 M 13 25 h 1 M 18 25 h 1 M 21 25 h 1 M 23 25 h 3 M 7 26 h 1 M 12 26 h 3 M 17 26 h 3 M 24 26 h 1 M 13 27 h 1 M 18 27 h 1 M 11 28 h 1 M 20 28 h 1 M 10 29 h 3 M 19 29 h 3 M 11 30 h 1 M 20 30 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-9" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-9" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 27 18 h 1 M 36 18 h 1 M 23 19 h 1 M 40 19 h 1 M 27 21 h 1 M 31 21 h 2 M 36 21 h 1 M 20 22 h 1 M 24 22 h 1 M 26 22 h 3 M 30 22 h 4 M 35 22 h 3 M 39 22 h 1 M 43 22 h 1 M 27 23 h 1 M 30 23 h 4 M 36 23 h 1 M 38 23 h 1 M 31 24 h 2 M 39 24 h 1 M 21 25 h 1 M 24 25 h 1 M 39 25 h 2 M 42 25 h 1 M 23 26 h 3 M 29 26 h 1 M 34 26 h 1 M 38 26 h 3 M 24 27 h 1 M 28 27 h 3 M 33 27 h 3 M 39 27 h 1 M 18 28 h 1 M 25 28 h 1 M 29 28 h 1 M 34 28 h 1 M 38 28 h 1 M 45 28 h 1 M 24 29 h 3 M 31 29 h 2 M 37 29 h 3 M 25 30 h 1 M 28 30 h 1 M 35 30 h 1 M 38 30 h 1 M 20 32 h 1 M 43 32 h 1 M 24 33 h 1 M 29 33 h 1 M 34 33 h 1 M 39 33 h 1 M 23 34 h 3 M 38 34 h 3 M 21 35 h 1 M 24 35 h 1 M 27 35 h 1 M 30 35 h 4 M 36 35 h 1 M 39 35 h 1 M 42 35 h 1 M 17 36 h 1 M 20 36 h 3 M 41 36 h 3 M 46 36 h 1 M 21 37 h 1 M 26 37 h 1 M 31 37 h 2 M 37 37 h 1 M 42 37 h 1 M 23 38 h 1 M 25 38 h 3 M 30 38 h 4 M 36 38 h 3 M 40 38 h 1 M 19 39 h 1 M 26 39 h 1 M 30 39 h 4 M 37 39 h 1 M 44 39 h 1 M 31 40 h 2 M 23 41 h 1 M 40 41 h 1 M 22 42 h 3 M 28 42 h 1 M 35 42 h 1 M 39 42 h 3 M 20 43 h 1 M 23 43 h 1 M 27 43 h 3 M 34 43 h 3 M 40 43 h 1 M 43 43 h 1 M 28 44 h 1 M 35 44 h 1 M 23 45 h 1 M 26 45 h 1 M 37 45 h 1 M 40 45 h 1 M 29 46 h 1 M 34 46 h 1 M 28 47 h 3 M 33 47 h 3 M 29 48 h 1 M 34 48 h 1"
+				d="M 11 2 h 1 M 20 2 h 1 M 7 3 h 1 M 24 3 h 1 M 11 5 h 1 M 15 5 h 2 M 20 5 h 1 M 4 6 h 1 M 8 6 h 1 M 10 6 h 3 M 14 6 h 4 M 19 6 h 3 M 23 6 h 1 M 27 6 h 1 M 11 7 h 1 M 14 7 h 4 M 20 7 h 1 M 22 7 h 1 M 15 8 h 2 M 23 8 h 1 M 5 9 h 1 M 8 9 h 1 M 23 9 h 2 M 26 9 h 1 M 7 10 h 3 M 13 10 h 1 M 18 10 h 1 M 22 10 h 3 M 8 11 h 1 M 12 11 h 3 M 17 11 h 3 M 23 11 h 1 M 2 12 h 1 M 9 12 h 1 M 13 12 h 1 M 18 12 h 1 M 22 12 h 1 M 29 12 h 1 M 8 13 h 3 M 15 13 h 2 M 21 13 h 3 M 9 14 h 1 M 12 14 h 1 M 19 14 h 1 M 22 14 h 1 M 4 16 h 1 M 27 16 h 1 M 8 17 h 1 M 13 17 h 1 M 18 17 h 1 M 23 17 h 1 M 7 18 h 3 M 22 18 h 3 M 5 19 h 1 M 8 19 h 1 M 11 19 h 1 M 14 19 h 4 M 20 19 h 1 M 23 19 h 1 M 26 19 h 1 M 1 20 h 1 M 4 20 h 3 M 25 20 h 3 M 30 20 h 1 M 5 21 h 1 M 10 21 h 1 M 15 21 h 2 M 21 21 h 1 M 26 21 h 1 M 7 22 h 1 M 9 22 h 3 M 14 22 h 4 M 20 22 h 3 M 24 22 h 1 M 3 23 h 1 M 10 23 h 1 M 14 23 h 4 M 21 23 h 1 M 28 23 h 1 M 15 24 h 2 M 7 25 h 1 M 24 25 h 1 M 6 26 h 3 M 12 26 h 1 M 19 26 h 1 M 23 26 h 3 M 4 27 h 1 M 7 27 h 1 M 11 27 h 3 M 18 27 h 3 M 24 27 h 1 M 27 27 h 1 M 12 28 h 1 M 19 28 h 1 M 7 29 h 1 M 10 29 h 1 M 21 29 h 1 M 24 29 h 1 M 13 30 h 1 M 18 30 h 1 M 12 31 h 3 M 17 31 h 3"
 			/>
 		</symbol>
-		<symbol id="firework-10" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-10" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 27 19 h 1 M 36 19 h 1 M 23 20 h 1 M 40 20 h 1 M 27 22 h 1 M 36 22 h 1 M 20 23 h 1 M 24 23 h 1 M 30 23 h 1 M 33 23 h 1 M 39 23 h 1 M 43 23 h 1 M 21 26 h 1 M 27 26 h 1 M 36 26 h 1 M 42 26 h 1 M 23 27 h 1 M 40 27 h 1 M 30 28 h 1 M 33 28 h 1 M 18 29 h 1 M 45 29 h 1 M 26 30 h 1 M 37 30 h 1 M 28 31 h 1 M 35 31 h 1 M 20 33 h 1 M 43 33 h 1 M 24 34 h 1 M 29 34 h 1 M 34 34 h 1 M 39 34 h 1 M 27 36 h 1 M 30 36 h 1 M 33 36 h 1 M 36 36 h 1 M 17 37 h 1 M 22 37 h 1 M 41 37 h 1 M 46 37 h 1 M 23 39 h 1 M 40 39 h 1 M 19 40 h 1 M 26 40 h 1 M 30 40 h 1 M 33 40 h 1 M 37 40 h 1 M 44 40 h 1 M 24 43 h 1 M 28 43 h 1 M 35 43 h 1 M 39 43 h 1 M 20 44 h 1 M 43 44 h 1 M 30 45 h 1 M 33 45 h 1 M 23 46 h 1 M 26 46 h 1 M 37 46 h 1 M 40 46 h 1 M 29 49 h 1 M 34 49 h 1 M 24 50 h 1 M 39 50 h 1"
+				d="M 11 3 h 1 M 20 3 h 1 M 7 4 h 1 M 24 4 h 1 M 11 6 h 1 M 20 6 h 1 M 4 7 h 1 M 8 7 h 1 M 14 7 h 1 M 17 7 h 1 M 23 7 h 1 M 27 7 h 1 M 5 10 h 1 M 11 10 h 1 M 20 10 h 1 M 26 10 h 1 M 7 11 h 1 M 24 11 h 1 M 14 12 h 1 M 17 12 h 1 M 2 13 h 1 M 29 13 h 1 M 10 14 h 1 M 21 14 h 1 M 12 15 h 1 M 19 15 h 1 M 4 17 h 1 M 27 17 h 1 M 8 18 h 1 M 13 18 h 1 M 18 18 h 1 M 23 18 h 1 M 11 20 h 1 M 14 20 h 1 M 17 20 h 1 M 20 20 h 1 M 1 21 h 1 M 6 21 h 1 M 25 21 h 1 M 30 21 h 1 M 7 23 h 1 M 24 23 h 1 M 3 24 h 1 M 10 24 h 1 M 14 24 h 1 M 17 24 h 1 M 21 24 h 1 M 28 24 h 1 M 8 27 h 1 M 12 27 h 1 M 19 27 h 1 M 23 27 h 1 M 4 28 h 1 M 27 28 h 1 M 14 29 h 1 M 17 29 h 1 M 7 30 h 1 M 10 30 h 1 M 21 30 h 1 M 24 30 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-11" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-11" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 27 19 h 1 M 36 19 h 1 M 23 20 h 1 M 40 20 h 1 M 27 22 h 1 M 36 22 h 1 M 20 23 h 1 M 24 23 h 1 M 30 23 h 1 M 33 23 h 1 M 39 23 h 1 M 43 23 h 1 M 21 26 h 1 M 27 26 h 1 M 36 26 h 1 M 42 26 h 1 M 23 27 h 1 M 40 27 h 1 M 30 28 h 1 M 33 28 h 1 M 18 29 h 1 M 45 29 h 1 M 26 30 h 1 M 37 30 h 1 M 28 31 h 1 M 35 31 h 1 M 20 33 h 1 M 43 33 h 1 M 24 34 h 1 M 29 34 h 1 M 34 34 h 1 M 39 34 h 1 M 27 36 h 1 M 30 36 h 1 M 33 36 h 1 M 36 36 h 1 M 17 37 h 1 M 22 37 h 1 M 41 37 h 1 M 46 37 h 1 M 23 39 h 1 M 40 39 h 1 M 19 40 h 1 M 26 40 h 1 M 30 40 h 1 M 33 40 h 1 M 37 40 h 1 M 44 40 h 1 M 24 43 h 1 M 28 43 h 1 M 35 43 h 1 M 39 43 h 1 M 20 44 h 1 M 43 44 h 1 M 30 45 h 1 M 33 45 h 1 M 23 46 h 1 M 26 46 h 1 M 37 46 h 1 M 40 46 h 1 M 29 49 h 1 M 34 49 h 1 M 24 50 h 1 M 39 50 h 1"
+				d="M 11 4 h 1 M 20 4 h 1 M 4 8 h 1 M 14 8 h 1 M 17 8 h 1 M 27 8 h 1 M 5 11 h 1 M 11 11 h 1 M 20 11 h 1 M 26 11 h 1 M 14 13 h 1 M 17 13 h 1 M 2 14 h 1 M 29 14 h 1 M 10 15 h 1 M 21 15 h 1 M 12 16 h 1 M 19 16 h 1 M 4 18 h 1 M 27 18 h 1 M 8 19 h 1 M 13 19 h 1 M 18 19 h 1 M 23 19 h 1 M 11 21 h 1 M 14 21 h 1 M 17 21 h 1 M 20 21 h 1 M 1 22 h 1 M 30 22 h 1 M 7 24 h 1 M 24 24 h 1 M 3 25 h 1 M 10 25 h 1 M 14 25 h 1 M 17 25 h 1 M 21 25 h 1 M 28 25 h 1 M 8 28 h 1 M 12 28 h 1 M 19 28 h 1 M 23 28 h 1 M 4 29 h 1 M 27 29 h 1 M 14 30 h 1 M 17 30 h 1 M 10 31 h 1 M 21 31 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-12" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-12" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 27 20 h 1 M 36 20 h 1 M 23 21 h 1 M 40 21 h 1 M 20 24 h 1 M 30 24 h 1 M 33 24 h 1 M 43 24 h 1 M 23 28 h 1 M 40 28 h 1 M 30 29 h 1 M 33 29 h 1 M 18 30 h 1 M 45 30 h 1 M 28 32 h 1 M 35 32 h 1 M 20 34 h 1 M 43 34 h 1 M 15 35 h 1 M 24 35 h 1 M 39 35 h 1 M 48 35 h 1 M 27 37 h 1 M 36 37 h 1 M 23 40 h 1 M 40 40 h 1 M 19 41 h 1 M 30 41 h 1 M 33 41 h 1 M 44 41 h 1 M 14 44 h 1 M 49 44 h 1 M 26 45 h 1 M 37 45 h 1 M 18 48 h 1 M 45 48 h 1 M 24 49 h 1 M 39 49 h 1 M 15 50 h 1 M 29 50 h 1 M 34 50 h 1 M 48 50 h 1 M 20 53 h 1 M 43 53 h 1 M 27 54 h 1 M 36 54 h 1"
+				d="M 4 9 h 1 M 14 9 h 1 M 17 9 h 1 M 27 9 h 1 M 7 13 h 1 M 24 13 h 1 M 14 14 h 1 M 17 14 h 1 M 2 15 h 1 M 29 15 h 1 M 12 17 h 1 M 19 17 h 1 M 4 19 h 1 M 27 19 h 1 M 8 20 h 1 M 23 20 h 1 M 11 22 h 1 M 20 22 h 1 M 7 25 h 1 M 24 25 h 1 M 3 26 h 1 M 14 26 h 1 M 17 26 h 1 M 28 26 h 1 M 10 30 h 1 M 21 30 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-13" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-13" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 20 23 h 1 M 43 23 h 1 M 30 24 h 1 M 33 24 h 1 M 15 26 h 1 M 48 26 h 1 M 23 28 h 1 M 40 28 h 1 M 30 29 h 1 M 33 29 h 1 M 17 30 h 1 M 46 30 h 1 M 20 34 h 1 M 43 34 h 1 M 27 37 h 1 M 36 37 h 1 M 18 39 h 1 M 45 39 h 1 M 11 40 h 1 M 23 40 h 1 M 40 40 h 1 M 52 40 h 1 M 30 41 h 1 M 33 41 h 1 M 14 45 h 1 M 26 45 h 1 M 37 45 h 1 M 49 45 h 1 M 18 48 h 1 M 45 48 h 1 M 29 50 h 1 M 34 50 h 1 M 20 53 h 1 M 43 53 h 1 M 10 54 h 1 M 27 54 h 1 M 36 54 h 1 M 53 54 h 1 M 16 57 h 1 M 47 57 h 1 M 24 60 h 1 M 39 60 h 1"
+				d="M 4 9 h 1 M 27 9 h 1 M 14 10 h 1 M 17 10 h 1 M 7 14 h 1 M 24 14 h 1 M 14 15 h 1 M 17 15 h 1 M 1 16 h 1 M 30 16 h 1 M 4 20 h 1 M 27 20 h 1 M 11 23 h 1 M 20 23 h 1 M 2 25 h 1 M 29 25 h 1 M 7 26 h 1 M 24 26 h 1 M 14 27 h 1 M 17 27 h 1 M 10 31 h 1 M 21 31 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-14" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-14" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 23 28 h 1 M 40 28 h 1 M 30 29 h 1 M 33 29 h 1 M 15 33 h 1 M 48 33 h 1 M 20 34 h 1 M 43 34 h 1 M 27 37 h 1 M 36 37 h 1 M 11 40 h 1 M 23 40 h 1 M 40 40 h 1 M 52 40 h 1 M 30 41 h 1 M 33 41 h 1 M 18 48 h 1 M 45 48 h 1 M 29 50 h 1 M 34 50 h 1 M 10 54 h 1 M 53 54 h 1 M 16 57 h 1 M 47 57 h 1 M 24 60 h 1 M 39 60 h 1 M 17 61 h 1 M 46 61 h 1"
+				d="M 13 19 h 1 M 18 19 h 1 M 10 29 h 1 M 21 29 h 1 M 3 30 h 1 M 28 30 h 1 M 7 14 h 1 M 24 14 h 1 M 14 15 h 1 M 17 15 h 1 M 4 20 h 1 M 27 20 h 1 M 11 23 h 1 M 20 23 h 1 M 7 26 h 1 M 24 26 h 1 M 14 27 h 1 M 17 27 h 1"
 			/>
 		</symbol>
-		<symbol id="firework-15" viewBox="0 -0.5 64 64" shape-rendering="crispEdges">
+		<symbol id="firework-15" viewBox="0 -0.5 32 32" shape-rendering="crispEdges">
 			<path
 				stroke="var(--c2, hsl(0, 0%, 92%))"
-				d="M 29 50 h 1 M 34 50 h 1 M 10 54 h 1 M 53 54 h 1 M 24 60 h 1 M 39 60 h 1 M 17 61 h 1 M 46 61 h 1"
+				d="M 10 30 h 1 M 21 30 h 1 M 11 24 h 1 M 20 24 h 1 M 7 27 h 1 M 24 27 h 1 M 14 28 h 1 M 17 28 h 1"
 			/>
 		</symbol>
 	</defs>

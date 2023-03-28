@@ -389,22 +389,22 @@
 						</use>
 					</g>
 					<g style="--c2: #eef2d9;">
-						<use href="#firework-0" x="-0.2" y="0.1" width="0.8" height="0.8">
+						<use href="#firework-0" y="0.5" width="0.5" height="0.5">
 							<animate begin="indefinite" attributeName="href" values={fireworks} dur="1s" />
 						</use>
-						<use href="#firework-0" x="0.2" y="-0.2" width="0.8" height="0.8">
+						<use href="#firework-0" x="0.2" width="0.5" height="0.5">
 							<animate
 								begin="indefinite"
 								attributeName="href"
-								values="#;#;#;{fireworks}"
-								dur="1.2s"
+								values="#;#;#;#;#;#;{fireworks}"
+								dur="1.4s"
 							/>
 						</use>
-						<use href="#firework-0" x="0.3" y="0.3" width="0.7" height="0.7">
+						<use href="#firework-0" x="0.5" y="0.5" width="0.5" height="0.5">
 							<animate
 								begin="indefinite"
 								attributeName="href"
-								values="#;#;#;#;#;#;#;#;#;{fireworks}"
+								values="#;#;#;#;#;#;#;#;#;#;#;{fireworks}"
 								dur="1.8s"
 							/>
 						</use>
