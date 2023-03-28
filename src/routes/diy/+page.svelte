@@ -6,6 +6,24 @@
 	import FindTheButterflies from './FindTheButterflies.svelte';
 
 	const { title } = site;
+
+	const collection = [
+		{
+			component: PokeTheLadybug,
+			backgroundColor: 'hsl(356, 89%, 71%)',
+			borderColor: 'hsl(153, 24%, 77%)'
+		},
+		{
+			component: PopTheBalloon,
+			backgroundColor: 'hsl(211, 67%, 48%)',
+			borderColor: 'hsl(41, 100%, 47%)'
+		},
+		{
+			component: FindTheButterflies,
+			backgroundColor: 'hsl(211, 67%, 48%)',
+			borderColor: 'hsl(172, 76%, 41%)'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -28,17 +46,11 @@
 {@html svg['defs']}
 
 <div>
-	<article style="background: hsl(356, 89%, 71%); --border-color: hsl(153, 24%, 77%);">
-		<PokeTheLadybug />
-	</article>
-
-	<article style="background: hsl(46, 93%, 56%); --border-color: hsl(41, 100%, 47%);">
-		<PopTheBalloon />
-	</article>
-
-	<article style="background: hsl(211, 67%, 48%); --border-color: hsl(172, 76%, 41%);">
-		<FindTheButterflies />
-	</article>
+	{#each collection as { component, backgroundColor, borderColor }}
+		<article style:background-color={backgroundColor} style:--border-color={borderColor}>
+			<svelte:component this={component} />
+		</article>
+	{/each}
 </div>
 
 <style>
