@@ -3,7 +3,8 @@
 
 	const width = 80;
 	const height = 50;
-	const size = 12;
+	const scale = 0.75;
+	const size = 16 * scale;
 	const targets = 3;
 
 	const getX = () => Math.floor(Math.random() * (width - size));
@@ -99,39 +100,6 @@
 				<rect fill="#2969bd" x="-1.4" y="-3.6" width="2.8" height="3.2" rx="1" />
 			</g>
 		</symbol>
-
-		<symbol id="find-the-butterflies-butterfly" viewBox="-8 -8 16 16">
-			<g stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-				<g fill="#2969bd">
-					<path transform="scale(1.05 1.08)" d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
-					<path d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
-					<g transform="scale(-1 1)">
-						<path transform="scale(1.05 1.08)" d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
-						<path d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
-					</g>
-				</g>
-
-				<path fill="#2969bd" d="M 0 -3 c 2.5 3 3.5 7 0 9 -3.5 -2 -2.5 -6 0 -9" />
-
-				<g fill="none">
-					<path transform="translate(0.5 -4) rotate(-40)" d="M 0 0 c 1 -2 5 -2 3.8 0 t -0.25 -1" />
-					<path
-						transform="scale(-1 1) translate(0.5 -4) rotate(-40)"
-						d="M 0 0 c 1 -2 5 -2 3.8 0 t -0.25 -1"
-					/>
-				</g>
-
-				<path fill="#2969bd" d="M 0 -4.5 c -1 0 -3 3 0 3 3 0 1 -3 0 -3" />
-
-				<g fill="none">
-					<path transform="translate(1.25 -3.5) rotate(-40)" d="M 0 -0.8 q 2 0.8 0 1.6z" />
-					<path
-						transform="scale(-1 1) translate(1.25 -3.5) rotate(-40)"
-						d="M 0 -0.8 q 2 0.8 0 1.6z"
-					/>
-				</g>
-			</g>
-		</symbol>
 	</defs>
 
 	<rect fill="url(#find-the-butterflies-pattern-bricks)" width="80" height="50" />
@@ -141,10 +109,11 @@
 	</g>
 
 	<g>
-		{#each butterflies as { x, y, path }}
+		{#each butterflies as { x, y, path }, i}
 			<g transform="translate({x} {y})">
 				<g style:cursor="pointer">
 					<animateMotion
+						id="findTheButterfliesButterfly{i}"
 						begin="click"
 						{path}
 						dur="12s"
@@ -152,7 +121,65 @@
 						fill="freeze"
 						restart="never"
 					/>
-					<use width={size} height={size} href="#find-the-butterflies-butterfly" />
+					<g transform="scale({scale})">
+						<g transform="translate(8 8)">
+							<g
+								stroke="currentColor"
+								stroke-width="0.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<g fill="#2969bd">
+									<g transform="scale(1 1)">
+										<animateTransform
+											begin="findTheButterfliesButterfly{i}.begin"
+											attributeName="transform"
+											type="scale"
+											values="1 1; 0.7 1; 1 1"
+											dur="0.25s"
+											repeatCount="indefinite"
+											fill="freeze"
+										/>
+										<path
+											transform="scale(1.05 1.08)"
+											d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1"
+										/>
+										<path d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
+										<g transform="scale(-1 1)">
+											<path
+												transform="scale(1.05 1.08)"
+												d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1"
+											/>
+											<path d="M 0 0 c 0 -5 11.5 -9 5 1 3 6 -4 8 -5 -1" />
+										</g>
+									</g>
+								</g>
+
+								<path fill="#2969bd" d="M 0 -3 c 2.5 3 3.5 7 0 9 -3.5 -2 -2.5 -6 0 -9" />
+
+								<g fill="none">
+									<path
+										transform="translate(0.5 -4) rotate(-40)"
+										d="M 0 0 c 1 -2 5 -2 3.8 0 t -0.25 -1"
+									/>
+									<path
+										transform="scale(-1 1) translate(0.5 -4) rotate(-40)"
+										d="M 0 0 c 1 -2 5 -2 3.8 0 t -0.25 -1"
+									/>
+								</g>
+
+								<path fill="#2969bd" d="M 0 -4.5 c -1 0 -3 3 0 3 3 0 1 -3 0 -3" />
+
+								<g fill="none">
+									<path transform="translate(1.25 -3.5) rotate(-40)" d="M 0 -0.8 q 2 0.8 0 1.6z" />
+									<path
+										transform="scale(-1 1) translate(1.25 -3.5) rotate(-40)"
+										d="M 0 -0.8 q 2 0.8 0 1.6z"
+									/>
+								</g>
+							</g>
+						</g>
+					</g>
 				</g>
 			</g>
 		{/each}
