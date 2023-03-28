@@ -14,7 +14,7 @@
 
 	const points = [{ x, y }];
 
-	const getD = ({ translateX, translateY, thresholdLength = 200 }) => {
+	const getPath = ({ translateX, translateY, thresholdLength = 200 }) => {
 		let d = `M 0 0`;
 		let length = 0;
 
@@ -62,7 +62,7 @@
 			return {
 				x,
 				y,
-				d: getD({ translateX: x, translateY: y })
+				path: getPath({ translateX: x, translateY: y })
 			};
 		});
 </script>
@@ -141,11 +141,18 @@
 	</g>
 
 	<g>
-		{#each butterflies as { x, y, d }}
+		{#each butterflies as { x, y, path }}
 			<g transform="translate({x} {y})">
-				<use width={size} height={size} href="#find-the-butterflies-butterfly" />
-				<g fill="none" stroke="currentColor">
-					<path {d} />
+				<g style:cursor="pointer">
+					<animateMotion
+						begin="click"
+						{path}
+						dur="12s"
+						repeatCount="indefinite"
+						fill="freeze"
+						restart="never"
+					/>
+					<use width={size} height={size} href="#find-the-butterflies-butterfly" />
 				</g>
 			</g>
 		{/each}
