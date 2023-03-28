@@ -161,6 +161,7 @@
 			/>
 			<AnimatedTitle
 				text="That's a wrap!"
+				fill="url(#linear-gradient-text)"
 				begin="popTheBalloonWin.begin"
 				end="popTheBalloonEnd.begin"
 				repeatCount="indefinite"
@@ -178,6 +179,7 @@
 			/>
 			<AnimatedTitle
 				text="Far it goes..."
+				fill="url(#linear-gradient-text)"
 				begin="popTheBalloonLose.begin"
 				end="popTheBalloonEnd.begin"
 				repeatCount="indefinite"
