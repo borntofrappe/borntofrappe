@@ -15,7 +15,7 @@
 		},
 		{
 			component: PopTheBalloon,
-			backgroundColor: 'hsl(211, 67%, 48%)',
+			backgroundColor: 'hsl(46, 93%, 56%)',
 			borderColor: 'hsl(41, 100%, 47%)'
 		},
 		{
@@ -57,9 +57,13 @@
 	div {
 		color: hsl(209, 61%, 16%);
 		background: hsl(206, 33%, 96%);
+		block-size: 100vh;
+		overflow-y: scroll;
+		scroll-snap-type: y mandatory;
 	}
 
 	article {
+		scroll-snap-align: start;
 		block-size: 100vh;
 		display: flex;
 		justify-content: center;
