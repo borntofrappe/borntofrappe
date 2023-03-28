@@ -14,6 +14,26 @@
 
 	const points = [{ x, y }];
 
+	const getD = ({ translateX, translateY, thresholdLength = 200 }) => {
+		let d = `M 0 0`;
+		let length = 0;
+
+		while (length < thresholdLength) {
+			const [px, py] = d
+				.match(/(-?\d+) (-?\d+)$/)
+				.slice(1)
+				.map((p) => parseInt(p, 10));
+
+			const x = getX() - translateX;
+			const y = getY() - translateY;
+			const distance = ((x - px) ** 2 + (y - py) ** 2) ** 0.5;
+
+			d += ` ${x} ${y}`;
+			length += distance;
+		}
+		return `${d} 0 0`;
+	};
+
 	const butterflies = Array(targets)
 		.fill()
 		.map(() => {
@@ -41,7 +61,8 @@
 
 			return {
 				x,
-				y
+				y,
+				d: getD({ translateX: x, translateY: y })
 			};
 		});
 </script>
@@ -119,11 +140,16 @@
 		<use width={size} height={size} href="#find-the-butterflies-ribbon" />
 	</g>
 
-	{#each butterflies as { x, y }}
-		<g transform="translate({x} {y})">
-			<use width={size} height={size} href="#find-the-butterflies-butterfly" />
-		</g>
-	{/each}
+	<g>
+		{#each butterflies as { x, y, d }}
+			<g transform="translate({x} {y})">
+				<use width={size} height={size} href="#find-the-butterflies-butterfly" />
+				<g fill="none" stroke="currentColor">
+					<path {d} />
+				</g>
+			</g>
+		{/each}
+	</g>
 
 	<g style:cursor="pointer">
 		<set begin="click" attributeName="display" to="none" fill="freeze" />
