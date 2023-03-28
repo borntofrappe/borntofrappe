@@ -1,5 +1,6 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const width = 80;
 	const height = 50;
@@ -115,6 +116,7 @@
 					<animateMotion
 						id="findTheButterfliesButterfly{i}"
 						begin="click"
+						end="findTheButterfliesEnd.begin"
 						{path}
 						dur="12s"
 						repeatCount="indefinite"
@@ -133,6 +135,7 @@
 									<g transform="scale(1 1)">
 										<animateTransform
 											begin="findTheButterfliesButterfly{i}.begin"
+											end="findTheButterfliesEnd.begin"
 											attributeName="transform"
 											type="scale"
 											values="1 1; 0.7 1; 1 1"
@@ -183,6 +186,39 @@
 				</g>
 			</g>
 		{/each}
+	</g>
+
+	<g transform="translate({80 * butterflies.length * -1} 0)">
+		<g>
+			{#each butterflies as _, i}
+				<animateTransform
+					begin="findTheButterfliesButterfly{i}.begin"
+					attributeName="transform"
+					type="translate"
+					by="80 0"
+					fill="freeze"
+					dur="0.1s"
+					calcMode="discrete"
+				/>
+			{/each}
+			<AnimatedTitle
+				text="Found them all!"
+				fill="url(#linear-gradient-text)"
+				begin={butterflies.map((_, i) => `findTheButterfliesButterfly${i}.begin`).join(';')}
+				end="findTheButterfliesEnd.begin"
+				repeatCount="indefinite"
+			/>
+
+			<rect style:cursor="pointer" width="80" height="50" opacity="0">
+				<set
+					id="findTheButterfliesEnd"
+					begin="click"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
+			</rect>
+		</g>
 	</g>
 
 	<g style:cursor="pointer">
