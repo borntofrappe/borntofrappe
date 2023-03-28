@@ -70,6 +70,8 @@
 </script>
 
 <svg viewBox="0 0 80 50">
+	<title>Find the butterflies!</title>
+
 	<defs>
 		<pattern id="find-the-butterflies-pattern-bricks" width="0.1" height="0.1">
 			<rect fill="#bd4900" width="8" height="5" />

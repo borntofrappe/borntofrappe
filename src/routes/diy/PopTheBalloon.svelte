@@ -9,6 +9,8 @@
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
+	<title>Pop the balloon!</title>
+
 	<defs>
 		<g id="pop-the-balloon-cloud">
 			<path
