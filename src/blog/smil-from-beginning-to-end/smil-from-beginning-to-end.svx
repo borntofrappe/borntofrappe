@@ -3,3 +3,14 @@ title: SMIL from beginning to end
 description: Animate vector graphics over and over. And without repeating yourself.
 date: 2023-03-29T18:32:00
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import svg from './svg.js'
+	import JumpTheRope from './JumpTheRope.svelte'
+</script>
+
+<Center maxInlineSize="36rem">
+	<JumpTheRope />
+</Center>
