@@ -47,7 +47,7 @@ Almost looks like a jumping rope, doesn't it? Especially on top of a stylish bac
 
 Let's frame the visual with an horizon line and a charismatic figure looking for some exercise.
 
-<Center maxInlineSize="26rem">
+<Center element="figure" maxInlineSize="26rem">
 	{@html svg['jump-hero']}
 </Center>
 

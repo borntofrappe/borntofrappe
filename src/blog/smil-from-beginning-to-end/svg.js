@@ -23,6 +23,7 @@ export default {
 	</defs>
 </svg>`,
 	'jump-hero': `<svg display="block" viewBox="0 0 80 50">
+	<title>A boxed hero ready to jump</title>
 	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
 	<g transform="translate(0 30)">
 		<g fill="none" stroke="hsl(0, 0%, 20%)" stroke-linecap="round">
