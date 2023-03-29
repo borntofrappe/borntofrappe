@@ -9,7 +9,7 @@
 <button on:click={handleAnimation}> Animate </button>
 
 <svg viewBox="0 0 80 50">
-	<rect width="80" height="50" fill="url(#background-pattern)" />
+	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
 
 	<g transform="translate(0 30)">
 		<g fill="none" stroke="hsl(0, 0%, 20%)" stroke-width="0.5" stroke-linecap="round">
