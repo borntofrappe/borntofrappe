@@ -1,15 +1,28 @@
 <script>
+	import { onMount } from 'svelte';
+
 	export let repeatCount = 0;
 
 	$: id = `jump${repeatCount}`;
+
 	let animate = null;
+	let disabled = false;
+
+	onMount(() => {
+		animate.addEventListener('endEvent', () => {
+			disabled = false;
+		});
+	});
 
 	const handleAnimation = () => {
+		if (disabled) return;
+
+		disabled = true;
 		animate.beginElement();
 	};
 </script>
 
-<button on:click={handleAnimation}>Animate</button>
+<button {disabled} on:click={handleAnimation}>Animate</button>
 
 <svg viewBox="0 0 80 50">
 	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
@@ -38,6 +51,7 @@
 					{id}
 					{repeatCount}
 					begin="indefinite;"
+					restart="whenNotActive"
 					attributeName="d"
 					dur="1s"
 					values="M 0 0 c 20 10 60 10 80 0; M 0 0 c 20 -10 60 -10 80 0; M 0 0 c 20 10 60 10 80 0;"
@@ -81,10 +95,12 @@
 		border-radius: 2rem;
 		font-weight: 700;
 		padding: 0.25rem 0.75rem;
-		transition: transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
+		transition: opacity 0.15s cubic-bezier(0.37, 0, 0.63, 1),
+			transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
-	button:active {
+	button:disabled {
+		opacity: 0.7;
 		transform: scale(0.95);
 	}
 
