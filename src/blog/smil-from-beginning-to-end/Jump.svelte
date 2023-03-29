@@ -1,4 +1,7 @@
 <script>
+	export let repeatCount = 0;
+
+	$: id = `jump${repeatCount}`;
 	let animate = null;
 
 	const handleAnimation = () => {
@@ -6,7 +9,7 @@
 	};
 </script>
 
-<button on:click={handleAnimation}> Animate </button>
+<button on:click={handleAnimation}>Animate</button>
 
 <svg viewBox="0 0 80 50">
 	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
@@ -14,7 +17,7 @@
 	<g transform="translate(40 37.75)">
 		<g>
 			<animateTransform
-				begin="rope.begin"
+				begin="{id}.begin"
 				attributeName="transform"
 				type="translate"
 				values="0 0; 0 -10; 0 0;"
@@ -32,7 +35,8 @@
 			<path stroke-width="0.5" d="M 0 0 c 20 10 60 10 80 0">
 				<animate
 					bind:this={animate}
-					id="rope"
+					{id}
+					{repeatCount}
 					begin="indefinite;"
 					attributeName="d"
 					dur="1s"
@@ -45,7 +49,7 @@
 	<g transform="translate(40 37.75)">
 		<g>
 			<animateTransform
-				begin="rope.begin"
+				begin="{id}.begin"
 				attributeName="transform"
 				type="translate"
 				values="0 0; 0 -10; 0 0;"
@@ -55,7 +59,7 @@
 			/>
 			<use href="#jump-the-rope-hero" x="-4" y="-8" width="8" height="8">
 				<animate
-					begin="rope.begin"
+					begin="{id}.begin"
 					attributeName="opacity"
 					values="1; 0; 1"
 					dur="1s"
