@@ -73,9 +73,9 @@ And with the `begin` attribute you can actually run the animation in sync with t
    ```html
     <path d="...">
         <animate
-                id="rope"
-                ...
-            />
+            id="rope"
+            ...
+        />
     </path>
     ```
 
@@ -85,9 +85,9 @@ And with the `begin` attribute you can actually run the animation in sync with t
    ```html
     <g>
         <animateTransform
-                begin="rope.begin"
-                ...
-            />
+            begin="rope.begin"
+            ...
+        />
     </g>
     ```
 
@@ -105,9 +105,9 @@ Say the character is really energized and wants to keep moving. With the `repeat
 ```html
 <path d="...">
     <animate
-            repeatCount="3"
-            ...
-        />
+        repeatCount="3"
+        ...
+    />
 </path>
 ```
 
@@ -151,9 +151,9 @@ For the simple setup you may repeat the syntax as many times as necessary. If yo
 ```html
 <path d="...">
     <animate
-            repeatCount="indefinite"
-            ...
-        />
+        repeatCount="indefinite"
+        ...
+    />
 </path>
 ```
 
@@ -182,29 +182,31 @@ There are however, and at least, two issues with the approach:
 
    Instead of going up and down.
 
+   <!-- prettier-ignore -->
    ```html
    <animateTransform
-   	values="
-           0 0; 
-           0 -10; 
-           0 0;
-       "
-   	...
+        values="
+            0 0; 
+            0 -10; 
+            0 0;
+        "
+        ...
    />
    ```
 
    Have the character jump, come back and stay put. Enough to give pause.
 
+   <!-- prettier-ignore -->
    ```html
    <animateTransform
-   	values="
-           0 0; 
-           0 -10; 
-           0 0;
-           0 0;
-           0 0;
-       "
-   	...
+        values="
+            0 0; 
+            0 -10; 
+            0 0;
+            0 0;
+            0 0;
+        "
+       ...
    />
    ```
 
