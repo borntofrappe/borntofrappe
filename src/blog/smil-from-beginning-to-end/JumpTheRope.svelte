@@ -51,6 +51,7 @@
 					bind:this={animate}
 					id="jumpTheRope"
 					begin="indefinite; jumpTheRope.end"
+					restart="whenNotActive"
 					attributeName="d"
 					dur={durs.rope}
 					values="M 0 0 c 20 10 60 10 80 0; M 0 0 c 20 -10 60 -10 80 0; M 0 0 c 20 10 60 10 80 0;"
