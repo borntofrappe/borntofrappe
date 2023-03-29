@@ -16,7 +16,7 @@ export default {
 		</pattern>
 		<symbol id="jump-the-rope-hero" viewBox="-5.4 -5.4 10.8 10.8">
 			<g stroke="hsl(0, 0%, 20%)" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
-				<rect x="-5" y="-5" width="10" height="10" rx="1" fill="hsl(0, 0%, 97%)" />
+				<rect fill="hsl(0, 0%, 97%)" x="-5" y="-5" width="10" height="10" rx="1" />
 				<path d="M -2 -2.5 v 2 M 2 -2.5 v 2 M -1.5 2 q 1.5 1 3 0" />
 			</g>
 		</symbol>

@@ -6,7 +6,7 @@
 	};
 </script>
 
-<button on:click={handleAnimation}> Animate </button>
+<button on:click={handleAnimation}>Animate</button>
 
 <svg viewBox="0 0 80 50">
 	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
