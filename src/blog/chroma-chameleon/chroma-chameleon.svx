@@ -185,7 +185,7 @@ I decided to animate the shapes only as the lizard appears on screen with JavaSc
 
 You see the outline of the lizard, not regular polygons.
 
-SVG offers here the `clipPath>`element. Define one similarly to the gradient.
+SVG offers here the `<clipPath>` element. Define one similarly to the gradient.
 
 ```html
 <clipPath id="clip">
