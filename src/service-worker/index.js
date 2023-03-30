@@ -1,6 +1,6 @@
 import { files } from '$service-worker';
 
-const cacheFontFiles = 'cache-font-files';
+const cacheFontFiles = 'cache-font-files-figtree';
 const fontFiles = files.filter((file) => file.endsWith('.woff2'));
 
 self.addEventListener('install', (e) => {
