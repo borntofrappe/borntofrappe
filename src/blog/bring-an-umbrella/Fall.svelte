@@ -1,7 +1,7 @@
 <script>
 	export let patternId = 'drop';
 
-	let animate;
+	let animate = false;
 </script>
 
 <label>
