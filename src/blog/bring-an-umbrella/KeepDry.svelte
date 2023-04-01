@@ -57,7 +57,7 @@
 	}}
 >
 	<defs>
-		<mask id="take-cover-mask">
+		<mask id="keep-dry-mask">
 			<rect fill="white" width="100" height="100" />
 			<g fill="black">
 				<g transform="translate({$follow} 0)">
@@ -65,7 +65,7 @@
 				</g>
 			</g>
 		</mask>
-		<symbol id="take-cover-snail" viewBox="-1 -4 15 15">
+		<symbol id="keep-dry-snail" viewBox="-1 -4 15 15">
 			<g stroke-linejoin="round" stroke-linecap="round">
 				<g stroke="#aaa45c">
 					<g fill="none" stroke-width="0.4">
@@ -106,7 +106,7 @@
 		</symbol>
 	</defs>
 
-	<g mask="url(#take-cover-mask)">
+	<g mask="url(#keep-dry-mask)">
 		<rect class="rain" fill="url(#drop-10)" y="-10" width="100" height="110" />
 	</g>
 
@@ -146,8 +146,8 @@
 	<g transform="translate({$move} 0)">
 		<use
 			transform="translate(50 100)"
-			href="#take-cover-snail"
-			x="-7"
+			href="#keep-dry-snail"
+			x="3"
 			y="-14"
 			width="14"
 			height="14"

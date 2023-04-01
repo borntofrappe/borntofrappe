@@ -9,7 +9,7 @@ date: 2023-04-01T14:33:07
 	
 	import svg from './svg.js';
 	import Fall from './Fall.svelte';
-	import TakeCover from './TakeCover.svelte';
+	import KeepDry from './KeepDry.svelte';
 </script>
 
 The month of April is known to be somewhat capricious. The occasional, morning shower is always welcome, gracing the soil with some much needed moisture. In the condition of being well prepared, that is.
@@ -148,7 +148,7 @@ How the pattern is applied depends then on two more attributes: `width` and `hei
 
 In this instance the pattern is repeated ten times, horizontally and vertically.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="22rem">
 	{@html svg['dots']}
 </Center>
 
@@ -164,7 +164,7 @@ Luckily, we already took the time to draw the curves in a specific canvas, and w
 
 Keeping the same width and height, the visual is repeated as many times as the dots. And wouldn't you know it, the fact that the raindrop is smaller than the canvas comes back to help us, adding some much needed separation in the resulting grid.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="22rem">
 	{@html svg['drops']}
 </Center>
 
@@ -285,7 +285,7 @@ The most immediate way you have to hide the rainfall is through SVG source order
 
 And the shapes are drawn effectively on top.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="22rem">
 	{@html svg['source-order']}
 </Center>
 
@@ -328,7 +328,7 @@ Point to the mask through a fitting `mask` attribute.
 
 And the result is that only half of the canvas is blessed with water.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="22rem">
 	{@html svg['mask']}
 </Center>
 
@@ -337,5 +337,5 @@ Of course you're not restricted to rectangles. You can add any shape in the mask
 The rest is up to your imagination and whimsy. Just remember to thank the sky and keep yourself dry.
 
 <Center maxInlineSize="28rem">
-	<TakeCover />
+	<KeepDry />
 </Center>
