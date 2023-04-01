@@ -12,7 +12,7 @@ date: 2023-04-01T14:33:07
 	import TakeCover from './TakeCover.svelte';
 </script>
 
-The month of April is know to be somewhat capricious. The occasional, morning shower is always welcome, gracing the soil with some much needed moisture. In the condition of being well prepared, that is.
+The month of April is known to be somewhat capricious. The occasional, morning shower is always welcome, gracing the soil with some much needed moisture. In the condition of being well prepared, that is.
 
 But one thing at a time. We first need a drizzle to test the concept.
 
@@ -146,7 +146,7 @@ How the pattern is applied depends then on two more attributes: `width` and `hei
 </pattern>
 ```
 
-In this instance the pattern in repeated ten times, horizontally and vertically.
+In this instance the pattern is repeated ten times, horizontally and vertically.
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['dots']}
