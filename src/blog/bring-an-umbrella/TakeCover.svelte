@@ -107,14 +107,14 @@
 	</defs>
 
 	<g mask="url(#take-cover-mask)">
-		<rect class="rain" fill="url(#drop-5)" y="-10" width="100" height="110" />
+		<rect class="rain" fill="url(#drop-10)" y="-10" width="100" height="110" />
 	</g>
 
 	<g fill="#dceff6">
-		<ellipse rx="30" ry="16" />
-		<ellipse cx="35" rx="24" ry="13" />
-		<ellipse cx="65" rx="24" ry="13" />
-		<ellipse cx="100" rx="30" ry="16" />
+		<ellipse rx="30" ry="20" />
+		<ellipse cx="35" rx="24" ry="15" />
+		<ellipse cx="65" rx="24" ry="15" />
+		<ellipse cx="100" rx="30" ry="20" />
 	</g>
 
 	<g transform="translate({$follow} 0)">

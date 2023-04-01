@@ -20,20 +20,12 @@ export default {
 				/>
 			</g>
 		</pattern>
-		<pattern id="drop-5" viewBox="0 0 10 10" patternUnits="userSpaceOnUse" width="5" height="5">
-			<g transform="translate(3 2.5)">
-				<path
-					fill="#52a2bd"
-					d="M 2 0 c 1 1 2 2 2 3 c 0 2 -2 2 -2 2 c 0 0 -2 0 -2 -2 c 0 -1 1 -2 2 -3"
-				/>
-			</g>
-		</pattern>
 		<pattern
 			id="polka-dot"
 			viewBox="0 0 2 2"
 			patternUnits="userSpaceOnUse"
-			width="3.5"
-			height="3.5"
+			width="5"
+			height="5"
 		>
 			<rect fill="#fed245" width="2" height="2" />
 			<circle fill="#fe7c71" cx="1" cy="1" r="0.5" />
@@ -42,8 +34,8 @@ export default {
 			id="polka-dot-light"
 			viewBox="0 0 2 2"
 			patternUnits="userSpaceOnUse"
-			width="3.5"
-			height="3.5"
+			width="5"
+			height="5"
 		>
 			<rect fill="#feec6e" width="2" height="2" />
 			<circle fill="#ffa8a6" cx="1" cy="1" r="0.5" />
@@ -65,10 +57,10 @@ export default {
 	'source-order': `<svg style="display: block" viewBox="0 0 100 100">
 	<rect fill="url(#drop)" width="100" height="100" />
 	<g fill="#dceff6">
-		<ellipse rx="30" ry="16" />
-		<ellipse cx="35" rx="24" ry="13" />
-		<ellipse cx="65" rx="24" ry="13" />
-		<ellipse cx="100" rx="30" ry="16" />
+		<ellipse rx="30" ry="20" />
+		<ellipse cx="35" rx="24" ry="15" />
+		<ellipse cx="65" rx="24" ry="15" />
+		<ellipse cx="100" rx="30" ry="20" />
 	</g>
 </svg>`,
 	mask: `<svg style="display: block" viewBox="0 0 100 100">
