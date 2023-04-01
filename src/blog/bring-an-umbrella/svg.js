@@ -72,11 +72,11 @@ export default {
 	</g>
 </svg>`,
 	mask: `<svg style="display: block" viewBox="0 0 100 100">
-	<mask id="mask-drops">
+	<mask id="mask-rect">
 		<rect fill="white" width="100" height="100" />
 		<rect fill="black" width="50" height="100" />
 	</mask>
-	<g mask="url(#mask-drops)">
+	<g mask="url(#mask-rect)">
 		<rect fill="url(#drop)" width="100" height="100" />
 	</g>
 	<g fill="#dceff6">
