@@ -1,7 +1,341 @@
 ---
 title: Bring an umbrella
-description: Rain is always welcome when you take shelter.
-date: 2023-03-31T16:12:03
+description: Rain is always welcome when you find shelter.
+date: 2023-04-01T14:33:07
 ---
 
-The month of April is renowned to be capricious in nature. The occasional, morning shower is always welcome, gracing the soil with some much needed moisture. In the condition of being well prepared, that is.
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import svg from './svg.js';
+	import Fall from './Fall.svelte';
+	import TakeCover from './TakeCover.svelte';
+</script>
+
+The month of April is know to be somewhat capricious. The occasional, morning shower is always welcome, gracing the soil with some much needed moisture. In the condition of being well prepared, that is.
+
+But one thing at a time. We first need a drizzle to test the concept.
+
+{@html svg['defs']}
+
+## Rain
+
+To draw a raindrop set up a small SVG canvas. We don't need a lot of space for the single purpose.
+
+```html
+<svg viewBox="0 0 10 10">
+	<!-- ... -->
+</svg>
+```
+
+There are many ways we could draw one drop — a basic circle, a single line — but let's try to be a tad creative and explore a couple of curves.
+
+In the `d` attribute for the `<path>` element the `l` character helps to draw straight lines.
+
+```html
+<path
+	d="
+		M 2 0 
+		l 2 3 
+		l -2 2 
+		l -2 -2 
+		l 2 -3
+	"
+/>
+```
+
+The command is quite helpful to pick the edges of our drawing.
+
+<Center element="figure" maxInlineSize="16rem">
+	{@html svg['edges']}
+</Center>
+
+Leveling up from the instruction, the `c` character adds the curvature with two additional control points.
+
+```html
+<path
+	d="
+		M 2 0 
+		c 1 1 2 2 2 3 
+		c 0 2 -2 2 -2 2 
+		l -2 -2 
+		l 2 -3
+	"
+/>
+```
+
+Feel free to experiment with the actual numbers — think of the control points as small tweezers pinching the straight line in a specific direction. Personally, I try to create enough thickness and bulk on one side, and then mirror the structure on the remaining half.
+
+```html
+<path
+	d="
+		M 2 0 
+		c 1 1 2 2 2 3 
+		c 0 2 -2 2 -2 2 
+		c 0 0 -2 0 -2 -2 
+		c 0 -1 1 -2 2 -3
+	"
+/>
+```
+
+That's one good looking raindrop.
+
+<Center element="figure" maxInlineSize="16rem">
+	{@html svg['drop']}
+</Center>
+
+The `viewBox` is larger than what we actually need, but hold the dimensions for a moment and just place the path roughly in the center.
+
+```html
+<svg viewBox="0 0 10 10">
+	<g transform="translate(3 2.5)">
+		<!-- ...raindrop -->
+	</g>
+</svg>
+```
+
+## Drops
+
+For a proper precipitation we need more than a single raindrop. And for this you could repeat the element many times over, in different parts of a larger canvas.
+
+```html
+<svg viewBox="0 0 100 100">
+	<g transform="translate(0 10)">
+		<!-- ...raindrop -->
+	</g>
+	<g transform="translate(10 10)">
+		<!-- ...raindrop -->
+	</g>
+</svg>
+```
+
+That being said, the `<pattern>` element offers a convenient, if predictable, alternative. To understand how consider a square spanning the larger surface.
+
+```html
+<svg viewBox="0 0 100 100">
+	<rect width="100" height="100" />
+</svg>
+```
+
+In the `fill` attribute you can point to a pattern you define through the `<pattern>` element.
+
+```html
+<pattern id="dot">
+	<!-- ... -->
+</pattern>
+<rect fill="url(#dot)" width="100" height="100" />
+```
+
+The element works similar to the wrapping `<svg>` in that you add a `viewBox` and different drawing instructions. The idea is that the drawing is then repeated in the designated square.
+
+Let's create a polka-dot pattern with a circle.
+
+```html
+<pattern id="dot" viewBox="0 0 2 2">
+	<circle cx="1" cy="1" r="0.5" />
+</pattern>
+```
+
+Smack in the center of the pattern, the dot covers half the width, half the height of the canvas.
+
+How the pattern is applied depends then on two more attributes: `width` and `height`. Set in decimal, or again with percentages, the pair describes the repetition relative to the dimensions of the rectangle.
+
+```html
+<pattern id="dot" viewBox="0 0 2 2" width="0.1" height="0.1">
+	<!-- ... -->
+</pattern>
+```
+
+In this instance the pattern in repeated ten times, horizontally and vertically.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['dots']}
+</Center>
+
+Enough of a detour, however. The circle helps to explain the `<pattern>` element, but we want to repeat our raindrop instead.
+
+Luckily, we already took the time to draw the curves in a specific canvas, and we can essentially replace the `<svg>` element with a `<pattern>` and a specific `id`.
+
+```html
+<pattern id="drop" viewBox="0 0 10 10" width="0.1" height="0.1">
+	<!-- ...drop -->
+</pattern>
+```
+
+Keeping the same width and height, the visual is repeated as many times as the dots. And wouldn't you know it, the fact that the raindrop is smaller than the canvas comes back to help us, adding some much needed separation in the resulting grid.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['drops']}
+</Center>
+
+Just remember to update the reference from the dotted pattern.
+
+```html
+<rect fill="url(#drop)" width="100" height="100" />
+```
+
+## Fall
+
+It's finally time for gravity to enter the scene. And with CSS and a bit of trickery we can emulate a virtually endless stream.
+
+First, update the y coordinate of the entire rectangle with a CSS animation.
+
+```css
+rect {
+	animation: fall 0.5s linear infinite;
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(10px);
+	}
+}
+```
+
+The idea is to move the element down over and over. The result is jarring in that the first row pops out of nowhere, but if we were to stretch the element further, and place the larger rectangle a notch above.
+
+<!-- prettier-ignore -->
+```html
+<rect 
+	...
+	y="-10"
+	height="110"
+/>
+```
+
+The addition of one row almost completes the animation.
+
+<Center maxInlineSize="22rem">
+	<Fall patternId="drop" />
+</Center>
+
+It may not be immediately apparent, but there is a stutter. There is a small jump every time the animation loops, spoiling the illusion.
+
+The issue stems with the dimensions of the pattern. Remember the `width` and `height` attributes.
+
+<!-- prettier-ignore -->
+```html
+<pattern 
+	...
+	width="0.1" 
+	height="0.1"
+	>
+	<!-- ...raindrop -->
+</pattern>
+```
+
+The values are relative to the size of the `<rect>` element, which is no longer a square 100 by 100. The browser tries to fit 10 raindrops in a space 110 units tall, meaning each drop takes more space, slightly more than 10.
+
+To fix the issue you have at least two ways:
+
+1. find a calculator to consider how tall the pattern should be
+
+   With the new aspect ratio 10 units over 110 make for roughly 0.0909 per row
+
+   <!-- prettier-ignore -->
+   ```html
+	<pattern 
+		... 
+		width="0.1" 
+		height="0.0909"
+		>
+		<!-- ...raindrop -->
+	</pattern>
+	```
+
+   You decide if this is a proper solution.
+
+2. consider the `patternUnits` attribute
+
+   Set on the `<pattern>` element, the attribute describes whether to size the pattern relative to the object, meaning the rectangle, or relative to the larger canvas.
+
+   <!-- prettier-ignore -->
+   ```html
+   <pattern 
+   		... 
+		patternUnits="userSpaceOnUse" 
+		width="10" 
+		height="10"
+		>
+   		<!--...raindrop -->
+   </pattern>
+   ```
+
+   This means we can actually have the pattern repeat in predictable, 10 by 10 cells.
+
+Be it in a roundabout manner, or an SVG-savvy way, the result is one and the same. And the downpour is ensured.
+
+<Center maxInlineSize="22rem">
+	<Fall patternId="drop-10" />
+</Center>
+
+## Cover
+
+I did not forget the premise of the article, and it is finally time to find shelter.
+
+The most immediate way you have to hide the rainfall is through SVG source order. Add elements for a few clouds _after_ the patterned rectangle.
+
+<!-- prettier-ignore -->
+```html
+<rect fill="" width="100" height="100" />
+<g>
+<!-- ...clouds -->
+</g>
+```
+
+And the shapes are drawn effectively on top.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['source-order']}
+</Center>
+
+The change is small, but also works to mask the infinite animation. The raindrops don't appear from the top of an invisible border, but rather escape the clouds, realizing a true gift from the sky.
+
+The approach works, but to really hide the raindrops SVG offers a veritable mask through the `<mask>` element.
+
+```html
+<mask id="mask">
+	<!-- ... -->
+</mask>
+```
+
+In between the opening and closing tags you described how to mask content based on the color of the nested elements. There is a formula which considers the different color channels to find how translucent the mask should be, but for our purposes two values are more than enough: white and black.
+
+White elements describe which portions to show. Repeat the square to set a base.
+
+```html
+<mask id="mask">
+	<rect fill="white" width="100" height="100" />
+</mask>
+```
+
+Black elements describe what to hide. Consider a rectangle half as wide.
+
+```html
+<mask id="mask">
+	<rect fill="white" width="100" height="100" />
+	<rect fill="black" width="50" height="100" />
+</mask>
+```
+
+Point to the mask through a fitting `mask` attribute.
+
+```html
+<g mask="url(#mask)">
+	<rect fill="url(#raindrop)" ... />
+</g>
+```
+
+And the result is that only half of the canvas is blessed with water.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['mask']}
+</Center>
+
+Of course you're not restricted to rectangles. You can add any shape in the mask. Circles, lines. Perhaps even a path tracing the contours of an umbrella.
+
+The rest is up to your imagination and whimsy. Just remember to thank the sky and keep yourself dry.
+
+<Center maxInlineSize="28rem">
+	<TakeCover />
+</Center>
