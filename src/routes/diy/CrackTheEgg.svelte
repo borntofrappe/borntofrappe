@@ -1,3 +1,21 @@
+<script>
+	const eggShape = 'M 0 0 c 25 0 15 -32 0 -32 -15 2 -25 32 0 32';
+
+	const eggSpots = [
+		{ cx: -11, cy: -28, rx: 8, ry: 9, strokeWidth: 2 },
+		{ cx: 14, cy: 1, rx: 12, ry: 10, strokeWidth: 2 },
+		{ cx: 5, cy: -16, rx: 4, ry: 4, strokeWidth: 1 },
+		{ cx: 5, cy: -24, rx: 2, ry: 2, strokeWidth: 1 },
+		{ cx: -12, cy: -5, rx: 5, ry: 5, strokeWidth: 3 },
+		{ cx: -7.5, cy: -8, rx: 3, ry: 3, strokeWidth: 3 },
+		{ cx: -12, cy: -5, rx: 5, ry: 5, strokeWidth: 0 },
+		{ cx: -7.5, cy: -8, rx: 3, ry: 3, strokeWidth: 0 }
+	];
+
+	const eggCrack =
+		'M -16 -12.5 l 3 -2.5 4 2.5 l 3 -2.5 6 3 l 2.5 -2.5 2.5 2.5 2.5 -2.5 l 2.5 2.5 6 -3.5';
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Crack the egg!</title>
 
@@ -42,11 +60,25 @@
 			<rect x="1" y="1" width="1" height="1" fill="#f7c283" />
 		</pattern>
 
-		<path id="crack-the-egg-egg" d="M 0 0 c 25 0 15 -32 0 -32 -15 2 -25 32 0 32" />
+		<path id="crack-the-egg-egg-shape" d={eggShape} />
 
-		<clipPath id="crack-the-egg-clip-egg">
-			<use href="#crack-the-egg-egg" />
+		<clipPath id="crack-the-egg-clip-egg-shape">
+			<use href="#crack-the-egg-egg-shape" />
 		</clipPath>
+
+		<g id="crack-the-egg-egg">
+			<use fill="#f7d794" href="#crack-the-egg-egg-shape" />
+
+			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+				<g fill="#c54900" stroke="url(#crack-the-egg-pattern-spot)">
+					{#each eggSpots as { cx, cy, rx, ry, strokeWidth }}
+						<ellipse {cx} {cy} {rx} {ry} stroke-width={strokeWidth} />
+					{/each}
+				</g>
+			</g>
+
+			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
+		</g>
 
 		<symbol id="crack-the-egg-surprise" viewBox="0 0 19 23.5">
 			<g stroke="currentColor" stroke-width="1" transform="translate(0.5 0.5)">
@@ -97,27 +129,8 @@
 
 	<g transform="translate(60 40)">
 		<g stroke-width="1" transform="translate(0 -0.5)">
-			<use fill="#f7d794" href="#crack-the-egg-egg" />
-			<g
-				clip-path="url(#crack-the-egg-clip-egg)"
-				fill="#c54900"
-				stroke="url(#crack-the-egg-pattern-spot)"
-			>
-				<ellipse cx="-11" cy="-28" rx="8" ry="9" stroke-width="2" />
-				<ellipse cx="14" cy="1" rx="12" ry="10" stroke-width="2" />
-				<ellipse cx="5" cy="-16" rx="4" ry="4" stroke-width="1" />
-				<ellipse cx="5" cy="-24" rx="2" ry="2" stroke-width="1" />
-				<ellipse cx="-12" cy="-5" rx="5" ry="5" stroke-width="3" />
-				<ellipse cx="-7.5" cy="-8" rx="3" ry="3" stroke-width="3" />
-				<ellipse cx="-12" cy="-5" rx="5" ry="5" stroke-width="0" />
-				<ellipse cx="-7.5" cy="-8" rx="3" ry="3" stroke-width="0" />
-				<path
-					fill="none"
-					stroke="currentColor"
-					d="M -16 -12.5 l 3 -2.5 4 2.5 l 3 -2.5 6 3 l 2.5 -2.5 2.5 2.5 2.5 -2.5 l 2.5 2.5 6 -3.5"
-				/>
-			</g>
-			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg" />
+			<use href="#crack-the-egg-egg" />
+			<path fill="none" stroke="currentColor" d={eggCrack} />
 		</g>
 	</g>
 </svg>
