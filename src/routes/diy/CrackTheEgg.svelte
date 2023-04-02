@@ -185,6 +185,23 @@
 			/>
 			<g>
 				<animateTransform
+					id="crackTheEggOpened"
+					begin="crackTheEggOpen.begin"
+					attributeName="transform"
+					type="translate"
+					values="0 0; 0 -20; 0 -15"
+					calcMode="spline"
+					keyTimes="0; 0.7; 1"
+					keySplines="0.8 0 0.25 1; 0.5 0 0.5 1;"
+					dur="0.7s"
+					fill="freeze"
+				/>
+				<g transform="translate(0 -1)">
+					<use href="#crack-the-egg-surprise" x="-9.5" y="-23.5" width="19" height="23.5" />
+				</g>
+			</g>
+			<g>
+				<animateTransform
 					begin={eggFragments.map((_, i) => `crackTheEggFragment${i}.begin`).join(';')}
 					attributeName="transform"
 					type="rotate"
@@ -244,7 +261,7 @@
 
 						<g>
 							<animateTransform
-								begin="crackTheEggOpen.begin + 0.03s"
+								begin="crackTheEggOpen.begin + 0.1s"
 								attributeName="transform"
 								type="translate"
 								to="0 -50"
@@ -266,7 +283,7 @@
 
 						<g>
 							<animateTransform
-								begin="crackTheEggOpen.begin + 0.03s"
+								begin="crackTheEggOpen.begin + 0.1s"
 								attributeName="transform"
 								type="translate"
 								to="0 50"
