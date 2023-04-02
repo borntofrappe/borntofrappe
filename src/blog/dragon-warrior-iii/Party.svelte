@@ -4,19 +4,19 @@
 
 	const party = [
 		{
-			ref: 'hero',
+			id: 'party-hero',
 			style: '--c0: #030f00; --c1: #070673; --c2: #eef2d9;'
 		},
 		{
-			ref: 'edo',
+			id: 'party-edo',
 			style: '--c0: #030f00; --c1: #00932d; --c2: #eef2d9;'
 		},
 		{
-			ref: 'ripa',
+			id: 'party-ripa',
 			style: '--c0: #030f00; --c1: #1111c2; --c2: #eef2d9;'
 		},
 		{
-			ref: 'icin',
+			id: 'party-icin',
 			style: '--c0: #030f00; --c1: #db1051; --c2: #eef2d9;'
 		}
 	];
@@ -25,11 +25,11 @@
 {@html svg['party']}
 
 <svg use:animate style="display: block;" viewBox="0 0 {party.length} 1">
-	{#each party as { ref, style }, x}
-		<use {x} {style} href="#party-{ref}-0" width="1" height="1">
+	{#each party as { id, style }, x}
+		<use {x} {style} href="#{id}-0" width="1" height="1">
 			<animate
 				attributeName="href"
-				values="#party-{ref}-0; #party-{ref}-1"
+				values="#{id}-0; #{id}-1"
 				dur="0.4s"
 				begin="indefinite"
 				repeatCount="indefinite"
