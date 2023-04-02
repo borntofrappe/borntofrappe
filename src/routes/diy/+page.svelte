@@ -4,6 +4,7 @@
 	import PokeTheLadybug from './PokeTheLadybug.svelte';
 	import PopTheBalloon from './PopTheBalloon.svelte';
 	import FindTheButterflies from './FindTheButterflies.svelte';
+	import CrackTheEgg from './CrackTheEgg.svelte';
 
 	const { title } = site;
 
@@ -22,6 +23,11 @@
 			component: FindTheButterflies,
 			backgroundColor: 'hsl(211, 67%, 48%)',
 			borderColor: 'hsl(172, 76%, 41%)'
+		},
+		{
+			component: CrackTheEgg,
+			backgroundColor: 'hsl(60, 91%, 66%)',
+			borderColor: 'hsl(171, 83%, 39%)'
 		}
 	];
 </script>
