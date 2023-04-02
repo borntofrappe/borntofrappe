@@ -57,6 +57,38 @@ export default {
         </symbol>
     </defs>
 </svg>`,
+	'change-staff': `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
+    <symbol id="change-king" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+		<path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 5 0 h 1 M 7 0 h 6 M 4 1 h 8 M 4 2 h 10 M 3 3 h 10 M 3 4 h 11 M 3 5 h 10 M 3 6 h 10 M 2 7 h 11 M 1 8 h 13 M 1 9 h 13 M 1 10 h 13 M 1 11 h 14 M 1 12 h 14 M 0 13 h 15 M 0 14 h 15 M 0 15 h 15" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 7 3 h 2 M 7 4 h 2 M 11 9 h 1 M 5 10 h 1 M 10 10 h 1 M 12 10 h 1 M 6 11 h 1 M 9 11 h 1 M 12 11 h 1 M 5 13 h 6 M 8 14 h 3" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 7 2 h 2 M 6 3 h 1 M 9 3 h 1 M 4 4 h 3 M 9 4 h 3 M 5 6 h 1 M 7 6 h 2 M 10 6 h 1 M 5 7 h 1 M 7 7 h 2 M 10 7 h 1 M 2 8 h 2 M 6 8 h 4 M 2 9 h 2 M 6 10 h 4 M 2 11 h 2 M 5 11 h 1 M 7 11 h 2 M 10 11 h 1 M 13 11 h 1 M 7 12 h 2 M 13 12 h 1 M 1 13 h 1 M 3 13 h 1 M 12 13 h 2 M 1 14 h 1 M 3 14 h 1 M 12 14 h 2 M 5 15 h 3" />
+    </symbol>
+	<symbol id="change-old-man" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+        <path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 5 1 h 5 M 4 2 h 1 M 10 2 h 1 M 3 3 h 1 M 11 3 h 1 M 3 4 h 1 M 11 4 h 1 M 3 5 h 1 M 11 5 h 1 M 2 6 h 2 M 5 6 h 1 M 9 6 h 1 M 11 6 h 2 M 0 7 h 3 M 5 7 h 5 M 12 7 h 2 M 0 8 h 1 M 3 8 h 2 M 10 8 h 2 M 14 8 h 1 M 1 9 h 1 M 3 9 h 1 M 6 9 h 3 M 11 9 h 2 M 14 9 h 1 M 1 10 h 3 M 5 10 h 1 M 9 10 h 1 M 11 10 h 3 M 2 11 h 1 M 4 11 h 2 M 9 11 h 2 M 12 11 h 2 M 1 12 h 3 M 6 12 h 3 M 11 12 h 1 M 13 12 h 1 M 1 13 h 1 M 4 13 h 7 M 13 13 h 1 M 1 14 h 1 M 7 14 h 4 M 13 14 h 1 M 1 15 h 6 M 11 15 h 2" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 1 8 h 2 M 12 8 h 2 M 2 9 h 1 M 13 9 h 1 M 12 12 h 1 M 2 13 h 2 M 11 13 h 2 M 2 14 h 5 M 11 14 h 2" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 5 2 h 5 M 4 3 h 7 M 4 4 h 7 M 4 5 h 7 M 4 6 h 1 M 6 6 h 3 M 10 6 h 1 M 3 7 h 2 M 10 7 h 2 M 5 8 h 5 M 4 9 h 2 M 9 9 h 2 M 4 10 h 1 M 6 10 h 3 M 10 10 h 1 M 1 11 h 1 M 3 11 h 1 M 6 11 h 3 M 11 11 h 1 M 4 12 h 2 M 9 12 h 2 M 7 15 h 4" />
+    </symbol>
+    <symbol id="change-innkeeper" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+        <path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 5 0 h 5 M 3 1 h 2 M 10 1 h 2 M 2 2 h 1 M 12 2 h 1 M 1 3 h 1 M 5 3 h 5 M 13 3 h 1 M 1 4 h 1 M 4 4 h 7 M 13 4 h 1 M 1 5 h 1 M 3 5 h 2 M 10 5 h 2 M 13 5 h 1 M 1 6 h 1 M 3 6 h 1 M 5 6 h 1 M 9 6 h 1 M 11 6 h 1 M 13 6 h 1 M 2 7 h 1 M 5 7 h 5 M 12 7 h 1 M 2 8 h 4 M 9 8 h 3 M 13 8 h 1 M 1 9 h 1 M 3 9 h 1 M 5 9 h 5 M 11 9 h 1 M 14 9 h 1 M 0 10 h 1 M 2 10 h 1 M 12 10 h 1 M 14 10 h 1 M 0 11 h 4 M 11 11 h 2 M 14 11 h 1 M 2 12 h 1 M 4 12 h 2 M 9 12 h 2 M 12 12 h 2 M 2 13 h 1 M 12 13 h 1 M 3 14 h 1 M 7 14 h 4 M 12 14 h 1 M 4 15 h 4 M 11 15 h 1" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 5 1 h 5 M 3 2 h 9 M 2 3 h 3 M 10 3 h 3 M 2 4 h 2 M 11 4 h 2 M 2 5 h 1 M 12 5 h 1 M 2 6 h 1 M 12 6 h 1 M 12 8 h 1 M 2 9 h 1 M 4 9 h 1 M 10 9 h 1 M 12 9 h 2 M 3 10 h 1 M 5 10 h 1 M 9 10 h 1 M 11 10 h 1 M 13 10 h 1 M 4 11 h 2 M 9 11 h 2 M 3 12 h 1 M 11 12 h 1 M 3 13 h 9 M 4 14 h 3 M 11 14 h 1" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 5 5 h 5 M 4 6 h 1 M 6 6 h 3 M 10 6 h 1 M 3 7 h 2 M 10 7 h 2 M 6 8 h 3 M 1 10 h 1 M 4 10 h 1 M 6 10 h 3 M 10 10 h 1 M 6 11 h 3 M 13 11 h 1 M 6 12 h 3 M 8 15 h 3" />
+    </symbol>
+    <symbol id="change-slime" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+        <path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 7 2 h 2 M 6 3 h 4 M 6 4 h 1 M 9 4 h 1 M 5 5 h 1 M 10 5 h 1 M 4 6 h 1 M 11 6 h 1 M 3 7 h 1 M 12 7 h 1 M 2 8 h 1 M 13 8 h 1 M 1 9 h 1 M 14 9 h 1 M 0 10 h 2 M 14 10 h 2 M 0 11 h 1 M 15 11 h 1 M 0 12 h 1 M 15 12 h 1 M 0 13 h 1 M 15 13 h 1 M 1 14 h 1 M 14 14 h 1 M 2 15 h 12" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 8 4 h 1 M 6 5 h 1 M 8 5 h 2 M 5 6 h 1 M 7 6 h 4 M 4 7 h 8 M 3 8 h 2 M 6 8 h 4 M 11 8 h 2 M 2 9 h 2 M 5 9 h 1 M 7 9 h 2 M 10 9 h 1 M 12 9 h 2 M 2 10 h 3 M 6 10 h 4 M 11 10 h 3 M 1 11 h 14 M 1 12 h 4 M 6 12 h 4 M 11 12 h 4 M 1 13 h 5 M 10 13 h 5 M 2 14 h 12" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 7 4 h 1 M 7 5 h 1 M 6 6 h 1 M 5 8 h 1 M 10 8 h 1 M 4 9 h 1 M 6 9 h 1 M 9 9 h 1 M 11 9 h 1 M 5 10 h 1 M 10 10 h 1 M 5 12 h 1 M 10 12 h 1 M 6 13 h 4" />
+    </symbol>
+    <symbol id="change-staff" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+        <path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 9 0 h 3 M 7 1 h 2 M 7 2 h 2 M 7 3 h 2 M 7 4 h 2 M 7 5 h 3 M 7 6 h 5 M 15 6 h 1 M 6 7 h 9 M 5 8 h 10 M 4 9 h 5 M 3 10 h 5 M 2 11 h 5 M 1 12 h 5 M 0 13 h 5 M 0 14 h 4 M 0 15 h 3" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 12 0 h 3 M 9 1 h 1 M 12 1 h 4 M 9 2 h 1 M 12 2 h 4 M 9 3 h 1 M 12 3 h 4 M 9 4 h 7 M 10 5 h 6 M 12 6 h 3" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 10 1 h 2 M 10 2 h 2 M 10 3 h 2" />
+    </symbol>
+    <symbol id="change-woman" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
+        <path stroke="var(--c0, hsl(0, 0%, 10%))" d="M 4 1 h 7 M 3 2 h 9 M 3 3 h 9 M 3 4 h 3 M 8 4 h 4 M 2 5 h 3 M 9 5 h 4 M 2 6 h 2 M 5 6 h 1 M 9 6 h 1 M 11 6 h 2 M 2 7 h 2 M 5 7 h 1 M 9 7 h 1 M 11 7 h 2 M 3 8 h 2 M 10 8 h 2 M 2 9 h 2 M 5 9 h 5 M 11 9 h 2 M 1 10 h 1 M 3 10 h 1 M 6 10 h 3 M 11 10 h 3 M 1 11 h 2 M 4 11 h 1 M 10 11 h 2 M 13 11 h 1 M 2 12 h 1 M 4 12 h 7 M 12 12 h 2 M 1 13 h 1 M 13 13 h 1 M 1 14 h 1 M 5 14 h 2 M 13 14 h 1 M 2 15 h 3 M 7 15 h 5" />
+        <path stroke="var(--c1, hsl(0, 0%, 47%))" d="M 4 9 h 1 M 10 9 h 1 M 4 10 h 1 M 10 10 h 1 M 3 11 h 1 M 3 12 h 1 M 11 12 h 1 M 2 13 h 2 M 10 13 h 3 M 2 14 h 1 M 11 14 h 2" />
+        <path stroke="var(--c2, hsl(0, 0%, 92%))" d="M 6 4 h 2 M 5 5 h 4 M 4 6 h 1 M 6 6 h 3 M 10 6 h 1 M 4 7 h 1 M 6 7 h 3 M 10 7 h 1 M 5 8 h 5 M 2 10 h 1 M 5 10 h 1 M 9 10 h 1 M 5 11 h 5 M 12 11 h 1 M 4 13 h 6 M 3 14 h 2 M 7 14 h 4 M 5 15 h 2" />
+    </symbol>
+</svg>`,
 	dice: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<symbol id="dice-face-1" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">

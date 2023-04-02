@@ -16,3 +16,27 @@ export const animate = (node) => {
 		}
 	};
 };
+
+export const blink = (node, { duration = 300, delay = 0 }) => {
+	const values = [0, 1];
+	return {
+		duration,
+		delay,
+		css: (t) => `opacity: ${values[Math.floor((t * 10) / 2) % values.length]}`
+	};
+};
+
+export const typewriter = (node, { speed = 50, delay = 0 }) => {
+	const { textContent: text } = node;
+	const { length } = text;
+
+	const duration = speed * length;
+	return {
+		duration,
+		delay,
+		tick: (t) => {
+			const i = ~~(length * t);
+			node.textContent = text.slice(0, i);
+		}
+	};
+};

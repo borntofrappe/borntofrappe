@@ -9,6 +9,7 @@ date: 2023-02-26 21:13:10
 
     import svg from './svg.js';
     import Party from './Party.svelte';
+    import ChangeStaff from './ChangeStaff.svelte';
     import LotoSeal from './LotoSeal.svelte';
     import Pachisi from './Pachisi.svelte';
 </script>
@@ -20,6 +21,8 @@ date: 2023-02-26 21:13:10
 <Center element="figure" maxInlineSize="24rem">
     <Party />
 </Center>
+
+<ChangeStaff />
 
 <Center maxInlineSize="42rem">
     <Pachisi />
