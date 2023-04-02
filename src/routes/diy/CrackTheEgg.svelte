@@ -14,6 +14,43 @@
 
 	const eggCrack =
 		'M -16 -12.5 l 3 -2.5 4 2.5 l 3 -2.5 6 3 l 2.5 -2.5 2.5 2.5 2.5 -2.5 l 2.5 2.5 6 -3.5';
+
+	let [eggCrackX, eggCrackY] = eggCrack
+		.match(/(-?[\d\.]+) (-?[\d\.]+)/)
+		.slice(1)
+		.map((c) => parseFloat(c));
+
+	const eggFragments = eggCrack
+		.slice(eggCrack.indexOf('l') + 2)
+		.split(/ ?l ?/)
+		.reduce((acc, curr, i) => {
+			const d = `M ${eggCrackX} ${eggCrackY} l ${curr}`;
+
+			const x = eggCrackX;
+			let width = 0;
+
+			const offsets = curr.match(/-?[\d\.]+/g).map((c) => parseFloat(c));
+			for (let i = 0; i < offsets.length; i++) {
+				const offset = offsets[i];
+				if (i % 2 === 0) {
+					eggCrackX += offset;
+					width += offset;
+				} else {
+					eggCrackY += offset;
+				}
+			}
+
+			return [
+				...acc,
+				{
+					d,
+					x,
+					y: -50,
+					width,
+					height: 100
+				}
+			];
+		}, []);
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -121,16 +158,40 @@
 		</g>
 	</g>
 
-	<g transform="translate(20 40)">
-		<g transform="translate(-9.5 -23.5)">
-			<use href="#crack-the-egg-surprise" width="19" height="23.5" />
-		</g>
-	</g>
-
-	<g transform="translate(60 40)">
+	<g transform="translate(40 50)">
 		<g stroke-width="1" transform="translate(0 -0.5)">
 			<use href="#crack-the-egg-egg" />
-			<path fill="none" stroke="currentColor" d={eggCrack} />
+
+			<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+				<g fill="none" stroke="currentColor" stroke-linecap="square">
+					{#each eggFragments as { d }, i}
+						<g opacity="0">
+							<set
+								begin="crackTheEggFragment{i}.begin"
+								attributeName="opacity"
+								to="1"
+								fill="freeze"
+							/>
+							<path {d} />
+						</g>
+					{/each}
+				</g>
+
+				<g opacity="0">
+					{#each eggFragments as { x, y, width, height }, i}
+						<g style:cursor="pointer">
+							<set
+								id="crackTheEggFragment{i}"
+								begin="click"
+								attributeName="display"
+								to="none"
+								fill="freeze"
+							/>
+							<rect {x} {y} {width} {height} />
+						</g>
+					{/each}
+				</g>
+			</g>
 		</g>
 	</g>
 </svg>
