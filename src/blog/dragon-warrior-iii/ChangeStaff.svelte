@@ -52,16 +52,14 @@
 				<use in:blink={{ duration: 475, delay: 50 }} style={change.style} href="#{change.id}" />
 			{/key}
 		</svg>
-		<blockquote>
-			<p>
-				<span aria-hidden="true" style:opacity="0" style:visibility="none">{change.talk}</span>
-				{#key i}
-					<span in:typewriter={{ speed: 40, delay: 650 }}>
-						{change.talk}
-					</span>
-				{/key}
-			</p>
-		</blockquote>
+		<p>
+			<span aria-hidden="true" style:opacity="0" style:visibility="none">{change.talk}</span>
+			{#key i}
+				<span in:typewriter={{ speed: 40, delay: 650 }}>
+					{change.talk}
+				</span>
+			{/key}
+		</p>
 	</div>
 
 	<button on:click={handleChange}>
@@ -102,13 +100,10 @@
 		align-items: center;
 	}
 
-	blockquote {
-		margin-inline: 0;
-	}
-
 	p {
 		position: relative;
 	}
+
 	p > span {
 		display: inline-block;
 	}
