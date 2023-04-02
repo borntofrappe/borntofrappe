@@ -119,6 +119,14 @@
 			<use fill="none" stroke="currentColor" href="#crack-the-egg-egg-shape" />
 		</g>
 
+		<clipPath id="crack-the-egg-clip-egg-top-half">
+			<path d="{eggCrack} l 80 -50 h -160 z" />
+		</clipPath>
+
+		<clipPath id="crack-the-egg-clip-egg-bottom-half">
+			<path d="{eggCrack} l 80 50 h -160 z" />
+		</clipPath>
+
 		<symbol id="crack-the-egg-surprise" viewBox="0 0 19 23.5">
 			<g stroke="currentColor" stroke-width="1" transform="translate(0.5 0.5)">
 				<path stroke-linecap="round" stroke-linejoin="round" fill="#f7f75a" d="M 5 1 h -4 v 4z" />
@@ -184,36 +192,40 @@
 					dur="0.3s"
 				/>
 				<g stroke-width="1" transform="translate(0 -0.5)">
-					<use href="#crack-the-egg-egg" />
+					<g>
+						<set begin="crackTheEggOpen.begin" attributeName="display" to="none" fill="freeze" />
 
-					<g clip-path="url(#crack-the-egg-clip-egg-shape)">
-						<g fill="none" stroke="currentColor" stroke-linecap="square">
-							{#each eggFragments as { d }, i}
-								<g opacity="0">
-									<set
-										begin="crackTheEggFragment{i}.begin"
-										attributeName="opacity"
-										to="1"
-										fill="freeze"
-									/>
-									<path {d} />
-								</g>
-							{/each}
-						</g>
+						<use href="#crack-the-egg-egg" />
 
-						<g opacity="0">
-							{#each eggFragments as { x, y, width, height }, i}
-								<g style:cursor="pointer">
-									<set
-										id="crackTheEggFragment{i}"
-										begin="click"
-										attributeName="display"
-										to="none"
-										fill="freeze"
-									/>
-									<rect {x} {y} {width} {height} />
-								</g>
-							{/each}
+						<g clip-path="url(#crack-the-egg-clip-egg-shape)">
+							<g fill="none" stroke="currentColor" stroke-linecap="square">
+								{#each eggFragments as { d }, i}
+									<g opacity="0">
+										<set
+											begin="crackTheEggFragment{i}.begin"
+											attributeName="opacity"
+											to="1"
+											fill="freeze"
+										/>
+										<path {d} />
+									</g>
+								{/each}
+							</g>
+
+							<g opacity="0">
+								{#each eggFragments as { x, y, width, height }, i}
+									<g style:cursor="pointer">
+										<set
+											id="crackTheEggFragment{i}"
+											begin="click"
+											attributeName="display"
+											to="none"
+											fill="freeze"
+										/>
+										<rect {x} {y} {width} {height} />
+									</g>
+								{/each}
+							</g>
 						</g>
 					</g>
 
@@ -229,6 +241,51 @@
 								calcMode="discrete"
 							/>
 						{/each}
+
+						<g>
+							<animateTransform
+								begin="crackTheEggOpen.begin + 0.03s"
+								attributeName="transform"
+								type="translate"
+								to="0 -50"
+								dur="0.35s"
+								calcMode="spline"
+								keySplines="0.8 0 0.25 1"
+								fill="freeze"
+							/>
+							<g clip-path="url(#crack-the-egg-clip-egg-top-half)">
+								<use href="#crack-the-egg-egg" />
+								<path
+									d={eggCrack}
+									clip-path="url(#crack-the-egg-clip-egg-shape)"
+									fill="none"
+									stroke="currentColor"
+								/>
+							</g>
+						</g>
+
+						<g>
+							<animateTransform
+								begin="crackTheEggOpen.begin + 0.03s"
+								attributeName="transform"
+								type="translate"
+								to="0 50"
+								dur="0.35s"
+								calcMode="spline"
+								keySplines="0.8 0 0.25 1"
+								fill="freeze"
+							/>
+							<g clip-path="url(#crack-the-egg-clip-egg-bottom-half)">
+								<use href="#crack-the-egg-egg" />
+								<path
+									d={eggCrack}
+									clip-path="url(#crack-the-egg-clip-egg-shape)"
+									fill="none"
+									stroke="currentColor"
+								/>
+							</g>
+						</g>
+
 						<g style:cursor="pointer">
 							<set
 								id="crackTheEggOpen"
