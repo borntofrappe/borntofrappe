@@ -18,42 +18,36 @@
 	const eggCrack =
 		'M -16 -12.5 l 3 -2.5 4 2.5 l 3 -2.5 6 3 l 2.5 -2.5 2.5 2.5 2.5 -2.5 l 2.5 2.5 6 -3.5';
 
-	let [eggCrackX, eggCrackY] = eggCrack
-		.match(/(-?[\d\.]+) (-?[\d\.]+)/)
-		.slice(1)
-		.map((c) => parseFloat(c));
+	const { eggFragments } = eggCrack.split('l').reduce(
+		(acc, curr, i) => {
+			const offsets = curr.match(/-?[\d\.]+ -?[\d\.]+/g);
 
-	const eggFragments = eggCrack
-		.slice(eggCrack.indexOf('l') + 2)
-		.split(/ ?l ?/)
-		.reduce((acc, curr, i) => {
-			const d = `M ${eggCrackX} ${eggCrackY} l ${curr}`;
-
-			const x = eggCrackX;
-			let width = 0;
-
-			const offsets = curr.match(/-?[\d\.]+/g).map((c) => parseFloat(c));
-			for (let i = 0; i < offsets.length; i++) {
-				const offset = offsets[i];
-				if (i % 2 === 0) {
-					eggCrackX += offset;
-					width += offset;
-				} else {
-					eggCrackY += offset;
-				}
+			if (i === 0) {
+				const [xo, yo] = offsets[0].match(/-?[\d\.]+/g).map((i) => parseFloat(i));
+				acc.x = xo;
+				acc.y = yo;
+				return acc;
 			}
 
-			return [
-				...acc,
-				{
-					d,
-					x,
-					y: -50,
-					width,
-					height: 100
-				}
-			];
-		}, []);
+			const eggFragment = curr.match(/-?[\d\.]+ -?[\d\.]+/g).reduce(
+				(a, c) => {
+					const [x1, y1] = c.match(/-?[\d\.]+/g).map((d) => parseFloat(d));
+
+					acc.x += x1;
+					acc.y += y1;
+
+					a.d += ` l ${x1} ${y1}`;
+					a.width += x1;
+					return a;
+				},
+				{ d: `M ${acc.x} ${acc.y}`, x: acc.x, y: -50, width: 0, height: 100 }
+			);
+
+			acc.eggFragments = [...acc.eggFragments, eggFragment];
+			return acc;
+		},
+		{ x: 0, y: 0, eggFragments: [] }
+	);
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
