@@ -1,5 +1,6 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const eggShape = 'M 0 0 c 25 0 15 -32 0 -32 -15 2 -25 32 0 32';
 
@@ -316,6 +317,31 @@
 					</g>
 				</g>
 			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="crackTheEggMessage"
+			begin="crackTheEggOpened.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+
+		<g transform="translate(0 15)">
+			<AnimatedTitle
+				text="Open sesame!"
+				fill="url(#linear-gradient-text)"
+				begin="crackTheEggMessage.begin"
+				end="crackTheEggEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<g style:cursor="pointer">
+			<set id="crackTheEggEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" opacity="0" />
 		</g>
 	</g>
 
