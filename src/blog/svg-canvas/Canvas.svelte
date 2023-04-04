@@ -64,7 +64,7 @@
 <svelte:window on:resize={handleSize} />
 
 <article>
-	<div class="easel">
+	<div>
 		<canvas
 			on:mousedown={handleStart}
 			on:mouseup={handleEnd}

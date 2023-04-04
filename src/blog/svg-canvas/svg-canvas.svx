@@ -1,6 +1,6 @@
 ---
 title: SVG canvas
-description: Draw with canvas and SVG.
+description: Consider scalable vector graphics for a line drawing app.
 date: 2023-04-04 10:13:33
 ---
 
@@ -11,6 +11,236 @@ date: 2023-04-04 10:13:33
 
 On the web the `<canvas>` element might be the most obvious choice to create a drawing app. That being said, the `<svg>` element offers a few entertaining possibilities.
 
+One thing at a time, though. Let's set up a small easel where you can just draw lines. With canvas for practice and SVG for proof.
+
+---
+
+I lean on Svelte out of convenience and familiarity. That being said, you should be able to recreate the application with your tool of choice. There's only one Svelte-specific feature, but there might be an alternative by the time we get there.
+
+If you are intrested in the library feel free to code along in [a REPL](https://svelte.dev/repl), or work locally, perhaps through [a most feeble Svelte app](/a-most-feeble-svelte-app).
+
+```bash
+npx degit borntofrappe/vite-svelte app
+```
+
+---
+
+## Canvas
+
+In the context of the Canvas API we first need a `<canvas>` element with a specific width and height.
+
+```svelte
+<script>
+	const width = 350;
+	const height = 300;
+</script>
+
+<canvas {width} {height} />
+```
+
+Add a solid background, an appealing outline and the element appears on the page, not only in the DOM.
+
+<div class="canvas-easel" style="margin-inline: auto; block-size: 300px; inline-size: 350px; background: hsl(0, 0%, 96%); outline: 0.4rem solid  hsl(26, 61%, 70%);">
+	<canvas width="350" height="300" />
+</div>
+
+To draw something we need the element itself. And with Svelte, we achieve this feat binding the node to a variable.
+
+```svelte
+<script>
+	// ...
+	let canvas = null;
+</script>
+
+<canvas bind:this={canvas} {width} {height} />
+```
+
+As the component is mounted, we eventually gain access to `<canvas>`.
+
+```svelte
+<script>
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		console.log(canvas); // <canvas width="...
+	});
+</script>
+```
+
+We are going to interact with the element and the most helpful 2D context following specific events, but immediately, we can set up a few instructions for the rest of the experience. For instance, an arbitrary thickness and color for the upcoming lines.
+
+```js
+const context = canvas.getContext('2d');
+context.lineWidth = 4;
+context.strokeStyle = 'hsl(0, 0%, 28%)';
+```
+
+Now for the entertaining, reactive section. The idea is to consider three to four events, among which `mousedown`, `mouseup` and `mousemove`.
+
+You keep a boolean variable to decide whether or not to draw.
+
+```js
+let isDrawing = false;
+```
+
+And switch the value with two helper functions.
+
+```js
+const handleStart = (e) => {
+	isDrawing = true;
+};
+const handleEnd = (e) => {
+	isDrawing = false;
+};
+```
+
+Invoke the functions with the appropriate Svelte directives and you are close to ready to consider the intensive `mousemove` event.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousedown={handleStart} 
+	on:mouseup={handleEnd} />
+```
+
+A small precaution, however. I hinted a fourth event past the mentioned three: `mouseleave`. The goal is to ensure you stop drawing as the cursor is released, but also when the pointer escapes the boundaries of the element.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousedown={handleStart} 
+	on:mouseup={handleEnd} 
+	on:mouseleave={handleEnd} />
+```
+
+With this setup, `isDrawing` works as a gate, a necessary condition for the function bound to the `mousemove` event.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousemove={handleMove} />
+```
+
+It is only as the cursor is down and relevant that we should actually consider the mouse coordinates and draw something.
+
+```js
+const handleMove = (e) => {
+	if (!isDrawing) return;
+
+	const context = canvas.getContext('2d');
+	// draw something!
+};
+```
+
+With the canvas's context we draw a line with different methods, but we first need a set of coordinates. Two sets to be precise. Immediately, we need two values for where the line should start.
+
+```js
+let x, y;
+```
+
+We can set the x and y coordinates in the `handleStart` function, as the cursor is pressed. And in my exploration of the `mousedown` event I found the most appropriate metrics in `offsetX` and `offsetY`.
+
+```js
+const handleStart = (e) => {
+	isDrawing = true;
+	const { offsetX, offsetY } = e;
+	x = offsetX;
+	y = offsetY;
+};
+```
+
+As we begin our line, we move the context to the coordinates with the `moveTo` function.
+
+```js
+// draw something!
+context.beginPath();
+context.moveTo(x, y);
+```
+
+From this origin, we draw a line to a new set of x, y values, this time extracted from the `mousemove` event.
+
+```js
+const handleMove = (e) => {
+	if (!isDrawing) return;
+
+	const { offsetX, offsetY } = e;
+	// ...
+};
+```
+
+The relevant method is here `lineTo`, after which we can finally highlight the line with a solid stroke.
+
+```js
+context.beginPath();
+context.moveTo(x, y);
+context.lineTo(offsetX, offsetY);
+context.closePath();
+context.stroke();
+```
+
+If you were to try the canvas as-is you would see a line. Or actually multiple lines, starting from the x and y origin and trying to reach the mouse cursor. It actually makes for an intriguing work of art.
+
+<Canvas handleOrigin={false} handleClear={false} />
+
+For our purposes, however, we want to continue the line, imperceptibly from the last point. Update the `x` and `y` variables with the new offset.
+
+```js
+x = offsetX;
+y = offsetY;
+```
+
+And the line-drawing app is basically complete. You have a line made of very small, connected segments.
+
+<Canvas handleClear={false} />
+
+You can add a button to clear the canvas, so to extend the life of the easel a little bit.
+
 <Canvas />
 
-<SVG />
+And behind the button, all you need is a call to the `clearRect` function, erasing the drawing for the entire canvas.
+
+```js
+const handleReset = () => {
+	const context = canvas.getContext('2d');
+	context.clearRect(0, 0, width, height);
+};
+```
+
+I'll let you bind the function to the most appropriate event for a stylish button.
+
+Celebrate, however, the line-drawing application is complete. What is more, the logic remains relevant for the next section as well. No need to re-invent the wheel for once.
+
+<style>
+	.canvas-easel {
+		--color-stroke: hsl(0, 0%, 28%);
+		--color-easel: hsl(26, 61%, 70%);
+		--color-background: hsl(0, 0%, 96%);
+		position: relative;
+	}
+
+	.canvas-easel::before,
+	.canvas-easel::after {
+		content: '';
+		position: absolute;
+		transform: translateX(-50%);
+		background: var(--color-easel, hsl(26, 61%, 70%));
+	}
+
+	.canvas-easel::before {
+		block-size: 1.1rem;
+		inline-size: 4rem;
+		inset-block-end: 100%;
+		inset-inline-start: 50%;
+		clip-path: polygon(0 100%, 20% 0%, 80% 0%, 100% 100%);
+	}
+
+	.canvas-easel::after {
+		block-size: 0.7rem;
+		inline-size: 70%;
+		inset-block-start: 100%;
+		inset-inline-start: 50%;
+	}
+</style>
