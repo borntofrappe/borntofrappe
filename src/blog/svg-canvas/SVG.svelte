@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { draw } from 'svelte/transition';
 
+	export let handleTransition = true;
+
 	let svg = null;
 	let cs = [];
 	let ds = [];
@@ -103,14 +105,20 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			>
-				{#each ds as d}
-					<path in:draw {d} />
-				{/each}
+				{#if handleTransition}
+					{#each ds as d}
+						<path in:draw {d} />
+					{/each}
+				{:else}
+					{#each ds as d}
+						<path {d} />
+					{/each}
+				{/if}
 			</g>
 		</svg>
 	</div>
 
-	<button on:click={handleReset}> Clear </button>
+	<button on:click={handleReset}>Clear</button>
 </article>
 
 <style>
@@ -152,6 +160,10 @@
 		inline-size: 70%;
 		inset-block-start: 100%;
 		inset-inline-start: 50%;
+	}
+
+	svg {
+		display: block;
 	}
 
 	button {
