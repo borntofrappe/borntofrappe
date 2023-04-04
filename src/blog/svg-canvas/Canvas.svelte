@@ -39,7 +39,7 @@
 		isDrawing = false;
 	};
 
-	const handleIng = ({ offsetX, offsetY }) => {
+	const handleMove = ({ offsetX, offsetY }) => {
 		if (!isDrawing) return;
 
 		const context = canvas.getContext('2d');
@@ -66,10 +66,13 @@
 <article>
 	<div>
 		<canvas
+			bind:this={canvas}
+			{width}
+			{height}
 			on:mousedown={handleStart}
 			on:mouseup={handleEnd}
 			on:mouseleave={handleEnd}
-			on:mousemove={handleIng}
+			on:mousemove={handleMove}
 			on:touchstart|preventDefault={(e) => {
 				const { pageX, pageY } = e.touches[0];
 				handleStart({
@@ -80,14 +83,11 @@
 			on:touchend|preventDefault={handleEnd}
 			on:touchmove|preventDefault={(e) => {
 				const { pageX, pageY } = e.touches[0];
-				handleIng({
+				handleMove({
 					offsetX: pageX - l,
 					offsetY: pageY - t
 				});
 			}}
-			bind:this={canvas}
-			{width}
-			{height}
 		/>
 	</div>
 
