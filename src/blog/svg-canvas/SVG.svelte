@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 	import { draw } from 'svelte/transition';
 
-	export let handleTransition = true;
+	export let handleLines = true;
 
 	let svg = null;
-	let cs = [];
-	let ds = [];
+	let points = [];
+	let lines = [];
 	let isDrawing = false;
 
 	const width = 350;
@@ -28,40 +28,27 @@
 	});
 
 	const handleStart = ({ offsetX, offsetY }) => {
-		cs = [
-			...cs,
-			{
-				cx: offsetX,
-				cy: offsetY
-			}
-		];
+		points = [...points, [offsetX, offsetY]];
 		isDrawing = true;
 	};
 
 	const handleEnd = () => {
 		isDrawing = false;
 
-		if (cs.length === 0) return;
-		const d = cs.reduce((acc, { cx, cy }) => `${acc} ${cx} ${cy}`, `M`);
-		ds = [...ds, d];
-		cs = [];
+		if (!handleLines || points.length === 0) return;
+		lines = [...lines, points];
+		points = [];
 	};
 
-	const handleIng = ({ offsetX, offsetY }) => {
+	const handleMove = ({ offsetX, offsetY }) => {
 		if (!isDrawing) return;
 
-		cs = [
-			...cs,
-			{
-				cx: offsetX,
-				cy: offsetY
-			}
-		];
+		points = [...points, [offsetX, offsetY]];
 	};
 
 	const handleReset = () => {
-		cs = [];
-		ds = [];
+		points = [];
+		lines = [];
 	};
 </script>
 
@@ -70,10 +57,13 @@
 <article>
 	<div>
 		<svg
+			bind:this={svg}
+			{width}
+			{height}
 			on:mousedown={handleStart}
 			on:mouseup={handleEnd}
 			on:mouseleave={handleEnd}
-			on:mousemove={handleIng}
+			on:mousemove={handleMove}
 			on:touchstart|preventDefault={(e) => {
 				const { clientX, clientY } = e.touches[0];
 				handleStart({
@@ -84,17 +74,14 @@
 			on:touchend|preventDefault={handleEnd}
 			on:touchmove|preventDefault={(e) => {
 				const { clientX, clientY } = e.touches[0];
-				handleIng({
+				handleMove({
 					offsetX: clientX - l,
 					offsetY: clientY - t
 				});
 			}}
-			bind:this={svg}
-			{width}
-			{height}
 		>
 			<g fill={strokeStyle}>
-				{#each cs as { cx, cy }}
+				{#each points as [cx, cy]}
 					<circle r={strokeWidth / 2} {cx} {cy} />
 				{/each}
 			</g>
@@ -105,15 +92,9 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			>
-				{#if handleTransition}
-					{#each ds as d}
-						<path in:draw {d} />
-					{/each}
-				{:else}
-					{#each ds as d}
-						<path {d} />
-					{/each}
-				{/if}
+				{#each lines as points}
+					<polyline in:draw {points} />
+				{/each}
 			</g>
 		</svg>
 	</div>
