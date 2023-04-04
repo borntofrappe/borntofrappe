@@ -71,18 +71,18 @@
 			on:mouseleave={handleEnd}
 			on:mousemove={handleIng}
 			on:touchstart|preventDefault={(e) => {
-				const { clientX, clientY } = e.touches[0];
+				const { pageX, pageY } = e.touches[0];
 				handleStart({
-					offsetX: clientX - l,
-					offsetY: clientY - t
+					offsetX: pageX - l,
+					offsetY: pageY - t
 				});
 			}}
 			on:touchend|preventDefault={handleEnd}
 			on:touchmove|preventDefault={(e) => {
-				const { clientX, clientY } = e.touches[0];
+				const { pageX, pageY } = e.touches[0];
 				handleIng({
-					offsetX: clientX - l,
-					offsetY: clientY - t
+					offsetX: pageX - l,
+					offsetY: pageY - t
 				});
 			}}
 			bind:this={canvas}
