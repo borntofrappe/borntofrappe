@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 
+	export let handleOrigin = true;
+	export let handleClear = true;
+
 	let canvas = null;
 	let x, y;
 	let isDrawing = false;
@@ -43,11 +46,13 @@
 		context.beginPath();
 		context.moveTo(x, y);
 		context.lineTo(offsetX, offsetY);
-		context.stroke();
 		context.closePath();
+		context.stroke();
 
-		x = offsetX;
-		y = offsetY;
+		if (handleOrigin) {
+			x = offsetX;
+			y = offsetY;
+		}
 	};
 
 	const handleReset = () => {
@@ -86,7 +91,9 @@
 		/>
 	</div>
 
-	<button on:click={handleReset}>Clear</button>
+	{#if handleClear}
+		<button on:click={handleReset}>Clear</button>
+	{/if}
 </article>
 
 <style>
