@@ -1,0 +1,7 @@
+---
+title: SVG canvas
+description: Draw with canvas and SVG.
+date: 2023-04-04 10:13:33
+---
+
+On the web the `<canvas>` element might be the most obvious choice to create a drawing app. That being said, the `<svg>` element offers a few entertaining possibilities.
