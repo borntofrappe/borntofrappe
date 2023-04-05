@@ -1,7 +1,7 @@
 ---
 title: SVG canvas
-description: Consider scalable vector graphics for a line-drawing app.
-date: 2023-04-04 10:13:33
+description: Build a line-drawing app, with a `<canvas>` and again with `<svg>`.
+date: 2023-04-05 17:45:21
 ---
 
 <script>
@@ -17,7 +17,7 @@ One thing at a time, though. Let's set up a small easel where you can just draw 
 
 I lean on Svelte out of familiarity, but you should be able to recreate the application with your tool of choice. There's only one Svelte-specific feature, but there might be an alternative by the time we get there.
 
-If you are intrested in the library feel free to code along in [a REPL](https://svelte.dev/repl), or work locally, perhaps through [a most feeble Svelte app](/a-most-feeble-svelte-app).
+If you are interested in the library feel free to code along in [a REPL](https://svelte.dev/repl), or work locally, perhaps through [a most feeble Svelte app](/a-most-feeble-svelte-app).
 
 ```bash
 npx degit borntofrappe/vite-svelte app
@@ -264,7 +264,7 @@ const handleStart = (e) => {
 // repeat for handleMove
 ```
 
-We modify the array in place — notice the use of the `let` keyword — to comply with Svelte's reactive logic. As the array is modified, and we use the data structure in the markup, the page is updated to show the points.
+We modify the array in place — notice the use of the `let` keyword — to comply with Svelte reactive logic. As the array is modified, and we use the data structure in the markup, the page is updated to show the points.
 
 In the markup, add a `<polyline>` element without a solid fill, but with an evident stroke.
 
@@ -289,7 +289,7 @@ And that's essentially it. Once.
 
 <SVG handleLines={false} />
 
-As you draw the first line the app works as expected, and the poins are connected one after the other. As you continue, however, there's no distinction between successive lines. A small tap has the `<polyline>` element jump, from one end to the next.
+As you draw the first line the app works as expected, and the points are connected one after the other. As you continue, however, there's no distinction between successive lines. A small tap has the `<polyline>` element jump, from one end to the next.
 
 Naively, we have one element. One long sequence of points.
 
@@ -357,7 +357,7 @@ Add the instruction to the `<polyline>` elements as they are introduced in the `
 {/each}
 ```
 
-If you'd rather keep the original line to avoid drawing the same from scratch you can add the transition on a second line, perhaps thicker. An highlight of sorts.
+If you'd rather keep the original line to avoid drawing the same from scratch you can add the transition on a second line, perhaps thicker. A highlight of sorts.
 
 <!-- prettier-ignore -->
 ```svelte
@@ -385,3 +385,74 @@ You may even change the color of the stroke exploring the HSL color space. At ra
 We are just scratching the surface, but finally, SVG proves its worth.
 
 <SVG />
+
+Not convinced? Perhaps you're thrown off by the `draw` function, but believe me, there's no magic behind the convenient instruction. There is definitely a way around the transition module, and you might have seen how [already in nature](/self-reference-in-nature#animation).
+
+Add a `pathLength` attribute on the desired element.
+
+```svelte
+<polline class="draw" pathLength="1" {line} />
+```
+
+And in CSS create dashes of the same length.
+
+```css
+.draw {
+	stroke-dasharray: 1;
+}
+```
+
+With a CSS animation, then, animate the stroke's offset, showing the solid stroke in place of the empty segment.
+
+```css
+.draw {
+	stroke-dasharray: 1;
+	animation: draw 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes draw {
+	0% {
+		stroke-dashoffset: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+```
+
+The specific duration and timing function? Those match the default values used by Svelte in the `draw` function. The result is essentially the same, and behind the scenes, I wouldn't be surprised to discover the transition works in a very similar way.
+
+At the end of the day, you find the building blocks of the web. HTML, CSS. With the help of JavaScript, the convenience of Svelte and the tantalizing possibilities of SVG.
+
+<style>
+	.canvas-easel {
+		--color-stroke: hsl(0, 0%, 28%);
+		--color-easel: hsl(26, 61%, 70%);
+		--color-background: hsl(0, 0%, 96%);
+		position: relative;
+		margin-block: 2rem;
+	}
+
+	.canvas-easel::before,
+	.canvas-easel::after {
+		content: '';
+		position: absolute;
+		transform: translateX(-50%);
+		background: var(--color-easel, hsl(26, 61%, 70%));
+	}
+
+	.canvas-easel::before {
+		block-size: 1.1rem;
+		inline-size: 4rem;
+		inset-block-end: 100%;
+		inset-inline-start: 50%;
+		clip-path: polygon(0 100%, 20% 0%, 80% 0%, 100% 100%);
+	}
+
+	.canvas-easel::after {
+		block-size: 0.7rem;
+		inline-size: 70%;
+		inset-block-start: 100%;
+		inset-inline-start: 50%;
+	}
+</style>
