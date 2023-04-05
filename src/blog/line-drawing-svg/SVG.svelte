@@ -107,7 +107,7 @@
 <style>
 	article {
 		--color-stroke: hsl(0, 0%, 28%);
-		--color-easel: hsl(26, 61%, 70%);
+		--color-frame: hsl(26, 61%, 70%);
 		--color-background: hsl(0, 0%, 96%);
 		display: flex;
 		flex-direction: column;
@@ -117,7 +117,7 @@
 
 	div {
 		background: var(--color-background, hsl(0, 0%, 96%));
-		outline: 0.4rem solid var(--color-easel, hsl(26, 61%, 70%));
+		outline: 0.4rem solid var(--color-frame, hsl(26, 61%, 70%));
 		position: relative;
 		margin: 1.1rem 0 0.75rem;
 	}
@@ -127,7 +127,7 @@
 		content: '';
 		position: absolute;
 		transform: translateX(-50%);
-		background: var(--color-easel, hsl(26, 61%, 70%));
+		background: var(--color-frame, hsl(26, 61%, 70%));
 	}
 
 	div::before {

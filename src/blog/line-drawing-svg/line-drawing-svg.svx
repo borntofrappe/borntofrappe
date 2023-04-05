@@ -1,6 +1,6 @@
 ---
 title: Line drawing SVG
-description: Build a line-drawing app. With an expected canvas, and an intriguing SVG.
+description: Build a line-drawing app. With an expected canvas, and then an intriguing SVG.
 date: 2023-04-05 17:45:21
 ---
 
@@ -23,8 +23,6 @@ If you are interested in the library feel free to code along in [a REPL](https:/
 npx degit borntofrappe/vite-svelte app
 ```
 
----
-
 ## Canvas
 
 In the context of the Canvas API we first need a `<canvas>` element with a specific width and height.
@@ -40,7 +38,7 @@ In the context of the Canvas API we first need a `<canvas>` element with a speci
 
 Add a solid background, an appealing frame and the element appears on the page, not only in the DOM.
 
-<div class="canvas-easel" style="margin: 2rem auto; block-size: 300px; inline-size: 350px; background: hsl(0, 0%, 96%); outline: 0.4rem solid  hsl(26, 61%, 70%);">
+<div class="canvas-frame" style="margin: 2rem auto; block-size: 300px; inline-size: 350px; background: hsl(0, 0%, 96%); outline: 0.4rem solid  hsl(26, 61%, 70%);">
 	<canvas width="350" height="300" />
 </div>
 
@@ -130,7 +128,6 @@ const handleMove = (e) => {
 	if (!isDrawing) return;
 
 	const context = canvas.getContext('2d');
-	// draw something!
 };
 ```
 
@@ -154,7 +151,6 @@ const handleStart = (e) => {
 To start the line, move the context with the `moveTo()` function.
 
 ```js
-// draw something!
 context.beginPath();
 context.moveTo(x, y);
 ```
@@ -233,7 +229,7 @@ In the markup, start by replacing the `<canvas>` element with the fitting `<svg>
 </svg>
 ```
 
-You might have noticed there's no variable bound to the element, and for a good reason. Without a `<canvas>` we don't draw with a context, 2D or otherwise. Instead, the drawing logic resides between the opening and closing tags in the form of additional elements.
+You might have noticed there's no variable bound to the element, and for a good reason. We don't draw with a context, 2D or otherwise, but with additional elements, nested between the opening and closing tags.
 
 In most practical terms, this means we need the coordinates, but to populate the `<svg>` element.
 
@@ -243,12 +239,6 @@ Consider the values retrieved as the cursor is pressed, or again when the pointe
 const handleStart = (e) => {
 	const { offsetX, offsetY } = e;
 	isDrawing = true;
-};
-
-const handleMove = (e) => {
-	if (!isDrawing) return;
-
-	const { offsetX, offsetY } = e;
 };
 ```
 
@@ -261,6 +251,7 @@ const handleStart = (e) => {
 	points = [...points, offsetX, offsetY];
 	isDrawing = true;
 };
+
 // repeat for handleMove
 ```
 
@@ -273,8 +264,8 @@ In the markup, add a `<polyline>` element without a solid fill, but with an evid
 <g
 	fill="none"
 	fill="none"
-	stroke="{strokeStyle}"
-	stroke-width="{strokeWidth}">
+	stroke="hsl(0, 0%, 28%)"
+	stroke-width="4">
 	<polyline />
 </g>
 ```
@@ -304,7 +295,7 @@ let points = [];
 let lines = [];
 ```
 
-As a line ends, the `handleEnd` function is invoked. At this juncture pour the points in the larger 2D array.
+As a line ends, the `handleEnd` function is invoked. In this propitious moment pour the coordinates in the larger 2D array.
 
 ```js
 const handleEnd = () => {
@@ -364,12 +355,12 @@ If you'd rather keep the original line to avoid drawing the same from scratch yo
 <polyline points={line} />
 <polyline 
 	in:draw 
-	stroke-width={strokeWidth * 2} 
+	stroke-width="8"
 	points={line} 
 />
 ```
 
-You may even change the color of the stroke exploring the HSL color space. At random.
+You may even change the color of the stroke exploring the HSL color space.
 
 <!-- prettier-ignore -->
 ```svelte
@@ -377,7 +368,7 @@ You may even change the color of the stroke exploring the HSL color space. At ra
 <polyline
 	in:draw
 	stroke="hsl({Math.floor(Math.random() * 360)}, 80%, 70%)"
-	stroke-width={strokeWidth * 2}
+	stroke-width="8"
 	points={line}
 />
 ```
@@ -390,8 +381,12 @@ Not convinced? Perhaps you're thrown off by the `draw` function, but believe me,
 
 Add a `pathLength` attribute on the desired element.
 
+<!-- prettier-ignore -->
 ```svelte
-<polline class="draw" pathLength="1" {line} />
+<polyline 
+	class="draw" 
+	pathLength="1" 
+	{line} />
 ```
 
 And in CSS create dashes of the same length.
@@ -422,26 +417,25 @@ With a CSS animation, then, animate the stroke's offset, showing the solid strok
 
 The specific duration and timing function? Those match the default values used by Svelte in the `draw` function. The result is essentially the same, and behind the scenes, I wouldn't be surprised to discover the transition works in a very similar way.
 
-At the end of the day, you find the building blocks of the web. HTML, CSS. With the help of JavaScript, the convenience of Svelte and the tantalizing possibilities of SVG.
+At the end of the day, you find the building blocks of the web: HTML, CSS. With the help of JavaScript, the convenience of Svelte and the tantalizing possibilities of SVG.
 
 <style>
-	.canvas-easel {
+	.canvas-frame {
 		--color-stroke: hsl(0, 0%, 28%);
 		--color-easel: hsl(26, 61%, 70%);
 		--color-background: hsl(0, 0%, 96%);
 		position: relative;
-		margin-block: 2rem;
 	}
 
-	.canvas-easel::before,
-	.canvas-easel::after {
+	.canvas-frame::before,
+	.canvas-frame::after {
 		content: '';
 		position: absolute;
 		transform: translateX(-50%);
 		background: var(--color-easel, hsl(26, 61%, 70%));
 	}
 
-	.canvas-easel::before {
+	.canvas-frame::before {
 		block-size: 1.1rem;
 		inline-size: 4rem;
 		inset-block-end: 100%;
@@ -449,7 +443,7 @@ At the end of the day, you find the building blocks of the web. HTML, CSS. With 
 		clip-path: polygon(0 100%, 20% 0%, 80% 0%, 100% 100%);
 	}
 
-	.canvas-easel::after {
+	.canvas-frame::after {
 		block-size: 0.7rem;
 		inline-size: 70%;
 		inset-block-start: 100%;
