@@ -28,7 +28,7 @@
 	});
 
 	const handleStart = ({ offsetX, offsetY }) => {
-		points = [...points, [offsetX, offsetY]];
+		points = [...points, offsetX, offsetY];
 		isDrawing = true;
 	};
 
@@ -80,11 +80,6 @@
 				});
 			}}
 		>
-			<g fill={strokeStyle}>
-				{#each points as [cx, cy]}
-					<circle r={strokeWidth / 2} {cx} {cy} />
-				{/each}
-			</g>
 			<g
 				fill="none"
 				stroke={strokeStyle}
@@ -92,9 +87,16 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 			>
-				{#each lines as points}
-					<polyline in:draw {points} />
+				{#each lines as line}
+					<polyline points={line} />
+					<polyline
+						stroke="hsl({Math.floor(Math.random() * 360)}, 79%, 72%)"
+						stroke-width={strokeWidth * 2}
+						in:draw
+						points={line}
+					/>
 				{/each}
+				<polyline {points} />
 			</g>
 		</svg>
 	</div>
