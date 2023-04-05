@@ -155,6 +155,71 @@
 		background-size: 100% 100%, 100% 100%;
 	}
 
+	main :global(hr) {
+		font-size: 2rem;
+		--block-size: 1em;
+		color: var(--accent, currentColor);
+		border: none;
+		border-bottom: 0.1em solid currentColor;
+	}
+
+	main :global(hr::before),
+	main :global(hr::after) {
+		display: block;
+		content: '';
+		aspect-ratio: 1;
+		inline-size: var(--block-size, 1rem);
+		block-size: var(--block-size, 1rem);
+		background: currentColor;
+	}
+
+	main :global(hr::before),
+	main :global(hr::after) {
+		-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -9 12 9.5" transform="rotate(30)">\
+	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
+		<path transform="rotate(45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(-45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l -1.5 -2 1.5 -1.5 1.5 1.5z" />\
+		<path d="M 0 -5.5 l -1 -1.5 1 -1 1 1z" />\
+	</g>\
+</svg>');
+		mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -9 12 9.5" transform="rotate(33)">\
+	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
+		<path transform="rotate(45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(-45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l -1.5 -2 1.5 -1.5 1.5 1.5z" />\
+		<path d="M 0 -5.5 l -1 -1.5 1 -1 1 1z" />\
+	</g>\
+</svg>');
+
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-size: 100% 100%;
+		mask-size: 100% 100%;
+	}
+
+	main :global(hr::before) {
+		float: left;
+	}
+
+	main :global(hr::after) {
+		transform: scale(-1, 1);
+		float: right;
+	}
+
+	main :global(hr:nth-of-type(odd)) {
+		border: none;
+		border-top: 0.1em solid currentColor;
+	}
+
+	main :global(hr:nth-of-type(odd)::before) {
+		transform: scale(1, -1);
+	}
+
+	main :global(hr:nth-of-type(odd)::after) {
+		transform: scale(-1, -1);
+	}
+
 	main :global(table) {
 		--padding: 1rem;
 		--border-radius: 0.5rem;
