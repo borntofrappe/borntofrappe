@@ -1,6 +1,6 @@
 ---
-title: SVG canvas
-description: Build a line-drawing app, with a `<canvas>` and again with `<svg>`.
+title: Line drawing SVG
+description: Build a line-drawing app. With an expected canvas, and an intriguing SVG.
 date: 2023-04-05 17:45:21
 ---
 
