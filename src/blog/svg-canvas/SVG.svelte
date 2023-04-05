@@ -90,7 +90,7 @@
 				{#each lines as line}
 					<polyline points={line} />
 					<polyline
-						stroke="hsl({Math.floor(Math.random() * 360)}, 79%, 72%)"
+						stroke="hsl({Math.floor(Math.random() * 360)}, 80%, 70%)"
 						stroke-width={strokeWidth * 2}
 						in:draw
 						points={line}
