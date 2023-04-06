@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
 	import { draw } from 'svelte/transition';
 
 	export let handleLines = true;
@@ -9,23 +8,13 @@
 	let lines = [];
 	let isDrawing = false;
 
+	let t = 0;
+	let l = 0;
+
 	const width = 350;
 	const height = 300;
 	const strokeWidth = 4;
 	const strokeStyle = 'hsl(0, 0%, 28%)';
-
-	let t = 0;
-	let l = 0;
-
-	const handleSize = () => {
-		const { top, left } = svg.getBoundingClientRect();
-		t = top;
-		l = left;
-	};
-
-	onMount(() => {
-		handleSize();
-	});
 
 	const handleStart = ({ offsetX, offsetY }) => {
 		points = [...points, offsetX, offsetY];
@@ -52,8 +41,6 @@
 	};
 </script>
 
-<svelte:window on:resize={handleSize} />
-
 <article>
 	<div>
 		<svg
@@ -65,6 +52,10 @@
 			on:mouseleave={handleEnd}
 			on:mousemove={handleMove}
 			on:touchstart|preventDefault={(e) => {
+				const { top, left } = svg.getBoundingClientRect();
+				t = top;
+				l = left;
+
 				const { clientX, clientY } = e.touches[0];
 				handleStart({
 					offsetX: clientX - l,

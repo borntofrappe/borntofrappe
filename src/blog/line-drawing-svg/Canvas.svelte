@@ -8,22 +8,15 @@
 	let x, y;
 	let isDrawing = false;
 
+	let t = 0;
+	let l = 0;
+
 	const width = 350;
 	const height = 300;
 	const strokeWidth = 4;
 	const strokeStyle = 'hsl(0, 0%, 28%)';
 
-	let t = 0;
-	let l = 0;
-
-	const handleSize = () => {
-		const { top, left } = canvas.getBoundingClientRect();
-		t = top;
-		l = left;
-	};
-
 	onMount(() => {
-		handleSize();
 		const context = canvas.getContext('2d');
 		context.lineWidth = strokeWidth;
 		context.strokeStyle = strokeStyle;
@@ -61,8 +54,6 @@
 	};
 </script>
 
-<svelte:window on:resize={handleSize} />
-
 <article>
 	<div>
 		<canvas
@@ -74,18 +65,22 @@
 			on:mouseleave={handleEnd}
 			on:mousemove={handleMove}
 			on:touchstart|preventDefault={(e) => {
-				const { pageX, pageY } = e.touches[0];
+				const { top, left } = canvas.getBoundingClientRect();
+				t = top;
+				l = left;
+
+				const { clientX, clientY } = e.touches[0];
 				handleStart({
-					offsetX: pageX - l,
-					offsetY: pageY - t
+					offsetX: clientX - l,
+					offsetY: clientY - t
 				});
 			}}
 			on:touchend|preventDefault={handleEnd}
 			on:touchmove|preventDefault={(e) => {
-				const { pageX, pageY } = e.touches[0];
+				const { clientX, clientY } = e.touches[0];
 				handleMove({
-					offsetX: pageX - l,
-					offsetY: pageY - t
+					offsetX: clientX - l,
+					offsetY: clientY - t
 				});
 			}}
 		/>
