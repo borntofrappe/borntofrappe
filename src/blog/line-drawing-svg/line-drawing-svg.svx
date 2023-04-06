@@ -5,6 +5,7 @@ date: 2023-04-05 17:45:21
 ---
 
 <script>
+	import Frame from './Frame.svelte';
 	import Canvas from './Canvas.svelte';
 	import SVG from './SVG.svelte';
 </script>
@@ -38,9 +39,7 @@ In the context of the Canvas API we first need a `<canvas>` element with a speci
 
 Add a solid background, an appealing frame and the element appears on the page, not only in the DOM.
 
-<div class="canvas-frame" style="margin: 2rem auto; block-size: 300px; inline-size: 350px; background: hsl(0, 0%, 96%); outline: 0.4rem solid  hsl(26, 61%, 70%);">
-	<canvas width="350" height="300" />
-</div>
+<Frame />
 
 To draw something we need a reference to the element. And with Svelte, we achieve this feat binding the node to a variable.
 
@@ -418,35 +417,3 @@ With a CSS animation, then, animate the stroke's offset, showing the solid strok
 The specific duration and timing function? Those match the default values used by Svelte in the `draw` function. The result is essentially the same, and behind the scenes, I wouldn't be surprised to discover the transition works in a very similar way.
 
 At the end of the day, you find the building blocks of the web: HTML, CSS. With the help of JavaScript, the convenience of Svelte and the tantalizing possibilities of SVG.
-
-<style>
-	.canvas-frame {
-		--color-stroke: hsl(0, 0%, 28%);
-		--color-easel: hsl(26, 61%, 70%);
-		--color-background: hsl(0, 0%, 96%);
-		position: relative;
-	}
-
-	.canvas-frame::before,
-	.canvas-frame::after {
-		content: '';
-		position: absolute;
-		transform: translateX(-50%);
-		background: var(--color-easel, hsl(26, 61%, 70%));
-	}
-
-	.canvas-frame::before {
-		block-size: 1.1rem;
-		inline-size: 4rem;
-		inset-block-end: 100%;
-		inset-inline-start: 50%;
-		clip-path: polygon(0 100%, 20% 0%, 80% 0%, 100% 100%);
-	}
-
-	.canvas-frame::after {
-		block-size: 0.7rem;
-		inline-size: 70%;
-		inset-block-start: 100%;
-		inset-inline-start: 50%;
-	}
-</style>
