@@ -3,3 +3,41 @@ title: Stroke midway through
 description: Get to know the `stroke` attribute and craft quant little graphics.
 date: 2023-04-06 21:12:04
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="14rem">
+	{@html svg['rect']}
+</Center>
+
+<Center element="figure" maxInlineSize="32rem">
+	{@html svg['stroke-issue']}
+</Center>
+
+<Center element="figure" maxInlineSize="32rem">
+	{@html svg['stroke-fix']}
+</Center>
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['needlepoint']}
+</Center>
+
+<Center element="figure" maxInlineSize="32rem">
+	{@html svg['breakdown']}
+</Center>
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['text-issue']}
+</Center>
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['text-fix']}
+</Center>
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['sticker']}
+</Center>
