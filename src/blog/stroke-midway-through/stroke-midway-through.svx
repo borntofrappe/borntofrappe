@@ -1,0 +1,5 @@
+---
+title: Stroke midway through
+description: Get to know the `stroke` attribute and craft quant little graphics.
+date: 2023-04-06 21:12:04
+---
