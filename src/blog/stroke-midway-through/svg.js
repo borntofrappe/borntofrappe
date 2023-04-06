@@ -4,8 +4,8 @@ export default {
 		<rect width="100" height="100" />
 	</g>
 </svg>`,
-	'stroke-issue': `<svg style="display: block;" viewBox="0 0 3.25 1">
-	<g transform="translate(0.45 0.5)">
+	'stroke-issue': `<svg style="display: block;" viewBox="0 0 3.75 1">
+	<g transform="translate(0.5 0.5)">
 		<circle fill="hsl(360, 77%, 78%)" r="0.2" />
 		<path fill="none" stroke="hsl(360, 72%, 38%)" stroke-width="0.04" stroke-linecap="round" d="M -0.05 -0.05 l 0.1 0.1 M -0.05 0.05 l 0.1 -0.1" />
 	</g>
@@ -24,8 +24,8 @@ export default {
 		</svg>
 	</g>
 </svg>`,
-	'stroke-fix': `<svg style="display: block;" viewBox="0 0 3.25 1">
-	<g transform="translate(0.45 0.5)">
+	'stroke-fix': `<svg style="display: block;" viewBox="0 0 3.75 1">
+	<g transform="translate(0.5 0.5)">
 		<circle fill="hsl(122, 42%, 75%)" r="0.2" />
 		<path fill="none" stroke="hsl(125, 56%, 29%)" stroke-width="0.04" stroke-linecap="round" stroke-linejoin="round" d="M -0.065 0 l 0.05 0.05 0.08 -0.08" />
 	</g>
