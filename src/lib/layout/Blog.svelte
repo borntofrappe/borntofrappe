@@ -115,22 +115,22 @@
 	main :global(blockquote + *),
 	main :global(figure),
 	main :global(figure + *) {
-		--space: var(--step-space-300);
-	}
-
-	main :global(table),
-	main :global(table + *) {
-		--space: var(--step-space-300);
-	}
-
-	main :global(pre),
-	main :global(pre + *) {
-		--space: var(--step-space-300);
+		--space: var(--step-space-400);
 	}
 
 	main > :global(svg),
 	main > :global(svg + *) {
 		--space: var(--step-space-400);
+	}
+
+	main :global(pre),
+	main :global(pre + *) {
+		--space: var(--step-space-400);
+	}
+
+	main :global(table),
+	main :global(table + *) {
+		--space: var(--step-space-300);
 	}
 
 	main :global(ul > * + *),
