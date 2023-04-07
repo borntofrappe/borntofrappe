@@ -175,23 +175,22 @@
 
 	main :global(hr::before),
 	main :global(hr::after) {
-		-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -9 12 9.5" transform="rotate(30)">\
+		-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -10 13 13">\
 	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
-		<path transform="rotate(45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
-		<path transform="rotate(-45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
-		<path d="M 0 0 l -1.5 -2 1.5 -1.5 1.5 1.5z" />\
-		<path d="M 0 -5.5 l -1 -1.5 1 -1 1 1z" />\
+		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
+		<path d="M 5 -5 l 0.25 -1.5 1.5 0 -0.25 1.5z" />\
 	</g>\
 </svg>');
-		mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -9 12 9.5" transform="rotate(33)">\
+		mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -10 13 13">\
 	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
-		<path transform="rotate(45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
-		<path transform="rotate(-45)" d="M 0 -4.5 q -2 -1.5 0 -3 2 1.5 0 3" />\
-		<path d="M 0 0 l -1.5 -2 1.5 -1.5 1.5 1.5z" />\
-		<path d="M 0 -5.5 l -1 -1.5 1 -1 1 1z" />\
+		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
+		<path d="M 5 -5 l 0.25 -1.5 1.5 0 -0.25 1.5z" />\
 	</g>\
 </svg>');
-
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
 		-webkit-mask-size: 100% 100%;
@@ -239,16 +238,16 @@
 			inline-size: var(--size, 2em);
 			block-size: var(--size, 2em);
 			background: var(--accent, currentColor);
-			-webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="-3 -10 13 13" xmlns="http://www.w3.org/2000/svg">\
-	<g fill="none" stroke-width="1" stroke="black" stroke-linecap="round" stroke-linejoin="round">\
+			-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -10 13 13">\
+	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
 		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
 		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
 		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
 		<path d="M 5 -5 l 0.25 -1.5 1.5 0 -0.25 1.5z" />\
 	</g>\
 </svg>');
-			mask-image: url('data:image/svg+xml;utf8,<svg viewBox="-3 -10 13 13" xmlns="http://www.w3.org/2000/svg">\
-	<g fill="none" stroke-width="1" stroke="black" stroke-linecap="round" stroke-linejoin="round">\
+			mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -10 13 13">\
+	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
 		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
 		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
 		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
