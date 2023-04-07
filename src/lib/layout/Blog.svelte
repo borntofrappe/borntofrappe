@@ -220,6 +220,57 @@
 		transform: scale(-1, -1);
 	}
 
+	main :global(figure figcaption) {
+		font-weight: 700;
+		text-align: center;
+	}
+
+	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+		main :global(figure figcaption) {
+			display: flex;
+			align-items: flex-end;
+			--size: 2em;
+		}
+
+		main :global(figure figcaption::before),
+		main :global(figure figcaption::after) {
+			box-sizing: border-box;
+			content: '';
+			inline-size: var(--size, 2em);
+			block-size: var(--size, 2em);
+			background: var(--accent, currentColor);
+			-webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="-3 -10 13 13" xmlns="http://www.w3.org/2000/svg">\
+	<g fill="none" stroke-width="1" stroke="black" stroke-linecap="round" stroke-linejoin="round">\
+		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
+		<path d="M 5 -5 l 0.25 -1.5 1.5 0 -0.25 1.5z" />\
+	</g>\
+</svg>');
+			mask-image: url('data:image/svg+xml;utf8,<svg viewBox="-3 -10 13 13" xmlns="http://www.w3.org/2000/svg">\
+	<g fill="none" stroke-width="1" stroke="black" stroke-linecap="round" stroke-linejoin="round">\
+		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path transform="rotate(80)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
+		<path d="M 0 0 l 0.5 -3 3 0 -0.5 3z" />\
+		<path d="M 5 -5 l 0.25 -1.5 1.5 0 -0.25 1.5z" />\
+	</g>\
+</svg>');
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
+			-webkit-mask-size: 100%;
+			mask-size: 100%;
+		}
+
+		main :global(figure figcaption::before) {
+			margin-inline-end: auto;
+		}
+
+		main :global(figure figcaption::after) {
+			transform: scale(-1, 1);
+			margin-inline-start: auto;
+		}
+	}
+
 	main :global(table) {
 		--padding: 1rem;
 		--border-radius: 0.5rem;
