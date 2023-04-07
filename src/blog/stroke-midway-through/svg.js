@@ -98,26 +98,6 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	sticker: `<svg style="display: block; --c0: hsl(209, 34%, 30%); --c1: #ffdb47; --c2: hsl(209, 61%, 16%);" viewBox="-5 -5 110 110">
-	<g fill="var(--c2, hsl(210, 36%, 96%))" stroke="var(--c2, hsl(210, 36%, 96%))" stroke-width="10">
-		<circle r="50" cx="50" cy="50" />
-	</g>
-	<g fill="none" stroke="var(--c0, hsl(211, 39%, 23%))" stroke-width="1.25" stroke-dasharray="2.5 6" stroke-linecap="round">
-		<circle r="50" cx="50" cy="50" />
-	</g>
-	<g transform="translate(0 -1.5)">
-		<svg viewBox="-27.704545974731445 -29.5 54.409088134765625 52.56756591796875" x="20" y="20" width="60" height="60">
-			<g fill="var(--c1, hsl(205, 74%, 65%))" stroke="var(--c1, hsl(205, 74%, 65%))" stroke-width="9">
-				<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
-			</g>
-		</svg>
-		<svg viewBox="-27.704545974731445 -29.5 54.409088134765625 52.56756591796875"  x="20" y="20" width="60" height="60">
-			<g fill="none" stroke="var(--c0, hsl(211, 39%, 23%))" stroke-width="1" stroke-dasharray="1 3" stroke-linecap="round">
-				<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
-			</g>
-		</svg>
-	</g>
-</svg>`,
 	'text-issue': `<svg style="display: block;" viewBox="0 0 3 1" >
 	<g transform="translate(0.45 0.5)">
 		<circle fill="hsl(360, 77%, 78%)" r="0.2" />
@@ -157,11 +137,49 @@ export default {
 				fill="hsl(210, 36%, 96%)"
 				stroke="hsl(211, 39%, 23%)"
 				paint-order="stroke"
-				stroke-width="3"
-				letter-spacing="1">
+				stroke-width="2"
+				letter-spacing="0.5">
 				<text>outline</text>
 			</g>
 		</svg>
+	</g>
+</svg>`,
+	patchwork: `<svg style="display: block; --c0: hsl(209, 34%, 30%); --c1: #ffdb47; --c2: hsl(209, 61%, 16%);" viewBox="-5 -5 110 150">
+	<g fill="var(--c2, hsl(210, 36%, 96%))" stroke="var(--c2, hsl(210, 36%, 96%))" stroke-width="10">
+		<circle r="50" cx="50" cy="50" />
+	</g>
+	<g fill="none" stroke="var(--c0, hsl(211, 39%, 23%))" stroke-width="1.25" stroke-dasharray="2.5 6" stroke-linecap="round">
+		<circle r="50" cx="50" cy="50" />
+	</g>
+	<g transform="translate(0 -1.5)">
+		<svg viewBox="-27.704545974731445 -29.5 54.409088134765625 52.56756591796875" x="20" y="20" width="60" height="60">
+			<g fill="var(--c1, hsl(205, 74%, 65%))" stroke="var(--c1, hsl(205, 74%, 65%))" stroke-width="9">
+				<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
+			</g>
+		</svg>
+		<svg viewBox="-27.704545974731445 -29.5 54.409088134765625 52.56756591796875"  x="20" y="20" width="60" height="60">
+			<g fill="none" stroke="var(--c0, hsl(211, 39%, 23%))" stroke-width="1" stroke-dasharray="1 3" stroke-linecap="round">
+				<path d="M 0 15 Q -21 28 -15 4 Q -34 -11 -9 -13 Q -1 -35 8 -13 Q 33 -11 14 4 Q 20 28 0 15" />
+			</g>
+		</svg>
+	</g>
+	<g transform="translate(0 115)">
+		<g fill="var(--c2, hsl(210, 36%, 96%))" stroke="var(--c2, hsl(210, 36%, 96%))" stroke-width="8">
+			<rect rx="0.1" x="2" y="2" width="96" height="21" />
+		</g>
+		<g fill="none" stroke="var(--c0, hsl(211, 39%, 23%))" stroke-width="1" stroke-dasharray="1.2 3" stroke-linecap="round">		
+			<rect rx="0.2" x="2" y="2" width="96" height="21" />
+		</g>
+		<g transform="translate(50 17)">
+			<g style="text-transform: uppercase;" font-family="sans-serif" font-size="12" font-weight="700" stroke-linejoin="round" stroke-linecap="round" text-anchor="middle">
+				<g fill="var(--c1, hsl(205, 74%, 65%))" stroke="var(--c1, hsl(205, 74%, 65%))" stroke-width="1" paint-order="stroke">
+					<text textLength="85">Good job</text>
+				</g>
+				<g fill="none" stroke="var(--c2, hsl(210, 36%, 96%))" stroke-width="0.5" stroke-dasharray="0.3 1">
+					<text textLength="85">Good job</text>
+				</g>
+			</g>
+		</g>
 	</g>
 </svg>`
 };
