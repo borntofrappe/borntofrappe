@@ -48,4 +48,35 @@
 			<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
 		</g>
 	</g>
+
+	<g transform="translate(1 1)">
+		<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+		<g transform="translate(10 4.6)">
+			<g
+				fill="#f7f7f7"
+				font-family="sans-serif"
+				font-size="4"
+				font-weight="bold"
+				text-anchor="middle"
+			>
+				<text>Enemy</text>
+				<text y="4.6">HP: <tspan>3</tspan></text>
+			</g>
+		</g>
+	</g>
+
+	<g transform="translate(1 38)">
+		<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
+		<g transform="translate(39 6.8)">
+			<g
+				fill="#f7f7f7"
+				font-family="sans-serif"
+				font-size="4"
+				font-weight="bold"
+				text-anchor="middle"
+			>
+				<text>An enemy appeared!</text>
+			</g>
+		</g>
+	</g>
 </svg>
