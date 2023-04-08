@@ -1,6 +1,8 @@
 <script>
 	import Title from './Title.svelte';
 	import AnimatedTitle from './AnimatedTitle.svelte';
+
+	const hp = 3;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -46,15 +48,34 @@
 		<set attributeName="display" to="none" />
 		<set attributeName="display" to="initial" begin="battleTheEnemyStart.begin" />
 		<g transform="translate(40 22)">
-			<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
-				<path
-					d="M 3.5 -0.75 l 3.5 3.5 a 2 2 0 1 1 -2 2 l -1 -1 v 4 q 2 0 2 2 0 1 -1 1 h -2.5 q -2 0 -2 -2 v -1 q 0 -0.5 -0.5 -0.5 -0.5 0 -0.5 0.5 v 1 q 0 2 -2 2 h -2.5 q -1 0 -1 -1 0 -2 2 -2 v -4 l -1 1 a 2 2 0 1 1 -2 -2 l 3.5 -3.5"
-				/>
-				<circle cy="-2.5" r="5" />
-				<circle cx="1.8" cy="-3.5" r="0.9" />
-				<circle cx="-1.8" cy="-3.5" r="0.9" />
-				<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
-			</g>
+			{#each Array(hp) as _, i}
+				<g style="cursor: pointer">
+					{#if i < hp - 1}
+						<set attributeName="display" to="none" />
+					{/if}
+					<set attributeName="display" to="initial" begin="battleTheEnemyHit{i + 1}.end" />
+					<set attributeName="display" to="none" begin="battleTheEnemyHit{i}.end" />
+					<animate
+						id="battleTheEnemyHit{i}"
+						begin="click"
+						attributeName="opacity"
+						values="1;0;1"
+						repeatCount="2"
+						dur="0.2s"
+						calcMode="discrete"
+						restart="whenNotActive"
+					/>
+					<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
+						<path
+							d="M 3.5 -0.75 l 3.5 3.5 a 2 2 0 1 1 -2 2 l -1 -1 v 4 q 2 0 2 2 0 1 -1 1 h -2.5 q -2 0 -2 -2 v -1 q 0 -0.5 -0.5 -0.5 -0.5 0 -0.5 0.5 v 1 q 0 2 -2 2 h -2.5 q -1 0 -1 -1 0 -2 2 -2 v -4 l -1 1 a 2 2 0 1 1 -2 -2 l 3.5 -3.5"
+						/>
+						<circle cy="-2.5" r="5" />
+						<circle cx="1.8" cy="-3.5" r="0.9" />
+						<circle cx="-1.8" cy="-3.5" r="0.9" />
+						<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+					</g>
+				</g>
+			{/each}
 		</g>
 
 		<g transform="translate(1 1)">
@@ -86,6 +107,31 @@
 					<text>An enemy appeared!</text>
 				</g>
 			</g>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="battleTheEnemyMessage"
+			begin="battleTheEnemyHit0.begin + 2s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+
+		<g transform="translate(0 -6)">
+			<AnimatedTitle
+				text="Level up!"
+				fill="url(#linear-gradient-text)"
+				begin="battleTheEnemyMessage.begin"
+				end="battleTheEnemyEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<g style:cursor="pointer">
+			<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<rect width="80" height="50" opacity="0" />
 		</g>
 	</g>
 
