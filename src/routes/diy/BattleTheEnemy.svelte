@@ -116,7 +116,20 @@
 					font-weight="bold"
 					text-anchor="middle"
 				>
-					<text>An enemy appeared!</text>
+					<text>
+						{#each 'An enemy appeared!'.split('') as letter, i}
+							<tspan>
+								<set attributeName="fill-opacity" to="0" />
+								<set
+									attributeName="fill-opacity"
+									to="1"
+									begin="battleTheEnemyStart.begin + {i * 0.03}s"
+								/>
+
+								{letter}
+							</tspan>
+						{/each}
+					</text>
 				</g>
 			</g>
 		</g>
