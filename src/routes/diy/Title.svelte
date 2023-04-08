@@ -8,6 +8,7 @@
 </script>
 
 <g
+	font-family="sans-serif"
 	font-weight="700"
 	font-size={fontSize}
 	{fill}
