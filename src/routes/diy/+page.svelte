@@ -5,6 +5,7 @@
 	import PopTheBalloon from './PopTheBalloon.svelte';
 	import FindTheButterflies from './FindTheButterflies.svelte';
 	import CrackTheEgg from './CrackTheEgg.svelte';
+	import BattleTheEnemy from './BattleTheEnemy.svelte';
 
 	const { title } = site;
 
@@ -28,6 +29,11 @@
 			component: CrackTheEgg,
 			backgroundColor: 'hsl(60, 91%, 66%)',
 			borderColor: 'hsl(171, 83%, 39%)'
+		},
+		{
+			component: BattleTheEnemy,
+			backgroundColor: 'hsl(119, 30%, 49%)',
+			borderColor: 'hsl(177, 65%, 52%)'
 		}
 	];
 </script>
