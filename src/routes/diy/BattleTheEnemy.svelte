@@ -3,6 +3,11 @@
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const hp = 3;
+	const script = [
+		'You defeated the enemy!',
+		...Array(hp - 1).fill('You hit for 1 point!'),
+		'An enemy appeared!'
+	].map((d) => d.split(''));
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -48,13 +53,17 @@
 		<set attributeName="display" to="none" />
 		<set attributeName="display" to="initial" begin="battleTheEnemyStart.begin" />
 		<g transform="translate(40 22)">
-			{#each Array(hp) as _, i}
+			{#each script.slice(1) as _, i}
 				<g style="cursor: pointer">
 					{#if i < hp - 1}
 						<set attributeName="display" to="none" />
 					{/if}
 					<set attributeName="display" to="initial" begin="battleTheEnemyHit{i + 1}.end" />
-					<set attributeName="display" to="none" begin="battleTheEnemyHit{i}.end" />
+					<set
+						attributeName="display"
+						to="none"
+						begin="battleTheEnemyHit{i}.end; battleTheEnemyHit0.begin"
+					/>
 					<animate
 						id="battleTheEnemyHit{i}"
 						begin="click"
@@ -63,7 +72,7 @@
 						repeatCount="2"
 						dur="0.2s"
 						calcMode="discrete"
-						restart="whenNotActive"
+						restart="never"
 					/>
 					<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
 						<path
@@ -91,13 +100,13 @@
 					<text>Enemy</text>
 					<text y="4.6"
 						>HP:
-						{#each Array(hp + 1) as _, i}
+						{#each script as _, i}
 							<tspan>
 								{#if i < hp}
 									<set attributeName="display" to="none" />
 								{/if}
-								<set attributeName="display" to="initial" begin="battleTheEnemyHit{i}.end" />
-								<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.end" />
+								<set attributeName="display" to="initial" begin="battleTheEnemyHit{i}.begin" />
+								<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.begin" />
 								{i}
 							</tspan>
 						{/each}
@@ -116,20 +125,30 @@
 					font-weight="bold"
 					text-anchor="middle"
 				>
-					<text>
-						{#each 'An enemy appeared!'.split('') as letter, i}
-							<tspan>
-								<set attributeName="fill-opacity" to="0" />
-								<set
-									attributeName="fill-opacity"
-									to="1"
-									begin="battleTheEnemyStart.begin + {i * 0.03}s"
-								/>
+					{#each script as message, i}
+						<text>
+							<set attributeName="display" to="none" />
+							<set
+								id="battleTheEnemyMessage{i}"
+								attributeName="display"
+								to="initial"
+								begin={i === hp ? 'battleTheEnemyStart.begin' : `battleTheEnemyHit${i}.begin`}
+							/>
+							<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.begin" />
+							{#each message as character, j}
+								<tspan>
+									<set attributeName="fill-opacity" to="0" />
+									<set
+										attributeName="fill-opacity"
+										to="1"
+										begin="battleTheEnemyMessage{i}.begin + {j * 0.03}s"
+									/>
 
-								{letter}
-							</tspan>
-						{/each}
-					</text>
+									{character}
+								</tspan>
+							{/each}
+						</text>
+					{/each}
 				</g>
 			</g>
 		</g>
@@ -138,13 +157,13 @@
 	<g display="none">
 		<set
 			id="battleTheEnemyMessage"
-			begin="battleTheEnemyHit0.begin + 2s"
+			begin="battleTheEnemyHit0.begin + 1.8s"
 			attributeName="display"
 			to="initial"
 			fill="freeze"
 		/>
 
-		<g transform="translate(0 -6)">
+		<g transform="translate(0 -5)">
 			<AnimatedTitle
 				text="Level up!"
 				fill="url(#linear-gradient-text)"
@@ -163,7 +182,9 @@
 	<g style:cursor="pointer">
 		<set id="battleTheEnemyStart" begin="click" attributeName="display" to="none" fill="freeze" />
 
-		<Title fill="url(#linear-gradient-text)">Battle!</Title>
+		<g transform="translate(0 -5)">
+			<Title fill="url(#linear-gradient-text)">Battle!</Title>
+		</g>
 
 		<rect width="80" height="50" opacity="0" />
 	</g>
