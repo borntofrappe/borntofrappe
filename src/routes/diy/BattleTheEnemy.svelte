@@ -36,4 +36,16 @@
 			/>
 		</g>
 	</g>
+
+	<g transform="translate(40 22)">
+		<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
+			<path
+				d="M 3.5 -0.75 l 3.5 3.5 a 2 2 0 1 1 -2 2 l -1 -1 v 4 q 2 0 2 2 0 1 -1 1 h -2.5 q -2 0 -2 -2 v -1 q 0 -0.5 -0.5 -0.5 -0.5 0 -0.5 0.5 v 1 q 0 2 -2 2 h -2.5 q -1 0 -1 -1 0 -2 2 -2 v -4 l -1 1 a 2 2 0 1 1 -2 -2 l 3.5 -3.5"
+			/>
+			<circle cy="-2.5" r="5" />
+			<circle cx="1.8" cy="-3.5" r="0.9" />
+			<circle cx="-1.8" cy="-3.5" r="0.9" />
+			<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+		</g>
+	</g>
 </svg>
