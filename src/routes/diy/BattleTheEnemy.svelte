@@ -89,7 +89,19 @@
 					text-anchor="middle"
 				>
 					<text>Enemy</text>
-					<text y="4.6">HP: <tspan>3</tspan></text>
+					<text y="4.6"
+						>HP:
+						{#each Array(hp + 1) as _, i}
+							<tspan>
+								{#if i < hp}
+									<set attributeName="display" to="none" />
+								{/if}
+								<set attributeName="display" to="initial" begin="battleTheEnemyHit{i}.end" />
+								<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.end" />
+								{i}
+							</tspan>
+						{/each}
+					</text>
 				</g>
 			</g>
 		</g>
