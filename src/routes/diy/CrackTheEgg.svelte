@@ -333,10 +333,9 @@
 			/>
 		</g>
 
-		<g style:cursor="pointer">
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
 			<set id="crackTheEggEnd" begin="click" attributeName="display" to="none" fill="freeze" />
-			<rect width="80" height="50" opacity="0" />
-		</g>
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">

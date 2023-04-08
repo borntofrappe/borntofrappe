@@ -14,10 +14,7 @@
 	<title>Battle the enemy!</title>
 
 	<rect fill="#86bded" width="80" height="50" />
-
-	<rect fill="#86bded" width="80" height="50" />
 	<path fill="#f9e382" d="M 0 50 v -23 c 20 -5 60 -5 80 0 v 23" />
-
 	<g stroke-linecap="round" stroke-linejoin="round">
 		<g fill="#f1f6f6" stroke="#f1f6f6">
 			<path stroke-width="3" d="M 4 4 c 7 -1 6 3 10.5 5.5 c -3 1 -7 1 -11.5 0 c 3 -1 3 -4 1 -5.5" />
@@ -173,10 +170,9 @@
 			/>
 		</g>
 
-		<g style:cursor="pointer">
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
 			<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
-			<rect width="80" height="50" opacity="0" />
-		</g>
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
