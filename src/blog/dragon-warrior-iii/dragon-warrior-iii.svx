@@ -14,11 +14,13 @@ date: 2023-04-09 11:18:50
     import LotoSeal from './LotoSeal.svelte';
 </script>
 
-Following [simple beginnings](/dragon-warrior) and [often frustrating adventures](/dragon-warrior-ii), the third installment in the Dragon Quest series ties up a proper trilogy.
+Following [simple beginnings](/dragon-warrior) and [often frustrating departures](/dragon-warrior-ii), the third installment in the Dragon Quest series ties up a proper trilogy.
 
 ## Adventure
 
-An epic cutscene sets the premise and lays down most of the story. The hero Ortega, helmet donned, fights against the forces of evil. He travels, he struggles. Wounded, he soldiers on. Restored, he climbs the steep walls of a smoldering mountain. Dramatically, he jumps, ax in hand, against a flying foe.
+An epic cutscene sets the premise and lays down most of the story.
+
+The hero Ortega, helmet donned, fights against the forces of evil. He travels, he struggles. Wounded, he soldiers on. Restored, he climbs the steep walls of a smoldering mountain. Dramatically, he jumps, ax in hand, against a flying foe.
 
 Did he survive?
 
@@ -32,7 +34,7 @@ The armor piece finds its way to a small village, suggesting a probable, cruel d
 
 But you'll have to experience the adventure till the very end to find the answer.
 
-Back in Aliahah, where the great hero begun his long journey, you start your own quest as the most immediate heir.
+Back in Aliahah, where the great hero began his long journey, you start your own quest as the most immediate heir.
 
 Sixteen years on.
 
@@ -88,9 +90,9 @@ Held aloft in celebration, the seal shimmers solemnly before your eyes. A promis
 
 <Center element="figure" maxInlineSize="20rem">
     <LotoSeal />
-    <ficgaption>The adventure continues</ficgaption>
+    <figcaption>The adventure continues</figcaption>
 </Center>
 
-The final sight brings an emotional closure to an epic saga, and might just be enough to tempt you and revisit that wretched swamp.
+The final sight brings an emotional closure to a glorious saga, and might just be enough to tempt you and revisit that wretched swamp.
 
-With the love of Lady Lora dn the blessing of Rubiss.
+With the love of Lady Lora and the blessing of Rubiss.
