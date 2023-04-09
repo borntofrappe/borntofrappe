@@ -18,7 +18,7 @@ Following [simple beginnings](/dragon-warrior) and [often frustrating departures
 
 ## Adventure
 
-An epic cutscene sets the premise and lays down most of the story.
+The epic, animated introduction sets the premise and lays down most of the story.
 
 The hero Ortega, helmet donned, fights against the forces of evil. He travels, he struggles. Wounded, he soldiers on. Restored, he climbs the steep walls of a smoldering mountain. Dramatically, he jumps, ax in hand, against a flying foe.
 
@@ -30,11 +30,11 @@ Your only hint, the helmet.
     {@html svg['helmet']}
 </Center>
 
-The armor piece finds its way to a small village, suggesting a probable, cruel demise.
+The armor piece finds its way to a small village, suggesting a probable, cruel outcome.
 
 But you'll have to experience the adventure till the very end to find the answer.
 
-Back in Aliahah, where the great hero began his long journey, you start your own quest as the most immediate heir.
+Back in Aliahan, where the great hero began his long journey, you start your own quest as the most immediate heir.
 
 Sixteen years on.
 
@@ -82,11 +82,11 @@ A game you can try in an extremely slimmed down version, without trap doors or t
 
 Sooner or later, however, you'll think yourself ready to continue and take down the Lord Demon Baramos.
 
-And as you eventually discover the fate befallen to your father, as you eventually defeat the fiend of the story, the game concludes a quest spanning across generations.
+And as you eventually discover the fate befallen to your father, as you eventually defeat the fiend of the story, your quest ends as part of a much larger scheme.
 
-Formulating an intricate web of events past and yet to come, all leading up to the infamous Loto Seal.
+A grand design across generations. An interconnected web of events past and yet to come, culminating in the ever more notorious Loto Seal.
 
-Held aloft in celebration, the seal shimmers solemnly before your eyes. A promise of hope and peace.
+Held aloft in celebration, the mark shimmers solemnly before your eyes. A promise of hope and peace.
 
 <Center element="figure" maxInlineSize="20rem">
     <LotoSeal />
