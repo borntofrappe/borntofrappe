@@ -90,7 +90,7 @@ With just two steps, the characters are shown in sequence. One by one.
 
 <SetToAttribute attributeName="opacity" />
 
-But I might say, the characters _should_ be shown in sequence. At least on Firefox and at the time of writing, the animation does not work. At fault, a puzzling and highly specific issue with the the `opacity` attribute.
+But I might say, the characters _should_ be shown in sequence. At least on Firefox and at the time of writing, the animation does not work. At fault, a puzzling and highly specific issue with the `opacity` attribute.
 
 Set the value on any `<tspan>` element.
 
@@ -146,4 +146,4 @@ With SVG syntax you can draw crisp visuals to honor a beloved title from long ag
     <SetToTalk />
 </Center>
 
-With SMIL you can take the `<set>` element and experiment a bit more with the animation. After all, there is no particular reason that pixelated phone is sitting in an empty room, is there?
+With SMIL you can take the `<set>` element and experiment a bit more with the animation. After all, there is no particular reason _that_ pixelated phone is sitting in an empty room, is there?
