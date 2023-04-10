@@ -1,0 +1,19 @@
+---
+title: Set to talk
+description: Show text one vector character at a time.
+date: 2023-04-10 17:35:24
+---
+
+Next to the `<animate>` element, `<set>` is impervious and imperative.
+
+Specify the name of the attribute, a value, and the SVG element will assume the measure at once.
+
+```html
+<circle r="5">
+	<set attributeName="fill" to="10" />
+</circle>
+```
+
+It is possible to delay the operation with the `begin` attribute, perhaps with a time offset, but the instruction is definite and clear. Without interpolation, the attribute is set in place.
+
+Knowing this, it is possible to recreate a typewriter animation rather succinctly.
