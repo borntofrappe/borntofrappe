@@ -32,6 +32,8 @@
 	viewBox="0 0 8 6"
 	shape-rendering="crispEdges"
 >
+	<title>Set to talk</title>
+	<description>Tap the phone to make a one-time call</description>
 	<defs>
 		<symbol id="set-to-talk-phone" viewBox="0 -0.5 24 24" shape-rendering="crispEdges">
 			<path

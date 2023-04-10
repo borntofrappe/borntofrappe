@@ -1,5 +1,5 @@
 <script>
-	export let attributeName = 'opacity';
+	export let attributeName = 'fill-opacity';
 
 	let svg = null;
 
@@ -18,7 +18,7 @@
 			});
 
 			clearTimeout(timeout);
-		});
+		}, 50);
 	};
 </script>
 
@@ -30,7 +30,7 @@
 			{#each 'Hi there!'.split('') as letter, i}
 				<tspan>
 					<set class="from" {attributeName} to="0" />
-					<set class="to" {attributeName} to="1" begin="indefinite" />
+					<set begin="indefinite" class="to" {attributeName} to="1" />
 					{letter}
 				</tspan>
 			{/each}
@@ -48,6 +48,10 @@
 		font-weight: 700;
 		padding: 0.25rem 0.75rem;
 		transition: transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
+	button:active {
+		transform: scale(0.95);
 	}
 
 	svg {
