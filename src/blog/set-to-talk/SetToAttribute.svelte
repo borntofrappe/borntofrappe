@@ -39,6 +39,17 @@
 </svg>
 
 <style>
+	button {
+		display: block;
+		color: hsl(0, 0%, 92%);
+		background: hsl(0, 0%, 10%);
+		border: none;
+		border-radius: 2rem;
+		font-weight: 700;
+		padding: 0.25rem 0.75rem;
+		transition: transform 0.15s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
 	svg {
 		display: block;
 		max-inline-size: 16rem;
