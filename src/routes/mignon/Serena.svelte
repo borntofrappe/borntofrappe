@@ -5,16 +5,15 @@
 
 	let start;
 	let svg;
-	let l;
 	let w;
+	let l;
 
 	onMount(() => {
 		handleSize();
 	});
 
 	const handleSize = () => {
-		const { left, width } = svg.getBoundingClientRect();
-		l = left;
+		const { width } = svg.getBoundingClientRect();
 		w = width;
 	};
 
@@ -71,13 +70,20 @@
 	class:start
 	on:mouseenter={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchstart|preventDefault={handleStart}
-	on:touchend|preventDefault={handleEnd}
 	on:mousemove={handleMove}
+	on:touchstart|preventDefault={() => {
+		const { left } = svg.getBoundingClientRect();
+		l = left;
+
+		handleStart();
+	}}
+	on:touchend|preventDefault={handleEnd}
 	on:touchmove|preventDefault={(e) => {
-		const { pageX: x } = e.touches[0];
+		const { clientX: x } = e.touches[0];
+
+		const offsetX = x - l;
 		handleMove({
-			offsetX: x - l
+			offsetX
 		});
 	}}
 >

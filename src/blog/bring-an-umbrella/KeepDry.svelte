@@ -24,8 +24,7 @@
 	});
 
 	const handleSize = () => {
-		const { left, width } = svg.getBoundingClientRect();
-		l = left;
+		const { width } = svg.getBoundingClientRect();
 		w = width;
 	};
 
@@ -49,10 +48,16 @@
 		}
 	}}
 	on:mousemove={handleMove}
+	on:touchstart|preventDefault={() => {
+		const { left } = svg.getBoundingClientRect();
+		l = left;
+	}}
 	on:touchmove|preventDefault={(e) => {
-		const { pageX: x } = e.touches[0];
+		const { clientX: x } = e.touches[0];
+
+		const offsetX = x - l;
 		handleMove({
-			offsetX: x - l
+			offsetX
 		});
 	}}
 >

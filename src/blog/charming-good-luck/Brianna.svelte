@@ -16,11 +16,9 @@
 	});
 
 	const handleSize = () => {
-		const { width, height, left, top } = svg.getBoundingClientRect();
+		const { width, height } = svg.getBoundingClientRect();
 		w = width;
 		h = height;
-		l = left;
-		t = top;
 	};
 
 	const handleMove = (offset) => {
@@ -46,9 +44,14 @@
 		const { offsetX, offsetY } = e;
 		handleMove({ offsetX, offsetY });
 	}}
+	on:touchstart|preventDefault={(e) => {
+		const { left, top } = svg.getBoundingClientRect();
+		l = left;
+		t = top;
+	}}
 	on:touchmove|preventDefault={(e) => {
-		const touch = e.touches[0];
-		const { pageX: x, pageY: y } = touch;
+		const { clientX: x, clientY: y } = e.touches[0];
+
 		const offsetX = x - l;
 		const offsetY = y - t;
 		handleMove({

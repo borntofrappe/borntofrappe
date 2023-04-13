@@ -19,16 +19,15 @@
 	});
 
 	let svg;
-	let t;
 	let h;
+	let t;
 
 	onMount(() => {
 		handleSize();
 	});
 
 	const handleSize = () => {
-		const { top, height } = svg.getBoundingClientRect();
-		t = top;
+		const { height } = svg.getBoundingClientRect();
 		h = height;
 	};
 
@@ -55,16 +54,23 @@
 	on:mousemove={({ offsetY }) => {
 		handleMove({ offsetY });
 	}}
-	on:touchmove|preventDefault={(e) => {
-		const { pageY: y } = e.touches[0];
-		handleMove({
-			offsetY: y - t
-		});
-	}}
 	on:mouseenter={handleStart}
 	on:mouseleave={handleEnd}
-	on:touchstart|preventDefault={handleStart}
+	on:touchstart|preventDefault={() => {
+		const { top } = svg.getBoundingClientRect();
+		t = top;
+
+		handleStart();
+	}}
 	on:touchend|preventDefault={handleEnd}
+	on:touchmove|preventDefault={(e) => {
+		const { clientY: y } = e.touches[0];
+
+		const offsetY = y - t;
+		handleMove({
+			offsetY
+		});
+	}}
 >
 	<defs>
 		<path id="l" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />

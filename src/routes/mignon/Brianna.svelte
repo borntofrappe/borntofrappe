@@ -21,11 +21,9 @@
 	});
 
 	const handleSize = () => {
-		const { width, height, left, top } = svg.getBoundingClientRect();
+		const { width, height } = svg.getBoundingClientRect();
 		w = width;
 		h = height;
-		l = left;
-		t = top;
 	};
 
 	const handleStart = () => {
@@ -59,10 +57,17 @@
 	on:mousemove={({ offsetX, offsetY }) => {
 		handleMove({ offsetX, offsetY });
 	}}
-	on:touchstart|preventDefault={handleStart}
+	on:touchstart|preventDefault={() => {
+		const { top, left } = svg.getBoundingClientRect();
+		t = top;
+		l = left;
+
+		handleStart();
+	}}
 	on:touchend|preventDefault={handleEnd}
 	on:touchmove|preventDefault={(e) => {
-		const { pageX: x, pageY: y } = e.touches[0];
+		const { clientX: x, clientY: y } = e.touches[0];
+
 		const offsetX = x - l;
 		const offsetY = y - t;
 		handleMove({
