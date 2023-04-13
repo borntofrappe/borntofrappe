@@ -1,6 +1,7 @@
 export default {
 	title: 'borntofrappe',
-	description: 'Personal website for Gabriele Corti, web developer with a focuc on Svelte and SVG.',
+	description:
+		'Gabriele Corti, developer with a calling for the front-end and a liking for Svelte and SVG.',
 	origin: 'https://borntofrappe.netlify.app',
 	author: {
 		name: 'Gabriele Corti',
