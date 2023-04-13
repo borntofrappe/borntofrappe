@@ -3,9 +3,10 @@
 	import { scale } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
 
+	export let useCurves = true;
+
 	let svg = null;
 	let canAnimate = true;
-	let useCurves = true;
 
 	const n = 12;
 	const offset = 25;
