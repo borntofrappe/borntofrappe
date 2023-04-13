@@ -4,4 +4,17 @@ description: Take a few laps around the most exciting circuit.
 date: 2023-04-13 11:32:12
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import LapRace from './LapRace.svelte';
+</script>
+
 Here's a perfectly relatable premise. The person next to you is watching a motorsport competition, passionately voicing every twist and turn. Suddenly, you focus on a corner of the telly, where a graphic updates the drivers as they loop around the circuit and a thought pops into your head: wouldn't _that_ make for an exciting SMIL demo?
+
+{@html svg['defs']}
+
+<Center maxInlineSize="36rem">
+    <LapRace />
+</Center>
