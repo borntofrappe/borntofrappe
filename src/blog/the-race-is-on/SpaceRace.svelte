@@ -28,8 +28,8 @@
 				} else if (i === 1) {
 					const [x0, y0] = arr[0];
 					const noise = Math.random() > 0.5 ? Math.random() : Math.random() * -1;
-					const xm = (x0 + x) / 2;
-					const ym = (y0 + y) / 2 + noise / 3;
+					const xm = (x0 + x) / 2 + noise * -1;
+					const ym = (y0 + y) / 2 + noise;
 					return `${acc} Q ${xm} ${ym} ${x} ${y} T`;
 				} else if (i === arr.length - 1) {
 					const [x0, y0] = arr[0];
@@ -39,7 +39,7 @@
 			}, '');
 
 	const spaceships = colors.map((color, i) => {
-		const offset = 32 + 15 * i;
+		const offset = 33 + 15 * i;
 		return {
 			color,
 			offset,
