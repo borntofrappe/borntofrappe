@@ -10,6 +10,7 @@ date: 2023-04-13 11:32:12
 	import svg from './svg.js';
 	import LapRace from './LapRace.svelte';
 	import ControlPoint from './ControlPoint.svelte';
+	import TrackLayout from './TrackLayout.svelte';
 </script>
 
 Here's a perfectly relatable premise. The person next to you is watching a motorsport competition, passionately voicing every twist and turn. Suddenly, you focus on a corner of the telly, where a graphic updates the drivers as they loop around the circuit and a thought pops into your head: wouldn't _that_ make for an exciting SMIL demo?
@@ -22,4 +23,12 @@ Here's a perfectly relatable premise. The person next to you is watching a motor
 
 <Center maxInlineSize="28rem">
     <ControlPoint />
+</Center>
+
+<Center maxInlineSize="28rem">
+    <TrackLayout showPath={false} />
+</Center>
+
+<Center maxInlineSize="28rem">
+    <TrackLayout />
 </Center>
