@@ -5,40 +5,60 @@
 
 	let svg = null;
 	let canAnimate = true;
+	let useCurves = true;
 
 	const n = 12;
 	const offset = 25;
 
-	const getPath = (points = 12) =>
-		Array(points)
-			.fill()
-			.map((_, i, { length }) => {
-				const angle = (((360 / length) * i - 90) / 180) * Math.PI;
-				const x = Math.floor(Math.cos(angle) * offset);
-				const y = Math.floor(Math.sin(angle) * offset);
-				return [x, y];
-			})
-			.reduce((acc, curr, i, arr) => {
-				const [x, y] = curr;
-				if (i === 0) {
-					return `M ${x} ${y}`;
-				} else if (i === 1) {
-					const [x0, y0] = arr[0];
-					const noise = Math.random() > 0.5 ? Math.random() : Math.random() * -1;
-					const xm = (x0 + x) / 2 + noise * -1;
-					const ym = (y0 + y) / 2 + noise;
-					return `${acc} Q ${xm} ${ym} ${x} ${y} T`;
-				} else if (i === arr.length - 1) {
-					const [x0, y0] = arr[0];
-					return `${acc} ${x} ${y} ${x0} ${y0}`;
-				}
-				return `${acc} ${x} ${y}`;
-			}, '');
+	const getPath = (points = 12, useCurves = true) =>
+		useCurves
+			? Array(points)
+					.fill()
+					.map((_, i, { length }) => {
+						const angle = (((360 / length) * i - 90) / 180) * Math.PI;
+						const x = Math.floor(Math.cos(angle) * offset);
+						const y = Math.floor(Math.sin(angle) * offset);
+						return [x, y];
+					})
+					.reduce((acc, curr, i, arr) => {
+						const [x, y] = curr;
+						if (i === 0) {
+							return `M ${x} ${y}`;
+						} else if (i === 1) {
+							const [x0, y0] = arr[0];
+							const noise = Math.random() > 0.5 ? Math.random() : Math.random() * -1;
+							const xm = (x0 + x) / 2 + noise * -1;
+							const ym = (y0 + y) / 2 + noise;
+							return `${acc} Q ${xm} ${ym} ${x} ${y} T`;
+						} else if (i === arr.length - 1) {
+							const [x0, y0] = arr[0];
+							return `${acc} ${x} ${y} ${x0} ${y0}`;
+						}
+						return `${acc} ${x} ${y}`;
+					}, '')
+			: Array(points)
+					.fill()
+					.map((_, i, { length }) => {
+						const angle = (((360 / length) * i - 90) / 180) * Math.PI;
+						const x = Math.floor(Math.cos(angle) * offset);
+						const y = Math.floor(Math.sin(angle) * offset);
+						return [x, y];
+					})
+					.reduce((acc, curr, i, arr) => {
+						const [x, y] = curr;
+						if (i === 0) {
+							return `M ${x} ${y} L`;
+						} else if (i === arr.length - 1) {
+							const [x0, y0] = arr[0];
+							return `${acc} ${x} ${y} ${x0} ${y0}`;
+						}
+						return `${acc} ${x} ${y}`;
+					}, '');
 
-	let path = getPath(n);
+	let path = getPath(n, useCurves);
 
 	const handleEnd = () => {
-		path = getPath(n);
+		path = getPath(n, useCurves);
 
 		canAnimate = true;
 	};
@@ -71,39 +91,32 @@
 		</button>
 	{/if}
 
-	<svg bind:this={svg} viewBox="0 0 60 60">
-		<defs>
-			<path id="circle-race-track" d="M 30 5 a 25 25 0 0 1 0 50 25 25 0 0 1 0 -50" />
-		</defs>
-
+	<svg bind:this={svg} viewBox="-30 -30 60 60">
 		<g fill="none">
-			<use stroke="#160d05" y="0.3" stroke-width="7" href="#circle-race-track" />
-			<use stroke="#3f3c32" stroke-width="7" href="#circle-race-track" />
-			<use stroke="#d5d3ca" stroke-width="1.1" href="#circle-race-track" />
-			<use stroke="#3f3c32" stroke-width="0.6" href="#circle-race-track" />
+			<circle stroke="#160d05" y="0.3" stroke-width="7" r="25" />
+			<circle stroke="#3f3c32" stroke-width="7" r="25" />
+			<circle stroke="#d5d3ca" stroke-width="1.1" r="25" />
+			<circle stroke="#3f3c32" stroke-width="0.6" r="25" />
 		</g>
+		<g>
+			<animateMotion
+				begin="indefinite"
+				{path}
+				dur="5s"
+				fill="freeze"
+				rotate="auto"
+				restart="whenNotActive"
+			/>
+			<animateMotion {path} fill="freeze" rotate="auto" restart="never" />
 
-		<g transform="translate(30 30)">
-			<g>
-				<animateMotion
-					begin="indefinite"
-					{path}
-					dur="5s"
-					fill="freeze"
-					rotate="auto"
-					restart="whenNotActive"
-				/>
-				<animateMotion {path} fill="freeze" rotate="auto" restart="never" />
-
-				<use
-					style="--c0: #160d05; --c1: #e36636; --c2: #f5ad37; --c3: #d5d3ca"
-					href="#the-race-is-on-car"
-					x="-3.5"
-					y="-3.5"
-					width="7"
-					height="7"
-				/>
-			</g>
+			<use
+				style="--c0: #160d05; --c1: #e36636; --c2: #f5ad37; --c3: #d5d3ca"
+				href="#the-race-is-on-car"
+				x="-3.5"
+				y="-3.5"
+				width="7"
+				height="7"
+			/>
 		</g>
 	</svg>
 </div>
