@@ -338,11 +338,11 @@ You do find coordinates in the `touches` array, where the first point will suffi
 const touch = e.touches[0];
 ```
 
-Among the values, extract `pageX` and `pageY`.
+Among the values, extract `clientX` and `clientY`.
 
 ```js
 const touch = e.touches[0];
-const { pageX, pageY } = touch;
+const { clientX, clientY } = touch;
 ```
 
 On their own, the coordinates are _close_ to being right, but you need to compensate for the position of the `<svg>` element in the page.
@@ -375,7 +375,7 @@ With the numbers, you are finally able to compute the offset.
 
 ```js
 const touch = e.touches[0];
-const { pageX: x, pageY: y } = touch;
+const { clientX: x, clientY: y } = touch;
 const offsetX = x - l;
 const offsetY = y - t;
 ```
