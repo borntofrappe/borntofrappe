@@ -1,5 +1,5 @@
 <script>
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 
 	let c1 = [-18, 24];
 	let c2 = [58, 24];

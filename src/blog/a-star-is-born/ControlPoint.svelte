@@ -3,7 +3,7 @@
 	const end = [45, 25];
 	let control = [25, 5];
 
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 </script>
 
 <p>Drag the handles to update the coordinates of the control point.</p>

@@ -1,5 +1,5 @@
 <script>
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 	let clockwise = false;
 </script>
 

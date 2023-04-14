@@ -1,6 +1,6 @@
 <script>
 	export let reverse = false;
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 
 	const transformations = ['translate(1 1)', 'rotate(-90)'];
 	let operations = reverse ? [...transformations].reverse() : transformations;

@@ -1,5 +1,5 @@
 <script>
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 
 	let cy = -10;
 </script>
@@ -28,7 +28,7 @@
 		</marker>
 	</defs>
 
-	<path stroke-linecap="round" stroke="hotpink" fill="none" d="M 0 0 Q 10 {cy} 20 0 T 40 0" />
+	<path stroke-linecap="round" stroke="gold" fill="none" d="M 0 0 Q 10 {cy} 20 0 T 40 0" />
 
 	<g fill="currentColor">
 		<g transform="translate(10 {cy})">

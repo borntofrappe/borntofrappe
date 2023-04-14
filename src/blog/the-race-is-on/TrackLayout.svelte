@@ -1,5 +1,5 @@
 <script>
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 	export let showPath = true;
 	export let useCurves = true;
 

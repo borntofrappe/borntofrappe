@@ -1,6 +1,6 @@
 <script>
 	export let value = 0;
-	export let accentColor = 'hotpink';
+	export let accentColor = 'gold';
 </script>
 
 <label>
