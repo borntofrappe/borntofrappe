@@ -2,7 +2,7 @@
 	import site from '$lib/utils/site.js';
 	const { title, description } = site;
 
-	import Header from './Header.svelte';
+	import Main from './Main.svelte';
 	import Showcase from './Showcase.svelte';
 	import Footer from './Footer.svelte';
 </script>
@@ -20,7 +20,7 @@
 		position: relative;
 	"
 >
-	<Header />
+	<Main />
 	<Showcase />
 </div>
 

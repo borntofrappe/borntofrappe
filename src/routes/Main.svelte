@@ -8,7 +8,7 @@
 </script>
 
 <div class="centered">
-	<header class="box floating" style="--padding: var(--step-space-700) var(--step-space-300);">
+	<main class="box floating" style="--padding: var(--step-space-700) var(--step-space-300);">
 		<div
 			style="
 			display: inline-block;
@@ -48,7 +48,7 @@
 			Take a look around this very website. You might find the answer in applications worth
 			exploring.
 		</p>
-	</header>
+	</main>
 </div>
 
 <style>
