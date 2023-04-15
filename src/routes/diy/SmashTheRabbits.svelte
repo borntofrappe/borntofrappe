@@ -25,9 +25,8 @@
 			[]
 		);
 
-	const rabbits = delays.map((delay, j) => {
-		const i = Math.floor(Math.random() * holes.length);
-		const { cx, cy, ry, id } = holes[i];
+	const rabbits = delays.map((delay, i) => {
+		const { cx, cy, ry, id } = holes[Math.floor(Math.random() * holes.length)];
 		const clipPath = `url(#${id})`;
 
 		const width = 14;
@@ -38,8 +37,8 @@
 		const dy = (height + 1) * -1;
 		const dur = 1.5 + Math.random() * 1.5;
 		const ids = {
-			move: `smashTheRabbitsRabbitMove${j}`,
-			hit: `smashTheRabbitsRabbitHit${j}`
+			move: `smashTheRabbitsRabbitMove${i}`,
+			hit: `smashTheRabbitsRabbitHit${i}`
 		};
 
 		return {
@@ -54,6 +53,18 @@
 			ids
 		};
 	});
+
+	const feedback = Array(rabbits.length + 1)
+		.fill()
+		.map((_, i) => {
+			const counter = Math.max(0, i - (rabbits.length - winCondition));
+			const message = i < rabbits.length - winCondition + 1 ? 'And then some!' : 'Missed some...';
+
+			return {
+				counter,
+				message
+			};
+		});
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -237,10 +248,10 @@
 						/>
 					{/each}
 
-					{#each Array(rabbits.length + 1) as _, i}
+					{#each feedback as { counter }, i}
 						<g transform="translate({80 * i} 0)">
 							<text>
-								<tspan fill="#bc4701">{Math.max(0, i - (rabbits.length - winCondition))}</tspan>
+								<tspan fill="#bc4701">{counter}</tspan>
 								more!
 							</text>
 						</g>
@@ -252,7 +263,7 @@
 
 	<g display="none">
 		<set
-			id="smashTheRabbitMessage"
+			id="smashTheRabbitsMessage"
 			begin="{rabbits[rabbits.length - 1].ids.move}.end"
 			attributeName="display"
 			to="initial"
@@ -271,13 +282,13 @@
 				/>
 			{/each}
 
-			{#each Array(rabbits.length + 1) as _, i}
+			{#each feedback as { message }, i}
 				<g transform="translate({80 * i} 0)">
 					<AnimatedTitle
-						text={i < rabbits.length - winCondition + 1 ? 'And then some!' : 'Missed some...'}
+						text={message}
 						fill="url(#linear-gradient-text)"
-						begin="smashTheRabbitMessage.begin"
-						end="smashTheRabbitEnd.begin"
+						begin="smashTheRabbitsMessage.begin"
+						end="smashTheRabbitsEnd.begin"
 						repeatCount="indefinite"
 					/>
 				</g>
@@ -285,7 +296,7 @@
 		</g>
 
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="smashTheRabbitEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<set id="smashTheRabbitsEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
