@@ -253,6 +253,7 @@
 	}
 
 	button {
+		display: block;
 		cursor: pointer;
 		border: none;
 		font-weight: 700;
@@ -262,8 +263,5 @@
 		color: #f3f4f8;
 		background: #22274f;
 		border-radius: 0.25rem;
-		display: flex;
-		gap: 0.2rem;
-		align-items: center;
 	}
 </style>
