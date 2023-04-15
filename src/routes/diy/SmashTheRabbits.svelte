@@ -250,6 +250,45 @@
 		</g>
 	</g>
 
+	<g display="none">
+		<set
+			id="smashTheRabbitMessage"
+			begin="{rabbits[rabbits.length - 1].ids.move}.end"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<g transform="translate({80 * rabbits.length * -1} 0)">
+			{#each rabbits as { ids }}
+				<animateTransform
+					begin="{ids.hit}.begin"
+					attributeName="transform"
+					type="translate"
+					by="80 0"
+					fill="freeze"
+					dur="0.1s"
+					calcMode="discrete"
+				/>
+			{/each}
+
+			{#each Array(rabbits.length + 1) as _, i}
+				<g transform="translate({80 * i} 0)">
+					<AnimatedTitle
+						text={i < rabbits.length - winCondition + 1 ? 'And then some!' : 'Missed some...'}
+						fill="url(#linear-gradient-text)"
+						begin="smashTheRabbitMessage.begin"
+						end="smashTheRabbitEnd.begin"
+						repeatCount="indefinite"
+					/>
+				</g>
+			{/each}
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="smashTheRabbitEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
+	</g>
+
 	<g style:cursor="pointer">
 		<set id={start} begin="click" attributeName="display" to="none" fill="freeze" />
 
