@@ -6,6 +6,7 @@
 	import FindTheButterflies from './FindTheButterflies.svelte';
 	import CrackTheEgg from './CrackTheEgg.svelte';
 	import BattleTheEnemy from './BattleTheEnemy.svelte';
+	import SmashTheRabbits from './SmashTheRabbits.svelte';
 
 	const { title } = site;
 
@@ -34,6 +35,11 @@
 			component: BattleTheEnemy,
 			backgroundColor: 'hsl(119, 30%, 49%)',
 			borderColor: 'hsl(177, 65%, 52%)'
+		},
+		{
+			component: SmashTheRabbits,
+			backgroundColor: 'hsl(39, 91%, 55%)',
+			borderColor: 'hsl(143, 99%, 32%)'
 		}
 	];
 </script>
