@@ -1,4 +1,7 @@
 <script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const holes = [
 		{ cx: 25, cy: 26, rx: 9, ry: 3.5 },
 		{ cx: 55, cy: 26, rx: 9, ry: 3.5 },
@@ -10,6 +13,7 @@
 		id: `smash-the-rabbits-clip-hole-${i}`
 	}));
 
+	const start = `smashTheRabbitsRabbitStart`;
 	const winCondition = 3;
 	const targets = winCondition + 1 + Math.floor(Math.random() * 3);
 
@@ -30,7 +34,7 @@
 		const height = width;
 		const x = cx - width / 2;
 		const y = cy + ry;
-		const begin = `${delay}s`;
+		const begin = `${start}.begin + ${delay}s`;
 		const dy = (height + 1) * -1;
 		const dur = 1.5 + Math.random() * 1.5;
 		const ids = {
@@ -207,5 +211,50 @@
 				</g>
 			</g>
 		{/each}
+	</g>
+
+	<g>
+		<set attributeName="display" to="none" />
+		<set attributeName="display" begin="{start}.begin" to="initial" fill="freeze" />
+		<g transform="translate(40 6)">
+			<g
+				fill="currentColor"
+				font-size="4"
+				font-weight="bold"
+				font-family="sans-serif"
+				text-anchor="middle"
+			>
+				<g transform="translate({80 * rabbits.length * -1} 0)">
+					{#each rabbits as { ids }}
+						<animateTransform
+							begin="{ids.hit}.begin"
+							attributeName="transform"
+							type="translate"
+							by="80 0"
+							dur="0.01s"
+							calcMode="discrete"
+							fill="freeze"
+						/>
+					{/each}
+
+					{#each Array(rabbits.length + 1) as _, i}
+						<g transform="translate({80 * i} 0)">
+							<text>
+								<tspan fill="#bc4701">{Math.max(0, i - (rabbits.length - winCondition))}</tspan>
+								more!
+							</text>
+						</g>
+					{/each}
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id={start} begin="click" attributeName="display" to="none" fill="freeze" />
+
+		<Title fill="url(#linear-gradient-text)">Smash!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
