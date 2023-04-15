@@ -21,9 +21,9 @@
 			[]
 		);
 
-	const rabbits = delays.map((delay) => {
+	const rabbits = delays.map((delay, j) => {
 		const i = Math.floor(Math.random() * holes.length);
-		const { cx, cy, rx, ry, id } = holes[i];
+		const { cx, cy, ry, id } = holes[i];
 		const clipPath = `url(#${id})`;
 
 		const width = 14;
@@ -33,6 +33,10 @@
 		const begin = `${delay}s`;
 		const dy = (height + 1) * -1;
 		const dur = 1.5 + Math.random() * 1.5;
+		const ids = {
+			move: `smashTheRabbitsRabbitMove${j}`,
+			hit: `smashTheRabbitsRabbitHit${j}`
+		};
 
 		return {
 			x,
@@ -42,7 +46,8 @@
 			begin,
 			dy,
 			dur,
-			clipPath
+			clipPath,
+			ids
 		};
 	});
 </script>
@@ -164,11 +169,12 @@
 	</g>
 
 	<g>
-		{#each rabbits as { x, y, width, height, begin, dy, dur, clipPath }}
+		{#each rabbits as { x, y, width, height, begin, dy, dur, clipPath, ids }}
 			<g clip-path={clipPath}>
 				<g transform="translate({x} {y})">
 					<g>
 						<animateTransform
+							id={ids.move}
 							attributeName="transform"
 							type="translate"
 							{begin}
@@ -178,7 +184,25 @@
 							keyTimes="0; 0.5; 1"
 							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
 						/>
-						<use href="#smash-the-rabbits-rabbit" {width} {height} />
+						<g style="cursor: pointer">
+							<set
+								begin="{ids.hit}.begin"
+								attributeType="CSS"
+								attributeName="cursor"
+								to="initial"
+								fill="freeze"
+							/>
+							<use href="#smash-the-rabbits-rabbit" {width} {height}>
+								<set
+									id={ids.hit}
+									begin="click"
+									attributeName="href"
+									to="#smash-the-rabbits-rabbit-hit"
+									fill="freeze"
+									restart="never"
+								/>
+							</use>
+						</g>
 					</g>
 				</g>
 			</g>
