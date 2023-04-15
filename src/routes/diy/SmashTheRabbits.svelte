@@ -9,6 +9,42 @@
 		...hole,
 		id: `smash-the-rabbits-clip-hole-${i}`
 	}));
+
+	const winCondition = 3;
+	const targets = winCondition + 1 + Math.floor(Math.random() * 3);
+
+	const delays = Array(targets)
+		.fill()
+		.map((_) => Math.floor(Math.random() * 3) + 1)
+		.reduce(
+			(acc, curr, i) => (i === 0 ? [...acc, curr] : [...acc, curr + acc[acc.length - 1]]),
+			[]
+		);
+
+	const rabbits = delays.map((delay) => {
+		const i = Math.floor(Math.random() * holes.length);
+		const { cx, cy, rx, ry, id } = holes[i];
+		const clipPath = `url(#${id})`;
+
+		const width = 14;
+		const height = width;
+		const x = cx - width / 2;
+		const y = cy + ry;
+		const begin = `${delay}s`;
+		const dy = (height + 1) * -1;
+		const dur = 1.5 + Math.random() * 1.5;
+
+		return {
+			x,
+			y,
+			width,
+			height,
+			begin,
+			dy,
+			dur,
+			clipPath
+		};
+	});
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -127,11 +163,25 @@
 		{/each}
 	</g>
 
-	<g clip-path="url(#smash-the-rabbits-clip-hole-0">
-		<use href="#smash-the-rabbits-rabbit" x="17.5" y="17.5" width="15" height="15" />
-	</g>
-
-	<g clip-path="url(#smash-the-rabbits-clip-hole-3">
-		<use href="#smash-the-rabbits-rabbit-hit" x="32.5" y="32" width="15" height="15" />
+	<g>
+		{#each rabbits as { x, y, width, height, begin, dy, dur, clipPath }}
+			<g clip-path={clipPath}>
+				<g transform="translate({x} {y})">
+					<g>
+						<animateTransform
+							attributeName="transform"
+							type="translate"
+							{begin}
+							values="0 0; 0 {dy}; 0 0"
+							{dur}
+							calcMode="spline"
+							keyTimes="0; 0.5; 1"
+							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+						/>
+						<use href="#smash-the-rabbits-rabbit" {width} {height} />
+					</g>
+				</g>
+			</g>
+		{/each}
 	</g>
 </svg>
