@@ -1,3 +1,16 @@
+<script>
+	const holes = [
+		{ cx: 25, cy: 26, rx: 9, ry: 3.5 },
+		{ cx: 55, cy: 26, rx: 9, ry: 3.5 },
+		{ cx: 15, cy: 40, rx: 9, ry: 3.5 },
+		{ cx: 40, cy: 40, rx: 9, ry: 3.5 },
+		{ cx: 65, cy: 40, rx: 9, ry: 3.5 }
+	].map((hole, i) => ({
+		...hole,
+		id: `smash-the-rabbits-clip-hole-${i}`
+	}));
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Smash the rabbits!</title>
 
@@ -80,6 +93,13 @@
 			</g>
 			<circle fill="currentColor" r="0.4" cx="0" cy="3" />
 		</symbol>
+
+		{#each holes as { cx, cy, rx, ry, id }}
+			<clipPath {id}>
+				<ellipse {cx} {cy} {rx} {ry} />
+				<path d="M {cx - rx} {cy} v -50 h {rx * 2} v 50z" />
+			</clipPath>
+		{/each}
 	</defs>
 
 	<rect fill="url(#smash-the-rabbits-pattern-grass)" width="80" height="50" />
@@ -97,14 +117,21 @@
 		<path transform="translate(80 0) scale(-1 1)" d="M 0 0 l 5 -5 3 5 3 -8 3 5 3 -2 3 5z" />
 	</g>
 
-	<g transform="translate(1 1)">
-		<use href="#smash-the-rabbits-rabbit" width="15" height="15" />
-		<use x="15" href="#smash-the-rabbits-rabbit-hit" width="15" height="15" />
+	<g>
+		{#each holes as { cx: x, cy: y, rx, ry }}
+			<g transform="translate({x} {y + ry})">
+				<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy="-{ry}" {rx} {ry} />
+				<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy="-{ry}" {rx} {ry} />
+				<ellipse fill="currentColor" cy="-{ry}" {rx} {ry} />
+			</g>
+		{/each}
 	</g>
 
-	<g transform="translate(24 30)">
-		<ellipse transform="scale(1.08 1.25)" fill="#bc4701" cy="-4" rx="10" ry="4" />
-		<ellipse transform="scale(1.05 1.12)" fill="#f5ab26" cy="-4" rx="10" ry="4" />
-		<ellipse fill="currentColor" cy="-4" rx="10" ry="4" />
+	<g clip-path="url(#smash-the-rabbits-clip-hole-0">
+		<use href="#smash-the-rabbits-rabbit" x="17.5" y="17.5" width="15" height="15" />
+	</g>
+
+	<g clip-path="url(#smash-the-rabbits-clip-hole-3">
+		<use href="#smash-the-rabbits-rabbit-hit" x="32.5" y="32" width="15" height="15" />
 	</g>
 </svg>
