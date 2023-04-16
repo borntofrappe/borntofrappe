@@ -1,0 +1,5 @@
+---
+title: Conflict resolution
+description: Musings on element attributes and mistaken identities.
+date: 2023-04-17T10:25:53
+---
