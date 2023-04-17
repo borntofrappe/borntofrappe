@@ -190,10 +190,6 @@
 		animation: translate 35s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 	}
 
-	.blink {
-		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
-	}
-
 	@keyframes translate {
 		0%,
 		12.5% {
@@ -208,18 +204,6 @@
 		87.5%,
 		100% {
 			transform: translate(-100px, 40px);
-		}
-	}
-
-	@keyframes blink {
-		8%,
-		12% {
-			transform: scaleY(0);
-		}
-		6%,
-		10%,
-		14% {
-			transform: scaleY(1);
 		}
 	}
 </style>

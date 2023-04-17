@@ -11,16 +11,16 @@
 	<link rel="icon" href="/icons/minesweeper.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="visually-hidden">
+<header class="[ visually-hidden ]">
 	<h1>Minesweeper</h1>
 	<p>Play a nostalgia-filled version of a classic puzzle game.</p>
 </header>
 
 <main
-	class="box centered"
+	class="[ box centered ]"
 	style="
-		--color: hsl(0, 0%, 13%); 
-		--background: hsl(0, 0%, 75%); 
+		--box-color: hsl(0, 0%, 13%); 
+		--box-background: hsl(0, 0%, 75%); 
 		--selection-color: hsl(0, 0%, 13%); 
 		--selection-background: hsl(0, 0%, 63%);
 	"

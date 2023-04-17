@@ -53,7 +53,7 @@
 	<link rel="icon" href="/icons/diy.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="visually-hidden">
+<header class="[ visually-hidden ]">
 	<h1>Do it yourself!</h1>
 	<p>
 		Play a collection of touch-based games, crafted with care and animated, scalable vector
@@ -95,7 +95,7 @@
 		max-inline-size: 36rem;
 		block-size: auto;
 		border-radius: 0.25rem;
-		box-shadow: 0 -1rem 1rem hsla(209, 61%, 16%, 0.15), 0 0 0 0.1rem hsl(209, 61%, 16%),
-			0 0 0 0.9rem var(--_border-color), 0 0 0 1.1rem hsl(209, 61%, 16%);
+		box-shadow: 0 -1rem 1rem hsla(209, 61%, 16%, 0.15), 0 0 0 0.1rem currentColor,
+			0 0 0 0.9rem var(--_border-color), 0 0 0 1.1rem currentColor;
 	}
 </style>

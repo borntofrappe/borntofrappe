@@ -17,22 +17,22 @@
 </svelte:head>
 
 <div
-	class="box"
+	class="[ box ]"
 	style="
 		--padding: 1rem;
-		--color: hsl(209, 61%, 16%); 
-		--background: hsl(210, 36%, 96%); 
+		--box-color: hsl(209, 61%, 16%); 
+		--box-background: hsl(210, 36%, 96%); 
 		--selection-color: hsl(211, 39%, 23%); 
 		--selection-background: hsl(210, 31%, 80%);
 		--highlight: hsl(212, 33%, 89%);
 	"
 >
-	<div class="center stack" style="--leading: 0;">
-		<main class="flow">
-			<Heading level="h1" stroke="var(--color)" fill="var(--highlight)">Oopsie</Heading>
+	<div class="[ center stack ]" style="--leading: 0;">
+		<main class="[ flow ]">
+			<Heading level="h1" stroke="var(--box-color)" fill="var(--highlight)">Oopsie</Heading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
 			<p>Here's a possibly helpful message for context:</p>
-			<div class="code">
+			<div class="[ code ]">
 				<span>error {@html icons.bug}</span>
 				<pre><code>{$page.error.message}</code></pre>
 			</div>
@@ -47,7 +47,7 @@
 			<p>Cheer up and <a href="/">go to home, page</a>.</p>
 		</main>
 
-		<div class="center" style="--measure: 32rem;">
+		<div class="[ center ]" style="--measure: 32rem;">
 			<Serena />
 		</div>
 	</div>

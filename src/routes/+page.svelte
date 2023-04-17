@@ -13,8 +13,10 @@
 </svelte:head>
 
 <div
+	class="[ box ]"
 	style="
-		background: var(--background, hsl(40, 23%, 97%));
+		--box-color: var(--color);
+		--box-background: var(--background);
 		min-height: 100vh;
 		z-index: 1;
 		position: relative;

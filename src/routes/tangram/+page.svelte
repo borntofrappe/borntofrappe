@@ -30,22 +30,22 @@
 	<link rel="icon" href="/icons/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="visually-hidden">
+<header class="[ visually-hidden ]">
 	<h1>Tangram</h1>
 	<p>Shuffle the pieces of a tangram puzzle to create interesting visuals.</p>
 </header>
 
 <main
-	class="box centered"
+	class="[ box centered ]"
 	style="
-		--color: hsl(210, 16%, 82%); 
-		--background: hsl(210, 24%, 16%); 
+		--box-color: hsl(210, 16%, 82%); 
+		--box-background: hsl(210, 24%, 16%); 
 		--selection-color: hsl(210, 16%, 82%); 
 		--selection-background: hsl(209, 34%, 30%);
 	"
 >
 	<label class:tangram>
-		<span class="visually-hidden">
+		<span class="[ visually-hidden ]">
 			{tangram ? 'Move the pieces to create a new shape.' : 'Move the pieces back together.'}
 		</span>
 		<input bind:checked={tangram} type="checkbox" />
@@ -84,21 +84,27 @@
 	label.tangram > :global(svg path:nth-of-type(1)) {
 		transform: translate(0px, 0px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(2)) {
 		transform: translate(0px, 0px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(3)) {
 		transform: translate(3px, 1px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(4)) {
 		transform: translate(1px, 3px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(5)) {
 		transform: translate(2px, 4px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(6)) {
 		transform: translate(2px, 2px) rotate(0deg) !important;
 	}
+
 	label.tangram > :global(svg path:nth-of-type(7)) {
 		transform: translate(0px, 4px) rotate(0deg) !important;
 	}

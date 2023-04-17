@@ -44,11 +44,11 @@
 	</defs>
 </svg>
 
-<a href="#content" class="skip-to-content visually-hidden">Skip to content</a>
+<a href="#content" class="[ visually-hidden ] [ skip-to-content ]">Skip to content</a>
 
-<div class="box stack {timeOfDay}">
+<div class="[ box stack ] {timeOfDay}">
 	<header
-		class="box"
+		class="[ box ]"
 		style:--padding="var(--step-space-300) var(--step-space-200) 0"
 		style:color="#f7f7f7"
 		style:background
@@ -56,12 +56,12 @@
 		<h1 style:text-align="center" style:filter="url(#filter-outline)">
 			{title}
 		</h1>
-		<div class="center" style:--measure="40rem">
+		<div class="[ center ]" style:--measure="40rem">
 			<Theme on:change={handleChange} />
 		</div>
 	</header>
-	<div class="box" style:padding="var(--step-space-200) var(--step-space-100)">
-		<main id="content" class="center flow" style:--measure="60ch">
+	<div class="[ box ]" style:padding="var(--step-space-200) var(--step-space-100)">
+		<main id="content" class="[ center flow ]" style:--measure="60ch">
 			<slot />
 		</main>
 	</div>

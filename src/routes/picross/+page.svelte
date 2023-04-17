@@ -19,14 +19,14 @@
 	<link rel="icon" href="/icons/picross.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="visually-hidden">
+<header class="[ visually-hidden ]">
 	<h1>Picross</h1>
 	<p>Explore solved nonogram puzzles with crisp visuals and in multiple dimensions.</p>
 </header>
 
 <main>
 	<label>
-		<span class="visually-hidden">Select level</span>
+		<span class="[ visually-hidden ]">Select level</span>
 
 		<select bind:value>
 			{#each entries as [key, level]}
@@ -51,14 +51,14 @@
 
 <style>
 	main {
-		color: hsl(42, 15%, 13%);
-		background: hsl(40, 23%, 97%);
-		padding: 1rem;
 		display: flex;
 		gap: 2rem;
 		flex-direction: column;
 		align-items: center;
 		min-height: 100vh;
+		color: hsl(42, 15%, 13%);
+		background: hsl(40, 23%, 97%);
+		padding: var(--step-space-200);
 		background-image: url('data:image/svg+xml;utf8,<svg viewBox="-5 -5 10 10"\ xmlns="http://www.w3.org/2000/svg">\
 	<circle r="0.5" fill="hsl(43, 13%, 90%)" />\
 </svg>');

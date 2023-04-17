@@ -7,8 +7,8 @@
 	import Ray from './mignon/Ray.svelte';
 </script>
 
-<div class="centered">
-	<main class="box floating" style="--padding: var(--step-space-700) var(--step-space-300);">
+<div class="[ centered ]">
+	<main class="[ box floating ]" style="--padding: var(--step-space-700) var(--step-space-300);">
 		<div
 			style="
 			display: inline-block;
@@ -19,7 +19,7 @@
 			<MainHeading level="h1" text="Hi there" />
 		</div>
 
-		<div class="float end" style="--shape-outside: circle();">
+		<div class="[ float end ]" style="--shape-outside: circle();">
 			<Ray />
 		</div>
 
@@ -36,7 +36,7 @@
 
 		<p style="display: inline-block;">Mainly for three reasons:</p>
 
-		<ol>
+		<ol style="display: inline;">
 			<li><abbr title="HyperText Markup Language">HTML</abbr>{@html icons.html}</li>
 			<li><abbr title="Cascading Style Sheets">CSS</abbr>{@html icons.css}</li>
 			<li>Javascript{@html icons.js}</li>
@@ -53,21 +53,20 @@
 
 <style>
 	ol {
-		display: inline;
 		padding: 0;
 	}
 
-	li {
+	ol li {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.25rem;
 	}
 
-	li::after {
+	ol li::after {
 		content: '.';
 	}
 
-	li:not(:last-of-type)::after {
+	ol li:not(:last-of-type)::after {
 		content: ',';
 	}
 </style>

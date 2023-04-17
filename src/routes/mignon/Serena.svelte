@@ -199,20 +199,4 @@
 			transform: translateY(10px);
 		}
 	}
-
-	.blink {
-		animation: blink 7s infinite cubic-bezier(0.65, 0, 0.35, 1);
-	}
-
-	@keyframes blink {
-		8%,
-		12% {
-			transform: scaleY(0);
-		}
-		6%,
-		10%,
-		14% {
-			transform: scaleY(1);
-		}
-	}
 </style>

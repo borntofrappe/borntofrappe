@@ -27,7 +27,7 @@
 </svg>
 
 <main>
-	<h1 class="font-size:biggest">{format(date)}</h1>
+	<h1 class="[ font-size:biggest ]">{format(date)}</h1>
 	<Marks n={date.getDate()} />
 </main>
 
