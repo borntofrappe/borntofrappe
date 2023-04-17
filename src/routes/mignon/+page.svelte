@@ -7,12 +7,14 @@
 
 <svelte:head>
 	<title>Mignon | {title}</title>
-	<meta
-		name="description"
-		content="This website has a mascot. It comes from the small village of Mignon, highly reputed for its whimsy and charm. Name's Ray."
-	/>
+	<meta name="description" content="Cheer up with a mascot filled with whimsy and charm." />
 	<link rel="icon" href="icons/mignon.svg" type="image/svg+xml" />
 </svelte:head>
+
+<div class="[ visually-hidden ]">
+	<h1>Mignon</h1>
+	<p>Cheer up with a mascot filled with whimsy and charm.</p>
+</div>
 
 <main class="[ centered ]">
 	<div style="inline-size: 100vmin; max-inline-size: 32rem;">

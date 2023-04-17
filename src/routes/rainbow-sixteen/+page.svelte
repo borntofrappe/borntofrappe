@@ -14,10 +14,10 @@
 	<link rel="icon" href="/icons/rainbow-sixteen.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="[ visually-hidden ]">
+<div class="[ visually-hidden ]">
 	<h1>Rainbow sixteen</h1>
 	<p>Slide the tiles to complete the colors of the rainbow.</p>
-</header>
+</div>
 
 <main
 	class="[ box centered ]"

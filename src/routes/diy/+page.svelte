@@ -53,17 +53,17 @@
 	<link rel="icon" href="/icons/diy.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="[ visually-hidden ]">
+<div class="[ visually-hidden ]">
 	<h1>Do it yourself!</h1>
 	<p>
 		Play a collection of touch-based games, crafted with care and animated, scalable vector
 		graphics.
 	</p>
-</header>
+</div>
 
 {@html svg['defs']}
 
-<div>
+<div class="collection">
 	{#each collection as { component, backgroundColor, borderColor }}
 		<article style:background-color={backgroundColor} style:--border-color={borderColor}>
 			<svelte:component this={component} />
@@ -72,7 +72,7 @@
 </div>
 
 <style>
-	div {
+	.collection {
 		color: hsl(209, 61%, 16%);
 		background: hsl(206, 33%, 96%);
 		block-size: 100vh;
@@ -80,8 +80,11 @@
 		scroll-snap-type: y mandatory;
 	}
 
-	article {
+	.collection article {
 		scroll-snap-align: start;
+	}
+
+	article {
 		block-size: 100vh;
 		display: flex;
 		justify-content: center;

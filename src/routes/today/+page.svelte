@@ -26,6 +26,11 @@
 	</defs>
 </svg>
 
+<div class="[ visually-hidden ]">
+	<h1>Today</h1>
+	<p>The answer to a most practical quandary: what day is today?</p>
+</div>
+
 <main>
 	<h1 class="[ font-size:biggest ]">{format(date)}</h1>
 	<Marks n={date.getDate()} />

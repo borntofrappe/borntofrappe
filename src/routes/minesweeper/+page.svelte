@@ -11,10 +11,10 @@
 	<link rel="icon" href="/icons/minesweeper.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="[ visually-hidden ]">
+<div class="[ visually-hidden ]">
 	<h1>Minesweeper</h1>
 	<p>Play a nostalgia-filled version of a classic puzzle game.</p>
-</header>
+</div>
 
 <main
 	class="[ box centered ]"

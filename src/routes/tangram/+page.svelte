@@ -30,10 +30,10 @@
 	<link rel="icon" href="/icons/tangram.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="[ visually-hidden ]">
+<div class="[ visually-hidden ]">
 	<h1>Tangram</h1>
 	<p>Shuffle the pieces of a tangram puzzle to create interesting visuals.</p>
-</header>
+</div>
 
 <main
 	class="[ box centered ]"

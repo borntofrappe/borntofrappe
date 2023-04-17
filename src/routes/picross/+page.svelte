@@ -19,10 +19,10 @@
 	<link rel="icon" href="/icons/picross.svg" type="image/svg+xml" />
 </svelte:head>
 
-<header class="[ visually-hidden ]">
+<div class="[ visually-hidden ]">
 	<h1>Picross</h1>
 	<p>Explore solved nonogram puzzles with crisp visuals and in multiple dimensions.</p>
-</header>
+</div>
 
 <main>
 	<label>
