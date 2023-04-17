@@ -9,8 +9,8 @@
 }
 
 .box {
-	color: var(--color, inherit);
-	background: var(--background, inherit);
+	color: var(--box-color);
+	background: var(--box-background);
 	padding: var(--padding, 0);
 }
 
@@ -111,4 +111,8 @@
 .--space\:wide,
 .--space\:wide + * {
 	--space: var(--step-space-400);
+}
+
+.border-radius {
+	border-radius: var(--radius, var(--space-000));
 }

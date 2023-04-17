@@ -64,10 +64,6 @@ a:hover {
 	outline-offset: 0.3ch;
 }
 
-:target {
-	scroll-margin-block-start: 2ex;
-}
-
 :focus:not(:focus-visible) {
 	outline: none;
 }
