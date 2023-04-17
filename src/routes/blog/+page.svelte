@@ -1,4 +1,5 @@
 <script>
+	import { format } from '$lib/utils/helper.js';
 	export let data;
 
 	$: blog = data.blog;
@@ -12,7 +13,7 @@
 	{#each blog as { title, date, description, slug }}
 		<article>
 			<h2><a href={slug}>{title}</a></h2>
-			<time datetime={date}>{date}</time>
+			<time datetime={date}>{format(new Date(date))}</time>
 			<p>{description}</p>
 		</article>
 	{/each}
