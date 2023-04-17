@@ -14,10 +14,6 @@
 	padding: var(--padding, 0);
 }
 
-.box * {
-	color: inherit;
-}
-
 .center {
 	display: block;
 	max-inline-size: var(--measure, 70ch);
