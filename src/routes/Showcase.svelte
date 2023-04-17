@@ -126,7 +126,7 @@
 		<Heading
 			level="h2"
 			style="display: inline-block;"
-			stroke="var(--color)"
+			stroke="var(--box-color)"
 			fill="var(--highlight)"
 		>
 			Minesweeper
