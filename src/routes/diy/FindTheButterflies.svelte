@@ -69,7 +69,7 @@
 		});
 </script>
 
-<svg viewBox="0 0 80 50">
+<svg style="display: block;" viewBox="0 0 80 50">
 	<title>Find the butterflies!</title>
 
 	<defs>

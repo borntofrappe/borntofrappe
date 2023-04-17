@@ -122,7 +122,7 @@
 		{#each objects as { id, body, head, eyeLeft, eyeRight, dotLeft, dotRight, line }}
 			<g {id}>
 				<g transform="translate(0 -8)">
-					<path d={head} fill="#192d10" />
+					<path d={head} fill="currentColor" />
 					<g transform="translate(0 -3.25)">
 						<g fill="#f7f7f7">
 							<path transform="translate(-2 0)" d={eyeLeft} />
@@ -133,12 +133,18 @@
 
 				<path d={body} fill="#f70000" stroke="none" stroke-width="0.5" />
 
-				<g fill="#192d10">
+				<g fill="currentColor">
 					<path transform="translate(-5 -2)" d={dotLeft} />
 					<path transform="translate(5 2)" d={dotRight} />
 				</g>
 
-				<path d={line} fill="none" stroke="#192d10" stroke-width="0.5" stroke-linecap="square" />
+				<path
+					d={line}
+					fill="none"
+					stroke="currentColor"
+					stroke-width="0.5"
+					stroke-linecap="square"
+				/>
 			</g>
 		{/each}
 	</defs>
