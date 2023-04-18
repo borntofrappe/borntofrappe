@@ -1,0 +1,7 @@
+---
+title: Time to start
+description: Trust my words and trigger animations with SMIL and JavaScript.
+date: 2023-04-19T10:17:34
+---
+
+[With SMIL](/smil-from-beginning-to-end) and the `begin` attribute you are able to animate SVG elements at your convenience. [With JavaScript](/line-drawing-svg) and an assist from Svelte you can update the document to include elements with further interactions. Combine the two and the potential is titillating.
