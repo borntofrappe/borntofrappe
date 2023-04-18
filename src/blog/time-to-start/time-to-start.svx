@@ -4,4 +4,14 @@ description: Trust my words and trigger animations with SMIL and JavaScript.
 date: 2023-04-19T10:17:34
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Fireworks from './Fireworks.svelte';
+</script>
+
 [With SMIL](/smil-from-beginning-to-end) and the `begin` attribute you are able to animate SVG elements at your convenience. [With JavaScript](/line-drawing-svg) and an assist from Svelte you can update the document to include elements with further interactions. Combine the two and the potential is titillating.
+
+<Center maxInlineSize="36rem">
+	<Fireworks />
+</Center>
