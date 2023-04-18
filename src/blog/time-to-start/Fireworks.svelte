@@ -3,6 +3,7 @@
 
 	let svg = null;
 	let fireworks = [];
+	let circleCounter = 0;
 
 	const handleClick = async () => {
 		const currentTime = svg.getCurrentTime();
@@ -10,7 +11,7 @@
 		const x = Math.floor(Math.random() * 80 - 40);
 		const dy = Math.floor(Math.random() * 30 + 21) * -1;
 		const dur = `${0.75 + Math.random()}s`;
-		const id = `firework${Math.random().toString().slice(-5)}`;
+		const id = `firework${circleCounter++}`;
 		const begin = currentTime;
 		const follow = `${id}.end`;
 		const fill = `hsl(${Math.floor(Math.random() * 360)}, 80%, 70%)`;
@@ -148,6 +149,7 @@
 		border: none;
 		font-weight: 700;
 		padding: 0.2rem 0.5rem;
+		letter-spacing: 0.5px;
 		color: hsl(210, 15%, 90%);
 		background: hsl(210, 20%, 16%);
 		border-radius: 0.25rem;
