@@ -16,14 +16,16 @@
 	<link rel="icon" href="/icons/blog.svg" type="image/svg+xml" />
 </svelte:head>
 
-<div class="[ center stack ] [ blog ]">
+<div class="[ center stack box ]" style="--padding: var(--step-space-300) 0;">
 	<h1>Blog</h1>
 
-	<div class="[ grid ]" data-layout="50-50" style="--gutter: var(--step-space-300)">
+	<div class="[ grid ] [ blog ]" data-layout="50-50" style="--gutter: var(--step-space-300)">
 		{#each blog as { title, date, description, slug }}
 			<article class="[ flow ] [ blog__post ]" style="--space: var(--space-100)">
 				<h2><a href={slug}>{title}</a></h2>
-				<time style="display: inline-block;" datetime={date}>{format(new Date(date))}</time>
+				<time class="[ font-size:small ]" style="display: inline-block;" datetime={date}
+					>{format(new Date(date))}</time
+				>
 				<p>{description}</p>
 			</article>
 		{/each}
@@ -40,37 +42,7 @@
 </div>
 
 <style>
-	.cluster {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: var(--direction, row);
-		gap: var(--gap, 1rem);
-		justify-content: var(--justify, flex-start);
-		align-items: var(--align, stretch);
-	}
-
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(
-			var(--grid-placement, auto-fill),
-			minmax(var(--grid-min-item-size, 16rem), 1fr)
-		);
-		gap: var(--gutter, 1rem);
-		justify-content: var(--justify, flex-start);
-		align-content: var(--align, stretch);
-	}
-
-	.grid[data-layout='50-50'] {
-		--grid-placement: auto-fit;
-		--grid-min-item-size: clamp(16rem, 40%, 26rem);
-	}
-
-	.blog {
-		padding-block: var(--step-space-300);
-	}
-
 	.blog__post {
-		/*  */
 		padding: var(--step-space-300) var(--step-space-200);
 		border-radius: 1rem;
 		background: var(--grey-000);
@@ -79,7 +51,6 @@
 
 	.blog__post time {
 		display: inline-block;
-		background: var(--color-000);
-		font-size: var(--step-size-100);
+		background: var(--color-100);
 	}
 </style>
