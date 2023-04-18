@@ -6,8 +6,8 @@ export async function GET({ url }) {
 	const limit = +url.searchParams.get('limit');
 
 	let blog = await content();
-	const postsPerPage = 7;
-	const pages = Math.floor(blog.length / postsPerPage);
+	const postsPerPage = 8;
+	const pages = Math.floor(blog.length / postsPerPage) - 1;
 
 	if (Number.isInteger(page) && page >= 0) {
 		blog = blog.slice(page * postsPerPage, (page + 1) * postsPerPage);
