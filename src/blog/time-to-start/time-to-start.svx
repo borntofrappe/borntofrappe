@@ -13,14 +13,296 @@ date: 2023-04-19T10:17:34
 
 [With SMIL](/smil-from-beginning-to-end) and the `begin` attribute you are able to animate SVG elements at your convenience. [With JavaScript](/line-drawing-svg) and an assist from Svelte you can update the document to include elements with further interactions. Combine the two and the potential is titillating.
 
+## SMIL
+
+A short animation to test our premise. Draw a series of circles around the center of a vast canvas.
+
+```html
+<svg viewBox="0 0 100 60">
+	<g transform="translate(50 30)">
+		<!-- ... -->
+	</g>
+</svg>
+```
+
+You can rotate and translate the elements into place, but let's be explicit and compute the position considering polar and cartesian coordinates — you might have already seen [how](/a-star-is-born#circle-points).
+
+<!-- prettier-ignore -->
+```js
+const circles = Array(8)
+	.fill()
+	.map((_, i, { length }) => {
+		const angle = (360 / length * i) / 180 * Math.PI;
+		const x = Math.cos(angle) * 10;
+		const y = Math.sin(angle) * 10;
+
+		return { 
+            x, 
+            y 
+        };
+	});
+```
+
+With the x, y values you can draw the circles in their final, resting position, but we are exploring the exciting topic of SMIL animations. To this end, loop through the collection, but don't bother changing the center with the `cx` and `cy` attributes.
+
+```svelte
+{#each circles as { x, y }}
+	<circle r="1" />
+{/each}
+```
+
+Leave the element open and add the `animateTransform` element between the opening and closing tags.
+
+<!-- prettier-ignore -->
+```html
+<circle r="1">
+<animateTransform
+    attributeName="transform"
+    type="translate"
+  />
+</circle>
+```
+
+In this element do add the coordinates in the `to` attribute, along the compulsory duration.
+
+<!-- prettier-ignore -->
+```svelte
+<animateTransform 
+    attributeName="transform" 
+    type="translate" 
+    dur="1s" 
+    to="{x} {y}" 
+/>
+```
+
+From the center, the animation has the dots move outside in the shape of a larger circle. And for once, I won't show you the result. You'll have to test the code yourself or trust my words and the solidity of the code snippets.
+
+In this moment I want you to focus on the SVG syntax. You lean on JavaScript only to populate the document, but with enough patience you can repeat the structure by hand. The animation is a matter of SVG elements and attributes.
+
+The animation runs once and the circles move back to the initial position. The `fill` attribute helps to stop the elements into place and avoid the jarring stutter.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform
+    ...
+    fill="freeze"
+/>
+```
+
+At this point there's a lot to explore. You can delay the change with a time offset, you can specify multiple values to have the circles expand and retract with a soothing, calming effect. But one intriguing part of SMIL is the ability to synchronize different animations.
+
+Add an `id` to the `animateTransform` element.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform
+    id="???"
+    ...
+/>
+```
+
+You need a unique value for the attribute, but [we know better than that](/conflict-resolution). The index you gain through the `each` block gives a quick reference, but to be clear let's create a unique key in the script, where we compute the x, y values.
+
+Keep a counter variable.
+
+```js
+let circleCounter = 0;
+```
+
+As you increment the variable include the number after an arbitrary string of text — the `id` attribute must start with an underscore or a non numeric character — and the key is complete.
+
+```js
+const id = `circle${circleCounter++}`;
+
+return {
+	x,
+	y,
+	id
+};
+```
+
+With the reference, have the circles disappear as they move out. For this we can reduce the radius with the `animate` element.
+
+<!-- prettier-ignore -->
+```html
+<circle>
+	<!-- ... -->
+	<animate 
+        attributeName="r" 
+        dur="1s" 
+        to="0" 
+        fill="freeze" 
+    />
+</circle>
+```
+
+We animate the attribute to the ultimate value of 0, and instead of running the animation immediately, we have the change follow the expansion. In the `begin` attribute instruct SVG to start slightly after the first change.
+
+<!-- prettier-ignore -->
+```svelte
+{#each circles as { x, y, id }}
+    <circle>
+        <animateTransform 
+            {id} 
+            dur="1s" 
+            ... 
+        />
+        <animate 
+            begin="{id}.begin + 0.3s" 
+            dur="0.7s" 
+            ... 
+        />
+    </circle>
+{/each}
+```
+
+Once again, a matter of SVG syntax. Once again, I ask you for a leap of faith. You won't have to wait much longer to have your efforts rewarded, though.
+
+## JavaScript
+
+The circles move out and shrink into nothing. The effect is simple enough that you can still picture the change in your head. And at this point, you might even picture and anticipate the next step.
+
+One animation is cute, and JavaScript helps to author the syntax. _More_ animations are bound to excite to a new level. And as prefaced, JavaScript helps to update the page as needed.
+
+```js
+let particles = [];
+```
+
+Add a button to add new copies.
+
+```svelte
+<button on:click={handleClick}>Animate</button>
+```
+
+As you register the `click` event the idea is to add the points to the larger, 2D array. In this manner Svelte knows to update the DOM for the matching elements.
+
+In the body of the function pick random values for the center of each set — somewhere in the visible canvas.
+
+```js
+const handleClick = () => {
+	const x = Math.random() * 101;
+	const y = Math.random() * 61;
+};
+```
+
+Create a set with the two coordinates and the circles, repeating the logic from the previous section.
+
+```js
+// ...circles
+const particle = {
+	x,
+	y,
+	circles
+};
+```
+
+Add the object to the helpful array.
+
+```js
+particles = [...particles, particle];
+```
+
+In the markup, loop through the first list to center the dots.
+
+```svelte
+{#each particles as { x, y, circles }}
+	<g transform="translate({x} {y})">
+		<!-- ... -->
+	</g>
+{/each}
+```
+
+Loop through the nested level to add the SVG syntax and SMIL instructions.
+
+```svelte
+{#each circles as { x, y, id }}
+	<!-- ... -->
+{/each}
+```
+
+Finally, press the button and excitedly picture what is going to happen.
+
 <Center maxInlineSize="36rem">
 	<Particles offsetTime={false} />
 </Center>
+
+Dismay, the elements do not animate. What is more, what you see might differ depending on your environment, due to inconsistencies between browsers. On Chrome, you might see the static circles. On Firefox, you won't see anything at all. Beyond these inconsistencies, if you inspect the document the elements are there — as many as the number of times you tried to press the button with curiosity and then a hint of frustration.
+
+The issue: time. When you instruct elements with the begin attribute and a time offset, or have the animation run immediately, the execution is relative to one timestamp, that one of the parent `<svg>`.
+
+In the moment you add the element, the time for the animation has already lapsed.
+
+You may sigh at the inability of having animations start only as they enter the scene, but also understand that having one value for the current time might be essential to synchronize multiple changes together.
+
+Your way out, outside of predicting when the button will be pressed and add a fitting delay, is through Javascript.
+
+With Javascript and access to the `<svg>` element consider the current time.
+
+```js
+const handleClick = () => {
+	const currentTime = svg.getCurrentTime();
+
+	// ...
+};
+```
+
+Add the value to the particle so that the animation starts fittingly, as the elements come into being.
+
+```js
+const particle = {
+	x,
+	y,
+	circles,
+	begin: currentTime
+};
+```
+
+I'm happy to report this is the very last step. Use the value in the `animateTransform` element.
+
+<!-- prettier-ignore -->
+```svelte
+<!-- {#each particles as { x, y, circles, begin }} -->
+<animateTransform 
+    {id} 
+    {begin} 
+    ... 
+/>
+```
+
+And brimming with excitement, press the button for a momentous change.
 
 <Center maxInlineSize="36rem">
 	<Particles />
 </Center>
 
+You no longer need to picture the result, but it yelps to sketch out the sequence. You add the circles. These are animated in position with a time delay. Slightly afterwards and this time by reference, the same shapes are animated in radius.
+
+Charming. Embellish the visual with a touch of color and a pyrotechnic display is just a few steps away.
+
 <Center maxInlineSize="36rem">
 	<Fireworks />
 </Center>
+
+A proper recompense for your patience and understanding.
+
+## Clean up
+
+As the animation ends with the circles essentially evaporating it is reasonable to update the page as to remove the unnecessary elements.
+
+The excellent news is that SVG has an element for that: `discard`.
+
+```svelte
+<discard begin="{id}.end" />
+```
+
+The unfortunate corollary, the element exist, but without access to a Samsung device, I'm not able to test the code in [the only browser](https://caniuse.com/mdn-svg_elements_discard) theoretically supporting the feature.
+
+Your way out, again through JavaScript. And this time you need access to the animating elements. These invoke a series of events as the animation takes place. Among the events, tap into the `endEvent` and update the DOM as you see fit.
+
+```js
+animateTransform.addEventListener('endEvent', () => {
+	// the end
+});
+```
+
+Do not worry, I've made sure to include the logic in the last demo. And you can press the button as many times as you are delighted by the new colors. And possibly shape.
