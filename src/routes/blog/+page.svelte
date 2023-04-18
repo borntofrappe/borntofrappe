@@ -1,11 +1,20 @@
 <script>
+	import site from '$lib/utils/site.js';
 	import { format } from '$lib/utils/helper.js';
 	export let data;
+
+	const { title } = site;
 
 	$: blog = data.blog;
 	$: pages = +data.pages;
 	$: page = +data.page;
 </script>
+
+<svelte:head>
+	<title>Blog | {title}</title>
+	<meta name="description" content="Writing in prose and often with sense." />
+	<link rel="icon" href="/icons/blog.svg" type="image/svg+xml" />
+</svelte:head>
 
 <div class="[ center stack ] [ blog ]">
 	<h1>Blog</h1>
