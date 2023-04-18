@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function load({ fetch, params }) {
-	const response = await fetch('/blog');
+	const response = await fetch('/api/blog');
 	const { blog } = await response.json();
 
 	const post = blog.find(({ slug }) => slug === params.slug);
