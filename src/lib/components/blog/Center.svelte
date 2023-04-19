@@ -5,7 +5,7 @@
 
 <svelte:element
 	this={element}
-	class="center flow --space:wide"
+	class="[ center flow --space:wide ]"
 	style:--measure={maxInlineSize}
 	style:--leading="0"
 >

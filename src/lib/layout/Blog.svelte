@@ -69,8 +69,8 @@
 
 <style>
 	.morning {
-		--color: var(--grey-700);
-		--background: var(--grey-100);
+		--box-color: var(--grey-700);
+		--box-background: var(--grey-100);
 
 		--accent: var(--color-300);
 		--shadow: var(--color-200);
@@ -80,8 +80,8 @@
 	}
 
 	.day {
-		--color: var(--grey-800);
-		--background: var(--grey-000);
+		--box-color: var(--grey-800);
+		--box-background: var(--grey-000);
 
 		--accent: var(--color-400);
 		--shadow: var(--color-200);
@@ -91,8 +91,8 @@
 	}
 
 	.night {
-		--color: var(--grey-300);
-		--background: var(--grey-900);
+		--box-color: var(--grey-300);
+		--box-background: var(--grey-900);
 
 		--accent: var(--color-600);
 		--shadow: var(--color-600);
