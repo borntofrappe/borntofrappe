@@ -3,7 +3,7 @@
 	$: baseId = offsetTime ? 'circleCurrentTime' : 'circle';
 
 	let svg = null;
-	let particles = [];
+	let explosions = [];
 	let circleCounter = 0;
 
 	const handleClick = () => {
@@ -23,21 +23,21 @@
 				return { x, y, id };
 			});
 
-		const particle = {
+		const explosion = {
 			x,
 			y,
 			begin,
 			circles
 		};
 
-		particles = [...particles, particle];
+		explosions = [...explosions, explosion];
 	};
 </script>
 
 <svg bind:this={svg} viewBox="0 0 100 60">
 	<set />
 	<g fill="currentColor">
-		{#each particles as { x, y, begin, circles }}
+		{#each explosions as { x, y, begin, circles }}
 			<g transform="translate({x} {y})">
 				{#each circles as { x, y, id }}
 					<circle r="1">

@@ -7,7 +7,7 @@ date: 2023-04-19T09:40:36
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
-	import Particles from './Particles.svelte';
+	import Explosions from './Explosions.svelte';
 	import Fireworks from './Fireworks.svelte';
 </script>
 
@@ -163,13 +163,13 @@ The circles move out and shrink into nothing. The effect is simple enough that y
 
 One animation is cute, and JavaScript helps to author the syntax. _More_ animations are bound to excite even more. And as prefaced, JavaScript allows to update the page as needed.
 
-Initialize an array for the multiple particles.
+Initialize an array for the multiple copies.
 
 ```js
-let particles = [];
+let explosions = [];
 ```
 
-Add a button to add new copies.
+Add a button to include new instances.
 
 ```svelte
 <button on:click={handleClick}>Animate</button>
@@ -190,7 +190,7 @@ Create a set with the two coordinates and the circles, repeating the logic from 
 
 ```js
 // const circles = Array(8)...
-const particle = {
+const explosion = {
 	x,
 	y,
 	circles
@@ -200,13 +200,13 @@ const particle = {
 Add the object to the helpful array and you are ready to include the elements.
 
 ```js
-particles = [...particles, particle];
+explosions = [...explosions, explosion];
 ```
 
 In the markup, loop through the first list to center the dots.
 
 ```svelte
-{#each particles as { x, y, circles }}
+{#each explosions as { x, y, circles }}
 	<g transform="translate({x} {y})">
 		<!-- ... -->
 	</g>
@@ -224,7 +224,7 @@ Loop through the nested level to add the SVG syntax and SMIL instructions.
 Finally, press the button as you eagerly picture what is going to happen.
 
 <Center maxInlineSize="36rem">
-	<Particles offsetTime={false} />
+	<Explosions offsetTime={false} />
 </Center>
 
 Dismay, the elements do not animate. What is more, what you see might differ depending on your environment. On Chrome, you might see the circles, stuck in their final state. On Firefox, you won't see anything at all. Beyond these inconsistencies, if you inspect the document the elements are there — as many as the number of times you tried to press the button with curiosity and then a hint of frustration.
@@ -249,10 +249,10 @@ const handleClick = () => {
 };
 ```
 
-Add the value to the particle so that the animation starts on time, as the elements come into being.
+Add the value to the object so that the animation starts on time, as the elements come into being.
 
 ```js
-const particle = {
+const explosion = {
 	x,
 	y,
 	circles,
@@ -264,7 +264,7 @@ I'm happy to report this is the very last step. Use the value in the `animateTra
 
 <!-- prettier-ignore -->
 ```svelte
-<!-- {#each particles as { x, y, circles, begin }} -->
+<!-- {#each explosions as { x, y, circles, begin }} -->
 <animateTransform 
     {id} 
     {begin} 
@@ -275,7 +275,7 @@ I'm happy to report this is the very last step. Use the value in the `animateTra
 And brimming with excitement, press the button for a momentous change.
 
 <Center maxInlineSize="36rem">
-	<Particles />
+	<Explosions />
 </Center>
 
 You no longer need to picture the result, but it helps to sketch out the sequence. You add the circles. These are animated in position with a time delay. Slightly afterwards and this time by reference, the same shapes are animated in radius.
@@ -308,6 +308,6 @@ animateTransform.addEventListener('endEvent', () => {
 });
 ```
 
-Do not worry, I've made sure to include the logic in the last demo. Specifically, I find the particle with the unique `id` and remove the object from the array. Svelte takes care of the rest.
+Do not worry, I've made sure to include the logic in the last demo. Specifically, I find the object with the unique `id` and remove it from the array. Svelte takes care of the rest.
 
-You can press the button as many times as you are delighted by the new colors. And possibly shape.
+You can press the button as many times as you are delighted by the bright colors. And possibly shape.
