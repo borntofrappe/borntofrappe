@@ -1,7 +1,7 @@
 ---
 title: Time to start
-description: Trust my words and trigger animations with SMIL and JavaScript.
-date: 2023-04-19T10:17:34
+description: Trust me and trigger animations with SMIL and JavaScript.
+date: 2023-04-19T09:40:36
 ---
 
 <script>
@@ -43,7 +43,7 @@ const circles = Array(8)
 	});
 ```
 
-With the x, y values you can draw the circles in their final, resting position, but we are exploring the exciting topic of SMIL animations. To this end, loop through the collection, but don't bother changing the center with the `cx` and `cy` attributes.
+With the x, y values you can draw the circles in their final, resting position, but we are exploring the exciting topic of SMIL animations. To this end, loop through the collection, but don't bother to move the shapes with the `cx` and `cy` attributes.
 
 ```svelte
 {#each circles as { x, y }}
@@ -56,28 +56,27 @@ Leave the element open and add the `animateTransform` element between the openin
 <!-- prettier-ignore -->
 ```html
 <circle r="1">
-<animateTransform
-    attributeName="transform"
-    type="translate"
-  />
+	<animateTransform
+		attributeName="transform"
+		type="translate" 
+		dur="1s"
+	/>
 </circle>
 ```
 
-In this element do add the coordinates in the `to` attribute, along the compulsory duration.
+In this element do add the coordinates in the `to` attribute.
 
 <!-- prettier-ignore -->
 ```svelte
 <animateTransform 
-    attributeName="transform" 
-    type="translate" 
-    dur="1s" 
-    to="{x} {y}" 
+   	... 
+	to="{x} {y}" 
 />
 ```
 
-From the center, the animation has the dots move outside in the shape of a larger circle. And for once, I won't show you the result. You'll have to test the code yourself or trust my words and the solidity of the code snippets.
+From the center, the dots move outside in the shape of a larger circle. And for once, I won't show you the result. You'll have to test the code yourself or trust my words and the solidity of the code snippets.
 
-In this moment I want you to focus on the SVG syntax. You lean on JavaScript only to populate the document, but with enough patience you can repeat the structure by hand. The animation is a matter of SVG elements and attributes.
+In this moment I want you to focus on the SVG syntax. You lean on JavaScript to avoid the repetition, but with enough patience you can create the effect by hand. The animation is a matter of SVG elements and attributes.
 
 The animation runs once and the circles move back to the initial position. The `fill` attribute helps to stop the elements into place and avoid the jarring stutter.
 
@@ -89,7 +88,7 @@ The animation runs once and the circles move back to the initial position. The `
 />
 ```
 
-At this point there's a lot to explore. You can delay the change with a time offset, you can specify multiple values to have the circles expand and retract with a soothing, calming effect. But one intriguing part of SMIL is the ability to synchronize different animations.
+At this point there's a lot to explore. You can delay the change with a time offset, you can specify multiple values to have the circles grow and recede with a soothing, calming effect. But one intriguing part of SMIL is the ability to synchronize different animations.
 
 Add an `id` to the `animateTransform` element.
 
@@ -162,7 +161,9 @@ Once again, a matter of SVG syntax. Once again, I ask you for a leap of faith. Y
 
 The circles move out and shrink into nothing. The effect is simple enough that you can still picture the change in your head. And at this point, you might even picture and anticipate the next step.
 
-One animation is cute, and JavaScript helps to author the syntax. _More_ animations are bound to excite to a new level. And as prefaced, JavaScript helps to update the page as needed.
+One animation is cute, and JavaScript helps to author the syntax. _More_ animations are bound to excite even more. And as prefaced, JavaScript allows to update the page as needed.
+
+Initialize an array for the multiple particles.
 
 ```js
 let particles = [];
@@ -188,7 +189,7 @@ const handleClick = () => {
 Create a set with the two coordinates and the circles, repeating the logic from the previous section.
 
 ```js
-// ...circles
+// const circles = Array(8)...
 const particle = {
 	x,
 	y,
@@ -196,7 +197,7 @@ const particle = {
 };
 ```
 
-Add the object to the helpful array.
+Add the object to the helpful array and you are ready to include the elements.
 
 ```js
 particles = [...particles, particle];
@@ -220,23 +221,25 @@ Loop through the nested level to add the SVG syntax and SMIL instructions.
 {/each}
 ```
 
-Finally, press the button and excitedly picture what is going to happen.
+Finally, press the button as you eagerly picture what is going to happen.
 
 <Center maxInlineSize="36rem">
 	<Particles offsetTime={false} />
 </Center>
 
-Dismay, the elements do not animate. What is more, what you see might differ depending on your environment, due to inconsistencies between browsers. On Chrome, you might see the static circles. On Firefox, you won't see anything at all. Beyond these inconsistencies, if you inspect the document the elements are there — as many as the number of times you tried to press the button with curiosity and then a hint of frustration.
+Dismay, the elements do not animate. What is more, what you see might differ depending on your environment. On Chrome, you might see the circles, stuck in their final state. On Firefox, you won't see anything at all. Beyond these inconsistencies, if you inspect the document the elements are there — as many as the number of times you tried to press the button with curiosity and then a hint of frustration.
 
-The issue: time. When you instruct elements with the begin attribute and a time offset, or have the animation run immediately, the execution is relative to one timestamp, that one of the parent `<svg>`.
+The issue: time. When you instruct elements with the `begin` attribute and a time offset, or have the animation run immediately, the execution is relative to one timestamp, that one of the parent `<svg>`.
 
 In the moment you add the element, the time for the animation has already lapsed.
 
 You may sigh at the inability of having animations start only as they enter the scene, but also understand that having one value for the current time might be essential to synchronize multiple changes together.
 
-Your way out, outside of predicting when the button will be pressed and add a fitting delay, is through Javascript.
+What is less understandable is how different browsers interpret the issue. The ones I checked seem to agree the animation should reach the final state — the circles spread out. In Chrome, however, the update is without interpolation — `animateTransform` never begins, and `animate` is not able to follow.
 
-With Javascript and access to the `<svg>` element consider the current time.
+Beyond these differences, you find a fix in JavaScript. You can technically add an arbitrary delay, but can you really predict _when_ the button will be pressed?
+
+For the true answer tap into the `<svg>` element and consider the current time with the fitting `getCurrentTime` method.
 
 ```js
 const handleClick = () => {
@@ -246,7 +249,7 @@ const handleClick = () => {
 };
 ```
 
-Add the value to the particle so that the animation starts fittingly, as the elements come into being.
+Add the value to the particle so that the animation starts on time, as the elements come into being.
 
 ```js
 const particle = {
@@ -275,19 +278,19 @@ And brimming with excitement, press the button for a momentous change.
 	<Particles />
 </Center>
 
-You no longer need to picture the result, but it yelps to sketch out the sequence. You add the circles. These are animated in position with a time delay. Slightly afterwards and this time by reference, the same shapes are animated in radius.
+You no longer need to picture the result, but it helps to sketch out the sequence. You add the circles. These are animated in position with a time delay. Slightly afterwards and this time by reference, the same shapes are animated in radius.
 
-Charming. Embellish the visual with a touch of color and a pyrotechnic display is just a few steps away.
+Neat. Embellish the visual with a touch of color and a pyrotechnic display is just a few steps away.
 
 <Center maxInlineSize="36rem">
 	<Fireworks />
 </Center>
 
-A proper recompense for your patience and understanding.
+A proper recompense for a long and arduous journey.
 
 ## Clean up
 
-As the animation ends with the circles essentially evaporating it is reasonable to update the page as to remove the unnecessary elements.
+As the animation ends with the circles essentially evaporating it is reasonable to update the page to remove the unnecessary elements.
 
 The excellent news is that SVG has an element for that: `discard`.
 
@@ -295,9 +298,9 @@ The excellent news is that SVG has an element for that: `discard`.
 <discard begin="{id}.end" />
 ```
 
-The unfortunate corollary, the element exist, but without access to a Samsung device, I'm not able to test the code in [the only browser](https://caniuse.com/mdn-svg_elements_discard) theoretically supporting the feature.
+The unfortunate corollary is that the element exists, but without access to a Samsung device, I'm not able to test the code in [the only setting](https://caniuse.com/mdn-svg_elements_discard) theoretically supporting the feature.
 
-Your way out, again through JavaScript. And this time you need access to the animating elements. These invoke a series of events as the animation takes place. Among the events, tap into the `endEvent` and update the DOM as you see fit.
+The solution is found again in JavaScript, in the animating elements. These invoke a series of events as the animation unfolds. Among the events, tap into the `endEvent` and update the DOM as you see fit.
 
 ```js
 animateTransform.addEventListener('endEvent', () => {
@@ -305,4 +308,6 @@ animateTransform.addEventListener('endEvent', () => {
 });
 ```
 
-Do not worry, I've made sure to include the logic in the last demo. And you can press the button as many times as you are delighted by the new colors. And possibly shape.
+Do not worry, I've made sure to include the logic in the last demo. Specifically, I find the particle with the unique `id` and remove the object from the array. Svelte takes care of the rest.
+
+You can press the button as many times as you are delighted by the new colors. And possibly shape.
