@@ -67,6 +67,7 @@
 </script>
 
 <svg bind:this={svg} viewBox="0 0 100 60">
+	<set />
 	<rect fill="hsl(210, 20%, 16%)" rx="5" width="100" height="60" />
 
 	<g transform="translate(50 61.1)">

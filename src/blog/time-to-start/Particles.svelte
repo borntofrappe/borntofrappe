@@ -1,5 +1,6 @@
 <script>
 	export let offsetTime = true;
+	$: baseId = offsetTime ? 'circleCurrentTime' : 'circle';
 
 	let svg = null;
 	let particles = [];
@@ -7,7 +8,6 @@
 
 	const handleClick = () => {
 		const currentTime = offsetTime ? svg.getCurrentTime() : '0s';
-		const baseId = offsetTime ? 'circleCurrentTime' : 'circle';
 		const x = Math.random() * 101;
 		const y = Math.random() * 61;
 		const begin = currentTime;
@@ -35,6 +35,7 @@
 </script>
 
 <svg bind:this={svg} viewBox="0 0 100 60">
+	<set />
 	<g fill="currentColor">
 		{#each particles as { x, y, begin, circles }}
 			<g transform="translate({x} {y})">
@@ -61,9 +62,10 @@
 
 <style>
 	svg {
-		color: hsl(210, 20%, 16%);
 		display: block;
-		outline: 0.2rem solid currentColor;
+		color: hsl(210, 20%, 16%);
+		border: 0.2rem solid currentColor;
+		border-radius: 0.25rem;
 	}
 
 	button {
