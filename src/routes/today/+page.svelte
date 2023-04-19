@@ -1,5 +1,5 @@
 <script>
-	import { format } from '$lib/utils/helper.js';
+	import { format } from './utils';
 	import Marks from './Marks.svelte';
 
 	const date = new Date();

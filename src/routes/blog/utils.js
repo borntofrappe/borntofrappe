@@ -1,6 +1,4 @@
 export const format = (d) => {
-	const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
 	const months = [
 		'January',
 		'February',
@@ -33,10 +31,9 @@ export const format = (d) => {
 		return match || 'th';
 	};
 
-	const day = d.getDay();
 	const date = d.getDate();
 	const month = d.getMonth();
 	const year = d.getFullYear();
 
-	return `${days[day]}, ${date}${cardinal(date)} of ${months[month]} ${year}`;
+	return `${months[month]} ${date}${cardinal(date)},  ${year}`;
 };

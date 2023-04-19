@@ -1,6 +1,6 @@
 <script>
 	import site from '$lib/utils/site.js';
-	import { format } from '$lib/utils/helper.js';
+	import { format } from './utils.js';
 	export let data;
 
 	const { title } = site;
