@@ -1,0 +1,5 @@
+---
+title: A deck of SVG features
+description: Gallop your way through a handful of SVG elements and SMIL animations.
+date: 2023-04-21T17:30:30
+---
