@@ -148,8 +148,8 @@ export default {
         </symbol>
     </defs>
 </svg>`,
-	'aspect-ratio': `<svg style="display: block" viewBox="0 0 1.7 1.7">
-    <g transform="translate(0.6 0.6)">
+	'aspect-ratio': `<svg style="display: block" viewBox="0 0 2.7 1.7">
+    <g transform="translate(1.6 0.6)">
         <rect fill="currentColor" width="1" height="1" />
         <use href="#deck-card-back" width="1" height="1" />
         <g fill="none" stroke="currentColor" stroke-width="0.01">
@@ -159,11 +159,10 @@ export default {
         <g
             fill="currentColor"
             font-family="monospace"
-            font-weight="bold"
             font-size="0.2"
             >
-            <text text-anchor="middle" x="0.5" y="-0.3">1</text>
-            <text x="-0.45" y="0.6">1</text>
+            <text text-anchor="middle" x="0.5" y="-0.3">width="<tspan font-weight="700">1</tspan>"</text>
+            <text text-anchor="end" x="-0.3" y="0.6">height="<tspan font-weight="700">1</tspan>"</text>
         </g>
     </g>
 </svg>`

@@ -3,3 +3,36 @@ title: A deck of SVG features
 description: Gallop your way through a handful of SVG elements and SMIL animations.
 date: 2023-04-21T17:30:30
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import svg from './svg.js'
+	import Sprites from './Sprites.svelte'
+	import Overlap from './Overlap.svelte'
+	import Deck from './Deck.svelte'
+</script>
+
+A recent obsession for a video game mixing solitaire and horse racing led me to explore SVG syntax to draw a few sprites. Five of them actually.
+
+{@html svg['defs']}
+
+<Center maxInlineSize="28rem">
+	<Deck id="deckSprites" cards={["diamond", "heart", "club", "flower"].reverse()} />
+</Center>
+
+<Center element="figure" maxInlineSize="28rem">
+	{@html svg['aspect-ratio']}
+</Center>
+
+<Center maxInlineSize="32rem">
+	<Sprites />
+</Center>
+
+<Center maxInlineSize="32rem">
+	<Overlap />
+</Center>
+
+<Center maxInlineSize="36rem">
+	<Deck id="deck" />
+</Center>
