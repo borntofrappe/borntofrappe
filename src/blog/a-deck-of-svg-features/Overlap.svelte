@@ -7,11 +7,11 @@
 	<input type="range" min="0" max="1" step="0.05" bind:value={x} />
 </label>
 
-<svg viewBox="0 0 2 1.3">
-	<g transform="translate(0 0.3)">
+<svg viewBox="0 0 2 1.5">
+	<g transform="translate(0 0.5)">
 		<g transform="translate(0.5 0)">
 			<g fill="currentColor" font-family="monospace" font-size="0.2">
-				<text {x} y="-0.1" text-anchor="middle">x="<tspan font-weight="700">{x}</tspan>"</text>
+				<text {x} y="-0.2" text-anchor="middle">x="<tspan font-weight="700">{x}</tspan>"</text>
 			</g>
 		</g>
 		<use href="#deck-card-back" width="1" height="1" />

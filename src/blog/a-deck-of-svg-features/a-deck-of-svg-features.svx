@@ -13,26 +13,24 @@ date: 2023-04-21T17:30:30
 	import Deck from './Deck.svelte'
 </script>
 
-A recent obsession for a video game mixing solitaire and horse racing led me to explore SVG syntax to draw a few sprites. Five of them actually.
-
-{@html svg['defs']}
-
-<Center maxInlineSize="28rem">
-	<Deck id="deckSprites" cards={["diamond", "heart", "club", "flower"].reverse()} />
-</Center>
-
-<Center element="figure" maxInlineSize="28rem">
-	{@html svg['aspect-ratio']}
+<Center maxInlineSize="20rem">
+	<Deck id="cards" cards={["diamond", "heart", "club", "flower"].reverse()} />
 </Center>
 
 <Center maxInlineSize="32rem">
 	<Sprites />
 </Center>
 
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['aspect-ratio']}
+</Center>
+
 <Center maxInlineSize="32rem">
 	<Overlap />
 </Center>
 
-<Center maxInlineSize="36rem">
+<Center maxInlineSize="42rem">
 	<Deck id="deck" />
 </Center>
+
+{@html svg['defs']}
