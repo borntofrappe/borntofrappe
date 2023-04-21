@@ -3,7 +3,7 @@
 
 	const delayPerCard = 0.17;
 	const dur = 0.22;
-	const seeds = ['heart', 'diamond', 'club', 'flower'];
+	const seeds = ['diamond', 'heart', 'club', 'flower'];
 
 	export let cards = Array(7)
 		.fill()
@@ -14,8 +14,8 @@
 	const width = cards.length + 2;
 
 	const deck = cards.map((seed, i, { length }) => {
-		const x = length - i;
-		const delay = delayPerCard * i;
+		const x = i + 1;
+		const delay = delayPerCard * (length - 1 - i);
 		const begin = `${id}.begin + ${delay}s`;
 
 		return {
@@ -64,7 +64,7 @@
 	on:keydown={handleKeydown}
 >
 	<g class="deck">
-		{#each [...deck].reverse() as { x, begin, id, seed } (id)}
+		{#each deck as { x, begin, id, seed }}
 			<use style="cursor: pointer" href="#deck-card-back" width="1" height="1">
 				<animate
 					{begin}

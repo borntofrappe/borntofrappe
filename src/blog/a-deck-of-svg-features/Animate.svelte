@@ -6,7 +6,7 @@
 
 	export let copies = 4;
 
-	export let id = `trigger${Math.random().toString().slice(-3)}`;
+	export let id = `animate${Math.random().toString().slice(-3)}`;
 
 	const width = copies + 2;
 
