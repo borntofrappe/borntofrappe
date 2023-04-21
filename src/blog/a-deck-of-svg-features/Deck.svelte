@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from 'svelte';
+
 	const delayPerCard = 0.17;
 	const dur = 0.22;
 	const seeds = ['heart', 'diamond', 'club', 'flower'];
@@ -27,13 +29,17 @@
 	let svg = null;
 	let hasDealt = false;
 
+	onMount(() => {
+		svg.querySelector(`set#${id}`).addEventListener('beginEvent', () => {
+			hasDealt = true;
+		});
+	});
+
 	const handleKeydown = (e) => {
 		if (hasDealt) return;
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			e.target.blur();
-
-			hasDealt = true;
 
 			const set = svg.querySelector(`set#${id}`);
 			set.beginElement();
@@ -54,10 +60,9 @@
 	bind:this={svg}
 	tabindex={hasDealt ? '-1' : '0'}
 	role="button"
-	aria-label="Press enter to deal a few cards with SMIL animation."
+	aria-label="Press 'Enter' to deal a few cards with SMIL animation."
 	on:keydown={handleKeydown}
 >
-	<set />
 	<g class="deck">
 		{#each [...deck].reverse() as { x, begin, id, seed } (id)}
 			<use style="cursor: pointer" href="#deck-card-back" width="1" height="1">
@@ -70,6 +75,7 @@
 					fill="freeze"
 					calcMode="spline"
 					keySplines="0.1 0 0.75 1;"
+					restart="never"
 				/>
 				<set
 					{id}
@@ -85,7 +91,7 @@
 	</g>
 
 	<use style="cursor: pointer" href="#deck-card-back" width="1" height="1">
-		<set {id} begin="click" attributeName="display" to="none" restart="never" />
+		<set {id} begin="click" attributeName="display" to="none" />
 	</use>
 </svg>
 
