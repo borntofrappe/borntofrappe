@@ -46,7 +46,7 @@
 
 			const uses = svg.querySelectorAll('.deck use');
 			uses.forEach((use) => {
-				use.querySelector('animateTransform').addEventListener('endEvent', () => {
+				use.querySelector('animate').addEventListener('endEvent', () => {
 					use.querySelector('set').beginElement();
 				});
 			});
@@ -66,11 +66,10 @@
 	<g class="deck">
 		{#each [...deck].reverse() as { x, begin, id, seed } (id)}
 			<use style="cursor: pointer" href="#deck-card-back" width="1" height="1">
-				<animateTransform
+				<animate
 					{begin}
-					attributeName="transform"
-					type="translate"
-					values="0 0; {x} 0"
+					attributeName="x"
+					values="0; {x}"
 					{dur}
 					fill="freeze"
 					calcMode="spline"

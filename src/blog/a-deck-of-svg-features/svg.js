@@ -2,27 +2,27 @@ export default {
 	defs: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0">
 	<defs>
 		<linearGradient id="deck-gradient-light" x1="0" x2="0" y1="0" y2="1">
-			<stop stop-color="#fcfff6" offset="0" />
-			<stop stop-color="#fcfff655" offset="1" />
+			<stop stop-color="hsl(80, 100%, 98%)" offset="0" />
+			<stop stop-opacity="0.5" stop-color="hsl(80, 100%, 98%)" offset="1" />
 		</linearGradient>
 		<linearGradient id="deck-gradient-red" x1="0" x2="0" y1="0" y2="1">
-			<stop stop-color="#fe5b53" offset="0" />
-			<stop stop-color="#fe4e46" offset="1" />
+			<stop stop-color="hsl(3, 99%, 66%)" offset="0" />
+			<stop stop-color="hsl(3, 99%, 64%)" offset="1" />
 		</linearGradient>
 		<linearGradient id="deck-gradient-black" x1="0" x2="0" y1="0" y2="1">
-			<stop stop-color="#374e4e" offset="0" />
-			<stop stop-color="#1f393a" offset="1" />
+			<stop stop-color="hsl(180, 17%, 26%)" offset="0" />
+			<stop stop-color="hsl(182, 30%, 17%)" offset="1" />
 		</linearGradient>
 		<symbol id="deck-card-back" viewBox="0 0 40 55">
 			<pattern id="deck-pattern-card-back" viewBox="0 0 2 2" width="0.5" height="0.33">
-				<path fill="#22b33d" d="M 1 0 l 1 1 -1 1 -1 -1z" />
+				<path fill="hsl(131, 68%, 42%)" d="M 1 0 l 1 1 -1 1 -1 -1z" />
 			</pattern>
-			<rect fill="#0c6f0f" width="40" height="55" rx="5" />
+			<rect fill="hsl(122, 80%, 24%)" width="40" height="55" rx="5" />
 			<rect fill="url(#deck-pattern-card-back)" width="40" height="55" rx="5" />
 			<rect opacity="0.2" fill="url(#deck-gradient-light)" width="40" height="55" rx="5" />
 			<rect
 				fill="none"
-				stroke="#fcfff6"
+				stroke="hsl(80, 100%, 98%)"
 				stroke-width="2"
 				x="3"
 				y="3"
@@ -45,7 +45,7 @@ export default {
 			<clipPath id="deck-clip-card-diamond">
 				<path d="M 20 12.5 l 15 15 -15 15 -15 -15" />
 			</clipPath>
-			<rect fill="#fcfff6" width="40" height="55" rx="5" />
+			<rect fill="hsl(80, 100%, 98%)" width="40" height="55" rx="5" />
 			<rect
 				fill="none"
 				stroke="url(#deck-gradient-black)"
@@ -70,7 +70,7 @@ export default {
 					d="M 20 22.5 a 7.5 7.5 0 0 0 -15 0 c 0 7.5 10 15 15 17.5 7.5 -2.5 15 -10 15 -17.5 a 7.5 7.5 0 0 0 -15 0"
 				/>
 			</clipPath>
-			<rect fill="#fcfff6" width="40" height="55" rx="5" />
+			<rect fill="hsl(80, 100%, 98%)" width="40" height="55" rx="5" />
 			<rect
 				fill="none"
 				stroke="url(#deck-gradient-black)"
@@ -96,7 +96,7 @@ export default {
 					d="M 20 31 c -2.5 7.5 -15 7.5 -15 0 0 -7.5 10 -15 15 -17.5 5 0 15 10 15 17.5 0 7.5 -12.5 7.5 -15 0"
 				/>
 			</clipPath>
-			<rect fill="#fcfff6" width="40" height="55" rx="5" />
+			<rect fill="hsl(80, 100%, 98%)" width="40" height="55" rx="5" />
 			<rect
 				fill="none"
 				stroke="url(#deck-gradient-black)"
@@ -131,7 +131,7 @@ export default {
 					d="M 0 7 c 0 -7.5 7.5 -10 7.5 -15 a 7.5 7.5 0 0 0 -15 0 c 0 5 7.5 7.5 7.5 15"
 				/>
 			</clipPath>
-			<rect fill="#fcfff6" width="40" height="55" rx="5" />
+			<rect fill="hsl(80, 100%, 98%)" width="40" height="55" rx="5" />
 			<rect
 				fill="none"
 				stroke="url(#deck-gradient-black)"
@@ -154,13 +154,28 @@ export default {
 </svg>`,
 	'aspect-ratio': `<svg style="display: block" viewBox="0 0 2.7 1.7">
 	<g transform="translate(1.6 0.6)">
-		<rect fill="currentColor" width="1" height="1" />
+		<rect fill="hsl(182, 30%, 17%)" width="1" height="1" />
 		<use href="#deck-card-back" width="1" height="1" />
-		<g fill="none" stroke="currentColor" stroke-width="0.01">
-			<path d="M 0 -0.1 v -0.1 h 1 v 0.1" />
-			<path d="M -0.1 0 h -0.1 v 1 h 0.1" />
+		<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+			<g stroke="hsl(182, 30%, 17%)" stroke-width="0.04">
+				<path d="M 0.02 -0.1 v -0.05 h 0.96 v 0.05" />
+				<path d="M -0.1 0.02 h -0.05 v 0.96 h 0.05" />
+				</g>
+			<g stroke="hsl(80, 100%, 98%)" stroke-width="0.02">
+			<path d="M 0.02 -0.1 v -0.05 h 0.96 v 0.05" />
+			<path d="M -0.1 0.02 h -0.05 v 0.96 h 0.05" />
+			</g>
 		</g>
-		<g fill="currentColor" font-family="monospace" font-size="0.2">
+		<g 
+			fill="hsl(80, 100%, 98%)"
+			stroke="hsl(182, 30%, 17%)"
+			stroke-width="0.05"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			paint-order="stroke" 
+			font-family="monospace" 
+			font-size="0.2"
+		>
 			<text text-anchor="middle" x="0.5" y="-0.3">width="<tspan font-weight="700">1</tspan>"</text>
 			<text text-anchor="end" x="-0.3" y="0.6">height="<tspan font-weight="700">1</tspan>"</text>
 		</g>

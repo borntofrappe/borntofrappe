@@ -10,7 +10,16 @@
 <svg viewBox="0 0 2 1.5">
 	<g transform="translate(0 0.5)">
 		<g transform="translate(0.5 0)">
-			<g fill="currentColor" font-family="monospace" font-size="0.2">
+			<g
+				fill="hsl(80, 100%, 98%)"
+				stroke="hsl(182, 30%, 17%)"
+				stroke-width="0.05"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				paint-order="stroke"
+				font-family="monospace"
+				font-size="0.2"
+			>
 				<text {x} y="-0.2" text-anchor="middle">x="<tspan font-weight="700">{x}</tspan>"</text>
 			</g>
 		</g>
