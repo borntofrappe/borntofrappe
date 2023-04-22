@@ -41,13 +41,13 @@
 	div {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
+		gap: 0.5rem;
 		justify-content: center;
 	}
 
 	button {
 		text-transform: capitalize;
-		padding: 0.2rem 0.75rem;
+		padding: 0.2rem 0.5rem;
 		font-weight: 700;
 		color: hsl(182, 30%, 17%);
 		background: hsl(80, 100%, 98%);

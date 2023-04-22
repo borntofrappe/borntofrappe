@@ -8,28 +8,38 @@ date: 2023-04-21T17:30:30
     import Center from '$lib/components/blog/Center.svelte';
 	
 	import svg from './svg.js'
-	import Sprites from './Sprites.svelte'
+	import Cards from './Cards.svelte'
 	import Overlap from './Overlap.svelte'
+	import Animate from './Animate.svelte'
+	import Set from './Set.svelte'
 	import Deck from './Deck.svelte'
 </script>
 
-<Center maxInlineSize="20rem">
-	<Deck id="cards" cards={["diamond", "heart", "club", "flower"].reverse()} />
+<Center maxInlineSize="26rem">
+	<Deck id="cards" cards={["diamond", "heart", "club", "flower"]} />
 </Center>
 
-<Center maxInlineSize="32rem">
-	<Sprites />
+<Center maxInlineSize="26rem">
+	<Cards />
 </Center>
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="26rem">
 	{@html svg['aspect-ratio']}
 </Center>
 
-<Center maxInlineSize="32rem">
+<Center maxInlineSize="26rem">
 	<Overlap />
 </Center>
 
-<Center maxInlineSize="42rem">
+<Center maxInlineSize="26rem">
+	<Animate id="trigger" />
+</Center>
+
+<Center maxInlineSize="26rem">
+	<Set />
+</Center>
+
+<Center maxInlineSize="38rem">
 	<Deck id="deck" />
 </Center>
 
