@@ -1,7 +1,7 @@
 ---
 title: A deck of SVG features
 description: Gallop your way through a handful of SVG elements and SMIL animations.
-date: 2023-04-21T17:30:30
+date: 2023-04-22T10:25:37
 ---
 
 <script>
@@ -15,32 +15,290 @@ date: 2023-04-21T17:30:30
 	import Deck from './Deck.svelte'
 </script>
 
-<Center maxInlineSize="26rem">
-	<Deck id="cards" cards={["diamond", "heart", "club", "flower"]} />
+A recent obsession for a video game mixing solitaire and horse racing pushed me to practice writing SVG by hand to draw a few pictures. Five in total. I got so invested in the result that by the end of it, I couldn't help adding a touch of animation to the whole set.
+
+<Center maxInlineSize="32rem">
+	<Deck cards={["diamond", "heart", "club", "flower"]} />
 </Center>
 
-<Center maxInlineSize="26rem">
+## Cards
+
+Immediately, you have a card, the back of a card. A couple of nice borders, one dark, one bright, around a saturated, green background. On top of the solid fill, you have a stylish pattern.
+
+<!-- prettier-ignore -->
+```html
+<rect fill="hsl(122, 80%, 24%)"  /> 
+<rect fill="url(#pattern-card)"  />
+```
+
+The `<pattern>` element repeats the shape defined between the opening and closing tags. In this instance, a square tipped on its side.
+
+```html
+<pattern id="pattern-card" viewBox="0 0 2 2">
+	<path fill="hsl(131, 68%, 42%)" d="M 1 0 l 1 1 -1 1 -1 -1z" />
+</pattern>
+```
+
+With the `width` attribute the sequence is repeated twice horizontally. Through the `height` attribute, the same happens thrice in the opposite dimension.
+
+```html
+<pattern width="0.5" height="0.33" id="pattern-card" viewBox="0 0 2 2">
+	<!-- ... -->
+</pattern>
+```
+
+There's also a nice, subtle glow at the top of the rectangle. For this one you have a linear gradient, emulating a light source from above with two colors. Or rather one color, repeated with a different opacity.
+
+```html
+<linearGradient id="gradient-light" x1="0" x2="0" y1="0" y2="1">
+	<stop stop-color="hsl(80, 100%, 98%)" offset="0" />
+	<stop stop-opacity="0.5" stop-color="hsl(80, 100%, 98%)" offset="1" />
+</linearGradient>
+```
+
+The gradient is applied top to bottom with a third rectangle, following the first two so that the overlap brightens up the shapes below.
+
+```html
+<!-- ...rects -->
+<rect opacity="0.2" fill="url(#gradient-light)" />
+```
+
+The difference is small, but it's enough to make the pattern stand out. Even if you don't notice it at first.
+
+I've talked plenty about the single card, but as mentioned, there are four additional sprites. Four pictures for the four different seeds — diamond, heart, club and flower.
+
+I've designed all of them with `<symbol>` elements, so that all you need to see a specific card is a `<use>` element pointing to the asset by `id`.
+
+```html
+<!-- <symbol id="card-back"> -->
+<use href="#card-back" />
+```
+
+Change the `href` attribute and you find the complete set.
+
+<Center maxInlineSize="28rem">
 	<Cards />
 </Center>
 
-<Center element="figure" maxInlineSize="26rem">
+The five `<symbol>` elements share the same `viewBox`, the same aspect ratio.
+
+```html
+<symbol id="card-back" viewBox="0 0 40 55">
+	<!-- ... -->
+</symbol>
+```
+
+The numbers themselves are the result of trial and error, but regardless, as you include the sprite you can specify the dimensions through the `<use>` element.
+
+```html
+<use href="#card-back" width="1" height="1" />
+```
+
+SVG is nice enough to scale the picture down to avoid cropping. This means the card keeps the original structure, just in the center of the perfect, 1 by 1 square.
+
+<Center element="figure" maxInlineSize="28rem">
 	{@html svg['aspect-ratio']}
 </Center>
 
-<Center maxInlineSize="26rem">
+## Animate
+
+While I personally enjoy writing vector graphics piece by piece, I can see how dissecting the syntax might not be to everyone's taste. Hopefully, the animations baked in SVG are going to improve everybody's mood.
+
+There are many elements and attributes, but to ease in the syntax we are going to explore just a few of them. Furthermore, we are going to reset our progress, and restart from the top.
+
+Immediately, you have a card, the back of a card.
+
+```html
+<use href="#card-back" width="1" height="1" />
+```
+
+Actually, two of them.
+
+<!-- prettier-ignore -->
+```html
+<use href="#card-back" width="1" height="1" /> 
+<use href="#card-back" width="1" height="1" />
+```
+
+The elements cover the same space, but thanks to source order, you see only the second one.
+
+<Center maxInlineSize="32rem">
 	<Overlap />
 </Center>
 
-<Center maxInlineSize="26rem">
-	<Animate id="trigger" />
+The effect is rather intriguing, especially if you animate the change over time with the `<animate>` element.
+
+Open the `<use>` element and add an instance to change the `x` attribute.
+
+```html
+<use href="#card-back" width="1" height="1">
+	<animate attributeName="x" />
+</use>
+```
+
+To deal the cards one after the other, one next to the other, the process is rather intuitive:
+
+- move the second card 2 units to the left
+
+  ```html
+  <animate attributeName="x" to="2" dur="0.2s" />
+  ```
+
+- move the first card by 1 unit, with the same duration, but after a brief delay
+
+  ```html
+  <use href="#card-back" width="1" height="1">
+  	<animate begin="0.1s" attributeName="x" to="1" dur="0.2s" />
+  </use>
+  <!-- ...use -->
+  ```
+
+The change is cute, but happens immediately. Furthermore, the cards jump back to the initial position as soon as the animations end. To fix this last issue, add the `fill` attribute to freeze the sprites in their new spot.
+
+```html
+<animate fill="freeze" attributeName="x" to="2" dur="0.2s" />
+```
+
+For the first problem, we'd like to trigger the animation ourselves. And the `begin` attribute opens a way with a very specific value: `click`. Add the string to the second animation, with a most helpful `id` attribute.
+
+```html
+<animate begin="click" id="trigger" ... />
+```
+
+Animate the first card to follow.
+
+```html
+<animate begin="trigger.begin + 0.2s" ... />
+```
+
+And indeed, this is all that's necessary to deal a few cards. On click.
+
+<Center maxInlineSize="32rem">
+	<Animate />
 </Center>
 
-<Center maxInlineSize="26rem">
+You can repeat the process as many times as you want. Every time you add a new copy, before the existing ones, increase the delay. Every time, reduce the horizontal offset.
+
+```html
+<animate begin="trigger.begin + 0.6s" to="1" />
+<animate begin="trigger.begin + 0.4s" to="2" />
+<animate begin="trigger.begin + 0.2s" to="3" />
+```
+
+## Set
+
+In the heat of the moment, we forgot one thing. Or to be precise, four things. And remembering the different seeds, the `click` event is perfectly suited for a quick reveal.
+
+The idea is almost simple: on click, change the `href` attribute to refer to a seed.
+
+You can change the string with the `<animate>` element, but SVG offers a better way with the aptly named `<set>`. And thankfully, the element works in much the same way:
+
+- add an instance in the `<use>` element
+
+  ```html
+  <use href="#card-back">
+  	<set />
+  </use>
+  ```
+
+- instruct which attribute to change and to what value
+
+  ```html
+  <use href="#card-back">
+  	<set attributeName="href" to="#card-heart" />
+  </use>
+  ```
+
+- set the `begin` attribute to `click`
+
+  ```html
+  <set begin="click" attributeName="href" to="#card-heart" />
+  ```
+
+And that's it. Following the precise instruction the sprite will change. Once and for all.
+
+<Center maxInlineSize="32rem">
 	<Set />
 </Center>
 
+## Deck
+
+You can deal cards, you can also reveal them. Impressive considering how little code we actually need.
+
+And if you think combining the two would be equally impressive, you'll be delighted to know that you won't need much more. As a matter of fact you only need a change of perspective and one more thing. A card... the back of a card. To share in the irony, let's return to the animation, to the cards stacked one above the other.
+
+```html
+<use href="#card-back" width="1" height="1" />
+<use href="#card-back" width="1" height="1" />
+<use href="#card-back" width="1" height="1" />
+<use href="#card-back" width="1" height="1" />
+```
+
+We animate the entire set with the `<animate>` element, exactly like in [the previous section](#animate).
+
+The animations are relative to a trigger, with a smaller and smaller delay.
+
+```html
+<use href="#card-back" width="1" height="1">
+	<animate begin="trigger.begin + 0.6s" attributeName="x" to="1" dur="0.2s" />
+</use>
+```
+
+At this point we need a trigger, but nobody said that the topmost card should be this phantomatic starter. This card should move, with the trigger.
+
+```html
+<!-- ... -->
+<use href="#card-back" width="1" height="1">
+	<animate begin="trigger.begin" attributeName="x" to="4" dur="0.2s" />
+</use>
+```
+
+Of course we do need an element with the specific `id`. We need an additional, one-time sprite.
+
+```html
+<!-- cards -->
+<use href="#card-back" width="1" height="1" />
+```
+
+At the top of the deck, the card has a single purpose, to start the sequence. This is where we set our trigger with a `<set>` element, the precious `id` and the specific click event.
+
+```html
+<use href="#card-back" width="1" height="1">
+	<set id="trigger" begin="click" />
+</use>
+```
+
+Press the card, and the animation begins. Press the card, however, and the trigger remains visible. Luckily, you now have an element to alter the attributes of the excessive sprite. And among the possible attributes, `display` is primed to remove the picture from sight.
+
+```html
+<set id="trigger" begin="click" attributeName="display" to="none" />
+```
+
+It may seem like a roundabout way to reach the same conclusion — the cards move in the same, precise way. What we gained, however, is the ability to change the `href` attribute. _For all cards_. _On click_.
+
+Past the animation, achieved with the `<animate>` element.
+
+```html
+<use href="#card-back" width="1" height="1">
+	<animate begin="trigger.begin" attributeName="x" to="4" dur="0.2s" />
+</use>
+```
+
+Add the change described by the `<set>` element.
+
+```html
+<use href="#card-back" width="1" height="1">
+	<animate begin="trigger.begin" attributeName="x" to="4" dur="0.2s" />
+	<set begin="click" attributeName="href" to="#card-flower" />
+</use>
+```
+
+Thanks to source order, there's only one way to reveal the seeds, and that is to remove the trigger, to deal the cards first.
+
+So let me shuffle the deck and prompt you for likely the very last time: care to play?
+
 <Center maxInlineSize="38rem">
-	<Deck id="deck" />
+	<Deck  />
 </Center>
 
 {@html svg['defs']}

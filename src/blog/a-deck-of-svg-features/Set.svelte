@@ -50,6 +50,7 @@
 	aria-label="Press 'Enter' to reveal a few cards."
 	on:keydown={handleKeydown}
 >
+	<set />
 	<g class="deck">
 		{#each deck as { x, seed }}
 			<use style="cursor: pointer" {x} href="#deck-card-back" width="1" height="1">

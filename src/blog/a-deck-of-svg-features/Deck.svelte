@@ -63,6 +63,7 @@
 	aria-label="Press 'Enter' to deal a few cards with SMIL animation."
 	on:keydown={handleKeydown}
 >
+	<set />
 	<g class="deck">
 		{#each deck as { x, begin, id, seed }}
 			<use style="cursor: pointer" href="#deck-card-back" width="1" height="1">
