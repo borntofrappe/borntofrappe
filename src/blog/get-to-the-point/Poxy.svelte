@@ -43,7 +43,7 @@
 <svg bind:this={svg} viewBox="0 0 1 1" on:pointermove|preventDefault={handleMove}>
 	<defs>
 		<marker
-			id="marker-poxy"
+			id="marker-ladybug"
 			viewBox="-50 -50 100 100"
 			markerUnits="userSpaceOnUse"
 			markerWidth="1"
@@ -80,9 +80,15 @@
 			</g>
 		</marker>
 	</defs>
-	<g fill="none" stroke="none">
-		<path marker-start="url(#marker-poxy)" d="M 0.5 0.5 {$position.x} {$position.y}" />
-	</g>
+
+	<line
+		stroke="none"
+		marker-start="url(#marker-ladybug)"
+		x1="0.5"
+		y1="0.5"
+		x2={$position.x}
+		y2={$position.y}
+	/>
 </svg>
 
 <style>

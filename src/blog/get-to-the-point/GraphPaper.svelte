@@ -36,21 +36,15 @@
 
 		<marker
 			id="graph-paper-marker"
-			viewBox="-0.05 -0.05 0.7 1.1"
+			orient="auto"
+			viewBox="0 0 0.6 1"
 			refX="0.5"
 			refY="0.5"
-			markerWidth="8"
-			markerHeight="8"
-			orient="auto"
+			markerWidth="12"
+			markerHeight="12"
 		>
-			<g
-				fill="currentColor"
-				stroke="currentColor"
-				stroke-width="0.1"
-				stroke-linecap="square"
-				stroke-linejoin="square"
-			>
-				<path d="M 0 0 l 0.6 0.5 -0.6 0.5 0.4 -0.5z" />
+			<g fill="currentColor">
+				<path d="M 0 0 l 0.6 0.5 -0.6 0.5 0.35 -0.5z" />
 			</g>
 		</marker>
 	</defs>
@@ -62,12 +56,20 @@
 			<path d="M 0.5 0 v 1" />
 			<path d="M 0 0.5 h 1" />
 		</g>
-		<g stroke-width="0.0075" marker-end="url(#graph-paper-marker)">
-			<path d="M 0.5 0.5 {x} {y}" />
-		</g>
 	</g>
+
+	<line
+		stroke="currentColor"
+		stroke-width="0.0075"
+		marker-end="url(#graph-paper-marker)"
+		x1="0.5"
+		y1="0.5"
+		x2={x}
+		y2={y}
+	/>
+
 	<g fill="currentColor">
-		<circle cx="0.5" cy="0.5" r="0.0125" />
+		<circle cx="0.5" cy="0.5" r="0.01" />
 	</g>
 </svg>
 
