@@ -1,5 +1,0 @@
----
-title: On point
-description: Explore enough JavaScript to simplify event handlers, find a few spots and a new angle.
-date: 2032-04-24T11:36:46
----

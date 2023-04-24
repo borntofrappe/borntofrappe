@@ -1,0 +1,53 @@
+---
+title: Get to the point
+description: Explore enough JavaScript to simplify event handlers, find a few spots and a new angle.
+date: 2032-04-24T11:36:46
+---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+    import svg from './svg.js'
+
+	import PointerMove from './PointerMove.svelte'
+	import GraphPaper from './GraphPaper.svelte'
+	import Poxy from './Poxy.svelte'
+</script>
+
+In [a fresh tutorial](https://learn.svelte.dev/tutorial/dom-events) on Svelte and SvelteKit the section devoted to events introduces a rather intriguing handler.
+
+```svelte
+<div on:pointermove={handleMove}>
+	The pointer is at {m.x} x {m.y}
+</div>
+```
+
+The mention is enticing, particularly considering how I tried to retrieve the coordinates in past projects with mouse and touch events.
+
+<!-- prettier-ignore -->
+```svelte
+<svg 
+	on:mousemove={handleMouseMove} 
+	on:touchmove={handleTouchMove}
+>
+	<!-- -->
+</svg>
+```
+
+The API promises to simplify the process with a unified set of x, y values for a pointer, be it a mouse, a stylus or the tip of a slender finger.
+
+<Center maxInlineSize="28rem">
+	<PointerMove />
+</Center>
+
+<Center maxInlineSize="28rem">
+	<GraphPaper />
+</Center>
+
+<Center maxInlineSize="28rem">
+	{@html svg['poxy']}
+</Center>
+
+<Center maxInlineSize="36rem">
+	<Poxy />
+</Center>
