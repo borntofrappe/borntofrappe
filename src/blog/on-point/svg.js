@@ -1,5 +1,5 @@
 export default {
-	coxy: `<svg style="display: block;" viewBox="-50 -50 100 100">
+	poxy: `<svg style="display: block;" viewBox="-50 -50 100 100">
 	<g transform="translate(0 -20)">
 		<g fill="none" stroke="hsl(37, 12%, 22%)" stroke-width="1.5">
 			<path d="M 0 0 l 12 -14" />
