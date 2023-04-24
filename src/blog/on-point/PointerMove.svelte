@@ -1,14 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
-	import { spring } from 'svelte/motion';
 
 	let svg = null;
 	let w, h;
 
-	const position = spring({
-		x: 0,
-		y: 0
-	});
+	let x = 0.1;
+	let y = 0.1;
 
 	onMount(() => {
 		handleSize();
@@ -22,28 +19,32 @@
 
 	const handleMove = (e) => {
 		const { offsetX, offsetY } = e;
-		const x = offsetX / w;
-		const y = offsetY / h;
-
-		position.set({
-			x,
-			y
-		});
+		x = offsetX / w;
+		y = offsetY / h;
 	};
 </script>
 
 <svelte:window on:resize={handleSize} />
 
 <svg bind:this={svg} viewBox="0 0 1 1" on:pointermove|preventDefault={handleMove}>
+	<defs>
+		<pattern id="pointer-move-pattern" viewBox="0 0 1 1" width="0.05" height="0.05">
+			<g fill="none" stroke="currentColor" stroke-width="0.0025">
+				<rect width="1" height="1" />
+			</g>
+		</pattern>
+	</defs>
+
+	<rect fill="url(#pointer-move-pattern)" width="1" height="1" />
+
 	<g fill="currentColor">
-		<g transform="translate({$position.x} {$position.y})">
-			<circle r="0.05" />
-		</g>
+		<circle cx={x} cy={y} r="0.025" />
 	</g>
 </svg>
 
 <style>
 	svg {
 		display: block;
+		outline: 1px solid currentColor;
 	}
 </style>
