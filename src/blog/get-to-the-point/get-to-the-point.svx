@@ -183,14 +183,14 @@ For this fitting hat you have a `<marker>` element with a specific `id` and `ori
 
 ```html
 <marker id="marker" orient="auto">
-	<!-- arrow -->
+	<!-- ... -->
 </marker>
 ```
 
 The arrow itself is a `<path>` element, drawing a segment facing the right.
 
 ```html
-<path d="M 0 0 l 0.6 0.5 -0.6 0.5 0.4 -0.5z" />
+<path d="M 0 0 l 0.6 0.5 -0.6 0.5 0.35 -0.5z" />
 ```
 
 Once you figure out the appropriate values for the marker's position and size — there's a plethora of attributes to discover — include the visual through the `marker-end` attribute.
@@ -211,7 +211,7 @@ And the task was to have the creature follow the cursor. We resolved to find the
 
 ```svelte
 <g transform="rotate({$angle})">
-	<!--  -->
+	<!-- ... -->
 </g>
 ```
 
@@ -229,9 +229,9 @@ Step 1: take the drawing of the ladybug.
 
 Step 2: turn the `<svg>` into a `<marker>` element.
 
-```svg
-<marker id="marker-ladybug" orient="auto"  viewBox="-50 -50 100 100">
-<!-- ... -->
+```html
+<marker id="marker-ladybug" orient="auto" viewBox="-50 -50 100 100">
+	<!-- ... -->
 </marker>
 ```
 
