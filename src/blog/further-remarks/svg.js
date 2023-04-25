@@ -95,6 +95,24 @@ export default {
 		<path marker-end="url(#kites-marker-kite-2)" d="M 0 -60 q 4 -5 10 -5 t 10 -5 10 -5 15 -7.5" />
 	</g>
 </svg>`,
+	'marker-hiccup': `<svg viewBox="0 0 12 7.5">
+	<defs>
+		<marker id="marker-hiccup-marker-mid" viewBox="0 0 2 2">
+			<circle fill="hsl(0, 0%, 28%)" cx="1" cy="1" r="1" />
+		</marker>
+	</defs>
+	<rect fill="hsl(0, 0%, 98%)" width="12" height="7.5" rx="0.4" />
+	<g transform="translate(1 1.25)">
+		<g fill="none" stroke="hsl(0, 0%, 28%)">
+			<line stroke-width="0.075" x1="0" y1="5" x2="10" y2="5" />
+			<polyline
+				marker-mid="url(#marker-hiccup-marker-mid)"
+				stroke-width="0.1"
+				points="0 4 1 3 2 3 3 1 4 4 5 3 6 3 7 2 8 0 9 1 10 1"
+			/>
+		</g>
+	</g>
+</svg>`,
 	'line-marker': `<svg viewBox="0 0 12 7.5">
 	<defs>
 		<marker id="line-marker-marker-mid" viewBox="0 0 2 2" refX="1" refY="1">
