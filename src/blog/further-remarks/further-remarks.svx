@@ -1,0 +1,5 @@
+---
+title: Further remarks
+description: Consider the many attributes of a single SVG element.
+date: 2023-04-26T18:45:32
+---
