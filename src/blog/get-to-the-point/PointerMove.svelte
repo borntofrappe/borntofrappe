@@ -26,7 +26,7 @@
 
 <svelte:window on:resize={handleSize} />
 
-<svg bind:this={svg} viewBox="0 0 1 1" on:pointermove|preventDefault={handleMove}>
+<svg bind:this={svg} viewBox="0 0 1 1" on:pointermove={handleMove} on:touchmove|preventDefault>
 	<g fill="currentColor">
 		<circle cx={x} cy={y} r="0.025" />
 	</g>

@@ -26,7 +26,7 @@
 
 <svelte:window on:resize={handleSize} />
 
-<svg bind:this={svg} viewBox="0 0 1 1" on:pointermove|preventDefault={handleMove}>
+<svg bind:this={svg} viewBox="0 0 1 1" on:pointermove={handleMove} on:touchmove|preventDefault>
 	<defs>
 		<pattern id="graph-paper-pattern" viewBox="0 0 1 1" width="0.05" height="0.05">
 			<g fill="none" stroke="currentColor" stroke-width="0.0025">
