@@ -3,3 +3,21 @@ title: Further remarks
 description: Consider the many attributes of a single SVG element.
 date: 2023-04-26T18:45:32
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+    import svg from './svg.js'
+</script>
+
+{@html svg['kites']}
+
+{@html svg['line-marker-issue']}
+
+{@html svg['line-marker']}
+
+{@html svg['line-markers']}
+
+{@html svg['marker-start']}
+
+{@html svg['marker-end']}
