@@ -133,6 +133,10 @@
 	font-size: var(--step-size-900);
 }
 
+.text-align\:center {
+	text-align: center;
+}
+
 .--space\:wide,
 .--space\:wide + * {
 	--space: var(--step-space-400);
