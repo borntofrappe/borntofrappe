@@ -1,7 +1,7 @@
 ---
 title: Get to the point
 description: Explore enough JavaScript to simplify event handlers, find a few spots and a new angle.
-date: 2032-04-24T17:45:32
+date: 2023-04-24T17:45:32
 ---
 
 <script>
