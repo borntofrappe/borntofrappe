@@ -1,0 +1,5 @@
+---
+title: Hiding in plain sight
+description: A small matter of transparency in SVG.
+date: 2023-04-28T19:23:12
+---
