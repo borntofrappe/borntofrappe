@@ -1,0 +1,5 @@
+---
+title: Marking progress
+description: Take a moment to appreciate the many attributes of a single SVG element.
+date: 2023-04-27T11:45:32
+---
