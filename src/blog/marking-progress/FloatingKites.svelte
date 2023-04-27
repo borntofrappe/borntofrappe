@@ -6,7 +6,7 @@
 		>
 		<defs>
 			<marker
-				id="kites-marker-ribbon"
+				id="marker-ribbon"
 				viewBox="0 0 3 6"
 				orient="auto"
 				refX="1.5"
@@ -23,7 +23,7 @@
 			</marker>
 
 			<marker
-				id="kites-marker-kite-0"
+				id="marker-kite-0"
 				viewBox="0 -0.2 37.5 50.4"
 				orient="auto"
 				refX="18.75"
@@ -49,7 +49,7 @@
 				</g>
 			</marker>
 			<marker
-				id="kites-marker-kite-1"
+				id="marker-kite-1"
 				viewBox="0 0 60 50"
 				orient="auto"
 				refX="30"
@@ -71,7 +71,7 @@
 				</g>
 			</marker>
 			<marker
-				id="kites-marker-kite-2"
+				id="marker-kite-2"
 				viewBox="0 0 36 64"
 				orient="auto"
 				refX="18"
@@ -103,13 +103,22 @@
 				</g>
 			</marker>
 		</defs>
-		<g marker-mid="url(#kites-marker-ribbon)" fill="none" stroke="currentColor" stroke-width="0.5">
-			<path marker-end="url(#kites-marker-kite-2)" d="M 0 0 q 4 -7 10 -5 t 10 -5 10 -5 20 -2.5" />
+		<g fill="none" stroke="currentColor" stroke-width="0.5">
 			<path
-				marker-end="url(#kites-marker-kite-1)"
+				marker-mid="url(#marker-ribbon)"
+				marker-end="url(#marker-kite-2)"
+				d="M 0 0 q 4 -7 10 -5 t 10 -5 10 -5 20 -2.5"
+			/>
+			<path
+				marker-mid="url(#marker-ribbon)"
+				marker-end="url(#marker-kite-1)"
 				d="M 0 -25 q 4 -6 10 -5 t 10 -5 10 -5 10 -5 10 -5 17.5 -5"
 			/>
-			<path marker-end="url(#kites-marker-kite-0)" d="M 0 -50 q 4 -5 10 -5 t 10 -5 15 -7.5" />
+			<path
+				marker-mid="url(#marker-ribbon)"
+				marker-end="url(#marker-kite-0)"
+				d="M 0 -50 q 4 -5 10 -5 t 10 -5 15 -7.5"
+			/>
 		</g>
 	</svg>
 

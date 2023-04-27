@@ -5,7 +5,7 @@ export default {
 			<circle fill="hsl(0, 0%, 28%)" cx="1" cy="1" r="1" />
 		</marker>
 	</defs>
-	<rect fill="hsl(0, 0%, 98%)" width="12" height="7.5" rx="0.4" />
+	<rect fill="hsl(0, 0%, 99%)" width="12" height="7.5" rx="0.4" />
 	<g transform="translate(1 1.25)">
 		<g fill="none" stroke="hsl(0, 0%, 28%)">
 			<line stroke-width="0.075" x1="0" y1="5" x2="10" y2="5" />
@@ -23,7 +23,7 @@ export default {
 			<circle fill="hsl(0, 0%, 28%)" cx="1" cy="1" r="1" />
 		</marker>
 	</defs>
-	<rect fill="hsl(0, 0%, 98%)" width="12" height="7.5" rx="0.4" />
+	<rect fill="hsl(0, 0%, 99%)" width="12" height="7.5" rx="0.4" />
 	<g transform="translate(1 1.25)">
 		<g fill="none" stroke="hsl(0, 0%, 28%)">
 			<line stroke-width="0.075" x1="0" y1="5" x2="10" y2="5" />
@@ -82,11 +82,11 @@ export default {
 			</g>
 		</marker>
 		<linearGradient id="gradient-shadow" x1="0" x2="0" y1="0" y2="1">
-			<stop stop-color="hsl(0, 0%, 90%)" offset="0.2" />
-			<stop stop-color="hsl(0, 0%, 98%)" offset="1" />
+			<stop stop-color="hsl(0, 0%, 72%)" stop-opacity="0.3" offset="0" />
+			<stop stop-color="hsl(0, 0%, 72%)" stop-opacity="0" offset="1" />
 		</linearGradient>
 	</defs>
-	<rect fill="hsl(0, 0%, 98%)" width="12" height="7.5" rx="0.4" />
+	<rect fill="hsl(0, 0%, 99%)" width="12" height="7.5" rx="0.4" />
 	<g transform="translate(1 1.25)">
 		<path
 			fill="url(#gradient-shadow)"
@@ -115,22 +115,6 @@ export default {
 			stroke-linejoin="round"
 			d="M -0.2 -0.375 l 0.55 0.375 -0.55 0.375z"
 		/>
-	</g>
-</svg>`,
-	'marker-end': `<svg style="display: block;" viewBox="0 0 3 3">
-	<defs>
-		<pattern id="marker-end-pattern-flag" x="0.125" viewBox="0 0 2 2" width="0.5" height="0.5">
-			<rect fill="hsl(0, 0%, 72%)" width="2" height="2" />
-			<g fill="hsl(0, 0%, 42%)">
-				<rect width="1" height="1" />
-				<rect x="1" y="1" width="1" height="1" />
-			</g>
-		</pattern>
-	</defs>
-	<g transform="translate(1.5 1)">
-		<line stroke="hsl(0, 0%, 28%)" stroke-width="0.1" x1="0" y1="0" x2="0" y2="2" />
-		<circle r="1" fill="hsl(0, 0%, 28%)" />
-		<circle r="0.75" fill="url(#marker-end-pattern-flag)" />
 	</g>
 </svg>`
 };
