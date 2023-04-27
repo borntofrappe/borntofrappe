@@ -81,7 +81,7 @@ export default {
 				<circle fill="url(#markers-pattern-flag)" r="0.75" />
 			</g>
 		</marker>
-		<linearGradient id="gradient-shadow" x1="0" x2="0" y1="0" y2="1">
+		<linearGradient id="markers-gradient" x1="0" x2="0" y1="0" y2="1">
 			<stop stop-color="hsl(0, 0%, 72%)" stop-opacity="0.3" offset="0" />
 			<stop stop-color="hsl(0, 0%, 72%)" stop-opacity="0" offset="1" />
 		</linearGradient>
@@ -89,7 +89,7 @@ export default {
 	<rect fill="hsl(0, 0%, 99%)" width="12" height="7.5" rx="0.4" />
 	<g transform="translate(1 1.25)">
 		<path
-			fill="url(#gradient-shadow)"
+			fill="url(#markers-gradient)"
 			d="M 0 4 1 3 2 3 3 1 4 4 5 3 6 3 7 2 8 0 9 1 10 1 10 5 0 5"
 		/>
 		<g fill="none" stroke="hsl(0, 0%, 28%)">
