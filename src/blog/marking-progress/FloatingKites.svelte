@@ -113,24 +113,11 @@
 		</g>
 	</svg>
 
-	<p>
-		It is often easy to get carried away as you write code, as you have a solution to a vexing
-		problem and cannot wait to share your findings.
-	</p>
-
-	<p>
-		It is often easy to get carried away as you write code, as you have a solution to a vexing
-		problem and cannot wait to share your findings.
-	</p>
-
-	<p>
-		It is often easy to get carried away as you write code, as you have a solution to a vexing
-		problem and cannot wait to share your findings.
-	</p>
+	<slot />
 </div>
 
 <style>
-	div > * + * {
+	div > :global(* + *) {
 		margin-block-start: 0.5rem;
 	}
 

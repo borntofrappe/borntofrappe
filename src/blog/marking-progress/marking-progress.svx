@@ -7,11 +7,26 @@ date: 2023-04-27T11:45:32
 <script>
     import Center from '$lib/components/blog/Center.svelte';
 	
-	import Intro from './Intro.svelte'
+	import FloatingKites from './FloatingKites.svelte'
     import svg from './svg.js'
 </script>
 
-<Intro />
+<FloatingKites>
+    <p>
+        It is often easy to get carried away as you write code, as you have a solution to a vexing
+        problem and cannot wait to share your findings.
+	</p>
+	
+	<p>
+        It is often easy to get carried away as you write code, as you have a solution to a vexing
+        problem and cannot wait to share your findings.
+	</p>
+	
+	<p>
+        It is often easy to get carried away as you write code, as you have a solution to a vexing
+        problem and cannot wait to share your findings.
+	</p>
+</FloatingKites>
 
 <Center element="figure" maxInlineSize="36rem">
     {@html svg['marker-issue']}
