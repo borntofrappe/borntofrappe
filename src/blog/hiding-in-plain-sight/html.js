@@ -1,9 +1,54 @@
 export default {
+	transparent: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	<defs>
+		<linearGradient id="transparent-gradient-light">
+			<stop stop-color="white" offset="0" />
+			<stop stop-color="transparent" offset="1" />
+		</linearGradient>
+	</defs>
+	<rect fill="gold" width="1" height="1" />
+	<rect fill="url(#transparent-gradient-light)" width="1" height="1" />
+</svg>`,
+	'transparent-css': `<div
+	style="
+		display: block;
+        max-inline-size: 18rem;
+		margin-inline: auto;
+		inline-size: 100%;
+		block-size: 18rem;
+		background: gold;
+		background-image: linear-gradient(hsl(0 0% 100% / 100%),hsl(0 0% 100% / 0%));
+		background-image: linear-gradient(white, transparent);
+    "
+/>`,
+	mask: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	<defs>
+		<linearGradient id="mask-gradient-light">
+			<stop stop-color="white" offset="0" />
+			<stop stop-color="black" offset="1" />
+		</linearGradient>
+		<mask id="mask-mask-light">
+			<rect width="1" height="1" fill="url(#mask-gradient-light)" />
+		</mask>
+	</defs>
+	<rect fill="gold" width="1" height="1" />
+	<rect fill="white" mask="url(#mask-mask-light)" width="1" height="1" />
+</svg>`,
+	'stop-opacity': `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	<defs>
+		<linearGradient id="stop-opacity-gradient-light">
+			<stop stop-color="white" offset="0" />
+			<stop stop-color="white" stop-opacity="0" offset="1" />
+		</linearGradient>
+	</defs>
+	<rect fill="gold" width="1" height="1" />
+	<rect fill="url(#stop-opacity-gradient-light)" width="1" height="1" />
+</svg>`,
 	lighthouse: `<svg role="img" style="display: block;" viewBox="0 0 80 50">
 	<title>An illuminating lighthouse</title>
 	<defs>
 		<radialGradient id="lighthouse-gradient-light">
-			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0.5" offset="0" />
+			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0.55" offset="0" />
 			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0" offset="1" />
 		</radialGradient>
 
