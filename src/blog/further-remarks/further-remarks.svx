@@ -1,7 +1,7 @@
 ---
 title: Further remarks
 description: Focus on a single element to make justice to its many attributes and a most practical use case.
-date: 2023-04-28T18:40:32
+date: 2023-04-28T21:37:21
 ---
 
 <script>
@@ -23,7 +23,7 @@ date: 2023-04-28T18:40:32
     </p>
 
     <p>
-        In the article you find an introduction to the element and a rather creative application. Unfortunately, you also find a careless note, leaving most attributes unattended.
+        In the article you find an introduction to the element and a rather creative application. Unfortunately, you also find a vague note, leaving most attributes unattended.
     </p>
 
     <blockquote>
@@ -32,7 +32,7 @@ date: 2023-04-28T18:40:32
 
 
     <p>
-        There are indeed many attributes, some even useful only in the context of the <code>&lt;marker&gt;</code> element. And to make justice to them, let's consider a practical scenario. Let's consider a humble, effective line chart.
+        There are indeed many attributes, some even useful only in the context of the <code>&lt;marker&gt;</code> element. And to make justice to them, let's consider a practical scenario. Let's consider a humble, but effective, line chart.
     </p>
 
 </FloatingKites>
@@ -77,7 +77,7 @@ You can draw additional elements on top of the line. With `<circle>`s, for insta
 <!-- ... -->
 ```
 
-The manual approach certainly works, but the marker promises to simplify the task with a concise alternative.
+The manual approach certainly works, but the marker promises to simplify the task with a solid alternative.
 
 ## Marker
 
@@ -107,7 +107,7 @@ Included in the SVG document, the element doesn't lead to a visual.
 </svg>
 ```
 
-It is only as you add a unique key in the `id` attirbute.
+It is only as you add a unique key in the `id` attribute.
 
 ```html
 <marker id="marker-circle" viewBox="0 0 2 2">
@@ -133,7 +133,7 @@ There are a total of three marker-related attributes, and we'll get a chance to 
 
 There's only one issue with the current setup, and to understand the problem, focus on a single joint.
 
-<Center element="figure" maxInlineSize="20rem">
+<Center element="figure" maxInlineSize="22rem">
     {@html svg['marker-canvas']}
 </Center>
 
@@ -188,13 +188,13 @@ On top of the circle, we can continue with an arrow, clearly pointing to the rig
 />
 ```
 
-Working with a separate SVG you can test the visual as you code along. Tweak the numbers for the `d` attribute until the arrow looks centered; add a stroke to possibly round the edges.
+Working with a separate SVG you can test the visual as you code along. Tweak the numbers for the `d` attribute until the arrow looks centered; add a stroke to possibly round the edges. The possibilities at this juncture are close to endless, but for the sake of the line chart, it pays to be cautious.
 
 <Center element="figure" maxInlineSize="10rem">
     {@html svg['marker-start']}
 </Center>
 
-The possibilities at this juncture are close to endless, but for the sake of the line chart, it pays to be cautious. Remember, the vector is useful as a marker, as part of a greater whole, and should not overwhelm the larger visualization. You may change the size of the graphic, and we'll see how, but the element is also supposed to be quite small.
+Ultimately, the vector is useful as a marker, as part of a greater whole, and should not overwhelm the larger visualization. You may change the size of the graphic, and we'll see how, but the element is also supposed to be quite small.
 
 Once you are satisfied with the result, you just need a change in name. You no longer have an `<svg>`, but a `<marker>`.
 
@@ -206,7 +206,7 @@ Once you are satisfied with the result, you just need a change in name. You no l
 +</marker>
 ```
 
-Add the necessary id, the offsets to center the custom shape and you are set.
+Add the necessary `id`, the offsets to center the piece and you are set.
 
 ```html
 <marker id="marker-start" viewBox="0 0 2 2" refX="1" refY="1">
@@ -224,9 +224,7 @@ You are able to point to the marker and customize the start.
 />
 ```
 
-The marker is similar to one for the mid-points, but detailed enough to be different. And to remark the difference, two additional attributes help to change the size.
-
-Perhaps reasonably, the size of a marker is relative to the width of the stroke. The width and the height are set to be 3 times this value, but `markerWidth` and `markerHeight` allow to change this default.
+The marker is similar to the one for the mid-points, but detailed enough to be different. And to stress the difference, two additional attributes help to change the size: `markerWidth` and `markerHeight`.
 
 <!-- prettier-ignore -->
 ```html
@@ -242,30 +240,23 @@ Perhaps reasonably, the size of a marker is relative to the width of the stroke.
 </marker>
 ```
 
-Repeat the process for the end of the line.
+Quite reasonably, the attributes are relative to the width of the stroke, and start with a measure 3 times this value. Twice as much is enough to have the marker stand out.
 
-```html
-<polyline
-	marker-mid="url(#marker-circle)"
-	marker-start="url(#marker-start)"
-	marker-end="url(#marker-end)"
-	points="0 4, 1 3, 2 3, 3 1, 4 4, 5 3, 6 3, 7 2, 8 0, 9 1, 10 1"
-/>
-```
+And it doesn't take much to stand out with these small touches. Repeat the process for the end of the line and the `marker-end` attribute — I went ahead and attempted a stylish pattern, and the chart is not only effective, but ready for prime time and the next big cycling competition. Or a more personal hiking trip.
 
 <Center element="figure" maxInlineSize="36rem">
     {@html svg['markers']}
 </Center>
 
-And this speaks further to the usefulness of the element, to the flexibility afforded by the syntax. There are functional use cases, line charts.
+And this speaks further to the usefulness of the element, to the flexibility afforded by the syntax.
 
-And to prove the concept even more, I welcome you to update the line with a new set of points. The markers will be sure to stick to landing.
+Here you find a practical use case, a respectable, functional line chart. And to prove the concept even more, I welcome you to update the line with a new set of points. The markers will be sure to follow.
 
 <Center element="figure" maxInlineSize="36rem">
     <LineChart />
 </Center>
 
-And of course there are creative applications, like the cited article and the radiant critter. And if you need more proof, at the risk of spoiling too much, you need to look no further than the top of this very page. Behind the set of floating kites, you find only three `<path>` elements. Three elements with with a corful ribbon marking the points and an ornate visual marking the end.
+And of course there are unusual applications, like the radiant creature in [the cited article](/get-to-the-point). And if you need more proof, at the risk of spoiling too much, you need to look no further than [the top of this very page](#content). Behind the set of floating kites, you find only three `<path>` elements. Three elements with a colorful ribbon marking the points and ornate visuals marking the end.
 
 ```html
 <path
