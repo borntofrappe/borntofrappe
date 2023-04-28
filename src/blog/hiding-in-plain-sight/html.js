@@ -6,21 +6,25 @@ export default {
 			<stop stop-color="transparent" offset="1" />
 		</linearGradient>
 	</defs>
-	<rect fill="gold" width="1" height="1" />
+	<rect fill="goldenrod" width="1" height="1" />
 	<rect fill="url(#transparent-gradient-light)" width="1" height="1" />
 </svg>`,
 	'transparent-css': `<div
 	style="
 		display: block;
         max-inline-size: 18rem;
-		margin-inline: auto;
+        margin-inline: auto;
 		inline-size: 100%;
-		block-size: 18rem;
-		background: gold;
-		background-image: linear-gradient(hsl(0 0% 100% / 100%),hsl(0 0% 100% / 0%));
+		background: goldenrod;
 		background-image: linear-gradient(white, transparent);
+        "
+>
+	<div
+		style="
+		padding-block-end: 100%;
     "
-/>`,
+	/></div>
+</div>`,
 	mask: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
 	<defs>
 		<linearGradient id="mask-gradient-light">
@@ -31,7 +35,7 @@ export default {
 			<rect width="1" height="1" fill="url(#mask-gradient-light)" />
 		</mask>
 	</defs>
-	<rect fill="gold" width="1" height="1" />
+	<rect fill="goldenrod" width="1" height="1" />
 	<rect fill="white" mask="url(#mask-mask-light)" width="1" height="1" />
 </svg>`,
 	'stop-opacity': `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
@@ -41,14 +45,14 @@ export default {
 			<stop stop-color="white" stop-opacity="0" offset="1" />
 		</linearGradient>
 	</defs>
-	<rect fill="gold" width="1" height="1" />
+	<rect fill="goldenrod" width="1" height="1" />
 	<rect fill="url(#stop-opacity-gradient-light)" width="1" height="1" />
 </svg>`,
-	lighthouse: `<svg role="img" style="display: block;" viewBox="0 0 80 50">
+	lighthouse: `<svg role="img" style="display: block;" viewBox="-4 -4 88 58">
 	<title>An illuminating lighthouse</title>
 	<defs>
 		<radialGradient id="lighthouse-gradient-light">
-			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0.55" offset="0" />
+			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0.65" offset="0" />
 			<stop stop-color="hsl(52, 88%, 72%)" stop-opacity="0" offset="1" />
 		</radialGradient>
 
@@ -59,7 +63,7 @@ export default {
 					attributeName="r"
 					values="75; 50; 75"
 					begin="60s"
-					dur="60s"
+					dur="120s"
 					calcMode="spline"
 					keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
 					repeatCount="indefinite"
@@ -104,8 +108,28 @@ export default {
 
 	<path
 		fill="hsl(195, 17%, 23%)"
-		d="M 71.5 38 l 20 0 c 3 0 2 -2.75 0 -3 q -3 -1 -6 0 t -6 0 -6 0 t -6 0 t -6 0 c -2 0.25 -3 3 0 3"
+		d="M 60 38 l 20 0 l 0 -3 q -3 -1 -6 0 t -6 0 -6 0 c -2 0.25 -3 3 0 3"
 	/>
+
+	<g transform="translate(20 45)">
+		<g transform="translate(80 0)">
+			<animateTransform
+				attributeName="transform"
+				type="translate"
+				values="80 0; -80 0"
+				begin="60s"
+				dur="120s"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;"
+				repeatCount="indefinite"
+			/>
+			<rect fill="hsl(187, 19%, 27%)" y="1" width="8" height="1" rx="0.75" />
+			<path fill="#54220b" d="M 0 0 q 0.5 1.5 1.5 1.5 l 5 0 q 1 0 1.5 -1.5" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -7 q 2 1 3 5 l -3 2" />
+		</g>
+	</g>
 
 	<circle
 		mask="url(#lighthouse-mask-light)"
@@ -114,5 +138,13 @@ export default {
 		cy="12.5"
 		r="75"
 	/>
+
+	<g fill="none">
+		<rect stroke="hsl(19, 77%, 19%)" stroke-width="4" x="-2" y="-2" width="84" height="54" />
+		<g stroke="hsl(18, 76%, 15%)">
+			<rect stroke-width="0.5" x="0" y="0" width="80" height="50" />
+			<rect stroke-width="0.75" x="-3.5" y="-3.5" width="87" height="57" />
+		</g>
+	</g>
 </svg>`
 };
