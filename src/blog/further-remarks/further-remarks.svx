@@ -1,0 +1,276 @@
+---
+title: Further remarks
+description: Focus on a single element to make justice to its many attributes and a most practical use case.
+date: 2023-04-28T18:40:32
+---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+	import FloatingKites from './FloatingKites.svelte'
+    import svg from './svg.js'
+	import LineChart from './LineChart.svelte'
+</script>
+
+<FloatingKites>
+
+    <p>
+        It is often easy to get carried away when you write about scalable vector graphics. And in the excitement of sharing one's code, it is even easy to overlook crucial details.
+    </p>
+
+    <p>
+        Case in point, <a href="/get-to-the-point">a recent article</a> on pointer events, finally solving a curious bug with a <code>&lt;marker&gt;</code> element and a host of attributes.
+    </p>
+
+    <p>
+        In the article you find an introduction to the element and a rather creative application. Unfortunately, you also find a careless note, leaving most attributes unattended.
+    </p>
+
+    <blockquote>
+        <p>"— there's a plethora of arguments to discover"</p>
+    </blockquote>
+
+
+    <p>
+        There are indeed many attributes, some even useful only in the context of the <code>&lt;marker&gt;</code> element. And to make justice to them, let's consider a practical scenario. Let's consider a humble, effective line chart.
+    </p>
+
+</FloatingKites>
+
+{@html svg['defs']}
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['line-chart']}
+</Center>
+
+Whether you choose to draw the line with a `<path>` element and a sequence of points.
+
+```html
+<path d="M 0 4 1 3 2 3 3 1 4 4 5 3 6 3 7 2 8 0 9 1 10 1" />
+```
+
+Whether you prefer to structure the `d` attribute with the _lineTo_ command.
+
+```html
+<path d="M 0 4 l 1 -1 1 0 1 -2 1 3 1 -1 1 0 1 -1 1 -2 1 1 1 0" />
+```
+
+Whether you opt for a different element altogether and pick a `<polyline>` instead.
+
+```html
+<polyline points="0 4 1 3 2 3 3 1 4 4 5 3 6 3 7 2 8 0 9 1 10 1" />
+```
+
+And regardless of how you separate the points with your favorite delimiter.
+
+```html
+<polyline points="0 4, 1 3, 2 3, 3 1, 4 4, 5 3, 6 3, 7 2, 8 0, 9 1, 10 1" />
+```
+
+The marker element offers an immediate solution to a veritable problem: how to highlight the connections between the x, y coordinates?
+
+You can draw additional elements on top of the line. With `<circle>`s, for instance, you can carefully position a few dots with the `cx` and `cy` attributes.
+
+```html
+<circle cx="0" cy="4" r="0.15" fill="hsl(0, 0%, 28%)" />
+<circle cx="1" cy="3" r="0.15" fill="hsl(0, 0%, 28%)" />
+<!-- ... -->
+```
+
+The manual approach certainly works, but the marker promises to simplify the task with a concise alternative.
+
+## Marker
+
+The `<marker>` element works similarly to the all-wrapping `<svg>`. Add a `viewBox` to describe the canvas _for the marker_.
+
+```html
+<marker viewBox="0 0 2 2">
+	<!-- ... -->
+</marker>
+```
+
+Decide how the marker should look with regular drawing elements.
+
+```html
+<marker viewBox="0 0 2 2">
+	<circle cx="1" cy="1" r="1" fill="hsl(0, 0%, 28%)" />
+</marker>
+```
+
+Included in the SVG document, the element doesn't lead to a visual.
+
+```html
+<svg viewBox="0 0 12 7.5">
+	<marker viewBox="0 0 2 2">
+		<!-- ... -->
+	</marker>
+</svg>
+```
+
+It is only as you add a unique key in the `id` attirbute.
+
+```html
+<marker id="marker-circle" viewBox="0 0 2 2">
+	<!-- ... -->
+</marker>
+```
+
+That you can show its influence in specific attributes such as `marker-mid`.
+
+<!-- prettier-ignore -->
+```html
+<polyline 
+    marker-mid="url(#marker-circle)" 
+    points="0 4, 1 3, 2 3, 3 1, 4 4, 5 3, 6 3, 7 2, 8 0, 9 1, 10 1"
+/>
+```
+
+There are a total of three marker-related attributes, and we'll get a chance to highlight them all, but to get started, `marker-mid` brings us a step from completing the task.
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['marker-issue']}
+</Center>
+
+There's only one issue with the current setup, and to understand the problem, focus on a single joint.
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['marker-canvas']}
+</Center>
+
+The marker starts in the right spot, precisely on the point between the segments. As with most vector graphics, however, the point describes the top left corner of the canvas, and the circle is drawn off center.
+
+To rectify this situation you have two attributes: `refX` and `refY`.
+
+<!-- prettier-ignore -->
+```html
+<marker 
+    id="marker-circle" 
+    viewBox="0 0 2 2" 
+    refX="1" 
+    refY="1"
+    >
+	<!-- ... -->
+</marker>
+```
+
+The pair describes an offset relative to the `viewBox`, so that a value half the width, half the height is enough to shift the origin and produce the respectable graphic.
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['marker']}
+</Center>
+
+## Markers
+
+Past `marker-mid`, `marker-start` and `marker-end` complete the picture to highlight the ends of the line. You can repeat the reference to the same circle, but the two help to explore the syntax further, and allow me to share a quick workflow tip.
+
+The moment you want to create a custom marker, start with an empty `<svg>` element and the canvas for the single drawing.
+
+```html
+<svg viewBox="0 0 2 2">
+	<!-- ... -->
+</svg>
+```
+
+In this blank canvas draw the marker itself. For the one at the very beginning, we can start with a circle, perhaps the same circle we've used before.
+
+```html
+<circle cx="1" cy="1" r="1" fill="hsl(0, 0%, 28%)" />
+```
+
+On top of the circle, we can continue with an arrow, clearly pointing to the right.
+
+<!-- prettier-ignore -->
+```html
+<!-- ...circle -->
+<path 
+    d="M 0.8 0.625 l 0.55 0.375 -0.55 0.375z" 
+    fill="hsl(0, 0%, 72%)" 
+/>
+```
+
+Working with a separate SVG you can test the visual as you code along. Tweak the numbers for the `d` attribute until the arrow looks centered; add a stroke to possibly round the edges.
+
+<Center element="figure" maxInlineSize="10rem">
+    {@html svg['marker-start']}
+</Center>
+
+The possibilities at this juncture are close to endless, but for the sake of the line chart, it pays to be cautious. Remember, the vector is useful as a marker, as part of a greater whole, and should not overwhelm the larger visualization. You may change the size of the graphic, and we'll see how, but the element is also supposed to be quite small.
+
+Once you are satisfied with the result, you just need a change in name. You no longer have an `<svg>`, but a `<marker>`.
+
+```diff
+-<svg viewBox="0 0 2 2">
++<marker viewBox="0 0 2 2">
+
+-</svg>
++</marker>
+```
+
+Add the necessary id, the offsets to center the custom shape and you are set.
+
+```html
+<marker id="marker-start" viewBox="0 0 2 2" refX="1" refY="1">
+	<!-- ...circle & path -->
+</marker>
+```
+
+You are able to point to the marker and customize the start.
+
+```html
+<polyline
+	marker-mid="url(#marker-circle)"
+	marker-start="url(#marker-start)"
+	points="0 4, 1 3, 2 3, 3 1, 4 4, 5 3, 6 3, 7 2, 8 0, 9 1, 10 1"
+/>
+```
+
+The marker is similar to one for the mid-points, but detailed enough to be different. And to remark the difference, two additional attributes help to change the size.
+
+Perhaps reasonably, the size of a marker is relative to the width of the stroke. The width and the height are set to be 3 times this value, but `markerWidth` and `markerHeight` allow to change this default.
+
+<!-- prettier-ignore -->
+```html
+<marker 
+    id="marker-start" 
+    viewBox="0 0 2 2" 
+    refX="1" 
+    refY="1"
+    markerWidth="6"
+    markerHeight="6"
+    >
+    <!-- ...circle & path -->
+</marker>
+```
+
+Repeat the process for the end of the line.
+
+```html
+<polyline
+	marker-mid="url(#marker-circle)"
+	marker-start="url(#marker-start)"
+	marker-end="url(#marker-end)"
+	points="0 4, 1 3, 2 3, 3 1, 4 4, 5 3, 6 3, 7 2, 8 0, 9 1, 10 1"
+/>
+```
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['markers']}
+</Center>
+
+And this speaks further to the usefulness of the element, to the flexibility afforded by the syntax. There are functional use cases, line charts.
+
+And to prove the concept even more, I welcome you to update the line with a new set of points. The markers will be sure to stick to landing.
+
+<Center element="figure" maxInlineSize="36rem">
+    <LineChart />
+</Center>
+
+And of course there are creative applications, like the cited article and the radiant critter. And if you need more proof, at the risk of spoiling too much, you need to look no further than the top of this very page. Behind the set of floating kites, you find only three `<path>` elements. Three elements with with a corful ribbon marking the points and an ornate visual marking the end.
+
+```html
+<path
+	marker-mid="url(#marker-ribbon)"
+	marker-end="url(#marker-kite-2)"
+	d="M 0 0 q 4 -7 10 -5 t 10 -5 10 -5 20 -2.5"
+/>
+```
