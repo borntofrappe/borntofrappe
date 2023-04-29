@@ -23,6 +23,22 @@
 <button disabled={animating} on:click={handleAnimation}> Take a loop </button>
 
 <svg viewBox="-50 -40 100 80">
+	<defs>
+		<radialGradient
+			id="animate-motion-gradient-stripes"
+			spreadMethod="reflect"
+			r="0.2"
+			cx="1.25"
+			fx="1.25"
+			cy="0.5"
+			fy="0.5"
+		>
+			<stop stop-color="#F7C948" offset="0" />
+			<stop stop-color="#F7C948" offset="0.45" />
+			<stop stop-color="#513C06" offset="0.55" />
+			<stop stop-color="#513C06" offset="1" />
+		</radialGradient>
+	</defs>
 	<g fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-linecap="round">
 		<path d=" M 0 0 c -10 -20 -40 -20 -40 0 0 20 30 20 40 0 10 -20 40 -20 40 0 0 20 -30 20 -40 0" />
 	</g>
@@ -56,7 +72,7 @@
 			</g>
 		</g>
 		<ellipse rx="4.45" ry="4.2" fill="#513C06" />
-		<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
+		<ellipse rx="4.5" ry="4.25" fill="url(#animate-motion-gradient-stripes)" />
 		<circle cx="3.5" r="2.8" fill="#513C06" />
 	</g>
 </svg>

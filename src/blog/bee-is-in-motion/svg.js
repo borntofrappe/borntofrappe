@@ -2,7 +2,7 @@ export default {
 	defs: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		<radialGradient
-			id="bee-gradient"
+			id="gradient-stripes"
 			spreadMethod="reflect"
 			r="0.2"
 			cx="1.25"
@@ -107,7 +107,7 @@ export default {
 				</g>
 			</g>
 			<ellipse rx="4.45" ry="4.2" fill="#513C06" />
-			<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
+			<ellipse rx="4.5" ry="4.25" fill="url(#gradient-stripes)" />
 			<circle cx="3.5" r="2.8" fill="#513C06" />
 
 			<circle r="10" opacity="0" />
@@ -138,7 +138,7 @@ export default {
 			</g>
 		</g>
 		<ellipse rx="4.45" ry="4.2" fill="#513C06" />
-		<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
+		<ellipse rx="4.5" ry="4.25" fill="url(#gradient-stripes)" />
 		<circle cx="3.5" r="2.8" fill="#513C06" />
 
 		<circle r="10" opacity="0" />
@@ -168,7 +168,7 @@ export default {
 			</g>
 		</g>
 		<ellipse rx="4.45" ry="4.2" fill="#513C06" />
-		<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
+		<ellipse rx="4.5" ry="4.25" fill="url(#gradient-stripes)" />
 		<circle cx="3.5" r="2.8" fill="#513C06" />
 	</g>
 	<g fill="none" stroke="currentColor" stroke-dasharray="2 4" stroke-linecap="round">
@@ -211,7 +211,7 @@ export default {
 			</g>
 		</g>
 		<ellipse rx="4.45" ry="4.2" fill="#513C06" />
-		<ellipse rx="4.5" ry="4.25" fill="url(#bee-gradient)" />
+		<ellipse rx="4.5" ry="4.25" fill="url(#gradient-stripes)" />
 		<circle cx="3.5" r="2.8" fill="#513C06" />
 	</g>
 </svg>`
