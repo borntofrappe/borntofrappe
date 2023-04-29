@@ -18,7 +18,7 @@ In SVG, elements have a `fill` and possibly a `stroke`.
 </svg>
 ```
 
-You can set the attributes to a solid value, but it is also possible to rely on a gradient.
+You can set the attributes to a solid value, but it is also possible to add a gradient.
 
 ```html
 <rect fill="url(#gradient)" width="1" height="1" />
@@ -43,7 +43,7 @@ And describe the colors with `<stop>` elements.
 </linearGradient>
 ```
 
-Each stop needs but two attributes: `stop-color` and `offset`. The color is rather intuitive, and points to the value assumed by the gradient at the precise spot. The offset falls in the 0 to 1 range, but you can also rely on percentages, from 0% to 100%.
+Each stop needs but two attributes: `stop-color` and `offset`. The color is rather intuitive, and points to the value assumed by the gradient at the precise spot. The offset falls in the 0 to 1 range, but you can also use percentages, from 0% to 100%.
 
 The code is solid and quite understandable. Applied on the rectangle, you end up with a gradient from white to goldenrod.
 
@@ -67,7 +67,7 @@ And if you have the gradient go from white to transparent, you brighten up the s
 </linearGradient>
 ```
 
-This is were you stumble on an interesting SVG quirk. The gradient starts as white, but disappears with a rather dark undertone.
+This is where you stumble on an interesting SVG quirk. The gradient starts as white, but disappears with a rather dark undertone.
 
 <Center element="figure" maxInlineSize="22rem">
     {@html html['transparent']}
@@ -90,7 +90,7 @@ Set the background and the gradient on a sizable `<div>` element and the result 
 
 Aside from the direction of the gradient — CSS works top to bottom, SVG left to right — the empty container ends up much brighter.
 
-Why is that? In SVG, `transparent` doesn't actually mean transparent, but "transparent-black". If you are familiar with the HSL color space, this means the gradient goes from a fully opaque white — `hsl(0, 0%, 100% / 100%)` — to a completely invisible black — `hsl(0, 0%, 0% / 0%)`. In between, the bright color is shaded in darkness.
+Why is that? In SVG, `transparent` doesn't actually mean transparent, but "transparent-black". If you are familiar with the HSL color space, this means the gradient goes from a fully opaque white — `hsl(0 0% 100% / 100%)` — to a completely invisible black — `hsl(0 0% 0% / 0%)`. In between, the bright color is shaded in darkness.
 
 To solve the issue there are at least two ways, a roundabout manner, and a more obvious choice. And it is only natural to start with the first, if only to appreciate the second a tad more.
 
@@ -104,7 +104,7 @@ The `<mask>` element helps to conceal parts of a vector. Define the element simi
 </mask>
 ```
 
-In the body of the element decide what to show and what to hide with additional shapes. What is visible depends on color, and if you restrict yourself to black and white, the logic is straightforward: white areas are shown in full, black areas are removed from sight. In between, what you see depends on lightness.
+In the body of the element decide what to show and what to hide with additional shapes. What is visible depends on color, and if you restrict yourself to black and white, the logic is straightforward: white areas are shown in full, black areas are removed from view. In between, what you see depends on lightness.
 
 You may start to see how this is helpful for our lighting needs.
 
@@ -126,7 +126,7 @@ You need only to mask the element so that the rectangle disappears.
 It is the job of the mask, then, to progressively hide the shape as it nears its end. How? Why, with a gradient.
 
 ```html
-<mask id="mask">
+<mask id="mask-light">
 	<rect fill="url(#gradient-lightness)" width="1" height="1" />
 </mask>
 ```
@@ -140,7 +140,7 @@ A gradient gradually moving from white to black.
 </linearGradient>
 ```
 
-This is likely the biggest leap of logic in the entire sequence, so it might help to consider the steps top the bottom. You have a gradient, gradually moving from white to black. You have a mask, and with the gradient, this mask works to gradually hide whichever shape you want. You have a white rectangle, and with the mask you remove its luminious influence.
+This is likely the biggest leap of logic in the entire sequence, so it might help to consider the steps top to bottom. You have a gradient, gradually moving from white to black. You have a mask, and with the gradient, this mask works to hide whichever shape you want, little by little. You have a white rectangle, and with the mask you remove its luminous influence.
 
 Twisted, but ultimately effective.
 
@@ -150,15 +150,15 @@ Twisted, but ultimately effective.
 
 ## Opacity
 
-Let's go back to the feature at hand, adding a light with a gradient, moving from white to trasparent. If the `transparent` keyword leads us astray, we just need to be more specific. What type of transparent? Well, transparent white.
+Let's go back to the feature at hand, adding a light with a gradient, moving from white to transparent. If the `transparent` keyword leads us astray, we just need to be more specific. What type of transparent? Well, transparent white.
 
 CSS tips a solution with the many available color formats. `rgb`, hex values, `hsl`. These have all an option to change the opacity.
 
-Update the final color to be completely translucent, and white and you're done.
+Update the final color to be a completely translucent white and you're done.
 
 ```html
 <linearGradient id="gradient-light">
-	<stop stop-color="hsl(0 0% 100%)" offset="0" />
+	<stop stop-color="hsl(0 0% 100% / 100%)" offset="0" />
 	<stop stop-color="hsl(0 0%  100% / 0%)" offset="1" />
 </linearGradient>
 ```
@@ -169,7 +169,7 @@ In SVG, elements have a `fill` and possibly a `stroke`
 
 In SVG, you can change the opacity of entire elements with the `opacity` attribute. Matching the pair, however, you can also affect the opacity with two, more specific strings: `fill-opacity` and `stroke-opacity`.
 
-On top of these two, SVG offers a third, and with luck it is named `stop-opacity`. Set the value to 0 and the white disappears.
+On top of these two, SVG offers a third attribute, and with luck it is named `stop-opacity`. Set the value for the final stop to 0 and the white disappears.
 
 <!-- prettier-ignore -->
 ```html
@@ -185,7 +185,7 @@ Leave it to CSS, lean on SVG, either solution works. Either solution shines a pr
 	{@html html['stop-opacity']}
 </Center>
 
-And at this point you can skip the twisted logic and the `<mask>` element. Or, rely on the element for its intended use, to hide and show parts of a vector. Elaborate or illuminating how it might be.
+And at this point you can skip the twisted logic and the `<mask>` element. Or, rely on the element for its intended use, to hide and show parts of the vector. Elaborate and illuminating how it might be.
 
 <Center element="figure" maxInlineSize="36rem">
 	{@html html['picture']}
