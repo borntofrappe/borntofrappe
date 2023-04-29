@@ -254,7 +254,7 @@ Here you find a practical use case, a respectable, functional line chart. And to
     <LineChart />
 </Center>
 
-And of course there are unusual applications, like the radiant creature in [the cited article](/get-to-the-point). And if you need more proof, at the risk of spoiling too much, you need to look no further than [the top of this very page](#content). Behind the set of floating kites, you find only three `<path>` elements. Three elements with a colorful ribbon marking the points and ornate visuals marking the end.
+And of course there are unusual applications, like the radiant creature in [the cited article](/get-to-the-point). And if you need more proof, at the risk of spoiling too much, you need to look no further than the top of this very page. Behind the set of floating kites, you find only three `<path>` elements. Three elements with a colorful ribbon marking the points and ornate visuals marking the end.
 
 ```html
 <path
