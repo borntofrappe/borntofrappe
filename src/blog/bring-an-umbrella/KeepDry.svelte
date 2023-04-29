@@ -70,6 +70,40 @@
 				</g>
 			</g>
 		</mask>
+		<pattern
+			id="keep-dry-pattern-drop"
+			viewBox="0 0 10 10"
+			patternUnits="userSpaceOnUse"
+			width="10"
+			height="10"
+		>
+			<g transform="translate(3 2.5)">
+				<path
+					fill="#52a2bd"
+					d="M 2 0 c 1 1 2 2 2 3 c 0 2 -2 2 -2 2 c 0 0 -2 0 -2 -2 c 0 -1 1 -2 2 -3"
+				/>
+			</g>
+		</pattern>
+		<pattern
+			id="keep-dry-pattern-polka-dot"
+			viewBox="0 0 2 2"
+			patternUnits="userSpaceOnUse"
+			width="5"
+			height="5"
+		>
+			<rect fill="#fed245" width="2" height="2" />
+			<circle fill="#fe7c71" cx="1" cy="1" r="0.5" />
+		</pattern>
+		<pattern
+			id="keep-dry-pattern-polka-dot-light"
+			viewBox="0 0 2 2"
+			patternUnits="userSpaceOnUse"
+			width="5"
+			height="5"
+		>
+			<rect fill="#feec6e" width="2" height="2" />
+			<circle fill="#ffa8a6" cx="1" cy="1" r="0.5" />
+		</pattern>
 		<symbol id="keep-dry-snail" viewBox="-1 -4 15 15">
 			<g stroke-linejoin="round" stroke-linecap="round">
 				<g stroke="#aaa45c">
@@ -112,7 +146,7 @@
 	</defs>
 
 	<g mask="url(#keep-dry-mask)">
-		<rect class="rain" fill="url(#drop-10)" y="-10" width="100" height="110" />
+		<rect class="rain" fill="url(#keep-dry-pattern-drop)" y="-10" width="100" height="110" />
 	</g>
 
 	<g fill="#dceff6">
@@ -137,11 +171,11 @@
 				/>
 			</g>
 			<path
-				fill="url(#polka-dot)"
+				fill="url(#keep-dry-pattern-polka-dot)"
 				d="M 50 40 a 20 20 0 0 1 20 20 10 10 0 0 0 -10 2 20 20 0 0 0 -20 0 10 10 0 0 0 -10 -2 20 20 0 0 1 20 -20"
 			/>
 			<path
-				fill="url(#polka-dot-light)"
+				fill="url(#keep-dry-pattern-polka-dot-light)"
 				d="M 50 40 a 20 20 0 0 1 10 22 20 20 0 0 0 -20 0 20 20 0 0 1 10 -22"
 			/>
 			<ellipse fill="#52606D" cx="50" cy="40" rx="2" ry="0.5" />

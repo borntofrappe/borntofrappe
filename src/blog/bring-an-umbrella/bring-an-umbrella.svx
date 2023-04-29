@@ -204,7 +204,7 @@ The idea is to move the element down over and over. The result is jarring in tha
 The addition of one row almost completes the animation.
 
 <Center maxInlineSize="22rem">
-	<Fall patternId="drop" />
+	<Fall patternId="pattern-drop" />
 </Center>
 
 It may not be immediately apparent, but there is a stutter. There is a small jump every time the animation loops, spoiling the illusion.
@@ -264,7 +264,7 @@ To fix the issue you have at least two ways:
 Be it in a roundabout manner, or an SVG-savvy way, the result is one and the same. And the downpour is ensured.
 
 <Center maxInlineSize="22rem">
-	<Fall patternId="drop-10" />
+	<Fall patternId="pattern-drop-10" />
 </Center>
 
 ## Cover
