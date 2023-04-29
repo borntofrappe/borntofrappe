@@ -1,5 +1,5 @@
 export default {
-	gradient: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	gradient: `<svg style="display: block;" viewBox="0 0 1 1">
 	<defs>
 		<linearGradient id="gradient-gradient">
 			<stop stop-color="white" offset="0" />
@@ -8,7 +8,7 @@ export default {
 	</defs>
 	<rect fill="url(#gradient-gradient)" width="1" height="1" />
 </svg>`,
-	transparent: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	transparent: `<svg style="display: block;" viewBox="0 0 1 1">
 	<defs>
 		<linearGradient id="transparent-gradient-light">
 			<stop stop-color="white" offset="0" />
@@ -21,8 +21,6 @@ export default {
 	'transparent-css': `<div
 	style="
 		display: block;
-        max-inline-size: 18rem;
-        margin-inline: auto;
 		inline-size: 100%;
 		background: goldenrod;
 		background-image: linear-gradient(white, transparent);
@@ -32,9 +30,9 @@ export default {
 		style="
 		padding-block-end: 100%;
     "
-	/>
+	></div>
 </div>`,
-	mask: `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	mask: `<svg style="display: block;" viewBox="0 0 1 1">
 	<defs>
 		<linearGradient id="mask-gradient-lightness">
 			<stop stop-color="white" offset="0" />
@@ -47,7 +45,7 @@ export default {
 	<rect fill="goldenrod" width="1" height="1" />
 	<rect mask="url(#mask-mask-light)" fill="white" width="1" height="1" />
 </svg>`,
-	'stop-opacity': `<svg style="display: block; max-inline-size: 18rem; margin-inline: auto;" viewBox="0 0 1 1">
+	'stop-opacity': `<svg style="display: block;" viewBox="0 0 1 1">
 	<defs>
 		<linearGradient id="stop-opacity-gradient-light">
 			<stop stop-color="white" offset="0" />
