@@ -1,7 +1,7 @@
 export default {
 	defs: `<svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
     <defs>
-      <g id="cube">
+      <g id="shape-cube">
         <path d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
         <g fill="black">
           <path opacity="0.5" d="M 0 0.25 l 0.5 0.25 0 0.5 -0.5 -0.25" />
@@ -59,50 +59,50 @@ export default {
   </svg>`,
 	cubes: `<svg viewBox="0 0 3 1">
     <g fill="currentColor">
-      <use x="0" y="0" href="#cube" />
-      <use x="1" y="0" href="#cube" />
-      <use x="2" y="0" href="#cube" />
+      <use x="0" y="0" href="#shape-cube" />
+      <use x="1" y="0" href="#shape-cube" />
+      <use x="2" y="0" href="#shape-cube" />
     </g>
   </svg>`,
 	'offset-x': `<svg viewBox="0 0 2 1">
     <g fill="currentColor">
-      <use x="0" y="0" href="#cube" />
-      <use x="0.5" y="0" href="#cube" />
-      <use x="1" y="0" href="#cube" />
+      <use x="0" y="0" href="#shape-cube" />
+      <use x="0.5" y="0" href="#shape-cube" />
+      <use x="1" y="0" href="#shape-cube" />
     </g>
   </svg>
   `,
 	reverse: `<svg viewBox="0 0 2 1">
     <g fill="currentColor">
-      <use x="1" y="0" href="#cube" />
-      <use x="0.5" y="0" href="#cube" />
-      <use x="0" y="0" href="#cube" />
+      <use x="1" y="0" href="#shape-cube" />
+      <use x="0.5" y="0" href="#shape-cube" />
+      <use x="0" y="0" href="#shape-cube" />
     </g>
   </svg>
   `,
 	'offsets-y': `<svg viewBox="0 -0.5 2 1.5">
     <g fill="currentColor">
-      <use x="1" y="-0.5" href="#cube" />
-      <use x="0.5" y="-0.25" href="#cube" />
-      <use x="0" y="0" href="#cube" />
+      <use x="1" y="-0.5" href="#shape-cube" />
+      <use x="0.5" y="-0.25" href="#shape-cube" />
+      <use x="0" y="0" href="#shape-cube" />
     </g>
   </svg>`,
 	rows: `<svg viewBox="0 -0.5 2 3.5">
     <g fill="currentColor">
-      <use x="1" y="-0.5" href="#cube" />
-      <use x="0.5" y="-0.25" href="#cube" />
-      <use x="0" y="0" href="#cube" />
-      <use x="0" y="1" href="#cube" />
-      <use x="0" y="2" href="#cube" />
+      <use x="1" y="-0.5" href="#shape-cube" />
+      <use x="0.5" y="-0.25" href="#shape-cube" />
+      <use x="0" y="0" href="#shape-cube" />
+      <use x="0" y="1" href="#shape-cube" />
+      <use x="0" y="2" href="#shape-cube" />
     </g>
   </svg>`,
 	offsets: `<svg viewBox="0 -0.5 2 2.5">
     <g fill="currentColor">
-      <use x="0" y="1" href="#cube" />
-      <use x="0" y="0.5" href="#cube" />
-      <use x="1" y="-0.5" href="#cube" />
-      <use x="0.5" y="-0.25" href="#cube" />
-      <use x="0" y="0" href="#cube" />
+      <use x="0" y="1" href="#shape-cube" />
+      <use x="0" y="0.5" href="#shape-cube" />
+      <use x="1" y="-0.5" href="#shape-cube" />
+      <use x="0.5" y="-0.25" href="#shape-cube" />
+      <use x="0" y="0" href="#shape-cube" />
     </g>
   </svg>`
 };

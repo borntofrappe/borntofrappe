@@ -29,9 +29,18 @@
 </script>
 
 <svg style:color viewBox="{x0} {y0} {width} {height}">
+	<defs>
+		<g id="level-cube">
+			<path d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
+			<g fill="black">
+				<path opacity="0.5" d="M 0 0.25 l 0.5 0.25 0 0.5 -0.5 -0.25" />
+				<path opacity="0.25" d="M 0.5 0.5 l 0.5 -0.25 0 0.5 -0.5 0.25" />
+			</g>
+		</g>
+	</defs>
 	<g fill="currentColor">
 		{#each [...coordinates].reverse() as { x, y }}
-			<use {x} {y} href="#cube" />
+			<use {x} {y} href="#level-cube" />
 		{/each}
 	</g>
 </svg>

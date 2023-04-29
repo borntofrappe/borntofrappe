@@ -38,9 +38,18 @@ oxxox`;
 </script>
 
 <svg viewBox="{(padding / 2) * -1} {(padding / 2) * -1} {width + padding} {height + padding}">
+	<defs>
+		<g id="coordinates-cube">
+			<path d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
+			<g fill="black">
+				<path opacity="0.5" d="M 0 0.25 l 0.5 0.25 0 0.5 -0.5 -0.25" />
+				<path opacity="0.25" d="M 0.5 0.5 l 0.5 -0.25 0 0.5 -0.5 0.25" />
+			</g>
+		</g>
+	</defs>
 	<g fill="currentColor">
 		{#each reverse ? [...coordinates].reverse() : coordinates as { x, y }}
-			<use {x} {y} href="#cube" />
+			<use {x} {y} href="#coordinates-cube" />
 		{/each}
 	</g>
 </svg>
