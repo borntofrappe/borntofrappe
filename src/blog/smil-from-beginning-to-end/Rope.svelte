@@ -21,7 +21,23 @@
 <button {disabled} on:click={handleAnimation}>Animate</button>
 
 <svg viewBox="0 0 80 50">
-	<rect width="80" height="50" fill="url(#jump-the-rope-pattern)" />
+	<defs>
+		<pattern
+			id="rope-pattern-check"
+			viewBox="0 0 2 2"
+			width="10"
+			height="10"
+			patternUnits="userSpaceOnUse"
+		>
+			<rect width="2" height="2" fill="hsl(0, 0%, 86%)" />
+			<g fill="hsl(0, 0%, 84%)">
+				<rect width="1" height="1" />
+				<rect x="1" y="1" width="1" height="1" />
+			</g>
+		</pattern>
+	</defs>
+
+	<rect width="80" height="50" fill="url(#rope-pattern-check)" />
 
 	<g transform="translate(0 30)">
 		<g fill="none" stroke="hsl(0, 0%, 20%)" stroke-width="0.5" stroke-linecap="round">

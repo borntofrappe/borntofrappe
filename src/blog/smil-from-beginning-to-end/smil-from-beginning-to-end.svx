@@ -240,5 +240,3 @@ There's only one question left: ready for some exercise? The animation might be 
 <Center maxInlineSize="28rem">
 	<JumpTheRope />
 </Center>
-
-{@html svg['defs']}
