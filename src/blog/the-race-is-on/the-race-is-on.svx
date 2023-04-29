@@ -7,7 +7,6 @@ date: 2023-04-13 15:50:08
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
-	import svg from './svg.js';
 	import LapRace from './LapRace.svelte';
 	import ControlPoint from './ControlPoint.svelte';
 	import TrackLayout from './TrackLayout.svelte';
@@ -271,5 +270,3 @@ Of course you can still wonder whether cars would ever spin around a circle, fol
 <Center maxInlineSize="38rem">
 	<SpaceRace />
 </Center>
-
-{@html svg['defs']}
