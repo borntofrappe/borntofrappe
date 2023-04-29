@@ -34,7 +34,7 @@ The most immediate way to show the level is directly through the `x`s and `o`s â
 
 ```svelte
 <pre>
-{@html level}
+	{@html level}
 </pre>
 ```
 
