@@ -70,6 +70,14 @@ export default {
 				/>
 			</circle>
 		</mask>
+
+		<g id="lighthouse-sailing-boat">
+			<rect fill="hsl(187, 19%, 27%)" y="1" width="8" height="1" rx="0.75" />
+			<path fill="#54220b" d="M 0 0 q 0.5 1.5 1.5 1.5 l 5 0 q 1 0 1.5 -1.5" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
+			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -7 q 2 1 3 5 l -3 2" />
+		</g>
 	</defs>
 
 	<rect fill="hsl(186, 24%, 54%)" width="80" height="50" />
@@ -111,23 +119,18 @@ export default {
 		d="M 60 38 l 20 0 l 0 -3 q -3 -1 -6 0 t -6 0 -6 0 c -2 0.25 -3 3 0 3"
 	/>
 
-	<g transform="translate(20 45)">
-		<g transform="translate(80 0)">
+	<g transform="translate(15 45)">
+		<g>
 			<animateTransform
 				attributeName="transform"
 				type="translate"
-				values="80 0; -80 0"
+				values="0 0; -100 0"
 				begin="60s"
 				dur="120s"
-				calcMode="spline"
-				keySplines="0.5 0 0.5 1;"
 				repeatCount="indefinite"
 			/>
-			<rect fill="hsl(187, 19%, 27%)" y="1" width="8" height="1" rx="0.75" />
-			<path fill="#54220b" d="M 0 0 q 0.5 1.5 1.5 1.5 l 5 0 q 1 0 1.5 -1.5" />
-			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
-			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -9 q -2.5 1 -3.25 8.5 l 3.25 0" />
-			<path fill="hsl(51, 14%, 90%)" d="M 4 0 l 0 -7 q 2 1 3 5 l -3 2" />
+			<use href="#lighthouse-sailing-boat" />
+			<use x="100" href="#lighthouse-sailing-boat" />
 		</g>
 	</g>
 
