@@ -16,8 +16,6 @@ The month of April is known to be somewhat capricious. The occasional, morning s
 
 But one thing at a time. We first need a drizzle to test the concept.
 
-{@html svg['defs']}
-
 ## Rain
 
 To draw a raindrop set up a small SVG canvas. We don't need a lot of space for the single purpose.
@@ -339,3 +337,5 @@ The rest is up to your imagination and whimsy. Just remember to thank the sky an
 <Center maxInlineSize="28rem">
 	<KeepDry />
 </Center>
+
+{@html svg['defs']}

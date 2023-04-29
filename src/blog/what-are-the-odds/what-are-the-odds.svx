@@ -14,8 +14,6 @@ date: 2023-03-17 20:39:21
 
 In the context of a pixelated game I stumbled on a rather interesting challenge: how to simulate a roll of the dice in two dimensions. With SVG syntax. The solution I discovered may not be clever, but ingenious enough to be worth documenting. And certainly, beautiful enough to be worth an example or two.
 
-{@html svg['defs']}
-
 ## Dice
 
 The first step is innocently time-consuming: designing the faces of a single die.
@@ -70,3 +68,5 @@ Have the die bounce, however, and even if you know about the sleight of hands, y
     <DiceRoll />
     <DiceRoll />
 </div>
+
+{@html svg['defs']}

@@ -17,8 +17,6 @@ date: 2023-04-13 15:50:08
 
 Here's a perfectly relatable premise. The person next to you is watching a motorsport competition, passionately voicing every twist and turn. Suddenly, you focus on a corner of the telly, where a graphic updates the drivers as they loop around the circuit and a thought pops into your head: wouldn't _that_ make for an exciting SMIL demo?
 
-{@html svg['defs']}
-
 ## Motion
 
 The concept is closely related to [a certain buzzing bee](/bee-is-in-motion), at least at first.
@@ -273,3 +271,5 @@ Of course you can still wonder whether cars would ever spin around a circle, fol
 <Center maxInlineSize="38rem">
 	<SpaceRace />
 </Center>
+
+{@html svg['defs']}

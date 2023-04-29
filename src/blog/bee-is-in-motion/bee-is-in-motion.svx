@@ -13,8 +13,6 @@ date: 2023-03-03T23:28:31
 
 Consider the following visual.
 
-{@html svg['defs']}
-
 <Center element="figure" maxInlineSize="36rem">
 	{@html svg['bee-is-in-motion']}
 </Center>
@@ -142,3 +140,5 @@ Run the animation for a very brief moment, enough to complete the first loop.
 ```
 
 And the `fill` attribute frames the scene for your next, smooth iteration.
+
+{@html svg['defs']}

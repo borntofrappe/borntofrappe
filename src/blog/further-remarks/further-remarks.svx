@@ -37,8 +37,6 @@ date: 2023-04-28T21:37:21
 
 </FloatingKites>
 
-{@html svg['defs']}
-
 <Center element="figure" maxInlineSize="36rem">
     {@html svg['line-chart']}
 </Center>
@@ -265,3 +263,5 @@ And of course there are unusual applications, like the radiant creature in [the 
 	d="M 0 0 q 4 -7 10 -5 t 10 -5 10 -5 20 -2.5"
 />
 ```
+
+{@html svg['defs']}

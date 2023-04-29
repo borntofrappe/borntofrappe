@@ -15,8 +15,6 @@ date: 2023-03-29T21:59:53
 
 In the context of SMIL animations the `begin` attribute makes for [quite entertaining demos](/press-enter-to-smile). Sure there are some values which don't seem to be supported by modern browsers, but with the ones we have, the possibilities are endless.
 
-{@html svg['defs']}
-
 Say you have a `<path>` element detailing a down-looking bezier curve.
 
 ```html
@@ -242,3 +240,5 @@ There's only one question left: ready for some exercise? The animation might be 
 <Center maxInlineSize="28rem">
 	<JumpTheRope />
 </Center>
+
+{@html svg['defs']}
