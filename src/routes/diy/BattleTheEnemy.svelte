@@ -3,11 +3,22 @@
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const hp = 3;
-	const script = [
-		'You defeated the enemy!',
-		...Array(hp - 1).fill('You hit for 1 point!'),
-		'An enemy appeared!'
-	].map((d) => d.split(''));
+
+	const start = 'battleTheEnemyBattle';
+
+	const script = [...Array(hp - 1).fill('You hit for 1 point!'), 'You defeated the enemy!'].map(
+		(message, i) => {
+			const id = `battleTheEnemyHit${i}`;
+			const initial = i === 0 ? `${start}.begin` : `battleTheEnemyHit${i - 1}.end`;
+			const none = `${id}.end`;
+
+			return {
+				id,
+				initial,
+				none
+			};
+		}
+	);
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -48,21 +59,15 @@
 
 	<g>
 		<set attributeName="display" to="none" />
-		<set attributeName="display" to="initial" begin="battleTheEnemyStart.begin" />
+		<set id={start} begin="battleTheEnemyStart.begin" attributeName="display" to="initial" />
 		<g transform="translate(40 22)">
-			{#each script.slice(1) as _, i}
+			{#each script as { id, initial, none }}
 				<g style="cursor: pointer">
-					{#if i < hp - 1}
-						<set attributeName="display" to="none" />
-					{/if}
-					<set attributeName="display" to="initial" begin="battleTheEnemyHit{i + 1}.end" />
-					<set
-						attributeName="display"
-						to="none"
-						begin="battleTheEnemyHit{i}.end; battleTheEnemyHit0.begin"
-					/>
+					<set begin={initial} attributeName="display" to="initial" />
+					<set begin={none} attributeName="display" to="none" />
+					<set attributeName="display" to="none" />
 					<animate
-						id="battleTheEnemyHit{i}"
+						{id}
 						begin="click"
 						attributeName="opacity"
 						values="1;0;1"
@@ -83,96 +88,6 @@
 				</g>
 			{/each}
 		</g>
-
-		<g transform="translate(1 1)">
-			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
-			<g transform="translate(10 4.6)">
-				<g
-					fill="#f7f7f7"
-					font-family="sans-serif"
-					font-size="4"
-					font-weight="bold"
-					text-anchor="middle"
-				>
-					<text>Enemy</text>
-					<text y="4.6"
-						>HP:
-						{#each script as _, i}
-							<tspan>
-								{#if i < hp}
-									<set attributeName="display" to="none" />
-								{/if}
-								<set attributeName="display" to="initial" begin="battleTheEnemyHit{i}.begin" />
-								<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.begin" />
-								{i}
-							</tspan>
-						{/each}
-					</text>
-				</g>
-			</g>
-		</g>
-
-		<g transform="translate(1 38)">
-			<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
-			<g transform="translate(39 6.8)">
-				<g
-					fill="#f7f7f7"
-					font-family="sans-serif"
-					font-size="4"
-					font-weight="bold"
-					text-anchor="middle"
-				>
-					{#each script as message, i}
-						<text>
-							<set attributeName="display" to="none" />
-							<set
-								id="battleTheEnemyMessage{i}"
-								attributeName="display"
-								to="initial"
-								begin={i === hp ? 'battleTheEnemyStart.begin' : `battleTheEnemyHit${i}.begin`}
-							/>
-							<set attributeName="display" to="none" begin="battleTheEnemyHit{i - 1}.begin" />
-							{#each message as character, j}
-								<tspan>
-									<set attributeName="fill-opacity" to="0" />
-									<set
-										attributeName="fill-opacity"
-										to="1"
-										begin="battleTheEnemyMessage{i}.begin + {j * 0.03}s"
-									/>
-
-									{character}
-								</tspan>
-							{/each}
-						</text>
-					{/each}
-				</g>
-			</g>
-		</g>
-	</g>
-
-	<g display="none">
-		<set
-			id="battleTheEnemyMessage"
-			begin="battleTheEnemyHit0.begin + 1.8s"
-			attributeName="display"
-			to="initial"
-			fill="freeze"
-		/>
-
-		<g transform="translate(0 -5)">
-			<AnimatedTitle
-				text="Level up!"
-				fill="url(#linear-gradient-text)"
-				begin="battleTheEnemyMessage.begin"
-				end="battleTheEnemyEnd.begin"
-				repeatCount="indefinite"
-			/>
-		</g>
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
-		</rect>
 	</g>
 
 	<g style:cursor="pointer">
