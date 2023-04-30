@@ -40,6 +40,8 @@
 		character,
 		begin: `${show} + ${i * delayPerLetter}s`
 	}));
+
+	const end = `${script[script.length - 1].id}.end + 1.8s`;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -175,6 +177,24 @@
 				</g>
 			</g>
 		</g>
+	</g>
+
+	<g display="none">
+		<set begin={end} attributeName="display" to="initial" fill="freeze" />
+
+		<g transform="translate(0 -5)">
+			<AnimatedTitle
+				text="Level up!"
+				fill="url(#linear-gradient-text)"
+				begin={end}
+				end="battleTheEnemyEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
