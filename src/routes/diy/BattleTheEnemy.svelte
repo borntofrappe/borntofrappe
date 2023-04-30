@@ -8,15 +8,27 @@
 	const start = 'battleTheEnemyBattle';
 
 	const script = [...Array(hp - 1).fill('You hit for 1 point!'), 'You defeated the enemy!'].map(
-		(message, i) => {
+		(message, i, { length }) => {
 			const id = `battleTheEnemyHit${i}`;
 			const initial = i === 0 ? `${start}.begin` : `battleTheEnemyHit${i - 1}.end`;
-			const none = `${id}.end`;
+			const none = i === length - 1 ? `${id}.begin` : `${id}.end`;
+
+			const show = `${id}.begin`;
+			const dismiss = `battleTheEnemyHit${i + 1}.begin`;
+
+			const characters = message.split('').map((character, i) => ({
+				character,
+				begin: `${show} + ${i * delayPerLetter}s`
+			}));
 
 			return {
 				id,
 				initial,
-				none
+				none,
+				show,
+				dismiss,
+				characters,
+				hp: hp - i - 1
 			};
 		}
 	);
@@ -24,10 +36,9 @@
 	const message = 'An enemy appeared!';
 	const show = `${start}.begin`;
 	const dismiss = `${script[0].id}.begin`;
-	const id = 'battleTheEnemyMessage';
 	const characters = message.split('').map((character, i) => ({
 		character,
-		begin: `${id}.begin + ${i * delayPerLetter}s`
+		begin: `${show} + ${i * delayPerLetter}s`
 	}));
 </script>
 
@@ -115,6 +126,13 @@
 							{hp}
 							<set begin={dismiss} attributeName="display" to="none" />
 						</tspan>
+						{#each script as { show, dismiss, hp }}
+							<tspan>
+								<set begin="0s; {dismiss}" attributeName="display" to="none" />
+								<set begin={show} attributeName="display" to="initial" />
+								{hp}
+							</tspan>
+						{/each}
 					</text>
 				</g>
 			</g>
@@ -132,7 +150,7 @@
 				>
 					<text>
 						<set begin="0s; {dismiss}" attributeName="display" to="none" />
-						<set {id} begin={show} attributeName="display" to="initial" />
+						<set begin={show} attributeName="display" to="initial" />
 						{#each characters as { character, begin }}
 							<tspan>
 								<set attributeName="fill-opacity" to="0" />
@@ -141,6 +159,19 @@
 							</tspan>
 						{/each}
 					</text>
+					{#each script as { show, dismiss, characters }}
+						<text>
+							<set begin="0s; {dismiss}" attributeName="display" to="none" />
+							<set begin={show} attributeName="display" to="initial" />
+							{#each characters as { character, begin }}
+								<tspan>
+									<set attributeName="fill-opacity" to="0" />
+									<set {begin} attributeName="fill-opacity" to="1" />
+									{character}
+								</tspan>
+							{/each}
+						</text>
+					{/each}
 				</g>
 			</g>
 		</g>
