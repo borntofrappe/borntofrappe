@@ -3,6 +3,7 @@
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const hp = 3;
+	const delayPerLetter = 0.03;
 
 	const start = 'battleTheEnemyBattle';
 
@@ -19,6 +20,15 @@
 			};
 		}
 	);
+
+	const message = 'An enemy appeared!';
+	const show = `${start}.begin`;
+	const dismiss = `${script[0].id}.begin`;
+	const id = 'battleTheEnemyMessage';
+	const characters = message.split('').map((character, i) => ({
+		character,
+		begin: `${id}.begin + ${i * delayPerLetter}s`
+	}));
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -63,9 +73,8 @@
 		<g transform="translate(40 22)">
 			{#each script as { id, initial, none }}
 				<g style="cursor: pointer">
+					<set begin="0s; {none}" attributeName="display" to="none" />
 					<set begin={initial} attributeName="display" to="initial" />
-					<set begin={none} attributeName="display" to="none" />
-					<set attributeName="display" to="none" />
 					<animate
 						{id}
 						begin="click"
@@ -87,6 +96,53 @@
 					</g>
 				</g>
 			{/each}
+		</g>
+
+		<g transform="translate(1 1)">
+			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+			<g transform="translate(10 4.6)">
+				<g
+					fill="#f7f7f7"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<text>Enemy</text>
+					<text y="4.6"
+						>HP:
+						<tspan>
+							{hp}
+							<set begin={dismiss} attributeName="display" to="none" />
+						</tspan>
+					</text>
+				</g>
+			</g>
+		</g>
+
+		<g transform="translate(1 38)">
+			<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
+			<g transform="translate(39 6.8)">
+				<g
+					fill="#f7f7f7"
+					font-family="sans-serif"
+					font-size="4"
+					font-weight="bold"
+					text-anchor="middle"
+				>
+					<text>
+						<set begin="0s; {dismiss}" attributeName="display" to="none" />
+						<set {id} begin={show} attributeName="display" to="initial" />
+						{#each characters as { character, begin }}
+							<tspan>
+								<set attributeName="fill-opacity" to="0" />
+								<set {begin} attributeName="fill-opacity" to="1" />
+								{character}
+							</tspan>
+						{/each}
+					</text>
+				</g>
+			</g>
 		</g>
 	</g>
 
