@@ -7,6 +7,7 @@
 	import CrackTheEgg from './CrackTheEgg.svelte';
 	import BattleTheEnemy from './BattleTheEnemy.svelte';
 	import SmashTheRabbits from './SmashTheRabbits.svelte';
+	import FightTheEnemy from './FightTheEnemy.svelte';
 
 	const { title } = site;
 
@@ -40,6 +41,11 @@
 			component: SmashTheRabbits,
 			backgroundColor: 'hsl(39, 91%, 55%)',
 			borderColor: 'hsl(143, 99%, 32%)'
+		},
+		{
+			component: FightTheEnemy,
+			backgroundColor: 'hsl(164, 16%, 32%)',
+			borderColor: 'hsl(158, 15%, 14%)'
 		}
 	];
 </script>
