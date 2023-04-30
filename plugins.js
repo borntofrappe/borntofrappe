@@ -107,7 +107,9 @@ export const rehypeCodeHighlight = () => async (tree) => {
 
 		const { children } = root;
 
-		children[0].properties.className = `${classPrefix}${lang}`;
+		children[0].properties = {
+			className: `${classPrefix}${lang}`
+		};
 
 		node.tagName = 'div';
 		node.properties = {
