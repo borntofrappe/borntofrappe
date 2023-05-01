@@ -3,6 +3,7 @@
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const hpEnemy = 3;
+	const hpYou = 3;
 	const delayPerLetter = 0.03;
 
 	const start = 'fightTheEnemyFight';
@@ -34,15 +35,49 @@
 		};
 	});
 
+	const scriptYou = [
+		...Array(hpYou - 1).fill('You are hit for 1 point!'),
+		'You were defeated...'
+	].reduce((acc, curr, i) => {
+		const id = `fightTheEnemyHitYou${i}`;
+
+		const delay = Math.floor(Math.random() * 2 + 2);
+		const offset =
+			acc.length > 0 ? parseFloat(acc[acc.length - 1].begin.match(/([\d.]+)s$/)[1]) + delay : delay;
+
+		const begin = `${start}.begin + ${offset}s`;
+
+		const show = `${id}.begin`;
+		const dismiss = `fightTheEnemyHitYou${i + 1}.begin`;
+
+		const characters = curr.split('').map((character, i) => ({
+			character,
+			begin: `${show} + ${i * delayPerLetter}s`
+		}));
+
+		return [
+			...acc,
+			{
+				id,
+				begin,
+				show,
+				dismiss,
+				characters,
+				hp: hpYou - i - 1
+			}
+		];
+	}, []);
+
 	const message = 'An enemy appeared!';
 	const show = `${start}.begin`;
-	const dismiss = `${scriptEnemy[0].id}.begin`;
+	const dismiss = `${scriptEnemy[0].id}.begin; ${scriptYou[0].id}.begin`;
 	const characters = message.split('').map((character, i) => ({
 		character,
 		begin: `${show} + ${i * delayPerLetter}s`
 	}));
 
 	const endEnemy = `${scriptEnemy[scriptEnemy.length - 1].id}.end + 1.8s`;
+	const endYou = `${scriptYou[scriptYou.length - 1].id}.end + 1.8s`;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -83,35 +118,56 @@
 		<set attributeName="display" to="none" />
 		<set id={start} begin="fightTheEnemyStart.begin" attributeName="display" to="initial" />
 		<g transform="translate(40 21)">
-			{#each scriptEnemy as { id, initial, none }}
-				<g style="cursor: pointer">
-					<set begin="0s; {none}" attributeName="display" to="none" />
-					<set begin={initial} attributeName="display" to="initial" />
-					<animate
+			<g>
+				{#each scriptYou as { id, begin }}
+					<animateTransform
 						{id}
-						begin="click"
-						attributeName="opacity"
-						values="1;0;1"
-						repeatCount="2"
-						dur="0.2s"
-						calcMode="discrete"
-						restart="never"
+						{begin}
+						attributeName="transform"
+						type="scale"
+						values="1; 1.2; 1"
+						dur="0.1s"
 					/>
 
-					<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
-						<path
-							d="M 5 -2 q 3 -5 5 -5 c 3 0 3 8 0 8 q -1.5 0 -1.5 -3 v 2 l -3.5 4.5 v 1 c 0 4 -2 7 -14 7 q 4 -2 4 -4 v -4 l -3.5 -4.5 v -2 q 0 3 -1.5 3 c -3 0 -3 -8 0 -8 q 2 0 5 5"
+					<animateTransform
+						{begin}
+						attributeName="transform"
+						type="translate"
+						values="0 0; 0 -2; 0 0"
+						dur="0.1s"
+						additive="sum"
+					/>
+				{/each}
+				{#each scriptEnemy as { id, initial, none }}
+					<g style="cursor: pointer">
+						<set begin="0s; {none}" attributeName="display" to="none" />
+						<set begin={initial} attributeName="display" to="initial" />
+						<animate
+							{id}
+							begin="click"
+							attributeName="opacity"
+							values="1;0;1"
+							repeatCount="2"
+							dur="0.2s"
+							calcMode="discrete"
+							restart="never"
 						/>
-						<circle cx="1.8" cy="-3.5" r="0.9" />
-						<circle cx="-1.8" cy="-3.5" r="0.9" />
-						<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
-						<circle cy="-2.5" r="5" />
-						<circle cx="1.8" cy="-3.5" r="0.9" />
-						<circle cx="-1.8" cy="-3.5" r="0.9" />
-						<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+
+						<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
+							<path
+								d="M 5 -2 q 3 -5 5 -5 c 3 0 3 8 0 8 q -1.5 0 -1.5 -3 v 2 l -3.5 4.5 v 1 c 0 4 -2 7 -14 7 q 4 -2 4 -4 v -4 l -3.5 -4.5 v -2 q 0 3 -1.5 3 c -3 0 -3 -8 0 -8 q 2 0 5 5"
+							/>
+							<circle cx="1.8" cy="-3.5" r="0.9" />
+							<circle cx="-1.8" cy="-3.5" r="0.9" />
+							<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+							<circle cy="-2.5" r="5" />
+							<circle cx="1.8" cy="-3.5" r="0.9" />
+							<circle cx="-1.8" cy="-3.5" r="0.9" />
+							<rect x="-1.7" y="-1" width="3.4" height="1.7" rx="1" />
+						</g>
 					</g>
-				</g>
-			{/each}
+				{/each}
+			</g>
 		</g>
 
 		<g transform="translate(1 1)">
@@ -129,7 +185,7 @@
 						>HP:
 						<tspan>
 							{hpEnemy}
-							<set begin={dismiss} attributeName="display" to="none" />
+							<set begin={scriptEnemy[0].show} attributeName="display" to="none" />
 						</tspan>
 						{#each scriptEnemy as { show, dismiss, hp }}
 							<tspan>
@@ -154,7 +210,20 @@
 					text-anchor="middle"
 				>
 					<text>You</text>
-					<text y="4.6">HP: 3</text>
+					<text y="4.6"
+						>HP:
+						<tspan>
+							{hpYou}
+							<set begin={scriptYou[0].show} attributeName="display" to="none" />
+						</tspan>
+						{#each scriptYou as { show, dismiss, hp }}
+							<tspan>
+								<set begin="0s; {dismiss}" attributeName="display" to="none" />
+								<set begin={show} attributeName="display" to="initial" />
+								{hp}
+							</tspan>
+						{/each}
+					</text>
 				</g>
 			</g>
 		</g>
@@ -193,6 +262,19 @@
 							{/each}
 						</text>
 					{/each}
+					{#each scriptYou as { show, dismiss, characters }}
+						<text>
+							<set begin="0s; {dismiss}" attributeName="display" to="none" />
+							<set begin={show} attributeName="display" to="initial" />
+							{#each characters as { character, begin }}
+								<tspan>
+									<set attributeName="fill-opacity" to="0" />
+									<set {begin} attributeName="fill-opacity" to="1" />
+									{character}
+								</tspan>
+							{/each}
+						</text>
+					{/each}
 				</g>
 			</g>
 		</g>
@@ -206,13 +288,43 @@
 				text="Level up!"
 				fill="url(#linear-gradient-text)"
 				begin={endEnemy}
-				end="battleTheEnemyEnd.begin"
+				end="battleTheEnemyEndEnemy.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
 
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="battleTheEnemyEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<set
+				id="battleTheEnemyEndEnemy"
+				begin="click"
+				attributeName="display"
+				to="none"
+				fill="freeze"
+			/>
+		</rect>
+	</g>
+
+	<g display="none">
+		<set begin={endYou} attributeName="display" to="initial" fill="freeze" />
+
+		<g transform="translate(0 -18)">
+			<AnimatedTitle
+				text="Oowoo..."
+				fill="url(#linear-gradient-text)"
+				begin={endYou}
+				end="battleTheEnemyEndYou.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set
+				id="battleTheEnemyEndYou"
+				begin="click"
+				attributeName="display"
+				to="none"
+				fill="freeze"
+			/>
 		</rect>
 	</g>
 
