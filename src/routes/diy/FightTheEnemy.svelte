@@ -170,86 +170,83 @@
 			</g>
 		</g>
 
-		<g transform="translate(1 1)">
-			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
-			<g transform="translate(10 4.6)">
-				<g
-					fill="#f7f7f7"
-					font-family="sans-serif"
-					font-size="4"
-					font-weight="bold"
-					text-anchor="middle"
-				>
-					<text>Enemy</text>
-					<text y="4.6"
-						>HP:
-						<tspan>
-							{hpEnemy}
-							<set begin={scriptEnemy[0].show} attributeName="display" to="none" />
-						</tspan>
-						{#each scriptEnemy as { show, dismiss, hp }}
+		<g>
+			<animateTransform
+				begin={scriptYou.map(({ show }) => show).join(';')}
+				attributeName="transform"
+				type="translate"
+				values="0 0; 1 0; 0 0; -1 0; 0 0"
+				dur="0.1s"
+				repeatCount="2"
+			/>
+			<g transform="translate(1 1)">
+				<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+				<g transform="translate(10 4.6)">
+					<g
+						fill="#f7f7f7"
+						font-family="sans-serif"
+						font-size="4"
+						font-weight="bold"
+						text-anchor="middle"
+					>
+						<text>Enemy</text>
+						<text y="4.6"
+							>HP:
 							<tspan>
-								<set begin="0s; {dismiss}" attributeName="display" to="none" />
-								<set begin={show} attributeName="display" to="initial" />
-								{hp}
+								{hpEnemy}
+								<set begin={scriptEnemy[0].show} attributeName="display" to="none" />
 							</tspan>
-						{/each}
-					</text>
+							{#each scriptEnemy as { show, dismiss, hp }}
+								<tspan>
+									<set begin="0s; {dismiss}" attributeName="display" to="none" />
+									<set begin={show} attributeName="display" to="initial" />
+									{hp}
+								</tspan>
+							{/each}
+						</text>
+					</g>
 				</g>
 			</g>
-		</g>
 
-		<g transform="translate(59 25.5)">
-			<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
-			<g transform="translate(10 4.6)">
-				<g
-					fill="#f7f7f7"
-					font-family="sans-serif"
-					font-size="4"
-					font-weight="bold"
-					text-anchor="middle"
-				>
-					<text>You</text>
-					<text y="4.6"
-						>HP:
-						<tspan>
-							{hpYou}
-							<set begin={scriptYou[0].show} attributeName="display" to="none" />
-						</tspan>
-						{#each scriptYou as { show, dismiss, hp }}
+			<g transform="translate(59 25.5)">
+				<rect fill="currentColor" stroke="#f7f7f7" width="20" height="11" rx="1" />
+				<g transform="translate(10 4.6)">
+					<g
+						fill="#f7f7f7"
+						font-family="sans-serif"
+						font-size="4"
+						font-weight="bold"
+						text-anchor="middle"
+					>
+						<text>You</text>
+						<text y="4.6"
+							>HP:
 							<tspan>
-								<set begin="0s; {dismiss}" attributeName="display" to="none" />
-								<set begin={show} attributeName="display" to="initial" />
-								{hp}
+								{hpYou}
+								<set begin={scriptYou[0].show} attributeName="display" to="none" />
 							</tspan>
-						{/each}
-					</text>
+							{#each scriptYou as { show, dismiss, hp }}
+								<tspan>
+									<set begin="0s; {dismiss}" attributeName="display" to="none" />
+									<set begin={show} attributeName="display" to="initial" />
+									{hp}
+								</tspan>
+							{/each}
+						</text>
+					</g>
 				</g>
 			</g>
-		</g>
 
-		<g transform="translate(1 38)">
-			<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
-			<g transform="translate(39 6.8)">
-				<g
-					fill="#f7f7f7"
-					font-family="sans-serif"
-					font-size="4"
-					font-weight="bold"
-					text-anchor="middle"
-				>
-					<text>
-						<set begin="0s; {dismiss}" attributeName="display" to="none" />
-						<set begin={show} attributeName="display" to="initial" />
-						{#each characters as { character, begin }}
-							<tspan>
-								<set attributeName="fill-opacity" to="0" />
-								<set {begin} attributeName="fill-opacity" to="1" />
-								{character}
-							</tspan>
-						{/each}
-					</text>
-					{#each scriptEnemy as { show, dismiss, characters }}
+			<g transform="translate(1 38)">
+				<rect fill="currentColor" stroke="#f7f7f7" width="78" height="11" rx="1" />
+				<g transform="translate(39 6.8)">
+					<g
+						fill="#f7f7f7"
+						font-family="sans-serif"
+						font-size="4"
+						font-weight="bold"
+						text-anchor="middle"
+					>
 						<text>
 							<set begin="0s; {dismiss}" attributeName="display" to="none" />
 							<set begin={show} attributeName="display" to="initial" />
@@ -261,20 +258,33 @@
 								</tspan>
 							{/each}
 						</text>
-					{/each}
-					{#each scriptYou as { show, dismiss, characters }}
-						<text>
-							<set begin="0s; {dismiss}" attributeName="display" to="none" />
-							<set begin={show} attributeName="display" to="initial" />
-							{#each characters as { character, begin }}
-								<tspan>
-									<set attributeName="fill-opacity" to="0" />
-									<set {begin} attributeName="fill-opacity" to="1" />
-									{character}
-								</tspan>
-							{/each}
-						</text>
-					{/each}
+						{#each scriptEnemy as { show, dismiss, characters }}
+							<text>
+								<set begin="0s; {dismiss}" attributeName="display" to="none" />
+								<set begin={show} attributeName="display" to="initial" />
+								{#each characters as { character, begin }}
+									<tspan>
+										<set attributeName="fill-opacity" to="0" />
+										<set {begin} attributeName="fill-opacity" to="1" />
+										{character}
+									</tspan>
+								{/each}
+							</text>
+						{/each}
+						{#each scriptYou as { show, dismiss, characters }}
+							<text>
+								<set begin="0s; {dismiss}" attributeName="display" to="none" />
+								<set begin={show} attributeName="display" to="initial" />
+								{#each characters as { character, begin }}
+									<tspan>
+										<set attributeName="fill-opacity" to="0" />
+										<set {begin} attributeName="fill-opacity" to="1" />
+										{character}
+									</tspan>
+								{/each}
+							</text>
+						{/each}
+					</g>
 				</g>
 			</g>
 		</g>
