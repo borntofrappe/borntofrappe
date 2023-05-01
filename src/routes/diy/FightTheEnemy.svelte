@@ -76,8 +76,8 @@
 		begin: `${show} + ${i * delayPerLetter}s`
 	}));
 
-	const endEnemy = `${scriptEnemy[scriptEnemy.length - 1].id}.end + 1.8s`;
-	const endYou = `${scriptYou[scriptYou.length - 1].id}.end + 1.8s`;
+	const endEnemy = `${scriptEnemy[scriptEnemy.length - 1].id}.begin`;
+	const endYou = `${scriptYou[scriptYou.length - 1].id}.begin`;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -123,6 +123,7 @@
 					<animateTransform
 						{id}
 						{begin}
+						end={endEnemy}
 						attributeName="transform"
 						type="scale"
 						values="1; 1.2; 1"
@@ -131,6 +132,7 @@
 
 					<animateTransform
 						{begin}
+						end={endEnemy}
 						attributeName="transform"
 						type="translate"
 						values="0 0; 0 -2; 0 0"
@@ -145,6 +147,7 @@
 						<animate
 							{id}
 							begin="click"
+							end={endYou}
 							attributeName="opacity"
 							values="1;0;1"
 							repeatCount="2"
@@ -152,6 +155,7 @@
 							calcMode="discrete"
 							restart="never"
 						/>
+						<set begin={endYou} attributeName="cursor" attributeType="CSS" to="initial" />
 
 						<g fill="#f7f7f7" stroke="currentColor" stroke-width="0.75">
 							<path
@@ -173,6 +177,7 @@
 		<g>
 			<animateTransform
 				begin={scriptYou.map(({ show }) => show).join(';')}
+				end={endEnemy}
 				attributeName="transform"
 				type="translate"
 				values="0 0; 1 0; 0 0; -1 0; 0 0"
@@ -223,12 +228,30 @@
 							>HP:
 							<tspan>
 								{hpYou}
-								<set begin={scriptYou[0].show} attributeName="display" to="none" />
+								<set
+									begin={scriptYou[0].show}
+									end={endEnemy}
+									fill="freeze"
+									attributeName="display"
+									to="none"
+								/>
 							</tspan>
 							{#each scriptYou as { show, dismiss, hp }}
 								<tspan>
-									<set begin="0s; {dismiss}" attributeName="display" to="none" />
-									<set begin={show} attributeName="display" to="initial" />
+									<set
+										begin="0s; {dismiss}"
+										end={endEnemy}
+										fill="freeze"
+										attributeName="display"
+										to="none"
+									/>
+									<set
+										begin={show}
+										end={endEnemy}
+										fill="freeze"
+										attributeName="display"
+										to="initial"
+									/>
 									{hp}
 								</tspan>
 							{/each}
@@ -258,9 +281,16 @@
 								</tspan>
 							{/each}
 						</text>
-						{#each scriptEnemy as { show, dismiss, characters }}
+						{#each scriptEnemy as { show, dismiss, characters }, i}
 							<text>
-								<set begin="0s; {dismiss}" attributeName="display" to="none" />
+								{#if i < scriptEnemy.length - 1}
+									<set
+										begin="{dismiss}; {scriptYou.map(({ show }) => show).join(';')}"
+										attributeName="display"
+										to="none"
+									/>
+								{/if}
+								<set attributeName="display" to="none" />
 								<set begin={show} attributeName="display" to="initial" />
 								{#each characters as { character, begin }}
 									<tspan>
@@ -273,12 +303,17 @@
 						{/each}
 						{#each scriptYou as { show, dismiss, characters }}
 							<text>
-								<set begin="0s; {dismiss}" attributeName="display" to="none" />
-								<set begin={show} attributeName="display" to="initial" />
+								<set
+									begin="0s; {dismiss}; {scriptEnemy.map(({ show }) => show).join(';')}"
+									end={endEnemy}
+									attributeName="display"
+									to="none"
+								/>
+								<set begin={show} end={endEnemy} attributeName="display" to="initial" />
 								{#each characters as { character, begin }}
 									<tspan>
 										<set attributeName="fill-opacity" to="0" />
-										<set {begin} attributeName="fill-opacity" to="1" />
+										<set {begin} end={endEnemy} attributeName="fill-opacity" to="1" />
 										{character}
 									</tspan>
 								{/each}
@@ -291,55 +326,49 @@
 	</g>
 
 	<g display="none">
-		<set begin={endEnemy} attributeName="display" to="initial" fill="freeze" />
+		<set id="fightTheEnemyWin" begin="{endEnemy} + 1.8s" attributeName="display" to="initial" />
 
 		<g transform="translate(0 -5)">
 			<AnimatedTitle
 				text="Level up!"
 				fill="url(#linear-gradient-text)"
-				begin={endEnemy}
+				begin="fightTheEnemyWin.begin"
 				end="battleTheEnemyEndEnemy.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
 
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set
-				id="battleTheEnemyEndEnemy"
-				begin="click"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-			/>
+			<set id="battleTheEnemyEndEnemy" begin="click" attributeName="display" to="none" />
 		</rect>
 	</g>
 
 	<g display="none">
-		<set begin={endYou} attributeName="display" to="initial" fill="freeze" />
+		<set
+			id="fightTheEnemyLoss"
+			begin="{endYou} + 1.8s"
+			end={endEnemy}
+			attributeName="display"
+			to="initial"
+		/>
 
 		<g transform="translate(0 -18)">
 			<AnimatedTitle
 				text="Oowoo..."
 				fill="url(#linear-gradient-text)"
-				begin={endYou}
+				begin="fightTheEnemyLoss.begin"
 				end="battleTheEnemyEndYou.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
 
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set
-				id="battleTheEnemyEndYou"
-				begin="click"
-				attributeName="display"
-				to="none"
-				fill="freeze"
-			/>
+			<set id="battleTheEnemyEndYou" begin="click" attributeName="display" to="none" />
 		</rect>
 	</g>
 
 	<g style:cursor="pointer">
-		<set id="fightTheEnemyStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<set id="fightTheEnemyStart" begin="click" attributeName="display" to="none" />
 
 		<Title fill="url(#linear-gradient-text)">Fight!</Title>
 
