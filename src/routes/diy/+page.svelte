@@ -8,6 +8,7 @@
 	import BattleTheEnemy from './BattleTheEnemy.svelte';
 	import SmashTheRabbits from './SmashTheRabbits.svelte';
 	import FightTheEnemy from './FightTheEnemy.svelte';
+	import TakeAPicture from './TakeAPicture.svelte';
 
 	const { title } = site;
 
@@ -46,6 +47,11 @@
 			component: FightTheEnemy,
 			backgroundColor: 'hsl(164, 16%, 32%)',
 			borderColor: 'hsl(158, 15%, 14%)'
+		},
+		{
+			component: TakeAPicture,
+			backgroundColor: 'hsl(120, 1%, 84%)',
+			borderColor: 'hsl(247, 6%, 27%)'
 		}
 	];
 </script>
