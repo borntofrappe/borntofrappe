@@ -1,3 +1,17 @@
+<script>
+	const size = 15;
+	const width = 80;
+	const height = 50;
+
+	const lens = {
+		width: 30,
+		height: 28
+	};
+
+	lens.x = width / 2 - lens.width / 2;
+	lens.y = height / 2 - lens.height / 2;
+</script>
+
 <svg viewBox="0 0 80 50">
 	<title>Take a picture!</title>
 
@@ -45,7 +59,14 @@
 			</g>
 		</symbol>
 
-		<rect id="take-a-picture-lens" x="25" y="11" width="30" height="28" rx="2" />
+		<rect
+			id="take-a-picture-lens"
+			x={lens.x}
+			y={lens.y}
+			width={lens.width}
+			height={lens.height}
+			rx="2"
+		/>
 
 		<clipPath id="take-a-picture-clip-lens">
 			<use href="#take-a-picture-lens" />
@@ -55,8 +76,8 @@
 	<rect fill="currentColor" width="80" height="50" />
 
 	<g fill="none">
-		<use href="#take-a-picture-lens" stroke="#f7f7f7" stroke-width="2.5" />
-		<use href="#take-a-picture-lens" stroke="currentColor" stroke-width="1" />
+		<use href="#take-a-picture-lens" stroke="#f7f7f7" stroke-width="3.25" />
+		<use href="#take-a-picture-lens" stroke="currentColor" stroke-width="1.75" />
 	</g>
 
 	<g clip-path="url(#take-a-picture-clip-lens)">
@@ -90,6 +111,6 @@
 			</g>
 		</g>
 
-		<use href="#take-a-picture-symbol-1" x="20" y="10" width="20" height="20" />
+		<use href="#take-a-picture-symbol-0" x="40" y="25" width={size} height={size} />
 	</g>
 </svg>
