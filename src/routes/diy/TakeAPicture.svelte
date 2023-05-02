@@ -1,4 +1,6 @@
 <script>
+	import Title from './Title.svelte';
+
 	const size = 15;
 	const width = 80;
 	const height = 50;
@@ -71,46 +73,69 @@
 		<clipPath id="take-a-picture-clip-lens">
 			<use href="#take-a-picture-lens" />
 		</clipPath>
+
+		<filter id="take-a-picture-filter-lens">
+			<feColorMatrix
+				type="matrix"
+				values="-1 0 0 0 1 
+														 0 -1 0 0 1 
+														 0 0 -1 0 1
+														 0 0 0 1 0"
+			/>
+			<feColorMatrix
+				type="matrix"
+				values="0.33 0.33 0.33 0 0
+														 0.33 0.33 0.33 0 0
+														 0.33 0.33 0.33 0 0
+														 0 0 0 1 0"
+			/>
+		</filter>
 	</defs>
 
-	<rect fill="currentColor" width="80" height="50" />
+	<g filter="url(#take-a-picture-filter-lens">
+		<rect fill="currentColor" width="80" height="50" />
 
-	<g fill="none">
-		<use href="#take-a-picture-lens" stroke="#f7f7f7" stroke-width="3.25" />
-		<use href="#take-a-picture-lens" stroke="currentColor" stroke-width="1.75" />
-	</g>
-
-	<g clip-path="url(#take-a-picture-clip-lens)">
-		<rect width="80" height="50" fill="#f7f7f7" />
-
-		<g fill="#dfdfdf">
-			<circle cx="0" cy="0" r="25" />
-			<circle cx="25" cy="0" r="25" />
-			<circle cx="50" cy="-5" r="25" />
-			<circle cx="80" cy="-10" r="25" />
-			<circle cx="15" cy="20" r="12" />
-			<circle cx="30" cy="20" r="12" />
-			<circle cx="45" cy="15" r="12" />
-			<circle cx="65" cy="10" r="12" />
+		<g fill="none">
+			<use href="#take-a-picture-lens" stroke="#f7f7f7" stroke-width="3.25" />
+			<use href="#take-a-picture-lens" stroke="currentColor" stroke-width="1.75" />
 		</g>
 
-		<g stroke="#dfdfdf" stroke-width="0.75">
-			<path
-				fill="#f7f7f7"
-				d="M 0 21.5 29.5 28.5 35 50 45 50 39 25 80 5 80 0 74 0 37 18 32.5 0 22.5 0 28 20 0 14"
-			/>
-			<g fill="none">
-				<path d="M 0 21.5 29.5 28.5" stroke-dasharray="8" transform="translate(2 -3.5)" />
-				<path d="M 29.5 27 35 50" stroke-dasharray="12" transform="translate(2 1)" />
-				<g stroke-dasharray="10">
-					<path d="M 45 50 39 25" transform="translate(-4 -2)" />
-					<path d="M 39 25 80 5" transform="translate(4 -5)" />
-					<path d="M 37 18 32.5 0" transform="translate(-3 -2)" />
-					<path d="M 22.5 0 28 20" transform="translate(2 -1)" />
+		<g clip-path="url(#take-a-picture-clip-lens)">
+			<rect width="80" height="50" fill="#f7f7f7" />
+
+			<g fill="#dfdfdf">
+				<circle cx="0" cy="0" r="25" />
+				<circle cx="25" cy="0" r="25" />
+				<circle cx="50" cy="-5" r="25" />
+				<circle cx="80" cy="-10" r="25" />
+				<circle cx="15" cy="20" r="12" />
+				<circle cx="30" cy="20" r="12" />
+				<circle cx="45" cy="15" r="12" />
+				<circle cx="65" cy="10" r="12" />
+			</g>
+
+			<g stroke="#dfdfdf" stroke-width="0.75">
+				<path
+					fill="#f7f7f7"
+					d="M 0 21.5 29.5 28.5 35 50 45 50 39 25 80 5 80 0 74 0 37 18 32.5 0 22.5 0 28 20 0 14"
+				/>
+				<g fill="none">
+					<path d="M 0 21.5 29.5 28.5" stroke-dasharray="8" transform="translate(2 -3.5)" />
+					<path d="M 29.5 27 35 50" stroke-dasharray="12" transform="translate(2 1)" />
+					<g stroke-dasharray="10">
+						<path d="M 45 50 39 25" transform="translate(-4 -2)" />
+						<path d="M 39 25 80 5" transform="translate(4 -5)" />
+						<path d="M 37 18 32.5 0" transform="translate(-3 -2)" />
+						<path d="M 22.5 0 28 20" transform="translate(2 -1)" />
+					</g>
 				</g>
 			</g>
+
+			<use href="#take-a-picture-symbol-0" x="40" y="25" width={size} height={size} />
 		</g>
 
-		<use href="#take-a-picture-symbol-0" x="40" y="25" width={size} height={size} />
+		<g transform="translate(0 20.5)">
+			<Title fontSize="6.5" fill="currentColor" stroke="#f7f7f7">Quick filter</Title>
+		</g>
 	</g>
 </svg>
