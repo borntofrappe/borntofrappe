@@ -1,5 +1,6 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 
 	const size = 13;
 	const width = 80;
@@ -21,14 +22,20 @@
 
 	const dur = 4 + Math.floor(Math.random() * 3);
 
-	// prettier-ignore
-	const sections = [
-		y0,
-		lens.y - size,
-		lens.y - 1,
-		lens.y + lens.height - size + 1,
-		lens.y + lens.height
-	]
+	const start = 'takeAPictureStart';
+
+	const frames = [
+		{ y: y0, text: 'Way too early!', filter: true },
+		{ y: lens.y - size, text: 'A touch early...', filter: true },
+		{ y: lens.y, text: 'Nice shot!', filter: false },
+		{ y: lens.y + lens.height - size + 1, text: 'A bit late...', filter: true },
+		{ y: lens.y + lens.height, text: 'Exceedingly late!', filter: true }
+	].map(({ y, text }, i) => ({
+		id: `takeAPictureFrame${i}`,
+		initial: `${start}.begin + ${((Math.abs(y0) + y) / (y1 - y0)) * dur}s`,
+		none: `takeAPictureFrame${i + 1}.begin`,
+		text
+	}));
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -157,7 +164,7 @@
 				<animateMotion
 					id="takeAPictureMotion"
 					begin="takeAPictureStart.begin"
-					end="takeAPictureShot.begin"
+					end="takeAPictureShoot.begin"
 					{path}
 					{dur}
 					fill="freeze"
@@ -166,11 +173,52 @@
 		</g>
 	</g>
 
+	<g display="none">
+		<set
+			id="takeAPictureShot"
+			begin="takeAPictureShoot.begin; takeAPictureMotion.end"
+			restart="never"
+			attributeName="display"
+			to="initial"
+		/>
+		{#each frames as { text, id, initial, none }}
+			<g display="none">
+				<set
+					{id}
+					begin={initial}
+					end="takeAPictureShoot.begin"
+					fill="freeze"
+					attributeName="display"
+					to="initial"
+				/>
+				<set
+					begin={none}
+					end="takeAPictureShoot.begin"
+					fill="freeze"
+					attributeName="display"
+					to="none"
+				/>
+				<AnimatedTitle
+					{text}
+					fill="#f7f7f7"
+					stroke="currentColor"
+					begin="takeAPictureShot.begin"
+					end="takeAPictureEnd.begin"
+					repeatCount="indefinite"
+				/>
+			</g>
+		{/each}
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" />
+		</rect>
+	</g>
+
 	<g style:cursor="pointer" opacity="0">
-		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" />
+		<set id="takeAPictureShoot" begin="click" attributeName="display" to="none" />
 		<set
 			begin="takeAPictureMotion.end"
-			end="takeAPictureShot.begin"
+			end="takeAPictureShoot.begin"
 			attributeName="display"
 			to="none"
 		/>
@@ -178,17 +226,10 @@
 	</g>
 
 	<g style:cursor="pointer">
-		<set id="takeAPictureStart" begin="click" attributeName="display" to="none" />
+		<set id={start} begin="click" attributeName="display" to="none" />
 
 		<Title fill="#f7f7f7" stroke="currentColor">Frame!</Title>
 
 		<rect width="80" height="50" opacity="0" />
-	</g>
-
-	<g fill="none" stroke="red" stroke-width="0.5">
-		{#each sections as v}
-			<path d="M 0 {v} h 80" />
-		{/each}
-		<path d={path} />
 	</g>
 </svg>
