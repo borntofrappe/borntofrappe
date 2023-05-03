@@ -182,8 +182,8 @@
 
 	<g display="none">
 		<set
-			id="takeAPictureShot"
-			begin="takeAPictureShoot.begin; takeAPictureMotion.end"
+			id="takeAPictureFlashed"
+			begin="takeAPictureFlash.end; takeAPictureMotion.end"
 			restart="never"
 			attributeName="display"
 			to="initial"
@@ -211,7 +211,7 @@
 						fontSize="6.5"
 						{fill}
 						{stroke}
-						begin="takeAPictureShot.begin"
+						begin="takeAPictureFlashed.begin"
 						end="takeAPictureEnd.begin"
 						repeatCount="indefinite"
 					/>
@@ -222,6 +222,19 @@
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
 			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" />
 		</rect>
+	</g>
+
+	<g opacity="0">
+		<animate
+			id="takeAPictureFlash"
+			begin="takeAPictureShoot.begin"
+			attributeName="opacity"
+			values="0; 1; 0"
+			dur="0.15s"
+			fill="freeze"
+		/>
+		<set begin="takeAPictureFlash.end" attributeName="display" to="none" />
+		<rect width="80" height="50" fill="#f7f7f7" />
 	</g>
 
 	<g style:cursor="pointer" opacity="0">
