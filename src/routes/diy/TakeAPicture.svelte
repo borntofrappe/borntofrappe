@@ -167,7 +167,6 @@
 			</g>
 
 			<use href="#take-a-picture-symbol-1" width={size} height={size}>
-				<animateMotion {path} />
 				<animateMotion
 					id="takeAPictureMotion"
 					begin="takeAPictureStart.begin"
@@ -178,50 +177,6 @@
 				/>
 			</use>
 		</g>
-	</g>
-
-	<g display="none">
-		<set
-			id="takeAPictureFlashed"
-			begin="takeAPictureFlash.end; takeAPictureMotion.end"
-			restart="never"
-			attributeName="display"
-			to="initial"
-		/>
-		{#each frames as { text, id, initial, none, fill, stroke }}
-			<g display="none">
-				<set
-					{id}
-					begin={initial}
-					end="takeAPictureShoot.begin"
-					fill="freeze"
-					attributeName="display"
-					to="initial"
-				/>
-				<set
-					begin={none}
-					end="takeAPictureShoot.begin"
-					fill="freeze"
-					attributeName="display"
-					to="none"
-				/>
-				<g transform="translate(0 20.5)">
-					<AnimatedTitle
-						{text}
-						fontSize="6.5"
-						{fill}
-						{stroke}
-						begin="takeAPictureFlashed.begin"
-						end="takeAPictureEnd.begin"
-						repeatCount="indefinite"
-					/>
-				</g>
-			</g>
-		{/each}
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" />
-		</rect>
 	</g>
 
 	<g opacity="0">
@@ -235,6 +190,75 @@
 		/>
 		<set begin="takeAPictureFlash.end" attributeName="display" to="none" />
 		<rect width="80" height="50" fill="#f7f7f7" />
+	</g>
+
+	<g display="none">
+		<set
+			begin="takeAPictureFlash.end; takeAPictureMotion.end"
+			attributeName="display"
+			to="initial"
+		/>
+
+		<g display="none">
+			<set
+				id="takeAPictureFlashed"
+				begin="takeAPictureFlash.end"
+				attributeName="display"
+				to="initial"
+			/>
+			{#each frames as { text, id, initial, none, fill, stroke }}
+				<g display="none">
+					<set
+						{id}
+						begin={initial}
+						end="takeAPictureShoot.begin"
+						fill="freeze"
+						attributeName="display"
+						to="initial"
+					/>
+					<set
+						begin={none}
+						end="takeAPictureShoot.begin"
+						fill="freeze"
+						attributeName="display"
+						to="none"
+					/>
+					<g transform="translate(0 20.5)">
+						<AnimatedTitle
+							{text}
+							fontSize="6"
+							{fill}
+							{stroke}
+							begin="takeAPictureFlashed.begin"
+							end="takeAPictureEnd.begin"
+							repeatCount="indefinite"
+						/>
+					</g>
+				</g>
+			{/each}
+		</g>
+
+		<g display="none">
+			<set
+				begin="takeAPictureMotion.end"
+				end="takeAPictureShoot.begin"
+				attributeName="display"
+				to="initial"
+			/>
+			<AnimatedTitle
+				text="Moment's gone..."
+				fontSize="6"
+				fill="#f7f7f7"
+				stroke="currentColor"
+				begin="takeAPictureMotion.end"
+				end="takeAPictureEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer" opacity="0">
