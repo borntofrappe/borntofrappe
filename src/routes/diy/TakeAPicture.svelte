@@ -1,7 +1,7 @@
 <script>
 	import Title from './Title.svelte';
 
-	const size = 15;
+	const size = 13;
 	const width = 80;
 	const height = 50;
 
@@ -12,6 +12,21 @@
 
 	lens.x = width / 2 - lens.width / 2;
 	lens.y = height / 2 - lens.height / 2;
+
+	const y0 = -height;
+	const y1 = height;
+
+	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
+	const path = `M ${getX()} ${y0} ${getX()} ${y1}`;
+
+	// prettier-ignore
+	const sections = [
+		y0,
+		lens.y - size,
+		lens.y - 1,
+		lens.y + lens.height - size + 1,
+		lens.y + lens.height
+	]
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -137,11 +152,23 @@
 		</g>
 	</g>
 
-	<g style:cursor="pointer">
+	<!-- 	<g style:cursor="pointer">
 		<set id="takeAPictureStart" begin="click" attributeName="display" to="none" />
 
 		<Title fill="#f7f7f7" stroke="currentColor">Frame!</Title>
 
 		<rect width="80" height="50" opacity="0" />
+	</g> -->
+
+	<use href="#take-a-picture-symbol-1" width={size} height={size}>
+		<animateMotion {path} />
+		<animateMotion {path} dur="5s" />
+	</use>
+
+	<g fill="none" stroke="red" stroke-width="1">
+		{#each sections as v}
+			<path d="M 0 {v} h 80" />
+		{/each}
+		<path d={path} />
 	</g>
 </svg>
