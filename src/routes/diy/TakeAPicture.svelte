@@ -30,11 +30,14 @@
 		{ y: lens.y, text: 'Nice shot!', filter: false },
 		{ y: lens.y + lens.height - size + 1, text: 'A bit late...', filter: true },
 		{ y: lens.y + lens.height, text: 'Exceedingly late!', filter: true }
-	].map(({ y, text }, i) => ({
+	].map(({ y, text, filter }, i) => ({
 		id: `takeAPictureFrame${i}`,
 		initial: `${start}.begin + ${((Math.abs(y0) + y) / (y1 - y0)) * dur}s`,
 		none: `takeAPictureFrame${i + 1}.begin`,
-		text
+		text,
+		filter: filter ? 'url(#take-a-picture-filter-lens)' : '',
+		fill: filter ? '#f7f7f7' : 'currentColor',
+		stroke: filter ? 'currentColor' : '#f7f7f7'
 	}));
 </script>
 
@@ -121,6 +124,10 @@
 	</defs>
 
 	<g>
+		{#each frames as { id, filter }}
+			<set begin="{id}.end" attributeName="filter" to={filter} />
+		{/each}
+
 		<rect fill="currentColor" width="80" height="50" />
 
 		<g fill="none">
@@ -181,7 +188,7 @@
 			attributeName="display"
 			to="initial"
 		/>
-		{#each frames as { text, id, initial, none }}
+		{#each frames as { text, id, initial, none, fill, stroke }}
 			<g display="none">
 				<set
 					{id}
@@ -198,14 +205,17 @@
 					attributeName="display"
 					to="none"
 				/>
-				<AnimatedTitle
-					{text}
-					fill="#f7f7f7"
-					stroke="currentColor"
-					begin="takeAPictureShot.begin"
-					end="takeAPictureEnd.begin"
-					repeatCount="indefinite"
-				/>
+				<g transform="translate(0 20.5)">
+					<AnimatedTitle
+						{text}
+						fontSize="6.5"
+						{fill}
+						{stroke}
+						begin="takeAPictureShot.begin"
+						end="takeAPictureEnd.begin"
+						repeatCount="indefinite"
+					/>
+				</g>
 			</g>
 		{/each}
 
