@@ -19,6 +19,8 @@
 	const getX = () => Math.floor(Math.random() * (lens.width - size)) + lens.x;
 	const path = `M ${getX()} ${y0} ${getX()} ${y1}`;
 
+	const dur = 4 + Math.floor(Math.random() * 3);
+
 	// prettier-ignore
 	const sections = [
 		y0,
@@ -149,23 +151,41 @@
 					</g>
 				</g>
 			</g>
+
+			<use href="#take-a-picture-symbol-1" width={size} height={size}>
+				<animateMotion {path} />
+				<animateMotion
+					id="takeAPictureMotion"
+					begin="takeAPictureStart.begin"
+					end="takeAPictureShot.begin"
+					{path}
+					{dur}
+					fill="freeze"
+				/>
+			</use>
 		</g>
 	</g>
 
-	<!-- 	<g style:cursor="pointer">
+	<g style:cursor="pointer" opacity="0">
+		<set id="takeAPictureShot" begin="click" attributeName="display" to="none" />
+		<set
+			begin="takeAPictureMotion.end"
+			end="takeAPictureShot.begin"
+			attributeName="display"
+			to="none"
+		/>
+		<rect width="80" height="50" />
+	</g>
+
+	<g style:cursor="pointer">
 		<set id="takeAPictureStart" begin="click" attributeName="display" to="none" />
 
 		<Title fill="#f7f7f7" stroke="currentColor">Frame!</Title>
 
 		<rect width="80" height="50" opacity="0" />
-	</g> -->
+	</g>
 
-	<use href="#take-a-picture-symbol-1" width={size} height={size}>
-		<animateMotion {path} />
-		<animateMotion {path} dur="5s" />
-	</use>
-
-	<g fill="none" stroke="red" stroke-width="1">
+	<g fill="none" stroke="red" stroke-width="0.5">
 		{#each sections as v}
 			<path d="M 0 {v} h 80" />
 		{/each}
