@@ -39,6 +39,8 @@
 		fill: filter ? '#f7f7f7' : 'currentColor',
 		stroke: filter ? 'currentColor' : '#f7f7f7'
 	}));
+
+	const href = `#take-a-picture-symbol-${Math.floor(Math.random() * 2)}`;
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -166,7 +168,7 @@
 				</g>
 			</g>
 
-			<use href="#take-a-picture-symbol-1" width={size} height={size}>
+			<use {href} width={size} height={size}>
 				<animateMotion
 					id="takeAPictureMotion"
 					begin="takeAPictureStart.begin"
@@ -179,86 +181,55 @@
 		</g>
 	</g>
 
+	<g display="none">
+		<set id="takeAPictureShot" begin="takeAPictureFlash.end" attributeName="display" to="initial" />
+		{#each frames as { text, id, initial, none, fill, stroke }}
+			<g display="none">
+				<set
+					{id}
+					begin={initial}
+					end="takeAPictureShoot.begin"
+					fill="freeze"
+					attributeName="display"
+					to="initial"
+				/>
+				<set
+					begin={none}
+					end="takeAPictureShoot.begin"
+					fill="freeze"
+					attributeName="display"
+					to="none"
+				/>
+				<g transform="translate(0 20.5)">
+					<AnimatedTitle
+						{text}
+						fontSize="6"
+						{fill}
+						{stroke}
+						begin="takeAPictureShot.begin"
+						end="takeAPictureEndShot.begin"
+						repeatCount="indefinite"
+					/>
+				</g>
+			</g>
+		{/each}
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="takeAPictureEndShot" begin="click" attributeName="display" to="none" />
+		</rect>
+	</g>
+
 	<g opacity="0">
 		<animate
 			id="takeAPictureFlash"
 			begin="takeAPictureShoot.begin"
 			attributeName="opacity"
 			values="0; 1; 0"
-			dur="0.15s"
+			dur="0.2s"
 			fill="freeze"
 		/>
 		<set begin="takeAPictureFlash.end" attributeName="display" to="none" />
 		<rect width="80" height="50" fill="#f7f7f7" />
-	</g>
-
-	<g display="none">
-		<set
-			begin="takeAPictureFlash.end; takeAPictureMotion.end"
-			attributeName="display"
-			to="initial"
-		/>
-
-		<g display="none">
-			<set
-				id="takeAPictureFlashed"
-				begin="takeAPictureFlash.end"
-				attributeName="display"
-				to="initial"
-			/>
-			{#each frames as { text, id, initial, none, fill, stroke }}
-				<g display="none">
-					<set
-						{id}
-						begin={initial}
-						end="takeAPictureShoot.begin"
-						fill="freeze"
-						attributeName="display"
-						to="initial"
-					/>
-					<set
-						begin={none}
-						end="takeAPictureShoot.begin"
-						fill="freeze"
-						attributeName="display"
-						to="none"
-					/>
-					<g transform="translate(0 20.5)">
-						<AnimatedTitle
-							{text}
-							fontSize="6"
-							{fill}
-							{stroke}
-							begin="takeAPictureFlashed.begin"
-							end="takeAPictureEnd.begin"
-							repeatCount="indefinite"
-						/>
-					</g>
-				</g>
-			{/each}
-		</g>
-
-		<g display="none">
-			<set
-				begin="takeAPictureMotion.end"
-				end="takeAPictureShoot.begin"
-				attributeName="display"
-				to="initial"
-			/>
-			<AnimatedTitle
-				text="Moment's gone..."
-				fontSize="6"
-				fill="#f7f7f7"
-				stroke="currentColor"
-				begin="takeAPictureMotion.end"
-				end="takeAPictureEnd.begin"
-				repeatCount="indefinite"
-			/>
-		</g>
-
-		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="takeAPictureEnd" begin="click" attributeName="display" to="none" />
-		</rect>
 	</g>
 
 	<g style:cursor="pointer" opacity="0">
@@ -270,6 +241,29 @@
 			to="none"
 		/>
 		<rect width="80" height="50" />
+	</g>
+
+	<g display="none">
+		<set
+			id="takeAPictureMotionEnd"
+			begin="takeAPictureMotion.end"
+			end="takeAPictureShoot.begin"
+			attributeName="display"
+			to="initial"
+		/>
+		<AnimatedTitle
+			text="Moment's gone..."
+			fontSize="6"
+			fill="#f7f7f7"
+			stroke="currentColor"
+			begin="takeAPictureMotionEnd.begin"
+			end="takeAPictureEndMotion.begin"
+			repeatCount="indefinite"
+		/>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="takeAPictureEndMotion" begin="click" attributeName="display" to="none" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
