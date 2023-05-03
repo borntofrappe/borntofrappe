@@ -77,22 +77,26 @@
 		<filter id="take-a-picture-filter-lens">
 			<feColorMatrix
 				type="matrix"
-				values="-1 0 0 0 1 
-														 0 -1 0 0 1 
-														 0 0 -1 0 1
-														 0 0 0 1 0"
+				values="
+					-1 0 0 0 1 
+					0 -1 0 0 1 
+					0 0 -1 0 1
+					0 0 0 1 0
+				"
 			/>
 			<feColorMatrix
 				type="matrix"
-				values="0.33 0.33 0.33 0 0
-														 0.33 0.33 0.33 0 0
-														 0.33 0.33 0.33 0 0
-														 0 0 0 1 0"
+				values="
+					0.33 0.33 0.33 0 0
+					0.33 0.33 0.33 0 0
+					0.33 0.33 0.33 0 0
+					0 0 0 1 0
+				"
 			/>
 		</filter>
 	</defs>
 
-	<g filter="url(#take-a-picture-filter-lens">
+	<g>
 		<rect fill="currentColor" width="80" height="50" />
 
 		<g fill="none">
@@ -130,12 +134,14 @@
 					</g>
 				</g>
 			</g>
-
-			<use href="#take-a-picture-symbol-0" x="40" y="25" width={size} height={size} />
 		</g>
+	</g>
 
-		<g transform="translate(0 20.5)">
-			<Title fontSize="6.5" fill="currentColor" stroke="#f7f7f7">Quick filter</Title>
-		</g>
+	<g style:cursor="pointer">
+		<set id="takeAPictureStart" begin="click" attributeName="display" to="none" />
+
+		<Title fill="#f7f7f7" stroke="currentColor">Frame!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
