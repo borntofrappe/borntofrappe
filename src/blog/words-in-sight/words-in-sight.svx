@@ -3,3 +3,26 @@ title: Words in sight
 description: To understand something a picture is worth a thousand words. To remember something, animation might be your best shot.
 date: 2023-05-05T14:21:17
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+    import svg from './svg.js'
+    import Arrow from './Arrow.svelte'
+</script>
+
+At the risk of being obsessive, I often stumble on the difference between accuracy and precision. The two share a common core, a propensity for being exact, but are quite different in nature. And what better way to remark the difference than with a few visuals? Another example where scalable vector graphics just shine.
+
+First off, precision. The word describes the state of being exact, and technically being exact over and over. Think of multiple measurements marking the same value. Think of a shower of arrows, gathered around the same spot.
+
+<Center element="figure" maxInlineSize="26rem">
+    {@html svg['precision']}
+</Center>
+
+What is accuracy, then? Why, accuracy is just one arrow. One arrow leaving a slim bow, flying through the air and hitting the target with forceful grace. Exact. Once.
+
+<Center maxInlineSize="36rem">
+    <Arrow />
+</Center>
+
+Accurate? It certainly is.
