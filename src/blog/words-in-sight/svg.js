@@ -29,8 +29,8 @@ export default {
 		<g transform="rotate(-10) scale(0.8 1)">
 			<path fill="#2b434f" d="M 0 -25 a 25 25 0 0 1 0 50 h -6 a 25 25 0 0 1 0 -50 h 6" />
 			<circle fill="#f2f7fe" r="25" />
-			<circle fill="#6a8896" r="20" />
-			<circle fill="#f2f7fe" r="15" />
+			<circle fill="#197191" r="20" />
+			<circle fill="#79a9c1" r="15" />
 			<circle fill="#fe804e" r="10" />
 			<circle fill="#fff06a" r="5" />
 		</g>

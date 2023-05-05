@@ -11,12 +11,12 @@
 
 	const handleClick = () => {
 		canAnimate = false;
-		svg.querySelector('#arrowShoot').beginElement();
+		svg.querySelector('#perfectShotShoot').beginElement();
 	};
 
 	const durs = {
 		shoot: 0.75,
-		motion: 1.75
+		motion: 1.5
 	};
 </script>
 
@@ -25,19 +25,27 @@
 		<button out:fly={{ x: -20, y: 3 }} on:click|once={handleClick}>Shoot!</button>
 	{/if}
 
-	<svg bind:this={svg} viewBox="-50 -50 100 100">
+	<svg bind:this={svg} viewBox="-50 -45 100 90">
 		<title>Accuracy</title>
 		<description>Accuracy is being exact once.</description>
 		<defs>
-			<path id="arrow-path" fill="none" stroke="currentColor" d="M 0 0 c 140 -20 380 -20 500 0" />
+			<path
+				id="perfect-shot-path"
+				fill="none"
+				stroke="currentColor"
+				d="M 0 0 c 140 -20 380 -20 500 0"
+			/>
 		</defs>
 
 		<animate
-			begin="arrowMotion.begin"
+			begin="perfectShotMotion.begin"
 			attributeName="viewBox"
-			values="-50 -50 100 100; 440 -50 100 100"
+			to="440 -45 100 90"
 			dur={durs.motion}
 			fill="freeze"
+			calcMode="spline"
+			keyTimes="0; 1"
+			keySplines="0 0 1 1"
 		/>
 
 		<g transform="translate(500 0)">
@@ -53,8 +61,8 @@
 				<g transform="rotate(10) scale(0.8 1)">
 					<path fill="#2b434f" d="M 0 -25 a 25 25 0 0 0 0 50 h 6 a 25 25 0 0 0 0 -50 h -6" />
 					<circle fill="#f2f7fe" r="25" />
-					<circle fill="#6a8896" r="20" />
-					<circle fill="#f2f7fe" r="15" />
+					<circle fill="#197191" r="20" />
+					<circle fill="#79a9c1" r="15" />
 					<circle fill="#fe804e" r="10" />
 					<circle fill="#fff06a" r="5" />
 				</g>
@@ -63,7 +71,7 @@
 
 		<g>
 			<animateMotion rotate="auto">
-				<mpath href="#arrow-path" />
+				<mpath href="#perfect-shot-path" />
 			</animateMotion>
 			<g
 				fill="none"
@@ -74,7 +82,7 @@
 			>
 				<path stroke-width="0.75" d="M -9 -40 c 0 20 0 60 0 80">
 					<animate
-						id="arrowShoot"
+						id="perfectShotShoot"
 						begin="indefinite"
 						attributeName="d"
 						values="M -9 -40 c 0 20 0 60 0 80; M -9 -40 c -28 30 -28 50 0 80"
@@ -84,7 +92,7 @@
 						fill="freeze"
 					/>
 					<animate
-						begin="arrowShoot.end"
+						begin="perfectShotShoot.end"
 						attributeName="d"
 						to="M -9 -40 c 4 20 4 60 0 80"
 						dur="0.1s"
@@ -100,7 +108,7 @@
 		</g>
 		<g transform="translate(22 0)">
 			<animateTransform
-				begin="arrowShoot.begin"
+				begin="perfectShotShoot.begin"
 				attributeName="transform"
 				type="translate"
 				values="22 0; 0 0"
@@ -110,16 +118,19 @@
 				fill="freeze"
 			/>
 			<animateMotion rotate="auto">
-				<mpath href="#arrow-path" />
+				<mpath href="#perfect-shot-path" />
 			</animateMotion>
 			<animateMotion
-				id="arrowMotion"
-				begin="arrowShoot.end"
+				id="perfectShotMotion"
+				begin="perfectShotShoot.end"
 				rotate="auto"
 				dur={durs.motion}
 				fill="freeze"
+				calcMode="spline"
+				keyTimes="0; 1"
+				keySplines="0 0 1 1"
 			>
-				<mpath href="#arrow-path" />
+				<mpath href="#perfect-shot-path" />
 			</animateMotion>
 			<g fill="hsl(240 3% 35%)">
 				<path d="M -30 0 l -3 -3 -8 0 3 3 -3 3 8 0 3 -3 30 0" />
@@ -129,7 +140,7 @@
 					stroke-linejoin="round"
 					d="M 4 0 l -5 -3 2 3 -2 3 5 -3z"
 				>
-					<set begin="arrowMotion.end" attributeName="display" to="none" />
+					<set begin="perfectShotMotion.end" attributeName="display" to="none" />
 				</path>
 			</g>
 			<path
