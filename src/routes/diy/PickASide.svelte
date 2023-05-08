@@ -1,3 +1,24 @@
+<script>
+	const spriteSize = 8;
+
+	const sides = [
+		[
+			{ x: 8, y: 26 },
+			{ x: 32, y: 26 },
+			{ x: 20, y: 34 },
+			{ x: 8, y: 42 },
+			{ x: 32, y: 42 }
+		],
+		[
+			{ x: 48, y: 26 },
+			{ x: 72, y: 26 },
+			{ x: 60, y: 34 },
+			{ x: 48, y: 42 },
+			{ x: 72, y: 42 }
+		]
+	];
+</script>
+
 <svg viewBox="0 0 80 50">
 	<title>Pick a side!</title>
 
@@ -43,7 +64,14 @@
 			/>
 		</pattern>
 
-		<symbol id="pick-a-side-sprite-left" viewBox="-5 -5 10 10">
+		<symbol
+			id="pick-a-side-sprite-left"
+			viewBox="-5 -5 10 10"
+			x="-{spriteSize / 2}"
+			y="-{spriteSize / 2}"
+			width={spriteSize}
+			height={spriteSize}
+		>
 			<g stroke-width="0.4" stroke="currentColor">
 				<g transform="translate(0 -2.3)">
 					<path fill="currentColor" d="M -1.5 2.3 h -1 v -2.1 a 2.5 2.5 0 0 1 5 0 v 2.1 h -1z" />
@@ -69,7 +97,14 @@
 				/>
 			</g>
 		</symbol>
-		<symbol id="pick-a-side-sprite-right" viewBox="-5 -5 10 10">
+		<symbol
+			id="pick-a-side-sprite-right"
+			viewBox="-5 -5 10 10"
+			x="-{spriteSize / 2}"
+			y="-{spriteSize / 2}"
+			width={spriteSize}
+			height={spriteSize}
+		>
 			<g stroke-width="0.4" stroke="currentColor">
 				<g transform="translate(0 -2.3)">
 					<circle fill="#f7f7f7" r="2.5" />
@@ -96,6 +131,9 @@
 	<rect fill="url(#pick-a-side-pattern-grid-left)" y="18" width="40" height="40" />
 	<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" y="18" width="40" height="40" />
 
-	<use x="5" y="5" href="#pick-a-side-sprite-left" width="10" height="10" />
-	<use x="15" y="5" href="#pick-a-side-sprite-right" width="10" height="10" />
+	{#each sides as spots, i}
+		{#each spots as { x, y }}
+			<use {x} {y} href="#pick-a-side-sprite-{i === 0 ? 'left' : 'right'}" />
+		{/each}
+	{/each}
 </svg>
