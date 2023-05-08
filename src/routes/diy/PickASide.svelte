@@ -149,6 +149,8 @@
 			width={spriteSize}
 			height={spriteSize}
 		/>
+
+		<path id="pick-a-side-flag" d="M -2 0 h -5 v 3 h 3 v -3" />
 	</defs>
 
 	<rect width="80" height="50" fill="yellow" />
@@ -204,6 +206,7 @@
 			rx={padding}
 		>
 			<set id="pickASideClickLeft" begin="click" attributeName="display" to="none" fill="freeze" />
+			<set begin="pickASideClickRight.begin" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
@@ -255,7 +258,41 @@
 			rx={padding}
 		>
 			<set id="pickASideClickRight" begin="click" attributeName="display" to="none" fill="freeze" />
+			<set begin="pickASideClickLeft.begin" attributeName="display" to="none" fill="freeze" />
 		</rect>
+	</g>
+
+	<g transform="translate(40 10)">
+		<g stroke="currentColor" stroke-width="0.5">
+			<use fill="#f7ae42" href="#pick-a-side-flag">
+				<animateTransform
+					begin="pickASideClickLeft.begin"
+					attributeName="transform"
+					type="rotate"
+					to="50"
+					dur={durs.click}
+					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.5 1"
+				/>
+			</use>
+			<g transform="scale(-1 1)">
+				<use fill="#21c6ce" href="#pick-a-side-flag">
+					<animateTransform
+						begin="pickASideClickRight.begin"
+						attributeName="transform"
+						type="rotate"
+						to="50"
+						dur={durs.click}
+						fill="freeze"
+						calcMode="spline"
+						keyTimes="0; 1"
+						keySplines="0.5 0 0.5 1"
+					/>
+				</use>
+			</g>
+		</g>
 	</g>
 
 	{#each sprites as { sprite, x, y }}
