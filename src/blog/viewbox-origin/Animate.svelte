@@ -74,8 +74,8 @@
 
 	<svg bind:this={svg} viewBox="0 0 {v + p * 2} {m + p * 2}">
 		<defs>
-			<linearGradient id="line-chart-gradient-curve" x1="0" x2="0" y1="0" y2="1">
-				<stop stop-opacity="0.25" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="0" />
+			<linearGradient id="animate-gradient-accent" x1="0" x2="0" y1="0" y2="1">
+				<stop stop-opacity="0.5" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="0" />
 				<stop stop-opacity="0" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="1" />
 			</linearGradient>
 		</defs>
@@ -113,7 +113,7 @@
 				</g>
 			</g>
 
-			<path fill="url(#line-chart-gradient-curve)" stroke="none" d="M {points} {n} {m} 0 {m}" />
+			<path fill="url(#animate-gradient-accent)" stroke="none" d="M {points} {n} {m} 0 {m}" />
 			<path fill="none" stroke="var(--accent, hsl(187, 50%, 29%))" d="M {points}" />
 		</g>
 	</svg>
@@ -132,17 +132,17 @@
 	}
 
 	button {
-		color: #f2f7fe;
-		background: #2b434f;
+		color: hsl(40, 23%, 97%);
+		background: hsl(30, 13%, 9%);
+		letter-spacing: 1px;
 		border: none;
-		border-radius: 1rem;
+		border-radius: 0.25rem;
 		font-weight: 700;
 		padding: 0.25rem 0.75rem;
 	}
 
 	svg {
 		display: block;
-		color: hsl(200, 30%, 24%);
-		--accent: hsl(187, 50%, 29%);
+		--accent: hsl(42, 87%, 55%);
 	}
 </style>

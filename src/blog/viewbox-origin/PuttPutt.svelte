@@ -259,8 +259,9 @@
 	button {
 		color: hsl(215, 86%, 97%);
 		background: hsl(200, 30%, 24%);
+		letter-spacing: 1px;
 		border: none;
-		border-radius: 1rem;
+		border-radius: 0.25rem;
 		font-weight: 700;
 		padding: 0.25rem 0.75rem;
 	}

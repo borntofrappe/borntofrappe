@@ -3,3 +3,28 @@ title: viewBox origin
 description: Explore the values of the viewBox attribute for practical uses and creative endeavors.
 date: 2023-05-08T21:21:21
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import LineChart from './LineChart.svelte';
+	import Range from './Range.svelte';
+	import Animate from './Animate.svelte';
+	import PuttPutt from './PuttPutt.svelte';
+</script>
+
+<Center element="figure" maxInlineSize="52rem">
+    <LineChart />
+</Center>
+
+<Center maxInlineSize="30rem">
+    <Range />
+</Center>
+
+<Center maxInlineSize="30rem">
+    <Animate />
+</Center>
+
+<Center maxInlineSize="30rem">
+    <PuttPutt />
+</Center>

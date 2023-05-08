@@ -71,8 +71,8 @@
 
 	<svg viewBox="{x} 0 {v + p * 2} {m + p * 2}">
 		<defs>
-			<linearGradient id="line-chart-gradient-curve" x1="0" x2="0" y1="0" y2="1">
-				<stop stop-opacity="0.25" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="0" />
+			<linearGradient id="range-gradient-accent" x1="0" x2="0" y1="0" y2="1">
+				<stop stop-opacity="0.6" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="0" />
 				<stop stop-opacity="0" stop-color="var(--accent, hsl(187, 50%, 29%))" offset="1" />
 			</linearGradient>
 		</defs>
@@ -103,7 +103,7 @@
 				</g>
 			</g>
 
-			<path fill="url(#line-chart-gradient-curve)" stroke="none" d="M {points} {n} {m} 0 {m}" />
+			<path fill="url(#range-gradient-accent)" stroke="none" d="M {points} {n} {m} 0 {m}" />
 			<path fill="none" stroke="var(--accent, hsl(187, 50%, 29%))" d="M {points}" />
 		</g>
 	</svg>
@@ -122,7 +122,6 @@
 
 	svg {
 		display: block;
-		color: hsl(200, 30%, 24%);
-		--accent: hsl(187, 50%, 29%);
+		--accent: hsl(42, 87%, 55%);
 	}
 </style>
