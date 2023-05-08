@@ -18,13 +18,24 @@
 	const getX = () => x0 + Math.floor(Math.random() * (x1 - x0));
 	const getY = () => y0 + Math.floor(Math.random() * (y1 - y0));
 
-	const start = 'pickASideStart';
-	const begin = `${start}.begin`;
+	const moves = 10;
+	const durationPerUnit = 0.02;
+
 	const durs = {
-		start: '0.7s',
+		intro: '0.7s',
 		click: '0.25s',
-		end: '0.5s'
+		outro: '0.5s'
 	};
+
+	const id = 'pickASideStart';
+	const begin = `${id}.begin`;
+	const ids = {
+		left: 'pickASideClickLeft',
+		right: 'pickASideClickRight'
+	};
+	const end = Object.values(ids)
+		.map((id) => `${id}.begin`)
+		.join(';');
 
 	let destinations = Object.entries({
 		left: [
@@ -58,16 +69,42 @@
 			return destination;
 		})
 		.map(({ x, y, sprite }) => {
-			const start = {
+			const position = {
 				x: getX(),
 				y: getY()
 			};
+
+			const positions = [
+				position,
+				...Array(moves)
+					.fill()
+					.map((_) => ({
+						x: getX(),
+						y: getY()
+					})),
+				position
+			];
+
+			const distance = positions.reduce((acc, curr, i, arr) => {
+				if (i === 0) return 0;
+
+				const { x: x0, y: y0 } = arr[i - 1];
+				const { x: x1, y: y1 } = curr;
+
+				return acc + ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5;
+			}, 0);
+
+			const dur = `${durationPerUnit * distance}s`;
+
+			const values = positions.map(({ x, y }) => `${x} ${y}`).join(';');
 
 			return {
 				x,
 				y,
 				sprite,
-				start
+				position,
+				values,
+				dur
 			};
 		});
 </script>
@@ -202,7 +239,7 @@
 						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 				>
 					<animate
-						begin="pickASideClickLeft.begin"
+						begin="{ids.left}.begin"
 						attributeName="d"
 						to="M 0 {size +
 							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
@@ -219,7 +256,7 @@
 		</g>
 		<use href="#pick-a-side-symbol-left" y={(padding / 2) * -1} width={size} height={size}>
 			<animate
-				begin="pickASideClickLeft.begin"
+				begin="{ids.left}.begin"
 				attributeName="y"
 				to="0"
 				dur={durs.click}
@@ -238,8 +275,8 @@
 			height={size + padding * 2}
 			rx={padding}
 		>
-			<set id="pickASideClickLeft" begin="click" attributeName="display" to="none" fill="freeze" />
-			<set begin="pickASideClickRight.begin" attributeName="display" to="none" fill="freeze" />
+			<set id={ids.left} begin="click" attributeName="display" to="none" fill="freeze" />
+			<set begin="{ids.right}.begin" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
@@ -254,7 +291,7 @@
 						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 				>
 					<animate
-						begin="pickASideClickRight.begin"
+						begin="{ids.right}.begin"
 						attributeName="d"
 						to="M 0 {size +
 							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
@@ -271,7 +308,7 @@
 		</g>
 		<use href="#pick-a-side-symbol-right" y={(padding / 2) * -1} width={size} height={size}>
 			<animate
-				begin="pickASideClickRight.begin"
+				begin="{ids.right}.begin"
 				attributeName="y"
 				to="0"
 				dur={durs.click}
@@ -290,8 +327,8 @@
 			height={size + padding * 2}
 			rx={padding}
 		>
-			<set id="pickASideClickRight" begin="click" attributeName="display" to="none" fill="freeze" />
-			<set begin="pickASideClickLeft.begin" attributeName="display" to="none" fill="freeze" />
+			<set id={ids.right} begin="click" attributeName="display" to="none" fill="freeze" />
+			<set begin="{ids.left}.begin" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
@@ -299,7 +336,7 @@
 		<g stroke="currentColor" stroke-width="0.5">
 			<use fill="#f7ae42" href="#pick-a-side-flag">
 				<animateTransform
-					begin="pickASideClickLeft.begin"
+					begin="{ids.left}.begin"
 					attributeName="transform"
 					type="rotate"
 					to="50"
@@ -313,7 +350,7 @@
 			<g transform="scale(-1 1)">
 				<use fill="#21c6ce" href="#pick-a-side-flag">
 					<animateTransform
-						begin="pickASideClickRight.begin"
+						begin="{ids.right}.begin"
 						attributeName="transform"
 						type="rotate"
 						to="50"
@@ -334,20 +371,30 @@
 			attributeName="transform"
 			type="translate"
 			to="0 0"
-			dur={durs.start}
+			dur={durs.intro}
 			fill="freeze"
 			calcMode="spline"
 			keyTimes="0; 1"
 			keySplines="0.65 0 0.4 1"
 		/>
-		{#each sprites as { x, y, sprite, start }}
-			<g transform="translate({start.x} {start.y})">
+		{#each sprites as { x, y, sprite, position, values, dur }}
+			<g transform="translate({position.x} {position.y})">
 				<animateTransform
-					begin="pickASideClickLeft.begin; pickASideClickRight.begin"
+					{begin}
+					{end}
+					attributeName="transform"
+					type="translate"
+					{values}
+					{dur}
+					fill="freeze"
+					repeatCount="indefinite"
+				/>
+				<animateTransform
+					begin={end}
 					attributeName="transform"
 					type="translate"
 					to="{x} {y}"
-					dur={durs.end}
+					dur={durs.outro}
 					fill="freeze"
 					calcMode="spline"
 					keyTimes="0; 1"
@@ -359,7 +406,7 @@
 	</g>
 
 	<g style:cursor="pointer">
-		<set id={start} begin="click" attributeName="display" to="none" />
+		<set {id} begin="click" attributeName="display" to="none" />
 
 		<Title fill="url(#linear-gradient-text)">Majority!</Title>
 
