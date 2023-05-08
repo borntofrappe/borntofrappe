@@ -1,5 +1,12 @@
 <script>
+	const size = 10;
+	const padding = 2;
+
 	const spriteSize = 8;
+
+	const durs = {
+		click: '0.25s'
+	};
 
 	let destinations = Object.entries({
 		left: [
@@ -79,14 +86,7 @@
 			/>
 		</pattern>
 
-		<symbol
-			id="pick-a-side-sprite-left"
-			viewBox="-5 -5 10 10"
-			x="-{spriteSize / 2}"
-			y="-{spriteSize / 2}"
-			width={spriteSize}
-			height={spriteSize}
-		>
+		<symbol id="pick-a-side-symbol-left" viewBox="-5 -5 10 10">
 			<g stroke-width="0.4" stroke="currentColor">
 				<g transform="translate(0 -2.3)">
 					<path fill="currentColor" d="M -1.5 2.3 h -1 v -2.1 a 2.5 2.5 0 0 1 5 0 v 2.1 h -1z" />
@@ -112,14 +112,7 @@
 				/>
 			</g>
 		</symbol>
-		<symbol
-			id="pick-a-side-sprite-right"
-			viewBox="-5 -5 10 10"
-			x="-{spriteSize / 2}"
-			y="-{spriteSize / 2}"
-			width={spriteSize}
-			height={spriteSize}
-		>
+		<symbol id="pick-a-side-symbol-right" viewBox="-5 -5 10 10">
 			<g stroke-width="0.4" stroke="currentColor">
 				<g transform="translate(0 -2.3)">
 					<circle fill="#f7f7f7" r="2.5" />
@@ -139,12 +132,131 @@
 				/>
 			</g>
 		</symbol>
+
+		<use
+			id="pick-a-side-sprite-left"
+			href="#pick-a-side-symbol-left"
+			x="-{spriteSize / 2}"
+			y="-{spriteSize / 2}"
+			width={spriteSize}
+			height={spriteSize}
+		/>
+		<use
+			id="pick-a-side-sprite-right"
+			href="#pick-a-side-symbol-right"
+			x="-{spriteSize / 2}"
+			y="-{spriteSize / 2}"
+			width={spriteSize}
+			height={spriteSize}
+		/>
 	</defs>
 
 	<rect width="80" height="50" fill="yellow" />
 
 	<rect fill="url(#pick-a-side-pattern-grid-left)" y="18" width="40" height="40" />
 	<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" y="18" width="40" height="40" />
+
+	<g transform="translate({20 - size / 2} {padding * 2})">
+		<g transform="translate({padding * -1} {padding * -1})">
+			<g stroke="currentColor" stroke-width="0.5">
+				<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+				<path
+					fill="currentColor"
+					d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+				>
+					<animate
+						begin="pickASideClickLeft.begin"
+						attributeName="d"
+						to="M 0 {size +
+							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+						dur={durs.click}
+						fill="freeze"
+						calcMode="spline"
+						keyTimes="0; 1"
+						keySplines="0.5 0 0.5 1"
+					/>
+				</path>
+			</g>
+		</g>
+		<use href="#pick-a-side-symbol-left" y={(padding / 2) * -1} width={size} height={size}>
+			<animate
+				begin="pickASideClickLeft.begin"
+				attributeName="y"
+				to="0"
+				dur={durs.click}
+				fill="freeze"
+				calcMode="spline"
+				keyTimes="0; 1"
+				keySplines="0.5 0 0.5 1"
+			/>
+		</use>
+		<rect
+			style="cursor: pointer"
+			opacity="0"
+			x={padding * -1}
+			y={padding * -1}
+			width={size + padding * 2}
+			height={size + padding * 2}
+			rx={padding}
+		>
+			<set id="pickASideClickLeft" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
+	</g>
+
+	<g transform="translate({60 - size / 2} {padding * 2})">
+		<g transform="translate({padding * -1} {padding * -1})">
+			<g stroke="currentColor" stroke-width="0.5">
+				<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+				<path
+					fill="currentColor"
+					d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+				>
+					<animate
+						begin="pickASideClickRight.begin"
+						attributeName="d"
+						to="M 0 {size +
+							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+						dur={durs.click}
+						fill="freeze"
+						calcMode="spline"
+						keyTimes="0; 1"
+						keySplines="0.5 0 0.5 1"
+					/>
+				</path>
+			</g>
+		</g>
+		<use href="#pick-a-side-symbol-right" y={(padding / 2) * -1} width={size} height={size}>
+			<animate
+				begin="pickASideClickRight.begin"
+				attributeName="y"
+				to="0"
+				dur={durs.click}
+				fill="freeze"
+				calcMode="spline"
+				keyTimes="0; 1"
+				keySplines="0.5 0 0.5 1"
+			/>
+		</use>
+		<rect
+			style="cursor: pointer"
+			opacity="0"
+			x={padding * -1}
+			y={padding * -1}
+			width={size + padding * 2}
+			height={size + padding * 2}
+			rx={padding}
+		>
+			<set id="pickASideClickRight" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
+	</g>
 
 	{#each sprites as { sprite, x, y }}
 		<use {x} {y} href="#pick-a-side-sprite-{sprite}" />
