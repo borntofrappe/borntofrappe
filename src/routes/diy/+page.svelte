@@ -9,6 +9,7 @@
 	import SmashTheRabbits from './SmashTheRabbits.svelte';
 	import FightTheEnemy from './FightTheEnemy.svelte';
 	import TakeAPicture from './TakeAPicture.svelte';
+	import PickASide from './PickASide.svelte';
 
 	const { title } = site;
 
@@ -52,6 +53,11 @@
 			component: TakeAPicture,
 			backgroundColor: 'hsl(120, 1%, 84%)',
 			borderColor: 'hsl(247, 6%, 27%)'
+		},
+		{
+			component: PickASide,
+			backgroundColor: 'hsl(36, 93%, 56%)',
+			borderColor: 'hsl(23, 100%, 37%)'
 		}
 	];
 </script>

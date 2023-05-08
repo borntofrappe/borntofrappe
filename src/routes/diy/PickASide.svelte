@@ -7,7 +7,7 @@
 	const padding = 2;
 
 	const sizes = {
-		button: 10,
+		button: 9,
 		sprite: 8
 	};
 
@@ -115,11 +115,11 @@
 	const feedback = {
 		left: {
 			text: majorityLeft ? 'Right you are!' : 'Too fast?',
-			begin: `${ids.left}.begin + 1.2s`
+			begin: `${ids.left}.begin + 1.45s`
 		},
 		right: {
 			text: majorityLeft ? 'Too fast?' : 'Right you are!',
-			begin: `${ids.right}.begin + 1.2s`
+			begin: `${ids.right}.begin + 1.45s`
 		}
 	};
 </script>
@@ -236,7 +236,7 @@
 		<path id="pick-a-side-flag" d="M -2 0 h -5 v 3 h 3 v -3" />
 	</defs>
 
-	<rect width="80" height="50" fill="yellow" />
+	<rect width="80" height="50" fill="#f7f7f7" />
 
 	<g transform="translate(0 18)">
 		<rect fill="url(#pick-a-side-pattern-grid-left)" width="40" height="40" />
