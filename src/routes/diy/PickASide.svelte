@@ -2,30 +2,31 @@
 	import Title from './Title.svelte';
 	import AnimatedTitle from './AnimatedTitle.svelte';
 
-	const size = 10;
-	const padding = 2;
-
-	const spriteSize = 8;
-
 	const width = 80;
 	const height = 50;
+	const padding = 2;
 
-	const x0 = spriteSize / 2;
-	const x1 = width - spriteSize / 2;
-	const y0 = 18 + spriteSize / 2;
-	const y1 = height - spriteSize / 2;
+	const sizes = {
+		button: 10,
+		sprite: 8
+	};
 
-	const getX = () => x0 + Math.floor(Math.random() * (x1 - x0));
-	const getY = () => y0 + Math.floor(Math.random() * (y1 - y0));
-
-	const moves = 10;
-	const durationPerUnit = 0.02;
+	const x0 = sizes.sprite / 2;
+	const x1 = width - sizes.sprite / 2;
+	const y0 = 18 + sizes.sprite / 2;
+	const y1 = height - sizes.sprite / 2;
 
 	const durs = {
 		intro: '0.7s',
 		click: '0.25s',
 		outro: '0.5s'
 	};
+
+	const moves = 10;
+	const durationPerUnit = 0.02;
+
+	const getX = () => x0 + Math.floor(Math.random() * (x1 - x0));
+	const getY = () => y0 + Math.floor(Math.random() * (y1 - y0));
 
 	const id = 'pickASideStart';
 	const begin = `${id}.begin`;
@@ -107,6 +108,20 @@
 				dur
 			};
 		});
+
+	const majorityLeft =
+		sprites.reduce((acc, curr) => (curr.sprite === 'left' ? acc + 1 : acc), 0) > sprites.length / 2;
+
+	const feedback = {
+		left: {
+			text: majorityLeft ? 'Right you are!' : 'Too fast?',
+			begin: `${ids.left}.begin + 1.2s`
+		},
+		right: {
+			text: majorityLeft ? 'Too fast?' : 'Right you are!',
+			begin: `${ids.right}.begin + 1.2s`
+		}
+	};
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -204,18 +219,18 @@
 		<use
 			id="pick-a-side-sprite-left"
 			href="#pick-a-side-symbol-left"
-			x="-{spriteSize / 2}"
-			y="-{spriteSize / 2}"
-			width={spriteSize}
-			height={spriteSize}
+			x={(sizes.sprite / 2) * -1}
+			y={(sizes.sprite / 2) * -1}
+			width={sizes.sprite}
+			height={sizes.sprite}
 		/>
 		<use
 			id="pick-a-side-sprite-right"
 			href="#pick-a-side-symbol-right"
-			x="-{spriteSize / 2}"
-			y="-{spriteSize / 2}"
-			width={spriteSize}
-			height={spriteSize}
+			x={(sizes.sprite / 2) * -1}
+			y={(sizes.sprite / 2) * -1}
+			width={sizes.sprite}
+			height={sizes.sprite}
 		/>
 
 		<path id="pick-a-side-flag" d="M -2 0 h -5 v 3 h 3 v -3" />
@@ -228,22 +243,28 @@
 		<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" width="40" height="40" />
 	</g>
 
-	<g transform="translate({20 - size / 2} {padding * 2})">
+	<g transform="translate({20 - sizes.button / 2} {padding * 2})">
 		<g transform="translate({padding * -1} {padding * -1})">
 			<g stroke="currentColor" stroke-width="0.5">
-				<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+				<rect
+					width={sizes.button + padding * 2}
+					height={sizes.button + padding * 2}
+					rx={padding}
+					fill="none"
+				/>
 				<path
 					fill="currentColor"
-					d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
-						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
-						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+					d="M 0 {sizes.button} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {sizes.button} a {padding} {padding} 0 0 0 {padding} {padding *
+						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding *
+						-1} {padding} h {sizes.button * -1} a {padding} {padding} 0 0 1 {padding *
+						-1} {padding * -1}"
 				>
 					<animate
 						begin="{ids.left}.begin"
 						attributeName="d"
-						to="M 0 {size +
-							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
-							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+						to="M 0 {sizes.button +
+							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {sizes.button} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {sizes.button *
 							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 						dur={durs.click}
 						fill="freeze"
@@ -254,7 +275,12 @@
 				</path>
 			</g>
 		</g>
-		<use href="#pick-a-side-symbol-left" y={(padding / 2) * -1} width={size} height={size}>
+		<use
+			href="#pick-a-side-symbol-left"
+			y={(padding / 2) * -1}
+			width={sizes.button}
+			height={sizes.button}
+		>
 			<animate
 				begin="{ids.left}.begin"
 				attributeName="y"
@@ -271,8 +297,8 @@
 			opacity="0"
 			x={padding * -1}
 			y={padding * -1}
-			width={size + padding * 2}
-			height={size + padding * 2}
+			width={sizes.button + padding * 2}
+			height={sizes.button + padding * 2}
 			rx={padding}
 		>
 			<set id={ids.left} begin="click" attributeName="display" to="none" fill="freeze" />
@@ -280,22 +306,28 @@
 		</rect>
 	</g>
 
-	<g transform="translate({60 - size / 2} {padding * 2})">
+	<g transform="translate({60 - sizes.button / 2} {padding * 2})">
 		<g transform="translate({padding * -1} {padding * -1})">
 			<g stroke="currentColor" stroke-width="0.5">
-				<rect width={size + padding * 2} height={size + padding * 2} rx={padding} fill="none" />
+				<rect
+					width={sizes.button + padding * 2}
+					height={sizes.button + padding * 2}
+					rx={padding}
+					fill="none"
+				/>
 				<path
 					fill="currentColor"
-					d="M 0 {size} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
-						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
-						-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
+					d="M 0 {sizes.button} v {padding} a {padding} {padding} 0 0 0 {padding} {padding} h {sizes.button} a {padding} {padding} 0 0 0 {padding} {padding *
+						-1} v {padding * -1} a {padding} {padding} 0 0 1 {padding *
+						-1} {padding} h {sizes.button * -1} a {padding} {padding} 0 0 1 {padding *
+						-1} {padding * -1}"
 				>
 					<animate
 						begin="{ids.right}.begin"
 						attributeName="d"
-						to="M 0 {size +
-							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {size} a {padding} {padding} 0 0 0 {padding} {padding *
-							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {size *
+						to="M 0 {sizes.button +
+							padding} v 0 a {padding} {padding} 0 0 0 {padding} {padding} h {sizes.button} a {padding} {padding} 0 0 0 {padding} {padding *
+							-1} v 0 a {padding} {padding} 0 0 1 {padding * -1} {padding} h {sizes.button *
 							-1} a {padding} {padding} 0 0 1 {padding * -1} {padding * -1}"
 						dur={durs.click}
 						fill="freeze"
@@ -306,7 +338,12 @@
 				</path>
 			</g>
 		</g>
-		<use href="#pick-a-side-symbol-right" y={(padding / 2) * -1} width={size} height={size}>
+		<use
+			href="#pick-a-side-symbol-right"
+			y={(padding / 2) * -1}
+			width={sizes.button}
+			height={sizes.button}
+		>
 			<animate
 				begin="{ids.right}.begin"
 				attributeName="y"
@@ -323,8 +360,8 @@
 			opacity="0"
 			x={padding * -1}
 			y={padding * -1}
-			width={size + padding * 2}
-			height={size + padding * 2}
+			width={sizes.button + padding * 2}
+			height={sizes.button + padding * 2}
 			rx={padding}
 		>
 			<set id={ids.right} begin="click" attributeName="display" to="none" fill="freeze" />
@@ -403,6 +440,46 @@
 				<use href="#pick-a-side-sprite-{sprite}" />
 			</g>
 		{/each}
+	</g>
+
+	<g display="none">
+		<set
+			begin="{feedback.left.begin}; {feedback.right.begin}"
+			attributeName="display"
+			to="initial"
+		/>
+
+		<g display="none">
+			<set begin={feedback.left.begin} attributeName="display" to="initial" />
+
+			<g transform="translate(0 -6)">
+				<AnimatedTitle
+					text={feedback.left.text}
+					fill="url(#linear-gradient-text)"
+					begin={feedback.left.begin}
+					end="pickASideEnd.begin"
+					repeatCount="indefinite"
+				/>
+			</g>
+		</g>
+
+		<g display="none">
+			<set begin={feedback.right.begin} attributeName="display" to="initial" />
+
+			<g transform="translate(0 -6)">
+				<AnimatedTitle
+					text={feedback.right.text}
+					fill="url(#linear-gradient-text)"
+					begin={feedback.right.begin}
+					end="pickASideEnd.begin"
+					repeatCount="indefinite"
+				/>
+			</g>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="pickASideEnd" begin="click" attributeName="display" to="none" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
