@@ -1,22 +1,37 @@
 <script>
 	const spriteSize = 8;
 
-	const sides = [
-		[
+	let destinations = Object.entries({
+		left: [
 			{ x: 8, y: 26 },
 			{ x: 32, y: 26 },
 			{ x: 20, y: 34 },
 			{ x: 8, y: 42 },
 			{ x: 32, y: 42 }
 		],
-		[
+		right: [
 			{ x: 48, y: 26 },
 			{ x: 72, y: 26 },
 			{ x: 60, y: 34 },
 			{ x: 48, y: 42 },
 			{ x: 72, y: 42 }
 		]
-	];
+	}).reduce((acc, curr) => {
+		const [sprite, destinations] = curr;
+		return [...acc, ...destinations.map((d) => ({ ...d, sprite }))];
+	}, []);
+
+	const length = Math.random() > 0.5 ? destinations.length - 1 : destinations.length - 3;
+
+	const sprites = Array(length)
+		.fill()
+		.map((_) => {
+			const i = Math.floor(Math.random() * destinations.length);
+			const destination = destinations[i];
+			destinations = [...destinations.slice(0, i), ...destinations.slice(i + 1)];
+
+			return destination;
+		});
 </script>
 
 <svg viewBox="0 0 80 50">
@@ -131,9 +146,7 @@
 	<rect fill="url(#pick-a-side-pattern-grid-left)" y="18" width="40" height="40" />
 	<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" y="18" width="40" height="40" />
 
-	{#each sides as spots, i}
-		{#each spots as { x, y }}
-			<use {x} {y} href="#pick-a-side-sprite-{i === 0 ? 'left' : 'right'}" />
-		{/each}
+	{#each sprites as { sprite, x, y }}
+		<use {x} {y} href="#pick-a-side-sprite-{sprite}" />
 	{/each}
 </svg>
