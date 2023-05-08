@@ -18,18 +18,12 @@
 	const getX = () => x0 + Math.floor(Math.random() * (x1 - x0));
 	const getY = () => y0 + Math.floor(Math.random() * (y1 - y0));
 
-	const points = Array(10)
-		.fill()
-		.map((_) => ({
-			x: getX(),
-			y: getY()
-		}));
-
 	const start = 'pickASideStart';
 	const begin = `${start}.begin`;
 	const durs = {
-		intro: '0.7s',
-		click: '0.25s'
+		start: '0.7s',
+		click: '0.25s',
+		end: '0.5s'
 	};
 
 	let destinations = Object.entries({
@@ -62,6 +56,19 @@
 			destinations = [...destinations.slice(0, i), ...destinations.slice(i + 1)];
 
 			return destination;
+		})
+		.map(({ x, y, sprite }) => {
+			const start = {
+				x: getX(),
+				y: getY()
+			};
+
+			return {
+				x,
+				y,
+				sprite,
+				start
+			};
 		});
 </script>
 
@@ -327,14 +334,27 @@
 			attributeName="transform"
 			type="translate"
 			to="0 0"
-			dur={durs.intro}
+			dur={durs.start}
 			fill="freeze"
 			calcMode="spline"
 			keyTimes="0; 1"
 			keySplines="0.65 0 0.4 1"
 		/>
-		{#each sprites as { sprite, x, y }}
-			<use {x} {y} href="#pick-a-side-sprite-{sprite}" />
+		{#each sprites as { x, y, sprite, start }}
+			<g transform="translate({start.x} {start.y})">
+				<animateTransform
+					begin="pickASideClickLeft.begin; pickASideClickRight.begin"
+					attributeName="transform"
+					type="translate"
+					to="{x} {y}"
+					dur={durs.end}
+					fill="freeze"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.65 0 0.4 1"
+				/>
+				<use href="#pick-a-side-sprite-{sprite}" />
+			</g>
 		{/each}
 	</g>
 
@@ -345,8 +365,4 @@
 
 		<rect width="80" height="50" opacity="0" />
 	</g>
-
-	{#each points as { x, y }}
-		<use {x} {y} href="#pick-a-side-sprite-left" />
-	{/each}
 </svg>
