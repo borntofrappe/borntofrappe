@@ -10,6 +10,21 @@
 	const width = 80;
 	const height = 50;
 
+	const x0 = spriteSize / 2;
+	const x1 = width - spriteSize / 2;
+	const y0 = 18 + spriteSize / 2;
+	const y1 = height - spriteSize / 2;
+
+	const getX = () => x0 + Math.floor(Math.random() * (x1 - x0));
+	const getY = () => y0 + Math.floor(Math.random() * (y1 - y0));
+
+	const points = Array(10)
+		.fill()
+		.map((_) => ({
+			x: getX(),
+			y: getY()
+		}));
+
 	const start = 'pickASideStart';
 	const begin = `${start}.begin`;
 	const durs = {
@@ -164,8 +179,10 @@
 
 	<rect width="80" height="50" fill="yellow" />
 
-	<rect fill="url(#pick-a-side-pattern-grid-left)" y="18" width="40" height="40" />
-	<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" y="18" width="40" height="40" />
+	<g transform="translate(0 18)">
+		<rect fill="url(#pick-a-side-pattern-grid-left)" width="40" height="40" />
+		<rect fill="url(#pick-a-side-pattern-grid-right)" x="40" width="40" height="40" />
+	</g>
 
 	<g transform="translate({20 - size / 2} {padding * 2})">
 		<g transform="translate({padding * -1} {padding * -1})">
@@ -328,4 +345,8 @@
 
 		<rect width="80" height="50" opacity="0" />
 	</g>
+
+	{#each points as { x, y }}
+		<use {x} {y} href="#pick-a-side-sprite-left" />
+	{/each}
 </svg>
