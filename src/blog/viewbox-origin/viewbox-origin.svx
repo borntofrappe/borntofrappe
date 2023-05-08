@@ -1,0 +1,5 @@
+---
+title: viewBox origin
+description: Explore the values of the viewBox attribute for practical uses and creative endeavors.
+date: 2023-05-08T21:21:21
+---
