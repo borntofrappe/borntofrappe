@@ -1,10 +1,19 @@
 <script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const size = 10;
 	const padding = 2;
 
 	const spriteSize = 8;
 
+	const width = 80;
+	const height = 50;
+
+	const start = 'pickASideStart';
+	const begin = `${start}.begin`;
 	const durs = {
+		intro: '0.7s',
 		click: '0.25s'
 	};
 
@@ -295,7 +304,28 @@
 		</g>
 	</g>
 
-	{#each sprites as { sprite, x, y }}
-		<use {x} {y} href="#pick-a-side-sprite-{sprite}" />
-	{/each}
+	<g transform="translate(0 {height})">
+		<animateTransform
+			{begin}
+			attributeName="transform"
+			type="translate"
+			to="0 0"
+			dur={durs.intro}
+			fill="freeze"
+			calcMode="spline"
+			keyTimes="0; 1"
+			keySplines="0.65 0 0.4 1"
+		/>
+		{#each sprites as { sprite, x, y }}
+			<use {x} {y} href="#pick-a-side-sprite-{sprite}" />
+		{/each}
+	</g>
+
+	<g style:cursor="pointer">
+		<set id={start} begin="click" attributeName="display" to="none" />
+
+		<Title fill="url(#linear-gradient-text)">Majority!</Title>
+
+		<rect width="80" height="50" opacity="0" />
+	</g>
 </svg>
