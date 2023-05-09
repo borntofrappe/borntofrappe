@@ -109,6 +109,20 @@
 	align-items: var(--align, stretch);
 }
 
+.switcher {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: var(--direction, row);
+	gap: var(--gap, 1rem);
+	justify-content: var(--justify, flex-start);
+	align-items: var(--align, stretch);
+}
+
+.switcher > * {
+	flex-grow: 1;
+	flex-basis: calc((var(--threshold, 30rem) - 100%) * 999);
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(
