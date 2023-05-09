@@ -14,7 +14,7 @@ date: 2023-05-09T21:37:31
 	import PuttPutt from './PuttPutt.svelte';
 </script>
 
-Among the many attributes you find in SVG, `viewBox` offers plenty of possibilities. You might have spotted the cryptic string in `<pattern>`, `<marker>`, or again `<symbol>` elements, but to get started, we're going to focus on the root of the document and a topmost `<svg>` node.
+Among the many attributes you find in SVG, `viewBox` offers plenty of possibilities. You might have spotted the cryptic string in `<pattern>`, `<marker>`, or again `<symbol>` element, but to get started, we're going to focus on the root of the document and a topmost `<svg>` node.
 
 ```html
 <svg viewBox="0 0 100 100">
@@ -34,7 +34,7 @@ The second pair completes the box with the actual dimensions. Width and height.
 
 Draw something between these boundaries and the shapes will be shown on screen, clearly visible. Draw something outside of the area, however, and you won't see the result.
 
-Just by knowing this, the attribute helps to cover a few, practical applications. And pointless endeavors alike.
+Just by knowing this, the attribute helps to cover practical applications. And pointless endeavors alike.
 
 ## In practice
 
@@ -54,7 +54,7 @@ There are five hundred and one observations, five hundred and one points shown s
 
 You are able to highlight a trend, a pattern through the months, but it is difficult to study the change on a day to day basis.
 
-You can technically leave the figure as-is, and ask your readers to zoom in on the visual themselves. SVG being _scalable_, and _vector_ to boot, the shapes will remain crisp at any size. But there are certainly ways you are able to help. For instance, by tinkering with the `viewBox` attribute and specifically the width of the canvas.
+You can technically leave the figure as-is and ask your readers to zoom in on the visual themselves. SVG being _scalable_, and _vector_ to boot, the shapes will remain crisp at any size. But there are certainly ways you are able to help. For instance, by tinkering with the `viewBox` attribute and specifically the width of the canvas.
 
 Reduce the number, perhaps to match the measure of the height, and you end up with a perfect square. You can have the SVG grow and focus on the first sector.
 
@@ -66,7 +66,7 @@ Reduce the number, perhaps to match the measure of the height, and you end up wi
 
 Of course you do lose a few points, more than you can actually tolerate, but as mentioned, they are not forgotten.
 
-The dots and the accompanying line are drawn to the right of the thinner canvas. Update the origin to move the top left corner and the entire visual slides to find them anew.
+The points and the accompanying line are drawn to the right of the thinner canvas. Update the origin to move the top left corner and the entire visual slides to find them anew.
 
 ```diff
 -viewBox="0 0 130 130"
@@ -106,7 +106,7 @@ And in this element, instruct to update the origin, from start to finish.
 
 There are technically just three attributes to have the animation play out:
 
-1. the name of the attribute you want to update over time — `attributeName`
+1. the name of the attribute you want to update — `attributeName`
 
 2. the amount of time the animation should take — `dur`
 
@@ -124,7 +124,7 @@ That being said, and to avoid the attribute jump back at the very beginning, you
 />
 ```
 
-Then again, you can replace the `to` attribute with `values`, and specify multiple values. With this in mind, you can have the `viewBox` rock back and forth.
+Then again, you can replace the `to` attribute with `values`, and specify multiple values instead. In this manner , you can have the `viewBox` rock back and forth.
 
 ```html
 <animate
@@ -139,7 +139,7 @@ Then again, you can replace the `to` attribute with `values`, and specify multip
 />
 ```
 
-In this manner you can delight in the animation, perhaps even more than once.
+And in this manner you can delight in the animation without jumps, perhaps even more than once.
 
 <Center maxInlineSize="30rem">
     <Animate />
