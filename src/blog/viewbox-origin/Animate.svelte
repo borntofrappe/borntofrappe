@@ -7,11 +7,20 @@
 
 	onMount(() => {
 		canAnimate = true;
+		svg.querySelector('animate').addEventListener('endEvent', handleEnd);
+
+		return () => {
+			svg.querySelector('animate').removeEventListener('endEvent', handleEnd);
+		};
 	});
 
 	const handleClick = () => {
 		canAnimate = false;
 		svg.querySelector('animate').beginElement();
+	};
+
+	const handleEnd = () => {
+		canAnimate = true;
 	};
 
 	const n = 500;
@@ -69,7 +78,7 @@
 
 <div>
 	{#if canAnimate}
-		<button out:scale on:click|once={handleClick}>Animate</button>
+		<button transition:scale on:click={handleClick}>Animate</button>
 	{/if}
 
 	<svg bind:this={svg} viewBox="0 0 {v + p * 2} {m + p * 2}">
@@ -80,10 +89,13 @@
 			</linearGradient>
 		</defs>
 		<animate
-			attributeName="viewBox"
-			to="{n - v} 0 {v + p * 2} {m + p * 2}"
-			dur="5s"
 			begin="indefinite"
+			restart="whenNotActive"
+			attributeName="viewBox"
+			values="0 0 {v + p * 2} {m + p * 2}; {n - v} 0 {v + p * 2} {m + p * 2}; 0 0 {v + p * 2} {m +
+				p * 2}"
+			to="{n - v} 0 {v + p * 2} {m + p * 2}"
+			dur="10s"
 			fill="freeze"
 		/>
 		<g transform="translate({p} {p})">
