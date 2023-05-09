@@ -46,7 +46,7 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		{#each themes as { timeOfDay, foreground }}
-			<filter id="time-of-day-filter-{timeOfDay}">
+			<filter id="blog-filter-{timeOfDay}">
 				<feFlood flood-color={foreground} result="l1-color" />
 				<feFlood flood-color="#63616b" result="l2-color" />
 				<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
@@ -62,14 +62,14 @@
 			</filter>
 		{/each}
 
-		<symbol id="time-of-day-morning" viewBox="-7 -7 14 14">
+		<symbol id="blog-marker-morning" viewBox="-7 -7 14 14">
 			<circle r="7" fill="#838ac5" />
 			<circle r="6" fill="#f7f7f7" stroke="#63616b" stroke-width="0.75" />
 			<g fill="#f7f752" stroke="#e6ca31" stroke-width="0.3">
 				<circle r="3" />
 			</g>
 		</symbol>
-		<symbol id="time-of-day-day" viewBox="-7 -7 14 14">
+		<symbol id="blog-marker-day" viewBox="-7 -7 14 14">
 			<circle r="7" fill="#639aef" />
 			<circle r="6" fill="#f7f7f7" stroke="#63616b" stroke-width="0.75" />
 			<g fill="#f7f752" stroke="#e6ca31" stroke-width="0.3">
@@ -84,7 +84,7 @@
 				<path transform="rotate(315)" d="M 0 -3.5 h -1 l 1 -1 1 1z" />
 			</g>
 		</symbol>
-		<symbol id="time-of-day-night" viewBox="-7 -7 14 14">
+		<symbol id="blog-marker-night" viewBox="-7 -7 14 14">
 			<circle r="7" fill="#7369b5" />
 			<circle r="6" fill="#f7f7f7" stroke="#63616b" stroke-width="0.75" />
 			<g fill="#f7f752" stroke="#e6ca31" stroke-width="0.3">
@@ -102,13 +102,13 @@
 		style:--box-background={background}
 	>
 		<div class="[ center cluster ]" style="--justify: space-between;">
-			<h1 style:filter="url(#time-of-day-filter-{timeOfDay})">Blog</h1>
+			<h1 style:filter="url(#blog-filter-{timeOfDay})">Blog</h1>
 
 			{#if showToggle}
 				<button class="[ theme-toggle ]" in:slide on:click={handleClick}>
 					<span class="[ visually-hidden ]">Toggle theme selector</span>
 					<svg viewBox="0 0 1 1">
-						<use href="#time-of-day-{timeOfDay}" />
+						<use href="#blog-marker-{timeOfDay}" />
 					</svg>
 				</button>
 			{/if}

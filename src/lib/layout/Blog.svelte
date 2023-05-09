@@ -28,7 +28,7 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		{#each themes as { timeOfDay, foreground }}
-			<filter id="time-of-day-filter-{timeOfDay}">
+			<filter id="blog-filter-{timeOfDay}">
 				<feFlood flood-color={foreground} result="l1-color" />
 				<feFlood flood-color="#63616b" result="l2-color" />
 				<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
@@ -55,7 +55,7 @@
 		style:--box-color="#f7f7f7"
 		style:--box-background={background}
 	>
-		<h1 style:text-align="center" style:filter="url(#time-of-day-filter-{timeOfDay})">
+		<h1 style:text-align="center" style:filter="url(#blog-filter-{timeOfDay})">
 			{title}
 		</h1>
 		<div class="[ center ]" style:--measure="40rem">
