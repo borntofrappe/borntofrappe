@@ -27,20 +27,22 @@
 
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
-		<filter id="filter-outline">
-			<feFlood flood-color={foreground || 'currentColor'} result="l1-color" />
-			<feFlood flood-color="#63616b" result="l2-color" />
-			<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
-			<feMorphology in="SourceAlpha" operator="dilate" radius="2" result="l2-outline" />
-			<feComposite in="l1-color" in2="l1-outline" operator="in" result="l1-color-outline" />
-			<feComposite in="l2-color" in2="l2-outline" operator="in" result="l2-color-outline" />
+		{#each themes as { timeOfDay, foreground }}
+			<filter id="time-of-day-filter-{timeOfDay}">
+				<feFlood flood-color={foreground} result="l1-color" />
+				<feFlood flood-color="#63616b" result="l2-color" />
+				<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
+				<feMorphology in="SourceAlpha" operator="dilate" radius="2" result="l2-outline" />
+				<feComposite in="l1-color" in2="l1-outline" operator="in" result="l1-color-outline" />
+				<feComposite in="l2-color" in2="l2-outline" operator="in" result="l2-color-outline" />
 
-			<feMerge>
-				<feMergeNode in="l1-color-outline" />
-				<feMergeNode in="l2-color-outline" />
-				<feMergeNode in="SourceGraphic" />
-			</feMerge>
-		</filter>
+				<feMerge>
+					<feMergeNode in="l1-color-outline" />
+					<feMergeNode in="l2-color-outline" />
+					<feMergeNode in="SourceGraphic" />
+				</feMerge>
+			</filter>
+		{/each}
 	</defs>
 </svg>
 
@@ -50,10 +52,10 @@
 	<header
 		class="[ box ]"
 		style:--padding="var(--step-space-300) var(--step-space-200) 0"
-		style:color="#f7f7f7"
-		style:background
+		style:--box-color="#f7f7f7"
+		style:--box-background={background}
 	>
-		<h1 style:text-align="center" style:filter="url(#filter-outline)">
+		<h1 style:text-align="center" style:filter="url(#time-of-day-filter-{timeOfDay})">
 			{title}
 		</h1>
 		<div class="[ center ]" style:--measure="40rem">
