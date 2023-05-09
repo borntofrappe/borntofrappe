@@ -17,16 +17,23 @@
 	let showToggle = false;
 	let showSelector = false;
 
-	$: if (timeOfDay) {
-		background = themes.find((d) => d.timeOfDay === timeOfDay).background;
-	}
-
 	onMount(() => {
+		const value = localStorage.getItem('timeOfDay');
+		if (value) {
+			timeOfDay = value;
+			background = themes.find((d) => d.timeOfDay === timeOfDay).background;
+		}
+
 		showToggle = true;
 	});
 
 	const handleClick = () => {
 		showSelector = !showSelector;
+	};
+
+	const handleChange = () => {
+		background = themes.find((d) => d.timeOfDay === timeOfDay).background;
+		localStorage.setItem('timeOfDay', timeOfDay);
 	};
 </script>
 
@@ -98,7 +105,7 @@
 			<h1 style:filter="url(#time-of-day-filter-{timeOfDay})">Blog</h1>
 
 			{#if showToggle}
-				<button class="[ theme-toggle ]" in:slide={{ delay: 250 }} on:click={handleClick}>
+				<button class="[ theme-toggle ]" in:slide on:click={handleClick}>
 					<span class="[ visually-hidden ]">Toggle theme selector</span>
 					<svg viewBox="0 0 1 1">
 						<use href="#time-of-day-{timeOfDay}" />
@@ -110,7 +117,7 @@
 
 	<div class="[ center ]">
 		{#if showSelector}
-			<fieldset transition:slide class="[ switcher ] [ theme-selector ]">
+			<fieldset on:change={handleChange} transition:slide class="[ switcher ] [ theme-selector ]">
 				<legend class="[ visually-hidden ]">Time of day</legend>
 				{#each themes as { timeOfDay: value }}
 					<label
@@ -186,7 +193,6 @@
 	}
 
 	.theme-toggle {
-		/*  */
 		inline-size: 3.25rem;
 		block-size: 3.25rem;
 		padding: 0;
