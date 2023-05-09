@@ -1,25 +1,109 @@
 ---
 title: viewBox origin
-description: Explore the values of the viewBox attribute for practical uses and creative endeavors.
-date: 2023-05-08T21:21:21
+description: Consider the values of the viewBox attribute for practical uses and creative endeavors.
+date: 2023-05-09T14:04:31
 ---
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
+	import svg from './svg.js';
 	import LineChart from './LineChart.svelte';
 	import Range from './Range.svelte';
 	import Animate from './Animate.svelte';
 	import PuttPutt from './PuttPutt.svelte';
 </script>
 
+Among the many attributes you find in SVG, `viewBox` offers plenty of possibilities. You might have spotted the cryptic string in `<pattern>`, `<marker>`, or again `<symbol>` elements, but to get started, we're going to focus on the root of the document and a topmost `<svg>` node.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!-- ... -->
+</svg>
+```
+
+In the attribute you have a total of four values detailing the SVG canvas, the visible area.
+
+The first two set the position of the canvas origin, the top left corner. x and y, so to speak.
+
+The second pair completes the box with the actual dimensions. Width and height.
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html svg['canvas']}
+</Center>
+
+Draw something between these boundaries and the shapes will be shown on screen, clearly visible. Draw something outside of the area, however, and you won't see the result.
+
+Just by knowing this, the attribute helps to cover practical purposes, and pointless endeavors alike.
+
+## In practice
+
+Consider a line chart, studying a mysteriously noisy phenomenon over a long stretch of time and in excruciating detail.
+
 <Center element="figure" maxInlineSize="52rem">
     <LineChart />
 </Center>
 
+There are five hundred and one observations, five hundred and one points shown side by side. And to accommodate them all, the `viewBox` stretches the canvas to a rectangle 530 units wide, 130 units tall.
+
+```html
+<svg viewBox="0 0 530 130">
+	<!-- ... -->
+</svg>
+```
+
+You are able to spot a trend, a pattern through the months, but it is difficult to study the change on a day to day basis. Reduce the width of the canvas, however, and you are able to zoom in on a specific sector.
+
+```html
+<svg viewBox="0 0 130 130">
+	<!-- ... -->
+</svg>
+```
+
+Of course you do lose the points, the line outside past the 130 unit mark, and to find them anew, you need to tweak the origin.
+
+```diff
+-viewBox="0 0 130 130"
++viewBox="50 0 130 130"
+```
+
+A [pointer events](/get-to-the-point)
+
 <Center maxInlineSize="30rem">
     <Range />
 </Center>
+
+## With SMIL
+
+[SMIL animation](/a-coy-introduction-to-smil)
+
+<!-- prettier-ignore -->
+```html
+<animate
+	attributeName="d" 
+	dur="2s" 
+	to="M 0 0 q 3 0 4.5 -1 ..."
+/>
+```
+
+<!-- prettier-ignore -->
+```html
+<animate
+	attributeName="viewBox"
+	dur="5s"
+	to="400 0 130 130"
+/>
+```
+
+<!-- prettier-ignore -->
+```html
+<animate
+	fill="freeze"
+	attributeName="viewBox"
+	dur="5s"
+	to="400 0 130 130"
+/>
+```
 
 <Center maxInlineSize="30rem">
     <Animate />
