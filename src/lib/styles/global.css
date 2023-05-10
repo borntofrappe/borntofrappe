@@ -14,6 +14,9 @@ body {
 
 	--selection-color: var(--grey-700);
 	--selection-background: var(--color-100);
+
+	--theme-foreground: var(--foreground-morning);
+	--theme-background: var(--background-morning);
 }
 
 [data-time-of-day='day'] body {
@@ -25,6 +28,9 @@ body {
 
 	--selection-color: var(--grey-700);
 	--selection-background: var(--color-200);
+
+	--theme-foreground: var(--foreground-day);
+	--theme-background: var(--background-day);
 }
 
 [data-time-of-day='night'] body {
@@ -36,6 +42,9 @@ body {
 
 	--selection-color: var(--grey-300);
 	--selection-background: var(--grey-800);
+
+	--theme-foreground: var(--foreground-night);
+	--theme-background: var(--background-night);
 }
 
 ::selection {

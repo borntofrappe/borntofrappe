@@ -21,6 +21,13 @@
 	--grey-800: hsl(38, 13%, 17%);
 	--grey-900: hsl(30, 13%, 9%);
 
+	--foreground-morning: #838ac5;
+	--background-morning: #9cb2ce;
+	--foreground-day: #639aef;
+	--background-day: #73d2e6;
+	--foreground-night: #7369b5;
+	--background-night: #838ace;
+
 	--color: var(--grey-800);
 	--background: var(--grey-000);
 
@@ -31,10 +38,14 @@
 	--selection-color: var(--grey-700);
 	--selection-background: var(--color-200);
 
-	--theme-color: #e0def4;
-	--theme-background: #232136;
-	--theme-background--1: #2a273f;
-	--theme-background--2: #393552;
+	--theme-color: #f7f7f7;
+	--theme-foreground: var(--foreground-day);
+	--theme-background: var(--background-day);
+
+	--code-color: #e0def4;
+	--code-background: #232136;
+	--code-background--1: #2a273f;
+	--code-background--2: #393552;
 
 	--size-000: 0.69rem;
 	--size-100: 0.83rem;

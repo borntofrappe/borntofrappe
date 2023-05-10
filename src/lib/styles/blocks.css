@@ -6,8 +6,8 @@
 
 .code pre,
 .code > span {
-	color: var(--theme-color, #e0def4);
-	background: var(--theme-background, #232136);
+	color: var(--code-color, #e0def4);
+	background: var(--code-background, #232136);
 }
 
 .code pre {
