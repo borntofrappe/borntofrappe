@@ -14,7 +14,7 @@
 	$: pages = +data.pages;
 	$: page = +data.page;
 
-	let { timeOfDay, background } = themes[1];
+	let { timeOfDay } = themes[1];
 	let showToggle = false;
 	let showSelector = false;
 
@@ -22,7 +22,6 @@
 		const value = localStorage.getItem('timeOfDay');
 		if (value) {
 			timeOfDay = value;
-			background = themes.find((d) => d.timeOfDay === timeOfDay).background;
 		}
 
 		showToggle = true;
@@ -33,7 +32,6 @@
 	};
 
 	const handleChange = () => {
-		background = themes.find((d) => d.timeOfDay === timeOfDay).background;
 		document.documentElement.setAttribute('data-time-of-day', timeOfDay);
 		localStorage.setItem('timeOfDay', timeOfDay);
 	};
@@ -107,9 +105,11 @@
 				{#each themes as { timeOfDay: value }}
 					<label
 						class="[ box ]"
-						style:--padding="var(--step-space-200) var(--step-space-200)"
-						style:--box-color="#f7f7f7"
-						style:--box-background={themes.find((d) => d.timeOfDay === value).background}
+						style="
+							--padding: var(--step-space-200) var(--step-space-200);
+							--box-color: #f7f7f7;
+							--box-background: {themes.find((d) => d.timeOfDay === value).background};
+						"
 					>
 						<input style="accent-color: #f7f7f7" type="radio" bind:group={timeOfDay} {value} />
 						<span style="font-weight: 700; letter-spacing: 1px; text-transform: capitalize"
