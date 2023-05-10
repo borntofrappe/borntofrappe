@@ -9,6 +9,7 @@
 
 	const { themes } = site;
 	let [, timeOfDay] = themes;
+	let showToggle = false;
 
 	// viewBox="0 0 120 60"
 	const positions = {
@@ -38,9 +39,10 @@
 		if (value) timeOfDay = value;
 
 		const { x, y } = positions[timeOfDay];
-		position.set({ x, y });
+		position.set({ x, y }, { hard: true });
 
 		dispatch('change', { timeOfDay });
+		showToggle = true;
 	});
 
 	const handleSize = () => {
@@ -213,37 +215,39 @@
 
 	<circle fill="var(--theme-background)" r="60" cx="60" cy="60" />
 
-	<use href="#theme-details-{timeOfDay}" />
+	<g class="theme-toggle" data-show={showToggle}>
+		<use href="#theme-details-{timeOfDay}" />
 
-	<g transform="translate({$position.x} {$position.y})">
-		<use href="#theme-marker-{timeOfDay}" />
-	</g>
-
-	<g
-		style:cursor={isDragging ? 'grabbing' : 'pointer'}
-		on:click={handlePosition}
-		on:mousedown={handleStart}
-		on:mouseup={handleEnd}
-		on:mouseleave={handleEnd}
-		on:mousemove={handleMove}
-		on:keydown={handleKey}
-		role="spinbutton"
-		aria-valuemin={0}
-		aria-valuenow={themes.findIndex((d) => d === timeOfDay)}
-		aria-valuemax={themes.length - 1}
-		aria-valuetext={timeOfDay}
-		tabindex="0"
-		aria-label="Change the time of day with the arrow keys."
-		class="focusable"
-		opacity="0"
-	>
-		<g opacity="0">
-			<rect width="120" height="53" />
+		<g transform="translate({$position.x} {$position.y})">
+			<use href="#theme-marker-{timeOfDay}" />
 		</g>
 
-		<g style="pointer-events: none;" opacity="0.1">
-			<g transform="translate(60 85)">
-				<circle r="37" />
+		<g
+			style:cursor={isDragging ? 'grabbing' : 'pointer'}
+			on:click={handlePosition}
+			on:mousedown={handleStart}
+			on:mouseup={handleEnd}
+			on:mouseleave={handleEnd}
+			on:mousemove={handleMove}
+			on:keydown={handleKey}
+			role="spinbutton"
+			aria-valuemin={0}
+			aria-valuenow={themes.findIndex((d) => d === timeOfDay)}
+			aria-valuemax={themes.length - 1}
+			aria-valuetext={timeOfDay}
+			tabindex="0"
+			aria-label="Change the time of day with the arrow keys."
+			class="focusable"
+			opacity="0"
+		>
+			<g opacity="0">
+				<rect width="120" height="53" />
+			</g>
+
+			<g style="pointer-events: none;" opacity="0.1">
+				<g transform="translate(60 85)">
+					<circle r="37" />
+				</g>
 			</g>
 		</g>
 	</g>
@@ -257,6 +261,17 @@
 </svg>
 
 <style>
+	.theme-toggle {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.theme-toggle[data-show='true'] {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.25s cubic-bezier(0.37, 0, 0.63, 1);
+	}
+
 	svg {
 		display: block;
 	}
