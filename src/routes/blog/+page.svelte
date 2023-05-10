@@ -1,20 +1,19 @@
 <script>
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import themes from '$lib/utils/themes.js';
 	import Heading from '$lib/components/Heading.svelte';
 
 	import site from '$lib/utils/site.js';
 	import { format } from './utils.js';
 	export let data;
 
-	const { title } = site;
+	const { title, themes } = site;
 
 	$: blog = data.blog;
 	$: pages = +data.pages;
 	$: page = +data.page;
 
-	let { timeOfDay } = themes[1];
+	let [, timeOfDay] = themes;
 	let showToggle = false;
 	let showSelector = false;
 
@@ -102,13 +101,13 @@
 		{#if showSelector}
 			<fieldset on:change={handleChange} transition:slide class="[ switcher ] [ theme-selector ]">
 				<legend class="[ visually-hidden ]">Time of day</legend>
-				{#each themes as { timeOfDay: value }}
+				{#each themes as value}
 					<label
 						class="[ box ]"
 						style="
 							--padding: var(--step-space-200) var(--step-space-200);
 							--box-color: #f7f7f7;
-							--box-background: {themes.find((d) => d.timeOfDay === value).background};
+							--box-background: {themes.find((d) => d === value).background};
 						"
 					>
 						<input style="accent-color: #f7f7f7" type="radio" bind:group={timeOfDay} {value} />

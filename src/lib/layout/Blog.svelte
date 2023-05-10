@@ -1,13 +1,13 @@
 <script>
 	import site from '$lib/utils/site.js';
-	import themes from '$lib/utils/themes.js';
 
 	import Theme from '$lib/components/blog/Theme.svelte';
 
 	export let title;
 	export let description;
 
-	let { timeOfDay } = themes[1];
+	const { themes } = site;
+	let [, timeOfDay] = themes;
 
 	const handleChange = ({ detail }) => {
 		timeOfDay = detail.timeOfDay;
@@ -23,9 +23,9 @@
 
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
-		{#each themes as { timeOfDay, foreground }}
+		{#each themes as timeOfDay}
 			<filter id="filter-color-outline-{timeOfDay}">
-				<feFlood flood-color={foreground} result="fe-color" />
+				<feFlood flood-color="var(--foreground-{timeOfDay})" result="fe-color" />
 				<feMorphology in="SourceAlpha" operator="dilate" radius="3" result="fe-outline" />
 				<feComposite in="fe-color" in2="fe-outline" operator="in" result="fe-color-outline" />
 

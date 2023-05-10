@@ -1,5 +1,5 @@
 <script>
-	import themes from '$lib/utils/themes.js';
+	import site from '$lib/utils/site.js';
 
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
@@ -7,7 +7,8 @@
 
 	const dispatch = createEventDispatcher();
 
-	let { timeOfDay } = themes[1];
+	const { themes } = site;
+	let [, timeOfDay] = themes;
 
 	// viewBox="0 0 120 60"
 	const positions = {
@@ -83,7 +84,7 @@
 
 		const index = angles.findIndex((d) => angle <= d);
 
-		let { timeOfDay: value } = themes[index];
+		let value = themes[index];
 
 		if (value !== timeOfDay) handleValue(value);
 	};
@@ -92,7 +93,7 @@
 		const { key } = e;
 		if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
 
-		const index = themes.findIndex((d) => d.timeOfDay === timeOfDay);
+		const index = themes.findIndex((d) => d === timeOfDay);
 
 		let next;
 		if (key === 'ArrowRight') {
@@ -101,7 +102,7 @@
 			next = index > 0 ? index - 1 : themes.length - 1;
 		}
 
-		const { timeOfDay: value } = themes[next];
+		const value = themes[next];
 		const { x, y } = positions[value];
 		position.set({ x, y });
 

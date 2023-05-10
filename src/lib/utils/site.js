@@ -6,5 +6,6 @@ export default {
 	author: {
 		name: 'Gabriele Corti',
 		email: 'borntofrappe@gmail.com'
-	}
+	},
+	themes: ['morning', 'day', 'night']
 };
