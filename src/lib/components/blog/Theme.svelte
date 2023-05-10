@@ -7,7 +7,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	let { timeOfDay, foreground, background } = themes[1];
+	let { timeOfDay } = themes[1];
 
 	// viewBox="0 0 120 60"
 	const positions = {
@@ -36,16 +36,10 @@
 		const value = localStorage.getItem('timeOfDay');
 		if (value) timeOfDay = value;
 
-		const theme = themes.find((d) => d.timeOfDay === timeOfDay);
-		foreground = theme.foreground;
-		background = theme.background;
-
 		const { x, y } = positions[timeOfDay];
 		position.set({ x, y });
 
-		dispatch('change', {
-			timeOfDay
-		});
+		dispatch('change', { timeOfDay });
 	});
 
 	const handleSize = () => {
@@ -117,10 +111,6 @@
 	const handleValue = (value) => {
 		timeOfDay = value;
 
-		const theme = themes.find((d) => d.timeOfDay === timeOfDay);
-		foreground = theme.foreground;
-		background = theme.background;
-
 		dispatch('change', {
 			timeOfDay
 		});
@@ -132,7 +122,7 @@
 
 <svelte:window on:resize={handleSize} />
 
-<svg style:background bind:this={svg} viewBox="0 0 120 60">
+<svg style="background: var(--theme-background)" bind:this={svg} viewBox="0 0 120 60">
 	<defs>
 		<g id="theme-cloud">
 			<circle r="4" />
@@ -220,7 +210,7 @@
 		</g>
 	</defs>
 
-	<circle fill={background} r="60" cx="60" cy="60" />
+	<circle fill="var(--theme-background)" r="60" cx="60" cy="60" />
 
 	<use href="#theme-details-{timeOfDay}" />
 
@@ -258,7 +248,7 @@
 	</g>
 
 	<g transform="translate(60 85)">
-		<circle fill={foreground} r="36" />
+		<circle fill="var(--theme-foreground)" r="36" />
 	</g>
 	<g opacity="0">
 		<path d="M 0 60 h 7 a 53 53 0 0 1 106 0 h 7 v -60 h -120z" />
