@@ -13,7 +13,7 @@
 	$: pages = +data.pages;
 	$: page = +data.page;
 
-	let { timeOfDay, foreground, background } = themes[1];
+	let { timeOfDay, background } = themes[1];
 	let showToggle = false;
 	let showSelector = false;
 
@@ -33,6 +33,7 @@
 
 	const handleChange = () => {
 		background = themes.find((d) => d.timeOfDay === timeOfDay).background;
+		document.documentElement.setAttribute('data-time-of-day', timeOfDay);
 		localStorage.setItem('timeOfDay', timeOfDay);
 	};
 </script>
@@ -94,7 +95,7 @@
 	</defs>
 </svg>
 
-<div class="[ stack box ] [ {timeOfDay} ]">
+<div class="[ stack ]">
 	<header
 		class="[ box ]"
 		style:--padding="var(--step-space-400) 0"
@@ -159,39 +160,6 @@
 </div>
 
 <style>
-	.morning {
-		--box-color: var(--grey-700);
-		--box-background: var(--grey-100);
-
-		--accent: var(--color-300);
-		--shadow: var(--color-200);
-
-		--selection-color: var(--grey-700);
-		--selection-background: var(--color-100);
-	}
-
-	.day {
-		--box-color: var(--grey-800);
-		--box-background: var(--grey-000);
-
-		--accent: var(--color-400);
-		--shadow: var(--color-200);
-
-		--selection-color: var(--grey-700);
-		--selection-background: var(--color-200);
-	}
-
-	.night {
-		--box-color: var(--grey-300);
-		--box-background: var(--grey-900);
-
-		--accent: var(--color-600);
-		--shadow: var(--color-600);
-
-		--selection-color: var(--grey-300);
-		--selection-background: var(--grey-800);
-	}
-
 	.theme-toggle {
 		inline-size: 3.25rem;
 		block-size: 3.25rem;

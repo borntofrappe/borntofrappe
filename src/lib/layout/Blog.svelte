@@ -7,13 +7,12 @@
 	export let title;
 	export let description;
 
-	let { timeOfDay, foreground, background } = themes[1];
+	let { timeOfDay, background } = themes[1];
 
 	const handleChange = ({ detail }) => {
 		if (detail.timeOfDay === timeOfDay) return;
 
 		timeOfDay = detail.timeOfDay;
-		foreground = detail.foreground;
 		background = detail.background;
 	};
 </script>
@@ -48,7 +47,7 @@
 
 <a href="#content" class="[ visually-hidden ] [ skip-to-content ]">Skip to content</a>
 
-<div class="[ box stack ] {timeOfDay}">
+<div class="[ stack ]">
 	<header
 		class="[ box ]"
 		style:--padding="var(--step-space-300) var(--step-space-200) 0"
@@ -70,39 +69,6 @@
 </div>
 
 <style>
-	.morning {
-		--box-color: var(--grey-700);
-		--box-background: var(--grey-100);
-
-		--accent: var(--color-300);
-		--shadow: var(--color-200);
-
-		--selection-color: var(--grey-700);
-		--selection-background: var(--color-100);
-	}
-
-	.day {
-		--box-color: var(--grey-800);
-		--box-background: var(--grey-000);
-
-		--accent: var(--color-400);
-		--shadow: var(--color-200);
-
-		--selection-color: var(--grey-700);
-		--selection-background: var(--color-200);
-	}
-
-	.night {
-		--box-color: var(--grey-300);
-		--box-background: var(--grey-900);
-
-		--accent: var(--color-600);
-		--shadow: var(--color-600);
-
-		--selection-color: var(--grey-300);
-		--selection-background: var(--grey-800);
-	}
-
 	main :global(h2),
 	main :global(h3) {
 		--space: var(--step-space-400);

@@ -45,8 +45,12 @@
 				font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 			}
 		</style>
-
 		<script>
+			localStorage.getItem('timeOfDay') &&
+				document.documentElement.setAttribute(
+					'data-time-of-day',
+					localStorage.getItem('timeOfDay')
+				);
 			(async () => {
 				if (!'fonts' in document) return;
 

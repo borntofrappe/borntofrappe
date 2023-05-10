@@ -129,6 +129,7 @@
 			background
 		});
 
+		document.documentElement.setAttribute('data-time-of-day', timeOfDay);
 		localStorage.setItem('timeOfDay', timeOfDay);
 	};
 </script>
