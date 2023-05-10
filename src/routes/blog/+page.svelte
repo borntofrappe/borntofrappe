@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import themes from '$lib/utils/themes.js';
+	import Heading from '$lib/components/Heading.svelte';
 
 	import site from '$lib/utils/site.js';
 	import { format } from './utils.js';
@@ -46,23 +47,6 @@
 
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
-		{#each themes as { timeOfDay, foreground }}
-			<filter id="blog-filter-{timeOfDay}">
-				<feFlood flood-color={foreground} result="l1-color" />
-				<feFlood flood-color="#63616b" result="l2-color" />
-				<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
-				<feMorphology in="SourceAlpha" operator="dilate" radius="2" result="l2-outline" />
-				<feComposite in="l1-color" in2="l1-outline" operator="in" result="l1-color-outline" />
-				<feComposite in="l2-color" in2="l2-outline" operator="in" result="l2-color-outline" />
-
-				<feMerge>
-					<feMergeNode in="l1-color-outline" />
-					<feMergeNode in="l2-color-outline" />
-					<feMergeNode in="SourceGraphic" />
-				</feMerge>
-			</filter>
-		{/each}
-
 		<symbol id="blog-marker-morning" viewBox="-7 -7 14 14">
 			<circle r="7" fill="#838ac5" />
 			<circle r="6" fill="#f7f7f7" stroke="#63616b" stroke-width="0.75" />
@@ -98,21 +82,21 @@
 <div class="[ stack ]">
 	<header
 		class="[ box ]"
-		style:--padding="var(--step-space-400) 0"
-		style:--box-color="#f7f7f7"
-		style:--box-background={background}
+		style="
+			--padding: var(--step-space-300) 0;
+			--box-color: var(--theme-color);
+			--box-background: var(--theme-background);
+		"
 	>
-		<div class="[ center cluster ]" style="--justify: space-between;">
-			<h1 style:filter="url(#blog-filter-{timeOfDay})">Blog</h1>
+		<div class="[ center cluster ]" style="--justify: space-between; --align: center;">
+			<Heading level="h1" stroke="var(--theme-foreground)" fill="var(--theme-color)">Blog</Heading>
 
-			{#if showToggle}
-				<button class="[ theme-toggle ]" in:slide on:click={handleClick}>
-					<span class="[ visually-hidden ]">Toggle theme selector</span>
-					<svg viewBox="0 0 1 1">
-						<use href="#blog-marker-{timeOfDay}" />
-					</svg>
-				</button>
-			{/if}
+			<button class="[ theme-toggle ]" data-show={showToggle} on:click={handleClick}>
+				<span class="[ visually-hidden ]">Toggle theme selector</span>
+				<svg viewBox="0 0 1 1">
+					<use href="#blog-marker-{timeOfDay}" />
+				</svg>
+			</button>
 		</div>
 	</header>
 
@@ -161,13 +145,24 @@
 
 <style>
 	.theme-toggle {
-		inline-size: 3.25rem;
-		block-size: 3.25rem;
+		inline-size: 3em;
+		block-size: 3em;
 		padding: 0;
 		background: none;
 		border: none;
 		border-radius: 50%;
-		border: 0.25rem solid transparent;
+		border: 0.2em solid transparent;
+	}
+
+	.theme-toggle {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.theme-toggle[data-show='true'] {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.17s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	.theme-toggle:focus {
