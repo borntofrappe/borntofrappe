@@ -7,13 +7,10 @@
 	export let title;
 	export let description;
 
-	let { timeOfDay, background } = themes[1];
+	let { timeOfDay } = themes[1];
 
 	const handleChange = ({ detail }) => {
-		if (detail.timeOfDay === timeOfDay) return;
-
 		timeOfDay = detail.timeOfDay;
-		background = detail.background;
 	};
 </script>
 
@@ -27,17 +24,13 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
 	<defs>
 		{#each themes as { timeOfDay, foreground }}
-			<filter id="blog-filter-{timeOfDay}">
-				<feFlood flood-color={foreground} result="l1-color" />
-				<feFlood flood-color="#63616b" result="l2-color" />
-				<feMorphology in="SourceAlpha" operator="dilate" radius="4" result="l1-outline" />
-				<feMorphology in="SourceAlpha" operator="dilate" radius="2" result="l2-outline" />
-				<feComposite in="l1-color" in2="l1-outline" operator="in" result="l1-color-outline" />
-				<feComposite in="l2-color" in2="l2-outline" operator="in" result="l2-color-outline" />
+			<filter id="filter-color-outline-{timeOfDay}">
+				<feFlood flood-color={foreground} result="fe-color" />
+				<feMorphology in="SourceAlpha" operator="dilate" radius="3" result="fe-outline" />
+				<feComposite in="fe-color" in2="fe-outline" operator="in" result="fe-color-outline" />
 
 				<feMerge>
-					<feMergeNode in="l1-color-outline" />
-					<feMergeNode in="l2-color-outline" />
+					<feMergeNode in="fe-color-outline" />
 					<feMergeNode in="SourceGraphic" />
 				</feMerge>
 			</filter>
@@ -50,19 +43,21 @@
 <div class="[ stack ]">
 	<header
 		class="[ box ]"
-		style:--padding="var(--step-space-300) var(--step-space-200) 0"
-		style:--box-color="#f7f7f7"
-		style:--box-background={background}
+		style="
+		--padding: var(--step-space-300) var(--step-space-200) 0;
+		--box-color: var(--theme-color);
+		--box-background: var(--theme-background);
+	"
 	>
-		<h1 style:text-align="center" style:filter="url(#blog-filter-{timeOfDay})">
+		<h1 style="text-align: center; filter: url(#filter-color-outline-{timeOfDay})">
 			{title}
 		</h1>
-		<div class="[ center ]" style:--measure="40rem">
+		<div class="[ center ]" style="--measure: 40rem">
 			<Theme on:change={handleChange} />
 		</div>
 	</header>
-	<div class="[ box ]" style:padding="var(--step-space-200) var(--step-space-100)">
-		<main id="content" class="[ center flow ]" style:--measure="60ch">
+	<div class="[ box ]" style="padding: var(--step-space-200) var(--step-space-100)">
+		<main id="content" class="[ center flow ]" style="--measure: 60rem">
 			<slot />
 		</main>
 	</div>
@@ -252,17 +247,17 @@
 
 	main :global(table th),
 	main :global(table td) {
-		color: var(--theme-color);
-		background: var(--theme-background);
+		color: var(--code-color);
+		background: var(--code-background);
 		padding: var(--padding);
 	}
 
 	main :global(table tbody > tr:nth-of-type(even) td) {
-		background: var(--theme-background--1);
+		background: var(--code-background--1);
 	}
 
 	main :global(table tbody > tr:nth-of-type(odd) td) {
-		background: var(--theme-background--2);
+		background: var(--code-background--2);
 	}
 
 	main :global(table thead > tr > th:first-of-type) {

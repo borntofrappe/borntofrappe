@@ -44,9 +44,7 @@
 		position.set({ x, y });
 
 		dispatch('change', {
-			timeOfDay,
-			foreground,
-			background
+			timeOfDay
 		});
 	});
 
@@ -124,9 +122,7 @@
 		background = theme.background;
 
 		dispatch('change', {
-			timeOfDay,
-			foreground,
-			background
+			timeOfDay
 		});
 
 		document.documentElement.setAttribute('data-time-of-day', timeOfDay);
