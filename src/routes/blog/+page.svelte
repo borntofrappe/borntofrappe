@@ -107,7 +107,7 @@
 						style="
 							--padding: var(--step-space-200) var(--step-space-200);
 							--box-color: #f7f7f7;
-							--box-background: {themes.find((d) => d === value).background};
+							--box-background: var(--background-{value});
 						"
 					>
 						<input style="accent-color: #f7f7f7" type="radio" bind:group={timeOfDay} {value} />
