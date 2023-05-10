@@ -7,7 +7,15 @@
 	import Ray from './mignon/Ray.svelte';
 </script>
 
-<div class="[ centered ]">
+<div
+	class="[ box centered ]"
+	style="
+		--box-color: hsl(38, 13%, 17%); 
+		--box-background: hsl(40, 23%, 97%); 
+		--selection-color: hsl(37, 12%, 22%); 
+		--selection-background: hsl(48, 95%, 76%);
+	"
+>
 	<main class="[ box floating ]" style="--padding: var(--step-space-700) var(--step-space-300);">
 		<div
 			style="
@@ -32,7 +40,7 @@
 			{@html icons.svg} the most.
 		</p>
 
-		<Heading level="h2" stroke="var(--color)" fill="var(--highlight)">Why Svelte?</Heading>
+		<Heading level="h2" stroke="var(--box-color)" fill="var(--highlight)">Why Svelte?</Heading>
 
 		<p style="display: inline-block;">Mainly for three reasons:</p>
 
@@ -42,7 +50,7 @@
 			<li>Javascript{@html icons.js}</li>
 		</ol>
 
-		<Heading level="h2" stroke="var(--color)" fill="var(--highlight)">Why SVG?</Heading>
+		<Heading level="h2" stroke="var(--box-color)" fill="var(--highlight)">Why SVG?</Heading>
 
 		<p>
 			Take a look around this very website. You might find the answer in applications worth
