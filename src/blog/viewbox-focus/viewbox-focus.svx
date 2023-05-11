@@ -1,0 +1,9 @@
+---
+title: viewBox focus
+description: Explore the values of the viewBox attribute to focus on more features.
+date: 2023-05-12T11:58:12
+---
+
+In [a previous article](/viewbox-origin) we considered the `viewBox` attribute and tinkered with a couple of values. We changed the width of the SVG canvas to focus on a section of a line chart and modified the origin to scan the visual horizontally.
+
+It is hoowever possible to explore the string further and consider the entire set of numbers, again with practical uses. And assuredly for silly experiments.
