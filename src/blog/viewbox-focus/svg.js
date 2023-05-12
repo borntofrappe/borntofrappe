@@ -1,5 +1,6 @@
 export default {
-	microscope: `<svg viewBox="-58.99136734008789 -110.89614868164062 112.49136734008789 125.89614868164062">
+	microscope: `<svg role="img" style="display: block" viewBox="-58.99136734008789 -110.89614868164062 112.49136734008789 125.89614868164062">
+	<title>A grayscale, inquisitive microscope</title>
 	<rect
 		fill="hsl(0 0% 18%)"
 		x="-58.99136734008789"
