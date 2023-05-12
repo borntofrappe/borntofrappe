@@ -8,7 +8,7 @@
 	<p>
 		In <a href="/viewbox-origin">a previous article</a> we considered the <code>viewBox</code> attribute
 		and tinkered with a couple of values. We changed the width of the SVG canvas to focus on a section
-		of a line chart and modified the origin to scan the visual horizontally.
+		of a line chart and modified the origin to scan the chart horizontally.
 	</p>
 
 	<p>

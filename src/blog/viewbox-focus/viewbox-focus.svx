@@ -1,6 +1,6 @@
 ---
 title: viewBox focus
-description: Explore the values of the viewBox attribute to focus on more features.
+description: Explore the values of the viewBox attribute for more useful applications and trivial animations.
 date: 2023-05-12T10:59:22
 ---
 
@@ -17,13 +17,13 @@ date: 2023-05-12T10:59:22
 
 <Intro />
 
-To reintroduce the topic, let me start by updating the past effort. To update the origin of the canvas we dragged a handle, and longed for a true dragging feature. Revisiting [pointer events](/get-to-the-point), I tried to accomplish the feat with JavaScript and Svelte, so you won't have to wish for the experience much longer — feel free to grab and drag the chart to explore the data at your heart's content.
+To reintroduce the topic, let me start by updating the past effort. To update the origin of the canvas I asked you to drag a handle, and longed for a true dragging feature. Revisiting [pointer events](/get-to-the-point), I tried to accomplish the feat with JavaScript and Svelte, so you won't have to wish for the experience much longer — feel free to grab and drag the chart to explore the data to your heart's content.
 
 <Center maxInlineSize="30rem">
     <Pointer />
 </Center>
 
-## Zoom
+## Focus
 
 Remarkable how it might be, even the draggable line chart updates only one value, the horizontal origin.
 
@@ -33,7 +33,7 @@ Remarkable how it might be, even the draggable line chart updates only one value
 </svg>
 ```
 
-Behind the scenes, we reduced the width of the canvas, scaling down the value from the measure necessary to show the line chart in full.
+Behind the scenes, we reduced the width of the canvas, scaling down the value from the measure necessary to show the data in full.
 
 ```diff
 -<svg viewBox="0 0 530 130">
@@ -46,7 +46,7 @@ To prove the concept, let's forget the line chart and consider a different plot,
 
 <ScatterPlot />
 
-Here we have plenty of points, scattered over two axis and sometimes too close to each other. In terms of `viewBox`, the attribute sets up a perfectly square canvas, 100 units wide and tall.
+Here we have plenty of points, scattered over two axes, sometimes too close to each other. In terms of `viewBox`, the attribute sets up a perfectly square canvas 100 units wide and tall.
 
 ```html
 <svg viewBox="0 0 100 100">
@@ -68,7 +68,7 @@ Further, modify the origin and you get to explore the rest of the chart. As with
 +<svg viewBox="50 0 50 50">
 ```
 
-Update the vertical component, and you get to move the focus downwards as well.
+Update the vertical component, and you get to move downwards as well.
 
 ```diff
 -<svg viewBox="50 0 50 50">
@@ -81,102 +81,13 @@ Finding the four quadrants is then a matter of adjusting the x and y origin. A v
 	{@html svg['view-boxes']}
 </Center>
 
-And with JavaScript and Svelte, an interactive, animated demo is sure to convince you of the usefulness of the concept.
+And with JavaScript and Svelte, an interactive demo is sure to convince you of the usefulness of it all.
 
 <ViewBox />
 
-<Center element="figure" maxInlineSize="32rem">
-	<PetriDish />
-</Center>
+Whether you ask readers to pinch the screen and zoom in the visual themselves, as I briefly mentioned in the past article, whether you support dragging, give a handle, or again add a menu to simplify the task, you can rest assured SVG will scale to fit your needs.
 
----
-
-title: viewBox focus
-description: Explore the values of the viewBox attribute to focus on more features.
-date: 2023-05-12T11:58:12
-
----
-
-<script>
-	import Center from '$lib/components/blog/Center.svelte';
-
-	import Intro from './Intro.svelte';
-	import svg from './svg.js';
-	import Pointer from './Pointer.svelte';
-	import ScatterPlot from './ScatterPlot.svelte';
-	import ViewBox from './ViewBox.svelte';
-	import PetriDish from './PetriDish.svelte';
-</script>
-
-<Intro />
-
-To reintroduce the topic, let me start by updating the past effort. To update the origin of the canvas we dragged a handle, and longed for a true dragging feature. Revisiting [pointer events](/get-to-the-point), I tried to accomplish the feat with JavaScript and Svelte, so you won't have to wish for the experience much longer — feel free to grab and drag the chart to explore the data to your heart's content.
-
-<Center maxInlineSize="30rem">
-    <Pointer />
-</Center>
-
-## Zoom
-
-Remarkable how it might be, even the draggable line chart updates only one value, the horizontal origin.
-
-```svelte
-<svg viewBox="{x} 0 130 130">
-	<!-- ... -->
-</svg>
-```
-
-Behind the scenes, we reduced the width of the canvas, scaling down the value from the measure necessary to show the line chart in full.
-
-```diff
--<svg viewBox="0 0 530 130">
-+<svg viewBox="0 0 130 130">
-```
-
-Ultimately we picked an arbitrary value, but if you allow to change the width similarly to the origin, you are able to zoom in the visual with much more freedom.
-
-To prove the concept, let's forget the line chart and consider a different plot, a scatter plot.
-
-<ScatterPlot />
-
-Here we have plenty of points, scattered over two axis and sometimes too close to each other. In terms of `viewBox`, the attribute sets up a perfectly square canvas, 100 units wide and tall.
-
-```html
-<svg viewBox="0 0 100 100">
-	<!-- ... -->
-</svg>
-```
-
-Change the width and the height, halving both values, and you zoom in in the first quadrant.
-
-```diff
--<svg viewBox="0 0 100 100">
-+<svg viewBox="0 0 50 50">
-```
-
-Further, modify the origin and you get to explore the rest of the chart. As with the line chart, if you inset the horizontal measure, you move to the right.
-
-```diff
--<svg viewBox="0 0 50 50">
-+<svg viewBox="50 0 50 50">
-```
-
-Update the vertical component, and you get to move the focus downwards as well.
-
-```diff
--<svg viewBox="50 0 50 50">
-+<svg viewBox="50 50 50 50">
-```
-
-Finding the four quadrants is then a matter of adjusting the x and y origin. A visual might help.
-
-<Center element="figure" maxInlineSize="36rem">
-	{@html svg['view-boxes']}
-</Center>
-
-And with JavaScript and Svelte, an interactive, animated demo is sure to convince you of the usefulness of the concept.
-
-<ViewBox />
+And with enough ingenuity and a touch of SMIL animation, the same concept might just delight you with a neat little trick.
 
 <Center element="figure" maxInlineSize="32rem">
 	<PetriDish />
