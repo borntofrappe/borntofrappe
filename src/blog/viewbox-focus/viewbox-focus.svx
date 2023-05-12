@@ -4,6 +4,86 @@ description: Explore the values of the viewBox attribute to focus on more featur
 date: 2023-05-12T11:58:12
 ---
 
-In [a previous article](/viewbox-origin) we considered the `viewBox` attribute and tinkered with a couple of values. We changed the width of the SVG canvas to focus on a section of a line chart and modified the origin to scan the visual horizontally.
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
 
-It is hoowever possible to explore the string further and consider the entire set of numbers, again with practical uses. And assuredly for silly experiments.
+	import svg from './svg.js';
+	import Pointer from './Pointer.svelte';
+	import ScatterPlot from './ScatterPlot.svelte';
+	import ViewBox from './ViewBox.svelte';
+	import PetriDish from './PetriDish.svelte';
+</script>
+
+<Intro />
+
+To reintroduce the topic, let me start by updating the past effort. To update the origin of the canvas we dragged a handle, and longed for a true dragging feature. Revisiting [pointer events](/get-to-the-point), I tried to accomplish the feat with JavaScript and Svelte, so you won't have to wish for the experience much longer — feel free to grab and drag the chart to explore the data at your heart's content.
+
+<Center maxInlineSize="30rem">
+    <Pointer />
+</Center>
+
+## Zoom
+
+Remarkable how it might be, even the draggable line chart updates only one value, the horizontal origin.
+
+```svelte
+<svg viewBox="{x} 0 130 130">
+	<!-- ... -->
+</svg>
+```
+
+Behind the scenes, we reduced the width of the canvas, scaling down the value from the measure necessary to show the line chart in full.
+
+```diff
+-<svg viewBox="0 0 530 130">
++<svg viewBox="0 0 130 130">
+```
+
+Ultimately we picked an arbitrary value, but if you allow to change the width similarly to the origin, you are able to zoom in the visual with much more freedom.
+
+To prove the concept, let's forget the line chart and consider a different plot, a scatter plot.
+
+<ScatterPlot />
+
+Here we have plenty of points, scattered over two axis and sometimes too close to each other. In terms of `viewBox`, the attribute sets up a perfectly square canvas, 100 units wide and tall.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!-- ... -->
+</svg>
+```
+
+Change the width and the height, halving both values, and you zoom in in the first quadrant.
+
+```diff
+-<svg viewBox="0 0 100 100">
++<svg viewBox="0 0 50 50">
+```
+
+Further, modify the origin and you get to explore the rest of the chart. As with the line chart, if you inset the horizontal measure, you move to the right.
+
+```diff
+-<svg viewBox="0 0 50 50">
++<svg viewBox="50 0 50 50">
+```
+
+Update the vertical component, and you get to move the focus downwards as well.
+
+```diff
+-<svg viewBox="50 0 50 50">
++<svg viewBox="50 50 50 50">
+```
+
+Finding the four quadrants is then a matter of adjusting the x and y origin. A visual might help.
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html svg['view-boxes']}
+</Center>
+
+And with JavaScript and Svelte, an interactive, animated demo is sure to convince you of the usefulness of the concept.
+
+<ViewBox />
+
+<Center element="figure" maxInlineSize="32rem">
+	<PetriDish />
+</Center>
