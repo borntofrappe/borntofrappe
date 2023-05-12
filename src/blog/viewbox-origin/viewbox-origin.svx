@@ -29,7 +29,7 @@ The first two set the position of the canvas origin, the top left corner. x and 
 The second pair completes the box with the actual dimensions. Width and height.
 
 <Center element="figure" maxInlineSize="24rem">
-	{@html svg['canvas']}
+	{@html svg['view-box']}
 </Center>
 
 Draw something between these boundaries and the shapes will be shown on screen, clearly visible. Draw something outside of the area, however, and you won't see the result.
