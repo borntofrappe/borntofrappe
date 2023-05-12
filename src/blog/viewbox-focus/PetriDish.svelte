@@ -1,12 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
+	import { scale } from 'svelte/transition';
+
 	let svg = null;
-
 	let canAnimate = true;
-
-	const handleEnd = () => {
-		canAnimate = true;
-	};
 
 	onMount(() => {
 		svg.querySelector('animate').addEventListener('endEvent', handleEnd);
@@ -22,13 +19,23 @@
 
 		svg.querySelector('animate').beginElement();
 	};
+
+	const handleEnd = () => {
+		canAnimate = true;
+	};
 </script>
 
 <div>
-	<button disabled={!canAnimate} on:click={handleClick}>Zoom</button>
-
+	{#if canAnimate}
+		<button transition:scale on:click={handleClick}>Focus</button>
+	{/if}
 	<svg viewBox="-50 -50 100 100">
 		<defs>
+			<circle id="petri-dish-circle" r="48" stroke-width="4" />
+			<clipPath id="petri-dish-clip">
+				<use href="#petri-dish-circle" />
+			</clipPath>
+			<circle id="petri-dish-circle" />
 			<symbol
 				id="petri-dish-blob-0"
 				viewBox="-36.523441314697266 -36.523441314697266 73.04688262939453 73.04688262939453"
@@ -162,7 +169,7 @@
 					/>
 					<use
 						style="--c0: #1e939b; --c1: #267ca8"
-						transform="translate(-23 2) scale(1.32) rotate(225)"
+						transform="translate(-25 2) scale(1.32) rotate(225)"
 						href="#petri-dish-germ-1"
 					/>
 					<use
@@ -192,7 +199,7 @@
 					/>
 					<use
 						style="--c0: #d13928; --c1: #c7252c"
-						transform="translate(6 -22) scale(1.22) rotate(290)"
+						transform="translate(7 -23) scale(1.22) rotate(290)"
 						href="#petri-dish-germ-1"
 					/>
 					<use
@@ -212,7 +219,7 @@
 					/>
 					<use
 						style="--c0: #ee9024; --c1: #dc8543"
-						transform="translate(16 -12) scale(0.8) rotate(94)"
+						transform="translate(18 -13) scale(0.8) rotate(94)"
 						href="#petri-dish-germ-0"
 					/>
 					<use
@@ -224,142 +231,151 @@
 			</g>
 		</defs>
 
-		<rect x="-50" y="-50" fill="#a6bbed" width="100" height="100" />
+		<use href="#petri-dish-circle" fill="none" stroke="#132851" />
+		<g clip-path="url(#petri-dish-clip)">
+			<rect x="-50" y="-50" fill="#a6bbed" width="100" height="100" />
 
-		<g>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(16 11) scale(1.49) rotate(284)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(32 23) scale(1.01) rotate(356)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #98b0e3"
-				transform="translate(23 32) scale(0.69) rotate(72)"
-				href="#petri-dish-blob-1"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(6 19) scale(1.4) rotate(212)"
-				href="#petri-dish-blob-1"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(0 40) scale(0.99) rotate(49)"
-				href="#petri-dish-blob-0"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-13 38) scale(0.66) rotate(200)"
-				href="#petri-dish-blob-1"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-12 16) scale(0.9) rotate(185)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-24 32) scale(0.61) rotate(286)"
-				href="#petri-dish-blob-1"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-40 0) scale(1.26) rotate(153)"
-				href="#petri-dish-blob-0"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-20 -7) scale(0.75) rotate(68)"
-				href="#petri-dish-blob-1"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-39 -13) scale(1.4) rotate(216)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-17 -12) scale(0.8) rotate(203)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-33 -24) scale(1.4) rotate(346)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(-7 -20) scale(1.3) rotate(298)"
-				href="#petri-dish-blob-0"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(12 -39) scale(1.48) rotate(230)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #98b0e3"
-				transform="translate(11 -17) scale(1.4) rotate(175)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #98b0e3"
-				transform="translate(16 -12) scale(1.21) rotate(317)"
-				href="#petri-dish-blob-0"
-			/>
-			<use
-				style="--c: #98b0e3"
-				transform="translate(32 -24) scale(1.49) rotate(354)"
-				href="#petri-dish-blob-2"
-			/>
-			<use
-				style="--c: #9eb6e9"
-				transform="translate(19 -7) scale(1.3) rotate(127)"
-				href="#petri-dish-blob-1"
-			/>
+			<g>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(16 11) scale(1.49) rotate(284)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(32 23) scale(1.01) rotate(356)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #98b0e3"
+					transform="translate(23 32) scale(0.69) rotate(72)"
+					href="#petri-dish-blob-1"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(6 19) scale(1.4) rotate(212)"
+					href="#petri-dish-blob-1"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(0 40) scale(0.99) rotate(49)"
+					href="#petri-dish-blob-0"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-13 38) scale(0.66) rotate(200)"
+					href="#petri-dish-blob-1"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-12 16) scale(0.9) rotate(185)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-24 32) scale(0.61) rotate(286)"
+					href="#petri-dish-blob-1"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-40 0) scale(1.26) rotate(153)"
+					href="#petri-dish-blob-0"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-20 -7) scale(0.75) rotate(68)"
+					href="#petri-dish-blob-1"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-39 -13) scale(1.4) rotate(216)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-17 -12) scale(0.8) rotate(203)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-33 -24) scale(1.4) rotate(346)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(-7 -20) scale(1.3) rotate(298)"
+					href="#petri-dish-blob-0"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(12 -39) scale(1.48) rotate(230)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #98b0e3"
+					transform="translate(11 -17) scale(1.4) rotate(175)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #98b0e3"
+					transform="translate(16 -12) scale(1.21) rotate(317)"
+					href="#petri-dish-blob-0"
+				/>
+				<use
+					style="--c: #98b0e3"
+					transform="translate(32 -24) scale(1.49) rotate(354)"
+					href="#petri-dish-blob-2"
+				/>
+				<use
+					style="--c: #9eb6e9"
+					transform="translate(19 -7) scale(1.3) rotate(127)"
+					href="#petri-dish-blob-1"
+				/>
+			</g>
+
+			<svg bind:this={svg} viewBox="-50 -50 100 100" x="-50" y="-50" width="100" height="100">
+				<animate
+					begin="indefinite"
+					attributeName="viewBox"
+					to="-10 -10 20 20"
+					dur="3s"
+					restart="whenNotActive"
+					calcMode="spline"
+					keyTimes="0; 1"
+					keySplines="0.5 0 0.3 1"
+				/>
+				<use transform="scale(0.008 0.008)" href="#composition" />
+				<use transform="scale(0.04 0.04)" href="#composition" />
+				<use transform="scale(0.2 0.2)" href="#composition" />
+				<use href="#composition" />
+			</svg>
 		</g>
-
-		<svg bind:this={svg} viewBox="-50 -50 100 100" x="-50" y="-50" width="100" height="100">
-			<animate
-				begin="indefinite"
-				attributeName="viewBox"
-				to="-10 -10 20 20"
-				dur="3s"
-				restart="whenNotActive"
-				calcMode="spline"
-				keyTimes="0; 1"
-				keySplines="0.5 0 0.3 1"
-			/>
-			<use transform="scale(0.008 0.008)" href="#composition" />
-			<use transform="scale(0.04 0.04)" href="#composition" />
-			<use transform="scale(0.2 0.2)" href="#composition" />
-			<use href="#composition" />
-		</svg>
 	</svg>
 </div>
 
 <style>
-	div > * + * {
-		margin-block-start: 0.5rem;
+	div {
+		position: relative;
+	}
+
+	div > button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	button {
-		display: block;
-		margin-inline: auto;
-		border: 0.2rem solid currentColor;
-		background: none;
-		border-radius: 0.5rem;
+		color: hsl(40, 23%, 97%);
+		background: hsl(30, 13%, 9%);
+		letter-spacing: 1px;
+		border: none;
+		border-radius: 0.25rem;
+		font-weight: 700;
+		padding: 0.25rem 0.75rem;
 	}
 
 	div > svg {
 		display: block;
-		border-radius: 50%;
-		border: 0.75rem solid #132851;
-		clip-path: circle();
 	}
 </style>
