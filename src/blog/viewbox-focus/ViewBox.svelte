@@ -40,7 +40,7 @@
 
 <div>
 	<fieldset>
-		<legend>Focus</legend>
+		<legend>Update focus</legend>
 		{#each viewBoxes as { label: value }}
 			<label>
 				<input type="radio" bind:group={label} {value} />
@@ -100,8 +100,16 @@
 		--accent: hsl(42 87% 55%);
 	}
 
+	fieldset {
+		border: none;
+	}
+
 	legend {
 		font-weight: 700;
 		padding-inline: 0.5rem;
+	}
+
+	label {
+		display: block;
 	}
 </style>
