@@ -77,7 +77,7 @@
 			<line x1="0" y1={s / 2} x2={s} y2={s / 2} />
 		</g>
 
-		<g fill="currentColor">
+		<g fill="var(--accent, currentColor)">
 			{#each points as { cx, cy }}
 				<circle {r} {cx} {cy} />
 			{/each}
@@ -97,6 +97,7 @@
 	svg {
 		display: block;
 		max-inline-size: 30rem;
+		--accent: hsl(42 87% 55%);
 	}
 
 	legend {
