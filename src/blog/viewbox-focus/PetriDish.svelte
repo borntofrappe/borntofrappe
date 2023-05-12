@@ -366,6 +366,7 @@
 	}
 
 	button {
+		cursor: pointer;
 		color: hsl(40, 23%, 97%);
 		background: hsl(30, 13%, 9%);
 		letter-spacing: 1px;
