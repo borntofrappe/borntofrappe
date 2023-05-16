@@ -1,6 +1,6 @@
 ---
 title: Room for growth
-description: Nurture a custom progress bar with SVG and Svelte.
+description: Nurture a custom progress bar with a few SVG elements and Svelte assist.
 date: 2023-05-16T09:43:30
 ---
 
@@ -40,6 +40,8 @@ The vase, a rounded rectangle for the rim, a `<path>` for the base. The natural 
 
 Every element has a sizable, visible `stroke`, outlining the figure and pitching a first idea in terms of animation: line drawing.
 
+## Draw
+
 On the `<path>` responsible for the plant, add the `pathLength` attribute to simplify the task — dashes will be relative to this value.
 
 <!-- prettier-ignore -->
@@ -60,7 +62,7 @@ With the `stroke-dasharray` attribute create dashes and gaps of the same length,
     d="M ..." />
 ```
 
-You might have seen the syntax in [another organic project](/self-reference-in-nature#Animation), but the effect is always worth another look. Move the offset back to 0 and you find the line, and the plant, anew.
+You might have seen the syntax in [another organic project](/self-reference-in-nature#animation), but the effect is always worth another look. Move the offset back to 0 and you find the line, and the plant, anew.
 
 <Center maxInlineSize="20rem">
     <DrawPlant />
@@ -105,6 +107,8 @@ It would be much better to draw the central, vertical segment — a stem of sort
 
 We need to modify the markup a bit, and by the end of it, you'll be the judge if the detour is worth the effort.
 
+## Grow
+
 Update our line-drawn `<path>` to draw a single, straight line. A segment from the vase and up to the skies.
 
 ```html
@@ -131,7 +135,7 @@ And you just need to position the leaves at increments of 12.
 Speaking of leaves, you can reproduce a pair with a separate `<path>` element.
 
 ```html
-<path d="M 0 0 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9z" />
+<path d="M 0 0 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9" />
 ```
 
 You need to position multiple copies, but how many?
@@ -153,7 +157,7 @@ Of course you are not meant to see the full set in the moment you draw the line,
 You can compute the value directly in the markup, but Svelte has a neat little syntax for _reactive declarations_. Right in the script, describe the number of leaves with a variable, prefacing the label with a dollar sign and a colon `$:`.
 
 ```svelte
-$: leaves = Math.floor(offset * 4)
+$: leaves = Math.floor(offset * 4);
 ```
 
 As you change `offset`, `leaves` will follow suit to produce the appropriate integer. From 0 to 4. Use the value for the length of the array and you end up with the right number of leaves.
