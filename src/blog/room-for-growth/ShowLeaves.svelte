@@ -4,7 +4,7 @@
 </script>
 
 <label>
-	<span>Drag the handle to have the plant grow.</span>
+	<span>Drag the handle to show the leaves.</span>
 	<input type="range" min="0" max="1" step="0.01" bind:value />
 </label>
 

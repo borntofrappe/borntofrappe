@@ -3,7 +3,7 @@
 </script>
 
 <label>
-	<span>Drag the handle to have the plant drawn.</span>
+	<span>Drag the handle to draw the plant.</span>
 	<input type="range" min="0" max="1" step="0.01" bind:value />
 </label>
 
