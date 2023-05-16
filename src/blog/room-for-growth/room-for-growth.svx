@@ -19,7 +19,7 @@ It is an innocent feature which accompanies the reader, almost in support. It's 
 
 We start with a potted plant.
 
-<Center element="figure" maxInlineSize="16rem">
+<Center element="figure" maxInlineSize="20rem">
     {@html svg['plant']}
 </Center>
 
@@ -27,7 +27,7 @@ A nice, rounded base. A bit of greenery growing with a few, symmetrical leaves.
 
 You can draw everything with a single `<path>` element, but conceptually, it makes sense to divvy up the sections in pieces. It's also much easier to draw the whole with a few elements.
 
-<Center element="figure" maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="30rem">
     {@html svg['elements']}
 </Center>
 
@@ -62,7 +62,7 @@ With the `stroke-dasharray` attribute create dashes and gaps of the same length,
 
 You might have seen the syntax in [another organic project](/self-reference-in-nature#Animation), but the effect is always worth another look. Move the offset back to 0 and you find the line, and the plant, anew.
 
-<Center maxInlineSize="24rem">
+<Center maxInlineSize="20rem">
     <DrawPlant />
 </Center>
 
@@ -113,7 +113,7 @@ Update our line-drawn `<path>` to draw a single, straight line. A segment from t
 
 You might be doubting the repetition of the `v` character. Why bothering drawing the line 6 units up, then 12, again and again? Can't you just add up the value in one, concise instruction? Absolutely. Following the more elaborate `<path>` element, however, it is convenient to mark the spots where you had the leaves. Consider these markers, pegs for the upcoming, uplifting pairs.
 
-<Center element="figure" maxInlineSize="28rem">
+<Center element="figure" maxInlineSize="30rem">
     {@html svg['segments']}
 </Center>
 
@@ -162,7 +162,7 @@ As you change `offset`, `leaves` will follow suit, producing the appropriate int
 
 From bottom, to top.
 
-<Center maxInlineSize="24rem">
+<Center maxInlineSize="20rem">
     <ShowLeaves />
 </Center>
 

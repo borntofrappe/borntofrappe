@@ -1,8 +1,8 @@
 export default {
-	plant: `<svg style="display: block;" viewBox="0 0 62 89">
+	plant: `<svg style="display: block;" viewBox="0 0 82 89">
 	<title>A nice potted plant</title>
-	<rect fill="#f5f7fa" width="62" height="89" />
-	<svg style="color: #3e4c59;" viewBox="-11 -52 22 69" x="20" y="10" width="22" height="69">
+	<rect fill="#f5f7fa" width="82" height="89" />
+	<svg style="color: #3e4c59;" viewBox="-11 -52 22 69" x="30" y="10" width="22" height="69">
 		<g
 			fill="none"
 			stroke="currentColor"
