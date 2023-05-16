@@ -1,5 +1,197 @@
 ---
 title: Room for growth
-description: Develop a custom progress bar with SVG and Svelte.
-date: 2023-05-15T18:53:15
+description: Nurture a custom progress bar with SVG and Svelte.
+date: 2023-05-16T09:43:30
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+    import DrawPlant from './DrawPlant.svelte';
+    import ShowLeaves from './ShowLeaves.svelte';
+    import ScrollUI from './ScrollUI.svelte';
+</script>
+
+There is one feature I often see on news websites and text-heavy pages where a marker tags along as you process the long form content. A progress bar, usually a rectangle, which grows as you scroll to the bottom.
+
+It is an innocent feature which accompanies the reader, almost in support. It's also a feature which makes the page feel responsive, alive, and one we can spruce up with our own, little take. How? With SVG, of course, an excellent tool for drawing on the web. And Svelte, the perfect assitant for prototyping close to any feature.
+
+We start with a potted plant.
+
+<Center element="figure" maxInlineSize="16rem">
+    {@html svg['plant']}
+</Center>
+
+A nice, rounded base. A bit of greenery growing with a few, symmetrical leaves.
+
+You can draw everything with a single `<path>` element, but conceptually, it makes sense to divvy up the sections in pieces. It's also much easier to draw the whole with a few elements.
+
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['elements']}
+</Center>
+
+The vase, a rounded rectangle for the rim, a `<path>` for the base. The natural growth, an additional `<path>` drawing a vertical segment, two leaves and repeating the sequence a three more times. Line, leaves, and repeat.
+
+<!-- prettier-ignore -->
+```html
+<path d="M 0 0 v -6 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9 v -12 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9 v -12 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9 v -12 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9z" />
+```
+
+Every element has a sizeable, visible `stroke`, outlining the figure and pitching a first idea in terms of animation: line drawing.
+
+On the `<path>` responsible for the plant, add the `pathLength` attribute to simplify the task — dashes will be relative to this value.
+
+<!-- prettier-ignore -->
+```html
+<path 
+    pathLength="1" 
+    d="M ..." />
+```
+
+With the `stroke-dasharray` attribute create dashes and gaps of the same length, and with `stroke-dashoffset`, move the line so that you actually "see" the empty space.
+
+<!-- prettier-ignore -->
+```html
+<path 
+    stroke-dasharray="1" 
+    stroke-dashoffset="1" 
+    pathLength="1" 
+    d="M ..." />
+```
+
+You might have seen the syntax in [another organic project](/self-reference-in-nature#Animation), but the effect is always worth another look. Move the offset back to 0 and you find the line, and the plant, anew.
+
+<Center maxInlineSize="24rem">
+    <DrawPlant />
+</Center>
+
+Behind the scenes, Svelte makes it exceedingly easy to update the visual.
+
+In the `<script>` of a `.svelte` component, initialize a variable for the offset.
+
+```svelte
+<script>
+	let offset = 0;
+</script>
+```
+
+Attach the value to a robust `<input>` element with the `bind:value` directive.
+
+```svelte
+<input type="range" bind:value={offset} min="0" max="1" step="0.01" />
+```
+
+As you drag the handle, Svelte updates the variable from 0 to 1, with the increment specified through the `step` attribute. You need only to inject the value in the appropriate attribute and you are done.
+
+<!-- prettier-ignore -->
+```svelte
+<path 
+    stroke-dasharray="1" 
+    stroke-dashoffset={1 - value} 
+    pathLength="1" 
+    d="..." />
+```
+
+As you've seen in the previous demo, the static SVG is brough to life in small steps.
+
+And the result is already satisfactory. You have your custom progress bar. You can go ahead and update the offset according to the scroll position and the height of any page.
+
+And yet, something is amiss.
+
+Eventually, the plant grows to a full composition, but in between, the leaves are drawn in increments. It feels a tad unnatural to have them appear from nothing.
+
+It would be much better to draw the central, vertical segment — a stem of sorts — and have the leaves follow, already formed, only as the line reaches the appropriate height.
+
+We need to modify the markup a bit, and by the end of it, you'll be the judge if the detour is worth the effort.
+
+Update our line-drawn `<path>` to draw a single, straight line. A segment from the vase and up to the skies.
+
+```html
+<path d="M 0 0 v -6 v -12 v -12 v -12" />
+```
+
+You might be doubting the repetition of the `v` character. Why bothering drawing the line 6 units up, then 12, again and again? Can't you just add up the value in one, concise instruction? Absolutely. Following the more elaborate `<path>` element, however, it is convenient to mark the spots where you had the leaves. Consider these markers, pegs for the upcoming, uplifting pairs.
+
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['segments']}
+</Center>
+
+Translate a group to the height of the first peg.
+
+```
+<path d="M 0 0 v -6 v -12 v -12 v -12" />
+<g transform="translate(0 -6)">
+<!-- ... -->
+</g>
+```
+
+And you just need to position the leaves at increments of 12.
+
+Speaking of leaves, you can reproduce the pairs with separate `<path>` elements.
+
+<path d="M 0 0 c 0 -7.5 2.5 -9 9 -9 c 0 6 -1 9 -9 9 c 0 -7.5 -2.5 -9 -9 -9 c 0 6 1 9 9 9z" />
+
+You need to position the leaves, but how many?
+
+Well, previously we had four. You can recreate the visual with an `{#each}` block, repeating the element as many times as necessary.
+
+```svelte
+{#each Array(4) as _, i}
+	<path transform="translate(0 {i * 12 * -1})" d="M ..." />
+{/each}
+```
+
+The `{#each}` block gives us an index value with the second argument, so that we can position the leaves above the vase. 0, 12, 24 and 36 units up.
+
+Of course you are not meant to see the full set in the moment you draw the line, in the moment you animate the stem to grow. So, how many leaves again? None at the beginning, four by the end. Four times the offset value.
+
+You can compute the value directly in the markup, but Svelte has a neat little syntax for _reactive declarations_. Right in the script, describe the number of leaves with a variable, prefacting the label with a dollar sign and a colon `$:`.
+
+```svelte
+$: leaves = Math.floor(offset * 4)
+```
+
+As you change `offset`, `leaves` will follow suit, producing the appropriate integer. From 0 to 4. Use the value for the length of the array and you end up with the right number of leaves.
+
+```svelte
+{#each Array(leaves) as _, i}
+	<path transform="translate(0 {i * 12 * -1})" d="M ..." />
+{/each}
+```
+
+From bottom, to top.
+
+<Center maxInlineSize="24rem">
+    <ShowLeaves />
+</Center>
+
+We have the leaves appear, but immediately. Thankfully, Svelte helps us once more with a handy module filled with helpful transitions: `svelte/transition`. Import the `scale` function.
+
+```svelte
+<script>
+	import { scale } from 'svelte/transition';
+</script>
+```
+
+And transition the leaves in and out of sight. Smoothly and over time.
+
+```svelte
+<path transition:scale transform="translate(0 {i * 12 * -1})" d="M ..." />
+```
+
+By default, the scale function updates the scale and opacity. I prefer not to modify this last value, and luckily, you can pass an object to tailor the experience.
+
+```svelte
+<path transition:scale={{ opacity: 1 }} transform="translate(0 {i * 12 * -1})" d="M ..." />
+```
+
+And with this obect, you can customize the transition with considerable freedom. A different duration, a responsive easing function. Different easing functions depending on whether the element is added or removed. Fertile ground for exploration.
+
+It is truly amazing what you can achieve with a few drawing instructions and a couple of variables.
+
+Hopefully, it is equally rewarding to having scrolled so far, to find something new.
+
+<Center maxInlineSize="48rem">
+    <ScrollUI />
+</Center>
