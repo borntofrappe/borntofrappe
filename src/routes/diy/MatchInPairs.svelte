@@ -5,20 +5,17 @@
 	const width = 80;
 	const height = 50;
 
-	let cards = ['star', 'moon', 'sun'].reduce((acc, curr) => [...acc, curr, curr], []);
+	const cards = ['star', 'moon', 'sun'];
 
 	const getX = () => padding + Math.floor(Math.random() * (width - size - padding * 2));
 	const getY = () => padding + Math.floor(Math.random() * (height - size - padding * 2));
 
-	let j = 0;
-	const deck = [];
-	while (cards.length > 0) {
-		j++;
-		if (j > 100) break;
+	const coords = [];
+	while (coords.length < cards.length * 2) {
 		const x = getX();
 		const y = getY();
 		let overlaps = false;
-		for (const { x: cx, y: cy } of deck) {
+		for (const { x: cx, y: cy } of coords) {
 			if (x + size + 1 > cx && x - 1 < cx + size && y + size + 1 > cy && y - 1 < cy + size) {
 				overlaps = true;
 				break;
@@ -26,12 +23,28 @@
 		}
 
 		if (!overlaps) {
-			const i = Math.floor(Math.random() * cards.length);
-			const card = cards[i];
-			cards = [...cards.slice(0, i), ...cards.slice(i + 1)];
-			deck.push({ x, y, card });
+			coords.push({
+				x,
+				y
+			});
 		}
 	}
+
+	console.log(coords);
+
+	const deck = cards.reduce((acc, curr, i) => {
+		const pair = Array(2)
+			.fill()
+			.map((_, j) => {
+				const { x, y } = coords[i * 2 + j];
+				return {
+					x,
+					y,
+					card: curr
+				};
+			});
+		return [...acc, ...pair];
+	}, []);
 </script>
 
 <svg viewBox="0 0 80 50">
