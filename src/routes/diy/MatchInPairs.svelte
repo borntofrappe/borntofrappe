@@ -1,3 +1,39 @@
+<script>
+	const size = 12;
+	const padding = 3;
+
+	const width = 80;
+	const height = 50;
+
+	let cards = ['star', 'moon', 'sun'].reduce((acc, curr) => [...acc, curr, curr], []);
+
+	const getX = () => padding + Math.floor(Math.random() * (width - size - padding * 2));
+	const getY = () => padding + Math.floor(Math.random() * (height - size - padding * 2));
+
+	let j = 0;
+	const deck = [];
+	while (cards.length > 0) {
+		j++;
+		if (j > 100) break;
+		const x = getX();
+		const y = getY();
+		let overlaps = false;
+		for (const { x: cx, y: cy } of deck) {
+			if (x + size + 1 > cx && x - 1 < cx + size && y + size + 1 > cy && y - 1 < cy + size) {
+				overlaps = true;
+				break;
+			}
+		}
+
+		if (!overlaps) {
+			const i = Math.floor(Math.random() * cards.length);
+			const card = cards[i];
+			cards = [...cards.slice(0, i), ...cards.slice(i + 1)];
+			deck.push({ x, y, card });
+		}
+	}
+</script>
+
 <svg viewBox="0 0 80 50">
 	<title>Match in pairs!</title>
 	<defs>
@@ -130,49 +166,21 @@
 		<rect stroke="#c55108" stroke-width="1" x="0.5" y="0.5" width="79" height="49" />
 		<rect stroke="#bd4908" stroke-width="0.5" x="0.25" y="0.25" width="79.5" height="49.5" />
 	</g>
-
-	<use href="#match-in-pairs-card" x="5" y="5" width="10" height="10">
-		<animate
-			begin="click"
-			attributeName="href"
-			values="
-				#match-in-pairs-card-flip;
-				#match-in-pairs-card-flip-sun;
-				#match-in-pairs-card-flipped-sun;
-			"
-			dur="0.2s"
-			fill="freeze"
-			calcMode="discrete"
-		/>
-	</use>
-
-	<use href="#match-in-pairs-card" x="25" y="5" width="10" height="10">
-		<animate
-			begin="click"
-			attributeName="href"
-			values="
-				#match-in-pairs-card-flip;
-				#match-in-pairs-card-flip-moon;
-				#match-in-pairs-card-flipped-moon;
-			"
-			dur="0.2s"
-			fill="freeze"
-			calcMode="discrete"
-		/>
-	</use>
-
-	<use href="#match-in-pairs-card" x="45" y="5" width="10" height="10">
-		<animate
-			begin="click"
-			attributeName="href"
-			values="
-				#match-in-pairs-card-flip;
-				#match-in-pairs-card-flip-star;
-				#match-in-pairs-card-flipped-star;
-			"
-			dur="0.2s"
-			fill="freeze"
-			calcMode="discrete"
-		/>
-	</use>
+	{#each deck as { x, y, card }}
+		<use href="#match-in-pairs-card" {x} {y} width={size} height={size}>
+			<animate
+				begin="click"
+				attributeName="href"
+				values="
+					#match-in-pairs-card-flip;
+					#match-in-pairs-card-flip-{card};
+					#match-in-pairs-card-flipped-{card};
+				"
+				dur="0.2s"
+				fill="freeze"
+				calcMode="discrete"
+				restart="never"
+			/>
+		</use>
+	{/each}
 </svg>
