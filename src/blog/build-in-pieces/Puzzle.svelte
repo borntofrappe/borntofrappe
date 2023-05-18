@@ -75,8 +75,7 @@
 			</clipPath>
 			<use
 				id="puzzle-piece-{x}-{y}"
-				x={x * -1}
-				y={y * -1}
+				transform="translate({x * -1} {y * -1})"
 				clip-path="url(#puzzle-clip-{x}-{y})"
 				href="#puzzle-puzzle"
 			/>
