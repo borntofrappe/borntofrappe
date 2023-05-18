@@ -1,4 +1,7 @@
 <script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const size = 12;
 	const padding = 3;
 
@@ -280,5 +283,38 @@
 				</g>
 			</g>
 		{/each}
+	</g>
+
+	<g transform="translate({80 * cards.length * -1} 0)">
+		{#each deck as { id }}
+			<animateTransform
+				begin="{id}Overlay.begin + 1s"
+				attributeName="transform"
+				type="translate"
+				by="80 0"
+				fill="freeze"
+				dur="0.1s"
+				calcMode="discrete"
+			/>
+		{/each}
+		<AnimatedTitle
+			text="What a match!"
+			fill="url(#linear-gradient-text)"
+			begin={deck.map(({ id }) => `${id}Overlay.begin + 1s`).join(';')}
+			end="matchInPairsEnd.begin"
+			repeatCount="indefinite"
+		/>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="matchInPairsEnd" begin="click" attributeName="display" to="none" />
+		</rect>
+	</g>
+
+	<g style:cursor="pointer">
+		<set begin="click" attributeName="display" to="none" />
+
+		<Title fill="url(#linear-gradient-text)">Pair up!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
