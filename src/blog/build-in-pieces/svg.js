@@ -58,5 +58,51 @@ export default {
 	</g>
 	<use x="10" href="#pieces-flower" />
 	<use x="-10" href="#pieces-flower" />
+</svg>`,
+	placeholder: `<svg style="display: block;" viewBox="0 0 60 60">
+	<title>A placeholder image</title>
+	<rect fill="#f8f8f8" width="60" height="60" />
+	<g transform="translate(10 10)">
+		<rect
+			fill="#ebedf0"
+			stroke="#ebedf0"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			width="40"
+			height="40"
+		/>
+		<g transform="translate(5 5)" fill="#707da0">
+			<path
+				stroke="#707da0"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M 0 20 l 10 -8 10 8 5 -4 5 4 0 10 h -30z"
+			/>
+			<circle cx="10" cy="4" r="4" />
+		</g>
+	</g>
+	<g transform="translate(32 32)">
+		<path
+			transform="translate(11 11)"
+			fill="none"
+			stroke="#4e5c78"
+			stroke-width="3"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M 0 0 l 15 15"
+		/>
+		<circle fill="#f8f8f8" stroke="#4e5c78" stroke-width="2" cx="11" cy="11" r="10.5" />
+		<path
+			transform="translate(11 11)"
+			fill="none"
+			stroke="#4e5c78"
+			stroke-width="2.5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M -3.5 -2.5 a 3.5 3.5 0 0 1 7 0 c 0 3 -3.5 2 -3.5 5 m 0 3.5 v 0"
+		/>
+	</g>
 </svg>`
 };

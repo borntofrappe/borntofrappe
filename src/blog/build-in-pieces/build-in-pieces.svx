@@ -43,3 +43,47 @@ Offset the instances with the `x` attribute and you find the stylish flower now 
 <Center element="figure" maxInlineSize="30rem">
     {@html svg['pieces']}
 </Center>
+
+## Puzzle
+
+Say you add the flowers to a far more elaborate drawing. Well, I did, and to keep you intrigued, I won't show you the result until the very, satisfying end.
+
+```html
+<svg viewBox="0 0 60 60">
+	<!-- ...drawing _with_ flowers -->
+</svg>
+```
+
+The entire graphic fits in a `viewBox` 60 units wide and tall; a perfectly squared canvas.
+
+Say you now want to make a puzzle out of the complex markup. In this instance, you can swap the `<svg>` element for a `<symbol>`, add an identifier and relish in the possibility of using the `<use>` element once more.
+
+```html
+<symbol id="painting" viewBox="0 0 60 60">
+	<!-- ...drawing _with_ flowers -->
+</symbol>
+```
+
+Indeed, as you add the `<symbol>` element in the body of a brand new `<svg>`, you dont't see the painting immediately.
+
+```html
+<svg viewBox="0 0 2 2">
+	<!-- symbol#painting -->
+</svg>
+```
+
+It is only as you refer to the symbol, through the now-infamous `<use>` element, that you find the drawing in the fresh canvas.
+
+```html
+<svg viewBox="0 0 2 2">
+	<!-- symbol#painting -->
+
+	<use href="#painting" />
+</svg>
+```
+
+A word on said canvas: why 2 units wide and tall? Just a preference to work with small integers. The instructions in the `<symbol>` element are still relative to the symbol's own canvas, but the visual is scaled to the new boundaries. And as an appetizer, let me offer an example with a secretive, placeholder image.
+
+<Center element="figure" maxInlineSize="18rem">
+    {@html svg['placeholder']}
+</Center>
