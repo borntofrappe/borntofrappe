@@ -32,15 +32,22 @@
 
 	console.log(coords);
 
-	const deck = cards.reduce((acc, curr, i) => {
+	const deck = cards.reduce((acc, card, i) => {
 		const pair = Array(2)
 			.fill()
 			.map((_, j) => {
 				const { x, y } = coords[i * 2 + j];
+
+				const values = [
+					'#match-in-pairs-card-flip',
+					`#match-in-pairs-card-flip-${card}`,
+					`#match-in-pairs-card-flipped-${card}`
+				].join(';');
+
 				return {
 					x,
 					y,
-					card: curr
+					values
 				};
 			});
 		return [...acc, ...pair];
@@ -180,21 +187,19 @@
 		<rect stroke="#bd4908" stroke-width="0.5" x="0.25" y="0.25" width="79.5" height="49.5" />
 	</g>
 
-	{#each deck as { x, y, card }}
-		<use href="#match-in-pairs-card" {x} {y} width={size} height={size}>
-			<animate
-				begin="click"
-				attributeName="href"
-				values="
-					#match-in-pairs-card-flip;
-					#match-in-pairs-card-flip-{card};
-					#match-in-pairs-card-flipped-{card};
-				"
-				dur="0.2s"
-				fill="freeze"
-				calcMode="discrete"
-				restart="never"
-			/>
-		</use>
-	{/each}
+	<g>
+		{#each deck as { x, y, values }}
+			<use href="#match-in-pairs-card" {x} {y} width={size} height={size}>
+				<animate
+					begin="click"
+					attributeName="href"
+					{values}
+					dur="0.2s"
+					fill="freeze"
+					calcMode="discrete"
+					restart="never"
+				/>
+			</use>
+		{/each}
+	</g>
 </svg>
