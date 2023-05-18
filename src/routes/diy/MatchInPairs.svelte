@@ -39,15 +39,35 @@
 				const { x, y } = coords[i * 2 + j];
 
 				const values = [
+					'#match-in-pairs-card',
 					'#match-in-pairs-card-flip',
 					`#match-in-pairs-card-flip-${card}`,
 					`#match-in-pairs-card-flipped-${card}`
 				].join(';');
 
+				const id = `matchInPairsCard${i}${j}`;
+				const match = `matchInPairsCard${i}${j === 0 ? 1 : 0}`;
+
+				const resets = cards
+					.map((_, k) => k)
+					.filter((k) => k !== i)
+					.reduce(
+						(a, c) => [
+							...a,
+							...Array(2)
+								.fill()
+								.map((_, z) => `matchInPairsCard${c}${z}`)
+						],
+						[]
+					);
+
 				return {
 					x,
 					y,
-					values
+					values,
+					id,
+					match,
+					resets
 				};
 			});
 		return [...acc, ...pair];
@@ -188,16 +208,24 @@
 	</g>
 
 	<g>
-		{#each deck as { x, y, values }}
-			<use href="#match-in-pairs-card" {x} {y} width={size} height={size}>
+		{#each deck as { x, y, id }}
+			<use style="cursor: pointer" href="#match-in-pairs-card" {x} {y} width={size} height={size}>
+				<set {id} begin="click" attributeName="display" to="none" />
+			</use>
+		{/each}
+	</g>
+
+	<g>
+		{#each deck as { x, y, values, id }}
+			<use display="none" href="#match-in-pairs-card" {x} {y} width={size} height={size}>
+				<set begin="{id}.begin" attributeName="display" to="initial" />
 				<animate
-					begin="click"
+					begin="{id}.begin"
 					attributeName="href"
 					{values}
 					dur="0.2s"
-					fill="freeze"
 					calcMode="discrete"
-					restart="never"
+					fill="freeze"
 				/>
 			</use>
 		{/each}
