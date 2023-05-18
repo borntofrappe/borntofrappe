@@ -1,7 +1,45 @@
 ---
 title: Build in pieces
-description: Explore a single SVG element in excessive detail and for a most curious application
+description: Repeat a single SVG element a few more times for a most curious application.
 date: 2023-05-18T17:52:38
 ---
 
-In the context of scalable vector graphics, the `<use>` element allows to repeat drawing instructions with concise syntax. And yet, it is also possible to bend the element to solve a rather peculiar need.
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+</script>
+
+In the context of scalable vector graphics, the `<use>` element allows to repeat drawing instructions with a concise syntax. And yet, it is also possible to repeat the element and solve a rather peculiar need.
+
+## Pieces
+
+Say you've drawn a flower.
+
+<Center element="figure" maxInlineSize="18rem">
+    {@html svg['piece']}
+</Center>
+
+An `<ellipse>` here, a couple of `<path>`s there. There's not much to the composition, but the code adds up to a few lines already.
+
+In the moment you want to repeat the flower for a comforting bed, you don't need to copy-paste everything. Add an identifier to a parent group element.
+
+```html
+<g id="flower">
+	<!-- ...flower -->
+</g>
+```
+
+With the `<use>` element, then, reproduce the visual.
+
+<!-- prettier-ignore -->
+```html
+<use href="#flower" x="10" />
+<use href="#flower" x="-10" />
+```
+
+Offset the instances with the `x` attribute and you find the stylish flower now on the right, now on the left. A veritable copy, without actually copying the underlying code. Truly convenient.
+
+<Center element="figure" maxInlineSize="30rem">
+    {@html svg['pieces']}
+</Center>
