@@ -1,0 +1,7 @@
+---
+title: Build in pieces
+description: Explore a single SVG element in excessive detail and for a most curious application
+date: 2023-05-18T17:52:38
+---
+
+In the context of scalable vector graphics, the `<use>` element allows to repeat drawing instructions with concise syntax. And yet, it is also possible to bend the element to solve a rather peculiar need.
