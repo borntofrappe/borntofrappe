@@ -30,22 +30,21 @@
 		}
 	}
 
-	console.log(coords);
-
 	const deck = cards.reduce((acc, card, i) => {
 		const pair = Array(2)
 			.fill()
 			.map((_, j) => {
 				const { x, y } = coords[i * 2 + j];
 
-				const values = [
+				const hrefs = [
 					'#match-in-pairs-card',
 					'#match-in-pairs-card-flip',
 					`#match-in-pairs-card-flip-${card}`,
 					`#match-in-pairs-card-flipped-${card}`
-				].join(';');
+				];
 
 				const id = `matchInPairsCard${i}${j}`;
+
 				const match = `matchInPairsCard${i}${j === 0 ? 1 : 0}`;
 
 				const resets = cards
@@ -64,7 +63,7 @@
 				return {
 					x,
 					y,
-					values,
+					hrefs,
 					id,
 					match,
 					resets
@@ -208,26 +207,78 @@
 	</g>
 
 	<g>
-		{#each deck as { x, y, id }}
+		{#each deck as { x, y, id, match, resets }}
 			<use style="cursor: pointer" href="#match-in-pairs-card" {x} {y} width={size} height={size}>
 				<set {id} begin="click" attributeName="display" to="none" />
+				<set begin="{id}Overlay.begin" attributeName="display" to="none" />
+				<set
+					begin={resets.map((id) => `${id}Flip.end`).join(';')}
+					end="{match}Overlay.begin"
+					attributeName="display"
+					to="initial"
+				/>
 			</use>
 		{/each}
 	</g>
 
 	<g>
-		{#each deck as { x, y, values, id }}
+		{#each deck as { x, y, hrefs, id, match, resets }}
 			<use display="none" href="#match-in-pairs-card" {x} {y} width={size} height={size}>
 				<set begin="{id}.begin" attributeName="display" to="initial" />
+				<set
+					begin={resets.map((id) => `${id}Flip.end`).join(';')}
+					end="{match}Overlay.begin"
+					attributeName="display"
+					to="none"
+				/>
 				<animate
+					id="{id}Flip"
 					begin="{id}.begin"
 					attributeName="href"
-					{values}
+					values={hrefs.join(';')}
+					dur="0.2s"
+					calcMode="discrete"
+					fill="freeze"
+				/>
+				<animate
+					begin={resets.map((id) => `${id}.begin`).join(';')}
+					end="{match}Overlay.begin"
+					attributeName="href"
+					values={[...hrefs].reverse().join(';')}
 					dur="0.2s"
 					calcMode="discrete"
 					fill="freeze"
 				/>
 			</use>
+		{/each}
+	</g>
+
+	<g>
+		{#each deck as { x, y, hrefs, id, match, resets }}
+			<g display="none">
+				<set begin="{match}.begin" attributeName="display" to="initial" />
+				<set
+					begin={resets.map((id) => `${id}.begin`).join(';')}
+					end="{id}Overlay.begin"
+					attributeName="display"
+					to="none"
+				/>
+				<g transform="translate({x} {y})">
+					<use href="#match-in-pairs-card" width={size} height={size}>
+						<animate
+							begin="{id}Overlay.begin"
+							attributeName="href"
+							values={hrefs.join(';')}
+							dur="0.2s"
+							calcMode="discrete"
+							fill="freeze"
+						/>
+					</use>
+					<use style="cursor: pointer" href="#match-in-pairs-card" width={size} height={size}>
+						<set id="{id}Overlay" begin="click" attributeName="display" to="none" />
+					</use>
+				</g>
+			</g>
 		{/each}
 	</g>
 </svg>
