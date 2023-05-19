@@ -46,7 +46,7 @@ Once you offset the instances with the `x` attribute you find the stylish flower
     {@html svg['flowers']}
 </Center>
 
-## Puzzle
+## Puzzles
 
 Say you add the flowers to a far more elaborate drawing. Well, I did, and to keep you intrigued, I won't show you the result until the very, satisfying end.
 
