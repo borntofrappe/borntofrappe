@@ -22,7 +22,7 @@ Say you've drawn a flower.
     {@html svg['flower']}
 </Center>
 
-An `<ellipse>` here, a couple of `<path>`s there. There's not much to the composition, but the code adds up to a few lines already.
+An `<ellipse>`, a handful of `<path>`s. There's not much to the composition, but the code adds up to a few lines already.
 
 The moment you want to repeat the flower for a comforting bed, you don't need to copy-paste everything. Add an identifier to a parent group element.
 
@@ -40,7 +40,7 @@ Repeat the youngling with the `<use>` element.
 <use href="#flower" x="-10" />
 ```
 
-Once you offset the instances with the `x` attribute you find the stylish flower now on the right, now on the left. A veritable copy, without actually copying the underlying code. Truly convenient.
+Once you offset the instances with the `x` attribute you find the stylish flower now on the right, now on the left. A veritable copy, without actually copying the underlying code. Quite convenient.
 
 <Center element="figure" maxInlineSize="30rem">
     {@html svg['flowers']}
@@ -166,7 +166,7 @@ And with that, the puzzle is complete.
     {@html svg['puzzle-pieces']}
 </Center>
 
-If the result is anticlimactic, I share your sentiment. It may seem as little has changed, after all you find the same, alluring placeholder. But there are indeed four pieces. You can inspect the page, or even notice a thin border separating the use elements.
+If the result is anticlimactic, I share your sentiment. It may seem as little has changed, after all you find the same, promising placeholder. But there are indeed four pieces. You can inspect the page, or even notice a thin border separating the `<use>` elements.
 
 What you need is to move the copies. What you need is to mess the pristine order which completes the set.
 
@@ -176,7 +176,7 @@ As you move the copies, you can have the first quarter end up in the lower right
 <use x="1" y="1" clip-path="url(#clip-piece-0-0)" href="#painting" />
 ```
 
-You can move this last piece in the now empty spot.
+You can move this last piece in the otherwise empty spot.
 
 ```html
 <use x="-1" y="-1" clip-path="url(#clip-piece-1-1)" href="#painting" />
@@ -188,15 +188,15 @@ And there you have it. An improper puzzle, just waiting to be put back into plac
     {@html svg['puzzle-swap']}
 </Center>
 
-Before I show you the promised work of art, expanded to consider a few more pieces and a touch of interaction, let me add a final update. One final excuse to repeat the `<use>` element.
+Before I show you the highly anticipated work of art, expanded to consider a few more pieces and a touch of interaction, let me share a final update. One final excuse to repeat the `<use>` element.
 
-While you can move the pieces to your heart's content, you need to be careful not to push them outside of the visible area, outside of the canvas. Remember the lower right corner?
+While you can move the pieces to your heart's content, you need to be careful not to push them outside of the visible area, outside of the `viewBox`. Remember the lower right corner?
 
 ```html
 <use x="-1" y="-1" clip-path="url(#clip-piece-1-1)" href="#painting" />
 ```
 
-We shifted the piece with a negative offset and, whole the result speaks for itself — it does work — I find the logic conceptually wrong. Wouldn't it be nice to have actual puzzle pieces, pieces you position anywhere in manageable, positive increments?
+We shifted the piece with a negative offset and, while the result speaks for itself — it does work — I find the logic conceptually wrong. Wouldn't it be nice to have actual puzzle pieces, pieces you position anywhere in manageable, positive increments?
 
 In the specific example, wouldn't it be nice to have the lower right corner in the opposite end without specifying an offset at all?
 
@@ -205,12 +205,14 @@ As editorialized, this is possible through the `<use>` element, once more.
 Move the clipped element in the body of a `<defs>` block, so that you don't see the element on the page.
 
 ```html
-<defs>
-	<use clip-path="url(#clip-piece-1-1)" href="#painting" />
-</defs>
+<svg viewBox="0 0 2 2">
+	<defs>
+		<use clip-path="url(#clip-piece-1-1)" href="#painting" />
+	</defs>
+</svg>
 ```
 
-And on this element, add a different `id`.
+And on this element, add a different, fitting`id`.
 
 ```html
 <defs>
@@ -223,10 +225,9 @@ And there you have it, a puzzle piece with a descriptive label. You can position
 <!-- prettier-ignore -->
 ```html
 <use href="#piece-1-1" />
-<use x="1" y="1" href="#piece-0-0" />
 ```
 
-Personally, I find the update simplifies the task immensely. If you find the detour way too technical, once again I understand your position. And as promised, I offer a last example to make it worth your day.
+Personally, I find the change simplifies the task immensely. If you find the update way too technical, once again I understand your position. And as promised, I offer a last example to make it worth your day.
 
 <Center maxInlineSize="32rem">
 	<Puzzle />
