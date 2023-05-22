@@ -3,3 +3,26 @@ title: Smiling for some reason
 description:
 date: 2023-05-22T09:09:09
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="18rem">
+    {@html svg['heart-beat']}
+</Center>
+
+<Center element="figure" maxInlineSize="18rem">
+    {@html svg['moon-tilt']}
+</Center>
+
+<Center element="figure" maxInlineSize="18rem">
+    {@html svg['sun-turn']}
+</Center>
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['lightning-strike']}
+    <figcaption>Lightning ready to strike</figcaption>
+</Center>
