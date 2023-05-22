@@ -77,15 +77,15 @@ export default {
 	<circle fill="currentColor" r="25" />
 	<set id="sunTurn" begin="click" />
 </svg>`,
-	'lightning-strike': `<svg style="display: block;" viewBox="-48 -55 100 100">
+	'lightning-strike': `<svg style="display: block; outline: 1px solid; max-inline-size: 20rem" viewBox="-48 -55 100 100">
 	<title>Lightning ready to strike</title>
 	<g>
 		<animateTransform
 			begin="lightningStrike.begin"
 			attributeName="transform"
 			type="scale"
-			values="1 1; 1.2 1.2; 1.2 1.2; 1.2 1.2; 1 1"
-			dur="1.5s"
+			values="1 1; 0.9 0.9; 1.2 1.2; 1.2 1.2; 1 1"
+			dur="1.4s"
 			restart="whenNotActive"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
@@ -94,8 +94,8 @@ export default {
 			begin="lightningStrike.begin"
 			attributeName="transform"
 			type="rotate"
-			values="0; -3; 2; -2; 1; -1;  0"
-			dur="1.5s"
+			values="0; 3; -2; 2; -1; 1;  0"
+			dur="1.4s"
 			restart="whenNotActive"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
@@ -110,21 +110,21 @@ export default {
 		>
 			<path d="M 5 -40 l 0 30 20 0 -30 40 0 -30 -20 0z" />
 		</g>
-		<g fill="none" stroke="#48d1ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+		<g fill="none" stroke="#48d1ff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
 			<path
 				pathLength="1"
-				stroke-dasharray="1 1 0.1"
+				stroke-dasharray="1.1 1.1 0.1"
 				d="M 8 -45 l -15 10 20 10 -35 10 48 15 -40 15 20 10 -15 10"
 			>
-				<set attributeName="stroke-dashoffset" to="1" />
+				<set attributeName="stroke-dashoffset" to="2.4" />
 				<animate
 					begin="lightningStrike.begin"
 					attributeName="stroke-dashoffset"
-					values="1; 2.1; 1"
-					dur="1.5s"
+					values="2.3; 1.2"
+					dur="1.4s"
 					restart="whenNotActive"
 					calcMode="spline"
-					keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+					keySplines="0.5 0 0.5 1;"
 				/>
 			</path>
 		</g>
