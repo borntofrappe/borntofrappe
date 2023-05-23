@@ -14,7 +14,7 @@ Animating SVG elements with the possibilities built in the language, with <abbr 
 
 At the end of the day, some can justifiably ask: why?
 
-I can think of several answers, but the most convincing argument might just be an example, or two, of what SMIL allows.
+I can think of several answers, but the most convincing argument might be an example, or two, of what SMIL allows.
 
 And to keep the discussion practical, I can think of no better example than SVG icons.
 
@@ -24,9 +24,9 @@ Consider the icon for a soft heart.
     {@html svg['heart']}
 </Center>
 
-In and of itself, the `<path>` element and its rounded edges make for a captivating picture already — you can pair the visual to a button and develop a favorite feature. With SMIL animation, however, you can build on top of this perfectly functional piece and have the heart actually beat.
+In and of itself, the `<path>` element and its rounded edges make for a captivating picture already — you can pair the visual to a button and develop a favorite feature. With SMIL animation, however, you can build on top of this perfectly functional piece and have the heart really beat.
 
-Leaving the path element open, add a `<animateTransform>` element right within.
+Leaving the `<path>` open, add a `<animateTransform>` element right within.
 
 ```html
 <path d="M ...">
@@ -36,14 +36,24 @@ Leaving the path element open, add a `<animateTransform>` element right within.
 
 There are a few prescribed attributes, and you might have seen a handful [in a separate introduction](/a-coy-introduction-to-smil). `attributeName` and `type` help to target the `transform` attribute, with the specific value to scale the shape.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform attributeName="transform" type="translate" />
+<animateTransform 
+    attributeName="transform" 
+    type="translate" 
+/>
 ```
 
 `dur` describes how much the duration should take, and `to` the value of the actual attribute.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform attributeName="transform" type="scale" dur="0.5s" to="1.1" />
+<animateTransform 
+    attributeName="transform" 
+    type="scale" 
+    dur="0.5s" 
+    to="1.15"
+/>
 ```
 
 The whole is enough to have the heart grow, smoothly and over time. The only hiccup: the animation starts immediately, reaches the larger size and jumps back to the original design.
@@ -51,36 +61,52 @@ The whole is enough to have the heart grow, smoothly and over time. The only hic
 Past the `to` attribute, pointing to one value, you can specify a few with `values`, separating the magic numbers with a semicolon.
 
 ```diff
--to="1.1"
-+values="1; 1.1; 1"
+-to="1.15"
++values="1; 1.15; 1"
 ```
 
-From 1, to 1.1, back to 1, you bring the picture to life. Pair the whole set with one, final impressive attribute, `begin`, and you can actually wait for a click event to start the remarkable feat.
+From 1, to 1.15, back to 1, you bring the picture to life. Pair the whole set with one, final impressive attribute, `begin`, and you can actually wait for a click event to start the remarkable feat.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform begin="click" ... />
+<animateTransform 
+    begin="click" 
+    ... 
+/>
 ```
 
-The process is a tad imperative, but definitely worth the effort. You can press the heart to your delight and have it grow and shrink.
+The process is a tad imperative, but definitely worth the effort. You can tap the heart to your delight and have it grow and shrink.
 
 <Center element="figure" maxInlineSize="18rem">
     {@html svg['heart-beat']}
 </Center>
+
 And grow and shrink again. Behind the scenes, I couldn't help adding a few more attributes, just to show off. Immediately, `repeatCount` helps to repeat the animation, twice.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform begin="click" repeatCount="2" ... />
+<animateTransform 
+    begin="click" 
+    repeatCount="2" 
+    ... 
+/>
 ```
 
-Past that, and you might have noticed a subtle difference if you decided to code along, `calcMode` and `keySplines` set up a different timing function. An easing curve different from the default, linear motion. But I'll let you explore the attributes on your own.
+Past that, and you might have noticed a subtle difference if you decided to code along, `calcMode` and `keySplines` set up a different timing function. An easing curve to change from the default, linear motion. But I'll let you explore the attributes on your own.
 
 There's only one attribute left, `restart`. I hope you'll forgive me setting a value of `whenNotActive`, a small safeguard to ensure the animation doesn't start abruptly following multiple clicks, in rapid succession.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform begin="click" repeatCount="2" restart="whenNotActive" ... />
+<animateTransform 
+    begin="click" 
+    repeatCount="2" 
+    restart="whenNotActive" 
+    ... 
+/>
 ```
 
-The result is remarkable, and while the syntax might seem convoluted — you do need a heaping of attributes —, you'll soon appreciate how just much you learned already. Just how many animations you can pull off by tweaking a few values.
+The animation is remarkable, and while the syntax might seem convoluted — you do need a heaping of attributes —, you'll soon appreciate just how much you learned so far. Just how many animations you can pull off by tweaking the existing syntax.
 
 Consider two celestial bodies. A crescent moon and a radiant sun.
 
@@ -97,19 +123,29 @@ To rock and the moon back and forth, you can repeat the `<animateTransform>` ele
 </g>
 ```
 
-Target the rotation instead of the scale. Target the `rotate` syntax of the `transform` attribute.
+Target the rotation instead of the scale. Target the `rotate` portion of the `transform` attribute.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform attributeName="transform" type="rotate" ... />
+<animateTransform 
+    attributeName="transform" 
+    type="rotate" 
+    ... 
+/>
 ```
 
-Update `values` to change the angle to an arbitrary number.
+Update `values` to change the angle to an arbitrary, possibly greater, integer.
 
+<!-- prettier-ignore -->
 ```html
-<animateTransform attributeName="transform" type="rotate" values="0; 20; 0" />
+<animateTransform 
+    attributeName="transform" 
+    type="rotate" 
+    values="0; 35; 0" 
+/>
 ```
 
-And you can leave the rest as-is. You can keep the duration and the `begin` attribute to start the change at the lightest touch. But you might want to remove `repeatCount` if you feel one tilt is enough to soothe your spirit.
+And you can leave the rest as is. You can tinker with the duration and keep the `begin` attribute, to start the change at the lightest touch. But you might want to remove `repeatCount` if you feel one tilt is enough to soothe your spirit.
 
 <Center element="figure" maxInlineSize="18rem">
     {@html svg['moon-tilt']}
@@ -117,16 +153,22 @@ And you can leave the rest as-is. You can keep the duration and the `begin` attr
 
 Moving on to the sun, you need to modify the syntax even less.
 
+<!-- prettier-ignore -->
 ```html
 <g>
 	<!-- ...sun -->
-	<animateTransform attributeName="transform" type="rotate" ... />
+	<animateTransform 
+        attributeName="transform" 
+        type="rotate" 
+        ... 
+    />
 </g>
 ```
 
 The rays are sketched around the center in increments of 45 degrees. This means you need just one value, the `to` attribute, pointing to the specific angle.
 
-```
+<!-- prettier-ignore -->
+```html
 <animateTransform
 	attributeName="transform"
 	type="rotate"
@@ -135,11 +177,13 @@ The rays are sketched around the center in increments of 45 degrees. This means 
 />
 ```
 
-45 degrees or a multiple of 45 if you feel so energized. You can rest assure that, when the animation ends and resumes the original angle, the change will be immediate, imperceptible. You can repeat the animation smoothly once more. Or as many times as you may want.
+45 degrees or a multiple of 45 if you feel so energized. You can rest assured that, when the animation ends and resumes the original angle, the change will be immediate, imperceptible. You can repeat the animation smoothly once more. Or as many times as you may want.
 
 <Center element="figure" maxInlineSize="18rem">
     {@html svg['sun-turn']}
 </Center>
+
+---
 
 <Center element="figure" maxInlineSize="20rem">
     {@html svg['lightning-strike']}
