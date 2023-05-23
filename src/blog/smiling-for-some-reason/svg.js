@@ -1,10 +1,24 @@
 export default {
-	'heart-beat': `<svg style="display: block;" viewBox="-50 -50 100 100">
+	heart: `<svg style="display: block;" viewBox="-50 -57.5 100 100">
+	<title>A soft heart</title>
+	<g
+		fill="currentColor"
+		stroke="currentColor"
+		stroke-width="8"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+	>
+		<path
+			d="M -30 -20 a 15 15 0 0 1 30 0 15 15 0 0 1 30 0 c 0 20 -20 30 -30 40 c -10 -10 -30 -20 -30 -40"
+		/>
+	</g>
+</svg>`,
+	'heart-beat': `<svg style="display: block;" viewBox="-50 -57.5 100 100">
 	<title>A heart waiting to beat</title>
 	<g
 		fill="currentColor"
 		stroke="currentColor"
-		stroke-width="4"
+		stroke-width="8"
 		stroke-linejoin="round"
 		stroke-linecap="round"
 	>
@@ -24,8 +38,42 @@ export default {
 		/>
 	</g>
 </svg>`,
+	'celestial-bodies': `<svg style="display: block;" viewBox="0 0 2.2 1">
+	<svg width="1" height="1" viewBox="-50 -50 100 100">
+		<title>A crescent moon</title>
+		<g
+			fill="currentColor"
+			stroke="currentColor"
+			stroke-width="8"
+			stroke-linejoin="round"
+			stroke-linecap="round"
+		>
+			<path d="M 0 -30 a 30 30 0 1 0 30 30 20 20 0 0 1 -30 -30" />
+		</g>
+	</svg>
+	<svg x="1.2" width="1" height="1" viewBox="-50 -50 100 100">
+		<title>A radiant sun</title>
+		<g
+			fill="none"
+			stroke="currentColor"
+			stroke-width="8"
+			stroke-linejoin="round"
+			stroke-linecap="round"
+		>
+			<path transform="translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(45) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(90) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(135) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(180) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(225) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(270) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(315) translate(0 -36)" d="M 0 0 v -5" />
+		</g>
+		<circle fill="currentColor" r="27" />
+	</svg>
+</svg>`,
 	'moon-tilt': `<svg style="display: block;" viewBox="-50 -50 100 100">
-	<title>A moon tipped on its side</title>
+	<title>A moon tilted on its side</title>
 	<g
 		fill="currentColor"
 		stroke="currentColor"
@@ -48,15 +96,9 @@ export default {
 </svg>`,
 	'sun-turn': `<svg style="display: block;" viewBox="-50 -50 100 100">
 	<title>A sun about to turn</title>
-	<g
-		fill="none"
-		stroke="currentColor"
-		stroke-width="6"
-		stroke-linejoin="round"
-		stroke-linecap="round"
-	>
+	<g>
 		<animateTransform
-			begin="sunTurn.begin"
+			begin="click"
 			attributeName="transform"
 			type="rotate"
 			values="0; 45"
@@ -65,23 +107,31 @@ export default {
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1;"
 		/>
-		<path transform="translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(45) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(90) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(135) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(180) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(225) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(270) translate(0 -35)" d="M 0 0 v -5" />
-		<path transform="rotate(315) translate(0 -35)" d="M 0 0 v -5" />
+		<g
+			fill="none"
+			stroke="currentColor"
+			stroke-width="8"
+			stroke-linejoin="round"
+			stroke-linecap="round"
+		>
+			<path transform="translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(45) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(90) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(135) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(180) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(225) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(270) translate(0 -36)" d="M 0 0 v -5" />
+			<path transform="rotate(315) translate(0 -36)" d="M 0 0 v -5" />
+		</g>
+		<circle fill="currentColor" r="27" />
 	</g>
-	<circle fill="currentColor" r="25" />
-	<set id="sunTurn" begin="click" />
 </svg>`,
-	'lightning-strike': `<svg style="display: block; outline: 1px solid; max-inline-size: 20rem" viewBox="-48 -55 100 100">
+	'lightning-strike': `<svg style="display: block;" viewBox="-50 -50 100 100">
 	<title>Lightning ready to strike</title>
 	<g>
 		<animateTransform
-			begin="lightningStrike.begin"
+			id="lightningStrike"
+			begin="click"
 			attributeName="transform"
 			type="scale"
 			values="1 1; 0.9 0.9; 1.2 1.2; 1.2 1.2; 1 1"
@@ -108,19 +158,19 @@ export default {
 			stroke-linejoin="round"
 			stroke-linecap="round"
 		>
-			<path d="M 5 -40 l 0 30 20 0 -30 40 0 -30 -20 0z" />
+			<path d="M 5 -35 l 0 30 20 0 -30 40 0 -30 -20 0z" />
 		</g>
-		<g fill="none" stroke="#48d1ff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+		<g fill="none" stroke="#48d1ff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
 			<path
 				pathLength="1"
 				stroke-dasharray="1.1 1.1 0.1"
-				d="M 8 -45 l -15 10 20 10 -35 10 48 15 -40 15 20 10 -15 10"
+				d="M 8 -40 l -15 10 20 10 -35 10 48 15 -40 15 20 10 -15 10"
 			>
 				<set attributeName="stroke-dashoffset" to="2.4" />
 				<animate
 					begin="lightningStrike.begin"
 					attributeName="stroke-dashoffset"
-					values="2.3; 1.2"
+					values="2.4; 1.1"
 					dur="1.4s"
 					restart="whenNotActive"
 					calcMode="spline"
@@ -129,6 +179,5 @@ export default {
 			</path>
 		</g>
 	</g>
-	<set id="lightningStrike" begin="click" />
 </svg>`
 };
