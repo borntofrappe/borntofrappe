@@ -21,6 +21,7 @@ export default {
 		stroke-width="8"
 		stroke-linejoin="round"
 		stroke-linecap="round"
+		style="cursor: pointer"
 	>
 		<animateTransform
 			begin="click"
@@ -80,6 +81,7 @@ export default {
 		stroke-width="8"
 		stroke-linejoin="round"
 		stroke-linecap="round"
+		style="cursor: pointer"
 	>
 		<animateTransform
 			begin="click"
@@ -96,7 +98,7 @@ export default {
 </svg>`,
 	'sun-turn': `<svg style="display: block;" viewBox="-50 -50 100 100">
 	<title>A sun about to turn</title>
-	<g>
+	<g style="cursor: pointer">
 		<animateTransform
 			begin="click"
 			attributeName="transform"
@@ -129,7 +131,7 @@ export default {
 </svg>`,
 	'lightning-strike': `<svg style="display: block;" viewBox="-50 -50 100 100">
 	<title>Lightning ready to strike</title>
-	<g>
+	<g style="cursor: pointer">
 		<animateTransform
 			id="lightningStrike"
 			begin="click"
