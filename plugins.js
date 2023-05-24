@@ -6,7 +6,7 @@ import icons from './src/lib/utils/icons.js';
 import slug from 'slug';
 
 export const rehypePermalink = () => (tree) => {
-	const tagNames = ['h2', 'h3', 'h4'];
+	const tagNames = ['h2', 'h3'];
 	visit(tree, 'element', (node) => {
 		if (!tagNames.includes(node.tagName)) return;
 
@@ -43,6 +43,7 @@ export const rehypePermalink = () => (tree) => {
 		};
 
 		node.properties.id = id;
+		node.properties.tabindex = -1;
 
 		if (!node.properties.className) node.properties.className = [];
 		if (typeof node.properties.className === 'string')

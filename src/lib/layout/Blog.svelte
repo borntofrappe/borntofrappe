@@ -57,13 +57,19 @@
 		</div>
 	</header>
 	<div class="[ box ]" style="padding: var(--step-space-200) var(--step-space-100)">
-		<main id="content" class="[ center flow ]" style="--measure: 60ch">
+		<main id="content" tabindex="-1" class="[ center flow ]" style="--measure: 60ch;">
 			<slot />
 		</main>
 	</div>
 </div>
 
 <style>
+	main:focus,
+	main :global(h2:focus),
+	main :global(h3:focus) {
+		outline: none;
+	}
+
 	main :global(h2),
 	main :global(h3) {
 		--space: var(--step-space-400);
