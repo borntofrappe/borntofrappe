@@ -60,18 +60,6 @@
 		</g>
 
 		<symbol id="pick-up-produce-crop" viewBox="-15 -21 30 47">
-			<g transform="translate(0 -6)">
-				<g fill="#76d0ad" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M 0 0 a 9 9 0 0 1 0 -14 9 9 0 0 1 0 14" />
-					<path stroke-width="0.75" d="M 0 0 v -10" />
-					<path d="M 0.25 0 c 0 -5 0 -10 8 -14 5 7 -1 13 -5.5 14" />
-					<path transform="scale(-1 1)" d="M 0.25 0 c 0 -5 0 -10 8 -14 5 7 -1 13 -5.5 14" />
-					<g stroke-width="0.75">
-						<path d="M 0.25 0 q 3.5 -4 6.5 -9.5" />
-						<path transform="scale(-1 1)" d="M 0.25 0 q 3.5 -4 6.5 -9.5" />
-					</g>
-				</g>
-			</g>
 			<g fill="none" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
 				<path transform="rotate(0) translate(0 21)" d="M 0 0 a 1 1 0 0 0 0 2 1 1 0 0 1 0 2" />
 				<path transform="rotate(15) translate(0 20.5)" d="M 0 0 a 1 1 0 0 0 0 2 1 1 0 0 1 0 2" />
@@ -97,6 +85,61 @@
 			<g stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
 				<path fill="none" stroke-width="1.25" d="M 2 -6 v 11 a 13 8 0 1 1 -4 0 v -11" />
 				<path fill="#ffdd9d" d="M -7 17 c -1 3 6 5 7 5 1 0 8 -2 7 -5" />
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-crop-top-0" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -6)">
+				<g fill="#76d0ad" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M 0 0 a 9 9 0 0 1 0 -14 9 9 0 0 1 0 14" />
+					<path stroke-width="0.75" d="M 0 0 v -10" />
+					<path d="M 0 0 c 0 -6 0 -10 8 -14 5 7 -1 14 -8 14" />
+					<path transform="scale(-1 1)" d="M 0 0 c 0 -6 0 -10 8 -14 5 7 -1 14 -8 14" />
+					<g stroke-width="0.75">
+						<path d="M 0.25 0 q 4 -3.75 6.5 -9.75" />
+						<path transform="scale(-1 1)" d="M 0.25 0 q 4 -3.75 6.5 -9.75" />
+					</g>
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-crop-top-1" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -6)">
+				<g fill="#76d0ad" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="rotate(10)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
+					<path transform="rotate(-30)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
+					<path transform="scale(-1 1) rotate(-30)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
+					<g stroke-width="0.75">
+						<path d="M 0.25 -0.25 c 2 -3 3 -7 6 -7.5" />
+						<path transform="scale(-1 1)" d="M 0.25 -0.25 c 2 -3 3 -7 6 -7.5" />
+					</g>
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-crop-top-2" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -6)">
+				<g fill="#76d0ad" stroke="#a5570c" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M 0 0 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<g stroke-width="0.75">
+						<path d="M 0 0 c -2 -4 2 -7 -1 -10" />
+					</g>
+					<path transform="scale(-1 1) rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<path transform="rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-crop-top-spoiled" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -6)">
+				<g fill="#ffdd9d" stroke="#a5570c" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M 0 0 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<g stroke-width="0.75">
+						<path d="M 0 0 c -2 -4 2 -7 -1 -10" />
+					</g>
+					<path transform="scale(-1 1) rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<path transform="rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+				</g>
 			</g>
 		</symbol>
 	</defs>
@@ -160,5 +203,14 @@
 
 	<g>
 		<use href="#pick-up-produce-crop" width="30" height="47" />
+		<use href="#pick-up-produce-crop-top-0" width="30" height="47" />
+	</g>
+	<g transform="translate(30 0)">
+		<use href="#pick-up-produce-crop" width="30" height="47" />
+		<use href="#pick-up-produce-crop-top-1" width="30" height="47" />
+	</g>
+	<g transform="translate(60 0)">
+		<use href="#pick-up-produce-crop" width="30" height="47" />
+		<use href="#pick-up-produce-crop-top-spoiled" width="30" height="47" />
 	</g>
 </svg>
