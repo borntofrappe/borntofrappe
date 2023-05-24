@@ -1,3 +1,26 @@
+<script>
+	const targets = 3;
+	const width = 80;
+	const height = 50;
+
+	const maxSize = 20;
+	const aspectRatio = 30 / 47;
+
+	const w = Math.min(maxSize, Math.floor(width / targets));
+	const h = w / aspectRatio;
+	const o = (width - w * targets) / 2;
+
+	const crops = Array(targets)
+		.fill()
+		.map((_, i) => {
+			const x = i * w;
+
+			return {
+				x
+			};
+		});
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Pick up produce!</title>
 
@@ -201,16 +224,12 @@
 		</g>
 	</g>
 
-	<g>
-		<use href="#pick-up-produce-crop" width="30" height="47" />
-		<use href="#pick-up-produce-crop-top-0" width="30" height="47" />
-	</g>
-	<g transform="translate(30 0)">
-		<use href="#pick-up-produce-crop" width="30" height="47" />
-		<use href="#pick-up-produce-crop-top-1" width="30" height="47" />
-	</g>
-	<g transform="translate(60 0)">
-		<use href="#pick-up-produce-crop" width="30" height="47" />
-		<use href="#pick-up-produce-crop-top-spoiled" width="30" height="47" />
+	<g transform="translate({o} 0)">
+		{#each crops as { x }}
+			<g transform="translate({x} 0)">
+				<use href="#pick-up-produce-crop" width={w} height={h} />
+				<use href="#pick-up-produce-crop-top-0" width={w} height={h} />
+			</g>
+		{/each}
 	</g>
 </svg>
