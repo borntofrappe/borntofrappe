@@ -128,7 +128,7 @@ In this manner, you have the width and height. In `handleMove`, you also have th
 
 ```js
 x = offsetX / w;
-y = offsetY / y;
+y = offsetY / h;
 ```
 
 And that's it. Move a cursor over the SVG, be it a mouse, a stylus or the tip of an inquisitive finger, and the circle will track its movement.
