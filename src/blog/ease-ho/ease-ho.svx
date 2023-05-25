@@ -1,0 +1,7 @@
+---
+title: Ease-ho
+description: Appreciate bezier curves in the context of SMIL animations.
+date: 2023-05-25T16:04:37
+---
+
+Be it through the `<animate>`, `<animateTransform>`, or the promising `<animateMotion>` element, changes with SMIL animations are linear. By default. As with CSS, it is possible to deviate from this standard with bezier curves, even if the possibilities are a tad more descriptive.
