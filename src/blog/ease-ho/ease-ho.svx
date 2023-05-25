@@ -4,4 +4,127 @@ description: Appreciate bezier curves in the context of SMIL animations.
 date: 2023-05-25T16:04:37
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Flieth from './Flieth.svelte';
+	import Pulleth from './Pulleth.svelte';
+	import KeySplines from './KeySplines.svelte';
+	import svg from './svg.js';
+</script>
+
 Be it through the `<animate>`, `<animateTransform>`, or the promising `<animateMotion>` element, changes with SMIL animations are linear. By default. As with CSS, it is possible to deviate from this standard with bezier curves, even if the possibilities are a tad more descriptive.
+
+To appreciate how, let's set up an arrow to fly through the air.
+
+<Center maxInlineSize="24rem">
+	<Flieth />
+</Center>
+
+For the animaton I decided to move the scenery, move the clouds surrounding the focal piece with the `<animateTransform>` element.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform 
+    attributeName="transform" 
+    type="translate" 
+    to="-100 20" 
+    dur="4s" 
+/>
+```
+
+Over the span of 4 seconds, the elements scroll at an angle and the motion is indeed linear — the speed remains constant throughout the entire experience.
+
+And the effect is somewhat acceptable. I took care to have the clouds at the beginning of the animation match the design at the very end, and this means you can theoretically repeat the translation to create the illusion of endless movement.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform 
+    repeatCount="indefinite" 
+    ... 
+/>
+```
+
+If you were to animate the scene once, however, the linear motion becomes less than satisfactory. To be more believable, the change should start slowly, almost at a crawling pace, before gaining speed and momentum.
+
+To the rescue, the sometimes cryptic topic of _bezier curves_. You might have already seen their influence in CSS, where they allow to animate and transition HTML elements with considerable freedom.
+
+```css
+button {
+	transition: transform 0.25s cubic-bezier(0.78 0.31 0.22 0.74);
+}
+```
+
+Assuming two points for the start and end state, (0,0) and (1,1), in between parenthesis you have the coordinates for the control points of the curve. x and y, x and y again.
+
+The horizontal coordinate describes the time relative to the complete animation. The vertical measure, the progression achieved in the fitting instant. A picture might help.
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['bezier-curve']} 
+</Center>
+
+But [an excellent tool](https://cubic-bezier.com) from [Lea Verou](https://lea.verou.me/2011/09/a-better-tool-for-cubic-bezier-easing/) will do much better to illustrate the concept. There's nothing like an interactive playground to solidify one's understanding.
+
+Back to SVG, SMIL animations have their own way of setting up bezier curves. And there are a few attributes to complete the task.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform 
+    to="-100 0" 
+    calcMode="spline" 
+    keyTimes="0; 1" 
+    keySplines="????"
+    ... 
+/>
+```
+
+`calcMode` introduces bezier curves with the value of `spline`. `keyTimes` describes the start and end point. `keySplines', finally, sets the control points.
+
+You might have more than two anchor points if you have the animation cover multiple values.
+
+```html
+<animateTransform
+	values="0 0; -100 0; -200 0"
+	calcMode="spline"
+	keyTimes="0; 0.5; 1"
+	keySplines="????; ????"
+/>
+```
+
+Every time you add an anchor point, however, you need to connect it with an additional control point, an additional set of coordinates.
+
+Sticking to the simpler instance, with one value set through the `to` attribute, you can specify the anchor points for the predictable start and end.
+
+In the `keyTimes`attribute the anchor points are but numbers in the (0,1) range. In the `keySplines`attribute, the numbers follow a similar pattern, and maintain the same interval from 0 to 1.
+
+<!-- prettier-ignore -->
+```html
+<animateTransform 
+    to="100 0" 
+    calcMode="spline" 
+    keyTimes="0; 1" 
+    keySplines="0.78 0.31 0.22 0.74" 
+... />
+```
+
+This marks an important difference with respect to CSS, where you actually can have the y coordinate exceed the two boundaries.
+
+```css
+button {
+	transition: transform 0.25s cubic-bezier(0.78, 0.31, 0.22, 1.17);
+}
+```
+
+On the negative side, the constraint makes bezier curves in SVG quite more limited than the CSS counterpart. You won't be able to exaggerate the motion just as easily. On the positive side, the limit makes it slightly easier to replicate the excellent tool to fit our needs.
+
+<KeySplines />
+
+It was still a daunting task, mind you, but [pointer events](/get-to-the-point) helped a lot to receive input. And even in this slimmer playground, you can update the control points with your keyboard. And test the influence of the custom bezier curve against the default, linear pace.
+
+Seeing is believing, and the tool could certainly help to improve the flying animation, but forget about the arrow. Let's assume we found it struck in a distant branch. In exchange, let me offer a final example and ask for an honorable gesture.
+
+Though many tried, none could move, nor stir it. Here's a chance to have your turn.
+
+<Center maxInlineSize="24rem">
+    <Pulleth />
+</Center>
