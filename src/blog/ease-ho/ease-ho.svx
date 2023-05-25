@@ -17,7 +17,7 @@ Be it through the `<animate>`, `<animateTransform>`, or the promising `<animateM
 
 To appreciate how, let's set up an arrow to fly through the air.
 
-<Center maxInlineSize="24rem">
+<Center maxInlineSize="20rem">
 	<Flieth />
 </Center>
 
@@ -28,12 +28,12 @@ For the animaton I decided to move the scenery, move the clouds surrounding the 
 <animateTransform 
     attributeName="transform" 
     type="translate" 
-    to="-100 20" 
+    to="-100 0" 
     dur="4s" 
 />
 ```
 
-Over the span of 4 seconds, the elements scroll at an angle and the motion is indeed linear — the speed remains constant throughout the entire experience.
+Over the span of 4 seconds, the elements scroll and the motion is indeed linear — the speed remains constant throughout the entire experience.
 
 And the effect is somewhat acceptable. I took care to have the clouds at the beginning of the animation match the design at the very end, and this means you can theoretically repeat the translation to create the illusion of endless movement.
 
@@ -78,7 +78,7 @@ Back to SVG, SMIL animations have their own way of setting up bezier curves. And
 />
 ```
 
-`calcMode` introduces bezier curves with the value of `spline`. `keyTimes` describes the start and end point. `keySplines', finally, sets the control points.
+`calcMode` introduces bezier curves with the value of `spline`. `keyTimes` describes the start and end point. `keySplines`, finally, sets the control points.
 
 You might have more than two anchor points if you have the animation cover multiple values.
 
@@ -95,7 +95,7 @@ Every time you add an anchor point, however, you need to connect it with an addi
 
 Sticking to the simpler instance, with one value set through the `to` attribute, you can specify the anchor points for the predictable start and end.
 
-In the `keyTimes`attribute the anchor points are but numbers in the (0,1) range. In the `keySplines`attribute, the numbers follow a similar pattern, and maintain the same interval from 0 to 1.
+In the `keyTimes` attribute the anchor points are but numbers in the (0,1) range. In the `keySplines` attribute, the numbers follow a similar pattern, and maintain the same interval from 0 to 1.
 
 <!-- prettier-ignore -->
 ```html
@@ -104,10 +104,11 @@ In the `keyTimes`attribute the anchor points are but numbers in the (0,1) range.
     calcMode="spline" 
     keyTimes="0; 1" 
     keySplines="0.78 0.31 0.22 0.74" 
-... />
+    ... 
+/>
 ```
 
-This marks an important difference with respect to CSS, where you actually can have the y coordinate exceed the two boundaries.
+This marks an important difference with respect to CSS, where you actually can have the vertical offsets exceed the two boundaries.
 
 ```css
 button {
@@ -125,6 +126,6 @@ Seeing is believing, and the tool could certainly help to improve the flying ani
 
 Though many tried, none could move, nor stir it. Here's a chance to have your turn.
 
-<Center maxInlineSize="24rem">
+<Center maxInlineSize="26rem">
     <Pulleth />
 </Center>

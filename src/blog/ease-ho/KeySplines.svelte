@@ -261,9 +261,8 @@
 	</svg>
 
 	<pre style="font-weight:700"><code>calcMode="spline"</code>
-  <code>keyTimes="0; 1"</code>
-  <code>{@html cPHighlight`keySplines="${cP1.x} ${100 - cP1.y} ${cP2.x} ${100 - cP2.y}"`}</code
-		></pre>
+<code>keyTimes="0; 1"</code>
+<code>{@html cPHighlight`keySplines="${cP1.x} ${100 - cP1.y} ${cP2.x} ${100 - cP2.y}"`}</code></pre>
 
 	<section>
 		<label>
@@ -329,11 +328,11 @@
 
 <style>
 	div {
-		color: hsl(0 0% 30%);
+		color: hsl(0 0% 10%);
 		background: hsl(0 0% 99%);
 		padding: 1rem 1rem;
 		border-radius: 0.5rem;
-		max-inline-size: 42rem;
+		max-inline-size: 46rem;
 	}
 
 	div > * + * {
@@ -394,11 +393,18 @@
 		align-items: center;
 	}
 
+	label {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
 	input {
+		font-size: 1rem;
 		appearance: none;
 		padding: 0.1rem 0.25rem;
 		border: none;
-		border-radius: 0.5rem;
+		border-radius: 1rem;
 		background: hsl(0 0% 30%);
 		accent-color: hsl(0 0% 99%);
 	}

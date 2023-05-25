@@ -27,6 +27,7 @@
 
 <div>
 	<svg viewBox="-50 -50 100 100">
+		<title>An arrow slightly off course</title>
 		<defs>
 			<circle id="flieth-circle" r="50" />
 			<clipPath id="flieth-clip-circle">
@@ -109,6 +110,6 @@
 		background: #1a1311;
 		border: none;
 		border-radius: 0.25rem;
-		padding: 0.2rem 0.5rem;
+		padding: 0.2rem 0.75rem;
 	}
 </style>

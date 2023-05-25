@@ -188,6 +188,6 @@
 		background: #1b1913;
 		border: none;
 		border-radius: 0.25rem;
-		padding: 0.2rem 0.5rem;
+		padding: 0.2rem 0.75rem;
 	}
 </style>
