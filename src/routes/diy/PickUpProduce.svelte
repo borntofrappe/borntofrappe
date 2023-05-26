@@ -12,6 +12,7 @@
 
 	const from = `0 ${height}`;
 	const to = `0 ${height - h - 2}`;
+	const mid = '0 2';
 
 	const hrefs = 3;
 	const decay = 0.8;
@@ -28,7 +29,12 @@
 				harvest: `${baseId}Harvest${i}`
 			};
 
-			const begin = `${Math.floor(Math.random() * 5) + 2}s`;
+			const begins = {
+				crop: `${Math.floor(Math.random() * 5) + 2}s`,
+				harvest: `${ids.harvest}.begin`
+			};
+
+			const end = `${ids.harvest}.end`;
 
 			const tops = Array(hrefs)
 				.fill()
@@ -46,9 +52,11 @@
 			return {
 				x,
 				ids,
-				begin,
+				begins,
+				end,
 				from,
 				to,
+				mid,
 				tops
 			};
 		});
@@ -227,25 +235,33 @@
 	</g>
 
 	<g transform="translate({o} 0)">
-		{#each crops as { x, ids, begin, from, to, tops }}
+		{#each crops as { x, ids, begins, end, from, to, mid, tops }}
 			<g style="cursor: pointer">
-				<set
-					id={ids.harvest}
-					begin="click"
-					attributeType="CSS"
-					attributeName="cursor"
-					to="initial"
-				/>
+				<set begin={begins.harvest} attributeType="CSS" attributeName="cursor" to="initial" />
+				<!-- <set begin={end} attributeName="display" to="none" /> -->
 				<g transform="translate({x} 0)">
 					<g transform="translate({from})">
 						<animateTransform
 							id={ids.crop}
-							{begin}
+							begin={begins.crop}
 							attributeName="transform"
 							type="translate"
 							{to}
 							dur="0.35s"
 							calcMode="spline"
+							keyTimes="0; 1"
+							keySplines="0.5 0 0.5 1;"
+							fill="freeze"
+						/>
+						<animateTransform
+							id={ids.harvest}
+							begin="click"
+							attributeName="transform"
+							type="translate"
+							to={mid}
+							dur="0.25s"
+							calcMode="spline"
+							keyTimes="0; 1"
 							keySplines="0.5 0 0.5 1;"
 							fill="freeze"
 						/>
@@ -255,6 +271,7 @@
 								<set {begin} {end} attributeName="href" {to} fill="freeze" />
 							{/each}
 						</use>
+						<use opacity="0" href="#pick-up-produce-crop-top-0" width={w} height={h} />
 					</g>
 				</g>
 			</g>
