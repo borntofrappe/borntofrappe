@@ -10,22 +10,40 @@
 	const h = w / aspectRatio;
 	const o = (width - w * targets) / 2;
 
-	const yStart = 50;
-	const yEnd = 50 - h - 2;
+	const from = `0 ${height}`;
+	const to = `0 ${height - h - 2}`;
+
+	const hrefs = 3;
+	const decay = 0.8;
+	const baseId = 'pickUpProduceCrop';
+	const baseHref = '#pick-up-produce-crop-top-';
+
 	const crops = Array(targets)
 		.fill()
 		.map((_, i) => {
 			const x = i * w;
-			const delay = Math.floor(Math.random() * 5) + 2;
-			const ys = {
-				from: yStart,
-				to: yEnd
-			};
+
+			const id = `${baseId}${i}`;
+			const begin = `${Math.floor(Math.random() * 5) + 2}s`;
+
+			const tops = Array(hrefs)
+				.fill()
+				.map((_, i) => {
+					const begin = `${id}.end + ${(i + 1) * decay}s`;
+					const to = `${baseHref}${i}`;
+					return {
+						begin,
+						to
+					};
+				});
 
 			return {
 				x,
-				delay,
-				ys
+				id,
+				begin,
+				from,
+				to,
+				tops
 			};
 		});
 </script>
@@ -203,21 +221,26 @@
 	</g>
 
 	<g transform="translate({o} 0)">
-		{#each crops as { x, delay, ys }}
+		{#each crops as { x, id, begin, from, to, tops }}
 			<g transform="translate({x} 0)">
-				<g transform="translate(0 {ys.from})">
+				<g transform="translate({from})">
 					<animateTransform
-						begin={delay}
+						{id}
+						{begin}
 						attributeName="transform"
 						type="translate"
-						to="0 {ys.to}"
+						{to}
 						dur="0.35s"
 						calcMode="spline"
 						keySplines="0.5 0 0.5 1;"
 						fill="freeze"
 					/>
 					<use href="#pick-up-produce-crop" width={w} height={h} />
-					<use href="#pick-up-produce-crop-top-0" width={w} height={h} />
+					<use href="#pick-up-produce-crop-top-0" width={w} height={h}>
+						{#each tops as { begin, to }}
+							<set {begin} attributeName="href" {to} />
+						{/each}
+					</use>
 				</g>
 			</g>
 		{/each}
