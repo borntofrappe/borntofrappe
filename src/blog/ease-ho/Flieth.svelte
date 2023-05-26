@@ -81,8 +81,8 @@
 
 	{#if canAnimate}
 		<button
-			in:fly={{ delay: 900 }}
-			out:fly={{ x: -20, duration: 200, easing: quadIn }}
+			in:fly={{ delay: 500 }}
+			out:fly={{ x: -20, duration: 175, easing: quadIn }}
 			on:click={handleClick}
 		>
 			Flieth

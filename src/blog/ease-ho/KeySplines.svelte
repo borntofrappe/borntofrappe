@@ -30,8 +30,8 @@
 	};
 
 	const updateCurve = ({ offsetX, offsetY, cP }) => {
-		const x = (offsetX / w) * 120 - 10;
-		const y = (offsetY / h) * 120 - 10;
+		const x = Math.floor((offsetX / w) * 120 - 10);
+		const y = Math.floor((offsetY / h) * 120 - 10);
 
 		if (x < 0 || x > 100 || y < 0 || y > 100) return;
 

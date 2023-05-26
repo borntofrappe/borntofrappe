@@ -1,6 +1,6 @@
 export default {
-	'bezier-curve': `<svg style="display: block;" viewBox="-0.25 -0.25 1.5 1.5">
-	<title>A bezier curve</title>
+	'control-points': `<svg style="display: block;" viewBox="-0.25 -0.25 1.5 1.5">
+	<title>Two control points for a bezier curve</title>
 	<rect fill="hsl(0 0% 99%)" x="-0.25" y="-0.25" width="1.5" height="1.5" rx="0.1" />
 	<g transform="translate(0 1) scale(1 -1)">
 		<g fill="none">
