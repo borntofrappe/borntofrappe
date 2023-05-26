@@ -12,7 +12,8 @@
 
 	const from = `0 ${height}`;
 	const to = `0 ${height - h - 2}`;
-	const mid = '0 2';
+	const up = '0 2';
+	const down = `0 ${Math.max(2, height - h - 8)}`;
 
 	const hrefs = 3;
 	const decay = 0.8;
@@ -26,7 +27,8 @@
 
 			const ids = {
 				crop: `${baseId}Crop${i}`,
-				harvest: `${baseId}Harvest${i}`
+				harvest: `${baseId}Harvest${i}`,
+				harvested: `${baseId}Harvested${i}`
 			};
 
 			const begins = {
@@ -54,9 +56,6 @@
 				ids,
 				begins,
 				end,
-				from,
-				to,
-				mid,
 				tops
 			};
 		});
@@ -235,10 +234,10 @@
 	</g>
 
 	<g transform="translate({o} 0)">
-		{#each crops as { x, ids, begins, end, from, to, mid, tops }}
+		{#each crops as { x, ids, begins, end, tops }}
 			<g style="cursor: pointer">
 				<set begin={begins.harvest} attributeType="CSS" attributeName="cursor" to="initial" />
-				<!-- <set begin={end} attributeName="display" to="none" /> -->
+				<set begin={end} attributeName="display" to="none" />
 				<g transform="translate({x} 0)">
 					<g transform="translate({from})">
 						<animateTransform
@@ -258,7 +257,7 @@
 							begin="click"
 							attributeName="transform"
 							type="translate"
-							to={mid}
+							to={up}
 							dur="0.25s"
 							calcMode="spline"
 							keyTimes="0; 1"
@@ -307,6 +306,38 @@
 				<path d="M 58 10 l 2 -1 2 0 1 -2 2 0 0 2" />
 				<path d="M 68 7 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
 			</g>
+		</g>
+	</g>
+
+	<g style="pointer-events: none">
+		<g transform="translate({o} 0)">
+			{#each crops as { x, ids, end, tops }}
+				<g opacity="0">
+					<set begin={end} attributeName="opacity" to="1" />
+					<g transform="translate({x} 0)">
+						<g transform="translate({up})">
+							<animateTransform
+								id={ids.harvested}
+								begin={end}
+								attributeName="transform"
+								type="translate"
+								to={down}
+								dur="0.35s"
+								calcMode="spline"
+								keyTimes="0; 1"
+								keySplines="0.5 0 0.5 1;"
+								fill="freeze"
+							/>
+							<use href="#pick-up-produce-crop" width={w} height={h} />
+							<use href="#pick-up-produce-crop-top-0" width={w} height={h}>
+								{#each tops as { begin, end, to }}
+									<set {begin} {end} attributeName="href" {to} fill="freeze" />
+								{/each}
+							</use>
+						</g>
+					</g>
+				</g>
+			{/each}
 		</g>
 	</g>
 </svg>
