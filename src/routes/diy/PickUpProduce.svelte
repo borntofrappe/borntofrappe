@@ -36,6 +36,8 @@
 				harvest: `${ids.harvest}.begin`
 			};
 
+			begins.spoil = `${ids.crop}.end + ${(hrefs + 1) * decay}s`;
+
 			const end = `${ids.harvest}.end`;
 
 			const tops = Array(hrefs)
@@ -236,7 +238,12 @@
 	<g transform="translate({o} 0)">
 		{#each crops as { x, ids, begins, end, tops }}
 			<g style="cursor: pointer">
-				<set begin={begins.harvest} attributeType="CSS" attributeName="cursor" to="initial" />
+				<set
+					begin="{begins.harvest}; {begins.spoil}"
+					attributeType="CSS"
+					attributeName="cursor"
+					to="initial"
+				/>
 				<set begin={end} attributeName="display" to="none" />
 				<g transform="translate({x} 0)">
 					<g transform="translate({from})">
@@ -255,6 +262,7 @@
 						<animateTransform
 							id={ids.harvest}
 							begin="click"
+							end={begins.spoil}
 							attributeName="transform"
 							type="translate"
 							to={up}
@@ -269,6 +277,13 @@
 							{#each tops as { begin, end, to }}
 								<set {begin} {end} attributeName="href" {to} fill="freeze" />
 							{/each}
+							<set
+								begin={begins.spoil}
+								{end}
+								attributeName="href"
+								to="#pick-up-produce-crop-top-spoiled"
+								fill="freeze"
+							/>
 						</use>
 						<use opacity="0" href="#pick-up-produce-crop-top-0" width={w} height={h} />
 					</g>
@@ -311,9 +326,10 @@
 
 	<g style="pointer-events: none">
 		<g transform="translate({o} 0)">
-			{#each crops as { x, ids, end, tops }}
+			{#each crops as { x, ids, begins, end, tops }}
 				<g opacity="0">
 					<set begin={end} attributeName="opacity" to="1" />
+					<set begin={begins.spoil} end={begins.harvest} attributeName="display" to="none" />
 					<g transform="translate({x} 0)">
 						<g transform="translate({up})">
 							<animateTransform
