@@ -10,13 +10,22 @@
 	const h = w / aspectRatio;
 	const o = (width - w * targets) / 2;
 
+	const yStart = 50;
+	const yEnd = 50 - h - 2;
 	const crops = Array(targets)
 		.fill()
 		.map((_, i) => {
 			const x = i * w;
+			const delay = Math.floor(Math.random() * 5) + 2;
+			const ys = {
+				from: yStart,
+				to: yEnd
+			};
 
 			return {
-				x
+				x,
+				delay,
+				ys
 			};
 		});
 </script>
@@ -193,43 +202,56 @@
 		<use href="#pick-up-produce-tree-front" x="26" />
 	</g>
 
-	<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-		<g fill="#c64a00">
-			<path d="M 7 32 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
-			<path d="M 25 32 l 1 0 1 1 2 0 0 2 -2 1 -1 0 -1 -2 0 -2z" />
-			<path d="M 45 32 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
-			<path d="M 52 33 l 0 -1 2 -2 2 0 1 1 -1 2 -4 0z" />
-			<path d="M  61 33 l 1 -2 1 0 1 1 -1 2 -1 0z" />
-			<path d="M  75 34 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
-
-			<path
-				d="M 0 33 l 1 0 2 -2 3 1 2 1 2 1 1 -1 2 0 1 -1 4 0 2 1 2 -1 3 1 1 2 3 -2 7 0 3 -1 1 0 2 1 5 0 1 -1 2 0 0 1 5 0 1 -2 5 0 1 2 2 -1 6 0 1 1 6 0 1 -1 1 0 H 81 V 51 H -1 V 33"
-			/>
-		</g>
-
-		<g fill="none">
-			<path d="M 3 38 l 1 -1 1 0 2 -1 2 1 -1 1 -2 0 -1 -1" />
-			<path d="M 9 37 l 2 0 0 -1 3 0 0 3 -5 0 0 -2" />
-			<path
-				d="M 6 47 l 0 -1 1 0 1 1 0 -2 2 0 1 1 2 -1 1 0 1 1 4 0 -1 -2 3 0 2 1 -1 2 -3 0 0 -1 0 0"
-			/>
-			<path
-				d="M 26 38 l -2 2 2 1 5 0 -1 -3 1 0 0 2 2 -1 1 2 2 -2 2 0 2 -2 2 0 1 2 2 0 0 1 2 -1 2 0"
-			/>
-			<path d="M  40 46 l 0 -2 1 0 3 0 1 1 -1 2 4 1 2 0 -2 -2 -3 0" />
-			<path d="M 55 48 l 2 0 0 -1 2 0 1 -2 1 1 3 0 0 -2 1 3 2 0 0 1" />
-			<path d="M  71 47 l 2 0 3 -3 -1 1 3 0 -3 0 -1 1 2 1 2 0" />
-			<path d="M 58 40 l 2 -1 2 0 1 -2 2 0 0 2" />
-			<path d="M 68 37 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
-		</g>
-	</g>
-
 	<g transform="translate({o} 0)">
-		{#each crops as { x }}
+		{#each crops as { x, delay, ys }}
 			<g transform="translate({x} 0)">
-				<use href="#pick-up-produce-crop" width={w} height={h} />
-				<use href="#pick-up-produce-crop-top-0" width={w} height={h} />
+				<g transform="translate(0 {ys.from})">
+					<animateTransform
+						begin={delay}
+						attributeName="transform"
+						type="translate"
+						to="0 {ys.to}"
+						dur="0.35s"
+						calcMode="spline"
+						keySplines="0.5 0 0.5 1;"
+						fill="freeze"
+					/>
+					<use href="#pick-up-produce-crop" width={w} height={h} />
+					<use href="#pick-up-produce-crop-top-0" width={w} height={h} />
+				</g>
 			</g>
 		{/each}
+	</g>
+
+	<g transform="translate(0 30)">
+		<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+			<g fill="#c64a00">
+				<path d="M 7 2 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+				<path d="M 25 2 l 1 0 1 1 2 0 0 2 -2 1 -1 0 -1 -2 0 -2z" />
+				<path d="M 45 2 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+				<path d="M 52 3 l 0 -1 2 -2 2 0 1 1 -1 2 -4 0z" />
+				<path d="M  61 3 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+				<path d="M  75 4 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				<path
+					d="M 0 3 l 1 0 2 -2 3 1 2 1 2 1 1 -1 2 0 1 -1 4 0 2 1 2 -1 3 1 1 2 3 -2 7 0 3 -1 1 0 2 1 5 0 1 -1 2 0 0 1 5 0 1 -2 5 0 1 2 2 -1 6 0 1 1 6 0 1 -1 1 0 H 81 V 51 H -1 V 33"
+				/>
+			</g>
+
+			<g fill="none">
+				<path d="M 3 8 l 1 -1 1 0 2 -1 2 1 -1 1 -2 0 -1 -1" />
+				<path d="M 9 7 l 2 0 0 -1 3 0 0 3 -5 0 0 -2" />
+				<path
+					d="M 6 17 l 0 -1 1 0 1 1 0 -2 2 0 1 1 2 -1 1 0 1 1 4 0 -1 -2 3 0 2 1 -1 2 -3 0 0 -1 0 0"
+				/>
+				<path
+					d="M 26 8 l -2 2 2 1 5 0 -1 -3 1 0 0 2 2 -1 1 2 2 -2 2 0 2 -2 2 0 1 2 2 0 0 1 2 -1 2 0"
+				/>
+				<path d="M  40 16 l 0 -2 1 0 3 0 1 1 -1 2 4 1 2 0 -2 -2 -3 0" />
+				<path d="M 55 18 l 2 0 0 -1 2 0 1 -2 1 1 3 0 0 -2 1 3 2 0 0 1" />
+				<path d="M  71 17 l 2 0 3 -3 -1 1 3 0 -3 0 -1 1 2 1 2 0" />
+				<path d="M 58 10 l 2 -1 2 0 1 -2 2 0 0 2" />
+				<path d="M 68 7 l -1 0 -1 0 0 2 1 1 1 0 2 -2 -4 0" />
+			</g>
+		</g>
 	</g>
 </svg>
