@@ -11,6 +11,7 @@
 	import TakeAPicture from './TakeAPicture.svelte';
 	import PickASide from './PickASide.svelte';
 	import MatchInPairs from './MatchInPairs.svelte';
+	import PickUpProduce from './PickUpProduce.svelte';
 
 	const { title } = site;
 
@@ -64,6 +65,11 @@
 			component: MatchInPairs,
 			backgroundColor: 'hsl(27, 79%, 47%)',
 			borderColor: 'hsl(142, 100%, 31%)'
+		},
+		{
+			component: PickUpProduce,
+			backgroundColor: 'hsl(38, 100%, 79%)',
+			borderColor: 'hsl(176, 67%, 53%)'
 		}
 	];
 </script>
