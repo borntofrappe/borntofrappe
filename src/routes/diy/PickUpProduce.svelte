@@ -1,4 +1,7 @@
 <script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const targets = 3;
 	const width = 80;
 	const height = 50;
@@ -20,6 +23,8 @@
 	const baseId = 'pickUpProduce';
 	const baseHref = '#pick-up-produce-crop-top-';
 
+	const id = `${baseId}Start`;
+
 	const crops = Array(targets)
 		.fill()
 		.map((_, i) => {
@@ -32,13 +37,15 @@
 			};
 
 			const begins = {
-				crop: `${Math.floor(Math.random() * 5) + 2}s`,
-				harvest: `${ids.harvest}.begin`
+				crop: `${id}.begin + ${Math.floor(Math.random() * 5) + 2}s`,
+				harvest: `${ids.harvest}.begin`,
+				spoiled: `${ids.crop}.end + ${(hrefs + 1) * decay}s`
 			};
 
-			begins.spoil = `${ids.crop}.end + ${(hrefs + 1) * decay}s`;
-
-			const end = `${ids.harvest}.end`;
+			const ends = {
+				harvest: `${ids.harvest}.end`,
+				harvested: `${ids.harvested}.end`
+			};
 
 			const tops = Array(hrefs)
 				.fill()
@@ -57,10 +64,17 @@
 				x,
 				ids,
 				begins,
-				end,
+				ends,
 				tops
 			};
 		});
+
+	const script = [
+		'The whole lot!',
+		'Almost all!',
+		"That's a start...",
+		...Array(targets - 2).fill('Not much...')
+	];
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -236,15 +250,15 @@
 	</g>
 
 	<g transform="translate({o} 0)">
-		{#each crops as { x, ids, begins, end, tops }}
+		{#each crops as { x, ids, begins, ends, tops }}
 			<g style="cursor: pointer">
 				<set
-					begin="{begins.harvest}; {begins.spoil}"
+					begin="{begins.harvest}; {begins.spoiled}"
 					attributeType="CSS"
 					attributeName="cursor"
 					to="initial"
 				/>
-				<set begin={end} attributeName="display" to="none" />
+				<set begin={ends.harvest} attributeName="display" to="none" />
 				<g transform="translate({x} 0)">
 					<g transform="translate({from})">
 						<animateTransform
@@ -262,7 +276,7 @@
 						<animateTransform
 							id={ids.harvest}
 							begin="click"
-							end={begins.spoil}
+							end={begins.spoiled}
 							attributeName="transform"
 							type="translate"
 							to={up}
@@ -278,8 +292,8 @@
 								<set {begin} {end} attributeName="href" {to} fill="freeze" />
 							{/each}
 							<set
-								begin={begins.spoil}
-								{end}
+								begin={begins.spoiled}
+								end={begins.harvest}
 								attributeName="href"
 								to="#pick-up-produce-crop-top-spoiled"
 								fill="freeze"
@@ -326,15 +340,15 @@
 
 	<g style="pointer-events: none">
 		<g transform="translate({o} 0)">
-			{#each crops as { x, ids, begins, end, tops }}
+			{#each crops as { x, ids, begins, ends, tops }}
 				<g opacity="0">
-					<set begin={end} attributeName="opacity" to="1" />
-					<set begin={begins.spoil} end={begins.harvest} attributeName="display" to="none" />
+					<set begin={ends.harvest} attributeName="opacity" to="1" />
+					<set begin={begins.spoiled} end={begins.harvest} attributeName="display" to="none" />
 					<g transform="translate({x} 0)">
 						<g transform="translate({up})">
 							<animateTransform
 								id={ids.harvested}
-								begin={end}
+								begin={ends.harvest}
 								attributeName="transform"
 								type="translate"
 								to={down}
@@ -355,5 +369,49 @@
 				</g>
 			{/each}
 		</g>
+	</g>
+
+	<g transform="translate({80 * targets * -1} 0)">
+		{#each crops as { begins, ends }}
+			<animateTransform
+				begin="{begins.spoiled}; {ends.harvested}"
+				attributeName="transform"
+				type="translate"
+				by="80 0"
+				fill="freeze"
+				dur="1.75s"
+				calcMode="discrete"
+				restart="never"
+			/>
+		{/each}
+		<g transform="translate(0 {50 * targets * -1})">
+			{#each crops as { ends }}
+				<animateTransform
+					begin={ends.harvested}
+					attributeName="transform"
+					type="translate"
+					by="0 50"
+					fill="freeze"
+					dur="0.1s"
+					calcMode="discrete"
+					restart="never"
+				/>
+			{/each}
+			{#each script as text, i}
+				<g transform="translate(0 {50 * i})">
+					<g transform="translate(0 -18)">
+						<AnimatedTitle {text} fill="url(#linear-gradient-text)" begin="indefinite" />
+					</g>
+				</g>
+			{/each}
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set {id} begin="click" attributeName="display" to="none" />
+
+		<Title fill="url(#linear-gradient-text)">Harvest!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
