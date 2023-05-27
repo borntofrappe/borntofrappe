@@ -74,7 +74,16 @@
 		'Almost all!',
 		"That's a start...",
 		...Array(targets - 2).fill('Not much...')
-	];
+	].map((text) => {
+		const begin = crops
+			.map(({ begins, ends }) => `${begins.spoiled}; ${ends.harvested}`)
+			.join('; ');
+
+		return {
+			text,
+			begin
+		};
+	});
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -379,7 +388,7 @@
 				type="translate"
 				by="80 0"
 				fill="freeze"
-				dur="1.75s"
+				dur="1.8s"
 				calcMode="discrete"
 				restart="never"
 			/>
@@ -397,14 +406,23 @@
 					restart="never"
 				/>
 			{/each}
-			{#each script as text, i}
+			{#each script as { text, begin }, i}
 				<g transform="translate(0 {50 * i})">
 					<g transform="translate(0 -18)">
-						<AnimatedTitle {text} fill="url(#linear-gradient-text)" begin="indefinite" />
+						<AnimatedTitle
+							{text}
+							fill="url(#linear-gradient-text)"
+							{begin}
+							end="pickUpProduceEnd.begin"
+							repeatCount="indefinite"
+						/>
 					</g>
 				</g>
 			{/each}
 		</g>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="pickUpProduceEnd" begin="click" attributeName="display" to="none" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
