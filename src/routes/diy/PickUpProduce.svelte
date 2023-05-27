@@ -264,7 +264,7 @@
 			<g transform="translate(0 -5)">
 				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
 					<path transform="translate(2.5 0)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
-					<path transform="translate(5 0" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(5 0)" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
 					<path transform="translate(-5 0)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
 					<path transform="translate(-2.5 0)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
 				</g>
