@@ -179,13 +179,15 @@
 		<symbol id="pick-up-produce-crop-top-0" viewBox="-15 -21 30 47">
 			<g transform="translate(0 -6)">
 				<g fill="#76d0ad" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M 0 0 a 9 9 0 0 1 0 -14 9 9 0 0 1 0 14" />
-					<path stroke-width="0.75" d="M 0 0 v -10" />
-					<path d="M 0 0 c 0 -6 0 -10 8 -14 5 7 -1 14 -8 14" />
-					<path transform="scale(-1 1)" d="M 0 0 c 0 -6 0 -10 8 -14 5 7 -1 14 -8 14" />
+					<path stroke-width="1.25" d="M 3 -4 c 2 -5 -1 -9 -3 -10 c -2 1 -5 5 -3 10" />
+					<path stroke-width="0.75" d="M 0 -4 l 0 -6.5" />
+					<path
+						stroke-width="1.25"
+						d="M 2 0 c 6 -1 10 -9 6 -14 c -8 2 -8 9 -8 11 c 0 -2 0 -9 -8 -11 c -4 5 0 13 6 14"
+					/>
 					<g stroke-width="0.75">
-						<path d="M 0.25 0 q 4 -3.75 6.5 -9.75" />
-						<path transform="scale(-1 1)" d="M 0.25 0 q 4 -3.75 6.5 -9.75" />
+						<path d="M 2.5 -2.75 c 2 -2 4 -6 4.25 -7.5" />
+						<path transform="scale(-1 1)" d="M 2.5 -2.75 c 2 -2 4 -6 4.25 -7.5" />
 					</g>
 				</g>
 			</g>
@@ -194,12 +196,15 @@
 		<symbol id="pick-up-produce-crop-top-1" viewBox="-15 -21 30 47">
 			<g transform="translate(0 -6)">
 				<g fill="#76d0ad" stroke="#12984f" stroke-linecap="round" stroke-linejoin="round">
-					<path transform="rotate(10)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
-					<path transform="rotate(-30)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
-					<path transform="scale(-1 1) rotate(-30)" d="M 0 0 c 8 -5 -2 -18 -6 -11 7 5 -2 5 6 11" />
+					<path stroke-width="1.25" d="M 2 -4 c 2 -2 0 -10 -8 -10 c 0 8 6 5 4 10" />
+					<path stroke-width="0.75" d="M 0.75 -6.5 c 0 -2 -2 -2 -3.75 -4.5" />
+					<path
+						stroke-width="1.25"
+						d="M 2 0 c 5 -1 4 -7 9 -7 c -2 -6 -11 -2 -11 0 c 0 -2 -9 -6 -11 0 c 5 0 4 6 9 7"
+					/>
 					<g stroke-width="0.75">
-						<path d="M 0.25 -0.25 c 2 -3 3 -7 6 -7.5" />
-						<path transform="scale(-1 1)" d="M 0.25 -0.25 c 2 -3 3 -7 6 -7.5" />
+						<path d="M 1.75 -3.5 c 2 -1 2 -4.25 5 -4.5" />
+						<path transform="scale(-1 1)" d="M 1.75 -3.5 c 2 -1 2 -4.25 5 -4.5" />
 					</g>
 				</g>
 			</g>
@@ -208,12 +213,16 @@
 		<symbol id="pick-up-produce-crop-top-2" viewBox="-15 -21 30 47">
 			<g transform="translate(0 -6)">
 				<g fill="#76d0ad" stroke="#a5570c" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M 0 0 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<path stroke-width="1.25" d="M 2 -4 c 2 -2 0 -10 -8 -9 c 0 5 5 4 4 9" />
+					<path stroke-width="0.75" d="M 0.5 -6 c 0 -1.5 -1 -3 -3 -4.5" />
+					<path
+						stroke-width="1.25"
+						d="M 2 0 c 4 -2 3 -7 9 -5 c -2 -8 -11 -4 -11 -1 c 0 -3 -9 -7 -11 1 c 5 -2 4 3 9 5"
+					/>
 					<g stroke-width="0.75">
-						<path d="M 0 0 c -2 -4 2 -7 -1 -10" />
+						<path d="M 2 -3.5 c 1.75 -1 2 -3 4.5 -3.5" />
+						<path transform="scale(-1 1)" d="M 2 -3.5 c 1.75 -1 2 -3 4.5 -3.5" />
 					</g>
-					<path transform="scale(-1 1) rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
-					<path transform="rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
 				</g>
 			</g>
 		</symbol>
@@ -221,12 +230,16 @@
 		<symbol id="pick-up-produce-crop-top-spoiled" viewBox="-15 -21 30 47">
 			<g transform="translate(0 -6)">
 				<g fill="#ffdd9d" stroke="#a5570c" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M 0 0 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
+					<path stroke-width="1.25" d="M 2 -4.5 c 1 -1 0 -7 -6 -7 c 1 2 2 4 2 7" />
+					<path stroke-width="0.75" d="M 0 -5.5 c 0 -1 0 -2 -1 -3.25" />
+					<path
+						stroke-width="1.25"
+						d="M 2 0 c 3 0 2 -5 9 -4 c -2 -7 -10 -3 -11 -1 c -1 -2 -9 -6 -11 1 c 7 -1 6 4 9 4"
+					/>
 					<g stroke-width="0.75">
-						<path d="M 0 0 c -2 -4 2 -7 -1 -10" />
+						<path d="M 1.5 -2.5 c 1.25 -1 2 -3 5 -3" />
+						<path transform="scale(-1 1)" d="M 1.5 -2.5 c 1.25 -1 2 -3 5 -3" />
 					</g>
-					<path transform="scale(-1 1) rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
-					<path transform="rotate(-50)" d="M 0 -1 c 8 -9 -3 -18 -6 -11 9 0 -4 5 6 11" />
 				</g>
 			</g>
 		</symbol>
