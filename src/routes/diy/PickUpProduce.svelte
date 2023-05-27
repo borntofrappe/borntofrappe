@@ -14,16 +14,23 @@
 	const o = (width - w * targets) / 2;
 
 	const from = `0 ${height}`;
-	const to = `0 ${height - h - 2}`;
+	const to = `0 ${30 - h * 0.25}`;
 	const up = '0 2';
 	const down = `0 ${Math.max(2, height - h - 8)}`;
 
-	const hrefs = 3;
-	const decay = 0.8;
-	const baseId = 'pickUpProduce';
-	const baseHref = '#pick-up-produce-crop-top-';
+	const delay = 0.8;
 
+	const baseId = 'pickUpProduce';
 	const id = `${baseId}Start`;
+
+	const baseHrefs = {
+		top: '#pick-up-produce-crop-top-',
+		mulch: '#pick-up-produce-mulch-'
+	};
+	const hrefs = {
+		top: 3,
+		mulch: 5
+	};
 
 	const crops = Array(targets)
 		.fill()
@@ -39,7 +46,7 @@
 			const begins = {
 				crop: `${id}.begin + ${Math.floor(Math.random() * 5) + 2}s`,
 				harvest: `${ids.harvest}.begin`,
-				spoiled: `${ids.crop}.end + ${(hrefs + 1) * decay}s`
+				spoiled: `${ids.crop}.end + ${(hrefs.top + 1) * delay}s`
 			};
 
 			const ends = {
@@ -47,12 +54,12 @@
 				harvested: `${ids.harvested}.end`
 			};
 
-			const tops = Array(hrefs)
+			const tops = Array(hrefs.top)
 				.fill()
 				.map((_, i) => {
-					const begin = `${ids.crop}.end + ${(i + 1) * decay}s`;
+					const begin = `${ids.crop}.end + ${(i + 1) * delay}s`;
 					const end = `${ids.harvest}.begin`;
-					const to = `${baseHref}${i}`;
+					const to = `${baseHrefs.top}${i}`;
 					return {
 						begin,
 						end,
@@ -60,12 +67,21 @@
 					};
 				});
 
+			const mulch = {
+				begin: begins.harvest,
+				values: Array(hrefs.mulch)
+					.fill()
+					.map((_, i) => `${baseHrefs.mulch}${i}`)
+					.join('; ')
+			};
+
 			return {
 				x,
 				ids,
 				begins,
 				ends,
-				tops
+				tops,
+				mulch
 			};
 		});
 
@@ -73,7 +89,7 @@
 		'The whole lot!',
 		'Almost all!',
 		"That's a start...",
-		...Array(targets - 2).fill('Not much...')
+		...Array(targets - 2).fill('Not mulch...')
 	].map((text) => {
 		const begin = crops
 			.map(({ begins, ends }) => `${begins.spoiled}; ${ends.harvested}`)
@@ -243,6 +259,61 @@
 				</g>
 			</g>
 		</symbol>
+
+		<symbol id="pick-up-produce-mulch-0" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -5)">
+				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="translate(2.5 0)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+					<path transform="translate(5 0" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(-5 0)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+					<path transform="translate(-2.5 0)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-mulch-1" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -5)">
+				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="translate(3 -2)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+					<path transform="translate(6 -1)" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(-6 -1)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+					<path transform="translate(-3 -2)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-mulch-2" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -5)">
+				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="translate(3.5 -4)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+					<path transform="translate(7 -2)" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(-7 -2)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+					<path transform="translate(-3.5 -4)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-mulch-3" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -5)">
+				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="translate(4 -6)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+					<path transform="translate(8 -3)" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(-8 -3)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+					<path transform="translate(-4 -6)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="pick-up-produce-mulch-4" viewBox="-15 -21 30 47">
+			<g transform="translate(0 -5)">
+				<g fill="#c64a00" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+					<path transform="translate(4.5 -8)" d="M -2 -1.5 l 1 -1 3 0 1 1 0 1 -5 2 -1 -1z" />
+					<path transform="translate(9 -4)" d="M -1 -1 l 1 -1 2 0 1 1 -1 1 -1 1 -2 -1z" />
+					<path transform="translate(-9 -4)" d="M  -2 0 l 1 -2 1 0 1 1 -1 2 -1 0z" />
+					<path transform="translate(-4.5 -8)" d="M  -2 0 l 0 -1 1 -1 3 0 0 1 0 1 -4 0z" />
+				</g>
+			</g>
+		</symbol>
 	</defs>
 
 	<rect width="80" height="50" fill="#85dde1" />
@@ -272,16 +343,16 @@
 	</g>
 
 	<g transform="translate({o} 0)">
-		{#each crops as { x, ids, begins, ends, tops }}
-			<g style="cursor: pointer">
-				<set
-					begin="{begins.harvest}; {begins.spoiled}"
-					attributeType="CSS"
-					attributeName="cursor"
-					to="initial"
-				/>
-				<set begin={ends.harvest} attributeName="display" to="none" />
-				<g transform="translate({x} 0)">
+		{#each crops as { x, ids, begins, ends, tops, mulch }}
+			<g transform="translate({x} 0)">
+				<g style="cursor: pointer">
+					<set
+						begin="{begins.harvest}; {begins.spoiled}"
+						attributeType="CSS"
+						attributeName="cursor"
+						to="initial"
+					/>
+					<set begin={ends.harvest} attributeName="display" to="none" />
 					<g transform="translate({from})">
 						<animateTransform
 							id={ids.crop}
@@ -323,6 +394,17 @@
 						</use>
 						<use opacity="0" href="#pick-up-produce-crop-top-0" width={w} height={h} />
 					</g>
+				</g>
+				<g transform="translate({to})">
+					<use href="#pick-up-produce-mulch" width={w} height={h}>
+						<animate
+							begin={mulch.begin}
+							attributeName="href"
+							values={mulch.values}
+							dur="0.25s"
+							calcMode="discrete"
+						/>
+					</use>
 				</g>
 			</g>
 		{/each}
@@ -401,7 +483,7 @@
 				type="translate"
 				by="80 0"
 				fill="freeze"
-				dur="1.8s"
+				dur="1.5s"
 				calcMode="discrete"
 				restart="never"
 			/>
