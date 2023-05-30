@@ -1,5 +1,11 @@
 <script>
 	let animate = false;
+
+	const handleEnd = () => {
+		if (animate) {
+			animate = false;
+		}
+	};
 </script>
 
 <label>
@@ -7,7 +13,7 @@
 	<span>Race</span>
 </label>
 
-<svg viewBox="-25 -4 35 22">
+<svg on:animationend={handleEnd} viewBox="-25 -4 35 22">
 	<title>A CSS race between a rabbit and a turtle</title>
 	<defs>
 		<pattern
@@ -17,8 +23,8 @@
 			width="1"
 			height="1"
 		>
-			<rect fill="hsl(0 0% 30%)" width="2" height="2" />
-			<g fill="hsl(0 0% 50%)">
+			<rect fill="hsl(0 0% 50%)" width="2" height="2" />
+			<g fill="hsl(0 0% 70%)">
 				<rect width="1" height="1" />
 				<rect x="1" y="1" width="1" height="1" />
 			</g>
@@ -112,7 +118,7 @@
 
 	<g fill="none" stroke="hsl(0 0% 30%)" stroke-width="0.5">
 		<path
-			d="M 0 0 h 3 a 4 4 0 0 1 4 4 v 1 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 a 2 2 0 0 0 2 -2 a 2 2 0 0 0 -2 -2 h -6 a 2 2 0 0 1 -2 -2 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 a 5 5 0 0 1 -5 5 a 2 2 0 0 0 -2 2 a 2 2 0 0 0 2 2 h 7 a 6 6 0 0 0 6 -6 a 5 5 0 0 1 5 -5 h 1"
+			d="M 0 0 h 3 a 4 4 0 0 1 4 4 v 1 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 a 2 2 0 0 0 2 -2 a 2 2 0 0 0 -2 -2 h -6 a 2 2 0 0 1 -2 -2 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 a 5 5 0 0 1 -5 5 a 2 2 0 0 0 -2 2 a 2 2 0 0 0 2 2 h 7 a 6 6 0 0 0 6 -6 a 5 5 0 0 1 5 -5 h 2"
 		/>
 	</g>
 
@@ -151,7 +157,7 @@
 
 	use {
 		offset-path: path(
-			'M 0 0 h 3 a 4 4 0 0 1 4 4 v 1 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 a 2 2 0 0 0 2 -2 a 2 2 0 0 0 -2 -2 h -6 a 2 2 0 0 1 -2 -2 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 a 5 5 0 0 1 -5 5 a 2 2 0 0 0 -2 2 a 2 2 0 0 0 2 2 h 7 a 6 6 0 0 0 6 -6 a 5 5 0 0 1 5 -5 h 1'
+			'M 0 0 h 3 a 4 4 0 0 1 4 4 v 1 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 a 2 2 0 0 0 2 -2 a 2 2 0 0 0 -2 -2 h -6 a 2 2 0 0 1 -2 -2 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 a 5 5 0 0 1 -5 5 a 2 2 0 0 0 -2 2 a 2 2 0 0 0 2 2 h 7 a 6 6 0 0 0 6 -6 a 5 5 0 0 1 5 -5 h 2'
 		);
 		offset-rotate: 0deg;
 	}
