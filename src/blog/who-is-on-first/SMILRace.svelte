@@ -1,6 +1,22 @@
 <script>
+	import { onMount } from 'svelte';
+
 	let animate = false;
 	let svg = null;
+
+	onMount(() => {
+		svg.querySelector('animateMotion').addEventListener('endEvent', handleEnd);
+
+		return () => {
+			svg.querySelector('animateMotion').removeEventListener('endEvent', handleEnd);
+		};
+	});
+
+	const handleEnd = () => {
+		if (animate) {
+			animate = false;
+		}
+	};
 
 	$: if (animate && svg) {
 		svg.querySelectorAll('animateMotion').forEach((d) => d.beginElement());
