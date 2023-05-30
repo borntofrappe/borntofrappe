@@ -1,7 +1,7 @@
 ---
 title: Smiling for some reason
 description: Working with SVG, you may find a reason, and a few ways, to chuckle in style.
-date: 2023-05-22T14:00:22
+date: 2023-05-23T14:00:22
 ---
 
 <script>
