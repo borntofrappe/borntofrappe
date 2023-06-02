@@ -1,0 +1,9 @@
+---
+title: Fine print
+description: A remarkably svelte introduction to text in SVG.
+date: 2023-06-02T22:16:54
+---
+
+<script>
+	import Intro from './Intro.svelte';
+</script>
