@@ -1,9 +1,116 @@
 ---
 title: Fine print
 description: A remarkably svelte introduction to text in SVG.
-date: 2023-06-02T22:16:54
+date: 2023-06-02T15:32:54
 ---
 
 <script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
 	import Intro from './Intro.svelte';
+	import BBox from './BBox.svelte';
 </script>
+
+<Intro />
+
+## Text
+
+In the body of the SVG add a string in a `<text>` element.
+
+```html
+<svg>
+	<text>Scalable vector text</text>
+</svg>
+```
+
+Alas, this is not enough to find the characters on screen. If you were to test the snippet you might notice thin segments at the very top. If you add a letter "p" you might even notice the leg of the letter descending a tad further.
+
+The reason? Text is drawn from the baseline. Given a size of 16 pixels, the default font size, this means the string is actually 16 units off center.
+
+<Center element="figure" maxInlineSize="30rem">
+	{@html svg['text-baseline']}
+</Center>
+
+There are many ways around the issue. You can position the element with the `x` and `y` attributes.
+
+```html
+<text x="1" y="17">Scalable vector text :p</text>
+```
+
+You can translate the text or a wrapping group element via the `transform` attribute.
+
+```html
+<g transform="translate(1 17)">
+	<!-- ...text -->
+</g>
+```
+
+Once you get to know [the `viewBox` attribute](/viewbox-origin), however, you can move the entire coordinate system, nudging every element to the right and then down.
+
+```html
+<svg viewBox="-1 -17 200 20">
+	<!-- ...text -->
+</svg>
+```
+
+You shift the origin 1 unit horizontally, 17 vertically, just to be safe. For the height of the canvas, 20 gives a touch of breathing room, especially for curious ascenders and descenders like the infamous letter "p". For the width, 200 stretches the element horizontally and displays the text in full.
+
+{@html svg['text']}
+
+In full, but with considerable whitespace past the last character — the outline should be enough to stress the point. And at this point you can tinker with the value. 150 seems too little, 160 just enough. Of course the approach is far from sustainable. And on the web, with the blessing of JavaScript, you can find the actual numbers with very little effort.
+
+## SVG
+
+We need access to the `<svg>` element. In a `<script>`, you could target the node through the document.
+
+```js
+document.querySelector('svg');
+```
+
+But you don't want to consider any SVG element, only the specific node. For this Svelte asks us to bind a variable to the `<svg>`.
+
+```svelte
+<script>
+	let svg;
+</script>
+
+<svg bind:this={svg} viewBox="...">
+	<!-- ... -->
+</svg>
+```
+
+Either approach works, but only as the element appears on the page. In Svelte own terms, as the component is _mounted_.
+
+```svelte
+<script>
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		// ...
+	});
+</script>
+```
+
+In the body of the lifecycle function `svg` assumes its role and describes the `<svg>` element. In this moment, a method promises to solve our issues: `getBBox()`.
+
+```js
+const bBox = svg.getBBox();
+```
+
+The method returns an object chock full of information for the element and the measure of its canvas. Promptly, the numbers necessary to display the text. `x`, `y`, `width`, `height` — the entire assortment for the fittest `viewBox` attribute.
+
+```js
+const bBox = svg.getBBox();
+const { x, y, width, height } = bBox;
+```
+
+Extract the information and finally, update the attribute with the string joining the numbers.
+
+```js
+svg.setAttribute(viewBox, `${x} ${y} ${width} ${height}`);
+```
+
+What are the actual numbers? You don't really care. You can always check them afterwards, but what matters most is that the text is visible in the tightest rectangle. You can even try to change the `font-family` to test the feat. Sans-serif, monospace. No need for manual adjustments, as the method adjusts to consider the different shapes.
+
+<BBox />
