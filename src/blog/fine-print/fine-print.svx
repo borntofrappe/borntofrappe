@@ -101,20 +101,20 @@ In the body of the lifecycle function `svg` assumes its role and describes the `
 const bBox = svg.getBBox();
 ```
 
-The method returns an object chock full of information for the element and the measure of its canvas. Promptly, the numbers necessary to display the text. `x`, `y`, `width`, `height` — the entire assortment for the fittest `viewBox` attribute.
+The method returns an object chock full of information for the element and its canvas. Promptly, the numbers necessary to display the text. `x`, `y`, `width`, `height` — the entire assortment for the fittest `viewBox` attribute.
 
 ```js
 const bBox = svg.getBBox();
 const { x, y, width, height } = bBox;
 ```
 
-Extract the information and finally, update the attribute with the string joining the numbers.
+Extract the information and finally, update the attribute with a string joining the numbers.
 
 ```js
 svg.setAttribute(viewBox, `${x} ${y} ${width} ${height}`);
 ```
 
-What are the actual numbers? You don't really care. You can always check them afterwards, but what matters most is that the text is visible in the tightest rectangle. You can even try to change the `font-family` to test the feat. Sans-serif, monospace. No need for manual adjustments, as the method adjusts to consider the different shapes.
+What are the actual numbers? You don't really care. You can always check them afterwards, but what matters most is that the text is visible in the tightest rectangle. You can even try to change the font to test the feat. Sans-serif, monospace. No need for manual adjustments, as the method adjusts to consider the different shapes in your stead.
 
 <BBox />
 
@@ -134,6 +134,10 @@ You can break the sentence in multiple lines, to improve readability.
 
 <Measure />
 
-You could have an entire discussion around _fixations_ and _saccadic movements_, but for longer copy, admit there is no solution more reliable than plain HTML, than regular paragraph elements. These will adapt to the viewport much better than SVG text. So why bother? As it is often the case with vector graphics, for the entertaining possibilities offered by the SVG syntax. For the many paths opened by the many elements and attributes. In the foreseeable future, you might have a colored font to show letters with a stroke, with rounded corners and the colors of the rainbow. Right now, SVG allows all three with, for any text, and for any font.
+You could have an entire discussion on _fixations_ and _saccadic movements_ to find the appropriate line length, but for longer copy, admit there is no solution more reliable than plain HTML, more solid than paragraph elements. These will adapt to the viewport much better than SVG text.
+
+So why bother?
+
+As it's often the case with vector graphics, for the entertaining possibilities offered by the syntax. For the many paths opened by the many elements and attributes. In the foreseeable future, you might have a colored font to show letters with a stroke, with rounded corners and the colors of the rainbow. Right now, SVG allows all three for any sequence. And any font.
 
 <RainbowPrint />
