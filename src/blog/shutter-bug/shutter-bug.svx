@@ -5,7 +5,89 @@ date: 2023-06-07T09:12:43
 ---
 
 <script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
 	import Intro from './Intro.svelte';
 </script>
 
 <Intro />
+
+To be accurate, as you call the function on an element you find an object, detailing the position and the dimension of the rectangle surrounding the visual.
+
+And you might have seen how the method proved its worth [to create an icon](/a-star-is-born) , or again [to display text](/fine-print).
+
+```js
+svg.getBBox();
+```
+
+For the parent `svg`, the code prompts the perfect values for the `viewBox` attribute. Perfect to display the shapes without unnecessary whitespace.
+
+The method is quite handy, but not the end of it all.
+
+Take the snapshot introducing this article, inspired by [charming photo adventure](https://www.somethingwemade.se/toem/). If you wanted to focus on one of its components, say the butterfly trying to break the second dimension, you could target a group element wrapping the syntax for the insect.
+
+```html
+<g id="butterfly">
+	<!-- ... -->
+</g>
+```
+
+Target the node and use `getBbox()` to find the rectangle around the figure.
+
+```js
+const bBox = document.querySelector('#butterfly').getBBox();
+console.log(bBox); // { x: -11.13358211517334, y: -4, width: 22.587158203125, height: 16 }
+```
+
+With the numbers you can build the `viewBox` attribute with pinpoint precision. All you need then is to add the values in a brand new `<svg>`.
+
+```html
+<svg viewBox="-11.13358211517334 -4 22.587158203125 16">
+	<g>
+		<!-- ... -->
+	</g>
+</svg>
+```
+
+Feel free to remove the `id` if it troubles you to have unnecessary attributes. Even the group element if you want to save a few more bytes. Eventually you find the subject, alone in its rightful aspect ratio.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['butterfly']}
+</Center>
+
+But something isn't quite right. Do not worry, there is no problem with the aperture of your system. And I certainly did not place my fingers around the lens to mess up the shot. The "issue": `getBBox` does not account for the `stroke`.
+
+I hesitate to label the point as a real issue for one simple reason: in the [SVG spec](https://svgwg.org/svg2-draft/types.html#__svg__SVGGraphicsElement__getBBox), the method accepts an argument with a few options. One of these options, `stroke`, promises to fit our needs.
+
+```js
+const bBox = document.querySelector('#butterfly').getBBox({
+	stroke: true
+});
+```
+
+Except that this time, the label might be more appropriate. Run the snippet and you find a rectangle. The same exact rectangle. For the life of me, and the browsers in which I managed to test the syntax, the property does not work. You are left wanting. And longing for a feature, you can fall back to a manual tweak.
+
+Consider it a patch, coming from [a past project](/stroke-midway-through) which ended up knitting a stylish illustration — or was it crochet?
+
+In SVG, `stroke` is added around the edge of the shapes and midway through, half outside, half inside. To restore the outline, you need to expand the `viewBox` by the width of the stroke.
+
+```diff
+-<svg viewBox="-11.13358211517334 -4 22.587158203125 16">
++<svg viewBox="-11.13358211517334 -4 23.587158203125 17">
+```
+
+And nudge the graphic to the right, and then down, by half the same amount.
+
+```diff
+-<svg viewBox="-11.13358211517334 -4 23.587158203125 17">
++<svg viewBox="-11.63358211517334 -4.5 23.587158203125 17">
+```
+
+Free at last, to enjoy the adorable critter. Or again the cute squirrel hiding in the corner.
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['squirrel']}
+</Center>
+
+A pretty nice way to get in the weeds of SVG. {@html svg['smile']}

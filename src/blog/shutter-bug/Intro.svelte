@@ -30,12 +30,12 @@
 	section > div {
 		float: left;
 		inline-size: 100%;
-		margin: 0 1rem 0.5rem;
+		margin-right: 1rem;
 	}
 
-	@media screen and (max-width: 32rem) {
+	@media screen and (max-width: 40rem) {
 		section > div {
-			margin: initial;
+			margin-right: initial;
 		}
 
 		section {
