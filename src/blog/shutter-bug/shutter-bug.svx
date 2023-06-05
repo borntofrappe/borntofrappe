@@ -25,7 +25,7 @@ For the parent `svg`, the code prompts the perfect values for the `viewBox` attr
 
 The method is quite handy, but not the end of it all.
 
-Take the snapshot introducing this article, inspired by [charming photo adventure](https://www.somethingwemade.se/toem/). If you wanted to focus on one of its components, say the butterfly trying to break the second dimension, you could target a group element wrapping the syntax for the insect.
+Take the snapshot introducing this article, heavily drawn after [a charming photo adventure](https://www.somethingwemade.se/toem/). If you wanted to focus on one of its components, say the butterfly trying to break the second dimension, you could target a group element wrapping the syntax for the insect.
 
 ```html
 <g id="butterfly">
@@ -36,7 +36,7 @@ Take the snapshot introducing this article, inspired by [charming photo adventur
 Target the node and use `getBbox()` to find the rectangle around the figure.
 
 ```js
-const bBox = document.querySelector('#butterfly').getBBox();
+const bBox = svg.querySelector('#butterfly').getBBox();
 console.log(bBox); // { x: -11.13358211517334, y: -4, width: 22.587158203125, height: 16 }
 ```
 
@@ -61,7 +61,7 @@ But something isn't quite right. Do not worry, there is no problem with the aper
 I hesitate to label the point as a real issue for one simple reason: in the [SVG spec](https://svgwg.org/svg2-draft/types.html#__svg__SVGGraphicsElement__getBBox), the method accepts an argument with a few options. One of these options, `stroke`, promises to fit our needs.
 
 ```js
-const bBox = document.querySelector('#butterfly').getBBox({
+const bBox = svg.querySelector('#butterfly').getBBox({
 	stroke: true
 });
 ```
