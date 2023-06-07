@@ -21,7 +21,7 @@ And you might have seen how the method proved its worth [to create an icon](/a-s
 svg.getBBox();
 ```
 
-For the parent `svg`, the code prompts the perfect values for the `viewBox` attribute. Perfect to display the shapes without unnecessary whitespace.
+For an `<svg>` element, the code prompts the perfect values for the `viewBox` attribute. Perfect to display the shapes without unnecessary whitespace.
 
 The method is quite handy, but not the end of it all.
 
@@ -33,11 +33,11 @@ Take the snapshot introducing this article, heavily drawn after [a charming phot
 </g>
 ```
 
-Target the node and use `getBbox()` to find the rectangle around the figure.
+Target the node and use `getBBox()` to find the rectangle around the figure.
 
 ```js
 const bBox = svg.querySelector('#butterfly').getBBox();
-console.log(bBox); // { x: -11.13358211517334, y: -4, width: 22.587158203125, height: 16 }
+// { x: -11.13358211517334, y: -4, width: 22.587158203125, height: 16 }
 ```
 
 With the numbers you can build the `viewBox` attribute with pinpoint precision. All you need then is to add the values in a brand new `<svg>`.
@@ -64,6 +64,7 @@ I hesitate to label the point as a real issue for one simple reason: in the [SVG
 const bBox = svg.querySelector('#butterfly').getBBox({
 	stroke: true
 });
+// { x: -11.13358211517334, y: -4, width: 22.587158203125, height: 16 }
 ```
 
 Except that this time, the label might be more appropriate. Run the snippet and you find a rectangle. The same exact rectangle. For the life of me, and the browsers in which I managed to test the syntax, the property does not work. You are left wanting. And longing for a feature, you can fall back to a manual tweak.
