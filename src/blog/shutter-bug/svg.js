@@ -145,7 +145,7 @@ export default {
 
 				<g transform="translate(72.5 40)">
 					<path fill="#959595" d="M 0 0 h 5 v 4 l -6 8 h -5 v -4 l 6 -8" />
-					<g fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round">
+					<g fill="none" stroke="#313131" stroke-linecap="round" stroke-linejoin="round">
 						<path d="M 0 0 l -0.5 -4" />
 						<path d="M 5 0 l 1 -4" />
 						<path d="M 0 0 h 5 v 4 h -5 v -4 l -6 8 0 4 6 -8 h 5 l -6 8 h -5" />
@@ -168,7 +168,7 @@ export default {
 
 				<g transform="translate(25 67.5)">
 					<g transform="scale(-1 1)">
-						<g stroke="#292929" stroke-linecap="round" stroke-linejoin="round">
+						<g stroke="#313131" stroke-linecap="round" stroke-linejoin="round">
 							<g fill="#777777">
 								<path
 									transform="translate(-2 -4) rotate(-10)"
@@ -215,14 +215,14 @@ export default {
 
 						<path
 							fill="#959595"
-							stroke="#292929"
+							stroke="#313131"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							transform="translate(3 6)"
 							d="M 0 0 c -3.5 2.5 -2 5.5 2 2"
 						/>
 
-						<ellipse fill="#292929" transform="rotate(5)" rx="1" ry="1.7" />
+						<ellipse fill="#313131" transform="rotate(5)" rx="1" ry="1.7" />
 					</g>
 				</g>
 
@@ -271,9 +271,9 @@ export default {
 		>
 	</g>
 </svg>`,
-	butterfly: `<svg style="display: block" viewBox="-11.13358211517334 -4 22.587158203125 16">
+	butterfly: `<svg style="display: block;" viewBox="-11.13358211517334 -4 22.587158203125 16">
 	<path fill="#959595" d="M 0 0 h 5 v 4 l -6 8 h -5 v -4 l 6 -8" />
-	<g fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round">
+	<g fill="none" stroke="#313131" stroke-linecap="round" stroke-linejoin="round">
 		<path d="M 0 0 l -0.5 -4" />
 		<path d="M 5 0 l 1 -4" />
 		<path d="M 0 0 h 5 v 4 h -5 v -4 l -6 8 0 4 6 -8 h 5 l -6 8 h -5" />
@@ -291,9 +291,12 @@ export default {
 		</g>
 	</g>
 </svg>`,
-	squirrel: `<svg style="display: block" viewBox="-18.5 -11.778164863586426 24.51663589477539 29.27816390991211">
+	squirrel: `<svg
+	style="display: block;"
+	viewBox="-18.5 -11.778164863586426 24.51663589477539 29.27816390991211"
+>
 	<g transform="scale(-1 1)">
-		<g stroke="#292929" stroke-linecap="round" stroke-linejoin="round">
+		<g stroke="#313131" stroke-linecap="round" stroke-linejoin="round">
 			<g fill="#777777">
 				<path
 					transform="translate(-2 -4) rotate(-10)"
@@ -340,14 +343,14 @@ export default {
 
 		<path
 			fill="#959595"
-			stroke="#292929"
+			stroke="#313131"
 			stroke-linecap="round"
 			stroke-linejoin="round"
 			transform="translate(3 6)"
 			d="M 0 0 c -3.5 2.5 -2 5.5 2 2"
 		/>
 
-		<ellipse fill="#292929" transform="rotate(5)" rx="1" ry="1.7" />
+		<ellipse fill="#313131" transform="rotate(5)" rx="1" ry="1.7" />
 	</g>
 </svg>`,
 	smile: `<svg viewBox="-0.525 -0.525 1.05 1.05" width="1.25em" height="1.25em">
