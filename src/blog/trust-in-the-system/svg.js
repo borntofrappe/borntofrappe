@@ -332,5 +332,37 @@ export default {
 			<path d="M -40 -30 l 20 60 20 -30 20 30 20 -60" />
 		</symbol>
 	</defs>
+</svg>`,
+	glyphs: `<svg style="display: block;" viewBox="0 0 10 3">
+	<use href="#glyph-0" width="1" height="1" />
+	<use href="#glyph-1" x="1" width="1" height="1" />
+	<use href="#glyph-2" x="2" width="1" height="1" />
+	<use href="#glyph-3" x="3" width="1" height="1" />
+	<use href="#glyph-4" x="4" width="1" height="1" />
+	<use href="#glyph-5" x="5" width="1" height="1" />
+	<use href="#glyph-6" x="6" width="1" height="1" />
+	<use href="#glyph-7" x="7" width="1" height="1" />
+	<use href="#glyph-8" x="8" width="1" height="1" />
+	<use href="#glyph-9" x="9" width="1" height="1" />
+	<use href="#glyph-10" y="1" width="1" height="1" />
+	<use href="#glyph-11" x="1" y="1" width="1" height="1" />
+	<use href="#glyph-12" x="2" y="1" width="1" height="1" />
+	<use href="#glyph-13" x="3" y="1" width="1" height="1" />
+	<use href="#glyph-14" x="4" y="1" width="1" height="1" />
+	<use href="#glyph-15" x="5" y="1" width="1" height="1" />
+	<use href="#glyph-16" x="6" y="1" width="1" height="1" />
+	<use href="#glyph-17" x="7" y="1" width="1" height="1" />
+	<use href="#glyph-18" x="8" y="1" width="1" height="1" />
+	<use href="#glyph-19" x="9" y="1" width="1" height="1" />
+	<use href="#glyph-20" y="2" width="1" height="1" />
+	<use href="#glyph-21" x="1" y="2" width="1" height="1" />
+	<use href="#glyph-22" x="2" y="2" width="1" height="1" />
+	<use href="#glyph-23" x="3" y="2" width="1" height="1" />
+	<use href="#glyph-24" x="4" y="2" width="1" height="1" />
+	<use href="#glyph-25" x="5" y="2" width="1" height="1" />
+	<use href="#glyph-26" x="6" y="2" width="1" height="1" />
+	<use href="#glyph-27" x="7" y="2" width="1" height="1" />
+	<use href="#glyph-28" x="8" y="2" width="1" height="1" />
+	<use href="#glyph-29" x="9" y="2" width="1" height="1" />
 </svg>`
 };
