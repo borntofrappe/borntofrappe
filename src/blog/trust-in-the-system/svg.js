@@ -540,7 +540,7 @@ export default {
 </svg>`,
 	'glyph-round': `<svg style="display: block;" viewBox="0 -0.4 2 1.4">
 	<svg width="1" height="1" viewBox="-50 -50 100 100">
-		<path fill="none" stroke="currentColor" stroke-width="10" d="M 0 0 v 0" />
+		<path fill="none" stroke="currentColor" stroke-width="10" d="M 0 0 z" />
 
 		<g fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2.5 3.75">
 			<circle r="15" />
@@ -554,7 +554,7 @@ export default {
 				stroke="currentColor"
 				stroke-width="10"
 				stroke-linecap="round"
-				d="M 0 0 v 0"
+				d="M 0 0 z"
 			/>
 
 			<g fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2.5 3.75">
@@ -570,7 +570,7 @@ export default {
 		font-size="0.125"
 		fill="currentColor"
 	>
-		<text font-weight="700">M 0 0 v 0</text>
+		<text font-weight="700">M 0 0 z</text>
 		<text y="0.2">stroke-linecap="<tspan font-weight="700">round</tspan>"</text>
 	</g>
 </svg>`,
