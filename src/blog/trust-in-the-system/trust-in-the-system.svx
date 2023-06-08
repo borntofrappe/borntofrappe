@@ -1,0 +1,7 @@
+---
+title: Trust in the system
+description: Geek out with SVG syntax to draw icons and build a practical set.
+date: 2023-06-09T10:23:25
+---
+
+The Wikipedia entry for [the Phoenician alphabet](https://en.wikipedia.org/wiki/Phoenician_alphabet) is a sweet candidate to illustrate one way you can set up an icon system in SVG.
