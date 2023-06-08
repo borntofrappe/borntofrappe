@@ -467,5 +467,75 @@ export default {
 			/>
 		</svg>
 	</g>
+</svg>`,
+	'glyph-rotate': `<svg style="display: block;" viewBox="0 -0.4 3 1.4">
+	<defs>
+		<marker id="glyph-rotate-marker" viewBox="-0.25 -0.25 0.5 0.5" orient="auto">
+			<path fill="currentColor" d="M -0.25 -0.25 l 0.5 0.25 -0.5 0.25" />
+		</marker>
+	</defs>
+	<svg width="1" height="1" viewBox="-50 -50 100 100">
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="10"
+			d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0"
+		/>
+	</svg>
+
+	<g transform="translate(1 0)">
+		<g
+			transform="translate(0.5 -0.125)"
+			text-anchor="middle"
+			font-family="monospace"
+			font-weight="700"
+			font-size="0.15"
+			fill="currentColor"
+		>
+			<text>M -25 0 h 50</text>
+			<text y="0.2">M 0 -25 v 50</text>
+		</g>
+		<svg width="1" height="1" viewBox="-50 -50 100 100">
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="10"
+				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 m -25 -25 v 50"
+			/>
+		</svg>
+	</g>
+
+	<g transform="translate(2 0)">
+		<path
+			transform="translate(0.5 0.5) rotate(-45)"
+			marker-end="url(#glyph-rotate-marker)"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="0.025"
+			d="M 0 -0.5 a 0.5 0.5 0 0 1 0.5 0.5"
+			pathLength="1"
+			stroke-dasharray="0.5"
+			stroke-dashoffset="-0.5"
+		/>
+		<g
+			transform="translate(0.5 -0.1)"
+			text-anchor="middle"
+			font-family="monospace"
+			font-weight="700"
+			font-size="0.15"
+			fill="currentColor"
+		>
+			<text>45°</text>
+		</g>
+		<svg width="1" height="1" viewBox="-50 -50 100 100">
+			<path
+				transform="rotate(45)"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="10"
+				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 m -25 -25 v 50"
+			/>
+		</svg>
+	</g>
 </svg>`
 };
