@@ -43,6 +43,7 @@
 	}
 
 	select {
+		color: currentColor;
 		border: 0.1rem solid currentColor;
 		padding: 0.75rem 0.75rem;
 		background: none;
