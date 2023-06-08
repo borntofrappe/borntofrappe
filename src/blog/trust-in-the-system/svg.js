@@ -573,5 +573,74 @@ export default {
 		<text font-weight="700">M 0 0 v 0</text>
 		<text y="0.2">stroke-linecap="<tspan font-weight="700">round</tspan>"</text>
 	</g>
+</svg>`,
+	letters: `<svg style="display: block;" viewBox="0 0 5 1">
+	<title>Sugar</title>
+	<desc
+		>The string "sugar" drawn character by character with path elements and the copies of the
+		Pokemon unown.</desc
+	>
+	<defs>
+		<symbol id="letter-s" viewBox="-5 -5 10 10">
+			<g stroke="hsl(0 0% 20%)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="hsl(0 0% 100%)" d="M -1.5 -1.5 a 1.5 1.5 0 0 1 3 3 1.5 1.5 0 0 1 -3 -3" />
+				<g fill="none">
+					<path d="M 0 0z" />
+					<path
+						d="M 0 -4.5 v 0.5 q -1.5 0 -2.75 1.25 l 1.25 1.25 m 3 3 l 1.25 1.25 q -1.25 1.25 -2.75 1.25 v 0.5"
+					/>
+				</g>
+			</g>
+		</symbol>
+		<symbol id="letter-u" viewBox="-5 -5 10 10">
+			<g stroke="hsl(0 0% 20%)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="hsl(0 0% 100%)" d="M -1.5 -1.5 a 1.5 1.5 0 0 1 3 3 1.5 1.5 0 0 1 -3 -3" />
+				<g fill="none">
+					<path d="M 0 0z" />
+					<path d="M -4 0 a 4 4 0 0 0 8 0" />
+					<path d="M 0 2.5 v 1.25" />
+					<path transform="rotate(50)" d="M 0 2.5 v 1.25" />
+					<path transform="rotate(-50)" d="M 0 2.5 v 1.25" />
+				</g>
+			</g>
+		</symbol>
+		<symbol id="letter-g" viewBox="-5 -5 10 10">
+			<g stroke="hsl(0 0% 20%)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="hsl(0 0% 100%)" d="M -1.5 -2.25 a 1.5 1.5 0 0 1 3 3 1.5 1.5 0 0 1 -3 -3" />
+				<g fill="none">
+					<path d="M 0 -0.75z" />
+					<path d="M 0 1.5 l -1.75 1.25 3 1.75" />
+					<path d="M -1.5 -2.375 l -1 -1 a 3.5 3.5 0 0 1 5 0 l -1 1" />
+				</g>
+			</g>
+		</symbol>
+		<symbol id="letter-a" viewBox="-5 -5 10 10">
+			<g stroke="hsl(0 0% 20%)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="hsl(0 0% 100%)" d="M -1.5 -2.5 a 1.5 1.5 0 0 1 3 3 1.5 1.5 0 0 1 -3 -3" />
+				<g fill="none">
+					<path d="M 0 -1z" />
+					<path d="M 0 -4.5 v 1" />
+					<path d="M -1.33 2.5 a 2.5 2.5 0 0 0 2.66 0" />
+					<path d="M 1 1.5 l 1 3" />
+					<path transform="scale(-1 1)" d="M 1 1.5 l 1 3" />
+				</g>
+			</g>
+		</symbol>
+		<symbol id="letter-r" viewBox="-5 -5 10 10">
+			<g stroke="hsl(0 0% 20%)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="hsl(0 0% 100%)" d="M -1.5 -2.5 a 1.5 1.5 0 0 1 3 3 1.5 1.5 0 0 1 -3 -3" />
+				<g fill="none">
+					<path d="M 0 -1z" />
+					<path d="M -2.125 -1 v 5" />
+					<path transform="translate(0 -1) rotate(-45)" d="M 0 2.5 v 0.75" />
+				</g>
+			</g>
+		</symbol>
+	</defs>
+	<use href="#letter-s" width="1" height="1" />
+	<use href="#letter-u" x="1" width="1" height="1" />
+	<use href="#letter-g" x="2" width="1" height="1" />
+	<use href="#letter-a" x="3" width="1" height="1" />
+	<use href="#letter-r" x="4" width="1" height="1" />
 </svg>`
 };
