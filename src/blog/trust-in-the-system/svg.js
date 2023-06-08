@@ -364,5 +364,108 @@ export default {
 	<use href="#glyph-27" x="7" y="2" width="1" height="1" />
 	<use href="#glyph-28" x="8" y="2" width="1" height="1" />
 	<use href="#glyph-29" x="9" y="2" width="1" height="1" />
+</svg>`,
+	'glyph-square': `<svg style="display: block;" viewBox="0 -0.4 2 1.4">
+	<svg width="1" height="1" viewBox="-50 -50 100 100">
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="10"
+			d="M -25 -30 h 30 v 30 h -30 m 30 0 v 30 h 15"
+		/>
+
+		<g fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2.5 3.75">
+			<circle transform="translate(-25 -30)" r="10" />
+			<circle transform="translate(-25 0)" r="10" />
+			<circle transform="translate(20 30)" r="10" />
+		</g>
+	</svg>
+
+	<g transform="translate(1 0)">
+		<svg width="1" height="1" viewBox="-50 -50 100 100">
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="10"
+				stroke-linecap="square"
+				d="M -25 -30 h 30 v 30 h -30 m 30 0 v 30 h 15"
+			/>
+			<g fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2.5 3.75">
+				<circle transform="translate(-25 -30)" r="10" />
+				<circle transform="translate(-25 0)" r="10" />
+				<circle transform="translate(20 30)" r="10" />
+			</g>
+		</svg>
+	</g>
+
+	<g
+		transform="translate(1 -0.1)"
+		text-anchor="middle"
+		font-family="monospace"
+		font-size="0.125"
+		fill="currentColor"
+	>
+		<text>stroke-linecap="<tspan font-weight="700">square</tspan>"</text>
+	</g>
+</svg>`,
+	'glyph-square-align': `<svg style="display: block;" viewBox="0 0 2 2">
+	<svg width="1" height="1" viewBox="-50 -50 100 100">
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="10"
+			d="M -25 -30 h 50 v 60 h -50z m 0 30 h 50"
+		/>
+		<g fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3">
+			<path d="M -50 -5 h 100" />
+			<path d="M -50 5 h 100" />
+		</g>
+	</svg>
+
+	<g transform="translate(1 0)">
+		<svg width="1" height="1" viewBox="-50 -50 100 100">
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="10"
+				stroke-linecap="square"
+				d="M -25 -30 h 30 v 30 h -30 m 30 0 v 30 h 15"
+			/>
+			<g fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3">
+				<path d="M -30 -50 v 100" />
+				<path d="M 0 -50 v 100" />
+				<path d="M 30 -50 v 100" />
+				<path d="M -50 -5 h 100" />
+				<path d="M -50 5 h 100" />
+			</g>
+		</svg>
+	</g>
+
+	<g transform="translate(1 1)">
+		<svg width="1" height="1" viewBox="-50 -50 100 100">
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="10"
+				d="M -25 -30 h 50 v 60 h -50z m 0 30 h 50"
+			/>
+			<g fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3">
+				<path d="M -30 -50 v 100" />
+				<path d="M 0 -50 v 100" />
+				<path d="M 30 -50 v 100" />
+			</g>
+		</svg>
+	</g>
+
+	<g transform="translate(0 1)">
+		<svg x="0.35" y="0.35" width="0.3" height="0.3" viewBox="-20 -20.5 41 41">
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="5"
+				d="M -7.5 -1 l 6 6 10 -10 M -17.5 -18 h 36 v 36 h -36 v -36z"
+			/>
+		</svg>
+	</g>
 </svg>`
 };
