@@ -21,7 +21,7 @@ export default {
 		>
 			<path
 				transform="rotate(45)"
-				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 m -25 -25 v 50"
+				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 M -25 0 h 50 M 0 -25 v 50"
 			/>
 		</symbol>
 
@@ -500,7 +500,7 @@ export default {
 				fill="none"
 				stroke="currentColor"
 				stroke-width="10"
-				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 m -25 -25 v 50"
+				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 M -25 0 h 50 M 0 -25 v 50"
 			/>
 		</svg>
 	</g>
@@ -533,7 +533,7 @@ export default {
 				fill="none"
 				stroke="currentColor"
 				stroke-width="10"
-				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 m -25 -25 v 50"
+				d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0 h 50 M -25 0 h 50 M 0 -25 v 50"
 			/>
 		</svg>
 	</g>
