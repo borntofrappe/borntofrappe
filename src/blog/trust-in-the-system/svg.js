@@ -32,7 +32,7 @@ export default {
 		stroke-width="10"
 		stroke-linecap="square"
 	>
-		<path d="M -25 -30 h 50 v 60 h -50z m 0 30 h 50" />
+		<path d="M -25 -30 h 50 v 60 h -50 v -60 m 0 30 h 50" />
 	</symbol>
 
 	<symbol
