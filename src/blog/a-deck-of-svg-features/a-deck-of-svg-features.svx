@@ -17,6 +17,8 @@ date: 2023-04-22T10:25:37
 
 A recent obsession for a video game mixing solitaire and horse racing pushed me to practice writing SVG by hand to draw a few pictures. Five in total. I got so invested in the result that by the end of it, I couldn't help adding a touch of animation to the whole set.
 
+{@html svg['defs']}
+
 <Center maxInlineSize="32rem">
 	<Deck cards={["diamond", "heart", "club", "flower"]} />
 </Center>
@@ -300,5 +302,3 @@ So let me shuffle the deck and prompt you for likely the very last time: care to
 <Center maxInlineSize="38rem">
 	<Deck  />
 </Center>
-
-{@html svg['defs']}

@@ -15,6 +15,8 @@ date: 2023-02-23T10:47:49
 
 With [Picross 2D](/picross-2d) we visualized solved nonogram puzzles in a grid. Columns and rows peppered with rectangles to create rudimentary, but rather believable, paintings in two dimensions. With a bit of ingenuity, experimentation and a good dose of patience, it is possible to extend the two-dimensional picture and create the illusion of depth. Only with SVG.
 
+{@html svg['defs']}
+
 ## Cube
 
 The key to add perspective is a `<path>` element tracing the contours of a cube.
@@ -345,5 +347,3 @@ But that's the last piece of SVG I will propose for the time being.
 It wouldn't be fair to end on this note, however. After all, the 2D article proposed a handful of levels more. Let me propose them in force, with a touch of color and a brand new perspective.
 
 <Showcase />
-
-{@html svg['defs']}
