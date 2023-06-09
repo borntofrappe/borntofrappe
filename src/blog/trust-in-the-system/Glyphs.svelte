@@ -1,5 +1,5 @@
 <script>
-	const glyphs = Array(29)
+	const glyphs = Array(30)
 		.fill()
 		.map((_, i) => `#glyph-${i}`);
 	let [value] = glyphs;
