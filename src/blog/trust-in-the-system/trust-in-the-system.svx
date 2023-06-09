@@ -39,13 +39,9 @@ The numbers? Again a matter of preference — it's nice to work with round figur
 
 To draw the segments you have a few options, but nothing more versatile than a `<path>` element. A path with no fill and a thick, clear stroke.
 
-<!-- prettier-ignore -->
 ```html
-<g 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="10">
-	<!-- ... -->
+<g fill="none" stroke="currentColor" stroke-width="10">
+	<path d="" />
 </g>
 ```
 
@@ -55,11 +51,11 @@ In the d attribute you instruct how to draw, and while the syntax is often gnarl
 <path d="M -25 -30 h 30 v 30 h -30" />
 ```
 
-Move up and to the left, draw a segment to the right, then down, then again left. At this juncture you draw yourself into a corner. You can fix the issue treading on the beaten path, drawing with a horizontal segment back. But the point gives the perfect opportunity to reintroduce the `M` character, and illustrate an important concept at the same time.
+Move up and to the left, add a segment to the right, then down, then again left. At this juncture you draw yourself into a corner. You can fix the issue treading on the beaten path, with a horizontal segment back. But the point gives the perfect opportunity to re-introduce the `M` character, and illustrate an important concept at the same time.
 
 Uppercase letters point to numbers in absolute terms. `M -25 -30`means 25 units left, 30 up from the SVG origin.
 
-Lowercase letters introduce relative measures. `m 30 0`? Yes, that will help us move 30 units to the right from where we currently are, from the left of the canvas and back to the vertical strait.
+Lowercase letters describe relative measures. `m 30 0`? Yes, that will help us move 30 units to the right from where we currently are, from the left of the canvas and back to the vertical strait.
 
 ```html
 <path
@@ -78,25 +74,27 @@ And there's only one more tweak to reach the end result. Something in between a 
     {@html svg['glyph-square']}
 </Center>
 
-How is this helpful? The moment you have a `<path>` take a turn, the line stretches a tad further before changing direction. It happens with the character when you move to the right and then down. It happens with more evidence with the character two places to the right.
+How is this helpful? The moment you have a `<path>` take a turn, the line stretches a tad further before changing direction. It happens with the character when you move to the right and then down. It happens with more evidence in the alphabet, with the character two places to the right.
 
 ```html
 <path d="M -25 -30 h 50 v 60 h -50z m 0 30 h 50" />
 ```
 
-Here you have a sequence of turns as to draw the rectangular shape. The addition of `stroke-linecap`means the lean figure and the more box-like shape are neatly aligned.
+Here you have a sequence of turns to draw the rectangular shape. The addition of `stroke-linecap` means the lean figure and the more box-like shape are neatly aligned.
 
 <Center element="figure" maxInlineSize="30rem">
     {@html svg['glyph-square-align']}
 </Center>
 
-In between the two letters you have a circle and an evident cross, turned on its side. And the piece is worth a discussion as well. First, draw the circle with two arcs.
+Continuing in the alphabet, in between the two letters you have a circle with an evident cross tipped on its side. And the piece is worth a discussion as well.
+
+First, draw a circle with two arcs.
 
 ```html
 <path d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0" />
 ```
 
-Conveniently, this leads to another character in the alphabet, but let's continue with the more complex shape. How would you draw the "x" right within the round edges? You can certainly try and guess the x, y values for the diagonals. You might even be aware of enough trigonometry to find the precise spots. But there is a way to get around the problem.
+Conveniently, the path gives the character in the second row, but let's continue with the more complex shape. How would you draw the "x" right within the round edges? You can certainly try and guess the x, y values for the diagonals. You might even be aware of enough trigonometry to find the precise coordinates. But there is a way to get around the problem.
 
 Draw two segments. Left to right. Top to bottom. You know how to move around by now.
 
@@ -110,7 +108,7 @@ Draw two segments. Left to right. Top to bottom. You know how to move around by 
 />
 ```
 
-And, rotate the piece. 45 degrees clockwise, or counterclockwise if you so prefer.
+And, rotate the piece. 45 degrees clockwise, or counterclockwise if you are so inclined.
 
 <!-- prettier-ignore -->
 ```html
@@ -120,15 +118,15 @@ And, rotate the piece. 45 degrees clockwise, or counterclockwise if you so prefe
 />
 ```
 
-You rotate the cross and you find the x. You rotate the arcs as well, but keep it a secret. No one will notice the trick.
+You rotate the cross and you find the "x". You rotate the arcs as well, but keep it a secret. No one will notice it.
 
 <Center element="figure" maxInlineSize="36rem">
     {@html svg['glyph-rotate']}
 </Center>
 
-The three to four letters are already enough to fill your daily requirements of SVG syntax, but allow me one last profession for the last row, for the character consisting of nothing but a dot. I promise you, it won't take much, and it is worth the detour.
+The three to four letters are already enough to fill your daily requirements of SVG syntax, but allow me one last musing for the character in the last row, consisting of nothing but a dot. I promise you, it won't take much, and it is worth the detour.
 
-Pick up your measure-10 pencil, start and ... immediately stop in your tracks.
+Pick up your measure-10 pencil, start and... immediately stop in your tracks.
 
 ```html
 <path d="M 0 0 z" />
@@ -144,7 +142,7 @@ Bring back the `stroke-linecap` attribute, however, and you discover the reason 
 
 ## One vector
 
-Let's go back to the top: you design the thirty glyphs — believe me, with enough patience you now able to do it by hand with the instruction you've seen so far.
+Let's go back to the top: you design the thirty glyphs — believe me, with enough patience you are capable with the instructions you've seen so far.
 
 With the icons you can set up the system with a few more elements.
 
@@ -156,9 +154,9 @@ Immediately, you have `<symbol>`. The tag works similarly to `<svg>`: describe a
 </symbol>
 ```
 
-You essentially repeat the icon and swap the `<svg>` to the new label. Except that you don't see anything until you point to the symbol through the unique `id` attribute.
+You essentially take the icon and rename the element with the new label. The symbol is similar to `<svg>`, but you don't see anything until you point to the element through the unique `id` attribute.
 
-And it is here that you create the system. One `<svg>` — the `viewBox` won't matter this time — housing the syntax for the icons, housing one `<symbol>` for each glyph.
+And it is here that you create the system. One `<svg>` — the `viewBox` doesn't matter this time — housing the syntax for the icons, housing one `<symbol>` for each glyph.
 
 ```html
 <svg>
@@ -168,9 +166,9 @@ And it is here that you create the system. One `<svg>` — the `viewBox` won't m
 </svg>
 ```
 
-The SVG is flled with symbols, and as prefaced, you don't see any trace of the nested shapes. Unfortunately, the browser does see the `<svg>` and does its job to position the invisible element.
+The SVG is filled with symbols, and as prefaced, you don't see any trace of the nested shapes. Unfortunately, the browser does see the `<svg>` and does its job to position the invisible element.
 
-Setting `display` to `none` is a bit finnicky — you don't want to know about quirky issues with gradients, patterns, and cross-browser inconsistencies. Your safest option to remove the element from sight is to size it down to 0.
+Setting `display` to `none` is a bit finicky — you don't want to know about quirky issues with gradients, patterns, and cross-browser inconsistencies. Your safest option to remove the element from sight is to size it down to 0.
 
 You can set the width and the height through attributes, but personally, I prefer to rely on inline styles. Outside of the ominous `!important` flag, these are the most specific instructions at your disposal, and will triumph over more general declarations. Since you rely on CSS, then, you can also remove the element from the flow of the document changing its `position`.
 
@@ -190,7 +188,7 @@ To draw an icon, add an `<svg>`.
 </svg>
 ```
 
-In this new element, reference a symbol with a `<use>` element.
+In this new element, refer to a symbol with a `<use>` element.
 
 ```html
 <svg viewBox="0 0 1 1">
@@ -198,7 +196,7 @@ In this new element, reference a symbol with a `<use>` element.
 </svg>
 ```
 
-And that's it. You can change the size of the `<use>` element with the `width` and `height` attribute, or leave it as-is to grow and fill the available space.
+And, that's it. You can change the size of the `<use>` element with the `width` and `height` attributes, or leave it as-is to grow and fill the available space.
 
 Need to repeat the icon? Re-use the syntax somewhere else.
 
@@ -220,7 +218,7 @@ You need a leap of faith. You have to trust the presence of the `<symbol>`s in t
 
 Icons or characters, though? While the example is sweet, we are dangerously close to actual letters. And if your intent is to formulate words and sentences, there is no better way to render text than with text. In HTML, or even in SVG with the `<text>` element. You have to make sure [it remains visible](/fine-print), but once it is, you can select it, read it, or have somebody else read it in your place.
 
-The good news? Even text is made of vectors, of the same instructions you've seen in the `<path>` elements. Something which might inspire you to create your own typeface, and draw more than eye candy.
+The good news? Even text is made of vectors, of the same instructions you've seen in the `<path>` elements. Something which might inspire you to create your own typeface beyond precious eye candy.
 
 <Center element="figure" maxInlineSize="36rem">
     {@html svg["letters"]}
