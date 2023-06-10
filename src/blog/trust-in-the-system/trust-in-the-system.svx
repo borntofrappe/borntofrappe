@@ -25,7 +25,7 @@ There's a lot that goes in the design of the glyphs, possibly more than you can 
 
 ## Many paths
 
-Each icon begins in isolation, with an empty `<svg>`.
+When you need to draw a vector, there is little more freeing than a clear canvas, than an empty `<svg>`.
 
 ```html
 <svg viewBox="-50 -50 100 100">
@@ -128,7 +128,7 @@ You rotate the cross and you find the "x". You rotate the arcs as well, but keep
 
 The three to four letters are already enough to fill your daily requirements of SVG syntax, but allow me one last musing for the character in the last row, consisting of nothing but a dot. I promise you, it won't take much, and it is worth the detour.
 
-In a blank canvas, pick up your measure-10 pencil, start and... immediately stop in your tracks.
+Set up the canvas, pick up your measure-10 pencil, start and... immediately stop in your tracks.
 
 ```html
 <path d="M 0 0 z" />
@@ -146,9 +146,9 @@ Bring back the `stroke-linecap` attribute, however, and you discover one of the 
 
 Let's go back to the top: you design the thirty glyphs — believe me, with enough patience you are capable with the instructions you've seen so far.
 
-Thirty `<svg>` elements, with thirty, carefully crafted paths.
+Thirty `<svg>` elements with thirty, carefully crafted paths.
 
-With these assets you can set up the system with a few more elements.
+Take the syntax and you are able to set up the system with a few tweaks, with a few elements.
 
 Immediately, you have `<symbol>`. At first, the tag works similarly to `<svg>`: describe a canvas with the `viewBox` attribute and draw your shapes between the opening and closing bracket.
 
@@ -158,7 +158,7 @@ Immediately, you have `<symbol>`. At first, the tag works similarly to `<svg>`: 
 </symbol>
 ```
 
-You essentially take the icon and rename the element with the new label. The symbol is similar to `<svg>`, but you don't see anything until you point to the element through the unique `id` attribute.
+You essentially take the icons and rename the elements with the new label. A symbol is similar to `<svg>`, but you don't see anything until you point to the element through the unique `id` attribute.
 
 And it is here that you create the system. One `<svg>` — the `viewBox` doesn't matter this time — housing the syntax for the icons, housing one `<symbol>` for each glyph.
 
@@ -172,7 +172,7 @@ And it is here that you create the system. One `<svg>` — the `viewBox` doesn't
 
 The SVG is filled with symbols, and as prefaced, you don't see any trace of the nested shapes. Unfortunately, the browser does see the `<svg>` and does its job to position the invisible element.
 
-Setting `display` to `none` is a bit finicky — you don't want to know about quirky issues with gradients, patterns, and cross-browser inconsistencies. Your safest option to remove the element from sight is to size it down to 0.
+Setting `display` to `none` is a bit finicky — you don't want to know about quirky issues with never-rendered elements and cross-browser inconsistencies. Your safest option to remove the node from sight is to size it down to 0.
 
 You can set the width and the height through attributes, but personally, I prefer to rely on inline styles. Outside of the ominous `!important` flag, these are the most specific instructions at your disposal, and will triumph over more general declarations. Since you rely on CSS, then, you can also remove the element from the flow of the document changing its `position`.
 
