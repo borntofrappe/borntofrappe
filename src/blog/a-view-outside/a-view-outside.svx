@@ -1,0 +1,7 @@
+---
+title: A view outside
+description: Discover another way to set up a crisp icon system, and try something new.
+date: 2023-06-13T09:39:12
+---
+
+You might have seen [one way](/trust-in-the-system) to set up an icon system already.
