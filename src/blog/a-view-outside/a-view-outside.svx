@@ -4,4 +4,18 @@ description: Discover another way to set up a crisp icon system, and try somethi
 date: 2023-06-13T09:39:12
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
 You might have seen [one way](/trust-in-the-system) to set up an icon system already.
+
+<Center element="figure" maxInlineSize="36rem">
+    {@html svg['icons']}
+</Center>
+
+<Center element="figure" maxInlineSize="30rem">
+    {@html svg['icons-layout']}
+</Center>
