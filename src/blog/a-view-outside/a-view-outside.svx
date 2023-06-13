@@ -1,7 +1,7 @@
 ---
 title: A view outside
 description: Discover another way to set up a crisp icon system and gain some perspective.
-date: 2023-06-13T09:39:12
+date: 2023-06-13T11:10:09
 ---
 
 <script>
@@ -45,7 +45,7 @@ Suffice it to say, behind the icons you find a few `<path>` elements nested in o
 </svg>
 ```
 
-The icons sits side by side and you see each and every one of them. Conveniently, and by design, they share one more trait: they occupy the same space, the same square figure.
+The icons sit side by side and you see each and every one of them. Conveniently, and by design, they share one more trait: they occupy the same space, the same square figure.
 
 <Center element="figure" maxInlineSize="30rem">
     {@html html['icons-layout']}
@@ -57,7 +57,7 @@ The point stands. In the first square you see the first icon. Move 100 units rig
 
 ## One image
 
-Save your one vector in an `.svg` file. The only attribute I stress you should add is `xmnls` — you'll thank me later for the inclusion of these characters.
+Save your one vector in an `.svg` file. The only attribute I stress you should add is `xmlns` — you'll thank me later for the inclusion of these characters.
 
 ```diff
 -<svg viewBox="0 0 600 100">
@@ -85,9 +85,9 @@ And that's it, point to the resource and the icons appear in full, almost as in 
 	{@html html["img"]}
 </Center>
 
-`xmlns`? This is were the attribute proves its worth. Forget to specify [the namespace](https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course) and the image fails. The good news is you'll see the alt text in its place. And you have a jumbled sequence of characters to express your surprise.
+`xmlns`? This is where the attribute proves its worth. Forget to specify [the namespace](https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course) and the image fails. The good news is you'll see the alt text in its place. And you have a jumbled sequence of characters to express your surprise.
 
-Jokes aside, remember the name space and, holding off on a few drawbacks, you can now implement the promised icon set. In at least two ways.
+Jokes aside, remember the namespace and, holding off on a few drawbacks, you can now implement the promised icon set. In at least two ways.
 
 The first one comes in the form of the `<view>` element, and asks you to update the SVG syntax ahead.
 
@@ -103,19 +103,27 @@ In the document, you anticipate a view, a window of the larger graphic with a di
 You decide what to show with a new `viewBox` attribute.
 
 ```html
-<view id="line-chart" viewBox="100 0 100 100" /> <view id="pie-chart" viewBox="400 0 100 100" />
+<view id="bar-chart" viewBox="0 0 100 100" />
 ```
 
 You are essentially updating the `viewBox` from the original value. Configure the views for the different icons.
 
+<!-- prettier-ignore -->
 ```html
-<view id="bar-chart" viewBox="0 0 100 100" /> <view id="line-chart" viewBox="100 0 100 100" />
+<view id="bar-chart" viewBox="0 0 100 100" /> 
+<view id="pie-chart" viewBox="400 0 100 100" />
 ```
 
-And you now have a choice, a few options. To show the icons, the full set, refer to the graphic, as-is. To show _one_ icon, and only one, update the reference, pointing to the view through the unique ID.
+And you now have a choice, a few options. To show the icons, the full set, refer to the graphic as-is. To show _one_ icon, and only one, update the reference, pointing to the view through the unique ID.
 
+<!-- prettier-ignore -->
 ```html
-<img src="icons.svg#pie-chart" alt="A debatable pie chart." width="200" height="200" />
+<img 
+	src="icons.svg#pie-chart" 
+	alt="A debatable pie chart." 
+	width="200" 
+	height="200" 
+/>
 ```
 
 You zoom in on the graphic, and you find the desired sprite.
@@ -128,8 +136,12 @@ Hold your suspicions a tad longer. There are a few issues worth noting. Before w
 
 Outside of the `<view>` element, you are able to focus on parts of the graphic yourself, directly in the `src` attribute. Instead of pointing to the entire image.
 
+<!-- prettier-ignore -->
 ```html
-<img src="icons.svg" ... />
+<img 
+	src="icons.svg" 
+	... 
+/>
 ```
 
 Instead of accepting the default `viewBox`, the idea is to specify the attribute with a fitting syntax.
@@ -165,15 +177,28 @@ As an image, you are not able to extend the same feat, and you are stuck with a 
 
 Then again, and I hinted at the problem with the dimensions of the shape, aspect ratio . Vector graphics being scalable, you are able to have them grow and shrink at a moment's notice.
 
-Through the width and height attributes, through the width and height properties, the graphic scales to respect the aspect ratio set with the viewBox attribute.
+```css
+svg {
+	width: 2em;
+	height: 2em;
+}
+```
+
+Through the `width` and `height` attributes, through the `width` and `height` properties, the graphic scales to respect the aspect ratio set with the `viewBox` attribute.
 
 As an image, you can very well change the size. And you've already seen how for the icons.
 
+<!-- prettier-ignore -->
 ```html
-<img src="icons.svg#pie-chart" alt="A debatable pie chart." width="200" height="200" />
+<img 
+	src="icons.svg#pie-chart" 
+	alt="A debatable pie chart." 
+	width="200" 
+	height="200" 
+/>
 ```
 
-In this instance the width and the height are fixed to 200 Pixels, and the image scales to perfection.
+In this instance the width and the height are fixed to 200 pixels, and the image scales to perfection.
 
 Mess up the aspect ratio though, try an image thrice as wide as it is tall, and something will definitely not escape your eyes.
 
@@ -181,11 +206,11 @@ Mess up the aspect ratio though, try an image thrice as wide as it is tall, and 
 	{@html html['img-aspect-ratio']}
 </Center>
 
-Yes, you see the icon, but surrounded by its two neighbors. A view acts as a zoom, a point of view for the larger graphic. It does not work to clip the area for the icon itself. As you scale the visual to the Improper measure, the SVG grows as wide and tall as it possibly can, and the sibling icons come back in the spotlight.
+Yes, you see the icon, but surrounded by its two neighbors. A view acts as a zoom, a point of view for the larger graphic. It does not work to clip the area for the icon itself. As you scale the visual to the improper measure, the SVG grows as wide and tall as it possibly can, and the sibling icons come back in the spotlight.
 
 If you are thinking _"well, even with these issues, I know of a new way to set up an icon system"_, I'm glad you accepted the information.
 
-It you are thinking _"wait, beyond these issues, there's no reason I can't combine the syntax with the `<picture>` element and pick and choose what to show"_. _"I add a large version in a regular `<img>` element"_.
+If you are thinking _"wait, beyond these issues, there's no reason I can't combine the syntax with the `<picture>` element and pick and choose what to show"_. _"I add a large version in a regular `<img>` element"_.
 
 ```html
 <picture>
