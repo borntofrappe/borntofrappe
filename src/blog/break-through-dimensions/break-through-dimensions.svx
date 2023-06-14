@@ -3,3 +3,13 @@ title: Break through dimensions
 description: Ease into JavaScript and higher dimensions with stylish vector graphics.
 date: 2023-06-15T:21:21:21
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="30rem">
+    {@html svg['folder']}
+</Center>
