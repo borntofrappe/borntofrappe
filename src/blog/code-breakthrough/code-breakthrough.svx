@@ -1,11 +1,14 @@
 ---
 title: Code breakthrough
 description: Tap into JavaScript to unlock new dimensions and fuel a few features.
-date: 2023-06-15T:21:21:21
+date: 2023-06-15T21:21:21
 ---
 
 <script>
 	import svg from './svg.js';
+	import CosmicAdventure from './CosmicAdventure.svelte';
 </script>
 
 {@html svg['code-snippets']}
+
+<CosmicAdventure />
