@@ -5,11 +5,7 @@ date: 2023-06-15T:21:21:21
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
-<Center element="figure" maxInlineSize="30rem">
-    {@html svg['folder']}
-</Center>
+{@html svg['code-snippets']}
