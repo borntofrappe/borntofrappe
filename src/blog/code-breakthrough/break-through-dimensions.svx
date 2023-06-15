@@ -1,6 +1,6 @@
 ---
-title: Break through dimensions
-description: Ease into JavaScript and higher dimensions with stylish vector graphics.
+title: Code breakthrough
+description: Tap into JavaScript to unlock new dimensions and fuel a few features.
 date: 2023-06-15T:21:21:21
 ---
 
