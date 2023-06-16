@@ -164,7 +164,7 @@ for (const { x, y, scale } of circles) {
 }
 ```
 
-There is a dot sized issue, however, for the actual scale. Zdog supports a `scale` property, in the same fashion as `translate`. Even if you add the line, however, the spheres do not change in size.
+There is a dot-sized issue for the actual scale. Zdog supports a `scale` property, in the same fashion as `translate`. Even if you add the line, however, the spheres do not change in size.
 
 ```js
 new Zdog().Shape({
@@ -222,14 +222,13 @@ Not a circle, however. And therefore, not through the stroke alone. In Zdog, `st
 
 To draw more complex figures, the key is the `path` property.
 
+<!-- prettier-ignore -->
 ```js
 new Zdog().Shape({
 	addTo: group,
 	path: [
 		{ x: -5, y: 0 },
-		{
-			arc: []
-		}
+		{ arc: [] }
 	]
 });
 ```
@@ -246,15 +245,14 @@ Move 5 units left, draw an arc 5 units right and above.
 
 In Zdog, however, the coordinates are _absolute_ values.
 
+<!-- prettier-ignore -->
 ```js
 const path = [
 	{ x: -5, y: 0 },
-	{
-		arc: [
-			{ x: 0, y: 0 }, // corner point
-			{ x: 0, y: -5 } // end point
-		]
-	}
+	{ arc: [
+		{ x: 0, y: 0 }, // corner point
+		{ x: 0, y: -5 } // end point
+	] }
 ];
 ```
 
@@ -264,10 +262,10 @@ And this time, there is no shortcut. You need to adjust the values by hand. And 
 ```js
 const path = [
 	{ x: -5, y: 0 },
-	{ arc: [ { x: 0, y: 0 }, { x: 0, y: -5 } ]},
-	{ arc: [ { x: 0, y: 0 }, { x: 5, y: 0 } ]},
-	{ arc: [ { x: 0, y: 0 }, { x: 0, y: 5 } ]},
-	{ arc: [ { x: 0, y: 0 }, { x: -5, y: 0 } ]}
+	{ arc: [{ x: 0, y: 0 }, { x: 0, y: -5 }] },
+	{ arc: [{ x: 0, y: 0 }, { x: 5, y: 0 }] },
+	{ arc: [{ x: 0, y: 0 }, { x: 0, y: 5 }] },
+	{ arc: [{ x: 0, y: 0 }, { x: -5, y: 0 }] }
 ];
 ```
 
