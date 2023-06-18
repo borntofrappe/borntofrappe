@@ -9,6 +9,7 @@ date: 2023-06-20T09:13:25
 
 	import svg from './svg.js';
 	import MeetX from './MeetX.svelte';
+	import MeetY from './MeetY.svelte';
 </script>
 
 It is often challenging to explain sizes in SVG.
@@ -16,6 +17,8 @@ It is often challenging to explain sizes in SVG.
 {@html svg['defs']}
 
 <MeetX />
+
+<MeetY />
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['bento-box']}
