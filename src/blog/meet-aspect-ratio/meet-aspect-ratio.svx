@@ -1,0 +1,7 @@
+---
+title: Meet aspect ratio
+description: Reconcile with SVG attributes to keep a harmonious size.
+date: 2023-06-20T09:13:25
+---
+
+It is often challenging to explain sizes in SVG.
