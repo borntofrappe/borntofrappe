@@ -143,10 +143,6 @@
 	font-size: var(--step-size-100);
 }
 
-.font-size\:biggest {
-	font-size: var(--step-size-900);
-}
-
 .text-align\:center {
 	text-align: center;
 }
