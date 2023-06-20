@@ -27,12 +27,12 @@
 </svg>
 
 <div class="[ visually-hidden ]">
-	<h1>Today</h1>
-	<p>The answer to a most practical quandary: what day is today?</p>
+	<h1>What day is today?</h1>
+	<p>{format(date)}</p>
 </div>
 
 <main>
-	<h1 class="[ font-size:biggest ]">{format(date)}</h1>
+	<p aria-hidden="true">{format(date)}</p>
 	<Marks n={date.getDate()} />
 </main>
 
@@ -75,5 +75,11 @@
 
 	main > :global(*) {
 		filter: url(#filter-chalk);
+	}
+
+	p {
+		font-size: var(--step-size-900);
+		font-weight: 700;
+		line-height: 1.2;
 	}
 </style>
