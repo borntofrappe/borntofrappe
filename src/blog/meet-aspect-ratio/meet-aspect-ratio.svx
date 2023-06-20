@@ -1,7 +1,7 @@
 ---
 title: Meet aspect ratio
 description: Reconcile SVG attributes to keep a harmonious size.
-date: 2023-06-20T10:17:25
+date: 2023-06-20T11:10:43
 ---
 
 <script>
@@ -61,9 +61,9 @@ If you keep the same ratio, nothing unexpected. The `<svg>` grows, the `<svg>` s
 
 If not, again it's a matter of defaults. And again it's up to you to deviate from the standard.
 
-By default, SVG resizes the canvas to to grow as much as possible in the smallest dimension. Then, it proceeds to center the shapes in the available space.
+By default, SVG resizes the canvas to grow as much as possible in the smallest dimension. Then, it proceeds to center the shapes in the available space.
 
-This is `preserveAspectRatio` at work, and specifically, the default value of `xMidYMid`. It may look gibberish, but as you break down its components, as you sample the values, the string becomes close to obvious.
+This is `preserveAspectRatio` at work, and specifically, the base value of `xMidYMid`. It may look gibberish, but as you break down its components, as you sample the values, the string becomes close to obvious.
 
 Back to our `<svg>`. Back to our canvas 1 unit wide and tall and the all-encompassing rectangle. Back to the element sized three times wider as it is tall.
 
@@ -93,13 +93,13 @@ The missive becomes relevant only in the opposite scenario. Only when the size f
 +<svg preserveAspectRatio="xMidYMin" width="100" height="300" viewBox="0 0 1 1">
 ```
 
-By default, once more, the element will be centered. Just vertically. Change `YMid` and the element moves up or down. `YMin`, `YMax`.
+By default, once more, the shape is centered. Just vertically. Change `YMid` and the element moves up or down. `YMin`, `YMax`.
 
 <MeetY />
 
-`xMidYMid`. By now, the string should be quite clear. And the default behavior of `preserveAspectRatio` should make more sense.
+`xMidYMid`. By now, the string should be quite clear. And `preserveAspectRatio` should make more sense.
 
-And yet, this is only part of the story. `xMidYMid` is part of the default, but `xMidYMid meet` is the true value. What does `meet` add, aside from levity, is the ability of the canvas to grow in the smallest dimension. Preserving the aspect ratio and keeping the element in full.
+And yet, this is only part of the story. `xMidYMid` is part of the default, but `xMidYMid meet` is the true value. With `meet` the canvas grows in the smallest dimension, preserving the aspect ratio and keeping the element in full.
 
 On the opposite end of `meet` you have `slice`.
 
