@@ -4,7 +4,7 @@
 
 	import { time } from '$lib/utils/stores.js';
 
-	$: datetime = `${$time.getHours()}:${$time.getMinutes()}`;
+	$: datetime = `${$time.getHours()}:${$time.getMinutes().toString().padStart(2, '0')}`;
 	$: hands = {
 		hours: ($time.getHours() % 12) * 30 + $time.getMinutes() * 0.5,
 		minutes: $time.getMinutes() * 6
