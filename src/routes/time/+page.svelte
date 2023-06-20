@@ -14,6 +14,7 @@
 <svelte:head>
 	<title>Time | {title}</title>
 	<meta name="description" content="Time of day with a twelve hour clock." />
+	<link rel="icon" href="/icons/time.svg" type="image/svg+xml" />
 </svelte:head>
 
 <h1>What time it is?</h1>
