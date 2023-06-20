@@ -28,10 +28,10 @@
 <div
 	class="[ box centered ]"
 	style="
-	--box-color: hsl(38, 13%, 17%); 
-	--box-background: hsl(40, 23%, 97%); 
-	--selection-color: hsl(37, 12%, 22%); 
-	--selection-background: hsl(48, 95%, 76%);
+	--box-color: hsl(38 13% 17%); 
+	--box-background: hsl(40 23% 97%); 
+	--selection-color: hsl(37 12% 22%); 
+	--selection-background: hsl(48 95% 76%);
 "
 >
 	<svg style="display: block; max-inline-size: 36rem; inline-size: 100vmin;" viewBox="0 0 300 300">
@@ -59,11 +59,11 @@
 			<use id="clock-sparkle" href="#clock-sparkle-symbol" x="-9" y="-9" width="18" height="18" />
 			<use id="clock-almond" href="#clock-almond-symbol" x="-9" y="-5" width="18" height="10" />
 		</defs>
-		<g style="color: hsl(0 0% 90%);">
+		<g style="color: hsl(43 13% 90%);">
 			<use href="#clock-almond" transform="translate(25 115) scale(1.5) rotate(12)" />
 			<use href="#clock-almond" transform="translate(210 35) scale(2.2) rotate(-40)" />
 		</g>
-		<g style="color: hsl(0 0% 90%);">
+		<g style="color: hsl(43 13% 90%);">
 			<use href="#clock-circle" transform="translate(45 150) scale(0.4)" />
 			<use href="#clock-circle" transform="translate(60 240) scale(0.9)" />
 			<use href="#clock-circle" transform="translate(90 60) scale(0.6)" />
@@ -73,20 +73,20 @@
 			<use href="#clock-circle" transform="translate(260 145) scale(0.5)" />
 			<use href="#clock-circle" transform="translate(285 170) scale(1)" />
 		</g>
-		<g style="color: rgb(102, 102, 102);">
+		<g style="color: hsl(40 15% 80%);">
 			<use href="#clock-circle" transform="translate(50 190) scale(1.1)" />
 			<use href="#clock-circle" transform="translate(60 85) scale(0.9)" />
 			<use href="#clock-circle" transform="translate(115 255) scale(1.2)" />
 			<use href="#clock-circle" transform="translate(250 220) scale(1.3)" />
 			<use href="#clock-circle" transform="translate(265 120) scale(0.6)" />
 		</g>
-		<g style="color: hsl(0 0% 90%);">
+		<g style="color: hsl(43 13% 90%);">
 			<use href="#clock-sparkle" transform="translate(15 160) scale(1)" />
 			<use href="#clock-sparkle" transform="translate(235 70) scale(1.1)" />
 		</g>
 		<g transform="translate(150 150)">
-			<circle fill="hsl(0 0% 99%)" stroke="hsl(0 0% 40%)" r="80" stroke-width="12" />
-			<g fill="none" stroke="hsl(0 0% 90%)" stroke-linecap="round" stroke-linejoin="round">
+			<circle fill="hsl(40 23% 99%)" stroke="hsl(40 10% 35%)" r="80" stroke-width="12" />
+			<g fill="none" stroke="hsl(43 13% 90%)" stroke-linecap="round" stroke-linejoin="round">
 				<g stroke-width="6">
 					<path d="M 56 0 66 0" />
 					<path transform="rotate(90)" d="M 56 0 66 0" />
@@ -104,14 +104,14 @@
 					<path transform="rotate(330)" d="M 55 0 67 0" />
 				</g>
 			</g>
-			<g fill="hsl(0 0% 40%)">
+			<g fill="hsl(41 8% 48%)">
 				<path transform="rotate({hands.hours})" d="M -4 -11 -4 -30 A 4 4 0 0 1 4 -30 L 4 -11" />
 				<path
 					transform="rotate({hands.minutes})"
 					d="M -3.5 -11 -3.5 -42 A 3.5 3.5 0 0 1 3.5 -42 L 3.5 -11"
 				/>
 			</g>
-			<circle fill="hsl(0 0% 28%)" r="8" />
+			<circle fill="hsl(40 10% 35%)" r="8" />
 		</g>
 	</svg>
 </div>
