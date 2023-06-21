@@ -1,0 +1,5 @@
+---
+title: Aspect a surprise
+descriptive: Give a second look to aspect ratio in SVG.
+date: 2023-06-22T10:21:47
+---
