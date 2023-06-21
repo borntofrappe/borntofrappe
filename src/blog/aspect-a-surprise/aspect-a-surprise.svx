@@ -3,3 +3,17 @@ title: Aspect a surprise
 descriptive: Give a second look to aspect ratio in SVG.
 date: 2023-06-22T10:21:47
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="10rem">
+	{@html svg['square']}
+</Center>
+
+<Center element="figure" maxInlineSize="30rem">
+	{@html svg['rectangle']}
+</Center>
