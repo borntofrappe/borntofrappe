@@ -1,5 +1,27 @@
 export default {
-	square: `<svg style="display: block;" viewBox="0 0 1 1">
+	square: `<svg style="display: block;" viewBox="0 0 5 2.5">
+	<g transform="translate(2.5 0.8)" text-anchor="middle" font-size="0.45" font-family="monospace" font-weight="700">
+		<text>width = height</text>
+	</g>
+	<g transform="translate(2 1.2)">
+        <rect fill="none" stroke="currentColor" stroke-width="0.05" x="0.025" y="0.025" width="0.95" height="0.95" />
+		<svg width="1" height="1" viewBox="0 0 1 1">
+            <path fill="none" stroke="currentColor" stroke-width="0.1" stroke-linejoin="round" stroke-linecap="round" d="M 0.25 0.75 a 0.05 0.05 0 0 1 0.1 -0.1 0.075 0.075 0 0 0 0.15 -0.15 0.075 0.075 0 0 1 0.15 -0.15 0.05 0.05 0 0 0 0.1 -0.1" />
+		</svg>
+	</g>
+</svg>`,
+	rectangle: `<svg style="display: block;" viewBox="0 0 5 2.5">
+	<g transform="translate(2.5 0.8)" text-anchor="middle" font-size="0.45" font-family="monospace" font-weight="700">
+		<text>width =  3 * height</text>
+	</g>
+	<g transform="translate(1 1.2)">
+        <rect fill="none" stroke="currentColor" stroke-width="0.05" x="0.025" y="0.025" width="2.95" height="0.95" />
+		<svg width="3" height="1" viewBox="0 0 1 1">
+            <path fill="none" stroke="currentColor" stroke-width="0.1" stroke-linejoin="round" stroke-linecap="round" d="M 0.25 0.75 a 0.05 0.05 0 0 1 0.1 -0.1 0.075 0.075 0 0 0 0.15 -0.15 0.075 0.075 0 0 1 0.15 -0.15 0.05 0.05 0 0 0 0.1 -0.1" />
+		</svg>
+	</g>
+</svg>`,
+	painting: `<svg style="display: block;" viewBox="0 0 1 1">
     <g stroke="#111111" stroke-width="0.04" stroke-linejoin="round" stroke-linecap="round">
         <rect fill="#a57939" x="0.02" y="0.02" width="0.96" height="0.96" />
         <rect fill="#92d3f5" x="0.14" y="0.14" width="0.72" height="0.72" />
@@ -8,7 +30,7 @@ export default {
     <path fill="#5c9e31" d="M 0.22 0.62 C 0.23 0.55 0.34 0.56 0.41 0.49 C 0.5 0.4 0.5 0.3 0.6 0.32 C 0.7 0.32 0.76 0.46 0.77 0.48 C 0.8 0.55 0.7 0.56 0.72 0.55 C 0.78 0.62 0.73 0.62 0.67 0.61 C 0.58 0.59 0.45 0.62 0.41 0.66 C 0.3 0.75 0.2 0.7 0.22 0.62" />
     <path fill="none" stroke="#111111" stroke-width="0.04" stroke-linejoin="round" stroke-linecap="round" d="M 0.22 0.62 C 0.23 0.55 0.34 0.56 0.41 0.49 C 0.5 0.4 0.5 0.3 0.6 0.32 C 0.7 0.32 0.74 0.46 0.77 0.47" />
 </svg>`,
-	rectangle: `<svg style="display: block;" viewBox="0 0 3 1">
+	surprise: `<svg style="display: block;" viewBox="0 0 3 1">
     <svg width="3" height="1" viewBox="0 0 1 1">
         <g transform="translate(-1 0)">
             <g transform="translate(0.5 0.5) scale(0.7) translate(-0.5 -0.5) translate(0 0.25)">
