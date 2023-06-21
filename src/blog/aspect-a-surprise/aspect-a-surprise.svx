@@ -10,10 +10,18 @@ date: 2023-06-22T10:21:47
 	import svg from './svg.js';
 </script>
 
-<Center element="figure" maxInlineSize="10rem">
+<Center element="figure" maxInlineSize="12rem">
+	{@html svg['painting']}
+</Center>
+
+<Center element="figure" maxInlineSize="36rem">
 	{@html svg['square']}
 </Center>
 
-<Center element="figure" maxInlineSize="30rem">
+<Center element="figure" maxInlineSize="36rem">
 	{@html svg['rectangle']}
+</Center>
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['surprise']}
 </Center>
