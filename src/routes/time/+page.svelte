@@ -61,10 +61,29 @@
 			</symbol>
 		</defs>
 		<g style="color: hsl(43 13% 90%);">
+			<animateTransform
+				attributeName="transform"
+				type="scale"
+				values="1; 0.93; 1"
+				dur="60s"
+				repeatCount="indefinite"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+			/>
 			<use href="#almond" transform="translate(-125 -35) rotate(12)" />
 			<use href="#almond" transform="translate(60 -115) scale(1.4) rotate(-40)" />
 		</g>
 		<g style="color: hsl(43 13% 90%);" fill="currentColor">
+			<animateTransform
+				attributeName="transform"
+				type="scale"
+				values="1; 0.93; 1"
+				dur="60s"
+				begin="-30s"
+				repeatCount="indefinite"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+			/>
 			<circle transform="translate(-105 0) scale(0.4)" r="7" />
 			<circle transform="translate(-90 90) scale(0.9)" r="7" />
 			<circle transform="translate(-60 -90) scale(0.6)" r="7" />
@@ -75,6 +94,15 @@
 			<circle transform="translate(135 20)" r="7" />
 		</g>
 		<g style="color: hsl(40 15% 80%);" fill="currentColor">
+			<animateTransform
+				attributeName="transform"
+				type="scale"
+				values="1; 0.93; 1"
+				dur="60s"
+				repeatCount="indefinite"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+			/>
 			<circle transform="translate(-100 40) scale(1.1)" r="7" />
 			<circle transform="translate(-90 -65) scale(0.9)" r="7" />
 			<circle transform="translate(-35 105) scale(1.2)" r="7" />
@@ -82,6 +110,16 @@
 			<circle transform="translate(115 -30) scale(0.6)" r="7" />
 		</g>
 		<g style="color: hsl(43 13% 90%);">
+			<animateTransform
+				attributeName="transform"
+				type="scale"
+				values="1; 0.93; 1"
+				dur="60s"
+				begin="-30s"
+				repeatCount="indefinite"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1; 0.5 0 0.5 1;"
+			/>
 			<use href="#sparkle" transform="translate(-135 10)" />
 			<use href="#sparkle" transform="translate(85 -80) scale(1.1)" />
 		</g>
