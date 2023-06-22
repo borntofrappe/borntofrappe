@@ -11,8 +11,12 @@
 		When you size an <code>&lt;svg&gt;</code> element with an existing <code>viewBox</code> you must
 		be wary of aspect ratio. The issue is more intuitive than
 		<a href="/meet-aspect-ratio">a certain article</a> would have you believe, but there are indeed a
-		few hiccups. And starting with the default behavior, you will soon discover you often get more than
-		you expect.
+		few hiccups.
+	</p>
+
+	<p>
+		And starting with the default behavior, you will soon discover you often get more than you
+		expect.
 	</p>
 </section>
 

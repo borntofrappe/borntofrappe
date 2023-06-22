@@ -33,7 +33,7 @@ Set the width and height in a 3 to 1 ratio, however, and something close to pecu
 	{@html svg['rectangle']}
 </Center>
 
-This is the default behavior of `preserveAspectRatio`: `xMidYMid meet`. [The article](/meet-aspect-ratio) tries to examine the value in details, but already, it's important to stress an important trait: the element grows into a rectangle, and the canvas follows. The field-of-view set with the `viewBox` effectively changes.
+This is the default behavior of `preserveAspectRatio`. [The article](/meet-aspect-ratio) tries to examine the attribute in details, but already, it's important to stress an important trait: the element grows into a rectangle, and the canvas follows. The field-of-view set with the `viewBox` effectively changes.
 
 In SVG, `viewBox` describes the visible area. Everything you draw within the area is visible. Everything you draw outside of its boundaries is not. `<path>`, `<rect>` elements still exist, but you just don't see them. To see them you need to update the `viewBox`. You may do so explicitly, changing [the origin](/viewbox-origin) or again [the dimensions](viewbox-focus). Or, by happenstance, as you mess up with the width and height.
 
@@ -41,8 +41,8 @@ Had there been a `<circle>` positioned to the right of the sinuous `<path>`.
 
 ```html
 <svg viewBox="0 0 1 1">
-	<circle cx="1.5" cy="0.5" r="0.1" />
 	<!-- ... -->
+	<circle cx="1.5" cy="0.5" r="0.1" />
 </svg>
 ```
 
@@ -50,8 +50,8 @@ Had there been an `<ellipse>` on the opposite end.
 
 ```html
 <svg viewBox="0 0 1 1">
-	<ellipse cx="-0.5" cy="0.5" rx="0.1" ry="0.08" />
 	<!-- ... -->
+	<ellipse cx="-0.5" cy="0.5" rx="0.1" ry="0.08" />
 </svg>
 ```
 
@@ -59,7 +59,7 @@ The moment you morphed the `<svg>` into a rectangle, these shapes would have sud
 
 You may tweak `preserveAspectRatio` to show different portions, but you need to consider that width and height do modify the SVG, in more than one way.
 
-You can look for a `<cliPath>` element to decide what to show once and for all, but while you are at it, you can lean in the feature and show a few more colors.
+You can look for a `<clipPath>` element to decide what to show once and for all, but while you are at it, you can lean in the feature and show a few more colors.
 
 <Center element="figure" maxInlineSize="36rem">
 	{@html svg['surprise']}
