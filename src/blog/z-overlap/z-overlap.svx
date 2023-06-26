@@ -1,0 +1,7 @@
+---
+title: Z overlap
+description: A pseudo-3D reminder not to sleep on SVG basic features.
+date: 2023-06-27T10:50:33
+---
+
+SVG is rich in possibilities. You can implement exotic features with the many elements and even more numerous attributes available in the syntax, but there's plenty you can achieve with just the basics.
