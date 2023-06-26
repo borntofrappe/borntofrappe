@@ -79,5 +79,59 @@ export default {
     <g transform="translate(245 225) rotate(-20)">
         <path style="color: hsl(36 77% 49%);" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" d="M -15 0 C -10 -7 10 -7 15 0 C 10 7 -10 7 -15 0 Z" />
     </g>
+</svg>`,
+	rhombus: `<svg style="display: block;" viewBox="-159.5 -95 319 165">
+	<defs>
+        <marker id="rhombus-marker-end" viewBox="-5 -5 10 10" orient="auto" markerWidth="7" markerHeight="7">
+            <path fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M -3 -4 L 4 0 -3 4 Z" />
+        </marker>
+	</defs>
+    <path style="color: hsl(48 100% 88%);" fill="currentColor" stroke="currentColor" stroke-width="30" stroke-linejoin="round" stroke-linecap="round" d="M 0 -45 L 59.5 -10 L 0 20 L -59.5 -10 L 0 -45 Z" />
+    <path fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 5" stroke-linejoin="round" stroke-linecap="round" d="M 0 -45 L 59.5 -10 L 0 20 L -59.5 -10 L 0 -45 Z" />
+
+	<g fill="currentColor" font-family="monospace" font-size="10" font-weight="700">
+		<text x="-5" y="-70">M 0 -45</text>
+		<text x="85" >L 59.5 -10</text>
+		<text text-anchor="end" x="-85" y="-10">L -59.5 -10</text>
+		<text x="5" text-anchor="end" y="52.5">L 0 20</text>
+	</g>
+
+	<g fill="none" stroke="currentColor" stroke-width="0.75" marker-end="url(#rhombus-marker-end)">
+		<path pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.2" transform="translate(25.5 -15)" d="M 0 -45 L 59.5 -10" />
+		<path pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.2" transform="translate(25.5 15)" d="M 59.5 -10 0 20" />
+		<path pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.2" transform="translate(-25.5 15)" d="M 0 20 L -59.5 -10" />
+		<path pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.2" transform="translate(-25.5 -15)" d="M -59.5 -10 L 0 -45" />
+	</g>
+</svg>`,
+	'3d-shapes': `<svg style="display: block;" viewBox="-240 -155 520 300">
+    <g stroke-linecap="round" stroke-linejoin="round">
+		<path fill="hsl(42 87% 55%)" stroke="hsl(42 87% 55%)" stroke-width="30" d="M -110 -105 L -36.388 -55 L -36.388 25 C -36.388 36.25 -43.966 45 -53.708 45 L -166.292 45 C -176.034 45 -183.612 36.25 -183.612 25 L -183.612 -55 L -110 -105 Z" />
+		<path fill="hsl(48 100% 88%)" stroke="hsl(48 100% 88%)" stroke-width="28" d="M 0 -45 L 51.529 -10 L 51.529 45 C 51.529 56.25 43.951 65 34.208 65 L -34.208 65 C -43.951 65 -51.529 56.25 -51.529 45 L -51.529 -10 L 0 -45 Z" />
+		<g fill="none" stroke="hsl(36 77% 49%)" stroke-width="10">
+				<path d="M -22.517 -20 L 22.517 -20" />
+				<path d="M -15.588 0 L 15.588 0" />
+		</g>
+		<path fill="hsl(42 87% 55%)" d="M 45.598 29 C 45.776 29.563 45.914 30 45.914 30 L 45.481 85 C 45.481 104.152 59.206 120 75.792 120 L 144.208 120 C 160.795 120 174.519 104.152 174.519 85 L 174.519 30 C 174.519 35.625 171.395 41.485 167.378 43.394 L 115.849 73.394 C 112.559 75.422 107.441 75.422 104.151 73.394 L 52.623 43.394 C 48.671 39.797 45.598 33.5 45.598 29 Z" />
+    </g>
+
+    <path transform="translate(0 30)" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 8" d="M -15 -130 L 100 -65 215 0" />
+
+    <g transform="translate(-15 -130)">
+        <text fill="currentColor" font-family="monospace" font-weight="700" text-anchor="middle" font-size="14" y="5">envelope</text>
+        <circle fill="currentColor" cy="14" r="2" />
+        <path fill="none" stroke="currentColor" stroke-width="1" d="M 0 20 L 0 30 -30 40" />
+    </g>
+
+	<g transform="translate(100 -65)">
+        <text fill="currentColor" font-family="monospace" font-weight="700" text-anchor="middle" font-size="14" y="5">letter</text>
+        <circle fill="currentColor" cy="14" r="2" />
+        <path fill="none" stroke="currentColor" stroke-width="1" d="M 0 20 L 0 30 -30 40" />
+    </g>
+
+	<g transform="translate(215 0)">
+        <text fill="currentColor" font-family="monospace" font-weight="700" text-anchor="middle" font-size="14" y="5">overlay</text>
+        <circle fill="currentColor" cy="14" r="2" />
+        <path fill="none" stroke="currentColor" stroke-width="1" d="M 0 20 L 0 30 -30 40" />
+    </g>
 </svg>`
 };
