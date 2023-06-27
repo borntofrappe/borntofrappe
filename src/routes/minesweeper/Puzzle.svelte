@@ -369,77 +369,75 @@
 	</g>
 
 	<g transform="translate(0.5 2.5)">
-		<g on:contextmenu|preventDefault>
-			<g role="group">
-				{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
-					<g transform="translate({column} {row})">
-						{#if isRevealed}
+		<g role="group" on:contextmenu|preventDefault>
+			{#each puzzle.grid.reduce((acc, curr) => [...acc, ...curr], []) as { column, row, isRevealed, state }}
+				<g transform="translate({column} {row})">
+					{#if isRevealed}
+						<rect
+							fill="#bcbcbc"
+							stroke="#767676"
+							stroke-width="0.05"
+							x="0.025"
+							y="0.025"
+							width="0.95"
+							height="0.95"
+						/>
+
+						<svg x="0.2" y="0.2" width="0.6" height="0.6">
+							<use href="#minesweeper-cell-{state}" />
+						</svg>
+					{:else}
+						<g
+							style="cursor: pointer;"
+							on:touchstart={() => {
+								handleReveal({ column, row });
+							}}
+							on:mousedown={({ button }) => {
+								if (button === 0) {
+									handleReveal({ column, row });
+								} else if (button === 2) {
+									handleFlag({ column, row });
+								}
+							}}
+							class="focusable"
+							role="menuitem"
+							tabindex={state === 'win' || state === 'lose' ? '-1' : '0'}
+							aria-label="Cell on row {row + 1} and column {column + 1}."
+							on:keydown={(e) => {
+								const { key } = e;
+								if (key === 'Enter') {
+									e.preventDefault();
+									handleReveal({ column, row });
+								} else if (key === 'f' || key === 'F') {
+									handleFlag({ column, row });
+								}
+							}}
+						>
 							<rect
-								fill="#bcbcbc"
-								stroke="#767676"
-								stroke-width="0.05"
-								x="0.025"
-								y="0.025"
-								width="0.95"
-								height="0.95"
+								fill="#c3c3c3"
+								stroke="url(#minesweeper-linear-gradient-stroke-se)"
+								stroke-width="0.1"
+								x="0.05"
+								y="0.05"
+								width="0.9"
+								height="0.9"
 							/>
 
-							<svg x="0.2" y="0.2" width="0.6" height="0.6">
-								<use href="#minesweeper-cell-{state}" />
-							</svg>
-						{:else}
-							<g
-								style="cursor: pointer;"
-								on:touchstart={() => {
-									handleReveal({ column, row });
-								}}
-								on:mousedown={({ button }) => {
-									if (button === 0) {
-										handleReveal({ column, row });
-									} else if (button === 2) {
-										handleFlag({ column, row });
-									}
-								}}
-								class="focusable"
-								role="menuitem"
-								tabindex={state === 'win' || state === 'lose' ? '-1' : '0'}
-								aria-label="Cell on row {row + 1} and column {column + 1}."
-								on:keydown={(e) => {
-									const { key } = e;
-									if (key === 'Enter') {
-										e.preventDefault();
-										handleReveal({ column, row });
-									} else if (key === 'f' || key === 'F') {
-										handleFlag({ column, row });
-									}
-								}}
-							>
+							<g class="focus" opacity="0">
 								<rect
-									fill="#c3c3c3"
-									stroke="url(#minesweeper-linear-gradient-stroke-se)"
+									fill="none"
+									stroke="url(#minesweeper-linear-gradient-stroke-nw)"
 									stroke-width="0.1"
 									x="0.05"
 									y="0.05"
 									width="0.9"
 									height="0.9"
 								/>
-
-								<g class="focus" opacity="0">
-									<rect
-										fill="none"
-										stroke="url(#minesweeper-linear-gradient-stroke-nw)"
-										stroke-width="0.1"
-										x="0.05"
-										y="0.05"
-										width="0.9"
-										height="0.9"
-									/>
-								</g>
 							</g>
-						{/if}
-					</g>
-				{/each}
-			</g>
+						</g>
+					{/if}
+				</g>
+			{/each}
 		</g>
 
 		<g style="pointer-events: none;">
