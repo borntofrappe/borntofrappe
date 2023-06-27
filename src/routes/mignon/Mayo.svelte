@@ -71,6 +71,7 @@
 			offsetY
 		});
 	}}
+	role="presentation"
 >
 	<defs>
 		<path id="l" d="M 0 0 l 0 7 7 7 -5.5 -3 -1.5 3 -1.5 -3 -5.5 3 7 -7" />

@@ -61,7 +61,7 @@
 	on:mousemove={handleMove}
 	on:mouseleave={handleReset}
 	on:click={handleMove}
-	on:keydown
+	role="presentation"
 >
 	<defs>
 		<symbol id="star-symbol" viewBox="-4.5 -4.5 9 9">
