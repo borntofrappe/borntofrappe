@@ -15,7 +15,12 @@
 	};
 </script>
 
-<svg viewBox="-50 -50 100 100" on:mouseenter={handleStart} on:mouseleave={handleEnd}>
+<svg
+	viewBox="-50 -50 100 100"
+	on:mouseenter={handleStart}
+	on:mouseleave={handleEnd}
+	role="presentation"
+>
 	<defs>
 		<circle id="serene-c" r="11" />
 		<mask id="serene-mask">

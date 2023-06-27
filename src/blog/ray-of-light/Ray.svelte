@@ -67,7 +67,7 @@
 	on:mousemove={handleMove}
 	on:mouseleave={handleReset}
 	on:click={handleMove}
-	on:keydown
+	role="presentation"
 >
 	<g transform="scale({$scale})">
 		<g transform="translate({$offset.x * 0.2} {$offset.y * 0.2})">

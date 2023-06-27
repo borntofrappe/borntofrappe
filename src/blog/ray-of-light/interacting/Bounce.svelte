@@ -24,6 +24,7 @@
 	on:mousedown={handleStart}
 	on:mouseup={handleEnd}
 	on:mouseleave={handleEnd}
+	role="presentation"
 >
 	<g transform="scale({$scale})">
 		<g fill="none" stroke="#ffdb47" stroke-width="3" stroke-linecap="round">

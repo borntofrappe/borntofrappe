@@ -106,6 +106,7 @@
 	on:pointermove|preventDefault={handleMove}
 	on:mousemove|preventDefault
 	on:touchmove|preventDefault
+	role="presentation"
 	style:cursor={isPointerDown ? 'grabbing' : 'grab'}
 	viewBox="{x} 0 {v + p * 2} {m + p * 2}"
 >

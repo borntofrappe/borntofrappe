@@ -60,6 +60,7 @@
 			offsetX
 		});
 	}}
+	role="presentation"
 >
 	<defs>
 		<mask id="keep-dry-mask">

@@ -59,6 +59,7 @@
 			offsetY
 		});
 	}}
+	role="presentation"
 >
 	<defs>
 		<marker id="brianna-m" viewBox="-1 -1 2 2">

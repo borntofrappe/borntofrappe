@@ -117,8 +117,8 @@
 								d="M 0 1.5 h -2 a 2 2 0 0 0 -2 2 v 2 a 2 2 0 0 0 2 2 h 2 2 2 a 2 2 0 0 1 2 2 v 1.5 2 2 a 2 2 0 0 0 2 2 h 2 2 a 2 2 0 0 0 2 -2 v -2 -2 -1.5 -2 -2 -2 a 2 2 0 0 0 -2 -2z"
 							/>
 							<path
+								aria-hidden="true"
 								on:click={handlePress}
-								on:keydown
 								style="cursor: pointer;"
 								fill="hsl(42, 78%, 60%)"
 								stroke="hsl(42, 78%, 60%)"

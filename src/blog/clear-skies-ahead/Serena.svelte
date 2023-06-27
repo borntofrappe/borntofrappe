@@ -29,6 +29,7 @@
 	on:mouseleave={handleEnd}
 	on:touchstart|preventDefault={handleStart}
 	on:touchend|preventDefault={handleEnd}
+	role="presentation"
 >
 	<defs>
 		<circle id="serena-c" r="11" />

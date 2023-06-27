@@ -70,6 +70,7 @@
 					offsetY: clientY - t
 				});
 			}}
+			role="presentation"
 		>
 			<g
 				fill="none"

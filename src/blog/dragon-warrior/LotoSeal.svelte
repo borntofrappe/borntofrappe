@@ -266,7 +266,12 @@
 			<strong>Loto Seal</strong> is around here. <br /> It might be just a tile distant.
 		</p>
 	{/if}
-	<svg on:click={handleClick} bind:this={element} viewBox="0 0 {columns} {rows}" on:keydown>
+	<svg
+		on:click={handleClick}
+		bind:this={element}
+		viewBox="0 0 {columns} {rows}"
+		role="presentation"
+	>
 		<defs>
 			<symbol id="dragon-warrior-swamp" viewBox="0 0 16 8" shape-rendering="crispEdges">
 				<g fill="hsl(0, 0%, 23%)">

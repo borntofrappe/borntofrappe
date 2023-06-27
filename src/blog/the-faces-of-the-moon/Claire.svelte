@@ -74,7 +74,7 @@
 	on:mousemove={handleMove}
 	on:mouseleave={handleReset}
 	on:click={handleMove}
-	on:keydown
+	role="presentation"
 >
 	<defs>
 		<path

@@ -415,16 +415,16 @@
 
 	<g transform="translate({width / 2} {height / 2})">
 		<g opacity="0">
-			<g on:keydown on:click={() => handlePad('u')}>
+			<g aria-hidden="true" on:click={() => handlePad('u')}>
 				<path d="M 0 0 l {-width / 2} {-height / 2} {width} 0z" />
 			</g>
-			<g on:keydown on:click={() => handlePad('r')}>
+			<g aria-hidden="true" on:click={() => handlePad('r')}>
 				<path d="M 0 0 l {width / 2} {-height / 2} 0 {height}z" />
 			</g>
-			<g on:keydown on:click={() => handlePad('d')}>
+			<g aria-hidden="true" on:click={() => handlePad('d')}>
 				<path transform="rotate(180)" d="M 0 0 l {-width / 2} {-height / 2} {width} 0z" />
 			</g>
-			<g on:keydown on:click={() => handlePad('l')}>
+			<g aria-hidden="true" on:click={() => handlePad('l')}>
 				<path transform="rotate(180)" d="M 0 0 l {width / 2} {-height / 2} 0 {height}z" />
 			</g>
 		</g>

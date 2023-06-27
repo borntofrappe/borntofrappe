@@ -31,7 +31,7 @@
 
 <svelte:window on:resize={handleSize} />
 
-<svg viewBox="-50 -50 100 100" bind:this={svg} on:mousemove={handleMove}>
+<svg viewBox="-50 -50 100 100" bind:this={svg} on:mousemove={handleMove} role="presentation">
 	<defs>
 		<marker id="ladybird-m" viewBox="-1 -1 2 2">
 			<circle r="1" fill="#38311e" />
