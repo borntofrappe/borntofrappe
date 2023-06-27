@@ -1,0 +1,234 @@
+---
+title: SVG transform
+description: A soft introduction to SVG transformations and the precious concept of transform origin.
+date: 2023-02-16 9:08:27
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import Windmill from './Windmill.svelte';
+	import Origin from './Origin.svelte';
+	import Composition from './Composition.svelte';
+	import DrinkingBird from './DrinkingBird.svelte';
+</script>
+
+With a basic understanding of SVG syntax you are able to create quite the impressive visuals. CSS animations, then, are just a step away.
+
+<Center maxInlineSize="26rem">
+	<Windmill />
+</Center>
+
+Do not worry. The article won't over-extend into the land of cascading style sheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector as a treat.
+
+## Getting started
+
+Start with a large, blank canvas.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!--  -->
+</svg>
+```
+
+Begin with a pedestal in the bottom half section. The `<rect>` element is one option, but let's draw a few lines with the `<path>` element instead.
+
+```html
+<path d="M 50 50 v 35 h -10 h 20" />
+```
+
+Paths have a default fill and no visible stroke, but in this instance, flip the values to have the stand appear with a few marks.
+
+<!-- prettier-ignore -->
+```html
+<g 
+	fill="none" 
+	stroke="#632b2a" 
+	stroke-width="4" 
+	stroke-linejoin="round" 
+	stroke-linecap="round">
+	<!-- <path /> -->
+</g>
+```
+
+Place a `<circle>` at the top of the perch, a hinge of sorts.
+
+```html
+<circle fill="#632b2a" cx="50" cy="50" r="4" />
+```
+
+And the structure is complete.
+
+<Center maxInlineSize="20rem">
+	{@html svg['pedestal']}
+</Center>
+
+## Transform origin
+
+Something has to sit on top of this small altar. Start with a line, right above it.
+
+<!-- prettier-ignore -->
+```html
+<path 
+	fill="none" 
+	stroke="#db9756" 
+	stroke-width="4" 
+	d="M 50 10 v 60" 
+/>
+```
+
+<Center maxInlineSize="20rem">
+	{@html svg['overlap']}
+</Center>
+
+We'll improve the appearance soon enough, but focus on the hinge first. You want to rotate the segment using the circle as a reference point. Rotate the shape around (50, 50).
+
+Perhaps expectedly, applying the rotation directly won't work.
+
+```html
+<g transform="rotate(25)">
+	<!-- <path /> -->
+</g>
+```
+
+<Center maxInlineSize="20rem">
+	{@html svg['transform-rotate']}
+</Center>
+
+This is because the rotation is relative to (0, 0), to the origin of the SVG.
+
+<Center maxInlineSize="30rem">
+	<Origin />
+</Center>
+
+Enter the `transform-origin` attribute. Here you specify the new origin similarly to the equally-named CSS property.
+
+```html
+<g transform-origin="50 50" transform="rotate(25)">
+	<!-- <path /> -->
+</g>
+```
+
+Only one question remains: does it actually work?
+
+<Center maxInlineSize="20rem">
+	{@html svg['transform-origin']}
+</Center>
+
+It seems the feature [is not widespread](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), but as the attribute becomes ubiquitous, as you see the sharp stick properly tilted around the center of the canvas, you won't have to look for alternatives. You won't have to read the next section either.
+
+## Transform translate
+
+Barring the `transform-origin` attribute you need to meddle with the markup. The idea is to apply a translation _before_ the rotation.
+
+```html
+<g transform="translate(50 50)">
+	<g transform="rotate(25)">
+		<!-- <path /> -->
+	</g>
+</g>
+```
+
+The rotation is then relative to the offset coordinate. Update the `<path>` to draw the line from the new point.
+
+```diff
+-<path d="M 50 10 v 60" />
++<path d="M 0 -40 v 60" />
+```
+
+And voilà. Even in this roundabout manner, the rotation takes place as expected.
+
+<Center maxInlineSize="20rem">
+	{@html svg['transform-translate']}
+</Center>
+
+## Getting fancier
+
+Be it through the `transform-origin` attribute or the custom translation, you are able to rotate the line from the desired reference point.
+
+<Center maxInlineSize="30rem">
+	<Origin offset={true} />
+</Center>
+
+Let's continue with the drawing. The beauty of updating the origin on the group element is that every nested shape will be subject to the same transformation, the same rotation. Be it the centered segment, or a sizable circle right below it.
+
+```html
+<!-- <path / -->
+<circle fill="#db9756" cy="20" r="11" />
+```
+
+Perhaps even a brighter ellipse to emulate a light source.
+
+<!-- prettier-ignore -->
+```html
+<circle fill="#db9756" cy="20" r="11" /> 
+<ellipse fill="#f5e0c1" cy="16" rx="5" ry="4" />
+```
+
+You get the gist. These are drawn below the segment, without changing the horizontal offset. They are however tilted with the line.
+
+<Center maxInlineSize="20rem">
+	{@html svg['composition-1']}
+</Center>
+
+On the opposite end, add a brighter round shape with a noticeable stroke.
+
+<!-- prettier-ignore -->
+```html
+<circle 
+	fill="#914c3c" 
+	stroke="#914c3c" 
+	stroke-width="2" 
+	r="10" 
+	cy="-30" 
+/>
+```
+
+Why the `stroke` attribute? It helps in the moment you want to add a custom shape, a `<path>` with rounded edges protruding from the circle.
+
+```html
+<path
+	fill="#914c3c"
+	stroke="#914c3c"
+	stroke-width="2"
+	stroke-linejoin="round"
+	d="M 0 -30 l 10 0 10 10 -20 0"
+/>
+```
+
+Care to guess what kind of polygon is trying to escape the circle east?
+
+<Center maxInlineSize="20rem">
+	{@html svg['composition-2']}
+</Center>
+
+That's right, a beautiful trapezoid. Since the elements have the same fill, the same stroke, you might want to wrap the two in a common group.
+
+<!-- prettier-ignore -->
+```html
+<g
+	fill="#914c3c"
+	stroke="#914c3c"
+	stroke-width="2"
+	stroke-linejoin="round">
+	<!-- <circle> -->
+	<!-- <path> -->
+</g>
+```
+
+But the result is one and the same. The interactive version? Equally entertaining.
+
+<Center maxInlineSize="30rem">
+	<Composition />
+</Center>
+
+## Wrapping up
+
+In the end, we limited ourselves to elementary shapes, mostly lines and circles. The last `<path>` element completed the precious toy, but you have to thank SVG transformations for the fancy result.
+
+With enough patience, with enough care you can spoil yourself drawing a more convincing picture. Perhaps even consider CSS animations once more. I might have mentioned it, but these are well within reach. Let me grab a coaster and prove it with a refreshing beverage.
+
+<Center maxInlineSize="30rem">
+	<DrinkingBird />
+</Center>

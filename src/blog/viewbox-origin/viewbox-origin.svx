@@ -1,0 +1,152 @@
+---
+title: viewBox origin
+description: Consider the values of the viewBox attribute for practical uses and creative endeavors.
+date: 2023-05-09T21:37:31
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import LineChart from './LineChart.svelte';
+	import Range from './Range.svelte';
+	import Animate from './Animate.svelte';
+	import PuttPutt from './PuttPutt.svelte';
+</script>
+
+Among the many attributes you find in SVG, `viewBox` offers plenty of possibilities. You might have spotted the cryptic string in `<pattern>`, `<marker>`, or again `<symbol>` element, but to get started, we're going to focus on the root of the document and a topmost `<svg>` node.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!-- ... -->
+</svg>
+```
+
+In the attribute you have a total of four numbers detailing the SVG canvas, the visible area.
+
+The first two set the position of the canvas origin, the top left corner. x and y, so to speak.
+
+The second pair completes the box with the actual dimensions. Width and height.
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html svg['view-box']}
+</Center>
+
+Draw something between these boundaries and the shapes will be shown on screen, clearly visible. Draw something outside of the area, however, and you won't see the result.
+
+Just by knowing this, the attribute helps to cover practical applications. And pointless endeavors alike.
+
+## In practice
+
+Consider a line chart, studying a mysteriously noisy phenomenon over a long period of time and in excruciating detail.
+
+<Center element="figure" maxInlineSize="52rem">
+    <LineChart />
+</Center>
+
+There are five hundred and one observations, five hundred and one points shown side by side. And to accommodate them all, the `viewBox` stretches the canvas to a rectangle 530 units wide, 130 units tall.
+
+```html
+<svg viewBox="0 0 530 130">
+	<!-- ... -->
+</svg>
+```
+
+You are able to highlight a trend, a pattern through the months, but it is difficult to study the change on a day to day basis.
+
+You can technically leave the figure as-is and ask your readers to zoom in on the visual themselves. SVG being _scalable_, and _vector_ to boot, the shapes will remain crisp at any size. But there are certainly ways you are able to help. For instance, by tinkering with the `viewBox` attribute and specifically the width of the canvas.
+
+Reduce the number, perhaps to match the measure of the height, and you end up with a perfect square. You can have the SVG grow and focus on the first sector.
+
+```html
+<svg viewBox="0 0 130 130">
+	<!-- ... -->
+</svg>
+```
+
+Of course you do lose a few points, more than you can actually tolerate, but as mentioned, they are not forgotten.
+
+The points and the accompanying line are drawn to the right of the thinner canvas. Update the origin to move the top left corner and the entire visual slides to find them anew.
+
+```diff
+-viewBox="0 0 130 130"
++viewBox="50 0 130 130"
+```
+
+This is one place where you can flex your JavaScript muscles — you can set out to track the position of the cursor, perhaps exploring [pointer events](/get-to-the-point), and implement a dragging feature — but immediately, a handle is more than enough to show the remarkable shift.
+
+<Center maxInlineSize="30rem">
+    <Range />
+</Center>
+
+## For laughs
+
+The moment you change the origin with the `viewBox` attribute you assume the role of a director. You pick and choose what to show, you frame the scene.
+
+The moment you realize `viewBox` is indeed an attribute, and just like any SVG attribute you can update the value with [SMIL animation](/a-coy-introduction-to-smil), you can literally set up a short movie.
+
+Right inside the `<svg>` element, as a direct child node, add the `<animate>` element.
+
+```html
+<svg viewBox="0 0 130 130">
+	<animate />
+</svg>
+```
+
+And in this element, instruct to update the origin, from start to finish.
+
+<!-- prettier-ignore -->
+```html
+<animate
+	attributeName="viewBox"
+	dur="10s"
+	to="400 0 130 130"
+/>
+```
+
+There are technically just three attributes to have the animation play out:
+
+1. the name of the attribute you want to update — `attributeName`
+
+2. the amount of time the animation should take — `dur`
+
+3. the value the attribute should assume — `to`
+
+That being said, and to avoid the attribute jump back at the very beginning, you might want to add a fourth, and freeze the animation in place.
+
+<!-- prettier-ignore -->
+```html
+<animate
+	fill="freeze"
+	attributeName="viewBox"
+	dur="10s"
+	to="400 0 130 130"
+/>
+```
+
+Then again, you can replace the `to` attribute with `values`, and specify multiple values instead. In this manner , you can have the `viewBox` rock back and forth.
+
+```html
+<animate
+	fill="freeze"
+	attributeName="viewBox"
+	dur="10s"
+	values="
+		0 0 130 130; 
+		400 0 130 130;
+		0 0 130 130
+	"
+/>
+```
+
+And in this manner you can delight in the animation without jumps, perhaps even more than once.
+
+<Center maxInlineSize="30rem">
+    <Animate />
+</Center>
+
+Of course animations are not that practical. In the context of the line chart, it is far preferable to have a handle, or again that desired dragging functionality. But within the `<svg>` element, you can draw something far more exotic than a line. And delight in a one-time animation, from start to a slow, approaching end.
+
+<Center maxInlineSize="30rem">
+    <PuttPutt />
+</Center>

@@ -1,0 +1,87 @@
+---
+title: Conflict resolution
+description: Musings on element attributes and mistaken identities.
+date: 2023-04-17T10:25:53
+---
+
+<script>
+  import Center from '$lib/components/blog/Center.svelte';
+
+  import svg from './svg.js';
+</script>
+
+Writing vector graphics you often rely on references. Patterns, gradients, clips, masks, and the ever flexible `<symbol>` element. You define these helpers with an `id` attribute.
+
+```html
+<symbol id="clock" viewBox="0 0 10 10">
+	<!-- ... -->
+</symbol>
+```
+
+And include them as needed.
+
+```html
+<use href="#clock" />
+```
+
+You have to be weary, however, and try not to be too smart with labels. And for more than a single reason.
+
+Say you draw a stylish analog clock. You spend a lot of time positioning the marks for the hours, and even rotate the hands to test the visual.
+
+<Center element="figure" maxInlineSize="18rem">
+  {@html svg['clock']}
+</Center>
+
+You create the graphic with an `<svg>` element and then decide to include it as part of a larger decoration — the perfect use case for a `<symbol>`. And by now you've seen how: add an `id` and you are able to repeat the visual in the position and dimensions of your choosing with the `<use>` element.
+
+Days pass, weeks go by. You now decide the visual needs a practical, digital clock. You carefully line up the `<path>` elements for a seven segment display, even for the numbers you don't actually show in the static picture — who knows, maybe one day somebody will turn this piece into a functional widget.
+
+{@html svg['defs']}
+
+You slap a quick label on the asset and reference it.
+
+```html
+<use href="#clock" />
+```
+
+Except that this time, no matter your feelings toward the latest creation, the clock is not there. In its place, a familiar face.
+
+<Center element="figure" maxInlineSize="18rem">
+  {@html svg['clock-conflict']}
+</Center>
+
+The highly anticipated issue: there's already a `#clock` in the same page. You might have forgotten about it, but you are now reminded with a most visual feedback.
+
+The fix: update the labels. And remind yourself to be less quippy the next time.
+
+```diff
+-<symbol id="clock" ...>
++<symbol id="clock-digital" ...>
+```
+
+The example is pedantic, and the solution is immediate, but only in context. Only if you know where to look.
+
+<Center element="figure" maxInlineSize="18rem">
+  {@html svg['clock-digital']}
+</Center>
+
+## HTML
+
+SVG being designed for the web, it is often included right alongside HTML elements. These too have an `id` attribute, allowing you to identify the nodes in CSS and isolate them in JavaScript.
+
+With this in mind, the issue becomes even more relevant and insidious.
+
+Say you are writing an article about vector graphics and you include a few examples with the flowing text. You write in markup and have an entire process to transform the syntax into valid HTML. You also have a permalink feature, where anchor links point to the headings and elaborate the structure of the page.
+
+```html
+<h2 id="clock">
+	Clock
+	<a href="#cube">permalink</a>
+</h2>
+```
+
+The links refer to the headings by `id` and you don't pick the value yourself. After all, the process is automated for your ultimate convenience.
+
+Short, concise labels in the SVG document come back to bite you: add the drawing before the heading and you break the permalink. And unless you test the tab order you will never be able to discover that the link points to the wrong asset. Swap the order and the issue becomes more evident and puzzling. The link does work, but the `<use>` element looks to the heading, and you end up with a blank canvas.
+
+A scenario with too many details not to have happened already? I prefer to think of it as a cautionary tale. Past that, only time will tell.

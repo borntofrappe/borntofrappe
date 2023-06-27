@@ -1,0 +1,114 @@
+---
+title: CSS in SVG
+description: Leave it to CSS to make SVG all the more practical.
+date: 2023-03-03T11:41:10
+---
+
+<script>
+	import svg from './svg.js'
+
+	import CurrentColor from './CurrentColor.svelte'
+</script>
+
+Vector graphics are most suited for icons, stylized images scattered here and there alongside flowing text {@html svg['rocket']}.
+
+In this context the value of `currentColor` makes the format all the more flexible.
+
+```html
+<path
+	fill="currentColor"
+	stroke="currentColor"
+	stroke-width="10"
+	d="M 0 -11.25 a 22.5 22.5 0 0 1 45 0 q 0 25 -45 50 q -45 -25 -45 -50 a 22.5 22.5 0 0 1 45 0"
+/>
+```
+
+Change the `color` property and the `<path>` will follow its guidance to the letter.
+
+<CurrentColor />
+
+The moment you have a more elaborate composition with multiple colors it is still possible to be flexible through CSS custom properties. While also exploring different artistic styles.
+
+Consider a helpful butterfly. The design is simple, but the colors abound.
+
+<figure>
+	{@html svg['butterfly']}
+</figure>
+
+Here you have a pair of wide-ranging wings.
+
+```html
+<g fill="#233887" stroke=" #1c1f62">
+	<!-- ...wings -->
+</g>
+```
+
+A couple of dots above.
+
+```html
+<g fill="#e89d38" stroke=" #e2be80">
+	<!-- ...upper dots -->
+</g>
+```
+
+Two smaller circles below.
+
+```html
+<g fill="#3fb38e" stroke=" #3c8b98">
+	<!-- ...lower dots -->
+</g>
+```
+
+Instead of a fixed value for the `fill` and `stroke` attributes add a custom property.
+
+```html
+<g fill="var(--wings-fill)" stroke="var(--wings-stroke)">
+	<!-- ... -->
+</g>
+```
+
+If you feel so inclined, include the previous, thoughtful pick as a fallback. Just to be safe.
+
+```html
+<g fill="var(--wings-fill, #233887)" stroke="var(--wings-stroke, #1c1f62)">
+	<!-- ... -->
+</g>
+```
+
+All you need is to then update the property in the stylesheet.
+
+```css
+svg {
+	--wings-fill: hsl(277, 100%, 94%);
+	--wings-stroke: hsl(327, 10%, 23%);
+	--upper-dots-fill: hsl(322, 87%, 85%);
+	--upper-dots-stroke: hsl(348, 89%, 67%);
+	--lower-dots-fill: hsl(275, 67%, 82%);
+	--lower-dots-stroke: hsl(225, 37%, 55%);
+}
+```
+
+To test a new look.
+
+<figure class="alt">
+	{@html svg['butterfly']}
+</figure>
+
+You might be wondering which color I preferred for the body. In a possibly predictable twist, it is actually `currentColor`, the very same.
+
+<style>
+	figure {
+		display: block;
+		max-inline-size: 32rem;
+		margin-inline: auto;
+	}
+
+	figure.alt {
+		--wings-fill: hsl(277, 100%, 94%);
+		--wings-stroke: hsl(327, 10%, 23%);
+		--upper-dots-fill: hsl(322, 87%, 85%);
+		--upper-dots-stroke: hsl(348, 89%, 67%);
+		--lower-dots-fill: hsl(275, 67%, 82%);
+		--lower-dots-stroke: hsl(225, 37%, 55%);
+	}
+</style>

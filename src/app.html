@@ -2,8 +2,94 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<link rel="icon" href="%sveltekit.assets%/icons/icon.svg" type="image/svg+xml" />
 		<meta name="viewport" content="width=device-width" />
+
+		<link rel="alternate" type="application/xml" title="Atom feed" href="/feed.xml" />
+
+		<link
+			rel="preload"
+			href="/fonts/Figtree-Regular-kern-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/Figtree-ExtraBold-kern-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+
+		<style>
+			@font-face {
+				font-family: Figtree;
+				src: url('/fonts/Figtree-Regular-kern-latin.woff2') format('woff2');
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: Figtree;
+				src: url('/fonts/Figtree-ExtraBold-kern-latin.woff2') format('woff2');
+				font-weight: 700;
+				font-display: swap;
+			}
+
+			body {
+				font-family: Figtree, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+					helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+			}
+
+			code {
+				font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+			}
+		</style>
+		<script>
+			localStorage.getItem('timeOfDay') &&
+				document.documentElement.setAttribute(
+					'data-time-of-day',
+					localStorage.getItem('timeOfDay')
+				);
+			(async () => {
+				if (!'fonts' in document) return;
+
+				const regular = new FontFace(
+					'Figtree',
+					"url(/fonts/Figtree-Regular-hint-features.woff2) format('woff2')"
+				);
+
+				const italic = new FontFace(
+					'Figtree',
+					"url(/fonts/Figtree-Italic-hint-features.woff2) format('woff2')",
+					{ style: 'italic' }
+				);
+
+				const extraBold = new FontFace(
+					'Figtree',
+					"url(/fonts/Figtree-ExtraBold-hint-features.woff2) format('woff2')",
+					{ weight: '700' }
+				);
+
+				const extraBoldItalic = new FontFace(
+					'Figtree',
+					"url(/fonts/Figtree-ExtraBoldItalic-hint-features.woff2) format('woff2')",
+					{ weight: '700', style: 'italic' }
+				);
+
+				const fonts = await Promise.all([
+					regular.load(),
+					italic.load(),
+					extraBold.load(),
+					extraBoldItalic.load()
+				]);
+
+				fonts.forEach((font) => {
+					document.fonts.add(font);
+				});
+			})();
+		</script>
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

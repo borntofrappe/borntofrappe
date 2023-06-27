@@ -1,0 +1,263 @@
+---
+title: Get to the point
+description: Explore enough JavaScript to simplify event handlers, find a few spots and a new angle.
+date: 2023-04-24T17:45:32
+---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+	
+    import svg from './svg.js'
+
+	import PointerMove from './PointerMove.svelte'
+	import GraphPaper from './GraphPaper.svelte'
+	import Poxy from './Poxy.svelte'
+</script>
+
+In a fresh tutorial for Svelte and SvelteKit the section devoted to [DOM events](https://learn.svelte.dev/tutorial/dom-events) highlights a rather intriguing handler.
+
+```svelte
+<div on:pointermove={handleMove}>
+	The pointer is at {m.x} x {m.y}
+</div>
+```
+
+The mention is enticing, particularly considering how I tried to retrieve the coordinates in past projects with mouse _and_ touch events.
+
+<!-- prettier-ignore -->
+```svelte
+<svg 
+	on:mousemove={handleMouseMove} 
+	on:touchmove={handleTouchMove}
+>
+	<!-- ... -->
+</svg>
+```
+
+In the moment you don't want to differentiate between the two and just need the x, y values, the syntax promises to simplify the process with a unified set. And it might just inspire a solution for an issue I certainly did not forget.
+
+One thing at a time, however. Let's explore the event with a clean `<svg>` element.
+
+```html
+<svg viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+The `viewBox` describes a canvas 1 unit wide and tall, and while the measure seems restrictive, it will simplify things further down the line. And in the land of scalable vector graphics, it'll be more than enough.
+
+Create two variables for the x, y coordinates.
+
+```svelte
+<script>
+	let x = 0.2;
+	let y = 0.2;
+</script>
+```
+
+Draw a circle in the precise spot.
+
+```svelte
+<circle cx={x} cy={y} r="0.025" />
+```
+
+The goal is to now update the x, y value with the promised offsets. Add the `pointermove` event to invoke a helper function.
+
+```svelte
+<svg on:pointermove={handleMove} viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+In the body of the function extract the values with `offsetX`and `offsetY`.
+
+```js
+const handleMove = (e) => {
+	const { offsetX, offsetY } = e;
+};
+```
+
+The values are relative to the actual width and height of the element as rendered on the page. In Svelte, one way to access the piece is with a variable bound to the node.
+
+```svelte
+<svg bind:this={svg} on:pointermove={handleMove} viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+You can extract the dimensions in `handleMove`, but the size of the element does not change as frequently as you move the pointer over the element. You end up repeating the same operation with the same values. To improve the setup dedicate two new variables to the width and the height.
+
+```js
+let w, h;
+```
+
+Define a function to update the two with the size of the bound `<svg>`.
+
+```js
+let svg;
+
+const handleSize = () => {
+	const { width, height } = svg.getBoundingClientRect();
+	w = width;
+	h = height;
+};
+```
+
+At this juncture, you need to call the function only in two instances:
+
+1. as the element appears on the page
+
+   In the vocabulary of Svelte, when the component is mounted.
+
+   ```js
+   import { onMount } from 'svelte';
+   onMount(() => {
+   	handleSize();
+   });
+   ```
+
+2. whenever the window is resized
+
+   ```svelte
+   <svelte:window on:resize={handleSize} />
+   ```
+
+   SVG being scalable, the actual width and height might change as you resize the element with CSS.
+
+In this manner, you have the width and height. In `handleMove`, you also have the horizontal and vertical offset relative to these values. You finally find the point with a straight division.
+
+```js
+x = offsetX / w;
+y = offsetY / h;
+```
+
+And that's it. Move a cursor over the SVG, be it a mouse, a stylus or the tip of an inquisitive finger, and the circle will track its movement.
+
+There is a note to make in terms of ranges, but feel free to navigate the canvas for a little bit.
+
+<Center maxInlineSize="28rem">
+	<PointerMove />
+</Center>
+
+Speaking of ranges, we compute the coordinates by dividing the offsets with the width and height. This means x and y fall in the 0 to 1 range, mapping perfectly to the size of the canvas — remember the `viewBox` attribute?
+
+```html
+<svg viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+With different values you'd have to map the coordinates to the larger intervals, from 0 to the canvas' width, from 0 to the canvas' height.
+
+## Marked improvements
+
+You are not limited to circles, and exploring the SVG syntax, the x, y values help to draw more creative visuals. Consider for instance this sheet of graph paper.
+
+<Center maxInlineSize="28rem">
+	<GraphPaper />
+</Center>
+
+Past the pattern decorating the background, past the dashed lines framing the origin of a 2D plane, you find a circle. But this circle is fixed in the origin.
+
+```html
+<circle cx="0.5" cy="0.5" r="0.0125" />
+```
+
+What does move to follow the pointer is the line, leaving the origin with a thicker, solid stroke.
+
+<!-- prettier-ignore -->
+```svelte
+<line 
+	stroke="currentColor"
+	stroke-width="0.1"
+	x1="0.5" 
+	y1="0.5" 
+	x2={x} 
+	y2={y} 
+/>
+```
+
+It certainly did not escape your eyes, however, that the line ends with a stylish twist, with an arrow. What is more, the arrow is tilted at the appropriate angle.
+
+For this fitting hat you have a `<marker>` element with a specific `id` and `orient` attribute.
+
+```html
+<marker id="marker" orient="auto">
+	<!-- ... -->
+</marker>
+```
+
+The arrow itself is a `<path>` element, drawing a segment facing the right.
+
+```html
+<path d="M 0 0 l 0.6 0.5 -0.6 0.5 0.35 -0.5z" />
+```
+
+Once you figure out the appropriate values for the marker's position and size — there's a plethora of attributes to discover — include the visual through the `marker-end` attribute.
+
+```html
+<line marker-end="url(#marker)" ... />
+```
+
+The line is happy to point at the precise spot. And as you move the pointer, the arrow remains fixed at the very end, ready to turn around the clock. The very end... around the clock...
+
+I seem to remember a [past project](/charming-good-luck) which ended with a small failure and a quick workaround. We had a ladybug. Similar to this one.
+
+<Center maxInlineSize="28rem">
+	{@html svg['poxy']}
+</Center>
+
+And the task was to have the creature follow the cursor. We resolved to find the x, y values — with mouse and touch events — to compute the angle and then rotate the shape.
+
+```svelte
+<g transform="rotate({$angle})">
+	<!-- ... -->
+</g>
+```
+
+Unfortunately the angle went from 0 to 360, and as we animated the value with a spring, the result was that the insect would jump, would stutter abruptly from one end to the other.
+
+But the marker might just do the trick.
+
+Step 1: take the drawing of the ladybug.
+
+```html
+<svg viewBox="-50 -50 100 100">
+	<!-- ... -->
+</svg>
+```
+
+Step 2: turn the `<svg>` into a `<marker>` element.
+
+```html
+<marker id="marker-ladybug" orient="auto" viewBox="-50 -50 100 100">
+	<!-- ... -->
+</marker>
+```
+
+And that's essentially it. Instead of adding the marker at the end of the line, prefer the `marker-start` attribute.
+
+<!-- prettier-ignore -->
+```html
+<line 
+	marker-start="url(#marker-ladybug)" 
+	... 
+/>
+```
+
+And feel free to even remove the stroke of the line.
+
+<!-- prettier-ignore -->
+```html
+<line 
+	stroke="none"
+	marker-start="url(#marker-ladybug)" 
+	... 
+/>
+```
+
+Whether you see it or not, the segment will reach out toward the pointer. And the faithful critter will be happy to follow.
+
+<Center maxInlineSize="36rem">
+	<Poxy />
+</Center>

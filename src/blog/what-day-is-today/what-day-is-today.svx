@@ -1,0 +1,312 @@
+---
+title: What day is today?
+description: I am often asked a puzzling, time-sensitive question. Here's a way to have an accurate reply.
+date: 2023-01-17 22:31:00
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+    import svg from './svg.js';
+    import Defs from './Defs.svelte';
+    import DefsAlt from './DefsAlt.svelte';
+    import ClustersAddon from './ClustersAddon.svelte';
+    import Clusters from './Clusters.svelte';
+    import Marks from './Marks.svelte';
+</script>
+
+Be it for the day of the week or the number of the month, I rarely have a prompt, and correct, answer to the query. What better pretext to automate the answer with code?
+
+In a brand new Svelte component create an instance of a `Date` object.
+
+```svelte
+<script>
+	const date = new Date();
+</script>
+```
+
+Past the script tags, inject the value between curly braces.
+
+```svelte
+<p>{date}</p>
+```
+
+Maybe use the `.toDateString` method to format the long string a bit.
+
+```svelte
+<p>{date.toDateString()}</p>
+```
+
+But there you have it.
+
+At the time of writing the application shows me "Tue Jan 17 2023", but the result will differ as you actually read this page. Perhaps "_{new Date().toDateString()}_"?
+
+You were expecting something more impressive, indubitably. It is possible to build on the concept, starting with how the date is formatted, and while the internationalization API does look like an intriguing option, I'd rather take a detour into the realm of scalable vector graphics instead.
+
+## Tally marks
+
+To highlight the number in the month the inspiration comes from one of the most dated counting systems: vertical and horizontal lines clustered in groups of five.
+
+Create an `<svg>` element with a very specific `viewBox` attribute.
+
+```html
+<svg viewBox="0 0 5 5"></svg>
+```
+
+5 lines. 5 unit wide, 5 unit tall. Seems fitting.
+
+Draw a line with the always flexible `<path>` element.
+
+```html
+<path d="M 1 1 v 3 />
+```
+
+To show the line set a visible stroke.
+
+```html
+<path d="M 1 1 v 3" stroke="currentColor" />
+```
+
+And, repeat. Four lines, side by side, changing the origin with the x coordinate.
+
+```html
+<path d="M 2 1 v 3" stroke="currentColor" />
+<path d="M 3 1 v 3" stroke="currentColor" />
+<path d="M 4 1 v 3" stroke="currentColor" />
+```
+
+Instead of repeating the common attribute, collect the shapes in the same group element, setting the value just once.
+
+```html
+<g stroke="currentColor">
+	<path d="M 1 1 v 3" />
+	<!-- ...paths -->
+</g>
+```
+
+By default the stroke has a width of 1, which doesn't leave much separation between the marks. The newly-minted group element helps to set a smaller size.
+
+```html
+<g stroke="currentColor" stroke-width="0.5">
+	<!-- ...paths -->
+</g>
+```
+
+Four, separated, vertical lines. Add the missing horizontal mark to close the group. For a bit of variety I went for a slightly diagonal segment, completing the drawing from left to right.
+
+```html
+<path d="M 0.5 3.4 l 4 -1.8" />
+```
+
+<Center maxInlineSize="28rem">
+	{@html svg['tally-marks']}
+</Center>
+
+## Repeat lines
+
+The goal is to draw as many lines as necessary to highlight the day in the month, from 1 up to and including 31. This means you are going to repeat the paths, as many times as necessary.
+
+Define the marks in a `<defs>` block.
+
+```html
+<defs>
+	<path id="mark-0" d="M 1 1 v 3" />
+	<path id="mark-1" d="M 2 1 v 3" />
+	<!-- -->
+</defs>
+```
+
+Safely tucked in the element the visuals are not rendered until you reference them by `id` and through a `<use>` element.
+
+```html
+<use href="#mark-0" />
+```
+
+How helpful is this rewrite? Say you want to show the number 3. In this instance include 3 `<use>` elements, each time incrementing the `id` to reference the specific segment.
+
+In Svelte, you can achieve this step with a `each` block, iterating with an empty array of length, well, 3.
+
+```svelte
+{#each Array(3) as _, i}
+	<use href="#mark-{i}" />
+{/each}
+```
+
+<Center maxInlineSize="28rem">
+	<Defs />
+</Center>
+
+If the syntax looks a bit alien, it might be helpful to illustrate an alternative.
+
+Define an array of incrementing numbers.
+
+```js
+const marks = [0, 1, 2];
+```
+
+The `each` block allows to iterate through the collection, accessing the number with the first argument. The second argument describes the index, which would lead you to the previous snippet, but let's continue.
+
+```svelte
+{#each marks as number}
+	<!--  -->
+{/each}
+```
+
+At this point Svelte repeats the markup for each number, and you inject the integer in the `id` attribute.
+
+```svelte
+<use href="#mark-{number}" />
+```
+
+Similar logic, same result.
+
+<Center maxInlineSize="28rem">
+	<DefsAlt />
+</Center>
+
+## Repeat clusters
+
+We can count from 1 to 5, an achievement which gets us 16 to 18 percent closer to completing the assignment. With a bit of trickery, however, we can rely on the same logic to continue.
+
+Say you now want to count up to 7. With one array draw the first five ticks.
+
+```js
+const marks = [0, 1, 2, 3, 4];
+```
+
+With another array draw the remaining two.
+
+```js
+const addon = [0, 1];
+```
+
+Where? Right next to the previous set.
+
+```svelte
+<!-- marks -->
+
+<g transform="translate(5 0)">
+	{#each addon as number}
+		<use href="#mark-{number}" />
+	{/each}
+</g>
+```
+
+I know you are clamoring for a better solution with a nested array. First, however, let's fix one unnerving visual bug.
+
+Moving the group 5 to the right means moving the marks outside of the canvas. Resolve the issue expanding the `<svg>` element horizontally.
+
+```html
+<svg viewBox="0 0 10 5"></svg>
+```
+
+From 5 to 10. Growing by 5.
+
+<Center maxInlineSize="32rem">
+	<ClustersAddon />
+</Center>
+
+## Nested repeats
+
+All you need at this point is the right data structure. Consider collecting the incrementing integers in a nested array.
+
+```js
+const marks = [
+	[0, 1, 2, 3, 4],
+	[0, 1]
+];
+```
+
+With one loop add the clusters, the group elements, shifting the origin according to the index.
+
+```svelte
+{#each marks as cluster, i}
+	<g transform="translate({5 * i} 0)">
+		<!--  -->
+	</g>
+{/each}
+```
+
+You position the clusters 0, 5, 10 to the right.
+
+With a nested loop add the marks, this time referring to the `id`.
+
+```svelte
+{#each cluster as number}
+	<use href="#mark-{number}" />
+{/each}
+```
+
+Hopefully the roundabout way we reached this point makes the instruction clearer.
+
+The last missing piece relates to the size of the canvas. How wide? 5 times as necessary, 5 times as there are clusters.
+
+```svelte
+<svg viewBox="0 0 {5 * marks.length} 5" />
+```
+
+<Center maxInlineSize="32rem">
+	<Clusters />
+</Center>
+
+Looks the same? Perfect.
+
+## Nested arrays
+
+You know how to draw the marks. The last step is creating the appropriate array for any number.
+
+I would like to leave that to your imagination, an homework of sorts, but it would be cruel not to give you one approach. At least to propose a solution you can definitely improve.
+
+Create an array with as many items as per the input number.
+
+```js
+const n = 17;
+const marks = Array(n);
+```
+
+Use the index value of the `map` function to add numbers from 0 up to 4, repeating the sequence with the modulo operator.
+
+```js
+const marks = Array(n)
+	.fill()
+	.map((_, i) => i % 5);
+// [0, 1, 2, 3, 4, 0, 1, 2, 3, 4...
+```
+
+With the ever elusive `reduce` method finally create an array.
+
+```js
+marks.reduce((acc, curr) => {}, []);
+```
+
+In the body of the callback function you have access to `acc`, the array, and `curr`, the integer values.
+
+When the integer is 0, return the collection with an additional nested array, including 0 itself.
+
+```js
+arr.reduce((acc, curr) => {
+	if (curr === 0) return [...acc, [curr]];
+}, []);
+```
+
+Immediately, this means `acc` becomes the announced 2D array `[[0]]` with one item.
+
+Outside of the specific instance, return the collection adding the value to the last nested construct.
+
+```js
+return [...acc.slice(0, -1), [...acc[acc.length - 1], curr]];
+```
+
+Considering the 1 following the first item, this would mean `acc` grows to `[[0, 1]]`.
+
+Eventually, `reduce` would find the next 0 and add another array, leading to the final structure with the grouped indexes.
+
+Need proof? Let's try with the current day. Mine, however. 17 is a high enough number to show off.
+
+<Center maxInlineSize="36rem">
+	<Marks n={17} />
+</Center>
+
+Need _your_ proof? You can try with [today](/today). There might be a surprise there, as I decided to explore additional features.
+
+Whichever answer you find, have a good one.

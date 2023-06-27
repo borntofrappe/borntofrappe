@@ -1,0 +1,214 @@
+---
+title: Who's on first?
+description: Firefox and Chrome compete in a seemingly ludicrous race.
+date: 2023-05-30T09:10:43
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import SMILRace from './SMILRace.svelte';
+	import CSSRace from './CSSRace.svelte';
+</script>
+
+As you test the remote corners of the SVG spec you discover small inconsistencies between browsers. Take the `<marker>` element.
+
+```html
+<marker id="marker" viewBox="-1 -1 2 2">
+	<circle r="1" />
+</marker>
+```
+
+If you apply the marker to a `<path>` with the `marker-end` attribute, but instruct the `d` attribute to only start.
+
+```html
+<path d="M 0 0" marker-end="url(#marker)" />
+```
+
+Chrome displays the dot where the line would be — _"there is a line after all..."_. Firefox, however, does not — _"there is no end to mark!"_.
+
+<Center element="figure" maxInlineSize="28rem">
+    {@html svg['marker']} 
+</Center>
+
+These are highly specific quirks, and you almost have to go look for trouble to find them. Most of the time, you can trust SVG to draw what you mean.
+
+SMIL, on the other hand, is a whole different story. You don't need to experiment with the syntax for long before you find pesky little issues. And in my recent foray into [easing functions](/ease-ho), I found one such example with the `<animateMotion>` element. The issue is beyond specific, but possibly not for its own sake.
+
+## SMIL
+
+Among the handful of animating elements, `<animateMotion>` promises an exciting opportunity, moving elements on a predefined path. The syntax itself is quite approachable as well.
+
+In the context of an SVG element, or a group collecting a series of visuals, add `<animateMotion>` with a given duration.
+
+```html
+<g>
+	<animateMotion dur="8s" />
+	<!-- ... -->
+</g>
+```
+
+Past the number of seconds, you only need one additional attribute to really move: `path`.
+
+```html
+<animateMotion path="M 0 0 h 3" dur="8s" />
+```
+
+In the attribute you detail the movement itself. The path, the track. The string is structured as the `d` attribute of `<path>` elements, so that you can add whichever sequence of commands you may want.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion 
+	path="M 0 0 h 3 a 4 4 0 0 1 4 4 v 3 a 4 4 0 0 1 -4 4 c -3 0 -3 -2 -6 -2 c -3 0 -3 2 -6 2 a 4 4 0 0 1 -4 -4 v -3 a 4 4 0 0 1 4 -4 h 9" 
+	dur="8s" 
+/>
+```
+
+`h` to move horizontally, `a` to make an arc. You might even try a cubic bezier curve if you feel so daring.
+
+Just like that, the element does its job. And there's something inherently exciting in watching the shapes follow the trail.
+
+Speaking of bezier curves, however, the concept is useful to describe the path, but also change the default pace.
+
+Animations with `<animate>`, or again with `<animateTransform>`, are linear by default. For `<animateMotion>`, [the specification](https://www.w3.org/TR/2001/REC-smil-animation-20010904/#MotionCalcModeAttribute) points to a different value, "paced". The difference is evident the moment you have more than one value, but with a single string, with a single path, the result is the same: the elements move at constant speed.
+
+To deviate from the default with a bezier curve you need a set of three attributes.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion
+	...
+	calcMode="spline"
+	keyTimes="0; 1"
+	keySplines="0 0.5 0.5 1"
+/>
+```
+
+`calcMode` introduces the easing, while `keyTimes` sets the anchor points, the start and end, and `keySplines` the matching control points. I refer you once again to [the article](/ease-ho) devoted to the topic for a more elaborate discussion, and a helpful playground to test the syntax.
+
+Once you settle on the control points for the animation, inject the values in the `<animateMotion>` element and delight in the result.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion 
+	path="M 0 0 h 3 a 4 4 0 0 1 4 4 v 3 a 4 4 0 0 1 -4 4 c -3 0 -3 -2 -6 -2 c -3 0 -3 2 -6 2 a 4 4 0 0 1 -4 -4 v -3 a 4 4 0 0 1 4 -4 h 9" 
+	dur="8s" 
+	calcMode="spline"
+	keyTimes="0; 1"
+	keySplines="0.85 0.52 0.73 0.96"
+/>
+```
+
+Unless you are on Firefox 113. At least in this environment, the animation no longer works and the elements remain transfixed in their original position.
+
+At the time of writing, I have no explanation for the matter. Only a curious note. Testing different strings animations work swimmingly on the more feline browser. As long as your path has one command. One instruction.
+
+<!-- prettier-ignore -->
+```html
+<animateMotion 
+	path="M 0 0 h 3" 
+	dur="8s" 
+	calcMode="spline"
+	keyTimes="0; 1"
+	keySplines="0.85 0.52 0.73 0.96"
+/>
+```
+
+An horizontal line. Or again, a single arc. In these instances, Firefox is more than glad to move the elements and apply the easing. Add another instruction and the feature breaks.
+
+Trivial? Only if we stop here. Sure you can shrug the notion off, a pointless factoid. Or, you can entertain yourself. And look further to find an alternative in CSS.
+
+For the sake of humor, you can set up a race. A race between two logos echoing the two familiar browsers. One of them moves with the default pacing. The other starts slowly before catching up at the very end. Supposedly.
+
+<Center maxInlineSize="38rem">
+    <SMILRace />
+</Center>
+
+Who's going to win? You might not have anticipated it at the beginning, but the answer is the reply to a completely different question: which browser are you using right now?
+
+## CSS
+
+As the language grows, it becomes possible to implement a host of new features with new properties. One of these features, unsurprisingly, is motion along a path.
+
+Immediately, add a class to identify the node. You may choose a different selector, but just be sure to target only the elements you want to move.
+
+```html
+<g class="animate">
+	<!-- ... -->
+</g>
+```
+
+For the chosen node, `offset-path` lays the groundwork with the actual path. And the good news is that the syntax for the `path()` function harkens back to the `d` attribute of the `<path>` element. We don't have to conjure up a different set of instructions.
+
+```css
+.animate {
+	offset-path: path(
+		'M 0 0 h 3 a 4 4 0 0 1 4 4 v 1 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 0 -2 2 a 2 2 0 0 1 -2 2 a 2 2 0 0 1 -2 -2 v -3 a 2 2 0 0 1 2 -2 a 2 2 0 0 0 2 -2 a 2 2 0 0 0 -2 -2 h -6 a 2 2 0 0 1 -2 -2 a 2 2 0 0 0 -2 -2 a 2 2 0 0 0 -2 2 a 5 5 0 0 1 -5 5 a 2 2 0 0 0 -2 2 a 2 2 0 0 0 2 2 h 7 a 6 6 0 0 0 6 -6 a 5 5 0 0 1 5 -5 h 1'
+	);
+}
+```
+
+The track is set, but not enough. To move the element along the path, the relevant property is `offset-distance`, a percentage relative to the path. You can set the value manually, once.
+
+```css
+.animate {
+	offset-path: path('...');
+	offset-distance: 17%;
+}
+```
+
+Or fittingly, update the measure with an animation.
+
+```css
+@keyframes offset-distance {
+	from {
+		offset-distance: 0%;
+	}
+	to {
+		offset-distance: 100%;
+	}
+}
+```
+
+Your job is done. Supporting browsers, and [the list](https://caniuse.com/mdn-css_properties_offset-distance) has grown to a respectable measure, will update the elements once you refer to the keyframes.
+
+```css
+.animate {
+	offset-path: path('...');
+	animation: offset-distance 8s;
+}
+```
+
+Better yet, even Firefox will be happy to apply the easing with the `cubic-bezier()` function. You may want to target a more specific element, however, if you care about setting up a proper race.
+
+```css
+.animate.ease {
+	offset-path: path('...');
+	animation: offset-distance 8s cubic-bezier(0.85, 0.52, 0.73, 0.96);
+}
+```
+
+And if your intent is to replicate the SMIL race, as it happened on Chrome, you will need a couple more adjustments. A couple more properties based on a simple fact: CSS and SVG differ in syntax, and also in default values.
+
+By default, SMIL animations are linear, or "paced". In CSS, animations are eased, increase in speed before slowing down.
+
+By default, `<animateMotion>` moves the elements without changing their angle. The `offset-rotate` property is set to rotate the nodes around the path.
+
+With this in mind, you need to be specific in your styles.
+
+```css
+.ankmate {
+	offset-path: path('...');
+	animation: offset-distance 8s linear;
+	offset-rotate: 0deg;
+}
+```
+
+Now, I could offer you the same example, revamped to delight Firefox readers as well. But if you were on Chrome, you would find nothing new. And at this point, it is no longer worth it to focus on the difference. So let me resurface the track, add a couple more turns and two new competitors to bridge the gap. It's only fair.
+
+<Center maxInlineSize="38rem">
+    <CSSRace />
+</Center>
+
+Who's going to win? I tinkered with the duration, but in the end, it makes little difference. What is more important is that the SMIL issue was not for naught. It may have started as a quirk, but eventually led to an exploration of SVG attributes and CSS properties well worth the trip. I guess it truly doesn't matter where you end up, as much as how you get there.
