@@ -1,44 +1,44 @@
-import { files } from '$service-worker';
+import { files, version } from '$service-worker';
 
-const cacheFontFiles = 'cache-font-files-figtree';
-const fontFiles = files.filter((file) => file.endsWith('.woff2'));
+const CACHE = `cache-${version}`;
+const ASSETS = files.filter((file) => file.endsWith('.woff2'));
 
-self.addEventListener('install', (e) => {
+self.addEventListener('install', (event) => {
 	const addFilesToCache = async () => {
-		const cache = await caches.open(cacheFontFiles);
-		await cache.addAll(fontFiles);
+		const cache = await caches.open(CACHE);
+		await cache.addAll(ASSETS);
 	};
 
-	e.waitUntil(addFilesToCache());
+	event.waitUntil(addFilesToCache());
 });
 
-self.addEventListener('activate', (e) => {
+self.addEventListener('activate', (event) => {
 	const deleteOldCaches = async () => {
 		const keys = await caches.keys();
 		for (const key of keys) {
-			if (key !== cacheFontFiles) {
+			if (key !== CACHE) {
 				await caches.delete(key);
 			}
 		}
 	};
 
-	e.waitUntil(deleteOldCaches());
+	event.waitUntil(deleteOldCaches());
 });
 
-self.addEventListener('fetch', (e) => {
+self.addEventListener('fetch', (event) => {
+	if (event.request.method !== 'GET') return;
+
 	const respond = async () => {
-		if (e.request.method !== 'GET') return;
+		const { pathname } = new URL(event.request.url);
 
-		const { pathname } = new URL(e.request.url);
-
-		if (fontFiles.includes(pathname)) {
-			const cache = await caches.open(cacheFontFiles);
-			return cache.match(e.request);
+		if (ASSETS.includes(pathname)) {
+			const cache = await caches.open(CACHE);
+			return cache.match(pathname);
 		}
 
-		const response = await fetch(e.request);
+		const response = await fetch(event.request);
 		return response;
 	};
 
-	e.respondWith(respond());
+	event.respondWith(respond());
 });
