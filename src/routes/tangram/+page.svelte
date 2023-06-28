@@ -38,10 +38,10 @@
 <main
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(210, 16%, 82%); 
-		--box-background: hsl(210, 24%, 16%); 
-		--selection-color: hsl(210, 16%, 82%); 
-		--selection-background: hsl(209, 34%, 30%);
+		--box-color: hsl(210 16% 82%); 
+		--box-background: hsl(210 24% 16%); 
+		--selection-color: hsl(210 16% 82%); 
+		--selection-background: hsl(209 34% 30%);
 	"
 >
 	<label class:tangram>

@@ -18,58 +18,58 @@
 	const collection = [
 		{
 			component: PokeTheLadybug,
-			backgroundColor: 'hsl(356, 89%, 71%)',
-			borderColor: 'hsl(153, 24%, 77%)'
+			backgroundColor: 'hsl(356 89% 71%)',
+			borderColor: 'hsl(153 24% 77%)'
 		},
 		{
 			component: PopTheBalloon,
-			backgroundColor: 'hsl(46, 93%, 56%)',
-			borderColor: 'hsl(41, 100%, 47%)'
+			backgroundColor: 'hsl(46 93% 56%)',
+			borderColor: 'hsl(41 100% 47%)'
 		},
 		{
 			component: FindTheButterflies,
-			backgroundColor: 'hsl(211, 67%, 48%)',
-			borderColor: 'hsl(172, 76%, 41%)'
+			backgroundColor: 'hsl(211 67% 48%)',
+			borderColor: 'hsl(172 76% 41%)'
 		},
 		{
 			component: CrackTheEgg,
-			backgroundColor: 'hsl(60, 91%, 66%)',
-			borderColor: 'hsl(171, 83%, 39%)'
+			backgroundColor: 'hsl(60 91% 66%)',
+			borderColor: 'hsl(171 83% 39%)'
 		},
 		{
 			component: BattleTheEnemy,
-			backgroundColor: 'hsl(119, 30%, 49%)',
-			borderColor: 'hsl(177, 65%, 52%)'
+			backgroundColor: 'hsl(119 30% 49%)',
+			borderColor: 'hsl(177 65% 52%)'
 		},
 		{
 			component: SmashTheRabbits,
-			backgroundColor: 'hsl(39, 91%, 55%)',
-			borderColor: 'hsl(143, 99%, 32%)'
+			backgroundColor: 'hsl(39 91% 55%)',
+			borderColor: 'hsl(143 99% 32%)'
 		},
 		{
 			component: FightTheEnemy,
-			backgroundColor: 'hsl(164, 16%, 32%)',
-			borderColor: 'hsl(158, 15%, 14%)'
+			backgroundColor: 'hsl(164 16% 32%)',
+			borderColor: 'hsl(158 15% 14%)'
 		},
 		{
 			component: TakeAPicture,
-			backgroundColor: 'hsl(120, 1%, 84%)',
-			borderColor: 'hsl(247, 6%, 27%)'
+			backgroundColor: 'hsl(120 1% 84%)',
+			borderColor: 'hsl(247 6% 27%)'
 		},
 		{
 			component: PickASide,
-			backgroundColor: 'hsl(36, 93%, 56%)',
-			borderColor: 'hsl(23, 100%, 37%)'
+			backgroundColor: 'hsl(36 93% 56%)',
+			borderColor: 'hsl(23 100% 37%)'
 		},
 		{
 			component: MatchInPairs,
-			backgroundColor: 'hsl(27, 79%, 47%)',
-			borderColor: 'hsl(142, 100%, 31%)'
+			backgroundColor: 'hsl(27 79% 47%)',
+			borderColor: 'hsl(142 100% 31%)'
 		},
 		{
 			component: PickUpProduce,
-			backgroundColor: 'hsl(38, 100%, 79%)',
-			borderColor: 'hsl(176, 67%, 53%)'
+			backgroundColor: 'hsl(38 100% 79%)',
+			borderColor: 'hsl(176 67% 53%)'
 		}
 	];
 </script>
@@ -103,8 +103,8 @@
 
 <style>
 	.collection {
-		color: hsl(209, 61%, 16%);
-		background: hsl(206, 33%, 96%);
+		color: hsl(209 61% 16%);
+		background: hsl(206 33% 96%);
 		block-size: 100vh;
 		overflow-y: scroll;
 		scroll-snap-type: y mandatory;

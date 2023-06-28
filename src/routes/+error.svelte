@@ -20,11 +20,11 @@
 	class="[ box ]"
 	style="
 		--padding: 1rem;
-		--box-color: hsl(209, 61%, 16%); 
-		--box-background: hsl(210, 36%, 96%); 
-		--selection-color: hsl(211, 39%, 23%); 
-		--selection-background: hsl(210, 31%, 80%);
-		--highlight: hsl(212, 33%, 89%);
+		--box-color: hsl(209 61% 16%); 
+		--box-background: hsl(210 36% 96%); 
+		--selection-color: hsl(211 39% 23%); 
+		--selection-background: hsl(210 31% 80%);
+		--highlight: hsl(212 33% 89%);
 	"
 >
 	<div class="[ center stack ]" style="--leading: 0;">

@@ -22,10 +22,10 @@
 <main
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(209, 61%, 16%); 
-		--box-background: hsl(210, 42%, 96%); 
-		--selection-color: hsl(211, 39%, 23%); 
-		--selection-background: hsl(210, 31%, 80%);
+		--box-color: hsl(209 61% 16%); 
+		--box-background: hsl(210 42% 96%); 
+		--selection-color: hsl(211 39% 23%); 
+		--selection-background: hsl(210 31% 80%);
 	"
 >
 	<div style="inline-size: 90vmin; max-inline-size: 52rem;">

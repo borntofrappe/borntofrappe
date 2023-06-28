@@ -6,10 +6,10 @@
 	class="[ box stack text-align:center ]"
 	style="
 		--padding: var(--step-space-400) var(--step-space-300);
-		--box-color: hsl(210, 16%, 82%); 
-		--box-background: hsl(210, 24%, 16%); 
-		--selection-color: hsl(210, 16%, 82%); 
-		--selection-background: hsl(209, 34%, 30%);
+		--box-color: hsl(210 16% 82%); 
+		--box-background: hsl(210 24% 16%); 
+		--selection-color: hsl(210 16% 82%); 
+		--selection-background: hsl(209 34% 30%);
 	"
 >
 	<figure class="[ center stack ]" style="--leading: 0;">
@@ -52,7 +52,7 @@
 					<use transform="translate(0 -200) rotate(-27) translate(0 200) scale(0.65)" href="%23leaves" />\
 				</g>\
 			</defs>\
-			<g style="color: hsl(209, 34%, 30%);">\
+			<g style="color: hsl(209 34% 30%);">\
 				<use href="%23star" />\
 				<use href="%23star-side" />\
 				<use href="%23leaves-side" />\

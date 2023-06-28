@@ -45,15 +45,15 @@
 		align-items: center;
 		text-align: center;
 		min-block-size: 100vh;
-		color: hsl(0, 0%, 92%);
-		background: hsl(0, 0%, 17%);
+		color: hsl(0 0% 92%);
+		background: hsl(0 0% 17%);
 		padding: var(--step-space-200);
 		position: relative;
 	}
 
 	main ::selection {
-		color: hsl(0, 0%, 92%);
-		background: hsl(0, 0%, 17%);
+		color: hsl(0 0% 92%);
+		background: hsl(0 0% 17%);
 	}
 
 	main::before {
@@ -61,7 +61,7 @@
 		position: absolute;
 		inline-size: 100%;
 		block-size: 100%;
-		background: hsl(0, 0%, 100%);
+		background: hsl(0 0% 100%);
 		opacity: 0.35;
 		filter: url(#filter-noise);
 	}

@@ -3,7 +3,7 @@
 	import { circInOut as easing } from 'svelte/easing';
 
 	export let size = 3;
-	export let colors = ['hsl(5, 79%, 71%)', 'hsl(50, 85%, 76%)', 'hsl(185, 62%, 45%)'];
+	export let colors = ['hsl(5 79% 71%)', 'hsl(50 85% 76%)', 'hsl(185 62% 45%)'];
 
 	const durations = {
 		position: 200,

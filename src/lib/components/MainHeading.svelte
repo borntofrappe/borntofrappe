@@ -53,13 +53,13 @@
 			</symbol>
 
 			<linearGradient id="gradient-{id}" spreadMethod="reflect" x1="0" x2="0.5">
-				<stop stop-color="hsl(0, 75%, 67%)" offset="0" />
-				<stop stop-color="hsl(51.42857142857143, 75%, 61.297093396292745%)" offset="0.166" />
-				<stop stop-color="hsl(102.85714285714286, 75%, 65.8704694055762%)" offset="0.333" />
-				<stop stop-color="hsl(154.28571428571428, 75%, 63.33243719813106%)" offset="0.5" />
-				<stop stop-color="hsl(205.71428571428572, 75%, 63.33243719813106%)" offset="0.666" />
-				<stop stop-color="hsl(257.14285714285717, 75%, 65.8704694055762%)" offset="0.833" />
-				<stop stop-color="hsl(308.57142857142856, 75%, 61.297093396292745%)" offset="1" />
+				<stop stop-color="hsl(0 75% 67%)" offset="0" />
+				<stop stop-color="hsl(51.42857142857143 75% 61.297093396292745%)" offset="0.166" />
+				<stop stop-color="hsl(102.85714285714286 75% 65.8704694055762%)" offset="0.333" />
+				<stop stop-color="hsl(154.28571428571428 75% 63.33243719813106%)" offset="0.5" />
+				<stop stop-color="hsl(205.71428571428572 75% 63.33243719813106%)" offset="0.666" />
+				<stop stop-color="hsl(257.14285714285717 75% 65.8704694055762%)" offset="0.833" />
+				<stop stop-color="hsl(308.57142857142856 75% 61.297093396292745%)" offset="1" />
 			</linearGradient>
 
 			<rect

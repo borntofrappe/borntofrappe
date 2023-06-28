@@ -19,10 +19,10 @@
 <main
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(0, 0%, 13%); 
-		--box-background: hsl(0, 0%, 75%); 
-		--selection-color: hsl(0, 0%, 13%); 
-		--selection-background: hsl(0, 0%, 63%);
+		--box-color: hsl(0 0% 13%); 
+		--box-background: hsl(0 0% 75%); 
+		--selection-color: hsl(0 0% 13%); 
+		--selection-background: hsl(0 0% 63%);
 	"
 >
 	<div style="inline-size: 90vmin; max-inline-size: 52rem;">

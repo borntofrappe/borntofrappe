@@ -10,10 +10,10 @@
 <div
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(38, 13%, 17%); 
-		--box-background: hsl(40, 23%, 97%); 
-		--selection-color: hsl(37, 12%, 22%); 
-		--selection-background: hsl(48, 95%, 76%);
+		--box-color: hsl(38 13% 17%); 
+		--box-background: hsl(40 23% 97%); 
+		--selection-color: hsl(37 12% 22%); 
+		--selection-background: hsl(48 95% 76%);
 	"
 >
 	<main class="[ box floating ]" style="--padding: var(--step-space-700) var(--step-space-300);">

@@ -11,11 +11,11 @@
 <section
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(209, 61%, 16%); 
-		--box-background: hsl(210, 36%, 96%); 
-		--selection-color: hsl(211, 39%, 23%); 
-		--selection-background: hsl(210, 31%, 80%);
-		--highlight: hsl(212, 33%, 89%);
+		--box-color: hsl(209 61% 16%); 
+		--box-background: hsl(210 36% 96%); 
+		--selection-color: hsl(211 39% 23%); 
+		--selection-background: hsl(210 31% 80%);
+		--highlight: hsl(212 33% 89%);
 	"
 >
 	<article
@@ -61,11 +61,11 @@
 <section
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(210, 16%, 82%); 
-		--box-background: hsl(210, 24%, 16%); 
-		--selection-color: hsl(210, 16%, 82%); 
-		--selection-background: hsl(209, 18%, 30%);
-		--highlight: hsl(209, 20%, 25%);
+		--box-color: hsl(210 16% 82%); 
+		--box-background: hsl(210 24% 16%); 
+		--selection-color: hsl(210 16% 82%); 
+		--selection-background: hsl(209 18% 30%);
+		--highlight: hsl(209 20% 25%);
 	"
 >
 	<article
@@ -111,11 +111,11 @@
 <section
 	class="[ box centered ]"
 	style="
-		--box-color: hsl(0, 0%, 13%); 
-		--box-background: hsl(0, 0%, 75%); 
-		--selection-color: hsl(0, 0%, 13%); 
-		--selection-background: hsl(0, 0%, 63%);
-		--highlight: hsl(0, 0%, 85%);
+		--box-color: hsl(0 0% 13%); 
+		--box-background: hsl(0 0% 75%); 
+		--selection-color: hsl(0 0% 13%); 
+		--selection-background: hsl(0 0% 63%);
+		--highlight: hsl(0 0% 85%);
 	"
 >
 	<article
