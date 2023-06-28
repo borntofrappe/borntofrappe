@@ -2,7 +2,7 @@ import { visit } from 'unist-util-visit';
 import { getHighlighter } from 'shiki';
 import { unified } from 'unified';
 import rehypeParse from 'rehype-parse';
-import icons from './src/lib/utils/icons.js';
+import icons from './icons.js';
 import slug from 'slug';
 
 export const rehypePermalink = () => (tree) => {
@@ -92,7 +92,7 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		const html = highlighter.codeToHtml(code, { lang });
 
 		const root = htmlParser.parse(html);
-		const icon = icons[lang] || icons.editor;
+		const icon = icons[lang] || icons.console;
 		const { children: svg } = svgParser.parse(icon);
 
 		visit(
@@ -109,7 +109,8 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		const { children } = root;
 
 		children[0].properties = {
-			className: `${classPrefix}${lang}`
+			className: `${classPrefix}${lang}`,
+			style: children[0].properties.style
 		};
 
 		node.tagName = 'div';
@@ -131,36 +132,5 @@ export const rehypeCodeHighlight = () => async (tree) => {
 			},
 			...children
 		];
-	});
-};
-
-export const remarkCodeHighlight = () => async (tree) => {
-	const theme = 'rose-pine-moon';
-	const highlighter = await getHighlighter({ theme });
-
-	const classPrefix = 'language-';
-
-	visit(tree, 'code', (node) => {
-		const code = node.value
-			.replace(/&lt;/g, '<')
-			.replace(/&gt;/g, '>')
-			.replace(/&#123;/g, '{')
-			.replace(/&#125;/g, '}');
-
-		const lang = node.lang || 'text';
-		const classAttribute = `class="${classPrefix}${lang}"`;
-
-		const string = highlighter
-			.codeToHtml(code, { lang })
-			.replace(/{/g, '&#123;')
-			.replace(/}/g, '&#125;')
-			.replace(/class=".+?"/, classAttribute);
-
-		const html = `<div class="code"><span>${lang}${
-			icons[lang] || icons.editor
-		}</span>${string}</div>`;
-
-		node.type = 'html';
-		node.value = html;
 	});
 };
