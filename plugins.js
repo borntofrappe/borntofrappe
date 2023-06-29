@@ -92,7 +92,7 @@ export const rehypeCodeHighlight = () => async (tree) => {
 		const html = highlighter.codeToHtml(code, { lang });
 
 		const root = htmlParser.parse(html);
-		const icon = icons[lang] || icons.console;
+		const icon = icons[lang] || icons.code;
 		const { children: svg } = svgParser.parse(icon);
 
 		visit(
