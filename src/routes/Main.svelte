@@ -77,4 +77,10 @@
 	ol li:not(:last-of-type)::after {
 		content: ',';
 	}
+
+	p > :global(svg),
+	ol li > :global(svg) {
+		inline-size: 1.2em;
+		block-size: auto;
+	}
 </style>

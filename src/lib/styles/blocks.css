@@ -32,7 +32,7 @@
 
 .code > span > svg {
 	display: block;
-	block-size: 1em;
+	block-size: 1.2em;
 	inline-size: auto;
 }
 
