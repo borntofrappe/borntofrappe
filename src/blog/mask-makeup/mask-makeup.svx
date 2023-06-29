@@ -1,0 +1,7 @@
+---
+title: Mask makeup
+description: Read through the SVG document to pick and choose what to show.
+date: 2023-06-29T21:21:21
+---
+
+Even without a third axis, you are able to layer SVG elements through source order. That being said, if you read through the specification, the document explains more appropriate, idiomatic ways to hide visuals, or parts of it.
