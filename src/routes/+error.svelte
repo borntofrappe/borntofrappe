@@ -33,7 +33,7 @@
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
 			<p>Here's a possibly helpful message for context:</p>
 			<div class="[ code ]">
-				<span>error {@html icons.bug}</span>
+				<span>error {@html icons.code}</span>
 				<pre><code>{$page.error.message}</code></pre>
 			</div>
 			<p>
