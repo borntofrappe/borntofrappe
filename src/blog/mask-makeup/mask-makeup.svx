@@ -14,26 +14,30 @@ date: 2023-06-30T10:50:16
 
 Even without a third axis you are able to layer SVG shapes based on source order. This simple fact opens the way for remarkable visuals, where you are able to conceal parts of the graphic by [overlaying different elements](/z-overlap).
 
+<Center maxInlineSize="30rem">
+	<SourceOrder />
+</Center>
+
 I like to think of the effect as _"hiding in plain sight"_.
 
-<SourceOrder />
+You have a letter and a mailbox. Actually, you have the dark portion of a mailbox, then the paper and only later the lighter body of the box. As the letter inches to the right it moves above the inner portion, logically. Then again, it disappears behind the solid container. Again, almost obviously.
 
-You have a letter and a mailbox. Actually, you have the dark portion of a mailbox, then a letter and only later the lighter body of the box. As the letter inches to the right it moves above the inner portion, logically. Then again, it disappears behind the solid container. Again, almost obviously.
+There is no hiding at play, but in SVG, if you go beyond the basics and explore the syntax, you do have a way to truly pick and choose what to show. No overlays required. And to discover how, tear open that letter. Past a couple of cryptic lines, you find a seal at the very bottom of the page.
 
-There is no hiding at play, but in SVG, if you go beyond the basics and explore the syntax, you do have a way to truly pick and choose what to show. No overlays required. And to discover how, tear open that letter. Past a couple of pointless lines, you find a seal at the very bottom of the page.
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['letter']}
+</Center>
 
-{@html svg['letter']}
-
-You see through the red mark. You see the bright background through a thin outline and a chunky five-points star. And you do not need to draw these shapes with the same color as the background to achieve the feat. You need a mask.
+You see through the red mark. You see the bright background through a thin outline and a chunky five-pointed star. And you do not need to draw these shapes with the same color as the background to achieve the feat. You need a mask.
 
 ## Mask
 
-In the `<svg>` element, and unlike regular shapes like `<circle>`s and `<rect>`angles, the `<mask>` element doesn't produce anything on the screen.
+In the `<svg>` element, and unlike regular shapes like `<circle>`s and `<rect>`angles, the `<mask>` element doesn't produce anything on screen.
 
 ```html
 <svg viewBox="0 0 100 100">
 	<mask id="mask">
-		<! -- ... -->
+		<!-- ... -->
 	</mask>
 </svg>
 ```
@@ -48,7 +52,7 @@ What is the impact of the mask on the rectangle? That is decided by the body of 
 
 ```html
 <mask id="mask">
-	<! -- ... -->
+	<!-- ... -->
 </mask>
 ```
 
@@ -73,7 +77,9 @@ Black shapes decide what to hide, absolutely.
 
 In this light you can get creative as much as you want. It's almost charming in its simplicity; something similar to a collage where you cut out parts of the regular polygon. To see right through and find whatever you drew below.
 
-<Stamp />
+<Center maxInlineSize="20rem">
+	<Stamp />
+</Center>
 
 And the feature might rely on a `<mask>` element, but depends once again on SVG founding traits. As the source order helps to overlay shapes, it illustrates what to show, what to hide, in sequence.
 
@@ -83,7 +89,7 @@ I'd be remiss not to mention `<clipPath>`. In the document, the element too help
 
 ```html
 <clipPath id="clip">
-	<! -- ... -->
+	<!-- ... -->
 </clipPath>
 ```
 
