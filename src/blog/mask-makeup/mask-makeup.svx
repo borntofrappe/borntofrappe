@@ -1,7 +1,98 @@
 ---
 title: Mask makeup
-description: Read through the SVG document to pick and choose what to show.
-date: 2023-06-29T21:21:21
+description: Read through the SVG spec to go beyond basic features and really hide a few shapes.
+date: 2023-06-30T10:50:16
 ---
 
-Even without a third axis, you are able to layer SVG elements through source order. That being said, if you read through the specification, the document explains more appropriate, idiomatic ways to hide visuals, or parts of it.
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import SourceOrder from './SourceOrder.svelte';
+	import svg from './svg.js';
+	import Stamp from './Stamp.svelte';
+</script>
+
+Even without a third axis you are able to layer SVG shapes based on source order. This simple fact opens the way for remarkable visuals, where you are able to conceal parts of the graphic by [overlaying different elements](/z-overlap).
+
+I like to think of the effect as _"hiding in plain sight"_.
+
+<SourceOrder />
+
+You have a letter and a mailbox. Actually, you have the dark portion of a mailbox, then a letter and only later the lighter body of the box. As the letter inches to the right it moves above the inner portion, logically. Then again, it disappears behind the solid container. Again, almost obviously.
+
+There is no hiding at play, but in SVG, if you go beyond the basics and explore the syntax, you do have a way to truly pick and choose what to show. No overlays required. And to discover how, tear open that letter. Past a couple of pointless lines, you find a seal at the very bottom of the page.
+
+{@html svg['letter']}
+
+You see through the red mark. You see the bright background through a thin outline and a chunky five-points star. And you do not need to draw these shapes with the same color as the background to achieve the feat. You need a mask.
+
+## Mask
+
+In the `<svg>` element, and unlike regular shapes like `<circle>`s and `<rect>`angles, the `<mask>` element doesn't produce anything on the screen.
+
+```html
+<svg viewBox="0 0 100 100">
+	<mask id="mask">
+		<! -- ... -->
+	</mask>
+</svg>
+```
+
+It is only by reference and the `mask` attribute that its influence is made clear.
+
+```html
+<rect mask="url(#mask)" width="100" height="100" />
+```
+
+What is the impact of the mask on the rectangle? That is decided by the body of the mask itself. By the shapes you choose to include between the opening and closing tags. And by color.
+
+```html
+<mask id="mask">
+	<! -- ... -->
+</mask>
+```
+
+[The specification](https://drafts.fxtf.org/css-masking/#MaskValues) explains a formula based on the different color channels — red, green and blue —, but stick to two colors. White shapes instruct what to show — you can repeat the rectangle to set a base.
+
+```html
+<mask id="mask">
+	<rect fill="white" width="100" height="100" />
+</mask>
+```
+
+Black shapes decide what to hide, absolutely.
+
+```html
+<mask id="mask">
+	<rect fill="white" width="100" height="100" />
+	<g fill="black">
+		<!-- ... -->
+	</g>
+</mask>
+```
+
+In this light you can get creative as much as you want. It's almost charming in its simplicity; something similar to a collage where you cut out parts of the regular polygon. To see right through and find whatever you drew below.
+
+<Stamp />
+
+And the feature might rely on a `<mask>` element, but depends once again on SVG founding traits. As the source order helps to overlay shapes, it illustrates what to show, what to hide, in sequence.
+
+## Clip aside
+
+I'd be remiss not to mention `<clipPath>`. In the document, the element too helps to hide parts of the graphic. Or to be accurate, helps to show specific areas.
+
+```html
+<clipPath id="clip">
+	<! -- ... -->
+</clipPath>
+```
+
+In the body of the element there is no color to consider, only shapes.
+
+```html
+<clipPath id="clip">
+	<path d="M 2.5 0 a... " />
+</clipPath>
+```
+
+The syntax is a tad more restrictive. You can't nest the shapes in helpful group elements, and the clip does not account for the stroke as well. Accepting these limits, however, the instruction will help you to restrict what you see with its simpler design. You might find a use sooner or later.
