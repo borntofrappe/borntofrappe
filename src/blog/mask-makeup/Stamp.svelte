@@ -42,8 +42,8 @@
 							transform="rotate(45) translate(0 -20)"
 							d="M -3 3.5 v -4 l 3 -3 3 3 v 4 l -3 -3z"
 						/>
-						<path transform="translate(0 -20)" d="M -3 -4 l 3 4 3 -4 l -3 -4z" />
-						<path transform="rotate(45) translate(0 -35)" d="M -4 -3.5 l 4 -5 4 5 l -4 -2z" />
+						<path transform="translate(0 -20)" d="M -3 -4 l 3 4 3 -4 -3 -4z" />
+						<path transform="rotate(45) translate(0 -35)" d="M -4 -3.5 l 4 -5 4 5 -4 -2z" />
 						<path
 							transform="translate(-3 -7) rotate(-30) translate(0 -25)"
 							d="M 0 3 l -2 -3 2 -3 2 3z"
