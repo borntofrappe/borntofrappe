@@ -1,0 +1,5 @@
+---
+title: Mask 255
+description: Distill the essence of the mask down to three color channels.
+date: 2023-07-03T15:14:47
+---
