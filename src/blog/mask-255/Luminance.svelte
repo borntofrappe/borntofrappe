@@ -114,7 +114,7 @@
 		div {
 			display: grid;
 			grid-template-columns: auto auto 1fr;
-			gap: 0.75rem 0.25rem;
+			gap: 0.75rem 0.5rem;
 		}
 
 		div > label {
@@ -151,5 +151,10 @@
 		border-radius: 1rem;
 		background: hsl(0 0% 20%);
 		accent-color: hsl(0 0% 99%);
+	}
+
+	svg {
+		max-inline-size: 18rem;
+		margin-inline: auto;
 	}
 </style>
