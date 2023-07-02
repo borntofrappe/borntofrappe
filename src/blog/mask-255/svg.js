@@ -52,6 +52,7 @@ export default {
     <g class="hover" style="color: red;">
         <g transform="translate(50 50)">
             <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
             <use class="scale" transform="scale(1)" href="#flask-shadow" />
@@ -61,6 +62,7 @@ export default {
     <g class="hover" style="color: green;" transform="translate(100 0)">
         <g transform="translate(50 50)">
             <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
             <use class="scale" transform="scale(1)" href="#flask-shadow" />
@@ -70,6 +72,7 @@ export default {
     <g class="hover" style="color: blue;" transform="translate(200 0)">
         <g transform="translate(50 50)">
             <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
             <use class="scale" transform="scale(1)" href="#flask-shadow" />
