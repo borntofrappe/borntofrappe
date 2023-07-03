@@ -1,19 +1,19 @@
 <script>
 	let color = [
 		{
-			channel: 'red',
+			name: 'red',
 			label: 'Red',
 			value: 255,
 			weight: 0.2125
 		},
 		{
-			channel: 'green',
+			name: 'lime',
 			label: 'Green',
 			value: 255,
 			weight: 0.7154
 		},
 		{
-			channel: 'blue',
+			name: 'blue',
 			label: 'Blue',
 			value: 255,
 			weight: 0.0721
@@ -22,15 +22,15 @@
 
 	const format = (d) => d.toString().slice(0, 6);
 
-	$: luminance = color.reduce((acc, { value, weight }) => acc + (value / 255) ** 2.2 * weight, 0);
+	$: luminance = color.reduce((acc, { value, weight }) => acc + (value / 255) * weight, 0);
 </script>
 
 <p>Drag the handles to update the luminance with the tree color channels.</p>
 
 <div>
-	{#each color as { channel, label, value }}
+	{#each color as { name, label, value }}
 		<label>
-			<span style:--channel={channel}>{label}</span>
+			<span style:--name={name}>{label}</span>
 			<output>{value}</output>
 			<input type="range" min="0" max="255" bind:value />
 		</label>
@@ -61,7 +61,7 @@
 		paint-order="stroke"
 		href="#luminance-body"
 	/>
-	<use fill="hsl(0 0% 100% / 0.08)" href="#luminance-body" />
+	<use fill="hsl(0 0% 100% / 0.15)" href="#luminance-body" />
 	<use fill="hsl(0 0% 10%)" href="#luminance-top" />
 
 	<g clip-path="url(#luminance-clip)">
@@ -132,7 +132,7 @@
 		position: absolute;
 		inline-size: 1em;
 		block-size: 1em;
-		background: var(--channel);
+		background: var(--name);
 		border-radius: 50%;
 		inset-inline-start: 0%;
 		inset-block-start: 50%;
