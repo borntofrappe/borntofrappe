@@ -4,7 +4,7 @@ export default {
         .hover .translate,
         .hover .scale {
             transition: transform 0.5s;
-            transition-timing-function: cubic-bezier(.09,1.09,.44,1.38);
+            transition-timing-function: cubic-bezier(0.09, 1.09, 0.44, 1.38);
         }
 
         .hover .scale {
@@ -17,7 +17,7 @@ export default {
 
         .hover:hover .translate {
             transform: translateY(1px);
-            transition-timing-function: cubic-bezier(.6,-0.35,.22,1.47);
+            transition-timing-function: cubic-bezier(0.6, -0.35, 0.22, 1.47);
         }
 
         .hover:hover .scale {
@@ -49,9 +49,9 @@ export default {
         </g>
         <ellipse id="flask-shadow" fill="hsl(0 0% 70%)" rx="16" ry="2" />
     </defs>
-    <g class="hover" style="color: red;">
+    <g class="hover">
         <g transform="translate(50 50)">
-            <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use class="translate" style="color: rgb(255, 0, 0);" transform="translate(0 8)" href="#flask-color" />
             <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
@@ -59,9 +59,9 @@ export default {
         </g>
     </g>
 
-    <g class="hover" style="color: green;" transform="translate(100 0)">
+    <g class="hover" transform="translate(100 0)">
         <g transform="translate(50 50)">
-            <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use class="translate" style="color: rgb(0, 255, 0);" transform="translate(0 8)" href="#flask-color" />
             <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
@@ -69,9 +69,9 @@ export default {
         </g>
     </g>
 
-    <g class="hover" style="color: blue;" transform="translate(200 0)">
+    <g class="hover" transform="translate(200 0)">
         <g transform="translate(50 50)">
-            <use class="translate" transform="translate(0 8)" href="#flask-color" />
+            <use class="translate" style="color: rgb(0, 0, 255);" transform="translate(0 8)" href="#flask-color" />
             <use opacity="0" transform="translate(0 8)" href="#flask-color" />
         </g>
         <g transform="translate(50 98)">
@@ -79,7 +79,7 @@ export default {
         </g>
     </g>
 </svg>`,
-	'fish-bowl': `<svg style="display: block; outline: 1px solid;" viewBox="-64.99999618530273 -52.5 130 140">
+	'fish-bowl': `<svg style="display: block;" viewBox="-64.99999618530273 -50 130 137.5">
     <defs>
         <symbol id="rainbow-fish" viewBox="-2 -22 58 44" x="-29" y="-22" width="58" height="44">
             <defs>
@@ -121,8 +121,8 @@ export default {
         </symbol>
 
         <mask id="fish-bowl-mask">
-            <rect fill="black" x="-64.99999618530273" y="-52.5" width="130" height="140" />
-            <rect fill="hsl(205, 65%, 55%)" x="-64.99999618530273" y="-52.5" width="130" height="140" />
+            <rect fill="black" x="-64.99999618530273" y="-50" width="130" height="137.5" />
+            <rect fill="hsl(205, 65%, 55%)" x="-64.99999618530273" y="-52.5" width="130" height="137.5" />
         </mask>
         <clipPath id="fish-bowl-clip">
             <path d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 15 -45 L -30 -45 Z" />
