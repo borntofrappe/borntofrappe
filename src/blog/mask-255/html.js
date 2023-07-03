@@ -1,4 +1,19 @@
 export default {
+	'math-color-channels': `<math display="block">
+	<mrow>
+		<mn>0.2125</mn>
+		<mo>*</mo>
+		<mn>R</mn>
+		<mo>+</mo>
+		<mn>0.7154</mn>
+		<mo>*</mo>
+		<mn>G</mn>
+		<mo>+</mo>
+		<mn>0.0721</mn>
+		<mo>*</mo>
+		<mn>B</mn>
+	</mrow>
+</math>`,
 	'flasks-color-channels': `<svg style="display: block;" viewBox="0 0 300 100">
     <style>
         .hover .translate,
