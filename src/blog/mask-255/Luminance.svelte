@@ -3,19 +3,19 @@
 		{
 			name: 'red',
 			label: 'Red',
-			value: 255,
+			value: 247,
 			weight: 0.2125
 		},
 		{
 			name: 'lime',
 			label: 'Green',
-			value: 255,
+			value: 201,
 			weight: 0.7154
 		},
 		{
 			name: 'blue',
 			label: 'Blue',
-			value: 255,
+			value: 74,
 			weight: 0.0721
 		}
 	];
