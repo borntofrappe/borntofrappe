@@ -94,7 +94,29 @@ export default {
         </g>
     </g>
 </svg>`,
-	'fish-bowl': `<svg style="display: block;" viewBox="-64.99999618530273 -50 130 137.5">
+	'fish-bowl': `<svg id="fish-bowl" style="display: block;" viewBox="-64.99999618530273 -50 130 137.5">
+    <style>
+        #fish-bowl .translate {
+            animation: translate 12s cubic-bezier(0.37, 0, 0.63, 1) infinite paused;
+        }
+
+        #fish-bowl:hover .translate {
+            animation-play-state: running;
+        }
+
+        @keyframes translate {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            25% {
+                transform: translateY(-2px);
+            }
+            75% {
+                transform: translateY(2px);
+            }
+        }
+    </style>
     <defs>
         <symbol id="rainbow-fish" viewBox="-2 -22 58 44" x="-29" y="-22" width="58" height="44">
             <defs>
@@ -137,7 +159,7 @@ export default {
 
         <mask id="fish-bowl-mask">
             <rect fill="black" x="-64.99999618530273" y="-50" width="130" height="137.5" />
-            <rect fill="hsl(205, 65%, 55%)" x="-64.99999618530273" y="-52.5" width="130" height="137.5" />
+            <rect fill="hsl(205 65% 55%)" x="-64.99999618530273" y="-52.5" width="130" height="137.5" />
         </mask>
         <clipPath id="fish-bowl-clip">
             <path d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 15 -45 L -30 -45 Z" />
@@ -145,16 +167,7 @@ export default {
     </defs>
 
     <g clip-path="url(#fish-bowl-clip)">
-        <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="0 0; 0 2; 0 -2; 0 0"
-            dur="10s"
-            repeatCount="indefinite"
-            calcMode="spline"
-            keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;" 
-            />
-        <path fill="hsl(195, 100%, 85%)" d="M -84.99999618530273 -15 Q -69.99999618530273 -10 -54.999996185302734 -15 T -24.999996185302734 -15 5.000003814697266 -15 35.000003814697266 -15 65.000003814697266 -15 L 65.000003814697266 87.5 L -84.99999618530273 87.5 Z" />
+        <path class="translate" style="animation-duration: 12s; animation-delay: -6s;" fill="hsl(195 100% 85%)" d="M -84.99999618530273 -15 Q -69.99999618530273 -10 -54.999996185302734 -15 T -24.999996185302734 -15 5.000003814697266 -15 35.000003814697266 -15 65.000003814697266 -15 L 65.000003814697266 89.5 L -84.99999618530273 89.5 Z" />
 
         <g fill="hsl(0 0% 100% / 0.5)">
             <circle cx="-15" cy="0" r="6.5" />
@@ -162,56 +175,20 @@ export default {
         </g>
     </g>
 
-    <g style="color: hsl(205, 65%, 55%)"> 
-        <g>
-            <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0 0; 0 -1; 0 1; 0 0"
-                dur="8s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
-            />
+    <g style="color: hsl(205 65% 55%)"> 
+        <g class="translate" style="animation-duration: 9s;">
             <use transform="translate(30 15) scale(0.45)" href="#rainbow-fish" />
         </g>
-        <g>
-            <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0 0; 0 -1; 0 1; 0 0"
-                dur="10s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
-            />
+        <g class="translate" style="animation-duration: 10s;">
             <use transform="translate(12.5 50) scale(0.55)" href="#rainbow-fish" />
         </g>
-        <g>
-            <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0 0; 0 -1; 0 1; 0 0"
-                dur="12s"
-                repeatCount="indefinite"
-                calcMode="spline"
-                keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
-            />
+        <g class="translate" style="animation-duration: 11s;">
             <use transform="translate(-20 25) scale(-1 1) scale(0.65)" href="#rainbow-fish" />
         </g>
     </g>
 
     <g clip-path="url(#fish-bowl-clip)" mask="url(#fish-bowl-mask)">
-        <animateTransform
-            attributeName="transform"
-            type="translate"
-            values="0 0; 0 -2; 0 2; 0 0"
-            dur="12s"
-            repeatCount="indefinite"
-            calcMode="spline"
-            keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;"
-        />
-        <path fill="hsl(195, 100%, 85%)" d="M -64.99999618530273 -15 Q -49.999996185302734 -10 -34.999996185302734 -15 T -4.999996185302734 -15 25.000003814697266 -15 55.000003814697266 -15 85.000003814697266 -15 L 85.000003814697266 87.5 L -64.99999618530273 87.5 Z" />
+        <path class="translate" fill="hsl(195 100% 85%)" d="M -64.99999618530273 -15 Q -49.999996185302734 -10 -34.999996185302734 -15 T -4.999996185302734 -15 25.000003814697266 -15 55.000003814697266 -15 85.000003814697266 -15 L 85.000003814697266 89.5 L -64.99999618530273 89.5 Z" />
         <g fill="hsl(0 0% 100% / 0.5)">
             <circle cx="10" r="3.25" />
             <circle cx="-30" cy="-5" r="3.25" />
@@ -220,12 +197,12 @@ export default {
 
     <g fill="none" stroke-linejoin="round" stroke-linecap="round">
         <g stroke-width="10">
-            <path stroke="hsl(210, 22%, 49%)" d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 -15 -45 L -30 -45 Z" />
-            <path stroke="hsl(209, 28%, 39%)" pathLength="1" stroke-dasharray="0.3 1.6" stroke-dashoffset="1.5" d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 -15 -45 L -30 -45 Z" />
-            <path stroke="hsl(211, 39%, 23%)" d="M -28 82.5 L 28 82.5" />
-            <path stroke="hsl(209, 61%, 16%)" d="M -28 82.5 L -2 82.5" />
+            <path stroke="hsl(210 22% 49%)" d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 -15 -45 L -30 -45 Z" />
+            <path stroke="hsl(209 28% 39%)" pathLength="1" stroke-dasharray="0.3 1.6" stroke-dashoffset="1.5" d="M 0 -45 L 30 -45 M 15 -45 A 40 40 0 0 0 30 -30 A 60 60 0 1 1 -30 -30 A 40 40 0 0 0 -15 -45 L -30 -45 Z" />
+            <path stroke="hsl(211 39% 23%)" d="M -28 82.5 L 28 82.5" />
+            <path stroke="hsl(209 61% 16%)" d="M -28 82.5 L -2 82.5" />
         </g>
-        <path stroke="hsl(211, 27%, 70%)" stroke-width="5" d="M -5 -47.5 L 10 -47.5 M 20 -47.5 L 24 -47.5" />
+        <path stroke="hsl(211 27% 70%)" stroke-width="5" d="M -5 -47.5 L 10 -47.5 M 20 -47.5 L 24 -47.5" />
     </g>
 </svg>`
 };
