@@ -43,7 +43,7 @@ The numbers jump to the eye, but are much more evident as you try and test the v
 
 Boil down the color and green bubbles up with the biggest influence. Try as you might to sum up the other two and they will always fall short of the channel.
 
-Boil down the color and you find the relative luminance in the 0 to 1 range, dictating how much you'll be able to see. From nothing — 0 — to everything — 1.
+Boil down the color and you find the relative luminance in the 0 to 1 range, dictating how much you'll be able to see. From nothing, 0, to everything, 1.
 
 The alpha value? Once you know how the three colors add up, the influence of the fourth channel is quite easy to digest. If you have a semi-transparent color, `rgb(247 201 74 / 0.5)`, multiply the luminance by the single, last number.
 
@@ -53,6 +53,6 @@ Back to the mask element. Between the tags, you can now add the shapes in whiche
 	{@html html['fish-bowl']}
 </Center>
 
-This opens up a world of possibilities, but if the discussion is too esoteric, if the resplendent, evanescent fishes weren't enough to treat you, let me leave you with something as remarkable as it is practical.
+You have plenty of options, but if the discussion is too esoteric, if the resplendent, evanescent fishes aren't enough to treat you, let me leave you with something as remarkable as it is practical.
 
-The three color channels are red, green and blue. Indubitably. CSS has three named colors to match: red, green and blue. Well, proof that you can't trust your senses, among the three, one is going to spoil the recipe. Red and blue indeed match their color channel in full — red is `rgb(255 0 0)` and blue `rgb(0 0 255)`. Green on the other hand, is only half as intense, `rgb(0 128 0)`. If you want a named color to represent the second channel as well, you need to reach for [lime](https://drafts.csswg.org/css-color/#valdef-color-lime). Only at that point you find the sparkling, brilliant elixir. Perhaps too brilliant, more than justifying the choice to limit the value for the more popular name.
+The three color channels are red, green and blue. Indubitably. CSS has three named colors to match: `red`, `green` and `blue`. Well, proof that you can't trust your senses, among the three, one is going to spoil the recipe. Red and blue indeed match their color channel in full — `red` is `rgb(255 0 0)` and `blue` `rgb(0 0 255)`. `green` on the other hand, is only half as intense, `rgb(0 128 0)`. If you want a named color to represent the second channel as well, you need to reach for [lime](https://drafts.csswg.org/css-color/#valdef-color-lime). Only at that point you find the sparkling, brilliant elixir. Perhaps too brilliant, more than justifying the choice to limit the value for the more popular name.
