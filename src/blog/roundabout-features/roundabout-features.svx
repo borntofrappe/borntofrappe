@@ -4,4 +4,14 @@ description: Even if you long for higher dimensions SVG helps to lay the groundw
 date: 2023-07-06T15:16:17
 ---
 
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+    import Roundabout2D from './Roundabout2D.svelte';
+</script>
+
 Libraries like [Zdog](https://zzz.dog/) make it a breeze to explore higher dimensions and produce 3D, or pseudo3D, visuals. That being said, it is easy to get lost as you try this or that exciting feature. It becomes helpful to have a plan, and in this regard, SVG becomes an excellent guiding force.
+
+<Center maxInlineSize="31rem">
+	<Roundabout2D />
+</Center>
