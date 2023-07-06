@@ -3,7 +3,7 @@
 	const r = 40;
 
 	let gap = 4;
-	let showCircles = true;
+	let showCircles = false;
 
 	const points = Array(n)
 		.fill()
@@ -33,15 +33,17 @@
 		});
 </script>
 
-<label>
-	<input type="checkbox" bind:checked={showCircles} />
-	<span> Show dots </span>
-</label>
+<div>
+	<label>
+		<span> Skip a different number of points. </span>
+		<input type="range" min="2" max="6" bind:value={gap} />
+	</label>
 
-<label>
-	<span> Skip a different number of points. </span>
-	<input type="range" min="2" max="6" bind:value={gap} />
-</label>
+	<label>
+		<input type="checkbox" bind:checked={showCircles} />
+		<span> Show dots </span>
+	</label>
+</div>
 
 <svg style="display: block;" viewBox="-50 -50 100 100">
 	<g
@@ -71,6 +73,10 @@
 </svg>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}
