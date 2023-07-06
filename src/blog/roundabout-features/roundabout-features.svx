@@ -8,6 +8,7 @@ date: 2023-07-06T15:16:17
     import Center from '$lib/components/blog/Center.svelte';
 
     import svg from './svg.js';
+    import Dashes from './Dashes.svelte';
     import Roundabout2D from './Roundabout2D.svelte';
     import Roundabout3D from './Roundabout3D.svelte';
 </script>
@@ -16,6 +17,10 @@ Libraries like [Zdog](https://zzz.dog/) make it a breeze to explore higher dimen
 
 <Center maxInlineSize="30rem">
 	<Roundabout2D />
+</Center>
+
+<Center maxInlineSize="24rem">
+	<Dashes />
 </Center>
 
 <Center element="figure" maxInlineSize="24rem">
