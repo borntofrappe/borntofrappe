@@ -65,15 +65,12 @@
 	</g>
 
 	<g class="rotate">
-		<g transform="translate(0 -35)">
-			<use style="color: hsl(200 85% 55%)" href="#roundabout-2d-car" />
-		</g>
-	</g>
-
-	<g class="rotate">
-		<g transform="rotate(180) translate(0 -35)">
-			<use style="color: hsl(40 90% 55%)" href="#roundabout-2d-car" />
-		</g>
+		<use transform="translate(0 -35)" style="color: hsl(200 85% 55%)" href="#roundabout-2d-car" />
+		<use
+			transform="rotate(180) translate(0 -35)"
+			style="color: hsl(40 90% 55%)"
+			href="#roundabout-2d-car"
+		/>
 	</g>
 </svg>
 
