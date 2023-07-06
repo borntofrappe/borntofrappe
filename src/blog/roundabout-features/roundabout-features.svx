@@ -256,7 +256,7 @@ The trick is wickedly simple. I took care to draw the shapes from the very cente
 To have the cars walk around the center, you need only to consider where the transformation takes place, [the SVG origin](/svg-origin). If you rotate a parent group, smack in the center.
 
 ```html
-<g transform="rotate(20)">
+<g transform="rotate(30)">
 	<!-- ...cars -->
 </g>
 ```
@@ -294,8 +294,9 @@ new Zdog.Shape({
 
 Rotate the common group, always in radians, and you repeat the change.
 
+<!-- prettier-ignore -->
 ```js
-groupSpheres.rotate.z = (30 / 180) * Math.PI;
+groupSpheres.rotate.z = 30 / 180 * Math.PI;
 ```
 
 Good. You can rotate the shapes once. To animate the value smoothly and over time, however, you need to automate the process. And this is perhaps the biggest leap from the SVG sketch. Previously we could rely on CSS and a keyframe animation.
