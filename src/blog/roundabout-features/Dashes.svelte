@@ -1,8 +1,10 @@
 <script>
 	const n = 60;
 	const r = 40;
-	let gap = 2;
+
+	let gap = 4;
 	let showCircles = true;
+
 	const points = Array(n)
 		.fill()
 		.map((_, i, { length }) => {
