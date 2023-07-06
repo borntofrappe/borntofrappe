@@ -1,7 +1,7 @@
 ---
 title: Roundabout features
 description: Even if you long for higher dimensions SVG helps to lay the groundwork and ease the flow of exciting features.
-date: 2023-07-06T15:16:17
+date: 2023-07-06T14:48:17
 ---
 
 <script>
@@ -15,18 +15,237 @@ date: 2023-07-06T15:16:17
 
 Libraries like [Zdog](https://zzz.dog/) make it a breeze to explore higher dimensions and produce 3D, or pseudo3D, visuals. That being said, it is easy to get lost as you try this or that exciting feature. It becomes helpful to have a plan, and in this regard, SVG becomes an excellent guiding force.
 
+Say you want to animate two cars, chasing each other in an endless loop. The promise of catching the motion over three axis is enticing, but not as much as a 2D sketch, plotting the scene with a bird's-eye view. You can even animate the small vehicles around the center. Always with SVG, with an assist from CSS.
+
 <Center maxInlineSize="30rem">
 	<Roundabout2D />
 </Center>
+
+How can you go deeper and recreate the scene with Zdog?
+
+It all starts with an _illustration_, targeting an existing `<canvas>` or `<svg>` element.
+
+```js
+const svg = document.querySelector('svg');
+const illustration = new Zdog.Illustration({
+	element: svg
+});
+```
+
+You are able to add shapes to this construct in the form of other classes, always from the `Zdog` module. Shapes like a rectangle for the first, greyish layer from the 2D sketch.
+
+```js
+new Zdog.Rect({
+	addTo: illustration,
+	width: 400,
+	height: 400,
+	fill: true,
+	color: 'hsl(0 0% 90%)'
+});
+```
+
+Where in `<svg>` you had a `<rect>` element, in Zdog you have a new instance of a `Rect` class.
+
+The shape is drawn from the center of the SVG, a perfect square, but to actually see it you need one essential instruction, the `updateRenderGraph()` method Zdog gives you on the illustration itself.
+
+```js
+illustration.updateRenderGraph();
+```
+
+Add the instruction _after_ the shape, and the rectangle appears. And this is enough to explain the basic Zdog workflow:
+
+1. create an illustration
+
+2. add shapes
+
+3. `updateRenderGraph()`
+
+The three-step process might be easy to digest, but I cannot tell you the number of times I forgot to update the illustration and stared at a blank canvas. Remember the method, and the rest is a matter of exploring the Zdog API, the possible shapes and properties.
+
+## Scene
+
+Let's start with the SVG syntax before the colored cars. The rectangle helps to explain the workflow, but not as much to introduce the scene. Instead of a rigid `Rect`, favor instead a `RoundedRect`. The class is similar, but allows to round the corners with a fitting property.
+
+```js
+new Zdog.RoundedRect({
+	//...
+	cornerRadius: 20
+});
+```
+
+We are going to add other shapes on this layer, so it is helpful to keep a reference to the object.
+
+```js
+const scene = new Zdog.RoundedRect({
+	//...
+});
+```
+
+On to the circles. For the larger copy you don't need a `<circle>`, but an `Ellipse` instead. A bright, round shape, on top of the scene.
+
+```js
+new Zdog.Ellipse({
+	addTo: scene,
+	diameter: 300,
+	fill: true,
+	color: 'hsl(0 0% 97%)'
+});
+```
+
+Repeat the instruction with a smaller diameter, a darker shade and you find the central shape. For the lines in between, however, you stumble on a first hiccup. Rather conveniently, SVG has a `stroke-dasharray` property, so that you are able to add the lines with a perfect circle.
+
+```html
+<circle
+	stroke-dasharray="2 8"
+	stroke="hsl(0 0% 65%)"
+	stroke-width="1.25"
+	stroke-linecap="round"
+	fill="none"
+	r="35"
+/>
+```
+
+Zdog, however, does not have a similar feature. You can very well draw an outline, a contiguous line around the center by not specifying the `fill` property.
+
+```js
+new Zdog.Ellipse({
+	addTo: scene,
+	diameter: 200,
+	stroke: 4,
+	color: 'hsl(0 0% 65%)'
+});
+```
+
+And you can justify the result for the project at hand — who needs dashes for cars that are never going to surpass each other? —, but there is a way around the issue. With a bit of logic, a touch of math, and a tolerance for small mistakes.
+
+How do you draw a circle? With a `<circle>` element, a `<path>` element with two arcs, or again a series of `<path>` or `<line>` elements connecting a multitude of points around the center. You need the help of two trigonometric function, but the result is bound to excuse the effort.
+
+Gather up [the circle points](a-star-is-born#circle-points), and with the x, y coordinates you need one more step, connecting the dots. Instead of connecting them all, however, the goal is to produce gaps. Skip every other point and the dashes match the gap in length. Skip more than a single pair and the gap increases. You have a bit of leeway in this manner.
 
 <Center maxInlineSize="24rem">
 	<Dashes />
 </Center>
 
+The effect is quite believable — there is close to a circle there —, but the result is going to be even more effective in Zdog, and for at least two reasons. Number one: stroke. While Zdog might not have dashes, it relies heavily on rounded strokes to create depth. As you sand off the edges of the lines, the illusion is improved. Number two: depth. But you might have to wait a while to realize the feat.
+
+Let's take a step back, though. You have an array of x, y points for the small circles around the center. One way to create the lines is with a separate array, a smaller list storing the points in pairs.
+
+```js
+// ...points
+const lines = Array(Math.floor(points / 4))
+	.fill()
+	.map();
+```
+
+How much smaller depends on the gap you want to create between the solid segments. In the `map` function, and through the index, you are indeed able to isolate the successive points.
+
+```js
+const lines = Array(Math.floor(points / 4))
+	.fill()
+	.map((_, i) => {
+		const i1 = i * 4;
+		const i2 = i1 + 1;
+	});
+```
+
+Once you find the coordinates for the start and end point — I stored the values in objects — return the values for the matching pairs.
+
+```js
+const { x: x1, y: y1 } = points[i1];
+const { x: x2, y: y2 } = points[i2];
+
+return {
+	x1,
+	y1,
+	x2,
+	y2
+};
+```
+
+You have an array of objects. In SVG, you would loop through the data structure to fabricate the lines with a `<path>`, or again a `<line>`, specifying the matching attributes.
+
+```svelte
+{#each lines as { x1, y1, x2, y2 }}
+	<line {x1} {y1} {x2} {y2} />
+{/each}
+```
+
+In Zdog, on the other hand, you fall back to a regular loop and a `Shape` class.
+
+```js
+for (const { x1, y1, x2, y2 } of lines) {
+	new Zdog.Shape({
+		addTo: scene,
+		stroke: 4,
+		color: 'hsl(0 0% 65%)'
+	});
+}
+```
+
+The coordinates, those are added in the `path` property, and with an array of `x`, `y` points.
+
+```js
+new Zdog.Shape({
+	path: [
+		{ x: x1, y: y1 },
+		{ x: x2, y: y2 }
+	]
+	// ...
+});
+```
+
+Rounded rectangle, ellipses and now lines complete the stage. Thanks to the brief, mathematical detour we are finally able to update the illustration impress the scene in glorious pseudo 3D.
+
 <Center element="figure" maxInlineSize="24rem">
     {@html svg['zdog']}
 </Center>
 
+The result might not seen remarkable, but believe me, there are reasons to be ecstatic about the still picture. We've successfully reproduced the scene with Zdog. With the library, we now have the ability to change the perspective and have the graphic adapt over the three promised axis.
+
+Before we take advantage of the possibility, however, let's conclude the drawing with two actors. And to simplify our task a bit, let's consider a small marker instead of a convincing 4 wheeler. To introduce the cars, a sphere will suffice. A sphere with the Shape class, specifying only the stroke and a highly saturated color. A sphere for a car each.
+
+new Zdog.Shape
+
+By default, the shapes are drawn in the center, exactly as every other class we've added this far. But to complete the visual, we need to reposition them, at opposite ends of the round shapes. For this, the translate property helps to move the shapes over a specific axis, and by tapping on the vertical dimension, we are able to move the spheres up and down, in their rightful spot.
+
+## Motion
+
+Shapes, we have plenty. Perhaps not all of them, but more than enough to make a respectable demo. And you might not be able to see the spheres yet, but you'll get a chance soon enough to see them, and not just from top down.
+
+It is now time to animate the pieces, and SVG helps us once more. How did we manage to animate the sketch in the first place, only with CSS?
+
+The trick is wickedly simple. Similarly to Zdog and the example so far, I took care to draw the shapes from the very center of the <svg>. Every shape including the vehicles. These two, however, are repositioned, above and below with the transform attribute. Again the similarities are staggering. To have them walk around the center, you need only to consider [the origin] of the transformation. If you animate a parent group, smack in the center.
+
+Your offset shapes will rotate around the very same spot. A hinge for the true origin.
+
+With Zdog? Why, the similarities are staggering. We have a series of shapes, drawn from the center. We now have two spheres, drawn above and below. We just need to rotate them, from the very same spot.
+
+Matching the group element in SVG, Zdog grants us a Group class. We add this construct to the scene.
+
+We attach the spheres to this group instead.
+
+The group helps to gather the shapes, and to share similar properties. To enhance the 3D effect, for instance, we are now able to lift both spheres in the Z axis.
+
+The shapes become closer and separate from the concrete surface below. To have them finally rotate them, we need to update the rotation.
+
+Update the rotation.
+
+Update the illustration to show.
+
+And this is perhaps the biggest leap from the SVG sketch from the css animation. We want to animate the spheres over time, and if possible, automate the sequence. Following the guidance from the library itself, requestAnimationFrame is the safest bet.
+
+Tapping in the browser's wants and needs, the function executes the instructions whenever possible. As smoothly as possible. Making sure to impress you in the cherished dimensions.
+
+Dimensions we are finally able to explore with rotations. For the spheres, but also for the illustration as a whole.
+
+You can tilt and twist the angle in radians, or benefit from the TAU constant, a utility Zdog describes for a full rotation, twice as much as the value of Pi.
+
+Over x, y, and z.
+
 <Center maxInlineSize="520px">
     <Roundabout3D />
 </Center>
+
+The previous top-down view shines through with the new angle, with the new perspective. The spheres move, with a rotation over a single axis only, but now move closer and farther away. Zdog takes care of changing their size, their position and complete the set.
+
+It took a whole to get to this point, but hopefully, the result was worth the trip. It is also true that the 2D sketch helped but we didn't match the design in full. With the concepts introduced so far, however, you are equipped to build upon solid foundations. I direct you toward the library and the modeling tutorial to learn how to make up more complex shapes. With a bit of patience and trial and error you will definitely be able to have the initial vehicle extrude the picture and march in the place of the sphere. And if you don't mind an excursion, I redirect you to my CodePen profile. Time willing, I might try my luck to achieve the feat.
