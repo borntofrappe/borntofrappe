@@ -34,7 +34,7 @@
 
 	let svg = null;
 	let illustration = null;
-	let groupCircles = null;
+	let groupSpheres = null;
 	let animate = false;
 	let frame = null;
 
@@ -83,20 +83,20 @@
 			color: 'hsl(0 0% 65%)'
 		});
 
-		groupCircles = new Group({
+		groupSpheres = new Group({
 			addTo: scene,
 			translate: { z: 15 }
 		});
 
 		new Shape({
-			addTo: groupCircles,
+			addTo: groupSpheres,
 			stroke: 30,
 			color: 'hsl(200 85% 55%)',
 			translate: { y: -r }
 		});
 
 		new Shape({
-			addTo: groupCircles,
+			addTo: groupSpheres,
 			stroke: 30,
 			color: 'hsl(40 90% 55%)',
 			translate: { y: r }
@@ -112,11 +112,11 @@
 	});
 
 	const handleAnimation = (animate) => {
-		if (svg === null || illustration === null || groupCircles === null) return;
+		if (svg === null || illustration === null || groupSpheres === null) return;
 
 		if (animate) {
 			frame = requestAnimationFrame(function loop() {
-				groupCircles.rotate.z = (groupCircles.rotate.z + 0.02) % TAU;
+				groupSpheres.rotate.z = (groupSpheres.rotate.z + 0.02) % TAU;
 				illustration.updateRenderGraph();
 				frame = requestAnimationFrame(loop);
 			});
