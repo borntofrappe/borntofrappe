@@ -7,7 +7,7 @@ export async function GET({ url }) {
 
 	let blog = await content();
 	const postsPerPage = 8;
-	const pages = Math.floor(blog.length / postsPerPage) - 1;
+	const pages = Math.floor((blog.length - 1) / postsPerPage);
 
 	if (Number.isInteger(page) && page >= 0) {
 		blog = blog.slice(page * postsPerPage, (page + 1) * postsPerPage);
