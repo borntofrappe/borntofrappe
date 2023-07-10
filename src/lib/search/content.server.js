@@ -1,3 +1,4 @@
+import { parse } from 'node:path';
 import site from '$lib/utils/site.js';
 
 export async function content() {
@@ -7,7 +8,7 @@ export async function content() {
 
 	const blog = await Promise.all(
 		Object.entries(modules).map(async ([path, module]) => {
-			const [slug] = path.split('/').pop().split('.');
+			const { name: slug } = parse(path);
 			const url = `${origin}/${slug}`;
 
 			const { metadata } = await module();
