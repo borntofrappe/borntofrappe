@@ -1,0 +1,5 @@
+---
+title: Rotate 3D
+description: Learn how to spin on the x, y and z axis with a few SVG, pseudo-3D, examples.
+date: 2023-07-11T10:09:47
+---
