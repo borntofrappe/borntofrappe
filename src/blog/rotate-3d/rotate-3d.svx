@@ -38,7 +38,7 @@ x, y, and z. The first two axes behave in much the same way as the 2D picture. L
 
 Rotate the visual over two axes and you see all the possible values. Every dash, line and letter in every possible direction. But how do the rotations work?
 
-It helps to look back at the lines. These represent the axes, in a rather dumbed down manner, and give an immediate answer if you think about them as a hinge.
+It helps to look back at the lines. These represent the axes and give an immediate answer if you think about them as a hinge.
 
 If you rotate relative to the x axis, the rotation takes place _around_ the horizontal line, like a few treats turning on a skewer on a gentle flame.
 
@@ -52,7 +52,7 @@ Relative to the y axis, you turn around the vertical strait. Like a ballerina in
 	<RotateY />
 </Center>
 
-Relative to the z axis, finally, you turn around the most direct line, and find the same exact behavior you had in the two-dimensional frame. You turn around the segment matching your eyesight and the pinwheel turns again like the hands of a clock. With a brand new look.
+Relative to the z axis, finally, you turn around the most direct line, and find the same exact behavior you had in the two-dimensional frame. You turn around the segment matching your eyesight and the pinwheel turns again like the hands of a clock. With a fresh new look.
 
 <Center maxInlineSize="360px">
 	<RotateZ />
