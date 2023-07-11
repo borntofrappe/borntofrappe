@@ -151,7 +151,7 @@
 	<input type="range" min="0" max="360" bind:value={angle} />
 </label>
 
-<svg bind:this={svg} style="display: block; outline: 1px solid;" width="360" height="480">
+<svg bind:this={svg} style="display: block;" width="360" height="480">
 	<svg viewBox="-30 -30 60 80">
 		<defs>
 			<g id="rotate-z-leaf">
