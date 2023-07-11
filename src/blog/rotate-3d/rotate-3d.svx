@@ -10,8 +10,9 @@ date: 2023-07-11T10:09:47
     import svg from "./svg.js";
     import Rotate2D from "./Rotate2D.svelte";
     import RotateX from "./RotateX.svelte";
+    import RotateY from "./RotateY.svelte";
 </script>
 
 <Center maxInlineSize="360px">
-    <RotateX />
+    <RotateY />
 </Center>
