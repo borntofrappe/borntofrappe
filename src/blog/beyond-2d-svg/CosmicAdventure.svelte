@@ -225,10 +225,11 @@
 		illustration.rotate.x = TAU / 32;
 		illustration.updateRenderGraph();
 
+		let frame = null;
 		let direction = 1;
 		const angle = TAU / 32;
 
-		let animate = requestAnimationFrame(function loop(t) {
+		const loop = () => {
 			illustration.rotate.z +=
 				(0.0002 + 0.005 * (1 - Math.abs(illustration.rotate.z) / angle)) * direction;
 			illustration.rotate.y = illustration.rotate.z * -1;
@@ -242,11 +243,23 @@
 			}
 
 			illustration.updateRenderGraph();
-			animate = requestAnimationFrame(loop);
-		});
+			frame = requestAnimationFrame(loop);
+		};
+
+		const observation = (entries) => {
+			if (entries[0].isIntersecting) {
+				frame = requestAnimationFrame(loop);
+			} else {
+				cancelAnimationFrame(frame);
+			}
+		};
+
+		const observer = new IntersectionObserver(observation);
+		observer.observe(svg);
 
 		return () => {
-			cancelAnimationFrame(animate);
+			observer.unobserve(svg);
+			cancelAnimationFrame(frame);
 		};
 	});
 </script>
