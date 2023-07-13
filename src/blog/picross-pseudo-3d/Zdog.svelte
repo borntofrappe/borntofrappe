@@ -38,20 +38,22 @@ DAGEDCBHAC
 
 	onMount(() => {
 		const a = new Box({
-			width: 1,
-			height: 1,
-			depth: 1,
 			color: 'hsl(0 0% 20%)',
 			rearFace: 'hsl(0 0% 30%)',
 			frontFace: 'hsl(0 0% 30%)',
+			width: 1,
+			height: 1,
+			depth: 1,
 			stroke: 0
 		});
 
 		const b = new Anchor({});
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: b,
+			color: 'hsl(0 0% 20%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
@@ -73,27 +75,17 @@ DAGEDCBHAC
 					y: 0.5,
 					z: 0.5
 				}
-			],
-			fill: true,
-			stroke: 0
+			]
 		});
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: b,
+			color: 'hsl(0 0% 20%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
-					y: 0.5,
-					z: -0.5
-				},
-				{
-					x: -0.5,
-					y: -0.5,
-					z: -0.5
-				},
-				{
-					x: -0.5,
 					y: -0.5,
 					z: 0.5
 				},
@@ -101,15 +93,25 @@ DAGEDCBHAC
 					x: -0.5,
 					y: 0.5,
 					z: 0.5
+				},
+				{
+					x: -0.5,
+					y: 0.5,
+					z: -0.5
+				},
+				{
+					x: -0.5,
+					y: -0.5,
+					z: -0.5
 				}
-			],
-			fill: true,
-			stroke: 0
+			]
 		});
 
-		const bb = new Shape({
-			color: 'hsl(0 0% 30%)',
+		new Shape({
 			addTo: b,
+			color: 'hsl(0 0% 30%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
@@ -132,32 +134,24 @@ DAGEDCBHAC
 						{ x: -0.5, y: -0.5, z: -0.5 }
 					]
 				}
-			],
-			fill: true,
-			stroke: 0
-		});
-
-		bb.copy({
-			addTo: b,
-			translate: {
-				z: 1
-			}
+			]
 		});
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: b,
+			color: 'hsl(0 0% 30%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
 					y: -0.5,
-					z: -0.5
+					z: 0.5
 				},
 				{
-					arc: [
-						{ x: 0.5, y: -0.5, z: -0.5 },
-						{ x: 0.5, y: 0.5, z: -0.5 }
-					]
+					x: -0.5,
+					y: 0.5,
+					z: 0.5
 				},
 				{
 					x: 0.5,
@@ -170,9 +164,38 @@ DAGEDCBHAC
 						{ x: -0.5, y: -0.5, z: 0.5 }
 					]
 				}
-			],
+			]
+		});
+
+		new Shape({
+			addTo: b,
+			color: 'hsl(0 0% 20%)',
 			fill: true,
-			stroke: 0
+			stroke: 0,
+			path: [
+				{
+					x: 0.5,
+					y: 0.5,
+					z: 0.5
+				},
+				{
+					arc: [
+						{ x: 0.5, y: -0.5, z: 0.5 },
+						{ x: -0.5, y: -0.5, z: 0.5 }
+					]
+				},
+				{
+					x: -0.5,
+					y: -0.5,
+					z: -0.5
+				},
+				{
+					arc: [
+						{ x: 0.5, y: -0.5, z: -0.5 },
+						{ x: 0.5, y: 0.5, z: -0.5 }
+					]
+				}
+			]
 		});
 
 		const c = b.copyGraph({
@@ -196,66 +219,68 @@ DAGEDCBHAC
 		const f = new Anchor();
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: f,
+			color: 'hsl(0 0% 20%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
-					y: -0.5,
-					z: -0.5
-				},
-				{
-					x: -0.5,
 					y: 0.5,
 					z: -0.5
 				},
 				{
-					x: -0.5,
+					x: 0.5,
+					y: 0.5,
+					z: -0.5
+				},
+				{
+					x: 0.5,
 					y: 0.5,
 					z: 0.5
 				},
 				{
 					x: -0.5,
-					y: -0.5,
+					y: 0.5,
 					z: 0.5
 				}
-			],
-			fill: true,
-			stroke: 0
+			]
 		});
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: f,
+			color: 'hsl(0 0% 20%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
-					y: 0.5,
-					z: -0.5
-				},
-				{
-					x: 0.5,
-					y: 0.5,
-					z: -0.5
-				},
-				{
-					x: 0.5,
-					y: 0.5,
+					y: -0.5,
 					z: 0.5
 				},
 				{
 					x: -0.5,
 					y: 0.5,
 					z: 0.5
+				},
+				{
+					x: -0.5,
+					y: 0.5,
+					z: -0.5
+				},
+				{
+					x: -0.5,
+					y: -0.5,
+					z: -0.5
 				}
-			],
-			fill: true,
-			stroke: 0
+			]
 		});
 
-		const ff = new Shape({
-			color: 'hsl(0 0% 30%)',
+		new Shape({
 			addTo: f,
+			color: 'hsl(0 0% 30%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
@@ -268,37 +293,48 @@ DAGEDCBHAC
 					y: 0.5,
 					z: -0.5
 				}
-			],
-			fill: true,
-			stroke: 0
-		});
-
-		ff.copy({
-			addTo: f,
-			translate: {
-				z: 1
-			}
+			]
 		});
 
 		new Shape({
-			color: 'hsl(0 0% 20%)',
 			addTo: f,
+			color: 'hsl(0 0% 30%)',
+			fill: true,
+			stroke: 0,
 			path: [
 				{
 					x: -0.5,
 					y: -0.5,
-					z: -0.5
+					z: 0.5
 				},
-				{ x: 0.5, y: 0.5, z: -0.5 },
+				{ x: -0.5, y: 0.5, z: 0.5 },
+				{
+					x: 0.5,
+					y: 0.5,
+					z: 0.5
+				}
+			]
+		});
+
+		new Shape({
+			addTo: f,
+			color: 'hsl(0 0% 20%)',
+			fill: true,
+			stroke: 0,
+			path: [
 				{
 					x: 0.5,
 					y: 0.5,
 					z: 0.5
 				},
-				{ x: -0.5, y: -0.5, z: 0.5 }
-			],
-			fill: true,
-			stroke: 0
+				{ x: -0.5, y: -0.5, z: 0.5 },
+				{
+					x: -0.5,
+					y: -0.5,
+					z: -0.5
+				},
+				{ x: 0.5, y: 0.5, z: -0.5 }
+			]
 		});
 
 		const g = f.copyGraph({
