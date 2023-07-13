@@ -1,12 +1,12 @@
 <script>
 	const level = `
-  ---EA----
-  DAB-A-EAC
-  -EAAAAAB-
-  --EAAAB--
-  --IGAHF--
-  ---IAF---
-  `;
+---EA----
+DAB-A-EAC
+-EAAAAAB-
+--EAAAB--
+--IGAHF--
+---IAF---
+`;
 
 	const grid = level
 		.trim()
