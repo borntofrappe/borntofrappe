@@ -1,0 +1,5 @@
+---
+title: Picross pseudo-3D
+description: Dive head-first into SVG and Zdog to draw solved nonogram puzzles with a more realistic look.
+date: 2023-07-13T11:11:20
+---
