@@ -497,7 +497,7 @@ DAGEDCBHAC
 `;
 ```
 
-After all, you can [draw an eagle](), and any other puzzling figure. Again, there's a lot of work in terms of setup, in terms of vocabulary and shapes. But if you go through the effort, with a bit of trial and error, you can appreciate the result. And you might even see the figure through letters. Even upside-down.
+After all, you can [draw an eagle](https://codepen.io/borntofrappe/full/VwVQNXB), and any other puzzling figure. Again, there's a lot of work in terms of setup, in terms of vocabulary and shapes. But if you go through the effort, with a bit of trial and error, you can appreciate the result. And you might even see the figure through letters. Even upside-down.
 
 <Center maxInlineSize="420px">
 	<Zdog />
