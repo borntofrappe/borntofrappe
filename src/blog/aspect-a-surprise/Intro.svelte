@@ -25,6 +25,10 @@
 		max-inline-size: 20rem;
 	}
 
+	section > p + p {
+		margin-block-start: 1rem;
+	}
+
 	section > div {
 		float: right;
 		inline-size: 100%;
