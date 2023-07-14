@@ -8,8 +8,8 @@
 	</div>
 
 	<p>
-		This blog shares an affection for scalable vector graphics, but also picross, an intriguing
-		puzzle game where you fill a grid to conjure up interesting figures.
+		This website shares an affection for scalable vector graphics, but also nonograms, intriguing
+		puzzles where you fill a grid to conjure up interesting figures.
 	</p>
 
 	<p>
@@ -20,10 +20,10 @@
 	</p>
 
 	<p>
-		The effect is quite convincing — there are certainly plenty of levels you can visualize in their
-		final, crisp state —, but with the benefit of a JavaScript library like Zdog you can go further,
-		and really explore deeper shapes. Better yet, you are able to visualize more complex pieces. Not
-		only squares, not only cubes.
+		The effect is quite convincing — there are certainly <a href="/picross">plenty of levels</a> you
+		can visualize in their complete, crisp state —, but with the benefit of a JavaScript library like
+		Zdog you can go further, and really explore deeper shapes. Better yet, you are able to visualize
+		more complex pieces. Not only squares, not only cubes.
 	</p>
 </section>
 
