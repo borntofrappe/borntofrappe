@@ -38,9 +38,9 @@ DAGEDCBHAC
 
 	onMount(() => {
 		const a = new Box({
-			color: 'hsl(0 0% 20%)',
-			rearFace: 'hsl(0 0% 30%)',
-			frontFace: 'hsl(0 0% 30%)',
+			color: 'hsl(263 54% 64%)',
+			rearFace: 'hsl(263 98% 76%)',
+			frontFace: 'hsl(263 98% 76%)',
 			width: 1,
 			height: 1,
 			depth: 1,
@@ -51,7 +51,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: b,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -80,7 +80,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: b,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -109,7 +109,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: b,
-			color: 'hsl(0 0% 30%)',
+			color: 'hsl(263 98% 76%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -139,7 +139,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: b,
-			color: 'hsl(0 0% 30%)',
+			color: 'hsl(263 98% 76%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -169,7 +169,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: b,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -220,7 +220,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: f,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -249,7 +249,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: f,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -278,7 +278,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: f,
-			color: 'hsl(0 0% 30%)',
+			color: 'hsl(263 98% 76%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -298,7 +298,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: f,
-			color: 'hsl(0 0% 30%)',
+			color: 'hsl(263 98% 76%)',
 			fill: true,
 			stroke: 0,
 			path: [
@@ -318,7 +318,7 @@ DAGEDCBHAC
 
 		new Shape({
 			addTo: f,
-			color: 'hsl(0 0% 20%)',
+			color: 'hsl(263 54% 64%)',
 			fill: true,
 			stroke: 0,
 			path: [
