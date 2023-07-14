@@ -1,7 +1,7 @@
 ---
 title: Picross pseudo-3D
 description: Dive head-first into SVG and Zdog to draw solved nonogram puzzles with a more realistic look.
-date: 2023-07-14T11:37:20
+date: 2023-07-14T11:37:59
 ---
 
 <script>
@@ -12,6 +12,8 @@ date: 2023-07-14T11:37:20
 	import SVG from './SVG.svelte';
 	import Zdog from './Zdog.svelte';
 </script>
+
+<Intro />
 
 ## SVG
 
@@ -24,7 +26,7 @@ Say you want to draw the eagle you found at the top of this very page. In SVG yo
 
 Like a pencil on a scrap of paper, you draw arcs and straight lines to mark the winged creature.
 
-What if you break down the figure in pieces however, similar to one of the levels in the nonogram puzzles? In the simpler instance of past, 2D efforts, we only had squares, we only had cubes. For these, we managed to describe a level with multi-line strings filled with two characters, _"x"\_s and _"o"\_s.
+What if you break down the figure in pieces however, similar to one of the levels in nonogram puzzles? In the simpler instance of past, 2D efforts, we only had squares, we only had cubes. For these, we managed to describe a level with a multi-line string filled with two characters, _"x"\_s and _"o"\_s.
 
 ```js
 const level = `xxxoo
@@ -51,7 +53,7 @@ DAB-A-EAC
 `;
 ```
 
-Starting with the letter _"A"_ for the square, I decided to navigate the alphabet with each successive shape. First the round-ish wedges, then the triangles. The decision is not as important as picking a convention and sticking to it. In the end, you have a dictionary, matching letters to specific shapes.
+Starting with the letter _"A"_ for the square, I decided to navigate the alphabet with each successive shape. First the round-ish wedges, then the triangles. The decision is not as important as picking a convention and sticking to it. In the end, you have a vocabulary, matching letters to specific shapes.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['vocabulary']}
@@ -63,7 +65,7 @@ How do you draw the level? Again and in the simpler instance, we only had square
 <rect x="3" y="0" width="1" height="1" />
 ```
 
-With a greater number of letters, a greater number of shapes, you don't need to check the value with a series of conditionals. Matching the dictionary of characters, you are indeed able to create a collection of shapes in the `<svg>` element between `<defs>` tags.
+With a greater number of letters, a greater number of shapes, you don't need to check the value with a series of conditionals. Matching the vocabulary of characters, you are indeed able to create a collection of shapes in the `<svg>` element between `<defs>` tags.
 
 ```html
 <svg>
@@ -84,7 +86,7 @@ Between the opening and closing bracket even regular shapes, even `<rect>` and `
 </defs>
 ```
 
-Making sure to match the id to the letter is bound to simplify our task a bit, but first, take a moment to appreciate the multi-line string once more.
+Making sure to pair the `id` to the letter is bound to simplify our task a bit, but first, take a moment to appreciate the multi-line string once more.
 
 ```js
 const level = `
@@ -107,13 +109,13 @@ We need to break down the string in a manageable, helpful data structure, like a
 }
 ```
 
-The first two help to position the shapes with the matching `x` and `y` attributes. The third once again provides a perfect match for the `href` attribute, and is exactly how we draw a specific, defined shape with the `<use>` element.
+The first two help to position the shapes with the matching `x` and `y` attributes. The third once again provides a perfect match for the `href` attribute, and is exactly how we draw one of the shapes with the `<use>` element.
 
 ```html
 <use x="3" y="0" href="#E" />
 ```
 
-With the attribute you point to the shapes through their unique `id`.
+With the attribute you point to the element through the unique `id`.
 
 Back to the task at hand, from string to array. The string shows the level in rows, so that the first step is to break down the sequence per the new line character _"\n"_.
 
@@ -153,7 +155,7 @@ With this, you find a grid. A 2D array describing first the rows, then the colum
 ];
 ```
 
-And the construct is already useful to describe the dimensions of our level. What is the height of our SVG? That would match the number of rows, the length of the grid.
+And the construct is already useful to describe the dimensions of our graphic. What is the height of our SVG? That would match the number of rows, the length of the grid.
 
 ```js
 const height = grid.length;
@@ -203,9 +205,9 @@ if (letter !== '-') {
 }
 ```
 
-The horizontal position, that refers to the index of nested loop. The vertical measure, the index in the parent scope. For the reference you can point to the specific letter and, to be accurate, prefix the string with the hash character. 
+The horizontal position, that refers to the index of the nested loop. The vertical measure, the index in the parent scope. For the reference you can point to the letter and, to be accurate, prefix the string with the hash character _"#"_.
 
-Add the object to the list, and you obtain the precious collection. An array of objects with `x`, `y`, and `href` properties. To draw the level in its entirety, loop through the structure one last time to add the `<use>` elements. With Javascript, or the framework of your choice.
+Add the object to the list and you obtain the precious collection. An array of objects with `x`, `y`, and `href` properties. To draw the level in its entirety, loop through the structure one last time to add the `<use>` elements. With Javascript, or the framework of your choice.
 
 ```svelte
 {#each uses as { x, y, href }}
@@ -219,7 +221,7 @@ And marvel at the result.
 	<SVG />
 </Center>
 
-Majestic as the eagle might be, I can see how the logic might raise a few questions. Among which: "_why?_". Indubitably, you find the same picture you first saw with one `<path>` element. This time, however, you have a dictionary of letters and shapes. You have a recipe to draw more than one figure. 
+Majestic as the eagle might be, I can see how the logic might raise a few questions. Among which: "_why?_". Indubitably, you find the same picture you first saw with one `<path>` element. This time, however, you have a vocabulary of shapes. You have a recipe to draw more than one figure.
 
 What is more, you have the ingredients to build a more complex showcase in pseudo-3D.
 
@@ -237,7 +239,7 @@ new Zdog.Box({
 
 The shape matches the first definition, the square, but what about the other, more rotund figures? What about the sharp wedges? Unfortunately, the library does not provide a class for the specific shapes, yet. That being said, the box illustrates a way forward.
 
-A box is but a collection of faces, a collection of rectangles postioned with care and forethought. Think of six rectangles, glued together in a tight fit.
+A box is but a collection of faces, a collection of rectangles positioned with care and forethought. Think of six rectangles, glued together in a tight fit.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['box']}
@@ -268,26 +270,26 @@ new Zdog.Shape({
 You need to fabricate the faces, but for the rectangular shape the process is clear, if repetitive. For the face in the back you'd repeat the instruction with a negative `z` value.
 
 ```js
-	path: [
-		{ x: -0.5, y: -0.5, z: -0.5 },
-		{ x: 0.5, y: -0.5, z: -0.5 },
-		{ x: 0.5, y: 0.5, z: -0.5 },
-		{ x: -0.5, y: 0.5, z: -0.5 }
-	]
+path: [
+	{ x: -0.5, y: -0.5, z: -0.5 },
+	{ x: 0.5, y: -0.5, z: -0.5 },
+	{ x: 0.5, y: 0.5, z: -0.5 },
+	{ x: -0.5, y: 0.5, z: -0.5 }
+];
 ```
 
 For the sides, you'd change the depth while keeping the same x, or y coordinate.
 
 ```js
-	path: [
-		{ x: -0.5, y: -0.5, z: -0.5 },
-		{ x: -0.5, y: -0.5, z: 0.5 },
-		{ x: -0.5, y: 0.5, z: 0.5 },
-		{ x: -0.5, y: 0.5, z: -0.5 }
-	]
+path: [
+	{ x: -0.5, y: -0.5, z: -0.5 },
+	{ x: -0.5, y: -0.5, z: 0.5 },
+	{ x: -0.5, y: 0.5, z: 0.5 },
+	{ x: -0.5, y: 0.5, z: -0.5 }
+];
 ```
 
-You navigate the axis so that the all together, the rectangles pack up to make a box.
+You navigate the axis so that all together, the rectangles pack up to make a box.
 
 How do you draw more complex shapes? In precisely the same manner. Think of a wedge as a combination of shapes, of faces with a more varied design.
 
@@ -295,87 +297,90 @@ How do you draw more complex shapes? In precisely the same manner. Think of a we
 	{@html svg['shape']}
 </Center>
 
-Some faces are easy to sketch out — think of the bottom and left sides repeating the parts of the box. Some faces require a bit more tinkering. Consider the front and the back, for instance. On top of three vertices. 
+Some faces are easy to sketch out — think of the bottom and left sides repeating the parts of the box. Some faces require a bit more tinkering. Consider the front and the back, for instance. On top of three vertices.
 
 ```js
-	path: [
-		{ x: -0.5, y: -0.5, z: -0.5 },
-		{ x: -0.5, y: 0.5, z: -0.5 },
-		{ x: 0.5, y: 0.5, z: -0.5 },
-		//... 
-	]
+path: [
+	{ x: -0.5, y: -0.5, z: -0.5 },
+	{ x: -0.5, y: 0.5, z: -0.5 },
+	{ x: 0.5, y: 0.5, z: -0.5 }
+	//...
+];
 ```
-
 
 You need an arc back to the top.
 
 ```js
-	path: [
-		//... 
-		{
-			arc: [
-				{ x: 0.5, y: -0.5, z: -0.5 },
-				{ x: -0.5, y: -0.5, z: -0.5 }
-			]
-		}
-	]
+path: [
+	//... { x: 0.5, y: 0.5, z: -0.5 }
+	{
+		arc: [
+			{ x: 0.5, y: -0.5, z: -0.5 },
+			{ x: -0.5, y: -0.5, z: -0.5 }
+		]
+	}
+];
 ```
 
-For the oblong portion, the syntax is even more mind-bending, and requires a shift in perspective. Not only you need an arc, up and to the right.
+For the curved surface, the syntax is even more mind-bending, and requires a shift in perspective. Not only you need an arc, up and to the right.
 
 ```js
-	path: [
-		{ x: 0.5, y: 0.5, z: 0.5 },
-		{
-			arc: [
-				{ x: 0.5, y: -0.5, z: 0.5 },
-				{ x: -0.5, y: -0.5, z: 0.5 }
-			]
-		}
-		// ...
-	]
+path: [
+	{ x: 0.5, y: 0.5, z: 0.5 },
+	{
+		arc: [
+			{ x: 0.5, y: -0.5, z: 0.5 },
+			{ x: -0.5, y: -0.5, z: 0.5 }
+		]
+	}
+	// ...
+];
 ```
 
 But also a segment, drawing the shape along the z-axis.
 
 ```js
-	path: [
-		// ... { x: -0.5, y: -0.5, z: 0.5 }
-		{ x: -0.5, y: -0.5, z: -0.5 }
-	]
+path: [
+	// ... { x: -0.5, y: -0.5, z: 0.5 }
+	{ x: -0.5, y: -0.5, z: -0.5 }
+];
 ```
 
-Do this, and retrace the curve back with an another arc. Just at a different depth.
+Do this, and retrace the curve back with another arc in the deeper layer.
 
 ```js
-	path: [
-		// ... { x: -0.5, y: -0.5, z: -0.5 }
-		{
-			arc: [
-				{ x: 0.5, y: -0.5, z: -0.5 },
-				{ x: 0.5, y: 0.5, z: -0.5 }
-			]
-		}
-	]
+path: [
+	// ... { x: -0.5, y: -0.5, z: -0.5 }
+	{
+		arc: [
+			{ x: 0.5, y: -0.5, z: -0.5 },
+			{ x: 0.5, y: 0.5, z: -0.5 }
+		]
+	}
+];
 ```
 
-The sequence is far more intuitive, we are more used to draw in a 2D plane far more than are in 3D. That being said, it is almost beautiful as you appreciate the instructions.
+The sequence is far more intuitive, we are more used drawing in a 2D plane far more than are in 3D. That being said, it is almost beautiful as you appreciate the instructions.
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['3d-arc']}
 </Center>
 
-You can draw a box and the faces for one of the round wedges. And this is one instance where I'm more than glad to repeat myself: you don't need to run the code with a series of conditionals. You don't even need to design every possible shape in the same manner. In SVG, you were able to define the shapes with reft and path elements. In Zdog, yiu can achieve a similar operation with plain variables. 
+You can draw a box and the faces for one of the round wedges. And this is one instance where I'm more than glad to repeat myself: you don't need to run the code with a series of conditionals. You don't even need to create as many definitions as you may think. In SVG, you were able to define the shapes with `<rect>` and `<path>` elements. In Zdog, you can achieve something similar with plain variables.
 
-For the box, for the first shape, you can refer directly to the class. 
+For the box, for the first shape, you can refer directly to the class.
 
-For the other composition, you can keep a reference to a Anchor class. 
+```js
+const a = new Zdog.Box(/*...*/);
+```
+
+For the other composition, you can keep a reference to an `Anchor` class.
 
 ```js
 const b = new Zdog.Anchor();
 ```
 
-The idea is simple. Once you set up the anchor, add the shapes to the specific construct. 
+The idea is simple. Once you set up the anchor, add the shapes to the specific construct.
 
 ```js
 new Zdog.Shape({
@@ -384,50 +389,70 @@ new Zdog.Shape({
 });
 ```
 
-Do this for the five faces and the anchor works as a container of sorts. A container you can then re-use, not with the <use> element, but the copyGraph method. You can even position the shape with the `translate` property, at a precise location.
+Do this for the five faces and the anchor works as a container of sorts. A container you can then re-use with the `copyGraph` method. You can even position the shape with the `translate` property at a precise location.
 
 ```js
 b.copyGraph({
-
-	translate: {
-		x: 3,
-		y: 0
-	}
+	translate: { x: 3, y: 0 }
 });
 ```
 
-You might anticipate how the instruction completes our pseudo-3d picture, but in a convenient twist, you can rely on the method to save you even more time. Think back of the wedges, or again the triangles. You can draw the shapes one by one, and that was certainly the approach in SVG. 
+You might anticipate how the instruction completes our pseudo-3d picture, but in a convenient twist, you can rely on the method to save you even more time. Think back of the wedges, or again the triangles. You can draw the shapes one by one, and that was certainly the approach in SVG.
 
-That being said, there is just one of each shape, rotated at different angles. 
+That being said, there is just one of each shape, rotated at different angles.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['shapes']}
 </Center>
 
-
 Instead of drawing the faces around the clock, you can repeat the same anchor, turning the shape on the z axis.
 
 ```js
 const c = b.copyGraph({
-	rotatate: {
-		x: Zdog.TAU / 4
-	}
+	rotate: { x: Zdog.TAU / 4 }
 });
 ```
 
-In much the same manner you are able to complete the dictionary. For the first quartet. B, c, d, e. 
+In much the same manner you are able to complete the vocabulary. For the first quartet and based on `b`, `c`, `d`, and `e`.
 
-For the second, more triangular set. Once you take care to repeat the instructions for the sharp faces, that is. 
+```js
+const d = b.copyGraph({
+	rotate: { x: Zdog.TAU / 2 }
+});
 
-Undeniably, thers a lot of work behind the scenes, but the effort is bound to pay dividends. And the SVG, 2d détour is bound to come back to the rescue once more. 
+const e = b.copyGraph({
+	rotate: { x: (Zdog.TAU * 3) / 4 }
+});
+```
 
-You can rely on the same grid, the same collection of objects. If you are particular you might want to rename the array with a fitting label. 
+For the second, more triangular set and based on a different collection of faces, `f`, `g`, `h` and `i`.
+
+```js
+const f = new Anchor();
+// ...add shapes to f
+
+const g = f.copyGraph({
+	rotate: { x: Zdog.TAU / 4 }
+});
+
+const h = f.copyGraph({
+	rotate: { x: Zdog.TAU / 2 }
+});
+
+const i = f.copyGraph({
+	rotate: { x: (Zdog.TAU * 3) / 4 }
+});
+```
+
+You do need to build the one triangle — there's a lot of work behind the scenes — but the effort is about to pay dividends. And the SVG, 2D détour is about to come back to save us once more.
+
+You can rely on the same grid, the same collection of objects. If you are particular you might want to rename the array with a fitting label.
 
 ```js
 const copies = [];
 ```
 
-But jn the object, yiu can rely on the same values. On the indexes tk position the shapes, and on the letter to point to the variable. 
+But in the object, you can repeat the same values. The indexes to position the shapes, and on the letter to point to the variable.
 
 ```js
 copies.push({
@@ -437,13 +462,13 @@ copies.push({
 });
 ```
 
-Out of preference, I decided to name the shapes with a lowercase letter, but you can very well use the uppercase variant if yiu so choose. In the end, yiu can build the dictionary with an object. 
+Out of preference, I decided to name the constants with a lowercase letter, but you can very well use the uppercase variant if you so choose. In the end, you can build the vocabulary with an object.
 
 ```js
 const shapes = { a, b, c, d, e, f, g, h, i };
 ```
 
-To draw the shapes with Zdog, to draw the shapes in the illustration, you then loop thriygh the helpful data structure. Truly one last time. 
+To draw the shapes with Zdog, to draw the shapes in the illustration, you then loop through the helpful data structure. Truly one last time.
 
 ```js
 for (const { x, y, shape } of copies) {
@@ -451,25 +476,28 @@ for (const { x, y, shape } of copies) {
 }
 ```
 
-Witjin  the for loop, you have access to all the values you need. The letter, to the shape. The coordinates, to position the copy. 
+Within the for loop, you have access to all the values you need. The letter to copy the appropriate shape. The coordinates to position the piece.
 
 ```js
 shapes[shape].copyGraph({
 	addTo: illustration,
-	translate: {
-		x,
-		y
-	}
+	translate: { x, y }
 });
 ```
 
-And the code works. You can certainly repeat the instructions and take flight with the winged creature, now in pseudo-3D. Or, try your luck with a brand new level. 
+And the code works. You can certainly repeat the instructions and take flight with the winged creature, now in pseudo-3D. Or, try your luck with a brand new level.
 
 ```js
-
+const level = `
+---FEBI---
+--IAAAAF--
+-HAGEBHAG-
+DAGEDCBHAC
+-H-C--D-G-
+`;
 ```
 
-After all, you can draw an eagle, and any other puzzling figure. Again, there's a lot of work in terms of setup, in terms of dictionaries and shapes. But if you go through the effort, with a bit of trial and error, you might even anticipate the result directly from the string.
+After all, you can [draw an eagle](), and any other puzzling figure. Again, there's a lot of work in terms of setup, in terms of vocabulary and shapes. But if you go through the effort, with a bit of trial and error, you can appreciate the result. And you might even see the figure through letters. Even upside-down.
 
 <Center maxInlineSize="420px">
 	<Zdog />
