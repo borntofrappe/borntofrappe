@@ -1,0 +1,7 @@
+---
+title: Pseudo-3d element
+description: 'A few thoughts on a complex decision: SVG or canvas?'
+date: 2023-07-18T11:11:11
+---
+
+Working with Zdog you are faced with many decisions.
