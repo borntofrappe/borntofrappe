@@ -257,6 +257,7 @@
 		<use id="svg-star" href="#svg-star-symbol" x="-10" y="-10" width="20" height="20" />
 	</defs>
 	<rect fill="hsl(202 17% 32%)" rx="10" width="350" height="300" />
+
 	<g fill="hsl(46 87% 51%)">
 		<use href="#svg-star" transform="translate(30 100) scale(0.8)" />
 		<use href="#svg-star" transform="translate(40 200) scale(1.1)" />
@@ -271,11 +272,7 @@
 
 	<g transform="translate(140 120)">
 		<circle fill="hsl(183 59% 54%)" r="40" />
-		<g transform="rotate(-15)">
-			<g transform="translate(-80 0)">
-				<circle fill="hsl(162 14% 85%)" r="10" />
-			</g>
-		</g>
+		<circle transform="rotate(-15) translate(-80 0)" fill="hsl(162 14% 85%)" r="10" />
 	</g>
 
 	<g transform="translate(240 180) rotate(-45)">
