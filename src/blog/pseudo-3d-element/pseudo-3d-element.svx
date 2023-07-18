@@ -7,6 +7,7 @@ date: 2023-07-18T17:42:34
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
+	import svg from './svg.js';
 	import SVG from './SVG.svelte';
 	import Canvas from './Canvas.svelte';
 </script>
@@ -26,7 +27,7 @@ In an unsurprising twist, given the scope of this website, the first answer is `
 The JavaScript library will replace the contents of the `<svg>` when called to action, but until it is, you can safely rely on a fallback visual.
 
 <Center maxInlineSize="350px">
-	{@html svg["astro"]}
+	{@html svg['astro']}
 </Center>
 
 When the library works, you still have the `<svg>` on the page, just with a new host of elements.
