@@ -1,5 +1,5 @@
 ---
-title: Pseudo-3d element
+title: Pseudo-3D element
 description: SVG or canvas? Pick whatever suits your Zdog illustration best.
 date: 2023-07-18T17:42:34
 ---
@@ -20,7 +20,7 @@ In an unsurprising twist, given the scope of this website, the first answer is `
 
 ```html
 <svg>
-	<!-- ...  -->
+	<!-- ... -->
 </svg>
 ```
 
@@ -42,7 +42,7 @@ Consider the first group element included in the document as an all-wrapping con
 
 ```html
 <g stroke-linecap="round" stroke-linejoin="round">
-	<!-- ...  -->
+	<!-- ... -->
 </g>
 ```
 
@@ -62,7 +62,7 @@ With SVG the animation is choppy, staggers as the browser tries to update the pa
 
 ---
 
-SVG, canvas. Technically, the answer to the question is either. Acknowledging this, you have to weigh your options.
+SVG, canvas. Technically, the answer to the question is either.
 
 ```js
 const element = document.querySelector('#target');
@@ -72,4 +72,4 @@ const illustration = new Zdog.Illustration({
 });
 ```
 
-Accept, and possibly lean on, your own bias, your preference, but be vigilant and ready to pick a less safer route. You work best with what you prefer, but the ultimate goal is to achieve an impressive feat. There's plenty to explore, plenty to gain in the process, even if you end up using both.
+Acknowledging this, you have to weigh your options. Accept, and possibly lean on, your own bias, your preference, but be vigilant and ready to pick a less safer route. You work best with what you prefer, but the ultimate goal is to achieve an impressive feat. There's plenty to explore, plenty to gain in the process, even if you end up using both.
