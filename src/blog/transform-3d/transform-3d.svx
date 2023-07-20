@@ -13,7 +13,11 @@ date: 2023-07-20T14:49:20
 	import Stars from './Stars.svelte';
 </script>
 
-In SVG the `transform` attribute lets you set up nifty effects with little effort. With Zdog the feature is not lost, but you need to be really explicit. Consider a point in a 2D plane.
+In SVG the `transform` attribute lets you set up nifty effects with little effort. With Zdog the feature is not lost, but you need to be really explicit.
+
+## SVG
+
+Consider a point in a 2D plane.
 
 ```html
 <svg viewBox="-50 -50 100 100">
@@ -21,19 +25,19 @@ In SVG the `transform` attribute lets you set up nifty effects with little effor
 </svg>
 ```
 
-If you want to move the dot with radial motion, on the outline of a makeshift circle, you don't need to compute the x, y coordinates around the center. You certainly can with the help of two trigonometric functions, but tapping in the concept of [SVG origin](/svg-origin) you truly don't have to go through the hassle.
+If you want to move the dot with radial motion, on the outline of a makeshift circle, you don't need to compute the x, y coordinates around the center. You certainly can with the help of two trigonometric functions, but leaning on what you know about the [SVG origin](/svg-origin) you truly don't have to go through the hassle.
 
 The idea is both simple and intriguing. Position the circle with an horizontal offset — you can do so with the `cx` attribute, but the `transform` attribute as well, translating the piece.
 
 ```html
-<circle transform="translate(40 0)" r="5" />
+<circle transform="translate(50 0)" r="5" />
 ```
 
 Rotate the parent scope, for instance a wrapping group element.
 
 ```html
 <g transform="rotate(75)">
-	<circle transform="translate(40 0)" r="5" />
+	<circle transform="translate(50 0)" r="5" />
 </g>
 ```
 
@@ -49,7 +53,7 @@ Conveniently, you don't need multiple group elements if you intend to add multip
 
 ```html
 <g transform="rotate(75)">
-	<g transform="translate(40 0)">
+	<g transform="translate(50 0)">
 		<!-- ...rotated, offset shapes -->
 	</g>
 </g>
@@ -58,7 +62,7 @@ Conveniently, you don't need multiple group elements if you intend to add multip
 In the `transform` attribute, you can layer the changes one after the other, in sequence.
 
 ```html
-<g transform="rotate(75) translate(40 0)">
+<g transform="rotate(75) translate(50 0)">
 	<!-- ...rotated, offset shapes -->
 </g>
 ```
@@ -71,28 +75,22 @@ With or without nested groups, you know how to operate. And you can achieve a lo
 
 ## Zdog
 
-In Zdog you don't have a transformation per se, but the composing, individual operations. .
+In Zdog you don't have access to a transformation as much as its composing, individual functions.
 
 ```js
 new Zdog.Shape({
-	ADDSNIPPEY
+	translate: { x: 50 }
 });
 ```
 
-`translate`, `rotate`, `scale`. Add the properties to the instances of a class and you are able to reposition, angle or resize the objects at will. The beauty of this is that we can recreate the motion first seen in 2D. Better yet, we can try a rotation on multiple axes. There's only one issue standing in the way: order.
+`translate`, `rotate`, `scale`. Add the properties to the instance of a class and you are able to reposition, angle or resize the object at will. The beauty of this is that we can recreate the motion first seen in 2D. Better yet, we can attempt a rotation on multiple axes. There's only one issue standing in the way: order.
 
-Away from the SVG syntax, away from the convenience of the `transform` attribute, you cannot rely on the order of the properties in the object in the same manner.
+Far from the SVG syntax, far from the convenience of the `transform` attribute, you cannot rely on the order of the properties in the object in the same manner.
 
 ```js
 new Zdog.Shape({
-	rotate: { z: angleInRadians },
-	translate: { x: 40 }
-});
-
-// equivalent to
-new Zdog.Shape({
-	translate: { x: 40 },
-	rotate: { z: angleInRadians }
+	rotate: { y: Zdog.TAU / 4 },
+	translate: { z: 50 }
 });
 ```
 
@@ -101,37 +99,27 @@ Much more for individual operations on different axes.
 ```js
 new Zdog.Shape({
 	rotate: {
-		y: angleInRadians,
-		z: angleInRadians
-	}
-});
-
-// equivalent to
-new Zdog.Shape({
-	rotate: {
-		z: angleInRadians,
-		y: angleInRadians
+		y: Zdog.TAU / 4,
+		x: Zdog.TAU / 4
 	}
 });
 ```
 
-Behind the scenes, the library applies the changes in a specific order. If you do need more control, you can thank SVG to show a way. Where in SVG you are able to apply transformations with a group element, Zdog offers an `Anchor` for the same task.
+Behind the scenes, the library applies the changes in a specific order, but if you do need more control, you can thank SVG to show a way. Where in SVG you are able to apply transformations with a group element, Zdog offers an `Anchor` for the same task.
 
 ```js
-const anchor = new Anchor({
-	rotate: {
-		z: angleInRadians
-	}
+const anchor = new Zdog.Anchor({
+	translate: { z: 50 }
 });
 ```
 
 And you might not need multiple layers to transform SVG shapes on multiple counts, but you can repeat the class for the desired sequence. Consider for instance a trivial change. First rotate around the y axis.
 
 ```js
-const a1 = new Anchor({
+const a1 = new Zdog.Anchor({
 	addTo: illustration,
 	rotate: {
-		y: angleInRadians
+		y: Zdog.TAU / 4
 	}
 });
 ```
@@ -139,21 +127,21 @@ const a1 = new Anchor({
 Then, with another anchor rotate around the x axis.
 
 ```js
-const a2 = new Anchor({
+const a2 = new Zdog.Anchor({
 	addTo: a1,
 	rotate: {
-		x: angleInRadians
+		x: Zdog.TAU / 4
 	}
 });
 ```
 
-If you make sure to add the rotations in sequence, whichever shape you add next, on the very last anchor, will be affected by both.
+If you make sure to add the rotations one after the other, whichever shape you add next, on the very last anchor, will be affected by both.
 
 ```js
-new Shape({
+new Zdog.Shape({
 	addTo: a2,
 	translate: {
-		z: 40
+		z: 50
 	}
 });
 ```
@@ -168,7 +156,7 @@ But if your head is spinning, you are justified in being slightly befuddled. It 
 
 If you need a better handle on rotations, you might want to try and [update the axes individually](/rotate-3d) — you might enjoy the detour.
 
-And if you ever decide to pick up the concept to try and chart a few, let me offer one final piece of advice. As you research _celestial spheres_, _right ascension_ and _declination_ you might excitedly stumble on similar rotations, around the y and x axes. In this light, know that a positive declination moves a point up, above the celestial equator, while a positive rotation in Zdog on the x axis moves in the opposite direction. The entire discussion might go over your head, and at the end of the day, it's close to trivial. What matters is having a clear view of transformations. And possibly an impressive night's sky.
+And if you ever decide to pick up the concept to try and chart a few stars, let me offer one final piece of advice. As you research the _celestial sphere_ and get to know fancy words such as _right ascension_ and _declination_, you might stumble on similar rotations around the y and x axes. In this light, know that a positive declination moves a point up, above the equator, while a positive rotation in Zdog on the x axis moves in the opposite direction. The entire discussion might go over your head, and at the end of the day, it's close to trivial. What matters is having a clear view of transformations. And possibly an impressive sight.
 
 <Center maxInlineSize="500px">
 	<Stars />
