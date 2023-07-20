@@ -11,8 +11,8 @@
 
 	let element = null;
 
-	let x = 0;
-	let y = 35;
+	let y = 45;
+	let x = 45;
 
 	let illustration = null;
 	let a1 = null;
