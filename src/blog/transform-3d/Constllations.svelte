@@ -1,14 +1,15 @@
 <script>
-	import constellations from './constellations.js';
+	import stars from './stars.js';
 	import { onMount } from 'svelte';
 	import { Shape, Anchor, TAU } from 'zdog';
 
 	const diameter = 180;
-	const black = 'hsl(0 0% 19%)';
-	const grey = 'hsl(0 0% 31%)';
-	const accent = 'hsl(39 100% 48%)';
+	const black = 'hsl(216 45% 16%)';
+	const grey = 'hsl(202 89% 33%)';
+	const white = 'hsl(0, 0%, 97%)';
+	const shadow = 'hsl(202 86% 30%)';
 
-	const stars = constellations
+	const circles = stars
 		.trim()
 		.split('\n')
 		.reduce((acc, curr) => {
@@ -49,35 +50,35 @@
 			stroke: 0,
 			fill: true,
 			path: [
-				{ x: -250, y: -130 },
+				{ x: -250, y: -120 },
 				{
 					arc: [
 						{ x: -250, y: -160 },
-						{ x: -220, y: -160 }
+						{ x: -210, y: -160 }
 					]
 				},
-				{ x: 220, y: -160 },
+				{ x: 210, y: -160 },
 				{
 					arc: [
 						{ x: 250, y: -160 },
-						{ x: 250, y: -130 }
+						{ x: 250, y: -120 }
 					]
 				},
-				{ x: 250, y: 130 },
+				{ x: 250, y: 120 },
 				{
 					arc: [
 						{ x: 250, y: 160 },
-						{ x: 220, y: 160 }
+						{ x: 210, y: 160 }
 					]
 				},
-				{ x: -220, y: 160 },
+				{ x: -210, y: 160 },
 				{
 					arc: [
 						{ x: -250, y: 160 },
-						{ x: -250, y: 130 }
+						{ x: -250, y: 120 }
 					]
 				},
-				{ x: -250, y: 130 }
+				{ x: -250, y: 120 }
 			],
 			translate: {
 				z: -diameter
@@ -90,9 +91,64 @@
 			color: grey
 		});
 
-		for (const { ascension, declination } of stars) {
+		const arcs = 8;
+		const radius = diameter / 2;
+		const dy = radius / (arcs / 2);
+		const path = [
+			{ x: 0, y: -radius },
+			...Array(arcs)
+				.fill()
+				.reduce((acc, curr, i, { length }) => {
+					let x0 =
+						i === length - 1 || i === 0
+							? 0
+							: Math.floor((Math.random() * diameter) / 8 + diameter / 32);
+					if (i % 2 !== 0) x0 *= -1;
+					const y0 = -radius + i * dy;
+
+					const x1 = i % 2 !== 0 ? x0 - dy : x0 + dy;
+					const y1 = y0 + dy / 2;
+
+					const x2 = x0;
+					const y2 = y0 + dy;
+
+					return [
+						...acc,
+						{ x: x0, y: y0 },
+						{
+							arc: [
+								{ x: x1, y: y1 },
+								{ x: x2, y: y2 }
+							]
+						}
+					];
+				}, []),
+			{
+				arc: [
+					{ x: radius, y: radius },
+					{ x: radius, y: 0 }
+				]
+			},
+			{
+				arc: [
+					{ x: radius, y: -radius },
+					{ x: 0, y: -radius }
+				]
+			}
+		];
+
+		new Shape({
+			addTo: root,
+			stroke: 0,
+			color: shadow,
+			fill: true,
+			path
+		});
+
+		for (const { ascension, declination } of circles) {
 			const x = degreesToRad(declination);
 			const y = degreesToRad(ascensionToDegrees(ascension)) * -1;
+			const stroke = 2 + Math.floor(Math.random() * 4);
 
 			const a1 = new Anchor({
 				addTo: anchor,
@@ -106,8 +162,8 @@
 
 			new Shape({
 				addTo: a2,
-				color: accent,
-				stroke: 4,
+				color: white,
+				stroke,
 				translate: {
 					z: diameter
 				}
