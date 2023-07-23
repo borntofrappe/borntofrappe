@@ -1,0 +1,7 @@
+---
+title: Z fighting
+description: Embrace the quirks of the Zdog library to turn issues into promising features.
+date: 2023-07-24T10:06:26
+---
+
+Something happens when you brave higher dimensions with the Zdog library. Beyond the x and y axes, you are able to position shapes at a certain depth, on the additional z axis. With this function, however, you risk to stumble on a few issues. These are [well documented](https://zzz.dog/extras#z-fighting), so you can try and solve your problems in a few ways. Or, you can lean on the quirks and entertain the possibilities.
