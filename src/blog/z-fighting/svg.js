@@ -60,5 +60,15 @@ export default {
             </g>
         </g>
     </g>
+</svg>`,
+	roundabout: `<svg style="display: block;" viewBox="-50 -50 100 100">
+    <rect fill="hsl(224 52% 70%)" x="-50" y="-50" width="100" height="100" rx="20" />
+    <circle fill="hsl(224 50% 73%)" r="40" />
+    <circle fill="hsl(224 40% 66%)" r="15" />
+    <circle fill="none" stroke="hsl(225 46% 28%)" stroke-dasharray="2 6.6" stroke-linecap="round" r="27.5" />
+    <g>
+        <circle transform="translate(0 -27.5)" fill="hsl(162 63% 41%)" r="5" />
+        <circle transform="translate(0 27.5)" fill="hsl(42 78% 65%)" r="5" />
+    </g>
 </svg>`
 };
