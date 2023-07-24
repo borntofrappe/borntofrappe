@@ -20,45 +20,19 @@
 
 		const stroke = 28;
 		const circles = [
-			{
-				translate: { y: -stroke }
-			},
-			{
-				translate: { x: stroke / 2, y: -stroke / 2 }
-			},
-			{
-				translate: { x: -stroke / 2, y: -stroke / 2 }
-			},
-			{
-				translate: { z: -stroke / 2, y: -stroke / 2 }
-			},
-			{
-				translate: { z: stroke / 2, y: -stroke / 2 }
-			},
-			{
-				translate: { x: stroke / 1.3 }
-			},
-			{
-				translate: { x: -stroke / 1.3 }
-			},
-			{
-				translate: { z: stroke / 1.3 }
-			},
-			{
-				translate: { z: -stroke / 1.3 }
-			},
-			{
-				translate: { x: stroke / 1.3, z: stroke / 1.3 }
-			},
-			{
-				translate: { x: -stroke / 1.3, z: -stroke / 1.3 }
-			},
-			{
-				translate: { x: -stroke / 1.3, z: stroke / 1.3 }
-			},
-			{
-				translate: { x: stroke / 1.3, z: -stroke / 1.3 }
-			}
+			{ translate: { y: -stroke } },
+			{ translate: { x: stroke / 2, y: -stroke / 2 } },
+			{ translate: { x: -stroke / 2, y: -stroke / 2 } },
+			{ translate: { z: -stroke / 2, y: -stroke / 2 } },
+			{ translate: { z: stroke / 2, y: -stroke / 2 } },
+			{ translate: { x: stroke / 1.3 } },
+			{ translate: { x: -stroke / 1.3 } },
+			{ translate: { z: stroke / 1.3 } },
+			{ translate: { z: -stroke / 1.3 } },
+			{ translate: { x: stroke / 1.3, z: stroke / 1.3 } },
+			{ translate: { x: -stroke / 1.3, z: -stroke / 1.3 } },
+			{ translate: { x: -stroke / 1.3, z: stroke / 1.3 } },
+			{ translate: { x: stroke / 1.3, z: -stroke / 1.3 } }
 		];
 
 		const illustration1 = new Illustration({
@@ -168,10 +142,10 @@
 
 		new Ellipse({
 			addTo: bowl1,
-			diameter: 160,
 			color: blue3,
 			stroke: 0,
 			fill: true,
+			diameter: 160,
 			translate: {
 				y: 25
 			},
@@ -380,10 +354,10 @@
 
 		new Ellipse({
 			addTo: bowl2,
-			diameter: 160,
 			color: blue3,
 			stroke: 0,
 			fill: true,
+			diameter: 160,
 			translate: {
 				y: 18
 			},
@@ -451,6 +425,7 @@
 			addTo: treat2,
 			color: accent,
 			stroke: 8,
+			closed: false,
 			path: [
 				{ x: 0, z: -14 },
 				{
@@ -478,7 +453,6 @@
 					]
 				}
 			],
-			closed: false,
 			translate: {
 				y: -14
 			}

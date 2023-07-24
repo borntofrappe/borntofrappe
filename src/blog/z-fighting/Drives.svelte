@@ -62,20 +62,20 @@
 
 		new RoundedRect({
 			addTo: road,
+			color: blue2,
+			stroke: 10,
+			fill: true,
 			width: 100,
 			height: 100,
-			fill: true,
-			cornerRadius: 20,
-			color: blue2,
-			stroke: 10
+			cornerRadius: 20
 		});
 
 		new Ellipse({
 			addTo: road,
-			diameter: 80,
-			fill: true,
-			stroke: 0,
 			color: blue1,
+			stroke: 0,
+			fill: true,
+			diameter: 80,
 			translate: {
 				z: 9
 			}
@@ -83,10 +83,10 @@
 
 		new Ellipse({
 			addTo: road,
-			diameter: 30,
-			fill: true,
-			stroke: 0,
 			color: blue3,
+			stroke: 0,
+			fill: true,
+			diameter: 30,
 			translate: {
 				z: 10
 			}
@@ -102,12 +102,12 @@
 		for (const { x1, y1, x2, y2 } of lines) {
 			new Shape({
 				addTo: groupLines,
+				color: blue5,
 				stroke: 1,
 				path: [
 					{ x: x1, y: y1 },
 					{ x: x2, y: y2 }
-				],
-				color: blue5
+				]
 			});
 		}
 
@@ -136,8 +136,8 @@
 
 		new Shape({
 			addTo: group1,
-			stroke: 10,
 			color: yellow,
+			stroke: 10,
 			translate: {
 				y: 27.5
 			}
@@ -145,8 +145,8 @@
 
 		new Shape({
 			addTo: group1,
-			stroke: 10,
 			color: green,
+			stroke: 10,
 			translate: {
 				y: -27.5
 			}
@@ -172,8 +172,8 @@
 		new Shape({
 			addTo: rotatedTunnel,
 			color: 'hsl(0 0% 0% / 0.1)',
-			fill: true,
 			stroke: 0,
+			fill: true,
 			path: [
 				{ x: -40, y: 0, z: 0 },
 				{ x: -15, y: 0, z: 0 },
@@ -357,8 +357,8 @@
 
 		new Shape({
 			addTo: group2,
-			stroke: 10,
 			color: yellow,
+			stroke: 10,
 			translate: {
 				y: 27.5
 			}
@@ -366,8 +366,8 @@
 
 		new Shape({
 			addTo: group2,
-			stroke: 10,
 			color: red,
+			stroke: 10,
 			translate: {
 				y: -27.5
 			}

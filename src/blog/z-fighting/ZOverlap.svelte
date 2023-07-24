@@ -15,58 +15,19 @@
 
 		const stroke = 22;
 		const circles = [
-			{
-				color: red1,
-				translate: { y: -stroke }
-			},
-			{
-				color: red1,
-				translate: { x: stroke / 2, y: -stroke / 2 }
-			},
-			{
-				color: red1,
-				translate: { x: -stroke / 2, y: -stroke / 2 }
-			},
-			{
-				color: red2,
-				translate: { z: -stroke / 2, y: -stroke / 2 }
-			},
-			{
-				color: red2,
-				translate: { z: stroke / 2, y: -stroke / 2 }
-			},
-			{
-				color: red1,
-				translate: { x: stroke / 1.5 }
-			},
-			{
-				color: red1,
-				translate: { x: -stroke / 1.5 }
-			},
-			{
-				color: red1,
-				translate: { z: stroke / 1.5 }
-			},
-			{
-				color: red1,
-				translate: { z: -stroke / 1.5 }
-			},
-			{
-				color: red2,
-				translate: { x: stroke / 1.5, z: stroke / 1.5 }
-			},
-			{
-				color: red2,
-				translate: { x: -stroke / 1.5, z: -stroke / 1.5 }
-			},
-			{
-				color: red2,
-				translate: { x: -stroke / 1.5, z: stroke / 1.5 }
-			},
-			{
-				color: red2,
-				translate: { x: stroke / 1.5, z: -stroke / 1.5 }
-			}
+			{ color: red1, translate: { y: -stroke } },
+			{ color: red1, translate: { x: stroke / 2, y: -stroke / 2 } },
+			{ color: red1, translate: { x: -stroke / 2, y: -stroke / 2 } },
+			{ color: red2, translate: { z: -stroke / 2, y: -stroke / 2 } },
+			{ color: red2, translate: { z: stroke / 2, y: -stroke / 2 } },
+			{ color: red1, translate: { x: stroke / 1.5 } },
+			{ color: red1, translate: { x: -stroke / 1.5 } },
+			{ color: red1, translate: { z: stroke / 1.5 } },
+			{ color: red1, translate: { z: -stroke / 1.5 } },
+			{ color: red2, translate: { x: stroke / 1.5, z: stroke / 1.5 } },
+			{ color: red2, translate: { x: -stroke / 1.5, z: -stroke / 1.5 } },
+			{ color: red2, translate: { x: -stroke / 1.5, z: stroke / 1.5 } },
+			{ color: red2, translate: { x: stroke / 1.5, z: -stroke / 1.5 } }
 		];
 
 		const illustration = new Illustration({
