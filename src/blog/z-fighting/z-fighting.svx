@@ -21,7 +21,7 @@ date: 2023-07-24T10:06:59
 
 A most evident problem appears the moment different shapes occupy the same spot.
 
-Consider the treats warming up in the microwave introducing this article. Behind the semi-transparent screen, these pile up in a promising bowl. If you were to replicate the visual with Zdog classes, if you were to then rotate the food around an imaginary center point, you'd immediately glare at the problem.
+Consider the treats warming up in the microwave introducing this article. Behind the semi-transparent screen, these pile up in a promising bowl. If you were to replicate the visual with Zdog classes, if you were to then rotate the food around an imaginary center point, you'd immediately glare at the issue.
 
 <Center maxInlineSize="420px">
 	<ZOverlap />
@@ -33,9 +33,11 @@ This is known as _Z-fighting_, and you can think of it as a shortcoming of the l
 
 Ultimately, you draw the shapes in sequence, [in canvas or SVG](/pseudo-3d-element). This means you don't actually have 3D objects, but 2D shapes. Zdog does a mighty good job to draw the figures in _pseudo-3D_, but as it decides a shape precedes another, it proceeds to swap their order. As soon as the order changes, the treats pop in and out of relevance.
 
-Again, [the documentation](https://zzz.dog/extras#z-fighting) helps to cover the issue. Immediately, you can draw the shapes with the same exact color — you could use a healthy purée to go with the main dish. Then again, you can separate the objects to avoid any touching — there's always room for a gourmet pastry to finish in style.
+Again, [the documentation](https://zzz.dog/extras#z-fighting) helps to cover the issue. Immediately, you can draw the shapes with the same exact color — you could use a rich purée with the main dish. Then again, you can separate the objects to avoid any touching — there's always room for a gourmet pastry to finish in style.
 
 <Treats />
+
+## Anchors and groups
 
 While troubling, an overlap is evident. It is clear how the problem rises and quite clear how to fix the issue. But Z-fighting occurs in other instances, and often in unexpected manners. You might have already seen an example going through [a lengthy introduction](/roundabout-features) to the Zdog library. In the roundabout feature we had two shapes racing each other in circular motion.
 
@@ -45,7 +47,7 @@ Consider this top-down look as a reference and as a starting point.
 	{@html svg['roundabout']}
 </Center>
 
-Again, here you have nothing but a change in rotation. Rotate the circles from the center to complete the circular motion. In Zdog, the issue appears as you structure the illustration with a specific set of classes.
+Again, here you have nothing but a change in rotation. Rotate the circles from the center to complete the circular motion. In Zdog, the problem appears as you structure the illustration with a specific set of classes.
 
 Past the decorative pieces — the base with a rounded rectangle, the circle with an ellipse and the dashes with well-positioned lines —, you can place the spheres with an anchor, above the road.
 
@@ -58,7 +60,7 @@ const spheres = new Anchor({
 });
 ```
 
-The anchor helps to lift the markers above the road and also rotate the shapes. As these are offset in opposite directions and you rotate [the pertinent axis](/rotate-3d), the effect is complete.
+The anchor helps to lift the markers above the road and also to rotate the shapes. As these are offset in opposite directions and you rotate [the pertinent axis](/rotate-3d), the effect is complete.
 
 ```js
 const loop = () => {
@@ -68,7 +70,7 @@ const loop = () => {
 };
 ```
 
-Complete, but inaccurate when you tilt the scene on the x axis and try to add some depth.
+Complete, but inaccurate when you tilt the scene on the x axis to add some depth.
 
 <Center maxInlineSize="400px">
 	<ZAnchor />
@@ -76,7 +78,7 @@ Complete, but inaccurate when you tilt the scene on the x axis and try to add so
 
 Immediately, you have a sphere. Only one however. As the animation continues, the shape disappears, while the other sphere appears out of nowhere, in its rightful, presumed place.
 
-Again this hearkens back to Zdog's own logic. The library decides the position of the elements. It decides that the shape is before the solid ground. As a result, the sphere is drawn earlier.
+Again this hearkens back to Zdog's own logic. The library decides the position of the elements. It decides that the shape is before the solid ground. As a result, the sphere is drawn earlier than the base rectangle.
 
 To fix the issue, use an `Group` to gather the shapes. A `Group` in place of the anchor.
 
@@ -91,8 +93,8 @@ const spheres = new Group({
 
 Doing so, the library decides the position of the shapes considering both figures, both spheres. And the road will always be left behind. Before, below.
 
-You can solve the issue, surely, but then again, there is something to be said about embracing limitations. The hiccup might just inspire you to really hide the shapes. And in this instance you might entertain the thought with anchors and groups.
+You can solve the issue, surely, but then again, there is something to be said about embracing limitations. The detour might just inspire a scenario where you do want to hide the spheres. And in this instance you can entertain the thought with anchors and groups.
 
 <Drives />
 
-You certainly have options. You have a few ways to fix issues with the z axis, and a few more to work around them.
+You certainly have options. You have a few ways to fix issues with the z axis, and a few more ways to work around them.
