@@ -137,5 +137,82 @@ export default {
         <use href="#magnemite" y="50" width="50" height="50" />
         <use href="#magnemite" x="50" y="50" width="50" height="50" />
     </g>
+</svg>`,
+	'corner-issue-fix': `<svg style="display: block;" viewBox="0 0 2.25 1">
+    <svg viewBox="18 18 64 64" width="1" height="1">
+        <title>Magneton</title>
+        <defs>
+        <symbol id="corner-issue-magnemite" viewBox="0 0 100 100">
+            <title>Magnemite</title>
+            <rect fill="hsl(195 36% 78%)" width="100" height="100" rx="8" />
+            <rect fill="hsl(216 45% 98%)" x="25" y="12" width="50" height="50" />
+            <rect fill="hsl(300 1% 37%)" x="47" y="33.5" width="6" height="6" />
+            <g transform="translate(8 68)">
+                <rect fill="hsl(300 2% 79%)" width="20" height="20" />
+                <g fill="hsl(0 1% 55%)">
+                    <rect x="7" y="2" width="6" height="16" />	
+                    <rect x="2" y="7" width="16" height="6" />	
+                </g>
+            </g>
+            <g transform="translate(72 68)">
+                <rect fill="hsl(300 2% 79%)" width="20" height="20" />
+                <g fill="hsl(0 1% 55%)">
+                    <rect x="7" y="2" width="6" height="16" />	
+                    <rect x="2" y="7" width="16" height="6" />	
+                </g>
+            </g>
+        </symbol>
+        </defs>
+        <rect fill="hsl(44 100% 68%)" width="100" height="100" />
+        <use href="#corner-issue-magnemite" x="25" width="50" height="50" />
+        <use href="#corner-issue-magnemite" y="50" width="50" height="50" />
+        <use href="#corner-issue-magnemite" x="50" y="50" width="50" height="50" />
+
+        <g fill="hsl(0 0% 100% / 0.05)">
+            <circle transform="translate(50 50)" stroke="hsl(10 48% 52%)" stroke-width="1" r="9" />
+            <g stroke="hsl(10 53% 60%)" stroke-width="0.6" stroke-dasharray="0.6 1.48" stroke-linecap="round">
+                <circle transform="translate(25 50)" r="4" />
+                <circle transform="translate(75 50)" r="4" />
+            </g>
+        </g>
+    </svg>
+
+    <svg viewBox="18 18 64 64" x="1.25" width="1" height="1">
+        <title>Magneton</title>
+        <defs>
+            <symbol id="corner-fix-magnemite" viewBox="0 0 100 100">
+                <title>Magnemite</title>
+                <rect fill="hsl(195 36% 78%)" width="100" height="100" />
+                <rect fill="hsl(216 45% 98%)" x="25" y="12" width="50" height="50" />
+                <rect fill="hsl(300 1% 37%)" x="47" y="33.5" width="6" height="6" />
+                <g transform="translate(8 68)">
+                    <rect fill="hsl(300 2% 79%)" width="20" height="20" />
+                    <g fill="hsl(0 1% 55%)">
+                        <rect x="7" y="2" width="6" height="16" />	
+                        <rect x="2" y="7" width="16" height="6" />	
+                    </g>
+                </g>
+                <g transform="translate(72 68)">
+                    <rect fill="hsl(300 2% 79%)" width="20" height="20" />
+                    <g fill="hsl(0 1% 55%)">
+                        <rect x="7" y="2" width="6" height="16" />	
+                        <rect x="2" y="7" width="16" height="6" />	
+                    </g>
+                </g>
+            </symbol>
+        </defs>
+        <rect fill="hsl(44 100% 68%)" width="100" height="100" />
+        <use href="#corner-fix-magnemite" x="25" width="50" height="50" />
+        <use href="#corner-fix-magnemite" y="50" width="50" height="50" />
+        <use href="#corner-fix-magnemite" x="50" y="50" width="50" height="50" />
+
+        <g fill="hsl(0 0% 100% / 0.05)">
+            <circle transform="translate(50 50)" stroke="hsl(197 51% 47%)" stroke-width="1"  r="9" />
+            <g stroke="hsl(196 61% 55%)" stroke-width="0.6" stroke-dasharray="0.6 1.48" stroke-linecap="round">
+                <circle transform="translate(25 50)" r="4" />
+                <circle transform="translate(75 50)" r="4" />
+            </g>
+        </g>
+    </svg>
 </svg>`
 };
