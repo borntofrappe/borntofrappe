@@ -195,7 +195,7 @@ This time, the entry is truly complete.
 <Center element="figure" maxInlineSize="16rem">
 	{@html svg['magneton']}
 </Center>
- 
+
 And I do hope the `<clipPath>` element didn't discourage you from the overarching plot.
 
 Writing SVG yourself is not complicated. Elementary shapes are more than enough to craft beautiful, custom drawings. And if the process inspired you there might be another triplet in the same video game. You'll certainly be able to recreate the visuals without editing software. And truth being told, the entire catalog is up for grabs with time and patience. You might even explore more elements, like the flexible `<path>`, to continue the rewarding journey.
