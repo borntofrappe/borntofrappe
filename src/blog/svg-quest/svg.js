@@ -214,5 +214,75 @@ export default {
             </g>
         </g>
     </svg>
+</svg>`,
+	'entries-050-051': `<svg style="display: block;" viewBox="0 0 2.6 1.7">
+    <path fill="hsl(0 0% 80%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.6 A 0.1 0.1 0 0 1 1.1 1.7 L 0.1 1.7 A 0.1 0.1 0 0 1 0 1.6 Z" />
+    <path fill="hsl(0 0% 100%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.5 A 0.1 0.1 0 0 1 1.1 1.6 L 0.1 1.6 A 0.1 0.1 0 0 1 0 1.5 Z" />
+    <svg viewBox="0 0 100 100" x="0.1" y="0.35" width="1" height="1">
+        <title>Diglett</title>
+        <defs>
+            <clipPath id="clip-entry">
+                <rect width="100" height="100" rx="8" />
+            </clipPath>
+        </defs>
+        <g clip-path="url(#clip-entry)">
+            <rect fill="hsl(26 28% 60%)" width="100" height="100" />
+            <g transform="translate(18 12)">
+                <rect fill="hsl(0 3% 13%)" width="14" height="30" />
+                <rect fill="hsl(120 20% 99%)" x="3" y="2" width="8" height="8" />
+            </g>
+            <g transform="translate(68 12)">
+                <rect fill="hsl(0 3% 13%)" width="14" height="30" />
+                <rect fill="hsl(120 20% 99%)" x="3" y="2" width="8" height="8" />
+            </g>
+            <g transform="translate(18 50)">
+                <path fill="hsl(324 50% 79%)" d="M 0 4 L 4 0 L 60 0 L 64 4 L 64 30 L 60 34 L 4 34 L 0 30" />
+                <rect fill="hsl(323 52% 95%)" x="9" y="8" width="16" height="8" />
+            </g>
+        </g>
+    </svg>
+    <g fill="hsl(0 3% 13%)" font-family="sans-serif">
+        <text text-anchor="middle" x="0.25" y="0.2" font-size="0.2" font-weight="700">050</text>		
+        <text transform="translate(0 1.37)" text-anchor="middle" x="0.6" y="0.17" font-size="0.17">Diglett</text>
+    </g>
+
+    <g transform="translate(1.4 0)">
+        <path fill="hsl(0 0% 80%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.6 A 0.1 0.1 0 0 1 1.1 1.7 L 0.1 1.7 A 0.1 0.1 0 0 1 0 1.6 Z" />
+        <path fill="hsl(0 0% 100%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.5 A 0.1 0.1 0 0 1 1.1 1.6 L 0.1 1.6 A 0.1 0.1 0 0 1 0 1.5 Z" />
+        <svg viewBox="0 0 100 100" x="0.1" y="0.35" width="1" height="1">
+            <title>Dugtrio</title>
+            <defs>
+                <clipPath id="clip-entry">
+                    <rect width="100" height="100" rx="8" />
+                </clipPath>
+                <symbol id="diglett" viewBox="0 0 100 100">
+                    <title>Diglett</title>
+                    <rect fill="hsl(26 28% 60%)" width="100" height="100" />
+                    <g transform="translate(18 12)">
+                        <rect fill="hsl(0 3% 13%)" width="14" height="30" />
+                        <rect fill="hsl(120 20% 99%)" x="3" y="2" width="8" height="8" />
+                    </g>
+                    <g transform="translate(68 12)">
+                        <rect fill="hsl(0 3% 13%)" width="14" height="30" />
+                        <rect fill="hsl(120 20% 99%)" x="3" y="2" width="8" height="8" />
+                    </g>
+                    <g transform="translate(18 50)">
+                        <path fill="hsl(324 50% 79%)" d="M 0 4 L 4 0 L 60 0 L 64 4 L 64 30 L 60 34 L 4 34 L 0 30" />
+                        <rect fill="hsl(323 52% 95%)" x="9" y="8" width="16" height="8" />
+                    </g>
+                </symbol>
+            </defs>
+            <g clip-path="url(#clip-entry)">
+                <rect fill="hsl(40 56% 63%)" width="100" height="100" />
+                <use href="#diglett" x="25" width="50" height="50" />
+                <use href="#diglett" y="50" width="50" height="50" />
+                <use href="#diglett" x="50" y="50" width="50" height="50" />
+            </g>
+        </svg>
+        <g fill="hsl(0 3% 13%)" font-family="sans-serif">
+            <text text-anchor="middle" x="0.25" y="0.2" font-size="0.2" font-weight="700">051</text>		
+            <text transform="translate(0 1.37)" text-anchor="middle" x="0.6" y="0.17" font-size="0.17">Dugtrio</text>
+        </g>
+    </g>
 </svg>`
 };
