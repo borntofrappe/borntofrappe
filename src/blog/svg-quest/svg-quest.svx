@@ -1,7 +1,238 @@
 ---
 title: SVG quest
 description: Share in an adventure to appreciate writing SVG syntax "by hand".
-date: 2023-07-06T11:11:11
+date: 2023-07-26T15:11:27
 ---
 
-I have a preference, a tendency for writing SVG syntax "by hand", in a code editor rather than a graphic's program.
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+I have a tendency, a preference for writing SVG "by hand", in a code editor rather than a graphics program. The process might seem tedious and laborious, but I often can't help myself. There's so much to appreciate in the syntax, even from the combination of a few elements and attributes. Case in point, consider the following entries modeled after a block-sized mobile video game.
+
+<Center element="figure" maxInlineSize="30rem">
+	{@html svg['entries-081-082']}
+</Center>
+
+By the end of this article, you'll have drawn both sprites all by yourself, and you'll be free to experiment with other entries as well.
+
+Starting with the first, electrifying presence set up a large canvas. An empty `<svg>` element and a convenient, square `viewBox`. You can even add a `<title>` element to explain the figure.
+
+```html
+<svg viewBox="0 0 100 100">
+	<title>Magnemite</title>
+</svg>
+```
+
+To draw the sprite we can just use one SVG shape over and over, a humble `<rect>`angle.
+
+One large square for the base, with the `rx' attribute to round the corners.
+
+```html
+<rect fill="hsl(195 36% 78%)" width="100" height="100" rx="8" />
+```
+
+Two additional squares for the eye. A bright one to introduce the socket, a dark one to detail the pupil.
+
+```html
+<rect fill="hsl(216 45% 98%)" x="25" y="12" width="50" height="50" />
+<rect fill="hsl(300 1% 37%)" x="47" y="33.5" width="6" height="6" />
+```
+
+The size of the shapes is not important as much as the position. Horizontally, you want to center both visuals in the larger container. Vertically, you want to separate the pieces enough to create a distinct block. There is no right number in this sense, which makes the choice as frustrating as freeing. Pick one, and adjust until it looks right to you, to your sharp eyes.
+
+For the small knobs, we can repeat the process, but there are ways to simplify the sequence. Consider each knob as an independent piece. A square for the base.
+
+```html
+<rect fill="hsl(300 2% 79%)" width="20" height="20" />
+```
+
+Two additional rectangles, of different sizes, positioned to create a small plus sign smack in the center.
+
+```html
+<rect fill="hsl(0 1% 55%)" x="7" y="2" width="6" height="16" />
+<rect fill="hsl(0 1% 55%)" x="2" y="7" width="16" height="6" />
+```
+
+The two have the same color, the same `fill`, so that you can gather the lot in a common group element with the shared attribute.
+
+```html
+<g fill="hsl(0 1% 55%)">
+	<!-- ...rects -->
+</g>
+```
+
+Alone, the code is enough to draw a knob. In the larger canvas, however, we want to place the rectangles at specific x, y coordinates. Twice. For this we can use additional group elements and the `transform` attribute, literally translating the figures.
+
+```html
+<g transform="translate(8 68)">
+	<!-- ...knob -->
+</g>
+<g transform="translate(72 68)">
+	<!-- ...knob -->
+</g>
+```
+
+Again, the numbers are a combination of logic and your better judgment. You want the knobs separate enough from the eye, but horizontally in perfect symmetry. As you decide the position of the first piece, 8 from the left, the other one follows with a bit of math. 8 from the right, 100 minus 8 minus the width of the larger rectangle. You even get to practice with basic arithmetic.
+
+And that's it. The rectangles stack up to create the first entry.
+
+<Center element="figure" maxInlineSize="16rem">
+	{@html svg['magnemite']}
+</Center>
+
+It is remarkable how little it takes to fill the canvas. And it is even more impressive how the syntax evolves for the second sprite.
+
+From the top, one canvas-ready `<svg>` element with a proper label.
+
+```html
+<svg viewBox="0 0 100 100">
+	<title>Magneton</title>
+</svg>
+```
+
+One soft rectangle as a base.
+
+```html
+<rect fill="hsl(195 36% 78%)" width="100" height="100" rx="8" />
+```
+
+To fill the canvas you can certainly continue with `<rect>` elements. You can set the position and the dimensions with a calculator by your side, but gladly, you don't have to. You want to repeat the first sprite three times, and for this, SVG offers the `<symbol>` element.
+
+One symbol with a unique `id`.
+
+```html
+<symbol id="magnemite">
+	<!--...  -->
+</symbol>
+```
+
+One symbol with the familiar `viewBox` and the same instructions you took the time to elaborate for the first drawing.
+
+```html
+<symbol id="magnemite" viewBox="0 0 100 100">
+	<!--... rects  -->
+</symbol>
+```
+
+You are essentially taking the first `<svg>` and renaming the element. In this manner you have a graphic you can then use with `<use>` element.
+
+```html
+<use href="#magnemite" />
+```
+
+Use and re-use in different spots with the `x` and `y` attributes. Use and re-use in different sizes with `width` and `height`.
+
+```html
+<use href="#magnemite" x="25" width="50" height="50" />
+<use href="#magnemite" y="50" width="50" height="50" />
+<use href="#magnemite" x="50" y="50" width="50" height="50" />
+```
+
+And that's _close_ to it. There's only one hiccup with the current setup. The code works to place the entries — you do find the trio in a short pyramid — but with one visual bug.
+
+<Center element="figure" maxInlineSize="30rem">
+	{@html svg['corner-issue-fix']}
+</Center>
+
+At fault, the precious `rx` attribute we used for the base. We don't want a gap between the copies, so that the most immediate solution is to just remove the value.
+
+```diff
+-<rect fill="hsl(195 36% 78%)" width="100" height="100" rx="8" />
++<rect fill="hsl(195 36% 78%)" width="100" height="100" />
+```
+
+But at the risk of sounding philosophical, the change begs a question, how do we round the rectangle for individual entries? The rectangle describing the base?
+
+If you remove the attribute from all compositions, you have a few options. You can round the corners with CSS and the `border-radius` property.
+
+```css
+svg {
+	border-radius: 8%;
+}
+```
+
+Sticking with SVG, you can clip the visible area with a `<clipPath>` element. The solution is more involved, but is built-in the syntax, and feels most appropriate as you explore SVG. And the good news is that you do get to keep the `rx` attribute, eventually.
+
+One `<clipPath>` element with a unique `id`. You might be used to the sequence.
+
+```html
+<clipPath id="clip-entry">
+	<!-- ... -->
+</clipPath>
+```
+
+One clip describing the visible area. The largest, 100 by 100, _rounded_ rectangle.
+
+```html
+<clipPath id="clip-entry">
+	<rect width="100" height="100" rx="8" />
+</clipPath>
+```
+
+The moment you apply the clip with the `clip-path` attribute, on the individual entry you find the same exact result.
+
+```html
+<g clip-path="url(#clip-entry)">
+	<!--... rects  -->
+</g>
+```
+
+And on the larger composition, repeating the sharp shapes.
+
+```html
+<g clip-path="url(#clip-entry)">
+	<rect fill="hsl(195 36% 78%)" width="100" height="100" />
+	<use href="#magnemite" x="25" width="50" height="50" />
+	<use href="#magnemite" y="50" width="50" height="50" />
+	<use href="#magnemite" x="50" y="50" width="50" height="50" />
+</g>
+```
+
+You find the final picture.
+
+<Center element="figure" maxInlineSize="16rem">
+	{@html svg['magneton']}
+</Center>
+
+This time, the entry is truly complete. And I do hope the `<clipPath>` element didn't discourage you from the overarching plot. Writing SVG yourself is not complicated. Elementary shapes are more than enough to craft beautiful, custom drawings. And if the process inspired you there might be another triplet in the collection. Then again, the entire catalog is up for grabs with vector graphics. You might even explore additional shapes, even the flexible `<path>` to continue the rewarding journey.
+
+<figure>
+	{@html svg['entries-050-051']}
+	{@html svg['entries-100-101']}
+</figure>
+
+<style>
+	figure {
+		max-inline-size: 36rem;
+		margin-inline: auto;
+	}
+	figure {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	figure > :global(> svg) {
+		flex-basis: 8rem;
+	}
+
+	@media (min-width: 36rem) {
+		figure {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			gap: 1rem;
+		}
+
+		figure :global(> svg:first-of-type) {
+			grid-column: 1 / span 2;
+		}
+
+		figure :global(> svg:last-of-type) {
+			grid-column: 4 / span 2;
+		}
+	}
+</style>
