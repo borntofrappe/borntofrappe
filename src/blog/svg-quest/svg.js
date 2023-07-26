@@ -284,5 +284,75 @@ export default {
             <text transform="translate(0 1.37)" text-anchor="middle" x="0.6" y="0.17" font-size="0.17">Dugtrio</text>
         </g>
     </g>
+</svg>`,
+	'entries-100-101': `<svg style="display: block;" viewBox="0 0 2.6 1.7">
+    <path fill="hsl(0 0% 80%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.6 A 0.1 0.1 0 0 1 1.1 1.7 L 0.1 1.7 A 0.1 0.1 0 0 1 0 1.6 Z" />
+    <path fill="hsl(0 0% 100%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.5 A 0.1 0.1 0 0 1 1.1 1.6 L 0.1 1.6 A 0.1 0.1 0 0 1 0 1.5 Z" />
+    <svg viewBox="0 0 100 100" x="0.1" y="0.35" width="1" height="1">
+        <title>Voltorb</title>
+        <defs>
+            <clipPath id="clip-entry">
+                <rect width="100" height="100" rx="8" />
+            </clipPath>
+        </defs>
+        <g clip-path="url(#clip-entry)">
+            <rect fill="hsl(350 70% 56%)" width="100" height="64" />
+            <rect fill="hsl(220 16% 93%)" y="64" width="100" height="36" />
+            <g fill="none" stroke="hsl(349 77% 58%)" stroke-width="3">
+                <path d="M 12 18 L 42 36" />
+                <path transform="translate(100 0) scale(-1 1)" d="M 12 18 L 42 36" />
+            </g>
+            <g fill="none" stroke="hsl(349 61% 53%)" stroke-width="3">
+                <path d="M 44 36 L 44 50" />
+                <path transform="translate(100 0) scale(-1 1)" d="M 44 42 L 44 50" />
+            </g>
+            <path fill="hsl(220 16% 93%)" d="M 8 32 L 37 50 L 8 50" />
+            <path fill="hsl(120 1% 26%)" d="M 25.842445373535156 43.074623107910156 L 29.00310516357422 45.03641128540039 L 29.00310516357422 48 L 25.842445373535156 48" />		
+            <g transform="translate(100 0) scale(-1 1)">
+                <path fill="hsl(220 16% 93%)" d="M 8 32 L 37 50 L 8 50" />
+                <path fill="hsl(120 1% 26%)" d="M 25.842445373535156 43.074623107910156 L 29.00310516357422 45.03641128540039 L 29.00310516357422 48 L 25.842445373535156 48" />
+            </g>
+        </g>
+    </svg>
+    <g fill="hsl(0 3% 13%)" font-family="sans-serif">
+        <text text-anchor="middle" x="0.25" y="0.2" font-size="0.2" font-weight="700">100</text>		
+        <text transform="translate(0 1.37)" text-anchor="middle" x="0.6" y="0.17" font-size="0.17">Voltorb</text>
+    </g>
+
+    <g transform="translate(1.4 0)">
+        <path fill="hsl(0 0% 80%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.6 A 0.1 0.1 0 0 1 1.1 1.7 L 0.1 1.7 A 0.1 0.1 0 0 1 0 1.6 Z" />
+        <path fill="hsl(0 0% 100%)" d="M 0 0.1 A 0.1 0.1 0 0 1 0.1 0 L 0.4 0 A 0.1 0.1 0 0 1 0.5 0.1 L 0.5 0.25 L 1.1 0.25 A 0.1 0.1 0 0 1 1.2 0.35 L 1.2 1.5 A 0.1 0.1 0 0 1 1.1 1.6 L 0.1 1.6 A 0.1 0.1 0 0 1 0 1.5 Z" />
+        <svg viewBox="0 0 100 100" x="0.1" y="0.35" width="1" height="1">
+            <title>Electrode</title>
+            <defs>
+                <clipPath id="clip-entry">
+                    <rect width="100" height="100" rx="8" />
+                </clipPath>
+            </defs>
+            <g clip-path="url(#clip-entry)">
+                <rect fill="hsl(220 16% 93%)" width="100" height="56" />
+                <rect fill="hsl(350 70% 56%)" y="56" width="100" height="44" />
+                <g fill="none" stroke="hsl(120 1% 26%)" stroke-width="3">
+                    <path d="M 7 28 L 18 16 43 36" />
+                    <path d="M 54 28 L 58 36 82 16 93 28" />
+                </g>
+                <g fill="hsl(120 1% 26%)">
+                    <rect x="30" y="36" width="4" height="12" />
+                    <rect x="66" y="36" width="4" height="12" />
+                </g>
+                <g transform="translate(15 68)">
+                    <path fill="hsl(220 16% 93%)" d="M 0 0 L 70 0 L 70 12 A 3 3 0 0 1 67 15 L 3 15 A 3 3 0 0 1 0 12" />
+                    <g fill="hsl(120 1% 26%)">
+                        <rect x="50" y="9" width="3" height="6" />
+                        <rect x="57" y="6" width="3" height="9" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <g fill="hsl(0 3% 13%)" font-family="sans-serif">
+            <text text-anchor="middle" x="0.25" y="0.2" font-size="0.2" font-weight="700">101</text>		
+            <text transform="translate(0 1.37)" text-anchor="middle" x="0.6" y="0.17" font-size="0.17">Electrode</text>
+        </g>
+    </g>
 </svg>`
 };
