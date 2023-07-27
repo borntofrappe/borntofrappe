@@ -1,0 +1,7 @@
+---
+title: Ziggety
+description: Animate 2D shapes with CSS. Animate pseudo-3D shapes with JavaScript and CSS still.
+date: 2023-07-28T11:11:11
+---
+
+To animate Zdog shapes you need JavaScript.
