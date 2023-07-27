@@ -378,7 +378,7 @@
 		height="400"
 	>
 		<defs>
-			<symbol id="javascript-target" viewBox="0 0 10 5.5">
+			<symbol id="javascript-target" viewBox="0 0 10 5.5" stroke="transparent">
 				<title>Magnemite</title>
 				<rect fill="hsl(194 66% 86%)" x="3" y="1.5" width="4" height="4" />
 				<rect fill="hsl(0 0% 100%)" x="4" y="2.5" width="2" height="2" />
