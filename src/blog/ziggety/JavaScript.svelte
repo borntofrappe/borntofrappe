@@ -339,13 +339,13 @@
 		};
 
 		const loop = () => {
-			const { translate, rotate } = getComputedStyle(target);
-			const y = parseFloat(translate.match(/([-\d.]+)px$/)[0]);
+			const { rotate, translate } = getComputedStyle(target);
 			const degrees = parseFloat(rotate.match(/^([-\d.]+)deg$/)[0]);
+			const y = parseFloat(translate.match(/([-\d.]+)px$/)[0]);
 
-			anchor.translate.y = map(y, -offset, offset, -2.5, 2.5);
-			anchor.rotate.x = (degrees / 180) * Math.PI * 0.5;
 			anchor.rotate.z = (degrees / 180) * Math.PI;
+			anchor.rotate.x = (degrees / 180) * Math.PI * 0.5;
+			anchor.translate.y = map(y, -offset, offset, -2.5, 2.5);
 
 			illustration.updateRenderGraph();
 			frame = requestAnimationFrame(loop);
@@ -434,14 +434,16 @@
 		--dur: var(--duration, 2s);
 		--degrees: var(--angle, 20deg);
 		--y: var(--offset, 20px);
-		animation: rotate var(--dur) infinite ease-out, translate calc(var(--dur) * 3) infinite ease-out;
+		animation: rotate var(--dur) infinite, translate calc(var(--dur) * 3) infinite;
 		animation-play-state: paused;
 	}
 
 	@keyframes rotate {
 		0%,
-		50% {
+		50%,
+		100% {
 			rotate: 0deg;
+			animation-timing-function: ease-out;
 		}
 
 		25% {
@@ -460,6 +462,7 @@
 		50%,
 		100% {
 			translate: 0px 0px;
+			animation-timing-function: ease-out;
 		}
 
 		25% {

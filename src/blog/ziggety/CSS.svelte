@@ -68,14 +68,16 @@
 		--dur: 2s;
 		--angle: 20deg;
 		--offset: 20px;
-		animation: rotate var(--dur) infinite ease-out, translate calc(var(--dur) * 3) infinite ease-out;
+		animation: rotate var(--dur) infinite, translate calc(var(--dur) * 3) infinite;
 		animation-play-state: paused;
 	}
 
 	@keyframes rotate {
 		0%,
-		50% {
+		50%,
+		100% {
 			rotate: 0deg;
+			animation-timing-function: ease-out;
 		}
 
 		25% {
@@ -94,6 +96,7 @@
 		50%,
 		100% {
 			translate: 0px 0px;
+			animation-timing-function: ease-out;
 		}
 
 		25% {
