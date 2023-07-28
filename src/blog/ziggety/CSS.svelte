@@ -93,16 +93,16 @@
 		0%,
 		50%,
 		100% {
-			translate: 0 0px;
+			translate: 0px 0px;
 		}
 
 		25% {
-			translate: 0 calc(var(--offset) * -1);
+			translate: 0px calc(var(--offset) * -1);
 			animation-timing-function: ease-in;
 		}
 
 		75% {
-			translate: 0 var(--offset);
+			translate: 0px var(--offset);
 			animation-timing-function: ease-in;
 		}
 	}

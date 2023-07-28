@@ -459,16 +459,16 @@
 		0%,
 		50%,
 		100% {
-			translate: 0 0px;
+			translate: 0px 0px;
 		}
 
 		25% {
-			translate: 0 calc(var(--y) * -1);
+			translate: 0px calc(var(--y) * -1);
 			animation-timing-function: ease-in;
 		}
 
 		75% {
-			translate: 0 var(--y);
+			translate: 0px var(--y);
 			animation-timing-function: ease-in;
 		}
 	}
