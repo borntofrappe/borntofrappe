@@ -12,15 +12,17 @@ date: 2023-07-28T14:40:55
 	import JavaScript from './JavaScript.svelte';
 </script>
 
-To animate Zdog shapes you need JavaScript, there's no escaping it. You can't run away from the language, but if you don't mind being cheeky, you can have CSS do the heavy lifting. The trick is wickedly simple, but is best understood in practice.
+To animate [Zdog shapes](https://zzz.dog/getting-started#animating) you need JavaScript, there's no escaping it.
 
-Lock on the following 2D graphic.
+You can't run away from the language, but if you don't mind being cheeky, you can have CSS do the heavy lifting. The trick is wickedly simple, but is best understood in practice.
+
+Lock on the following 2D figure.
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['target']}
 </Center>
 
-CSS is more than able to update the elements in a larger `<svg>`. You can even set up two distinct animations, working in tandem to affect the graphic in different manners.
+CSS is more than able to update the elements in a larger `<svg>`. You can even set up two distinct animations, working in tandem to affect the shapes in different manners.
 
 ```css
 #target {
@@ -28,7 +30,7 @@ CSS is more than able to update the elements in a larger `<svg>`. You can even s
 }
 ```
 
-The excellent news is that CSS supports individual transform properties. With one animation you can rock the graphic back and forth.
+The excellent news is that CSS supports individual transform properties. With one animation you can rock the target to the sides.
 
 ```css
 @keyframes rotate {
@@ -37,11 +39,9 @@ The excellent news is that CSS supports individual transform properties. With on
 	100% {
 		rotate: 0deg;
 	}
-
 	25% {
 		rotate: -20deg;
 	}
-
 	75% {
 		rotate: 20deg;
 	}
@@ -57,20 +57,18 @@ With the other you can move the figure up and down.
 	100% {
 		translate: 0px 0px;
 	}
-
 	25% {
 		translate: 0px -20px;
 	}
-
 	75% {
 		translate: 0px 20px;
 	}
 }
 ```
 
-There are several keyframes, several stopping points which make the default motion feel rather unnatural. Luckily, you are able to change the pace with an easing function. You can tinker with the value in the keyframes as well, but in my brief exploration, I found a sound combination with two of the supported keywords: `ease-out` and `ease-in`.
+There are several keyframes, several stopping points which make the default motion feel rather robotic. Luckily, you are able to change the pace with an easing function. You can tinker with the value in the keyframes as well, but in a brief exploration, I found a sound combination with two of the supported keywords: `ease-out` and `ease-in`.
 
-Ease-out in the resting position.
+`ease-out` from the resting position, starting fast to then slow down.
 
 ```css
 0%,
@@ -81,13 +79,26 @@ Ease-out in the resting position.
 }
 ```
 
-Ease-in in the keyframes which follow. The approach is similar in both animations, and the result is quite appealing.
+`ease-in` away from the other percentages, precisely the opposite.
+
+```css
+25% {
+	rotate: -20deg;
+	animation-timing-function: ease-in;
+}
+75% {
+	rotate: 20deg;
+	animation-timing-function: ease-in;
+}
+```
+
+The approach is similar in both animations, and the result is already appealing.
 
 <Center maxInlineSize="350px">
 	<CSS />
 </Center>
 
-The change feels almost natural as the character levitates in smooth stops. And above all, impressive considering how much CSS handles for you. Which begs the question: why can't you do the same to animate Zdog shapes?
+The motion feels almost natural as the sprite levitates in smooth stops. And above all, impressive in lines of code. Which begs the question: why can't you do the same with Zdog shapes?
 
 ## JavaScript
 
@@ -95,31 +106,33 @@ In Zdog you work with an illustration.
 
 ```js
 const element = document.querySelector('#illustration');
+
 const illustration = new Zdog.Illustration({
 	element
 });
 ```
 
-As you add objects with different classes, `Rect`angles, `Box`es and the like, the library populates the chosen element with the pseudo-3D graphic. All you need is one final instruction, the `updateRenderGraph` method.
+As you add objects with different classes, `Rect`angles, `Box`es and the like, the library injects the pseudo-3D shapes in the node. All you need is one final instruction, `updateRenderGraph`.
 
 ```js
 illustration.updateRenderGraph();
 ```
 
-When you want to update the illustration, you need to do so yourself. With JavaScript. You can rotate the scene on one of the available axes.
+When you want to update the illustration, you need to do so yourself, again with JavaScript. You can rotate the scene on one of the [available axes](/rotate-3d), or translate the objects any which way.
 
 ```js
-illustration.rotate.z = 1.74;
+illustration.rotate.z = 0.32;
+illustration.translate.y = 1.42;
 ```
 
 But every time you do that you need not to forget the final instruction.
 
 ```js
-illustration.rotate.z = 1.74;
+// ...rotate & translate
 illustration.updateRenderGraph();
 ```
 
-One way you have to animate the change over time is with `requestAnimationFrame`. The idea is to call a function over and over.
+Past the solitary update, you can animate the shapes with `requestAnimationFrame`. The idea is to call a function over and over.
 
 ```js
 const animate = () => {
@@ -130,7 +143,7 @@ const animate = () => {
 animate();
 ```
 
-It is in the looping function that you then handle the change **and** you update the illustration.
+It is in the body of this looping function that you then handle the change **and** update the illustration.
 
 ```js
 const animate = () => {
@@ -141,33 +154,37 @@ const animate = () => {
 };
 ```
 
-So assume you take the time to recreate the 2D drawing with Zdog classes. You need to update the illustration in two ways, in angle and in vertical offset. But with what values? You can keep a counter variable and update the value in the animating function. And `ease-in`, `ease-out` are easing functions. They receive an input and return a value. This option certainly opens a way, but truth being told, the logic goes over my head.
+So assume you take the time to recreate the 2D drawing with Zdog classes. You need to update the illustration in two ways, in angle and in vertical offset.
 
-Modeling a variable to find the right angle, and then going through the process once more for the y coordinate looks very challenging. Especially considering just how beautiful the CSS version was. Why can't you just follow the example? Why not indeed?
+But with what values?
 
-Why don't you run the CSS animation, as smoothly as only CSS knows how.
+Theoretically, you can keep a counter variable and update the same in the looping function. And `ease-out`, `ease-in` are easing functions. They receive an input and return a value. This option certainly opens a way, but truth being told, the math goes over my head.
 
-And why not just take the values directly from the graphic?
+Modeling a variable to find the right angle, and then going through the process once more for the y coordinate looks very challenging. Especially considering just how short and concise the CSS-only version was. Why can't you just follow the example? Why not indeed?
+
+Why don't you let CSS run, as smoothly as only CSS knows how.
+
+And why not just take the values directly from the animated graphic?
 
 ```js
 const target = document.querySelector('#target');
 
 const animate = () => {
-	const { translate, rotate } = getComputedStyle(target);
+	const { rotate, translate } = getComputedStyle(target);
 
 	// ...
 };
 ```
 
-With `getComputedStyle` style you find the angle and the position. And these change per the keyframe animations. No need to re-model the change yourself.
+With `getComputedStyle` style you find the angle and the position. And these change per the keyframe animations. No need to re-model the values yourself.
 
 You need a couple extra steps to find the appropriate numbers, but that's it.
 
-Immediately, `getComputedStyle` returns a string with a unit — _"-23.253deg"_ and _"-10px"_, but you want a proper number instead. I managed the feat with a couple of regular expressions, so you can certainly figure out a better way on your own.
+Immediately, `getComputedStyle` returns a string with a unit, think _"-11.4771deg"_ and _"-14.3769px"_, while you want a true number. I managed the feat with a couple of regular expressions, so you can certainly figure out a better way.
 
 ```js
-const y = parseFloat(translate.match(/([-\d.]+)px$/)[0]);
 const degrees = parseFloat(rotate.match(/^([-\d.]+)deg$/)[0]);
+const y = parseFloat(translate.match(/([-\d.]+)px$/)[0]);
 ```
 
 Finally, you need values fitting the scene, fitting the scope of the illustration. For the angle, for instance, Zdog reasons in radians. Nothing that a quick conversion won't be able to fix.
@@ -177,24 +194,30 @@ Finally, you need values fitting the scene, fitting the scope of the illustratio
 illustration.rotate.z = degrees / 180 * Math.PI;
 ```
 
-For the offset, the value might push the graphic too little, or too much. You can multiply the measure with an arbitrary weight.
+For the offset, the number might push the graphic too little, or too much. You can weigh the value with an arbitrary measure.
 
 ```js
 illustration.translate.y = y * 0.5;
 ```
 
-Or again consider a more complex `map` function, mapping the offset to an appropriate range.
+Or again consider a more complex function, mapping the offset to a reasonable range.
 
 ```js
 illustration.translate.y = map(y, -offset, offset, -2.5, 2.5);
 ```
 
-I'll let you write the logic of the function as homework. Personally, I'm just ecstatic to see the result in action. An effective mirror shot.
+I give you the function as a homework of sorts. Personally, I'm just ecstatic to see the result in action — an effective mirror shot.
 
 <JavaScript />
 
 The web platform is amazing! You can now animate Zdog shapes with CSS.
 
-Should you?
+You can, but should you?
 
-As a proof-of-concept, the solution is brilliant in its simplicity. As a prototyping tool, it is also an excellent way to debug even complex changes. If you are more serious about animations, however, you need to be wary. The browser needs to update the page with CSS, extract the data from the window and re-inject the values in the illustration. `requestAnimationFrame` helps you out, for instance pausing the update when you switch your attention to a different tab, a different application, but the operation is computationally intensive. Test the code, and maybe do rely on JavaScript, on animation libraries to take care of the rest.
+As a proof-of-concept, the solution is brilliant in its simplicity. As a prototyping tool, it is also an excellent way to debug even complex changes. If you are more serious about animations, however, you need to be wary.
+
+The browser needs to update the page with CSS, extract the data from the window and re-inject the values in the illustration.
+
+`requestAnimationFrame` helps you out, for instance pausing the update when you switch focus to a different tab, but the operation is computationally intensive.
+
+Test the code, and maybe do rely on JavaScript, on animation libraries to take care of the rest.
