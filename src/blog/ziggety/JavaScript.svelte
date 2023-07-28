@@ -31,7 +31,7 @@
 
 		const illustration = new Illustration({
 			element,
-			zoom: 30,
+			zoom: 26,
 			rotate: {
 				x: -0.1,
 				y: 0.2
@@ -374,8 +374,8 @@
 		style:--angle="{angle}deg"
 		style:--offset="{offset}px"
 		viewBox="-60 -60 120 120"
-		width="400"
-		height="400"
+		width="350"
+		height="350"
 	>
 		<defs>
 			<symbol id="javascript-target" viewBox="0 0 10 5.5" stroke="transparent">
@@ -416,14 +416,13 @@
 		<use href="#javascript-target" x="-50" y="-50" width="100" height="100" />
 	</svg>
 
-	<svg style="display: block;" width="400" height="400" />
+	<svg style="display: block;" width="350" height="350" />
 </div>
 
 <style>
 	div {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem;
 		justify-content: center;
 	}
 
