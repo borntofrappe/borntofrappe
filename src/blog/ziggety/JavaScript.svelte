@@ -9,8 +9,12 @@
 	const offset = 20;
 
 	onMount(() => {
-		const target = parent.querySelector('svg:first-of-type > use');
-		const element = parent.querySelector('svg:last-of-type');
+		const target = parent.querySelector('svg > use');
+		const element = parent.querySelector('canvas');
+
+		const { width, height } = element;
+		element.style.width = `${width}px`;
+		element.style.height = `${height}px`;
 
 		const azure1 = 'hsl(194 66% 86%)';
 		const azure2 = 'hsl(198 39% 78%)';
@@ -27,7 +31,7 @@
 		const red1 = 'hsl(10 49% 68%)';
 		const red2 = 'hsl(10 41% 64%)';
 
-		const stroke = 0;
+		const stroke = 0.05;
 
 		const illustration = new Illustration({
 			element,
@@ -340,7 +344,7 @@
 			const degrees = parseFloat(rotate.match(/^([-\d.]+)deg$/)[0]);
 
 			anchor.translate.y = map(y, -offset, offset, -2.5, 2.5);
-			anchor.rotate.x = ((degrees / 180) * Math.PI) / 2;
+			anchor.rotate.x = (degrees / 180) * Math.PI * 0.5;
 			anchor.rotate.z = (degrees / 180) * Math.PI;
 
 			illustration.updateRenderGraph();
@@ -416,7 +420,7 @@
 		<use href="#javascript-target" x="-50" y="-50" width="100" height="100" />
 	</svg>
 
-	<svg style="display: block;" width="350" height="350" />
+	<canvas style="display: block;" width="350" height="350" />
 </div>
 
 <style>
