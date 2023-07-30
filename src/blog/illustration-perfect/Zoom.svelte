@@ -7,7 +7,7 @@
 	let element = null;
 	let illustration = null;
 
-	let i = 1;
+	let i = 0;
 	const zooms = [1, 2, 5];
 	const zoom = tweened(zooms[i], {
 		easing,
@@ -18,6 +18,44 @@
 		const { width, height } = element;
 		element.style.width = `${width}px`;
 		element.style.height = `${height}px`;
+
+		const background = {
+			colors: [
+				'#008cb9',
+				'#008fbe',
+				'#0093c2',
+				'#0096c6',
+				'#0099ca',
+				'#009cce',
+				'#00a0d3',
+				'#00a3d7',
+				'#00a6db',
+				'#00aadf',
+				'#00ade4',
+				'#00b0e8'
+			],
+			width: width * 1.8,
+			height: height * 1.8
+		};
+
+		const colorHeight = background.height / background.colors.length;
+
+		background.translate = {
+			y: (background.height / 2) * -1
+		};
+
+		background.copies = background.colors.map((color, i) => {
+			const y = i * colorHeight;
+			const width = background.width;
+			const height = colorHeight;
+
+			return {
+				color,
+				y,
+				width,
+				height
+			};
+		});
 
 		const scene = {
 			balloon: {
@@ -50,6 +88,7 @@
 		const anchorBackground = new Anchor({
 			addTo: illustration,
 			translate: {
+				y: background.translate.y,
 				z: -200
 			}
 		});
@@ -63,13 +102,18 @@
 			translate: scene.birds.translate
 		});
 
-		new Rect({
-			addTo: anchorBackground,
-			color: '#00aadf',
-			fill: true,
-			width: width * 2,
-			height: height * 2
-		});
+		for (const { color, y, width, height } of background.copies) {
+			new Rect({
+				addTo: anchorBackground,
+				color,
+				fill: true,
+				width: width,
+				height: height,
+				translate: {
+					y
+				}
+			});
+		}
 
 		const balloon = new Anchor({
 			addTo: anchorBalloon,
@@ -332,7 +376,7 @@
 		i = (i + 1) % zooms.length;
 	}}
 >
-	Update zoom {zooms[i]}x
+	Update zoom from <strong>{zooms[i]}x</strong>
 </button>
 
 <canvas bind:this={element} width="350" height="350" />
@@ -346,6 +390,10 @@
 		color: inherit;
 		background: none;
 		border: 0.1rem solid currentColor;
+	}
+
+	button > strong {
+		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 	}
 
 	canvas {
