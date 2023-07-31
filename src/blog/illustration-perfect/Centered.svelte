@@ -512,13 +512,13 @@
 
 <style>
 	button {
-		font-family: inherit;
 		display: block;
 		margin-inline: auto;
 		padding: 0.5rem 0.75rem;
+		font-family: inherit;
 		color: inherit;
 		background: none;
-		border: 0.1rem solid currentColor;
+		border: 0.2rem solid currentColor;
 	}
 
 	button > code {
