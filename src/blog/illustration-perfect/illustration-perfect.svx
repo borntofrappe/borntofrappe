@@ -15,6 +15,7 @@ In the Zdog library there are two properties which deserve a mention. These are 
 
 ```js
 const element = document.querySelector('#target');
+
 const illustration = new Zdog.Illustration({
 	element
 	// ...
@@ -40,8 +41,8 @@ In Zdog, mostly for better, but often for worse, shapes are drawn from the very 
 ```js
 new Zdog.Rect({
 	addTo: illustration,
-	width: 200,
-	height: 18
+	width: 100,
+	height: 75
 });
 ```
 
@@ -64,10 +65,10 @@ To position the shapes you have options. You can translate individual objects wi
 
 ```js
 new Zdog.Rect({
-	// ...
+	// ...,
 	translate: {
-		x: -20,
-		y: -20
+		x: -200,
+		y: -150
 	}
 });
 ```
@@ -75,15 +76,16 @@ new Zdog.Rect({
 You can add multiple instances to a `Anchor`, and translate the container instead.
 
 ```js
-const anchor = new Zdog.Anchor({
+const origin = new Zdog.Anchor({
 	translate: {
-		x: -20,
-		y: -20
+		x: -200,
+		y: -150
 	}
 });
 
 new Zdog.Rect({
-	addTo: anchor
+	addTo: origin
+	// ...
 });
 ```
 
@@ -94,7 +96,7 @@ new Zdog.Rect({
 The second property is even easier to grasp, and possibly even more convenient. The illustration works with [an element](/pseudo-3d-element), be it `<canvas>` or `<svg>`.
 
 ```html
-<canvas id="target" width="400" height="400"></canvas>
+<canvas id="target" width="350" height="350"></canvas>
 ```
 
 You may realize with great dismay that your shapes are too small, or too big for the set dimensions. When this happens change the zoom level, directly through the illustration and the `zoom` property.
@@ -116,7 +118,7 @@ Once more you have options. Next to the `translate` property, `scale` helps to t
 
 ```js
 new Zdog.Rect({
-	// ...
+	// ...,
 	scale: 2
 });
 ```
