@@ -1,5 +1,124 @@
 ---
 title: Illustration perfect
-description: Focus on two properties you set on a Zdog illustration to make life easier.
-date: 2023-07-31T09:09:09
+description: Focus on two properties set on a Zdog illustration to make life easier.
+date: 2023-07-31T10:47:50
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Centered from './Centered.svelte';
+	import Zoom from './Zoom.svelte';
+</script>
+
+In the Zdog library there are two properties which deserve a mention. These are set on the illustration, the entry point of a pseudo-3D graphic.
+
+```js
+const element = document.querySelector('#target');
+const illustration = new Zdog.Illustration({
+	element
+	// ...
+});
+```
+
+You may never use either, but when in need, you'll surely appreciate knowing both.
+
+## Centered
+
+The first property helps to cope with the coordinate system, particularly if you are trying to recreate in pseudo-3D something you sketched in SVG.
+
+```html
+<svg viewBox="0 0 400 300">
+	<!-- ... -->
+</svg>
+```
+
+In the body of the `<svg>` element, and unless you tinker with [the `viewBox` attribute](/viewbox-origin), shapes are drawn from the top left corner. Increase the horizontal measure and you move to the right. Increase the vertical offset and you move to the bottom.
+
+In Zdog, mostly for better, but often for worse, shapes are drawn from the very center. A rectangle with a set width and height, for instance, grows from the center of the illustration in opposite dimensions.
+
+```js
+new Zdog.Rect({
+	addTo: illustration,
+	width: 200,
+	height: 18
+});
+```
+
+Again this is mostly for the better. The moment you update the shapes, for instance to rotate on one of [the available axes](/rotate-3d), you do so from the convenient hinge. The moment the default troubles you, and you do need to place the shapes from a top left origin, set `centered` to `false`.
+
+```js
+const illustration = new Zdog.Illustration({
+	element,
+	centered: false
+});
+```
+
+Every shape which follows, every object added to the illustration will sit relative to the new origin. And you might discover that some illustrations are richer than it may seem.
+
+<Center maxInlineSize="400px">
+	<Centered />
+</Center>
+
+To position the shapes you have options. You can translate individual objects with the matching `translate` property.
+
+```js
+new Zdog.Rect({
+	// ...
+	translate: {
+		x: -20,
+		y: -20
+	}
+});
+```
+
+You can add multiple instances to a `Anchor`, and translate the container instead.
+
+```js
+const anchor = new Zdog.Anchor({
+	translate: {
+		x: -20,
+		y: -20
+	}
+});
+
+new Zdog.Rect({
+	addTo: anchor
+});
+```
+
+`centered` just works once, and for the entire illustration.
+
+## Zoom
+
+The second property is even easier to grasp, and possibly even more convenient. The illustration works with [an element](/pseudo-3d-element), be it `<canvas>` or `<svg>`.
+
+```html
+<canvas id="target" width="400" height="400"></canvas>
+```
+
+You may realize with great dismay that your shapes are too small, or too big for the set dimensions. When this happens change the zoom level, directly through the illustration and the `zoom` property.
+
+```js
+const illustration = new Zdog.Illustration({
+	element,
+	zoom: 2
+});
+```
+
+Again the instruction works for every shape which follows. You don't need to adjust the objects as everything is resized as a whole. You might discover that some illustrations are more animated than expected. And how a hot air balloon can be stitched up together with colorful stripes.
+
+<Center maxInlineSize="350px">
+	<Zoom />
+</Center>
+
+Once more you have options. Next to the `translate` property, `scale` helps to to resize individual shapes.
+
+```js
+new Zdog.Rect({
+	// ...
+	scale: 2
+});
+```
+
+The zoom works once, once and for all.
