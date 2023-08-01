@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import Heading from '$lib/components/Heading.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	import site from '$lib/utils/site.js';
 	import { format } from './utils.js';
@@ -76,70 +77,92 @@
 	</defs>
 </svg>
 
-<div class="[ stack ]">
-	<header
-		class="[ box ]"
-		style="
+<div
+	class="[ box ]"
+	style="
+		--box-color: var(--color);
+		--box-background: var(--background);
+		min-height: 100vh;
+		z-index: 1;
+		position: relative;
+	"
+>
+	<div class="[ stack ]">
+		<header
+			class="[ box ]"
+			style="
 			--padding: var(--step-space-300) 0;
 			--box-color: var(--theme-color);
 			--box-background: var(--theme-background);
 		"
-	>
-		<div class="[ center cluster ]" style="--justify: space-between; --align: center;">
-			<Heading level="h1" stroke="var(--theme-foreground)" fill="var(--theme-color)">Blog</Heading>
+		>
+			<div class="[ center cluster ]" style="--justify: space-between; --align: center;">
+				<Heading level="h1" stroke="var(--theme-foreground)" fill="var(--theme-color)">
+					Blog
+				</Heading>
 
-			<button class="[ theme-toggle ]" data-show={showToggle} on:click={handleClick}>
-				<span class="[ visually-hidden ]">Toggle theme selector</span>
-				<svg viewBox="0 0 1 1">
-					<use href="#blog-marker-{timeOfDay}" />
-				</svg>
-			</button>
-		</div>
-	</header>
+				<button class="[ theme-toggle ]" data-show={showToggle} on:click={handleClick}>
+					<span class="[ visually-hidden ]">Toggle theme selector</span>
+					<svg viewBox="0 0 1 1">
+						<use href="#blog-marker-{timeOfDay}" />
+					</svg>
+				</button>
+			</div>
+		</header>
 
-	<div class="[ center ]">
-		{#if showSelector}
-			<fieldset on:change={handleChange} transition:slide class="[ switcher ] [ theme-selector ]">
-				<legend class="[ visually-hidden ]">Time of day</legend>
-				{#each themes as value}
-					<label
-						class="[ box ]"
-						style="
+		<div class="[ center ]">
+			{#if showSelector}
+				<fieldset on:change={handleChange} transition:slide class="[ switcher ] [ theme-selector ]">
+					<legend class="[ visually-hidden ]">Time of day</legend>
+					{#each themes as value}
+						<label
+							class="[ box ]"
+							style="
 							--padding: var(--step-space-200) var(--step-space-200);
 							--box-color: #f7f7f7;
 							--box-background: var(--background-{value});
 						"
-					>
-						<input style="accent-color: #f7f7f7" type="radio" bind:group={timeOfDay} {value} />
-						<span style="font-weight: 700; letter-spacing: 1px; text-transform: capitalize"
-							>{value}</span
 						>
-					</label>
+							<input style="accent-color: #f7f7f7" type="radio" bind:group={timeOfDay} {value} />
+							<span style="font-weight: 700; letter-spacing: 1px; text-transform: capitalize"
+								>{value}</span
+							>
+						</label>
+					{/each}
+				</fieldset>
+			{/if}
+
+			<div class="[ grid ] [ blog ]" data-layout="50-50" style="--gutter: var(--step-space-300)">
+				{#each blog as { title, date, description, slug }}
+					<article class="[ flow ] [ blog__post ]" style="--space: var(--space-100)">
+						<h2><a href={slug}>{title}</a></h2>
+						<time class="[ font-size:small ]" style="display: inline-block;" datetime={date}
+							>{format(new Date(date))}</time
+						>
+						<p>{description}</p>
+					</article>
 				{/each}
-			</fieldset>
-		{/if}
+			</div>
 
-		<div class="[ grid ] [ blog ]" data-layout="50-50" style="--gutter: var(--step-space-300)">
-			{#each blog as { title, date, description, slug }}
-				<article class="[ flow ] [ blog__post ]" style="--space: var(--space-100)">
-					<h2><a href={slug}>{title}</a></h2>
-					<time class="[ font-size:small ]" style="display: inline-block;" datetime={date}
-						>{format(new Date(date))}</time
-					>
-					<p>{description}</p>
-				</article>
-			{/each}
-		</div>
-
-		<div class="[ cluster ]">
-			{#if page > 0}
-				<a style="margin-inline-end: auto;" href="/blog?page={page - 1}">Newer posts</a>
-			{/if}
-			{#if page < pages}
-				<a style="margin-inline-start: auto;" href="/blog?page={page + 1}">Older posts</a>
-			{/if}
+			<div class="[ cluster ]">
+				{#if page > 0}
+					<a style="margin-inline-end: auto;" href="/blog?page={page - 1}">Newer posts</a>
+				{/if}
+				{#if page < pages}
+					<a style="margin-inline-start: auto;" href="/blog?page={page + 1}">Older posts</a>
+				{/if}
+			</div>
 		</div>
 	</div>
+</div>
+
+<div
+	style="
+		position: sticky;
+		bottom: 0;
+	"
+>
+	<Footer />
 </div>
 
 <style>
