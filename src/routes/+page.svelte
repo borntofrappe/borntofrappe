@@ -4,7 +4,7 @@
 
 	import Main from './Main.svelte';
 	import Showcase from './Showcase.svelte';
-	import Footer from './Footer.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <svelte:head>
