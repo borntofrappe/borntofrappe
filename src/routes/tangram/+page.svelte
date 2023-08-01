@@ -1,8 +1,8 @@
 <script>
 	import site from '$lib/utils/site.js';
 
-	import Tangram from './Tangram.svelte';
-	import styles from './styles.js';
+	import Tangram from '$lib/components/tangram/Tangram.svelte';
+	import styles from '$lib/components/tangram/styles.js';
 
 	const { title } = site;
 
