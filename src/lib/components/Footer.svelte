@@ -1,5 +1,9 @@
 <script>
 	import Tangram from '$lib/components/tangram/Tangram.svelte';
+	import shapes from '$lib/components/tangram/shapes.js';
+	const keys = Object.keys(shapes);
+
+	export let illustration = keys[Math.floor(Math.random() * keys.length)];
 </script>
 
 <footer
@@ -19,7 +23,7 @@
 		</figcaption>
 
 		<div class="[ center ]" style="--measure: 8rem; --leading: 0;">
-			<Tangram shape="heart" padding={1} />
+			<Tangram key={illustration} />
 		</div>
 	</figure>
 </footer>
