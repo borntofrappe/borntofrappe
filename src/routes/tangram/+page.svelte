@@ -2,22 +2,22 @@
 	import site from '$lib/utils/site.js';
 
 	import Tangram from '$lib/components/tangram/Tangram.svelte';
-	import styles from '$lib/components/tangram/styles.js';
+	import shapes from '$lib/components/tangram/shapes.js';
 
 	const { title } = site;
 
-	const shapes = Object.keys(styles);
+	const keys = Object.keys(shapes);
 
 	let tangram = true;
-	let [shape] = shapes;
+	let [key] = keys;
 
 	$: if (!tangram) {
-		let newShape = '';
+		let newKey = '';
 		do {
-			newShape = shapes[Math.floor(Math.random() * shapes.length)];
-		} while (newShape === shape);
+			newKey = keys[Math.floor(Math.random() * keys.length)];
+		} while (newKey === key);
 
-		shape = newShape;
+		key = newKey;
 	}
 </script>
 
@@ -49,7 +49,7 @@
 			{tangram ? 'Move the pieces to create a new shape.' : 'Move the pieces back together.'}
 		</span>
 		<input bind:checked={tangram} type="checkbox" />
-		<Tangram {shape} />
+		<Tangram {key} padding={5} />
 	</label>
 </main>
 
