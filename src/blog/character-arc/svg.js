@@ -1,7 +1,7 @@
 export default {
-	rainbow: `<svg aria-labeledby="rainbow-title rainbow-description" style="display: block;" viewBox="-0.5 -0.5 11 11">
+	rainbow: `<svg role="img" aria-labelledby="rainbow-title rainbow-desc" style="display: block;" viewBox="-0.5 -0.5 11 11">
     <title id="rainbow-title">Colorful arcs</title>
-    <description id="rainbow-description">In French the word 'rainbow' is literally 'arc-en-ciel', arc in the sky. The word is apt to describe visual, specifically drawn with path elements and the 'A' character.</description>
+    <desc id="rainbow-desc">In French the word 'rainbow' is literally 'arc-en-ciel', arc in the sky. The word is apt to describe visual, specifically drawn with path elements and the 'A' character.</desc>
     <g fill="none" stroke-width="1" stroke-linecap="round">
         <path stroke="hsl(245 93% 72%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.08" d="M 10 5 A 5 5 0 0 0 5 10" />
         <path stroke="hsl(191 100% 46%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.12" d="M 10 4 A 6 6 0 0 0 4 10" />
@@ -11,7 +11,7 @@ export default {
         <path stroke="hsl(15 100% 55%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.12" d="M 10 0 A 10 10 0 0 0 0 10" />
     </g>
 </svg>`,
-	emotions: `<svg id="emotions" role="img" aria-labelledby="emotions-title emotions-desc" style="display: block;" viewBox="-0.05 -0.05 4.1 1.1">
+	emotions: `<svg role="img" aria-labelledby="emotions-title emotions-desc" id="emotions" style="display: block;" viewBox="-0.05 -0.05 4.1 1.1">
     <title id="emotions-title">Emotional rollercoaster</title>
     <desc id="emotions-desc">Understanding how to draw elliptical arcs with the path element is an emotional journey. Suprise, delight, dismay, and reflief as you finally acquiesce you've learned aplenty.</desc>
     <style>
