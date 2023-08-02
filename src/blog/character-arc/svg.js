@@ -112,5 +112,55 @@ export default {
             <rect fill="transparent" opacity="0" x="-0.5" y="-0.5" width="1" height="1" />
         </g>
     </g>
+</svg>`,
+	'three-path-commands': `<svg role="img" aria-labelledby="three-path-commands-title three-path-commands-desc" style="display: block;" viewBox="-10 -10 97.40080261230469 105.70024108886719">
+    <title id="three-path-commands-title">Three path commands</title>
+    <desc id="three-path-commands-desc">In the 'd' attribute of a path element you can draw straight lines with the 'L' character, quadratic bezier curves with the letter 'Q' and cubic bezier curves with the letter 'C'.</desc>
+    <g>
+        <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 L 20 10" />
+        <g fill="currentColor">
+            <circle transform="translate(20 10)" r="1.25" />
+            <g font-family="monospace">
+                <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(x, y)</text>
+                <text transform="translate(40 5)" font-weight="700" font-size="4" y="1.5">L x y</text>
+            </g>
+        </g>
+    </g>
+
+    <g transform="translate(0 35)">
+        <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 Q 15 0 20 10" />
+        <g fill="currentColor">
+            <circle transform="translate(20 10)" r="1.25" />
+            <path transform="translate(15 0)" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+            <path d="M 0 0 L 15 0" />
+            <path d="M 20 10 L 15 0" />
+        </g>
+        <g font-family="monospace" fill="currentColor" >
+            <text transform="translate(15 0)" text-anchor="middle" font-size="2.4" y="-2.9">(x1, y1)</text>
+            <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(x, y)</text>
+            <text transform="translate(40 5)" font-weight="700" font-size="4" y="1.5">Q x1 y1 x y</text>
+        </g>
+    </g>
+
+    <g transform="translate(0 70)">
+        <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 C 10 -5 20 0 20 10" />
+        <g fill="currentColor">
+            <circle transform="translate(20 10)" r="1.25" />
+            <path fill="" transform="translate(10 -5)" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+            <path transform="translate(20 0)" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+            <path d="M 0 0 L 10 -5" />
+            <path d="M 20 10 L 20 0" />
+        </g>
+        <g font-family="monospace" fill="currentColor">
+            <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(x, y)</text>
+            <text transform="translate(10 -5)" text-anchor="middle" font-size="2.4" y="-2.9">(x1, y1)</text>
+            <text transform="translate(20 0)" font-size="2.4" x="2.1" y="0.7">(x2, y2)</text>
+            <text transform="translate(40 5)" font-weight="700" font-size="4" y="1.5">C x1 y1 x2 y2 x y</text>
+        </g>
+    </g>
 </svg>`
 };
