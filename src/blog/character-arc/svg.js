@@ -10,5 +10,107 @@ export default {
         <path stroke="hsl(33 100% 50%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.08" d="M 10 1 A 9 9 0 0 0 1 10" />
         <path stroke="hsl(15 100% 55%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.12" d="M 10 0 A 10 10 0 0 0 0 10" />
     </g>
+</svg>`,
+	emotions: `<svg id="emotions" role="img" aria-labelledby="emotions-title emotions-desc" style="display: block;" viewBox="-0.05 -0.05 4.1 1.1">
+    <title id="emotions-title">Emotional rollercoaster</title>
+    <desc id="emotions-desc">Understanding how to draw elliptical arcs with the path element is an emotional journey. Suprise, delight, dismay, and reflief as you finally acquiesce you've learned aplenty.</desc>
+    <style>
+        #emotions .target use {
+            scale: 0.75;
+            transition: scale 0.25s cubic-bezier(.5, 1.75, .75, 1.25);
+        }
+
+        #emotions .target:hover use {
+            scale: 1;
+        }
+    </style>
+    <defs>
+    <symbol id="emotions-relief" viewBox="-50 -50 100 100">
+        <path fill="hsl(49 99% 57%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 50 50 0 0 0 0 -50" />
+        <path fill="hsl(42 100% 55%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 55 55 0 0 1 0 -50" />
+        <g stroke-linecap="round" stroke-linejoin="round">
+            <g fill="hsl(33 97% 47%)" stroke="hsl(33 97% 47%)" stroke-width="3">
+                <path transform="translate(-23 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+                <path transform="scale(-1 1) translate(-23 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+            </g>
+            <g fill="hsl(39 98% 55%)" stroke="hsl(39 98% 55%)" stroke-width="4">
+                <path transform="translate(-27 2) rotate(-5)" d="M -12 0 A 11 7 0 0 0 12 0 A 11 7 0 0 0 -12 0" />
+                <path transform="translate(29 3) rotate(-5)" d="M -12 0 A 11 7 0 0 0 12 0 A 11 7 0 0 0 -12 0" />
+            </g>
+            <g fill="hsl(16 94% 27%)" stroke="hsl(16 94% 27%)" stroke-width="4">
+                <path transform="translate(-22 -14)" d="M -12 0 A 18 18 0 0 1 12 0 A 40 40 0 0 0 -12 0" />
+                <path transform="translate(22 -14)" d="M -12 0 A 18 18 0 0 1 12 0 A 40 40 0 0 0 -12 0" />
+                <path transform="translate(0 18)" d="M -18 0 A 20 20 0 0 0 18 0 A 40 40 0 0 1 -18 0" />
+            </g>
+        </g>
+    </symbol>
+    <symbol id="emotions-delight" viewBox="-50 -50 100 100">
+        <path fill="hsl(49 99% 57%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 50 50 0 0 0 0 -50" />
+        <path fill="hsl(42 100% 55%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 55 55 0 0 1 0 -50" />
+        <g stroke-linecap="round" stroke-linejoin="round">
+            <g fill="hsl(33 97% 47%)" stroke="hsl(33 97% 47%)" stroke-width="3">
+                <path transform="translate(-23 -32) rotate(155)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+                <path transform="scale(-1 1) translate(-23 -32) rotate(155)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+            </g>
+            <g fill="hsl(16 94% 27%)" stroke="hsl(16 94% 27%)" stroke-width="4">
+                <path transform="translate(-20 -10) rotate(-5)" d="M -12 0 A 34 34 0 0 1 12 0 A 20 20 0 0 0 0 -12 A 30 30 0 0 1 12 0 A 20 20 0 0 0 -12 0 " />
+                <path transform="scale(-1 1) translate(-20 -10) rotate(-5)" d="M -12 0 A 34 34 0 0 1 12 0 A 20 20 0 0 0 0 -12 A 30 30 0 0 1 12 0 A 20 20 0 0 0 -12 0 " />
+                <path transform="translate(0 10)" d="M -25 0 A 25 25 0 0 0 25 0 A 75 75 0 0 1 -25 0" />
+            </g>
+            <path fill="hsl(210 33% 95%)" stroke="hsl(210 33% 95%)" stroke-width="3" transform="translate(0 14)" d="M -16 0 A 35 35 0 0 0 16 0 A 60 60 0 0 1 -16 0" />
+            <path fill="hsl(0 93% 65%)" stroke="hsl(0 93% 65%)" stroke-width="4" transform="translate(-6 30) rotate(12)" d="M -7 0 A 14 14 0 0 0 7 0 A 12 12 0 0 0 -7 0" />
+        </g>
+    </symbol>
+    <symbol id="emotions-shock" viewBox="-50 -50 100 100">
+        <path fill="hsl(49 99% 57%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 50 50 0 0 0 0 -50" />
+        <path fill="hsl(42 100% 55%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 55 55 0 0 1 0 -50" />
+        <g stroke-linecap="round" stroke-linejoin="round">
+            <g fill="hsl(33 97% 47%)" stroke="hsl(33 97% 47%)" stroke-width="3">
+                <path transform="translate(-20 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+                <path transform="scale(-1 1) translate(-20 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+            </g>
+            <g fill="hsl(16 94% 27%)" stroke="hsl(16 94% 27%)" stroke-width="4">
+                <path transform="translate(-16 -12)" d="M -7 0 A 7 8 0 0 0 7 0 A 7 8 0 0 0 -7 0" />
+                <path transform="scale(-1 1) translate(-16 -12)" d="M -7 0 A 7 8 0 0 0 7 0 A 7 8 0 0 0 -7 0" />
+                <path transform="translate(0 20)" d="M -11 0 A 5.5 6 0 0 0 11 0 A 5.5 6 0 0 0 -11 0" />
+            </g>
+            <path fill="hsl(0 93% 65%)" stroke="hsl(0 93% 65%)" stroke-width="4" transform="translate(-3 25) rotate(30)" d="M -5 0 A 6 6 0 0 0 5 0 A 6 6 0 0 0 -5 0" />
+        </g>
+    </symbol>
+    <symbol id="emotions-dismay" viewBox="-50 -50 100 100">
+        <path fill="hsl(49 99% 57%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 50 50 0 0 0 0 -50" />
+        <path fill="hsl(42 100% 55%)" d="M 0 -50 A 50 50 0 0 0 0 50 A 55 55 0 0 1 0 -50" />
+        <g stroke-linecap="round" stroke-linejoin="round">
+            <g fill="hsl(33 97% 47%)" stroke="hsl(33 97% 47%)" stroke-width="3">
+                <path transform="translate(-20 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+                <path transform="scale(-1 1) translate(-20 -32) rotate(160)" d="M -10 0 A 18 18 0 0 0 10 0 A 40 40 0 0 1 -10 0" />
+            </g>
+            <g fill="hsl(16 94% 27%)" stroke="hsl(16 94% 27%)" stroke-width="4">
+                <path transform="translate(-16 -15) rotate(-5)" d="M -6 -6 A 60 60 0 0 0 6 6 A 60 60 0 0 0 -6 -6 M 6 -6 A 60 60 0 0 0 -6 6 A 60 60 0 0 0 6 -6" />
+                <path transform="scale(-1 1) translate(-16 -15) rotate(-5)" d="M -6 -6 A 60 60 0 0 0 6 6 A 60 60 0 0 0 -6 -6 M 6 -6 A 60 60 0 0 0 -6 6 A 60 60 0 0 0 6 -6" />
+                <path transform="translate(0 20)" d="M -13 0 A 6.5 6.5 0 0 0 13 0 A 6.5 6.5 0 0 0 -13 0" />
+            </g>
+            <path fill="hsl(0 93% 65%)" stroke="hsl(0 93% 65%)" stroke-width="4" transform="translate(-3 25) rotate(30)" d="M -5 0 A 6 6 0 0 0 5 0 A 6 6 0 0 0 -5 0" />
+        </g>
+    </symbol>
+    </defs>
+    <g transform="translate(0.5 0.5)">
+        <g class="target">
+            <use href="#emotions-shock" x="-0.5" y="-0.5" width="1" height="1" />
+            <rect fill="transparent" opacity="0" x="-0.5" y="-0.5" width="1" height="1" />
+        </g>
+        <g class="target" transform="translate(1 0)">
+            <use href="#emotions-delight" x="-0.5" y="-0.5" width="1" height="1" />
+            <rect fill="transparent" opacity="0" x="-0.5" y="-0.5" width="1" height="1" />
+        </g>
+        <g class="target" transform="translate(2 0)">
+            <use href="#emotions-dismay" x="-0.5" y="-0.5" width="1" height="1" />
+            <rect fill="transparent" opacity="0" x="-0.5" y="-0.5" width="1" height="1" />
+        </g>
+        <g class="target" transform="translate(3 0)">
+            <use href="#emotions-relief" x="-0.5" y="-0.5" width="1" height="1" />
+            <rect fill="transparent" opacity="0" x="-0.5" y="-0.5" width="1" height="1" />
+        </g>
+    </g>
 </svg>`
 };
