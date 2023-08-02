@@ -1,8 +1,9 @@
 <script>
-	import styles from './styles.js';
+	import shapes from './shapes.js';
+	const keys = Object.keys(shapes);
 
-	export let shape = Object.keys(styles)[0];
-	export let padding = 5;
+	export let key = keys[Math.floor(Math.random() * keys.length)];
+	export let padding = shapes[key].padding;
 
 	const pieces = [
 		{ d: 'M 0 0 l 2 2 l 2 -2', fill: '#71c49a' },
@@ -16,18 +17,15 @@
 
 	$: paths = pieces.map((piece, i) => ({
 		...piece,
-		style: styles[shape][i]
+		style: shapes[key].styles[i]
 	}));
 </script>
 
-<svg viewBox="{padding * -1} {padding * -1} {4 + padding * 2} {4 + padding * 2}">
+<svg
+	style="display: block;"
+	viewBox="{padding * -1} {padding * -1} {4 + padding * 2} {4 + padding * 2}"
+>
 	{#each paths as { d, fill, style }}
 		<path {d} {fill} {style} />
 	{/each}
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>
