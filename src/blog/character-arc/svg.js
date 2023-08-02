@@ -179,5 +179,35 @@ export default {
             <tspan x="0" y="35">x y</tspan>
         </text>
     </g>
+</svg>`,
+	'arc-radii-coordinates': `<svg role="img" aria-labelledby="arc-radii-coordinates-title arc-radii-coordinates-desc" style="display: block;" viewBox="-30 -10 112.98309326171875 61.0318717956543">
+    <title id="arc-radii-coordinates-title">Arc radii and coordinates</title>
+    <desc id="arc-radii-coordinates-desc">To draw arcs with a path element the first two numbers describe the radii of an ellipse connecting the start and end coordinates. The last two numbers describe where the arc should end.</desc>
+    <g transform="translate(0 10)">
+        <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
+        <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+            <path d="M 0 0 L 0 -10" />
+            <path d="M 0 0 L 20 0" />
+        </g>
+        <path fill="currentColor" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+
+        <g font-family="monospace" fill="currentColor" >
+            <text transform="translate(0 -5)" text-anchor="end" font-size="2.5" x="-1.5" y="1">10</text>
+            <text transform="translate(10 0)" text-anchor="middle" font-size="2.5" y="-1.9">20</text>
+        </g>
+    </g>
+    <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
+    <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+    <g fill="currentColor" font-family="monospace">
+        <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(20, 10)</text>
+        <text transform="translate(40 5)" font-size="4" y="1.5">
+            <tspan>A</tspan>
+            <tspan font-weight="700" font-size="4.5" x="0" y="7.8">20 10</tspan>
+            <tspan x="0" y="14">angle</tspan>
+            <tspan x="0" y="21">large-arc-flag</tspan>
+            <tspan x="0" y="28">sweep-flag</tspan>
+            <tspan font-weight="700" font-size="4.5" x="0" y="35.8">20 10</tspan>
+        </text>
+    </g>
 </svg>`
 };
