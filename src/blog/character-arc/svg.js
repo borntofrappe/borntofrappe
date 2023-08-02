@@ -200,7 +200,7 @@ export default {
     <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
     <g fill="currentColor" font-family="monospace">
         <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(20, 10)</text>
-        <text transform="translate(40 5)" font-size="4" y="1.5">
+        <text transform="translate(40 5)" font-size="3.5" y="1.5">
             <tspan>A</tspan>
             <tspan font-weight="700" font-size="4.5" x="0" y="7.8">20 10</tspan>
             <tspan x="0" y="14">angle</tspan>
@@ -208,6 +208,108 @@ export default {
             <tspan x="0" y="28">sweep-flag</tspan>
             <tspan font-weight="700" font-size="4.5" x="0" y="35.8">20 10</tspan>
         </text>
+    </g>
+</svg>`,
+	'arc-large-arc-flag': `<svg role="img" aria-labelledby="arc-large-arc-flag-title arc-large-arc-flag-desc" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
+    <title id="arc-large-arc-flag-title">Arc large arc flag</title>
+    <desc id="arc-large-arc-flag-desc">To draw arcs with a path element the fourth number is a flag to decide which arc to draw from start two end, the small or large arc.</desc>
+    <g>
+        <g transform="translate(0 10)">
+            <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
+            <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+                <path d="M 0 0 L 0 -10" />
+                <path d="M 0 0 L 20 0" />
+            </g>
+            <path fill="currentColor" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+        </g>
+
+        <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
+        <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+        <g fill="currentColor" font-family="monospace">
+            <text transform="translate(40 5)" font-size="3.5" y="1.5">
+                <tspan>A</tspan>
+                <tspan x="0" y="7">20 10</tspan>
+                <tspan x="0" y="14">angle</tspan>
+                <tspan font-weight="700" font-size="4.5" x="0" y="21">0</tspan>
+                <tspan x="0" y="28">sweep-flag</tspan>
+                <tspan x="0" y="35">20 10</tspan>
+            </text>
+        </g>
+    </g>
+    <g transform="translate(0 65)">
+        <g transform="translate(30 0)">
+            <g transform="translate(20 0)">
+                <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
+                <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+                    <path d="M 0 0 L 0 10" />
+                    <path d="M 0 0 L -20 0" />
+                </g>
+                <path fill="currentColor" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+            </g>
+            <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 1 1 20 10" />
+            <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+        </g>
+        <g fill="currentColor" font-family="monospace">
+            <text transform="translate(0 -5)" font-size="3.5" y="1.5">
+                <tspan>A</tspan>
+                <tspan x="0" y="7">20 10</tspan>
+                <tspan x="0" y="14">angle</tspan>
+                <tspan font-weight="700" font-size="4.5" x="0" y="21">1</tspan>
+                <tspan x="0" y="28">sweep-flag</tspan>
+                <tspan x="0" y="35">20 10</tspan>
+            </text>
+        </g>
+    </g>
+</svg>`,
+	'arc-sweep-flag': `<svg role="img" aria-labelledby="arc-sweep-flag-title arc-sweep-flag-desc" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
+    <title id="arc-sweep-flag-title">Arc sweep flag</title>
+    <desc id="arc-sweep-flag-desc">To draw arcs with a path element the fifth number is a flag to decide which arc to draw from start two end, drawing the shape in a clockwise or counter-clockwise manner.</desc>
+    <g>
+        <g transform="translate(0 10)">
+            <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
+            <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+                <path d="M 0 0 L 0 -10" />
+                <path d="M 0 0 L 20 0" />
+            </g>
+            <path fill="currentColor" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+        </g>
+
+        <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
+        <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+        <g fill="currentColor" font-family="monospace">
+            <text transform="translate(40 5)" font-size="3.5" y="1.5">
+                <tspan>A</tspan>
+                <tspan x="0" y="7">20 10</tspan>
+                <tspan x="0" y="14">angle</tspan>
+                <tspan x="0" y="21">0</tspan>
+                <tspan font-weight="700" font-size="4.5" x="0" y="28">1</tspan>
+                <tspan x="0" y="35">20 10</tspan>
+            </text>
+        </g>
+    </g>
+    <g transform="translate(0 65)">
+        <g transform="translate(30 0)">
+            <g transform="translate(20 0)">
+                <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
+                <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
+                    <path d="M 0 0 L 0 10" />
+                    <path d="M 0 0 L -20 0" />
+                </g>
+                <path fill="currentColor" d="M -1.2 0 L 0 -1.2 L 1.2 0 L 0 1.2" />
+            </g>
+            <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 0 20 10" />
+            <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+        </g>
+        <g fill="currentColor" font-family="monospace">
+            <text transform="translate(0 -5)" font-size="3.5" y="1.5">
+                <tspan>A</tspan>
+                <tspan x="0" y="7">20 10</tspan>
+                <tspan x="0" y="14">angle</tspan>
+                <tspan x="0" y="21">0</tspan>
+                <tspan font-weight="700" font-size="4.5" x="0" y="28">0</tspan>
+                <tspan x="0" y="35">20 10</tspan>
+            </text>
+        </g>
     </g>
 </svg>`
 };
