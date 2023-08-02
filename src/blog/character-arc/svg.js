@@ -162,5 +162,22 @@ export default {
             <text transform="translate(40 5)" font-weight="700" font-size="4" y="1.5">C x1 y1 x2 y2 x y</text>
         </g>
     </g>
+</svg>`,
+	'arc-syntax': `<svg role="img" aria-labelledby="arc-syntax-title arc-syntax-desc" style="display: block;" viewBox="-10 -10 92.98309326171875 61.0318717956543">
+    <title id="arc-syntax-title">Arc syntax</title>
+    <desc id="arc-syntax-desc">To draw arcs with a path element you need a lot of numbers.</desc>
+    <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
+    <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
+    <g fill="currentColor" font-family="monospace">
+        <text transform="translate(20 10)" text-anchor="middle" font-size="3" y="5">(x, y)</text>
+        <text transform="translate(40 5)" font-weight="700" font-size="4" y="1.5">
+            <tspan>A</tspan>
+            <tspan x="0" y="7">rx ry</tspan>
+            <tspan x="0" y="14">angle</tspan>
+            <tspan x="0" y="21">large-arc-flag</tspan>
+            <tspan x="0" y="28">sweep-flag</tspan>
+            <tspan x="0" y="35">x y</tspan>
+        </text>
+    </g>
 </svg>`
 };
