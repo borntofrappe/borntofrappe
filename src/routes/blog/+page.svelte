@@ -162,7 +162,7 @@
 		bottom: 0;
 	"
 >
-	<Footer />
+	<Footer illustration="rocket" />
 </div>
 
 <style>

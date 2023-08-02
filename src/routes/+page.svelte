@@ -32,5 +32,5 @@
 		bottom: 0;
 	"
 >
-	<Footer />
+	<Footer illustration="heart" />
 </div>
