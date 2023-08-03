@@ -1,7 +1,7 @@
 export default {
 	rainbow: `<svg role="img" aria-labelledby="rainbow-title rainbow-desc" style="display: block;" viewBox="-0.5 -0.5 11 11">
     <title id="rainbow-title">Colorful arcs</title>
-    <desc id="rainbow-desc">In French the word 'rainbow' is literally 'arc-en-ciel', arc in the sky. The word is apt to describe visual, specifically drawn with path elements and the 'A' character.</desc>
+    <desc id="rainbow-desc">In French the word 'rainbow' is literally 'arc-en-ciel', arc in the sky. The word is apt to describe a visual drawn with SVG, the path elements and the 'A' character.</desc>
     <g fill="none" stroke-width="1" stroke-linecap="round">
         <path stroke="hsl(245 93% 72%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.08" d="M 10 5 A 5 5 0 0 0 5 10" />
         <path stroke="hsl(191 100% 46%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.12" d="M 10 4 A 6 6 0 0 0 4 10" />
@@ -11,9 +11,8 @@ export default {
         <path stroke="hsl(15 100% 55%)" pathLength="1" stroke-dasharray="0.8 1.2" stroke-dashoffset="-0.12" d="M 10 0 A 10 10 0 0 0 0 10" />
     </g>
 </svg>`,
-	emotions: `<svg role="img" aria-labelledby="emotions-title emotions-desc" id="emotions" style="display: block;" viewBox="-0.05 -0.05 4.1 1.1">
-    <title id="emotions-title">Emotional rollercoaster</title>
-    <desc id="emotions-desc">Understanding how to draw elliptical arcs with the path element is an emotional journey. Suprise, delight, dismay, and reflief as you finally acquiesce you've learned aplenty.</desc>
+	emotions: `<svg role="img" id="emotions" style="display: block;" viewBox="-0.05 -0.05 4.1 1.1">
+    <title>Emotional rollercoaster</title>
     <style>
         #emotions .target use {
             scale: 0.75;
@@ -113,9 +112,8 @@ export default {
         </g>
     </g>
 </svg>`,
-	'three-path-commands': `<svg role="img" aria-labelledby="three-path-commands-title three-path-commands-desc" style="display: block;" viewBox="-10 -10 97.40080261230469 105.70024108886719">
-    <title id="three-path-commands-title">Three path commands</title>
-    <desc id="three-path-commands-desc">In the 'd' attribute of a path element you can draw straight lines with the 'L' character, quadratic bezier curves with the letter 'Q' and cubic bezier curves with the letter 'C'.</desc>
+	'three-path-commands': `<svg role="img" style="display: block;" viewBox="-10 -10 97.40080261230469 105.70024108886719">
+    <title>Three path commands</title>
     <g>
         <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 L 20 10" />
         <g fill="currentColor">
@@ -163,9 +161,8 @@ export default {
         </g>
     </g>
 </svg>`,
-	'arc-syntax': `<svg role="img" aria-labelledby="arc-syntax-title arc-syntax-desc" style="display: block;" viewBox="-10 -10 92.98309326171875 61.0318717956543">
-    <title id="arc-syntax-title">Arc syntax</title>
-    <desc id="arc-syntax-desc">To draw arcs with a path element you need a lot of numbers.</desc>
+	'arc-syntax': `<svg role="img" style="display: block;" viewBox="-10 -10 92.98309326171875 61.0318717956543">
+    <title>Arc syntax</title>
     <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
     <circle transform="translate(20 10)" fill="currentColor" r="1.25" />
     <g fill="currentColor" font-family="monospace">
@@ -180,9 +177,8 @@ export default {
         </text>
     </g>
 </svg>`,
-	'arc-radii-coordinates': `<svg role="img" aria-labelledby="arc-radii-coordinates-title arc-radii-coordinates-desc" style="display: block;" viewBox="-30 -10 112.98309326171875 61.0318717956543">
-    <title id="arc-radii-coordinates-title">Arc radii and coordinates</title>
-    <desc id="arc-radii-coordinates-desc">To draw arcs with a path element the first two numbers describe the radii of an ellipse connecting the start and end coordinates. The last two numbers describe where the arc should end.</desc>
+	'arc-radii-coordinates': `<svg role="img" style="display: block;" viewBox="-30 -10 112.98309326171875 61.0318717956543">
+    <title>Arc radii and coordinates</title>
     <g transform="translate(0 10)">
         <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
         <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1">
@@ -210,9 +206,8 @@ export default {
         </text>
     </g>
 </svg>`,
-	'arc-large-arc-flag': `<svg role="img" aria-labelledby="arc-large-arc-flag-title arc-large-arc-flag-desc" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
-    <title id="arc-large-arc-flag-title">Arc large arc flag</title>
-    <desc id="arc-large-arc-flag-desc">To draw arcs with a path element the fourth number is a flag to decide which arc to draw from start two end, the small or large arc.</desc>
+	'arc-large-arc-flag': `<svg role="img" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
+    <title>Arc large arc flag</title>
     <g>
         <g transform="translate(0 10)">
             <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
@@ -261,9 +256,8 @@ export default {
         </g>
     </g>
 </svg>`,
-	'arc-sweep-flag': `<svg role="img" aria-labelledby="arc-sweep-flag-title arc-sweep-flag-desc" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
-    <title id="arc-sweep-flag-title">Arc sweep flag</title>
-    <desc id="arc-sweep-flag-desc">To draw arcs with a path element the fifth number is a flag to decide which arc to draw from start two end, drawing the shape in a clockwise or counter-clockwise manner.</desc>
+	'arc-sweep-flag': `<svg role="img" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
+    <title>Arc sweep flag</title>
     <g>
         <g transform="translate(0 10)">
             <ellipse opacity="0.1" fill="currentColor" rx="20" ry="10" />
