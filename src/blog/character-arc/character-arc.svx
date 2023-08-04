@@ -1,5 +1,87 @@
 ---
 title: Character arc
-description: Dive in the syntax of one attribute to learn more than you may need about one little character.
-date: 2023-08-02T23:23:23
+description: Dive in the syntax of one attribute to learn more than you may need about one single character.
+date: 2023-08-04T10:34:19
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+	import Intro from './Intro.svelte';
+	import svg from './svg.js';
+</script>
+
+In the body of an `<svg>` element, set up a `<path>` with the mentioned attribute.
+
+```html
+<path d="M 0 0 ..." />
+```
+
+The first instruction describes the origin, the x, y coordinate where the journey starts. Following the "M" character and this short preamble you elaborate the shape with a veritable language. Additional letters, each with its own use. You may struggle picking the numbers, but in most cases, it is possible to understand the meaning at a glance.
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['three-path-commands']}
+</Center>
+
+To draw a line you need just two values, for where the line should end. For a quadratic bezier curve, the pair follows another set of x, y coordinates, this time for a control point, pinching the line out of the narrow and straight path. For a cubic bezier curve, the logic is the same, but with two control points instead of one.
+
+You may need up to six values, but the influence, the purpose of each number is clear.
+
+It is difficult to argue the same when you want to draw an arc.
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['arc-syntax']}
+</Center>
+
+Following the "A" character you need seven arguments, with often inscrutable implications. To understand the lot, break out the formula in a few pieces.
+
+`rx` and `ry` describe the radius, or rather radii, of an makeshift ellipse. Think of a figure stretching horizontally and vertically to connect two points: where the arc starts and where the same ends. The origin precedes the "A" character. The destination, that is dictated by the last pair, `x` and `y`.
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['arc-radii-coordinates']}
+</Center>
+
+On to more cryptic values. `large-arc-flag` is a flag, a number set to either `0` or `1` to toggle a specific feature. And together with `sweep-flag`, it lets you pick which arc to draw. Indeed, the moment you draw the figure based on two radii, it is possible to connect the dots in more than one way. There are two ellipses, not just one.
+
+Which path to follow?
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['arc-ellipses']}
+</Center>
+
+Per the `large-arc-flag`, the larger or smaller segment.
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['arc-large-arc-flag']}
+</Center>
+
+Per `sweep-flag`, path moving in a clockwise or counter-clockwise manner.
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['arc-sweep-flag']}
+</Center>
+
+Two ellipses, four possible arcs. You have quite a bit of freedom to compose the shape. And there is one more number still, `angle`. This last one rotates the ellipses on the x axis, and its influence is even less clear. Say that you rotate our ellipse by any non-zero degree. Why, in this instance the ellipse would never be able to connect the points in the same, clear-cut manner.
+
+And what about the values of the horizontal and vertical radius, for that matter. What if these are too small to craft the ellipse. What if these are too big?
+
+In this instance, [the specification]() has an answer and a mathematical explanation. The ellipses is essentially scaled to realize the arc. But how the scaling operation takes place is far from elementary.
+
+You can try to understand the logic, and again, you are free to tinker with `angle` and any and all arguments, but personally, I'm more than satisfied with the other six values. My personal suggestion: draw arcs with the radii, flags and final coordinates. Keep the angle to 0 and if you really need to rotate the shape, do so with a `transform` attribute.
+
+The behavior is much more predictable, as you are able to turn the final path from a set origin.
+
+<!-- prettier-ignore -->
+```html
+<g transform="translate(10 10) rotate(-5)">
+  <path d="M 0 0 A 20 10 0 0 1 20 10 A 20 10 0 0 1 0 20 A 12 10 0 0 0 12 10 A 12 10 0 0 0 0 0" />
+</g>
+```
+
+Even with just six values, you have plenty of freedom. You have options, some clear, other more dubious, and a roadmap to know the influence of each argument: practice.
+
+By the end of a possibly emotional journey, you have to admit there's a lot you can draw with a `<path>` element. There's a lot you can draw with even a single character and six whole numbers.
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html svg['emotions']}
+</Center>
