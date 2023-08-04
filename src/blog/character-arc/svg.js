@@ -206,6 +206,21 @@ export default {
         </text>
     </g>
 </svg>`,
+	'arc-ellipses': `<svg role="img" style="display: block;" viewBox="-20.5 -10.5 61 31">
+    <title>Two ellipses, four arcs</title>
+    <g opacity="0.1" fill="currentColor">
+        <ellipse transform="translate(20 0)" rx="20" ry="10" />
+        <ellipse transform="translate(0 10)" rx="20" ry="10" />
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path stroke="hsl(15 100% 55%)" d="M 0 0 A 20 10 0 0 0 20 10" />
+        <path stroke="hsl(51 95% 55%)" d="M 0 0 A 20 10 0 0 1 20 10" />
+        <path stroke="hsl(245 93% 72%)" d="M 0 0 A 20 10 0 1 0 20 10" />
+        <path stroke="hsl(191 100% 46%)" d="M 0 0 A 20 10 0 1 1 20 10" />
+    </g>
+    <path fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1" d="M 0 0 L 20 10" />
+    <circle transform="translate(20 10)" fill="currentColor" r="1.5" />
+</svg>`,
 	'arc-large-arc-flag': `<svg role="img" style="display: block;" viewBox="-30 -10 110 115.95834350585938">
     <title>Arc large arc flag</title>
     <g>
