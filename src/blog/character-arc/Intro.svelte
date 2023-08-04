@@ -16,9 +16,13 @@
 
 	<p>
 		It is in the <code>d</code> attribute and with specific commands that you compose a shape with a
-		veritable language, a sequence of imperative instructions. While elusive, most instructions are easy
-		to grasp, but there is one directive which is far from intuitive. And as it often happens with vector
-		graphics, the issue is best solved with practice, testing the values first-hand.
+		a sequence of characters.
+	</p>
+
+	<p>
+		While elusive, most instructions are easy to grasp, but there is one directive which is far from
+		intuitive. And as it often happens with vector graphics, the issue is best solved with practice,
+		testing the values first-hand.
 	</p>
 </section>
 
