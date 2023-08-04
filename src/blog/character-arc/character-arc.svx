@@ -25,7 +25,7 @@ The first instruction describes the origin, the x, y coordinate where our journe
 	{@html svg['three-path-commands']}
 </Center>
 
-To draw a line you need just two values, for where the line should end. For a quadratic bezier curve, the pair follows another set of x, y coordinates, this time for a control point, pinching the line out of the narrow and straight path. For a cubic bezier curve, the logic is the same, but with two control points instead of one.
+To draw a line you need the _"L"_ character and just two values, for where the line should end. For a quadratic bezier curve and the letter _"Q"_, the pair follows another set of x, y coordinates, this time for a control point, pinching the line out of the narrow and straight path. For a cubic bezier curve marked by _"C"_, the logic is the same, but with two control points instead of one.
 
 You may need up to six values, but the influence, the purpose of each number is clear.
 
@@ -35,7 +35,9 @@ It is difficult to argue the same when you want to draw an arc.
 	{@html svg['arc-syntax']}
 </Center>
 
-Following the _"A"_ character you need seven arguments, with often inscrutable implications. To understand the lot, break out the formula in a few pieces.
+Following the _"A"_ character you need seven arguments, with often inscrutable implications.
+
+To understand the lot, break out the formula in a few pieces.
 
 `rx` and `ry` describe the radius, or rather radii, of a makeshift ellipse. Think of a figure stretching horizontally and vertically to connect two points: where the arc starts and where the same ends. The origin precedes the arc, while the destination, that is dictated by the last pair, `x` and `y`.
 
@@ -43,7 +45,7 @@ Following the _"A"_ character you need seven arguments, with often inscrutable i
 	{@html svg['arc-radii-coordinates']}
 </Center>
 
-On to more cryptic values. `large-arc-flag` is a flag, a number set to either `0` or `1` to toggle a specific feature. And together with `sweep-flag`, it lets you pick which arc to draw. Indeed, the moment you build the figure based on two radii, it is possible to connect the dots in more than one way. There are two ellipses, each with a fork in the road.
+On to more cryptic values. `large-arc-flag` is a flag, a number set to either 0 or 1 to toggle a specific feature. And together with `sweep-flag`, it lets you pick which arc to draw. Indeed, the moment you build the figure based on two radii, it is possible to connect the dots in more than one way. There are two ellipses, each with a fork in the road.
 
 Which path to follow?
 
@@ -51,7 +53,7 @@ Which path to follow?
 	{@html svg['arc-ellipses']}
 </Center>
 
-Per the `large-arc-flag`, the smaller or the larger segment.
+Per `large-arc-flag`, the smaller or the larger segment.
 
 <Center element="figure" maxInlineSize="36rem">
 	{@html svg['arc-large-arc-flag']}
@@ -63,26 +65,26 @@ Per `sweep-flag`, the path moving in a counter-clockwise or a clockwise manner.
 	{@html svg['arc-sweep-flag']}
 </Center>
 
-Two ellipses, four possible paths. You have quite a bit of freedom to compose the shape. And there is one more number still: `angle`. This last one number rotates the ellipses on the x axis, and its influence is even less clear. Say that you rotate our ellipse by any non-zero value. Why, in this instance the ellipse would never be able to connect the points in the same, clear-cut manner.
+Two ellipses, four possible paths. You have quite a bit of freedom to compose the shape. And there is one more number still: `angle`. This last one number rotates the ellipses on the x axis, and its influence is even less clear. Say that you update the value from the default 0. Why, in this instance the ellipse would never be able to connect the points in the same, clear-cut manner.
 
 And what about the values of the radii, for that matter. What if these are too small to craft the ellipse. What if these are too big?
 
-In this instance, [the specification]() solves the problem with math. The ellipses are scaled to realize the arcs, but the process is far from elementary, far from predictable.
+In this instance, [the ellipse is scaled](https://svgwg.org/svg2-draft/implnote.html#ArcCorrectionOutOfRangeRadii) to create the connection, but the process is far from elementary, far from predictable.
 
-You can try to understand the formulas, and you are more than welcome to update the angle yourself, but personally, I'm more than satisfied with the other six values. If you need to rotate the figure, I'd suggest the `transform` attribute instead.
+You can try to understand the math, and you are more than welcome to tinker the angle yourself, but personally, I'm more than satisfied with the other six values. If you need to rotate the figure, I'd suggest the `transform` attribute instead.
 
-The behavior is much more predictable, and you are able to turn the final path from a set origin.
+The behavior is much more predictable, as you are able to turn the element from [the origin](/svg-origin) of your choosing.
 
 <!-- prettier-ignore -->
 ```html
-<g transform="rotate(-5)">
-  <path d="M 0 0 A 20 10 0 0 1 20 10 A 20 10 0 0 1 0 20 A 12 10 0 0 0 12 10 A 12 10 0 0 0 0 0" />
+<g transform="translate(-27 2) rotate(-5)">
+  <path d="M -12 0 A 11 7 0 0 0 12 0 A 11 7 0 0 0 -12 0" />
 </g>
 ```
 
-Even with just six values, you have plenty of freedom. You have options, some clear, some quite obscure, and a roadmap to know the influence of each argument: practice.
+Even with just six values, you have plenty of freedom. You have options, some clear, some quite obscure, and a roadmap to know the influence of each: practice.
 
-By the end of a possibly emotional journey, you have to admit there's a lot you can draw with a `<path>` element. There's a lot you can draw with a single character and a few whole numbers.
+By the end of a possibly emotional journey, you have to admit there's a lot you can draw with a `<path>` element. There's a lot you can draw with a single character. Even with one less number.
 
 <Center element="figure" maxInlineSize="40rem">
 	{@html svg['emotions']}

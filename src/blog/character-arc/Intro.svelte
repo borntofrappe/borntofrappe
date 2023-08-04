@@ -16,7 +16,7 @@
 
 	<p>
 		It is in the <code>d</code> attribute and with specific commands that you compose a shape with a
-		a sequence of characters.
+		sequence of characters.
 	</p>
 
 	<p>
