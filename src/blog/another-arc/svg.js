@@ -45,30 +45,30 @@ export default {
         <tspan x="0" y="35">x y</tspan>
     </text>
 </svg>`,
-	'arc-zdog': `<svg role="img" style="display: block;" viewBox="-18.18852424621582 -10.869019508361816 115.77202606201172 63.7297248840332">
+	'arc-zdog': `<svg role="img" style="display: block;" viewBox="-18.19130516052246 -10.73276948928833 119.77091217041016 63.82587814331055">
     <title>Arc syntax in Zdog</title>
     <path fill="none" stroke="currentColor" stroke-width="0.75" d="M 0 0 A 20 10 0 0 1 20 10" />
     <path fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="0.5 1" d="M 0 0 L 20 0 L 20 10" />
     <g fill="currentColor">
-    <circle r="1.25" />
-    <circle transform="translate(20 0)" r="1" />
-    <circle transform="translate(20 10)" r="1.25" />
+        <circle r="1.25" />
+        <circle transform="translate(20 0)" r="1" />
+        <circle transform="translate(20 10)" r="1.25" />
     </g>
 
     <g fill="currentColor" font-family="monospace">
-    <text text-anchor="end" font-size="3" y="-3">(x1, y1)</text>
-    <text transform="translate(20 0)" font-size="3" x="2" y="0.8">(xc, yc)</text>
-    <text transform="translate(20 10)" font-size="3" y="5">(x2, y2)</text>
+        <text text-anchor="end" font-size="3" y="-3">(x1, y1)</text>
+        <text transform="translate(20 0)" font-size="3" x="2" y="0.8">(xc, yc)</text>
+        <text transform="translate(20 10)" font-size="3" y="5">(x2, y2)</text>
     </g>
 
     <text transform="translate(45 5)" fill="currentColor" font-family="monospace" font-weight="700" font-size="4" y="1.5">
-        <tspan>arc: [</tspan>
-        <tspan x="4" y="7">&#123; x: x1, y: y1 &#125;,</tspan>
-        <tspan x="4" y="14">[</tspan>
-        <tspan x="8" y="21">&#123; x: xc, y: yc &#125;,</tspan>
-        <tspan x="8" y="28">&#123; x: x2, y: y2 &#125;,</tspan>
-        <tspan x="4" y="35">]</tspan>
-        <tspan x="0" y="42">]</tspan>
+        <tspan x="0">&#123; x: x1, y: y1 &#125;,</tspan>
+        <tspan x="0" y="7">&#123;</tspan>
+        <tspan x="8" y="14">arc: [</tspan>
+        <tspan x="12" y="21">&#123; x: xc, y: yc &#125;,</tspan>
+        <tspan x="12" y="28">&#123; x: x2, y: y2 &#125;,</tspan>
+        <tspan x="8" y="35">]</tspan>
+        <tspan x="0" y="42">&#125;</tspan>
     </text>
 </svg>`,
 	'arcs-zdog': `<svg role="img" style="display: block;" viewBox="-26 -5 96.880859375 61">
