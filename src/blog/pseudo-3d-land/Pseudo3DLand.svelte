@@ -4,9 +4,13 @@
 </script>
 
 <div>
-	{@html svg['2d']}
+	<figure>
+		{@html svg['2d']}
+	</figure>
 
-	<Pseudo3D />
+	<figure>
+		<Pseudo3D />
+	</figure>
 </div>
 
 <style>
@@ -17,7 +21,7 @@
 		justify-content: center;
 	}
 
-	div :global(> *) {
+	div > figure {
 		flex-basis: 300px;
 	}
 </style>
