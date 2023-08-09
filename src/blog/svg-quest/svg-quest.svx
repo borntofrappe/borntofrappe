@@ -8,6 +8,7 @@ date: 2023-07-26T15:11:27
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import svg from './svg.js';
+	import Entries from './Entries.svelte';
 </script>
 
 I have a tendency, a preference for writing SVG "by hand", in a code editor rather than a graphics program. The process might seem tedious and laborious, but I often can't help myself. There's so much to appreciate in the syntax, even from the combination of a few elements and attributes. Case in point, consider the following entries modeled after a block-sized mobile video game.
@@ -200,40 +201,4 @@ And I do hope the `<clipPath>` element didn't discourage you from the overarchin
 
 Writing SVG yourself is not complicated. Elementary shapes are more than enough to craft beautiful, custom drawings. And if the process inspired you there might be another triplet in the same video game. You'll certainly be able to recreate the visuals without editing software. And truth being told, the entire catalog is up for grabs with time and patience. You might even explore more elements, like the flexible `<path>`, to continue the rewarding journey.
 
-<figure>
-	{@html svg['entries-050-051']}
-	{@html svg['entries-100-101']}
-</figure>
-
-<style>
-	figure {
-		max-inline-size: 36rem;
-		margin-inline: auto;
-	}
-	figure {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1rem;
-	}
-
-	figure > :global(> svg) {
-		flex-basis: 8rem;
-	}
-
-	@media (min-width: 36rem) {
-		figure {
-			display: grid;
-			grid-template-columns: repeat(5, 1fr);
-			gap: 1rem;
-		}
-
-		figure :global(> svg:first-of-type) {
-			grid-column: 1 / span 2;
-		}
-
-		figure :global(> svg:last-of-type) {
-			grid-column: 4 / span 2;
-		}
-	}
-</style>
+<Entries />
