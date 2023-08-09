@@ -3,3 +3,53 @@ title: Pseudo-3D land
 description: Spruce up 2D graphics with Zdog and when JavaScript is available. If JavaScript is available.
 date: 2023-08-09T09:35:15
 ---
+
+<script>
+	import Pseudo3DLand from './Pseudo3DLand.svelte';
+</script>
+
+[Zdog](https://zzz.dog/) works on a `<canvas>` or an `<svg>` element, taking your instructions to realize pseudo-3D wonders. The possibility of using vector graphics is particularly intriguing considering one peculiar trait.
+
+```html
+<svg width="300" height="300">
+	<!-- ... -->
+</svg>
+```
+
+In between the opening and closing tag, you are indeed able to draw a picture. A 2D picture with regular SVG elements.
+
+<!-- prettier-ignore -->
+```html
+<rect fill="hsl(33 99% 64%)" ... /> 
+<circle fill="hsl(28 74% 60%)" ... />
+```
+
+With Zdog, you target the element with JavaScript.
+
+```js
+const element = document.querySelector('svg');
+```
+
+Set up the illustration and then render the shapes as needed.
+
+```js
+const illustration = new Zdog.Illustration({
+	element
+});
+
+// ...new shapes
+
+illustration.updateRenderGraph();
+```
+
+It is only as you update the illustration that the graphics are swapped, and the existing markup is replaced with the elements produced by the library.
+
+With the blessing of JavaScript you see the pseudo-3D result. Without the elaborate logic, you can delight in the 2D variant.
+
+<Pseudo3DLand />
+
+Of course nothing stops you from pushing the concept even further. You create a 2D version, but also a pseudo-3D frame. Locally. When JavaScript is available.
+
+Take the markup as a snapshot. Inject the code in the `<svg>` element and then, when the time comes, try once more to run the script. Recreate the static picture and think of the possible ways you have to update the shapes. If JavaScript is available.
+
+It really makes you wonder.
