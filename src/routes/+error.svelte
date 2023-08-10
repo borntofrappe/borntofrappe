@@ -7,7 +7,6 @@
 	import { page } from '$app/stores';
 
 	import Serena from './mignon/Serena.svelte';
-	import icons from '$lib/utils/icons.js';
 </script>
 
 <svelte:head>
@@ -32,10 +31,7 @@
 			<Heading level="h1" stroke="var(--box-color)" fill="var(--highlight)">Oopsie</Heading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
 			<p>Here's a possibly helpful message for context:</p>
-			<div class="[ code ]">
-				<span>error {@html icons.code}</span>
-				<pre><code>{$page.error.message}</code></pre>
-			</div>
+			<pre class="language-bash"><code>{$page.error.message}</code></pre>
 			<p>
 				If you think this is a mistake and you feel up to it, please consider filing an issue
 				<a

@@ -1,0 +1,25 @@
+code {
+	font-weight: 700;
+}
+
+pre[class*='language-'] {
+	color: var(--code-color, #e0def4);
+	background: var(--code-background, #232136);
+	font-size: var(--step-size-200);
+	padding: var(--step-space-300);
+	border-radius: 1rem;
+	tab-size: 2;
+}
+
+pre[class*='language-'] {
+	overflow-x: auto;
+}
+
+pre[class*='language-']::-webkit-scrollbar {
+	block-size: 0.4rem;
+}
+
+pre[class*='language-']::-webkit-scrollbar-thumb {
+	border-radius: 0.2rem;
+	background: var(--accent);
+}
