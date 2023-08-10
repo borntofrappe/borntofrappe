@@ -11,15 +11,16 @@ pre[class*='language-'] {
 	tab-size: 2;
 }
 
-pre[class*='language-'] {
+pre[class*='language-'] code {
+	display: block;
 	overflow-x: auto;
 }
 
-pre[class*='language-']::-webkit-scrollbar {
-	block-size: 0.4rem;
+pre[class*='language-'] code::-webkit-scrollbar {
+	block-size: 0.2rem;
 }
 
-pre[class*='language-']::-webkit-scrollbar-thumb {
+pre[class*='language-'] code::-webkit-scrollbar-thumb {
 	border-radius: 0.2rem;
 	background: currentColor;
 }
