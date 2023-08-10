@@ -31,7 +31,7 @@
 			<Heading level="h1" stroke="var(--box-color)" fill="var(--highlight)">Oopsie</Heading>
 			<p>Something quite unexpected has happened, but let's try to be positive.</p>
 			<p>Here's a possibly helpful message for context:</p>
-			<pre class="language-bash"><code>{$page.error.message}</code></pre>
+			<pre class="language-bash"><code class="token important">{$page.error.message}</code></pre>
 			<p>
 				If you think this is a mistake and you feel up to it, please consider filing an issue
 				<a

@@ -21,7 +21,7 @@ pre[class*='language-']::-webkit-scrollbar {
 
 pre[class*='language-']::-webkit-scrollbar-thumb {
 	border-radius: 0.2rem;
-	background: var(--accent);
+	background: currentColor;
 }
 
 @supports ((-webkit-mask-image: url()) or (mask-image: url())) {
@@ -92,4 +92,70 @@ pre[class*='language-']::-webkit-scrollbar-thumb {
 		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-ts"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.38666666666666666 0.5 h 0.2 v 0.05 h -0.075 v 0.25 h -0.05 v -0.25 h -0.075 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-ts)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
 		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-ts"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.38666666666666666 0.5 h 0.2 v 0.05 h -0.075 v 0.25 h -0.05 v -0.25 h -0.075 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-ts)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
 	}
+}
+
+.token.comment {
+	color: #6e6a86;
+	font-style: italic;
+}
+
+.token.prolog,
+.token.cdata,
+.token.doctype {
+	color: #6e6a86;
+}
+
+.token.punctuation {
+	color: #908caa;
+}
+
+.token.attr-name {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+.token.constant,
+.token.symbol,
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #3e8fb0;
+}
+
+.token.string {
+	color: #f6c177;
+}
+
+.token.property,
+.token.boolean,
+.token.tag,
+.token.selector,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #9ccfd8;
+}
+
+.token.deleted {
+	color: #eb6f92;
+}
+
+.token.variable {
+	color: #ea9a97;
+	font-style: italic;
+}
+
+.token.entity,
+.token.number,
+.token.important,
+.token.regex,
+.token.operator,
+.token.url {
+	color: #ea9a97;
+}
+
+.token.class-name,
+.token.function {
+	color: #eb6f92;
+	font-style: italic;
 }
