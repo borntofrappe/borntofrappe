@@ -18,11 +18,8 @@
 		"mdsvex": "^0.11.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
-		"rehype-parse": "^8.0.4",
-		"shiki": "^0.14.3",
 		"slug": "^8.2.2",
 		"svelte": "^4.0.0",
-		"unified": "^10.1.2",
 		"unist-util-visit": "^4.1.2",
 		"vite": "^4.3.6",
 		"zdog": "^1.1.3"

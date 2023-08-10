@@ -1,8 +1,4 @@
 import { visit } from 'unist-util-visit';
-import { getHighlighter } from 'shiki';
-import { unified } from 'unified';
-import rehypeParse from 'rehype-parse';
-import icons from './icons.js';
 import slug from 'slug';
 
 export const rehypePermalink = () => (tree) => {
