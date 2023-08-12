@@ -1,10 +1,4 @@
-code {
-	font-weight: 700;
-}
-
 pre[class*='language-'] {
-	color: var(--code-color, #e0def4);
-	background: var(--code-background, #232136);
 	font-size: var(--step-size-200);
 	padding: var(--step-space-300);
 	border-radius: 1rem;
@@ -95,6 +89,11 @@ pre[class*='language-'] code::-webkit-scrollbar-thumb {
 	}
 }
 
+pre[class*='language-'] {
+	color: #e0def4;
+	background: #232136;
+}
+
 .token.comment {
 	color: #6e6a86;
 	font-style: italic;
@@ -161,4 +160,165 @@ pre[class*='language-'] code::-webkit-scrollbar-thumb {
 .language-css .token.url {
 	color: #c4a7e7;
 	font-style: italic;
+}
+
+.language-md .token.important {
+	color: #9ccfd8;
+	font-weight: bold;
+}
+
+html[data-time-of-day='morning'] pre[class*='language-'] {
+	color: #575279;
+	background: #faf4ed;
+}
+
+html[data-time-of-day='morning'] .token.comment {
+	color: #9893a5;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.prolog,
+html[data-time-of-day='morning'] .token.doctype,
+html[data-time-of-day='morning'] .token.class-name,
+html[data-time-of-day='morning'] .token.property,
+html[data-time-of-day='morning'] .token.tag,
+html[data-time-of-day='morning'] .token.selector,
+html[data-time-of-day='morning'] .token.builtin,
+html[data-time-of-day='morning'] .token.inserted {
+	color: #56949f;
+}
+
+html[data-time-of-day='morning'] .token.cdata,
+html[data-time-of-day='morning'] .token.string,
+html[data-time-of-day='morning'] .token.char,
+html[data-time-of-day='morning'] .token.regex,
+html[data-time-of-day='morning'] .token.attr-value {
+	color: #ea9d34;
+}
+
+html[data-time-of-day='morning'] .token.punctuation {
+	color: #797593;
+}
+
+html[data-time-of-day='morning'] .token.entity,
+html[data-time-of-day='morning'] .token.atrule,
+html[data-time-of-day='morning'] .token.keyword,
+html[data-time-of-day='morning'] .token.symbol,
+html[data-time-of-day='morning'] .token.important,
+html[data-time-of-day='morning'] .token.operator {
+	color: #286983;
+}
+
+html[data-time-of-day='morning'] .token.attr-name {
+	color: #907aa9;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.boolean,
+html[data-time-of-day='morning'] .token.number,
+html[data-time-of-day='morning'] .token.function {
+	color: #d7827e;
+}
+
+html[data-time-of-day='morning'] .token.constant,
+html[data-time-of-day='morning'] .token.variable {
+	color: #575279;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.url {
+	color: #575279;
+}
+
+html[data-time-of-day='morning'] .token.deleted,
+html[data-time-of-day='morning'] .token.namespace {
+	color: #b4637a;
+}
+
+html[data-time-of-day='morning'] .language-css .token.url {
+	color: #907aa9;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .language-md .token.important {
+	color: #56949f;
+	font-weight: bold;
+}
+
+html[data-time-of-day='night'] pre[class*='language-'] {
+	color: #e0def4;
+	background: #1f1d2e;
+}
+
+html[data-time-of-day='night'] .token.comment {
+	color: #6e6a86;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.prolog,
+html[data-time-of-day='night'] .token.doctype,
+html[data-time-of-day='night'] .token.class-name,
+html[data-time-of-day='night'] .token.property,
+html[data-time-of-day='night'] .token.tag,
+html[data-time-of-day='night'] .token.selector,
+html[data-time-of-day='night'] .token.builtin,
+html[data-time-of-day='night'] .token.inserted {
+	color: #9ccfd8;
+}
+
+html[data-time-of-day='night'] .token.cdata,
+html[data-time-of-day='night'] .token.string,
+html[data-time-of-day='night'] .token.char,
+html[data-time-of-day='night'] .token.regex,
+html[data-time-of-day='night'] .token.attr-value {
+	color: #f6c177;
+}
+
+html[data-time-of-day='night'] .token.punctuation {
+	color: #908caa;
+}
+
+html[data-time-of-day='night'] .token.entity,
+html[data-time-of-day='night'] .token.atrule,
+html[data-time-of-day='night'] .token.keyword,
+html[data-time-of-day='night'] .token.symbol,
+html[data-time-of-day='night'] .token.important,
+html[data-time-of-day='night'] .token.operator {
+	color: #31748f;
+}
+
+html[data-time-of-day='night'] .token.attr-name {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.boolean,
+html[data-time-of-day='night'] .token.number,
+html[data-time-of-day='night'] .token.function {
+	color: #ebbcba;
+}
+
+html[data-time-of-day='night'] .token.constant,
+html[data-time-of-day='night'] .token.variable {
+	color: #e0def4;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.url {
+	color: #e0def4;
+}
+
+html[data-time-of-day='night'] .token.deleted,
+html[data-time-of-day='night'] .token.namespace {
+	color: #eb6f92;
+}
+
+html[data-time-of-day='night'] .language-css .token.url {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .language-md .token.important {
+	color: #9ccfd8;
+	font-weight: bold;
 }
