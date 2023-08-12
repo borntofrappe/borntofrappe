@@ -101,6 +101,10 @@ a:hover {
 	text-decoration: none;
 }
 
+code {
+	font-weight: 700;
+}
+
 :focus {
 	outline: 2px solid;
 	outline-offset: 0.3ch;
