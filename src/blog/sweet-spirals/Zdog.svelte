@@ -158,7 +158,7 @@
 	.controls {
 		position: absolute;
 		inline-size: 100%;
-		inset-block-end: 0;
+		inset-block-start: 0;
 		inset-inline-start: 50%;
 		translate: -50% 0%;
 		display: flex;
