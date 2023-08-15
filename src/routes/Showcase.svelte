@@ -50,11 +50,6 @@
 			You find red, green, blue, interspersed with bright shades of yellow, aquamarine and purple.
 			Can you arrange them in the correct order?
 		</p>
-
-		<p class="[ end ]">
-			If you have patience and keen eyes you are in luck, there are bound to be
-			<a href="/rainbow-sixteen">more colors</a> to discover.
-		</p>
 	</article>
 </section>
 
@@ -100,11 +95,6 @@
 		<p>The game might always end in a draw, but is always a source of entertainment.</p>
 
 		<p>So grab a friend and play a round or two; you'll both get a chance to start first.</p>
-
-		<p class="[ end ]">
-			If you need more of a challenge, then, you can try to match four in
-			<a href="/color-tiles">a larger board</a>.
-		</p>
 	</article>
 </section>
 
@@ -154,11 +144,6 @@
 		</p>
 
 		<p>It may not emit a sound, but the result almost speaks for itself.</p>
-
-		<p class="[ end ]">
-			If you answered positively to both questions, by happenstance, there's always
-			<a href="/minesweeper">room for growth</a>.
-		</p>
 	</article>
 </section>
 
