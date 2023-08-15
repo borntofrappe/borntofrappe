@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Anchor, Group, TAU, Shape, Cylinder, Cone } from 'zdog';
+	import { Anchor, Group, TAU, Shape, Cylinder } from 'zdog';
 
 	let element = null;
 
@@ -9,7 +9,7 @@
 
 		const n = 80;
 		const r = 50;
-		const depth = 60;
+		const depth = 50;
 		const loops = 5;
 
 		const deltaAngle = (TAU / n) * loops * 1;
@@ -87,7 +87,7 @@
 
 		const root = new Anchor({
 			translate: {
-				y: -15
+				y: 10
 			},
 			rotate: {
 				x: -0.1
@@ -103,18 +103,18 @@
 			color: cone,
 			stroke: 10,
 			diameter: r * 1.5,
-			length: 20,
+			length: 15,
 			translate: {
 				z: 10
 			}
 		});
 
-		new Cone({
+		new Cylinder({
 			addTo: bottom,
 			color: cone,
 			stroke: 10,
 			diameter: r * 1.25,
-			length: 80,
+			length: 30,
 			translate: {
 				z: 20
 			}
@@ -204,4 +204,4 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block;" width="400" height="320" />
+<canvas bind:this={element} style="display: block;" width="400" height="240" />
