@@ -429,9 +429,26 @@ DAGEDCBHAC
 		};
 
 		const observer = new IntersectionObserver(observation);
-		observer.observe(canvas);
+
+		const listener = (e) => {
+			if (e.matches) {
+				cancelAnimationFrame(frame);
+				observer.unobserve(canvas);
+			} else {
+				observer.observe(canvas);
+			}
+		};
+
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (!reducedMotion.matches) {
+			observer.observe(canvas);
+		}
+
+		reducedMotion.addEventListener('change', listener);
 
 		return () => {
+			reducedMotion.removeEventListener('change', listener);
 			cancelAnimationFrame(frame);
 			observer.unobserve(canvas);
 		};
