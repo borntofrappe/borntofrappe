@@ -59,5 +59,59 @@ export default {
             </g>
         </svg>
     </g>
+</svg>`,
+	'noise-filter': `<svg style="display: block;" viewBox="-1 -1 14.5 8">
+    <title>Noise filter</title>
+    <defs>
+        <filter id="noise-filter">
+            <feTurbulence baseFrequency="0.05" numOctaves="3" />
+        </filter>
+    </defs>
+    <g>
+        <rect fill="currentColor" width="4" height="3" />
+        <text fill="currentColor" font-family="monospace" font-size="0.5" y="3.8">
+            &lt;rect /&gt;
+        </text>
+    </g>
+
+    <g transform="translate(6 2)">
+        <rect filter="url(#noise-filter)" fill="currentColor" width="4" height="3" />
+        <text fill="currentColor" font-family="monospace" font-size="0.5" y="4.2">
+            &lt;rect
+            <tspan font-weight="700">
+                filter="#noise"
+            </tspan>
+            /&gt;
+        </text>
+    </g>
+</svg>`,
+	'displacement-filter': `<svg style="display: block;" viewBox="-1 -1 16.5 8">
+    <title>Displacement filter</title>
+    <defs>
+        <filter id="displacement-noise-filter">
+            <feTurbulence baseFrequency="0.05" numOctaves="3" />
+        </filter>
+        <filter id="displacement-filter">
+            <feTurbulence baseFrequency="0.05" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" scale="1" />
+        </filter>
+    </defs>
+    <g>
+        <rect filter="url(#displacement-noise-filter)" fill="currentColor" width="4" height="3" />
+        <text fill="currentColor" font-family="monospace" font-size="0.5" y="4.2">
+            &lt;rect filter="#noise" /&gt;
+        </text>
+    </g>
+
+    <g transform="translate(8 2)">
+        <rect filter="url(#displacement-filter)" fill="currentColor" width="4" height="3" />
+            <text fill="currentColor" font-family="monospace" font-size="0.5" y="4.2">
+                &lt;rect
+                <tspan font-weight="700">
+                    filter="#map"
+                </tspan>
+                /&gt;
+        </text>
+    </g>
 </svg>`
 };
