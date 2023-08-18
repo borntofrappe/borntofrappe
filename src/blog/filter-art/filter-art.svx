@@ -1,5 +1,103 @@
 ---
-title: Filter art
-description: Take a first leap into SVG filters to draw a rough, but convincing sketch.
-date: 2023-08-17T15:15:15
+title: Intro to filter art
+description: Sample SVG filters to draw a convincing, emotional sketch.
+date: 2023-08-18T11:33:03
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+In SVG shapes are drawn without blemish, with geometric precision.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['abstract-art']}
+</Center>
+
+A `<circle>` element with a given radius. `<path>` elements detailing a series of lines point by point. The browser follows the instructions you add in the elements' attributes to the letter and to the number. The result is remarkable — you get to draw close to anything with only code —, but often time, precise to a fault.
+
+The previous painting, for instance, might excel as an abstract piece, but there's no emotion behind the shapes, no character. To add character, to try and evoke a particular feeling, a different mood, you have access to SVG filters.
+
+It is fair to admit that the topic is _vast_ — you'll discover there are a total of 16 dedicated elements, setting up all kinds of operations with numerous attributes and innumerable combinations. That being said, you need to consider only a portion of the available syntax to approach the concept, and appreciate the possibilities.
+
+## In theory
+
+Before we try to give a new meaning to the painting, it helps to nail down a few, founding traits. In the body of an `<svg>` element a filter works like a mask, or again a clip, a pattern or a gradient. Define an instance with a unique `id`.
+
+```html
+<filter id="unique-id"></filter>
+```
+
+Apply the filter to a shape, or a group of shapes, with the `filter` attribute.
+
+```html
+<rect filter="url(#unique-id)" />
+```
+
+How the helper affects the drawing depends on the contents of the filter itself. And in this instance, the element works rather differently from other, defined constructs.
+
+In between the opening and closing tags you don't add shapes, be it circles, paths, or rectangles. Instead, you add _filter primitives_, elements prefixed with _"fe"_ with a specific function. But instead of professing their use, it is perhaps more effective to show their influence in practice.
+
+## In practice
+
+Let's consider the starting visual. It would be intriguing to have the shapes drawn with an imperfect stroke, as the tentative marks of a fledgling artist. You can achieve such a result in many ways, but also two primitives: `feTurbulence` and `feDisplacementMap`.
+
+The first function produces a texture with _Perlin noise_.
+
+```html
+<filter id="noise">
+	<feTurbulence baseFrequency="0.05" numOctaves="3" />
+</filter>
+```
+
+There's plenty to learn about noise functions — fancy words such as octaves, frequency and amplitude —, but with the values you find an image.
+
+<Center element="figure" maxInlineSize="32rem">
+	{@html svg['noise-filter']}
+</Center>
+
+You might wonder what happens to the starting rectangle. Every primitive has one or two input images you can detail with the `in` and `in2` attributes. What is more, each function has one output you name with `result`. `feTurbulence`, for instance, takes the input graphic, almost without telling you, and returns the noise field, the texture in its place.
+
+In terms of input you have three options. Immediately, you have two keywords, describing a specific version of the original shape: the entire, colored-filled figure with `SourceGraphic`, or its transparent values with `SourceAlpha`. You pick the latter the moment you want to strip out the color and consider only the opacity, only the alpha channel.
+
+Past these two values, a primitive defaults to the input image. Or, the result of an earlier, primitive function. Exactly like `feTurbulence`, which picks up the very first shape.
+
+Essentially, you can rewrite the element to be more explicit. To remark the behavior luring behind the scenes.
+
+```html
+<feTurbulence in="SourceGraphic" result="noise" baseFrequency="0.05" numOctaves="3" />
+```
+
+`feTurbulence` returns the texture, but replaces the graphic. `feDisplacementMap` enters the scene to complete the effect.
+
+```html
+<!-- ...feTurbulence -->
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
+```
+
+The element takes two inputs with the `in` and `in2` attributes. Based on these, it takes the pixels, the values of the second image to offset, to displace the pixels of the first.
+
+The primitive takes two inputs, but once again you can get away marking only the first, the original picture.
+
+```html
+<!-- ...feTurbulence -->
+<feDisplacementMap in="SourceGraphic" scale="1" />
+```
+
+Following `feTurbulence`, `in2` would refer to the earlier output, to the very same texture.
+
+Either way, the filter works to produce a texture, and then use the noise to "mess up" the shape.
+
+<Center element="figure" maxInlineSize="32rem">
+	{@html svg['displacement-filter']}
+</Center>
+
+Gone are the rigid segments. Gone is the perfect, regular polygon. Instead you find an irregular sketch, one you could almost draw yourself on a passing scrap of paper. The imperfect way to take the painting and produce a proud work of art. One you could almost showcase in a gallery. Provided you have the right frame.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['filter-art']}
+</Center>
+
+As mentioned, there's a lot more to SVG filters, a laundry list of elements, attributes and combinations. Understanding the basics, however, is more than enough to crack open the topic. Once you grasp how a filter works, how primitives work with a specific set of inputs and one output, you can dive in the syntax and eagerly sample the rest.
