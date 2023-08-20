@@ -69,6 +69,21 @@ export default {
         </g>
     </g>
 </svg>`,
+	octave: `<svg style="display: block;" viewBox="-25 -25 250 150">
+    <title>Octave</title>
+    <g stroke-linecap="round" stroke-linejoin="round">
+        <rect fill="hsl(0 0% 97%)" x="-25" y="-25" width="250" height="150" rx="10" />
+        <g fill="hsl(0 0% 20%)">
+            <circle transform="translate(0 80)" r="4" />
+            <circle transform="translate(50 12)" r="4" />
+            <circle transform="translate(100 65)" r="4" />
+            <circle transform="translate(150 67)" r="4" />
+            <circle transform="translate(200 21)" r="4" />
+        </g>
+        <path fill="none" stroke="hsl(0 0% 20%)" stroke-width="2" d="M 0 80 C 0 80 32.674 13.06 50 12 C 66.098 11.015 81.45 56.554 100 65 C 115.373 71.999 134.425 72.719 150 67 C 168.149 60.336 200 21 200 21" />
+        <text fill="hsl(0 0% 28%)" font-family="monospace" font-weight="700" font-size="14" y="5">Octave</text>
+    </g>
+</svg>`,
 	'card-5': `<svg style="display: block;" viewBox="-2 -2 13 13">
     <title>A butterfly. Or a bat. Or...</title>
     <defs>
