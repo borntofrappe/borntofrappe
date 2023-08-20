@@ -1,4 +1,52 @@
 export default {
+	feTurbulence: `<svg style="display: block;" viewBox="-3 -10 46 46">
+    <title>feTurbulence attributes</title>
+    <defs>
+        <symbol id="feTurbulence-painting" viewBox="-50 -50 100 100" width="10" height="10">
+            <rect fill="hsl(28 89% 96%)" x="-50" y="-50" width="100" height="100" />
+            <path fill="hsl(338 26% 18%)" stroke="hsl(338 26% 18%)" stroke-linecap="round" stroke-linejoin="round" d="M 0 -12.5 2 -12.5 4 -20.5 3 -11.5 4 -5.5 12 -7.5 15 -1.5 26 -2.5 27 8.5 43 19.5 32 16.5 40 22.5 31 20.5 26 21.5 14 15.5 15 13.5 9 12.5 6 9.5 2 13.5 3 20.5 0 15.5 -3 20.5 -2 13.5 -6 9.5 -9 12.5 -15 13.5 -14 15.5 -26 21.5 -31 20.5 -40 22.5 -32 16.5 -43 19.5 -27 8.5 -26 -2.5 -15 -1.5 -12 -7.5 -4 -5.5 -3 -11.5 -4 -20.5 -2 -12.5" />
+        </symbol>
+        <filter id="feTurbulence-filter-1-01">
+            <feTurbulence numOctaves="1" baseFrequency="0.1" />
+        </filter>
+        <filter id="feTurbulence-filter-2-01">
+            <feTurbulence numOctaves="2" baseFrequency="0.1" />
+        </filter>
+        <filter id="feTurbulence-filter-3-01">
+            <feTurbulence numOctaves="3" baseFrequency="0.1" />
+        </filter>
+        <filter id="feTurbulence-filter-3-02">
+            <feTurbulence numOctaves="3" baseFrequency="0.2"/>
+        </filter>
+        <filter id="feTurbulence-filter-3-03">
+            <feTurbulence numOctaves="3" baseFrequency="0.3" />
+        </filter>
+    </defs>
+    <text fill="currentColor" font-family="monospace" font-size="3" font-weight="700" letter-spacing="0.1" x="-1" y="-5">numOctaves</text>
+    <use filter="url(#feTurbulence-filter-1-01)" href="#feTurbulence-painting" />
+    <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">1</text>
+    <g transform="translate(15 0)">
+        <use filter="url(#feTurbulence-filter-2-01)" href="#feTurbulence-painting" />
+        <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">2</text>
+    </g>
+    <g transform="translate(30 0)">
+        <use filter="url(#feTurbulence-filter-3-01)" href="#feTurbulence-painting" />
+        <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">3</text>
+    </g>
+    <g transform="translate(0 22.5)">
+        <text fill="currentColor" font-family="monospace" font-size="3" font-weight="700" letter-spacing="0.1" x="-1" y="-5">baseFrequency</text>
+        <use filter="url(#feTurbulence-filter-3-01)" href="#feTurbulence-painting" />
+        <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">0.01</text>
+        <g transform="translate(15 0)">
+            <use filter="url(#feTurbulence-filter-3-02)" href="#feTurbulence-painting" />
+            <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">0.02</text>
+        </g>
+        <g transform="translate(30 0)">
+            <use filter="url(#feTurbulence-filter-3-02)" href="#feTurbulence-painting" />
+            <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">0.03</text>
+        </g>
+    </g>
+</svg>`,
 	'card-5': `<svg style="display: block;" viewBox="-2 -2 13 13">
     <title>A butterfly. Or a bat. Or...</title>
     <defs>
