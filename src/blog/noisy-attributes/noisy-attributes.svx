@@ -1,0 +1,5 @@
+---
+title: Noisy attributes
+description: Learn the purpose of SVG attributes with a visual or two.
+dat: 2023-08-21T14:14:14
+---
