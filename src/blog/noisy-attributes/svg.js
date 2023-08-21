@@ -1,5 +1,5 @@
 export default {
-	feTurbulence: `<svg style="display: block;" viewBox="-3 -10 46 46">
+	feTurbulence: `<svg style="display: block;" viewBox="-2 -8.5 44 43">
     <title>feTurbulence attributes</title>
     <defs>
         <symbol id="feTurbulence-painting" viewBox="-50 -50 100 100" width="10" height="10">
@@ -42,7 +42,7 @@ export default {
             <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">0.02</text>
         </g>
         <g transform="translate(30 0)">
-            <use filter="url(#feTurbulence-filter-3-02)" href="#feTurbulence-painting" />
+            <use filter="url(#feTurbulence-filter-3-03)" href="#feTurbulence-painting" />
             <text fill="currentColor" font-family="monospace" font-size="2" text-anchor="end" x="10.9" y="-2">0.03</text>
         </g>
     </g>
@@ -70,7 +70,7 @@ export default {
     </g>
 </svg>`,
 	octave: `<svg style="display: block;" viewBox="-25 -25 250 150">
-    <title>Octave</title>
+    <title>An octave function</title>
     <g stroke-linecap="round" stroke-linejoin="round">
         <rect fill="hsl(0 0% 97%)" x="-25" y="-25" width="250" height="150" rx="10" />
         <g fill="hsl(0 0% 20%)">
@@ -84,8 +84,8 @@ export default {
         <text fill="hsl(0 0% 28%)" font-family="monospace" font-weight="700" font-size="14" y="5">Octave</text>
     </g>
 </svg>`,
-	octaves: `<svg style="display: block;" viewBox="-15 -15 540 580">
-    <title>Octaves</title>
+	noise: `<svg style="display: block;" viewBox="-15 -15 540 580">
+    <title>Noise function from multiple octaves</title>
     <g stroke-linecap="round" stroke-linejoin="round">
         <path fill="none" stroke="hsl(0 0% 90%)" d="M 215 50 c 40 0 40 225 80 225" />
         <rect fill="hsl(0 0% 97%)" x="-15" y="-15" width="230" height="130" rx="10" />
@@ -116,18 +116,18 @@ export default {
         </g>
     </g>
 </svg>`,
-	'card-5': `<svg style="display: block;" viewBox="-2 -2 13 13">
+	'card-v': `<svg style="display: block;" viewBox="-2 -2 13 13">
     <title>A butterfly. Or a bat. Or...</title>
     <defs>
-        <symbol id="card-5-painting" viewBox="-50 -50 100 100" width="10" height="10">
+        <symbol id="card-v-painting" viewBox="-50 -50 100 100" width="10" height="10">
             <rect fill="hsl(28 89% 96%)" x="-50" y="-50" width="100" height="100" />
             <path fill="hsl(338 26% 18%)" stroke="hsl(338 26% 18%)" stroke-linecap="round" stroke-linejoin="round" d="M 0 -12.5 2 -12.5 4 -20.5 3 -11.5 4 -5.5 12 -7.5 15 -1.5 26 -2.5 27 8.5 43 19.5 32 16.5 40 22.5 31 20.5 26 21.5 14 15.5 15 13.5 9 12.5 6 9.5 2 13.5 3 20.5 0 15.5 -3 20.5 -2 13.5 -6 9.5 -9 12.5 -15 13.5 -14 15.5 -26 21.5 -31 20.5 -40 22.5 -32 16.5 -43 19.5 -27 8.5 -26 -2.5 -15 -1.5 -12 -7.5 -4 -5.5 -3 -11.5 -4 -20.5 -2 -12.5" />
         </symbol>
-        <filter id="card-5-filter">
+        <filter id="card-v-filter">
             <feTurbulence numOctaves="3" baseFrequency="0.3" />
             <feDisplacementMap in="SourceGraphic" scale="-3" />
         </filter>
     </defs>
-    <use filter="url(#card-5-filter)" href="#card-5-painting" />
+    <use filter="url(#card-v-filter)" href="#card-v-painting" />
 </svg>`
 };
