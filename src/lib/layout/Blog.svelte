@@ -57,7 +57,7 @@
 		</div>
 	</header>
 	<div class="[ box ]" style="padding: var(--step-space-200) var(--step-space-100)">
-		<main id="content" tabindex="-1" class="[ center flow ]" style="--measure: 60ch;">
+		<main id="content" tabindex="-1" class="[ center flow ]" style="--measure: 65ch;">
 			<slot />
 		</main>
 	</div>

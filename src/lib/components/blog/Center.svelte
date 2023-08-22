@@ -1,5 +1,5 @@
 <script>
-	export let maxInlineSize = '30rem';
+	export let maxInlineSize = '60ch';
 	export let element = 'div';
 </script>
 
