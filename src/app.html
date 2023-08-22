@@ -16,7 +16,7 @@
 		/>
 		<link
 			rel="preload"
-			href="/fonts/Mulish-ExtraBold-kern-latin.woff2"
+			href="/fonts/Mulish-Black-kern-latin.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -31,7 +31,7 @@
 
 			@font-face {
 				font-family: Mulish;
-				src: url('/fonts/Mulish-ExtraBold-kern-latin.woff2') format('woff2');
+				src: url('/fonts/Mulish-Black-kern-latin.woff2') format('woff2');
 				font-weight: 700;
 				font-display: swap;
 			}
@@ -65,23 +65,23 @@
 					{ style: 'italic' }
 				);
 
-				const extraBold = new FontFace(
+				const bold = new FontFace(
 					'Mulish',
-					"url(/fonts/Mulish-ExtraBold-hint-features.woff2) format('woff2')",
+					"url(/fonts/Mulish-Black-hint-features.woff2) format('woff2')",
 					{ weight: '700' }
 				);
 
-				const extraBoldItalic = new FontFace(
+				const boldItalic = new FontFace(
 					'Mulish',
-					"url(/fonts/Mulish-ExtraBoldItalic-hint-features.woff2) format('woff2')",
+					"url(/fonts/Mulish-BlackItalic-hint-features.woff2) format('woff2')",
 					{ weight: '700', style: 'italic' }
 				);
 
 				const fonts = await Promise.all([
 					regular.load(),
 					italic.load(),
-					extraBold.load(),
-					extraBoldItalic.load()
+					bold.load(),
+					boldItalic.load()
 				]);
 
 				fonts.forEach((font) => {
