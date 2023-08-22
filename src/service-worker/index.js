@@ -1,6 +1,6 @@
-import { files, version } from '$service-worker';
+import { files } from '$service-worker';
 
-const CACHE = `cache-${version}`;
+const CACHE = `cache-fonts-woff2`;
 const ASSETS = files.filter((file) => file.endsWith('.woff2'));
 
 self.addEventListener('install', (event) => {
