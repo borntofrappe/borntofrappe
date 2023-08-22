@@ -3,7 +3,7 @@
 	export let level = 'h1';
 	export let fill = '#f1f5f8';
 	export let stroke = '#102a42';
-	export let inlineSize = 58.46172180175781;
+	export let inlineSize = 60.47323455810547;
 	export let style = '';
 
 	let text = null;
