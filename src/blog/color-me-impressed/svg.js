@@ -43,5 +43,150 @@ export default {
     <use href="#hueRotate-sprite" />
     <use transform="translate(1 0)" filter="url(#hueRotate-filter-120)" href="#hueRotate-sprite" />
     <use transform="translate(2 0)" filter="url(#hueRotate-filter-240)" href="#hueRotate-sprite" />
-</svg>`
+</svg>`,
+	'matrix-multiplication': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mtable>
+        <mtr>
+            <mtd><mi>R'</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>G'</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>B'</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>A'</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>1</mi></mtd>
+        </mtr>
+    </mtable>
+    <mspace width="8px" />
+    <mo>=</mo>
+    <mspace width="8px" />
+    <mtable>
+        <mtr>
+            <mtd>
+                <msub><mi>r</mi><mn>1</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>r</mi><mn>2</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>r</mi><mn>3</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>r</mi><mn>4</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>r</mi><mn>5</mn></msub>
+            </mtd>
+        </mtr>
+        <mtr>
+            <mtd>
+                <msub><mi>g</mi><mn>1</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>g</mi><mn>2</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>g</mi><mn>3</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>g</mi><mn>4</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>g</mi><mn>5</mn></msub>
+            </mtd>
+        </mtr>
+        <mtr>
+            <mtd>
+                <msub><mi>b</mi><mn>1</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>b</mi><mn>2</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>b</mi><mn>3</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>b</mi><mn>4</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>b</mi><mn>5</mn></msub>
+            </mtd>
+        </mtr>
+        <mtr>
+            <mtd>
+                <msub><mi>a</mi><mn>1</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>a</mi><mn>2</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>a</mi><mn>3</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>a</mi><mn>4</mn></msub>
+            </mtd>
+            <mtd>
+                <msub><mi>a</mi><mn>5</mn></msub>
+            </mtd>
+        </mtr>
+        <mtr>
+            <mtd>
+                <mi>0</mi>
+            </mtd>
+            <mtd>
+                <mi>0</mi>
+            </mtd>
+            <mtd>
+                <mi>0</mi>
+            </mtd>
+            <mtd>
+                <mi>0</mi>
+            </mtd>
+            <mtd>
+                <mi>1</mi>
+            </mtd>
+        </mtr>
+    </mtable>
+    <mspace width="8px" />
+    <mo>*</mo>
+    <mspace width="8px" />
+    <mtable>
+        <mtr>
+            <mtd><mi>R</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>G</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>B</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>A</mi></mtd>
+        </mtr>
+        <mtr>
+            <mtd><mi>1</mi></mtd>
+        </mtr>
+    </mtable>
+</math>`,
+	'red-multiplication': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mi>R'</mi>
+        <mo>=</mo>
+        <msub><mi>r</mi><mn>1</mn></msub> <mo>*</mo> <mi>R</mi>
+        <mo>+</mo>
+        <msub><mi>r</mi><mn>2</mn></msub> <mo>*</mo> <mi>G</mi>
+        <mo>+</mo>
+        <msub><mi>r</mi><mn>3</mn></msub> <mo>*</mo> <mi>B</mi>
+        <mo>+</mo>
+        <msub><mi>r</mi><mn>4</mn></msub> <mo>*</mo> <mi>A</mi>
+        <mo>+</mo>
+        <msub><mi>r</mi><mn>5</mn></msub>
+    </mrow>
+</math>
+`
 };
