@@ -1,10 +1,10 @@
 <script>
-	import svg from './svg.js';
+	import html from './html.js';
 </script>
 
 <div>
 	<figure>
-		{@html svg['computer']}
+		{@html html['computer']}
 	</figure>
 	<p>
 		Among the primitives available in the <code>&lt;filter&gt;</code> element,
