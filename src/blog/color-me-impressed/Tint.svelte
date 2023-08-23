@@ -114,7 +114,7 @@
 		max-inline-size: max-content;
 		padding: 0;
 		border: none;
-		--border-radius: 1rem;
+		--border-radius: 1e5px;
 		border-radius: var(--border-radius);
 		box-shadow: 0 0.25rem 0.8rem -0.2rem hsl(0 0% 0% / 0.3);
 		transition: box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1);
