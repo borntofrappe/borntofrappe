@@ -10,6 +10,40 @@ export default {
         <path stroke="hsl(60 5% 85%)" d="M 6 23 h 1 M 8 23 h 1 M 10 23 h 2 M 13 23 h 1 M 15 23 h 1 M 17 23 h 2 M 5 24 h 1 M 7 24 h 1 M 9 24 h 2 M 12 24 h 1 M 14 24 h 1 M 16 24 h 2 M 4 25 h 13" />
     </g>
 </svg>`,
+	saturate: `<svg style="display: block;" viewBox="0 0 2 1">
+    <title>saturate filter</title>
+    <defs>
+        <filter id="saturate-filter">
+            <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <symbol id="saturate-sprite" viewBox="0 -0.5 18 18" width="1" height="1">
+            <path stroke="hsl(86 25% 22%)" d="M 6 1 h 6 M 5 2 h 1 M 12 2 h 1 M 4 3 h 1 M 13 3 h 1 M 4 4 h 1 M 13 4 h 1 M 3 5 h 3 M 12 5 h 3 M 3 6 h 2 M 6 6 h 6 M 13 6 h 2 M 2 7 h 1 M 4 7 h 1 M 13 7 h 1 M 15 7 h 1 M 2 8 h 1 M 7 8 h 1 M 10 8 h 1 M 15 8 h 1 M 3 9 h 2 M 7 9 h 1 M 10 9 h 1 M 13 9 h 2 M 3 10 h 3 M 12 10 h 3 M 2 11 h 1 M 5 11 h 8 M 15 11 h 1 M 2 12 h 1 M 5 12 h 8 M 15 12 h 1 M 3 13 h 3 M 8 13 h 2 M 12 13 h 3 M 4 14 h 1 M 6 14 h 2 M 10 14 h 2 M 13 14 h 1 M 4 15 h 1 M 8 15 h 2 M 13 15 h 1 M 5 16 h 3 M 10 16 h 3" />
+            <path stroke="hsl(14 74% 51%)" d="M 6 2 h 6 M 5 3 h 8 M 5 4 h 8 M 6 5 h 1 M 11 5 h 1 M 8 10 h 2 M 6 13 h 2 M 10 13 h 2 M 5 14 h 1 M 8 14 h 2 M 12 14 h 1 M 5 15 h 3 M 10 15 h 3" />
+            <path stroke="hsl(29 71% 77%)" d="M 7 5 h 4 M 5 6 h 1 M 12 6 h 1 M 3 7 h 1 M 5 7 h 8 M 14 7 h 1 M 3 8 h 4 M 8 8 h 2 M 11 8 h 4 M 5 9 h 2 M 8 9 h 2 M 11 9 h 2 M 6 10 h 2 M 10 10 h 2 M 3 11 h 2 M 13 11 h 2 M 3 12 h 2 M 13 12 h 2" />
+        </symbol>
+    </defs>
+    <use href="#saturate-sprite" />
+    <use transform="translate(1 0)" filter="url(#saturate-filter)" href="#saturate-sprite" />
+</svg>`,
+	hueRotate: `<svg style="display: block;" viewBox="0 0 3 1">
+    <title>hueRotate filter</title>
+    <defs>
+        <filter id="hueRotate-filter-120">
+            <feColorMatrix type="hueRotate" values="120" />
+        </filter>
+        <filter id="hueRotate-filter-240">
+            <feColorMatrix type="hueRotate" values="240" />
+        </filter>
+        <symbol id="hueRotate-sprite" viewBox="0 -0.5 18 18" width="1" height="1">
+            <path stroke="hsl(86 25% 22%)" d="M 6 1 h 6 M 5 2 h 1 M 12 2 h 1 M 4 3 h 1 M 13 3 h 1 M 4 4 h 1 M 13 4 h 1 M 3 5 h 3 M 12 5 h 3 M 3 6 h 2 M 6 6 h 6 M 13 6 h 2 M 2 7 h 1 M 4 7 h 1 M 13 7 h 1 M 15 7 h 1 M 2 8 h 1 M 7 8 h 1 M 10 8 h 1 M 15 8 h 1 M 3 9 h 2 M 7 9 h 1 M 10 9 h 1 M 13 9 h 2 M 3 10 h 3 M 12 10 h 3 M 2 11 h 1 M 5 11 h 8 M 15 11 h 1 M 2 12 h 1 M 5 12 h 8 M 15 12 h 1 M 3 13 h 3 M 8 13 h 2 M 12 13 h 3 M 4 14 h 1 M 6 14 h 2 M 10 14 h 2 M 13 14 h 1 M 4 15 h 1 M 8 15 h 2 M 13 15 h 1 M 5 16 h 3 M 10 16 h 3" />
+            <path stroke="hsl(14 74% 51%)" d="M 6 2 h 6 M 5 3 h 8 M 5 4 h 8 M 6 5 h 1 M 11 5 h 1 M 8 10 h 2 M 6 13 h 2 M 10 13 h 2 M 5 14 h 1 M 8 14 h 2 M 12 14 h 1 M 5 15 h 3 M 10 15 h 3" />
+            <path stroke="hsl(29 71% 77%)" d="M 7 5 h 4 M 5 6 h 1 M 12 6 h 1 M 3 7 h 1 M 5 7 h 8 M 14 7 h 1 M 3 8 h 4 M 8 8 h 2 M 11 8 h 4 M 5 9 h 2 M 8 9 h 2 M 11 9 h 2 M 6 10 h 2 M 10 10 h 2 M 3 11 h 2 M 13 11 h 2 M 3 12 h 2 M 13 12 h 2" />
+        </symbol>
+    </defs>
+    <use href="#hueRotate-sprite" />
+    <use transform="translate(1 0)" filter="url(#hueRotate-filter-120)" href="#hueRotate-sprite" />
+    <use transform="translate(2 0)" filter="url(#hueRotate-filter-240)" href="#hueRotate-sprite" />
+</svg>`,
 	portrait: `<svg style="display: block;" viewBox="0 -0.5 16 12">
     <title>Retro-looking portrait</title>
     <path stroke="hsl(86 25% 22%)" d="M 0 0 h 16 M 0 1 h 1 M 15 1 h 1 M 0 2 h 1 M 15 2 h 1 M 0 3 h 1 M 15 3 h 1 M 0 4 h 1 M 15 4 h 1 M 0 5 h 1 M 15 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 15 8 h 1 M 0 9 h 1 M 15 9 h 1 M 0 10 h 1 M 15 10 h 1 M 0 11 h 16" />
