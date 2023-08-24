@@ -11,7 +11,7 @@ export default {
     </g>
 </svg>`,
 	saturate: `<svg style="display: block;" viewBox="0 0 2 1">
-    <title>saturate filter</title>
+    <title>Pixelated sprite in red, or black and white</title>
     <defs>
         <filter id="saturate-filter">
             <feColorMatrix type="saturate" values="0" />
@@ -26,7 +26,7 @@ export default {
     <use transform="translate(1 0)" filter="url(#saturate-filter)" href="#saturate-sprite" />
 </svg>`,
 	hueRotate: `<svg style="display: block;" viewBox="0 0 3 1">
-    <title>hueRotate filter</title>
+    <title>Pixelated sprite in red, green or blue</title>
     <defs>
         <filter id="hueRotate-filter-120">
             <feColorMatrix type="hueRotate" values="120" />
