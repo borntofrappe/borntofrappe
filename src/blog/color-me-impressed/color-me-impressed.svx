@@ -34,7 +34,7 @@ This sets you up with one visual and precise colors. What `feColorMatrix` allows
 </g>
 ```
 
-The element takes the source graphic and returns an output image, updated per at least two attributes: `type` and `values`. And the two open a lot of possibilities with even the most simplistic instructions.
+The element takes the source graphic and returns an output image, updated per at least two attributes: `type` and `values`. And the two open a lot of possibilities with even the most basic instructions.
 
 With a type of `saturate` change the saturation.
 
@@ -42,7 +42,7 @@ With a type of `saturate` change the saturation.
 <feColorMatrix type="saturate" values="1" />
 ```
 
-A value of 1 leaves the shapes untouched, and greater numbers increase the saturation. Smaller numbers strip out the color, and a value of 0 removes every hue.
+A value of 1 leaves the shapes untouched, while greater numbers increase the saturation. Smaller numbers strip out the color, until a value of 0 which removes every hue.
 
 ```html
 <feColorMatrix type="saturate" values="0" />
@@ -66,13 +66,13 @@ The number rotates the hues in the 0 to 360 range, through red, green and blue.
 <feColorMatrix type="hueRotate" values="240" />
 ```
 
-Your red-infused sprite moves between versons, exploring the available spectrum.
+Your red-infused sprite moves between versions, exploring the luminous spectrum.
 
 <Center element="figure" maxInlineSize="30rem">
     {@html html['hueRotate']}
 </Center>
 
-The two operations are immediate, and already allow for intriguing changes. For a more refined touch, however, the primitive supports yet another type, `matrix`.
+The two operations are immediate, and already allow for intriguing changes. For a more refined touch, however, the primitive supports yet another type: `matrix`.
 
 ```html
 <feColorMatrix
@@ -96,7 +96,7 @@ And in detail, each value is found multiplying all possible channels with the ch
 
 {@html html['red-multiplication']}
 
-This means one of two things: an _identity matrix_, composed of 1s along the diagonal, leaves the picture unstyled. This is much similar to the type of `saturate` with a value of 1.
+This means one of two things: an _identity matrix_, composed of 1s along the diagonal, leaves the picture unstyled. Similarly to the `saturate` filter with value of 1.
 
 ```html
 <feColorMatrix

@@ -8,7 +8,7 @@
 	</figure>
 	<p>
 		Among the primitives available in the <code>&lt;filter&gt;</code> element,
-		<code>feColorMatrix</code> looks refreshingly simple, both in purpose and logic.
+		<code>feColorMatrix</code> looks refreshingly simple, both in purpose and function.
 	</p>
 	<p>
 		You benefit from knowing about matrix algebra, but the syntax is clear and intuitive. And at the
