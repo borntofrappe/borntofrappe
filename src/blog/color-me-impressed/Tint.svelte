@@ -63,7 +63,7 @@
 	</fieldset>
 
 	<svg style="display: block;" viewBox="0 -0.5 16 12">
-		<title>Retro-looking, tinted portrait</title>
+		<title>Retro-looking, possibly tinted portrait</title>
 		<defs>
 			<filter id="tint-filter">
 				<feColorMatrix type="matrix" {values} />
