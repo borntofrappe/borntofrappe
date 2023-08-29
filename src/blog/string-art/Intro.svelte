@@ -6,7 +6,7 @@
 	<figure>
 		{@html svg['fox']}
 	</figure>
-	<p>Writing SVG syntax "by hand", directly in a code editor, takes a lot of patience.</p>
+	<p>Writing SVG syntax <em>"by hand"</em>, directly in a code editor, takes a lot of patience.</p>
 
 	<pre class="language-html"><code class="language-html"
 			><span class="token tag"
