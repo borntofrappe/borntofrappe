@@ -1,7 +1,7 @@
 ---
 title: String art
-description: Draw SVG in a code editor, by hand and with the assistance of JavaScript.
-date: 2023-08-29T09:35:16
+description: Draw SVG in a code editor, in HTML and with the assistance of JavaScript.
+date: 2023-08-29T09:34:52
 ---
 
 <script>
@@ -9,23 +9,10 @@ date: 2023-08-29T09:35:16
 
 	import svg from './svg.js';
 	import PointsAndPaths from './PointsAndPaths.svelte';
+	import Intro from './Intro.svelte';
 </script>
 
-<Center element="figure" maxInlineSize="10rem">
-	{@html svg['fox']}
-</Center>
-
-Writing SVG syntax _"by hand"_, directly in a code editor, takes a lot of patience.
-
-```html
-<svg viewBox="-50 -50 100 100">
-	<!-- ... -->
-</svg>
-```
-
-You have full control over the appearance of the graphic, but it's up to you to fill the canvas with elements and attributes, one line after the other.
-
-Given enough time you may forgive the task, but if your intention is to show the result on the web, there are ways to ease the feat. With JavaScript specifically, you gain access to a host of methods, helping you compose the graphic and even create intriguing designs.
+<Intro />
 
 Consider a basic shape in the form of a `<circle>`.
 
@@ -33,7 +20,7 @@ Consider a basic shape in the form of a `<circle>`.
 <circle fill="none" stroke="currentColor" r="40" />
 ```
 
-With a stroke, without a fill, the code leads to a predictable, round outline. If you wanted, you could add more elements inside the shape, but what if you needed to draw points, or even lines, precisely on the contour of the circle? You can almost appreciate the idea already. A cross-stitch work of art, a web of interconnected lines threading the surface in any direction.
+With a stroke, without a fill, the code leads to a predictable, round outline. If you wanted, you could add more elements inside the shape, but what if you needed to draw points, or even lines, precisely on the contour of the circle? You can almost picture the idea already. A cross-stitch work of art, a web of interconnected lines threading the surface in any direction.
 
 With the option of JavaScript, you can achieve the feat with one method: `getPointAtLength`.
 
@@ -42,15 +29,15 @@ const element = document.querySelector('circle');
 element.getPointAtLength(0); // SVGPoint {x: 40, y: 0}
 ```
 
-The function takes a number, an offset, and returns an _SVG point_. Behind the fancy label, however, there's just an object with two properties, `x` and `y`.
+The function takes a number, an offset, and returns an _SVGPoint_. Behind the fancy label, however, there's just an object with two properties, `x` and `y`.
 
-And the function is close to everything you need to complete the design. What is left is a process, a way to repeat the instruction a number of times _and_ in the span of the circle, from start to end. Indeed, as the function takes a length, you may want to limit yourself to the perimeter. And for this, JavaScript helps you once more with a useful getter: `getTotalLength`.
+And the function is close to everything you need to complete the design. What is left is a process, a way to repeat the instruction a number of times _and_ in the span of the circle, from start to end. Indeed, as the function takes an offset, you may want to limit yourself to the total length. And for this, JavaScript helps you once more with a fitting getter: `getTotalLength`.
 
 ```js
 const length = element.getTotalLength();
 ```
 
-Armed with the number, you can set up a regular for loop.
+Armed with the number, set up a regular for loop.
 
 ```js
 const n = 5;
@@ -59,7 +46,7 @@ for (let i = 0; i < n; i++) {
 }
 ```
 
-Iterating as many times as you want points, you are then able to find the coordinates at the proper increments.
+Iterating as many times as you want points, you are then able to find the coordinates at proper increments.
 
 ```js
 const offset = (length / n) * i;
@@ -92,27 +79,27 @@ for (let j = i + 1; j < points.length; j++) {
 }
 ```
 
-Looping _"forwards"_, in this manner, you consider lines in one direction only, but it's more than enough to complete the set. It is rather wasteful to trace your way backwards after all.
+Looping _"forwards"_ you consider lines in one direction only, but it's more than enough to complete the set.
 
-Again you can store the data in an array, and there are several ways you can save the points. If you want to draw lines with a line element, this one requires four attributes, from the start and end coordinates.
+Again you can store the data in an array, and there are several ways you can save the points. A `<line>` element requires four attributes, for the start and end coordinates.
 
 ```html
 <line x1="40" y1="0" x2="12.319074630737305" y2="38.055755615234375" />
 ```
 
-In this instance you can store the points with plain objects, with four matching properties.
+In this instance you can store the points with plain objects and four matching properties.
 
 ```js
 lines.push({ x1, y1, x2, y2 });
 ```
 
-If you want to draw the segments with a path element instead, this one looks for a string in the d attribute.
+As an alternative, a `<path>` looks for instructions in the `d` attribute.
 
 ```html
 <path d="M 40 0 12.319074630737305 38.055755615234375" />
 ```
 
-Following the _"M"_ character the string works from one set of coordinates to the other, so that you can keep an array of instructions, an array of strings instead.
+Following the _"M"_ character the string works from one set of coordinates to the other, so that you can keep an array of directives, an array of strings instead.
 
 ```js
 lines.push(`M ${x1} ${y1} ${x2} ${y2}`);
@@ -126,7 +113,7 @@ And if you appreciate brevity, you might enjoy knowing that you don't need an ar
 />
 ```
 
-In light of this, you can add the instruction to a single string.
+In light of this, you can add the sequence to a single string.
 
 ```js
 lines += `M ${x1} ${y1} ${x2} ${y2}`;
@@ -138,7 +125,7 @@ With `<line>`s, with `<path>`s, with one single `<path>`, you have ways to mark 
 	<PointsAndPaths />
 </Center>
 
-And you can definitely put the concept to the test to find the quaint vector graphic of your dreams.
+And you can definitely put the concept to the test to craft the quaint vector graphic of your dreams.
 
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['dream-catcher']}

@@ -55,7 +55,7 @@
 </script>
 
 <label>
-	<span>Drag the handle to plot and connect <code>{value}</code> points</span>
+	<span>Drag the handle to draw and connect <code>{value}</code> points</span>
 	<input type="range" bind:value min="2" max="10" />
 </label>
 
