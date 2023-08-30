@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/icons/blog.svg" type="image/svg+xml" />
+	<link rel="icon" href="/icons/slug.svg" type="image/svg+xml" />
 </svelte:head>
 
 <div
