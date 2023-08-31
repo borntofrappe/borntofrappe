@@ -1,0 +1,5 @@
+---
+title: Filter light
+description: Shed some light on SVG filters to brighten up flat drawings.
+date: 2023-09-01T14:14:10
+---
