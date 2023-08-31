@@ -108,5 +108,49 @@ export default {
         <path fill="hsl(209 95% 67%)" d="M -43.75 14 C -39.375 14 -39.375 12 -35 12 S -30.625 14 -26.25 14 S -21.875 12 -17.5 12 S -13.125 14 -8.75 14 S -4.375 12 0 12 S 4.375 14 8.75 14 S 13.125 12 17.5 12 S 21.875 14 26.25 14 S 30.625 12 35 12 S 39.375 14 43.75 14 L 43.75 41.20633888244629 L -43.75 41.20633888244629 Z" />
         <path stroke="hsl(0 0% 99%)" stroke-width="3" stroke-linecap="round" d="M -22 23 22 23 M -10 31 10 31" />
     </g>
+</svg>`,
+	'filter-specular': `<svg style="display: block;" viewBox="-40 -40 80 80">
+    <title>A glowing cityscape at dusk</title>
+    <defs>
+        <clipPath id="filter-specular-clip">
+            <rect x="-40" y="-40" width="80" height="80" rx="10" />
+        </clipPath>
+        <rect id="filter-specular-window" x="-3" y="-3" width="6" height="6" rx="1.5" />
+        <filter id="filter-specular-filter">
+            <feSpecularLighting specularConstant="1" specularExponent="50" lighting-color="hsl(55 100% 77%)">
+                <feDistantLight azimuth="20" elevation="54" />
+            </feSpecularLighting>
+            <feComposite in2="SourceGraphic" operator="in" />
+            <feBlend in2="SourceGraphic" mode="screen" />
+        </filter>
+    </defs>
+    <g clip-path="url(#filter-specular-clip)">
+        <rect fill="hsl(279 34% 63%)" x="-40" y="-40" width="80" height="80" />
+        <g filter="url(#filter-specular-filter)">
+            <path fill="hsl(250 20% 41%)" d="M -40 14 L -35 14 -35 -20 A 5 5 0 0 1 -30 -25 L -20 -25 -20 -27.5 A 5 5 0 0 1 -15 -32.5 L -10 -32.5 A 5 5 0 0 1 -5 -27.5 L -5 5 30 5 A 5 5 0 0 1 35 10 L 35 20 40 20 40 40 -40 40 Z" />
+            <g fill="hsl(251 21% 53%)">
+                <path d="M -40 0 L -30 0 A 5 5 0 0 1 -25 5 L -25 40 -30 40 -40 40 Z" />
+                <path d="M -20 40 L -20 -10 A 5 5 0 0 1 -15 -15 L -1.5 -15 A 5 5 0 0 1 3.5 -10 L 3.5 25 10 25 A 5 5 0 0 1 15 30 L 15 40 Z" />
+                <path d="M 20 40 L 20 20 A 5 5 0 0 1 25 15 L 40 15 40 30 40 40 Z" />
+            </g>
+            <g fill="hsl(276 23% 28%)">
+                <use transform="translate(-32.5 7)" href="#filter-specular-window" />
+                <use transform="translate(-32.5 27)" href="#filter-specular-window" />
+                <use transform="translate(-12.5 12)" href="#filter-specular-window" />
+                <use transform="translate(-4 22)" href="#filter-specular-window" />
+                <use transform="translate(-4 -8)" href="#filter-specular-window" />
+            </g>
+            <g fill="hsl(55 100% 77%)">
+                <use transform="translate(-32.5 17)" href="#filter-specular-window" />
+                <use transform="translate(-12.5 -8)" href="#filter-specular-window" />
+                <use transform="translate(-12.5 2)" href="#filter-specular-window" />
+                <use transform="translate(-12.5 22)" href="#filter-specular-window" />
+                <use transform="translate(-4 2)" href="#filter-specular-window" />
+                <use transform="translate(-4 12)" href="#filter-specular-window" />
+                <rect transform="translate(25 20)" width="30" height="5" rx="2.5" />
+                <rect transform="translate(25 30)" width="30" height="5" rx="2.5" />
+            </g>
+        </g>
+    </g>
 </svg>`
 };
