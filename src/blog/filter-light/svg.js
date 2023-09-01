@@ -152,5 +152,80 @@ export default {
             </g>
         </g>
     </g>
+</svg>`,
+	'filter-blur': `<svg style="display: block;" viewBox="-70.99849319458008 -50 243.21923828125 120">
+    <title>A blurred reddish rounded rectangle</title>
+    <defs>
+        <filter id="filter-blur-filter">
+            <feGaussianBlur stdDeviation="2" />
+        </filter>
+        <rect width="" />
+        <rect id="filter-blur-in" fill="hsl(2 100% 72%)" x="-40" y="-40" width="80" height="80" rx="10" />
+    </defs>
+    <use href="#filter-blur-in" />
+    <use transform="translate(110 20)" filter="url(#filter-blur-filter)" href="#filter-blur-in" />
+    <g fill="currentColor" font-size="10" font-family="monospace">
+        <text text-anchor="end" x="-50" y="-30">in</text>
+        <text text-anchor="middle" x="110" y="-30">filter="<tspan font-weight="700">url(#blur)</tspan>"</text>
+    </g>
+    <circle fill="currentColor" transform="translate(-50 -30)" cy="5" r="1.5" />
+    <path fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" stroke-dashoffset="-1" d="M -50 -25 -50 -20 -40 -19" />
+</svg>`,
+	'filter-composite': `<svg style="display: block;" viewBox="-76.48279571533203 -50 236.4827880859375 120">
+    <title>A cutout portion of a reddish rounded rectangle</title>
+    <defs>
+        <rect id="filter-composite-in" x="-40" y="-40" width="80" height="80" rx="10" />
+        <circle id="filter-composite-in2" r="20" />
+    </defs>
+    <use fill="hsl(2 100% 72%)" href="#filter-composite-in" />
+    <use fill="hsl(48 96% 66%)" href="#filter-composite-in2" />
+        <g transform="translate(110 20)">
+            <use fill="none" stroke="currentColor" stroke-width="0.75" stroke-dasharray="3 6" href="#filter-composite-in" />
+            <use fill="hsl(2 100% 72%)" href="#filter-composite-in2" />
+        </g>
+    <g fill="currentColor" font-size="10" font-family="monospace">
+        <text text-anchor="end" x="-50" y="-30">in</text>
+        <text text-anchor="end" x="-50" y="5">in2</text>
+        <text text-anchor="middle" x="110" y="-30">operator="<tspan font-weight="700">in</tspan>"</text>
+    </g>
+    <g fill="currentColor">
+        <circle transform="translate(-50 -30)" cy="5" r="1.5" />
+        <circle transform="translate(-50 5)" cy="5" r="1.5" />
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" stroke-dashoffset="-1">
+        <path d="M -50 -25 -50 -20 -40 -19" />
+        <path d="M -50 10 -50 15 0 20" />
+    </g>
+</svg>`,
+	'filter-blend': `<svg style="display: block;" viewBox="-76.49102020263672 -50 236.49102783203125 120">
+    <title>A reddish rounded rectangle with a brighter portion</title>
+    <defs>
+        <filter id="filter-blend-filter">
+            <feFlood flood-color="hsl(48 96% 66%)" />
+            <feComposite in2="SourceGraphic" operator="in" />
+            <feBlend in2="SourceGraphic" mode="screen" />
+        </filter>
+        <rect id="filter-blend-in" x="-40" y="-40" width="80" height="80" rx="10" />
+        <circle id="filter-blend-in2" r="20" />
+    </defs>
+    <use fill="hsl(2 100% 72%)" href="#filter-blend-in" />
+    <use fill="hsl(48 96% 66%)" href="#filter-blend-in2" />
+    <g transform="translate(110 20)">
+        <use fill="hsl(2 100% 72%)" href="#filter-blend-in" />
+        <use filter="url(#filter-blend-filter)" fill="hsl(2 100% 72%)" href="#filter-blend-in2" />
+    </g>
+    <g fill="currentColor" font-size="10" font-family="monospace">
+        <text text-anchor="end" x="-50" y="-30">in</text>
+        <text text-anchor="end" x="-50" y="5">in2</text>
+        <text text-anchor="middle" x="110" y="-30">mode="<tspan font-weight="700">screen</tspan>"</text>
+    </g>
+    <g fill="currentColor">
+        <circle transform="translate(-50 -30)" cy="5" r="1.5" />
+        <circle transform="translate(-50 5)" cy="5" r="1.5" />
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" stroke-dashoffset="-1">
+        <path d="M -50 -25 -50 -20 -40 -19" />
+        <path d="M -50 10 -50 15 0 20" />
+    </g>
 </svg>`
 };
