@@ -48,11 +48,6 @@
 		border: none;
 	}
 
-	fieldset > legend {
-		opacity: 0;
-		visibility: hidden;
-	}
-
 	fieldset > p {
 		flex-basis: 100%;
 	}
@@ -60,6 +55,11 @@
 	fieldset > label {
 		flex-basis: 10rem;
 		flex-grow: 1;
+	}
+
+	legend {
+		visibility: hidden;
+		block-size: 0;
 	}
 
 	label > span,
