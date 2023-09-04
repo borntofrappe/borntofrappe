@@ -186,7 +186,7 @@ export default {
     <path fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" stroke-dashoffset="-1" d="M -50 -25 -50 -20 -40 -19" />
     <g transform="translate(120 30)">
         <use filter="url(#filter-blur-filter)" href="#filter-blur-in" />
-        <text fill="currentColor" font-size="10" font-family="monospace" text-anchor="middle" y="-50">filter="<tspan font-weight="700">url(#light)</tspan>"</text>
+        <text fill="currentColor" font-size="10" font-family="monospace" text-anchor="middle" y="-50">filter="<tspan font-weight="700">url(#blur)</tspan>"</text>
     </g>
 </svg>`,
 	'filter-composite': `<svg style="display: block;" viewBox="-80.996089935302734 -40 255.99609375 195">
