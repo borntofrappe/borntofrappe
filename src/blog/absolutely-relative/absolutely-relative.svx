@@ -1,0 +1,5 @@
+---
+title: Absolutely relative
+description: Take an inquisitive look at the instructions of path elements.
+date: 2023-09-06T11:11:11
+---
