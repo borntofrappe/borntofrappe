@@ -3,3 +3,13 @@ title: Absolutely relative
 description: Take an inquisitive look at the instructions of path elements.
 date: 2023-09-06T11:11:11
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="36rem">
+	{@html svg['abstract-art']}
+</Center>
