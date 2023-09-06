@@ -1,6 +1,6 @@
 ---
 title: Absolutely relative
-description: Take an inquisitive look at the instructions of path elements, at uppercase and lowercase letters.
+description: Take an inquisitive look at the string of path elements, at uppercase and lowercase letters.
 date: 2023-09-06T09:34:35
 ---
 
@@ -10,17 +10,17 @@ date: 2023-09-06T09:34:35
 	import svg from './svg.js';
 </script>
 
-In the `d` attribute of path elements you are able to detail close to any shape with a veritable alphabet of instructions.
+In the `d` attribute of `<path>` elements you are able to detail close to any shape with a veritable alphabet of instructions.
 
 ```html
 <path d="M 0 0 10 0 10 8" />
 ```
 
-Past the `M` character you can instruct the element with a series of numbers, in which case the values refer to the x, y coordinates of a series of points, but for more complex shapes you have options. With the `L` character you draw a line. With `Q` and `S` bezier curves, be it quadratic or cubic. With `A` you draw arcs and with `Z` you signal the end of the séquence. The end of the current path.
+Past the `M` character you can instruct the element with a series of numbers, in which case the values refer to the x, y coordinates of a series of points, but for more complex shapes you have options. With the `L` character you draw a line. With `Q` and `S` bezier curves, be it quadratic or cubic. With `A` you draw arcs and with `Z` you signal the end of the sequence, the end of the current path.
 
 There are also `H`, `V`, `T` and `S`, which promise to simplify drawing lines and curves, but the point stands. In the string you have a set of commands for meaningful steps. And yet, for every instruction you have a choice between uppercase and lowercase letters. Capital and small `M`, capital and small `L`, `C`, and so forth and so on.
 
-The difference between the two is not difficult to understand. With the uppercase variants you instruct the path in _absolute_ terms.
+The difference between the two is not difficult to understand. With uppercase letters you instruct the path in _absolute_ terms.
 
 ```html
 <path d="M 0 0 L 10 0 L 10 8" />
@@ -36,7 +36,7 @@ With lowercase letters the instructions are _relative_. Relative from the curren
 
 From where you are, draw a line 10 units to the right. Further, starting from that point draw a line an additional 10 units to the right and 8 units down. You certainly obtain a triangle, but twice as wide.
 
-<Center element="figure" maxInlineSize="30rem">
+<Center element="figure" maxInlineSize="20rem">
 	{@html svg['absolute-relative-art']}
 </Center>
 
