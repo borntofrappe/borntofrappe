@@ -1,8 +1,15 @@
 ---
 title: Filter region
-description: Go back to the roots of filter elements to trace the outline of the filter region.
+description: Go back to the roots of filter elements to outline the filter region.
 date: 2023-09-08T15:34:47
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import Windowpane from './Windowpane.svelte';
+</script>
 
 Discovering SVG filters, through [artistic outbursts](/filter-art) or [more logical endeavors](/filter-light), you are introduced to the `<filter>` element.
 
@@ -11,3 +18,77 @@ Discovering SVG filters, through [artistic outbursts](/filter-art) or [more logi
 	<!-- ... -->
 </filter>
 ```
+
+It is through the node, with a unique `id` and nested primitives that you build the effect.
+
+```html
+<filter id="blur">
+	<feGaussianBlur stdDeviation="2" />
+</filter>
+```
+
+Once you apply the filter to a different piece, say a `<circle>`, the change takes place. In the specific instance, the shape is replaced with a blurred picture.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['filter-blur']}
+</Center>
+
+The code works swimmingly, but in the opening `filter` tag you have access to additional attributes, which help you describe the _filter region_, the area in which the filter operates.
+
+`x`, `y`, `width`, `height`. Through the set of four attributes you elaborate the relevant, rectangular area. By default the values describe an area slightly bigger than that described by the benefiting shapes.
+
+```html
+<filter x="-10%" y="-10%" width="120%" height="120%" id="blur">
+	<!-- ... -->
+</filter>
+```
+
+That being said, you can change the default coordinates, the default dimensions to set up a different area. The possibility helps you the moment you want to apply the filter to a larger surface.
+
+Indeed, what happens the moment the area is not sufficient, what happens the moment the filter operates on a smaller figure?
+
+```html
+<filter x="35%" id="blur">
+	<!-- ... -->
+</filter>
+```
+
+In the snippet the blurring filter is updated with an horizontal inset. The filter region starts at 35%, or 0.35, of the width of the final area. And you would think this would result in the circle being partially blurred. Or at least, you'd aspire this to be the case. Alas, this is not what happens.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['filter-region']}
+</Center>
+
+Even if you bemoan the result, there is no mistake in the output. The filter is working as it is supposed to work. The element is effectively replaced by the output of `<filter>`, and in particular, the output of the `feGaussianBlur` function. Logically, you find only the blurred region. Not the entire graphic.
+
+How would you go about implementing the feature, by chance? It is likely that there is an answer in the `<filter>` element itself, in its attributes and some of the 17 possible primitives. In the body of the `<svg>`, however, you have a solution directly through the elements producing the graphic, the elements to-be-partially blurred.
+
+Consider the `<circle>` as part of a beautiful landscape. After all, the single shape is bound to get stale.
+
+```html
+<rect fill="hsl(175 41% 78%)" width="330" height="230" />
+<circle fill="hsl(36 99% 65%)" cx="180" cy="110" r="40" />
+<!-- ...paths -->
+```
+
+With the elaborate sequence, you can wrap the visuals in a common group. A `<g>` element with a distinct identifier.
+
+```html
+<g id="view">
+	<!-- ...rect & circle & paths -->
+</g>
+```
+
+With the unique label you are then able to repeat the very same structure with just one `<use>` element. And it is on this node that you apply the filter, the partially-blurring lens.
+
+```html
+<use filter="url(#blur)" href="#view" />
+```
+
+After the shapes, you find the blurred version on top. With the limited view you preserve the image, unaffected by the filter region.
+
+<Center maxInlineSize="36rem">
+	<Windowpane />
+</Center>
+
+Overall, a refreshing manner to see the world outside. Through and past SVG filters.
