@@ -1,0 +1,13 @@
+---
+title: Filter region
+description: Go back to the roots of filter elements to trace the outline of the filter region.
+date: 2023-09-08T15:34:47
+---
+
+Discovering SVG filters, through [artistic outbursts](/filter-art) or [more logical endeavors](/filter-light), you are introduced to the `<filter>` element.
+
+```html
+<filter>
+	<!-- ... -->
+</filter>
+```
