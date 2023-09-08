@@ -35,7 +35,7 @@ Once you apply the filter to a different piece, say a `<circle>`, the change tak
 
 The code works swimmingly, but in the opening `filter` tag you have access to additional attributes, which help you describe the _filter region_, the area in which the filter operates.
 
-`x`, `y`, `width`, `height`. Through the set of four attributes you elaborate the relevant, rectangular area. By default the values describe an area slightly bigger than that described by the benefiting shapes.
+`x`, `y`, `width`, `height`. Through the set of four attributes you outline the relevant, rectangular area. By default the values describe an area slightly bigger than that described by the benefiting shapes.
 
 ```html
 <filter x="-10%" y="-10%" width="120%" height="120%" id="blur">
@@ -79,7 +79,7 @@ With the elaborate sequence, you can wrap the visuals in a common group. A `<g>`
 </g>
 ```
 
-With the unique label you are then able to repeat the very same structure with just one `<use>` element. And it is on this node that you apply the filter, the partially-blurring lens.
+With the unique label you are then able to repeat the very same structure with one `<use>` element. And it is on this node that you apply the filter, the partially-blurring lens.
 
 ```html
 <use filter="url(#blur)" href="#view" />
@@ -87,7 +87,7 @@ With the unique label you are then able to repeat the very same structure with j
 
 After the shapes, you find the blurred version on top. With the limited view you preserve the image, unaffected by the filter region.
 
-<Center maxInlineSize="36rem">
+<Center maxInlineSize="32rem">
 	<Windowpane />
 </Center>
 
