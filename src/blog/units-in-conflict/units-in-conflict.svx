@@ -1,5 +1,157 @@
 ---
-title: units-in-conflict
-description: the filter element has its units, of which primitives know not.
-date: 2023-09-11T14:14:14
+title: Units in conflict
+description: Reflect on the conflicting nature of units in SVG filters.
+date: 2023-09-11T09:34:44
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import Festoon from './Festoon.svelte';
+</script>
+
+The filter element has [a region](/filter-region), an area in which the effect of the nested functions, so-called _primitives_, takes place.
+
+By default the region considers a rectangle slightly larger than that describing the filtered shapes.
+
+```html
+<filter id="fe" x="-10%" y="-10%" width="120%" height="120%">
+	<!-- ... -->
+</filter>
+```
+
+And you can certainly change the default values, in percentages or with decimal numbers. You could, for instance, double the width.
+
+```html
+<filter id="fe" width="2.4">
+	<!-- ... -->
+</filter>
+```
+
+Why would you care to do that? Perhaps you want to showcase something on the side of the figure. Think of a copy, right next to an unassiming circle.
+
+```html
+<circle filter="fe" r="40" />
+```
+
+You can just copy the shape itself, repeating the circle or again with a `<use>` element.
+
+<!-- prettier-ignore -->
+```html
+<circle id="circle" r="40" /> 
+<use href="#circle" x="40" />
+```
+
+But with a filter, you gain access to a host of features, such as brilliant, [lighting effects](/filter-light).
+
+You can mirror the circle with just two primitives: `feOffset` and `feMerge`. But as it is often the case with SVG filters, it is helpful to proceed in increments, one function at a time.
+
+`feOffset` takes an input, our circle, and moves the visual with the `dx` and `dy` attributes.
+
+```html
+<feOffset dx="1" />
+```
+
+Setting the horizontal offset to 1, should be enough to move the shape. That being said, the function returns the offset figure, and the offset figure only. We'd like to keep the original circle, and for this, we can use `feMerge`.
+
+```html
+<!-- ...feOffset -->
+<feMerge>
+	<!-- ... -->
+</feMerge>
+```
+
+The primitive introduces another block of elements, but is clear in its logic. With `feMergeNode` element you detail the inputs, the figure you want to unite.
+
+```html
+<!-- ...feOffset -->
+<feMerge>
+	<feMergeNode in="SourceGraphic" />
+</feMerge>
+```
+
+In this manner you can keep the original circle, the source graphic, and also include the result of the previous primitive, the previous offseting function.
+
+```html
+<!-- ...feOffset -->
+<feMerge>
+	<feMergeNode />
+	<feMergeNode in="SourceGraphic" />
+</feMerge>
+```
+
+Notice that the order matters. In the snippet the first element does not include the `in` attribute, and in so doing the input refers to the output of `feOffset`, to the circle on the side.
+
+The output of `feOffset`.
+
+```html
+<feOffset dx="1" result="offset" />
+```
+
+Is passed implicitly as the input of the first instance of `feMergeNode`.
+
+```html
+<feMerge>
+	<feMergeNode in="offset" />
+	<feMergeNode in="SourceGraphic" />
+</feMerge>
+```
+
+Offset the figure, pair the copy to the original and marvel at the result.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['user-space-on-use']}
+</Center>
+
+Not quite, however. Not by a long margin. What you find with the code is the circle, and seemingly the single, round shape.
+
+In rather philosophical terms, _the filter has its units, of which primitives know not_.
+
+Down to earth, the units set on the parent element are relative to the final area. This is the default option set through the `filterUnits` attribute, set to `objectBoundingBox`.
+
+```html
+<filter id="fe" filterUnits="objectBoundingBox" width="2.4">
+	<!-- ... -->
+</filter>
+```
+
+The units of the nested primitives, unfortunately, are not. They share the same coordinate space of the circle. As the element has a radius of 40 units, the copy is offset by a portion of the same space — you might have noticed that the copy was indeed visible, slightly protruding from the side. This is the default behavior and is set through `primitiveUnits`, set to `userSpaceOnUse`.
+
+<!-- prettier-ignore -->
+```html
+<filter
+	id="fe"
+	filterUnits="objectBoundingBox"
+	primitiveUnits="userSpaceOnUse"
+	width="2.4"
+>
+	<!-- ... -->
+</filter>
+```
+
+It is unfortunate that the two don't match, but it is fortunate that you can change the attribute to reconcile the system.
+
+<!-- prettier-ignore -->
+```html
+<filter
+	id="fe"
+	filterUnits="objectBoundingBox"
+	primitiveUnits="objectBoundingBox"
+	width="2.4"
+>
+	<!-- ... -->
+</filter>
+```
+
+You can set `primitiveUnits` on individual primitives, or on the single `filter` element, and have the change cascade throughout the entire sequence. Enough to fix our overlap.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['object-bounding-box']}
+</Center>
+
+And enough to celebrate with a festive decoration. Provided with enough material and space.
+
+<Center maxInlineSize="40rem">
+	<Festoon />
+</Center>
