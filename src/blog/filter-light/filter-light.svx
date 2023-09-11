@@ -40,7 +40,7 @@ You apply the changes through the `filter` attribute, pointing to the chosen lab
 </g>
 ```
 
-How the shapes change, then, depends on the contents of the filter itself, on so-called _primitives_. These are additional elements responsible for particular operations. `feGaussianBlur`, for instance, helps to blur a picture.
+How the shapes change, then, depends on the contents of the filter itself, on _primitives_. These are additional elements responsible for particular operations. `feGaussianBlur`, for instance, helps to blur a picture.
 
 ```html
 <feGaussianBlur stdDeviation="2" />
@@ -52,7 +52,7 @@ Primitives start with an input, some of them even with two, and such input can b
 
 - `SourceGraphic`, the shapes to-be-filtered
 
-- `SourceAlpha`, the same shapes, but only considering the alpha channel, the opacity of the elements
+- `SourceAlpha`, the same shapes, but considering only the alpha channel, the opacity of the elements
 
 - the result of another primitive
 
@@ -87,7 +87,7 @@ In the snippet the second blur is applied to the blurred picture, increasing the
 <feGaussianBlur in="blur" stdDeviation="2" />
 ```
 
-Understanding this flow is essential to understand SVG filters. And most practically, essential to set up a light source.
+Understanding this flow is essential to understand SVG filters. And most practically, essential to add a light.
 
 ## Composition
 
@@ -137,7 +137,7 @@ Set to `screen`, the primitive takes the colors from the input images, adds thei
 	{@html svg['filter-blend']}
 </Center>
 
-You create a bright layer, cut out the portions of the layer which are not pertinent and then combine the result with the shapes. The sequence is quite involved, but works to illustrate the point. Of course, you do need to create a bright layer first.
+You create a bright layer, cut out the portions of the layer which are not pertinent and then combine the result with the shapes. The sequence is involved, but works to illustrate the point. Of course, you do need to create a bright layer first.
 
 ## Lights
 
@@ -163,13 +163,13 @@ But perhaps it is better to show their influence in practice.
 </feDiffuseLighting>
 ```
 
-Past the lighting color you may tweak the primitive with additional attributes. `diffuseConstant`, for instance, works to update the strength of the light. But as mentioned, the primitive is not enough on its own. In between the opening and closing tag you need a light source, an element such as `fePointLight`.
+Past the color you may tweak the primitive with additional attributes. `diffuseConstant`, for instance, works to update the strength of the light. But as mentioned, the primitive is not enough on its own. In between the opening and closing tag you need a source, an element such as `<fePointLight>`.
 
 ```html
 <fePointLight x="0" y="0" z="20" />
 ```
 
-The function is quite easy to digest. You set three coordinates for the position of the light as a point in the x-y-z space. The horizontal and vertical measures are close to obvious, but the z-value, especially in the 2D world of the SVG document, might be a tad more alien.
+You set three coordinates for the position of the light as a point in the x-y-z space. The horizontal and vertical measures are close to obvious, but the z-value, especially in the 2D world of the SVG document, might be a tad more alien.
 
 Think of the z axis as an arrow, escaping the picture in your general direction. A higher value has the light source higher and higher, closer and closer to your point of view. You can imagine it, for sure, but you can also picture the change from a top-down perspective.
 
@@ -177,7 +177,7 @@ Think of the z axis as an arrow, escaping the picture in your general direction.
 	<PointLight />
 </Center>
 
-Pick a color for the light and tinker with the strength of the wrapping filter. Experiment with the position of the light source and the light is cast.
+Pick a color for the light and tinker with the strength of the wrapping filter. Experiment with the position of the source and the light is cast.
 
 <Center element="figure" maxInlineSize="14rem">
 	{@html svg['filter-diffuse']}
@@ -185,7 +185,7 @@ Pick a color for the light and tinker with the strength of the wrapping filter. 
 
 ### Specular
 
-`feSpecularLighting` illuminates the shapes with a reflection, as if the light were to bounce on the filtered shapes. The effect is quite different from the first primitive, but you have to see it to believe it.
+`feSpecularLighting` illuminates the shapes with a reflection, as if the light were to bounce on the shapes. The effect is quite different from the first primitive, but you have to see it to believe it.
 
 ```html
 <feSpecularLighting specularConstant="1" specularExponent="20" lighting-color="hsl(48 96% 66%)">
@@ -197,15 +197,15 @@ Similarly to the sibling primitive, `specularConstant` and `specularExponent` he
 
 Exactly like the diffusing element, then, the function depends on the lighting color and a nested light source.
 
-You can certainly rehearse the logic of the pointed source, and try to note the subtle differences, but the reflecting nature of the filter is a perfect excuse to introduce another type: `feDistantLight`.
+Here you can rehearse the logic of `fePointLight`, and note the subtle differences, but the reflecting nature of the filter is a perfect excuse to introduce another element: `<feDistantLight>`.
 
 ```html
 <feDistantLight azimuth="0" elevation="20" />
 ```
 
-Unlike the first light source, specifying a point with up to three points, the function works with two values, `azimuth` and `elevation`. And to understand their meaning, it helps to think of the canvas as the basis of a dome.
+Unlike the first light source, specifying a point with up to three points, the function works with two values: `azimuth` and `elevation`. And to understand their meaning, it helps to think of the canvas as the basis of a dome.
 
-With `azimuth` you update the position of the light as an angle in the x-y plane. From the right, greater values have the light move in a counter-clockwise manner, as if rotating on a makeshift circle to the bottom, then the left and the top.
+With `azimuth` you update the position of the light as an angle in the x-y plane. From the right, greater values rotate the source in a counter-clockwise manner, first to the bottom, then to the left and to the top.
 
 With `elevation`, on the other hand, you update the position as an angle above the surface, extruding the 2D picture. It is a tad more challenging to visualize the result, but again think of the dome in a 3D space. Think of the light as positioned to the very right, with `azimuth` set to 0. When you elevate the source, the point moves upwards, but also closer to the center, tracing the outline of the imaginary shape. Of course, it helps to have more than one perspective.
 
@@ -213,7 +213,7 @@ With `elevation`, on the other hand, you update the position as an angle above t
 	<DistantLight />
 </Center>
 
-The primitive is hard to explain, but it has its own perks. It works as a camera, pointing to the shapes from different angles to highlight the elements from a specific direction.
+The primitive is hard to explain, but has its own perks. It works as a camera, pointing to the shapes from different angles to highlight the elements from a specific direction.
 
 <Center element="figure" maxInlineSize="14rem">
 	{@html svg['filter-specular']}
@@ -221,6 +221,6 @@ The primitive is hard to explain, but it has its own perks. It works as a camera
 
 ## Unfiltered
 
-In terms of sources, there is a third function, `feSpotLight`. The element comes with its own set of attributes and leads to a different picture, but it's also the perfect excuse to end the discussion in broad strokes.
+In terms of sources there is a third function: `feSpotLight`. The element comes with its own set of attributes and leads to a different picture, but it's also the perfect excuse to end the discussion in broader strokes.
 
 SVG filters help to change the default appearance. The discussed primitives, and the somewhat elaborate sequence, help to cast a light and embolden previously flat drawings. There is plenty of room for exploration and bright ideas. But in the world of SVG, you have options. You can rely on filters, but also on other attributes as well. Opacity, linear gradients, masks. You might find a use combining them all.
