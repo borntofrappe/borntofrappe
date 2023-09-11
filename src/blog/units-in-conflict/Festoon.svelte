@@ -78,7 +78,7 @@
 
 	@property --luminosity {
 		syntax: '<number>';
-		initial-value: 65;
+		initial-value: 70;
 		inherits: true;
 	}
 
@@ -88,7 +88,7 @@
 
 	svg > g {
 		--hue: 0;
-		--luminosity: 65;
+		--luminosity: 70;
 		stroke: hsl(var(--hue) 90% calc(var(--luminosity) * 1%));
 		animation: rainbow 10s linear infinite paused;
 	}
@@ -99,37 +99,37 @@
 
 	@keyframes rainbow {
 		8% {
-			--luminosity: 58;
+			--luminosity: 59;
 		}
 		16% {
-			--luminosity: 50;
+			--luminosity: 42;
 		}
 		24% {
 			--luminosity: 46;
 		}
 		32% {
-			--luminosity: 55;
+			--luminosity: 46;
 		}
 		40% {
-			--luminosity: 55;
+			--luminosity: 46;
 		}
-		49% {
-			--luminosity: 50;
+		50% {
+			--luminosity: 44;
 		}
-		57% {
-			--luminosity: 60;
-		}
-		65% {
-			--luminosity: 70;
-		}
-		73% {
+		58% {
 			--luminosity: 65;
 		}
-		82% {
-			--luminosity: 56;
+		65% {
+			--luminosity: 80;
 		}
-		90% {
-			--luminosity: 58;
+		73% {
+			--luminosity: 72;
+		}
+		82% {
+			--luminosity: 53;
+		}
+		91% {
+			--luminosity: 62;
 		}
 		100% {
 			--hue: 360;
