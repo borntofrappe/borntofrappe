@@ -93,13 +93,13 @@ Understanding this flow is essential to understand SVG filters. And most practic
 
 There are two primitives to shed lights on the elements. There are then three additional elements to set up a light source. Before we explore these options, however, it is necessary to frame the primitives as part of a larger system.
 
-Indeed, it is not enough to rely on a lighting function like `feDiffuseLight`.
+Indeed, it is not enough to rely on a lighting function like `feDiffuseLighting`.
 
 ```html
 <filter id="light">
-	<feDiffuseLight>
+	<feDiffuseLighting>
 		<!-- ... -->
-	</feDiffuseLight>
+	</feDiffuseLighting>
 </filter>
 ```
 
@@ -120,14 +120,14 @@ First: `feComposite`. With the `operator` attribute set to `in` the function tak
 Applied to the bright layer, this means the light can be constrained, kept only in the relevant area — the original picture.
 
 ```html
-<!-- ...feDiffuseLight -->
+<!-- ...feDiffuseLighting -->
 <feComposite in2="SourceGraphic" operator="in" />
 ```
 
 Second and last: `feBlend`. Once you have a light, and this light occupies the area of the benefiting shapes, you need to alter the shapes themselves. The function takes two inputs, with now familiar ingredients, and returns an output with a chosen `mode`.
 
 ```html
-<!-- ...feDiffuseLight & feComposite -->
+<!-- ...feDiffuseLighting & feComposite -->
 <feBlend in2="SourceGraphic" mode="screen" />
 ```
 
@@ -141,26 +141,26 @@ You create a bright layer, cut out the portions of the layer which are not perti
 
 ## Lights
 
-As mentioned, there are two primitives for lighting effect, and these are `feDiffuseLight` and `feSpecularLight`. The two elements have their own attributes, but share a few common traits. Immediately, the functions rely on a color, set through the `lighting-color` attribute.
+As mentioned, there are two primitives for lighting effect, and these are `feDiffuseLighting` and `feSpecularLighting`. The two elements have their own attributes, but share a few common traits. Immediately, the functions rely on a color, set through the `lighting-color` attribute.
 
 On top of these, both primitives depend on additional, nested elements, responsible for the light source itself.
 
 ```html
-<feDiffuseLight lighting-color="hsl(48 96% 66%)">
+<feDiffuseLighting lighting-color="hsl(48 96% 66%)">
 	<!-- ...light source -->
-</feDiffuseLight>
+</feDiffuseLighting>
 ```
 
 But perhaps it is better to show their influence in practice.
 
 ### Diffuse
 
-`feDiffuseLight` creates _ambient light_, spanning in every direction.
+`feDiffuseLighting` creates _ambient light_, spanning in every direction.
 
 ```html
-<feDiffuseLight diffuseConstant="1" lighting-color="hsl(48 96% 66%)">
+<feDiffuseLighting diffuseConstant="1" lighting-color="hsl(48 96% 66%)">
 	<!-- ... -->
-</feDiffuseLight>
+</feDiffuseLighting>
 ```
 
 Past the lighting color you may tweak the primitive with additional attributes. `diffuseConstant`, for instance, works to update the strength of the light. But as mentioned, the primitive is not enough on its own. In between the opening and closing tag you need a light source, an element such as `fePointLight`.
@@ -185,7 +185,7 @@ Pick a color for the light and tinker with the strength of the wrapping filter. 
 
 ### Specular
 
-`feSpecularLight` illuminates the shapes with a reflection, as if the light were to bounce on the filtered shapes. The effect is quite different from the first primitive, but you have to see it to believe it.
+`feSpecularLighting` illuminates the shapes with a reflection, as if the light were to bounce on the filtered shapes. The effect is quite different from the first primitive, but you have to see it to believe it.
 
 ```html
 <feSpecularLighting specularConstant="1" specularExponent="20" lighting-color="hsl(48 96% 66%)">
