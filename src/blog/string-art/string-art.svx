@@ -82,13 +82,13 @@ for (let j = i + 1; j < points.length; j++) {
 
 Looping _"forwards"_ you consider lines in one direction only, but it's more than enough to complete the set.
 
-Again you can store the data in an array, and there are several ways you can save the points. A `<line>` element requires four attributes, for the start and end coordinates.
+Again you can store the data in an array, and there are several ways to save the points. A `<line>` element requires four attributes, for the start and end coordinates.
 
 ```html
 <line x1="40" y1="0" x2="12.319074630737305" y2="38.055755615234375" />
 ```
 
-In this instance you can store the points with plain objects and four matching properties.
+In this instance keep the points in plain objects and four matching properties.
 
 ```js
 // const lines = [] ...
@@ -115,7 +115,7 @@ And if you appreciate brevity, you might enjoy knowing that you don't need an ar
 />
 ```
 
-In light of this, you can add the sequence to a single string.
+In light of this, add the sequence to a single string.
 
 ```js
 // const lines = '' ...
