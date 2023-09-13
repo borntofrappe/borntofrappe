@@ -1,0 +1,42 @@
+---
+title: Stroke of chance
+description: Orchestrate an outline with SVG filters or a solid stroke.
+date: 2023-09-13
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import html from './html.js';
+	import Squiggle from './Squiggle.svelte';
+</script>
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['fe-morphology']}
+</Center>
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['fe-flood']}
+</Center>
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['fe-composite-in']}
+</Center>
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['fe-composite-out']}
+</Center>
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['outline-filter']}
+</Center>
+
+{@html html['outline-html']}
+
+<Center element="figure" maxInlineSize="24rem">
+	{@html html['outline-stroke']}
+</Center>
+
+<Center max-inline-size="30rem">
+	<Squiggle />
+</Center>
