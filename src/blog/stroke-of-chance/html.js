@@ -2,7 +2,7 @@ export default {
 	'outline-filter': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 38.461490631103516 22.93290138244629">
     <defs>
         <filter id="outline-filter-filter">
-            <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="1" />
+            <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="0.75" />
             <feFlood result="color" flood-color="hsl(0 0% 25%)" />
             <feComposite in="color" in2="dilation" operator="in" />
             <feComposite in2="SourceGraphic" operator="out" />
@@ -14,11 +14,11 @@ export default {
     </defs>
     <text filter="url(#outline-filter-filter)" fill="hsl(0 0% 99%)" font-family="sans-serif" font-size="16" font-weight="700">Tutti</text>
 </svg>`,
-	'outline-html': `<div>
+	'outline-html': `<blockquote>
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="outline-html-filter">
-                    <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="4" />
+                    <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="3" />
                     <feFlood result="color" flood-color="hsl(0 0% 25%)" />
                     <feComposite in="color" in2="dilation" operator="in" />
                     <feComposite in2="SourceGraphic" operator="out" />
@@ -30,16 +30,16 @@ export default {
         </defs>
     </svg>
     <p style="filter: url(#outline-html-filter); color: hsl(0 0% 99%); font-family: sans-serif; font-size: 3rem; font-weight: 700;">
-        On HTML element and even on longer sentences, daring to break in multiple rows.
+        On HTML elements and even on longer sentences, daring to break in multiple rows.
     </p>
-</div>`,
+</blockquote>`,
 	'outline-stroke': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 83.21540832519531 22.93290138244629">
     <text fill="hsl(0 0% 99%)" stroke="hsl(0 0% 25%)" stroke-width="2" paint-order="stroke" font-family="sans-serif" font-size="16" font-weight="700">Sforzando</text>
 </svg>`,
 	'fe-morphology': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 56.25579833984375 22.93290138244629">
     <defs>
         <filter id="fe-morphology-filter">
-            <feMorphology operator="dilate" radius="1" />
+            <feMorphology operator="dilate" radius="0.75" />
         </filter>
         <pattern id="fe-morphology-pattern" width="5.733225345611572" height="5.733225345611572" patternUnits="userSpaceOnUse" viewBox="0 -0.5 2 2">
             <path stroke="hsl(0 0% 25%)" d="M 0 0 1 0 M 1 1 2 1" />
@@ -63,9 +63,9 @@ export default {
 	'fe-composite-in': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 48.56983947753906 22.93290138244629">
     <defs>
         <filter id="fe-composite-in-filter">
-            <feMorphology in="SourceGraphic" result="stroke" operator="dilate" radius="1" />
+            <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="0.75" />
             <feFlood result="color" flood-color="hsl(0 0% 25%)" />
-            <feComposite in="color" in2="stroke" operator="in" />
+            <feComposite in="color" in2="dilation" operator="in" />
         </filter>
     </defs>
     <text filter="url(#fe-composite-in-filter)" fill="hsl(0 0% 99%)" font-family="sans-serif" font-size="16" font-weight="700">Dolce</text>
@@ -73,9 +73,9 @@ export default {
 	'fe-composite-out': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 44.99953079223633 22.93290138244629">
     <defs>
         <filter id="fe-composite-out-filter">
-            <feMorphology in="SourceGraphic" result="stroke" operator="dilate" radius="1" />
+            <feMorphology in="SourceGraphic" result="dilation" operator="dilate" radius="0.75" />
             <feFlood result="color" flood-color="hsl(0 0% 25%)" />
-            <feComposite in="color" in2="stroke" operator="in" />
+            <feComposite in="color" in2="dilation" operator="in" />
             <feComposite in2="SourceGraphic" operator="out" />
         </filter>
         <pattern id="fe-composite-out-pattern" width="5.7320332527160645" height="5.7320332527160645" patternUnits="userSpaceOnUse" viewBox="0 -0.5 2 2">
