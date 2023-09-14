@@ -21,9 +21,26 @@
 		};
 
 		const observer = new IntersectionObserver(observation);
-		observer.observe(svg);
+
+		const listener = (e) => {
+			if (e.matches) {
+				svg.querySelector('animate').endElement();
+				observer.unobserve(svg);
+			} else {
+				observer.observe(svg);
+			}
+		};
+
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (!reducedMotion.matches) {
+			observer.observe(svg);
+		}
+
+		reducedMotion.addEventListener('change', listener);
 
 		return () => {
+			reducedMotion.removeEventListener('change', listener);
 			observer.unobserve(svg);
 		};
 	});
