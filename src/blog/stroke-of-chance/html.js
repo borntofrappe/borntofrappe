@@ -14,7 +14,7 @@ export default {
     </defs>
     <text filter="url(#outline-filter-filter)" fill="hsl(0 0% 99%)" font-family="sans-serif" font-size="16" font-weight="700">Tutti</text>
 </svg>`,
-	'outline-html': `<blockquote>
+	'outline-html': `<div>
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="outline-html-filter">
@@ -32,7 +32,7 @@ export default {
     <p style="filter: url(#outline-html-filter); color: hsl(0 0% 99%); font-family: sans-serif; font-size: 3rem; font-weight: 700;">
         On HTML elements and even on longer sentences, daring to break in multiple rows.
     </p>
-</blockquote>`,
+</div>`,
 	'outline-stroke': `<svg style="display: block;" viewBox="-2.5 -16.962017059326172 86.78572082519531 22.93290138244629">
     <text fill="hsl(0 0% 99%)" stroke="hsl(0 0% 25%)" stroke-width="2" paint-order="stroke" font-family="sans-serif" font-size="16" font-weight="700">Fortissimo</text>
 </svg>`,
