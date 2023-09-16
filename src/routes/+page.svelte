@@ -17,7 +17,7 @@
 	style="
 		--box-color: var(--color);
 		--box-background: var(--background);
-		min-height: 100vh;
+		min-height: 100lvb;
 		z-index: 1;
 		position: relative;
 	"
@@ -29,7 +29,7 @@
 <div
 	style="
 		position: sticky;
-		bottom: 0;
+		inset-block-end: 0;
 	"
 >
 	<Footer illustration="heart" />
