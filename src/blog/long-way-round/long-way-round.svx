@@ -7,9 +7,14 @@ date: 2023-09-17T10:10:10
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
 
+	import svg from './svg.js';
 	import Torus from './Torus.svelte';
 	import Bracelet from './Bracelet.svelte';
 </script>
+
+<Center element="figure" maxInlineSize="20rem">
+    {@html svg['stroke-dashes']}
+</Center>
 
 <Center element="figure" maxInlineSize="350px">
 	<Torus />
