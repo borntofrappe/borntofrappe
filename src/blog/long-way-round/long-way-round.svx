@@ -3,3 +3,13 @@ title: Long way round
 description: Draw pseudo-3D shapes with an extra oomph.
 date: 2023-09-17T10:10:10
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Bracelet from './Bracelet.svelte';
+</script>
+
+<Center element="figure" maxInlineSize="400px">
+	<Bracelet />
+</Center>
