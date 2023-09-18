@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Illustration, Shape, TAU } from 'zdog';
+	import { Illustration, Shape } from 'zdog';
+
+	const TAU = Math.PI * 2;
 
 	let element = null;
 

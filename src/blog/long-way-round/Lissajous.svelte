@@ -3,7 +3,9 @@
 	import { tweened } from 'svelte/motion';
 	import { fly } from 'svelte/transition';
 	import { backIn, backOut, cubicInOut as easing } from 'svelte/easing';
-	import { Anchor, Shape, TAU } from 'zdog';
+	import { Anchor, Shape } from 'zdog';
+
+	const TAU = Math.PI * 2;
 
 	const o = 40;
 	const n = 100;
