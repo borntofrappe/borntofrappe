@@ -1,6 +1,6 @@
 export default {
 	'fe-tile': `<svg style="display: block;" viewBox="0 0 5 5">
-    <title>...</title>
+    <title>A checkered pattern</title>
     <defs>
         <filter id="fe-tile-filter" x="0" y="0" width="1" height="1">
             <feTile width="5" height="5" />
@@ -17,41 +17,41 @@ export default {
         </g>
     </g>
 </svg>`,
-	'pattern-angular': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+	'pattern-squares': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
+    <title>Expanding squares</title>
     <defs>
-        <path id="angular-sign" d="M 0 0 l 0 -0.5 -0.5 0 0 0.5 z m -4 -4 l 0.5 0 0 0.5 -0.5 0 m 4 1 l 0 -1 -1.5 0 0 1 -1 0 0 1 -1 0 0 1.5 1 0 0 -0.5 1 0 0 -1 1 0 0 -1 z" />
-        <pattern id="angular-pattern" viewBox="0 0 8 8" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
+        <path id="squares-quarter" d="M 0 0 l 0 -0.5 -0.5 0 0 0.5 z m -4 -4 l 0.5 0 0 0.5 -0.5 0 m 4 1 l 0 -1 -1.5 0 0 1 -1 0 0 1 -1 0 0 1.5 1 0 0 -0.5 1 0 0 -1 1 0 0 -1 z" />
+        <pattern id="squares-pattern" viewBox="0 0 8 8" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
             <rect fill="hsl(0 0% 97%)" width="8" height="8" />
             <g fill="hsl(0 0% 70%)">
-                <use href="#angular-sign" transform="translate(4 4)" />
-                <use href="#angular-sign" transform="translate(4 4) rotate(90)" />
-                <use href="#angular-sign" transform="translate(4 4) rotate(180)" />
-                <use href="#angular-sign" transform="translate(4 4) rotate(270)" />
+                <use href="#squares-quarter" transform="translate(4 4)" />
+                <use href="#squares-quarter" transform="translate(4 4) rotate(90)" />
+                <use href="#squares-quarter" transform="translate(4 4) rotate(180)" />
+                <use href="#squares-quarter" transform="translate(4 4) rotate(270)" />
             </g>
         </pattern>
     </defs>
     <rect fill="url(#angular-pattern)" width="4" height="3" />
 </svg>`,
 	'pattern-cross-stitch': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+    <title>Cross-stitch sequence</title>
     <defs>
-        <rect id="cross-stitch-square" x="-0.05" y="-0.05" width="0.1" height="0.1" />
+        <rect id="cross-stitch-corner" x="-0.05" y="-0.05" width="0.1" height="0.1" />
         <pattern id="cross-stitch-pattern" viewBox="0 0 1 1" width="1" height="1" patternUnits="userSpaceOnUse">
             <rect fill="hsl(0 0% 97%)" width="1" height="1" />
             <path fill="none" stroke="hsl(0 0% 70%)" stroke-width="0.01" stroke-dasharray="0.05" stroke-linecap="round" d="M 0 0.5 0.5 0 1 0.5 0.5 1 Z" />
             <g fill="hsl(0 0% 70%)">
-                <use href="#cross-stitch-square" x="0.5" />
-                <use href="#cross-stitch-square" y="0.5" />
-                <use href="#cross-stitch-square" x="1" y="0.5" />
-                <use href="#cross-stitch-square" x="0.5" y="1" />
+                <use href="#cross-stitch-corner" x="0.5" />
+                <use href="#cross-stitch-corner" y="0.5" />
+                <use href="#cross-stitch-corner" x="1" y="0.5" />
+                <use href="#cross-stitch-corner" x="0.5" y="1" />
             </g>
         </pattern>
     </defs>
     <rect fill="url(#cross-stitch-pattern)" width="4" height="3" />
 </svg>`,
 	'pattern-cubes': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+    <title>Three dimensional cubes</title>
     <defs>
         <pattern id="cubes-pattern" viewBox="0 0 1 1.5" width="1" height="1.5" patternUnits="userSpaceOnUse">
             <path fill="hsl(0 0% 60%)" d="M 0 0.25 0.5 0 1 0.25 0.5 0.5 Z M 0 0.75 0.5 1 0 1.25 Z M 0.5 1 1 0.75 1 1.25Z" />
@@ -61,18 +61,18 @@ export default {
     </defs>
     <rect fill="url(#cubes-pattern)" width="4" height="3" />
 </svg>`,
-	'pattern-diagonals': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+	'pattern-rectangles': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
+    <title>Marching rectangles</title>
     <defs>
-        <pattern id="diagonals-pattern" viewBox="0 0 2 2" width="1" height="1" patternUnits="userSpaceOnUse">
+        <pattern id="rectangles-pattern" viewBox="0 0 2 2" width="1" height="1" patternUnits="userSpaceOnUse">
             <rect fill="hsl(0 0% 97%)" width="2" height="2" />
             <path fill="none" stroke="hsl(0 0% 70%)" stroke-width="0.04" stroke-linecap="square" d="M 0 0 0.5 0.5 M 2 0 0.5 1.5 0 1 1 0 1.5 0.5 M 2 1 1.5 1.5 2 2 M 1 2 0.5 1.5 1 1 1.5 1.5 M 0 2 Z" />
         </pattern>
     </defs>
-    <rect fill="url(#diagonals-pattern)" width="4" height="3" />
+    <rect fill="url(#rectangles-pattern)" width="4" height="3" />
 </svg>`,
 	'pattern-stripes': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+    <title>Perpendicular stripes</title>
     <defs>
         <pattern id="stripes-pattern" viewBox="0 0 20 20" width="1" height="1" patternUnits="userSpaceOnUse">
             <g id="stripes-x">
@@ -90,7 +90,7 @@ export default {
     <rect fill="url(#stripes-pattern)" width="4" height="3" />
 </svg>`,
 	'pattern-zig-zag': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
-    <title>...</title>
+    <title>Zig-zagging ribbons</title>
     <defs>
         <pattern id="pattern-zigzag" viewBox="0 0 1 1" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
             <rect fill="hsl(0 0% 70%)" width="1" height="1" />
