@@ -1,9 +1,115 @@
 ---
-title: over-tiling-issues
-description: highlight-a-very-specific-issue-with-one-filter-primitive
-date: 2023-09-20T15:15:15
+title: Over tiling issues
+description: Discover a very specific issue some browsers seem to have with a filter primitive.
+date: 2023-09-20T16:34:26
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+	import svg from './svg.js';
+
+	import Patterns from './Patterns.svelte';
+</script>
+
+I've recently discovered it is possible to tile a floor over an existing pavement. This article, however, is not about remodeling a bathroom. And if possible, it is about an even more technical finding.
+
+Among the 17 primitives available in the `<filter>` element, there are a few extremely succinct functions. `feFlood`, for instance, paints over the filtered area with a given color.
+
+```html
+<feFlood flood-color="hsl(0 0% 70%)" />
+```
+
+You would think that behind these functions there is little to discover. Again think of `feGaussianBlur`.
+
+```html
+<feGaussianBlur stdDeviation="2" />
+```
+
+One attribute, `stdDeviation`. One input, the element on which you set the filter. One output, a blurred version of the same figure.
+
+There is one more primitive which shares the same basic setup, and unsurprisingly goes by the name of `feTile`.
 
 ```html
 <feTile width="5" height="5" />
 ```
+
+What goes in the primitive is an image. What comes out is the same image, promptly tiled over the space described by the `width` and `height` attributes.
+
+What could possibly be wrong with the picture? Turns out, a lot. But to appreciate the very issue, let's frame the primitive in a larger example.
+
+```html
+<svg viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+In the body of an `<svg>` element, equipped with a conveniently squared canvas, there are many ways to create a checkered pattern. But in the most naive manner, rectangles will suffice.
+
+```html
+<rect width="0.5" height="0.5" fill="hsl(0 0% 70%)" />
+<rect x="0.5" width="0.5" height="0.5" fill="hsl(0 0% 97%)" />
+<rect y="0.5" width="0.5" height="0.5" fill="hsl(0 0% 97%)" />
+<rect x="0.5" y="0.5" width="0.5" height="0.5" fill="hsl(0 0% 70%)" />
+```
+
+This is our reference, our source graphic. For good measure we wrap the shapes in a group element. With this setup, we are able to apply the filter on the entire composition with the `filter` attribute, pointing to a structure that is yet to come.
+
+```html
+<g filter="url(#tile)">
+	<!-- ...rects -->
+</g>
+```
+
+For the filter, the element requires an `id`, completing the connection with the shapes.
+
+```html
+<filter id="tile">
+	<!-- ... -->
+</filter>
+```
+
+We want to consider the shapes from start to end, so we update [the filter region](/filter-region) to match the dimensions of the drawing.
+
+```html
+<filter id="tile" x="0" y="0" width="1" height="1">
+	<!-- ... -->
+</filter>
+```
+
+And in this context, we can finally introduce the primitive.
+
+```html
+<filter id="tile" x="0" y="0" width="1" height="1">
+	<feTile />
+</filter>
+```
+
+With only `feTile` little seems to change. In goes the image. Out goes the same. As the figure is tiled with the same width and height, 1, it is not possible to see a difference.
+
+What if we change the two attributes, however? We need to allocate more space with the `viewBox` attribute, so to avoid drawing outside of the visible area.
+
+```diff
+-<svg viewBox="0 0 1 1">
++<svg viewBox="0 0 5 5">
+```
+
+But if we now update the dimensions of the tiling primitive, the image is bound to repeat.
+
+```diff
+-<feTile />
++<feTile width="5" height="5" />
+```
+
+A pattern is bound to appear.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['fe-tile']}
+</Center>
+
+Unfortunately, not always. The snippet works on a few browsers, like Chrome, Edge and Opera, but in other environments the result is quite different. On FireFox and the only instance of Safari I was able to test you find the group, alone. Four rectangles, only smaller as the `viewBox` has grown in measure.
+
+What's going on? Seemingly, a different interpretation of the specification. Indeed the filter has [a region](https://drafts.fxtf.org/filter-effects/#filter-region) which acts as a hard clip. Anything drawn outside of the area should be removed from sight. And yet, as [an inspiring note](https://drafts.fxtf.org/filter-effects/#filter-primitive-subregion) seems to detail, `feTile` is _special_. Since the element is designed to tile an image, its region is liable to occupy a larger surface. In light of this. the region should grow to fit the nested primitive.
+
+But the rules are far from clear. Can you really blame the more restrictive, conservative approach of some browsers? Alas, I don't have an immediate answer. Only a curious finding and a suggestion forward. `feTile` has a close relationship with a non-filter element, `<pattern>`. If you need a reliable sequence, repeated in rows and columns, the element is more than glad to cover the gap. Even at the cost of a few more attributes and a slightly more complex markup.
+
+<Patterns />
