@@ -17,7 +17,7 @@ export default {
         </g>
     </g>
 </svg>`,
-	angular: `<svg style="display: block;" viewBox="0 0 4 3">
+	angular: `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <path id="angular-sign" d="M 0 0 l 0 -0.5 -0.5 0 0 0.5 z m -4 -4 l 0.5 0 0 0.5 -0.5 0 m 4 1 l 0 -1 -1.5 0 0 1 -1 0 0 1 -1 0 0 1.5 1 0 0 -0.5 1 0 0 -1 1 0 0 -1 z" />
@@ -33,7 +33,7 @@ export default {
     </defs>
     <rect fill="url(#angular-pattern)" width="4" height="3" />
 </svg>`,
-	'cross-stitch': `<svg style="display: block;" viewBox="0 0 4 3">
+	'cross-stitch': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <rect id="cross-stitch-square" x="-0.05" y="-0.05" width="0.1" height="0.1" />
@@ -50,7 +50,7 @@ export default {
     </defs>
     <rect fill="url(#cross-stitch-pattern)" width="4" height="3" />
 </svg>`,
-	cubes: `<svg style="display: block;" viewBox="0 0 4 3">
+	cubes: `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <pattern id="cubes-pattern" viewBox="0 0 1 1.5" width="1" height="1.5" patternUnits="userSpaceOnUse">
@@ -61,7 +61,7 @@ export default {
     </defs>
     <rect fill="url(#cubes-pattern)" width="4" height="3" />
 </svg>`,
-	diagonals: `<svg style="display: block;" viewBox="0 0 4 3">
+	diagonals: `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <pattern id="diagonals-pattern" viewBox="0 0 2 2" width="1" height="1" patternUnits="userSpaceOnUse">
@@ -71,7 +71,7 @@ export default {
     </defs>
     <rect fill="url(#diagonals-pattern)" width="4" height="3" />
 </svg>`,
-	stripes: `<svg style="display: block;" viewBox="0 0 4 3">
+	stripes: `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <pattern id="stripes-pattern" viewBox="0 0 20 20" width="1" height="1" patternUnits="userSpaceOnUse">
@@ -89,7 +89,7 @@ export default {
     </defs>
     <rect fill="url(#stripes-pattern)" width="4" height="3" />
 </svg>`,
-	'zig-zag': `<svg style="display: block;" viewBox="0 0 4 3">
+	'zig-zag': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>...</title>
     <defs>
         <pattern id="pattern-zigzag" viewBox="0 0 1 1" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
