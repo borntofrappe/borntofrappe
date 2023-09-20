@@ -2,7 +2,7 @@
 	import svg from './svg.js';
 
 	const patterns = Object.entries(svg)
-		.filter(([key]) => key !== 'fe-tile')
+		.filter(([key]) => key.startsWith('pattern'))
 		.map(([, value]) => value);
 </script>
 
