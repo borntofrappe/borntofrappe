@@ -11,9 +11,9 @@ date: 2023-09-20T16:34:26
 	import Patterns from './Patterns.svelte';
 </script>
 
-I've recently discovered it is possible to tile a floor over an existing pavement. This article, however, is not about remodeling a bathroom. And if possible, it is about an even more technical finding.
+I've recently discovered it is possible to tile a floor over an existing pavement. This article, however, is not about remodeling a bathroom. And if possible, is about an even more technical finding.
 
-Among the 17 primitives available in the `<filter>` element, there are a few extremely succinct functions. `feFlood`, for instance, paints over the filtered area with a given color.
+Among the 17 primitives available in the `<filter>` element there are a few extremely succinct functions. `feFlood`, for instance, paints over the filtered area with a given color.
 
 ```html
 <feFlood flood-color="hsl(0 0% 70%)" />
@@ -52,7 +52,7 @@ In the body of an `<svg>` element, equipped with a conveniently squared canvas, 
 <rect x="0.5" y="0.5" width="0.5" height="0.5" fill="hsl(0 0% 70%)" />
 ```
 
-This is our reference, our source graphic. For good measure we wrap the shapes in a group element. With this setup, we are able to apply the filter on the entire composition with the `filter` attribute, pointing to a structure that is yet to come.
+This is our reference, our source graphic. For good measure we wrap the shapes in a group element. With this setup we are able to apply the filter on the entire composition with the `filter` attribute, pointing to a structure that is yet to come.
 
 ```html
 <g filter="url(#tile)">
@@ -86,7 +86,7 @@ And in this context, we can finally introduce the primitive.
 
 With only `feTile` little seems to change. In goes the image. Out goes the same. As the figure is tiled with the same width and height, 1, it is not possible to see a difference.
 
-What if we change the two attributes, however? We need to allocate more space with the `viewBox` attribute, so to avoid drawing outside of the visible area.
+What if we change the attributes, however? We need to allocate more space with the `viewBox` attribute, so to avoid drawing outside of the visible area.
 
 ```diff
 -<svg viewBox="0 0 1 1">
@@ -106,10 +106,12 @@ A pattern is bound to appear.
 	{@html svg['fe-tile']}
 </Center>
 
-Unfortunately, not always. The snippet works on a few browsers, like Chrome, Edge and Opera, but in other environments the result is quite different. On FireFox and the only instance of Safari I was able to test you find the group, alone. Four rectangles, only smaller as the `viewBox` has grown in measure.
+Unfortunately, not always. The snippet works on a few browsers, like Chrome, Edge and Opera, but in other environments the result is quite different. On FireFox and the only instance of Safari I was able to test you find the group. Alone. Four rectangles, only smaller as the `viewBox` has grown in measure.
 
-What's going on? Seemingly, a different interpretation of the specification. Indeed the filter has [a region](https://drafts.fxtf.org/filter-effects/#filter-region) which acts as a hard clip. Anything drawn outside of the area should be removed from sight. And yet, as [an inspiring note](https://drafts.fxtf.org/filter-effects/#filter-primitive-subregion) seems to detail, `feTile` is _special_. Since the element is designed to tile an image, its region is liable to occupy a larger surface. In light of this. the region should grow to fit the nested primitive.
+What's going on? Seemingly, a different interpretation of the specification. Indeed the filter has [a region](https://drafts.fxtf.org/filter-effects/#filter-region) which acts as a hard clip. Anything drawn outside of the area should be removed from sight. And yet, as [an inspiring note](https://drafts.fxtf.org/filter-effects/#filter-primitive-subregion) seems to detail, `feTile` is _special_. Since the element is designed to tile an image, its region is liable to occupy a larger surface. And for this reason, the area should grow to fit the nested primitive.
 
-But the rules are far from clear. Can you really blame the more restrictive, conservative approach of some browsers? Alas, I don't have an immediate answer. Only a curious finding and a suggestion forward. `feTile` has a close relationship with a non-filter element, `<pattern>`. If you need a reliable sequence, repeated in rows and columns, the element is more than glad to cover the gap. Even at the cost of a few more attributes and a slightly more complex markup.
+But the rules are a tad fuzzy. Can you really blame the more conservative approach of some browsers? Personally, I don't have a clear answer. Only a curious finding and a suggestion forward. `feTile` has a close relationship with a non-filter element: `<pattern>`. If you need a sequence, repeated in rows and columns, the element is more than glad to cover the gap.
+
+At the cost of a few more attributes and a slightly more complex markup, you can focus on the single, repeating shape. And trust in a consistent, single result.
 
 <Patterns />
