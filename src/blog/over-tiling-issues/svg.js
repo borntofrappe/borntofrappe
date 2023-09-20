@@ -31,7 +31,7 @@ export default {
             </g>
         </pattern>
     </defs>
-    <rect fill="url(#angular-pattern)" width="4" height="3" />
+    <rect fill="url(#squares-pattern)" width="4" height="3" />
 </svg>`,
 	'pattern-cross-stitch': `<svg style="display: block;" viewBox="0 0 4 3" preserveAspectRatio="xMidYMid slice">
     <title>Cross-stitch sequence</title>
