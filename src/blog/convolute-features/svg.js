@@ -71,7 +71,7 @@ export default {
     </svg>
 </svg>`,
 	'convolve-alpha': `<svg style="display: block;" viewBox="0 0 12.5 8.5">
-    <title>feConvolve alpha channel</title>
+    <title>feConvolveMatrix alpha channel</title>
     <defs>
         <filter id="convolve-alpha-0" x="0" y="0" width="1" height="1">
             <feConvolveMatrix preserveAlpha="false" order="1" kernelMatrix="1" bias="-0.25" />
