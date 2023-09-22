@@ -243,7 +243,7 @@
 		--padding: 1rem;
 		--border-radius: 0.5rem;
 		table-layout: fixed;
-		width: 100%;
+		block-size: 100%;
 		border-spacing: 0;
 	}
 

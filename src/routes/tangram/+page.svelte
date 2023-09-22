@@ -70,8 +70,8 @@
 
 	label input {
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-inline-start: 0;
+		inset-block-start: 0;
 		block-size: 100%;
 		inline-size: 100%;
 		opacity: 0;

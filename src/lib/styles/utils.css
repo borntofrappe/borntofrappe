@@ -23,7 +23,7 @@
 
 .centered {
 	display: flex;
-	min-block-size: var(--size, 100vh);
+	min-block-size: var(--size, 100vb);
 }
 
 .centered > * {
@@ -59,7 +59,7 @@
 
 .floating > .float {
 	margin-block: var(--space, 1em);
-	width: 100%;
+	inline-size: 100%;
 	max-inline-size: var(--measure, 24rem);
 	align-self: center;
 }
