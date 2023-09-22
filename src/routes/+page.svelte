@@ -17,7 +17,7 @@
 	style="
 		--box-color: var(--color);
 		--box-background: var(--background);
-		min-height: 100lvb;
+		min-block-size: 100vb;
 		z-index: 1;
 		position: relative;
 	"

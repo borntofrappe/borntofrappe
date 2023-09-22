@@ -28,8 +28,8 @@ html:focus-within {
 
 img,
 picture {
-	max-width: 100%;
 	display: block;
+	max-block-size: 100%;
 }
 
 input,
