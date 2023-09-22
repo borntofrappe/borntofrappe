@@ -1,0 +1,5 @@
+---
+title: Convolute features
+description: Sample the often cryptic instructions leading up to a powerful filter primitive.
+date: 2023-09-22T16:35:13
+---
