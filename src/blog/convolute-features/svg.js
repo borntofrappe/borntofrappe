@@ -40,5 +40,59 @@ export default {
             <path transform="translate(-0.5 -0.5)" fill="none" stroke="#fcd044" stroke-width="0.075" d="M 0.2 0.1 0.2 0.9 0.1 0.9 M 0.2 0.4 A 0.275 0.275 0 0 0 0.55 0.1 M 0.2 0.6 A 0.5 0.5 0 0 0 0.85 0.1" />
         </g>
     </g>
+</svg>`,
+	'convolve-bias': `<svg style="display: block;" viewBox="0 0 19 4">
+    <title>feConvolveMatrix biases</title>
+    <defs>
+        <filter id="convolve-bias-0" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix order="1" kernelMatrix="1" bias="0" />
+        </filter>
+        <filter id="convolve-bias-1" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix order="1" kernelMatrix="1" bias="0.25" />
+        </filter>
+        <filter id="convolve-bias-2" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix order="1" kernelMatrix="1" bias="-0.25" />
+        </filter>
+    </defs>
+    <svg width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-bias-0)" fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="#333333" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.55" x="-2.55" y="1.55">bias = <tspan font-weight="700">0</tspan></text>
+    </svg>
+    <svg x="6.5" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-bias-1)" fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="#333333" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.55" x="-2.55" y="1.55">bias = <tspan font-weight="700">0.25</tspan></text>
+    </svg>
+    <svg x="13" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-bias-2)" fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="#333333" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.55" x="-2.55" y="1.55">bias = <tspan font-weight="700">-0.25</tspan></text>
+    </svg>
+</svg>`,
+	'convolve-alpha': `<svg style="display: block;" viewBox="0 0 12.5 8.5">
+    <title>feConvolve alpha channel</title>
+    <defs>
+        <filter id="convolve-alpha-false" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix preserveAlpha="false" order="1" kernelMatrix="1" bias="-0.25" />
+        </filter>
+        <filter id="convolve-alpha-true" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix preserveAlpha="true" order="1" kernelMatrix="1" bias="-0.25" />
+        </filter>
+    </defs>
+    <svg x="3.25" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+    </svg>
+    <svg y="4.5" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-alpha-false)" fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="#333333" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">preserveAlpha = <tspan font-weight="700">false</tspan></text>
+    </svg>
+    <svg y="4.5" x="6.5" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="#e8e4d6" stroke="#856849" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-alpha-true)" fill="#fcd044" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="#333333" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">preserveAlpha = <tspan font-weight="700">true</tspan></text>
+    </svg>
 </svg>`
 };
