@@ -41,6 +41,27 @@ export default {
         </g>
     </g>
 </svg>`,
+	'convolve-kernel': `<svg style="display: block;" viewBox="0 0 12.5 4">
+    <title>feConvolveMatrix kernelMatrix</title>
+    <defs>
+        <filter id="convolve-pixel-0" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix preserveAlpha="false" order="1" kernelMatrix="0" />
+        </filter>
+        <filter id="convolve-pixel-1" x="0" y="0" width="1" height="1">
+            <feConvolveMatrix preserveAlpha="true" order="1" kernelMatrix="1" />
+        </filter>
+    </defs>
+    <svg width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="hsl(47 28% 87%)" stroke="hsl(31 29% 40%)" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-pixel-0)" fill="hsl(46 97% 63%)" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="hsl(42 15% 13%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">kernelMatrix = <tspan font-weight="700">0</tspan></text>
+    </svg>
+    <svg x="6.5" width="6" height="4" viewBox="-3 -2 6 4">
+        <rect fill="hsl(47 28% 87%)" stroke="hsl(31 29% 40%)" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
+        <rect filter="url(#convolve-pixel-1)" fill="hsl(46 97% 63%)" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
+        <text fill="hsl(42 15% 13%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">kernelMatrix = <tspan font-weight="700">1</tspan></text>
+    </svg>
+</svg>`,
 	'convolve-bias': `<svg style="display: block;" viewBox="0 0 19 4">
     <title>feConvolveMatrix biases</title>
     <defs>
@@ -70,7 +91,7 @@ export default {
         <text fill="hsl(42 15% 13%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.55" x="-2.55" y="1.55">bias = <tspan font-weight="700">-0.25</tspan></text>
     </svg>
 </svg>`,
-	'convolve-alpha': `<svg style="display: block;" viewBox="0 0 12.5 8.5">
+	'convolve-alpha': `<svg style="display: block;" viewBox="0 0 12.5 4">
     <title>feConvolveMatrix alpha channel</title>
     <defs>
         <filter id="convolve-alpha-0" x="0" y="0" width="1" height="1">
@@ -80,19 +101,76 @@ export default {
             <feConvolveMatrix preserveAlpha="true" order="1" kernelMatrix="1" bias="-0.25" />
         </filter>
     </defs>
-    <svg x="3.25" width="6" height="4" viewBox="-3 -2 6 4">
-        <rect fill="hsl(47 28% 87%)" stroke="hsl(31 29% 40%)" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
-        <rect fill="hsl(46 97% 63%)" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
-    </svg>
-    <svg y="4.5" width="6" height="4" viewBox="-3 -2 6 4">
+    <svg width="6" height="4" viewBox="-3 -2 6 4">
         <rect fill="hsl(47 28% 87%)" stroke="hsl(31 29% 40%)" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
         <rect filter="url(#convolve-alpha-0)" fill="hsl(46 97% 63%)" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
         <text fill="hsl(42 15% 13%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">preserveAlpha = <tspan font-weight="700">false</tspan></text>
     </svg>
-    <svg y="4.5" x="6.5" width="6" height="4" viewBox="-3 -2 6 4">
+    <svg x="6.5" width="6" height="4" viewBox="-3 -2 6 4">
         <rect fill="hsl(47 28% 87%)" stroke="hsl(31 29% 40%)" stroke-width="0.3" x="-2.85" y="-1.85" width="5.7" height="3.7" />
         <rect filter="url(#convolve-alpha-1)" fill="hsl(46 97% 63%)" x="-0.6" y="-0.6" width="1.2" height="1.2" rx="0.2" />
         <text fill="hsl(42 15% 13%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.4" text-anchor="end" x="2.55" y="1.55">preserveAlpha = <tspan font-weight="700">true</tspan></text>
     </svg>
-</svg>`
+</svg>`,
+	'convolve-matrix-variables': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mtable>
+        <mtr>
+            <mtd>A</mtd>
+            <mtd>B</mtd>
+            <mtd>C</mtd>
+        </mtr>
+        <mtr>
+            <mtd>D</mtd>
+            <mtd style="font-weight: 700">P</mtd>
+            <mtd>E</mtd>
+        </mtr>
+        <mtr>
+            <mtd>F</mtd>
+            <mtd>G</mtd>
+            <mtd>H</mtd>
+        </mtr>
+    </mtable>
+</math>`,
+	'convolve-matrix-weights': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mtable>
+        <mtr>
+            <mtd><msub><mi>w</mi><mn>a</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>b</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>c</mn></msub></mtd>
+        </mtr>
+        <mtr>
+            <mtd><msub><mi>w</mi><mn>d</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>p</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>e</mn></msub></mtd>
+        </mtr>
+        <mtr>
+            <mtd><msub><mi>w</mi><mn>f</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>g</mn></msub></mtd>
+            <mtd><msub><mi>w</mi><mn>h</mn></msub></mtd>
+        </mtr>
+    </mtable>
+</math>`,
+	'convolve-matrix-formula': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mn style="font-weight: 700">P'</mn>
+    <mo>=</mo>
+    <mfrac>
+        <mrow>
+            <mo>(</mo><mn>P</mn><mo>*</mo><msub><mi>w</mi><mn>p</mn></msub><mo>)</mo>
+            <mo>+</mo>
+            <mo>(</mo><mn>A</mn><mo>*</mo><msub><mi>w</mi><mn>a</mn></msub><mo>)</mo>
+            <mo>+</mo>
+            <mo>...</mo>
+            <mo>(</mo><mn>H</mn><mo>*</mo><msub><mi>w</mi><mn>h</mn></msub><mo>)</mo>
+        </mrow>
+        <mrow>
+            <msub><mi>w</mi><mn>p</mn></msub>
+            <mo>+</mo>
+            <msub><mi>w</mi><mn>a</mn></msub>
+            <mo>+</mo>
+            <mo>...</mo>
+            <mo>+</mo>
+            <msub><mi>w</mi><mn>h</mn></msub>
+        </mrow>
+    </mfrac>
+</math>`
 };
