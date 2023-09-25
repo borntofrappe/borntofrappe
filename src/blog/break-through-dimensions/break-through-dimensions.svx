@@ -12,7 +12,7 @@ date: 2023-09-25T09:34:43
 
 As an SVG enthusiast there is one feature of [the Zdog library](https://zzz.dog/) I greatly cherish, the ability to render pseudo-3D shapes right in an `<svg>` element.
 
-[I might have argued the point already](/pseudo-3d-element), but the option allows for a flexible setup. One where you can very well have a 2D graphic, painted on screen with nothing but SVG elements. And one where, with the blessing of JavaScript, the shapes are replaced with the deeper forms.
+[I might have argued the point already](/pseudo-3d-land), but the option allows for a flexible setup. One where you can very well have a 2D graphic, painted on screen with nothing but SVG elements. And one where, with the blessing of JavaScript, the shapes are replaced with the deeper forms.
 
 But just how far is it possible to push the feature? Or rather, just how deep can the immersion be? Fancy that, a scenario where the image emerges, breaks through its original constraints to joyfully explore the three axes.
 
