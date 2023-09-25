@@ -1,6 +1,6 @@
 ---
 title: Break through dimensions
-description: Relish in the possibilities of using SVG in the context of the Zdog library.
+description: Relish in the possibility of using SVG with the Zdog library.
 date: 2023-09-25T09:34:43
 ---
 
