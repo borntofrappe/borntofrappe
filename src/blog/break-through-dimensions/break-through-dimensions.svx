@@ -3,3 +3,13 @@ title: break-through-dimensions
 description: SVG + Zdog <3
 date: 2023-09-25T09:34:43
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Bob from './Bob.svelte';
+</script>
+
+<Center maxInlineSize="400px">
+	<Bob />
+</Center>
