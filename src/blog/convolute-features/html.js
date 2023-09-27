@@ -112,6 +112,19 @@ export default {
         <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">true</tspan>"</text>
     </svg>
 </svg>`,
+	'convolve-matrix': `<svg style="display: block;" viewBox="-5 -3 10 6">
+    <title>feConvolveMatrix filter</title>
+    <defs>
+        <filter id="convolve-matrix" >
+            <feConvolveMatrix preserveAlpha="true" bias="0.01" kernelMatrix="0 0 0 1 0 -1 0 0 0" />
+        </filter>
+    </defs>
+    <rect fill="none" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+    <g filter="url(#convolve-matrix)">
+        <rect fill="hsl(210 11% 15%)" x="-4.5" y="-2.5" width="9" height="5" />
+        <rect fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
+    </g>
+</svg>`,
 	'convolve-matrix-variables': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mtable>
         <mtr>
