@@ -112,6 +112,26 @@ export default {
         <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">true</tspan>"</text>
     </svg>
 </svg>`,
+	'convolve-weights': `<svg style="display: block;" viewBox="0 -0.8 3 1.8">
+    <title>feConvolveMatrix weights</title>
+    <rect fill="hsl(0 0% 8%)" width="2" height="1" />
+    <rect fill="hsl(0 0% 90%)" x="2" width="1" height="1" />
+    <g fill="currentColor" font-family="monospace">
+        <text font-size="0.5" x="0.5" text-anchor="middle" y="-0.15">1</text>
+        <text transform="translate(1 0)" font-weight="700" font-size="0.75" x="0.5" text-anchor="middle" y="-0.15">?</text>
+        <text transform="translate(2 0)" font-size="0.5" x="0.5" text-anchor="middle" y="-0.15">-1</text>
+    </g>
+</svg>`,
+	'convolve-rotated-weights': `<svg style="display: block;" viewBox="0 0 3 1.8">
+    <title>feConvolveMatrix actual weights</title>
+    <rect fill="hsl(0 0% 8%)" width="2" height="1" />
+    <rect fill="hsl(0 0% 90%)" x="2" width="1" height="1" />
+    <g transform="translate(3 1) rotate(180)" fill="currentColor" font-family="monospace">
+        <text font-size="0.5" x="0.5" text-anchor="middle" y="-0.15">1</text>
+        <text transform="translate(1 0)" font-weight="700" font-size="0.75" x="0.5" text-anchor="middle" y="-0.15">?</text>
+        <text transform="translate(2 0)" font-size="0.5" x="0.5" text-anchor="middle" y="-0.15">-1</text>
+    </g>
+</svg>`,
 	'convolve-matrix': `<svg style="display: block;" viewBox="-5 -3 10 6">
     <title>feConvolveMatrix filter</title>
     <defs>

@@ -115,7 +115,7 @@ The left and right neighbors are set with opposite numbers. If the two pixels ha
 If the two disagree, on the other end, the center value does change. How?
 
 <Center element="figure" maxInlineSize="20rem">
-	{@html html['convolve-kernel']}
+	{@html html['convolve-weights']}
 </Center>
 
 The earlier pixel is added, while the second is removed. You would think this would mean the pixel will be influenced by the value on the left over that on the right, but the result is exactly the opposite. But I promise you, this is the last confusing step of the sequence.
@@ -123,7 +123,7 @@ The earlier pixel is added, while the second is removed. You would think this wo
 As detailed [in the specification](https://drafts.fxtf.org/filter-effects/#feConvolveMatrixElement), the kernel matrix is rotated 180 degrees. In other words, you need to look at the array of weights upside down.
 
 <Center element="figure" maxInlineSize="20rem">
-	{@html html['convolve-actual-kernel']}
+	{@html html['convolve-rotated-weights']}
 </Center>
 
 In practical terms, and for our very small use case, the pixel gains in intensity. Influenced by the brighter neighbor, the square becomes even brighter, per the effect of the bias.
