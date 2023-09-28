@@ -1,0 +1,145 @@
+---
+title: Convolute features
+description: Sample the often cryptic instructions leading up to a powerful filter primitive.
+date: 2023-09-28T10:34:57
+---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+	import html from './html.js';
+</script>
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html html['fe-morphology']}
+</Center>
+
+Once you understand how SVG filters work with primitives, a succession of inputs and outputs, you can almost appreciate the logic of some functions just by going through the attributes.
+
+Consider `feFlood`, or again `feGaussianBlur`. Even `feMorphology` for that matter.
+
+```html
+<feMorphology operator="erode" radius="0.1" />
+```
+
+Past the elaborate label and the fancy keyword in the `operator` attribute, the function is straightforward in terms of result, of what the filter returns — an image eroded around the edges.
+
+Unfortunately, not all primitives share the same propensity for clarity. And there is perhaps no better example than `feConvolveMatrix`.
+
+```html
+<feConvolveMatrix bias="0.01" preserveAlpha="true" kernelMatrix="0 0 0 1 0 -1 0 0 0" />
+```
+
+The primitive operates on pixel values, in often mysterious ways, but to decipher its function, it helps to build the element in increments, sampling the attributes one at a time.
+
+`kernelMatrix`points to a string of 9 values; positive and negative numbers which add up to a 3 by 3 matrix. But if this structure sounds overwhelming, you'll be glad to know that the dimensions are not set in stone, and you can change the order with a fitting attribute.
+
+```html
+<feConvolveMatrix order="1" kernelMatrix="1" />
+```
+
+Set `order` to 1, rather daftly, and `kernelMatrix` asks for a single number. What the filter returns, ultimately, depends on the only input.
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html html['convolve-pixel']}
+</Center>
+
+Apply the filter to a square with a value of 0 the shape disappears, as if you were to turn the display off. Set the value to 1 and the shape is preserved.
+
+Why is that? Consider a second attribute, `bias`.
+
+```html
+<feConvolveMatrix bias="0.25" order="1" kernelMatrix="1" />
+```
+
+The attribute refers once again to a number, a quantity added after the matrix.
+
+<Center element="figure" maxInlineSize="60rem">
+	{@html html['convolve-bias']}
+</Center>
+
+With a positive bias the square gains in intensity and becomes brighter, as if mixed with a touch of white. With a negative number the effect is opposed. The shape loses intensity and is painted with a darker shade.
+
+Based on the input color, `feConvolveMatrix` takes the values of the matrix and bias to update the different channels. Red, blue and green are shown in greater or smaller amounts, explaining the brighter and darker version.
+
+You may wonder about the second version, however. The square looks darker, but also pallid. The reason? `feConvolveMatrix` changes the value of the color channels, and the alpha channel as well. With a negative offset the image becomes slightly translucent, and lets the dark background through.
+
+And the concept explains the issue with the very first painting, set to 0 in color and opacity, naturally disappearing from view.
+
+It is quite likely that you want to update the colors alone, and keep the opacity to its original measure. In this instance set `preserveAlpha` to `true`.
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html html['convolve-alpha']}
+</Center>
+
+The examples are close to trivial, but enough to prime you and understand more complex structures. Even the original snippet and a matrix of 9 values.
+
+Think of a pixel `P` as surrounded by 8 neighbors, offset vertically, horizontally and diagonally.`A`, `B`, `C` and further in the alphabet until you reach `H`.
+
+{@html html['convolve-matrix-variables']}
+
+The values in the matrix refer to the weights for these pixels.
+
+{@html html['convolve-matrix-weights']}
+
+Mathematically, pixels and weights are included in a long formula. And in so doing, the primitive reaches a value for the new square. Not on the basis of one pixel, but a region of pixels.
+
+The operation is technical, but you can very well understand the effect relying on intuition.
+
+Unfortunately, the single square has outlived its purpose. Since the shape has only one color, there is now little reason to update the graphic by itself. We can still make use of the polygon, together with the rectangle making up the dark canvas.
+
+Apply the filter to both shapes and consider once again the snippet arranging the matrix in neat columns and rows.
+
+```html
+<feConvolveMatrix
+	bias="0.01"
+	preserveAlpha="true"
+	kernelMatrix="
+		0 0  0 
+		1 0 -1 
+		0 0  0
+	"
+/>
+```
+
+The neighbors above and below are set to 0. And in so doing, the values of the corresponding pixels have no influence on the final value. But the same is true for the center value, once again assigned to a value of 0. What does this mean? The pixel would turn out black. Not transparent, as we have the forethought of keeping `preserveAlpha`. And not completely black either, given the small, but positive bias. Tinted in gray. If it weren't for the values of the remaining neighbors, on the left and on the right.
+
+It helps to think in very small terms. Consider the row in detail.
+
+```text
+1 0 -1
+```
+
+The left and right neighbors are set with opposite numbers. If the two pixels have the same value, the colors cancel each other out and there won't be any change in the center value. Still gray.
+
+If the two disagree, on the other end, the center value does change. How?
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html html['convolve-weights']}
+</Center>
+
+The earlier pixel is added, while the second is removed. You would think this would mean the pixel will be influenced by the value on the left over that on the right, but the result is exactly the opposite. But I promise you, this is the last confusing step of the sequence.
+
+As detailed [in the specification](https://drafts.fxtf.org/filter-effects/#feConvolveMatrixElement), the kernel matrix is rotated 180 degrees. In other words, you need to look at the array of weights upside down.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html html['convolve-rotated-weights']}
+</Center>
+
+In practical terms, and for our very small use case, the pixel gains in intensity. Influenced by the brighter neighbor, the square becomes even brighter, per the effect of the bias.
+
+In the opposite instance the effect is reversed. Where the pixel sits between a bright and dark square, it becomes even darker.
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html html['convolve-matrix']}
+</Center>
+
+The result is that the square in the middle of the painting is raised and lit from the side. A subtle, but notable change.
+
+---
+
+Fe is a demanding primitive, for you, but also the browser, which needs to examine the value of _every single_ pixel and the chosen region. That being said, understanding the logic of the different attributes helps you to craft impressive designs.
+
+<Center element="figure" maxInlineSize="26rem">
+	{@html html['fe-convolve-matrix']}
+</Center>
