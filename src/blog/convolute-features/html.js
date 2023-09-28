@@ -19,25 +19,25 @@ export default {
     <title>Cryptic carvings</title>
     <defs>
         <filter id="fe-convolve-matrix-filter" >
-            <feConvolveMatrix preserveAlpha="true" bias="0.01" order="3 1" kernelMatrix="1 0 -1" />
+            <feConvolveMatrix preserveAlpha="true" bias="0.03" order="3 1" kernelMatrix="1 0 -1" />
         </filter>
     </defs>
     <g filter="url(#fe-convolve-matrix-filter)" transform="rotate(-5)" stroke-linecap="round" stroke-linejoin="round">
         <g transform="rotate(-5) translate(0 -1.25) rotate(5)">
-            <path fill="hsl(210 11% 15%)" stroke="hsl(210 11% 15%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4702282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
-            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(210 16% 93%)" stroke-width="0.075" d="M 0.3 0.1 0.25 0.5 0.6 0.3 0.6 0.9" />
+            <path fill="hsl(0 0% 8%)" stroke="hsl(0 0% 8%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4702282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
+            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(0 0% 90%)" stroke-width="0.075" d="M 0.3 0.1 0.25 0.5 0.6 0.3 0.6 0.9" />
         </g>
         <g transform="rotate(85) translate(0 -1.25) rotate(-100)">
-            <path fill="hsl(210 11% 15%)" stroke="hsl(210 11% 15%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4302282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
-            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(210 16% 93%)" stroke-width="0.075" d="M 0.3 0.1 0.3 0.9 M 0.3 0.45 0.6 0.45 0.65 0.15 M 0.3 0.55 0.6 0.55 0.6 0.85" />
+            <path fill="hsl(0 0% 8%)" stroke="hsl(0 0% 8%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4302282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
+            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(0 0% 90%)" stroke-width="0.075" d="M 0.3 0.1 0.3 0.9 M 0.3 0.45 0.6 0.45 0.65 0.15 M 0.3 0.55 0.6 0.55 0.6 0.85" />
         </g>
         <g transform="rotate(177.5) translate(0 -1.2) rotate(150)">
-            <path fill="hsl(210 11% 15%)" stroke="hsl(210 11% 15%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.5102282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
-            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(210 16% 93%)" stroke-width="0.075" d="M 0.2 0.1 0.8 0.9 M 0.1 0.9 0.9 0.15" />
+            <path fill="hsl(0 0% 8%)" stroke="hsl(0 0% 8%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.5102282018339785 -0.647213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
+            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(0 0% 90%)" stroke-width="0.075" d="M 0.2 0.1 0.8 0.9 M 0.1 0.9 0.9 0.15" />
         </g>
         <g transform="rotate(270) translate(0 -1.25) rotate(-260)">
-            <path fill="hsl(210 11% 15%)" stroke="hsl(210 11% 15%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4202282018339785 -0.587213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
-            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(210 16% 93%)" stroke-width="0.075" d="M 0.2 0.1 0.2 0.9 0.1 0.9 M 0.2 0.4 A 0.275 0.275 0 0 0 0.55 0.1 M 0.2 0.6 A 0.5 0.5 0 0 0 0.85 0.1" />
+            <path fill="hsl(0 0% 8%)" stroke="hsl(0 0% 8%)" stroke-width="0.05" d="M 4.898587196589413e-17 -0.8 Q 0.2317627457812106 -0.7132923872213651 0.4202282018339785 -0.587213595499958 T 0.7608452130361228 -0.24721359549995792 0.7608452130361228 0.24721359549995792 0.4702282018339785 0.647213595499958 4.898587196589413e-17 0.8 -0.47022820183397845 0.647213595499958 -0.7608452130361228 0.24721359549995803 -0.7608452130361228 -0.2472135954999582 -0.4702282018339786 -0.6472135954999579 4.898587196589413e-17 -0.8 Z" />
+            <path transform="scale(0.9) translate(-0.5 -0.5)" fill="none" stroke="hsl(0 0% 90%)" stroke-width="0.075" d="M 0.2 0.1 0.2 0.9 0.1 0.9 M 0.2 0.4 A 0.275 0.275 0 0 0 0.55 0.1 M 0.2 0.6 A 0.5 0.5 0 0 0 0.85 0.1" />
         </g>
     </g>
 </svg>`,
@@ -52,14 +52,14 @@ export default {
         </filter>
     </defs>
     <svg width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-pixel-0)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">kernelMatrix = "<tspan font-weight="700">0</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-pixel-0)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">kernelMatrix = "<tspan font-weight="700">0</tspan>"</text>
     </svg>
     <svg x="10.5" width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-pixel-1)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">kernelMatrix = "<tspan font-weight="700">1</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-pixel-1)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">kernelMatrix = "<tspan font-weight="700">1</tspan>"</text>
     </svg>
 </svg>`,
 	'convolve-bias': `<svg style="display: block;" viewBox="0 0 31 6">
@@ -76,19 +76,19 @@ export default {
         </filter>
     </defs>
     <svg width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-bias-0)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">0</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-bias-0)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">0</tspan>"</text>
     </svg>
     <svg x="10.5" width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-bias-1)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">0.25</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-bias-1)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">0.25</tspan>"</text>
     </svg>
     <svg x="21" width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-bias-2)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">-0.25</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-bias-2)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" x="-4.25" y="2.25">bias = "<tspan font-weight="700">-0.25</tspan>"</text>
     </svg>
 </svg>`,
 	'convolve-alpha': `<svg style="display: block;" viewBox="0 0 20.5 6">
@@ -102,27 +102,27 @@ export default {
         </filter>
     </defs>
     <svg width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-alpha-0)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">false</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-alpha-0)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">false</tspan>"</text>
     </svg>
     <svg x="10.5" width="10" height="6" viewBox="-5 -3 10 6">
-        <rect fill="hsl(210 11% 15%)" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
-        <rect filter="url(#convolve-alpha-1)" fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
-        <text fill="hsl(210 17% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">true</tspan>"</text>
+        <rect fill="hsl(0 0% 8%)" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+        <rect filter="url(#convolve-alpha-1)" fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-style="italic" letter-spacing="-0.01" word-spacing="-0.125" font-size="0.6" text-anchor="end" x="4.25" y="2.25">preserveAlpha = "<tspan font-weight="700">true</tspan>"</text>
     </svg>
 </svg>`,
 	'convolve-matrix': `<svg style="display: block;" viewBox="-5 -3 10 6">
     <title>feConvolveMatrix filter</title>
     <defs>
         <filter id="convolve-matrix" >
-            <feConvolveMatrix preserveAlpha="true" bias="0.01" kernelMatrix="0 0 0 1 0 -1 0 0 0" />
+            <feConvolveMatrix preserveAlpha="true" bias="0.05" kernelMatrix="0 0 0 1 0 -1 0 0 0" />
         </filter>
     </defs>
-    <rect fill="none" stroke="hsl(216 16% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
+    <rect fill="none" stroke="hsl(0 0% 6%)" stroke-width="0.5" x="-4.75" y="-2.75" width="9.5" height="5.5" />
     <g filter="url(#convolve-matrix)">
-        <rect fill="hsl(210 11% 15%)" x="-4.5" y="-2.5" width="9" height="5" />
-        <rect fill="hsl(210 16% 93%)" x="-1" y="-1" width="2" height="2" />
+        <rect fill="hsl(0 0% 8%)" x="-4.5" y="-2.5" width="9" height="5" />
+        <rect fill="hsl(0 0% 90%)" x="-1" y="-1" width="2" height="2" />
     </g>
 </svg>`,
 	'convolve-matrix-variables': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -147,43 +147,20 @@ export default {
 	'convolve-matrix-weights': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mtable>
         <mtr>
-            <mtd><msub><mi>w</mi><mn>a</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>b</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>c</mn></msub></mtd>
+            <mtd>0</mtd>
+            <mtd>0</mtd>
+            <mtd>0</mtd>
         </mtr>
         <mtr>
-            <mtd><msub><mi>w</mi><mn>d</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>p</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>e</mn></msub></mtd>
+            <mtd>1</mtd>
+            <mtd>0</mtd>
+            <mtd>-1</mtd>
         </mtr>
         <mtr>
-            <mtd><msub><mi>w</mi><mn>f</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>g</mn></msub></mtd>
-            <mtd><msub><mi>w</mi><mn>h</mn></msub></mtd>
+            <mtd>0</mtd>
+            <mtd>0</mtd>
+            <mtd>0</mtd>
         </mtr>
     </mtable>
-</math>`,
-	'convolve-matrix-formula': `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-    <mn style="font-weight: 700">P'</mn>
-    <mo>=</mo>
-    <mfrac>
-        <mrow>
-            <mo>(</mo><mn>P</mn><mo>*</mo><msub><mi>w</mi><mn>p</mn></msub><mo>)</mo>
-            <mo>+</mo>
-            <mo>(</mo><mn>A</mn><mo>*</mo><msub><mi>w</mi><mn>a</mn></msub><mo>)</mo>
-            <mo>+</mo>
-            <mo>...</mo>
-            <mo>(</mo><mn>H</mn><mo>*</mo><msub><mi>w</mi><mn>h</mn></msub><mo>)</mo>
-        </mrow>
-        <mrow>
-            <msub><mi>w</mi><mn>p</mn></msub>
-            <mo>+</mo>
-            <msub><mi>w</mi><mn>a</mn></msub>
-            <mo>+</mo>
-            <mo>...</mo>
-            <mo>+</mo>
-            <msub><mi>w</mi><mn>h</mn></msub>
-        </mrow>
-    </mfrac>
 </math>`
 };
