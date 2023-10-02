@@ -505,7 +505,7 @@
 		centered = !centered;
 	}}
 >
-	Set <code>centered</code> to <code>{centered ? 'false' : 'true'}</code>
+	Update <code>centered</code> from <code>{centered}</code>
 </button>
 
 <canvas bind:this={element} width="400" height="300" />

@@ -376,7 +376,7 @@
 		i = (i + 1) % zooms.length;
 	}}
 >
-	Update zoom from <strong>{zooms[i]}x</strong>
+	Update <code>zoom</code> from <code>{zooms[i]}</code>
 </button>
 
 <canvas bind:this={element} width="350" height="350" />
@@ -392,8 +392,8 @@
 		border: 0.2rem solid currentColor;
 	}
 
-	button > strong {
-		font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+	button > code {
+		font-weight: 700;
 	}
 
 	canvas {
