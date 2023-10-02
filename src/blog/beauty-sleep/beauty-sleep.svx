@@ -1,0 +1,7 @@
+---
+title: beauty-sleep
+description: revel in gorgeous pseudo-3d art
+date: 2023-10-02T11:11:11
+---
+
+Good-looking graphics created with the [Zdog library](/zzz.dog).
