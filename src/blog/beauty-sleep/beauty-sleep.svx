@@ -1,7 +1,7 @@
 ---
-title: beauty-sleep
-description: revel in gorgeous pseudo-3d art
-date: 2023-10-02T11:11:11
+title: Beauty sleep
+description: Introduce a series of pseudo-3D graphics with a friendly reminder.
+date: 2023-10-02T11:34:17
 ---
 
 <script>
@@ -10,8 +10,16 @@ date: 2023-10-02T11:11:11
 	import ZZ from './ZZ.svelte';
 </script>
 
-Good-looking graphics created with the [Zdog library](/zzz.dog).
+Small, round, friendly. The keywords of the Zdog library listed [in the accompanying website](https://zzz.dog/) cue up the project incredibly well. And it is in these features, in the same inclination the library has for experimentation as SVG, that I've found a sweet playground for pseudo-3D graphics.
+
+Past articles relied on the module to put a visual to words, to introduce core elements such as [depth](/z-overlap), or again to illustrate higher concepts such as [rotations over three axis](/rotate-3d).
+
+This article does nothing of the sort. It is an excuse to begin a series, a journey to simply marvel at gorgeous pseudo-3D art. I decided to dub the initiative _"Zdog monday"_, to avoid sounding overly pretentious and hopefully remove any doubts about scheduling. And I've decided to ease in the series with a small, rounded piece. And a friendly reminder to appreciate the power of a good sleeping session.
 
 <Center element="figure" maxInlineSize="400px">
-    <ZZ />
+	<ZZ />
 </Center>
+
+---
+
+The gallery is in the early stages, but expect [the collection on CodePen](https://codepen.io/collection/PYyrNq). And expect more in the weeks to come.
