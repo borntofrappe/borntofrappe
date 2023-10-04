@@ -1,0 +1,7 @@
+---
+title: Convenient patterns
+description: Build impressive patterns with basic shapes and fewer instructions.
+date: 2023-10-04T11:34:13
+---
+
+The `<pattern>` element lets you repeat a visual with concise syntax. The graphic is laid in columns and rows, leading to designs which are often rigid, rectangular, but there are ways to break free of the grid-like structure. Some more appropriate than others.
