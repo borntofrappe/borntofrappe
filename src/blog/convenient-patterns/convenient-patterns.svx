@@ -23,14 +23,14 @@ When it comes to designing a pattern, I like to start with an empty `<svg>` elem
 
 In this manner you have a canvas — a squared canvas — where you are free to design your one tile.
 
-As a sample tile, consider two shapes, a rectangle as a base and a diamond right in the center.
+As a sample, consider two shapes, a rectangle as a base and a diamond right in the center.
 
 ```html
 <rect fill="hsl(0 0% 90%)" width="1" height="1" />
 <path fill="hsl(0 0% 30%)" d="M 0.5 0.2 0.8 0.5 0.5 0.8 0.2 0.5Z" />
 ```
 
-There's nothing inherently complicated in the syntax. The `<rect>` element covers the entirety of the canvas to add a background. The `<path>` element, then, marks the rhomboid point by point.
+There's nothing inherently complicated in the syntax. The `<rect>` element covers the canvas to add a background. The `<path>` element, then, marks the rhombus point by point.
 
 <Center element="figure" maxInlineSize="12rem">
 	{@html svg['diamond-tile']}
@@ -38,14 +38,14 @@ There's nothing inherently complicated in the syntax. The `<rect>` element cover
 
 ## Columns and rows
 
-Drawing the tile directly in SVG has another benefit. For the pattern you can use the same exact markup. Not in an `<svg>` element, but a `<pattern>` node.
+Drawing the tile directly in SVG has another benefit: in the pattern you can use the same exact markup. Not in an `<svg>` element, but a `<pattern>` node.
 
 The `viewBox` remains valid as well, as the canvas for the pattern itself.
 
 ```diff
 -<svg viewBox="0 0 1 1">
 +<pattern viewBox="0 0 1 1">
-   <!-- ...rect & path -->
+
 -</svg>
 +</pattern>
 ```
@@ -74,19 +74,19 @@ There are just two more attributes standing between you and a complete set. You 
 </pattern>
 ```
 
-By default, both measures are relative to the dimensions of the benefiting shape. In our snippet, relative to the 100 by 100 rectangle. Setting the value to a decimal number means the tile occupies the fraction of the larger surface. The same tile is then repeated in regular columns and rows.
+By default, both attributes are relative to the dimensions of the benefiting shape. In the snippet, relative to the 100 by 100 rectangle. Setting the value to a decimal number means the tile occupies the fraction of the larger surface. From this measure, the tile is then repeated in columns and rows.
 
 <Center element="figure" maxInlineSize="24rem">
 	{@html svg['diamond-pattern']}
 </Center>
 
-It is possible to set the dimensions of the pattern irrespective of the size of the drawing, with the `patternUnits` attribute. It is also possible to tweak the appearance of the pattern when the shapes have a different aspect ratio. But both of these topics are beyond the scope of the article. Here focus on the result, and the fact that the pattern works, repeating the tile with very little effort, but in a perfect grid.
+It is possible to set the dimensions of the pattern irrespective of the size of the drawing, with the `patternUnits` attribute. It is also possible to tailor the pattern when the shapes have a different aspect ratio. But both of these topics are beyond the scope of the article. Here focus on the result, and the fact that the pattern works, repeating the tile with very little effort, but in a perfect grid.
 
 ## Checkboards
 
 What if you wanted to lay the tiles in diagonals?
 
-One way you have to create the sequence is directly through the tile. Past the individual, centered diamond you need to elaborate the tile so that, eventually, when positioned in the grid, the path seamlessly blends between the squares. To this end you can repeat the `<path>` with vertical and horizontal offsets.
+One way you have to create the sequence is directly through the tile. Past the single, centered diamond you need to elaborate the tile so that, when positioned in the grid, the path seamlessly blends between the squares. To this end you can repeat the `<path>` with vertical and horizontal offsets.
 
 To ease the task you can even assign an `id` to the element and rely on `<use>` elements, positioned at the four corners.
 
@@ -99,13 +99,13 @@ To ease the task you can even assign an `id` to the element and rely on `<use>` 
 <use x="-0.5" y="0.5" href="#diamond" />
 ```
 
-The `viewBox` acts as a hard-clip. Nothing painted outside of the canvas will be visible. In this manner, even copying the entire diamond is enough to design the tile.
+The `viewBox` acts as a hard-clip. Nothing painted outside of the canvas will be visible. In this manner, copying the entire diamond works to design the tile.
 
 <Center element="figure" maxInlineSize="12rem">
 	{@html svg['repeated-tile']}
 </Center>
 
-You _can_ design the tile in this way, and can almost picture how the squares, laid side by side or one above the other, lead to the more ornate pattern. But there is a better way. A solution which relies on just the one diamond and a change in perspective.
+You _can_ design the tile in this way, and may even picture how the squares, laid side by side or one above the other, lead to the more ornate pattern. But there is another way. A solution which relies on just the one diamond and a change in perspective.
 
 Among the attributes available in the `<pattern>` element you find `patternTransform`. Similar to the `transform` attribute, the property lets you alter the graphic with different functions. `translate`, `scale`, and most pertinently, `rotate`.
 
@@ -121,31 +121,33 @@ Rotate the pattern 45 degrees and you find a very different picture.
 	{@html svg['transform-pattern']}
 </Center>
 
-Instead of diamonds, you find squares. But these squares are laid in the desired structure.
+Instead of diamonds, you have squares. But these squares are laid in the desired structure.
 
 To understand the change, think of the pattern as wallpaper. When you rotate the element you tilt the sheet from the top left corner, so that the pattern is applied at an angle.
 
-It is no wonder that you then see a square. The diamond is rotated as part of the larger construct.
+It is no wonder that you then see a square. The diamond is rotated as part of the larger scheme.
 
 <Center element="figure" maxInlineSize="12rem">
 	{@html svg['transform-tile']}
 </Center>
 
-The good news is that a pattern is like wallpaper, but even more customizable than wallpaper. You can rotate the sheet, and you still have access to the individual tile making up the larger piece.
+The good news is that a pattern is like wallpaper, but even more customizable than wallpaper. You can update the sheet _and_ modify the composing tile at the same time.
 
-Just like you can rotate the pattern, you can rotate the nested shapes.
+In other words, just like you can rotate the pattern, you can rotate the nested shapes.
 
 ```html
 <path transform="rotate(-45, 0.5 0.5)" ... />
 ```
 
-Rotate the diamond with an opposite angle, from the center of the shape and the diamond is restored. You retain the arrangement, and you find the shimmering shape.
+Rotate the diamond with an opposite angle, from the center of the canvas, and the diamond is restored. You retain the arrangement, and you find the shimmering shape.
 
 <Center element="figure" maxInlineSize="24rem">
 	{@html svg['diagonal-pattern']}
 </Center>
 
-Personally, I find the solution incredibly neat. The attribute solves the issue with clear instructions. You don't need to repeat shapes, not even in the `<pattern>` element, and you can tilt and rotate in a more express manner. The change suits the diamond, but what if you were to rotate the rectangle as well?
+Personally, I find the solution incredibly neat. The attribute solves the issue with clear instructions. You don't need to repeat shapes, not even in the `<pattern>` element, and you can tilt and rotate in a more express manner.
+
+The change suits the diamond, but what if you were to rotate the rectangle as well?
 
 ```html
 <g transform="rotate(-45, 0.5 0.5)">
@@ -153,7 +155,7 @@ Personally, I find the solution incredibly neat. The attribute solves the issue 
 </g>
 ```
 
-What happens if you rotate both shapes? Remember, the `viewBox` acts as a clip, hiding the bits falling outside of the canvas.
+What happens if you rotate both shapes? Remember, the `viewBox` acts as a clip, hiding the bits falling outside of the visible area.
 
 For the individual tile, the rectangle is rotated and doesn't cover the entire surface. In the four corners, you appreciate evident gaps.
 
