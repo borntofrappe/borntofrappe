@@ -1,0 +1,91 @@
+---
+title: Filter essentials
+description: Focus on the core ingredients of SVG filters.
+date: 2023-10-06T18:34:36
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import FilterMachine from './FilterMachine.svelte';
+</script>
+
+In an `<svg>` element already packed with features, filters compound innumerable stylistic changes. The topic is deep, but promptly, you don't need to understand every crevice to experiment with the framework. In simplest terms, you just need to know about two nooks and crannies.
+
+## Definition and use
+
+Similarly to gradients, or again patterns, filters are split between definition and application.
+
+First, set up the effect with a `<filter>` element and a unique `id`.
+
+```html
+<defs>
+	<filter id="filter-effect">
+		<!-- ... -->
+	</filter>
+</defs>
+```
+
+In this context, the `<defs>` element works as a convenient wrapper, a container for all those pieces you don't intend to show. Even outside of the tags the filter won't lead to a visual, but it is good practice to indulge in the markup. Consider it a way to stress the divide: this is where you define helpers, not where you actively draw.
+
+Second, and last, apply the filter with the `filter` attribute or the matching CSS property.
+
+```html
+<g filter="url(#filter-effect)">
+	<!-- ... -->
+</g>
+```
+
+In the body of the `url` function, and prefixed with the hash character, you refer to the filter through the identifier. Do this and the contract is complete. The filter changes the appearance of those elements you do want to see.
+
+## Inputs and outputs
+
+How the shapes change depends on the content of the filter, on nested elements known as _primitives_. You might become disoriented before their number — there are 17 dedicated elements after all —, but think of them as functions prefixed with the letters _"fe"_.
+
+```html
+<feFunction inputs />
+<!-- => output -->
+```
+
+Each primitive achieves a task on the basis of one or more inputs. Each primitive returns an image layer.
+
+By default, the first function receives the shapes in their original form.
+
+```html
+<feTurbulence type="fractalNoise" baseFrequency="0.1 0" numOctaves="2" />
+<!-- => noise -->
+```
+
+By default, each successive element receives the image from the preceding step.
+
+```html
+<!-- => noise -->
+<feDiffuseLighting><!-- ... --></feDiffuseLighting>
+<!-- => bright noise -->
+```
+
+If you ever need to point to a specific layer, at any point, you can explicit the variables with an appropriate set of attributes. `in` and `in2` for the inputs — some functions do need two ingredients to fulfill their promise.
+
+```diff
+-<feDiffuseLighting><!-- ... --></feDiffuseLighting>
++<feDiffuseLighting in="noise"><!-- ... --></feDiffuseLighting>
+```
+
+`result` for the solitary output.
+
+```diff
+-<feTurbulence type="fractalNoise" baseFrequency="0.1 0" numOctaves="2" />
++<feTurbulence result="noise" type="fractalNoise" baseFrequency="0.1 0" numOctaves="2" />
+```
+
+Admittedly, this is already a lot to digest. But understanding the flow is more than enough to start working with filters.
+
+Yes, you benefit from knowing what _Perlin noise_ is to fully understand `feTurbulence`, but tinkering with [the attributes](/noisy-attributes) is enough to make you appreciate its contribution. Yes, it helps to visualize how [a light source](/filter-light#lights) brightens up the layer within the scope of `feDiffuseLighting`, but again the essence remains the same.
+
+Filter element and filter attribute. Inputs and outputs. Memorize the two steps and you can build up, or break down, even the more complex changes.
+
+[The documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter/) is a great place to start, but there's nothing like first-hand practice to experience the effects in full.
+
+<Center maxInlineSize="40rem">
+	<FilterMachine />
+</Center>
