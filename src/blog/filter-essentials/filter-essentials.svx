@@ -1,5 +1,5 @@
 ---
-title: Filter processing
+title: Filter essentials
 description: Focus on the essential ingredients of SVG filters.
 date: 2023-10-06T18:34:36
 ---
