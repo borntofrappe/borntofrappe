@@ -183,8 +183,6 @@
 
 <style>
 	article {
-		max-inline-size: 40rem;
-		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
