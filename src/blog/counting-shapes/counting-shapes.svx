@@ -11,7 +11,7 @@ date: 2023-10-09T09:34:46
 	import Sheep from './Sheep.svelte';
 </script>
 
-Believe it or not, but this week's Zdog graphic started out with the pixelated sprite for a promising mascot.
+Believe it or not, but [this week's Zdog graphic](/beauty-sleep) started out with the pixelated sprite for a promising mascot.
 
 <Center element="figure" maxInlineSize="400px">
 	{@html svg['paths']}
