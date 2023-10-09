@@ -110,7 +110,7 @@
 		let frame = null;
 
 		const animate = () => {
-			root.rotate.y = (root.rotate.y + 0.03) % TAU;
+			root.rotate.y = (root.rotate.y + 0.02) % TAU;
 			root.translate.y = translate(root.rotate.y);
 
 			root.updateGraph();
