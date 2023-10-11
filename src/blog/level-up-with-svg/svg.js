@@ -40,14 +40,14 @@ export default {
     <use fill="url(#tiles-pattern-2)" href="#tiles-square" x="3" y="0.5" />
 
     <g transform="translate(0 1.5)" fill="hsl(0 0% 20%)" font-family="monospace" text-anchor="middle">
-        <text transform="translate(1.5 0.25)" font-size="0.15">
-            <tspan>width="<tspan font-weight="700">0.5</tspan>"</tspan>
-            <tspan x="0" y="0.2">height="<tspan font-weight="700">0.5</tspan>"</tspan>
-        </text>
-        <text transform="translate(3.5 0.25)" font-size="0.15">
-            <tspan>width="<tspan font-weight="700">0.25</tspan>"</tspan>
-            <tspan x="0" y="0.2">height="<tspan font-weight="700">0.25</tspan>"</tspan>
-        </text>
+        <g transform="translate(1.5 0.25)" font-size="0.15">
+            <text>width="<tspan font-weight="700">0.5</tspan>"</text>
+            <text y="0.2">height="<tspan font-weight="700">0.5</tspan>"</text>
+        </g>
+        <g transform="translate(3.5 0.25)" font-size="0.15">
+            <text>width="<tspan font-weight="700">0.25</tspan>"</text>
+            <text y="0.2">height="<tspan font-weight="700">0.25</tspan>"</text>
+        </g>
     </g>
 </svg>`,
 	checks: `<svg style="display: block;" viewBox="0 0 3.5 3.5">
