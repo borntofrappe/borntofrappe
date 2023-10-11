@@ -1,0 +1,7 @@
+---
+title: level-up-with-svg
+description: How much practice with only a square?
+date: 2023-10-11T11:11:11
+---
+
+When it comes to practice with SVG I don't have many shortcuts.
