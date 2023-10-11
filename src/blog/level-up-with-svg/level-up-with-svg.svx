@@ -10,15 +10,13 @@ date: 2023-10-11T14:34:56
 	import svg from './svg.js';
 </script>
 
-When it comes to improving with SVG I don't have many shortcuts. The most direct instruction I can offer is to practice, go through the effort of authoring the syntax yourself. There is certainly no shortage of visuals to draw line by line, leaning on the many elements and attributes available in the spec. And truthfully, you don't even need a great number to get a good workout.
+When it comes to improving with SVG I don't have many shortcuts. The most direct instruction I can offer is to practice, go through the effort of authoring the syntax yourself. There is no shortage of visuals to draw line by line, with the many elements and attributes available. And truthfully, you don't even need a great number to rehearse.
 
-Consider a humble square.
+Consider a humble square. You are able to draw the polygon with a `<rect>` element where the `width` and `height` attributes are in perfect accord.
 
 ```html
 <rect width="1" height="1" />
 ```
-
-You are able to draw a square with a `<rect>` element where the `width` and `height` attributes are in perfect accord.
 
 There are many ways to style the shape, but if you need more than one copy, you benefit from a pretty solid technique:
 
@@ -28,26 +26,28 @@ There are many ways to style the shape, but if you need more than one copy, you 
    <rect id="square" width="1" height="1" />
    ```
 
-2. re-introduce the shape with the `<use>` element.
+2. re-introduce the shape with `<use>` elements
 
+   <!-- prettier-ignore -->
    ```html
-   <use href="#square" fill="hsl(0 0% 30%)" /> <use x="1" href="#square" fill="hsl(0 0% 80%)" />
+   <use href="#square" fill="hsl(0 0% 30%)" /> 
+   <use x="1" href="#square" fill="hsl(0 0% 80%)" />
    ```
 
-You can separate the copies with the `x` and `y` attributes, and paint the squares with a specific `fill`. The color ripples through the definition, so that you are able to create different shapes at a moment's notice.
+You can separate the copies with the `x` and `y` attributes and paint the squares with a different `fill`. The color ripples through the definition, so that you are able to create different types at a moment's notice.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['squares']}
 </Center>
 
-And you don't have to stop here. Say you want to repeat the squares in the colored version. You can assign `id` to the `<use>` element as well and repeat the process. Unique string on one side.
+And you don't have to stop here. Say you want to repeat the squares in the colored version. Add an `id` to the `<use>` elements and repeat the process. Unique string on one side.
 
 ```html
 <use id="square-dark" href="#square" fill="hsl(0 0% 30%)" />
 <use id="square-light" href="#square" fill="hsl(0 0% 80%)" />
 ```
 
-Copies positioned in the same manner. Use and re-use.
+Copies with additional `<use>` elements
 
 ```html
 <use href="#square-dark" />
@@ -56,25 +56,15 @@ Copies positioned in the same manner. Use and re-use.
 <use x="1" y="1" href="#square-dark" />
 ```
 
-Four squares, interspersed in a checkerboard pattern are appealing already.
+Four squares, interspersed in a checkered pattern are appealing already.
 
 <Center element="figure" maxInlineSize="18rem">
 	{@html svg['checks']}
 </Center>
 
-But if you care about repeating the sequence more often, the `pattern` element prompts a more fitting solution. And the beauty is that you can still rely on the used shapes.
+But if you care about repeating the sequence more often, the `<pattern>` element is a more fitting option. And the beauty is that you can keep the same code.
 
-Wrap the checkerboard in a common `<pattern>`, again with a unique label in the `id` attribute.
-
-```html
-<pattern id="squares" viewBox="0 0 2 2">
-	<!-- ...uses -->
-</pattern>
-```
-
-The `viewBox` matches the dimensions of the set, to create the tightest fit.
-
-The `width` and `height` attributes, on the other hand, help you to decide how many times to repeat the drawing, horizontally and vertically.
+Start by wrapping the copies in the element, again with a particular label in the `id` attribute.
 
 ```html
 <pattern id="squares" width="0.5" height="0.5" viewBox="0 0 2 2">
@@ -82,37 +72,35 @@ The `width` and `height` attributes, on the other hand, help you to decide how m
 </pattern>
 ```
 
-By default the values refer to a fraction of the area on which you then apply the pattern. Use a square — the shape might be familiar to you —, and point to the pattern in the `fill` attribute.
+The `viewBox` matches the dimensions of the checkerboard, to create the tightest fit.
+
+The `width` and `height` attributes, then, help you decide how many times to repeat the drawing. By default the values are relative to the area on which you apply the pattern.
+
+Use then a square — the shape might be familiar to you —, and point to the pattern in the `fill` attribute.
 
 ```html
 <use href="#square" fill="url(#squares)" />
 ```
 
-0.5 in both dimensions means the pattern is repeated twice. The squares appear in four rows and four columns. Halve the value and the effect is reinforced, with even greater numbers.
+0.5 in both dimensions means the pattern is repeated twice. The squares appear in four columns and rows. Halve the value and the repetition is reinforced, doubled.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['tiles']}
 </Center>
 
-It may have started with the one square, but by now you have at least five uses. Five variants. And this is one place where rigid logic benefits from personal taste, from an artistic touch. A perfect showcase of how SVG is both math, _vector_, and art, _graphic_.
+You may have started with the one square, but by now you have at least five uses. Five variants. And this is one place where rigid logic benefits from an artistic touch. A perfect showcase of how SVG is both math, _vector_, and art, _graphic_.
 
-You can position the shapes in any which manner. With experimentation, and enough patience, you can build even impressive grids.
+You can position the shapes in any which manner. With experimentation, and enough patience, you can build even the most impressive grid.
 
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['grid']}
 </Center>
 
-By the end of it, you might have an impressive visual, combining concise instructions with an elegant look. And if you are satisfied with the result, you know one way to continue. The moment you want to repeat the graphic, all you need is another pattern.
+And if you are so satisfied with the result that you want to make the grid into a pattern itself, you know how. Another `<pattern>` element.
 
-```html
-<pattern viewBox="0 0 4 4">
-	<!-- ...uses -->
-</pattern>
-```
+Group the elements in the common container, add an `id`, `width` and `height`.
 
-Position the elements in the common container, add an `id`, `width` and `height`.
-
-And if you care about a fixed measure, perhaps you do not want to scale this beauteous pattern relative to the final area, get to know the `patternUnits` attribute. Its default value, `objectBoundingBox`, leads to the result you have already seen, where the pattern occupies a fraction of the element. Switch the value to `userSpaceOnUse` and the width and height attribute refer to absolute measures.
+And if you prefer a fixed size, perhaps you don't want to scale the grid relative to the final area, get to know the `patternUnits` attribute. The default value, `objectBoundingBox`, leads to the result you have already seen, where the pattern occupies a fraction of the surface. Set the attribute to `userSpaceOnUse` and the dimensions are absolute.
 
 ```html
 <pattern id="grid" patternUnits="userSpaceOnUse" width="1" height="1" viewBox="0 0 4 4">
@@ -120,15 +108,15 @@ And if you care about a fixed measure, perhaps you do not want to scale this bea
 </pattern>
 ```
 
-The whole exercise might have seemed ludicrous, but is far from pointless.
+The whole exercise might seem ludicrous, but is far from pointless.
 
 ```html
 <rect fill="url(#grid)" width="3" height="2" />
 ```
 
-How to draw shapes, how to repeat instances and how to repeat several more copies. With the effort, you have already sampled what makes SVG remarkable, and opened up a world of options.
+How to draw shapes, how to repeat instances and how to repeat several more copies. With the effort, you have already sampled a few features and what makes SVG remarkable.
 
-The specification has certainly more elements, more attributes, and to master the syntax, you just need to find a good use.
+The specification has certainly more elements, more attributes, and to master them, you just need to practice. And perhaps a good use.
 
 <Center maxInlineSize="40rem">
 	{@html svg['banner']}
