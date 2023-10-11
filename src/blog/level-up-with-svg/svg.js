@@ -1,4 +1,55 @@
 export default {
+	squares: `<svg style="display: block;" viewBox="0 0 5 2.1">
+    <title>Two colored squares</title>
+    <defs>
+        <rect id="squares-square" width="1" height="1" />
+    </defs>
+    <rect fill="hsl(0 0% 97%)" width="5" height="2.1" />
+
+    <use fill="hsl(0 0% 30%)" href="#squares-square" x="1" y="0.5" />
+    <use fill="hsl(0 0% 80%)" href="#squares-square" x="3" y="0.5" />
+
+    <g transform="translate(0 1.5)" fill="hsl(0 0% 20%)" font-family="monospace" font-weight="700" text-anchor="middle">
+        <text font-size="0.15" x="1.5" y="0.25">hsl(0 0% 30%)</text>
+        <text font-size="0.15" x="3.5" y="0.25">hsl(0 0% 80%)</text>
+    </g>
+</svg>`,
+	tiles: `<svg style="display: block;" viewBox="0 0 5 2.3">
+    <title>Two repeating patterns</title>
+    <defs>
+        <rect id="tiles-square" width="1" height="1" />
+        <use id="tiles-square-dark" fill="hsl(0 0% 30%)" href="#tiles-square" />
+        <use id="tiles-square-light" fill="hsl(0 0% 80%)" href="#tiles-square" />
+        
+        <pattern id="tiles-pattern-1" viewBox="0 0 2 2" width="0.5" height="0.5">
+            <use href="#tiles-square-dark" />
+            <use href="#tiles-square-light" x="1" />
+            <use href="#tiles-square-light" y="1" />
+            <use href="#tiles-square-dark" x="1" y="1" />
+        </pattern>
+        <pattern id="tiles-pattern-2" viewBox="0 0 2 2" width="0.25" height="0.25">
+            <use href="#tiles-square-dark" />
+            <use href="#tiles-square-light" x="1" />
+            <use href="#tiles-square-light" y="1" />
+            <use href="#tiles-square-dark" x="1" y="1" />
+        </pattern>
+    </defs>
+    <rect fill="hsl(0 0% 97%)" width="5" height="2.3" />
+
+    <use fill="url(#tiles-pattern-1)" href="#tiles-square" x="1" y="0.5" />
+    <use fill="url(#tiles-pattern-2)" href="#tiles-square" x="3" y="0.5" />
+
+    <g transform="translate(0 1.5)" fill="hsl(0 0% 20%)" font-family="monospace" text-anchor="middle">
+        <text transform="translate(1.5 0.25)" font-size="0.15">
+            <tspan>width="<tspan font-weight="700">0.5</tspan>"</tspan>
+            <tspan x="0" y="0.2">height="<tspan font-weight="700">0.5</tspan>"</tspan>
+        </text>
+        <text transform="translate(3.5 0.25)" font-size="0.15">
+            <tspan>width="<tspan font-weight="700">0.25</tspan>"</tspan>
+            <tspan x="0" y="0.2">height="<tspan font-weight="700">0.25</tspan>"</tspan>
+        </text>
+    </g>
+</svg>`,
 	banner: `<svg id="banner" style="display: block;" viewBox="0 0 3 2">
     <style>
         svg#banner {
