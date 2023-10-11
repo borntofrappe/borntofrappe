@@ -50,6 +50,87 @@ export default {
         </text>
     </g>
 </svg>`,
+	checks: `<svg style="display: block;" viewBox="0 0 3.5 3.5">
+    <title>Squares in a checkboard pattern</title>
+    <defs>
+        <rect id="checks-square" width="1" height="1" />
+        <use id="checks-square-dark" fill="hsl(0 0% 30%)" href="#checks-square" />
+        <use id="checks-square-light" fill="hsl(0 0% 80%)" href="#checks-square" />
+    </defs>
+    <rect fill="hsl(0 0% 97%)" width="3.5" height="3.5" />
+
+    <g transform="translate(0.75 0.75)">
+        <use href="#checks-square-dark" />
+        <use href="#checks-square-light" x="1" />
+        <use href="#checks-square-light" y="1" />
+        <use href="#checks-square-dark" x="1" y="1" />
+    </g>
+</svg>`,
+	grid: `<svg style="display: block;" viewBox="0 0 5.5 5.5">
+    <title>Squares in an imaginative grid</title>
+    <defs>
+        <rect id="grid-square" width="1" height="1" />
+
+        <use id="grid-square-dark" href="#grid-square" fill="hsl(0 0% 30%)" />
+        <use id="grid-square-light" href="#grid-square" fill="hsl(0 0% 80%)" />
+
+        <symbol id="grid-square-checks" viewBox="0 0 2 2" width="1" height="1">
+            <use href="#grid-square-dark" />
+            <use x="1" href="#grid-square-light" />
+            <use y="1" href="#grid-square-light" />
+            <use x="1" y="1" href="#grid-square-dark" />
+        </symbol>
+
+        <pattern id="grid-pattern-checks-1" viewBox="0 0 1 1" width="0.5" height="0.5">
+            <use href="#grid-square-checks" />
+        </pattern>
+        <pattern id="grid-pattern-checks-2" viewBox="0 0 1 1" width="0.25" height="0.25">
+            <use href="#grid-square-checks" />
+        </pattern>
+
+        <use id="grid-square-checks-1" href="#grid-square" fill="url(#grid-pattern-checks-1)" />
+        <use id="grid-square-checks-2" href="#grid-square" fill="url(#grid-pattern-checks-2)" />
+
+        <symbol id="grid-square-comp-1" viewBox="0 0 2 2" width="1" height="1" >
+            <use href="#grid-square-light" />
+            <use x="1" href="#grid-square-checks" />
+            <use y="1" href="#grid-square-checks-2" />
+            <use x="1" y="1" href="#grid-square-light" />
+        </symbol>
+        <symbol id="grid-square-comp-2" viewBox="0 0 2 2" width="1" height="1" >
+            <use href="#grid-square-light" />
+            <use x="1" href="#grid-square-checks-2" />
+            <use y="1" href="#grid-square-checks-1" />
+            <use x="1" y="1" href="#grid-square-light" />
+        </symbol>
+        <symbol id="grid-square-comp-3" viewBox="0 0 2 2" width="1" height="1" >
+            <use href="#grid-square-checks-1" />
+            <use x="1" href="#grid-square-dark" />
+            <use y="1" href="#grid-square-dark" />
+            <use x="1" y="1" href="#grid-square-checks-2" />
+        </symbol>
+    </defs>
+    <rect fill="hsl(0 0% 97%)" width="5.5" height="5.5" />
+
+    <g transform="translate(0.75 0.75)">
+        <use href="#grid-square-dark" />
+        <use x="1" href="#grid-square-checks-1" />
+        <use x="2" href="#grid-square-comp-2" />
+        <use x="3" href="#grid-square-light" />
+        <use y="1" href="#grid-square-comp-3" />
+        <use x="1" y="1" href="#grid-square-dark" />
+        <use x="2" y="1" href="#grid-square-light" />
+        <use x="3" y="1" href="#grid-square-checks-1" />
+        <use y="2" href="#grid-square-checks-2" />
+        <use x="1" y="2" href="#grid-square-light" />
+        <use x="2" y="2" href="#grid-square-dark" />
+        <use x="3" y="2" href="#grid-square-comp-3" />
+        <use y="3" href="#grid-square-light" />
+        <use x="1" y="3" href="#grid-square-comp-1" />
+        <use x="2" y="3" href="#grid-square-checks-2" />
+        <use x="3" y="3" href="#grid-square-dark" />
+    </g>
+</svg>`,
 	banner: `<svg id="banner" style="display: block;" viewBox="0 0 3 2">
     <style>
         svg#banner {
