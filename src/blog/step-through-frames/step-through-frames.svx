@@ -11,7 +11,7 @@ date: 2023-10-16T11:34:38
 	import BobOmb from './BobOmb.svelte';
 </script>
 
-In pixel art I find a source of great inspiration. You would think that the style would not lend itself to pseudo-3D graphics, but [last week's entry](/counting-shapes) proved otherwise. Today's installment reiterates the point, and tries to solve a new challenge with a different spin.
+In pixel art I find a source of great inspiration. You would think that the style would not lend itself to pseudo-3D graphics, but [last week's entry](/counting-shapes) proved otherwise. Today's installment reiterates the point, and tries to solve a new challenge with a twist.
 
 With SVG you are able to draw a sprite down to the smallest pixel. Leaning on the different elements, you can also draw a more realistic figure, with veritable vector shapes.
 
@@ -19,7 +19,7 @@ With SVG you are able to draw a sprite down to the smallest pixel. Leaning on th
 	{@html svg['bob-ombs']}
 </Center>
 
-Zdog is well equipped to recreate the shapes, but behind the library there is no 3D engine. At the end of the day, whether [in a canvas or an svg node](/pseudo-3d-element), the graphic is still rendered in two dimensions, and the result is that the picture is often a small step from the vector drawing. How to improve the illustration?
+Zdog is well equipped to recreate the shapes, but behind the library there is no 3D engine. At the end of the day, whether [in a canvas or an svg node](/pseudo-3d-element), the graphic is rendered in two dimensions, and the result is that the picture is often a small step from the vector drawing. How to improve the illustration?
 
 Rotating the shapes [over the available axes](/rotate-3d) works to further the illusion of depth. Shapes will be drawn at an angle.
 
