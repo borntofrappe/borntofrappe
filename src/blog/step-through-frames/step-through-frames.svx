@@ -24,8 +24,8 @@ Zdog is well equipped to recreate the shapes, but behind the library there is no
 Rotating the shapes [over the available axes](/rotate-3d) works to further the illusion of depth. Shapes will be drawn at an angle.
 
 ```js
-new Zdog.Shape({
-	//...
+new Shape({
+	//...,
 	rotate: {
 		y: -0.2
 	}
@@ -36,7 +36,7 @@ Positioning the elements in the z axis also helps. Shapes will be drawn in order
 
 ```js
 new Box({
-	//...
+	//...,
 	translate: {
 		z: 5
 	}
