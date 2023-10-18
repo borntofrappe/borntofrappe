@@ -21,7 +21,7 @@
 				hand: 'hsl(42 15% 13%)'
 			}
 		};
-		const zOffsets = [1, 2];
+		const zOffsets = [-1, 1, 2];
 
 		const root = new Anchor({
 			translate: {
@@ -109,7 +109,7 @@
 		const lines = new Anchor({
 			addTo: root,
 			translate: {
-				z: zOffsets[0]
+				z: zOffsets[1]
 			}
 		});
 
@@ -143,7 +143,7 @@
 		const overlay = new Anchor({
 			addTo: root,
 			translate: {
-				z: zOffsets[1]
+				z: zOffsets[2]
 			}
 		});
 
@@ -241,7 +241,7 @@
 			fill: true,
 			translate: {
 				y: 16,
-				z: zOffsets[1]
+				z: zOffsets[2]
 			}
 		});
 
@@ -254,7 +254,7 @@
 				{ x: 0.5, y: -1 }
 			],
 			translate: {
-				z: -1
+				z: zOffsets[0]
 			}
 		});
 
@@ -293,7 +293,7 @@
 			],
 			translate: {
 				y: -8,
-				z: zOffsets[1]
+				z: zOffsets[2]
 			}
 		});
 
@@ -314,7 +314,7 @@
 			fill: true,
 			diameter: 10,
 			translate: {
-				z: zOffsets[1]
+				z: zOffsets[2]
 			}
 		});
 
@@ -335,7 +335,7 @@
 				translate: {
 					x,
 					y,
-					z: zOffsets[0]
+					z: zOffsets[1]
 				}
 			});
 		});
@@ -346,7 +346,7 @@
 			fill: true,
 			diameter: 1.4,
 			translate: {
-				z: zOffsets[1]
+				z: zOffsets[2]
 			}
 		});
 
@@ -444,4 +444,4 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block;" width="300" height="400" />
+<canvas bind:this={element} style="display: block;" width="250" height="400" />

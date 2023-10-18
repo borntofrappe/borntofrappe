@@ -9,10 +9,10 @@
 
 		const illustration = new Illustration({
 			element,
-			zoom: 28,
+			zoom: 30,
 			translate: {
-				x: 0.75,
-				y: 0.75
+				x: 1.5,
+				y: 1.25
 			},
 			rotate: {
 				x: 0.2,
@@ -108,7 +108,7 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" viewBox="-5 -5 10 10" width="400" height="400">
+<svg bind:this={element} style="display: block;" viewBox="-5 -5 10 10" width="400" height="320">
 	<path
 		d="M -4 3 0 -3 4 3 Z"
 		fill="hsl(0 0% 70%)"
