@@ -1,6 +1,6 @@
 ---
 title: Deeper paths
-description: Add depth to the path of excessively thin Zdog shapes.
+description: Add depth to the path of flimsy Zdog shapes.
 date: 2023-10-18T15:34:54
 ---
 
@@ -24,15 +24,15 @@ new Zdog.Shape({
 });
 ```
 
-The class works similarly to the `<path>` element in SVG, with a series of instructions, of commands. But there are considerable differences, as well as challenges and creative solutions.
+The class works similarly to the `<path>` element in SVG, with a sequence of instructions. But there are considerable differences, as well as challenges and creative solutions.
 
-Where a `path` element describes the shape in the `d` attribute, with a string.
+Where the element describes a shape in the `d` attribute, with a string.
 
 ```html
 <path d="M -4 3 0 -3 4 3 Z" />
 ```
 
-A Zdog `Shape` conjures up the same figure with an array and a set of coordinates.
+A Zdog `Shape` creates the same figure with an array and a set of coordinates.
 
 ```js
 new Zdog.Shape({
@@ -45,17 +45,17 @@ new Zdog.Shape({
 });
 ```
 
-Consider the triangle you've just seen in the two snippets. In the body of an `<svg>` node the path is drawn point to point, elaborating the position of the vertices.
+Consider the triangle you've just seen in the two snippets. In the body of an `<svg>` node the shape is drawn point by point, marking the position of the vertices.
 
-<Center element="figure" maxInlineSize="400px">
+<Center element="figure" maxInlineSize="16rem">
 	{@html svg['path']}
 </Center>
 
-Behind the scenes I've styled the polygon with a `fill`, but also a `stroke`, making sure to round the edges. This is not only to please your eyesight with a softer visual, but also to match another feature you are about to appreciate in Zdog.
+Behind the scenes I've styled the polygon with a `fill`, but also a `stroke`, making sure to round the edges. Not only to please your eyesight with a softer visual, but also to match another Zdog feature you're about to appreciate.
 
-In the context of a illustration, the `Shape` class illustrates the triangle with the same vertices. These are included in the array, and each with its own object. You detail the coordinates, perhaps more explicitly, with the `x` and `y` properties, positioning the points on the corresponding axes.
+In the context of an illustration, the `Shape` class introduces the triangle with the same vertices. These appear in the array, and each with its own object. You detail the coordinates with the `x` and `y` properties, positioning the points on the corresponding axes.
 
-Zdog adds a stroke on its own, on the basis of the input color, but does not paint between the points. For this, you have to set the `fill` property to true.
+For its part, Zdog adds a stroke on the basis of the input color, but does not paint between the points. For this, you have to set the `fill` property to true.
 
 ```js
 new Zdog.Shape({
@@ -78,7 +78,7 @@ But why is that? Consider the result, tilted on the x axis and then the y axis.
 
 Zdog uses the stroke, a rounded stroke, to emulate depth. As you rotate the shape the library projects the points so that, even in 2D, your eyes are convinced. The triangle lives and breathes in three dimensions.
 
-The effect is convincing, but subtle as well. If you want a thicker shape, not just a triangle, but a triangular wedge, you have to build it yourself, side after side. Luckily, you can automate the process with a few lines of code.
+The effect is convincing, but subtle as well. If you want a thicker shape, not just an outline, but a wedge, you have to build it yourself side after side. Luckily, you can automate the process with a few lines of code.
 
 First, we need a reference to the triangle, to the instance of the `Shape` class.
 
@@ -88,19 +88,19 @@ const shape = new Zdog.Shape({
 });
 ```
 
-In the variable you find an object, and in this object, the array of points. With the information adding depth is a matter of choice: how profound should the wedge be?
+In the variable you find an object, and in this object, the array of points. With this information, thickness is a matter of choosing how deep should the wedge be.
 
 ```js
 const depth = 5;
 ```
 
-Once you settle on a level of depth, the easiest step is to repeat the face of the triangle. Zdog offers the `copy` method on the instance of every class.
+With the value, the easiest step is to repeat the triangle. Zdog offers the `copy` method on the instance of every class.
 
 ```js
 shape.copy();
 ```
 
-Copying the shape withouth further instructions would be silly, however — the face would overlap with the original. In line with our goal of adding depth, you can offset the copy on the z axis with the `translate` property. Pay attention, though. Higher z values have the shapes move closer to your point of view. If you want the opposite effect, you would need to move the copy in the opposite direction.
+But copying the shape as-is would be silly — the face would overlap with the original. In line with our goal of adding depth, you can offset the copy on the z axis with the `translate` property. Pay attention, though. Higher z values have the shapes move closer to your point of view. If you want the opposite change, you would need to move the copy in the opposite direction.
 
 ```js
 const z = depth * -1;
@@ -110,7 +110,7 @@ shape.copy({
 });
 ```
 
-With one side complete we can move on to the more complex portions, the sections glueing the two parts together. But in the `path` array we have all the required information.
+With one side complete we can move on to the more complex portions, the sections gluing the two parts together. But in the `path` array we have everything we need.
 
 ```js
 const { path } = shape;
@@ -119,16 +119,16 @@ for (let i = 0; i < path.length; i++) {
 }
 ```
 
-Looping through the collection, from beginning to end, we can extract the coordinates for the vertices, in pairs.
+Looping through the collection we are able to evaluate the vertices in pairs.
 
 ```js
 const { x: x1, y: y1 } = path[i];
 const { x: x2, y: y2 } = path[(i + 1) % path.length];
 ```
 
-In so doing you have the position of the segments, from start to end. Extracting the starting pair is an easy feat, refer to the object at the incrementing index. Be warned about the ending couple, however; this one refers to the point at the following index, and you have to be mindful of the array's length. Connecting the last vertice to the first, you have to go back to the very first item, to the beginning of the array.
+In so doing, we gain access to the different segments. Extracting the starting pair is an easy feat — refer to the object at the incrementing index. Be warned about the ending couple, however; this one refers to the point at the index next to the current one, and you have to be mindful of the array's length. Connecting the last vertice to the first, you need to go back to the very first item, to the beginning of the array.
 
-With the coordinates we can continue with the intriguing section, actually drawing the sides. And for this we can repeat the `Shape` class. Not the instance, but the initial constructs. In this construct, use the coordinates with the chosen depth value, drawing the quadrilatelar over the z axis.
+With the coordinates we finally draw the sides. And for this we can repeat the `Shape` class. Not the instance, but the initial construct. Here, use the coordinates with the chosen depth value, drawing the quadrilateral over the z axis.
 
 ```js
 new Zdog.Shape({
@@ -142,15 +142,15 @@ new Zdog.Shape({
 });
 ```
 
-From the start point you repeat the coordinates with the addition of the z offset. At the same depth, move then to the final x, y value. Finally, trace the segment back. You are taking a detour, the long way round on the additional axis. And eventually, realize the shape.
+You are taking a detour, the long way round on the additional axis. And eventually, realize the shape.
 
 <Center element="figure" maxInlineSize="400px">
 	<Shape />
 </Center>
 
-I've used a distinct color for the copy and the sides, a darker version of the same hue to complete the effect, but that is up to your preference, how you choose to further stress the change to a three dimensional picture.
+I've used a distinct color for the copy and the sides, a darker version of the same hue, but that is up to your preference, how you choose to further stress the presence of the deeper picture.
 
-In honesty, the `path` property supports more types of instructions, to draw more than straight lines, but even with the smaller scope you can achieve a lot with the logic. And a touch of automation.
+Zdog and the `path` property support more types of instructions, to draw arcs and bezier curves, but even with straight lines, the code helps you achieve a lot. Especially with more elaborate shapes.
 
 <Center element="figure" maxInlineSize="300px">
 	<CuckooClock />
