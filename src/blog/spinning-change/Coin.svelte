@@ -10,7 +10,7 @@
 	let state = null;
 	const TAU = Math.PI * 2;
 	const randomAngle = () => (TAU / 32) * Math.floor(Math.random() * (32 / 2));
-	const angle = tweened(randomAngle());
+	const angle = tweened(TAU / 8);
 	let duration = 1500;
 
 	onMount(() => {
