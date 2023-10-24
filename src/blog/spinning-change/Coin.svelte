@@ -14,8 +14,6 @@
 	let duration = 1500;
 
 	onMount(() => {
-		element.style.width = `${element.width}px`;
-
 		const stroke = 0;
 		const diameter = 30;
 		const length = 2;
@@ -294,6 +292,8 @@
 
 	div > canvas {
 		display: block;
+		width: 400px;
+		height: 400px;
 	}
 
 	button {
