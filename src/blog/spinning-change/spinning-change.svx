@@ -1,6 +1,6 @@
 ---
 title: Spinning change
-description: 'Two cents on the Zdog: a library primed for impressive twists.'
+description: 'Two cents on Zdog: a library primed for impressive twists.'
 date: 2023-10-23T14:35:13
 ---
 
