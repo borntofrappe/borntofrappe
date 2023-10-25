@@ -1,0 +1,7 @@
+---
+title: Complete paths
+description: Add depth to the Zdog arcs and beziers.
+date: 2023-10-25T16:16:16
+---
+
+Extend the logic of [deeeper-paths](/deeeper-paths) to arcs and bezier curves.
