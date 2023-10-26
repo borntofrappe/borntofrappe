@@ -1,7 +1,238 @@
 ---
 title: Complete paths
-description: Add depth to the Zdog arcs and beziers.
-date: 2023-10-25T16:16:16
+description: Add depth to the different types of shapes in the Zdog library.
+date: 2023-10-26T10:35:04
 ---
 
-Extend the logic of [deeeper-paths](/deeeper-paths) to arcs and bezier curves.
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import Arc from './Arc.svelte';
+	import Bezier from './Bezier.svelte';
+	import NightSky from './NightSky.svelte';
+</script>
+
+The shapes you draw with [Zdog](https://zzz.dog/) tend to be excessively thin. You may thicken the figures with the `stroke` property, but to grow the shape further, to increase the sense of depth, you need to explore the z axis yourself. You may have seen how [in the past](/deeper-shapes), and stumbled on a way to automate the process with straight lines. But, as briefly mentioned in the same article, the library supports more types of instructions, such as arcs and bezier curves. The commands are more elaborate, but with a small effort it is possible to extend the logic to cover all possible shapes.
+
+## Depth
+
+For the uninitiated, the goal is to consider an instance of a shape class.
+
+```js
+const shape = new Shape({
+	// ...,
+	path: [
+		{ x: -2, y: -2 },
+		{ x: 2, y: 2 },
+		{ x: -2, y: 2 }
+	]
+});
+```
+
+Zdog looks at the path property to sketch out the shape with the precise coordinates. And in the snippet, the library resolves to draw a triangle point by point.
+
+To add depth, pick a distance over the z axis, `z`, and proceed in steps:
+
+1. repeat the shape, offset with the chosen measure
+
+   ```js
+   shape.copy({
+   	translate: {
+   		z
+   	}
+   });
+   ```
+
+2. dive in the path attribute to fabricate the sides
+
+   ```js
+   const { path } = shape;
+   ```
+
+   The idea is to consider the points in pairs, from start to end.
+
+   ```js
+   for (let i = 0; i < path.length; i++) {
+   	const { x: x1, y: y1 } = path[i];
+   	const { x: x2, y: y2 } = path[(i + 1) % path.length];
+   }
+   ```
+
+   With the values you add more shapes, drawing the segments in the additional axis.
+
+With the two, the effect is complete, but again, better argued in [the article](/deeper-shapes) introducing the concept.
+
+## Arc
+
+If you are not satisfied with straight segments alone, you are able to elaborate arcs with a specific syntax.
+
+Instead of an object describing the coordinates, add curly braces with a single `arc` property. In this key, then, include an array with two objects. The first describes the position of the corner. The second, where the arc should end.
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html svg['arc-zdog']}
+</Center>
+
+If you are familiar with the arcs of `<path>` elements, the structure is quite different from the syntax found in the `d` attribute. But [some might argue](/another-arc), even better. The behavior is predictable when you draw the path based on a single corner point.
+
+Now, to add depth you can repeat the shape with the prescribed offset, once again with the `copy` method. However, you cannot loop through the items of the `path` array in the same manner. You need to check the nature of each object first: is this object an arc?
+
+```js
+const p1 = path[i];
+const p2 = path[(i + 1) % path.length];
+
+const p1Arc = Object.hasOwn(p1, 'arc');
+const p2Arc = Object.hasOwn(p2, 'arc');
+```
+
+The `Object.hasOwn` function receives the object as the first argument, the key as the second, and returns a boolean to answer the question. With the split there are four possible combinations, but in terms of drawing, you care only about a specific scenario.
+
+Indeed, whether the first object is an arc or not, the fact does not change the type of instruction, only the way you find the x, y coordinates. If you have an arc, these are in the second item. If you do not, you can fall back to the simpler instance, and extract the numbers immediately.
+
+```js
+const { x: x1, y: y1 } = p1Arc ? p1.arc[1] : p1;
+```
+
+The drawing changes the moment the second object is an arc. Here you care about the x, y coordinates, found in the second item, but also the position of the corner, detailed in the first.
+
+```js
+const { x: xc, y: yc } = p2.arc[0];
+const { x: x2, y: y2 } = p2.arc[1];
+```
+
+With the values you can move on to the logic of the new shape, to create the sides.
+
+From the starting coordinate, move on the new axis.
+
+```js
+new Shape({
+	//...
+	path: [
+		{ x: x1, y: y1, z: 0 },
+		{ x: x1, y: y1, z }
+	]
+});
+```
+
+From this point draw an arc. The very same arc, for that matter, only offset.
+
+```js
+new Shape({
+	//...,
+	path: [
+		// ...{ x1, y1, z},
+		{
+			arc: [
+				{ x: xc, y: yc, z },
+				{ x: x2, y: y2, z }
+			]
+		}
+	]
+});
+```
+
+Once you reach the end, distant coordinate, trace your way back and repeat the arc.
+
+```js
+new Shape({
+	//...,
+	path: [
+		// ...{ x2, y2, z},
+		{ x: x2, y: y2, z: 0 }
+		{
+			arc: [
+				{ x: xc, y: yc, z: 0 },
+				{ x: x1, y: y1, z: 0 }
+			]
+		}
+	]
+});
+```
+
+The same corner point, back to the origin.
+
+Conceptually, the code is not that different from having only straight lines. But visually, the result is quite more impressive.
+
+<Center element="figure" maxInlineSize="400px">
+	<Arc />
+</Center>
+
+## Bezier
+
+While the `<path>` element lets you draw two types of bezier curves, quadratic or cubic, Zdog supports only the second.
+
+The syntax is similar to the one introducing an arc. Introduce the function with the `bezier` key. In the array which follows add three objects. The final object always points to where the shape should end. The remaining argue for the control points in the precise order.
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html svg['bezier-zdog']}
+</Center>
+
+With this in mind, adding depth works in a very similar manner. Where the path should start,where the path should end is once again described by the very last item — the third.
+
+```js
+const p1Bezier = Object.hasOwn(p1, 'bezier');
+
+const { x: x1, y: y1 } = p1Bezier ? p1.bezier[2] : p1;
+```
+
+The control points, those become relevant for the second object, to draw the more complex figures.
+
+```js
+const p2Bezier = Object.hasOwn(p2, 'bezier');
+
+if (p2Bezier) {
+	const { x: xc1, y: yc1 } = p1.bezier[0];
+	const { x: xc2, y: yc2 } = p1.bezier[1];
+	const { x: x2, y: y2 } = p1.bezier[2];
+}
+```
+
+Pay attention however, to how you draw the new shape. Offset in the distance, you can repeat the curve.
+
+```js
+new Shape({
+	//...,
+	path: [
+		// ...{ x1, y1, z},
+		{
+			bezier: [
+				{ x: xc1, y: yc1, z },
+				{ x: xc2, y: yc2, z },
+				{ x: x2, y: y2, z }
+			]
+		}
+	]
+});
+```
+
+On the way back, however, you need to swap the order of the control points.
+
+```js
+new Shape({
+	//...,
+	path: [
+		// ...{ x2, y2, z: 0},
+		{
+			bezier: [
+				{ x: xc2, y: yc2, z: 0 },
+				{ x: xc1, y: yc1, z: 0 },
+				{ x: x1, y: y1, z: 0 }
+			]
+		}
+	]
+});
+```
+
+As you draw from the end to the beginning, the influence of the control points is reversed. And with this precaution, even for the most complex of the Zdog paths, the effect is complete.
+
+<Center element="figure" maxInlineSize="400px">
+	<Bezier />
+</Center>
+
+It is likely there is a better way to structure the shape over three dimensions. Coming from an SVG element, from the instructions of the`d` attribute of `<path>` elements, I find this approach to be the most straightforward, the most clear.
+
+In the context of a complex illustration, populated with flimsy shapes, you can target a few instances and enhance the picture with solid, pseudo-3d shadows. An effective manner to create a graphic with a much broader stroke.
+
+<Center element="figure" maxInlineSize="400px">
+	<NightSky />
+</Center>
