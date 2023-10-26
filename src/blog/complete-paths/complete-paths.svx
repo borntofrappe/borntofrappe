@@ -1,6 +1,6 @@
 ---
 title: Complete paths
-description: Add depth to the different types of shapes in the Zdog library.
+description: Embolden all possible types of Zdog shapes in pseudo-3D.
 date: 2023-10-26T10:35:04
 ---
 
@@ -13,7 +13,7 @@ date: 2023-10-26T10:35:04
 	import NightSky from './NightSky.svelte';
 </script>
 
-The shapes you draw with [Zdog](https://zzz.dog/) tend to be excessively thin. You may thicken the figures with the `stroke` property, but to grow the shape further, to increase the sense of depth, you need to explore the z axis yourself. You may have seen how [in the past](/deeper-shapes), and stumbled on a way to automate the process with straight lines. But, as briefly mentioned in the same article, the library supports more types of instructions, such as arcs and bezier curves. The commands are more elaborate, but with a small effort it is possible to extend the logic to cover all possible shapes.
+The shapes you draw with [Zdog](https://zzz.dog/) tend to be excessively thin. You may thicken the figures with the `stroke` property, but to grow the shape further, to increase the sense of depth, you need to explore the z axis yourself. You may have seen how [in the past](/deeper-paths), and stumbled on a way to automate the process with straight lines. But, as briefly mentioned in the same article, the library supports more types of instructions, such as arcs and bezier curves. The commands are more elaborate, but with a small effort it is possible to extend the logic to cover all possible shapes.
 
 ## Depth
 
@@ -30,7 +30,7 @@ const shape = new Shape({
 });
 ```
 
-Zdog looks at the path property to sketch out the shape with the precise coordinates. And in the snippet, the library resolves to draw a triangle point by point.
+Zdog looks at the `path` property to sketch out the shape with the precise coordinates. And in the snippet, the library resolves to draw a triangle point by point.
 
 To add depth, pick a distance over the z axis, `z`, and proceed in steps:
 
@@ -59,13 +59,13 @@ To add depth, pick a distance over the z axis, `z`, and proceed in steps:
    }
    ```
 
-   With the values you add more shapes, drawing the segments in the additional axis.
+   With the values, then, you add more shapes, drawing the segments in the additional axis.
 
-With the two, the effect is complete, but again, better argued in [the article](/deeper-shapes) introducing the concept.
+The sequence is clear, but again, better argued in [the article](/deeper-paths) introducing the concept.
 
 ## Arc
 
-If you are not satisfied with straight segments alone, you are able to elaborate arcs with a specific syntax.
+Beside straight segments alone, you can draw arcs with a specific syntax.
 
 Instead of an object describing the coordinates, add curly braces with a single `arc` property. In this key, then, include an array with two objects. The first describes the position of the corner. The second, where the arc should end.
 
@@ -73,9 +73,9 @@ Instead of an object describing the coordinates, add curly braces with a single 
 	{@html svg['arc-zdog']}
 </Center>
 
-If you are familiar with the arcs of `<path>` elements, the structure is quite different from the syntax found in the `d` attribute. But [some might argue](/another-arc), even better. The behavior is predictable when you draw the path based on a single corner point.
+If you are familiar with the arcs of `<path>` elements, the structure is quite different from the one of the `d` attribute. But [some might argue](/another-arc), even better. The behavior is predictable when you draw the path based on a single corner point.
 
-Now, to add depth you can repeat the shape with the prescribed offset, once again with the `copy` method. However, you cannot loop through the items of the `path` array in the same manner. You need to check the nature of each object first: is this object an arc?
+Now, to add depth you can repeat the shape with the prescribed offset, once again with the `copy` method. However, you cannot loop through the items of the `path` array in the same fashion. You need to check the contents of each object first: is this object an arc?
 
 ```js
 const p1 = path[i];
@@ -96,11 +96,13 @@ const { x: x1, y: y1 } = p1Arc ? p1.arc[1] : p1;
 The drawing changes the moment the second object is an arc. Here you care about the x, y coordinates, found in the second item, but also the position of the corner, detailed in the first.
 
 ```js
-const { x: xc, y: yc } = p2.arc[0];
-const { x: x2, y: y2 } = p2.arc[1];
+if (p2Arc) {
+	const { x: xc, y: yc } = p2.arc[0];
+	const { x: x2, y: y2 } = p2.arc[1];
+}
 ```
 
-With the values you can move on to the logic of the new shape, to create the sides.
+With the values you can then continue with a new shape, to create the side.
 
 From the starting coordinate, move on the new axis.
 
@@ -159,15 +161,17 @@ Conceptually, the code is not that different from having only straight lines. Bu
 
 ## Bezier
 
-While the `<path>` element lets you draw two types of bezier curves, quadratic or cubic, Zdog supports only the second.
+While the `<path>` element lets you draw two types of bezier curves, quadratic and cubic, Zdog supports only the second.
 
-The syntax is similar to the one introducing an arc. Introduce the function with the `bezier` key. In the array which follows add three objects. The final object always points to where the shape should end. The remaining argue for the control points in the precise order.
+The syntax is similar to the one introducing an arc: introduce the function with the `bezier` key. In the array which follows add three objects.
 
 <Center element="figure" maxInlineSize="40rem">
 	{@html svg['bezier-zdog']}
 </Center>
 
-With this in mind, adding depth works in a very similar manner. Where the path should start,where the path should end is once again described by the very last item — the third.
+The final object always points to where the shape should end. The remaining argue for the control points in the precise order.
+
+With this in mind, adding depth works in a very similar manner. Where the path should start, where the path should end is once again described by the very last item — the third.
 
 ```js
 const p1Bezier = Object.hasOwn(p1, 'bezier');
@@ -175,7 +179,7 @@ const p1Bezier = Object.hasOwn(p1, 'bezier');
 const { x: x1, y: y1 } = p1Bezier ? p1.bezier[2] : p1;
 ```
 
-The control points, those become relevant for the second object, to draw the more complex figures.
+The control points, these become relevant for the second object, to draw the more complex figures.
 
 ```js
 const p2Bezier = Object.hasOwn(p2, 'bezier');
@@ -187,7 +191,7 @@ if (p2Bezier) {
 }
 ```
 
-Pay attention however, to how you draw the new shape. Offset in the distance, you can repeat the curve.
+Pay attention to how you draw the new shape, however. Offset in the distance, you can repeat the curve.
 
 ```js
 new Shape({
@@ -205,7 +209,7 @@ new Shape({
 });
 ```
 
-On the way back, however, you need to swap the order of the control points.
+On the way back, swap the order of the control points.
 
 ```js
 new Shape({
@@ -229,9 +233,9 @@ As you draw from the end to the beginning, the influence of the control points i
 	<Bezier />
 </Center>
 
-It is likely there is a better way to structure the shape over three dimensions. Coming from an SVG element, from the instructions of the`d` attribute of `<path>` elements, I find this approach to be the most straightforward, the most clear.
+It is likely there is a better way to structure the shape over three dimensions. Coming from an SVG element, from the instructions of the `d` attribute of `<path>` elements, I find the approach to be straightforward.
 
-In the context of a complex illustration, populated with flimsy shapes, you can target a few instances and enhance the picture with solid, pseudo-3d shadows. An effective manner to create a graphic with a much broader stroke.
+In the context of a complex illustration, populated with flimsy shapes, you can target a few instances and enhance the picture with solid, pseudo-3D shadows. And extend a graphic to reach new heights, unexplored depths.
 
 <Center element="figure" maxInlineSize="400px">
 	<NightSky />
