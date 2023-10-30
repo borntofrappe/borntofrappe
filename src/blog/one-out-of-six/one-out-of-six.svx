@@ -1,0 +1,7 @@
+---
+title: One out of six
+description: Roll the dice.
+date: 2023-10-30T11:11:11
+---
+
+Continue trying your luck with Zdog and pseudo-3D features.
