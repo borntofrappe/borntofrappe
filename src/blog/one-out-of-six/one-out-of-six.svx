@@ -4,4 +4,10 @@ description: Roll the dice.
 date: 2023-10-30T11:11:11
 ---
 
+<script>
+	import Dice from './Dice.svelte';
+</script>
+
 Continue trying your luck with Zdog and pseudo-3D features.
+
+<Dice />
