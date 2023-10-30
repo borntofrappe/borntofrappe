@@ -6,7 +6,8 @@ date: 2023-10-16T11:34:38
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
-
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
 	import svg from './svg.js';
 	import BobOmb from './BobOmb.svelte';
 </script>
@@ -48,3 +49,7 @@ I tend to indulge in a touch of animation, which puts a nice ribbon on the entir
 <Center element="figure" maxInlineSize="400px">
 	<BobOmb />
 </Center>
+
+---
+
+<ZdogMonday current="step-through-frames" />

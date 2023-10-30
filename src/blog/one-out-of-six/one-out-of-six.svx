@@ -6,6 +6,7 @@ date: 2023-10-30T09:40:07
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Dice from './Dice.svelte';
 </script>
@@ -21,3 +22,7 @@ Of course you are not limited to one axis. There are three dimensions, [three ty
 <Center maxInlineSize="400px">
 	<Dice />
 </Center>
+
+---
+
+<ZdogMonday current="one-out-of-six" />

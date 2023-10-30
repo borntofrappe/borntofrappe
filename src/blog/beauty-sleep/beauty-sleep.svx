@@ -6,7 +6,8 @@ date: 2023-10-02T11:34:17
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
-
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
 	import ZZ from './ZZ.svelte';
 </script>
 
@@ -22,4 +23,4 @@ This article does nothing of the sort. It is an excuse to begin a series, a jour
 
 ---
 
-The gallery is in the early stages, but expect [the collection on CodePen](https://codepen.io/collection/PYyrNq). And expect more in the weeks to come.
+<ZdogMonday current="beauty-sleep" />

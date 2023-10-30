@@ -6,7 +6,8 @@ date: 2023-10-23T14:35:13
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
-
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
 	import Coin from './Coin.svelte';
 </script>
 
@@ -48,3 +49,7 @@ The concept is so close, so down to earth that you cannot help to try out your l
 <Center maxInlineSize="400px">
 	<Coin />
 </Center>
+
+---
+
+<ZdogMonday current="spinning-change" />
