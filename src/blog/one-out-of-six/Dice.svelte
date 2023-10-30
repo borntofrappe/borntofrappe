@@ -2,7 +2,9 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { backIn, backOut } from 'svelte/easing';
-	import { Illustration, Group, Box, Hemisphere, TAU } from 'zdog';
+	import { Illustration, Group, Box, Hemisphere } from 'zdog';
+
+	const TAU = Math.PI * 2;
 
 	let element = null;
 	let illustration = null;
