@@ -92,7 +92,7 @@
 				const { x: x2, y: y2 } = p2;
 
 				new Shape({
-					addTo: root,
+					addTo,
 					color: colors.shadow,
 					fill,
 					path: [
