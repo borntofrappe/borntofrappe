@@ -1,13 +1,23 @@
 ---
 title: One out of six
-description: Roll the dice.
-date: 2023-10-30T11:11:11
+description: Take your chance with another lucky pseudo-3D graphic.
+date: 2023-10-30T09:40:07
 ---
 
 <script>
+	import Center from '$lib/components/blog/Center.svelte';
+
 	import Dice from './Dice.svelte';
 </script>
 
-Continue trying your luck with Zdog and pseudo-3D features.
+Beside offering entertaining visualization, Zdog lets you explore options exceeding the scope of a 2D canvas. This means a rotation over the y axis, as preciously seen [in a previous installment](/spinning-change), is a relatively straightforward operation.
 
-<Dice />
+```js
+illustration.rotate.y = TAU / 8;
+```
+
+Of course you are not limited to one axis. There are three dimensions, [three types of rotations](/rotate-3d). Assuming you have enough patience to line up different shapes, you can continue trying your luck with the library, and promptly answer [an outstanding question](/what-are-the-odds) without amusing, pixelated tricks.
+
+<Center maxInlineSize="400px">
+	<Dice />
+</Center>
