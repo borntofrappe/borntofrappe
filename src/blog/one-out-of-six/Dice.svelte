@@ -15,7 +15,7 @@
 		const colors = {
 			white: 'hsl(210 16% 93%)',
 			black: 'hsl(210 10% 23%)',
-			red: 'hsl(42 96% 50%)'
+			accent: 'hsl(42 96% 50%)'
 		};
 
 		const stroke = 20;
@@ -58,7 +58,7 @@
 
 		dot.copy({
 			addTo: one,
-			color: colors.red
+			color: colors.accent
 		});
 
 		const six = new Group({
