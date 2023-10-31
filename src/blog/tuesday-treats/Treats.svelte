@@ -6,13 +6,15 @@
 
 	onMount(() => {
 		const colors = {
-			cookie: 'hsl(30 84% 74%)',
-			shadow: 'hsl(30 84% 60%)',
-			black: 'hsl(31 18% 23%)',
-			white: 'hsl(4 79% 96%)',
-			chocolate: 'hsl(8 39% 27%)',
-			pumpkin: 'hsl(18 85% 59%)',
-			sugar: 'hsl(340 37% 53%)'
+			cookie: 'hsl(30 86% 60%)',
+			coating: 'hsl(30 84% 74%)',
+			chocolate: {
+				black: 'hsl(31 18% 26%)',
+				white: 'hsl(4 79% 96%)',
+				dark: 'hsl(8 39% 30%)'
+			},
+			pumpkin: 'hsl(18 85% 62%)',
+			sugar: 'hsl(340 37% 57%)'
 		};
 
 		const stroke = 1;
@@ -24,7 +26,7 @@
 
 		const cookieBat = new Shape({
 			addTo: root,
-			color: colors.cookie,
+			color: colors.coating,
 			stroke,
 			fill: true,
 			path: [
@@ -155,7 +157,7 @@
 			addTo: cookieBat,
 			stroke: 0,
 			fill: true,
-			color: colors.black,
+			color: colors.chocolate.black,
 			translate: {
 				z: stroke / 2
 			}
@@ -163,7 +165,7 @@
 
 		const eyeBat = new Shape({
 			stroke: 0.7,
-			color: colors.cookie
+			color: colors.coating
 		});
 
 		[-0.9, 0.9].forEach((x) => {
@@ -179,7 +181,7 @@
 
 		const cookieGhost = new Shape({
 			addTo: root,
-			color: colors.cookie,
+			color: colors.coating,
 			stroke,
 			fill: true,
 			path: [
@@ -241,7 +243,7 @@
 
 		cookieGhost.copy({
 			addTo: cookieGhost,
-			color: colors.white,
+			color: colors.chocolate.white,
 			stroke: 0,
 			fill: true,
 			translate: {
@@ -250,7 +252,7 @@
 		});
 
 		const eyeGhost = new Shape({
-			color: colors.black,
+			color: colors.chocolate.black,
 			stroke: 0.5,
 			fill: true,
 			path: [
@@ -320,7 +322,7 @@
 
 		const cookiePumpkin = new Shape({
 			addTo: root,
-			color: colors.cookie,
+			color: colors.coating,
 			stroke,
 			path: [
 				{ x: -1, y: -4 },
@@ -378,7 +380,7 @@
 		});
 
 		const eyePumpkin = new Shape({
-			color: colors.chocolate,
+			color: colors.chocolate.dark,
 			stroke: 0.5,
 			fill: true,
 			path: [
@@ -422,7 +424,7 @@
 
 		new Shape({
 			addTo: cookiePumpkin,
-			color: colors.chocolate,
+			color: colors.chocolate.dark,
 			stroke: 1,
 			closed: false,
 			path: [
@@ -529,7 +531,7 @@
 
 				new Shape({
 					addTo: shape,
-					color: colors.shadow,
+					color: colors.cookie,
 					stroke,
 					fill,
 					path: pathShadow,
