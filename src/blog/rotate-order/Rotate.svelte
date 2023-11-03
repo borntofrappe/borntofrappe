@@ -258,7 +258,7 @@
 		root.updateGraph();
 		render();
 
-		const handleInput = function () {
+		const handleInput = () => {
 			const x = degreesToRadians(parseFloat(form.x.value));
 			const y = degreesToRadians(parseFloat(form.y.value));
 			const z = degreesToRadians(parseFloat(form.z.value));
