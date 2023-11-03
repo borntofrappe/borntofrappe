@@ -4,4 +4,10 @@ description: Lean on the often counfounding nature of pseudo-3D rotations.
 date: 2023-11-03T11:11:11
 ---
 
+<script>
+	import Axes from './Axes.svelte';
+</script>
+
 Zdog rotatations on the x, y and z axis.
+
+<Axes />
