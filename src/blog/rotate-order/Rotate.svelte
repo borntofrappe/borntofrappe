@@ -4,6 +4,10 @@
 
 	import { degreesToRadians } from './utils.js';
 
+	export let x = 0;
+	export let y = 0;
+	export let z = 0;
+
 	let element = null;
 	let form = null;
 
@@ -89,7 +93,7 @@
 			}
 		});
 
-		const x = new Shape({
+		const xLetter = new Shape({
 			addTo: xAxis,
 			color: colors[3],
 			stroke: 0.5,
@@ -102,7 +106,7 @@
 			}
 		});
 
-		x.copy({
+		xLetter.copy({
 			rotate: {
 				z: TAU / 4
 			}
@@ -124,7 +128,7 @@
 			}
 		});
 
-		const y = new Shape({
+		const yLetter = new Shape({
 			addTo: yAxis,
 			color: colors[3],
 			stroke: 0.5,
@@ -138,7 +142,7 @@
 		});
 
 		new Shape({
-			addTo: y,
+			addTo: yLetter,
 			color: colors[3],
 			stroke: 0.4,
 			closed: false,
@@ -229,14 +233,7 @@
 		rotations.translate.y = -7.75;
 		box.translate.y = 7.25;
 
-		root.updateGraph();
-		render();
-
-		const handleInput = function () {
-			const x = degreesToRadians(parseFloat(form.x.value));
-			const y = degreesToRadians(parseFloat(form.y.value));
-			const z = degreesToRadians(parseFloat(form.z.value));
-
+		const updateRotate = ({ x = 0, y = 0, z = 0 }) => {
 			xAxis.rotate = { x };
 
 			yAxis.rotate = {
@@ -255,6 +252,18 @@
 				y,
 				z
 			};
+		};
+
+		updateRotate({ x: degreesToRadians(x), y: degreesToRadians(y), z: degreesToRadians(z) });
+		root.updateGraph();
+		render();
+
+		const handleInput = function () {
+			const x = degreesToRadians(parseFloat(form.x.value));
+			const y = degreesToRadians(parseFloat(form.y.value));
+			const z = degreesToRadians(parseFloat(form.z.value));
+
+			updateRotate({ x, y, z });
 
 			root.updateGraph();
 			render();
@@ -274,15 +283,15 @@
 		<p>Rotate between <code>0</code> and <code>360</code> degrees</p>
 		<label>
 			<span>x</span>
-			<input id="x" type="range" min="0" max="360" value="0" step="4" />
+			<input id="x" type="range" min="0" max="360" value={x} step="4" />
 		</label>
 		<label>
 			<span>y</span>
-			<input id="y" type="range" min="0" max="360" value="0" step="4" />
+			<input id="y" type="range" min="0" max="360" value={y} step="4" />
 		</label>
 		<label>
 			<span>z</span>
-			<input id="z" type="range" min="0" max="360" value="0" step="4" />
+			<input id="z" type="range" min="0" max="360" value={z} step="4" />
 		</label>
 	</form>
 </div>

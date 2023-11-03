@@ -48,12 +48,12 @@ x, y, z. Thankfully, Zdog follows the alphabet to the letter to tilt the image. 
 
 ```js
 const rotate = {
-	x: degreesToRadians(20),
-	y: degreesToRadians(30)
+	x: degreesToRadians(40),
+	y: degreesToRadians(20)
 };
 ```
 
-Here you rotate the instance of a `Shape` class on the x and y axis, by 20 and 30 degrees respectively. It might be easier to think of the values in degrees, but in the `rotate` object the numbers refer to radians, explaining the conversion with a helper function.
+Here you rotate the instance of a `Shape` class on the x and y axis, by 40 and 20 degrees respectively. It might be easier to think of the values in degrees, but in the `rotate` object the numbers refer to radians, explaining the conversion with a helper function.
 
 ```js
 const degreesToRadians = (degrees) => (degrees / 180) * Math.PI;
@@ -61,7 +61,7 @@ const degreesToRadians = (degrees) => (degrees / 180) * Math.PI;
 
 What happens, then? Once again, picture the changes one at a time. First, the shape is tilted upwards. If you think of the coordinate system of your drawing as a pane, think of the layer as moving, in its entirety, to look slightly up. Then, from this, tipped, position, the figure moves to the west. With this in mind, the shape aims longingly at the top left corner of the canvas.
 
-<Rotate />
+<Rotate {...{x: 40, y: 20}} />
 
 You have a lot of freedom in terms of values. And in terms of angles, you usually work with numbers with a constant proffered by Zdog itself: `TAU`. The variable refers to twice the value of `Math.PI`, so that you can reason in terms of fractions of full rotations.
 
