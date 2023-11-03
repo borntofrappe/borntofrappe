@@ -1,7 +1,7 @@
 ---
 title: Rotate order
-description: Lean on the often counfounding nature of pseudo-3D rotations.
-date: 2023-11-03T11:11:11
+description: Lean on the often confounding order of pseudo-3D rotations.
+date: 2023-11-03T15:35:19
 ---
 
 <script>
@@ -10,6 +10,98 @@ date: 2023-11-03T11:11:11
 	import Robots from './Robots.svelte';
 </script>
 
-Zdog rotatations on the x, y and z axis.
+One of the most intriguing parts of [Zdog](https://zzz.dog/) is the ability to rotate a graphic over one of [the three possible axes](/rotate-3d), but there are a few challenges with the possibility.
+
+Immediately, you need to understand how a rotation takes place, almost literally around the respective axis.
+
+<Axes />
+
+The direction of the rotation is also important. Positive values tip the shapes upwards, westwards or again clockwise. Negative numbers move the shapes in the opposite sense — downwards, to the east and against the hands of a clock.
+
+A few examples help to illustrate the concept, to the point where you can predict the final result even before the rotation takes place.
+
+```js
+illustration = new Zdog.Illustration({
+	element: 'canvas',
+	rotate: {
+		x: degreesToRadians(20)
+	}
+});
+```
+
+But what happens when you apply two or more rotations? The result is often confounding, and it can be daunting to figure the eventual outcome.
+
+```js
+illustration = new Zdog.Illustration({
+	element: 'canvas',
+	rotate: {
+		x: degreesToRadians(20),
+		y: degreesToRadians(30)
+		z: degreesToRadians(10)
+	}
+});
+```
+
+In this light, you must understand that rotation occurs in a precise sequence. An order prescribed by the library, not by the way you structure the `rotate` object.
+
+x, y, z. Thankfully, Zdog follows the alphabet to the letter to tilt the image. Think in these terms, and the result starts to be much clearer. Take the following snippet, for instance.
+
+```js
+const rotate = {
+	x: degreesToRadians(20),
+	y: degreesToRadians(30)
+};
+```
+
+Here you rotate the instance of a `Shape` class on the x and y axis, by 20 and 30 degrees respectively. It might be easier to think of the values in degrees, but in the `rotate` object the numbers refer to radians, explaining the conversion with a helper function.
+
+```js
+const degreesToRadians = (degrees) => (degrees / 180) * Math.PI;
+```
+
+What happens, then? Once again, picture the changes one at a time. First, the shape is tilted upwards. If you think of the coordinate system of your drawing as a pane, think of the layer as moving, in its entirety, to look slightly up. Then, from this, tipped, position, the figure moves to the west. With this in mind, the shape aims longingly at the top left corner of the canvas.
+
+<Rotate />
+
+You have a lot of freedom in terms of values. And in terms of angles, you usually work with numbers with a constant proffered by Zdog itself: `TAU`. The variable refers to twice the value of `Math.PI`, so that you can reason in terms of fractions of full rotations.
+
+```js
+const rotate = {
+	z: Zdog.TAU / 4
+};
+```
+
+Even in the smaller range, there's ample space to experiment, but you are also locked in the given order. What if you wanted to spin the image around the clock first, and only then rotate the result in the x or y axis? You need an intermediate step, and in terms of code, you need an anchor.
+
+```js
+const anchor = new Zdog.Anchor({
+	addTo: illustration
+});
+```
+
+An anchor works as a helpful container for any additional shape. Instead of adding shapes to the base illustration, update the `addTo` field to point to the new object.
+
+```js
+new Zdog.Shape({
+	addTo: anchor
+	// color & path
+});
+```
+
+And with this two-step structure you are more than equipped to achieve the feat, in order. Rotate the illustration, updating the coordinate system for every object which follows.
+
+```js
+illustration.rotate.z = degreesToRadians(10);
+```
+
+Rotate the anchor, from the new point of view.
+
+```js
+anchor.rotate.y = degreesToRadians(-20);
+```
+
+And you are square. Every shape added to the anchor rotated in the prescribed order.
+
+Once you elevate a drawing to a new dimension, the change can be often confusing, but there is no magic behind the scenes. Not as much as logical, rounded, pseudo-3D shapes.
 
 <Robots />
