@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { Anchor, Shape } from 'zdog';
 
+	import { degreesToRadians } from './utils';
+
 	let element = null;
 
 	const robots = [
@@ -245,9 +247,9 @@
 				if (j < rotations.length) {
 					const { x = 0, y = 0, z = 0 } = rotations[j];
 					anchors[j].rotate = {
-						x: (x / 180) * Math.PI,
-						y: (y / 180) * Math.PI,
-						z: (z / 180) * Math.PI
+						x: degreesToRadians(x),
+						y: degreesToRadians(y),
+						z: degreesToRadians(z)
 					};
 				} else {
 					anchors[j].rotate = { x: 0, y: 0, z: 0 };

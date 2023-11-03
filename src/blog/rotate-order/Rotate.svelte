@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { Anchor, Shape, Cone, Ellipse, Box, TAU } from 'zdog';
 
+	import { degreesToRadians } from './utils.js';
+
 	let element = null;
 	let form = null;
 
@@ -231,9 +233,9 @@
 		render();
 
 		const handleInput = function () {
-			const x = (parseFloat(form.x.value) / 180) * Math.PI;
-			const y = (parseFloat(form.y.value) / 180) * Math.PI;
-			const z = (parseFloat(form.z.value) / 180) * Math.PI;
+			const x = degreesToRadians(parseFloat(form.x.value));
+			const y = degreesToRadians(parseFloat(form.y.value));
+			const z = degreesToRadians(parseFloat(form.z.value));
 
 			xAxis.rotate = { x };
 

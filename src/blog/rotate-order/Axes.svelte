@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { Anchor, Shape, Cone, TAU } from 'zdog';
 
+	import { degreesToRadians } from './utils.js';
+
 	let element = null;
 
 	const rotations = [{ x: 30 }, { y: 30 }, { z: 30 }];
@@ -207,9 +209,9 @@
 			const { x = 0, y = 0, z = 0 } = rotations[i];
 
 			axes.rotate = {
-				x: (x / 180) * Math.PI,
-				y: (y / 180) * Math.PI,
-				z: (z / 180) * Math.PI
+				x: degreesToRadians(x),
+				y: degreesToRadians(y),
+				z: degreesToRadians(z)
 			};
 
 			root.updateGraph();
