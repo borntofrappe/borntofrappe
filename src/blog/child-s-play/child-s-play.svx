@@ -1,13 +1,15 @@
 ---
-title: child-s-play
-description: childhood memories
-date: 2023-11-06T11:11:11
+title: Child's play
+description: Go back to the crafting table and tinker with charming creations.
+date: 2023-11-06T09:34:47
 ---
 
 <script>
 	import Playground from './Playground.svelte';
 </script>
 
-Zdog monday has arrived once more.
+Following [a game of chance](/spinning-change), or [two](/one-out-of-six), _"Zdog monday"_ continues playing through dimensions. This time around, the goal is to bring back simpler times, childhood memories toying with improvised material, laying around the crafting table.
+
+Turns out, you can create quite the charming plaything with a few pieces of recycled materials. And if you are so proud of the creation, you can certainly level up with wooden scraps. Just be sure to sand off the edges.
 
 <Playground />
