@@ -439,4 +439,4 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block;" width="400" height="220" />
+<canvas bind:this={element} style="display: block;" width="360" height="200" />

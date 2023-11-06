@@ -4,4 +4,10 @@ description: childhood memories
 date: 2023-11-06T11:11:11
 ---
 
+<script>
+	import Playground from './Playground.svelte';
+</script>
+
 Zdog monday has arrived once more.
+
+<Playground />
