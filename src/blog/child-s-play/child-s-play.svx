@@ -1,6 +1,6 @@
 ---
 title: Child's play
-description: Go back to the crafting table and tinker with charming creations.
+description: Go back to the crafting table to tinker with basic, cute shapes.
 date: 2023-11-06T09:34:47
 ---
 
@@ -10,9 +10,9 @@ date: 2023-11-06T09:34:47
 	import Playground from './Playground.svelte';
 </script>
 
-Following [a game of chance](/spinning-change), or [two](/one-out-of-six), _"Zdog monday"_ continues playing through dimensions. This time around, the goal is to bring back simpler times, childhood memories toying with improvised material, laying around the crafting table.
+Following [a game of chance](/spinning-change), or [two](/one-out-of-six), _"Zdog monday"_ continues playing with dimensions. This time around, the goal is to bring back simpler times, childhood memories toying with improvised material laying around on a crafting table.
 
-Turns out, you can create quite the charming plaything with a few pieces of recycled materials. And if you are so proud of the creation, you can certainly level up with wooden scraps. Just be sure to sand off the edges.
+Turns out, you can create quite the charming plaything with a few pieces of recycling. And if you are so proud of the creation, you can certainly level up with wooden scraps. Just be sure to sand off the edges.
 
 <Playground />
 
