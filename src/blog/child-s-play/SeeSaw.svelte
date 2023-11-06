@@ -359,7 +359,7 @@
 
 		const context = element.getContext('2d');
 		const { width, height } = element;
-		const zoom = 10;
+		const zoom = 9;
 
 		context.lineJoin = 'round';
 		context.lineCap = 'round';
