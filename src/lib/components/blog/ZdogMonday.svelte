@@ -20,6 +20,10 @@
 		{
 			title: 'One out of six',
 			slug: 'one-out-of-six'
+		},
+		{
+			title: "Child's play",
+			slug: 'child-s-play'
 		}
 	];
 </script>

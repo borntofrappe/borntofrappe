@@ -5,6 +5,8 @@ date: 2023-11-06T09:34:47
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import Playground from './Playground.svelte';
 </script>
 
@@ -13,3 +15,7 @@ Following [a game of chance](/spinning-change), or [two](/one-out-of-six), _"Zdo
 Turns out, you can create quite the charming plaything with a few pieces of recycled materials. And if you are so proud of the creation, you can certainly level up with wooden scraps. Just be sure to sand off the edges.
 
 <Playground />
+
+---
+
+<ZdogMonday current="child-s-play" />
