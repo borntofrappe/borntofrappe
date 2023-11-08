@@ -5,6 +5,8 @@ date: 2023-06-16T17:41:56
 ---
 
 <script>
+	import Center from '$lib/components/blog/Center.svelte';
+	
 	import svg from './svg.js';
 	import CosmicAdventure from './CosmicAdventure.svelte';
 </script>
@@ -353,7 +355,9 @@ The result? I don't have it. There isn't even a plot twist where you find the gr
 
 Anticlimactic? I get it. And as I often remedy these situations, let me offer you something new to send you off on a higher note.
 
-<CosmicAdventure />
+<Center maxInlineSize="500px">
+	<CosmicAdventure />
+</Center>
 
 The really good news? You can very well create something similar all on your own. I tried to animate the piece, but outside of the smooth change, the logic is eerily similar.
 

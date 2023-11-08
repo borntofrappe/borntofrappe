@@ -266,7 +266,7 @@
 
 <svg
 	bind:this={svg}
-	style="display: block; margin-inline: auto; inline-size: 100%; block-size: auto; max-inline-size: 500px;"
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 500px;"
 	width="500"
 	height="350"
 >
