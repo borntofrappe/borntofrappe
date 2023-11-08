@@ -264,7 +264,12 @@
 	});
 </script>
 
-<svg bind:this={svg} style="display: block; margin-inline: auto;" width="500" height="350">
+<svg
+	bind:this={svg}
+	style="display: block; margin-inline: auto; inline-size: 100%; block-size: auto; max-inline-size: 500px;"
+	width="500"
+	height="350"
+>
 	<title>Cosmic adventure</title>
 	<desc>In the vast space a solitary ship roams among the stars.</desc>
 	<defs>
