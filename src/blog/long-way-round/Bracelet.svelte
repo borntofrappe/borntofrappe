@@ -239,6 +239,7 @@
 			}
 		});
 
+		illustration.translate.y = 2;
 		illustration.updateRenderGraph();
 	});
 </script>
@@ -247,61 +248,60 @@
 	bind:this={element}
 	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
 	width="400"
-	height="160"
+	height="100"
+	viewBox="-200 -50 400 100"
 >
-	<svg viewBox="-200 -50 400 100">
-		<defs>
-			<linearGradient
-				id="zdog-gradient"
-				x1="0"
-				y1="0"
-				x2="15"
-				y2="15"
-				spreadMethod="repeat"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop stop-color="hsl(0 90% 75%)" offset="0.11" />
-				<stop stop-color="hsl(45 90% 75%)" offset="0.11" />
-				<stop stop-color="hsl(45 90% 75%)" offset="0.22" />
-				<stop stop-color="hsl(90 90% 75%)" offset="0.22" />
-				<stop stop-color="hsl(90 90% 75%)" offset="0.33" />
-				<stop stop-color="hsl(135 90% 75%)" offset="0.33" />
-				<stop stop-color="hsl(135 90% 75%)" offset="0.44" />
-				<stop stop-color="hsl(180 90% 75%)" offset="0.44" />
-				<stop stop-color="hsl(180 90% 75%)" offset="0.55" />
-				<stop stop-color="hsl(225 90% 75%)" offset="0.55" />
-				<stop stop-color="hsl(225 90% 75%)" offset="0.66" />
-				<stop stop-color="hsl(270 90% 75%)" offset="0.66" />
-				<stop stop-color="hsl(270 90% 75%)" offset="0.77" />
-				<stop stop-color="hsl(315 90% 75%)" offset="0.77" />
-				<stop stop-color="hsl(315 90% 75%)" offset="0.89" />
-				<stop stop-color="hsl(360 90% 75%)" offset="0.89" />
-				<stop stop-color="hsl(360 90% 75%)" offset="1" />
-			</linearGradient>
-		</defs>
-		<rect
-			fill="hsl(0 0% 100%)"
-			stroke="url(#zdog-gradient)"
-			stroke-width="8"
-			stroke-linejoin="round"
-			x="-83.08209228515625"
-			y="-38.31432342529297"
-			width="166.1641845703125"
-			height="80.25140380859375"
-		/>
-		<text
-			fill="hsl(0 0% 30%)"
-			stroke="hsl(0 0% 30%)"
-			font-family="sans-serif"
-			stroke-linejoin="round"
-			stroke-linecap="round"
-			font-size="50"
-			font-weight="700"
-			letter-spacing="2"
-			text-anchor="middle"
-			y="18"
+	<defs>
+		<linearGradient
+			id="zdog-gradient"
+			x1="0"
+			y1="0"
+			x2="15"
+			y2="15"
+			spreadMethod="repeat"
+			gradientUnits="userSpaceOnUse"
 		>
-			Zdog
-		</text>
-	</svg>
+			<stop stop-color="hsl(0 90% 75%)" offset="0.11" />
+			<stop stop-color="hsl(45 90% 75%)" offset="0.11" />
+			<stop stop-color="hsl(45 90% 75%)" offset="0.22" />
+			<stop stop-color="hsl(90 90% 75%)" offset="0.22" />
+			<stop stop-color="hsl(90 90% 75%)" offset="0.33" />
+			<stop stop-color="hsl(135 90% 75%)" offset="0.33" />
+			<stop stop-color="hsl(135 90% 75%)" offset="0.44" />
+			<stop stop-color="hsl(180 90% 75%)" offset="0.44" />
+			<stop stop-color="hsl(180 90% 75%)" offset="0.55" />
+			<stop stop-color="hsl(225 90% 75%)" offset="0.55" />
+			<stop stop-color="hsl(225 90% 75%)" offset="0.66" />
+			<stop stop-color="hsl(270 90% 75%)" offset="0.66" />
+			<stop stop-color="hsl(270 90% 75%)" offset="0.77" />
+			<stop stop-color="hsl(315 90% 75%)" offset="0.77" />
+			<stop stop-color="hsl(315 90% 75%)" offset="0.89" />
+			<stop stop-color="hsl(360 90% 75%)" offset="0.89" />
+			<stop stop-color="hsl(360 90% 75%)" offset="1" />
+		</linearGradient>
+	</defs>
+	<rect
+		fill="hsl(0 0% 100%)"
+		stroke="url(#zdog-gradient)"
+		stroke-width="8"
+		stroke-linejoin="round"
+		x="-83.08209228515625"
+		y="-38.31432342529297"
+		width="166.1641845703125"
+		height="80.25140380859375"
+	/>
+	<text
+		fill="hsl(0 0% 30%)"
+		stroke="hsl(0 0% 30%)"
+		font-family="sans-serif"
+		stroke-linejoin="round"
+		stroke-linecap="round"
+		font-size="50"
+		font-weight="700"
+		letter-spacing="2"
+		text-anchor="middle"
+		y="18"
+	>
+		Zdog
+	</text>
 </svg>
