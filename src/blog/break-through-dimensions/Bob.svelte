@@ -208,36 +208,40 @@
 			Break through
 		</button>
 	{/if}
-	<svg bind:this={svg} style="display: block;" viewBox="0 0 1 1" width="400" height="400">
-		<svg style:--black={black} style:--white={white} viewBox="-50 -50 100 100">
-			<circle fill="var(--white, hsl(0 0% 90%))" r="40" />
-			<g
-				fill="var(--black, hsl(0 0% 20%))"
-				stroke="var(--black, hsl(0 0% 20%))"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<g id="bob-eye" transform="translate(15 -7) rotate(5)">
-					<path stroke-width="3" d="M 6 0 A 6 6 0 0 0 -6 0 Z" />
-					<path
-						transform="translate(3 -10) rotate(15)"
-						fill="none"
-						stroke-width="2"
-						d="M 6.5 0 C 3 -4 -3 -4 -6.5 0"
-					/>
-				</g>
-				<use transform="scale(-1 1)" href="#bob-eye" />
-				<path transform="translate(0 10)" stroke-width="3" d="M 18 0 C 14 22 -14 22 -18 0 Z" />
+	<svg
+		bind:this={svg}
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
+		style:--black={black}
+		style:--white={white}
+		width="400"
+		height="400"
+		viewBox="-50 -50 100 100"
+	>
+		<circle fill="var(--white, hsl(0 0% 90%))" r="40" />
+		<g
+			fill="var(--black, hsl(0 0% 20%))"
+			stroke="var(--black, hsl(0 0% 20%))"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<g id="bob-eye" transform="translate(15 -7) rotate(5)">
+				<path stroke-width="3" d="M 6 0 A 6 6 0 0 0 -6 0 Z" />
+				<path
+					transform="translate(3 -10) rotate(15)"
+					fill="none"
+					stroke-width="2"
+					d="M 6.5 0 C 3 -4 -3 -4 -6.5 0"
+				/>
 			</g>
-		</svg>
+			<use transform="scale(-1 1)" href="#bob-eye" />
+			<path transform="translate(0 10)" stroke-width="3" d="M 18 0 C 14 22 -14 22 -18 0 Z" />
+		</g>
 	</svg>
 </div>
 
 <style>
 	div {
-		display: inline-block;
 		position: relative;
-		aspect-ratio: 1/1;
 	}
 
 	div > button {
