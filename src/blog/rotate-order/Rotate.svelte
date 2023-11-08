@@ -278,7 +278,12 @@
 </script>
 
 <div>
-	<canvas bind:this={element} style="display: block;" width="420" height="370" />
+	<canvas
+		bind:this={element}
+		style="display: block; inline-size: 100%; max-inline-size: 420px;"
+		width="420"
+		height="370"
+	/>
 	<form on:submit|preventDefault bind:this={form}>
 		<p>Rotate between <code>0</code> and <code>360</code> degrees</p>
 		<label>

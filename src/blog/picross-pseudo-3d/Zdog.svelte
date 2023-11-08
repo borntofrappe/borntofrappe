@@ -455,4 +455,9 @@ DAGEDCBHAC
 	});
 </script>
 
-<canvas style="display: block;" bind:this={canvas} width="420" height="240" />
+<canvas
+	bind:this={canvas}
+	style="display: block; inline-size: 100%; max-inline-size: 420px;"
+	width="420"
+	height="240"
+/>

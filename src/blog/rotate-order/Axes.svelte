@@ -223,7 +223,11 @@
 <figure bind:this={element}>
 	<div>
 		{#each rotations as _}
-			<canvas style="display: block;" width="220" height="220" />
+			<canvas
+				style="display: block; inline-size: 100%; max-inline-size: 220px;"
+				width="220"
+				height="220"
+			/>
 		{/each}
 	</div>
 	<figcaption>One axis rotations</figcaption>

@@ -265,7 +265,11 @@
 <div bind:this={element}>
 	{#each robots as { title }}
 		<figure>
-			<canvas style="display: block;" width="300" height="300" />
+			<canvas
+				style="display: block; inline-size: 100%; max-inline-size: 300px;"
+				width="300"
+				height="300"
+			/>
 			<figcaption>{title}</figcaption>
 		</figure>
 	{/each}
