@@ -1,17 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
-	import { tweened } from 'svelte/motion';
-	import { backIn, backOut } from 'svelte/easing';
-	import { Illustration, Group, Box, Hemisphere } from 'zdog';
+	import { backInOut } from 'svelte/easing';
+	import { Anchor, Group, Box, Hemisphere, TAU } from 'zdog';
 
-	const TAU = Math.PI * 2;
-
-	let element = null;
-	let illustration = null;
-
-	let state = null;
-	const tween = tweened({ x: (TAU / 14) * -1, y: TAU / 8, z: 0, zoom: 2.5 });
-	const duration = 2000;
+	let div = null;
 
 	onMount(() => {
 		const colors = {
@@ -25,16 +17,10 @@
 		const diameter = 13;
 		const offset = 16;
 
-		const { x, y, z, zoom } = $tween;
-
-		illustration = new Illustration({
-			element,
-			zoom,
-			rotate: { x, y, z }
-		});
+		const root = new Anchor();
 
 		const dice = new Box({
-			addTo: illustration,
+			addTo: root,
 			color: colors.white,
 			stroke,
 			width: size,
@@ -185,57 +171,120 @@
 			});
 		}
 
-		illustration.updateRenderGraph();
+		const element = div.querySelector('canvas');
+		const { width, height } = element;
+		const context = element.getContext('2d');
+		const zoom = 2.5;
 
-		state = 'wait';
+		context.lineJoin = 'round';
+		context.lineCap = 'round';
+
+		const render = (zoom = 1) => {
+			context.clearRect(0, 0, width, height);
+			context.save();
+			context.translate(width / 2, height / 2);
+			context.scale(zoom, zoom);
+			root.renderGraphCanvas(context);
+			context.restore();
+		};
+
+		root.rotate = {
+			x: (TAU / 14) * -1,
+			y: TAU / 8,
+			z: 0
+		};
+		root.updateGraph();
+		render(zoom);
+
+		let state = 'wait';
+		const button = div.querySelector('button');
+		button.removeAttribute('disabled');
+		button.setAttribute('data-state', state);
+
+		let frame = null;
+		let ticker = 0;
+		const cycle = 220;
+		let rotate = { ...root.rotate };
+		let rotateRoll = { ...rotate };
+
+		const animate = () => {
+			ticker++;
+			if (ticker >= cycle) {
+				ticker = ticker % cycle;
+
+				root.rotate = {
+					x: (rotate.x + rotateRoll.x) % TAU,
+					y: (rotate.y + rotateRoll.y) % TAU,
+					z: (rotate.z + rotateRoll.z) % TAU
+				};
+
+				rotate = { ...root.rotate };
+
+				root.updateGraph();
+				render(zoom);
+
+				state = 'wait';
+				button.setAttribute('data-state', state);
+
+				cancelAnimationFrame(frame);
+			} else {
+				const ease = backInOut(ticker / cycle);
+
+				root.rotate = {
+					x: rotate.x + ease * rotateRoll.x,
+					y: rotate.y + ease * rotateRoll.y,
+					z: rotate.z + ease * rotateRoll.z
+				};
+
+				root.updateGraph();
+				render(zoom + Math.sin(ease * Math.PI));
+				frame = requestAnimationFrame(animate);
+			}
+		};
+
+		const randomAngle = () => (Math.floor(Math.random() * 4) * TAU) / 4;
+
+		const handleRoll = () => {
+			if (state !== 'wait') return;
+
+			state = 'roll';
+			button.setAttribute('data-state', state);
+
+			const [x, y, z] = Array(3)
+				.fill()
+				.map((_) => randomAngle() + TAU * 3);
+
+			rotateRoll = {
+				x: x + (TAU - rotate.x),
+				y: y + (TAU - rotate.y),
+				z: z + (TAU - rotate.z)
+			};
+
+			frame = requestAnimationFrame(animate);
+		};
+
+		button.addEventListener('click', handleRoll);
+
+		return () => {
+			button.removeEventListener('click', handleRoll);
+			cancelAnimationFrame(frame);
+		};
 	});
-
-	const handleClick = async () => {
-		if (illustration === null || state !== 'wait') return;
-
-		state = 'roll';
-
-		const { zoom } = $tween;
-
-		const [x, y, z] = Array(3)
-			.fill()
-			.map((_) => (Math.floor(Math.random() * 4) * TAU) / 4 + Math.ceil(Math.random() * 3) * TAU);
-
-		await tween.set(
-			{ x: x / 2, y: y / 2, z: z / 2, zoom: zoom * 1.5 },
-			{ easing: backIn, duration }
-		);
-		await tween.set({ x, y, z, zoom }, { easing: backOut, duration: duration * 0.8 });
-		await tween.set({ x: x % TAU, y: y % TAU, z: z % TAU, zoom }, { duration: 0 });
-
-		state = 'wait';
-	};
-
-	const updateIllustration = ({ x, y, z, zoom }) => {
-		if (illustration === null) return;
-
-		illustration.rotate.x = x;
-		illustration.rotate.y = y;
-		illustration.rotate.z = z;
-		illustration.zoom = zoom;
-		illustration.updateRenderGraph();
-	};
-
-	$: updateIllustration($tween);
 </script>
 
-<div>
-	<canvas bind:this={element} style="display: block;" width="400" height="400" />
-	{#if state !== 'null'}
-		<button data-state={state} on:click={handleClick}>Roll</button>
-	{/if}
+<div bind:this={div}>
+	<canvas
+		style="display: block; inline-size: 100%; max-inline-size: 400px;"
+		width="400"
+		height="400"
+	/>
+	<button disabled data-state={false || 'roll'}>Roll</button>
 </div>
 
 <style>
 	div {
 		display: inline-block;
 		position: relative;
-		aspect-ratio: 1/1;
 	}
 
 	div > button {
@@ -243,12 +292,6 @@
 		inset-inline-start: 50%;
 		inset-block-end: 0%;
 		translate: -50% 0%;
-	}
-
-	div > canvas {
-		display: block;
-		width: 400px;
-		height: 400px;
 	}
 
 	button {
@@ -269,9 +312,17 @@
 		transform-origin: 50% 100%;
 	}
 
+	button:disabled {
+		opacity: 0.7;
+	}
+
 	button:focus {
-		outline-offset: 0.25rem;
-		outline-color: var(--_background, hsl(0 0% 20%));
+		outline: 2px solid var(--_background, hsl(0 0% 20%));
+		outline-offset: 2px;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	button[data-state='roll'] {

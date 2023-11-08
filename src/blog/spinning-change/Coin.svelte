@@ -1,36 +1,25 @@
 <script>
 	import { onMount } from 'svelte';
-	import { tweened } from 'svelte/motion';
-	import { backIn, backOut } from 'svelte/easing';
-	import { Illustration, Shape, Cylinder } from 'zdog';
+	import { backInOut } from 'svelte/easing';
+	import { Anchor, Shape, Cylinder, TAU } from 'zdog';
 
-	let element = null;
-	let illustration = null;
-
-	let state = null;
-	const TAU = Math.PI * 2;
-	const randomAngle = () => (TAU / 32) * Math.floor(Math.random() * (32 / 2));
-	const angle = tweened(TAU / 8);
-	let duration = 1500;
+	let div = null;
 
 	onMount(() => {
-		const stroke = 0;
-		const diameter = 30;
-		const length = 2;
-		const rim = 2;
-
 		const colors = {
 			coin: ['hsl(35 100% 47%)', 'hsl(42 96% 50%)', 'hsl(47 100% 62%)'],
 			details: 'hsl(210 10% 23%)'
 		};
 
-		illustration = new Illustration({
-			element,
-			zoom: 10
-		});
+		const stroke = 0;
+		const diameter = 30;
+		const length = 2;
+		const rim = 2;
+
+		const root = new Anchor();
 
 		const base = new Cylinder({
-			addTo: illustration,
+			addTo: root,
 			color: colors.coin[1],
 			stroke,
 			diameter,
@@ -239,49 +228,97 @@
 			}
 		}
 
-		illustration.rotate.y = $angle;
-		illustration.updateRenderGraph();
-		state = 'wait';
+		const element = div.querySelector('canvas');
+		const { width, height } = element;
+		const context = element.getContext('2d');
+		const zoom = 10;
+
+		context.lineJoin = 'round';
+		context.lineCap = 'round';
+
+		const render = () => {
+			context.clearRect(0, 0, width, height);
+			context.save();
+			context.translate(width / 2, height / 2);
+			context.scale(zoom, zoom);
+			root.renderGraphCanvas(context);
+			context.restore();
+		};
+
+		root.rotate.y = TAU / 8;
+		root.updateGraph();
+		render();
+
+		let state = 'wait';
+		const button = div.querySelector('button');
+		button.removeAttribute('disabled');
+		button.setAttribute('data-state', state);
+
+		let frame = null;
+		let ticker = 0;
+		const cycle = 200;
+		let angle = root.rotate.y;
+		let angleSpin = angle + TAU;
+
+		const animate = () => {
+			ticker++;
+			if (ticker >= cycle) {
+				ticker = ticker % cycle;
+				root.rotate.y = (angle + angleSpin) % TAU;
+
+				root.updateGraph();
+				render();
+
+				angle = root.rotate.y;
+
+				state = 'wait';
+				button.setAttribute('data-state', state);
+
+				cancelAnimationFrame(frame);
+			} else {
+				const ease = backInOut(ticker / cycle);
+				root.rotate.y = angle + ease * angleSpin;
+
+				root.updateGraph();
+				render();
+				frame = requestAnimationFrame(animate);
+			}
+		};
+
+		const randomAngle = () => (TAU / 32) * Math.floor(Math.random() * (32 / 2));
+
+		const handleSpin = () => {
+			if (state !== 'wait') return;
+
+			state = 'spin';
+			button.setAttribute('data-state', state);
+
+			angleSpin = angle + randomAngle() + TAU * 3;
+			frame = requestAnimationFrame(animate);
+		};
+
+		button.addEventListener('click', handleSpin);
+
+		return () => {
+			button.removeEventListener('click', handleSpin);
+			cancelAnimationFrame(frame);
+		};
 	});
-
-	const handleClick = async () => {
-		if (illustration === null || state !== 'wait') return;
-
-		state = 'spin';
-
-		const radians = $angle + randomAngle() + TAU * 3;
-
-		duration = 2000 + Math.floor(Math.random() * 11) * 100;
-
-		await angle.set(radians / 2, { easing: backIn, duration: duration });
-		await angle.set(radians, { easing: backOut, duration: duration * 0.7 });
-		await angle.set(radians % TAU, { duration: 0 });
-
-		state = 'wait';
-	};
-
-	const updateAngle = (angle) => {
-		if (illustration === null) return;
-
-		illustration.rotate.y = angle;
-		illustration.updateRenderGraph();
-	};
-
-	$: updateAngle($angle);
 </script>
 
-<div>
-	<canvas bind:this={element} style="display: block;" width="400" height="400" />
-	{#if state !== 'null'}
-		<button data-state={state} style:--_duration={duration} on:click={handleClick}>Spin</button>
-	{/if}
+<div bind:this={div}>
+	<canvas
+		style="display: block; inline-size: 100%; max-inline-size: 400px;"
+		width="400"
+		height="400"
+	/>
+	<button disabled data-state={false || 'spin'}>Spin</button>
 </div>
 
 <style>
 	div {
 		display: inline-block;
 		position: relative;
-		aspect-ratio: 1/1;
 	}
 
 	div > button {
@@ -290,16 +327,9 @@
 		inset-block-end: 0%;
 	}
 
-	div > canvas {
-		display: block;
-		width: 400px;
-		height: 400px;
-	}
-
 	button {
 		--_color: hsl(210 16% 93%);
 		--_background: hsl(210 10% 23%);
-		--_duration: 1000;
 		font: inherit;
 		font-size: 1rem;
 		color: var(--_color, hsl(0 0% 90%));
@@ -312,6 +342,10 @@
 		transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 
+	button:disabled {
+		opacity: 0.7;
+	}
+
 	button:focus {
 		text-decoration: underline double currentColor;
 	}
@@ -321,7 +355,7 @@
 	}
 
 	button[data-state='spin'] {
-		transition-duration: calc(var(--_duration) * 1ms);
+		transition-duration: 1s;
 		transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 		translate: -10% 0%;
 		clip-path: polygon(0.5rem 0, 0 100%, calc(100% - 0.5rem) 100%, 100% 0);
