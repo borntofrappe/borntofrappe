@@ -53,10 +53,14 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" width="350" height="350">
-	<svg viewBox="-60 -60 120 120">
-		{#each points as { fill, cx, cy }}
-			<circle {fill} {cx} {cy} r="10" />
-		{/each}
-	</svg>
+<svg
+	bind:this={element}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 350px;"
+	width="350"
+	height="350"
+	viewBox="-60 -60 120 120"
+>
+	{#each points as { fill, cx, cy }}
+		<circle {fill} {cx} {cy} r="10" />
+	{/each}
 </svg>

@@ -243,7 +243,12 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" width="400" height="160">
+<svg
+	bind:this={element}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
+	width="400"
+	height="160"
+>
 	<svg viewBox="-200 -50 400 100">
 		<defs>
 			<linearGradient

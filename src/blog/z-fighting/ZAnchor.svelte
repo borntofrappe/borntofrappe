@@ -163,7 +163,7 @@
 
 <svg
 	bind:this={element}
-	style="display: block;"
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
 	viewBox="-66.66666666666667 -53.333333333333336 133.33333333333334 106.66666666666667"
 	width="400"
 	height="320"

@@ -1,7 +1,7 @@
 <script>
 	import stars from './stars.js';
 	import { onMount } from 'svelte';
-	import { Shape, Anchor, TAU } from 'zdog';
+	import { Anchor, Shape, TAU } from 'zdog';
 
 	const diameter = 180;
 	const black = 'hsl(216 45% 16%)';
@@ -215,4 +215,9 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block;" width="500" height="320" />
+<canvas
+	bind:this={element}
+	style="display: block; inline-size: 100%; max-inline-size: 500px;"
+	width="500"
+	height="320"
+/>

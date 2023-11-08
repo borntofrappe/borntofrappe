@@ -444,4 +444,9 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block;" width="250" height="400" />
+<canvas
+	bind:this={element}
+	style="display: block; inline-size: 100%; max-inline-size: 250px;"
+	width="250"
+	height="400"
+/>

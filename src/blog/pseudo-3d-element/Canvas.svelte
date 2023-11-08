@@ -372,4 +372,9 @@
 	});
 </script>
 
-<canvas bind:this={element} style="display: block; clip-path: circle();" width="350" height="350" />
+<canvas
+	bind:this={element}
+	style="display: block; inline-size: 100%; max-inline-size: 350px; clip-path: circle();"
+	width="350"
+	height="350"
+/>

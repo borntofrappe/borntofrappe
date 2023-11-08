@@ -118,7 +118,12 @@
 			Give it a spin
 		</button>
 	{/if}
-	<canvas bind:this={element} style="display: block;" width="380" height="380" />
+	<canvas
+		bind:this={element}
+		style="display: block; inline-size: 100%; max-inline-size: 380px;"
+		width="380"
+		height="380"
+	/>
 </div>
 
 <style>

@@ -228,10 +228,8 @@
 
 <svg
 	bind:this={svg}
-	style="display: block; color: hsl(160 2% 28%);"
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 300px; color: hsl(160 2% 28%);"
 	viewBox="0 0 300 300"
-	width="300"
-	height="300"
 >
 	<svg viewBox="-75 -75 150 150" width="300" height="300">
 		<g stroke-linecap="round" stroke-linejoin="round">

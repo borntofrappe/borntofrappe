@@ -514,7 +514,12 @@
 </script>
 
 <div bind:this={element}>
-	<svg style="display: block;" viewBox="0 0 320 220" width="320" height="220">
+	<svg
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 320px;"
+		viewBox="0 0 320 220"
+		width="320"
+		height="220"
+	>
 		<path
 			fill="hsl(224 52% 70%)"
 			d="M 0 30 A 30 30 0 0 1 30 0 L 290 0 A 30 30 0 0 1 320 30 L 320 190 A 30 30 0 0 1 290 220 L 30 220 A 30 30 0 0 1 0 190 Z"
@@ -571,7 +576,12 @@
 		</g>
 	</svg>
 
-	<svg style="display: block;" viewBox="0 0 320 220" width="320" height="220">
+	<svg
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 320px;"
+		viewBox="0 0 320 220"
+		width="320"
+		height="220"
+	>
 		<path
 			fill="hsl(224 52% 70%)"
 			d="M 0 30 A 30 30 0 0 1 30 0 L 290 0 A 30 30 0 0 1 320 30 L 320 190 A 30 30 0 0 1 290 220 L 30 220 A 30 30 0 0 1 0 190 Z"
@@ -632,9 +642,5 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		justify-content: center;
-	}
-
-	div > svg {
-		flex-basis: 320px;
 	}
 </style>

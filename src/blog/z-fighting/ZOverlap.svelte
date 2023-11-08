@@ -252,50 +252,54 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" width="420" height="260">
-	<svg viewBox="0 0 210 130">
-		<g stroke-linecap="round" stroke-linejoin="round">
+<svg
+	bind:this={element}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 420px;"
+	width="420"
+	height="260"
+	viewBox="0 0 210 130"
+>
+	<g stroke-linecap="round" stroke-linejoin="round">
+		<path
+			fill="hsl(224 52% 70%)"
+			d="M 0 15 A 15 15 0 0 1 15 0 L 195 0 A 15 15 0 0 1 210 15 L 210 115 A 15 15 0 0 1 195 130 L 15 130 A 15 15 0 0 1 0 115 Z"
+		/>
+		<path
+			fill="hsl(224 50% 73%)"
+			d="M 0 95 L 0 115 A 15 15 0 0 0 15 130 L 195 130 A 15 15 0 0 0 210 115 L 210 95"
+		/>
+		<g transform="translate(105 85)">
+			<ellipse fill="hsl(224 40% 66%)" cy="26" rx="52.5" ry="8" />
 			<path
-				fill="hsl(224 52% 70%)"
-				d="M 0 15 A 15 15 0 0 1 15 0 L 195 0 A 15 15 0 0 1 210 15 L 210 115 A 15 15 0 0 1 195 130 L 15 130 A 15 15 0 0 1 0 115 Z"
+				style="color: hsl(224 47% 45%)"
+				fill="currentColor"
+				stroke="currentColor"
+				stroke-width="3"
+				d="M -50 0 C -46 35 46 35 50 0 C 40 -12.5 -40 -12.5 -50 0 Z"
 			/>
 			<path
-				fill="hsl(224 50% 73%)"
-				d="M 0 95 L 0 115 A 15 15 0 0 0 15 130 L 195 130 A 15 15 0 0 0 210 115 L 210 95"
+				style="color: hsl(225 46% 28%)"
+				fill="currentColor"
+				stroke="currentColor"
+				stroke-width="3"
+				d="M -50 0 C -40 12.5 40 12.5 50 0 C 40 -12.5 -40 -12.5 -50 0 Z"
 			/>
-			<g transform="translate(105 85)">
-				<ellipse fill="hsl(224 40% 66%)" cy="26" rx="52.5" ry="8" />
-				<path
-					style="color: hsl(224 47% 45%)"
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-width="3"
-					d="M -50 0 C -46 35 46 35 50 0 C 40 -12.5 -40 -12.5 -50 0 Z"
-				/>
-				<path
-					style="color: hsl(225 46% 28%)"
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-width="3"
-					d="M -50 0 C -40 12.5 40 12.5 50 0 C 40 -12.5 -40 -12.5 -50 0 Z"
-				/>
-				<g transform="translate(0 7)">
-					<circle fill="hsl(1 67% 66%)" cy="-22" r="11" />
-					<circle fill="hsl(0 46% 47%)" cx="11" cy="-12" r="11" />
-					<circle fill="hsl(0 46% 47%)" cx="-11" cy="-12" r="11" />
-					<circle fill="hsl(1 67% 66%)" cy="-11" r="11" />
-					<circle fill="hsl(0 46% 47%)" r="11" />
-					<circle fill="hsl(1 67% 66%)" cx="18.5" r="11" />
-					<circle fill="hsl(1 67% 66%)" cx="-18.5" r="11" />
-				</g>
-				<path
-					style="color: hsl(224 47% 45%)"
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-width="3"
-					d="M -50 0 C -46 35 46 35 50 0 C 40 12.5 -40 12.5 -50 0 Z"
-				/>
+			<g transform="translate(0 7)">
+				<circle fill="hsl(1 67% 66%)" cy="-22" r="11" />
+				<circle fill="hsl(0 46% 47%)" cx="11" cy="-12" r="11" />
+				<circle fill="hsl(0 46% 47%)" cx="-11" cy="-12" r="11" />
+				<circle fill="hsl(1 67% 66%)" cy="-11" r="11" />
+				<circle fill="hsl(0 46% 47%)" r="11" />
+				<circle fill="hsl(1 67% 66%)" cx="18.5" r="11" />
+				<circle fill="hsl(1 67% 66%)" cx="-18.5" r="11" />
 			</g>
+			<path
+				style="color: hsl(224 47% 45%)"
+				fill="currentColor"
+				stroke="currentColor"
+				stroke-width="3"
+				d="M -50 0 C -46 35 46 35 50 0 C 40 12.5 -40 12.5 -50 0 Z"
+			/>
 		</g>
-	</svg>
+	</g>
 </svg>

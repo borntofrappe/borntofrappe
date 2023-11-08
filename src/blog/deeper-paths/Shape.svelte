@@ -139,7 +139,13 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" viewBox="-5 -5 10 10" width="400" height="320">
+<svg
+	bind:this={element}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
+	viewBox="-5 -5 10 10"
+	width="400"
+	height="320"
+>
 	<path
 		d="M -4 3 0 -3 4 3 Z"
 		fill="hsl(0 0% 70%)"

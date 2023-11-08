@@ -244,7 +244,12 @@
 	});
 </script>
 
-<svg bind:this={element} style="display: block;" width="350" height="300">
+<svg
+	bind:this={element}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 350px;"
+	width="350"
+	height="300"
+>
 	<defs>
 		<symbol
 			id="svg-star-symbol"

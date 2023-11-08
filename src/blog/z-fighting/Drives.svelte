@@ -406,7 +406,7 @@
 
 <div bind:this={element}>
 	<svg
-		style="display: block;"
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
 		viewBox="-66.66666666666667 -53.333333333333336 133.33333333333334 106.66666666666667"
 		width="400"
 		height="320"
@@ -449,7 +449,7 @@
 	</svg>
 
 	<svg
-		style="display: block;"
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 400px;"
 		viewBox="-66.66666666666667 -53.333333333333336 133.33333333333334 106.66666666666667"
 		width="400"
 		height="320"
@@ -522,9 +522,5 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		justify-content: center;
-	}
-
-	div > svg {
-		flex-basis: 400px;
 	}
 </style>

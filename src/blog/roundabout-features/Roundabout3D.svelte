@@ -132,7 +132,12 @@
 	<span>Lap around</span>
 </label>
 
-<svg bind:this={svg} style="display: block;" width="520" height="250">
+<svg
+	bind:this={svg}
+	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 520px;"
+	width="520"
+	height="250"
+>
 	<g transform="translate(260 125)">
 		<g stroke-linecap="round" stroke-linejoin="round">
 			<path
@@ -194,9 +199,5 @@
 	input {
 		inline-size: 1em;
 		block-size: 1em;
-	}
-
-	svg {
-		display: block;
 	}
 </style>
