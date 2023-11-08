@@ -12,10 +12,6 @@
 		const target = parent.querySelector('svg > use');
 		const element = parent.querySelector('canvas');
 
-		const { width, height } = element;
-		element.style.width = `${width}px`;
-		element.style.height = `${height}px`;
-
 		const azure1 = 'hsl(194 66% 86%)';
 		const azure2 = 'hsl(198 39% 78%)';
 
@@ -373,13 +369,11 @@
 
 <div bind:this={parent}>
 	<svg
-		style="display: block;"
+		style="display: block; max-inline-size: 350px;"
 		style:--duration="{duration}s"
 		style:--angle="{angle}deg"
 		style:--offset="{offset}px"
 		viewBox="-60 -60 120 120"
-		width="350"
-		height="350"
 	>
 		<defs>
 			<symbol id="javascript-target" viewBox="0 0 10 5.5" stroke="transparent">
@@ -420,7 +414,11 @@
 		<use href="#javascript-target" x="-50" y="-50" width="100" height="100" />
 	</svg>
 
-	<canvas style="display: block;" width="350" height="350" />
+	<canvas
+		style="display: block; inline-size: 100%; max-inline-size: 350px;"
+		width="350"
+		height="350"
+	/>
 </div>
 
 <style>
