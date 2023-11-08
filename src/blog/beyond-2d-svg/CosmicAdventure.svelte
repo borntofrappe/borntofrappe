@@ -223,15 +223,14 @@
 		});
 
 		illustration.rotate.x = TAU / 32;
-		illustration.rotate.z = TAU / 32;
 		illustration.updateRenderGraph();
 
 		let frame = null;
 
-		let ticker = 0;
 		const cycle = 200;
+		let ticker = cycle / 2;
 		let direction = 1;
-		const angle = illustration.rotate.z * 2;
+		const angle = TAU / 16;
 
 		const loop = () => {
 			ticker++;
