@@ -16,8 +16,6 @@
 
 	onMount(() => {
 		const { width, height } = element;
-		element.style.width = `${width}px`;
-		element.style.height = `${height}px`;
 
 		const background = {
 			colors: [
@@ -371,20 +369,33 @@
 	$: handleZoom($zoom);
 </script>
 
-<button
-	on:click={() => {
-		i = (i + 1) % zooms.length;
-	}}
->
-	Update <code>zoom</code> from <code>{zooms[i]}</code>
-</button>
+<div>
+	<button
+		on:click={() => {
+			i = (i + 1) % zooms.length;
+		}}
+	>
+		Update <code>zoom</code> from <code>{zooms[i]}</code>
+	</button>
 
-<canvas bind:this={element} width="350" height="350" />
+	<canvas
+		bind:this={element}
+		style="display: block; inline-size: 100%; max-inline-size: 350px;"
+		width="350"
+		height="350"
+	/>
+</div>
 
 <style>
+	div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
 	button {
 		display: block;
-		margin-inline: auto;
 		padding: 0.5rem 0.75rem;
 		font-family: inherit;
 		color: inherit;
@@ -392,11 +403,16 @@
 		border: 0.2rem solid currentColor;
 	}
 
-	button > code {
-		font-weight: 700;
+	button:focus {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
 	}
 
-	canvas {
-		display: block;
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	button > code {
+		font-weight: 700;
 	}
 </style>
