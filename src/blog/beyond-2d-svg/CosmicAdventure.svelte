@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Illustration, Group, Shape, TAU } from 'zdog';
+	import { Illustration, Group, Shape, easeInOut, TAU } from 'zdog';
 
 	let svg = null;
 
@@ -223,24 +223,26 @@
 		});
 
 		illustration.rotate.x = TAU / 32;
+		illustration.rotate.z = TAU / 32;
 		illustration.updateRenderGraph();
 
 		let frame = null;
+
+		let ticker = 0;
+		const cycle = 200;
 		let direction = 1;
-		const angle = TAU / 32;
+		const angle = illustration.rotate.z * 2;
 
 		const loop = () => {
-			illustration.rotate.z +=
-				(0.0002 + 0.005 * (1 - Math.abs(illustration.rotate.z) / angle)) * direction;
-			illustration.rotate.y = illustration.rotate.z * -1;
-
-			if (illustration.rotate.z >= angle) {
-				illustration.rotate.z = angle;
-				direction = -1;
-			} else if (illustration.rotate.z <= angle * -1) {
-				illustration.rotate.z = angle * -1;
-				direction = 1;
+			ticker++;
+			if (ticker >= cycle) {
+				ticker = ticker % cycle;
+				direction = direction * -1;
 			}
+
+			const offset = 0.5 - easeInOut(ticker / cycle, 3);
+			illustration.rotate.z = offset * direction * angle;
+			illustration.rotate.y = illustration.rotate.z * -1;
 
 			illustration.updateRenderGraph();
 			frame = requestAnimationFrame(loop);
