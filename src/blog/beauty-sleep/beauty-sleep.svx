@@ -8,7 +8,7 @@ date: 2023-10-02T11:34:17
 	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
-	import ZZ from './ZZ.svelte';
+	import ZouZou from './ZouZou.svelte';
 </script>
 
 Small, round, friendly. The keywords of the Zdog library listed [in the accompanying website](https://zzz.dog/) cue up the project incredibly well. And it is in these features, in the same inclination the library has for experimentation as SVG, that I've found a sweet playground for pseudo-3D graphics.
@@ -18,7 +18,7 @@ Past articles relied on the module to put a visual to words, to introduce core e
 This article does nothing of the sort. It is an excuse to begin a series, a journey to simply marvel at gorgeous pseudo-3D art. I decided to dub the initiative _"Zdog monday"_, to avoid sounding overly pretentious and hopefully remove any doubts about scheduling. And I've decided to ease in the series with a small, rounded piece. And a friendly reminder to appreciate the power of a good sleeping session.
 
 <Center element="figure" maxInlineSize="400px">
-	<ZZ />
+	<ZouZou />
 </Center>
 
 ---
