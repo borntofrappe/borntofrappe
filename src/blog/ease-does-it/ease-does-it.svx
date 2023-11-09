@@ -3,3 +3,13 @@ title: Ease does it
 description: Animate Zdog graphics.
 date: 2023-11-09T14:14:14
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import RequestAnimation from './RequestAnimation.svelte'
+</script>
+
+<Center maxInlineSize="400px">
+    <RequestAnimation />
+</Center>
