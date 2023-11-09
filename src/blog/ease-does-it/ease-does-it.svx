@@ -1,0 +1,5 @@
+---
+title: Ease does it
+description: Animate Zdog graphics.
+date: 2023-11-09T14:14:14
+---
