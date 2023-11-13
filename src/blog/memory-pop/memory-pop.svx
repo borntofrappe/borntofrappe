@@ -1,7 +1,7 @@
 ---
-title: memory-pop
-description: continue arts and crafts
-date: 2023-11-13T11:34:33
+title: Memory pop
+description: Indulge in a few frigid sweets to craft warmer memories.
+date: 2023-11-13T10:34:33
 ---
 
 <script>
@@ -10,6 +10,10 @@ date: 2023-11-13T11:34:33
 	import PopsicleArt from './PopsicleArt.svelte';
 </script>
 
+The season might be long gone, but I once knew of someone used to popsicles even in the harsh winter time. I never asked for a reason, but you could always count on having a few frozen treats within reach. And past the abrupt change in temperature, you could always rely on having material to continue your arts and crafts.
+
 <Center maxInlineSize="400px">
 	<PopsicleArt />
 </Center>
+
+The result might be a far cry from what you get from polished wooden scraps, but there's a charm in the simplicity. A fitting warmth of simpler times stitched together with a couple of strings.
