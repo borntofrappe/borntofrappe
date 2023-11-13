@@ -16,6 +16,4 @@ Turns out, you can create quite the charming plaything with a few pieces of recy
 
 <Playground />
 
----
-
-<ZdogMonday current="child-s-play" />
+<ZdogMonday />

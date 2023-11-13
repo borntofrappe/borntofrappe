@@ -36,6 +36,4 @@ The result? Seemingly, the same exact mascot, only with the markup produced by Z
 	<Sheep />
 </Center>
 
----
-
-<ZdogMonday current="counting-shapes" />
+<ZdogMonday />

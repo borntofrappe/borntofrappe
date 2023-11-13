@@ -1,29 +1,34 @@
 <script>
-	export let current = '';
+	import { page } from '$app/stores';
+
 	const mondays = [
 		{
 			title: 'Beauty sleep',
-			slug: 'beauty-sleep'
+			slug: '/beauty-sleep'
 		},
 		{
 			title: 'Counting shapes',
-			slug: 'counting-shapes'
+			slug: '/counting-shapes'
 		},
 		{
 			title: 'Step through frames',
-			slug: 'step-through-frames'
+			slug: '/step-through-frames'
 		},
 		{
 			title: 'Spinning change',
-			slug: 'spinning-change'
+			slug: '/spinning-change'
 		},
 		{
 			title: 'One out of six',
-			slug: 'one-out-of-six'
+			slug: '/one-out-of-six'
 		},
 		{
 			title: "Child's play",
-			slug: 'child-s-play'
+			slug: '/child-s-play'
+		},
+		{
+			title: 'Memory pop',
+			slug: '/memory-pop'
 		}
 	];
 </script>
@@ -44,11 +49,7 @@
 <ol>
 	{#each mondays as { title, slug }}
 		<li>
-			{#if slug === current}
-				{title}
-			{:else}
-				<a href="/{slug}">{title}</a>
-			{/if}
+			<a href={slug} aria-current={$page.url.pathname === slug}>{title}</a>
 		</li>
 	{/each}
 </ol>

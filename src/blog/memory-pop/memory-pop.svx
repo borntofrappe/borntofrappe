@@ -6,6 +6,7 @@ date: 2023-11-13T10:34:33
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import PopsicleArt from './PopsicleArt.svelte';
 </script>
@@ -17,3 +18,5 @@ The season might be long gone, but I once knew of someone used to popsicles even
 </Center>
 
 The result might be a far cry from what you get from polished wooden scraps, but there's a charm in the simplicity. A fitting warmth of simpler times stitched together with a couple of strings.
+
+<ZdogMonday />

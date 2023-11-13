@@ -23,6 +23,4 @@ Of course you are not limited to one axis. There are three dimensions, [three ty
 	<Dice />
 </Center>
 
----
-
-<ZdogMonday current="one-out-of-six" />
+<ZdogMonday />

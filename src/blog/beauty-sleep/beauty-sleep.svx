@@ -21,6 +21,4 @@ This article does nothing of the sort. It is an excuse to begin a series, a jour
 	<ZouZou />
 </Center>
 
----
-
-<ZdogMonday current="beauty-sleep" />
+<ZdogMonday />

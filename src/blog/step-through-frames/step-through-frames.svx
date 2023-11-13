@@ -50,6 +50,4 @@ I tend to indulge in a touch of animation, which puts a nice ribbon on the entir
 	<BobOmb />
 </Center>
 
----
-
-<ZdogMonday current="step-through-frames" />
+<ZdogMonday />

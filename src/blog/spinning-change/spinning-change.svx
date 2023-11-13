@@ -50,6 +50,4 @@ The concept is so close, so down to earth that you cannot help to try out your l
 	<Coin />
 </Center>
 
----
-
-<ZdogMonday current="spinning-change" />
+<ZdogMonday />
