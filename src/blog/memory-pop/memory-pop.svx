@@ -3,3 +3,13 @@ title: memory-pop
 description: continue arts and crafts
 date: 2023-11-13T11:34:33
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import PopsicleArt from './PopsicleArt.svelte';
+</script>
+
+<Center maxInlineSize="400px">
+	<PopsicleArt />
+</Center>
