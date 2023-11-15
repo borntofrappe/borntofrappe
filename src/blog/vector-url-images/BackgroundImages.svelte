@@ -35,10 +35,6 @@
 		gap: 0.5rem;
 	}
 
-	figcaption {
-		font-size: 1rem;
-	}
-
 	.background-image {
 		inline-size: 10rem;
 		block-size: 10rem;
