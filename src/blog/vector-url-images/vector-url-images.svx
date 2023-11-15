@@ -1,5 +1,5 @@
 ---
-title: Vector url images
+title: Vector URL images
 description: Tweak a design adding vector graphics with CSS.
 date: 2023-11-15T14:13:37
 ---
@@ -52,7 +52,9 @@ Past the mandatory instruction, you may need to tweak the markup in smaller ways
 
 ```text
 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12">\
-    <!-- ...path, rect & circle -->\
+
+	<!-- ...path, rect & circle -->\
+
 </svg>')
 ```
 
@@ -60,7 +62,9 @@ If you care about certain colors then, you must be wary of escaping special char
 
 ```text
 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12">\
-    <path fill="%23ff000" />\
+
+	<path fill="%23ff000" />\
+
 </svg>')
 ```
 
@@ -76,9 +80,7 @@ Possibly the most straightforward property in terms of meaning, `background-imag
 div {
 	inline-size: 10rem;
 	block-size: 10rem;
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12">\
-    <!-- path, rect & circle -->\
-</svg>');
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12">\<!-- path, rect & circle -->\</svg>');
 }
 ```
 
@@ -99,13 +101,11 @@ And as prefaced, there are a few drawbacks relative to inline SVG. The vector is
 
 ```css
 div {
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12">\
-    <path fill="currentColor" />\
-</svg>');
+	background-image: url('data:image/svg+xml,<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6.125 12 12"><!-- ... --></svg>');
 }
 ```
 
-The mention won't change the fact the color is fixed, it cannot be altered from the outside. Or at least, not in the usual manner. In CSS you can still rely on the different properties changing the appearance of HTML elements. Consider for instance three shapes, drawn with the named colors "red", "lime" and "blue". If you are curious why I did not pick green, there is a reason in [a past article](/mask-255) dissecting the values.
+The mention won't change the fact the color is fixed, it cannot be updated from outside. Or at least, not in the usual manner. In CSS you can still rely on the different properties changing the appearance of HTML elements. Consider for instance three shapes, drawn with the named colors "red", "lime" and "blue" — if you are curious why I did not pick green, there is a reason in [a past article](/mask-255) dissecting the values.
 
 You may not change the values with the `fill` or `color` property, but you can do so with a `filter` instead.
 
@@ -121,7 +121,7 @@ Inverting the colors you explore the full spectrum to have shades of "cyan", "ma
 
 ## mask-image
 
-If you want to paint the graphic with CSS and a given color — perhaps you still aspire to rely on `currentColor`, there is a way with another CSS property. Or rather two, to support most modern browsers.
+If you want to paint the graphic with CSS and a given color, perhaps you still aspire to rely on `currentColor`, there is a way with another CSS property. Or rather two, to support most modern browsers.
 
 `mask-image`, and the not-so-distant, WebKit version, works to carve out an element with the input graphic. Such input can be a vector graphic, included in the same exact manner as the background variant.
 
@@ -140,12 +140,8 @@ Following the painting operation, mask the result with the SVG.
 ```css
 .mask-image {
 	background: currentColor;
-	-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625">\
-    <!-- star-shaped path -->\
-</svg>');
-	mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625">\
-    <!-- star-shaped path -->\
-</svg>');
+	-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625"><!-- star-shaped path --></svg>');
+	mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625"><!-- star-shaped path --></svg>');
 }
 ```
 
@@ -161,9 +157,7 @@ One clear way you have to tweak the design is to change the marker before each l
 
 ```css
 ul {
-	list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625">\
-    <!-- star-shaped path -->\
-</svg>');
+	list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625"><!-- star-shaped path --></svg>');
 }
 ```
 
@@ -194,22 +188,18 @@ ul li::before {
 }
 ```
 
-There are a few properties for the selector, some of which worth a special mention. `content` is essential to show the decorative element, as well as the `display` set to `inline-block`. With the two the square regulated with the set in size is able to appear before each item in the list. `background`, then, colors the marker, and makes you reach the same position you saw with the background code.
+There are a few properties for the selector, some of which worth a special mention. `content` is essential to show the decorative element, as well as the `display` set to `inline-block`. With the two the square appears before each item in the list. `background`, then, colors the marker, and makes you reach the same position you saw with the background code.
 
 The rest is a matter of tweaking. The inline and block size are chosen with a bit of a guess, as to the size applied by some browser to default markers.
 
-The margin, separating the graphic with the associated text, works in much the same manner. The result is far from the same, but means the pseudo element is displayed with a solid square. A square you can then mask with the `url` function and the same exact SVG.
+The margin, separating the graphic with the associated text, has a similar function, to try and place the point at a safe distance. The result is far from the same, but means the pseudo element is displayed with a solid square. A square you can then mask with the `url` function and the same SVG.
 
 ```css
 ul li::before {
 	/* ... */
-	-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625">\
-    <!-- star-shaped path -->\
-</svg>');
-	mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625">\
-    <!-- star-shaped path -->\
-</svg>');
+	-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625"><!-- star-shaped path --></svg>');
+	mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23.204545974731445 -24.920761108398438 45.409088134765625 45.409088134765625"><!-- star-shaped path --></svg>');
 }
 ```
 
-You can spot a few differences at a glance comparing the two versions. But you might agree that each has its own reason, and that you have a few more ways to design with more flair.
+You can spot plenty of differences comparing the two versions, but you might agree that each has its own reason. What is more, you have a few ways to design with more flair.
