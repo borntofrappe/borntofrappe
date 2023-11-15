@@ -1,0 +1,9 @@
+---
+title: Vector url images
+description: Tweak a design adding vector graphics with CSS.
+date: 2023-11-15
+---
+
+Among the many options you have to include SVG in a document you gain the most flexibility adding the syntax _inline_, directly in the markup.
+
+In this manner you are able to consider the element and each nested node individually. And theoretically, you can change the appearance of each unit directly with CSS. But with CSS itself you are also able to add vector graphics, thanks to the `url()` function. With the possibility there are a few shortcomings, but practical use cases as well.
