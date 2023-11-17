@@ -4,7 +4,7 @@ description: Few reasons to favor presentational attributes in SVG.
 date: 2023-11-17T09:24:45
 ---
 
-To improve writing SVG syntax I often go through the specification and different articles on the topic. The exercise is well worth the effort, even if some times, I end up not changing anything at all. Case in point, styling. I've seen a suggestion to separate the style in the `style` attribute instead of painting vector graphics with presentational attributes, to separate style from structure.
+To improve writing SVG I often go through the specification, books and articles on the topic. The exercise is well worth the effort, even if some times, I end up not changing anything at all. Case in point, styling. I've seen a suggestion to separate the style in the `style` attribute instead of painting vector graphics with presentational attributes, to separate style from structure.
 
 ```diff
 -<circle fill="orange" r="50" />
@@ -13,7 +13,7 @@ To improve writing SVG syntax I often go through the specification and different
 
 I can appreciate the sentiment, but much less the consequences of this choice.
 
-SVG being a way to draw images, style is inherently part of the syntax. In the body of the `<svg>` element you are able to declare several effects like linear gradients.
+SVG being a way to draw images, style is inherently tied to the format. In the body of the `<svg>` element you may design effects like linear gradients.
 
 ```html
 <linearGradient id="gradient">
@@ -22,7 +22,7 @@ SVG being a way to draw images, style is inherently part of the syntax. In the b
 </linearGradient>
 ```
 
-You can set the values with the `style` attributes, both for the `fill` and more technical attributes like `stop-color`.
+You can set the values with the `style` syntax, both for the `fill` and more technical attributes like `stop-color`.
 
 ```diff
 -<stop stop-color="gold" offset="1" />
@@ -31,7 +31,7 @@ You can set the values with the `style` attributes, both for the `fill` and more
 
 That being said, the change looks unnecessarily complicated. Especially when there are attributes which do not have a counterpart in terms of CSS, like `offset`.
 
-But the biggest reason can be summarized in one simple word: _specificity_. The moment you want to override the values, presentational attributes are at the bottom of the priority ladder. Even element selectors will be able to triumph over the declarations.
+But the biggest reason can be summarized in one simple word: _specificity_. The moment you want to override the values, presentational attributes are at the bottom of the priority list. Even element selectors will be able to triumph over the declarations.
 
 ```css
 circle {
