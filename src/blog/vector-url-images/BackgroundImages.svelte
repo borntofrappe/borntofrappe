@@ -15,24 +15,20 @@
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: 1rem;
-	}
-
-	@media (min-width: 24rem) {
-		.layout {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-		}
+		gap: 2rem;
 	}
 
 	figure {
 		padding: 0.5rem;
 		margin: 0;
-		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	figcaption {
+		text-align: center;
 	}
 
 	.background-image {
