@@ -6,8 +6,12 @@ date: 2023-11-20
 
 <script>
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
+	import CruiseLiner from './CruiseLiner.svelte';
 </script>
 
 New entry for Zdog monday.
+
+<CruiseLiner />
 
 <ZdogMonday />
