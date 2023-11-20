@@ -11,7 +11,7 @@ date: 2023-11-20T10:35:19
 	import CruiseLiner from './CruiseLiner.svelte';
 </script>
 
-Up in the sky even a gentle breeze is enough to rock a vehicle, [in time and dimensions](/memory-pop). In the middle of the ocean, however, you may need a small push to keep moving. Not much, mind you. A strong headwind and calm waters are of great help already. Combine all these forces and even the heaviest objects are bound to continue their journey. You just need patience to realize the trip.
+Up in the sky even a gentle breeze is enough to rock a vehicle [in time and dimensions](/memory-pop). In the middle of the ocean, however, you may need a small push to keep moving. Not much, mind you. A strong headwind and calm waters are of great help already. Combine all these forces and even the heaviest objects are destined to continue their journey. You just need patience to realize the trip.
 
 <Center maxInlineSize="400px">
 	<CruiseLiner />
