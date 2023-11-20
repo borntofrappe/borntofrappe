@@ -1,0 +1,13 @@
+---
+title: ZZ Anne
+description: Cruise along with Zdog monday.
+date: 2023-11-20
+---
+
+<script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+</script>
+
+New entry for Zdog monday.
+
+<ZdogMonday />
