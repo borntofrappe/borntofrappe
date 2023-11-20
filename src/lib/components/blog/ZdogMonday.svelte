@@ -29,6 +29,10 @@
 		{
 			title: 'Memory pop',
 			slug: '/memory-pop'
+		},
+		{
+			title: 'ZZ Anne',
+			slug: '/z-z-anne'
 		}
 	];
 </script>
