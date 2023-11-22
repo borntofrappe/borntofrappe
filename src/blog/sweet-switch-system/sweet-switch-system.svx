@@ -1,0 +1,7 @@
+---
+title: sweet-switch-system
+description: the switch element in SVG.
+date: 2023-11-22T11:37:24
+---
+
+The `<switch>` element, with its one true feature.
