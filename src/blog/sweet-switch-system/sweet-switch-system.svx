@@ -16,8 +16,7 @@ In the body of an `<svg>` node the `<switch>` element introduces a nested level 
 </switch>
 ```
 
-gi
-In the inner scope you then add more elements from the SVG specification, with the idea of showing them with a condition set with one of few attributes. `requiredFeatures`, for instance, points to the URL of a specific feature, a standard.
+In the inner scope you then add more elements from the SVG specification, with the idea of showing them with a condition set with one of a few attributes. `requiredFeatures`, for instance, points to the URL of a specific feature, a standard.
 
 ```html
 <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
@@ -61,7 +60,7 @@ But even in this instance, don't be too sure of the result. Indeed in testing th
 
 - trust language codes
 
-  Short, consice values work far more reliably than more refined options.
+  Short, concise values work far more reliably than more refined options.
 
 - add a catch-all condition
 
@@ -74,7 +73,7 @@ But even in this instance, don't be too sure of the result. Indeed in testing th
 
   Should every test fail, the element without the `systemLanguage` attribute will be shown instead.
 
-  _Without attribute_, and this is essential. If you were to use an empry string the entry would be invalid instead, and you'd be left with a blank page once more.
+  _Without attribute_, and this is essential. If you were to use an empty string the entry would be invalid instead, and you'd be left with a blank page once more.
 
 Finally, even with these suggestions, use sparingly and as a cherry on top. You can apply the `<switch>` logic to selectively render text, but also entire graphics, wrapped in group elements. In so doing you customize the vector to serve the most relevant, the most local scenery.
 
