@@ -1,6 +1,6 @@
 ---
 title: Sweet switch system
-description: Season vector graphics picking one option from a complete menu.
+description: Season vector graphics picking an option from a complete set.
 date: 2023-11-22T14:37:24
 ---
 
@@ -11,7 +11,7 @@ date: 2023-11-22T14:37:24
 	import SwitchSystem from './SwitchSystem.svelte';
 </script>
 
-Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The code is fairly technical, there are a few issues as well, but there is a use case for the syntax. You just need to be cautious in terms of implementation.
+Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The implementation is fairly technical, there are a few issues as well, but there is a use case for the syntax.
 
 ## The element
 
@@ -23,7 +23,7 @@ In the body of an `<svg>` node the `<switch>` element introduces a nested level 
 </switch>
 ```
 
-In the inner scope you then add more elements from the SVG specification, with the idea of showing them with a condition set with one of a few attributes. `requiredFeatures`, for instance, points to the URL of a specific feature, a standard.
+In the inner scope you then add more SVG elements, with the idea of showing them with a condition set with one of a few attributes. `requiredFeatures`, for instance, points to the URL of a specific feature, a standard.
 
 ```html
 <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
@@ -31,15 +31,15 @@ In the inner scope you then add more elements from the SVG specification, with t
 </g>
 ```
 
-If the feature is supported the element is drawn, so that the syntax could be useful to introduce particular effects when such effects could actually be possible.
+If the feature is supported the element is drawn, so that the syntax could be used to introduce particular effects when such effects are actually possible.
 
-Alas, _could be useful_ is an appropriate expression as the attribute is mostly deprecated and fails to fulfill its contract.
+Alas, _could be used_ is the appropriate expression as the attribute is deprecated and fails to fulfill its contract.
 
 ## The attribute
 
-Past `requiredFeatures` a switch is engineer to work with two more attributes, `requiredExtensions` and `systemLanguage`. But ultimately, `requiredExtensions` is even less effective than the feature's counterpart, and you are left with only one option: `systemLanguage`.
+Past `requiredFeatures` a switch is engineer to work with two more attributes: `requiredExtensions` and `systemLanguage`. But since `requiredExtensions` is even less supported, there is only one option left.
 
-In the attribute you add a two-letter language name, or a list of names, so that the elements will be shown if the system matches the value.
+With `systemLanguage` detail a language, to show the elements when the system recognizes the value.
 
 <!-- prettier-ignore -->
 ```html
@@ -47,9 +47,9 @@ In the attribute you add a two-letter language name, or a list of names, so that
 <text systemLanguage="de">Streuselkuchen</text>
 ```
 
-Immediately you can see the potential of the syntax for internationalization, for `<text>` elements. The logic is indeed fit to adapt content to different languages, so that you could show a message in English, French, or again German line after line.
+Immediately you can see the potential for internationalization and `<text>` elements. The logic is indeed fit to adapt the text in different languages, be English, French, or German.
 
-And you can even be more nuanced, more precise with the instructions. Beyond the two-letter code identifying the language the attribute supports a more complex instruction describing a country as well.
+And you can even be more nuanced, more precise with the instructions. On top of the two-letter code for the language the attribute supports a more complex sequence including a country.
 
 <!-- prettier-ignore -->
 ```html
@@ -61,13 +61,13 @@ In this manner you can detail the content further, differentiating between count
 
 ## The issues
 
-The `<switch>` element, similarly to a JavaScript `switch` statement broken down in cases, ends with the very first match. This means you need to be careful in the order of instructions — if you intend to specify a country be sure to add the particular value _before_ the more general case.
+The `<switch>` element, similarly to a JavaScript `switch` broken down in well-defined cases, ends with the very first match. This means you need to be careful in the order of instructions.
 
-But even in this instance, don't be too sure of the result. Indeed in testing the feature I found some browsers, some configurations to plainly ignore the country. In some settings the system would even fail to find a match, leaving you with an entirely empty document. How to cope with these pitfalls? There are a few suggestions:
+But even in this instance, don't be too sure of the result. In testing the feature I found that some browsers, some configurations plainly ignore the country. In some settings the system would even fail to find a match, showing nothing at all. How to cope with these pitfalls? Here are a few suggestions:
 
 - trust language codes
 
-  Short, concise values work far more reliably than more refined options.
+  Short, concise codes are far more reliable than more elaborate values.
 
 - add a catch-all condition
 
@@ -78,14 +78,12 @@ But even in this instance, don't be too sure of the result. Indeed in testing th
   <text>Sweet Europe</text>
   ```
 
-  Should every test fail, the element without the `systemLanguage` attribute will be shown instead.
+  Should every test fail, the element without the `systemLanguage` attribute is shown instead.
 
-  _Without attribute_, and this is essential. If you were to use an empty string the entry would be invalid instead, and you'd be left with a blank page once more.
-
-Finally, even with these suggestions, use sparingly and as a cherry on top. You can apply the `<switch>` logic to selectively render text, but also entire graphics, wrapped in group elements. In so doing you customize the vector to serve the most relevant, the most local scenery.
+Finally, even with these suggestions, use sparingly and as an extra, as empty calories {@html svg['cookie']}. You can apply the `<switch>` logic to selectively render text, but also entire graphics wrapped in group elements. In so doing you are able to customize the document and serve the most relevant, the most local scenery.
 
 <Center maxInlineSize="36rem">
 	<SwitchSystem />
 </Center>
 
-But just as you gain from the vocabulary of multiple languages, from the wealth of the differences between borders, there's a lot gain from exploring a [complete menu](https://en.wikipedia.org/wiki/Caf%C3%A9_Europe#Sweet_Europe) {@html svg['cookie']}.
+But just as you gain from the vocabulary of multiple languages, from the wealth of different countries, you might be glad to see every option, and explore [the complete menu](https://en.wikipedia.org/wiki/Caf%C3%A9_Europe).
