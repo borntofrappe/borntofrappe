@@ -4,6 +4,13 @@ description: Season vector graphics picking one option from a complete menu.
 date: 2023-11-22T14:37:24
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+	import SwitchSystem from './SwitchSystem.svelte';
+</script>
+
 Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The code is fairly technical, there are a few issues as well, but there is a use case for the syntax. You just need to be cautious in terms of implementation.
 
 ## The element
