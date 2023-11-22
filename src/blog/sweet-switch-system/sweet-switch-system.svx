@@ -1,7 +1,85 @@
 ---
-title: sweet-switch-system
-description: the switch element in SVG.
-date: 2023-11-22T11:37:24
+title: Sweet switch system
+description: Season vector graphics picking one option from a complete menu.
+date: 2023-11-22T14:37:24
 ---
 
-The `<switch>` element, with its one true feature.
+Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The code is fairly technical, there are a few issues as well, but there is a use case for the syntax. You just need to be cautious in terms of implementation.
+
+## The element
+
+In the body of an `<svg>` node the `<switch>` element introduces a nested level between the opening and closing tags.
+
+```html
+<switch>
+	<!-- ... -->
+</switch>
+```
+
+gi
+In the inner scope you then add more elements from the SVG specification, with the idea of showing them with a condition set with one of few attributes. `requiredFeatures`, for instance, points to the URL of a specific feature, a standard.
+
+```html
+<g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+	<!-- ... -->
+</g>
+```
+
+If the feature is supported the element is drawn, so that the syntax could be useful to introduce particular effects when such effects could actually be possible.
+
+Alas, _could be useful_ is an appropriate expression as the attribute is mostly deprecated and fails to fulfill its contract.
+
+## The attribute
+
+Past `requiredFeatures` a switch is engineer to work with two more attributes, `requiredExtensions` and `systemLanguage`. But ultimately, `requiredExtensions` is even less effective than the feature's counterpart, and you are left with only one option: `systemLanguage`.
+
+In the attribute you add a two-letter language name, or a list of names, so that the elements will be shown if the system matches the value.
+
+<!-- prettier-ignore -->
+```html
+<text systemLanguage="fr">Madeleine</text>
+<text systemLanguage="de">Streuselkuchen</text>
+```
+
+Immediately you can see the potential of the syntax for internationalization, for `<text>` elements. The logic is indeed fit to adapt content to different languages, so that you could show a message in English, French, or again German line after line.
+
+And you can even be more nuanced, more precise with the instructions. Beyond the two-letter code identifying the language the attribute supports a more complex instruction describing a country as well.
+
+<!-- prettier-ignore -->
+```html
+<text systemLanguage="nl-be">Waffles</text>
+<text systemLanguage="nl">Tompouce</text>
+```
+
+In this manner you can detail the content further, differentiating between countries sharing the same dialect.
+
+## The issues
+
+The `<switch>` element, similarly to a JavaScript `switch` statement broken down in cases, ends with the very first match. This means you need to be careful in the order of instructions — if you intend to specify a country be sure to add the particular value _before_ the more general case.
+
+But even in this instance, don't be too sure of the result. Indeed in testing the feature I found some browsers, some configurations to plainly ignore the country. In some settings the system would even fail to find a match, leaving you with an entirely empty document. How to cope with these pitfalls? There are a few suggestions:
+
+- trust language codes
+
+  Short, consice values work far more reliably than more refined options.
+
+- add a catch-all condition
+
+  Before the end of the `<switch>`, the option works similarly to the `default` case of a regular switch.
+
+  ```html
+  <!-- ...texts -->
+  <text>Sweet Europe</text>
+  ```
+
+  Should every test fail, the element without the `systemLanguage` attribute will be shown instead.
+
+  _Without attribute_, and this is essential. If you were to use an empry string the entry would be invalid instead, and you'd be left with a blank page once more.
+
+Finally, even with these suggestions, use sparingly and as a cherry on top. You can apply the `<switch>` logic to selectively render text, but also entire graphics, wrapped in group elements. In so doing you customize the vector to serve the most relevant, the most local scenery.
+
+<Center maxInlineSize="36rem">
+	<SwitchSystem />
+</Center>
+
+But just as you gain from the vocabulary of multiple languages, from the wealth of the differences between borders, there's a lot gain from exploring a [complete menu](https://en.wikipedia.org/wiki/Caf%C3%A9_Europe#Sweet_Europe) {@html svg['cookie']}.
