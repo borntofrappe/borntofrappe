@@ -1,0 +1,9 @@
+---
+title: Vector object
+description: Include an SVG document as an external resource.
+date: 2023-11-24T14:36:56
+---
+
+```html
+<object data="document.svg" type="image/svg+xml" width="300" height="300"></object>
+```
