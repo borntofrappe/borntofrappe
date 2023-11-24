@@ -84,6 +84,8 @@
 	button {
 		display: block;
 		inline-size: 100%;
+		max-inline-size: 24rem;
+		margin-inline: auto;
 		border: none;
 		background: none;
 		--ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
