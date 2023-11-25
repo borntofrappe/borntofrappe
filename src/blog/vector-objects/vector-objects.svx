@@ -112,7 +112,13 @@ An attribute and an admittedly cryptic instruction. A small price to pay for the
 It would be rude to argue the embedding of applications without mentioning the `<embed>` element. The node predates `<object>` at a time where the standard did not exist, and, with a slightly different implementation, has the same exact purpose. You point to a resource in the `src` attribute, and add a `alt` attribute for alternative text.
 
 ```html
-<embed src="top-hat.svg" alt="A curious top hat" type="image/svg+xml" width="300" height="300" />
+<embed
+	src="top-hat.svg"
+	alt="Magical vector graphic"
+	type="image/svg+xml"
+	width="300"
+	height="300"
+/>
 ```
 
 There is no closing bracket, no place for fallback content, but fear not, the element may look like an image, but behaves like an object. And the vector, styled or scripted how it might be, will be featured in full.
