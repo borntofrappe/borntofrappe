@@ -1,6 +1,6 @@
 ---
 title: Vector objects
-description: Embed full-featured SVGs in an HTML page.
+description: Embed entire vector graphics with plain markup.
 date: 2023-11-25T10:36:55
 ---
 
@@ -10,7 +10,7 @@ date: 2023-11-25T10:36:55
 
 <TopHat />
 
-In an HTML document you are able to add vector graphics _inline_, but there are several more options to include SVG in the page.
+In an HTML document you are able to add vector graphics _inline_, but there are several more options to show SVGs in the page.
 
 Consider the `<img>` element. The node is designed to render an image by referencing an external file in a specific format. Past `.jpg` and the modern `.webp`, `.avif` extensions, the element is more than equipped to complete the task for vectors — you just need the appropriate `src` and `alt` attributes.
 
@@ -20,9 +20,9 @@ Consider the `<img>` element. The node is designed to render an image by referen
 
 There are a few drawbacks with the solution. The vector is included as an image, a static asset. What is more, you lose the unparallelled access to the elements composing the SVG. But even with these issues, the element works to show the graphic from the mentioned file.
 
-You have at least one more option in this regard, the `<object>` element. The markup is is more elaborate, but so is the promise of additional features.
+You have at least one more option in this regard, the `<object>` element. The markup is more elaborate, but so is the promise of additional features.
 
-In the element you point to a file with the `data` attribute and specify its type with the matching `type`. Set such type to `"image/svg+xml"` and you are able to add a vector.
+With the element you point to a file in the `data` attribute and specify its type with the matching `type`. Set such type to `"image/svg+xml"` and you are able to add the vector.
 
 ```html
 <object
@@ -34,7 +34,7 @@ In the element you point to a file with the `data` attribute and specify its typ
 ></object>
 ```
 
-Past the data and type the structure is eerily similar to that of the image. The `width` and `height` attributes mark the dimensions of the element to ease the layout for the browser. With a `title`, then, you set a label for assistive technologies.
+Past the data and type the code is similar to that for the image. The `width` and `height` attributes mark the dimensions of the element to ease the layout for the browser. With a `title`, then, you set a label for assistive technologies.
 
 You can repeat the `alt` attribute from the `<img>` node, but for the sake of a fallback, the element is structured with an opening and closing tag. In between the two you can add some markup to show when the connection fails.
 
@@ -50,7 +50,7 @@ You can repeat the `alt` attribute from the `<img>` node, but for the sake of a 
 </object>
 ```
 
-Why go through the hassle of using an object instead of an image? The two are fundamentally different in purpose, and while `<img>` is built for static assets, `<object>` is supposed to work with full-blown applications as well. In this the element behaves more like an `iframe` to inject a resource. Practically, this means the code in the `.svg` document can be far more complex.
+Why go through the hassle of using an object instead of an image? The two are fundamentally different in purpose, and while `<img>` is built for static assets, `<object>` is supposed to work with full-blown applications as well. In this the element behaves more like an `iframe` to inject a resource. Practically, this means the syntax in the `.svg` document can be far more complex.
 
 You may be familiar with `<style>` tags to add CSS.
 
@@ -71,7 +71,7 @@ Or again `<script>` tags to reason with JavaScript.
 </script>
 ```
 
-You can add both in HTML, in the larger page, but also in SVG, between the all wrapping `<svg>` tags.
+You can add both in HTML, but also in SVG, between the all wrapping `<svg>` tags.
 
 ```html
 <svg viewBox="-45 -45 90 90">
@@ -80,11 +80,11 @@ You can add both in HTML, in the larger page, but also in SVG, between the all w
 </svg>
 ```
 
-Add the code inline and the tags affect the entire DOM tree. The styles are liable to update other elements in the same scope, and the script is also at risk to target competing nodes.
+Add the code inline and the tags affect the entire DOM tree. The styles are liable to update elements in the same scope, and the script is also at risk to target competing nodes.
 
-The moment you include the vector as an object you work around both issues. Both tags will update the document and the crisp document only.
+Include the vector as an object you work around both issues. Both tags will update the document and the crisp document only.
 
-There are two precautions worth mentioning, two changes to the SVG syntax. First, you cannot forget the `xmlns` attribute in the opening tag. The value is mandatory when you include a graphic from a third location.
+There are two precautions worth mentioning, two changes to the embedded file. First, you cannot forget the `xmlns` attribute in the opening tag. The value is mandatory when you include a graphic from a third location.
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -45 90 90">
@@ -103,16 +103,16 @@ Second, and perhaps more perplexing, you may need to surround the CSS or JavaScr
 </script>
 ```
 
-There are indeed certain characters which compromise the document. Think angle brackets or again the ampersand character `"&"`. These have a particular meaning in XML, and thanks to `CDDATA` are going to be treated as plain text instead.
+There are indeed certain characters which compromise the document. Think angle brackets or again the ampersand character `"&"`. These have a particular meaning in XML, and thanks to `CDATA` are going to be treated as plain text instead.
 
 An attribute and an admittedly cryptic instruction. A small price to pay for the convenience of having an independent component.
 
 ## Embed aside
 
-It would be rude to argue the embedding of application without mentioning the `<embed>` element. The node predates the object at a time where the standard did not exist, and with a slightly different implementation, has the same exact purpose. You point to the resource in the `src` attribute, and add a `alt` attribute for alternative text.
+It would be rude to argue the embedding of applications without mentioning the `<embed>` element. The node predates `<object>` at a time where the standard did not exist, and, with a slightly different implementation, has the same exact purpose. You point to a resource in the `src` attribute, and add a `alt` attribute for alternative text.
 
 ```html
 <embed src="top-hat.svg" alt="A curious top hat" type="image/svg+xml" width="300" height="300" />
 ```
 
-There is no closing bracket, no place for fallback content, but fear not, the element looks like an image, but the node behaves like the object. The vector, styled or scripted how it might be, will be fetured in full.
+There is no closing bracket, no place for fallback content, but fear not, the element may look like an image, but behaves like an object. And the vector, styled or scripted how it might be, will be featured in full.
