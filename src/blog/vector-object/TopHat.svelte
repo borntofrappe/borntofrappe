@@ -5,12 +5,16 @@
 	}
 </script>
 
-<button aria-label="Press to toggle a crisp suprise" aria-pressed={pressed} on:click={handleToggle}>
+<button
+	aria-label="Press to toggle a vector suprise"
+	aria-pressed={pressed}
+	on:click={handleToggle}
+>
 	<svg class:pressed viewBox="-45 -45 90 90">
 		<defs>
 			<symbol
 				id="top-hat-star"
-				viewBox="-25.07461166381836 -26.236068725585938 50.14922332763672 47.984046936035156"
+				viewBox="-24.57461166381836 -25.736068725585938 49.14922332763672 46.984046936035156"
 				x="-5"
 				y="-5"
 				width="10"
@@ -43,12 +47,12 @@
 			<g class="scale">
 				<use
 					style="color: hsl(260 90% 72%)"
-					transform=" translate(1 -5) rotate(5) scale(0.6)"
+					transform="translate(1 -5) rotate(5) scale(0.6)"
 					href="#top-hat-star"
 				/>
 				<use
 					style="color: hsl(194 90% 72%)"
-					transform=" translate(-10 -6) rotate(-20) scale(0.7)"
+					transform="translate(-10 -6) rotate(-20) scale(0.7)"
 					href="#top-hat-star"
 				/>
 				<use
