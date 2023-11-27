@@ -423,12 +423,12 @@
 </script>
 
 <div bind:this={widget}>
-	<button disabled data-state="spin">Spin</button>
 	<canvas
 		style="display: block; inline-size: 100%; max-inline-size: 400px;"
 		width="400"
 		height="400"
 	/>
+	<button disabled data-state="spin">Spin</button>
 </div>
 
 <style>
