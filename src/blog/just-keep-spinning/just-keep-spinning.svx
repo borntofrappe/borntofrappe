@@ -1,0 +1,5 @@
+---
+title: Just keep spinning
+description: Continue toying with pseudo-3D shapes.
+date: 2023-11-27T10:38:12
+---
