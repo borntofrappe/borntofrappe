@@ -452,8 +452,10 @@
 		border-radius: 0.5rem;
 		--offset: 4px;
 		filter: drop-shadow(0 var(--offset, 4px) hsl(28 100% 10%));
-		transition: translate 0.2s, filter 0.2s;
-		outline: 4px solid transparent;
+		transition-property: translate, filter;
+		transition-duration: 0.3s;
+		transition-duration: 0.15s;
+		transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	button:disabled {
@@ -466,7 +468,7 @@
 	}
 
 	button:focus {
-		outline-color: hsl(28 100% 10%);
+		outline: 4px solid hsl(28 100% 10%);
 	}
 
 	button:focus:not(:focus-visible) {
