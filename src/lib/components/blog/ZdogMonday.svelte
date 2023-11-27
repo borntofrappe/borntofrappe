@@ -33,6 +33,10 @@
 		{
 			title: 'ZZ Anne',
 			slug: '/z-z-anne'
+		},
+		{
+			title: 'Just keep spinning',
+			slug: '/just-keep-spinning'
 		}
 	];
 </script>
