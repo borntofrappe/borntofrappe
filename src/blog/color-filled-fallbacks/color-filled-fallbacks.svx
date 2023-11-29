@@ -4,6 +4,16 @@ description: Fallback values in CSS and SVG
 date: 2023-11-29T14:14:14
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
 ```html
 <rect fill="url(#gradient) hsl(0 0% 30%)" />
 ```
+
+<Center element="figure" maxInlineSize="30rem">
+	{@html svg['fallback-values']}
+</Center>
