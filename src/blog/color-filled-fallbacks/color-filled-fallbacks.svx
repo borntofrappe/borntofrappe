@@ -10,7 +10,7 @@ date: 2023-11-29T14:38:14
 	import svg from './svg.js';
 </script>
 
-With the presence of a dozen color functions and support for multiple color spaces you could almost be justified in explaining CSS as _Colorful StyleSheets_. The language gives you plenty of options and more than one way to add fallback values, so you can try advanced features with a safety net. In SVG you also have a way to try complex features and, by chance, there is a way to preserve the graphics should these options fail.
+With the presence of a dozen color functions and support for multiple color spaces you could almost be justified in explaining CSS as _Colorful Style Sheets_. The language gives you plenty of options and more than one way to add fallback values, so you can try advanced features with a safety net. In SVG you also have a way to try complex features and, by chance, there is a way to preserve the graphics should these options fail.
 
 ## CSS
 
@@ -25,11 +25,11 @@ h1 {
 
 Here you have two sets of key-value pairs for the same `color` property, with two different functions. Most rendering engines understand both instructions, and they will realize the color with the modern `oklch` syntax. If a browser can't understand the function it will retain the first option, and show the `hsl` triplet instead.
 
-There's another scenario in which fallbacks become relevant, with custom properties. You include the value of such properties with the `var` function and, following a comma, have the option of a fallback value.
+There's another scenario in which fallbacks become relevant, with custom properties. You include the value of such properties with the `var` function and, following a comma, an optional fallback.
 
 ```css
 h1 {
-	color: var(--accent, hsl(210 14% 83%));
+	color: var(--sky, hsl(210 14% 83%));
 }
 ```
 
@@ -37,11 +37,11 @@ The color becomes relevant the moment there is no property defined in the docume
 
 ```css
 :root {
-	--accent: hsl(228 100% 86%);
+	--sky: hsl(228 100% 86%);
 }
 ```
 
-Forget the code and the fallback value kicks in. The language is flexible, and more than willing to cope with different scenarios.
+Forget the code and the fallback kicks in. The language is flexible, and more than willing to cope with different scenarios.
 
 ## SVG
 
@@ -53,7 +53,7 @@ In the body of an `<svg>` node you paint the shapes with two attributes, `fill` 
 
 On top of these values you can point to particular effects such as gradients, by reference.
 
-Let's set up one such gradient as an example. You have two options in SVG , for a linear and a radial gradient. Respectively, the two are introduced with a `linearGradient` and a `radialGradient` element.
+Let's set up one such gradient as an example. You have two options in SVG, for a linear and a radial gradient. Respectively, the two are introduced with a `linearGradient` and a `radialGradient` element.
 
 ```html
 <linearGradient>
@@ -61,7 +61,7 @@ Let's set up one such gradient as an example. You have two options in SVG , for 
 </linearGradient>
 ```
 
-In the body of the element add the colors of the gradient with `stop` elements and two attributes: `stop-color` and `offset`. In one attribute you detail the color. In the other a value in the 0 to 1 range, or a percentage, to illustrate when to use the matching pick.
+In the body of the element add the colors with `stop` elements and two attributes: `stop-color` and `offset`. In one attribute you detail the color. In the other a value in the 0 to 1 range, or a percentage, to illustrate when to use the matching pick.
 
 ```html
 <stop stop-color="hsl(225 100% 93%)" offset="0" />
@@ -82,7 +82,7 @@ You can add a fallback, but not by repeating the attribute with another value.
 <rect fill="url(#gradient)" fill="hsl(210 14% 83%)" width="20" height="20" rx="2" />
 ```
 
-This is [a parsing error](https://html.spec.whatwg.org/#parse-errors): there cannot be more than one attribute for the same element. In practice you might not be alerted of the mistake. Browsers work around the issue by keeping the first instance and ignore the duplicate. But this also means that the code will not work as intended, and what you see depends on the order of the attributes. Add the gradient first, and when you fail to match an id you won't see the result. Place the gradient last and the "fallback" will always take precedence.
+This is [a parsing error](https://html.spec.whatwg.org/#parse-errors): there cannot be more than one attribute for the same element. In practice you might not be alerted of the mistake. Browsers work around the issue by keeping the first instance and ignore the duplicate. But this also means that the code will not work as intended, and what you see depends on the order of the attributes. Add the gradient first, and when you fail to match the `id` you won't see the result. Place the gradient last and the "fallback" will always take precedence.
 
 To have a true fallback you can be reminded of the pattern for custom properties. In the one attribute reference the gradient. In the same attribute, after the `url` function and separated by whitespace, add the second option.
 
@@ -90,7 +90,7 @@ To have a true fallback you can be reminded of the pattern for custom properties
 <rect fill="url(#gradient) hsl(210 14% 83%)" width="20" height="20" />
 ```
 
-You don't separate the values with a comma, but the code works in much the same way. Define the gradient with the proper `id` attribute and the element benefits from the smooth gradient.
+You don't separate the values with a comma, but the code works in much the same way. Define the gradient with the proper `id` attribute and the element benefits from the smooth color change.
 
 ```html
 <linearGradient id="gradient">
