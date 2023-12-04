@@ -9,9 +9,11 @@
 
 	onMount(() => {
 		const root = new Anchor();
+		const stroke = 2;
+		const fill = true;
 
 		const panel = new RoundedRect({
-			stroke: 2,
+			stroke,
 			fill: true,
 			width: 60,
 			height: 60,
@@ -21,14 +23,14 @@
 		const front = new Anchor({
 			addTo: root,
 			translate: {
-				z: 3
+				z: stroke + 1
 			}
 		});
 
 		const back = new Anchor({
 			addTo: root,
 			translate: {
-				z: -3
+				z: (stroke + 1) * -1
 			}
 		});
 
@@ -38,7 +40,7 @@
 			addTo: front,
 			color: background,
 			translate: {
-				z: -2
+				z: stroke * -1
 			}
 		});
 
@@ -46,23 +48,23 @@
 			addTo: back,
 			color: background,
 			translate: {
-				z: 2
+				z: stroke
 			}
 		});
 
 		new Shape({
 			addTo: front,
 			color,
-			stroke: 2,
-			fill: true,
+			stroke,
+			fill,
 			path
 		});
 
 		new Shape({
 			addTo: back,
 			color,
-			stroke: 2,
-			fill: true,
+			stroke,
+			fill,
 			path
 		});
 
@@ -137,10 +139,10 @@
 			side.children[1].remove();
 			new Shape({
 				addTo: side,
-				color: color,
-				stroke: 2,
-				fill: true,
-				path: path
+				color,
+				stroke,
+				fill,
+				path
 			});
 
 			state = 'animate';
@@ -184,15 +186,14 @@
 	/>
 	<div class="controls">
 		<button disabled aria-label="Previous door">
-			<svg viewBox="-4.5 -4.5 9 9" style="display: block;">
+			<svg viewBox="-5 -5 10 10" style="display: block;">
 				<path
-					transform="translate(-1 0) scale(-1 1)"
 					fill="none"
 					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
-					d="M -2.5 -4 2.5 0 -2.5 4"
+					d="M 2 -4 -3 0 2 4"
 				/>
 			</svg>
 		</button>
@@ -207,7 +208,7 @@
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
-					d="M -2.5 -4 2.5 0 -2.5 4"
+					d="M -2 -4 3 0 -2 4"
 				/>
 			</svg>
 		</button>
@@ -238,9 +239,7 @@
 		border: none;
 		color: hsl(210 16% 93%);
 		background: hsl(210 10% 23%);
-		transition-property: opacity, scale;
-		transition-duration: 0.2s;
-		transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+		transition: 0.2s scale cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	button > svg {
