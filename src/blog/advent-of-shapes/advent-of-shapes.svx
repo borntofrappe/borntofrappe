@@ -1,7 +1,21 @@
 ---
 title: Advent of shapes
-description: Turn doors.
+description: Turn a few doors to discover cute little figures.
 date: 2023-12-04T13:35:53
 ---
 
-Zdog monday #10.
+<script>	
+	import Doors from './Doors.svelte';
+</script>
+
+Per the season, it is fitting to remark the passing of time with a calendar. But it is cumbersome to show more than a handful of days at a time, so I decided to give a different twist on a familiar feat. This begs two questions:
+
+1. just how many times can you rotate a graphic on the y axis and still have the effect mildly entertaining?
+
+2. can you really come up with twenty plus shapes to keep the theme alive?
+
+The first question is almost too easy to answer — a lot. Assuming the code works as intended, today's entry should be more than proof.
+
+<Doors />
+
+The second question is quite more daunting. I'm not that imaginative, but I think I can come up with a few more examples. Just don't expect them on a daily basis, however. The weekend is the perfect time to prepare a fresh batch, and it might take one more day to accept the result.

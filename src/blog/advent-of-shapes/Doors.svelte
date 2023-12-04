@@ -5,7 +5,7 @@
 	import { shapes } from './shapes.js';
 
 	let widget = null;
-	let index = 0;
+	let index = 3;
 
 	onMount(() => {
 		const root = new Anchor();
