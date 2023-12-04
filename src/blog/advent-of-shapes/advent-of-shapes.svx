@@ -1,0 +1,7 @@
+---
+title: Advent of shapes
+description: Turn doors.
+date: 2023-12-04T13:35:53
+---
+
+Zdog monday #10.
