@@ -5,6 +5,8 @@ date: 2023-12-04T13:35:53
 ---
 
 <script>	
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
 	import Doors from './Doors.svelte';
 </script>
 
@@ -19,3 +21,5 @@ The first question is almost too easy to answer — a lot. Assuming the code wor
 <Doors />
 
 The second question is quite more daunting. I'm not that imaginative, but I think I can come up with a few more examples. Just don't expect them on a daily basis, however. The weekend is the perfect time to prepare a fresh batch, and it might take one more day to accept the result.
+
+<ZdogMonday />

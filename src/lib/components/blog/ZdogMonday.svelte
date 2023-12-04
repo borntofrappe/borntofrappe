@@ -37,6 +37,10 @@
 		{
 			title: 'Just keep spinning',
 			slug: '/just-keep-spinning'
+		},
+		{
+			title: 'Advent of shapes',
+			slug: '/advent-of-shapes'
 		}
 	];
 </script>
