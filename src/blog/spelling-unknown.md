@@ -1,10 +1,10 @@
 ---
 title: Spelling unknown
-description: Check the mildly confusing consequences of unknown elements in HTML and SVG.
+description: Test what happens using unknown elements in HTML and SVG.
 date: 2023-12-06T15:36:30
 ---
 
-HTML is a robust language built to withstand unexpected input, be it intentional or otherwise. SVG is a tad more strict in that sense; the language is often programmed with safeguards, but these are not always of use.
+HTML is a robust language built to withstand unexpected code, be it intentional or otherwise. SVG is a tad more strict in that sense; the language is often programmed with safeguards, but these are not always in use.
 
 ## HTML
 
@@ -16,7 +16,7 @@ What happens if you manage to misspell an HTML element wrapped around additional
 </diva>
 ```
 
-Luckily for us, very little out of the ordinary. The browser continues its job to faithfully render the text, the tag names listed in the specification. The elements which do not appear in this list are treated as a special type of element, `HTMLUnknownElement`. You can attest this yourself with JavaScript, through the prototype of the unknown target.
+Luckily for us, very little out of the ordinary. The browser continues its job to faithfully render the text, the tag names listed in the specification. The elements which do not appear in this list are treated as a special type of element, `HTMLUnknownElement`. You can attest this yourself with JavaScript, through the prototype of the improper target.
 
 ```js
 const element = document.querySelector('diva');
@@ -39,7 +39,7 @@ Either way, the markup keeps working, in spite or on top of the unknown syntax. 
 
 ## SVG
 
-What happens if you repeat the exercise in SVG? Unfortunately, not the same thing. But not for lack of trying.
+What happens if you repeat the exercise in SVG? Unfortunately, not the same thing, but not for lack of trying.
 
 ```html
 <svg viewBox="-5 -5 10 10">
@@ -49,13 +49,13 @@ What happens if you repeat the exercise in SVG? Unfortunately, not the same thin
 </svg>
 ```
 
-Per [a recommendation](https://www.w3.org/TR/SVG2/struct.html#UnknownElement) in the standard, unknown elements should be treated as generic containers, `g` or `tspan` elements, to keep displaying the nested content. As with HTMLUnknownElement, you should find an instance `SVGUnknownElement` and similar consequences.
+Per to [a recommendation](https://www.w3.org/TR/SVG2/struct.html#UnknownElement), unknown elements should be treated as generic containers, `g` or `tspan` elements, to keep displaying the nested content. As with HTMLUnknownElement, you should find an instance `SVGUnknownElement` and similar consequences.
 
-Unfortunately, the feature has not been implemented yet. Should you fall in the same scenario and run the code you would find an `SVGElement` instead.
+Unfortunately, the feature [has not been implemented yet](https://www.w3.org/TR/SVG2/struct.html#issue70). Should you fall in the same scenario you will find an `SVGElement` instead.
 
 ```js
 const element = document.querySelector('group');
 Object.getPrototypeOf(element); // SVGElementPrototype
 ```
 
-On the page, you won't find a single shred of the nested shapes. Nothing is shown, nothing is rendered, leaving you with a reminder and a call to action. HTML and SVG share a similar core in the markup format, but each has its own standard. Strive to be precise, test the code and if something doesn't look right, or at all, refer to the docs. And test the code again.
+And on the page, you won't find a single shred of the nested shapes. This is considered a regular node, but one without purpose. Nothing is shown, nothing is rendered, leaving you with a reminder and a call to action. HTML and SVG share a similar core in the markup format, but each has its own standard. Double check your spelling, and if something doesn't look right, or at all, refer to the docs. Fine print included.
