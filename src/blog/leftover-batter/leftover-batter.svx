@@ -1,5 +1,15 @@
 ---
 title: Leftover batter
-description: Try a few sweets.
-date: 2023-12-06T21:21:45
+description: Try a few misshapen sweets.
+date: 2023-12-06T22:01:54
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Misshapes from './Misshapes.svelte';
+</script>
+
+<Center maxInlineSize="380px">
+	<Misshapes />
+</Center>
