@@ -1,0 +1,10 @@
+---
+title: Joystick drift
+description: Zdog monday 11
+date: 2023-12-11
+---
+
+```js
+illustration.rotate.y = value;
+illustration.updateRenderGraph();
+```
