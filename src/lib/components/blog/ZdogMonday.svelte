@@ -41,6 +41,10 @@
 		{
 			title: 'Advent of shapes',
 			slug: '/advent-of-shapes'
+		},
+		{
+			title: 'Joystick drift',
+			slug: '/joystick-drift'
 		}
 	];
 </script>
