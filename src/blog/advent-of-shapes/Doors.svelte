@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Anchor, Shape, RoundedRect, TAU, easeInOut } from 'zdog';
 
-	import paths from './shapes.js';
+	import paths from './paths.js';
 
 	let widget = null;
 	let index = 3;
