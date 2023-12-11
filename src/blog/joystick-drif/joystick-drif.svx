@@ -4,6 +4,12 @@ description: Zdog monday 11
 date: 2023-12-11
 ---
 
+<script>
+    import Controller from './Controller.svelte'
+</script>
+
+<Controller />
+
 ```js
 illustration.rotate.y = value;
 illustration.updateRenderGraph();
