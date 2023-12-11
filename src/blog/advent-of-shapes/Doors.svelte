@@ -2,15 +2,35 @@
 	import { onMount } from 'svelte';
 	import { Anchor, Shape, RoundedRect, TAU, easeInOut } from 'zdog';
 
-	import { shapes } from './shapes.js';
+	import paths from './shapes.js';
 
 	let widget = null;
 	let index = 3;
 
 	onMount(() => {
-		const root = new Anchor();
+		const colors = [
+			{
+				color: 'hsl(14 89% 63%)',
+				background: 'hsl(45 77% 78%)'
+			},
+			{
+				color: 'hsl(46 82% 65%)',
+				background: 'hsl(14 89% 63%)'
+			},
+			{
+				color: 'hsl(36 25% 92%)',
+				background: 'hsl(180 36% 54%)'
+			},
+			{
+				color: 'hsl(22 35% 47%)',
+				background: 'hsl(36 25% 92%)'
+			}
+		];
+
 		const stroke = 2;
 		const fill = true;
+
+		const root = new Anchor();
 
 		const panel = new RoundedRect({
 			stroke,
@@ -34,7 +54,8 @@
 			}
 		});
 
-		const { color, background, path } = shapes[index];
+		const path = paths[index];
+		const { color, background } = colors[index % colors.length];
 
 		panel.copy({
 			addTo: front,
@@ -110,7 +131,7 @@
 				render();
 
 				if (index > 0) previous.removeAttribute('disabled');
-				if (index < shapes.length - 1) next.removeAttribute('disabled');
+				if (index < paths.length - 1) next.removeAttribute('disabled');
 				state = 'wait';
 
 				cancelAnimationFrame(frame);
@@ -126,13 +147,14 @@
 		};
 
 		if (index > 0) previous.removeAttribute('disabled');
-		if (index < shapes.length - 1) next.removeAttribute('disabled');
+		if (index < paths.length - 1) next.removeAttribute('disabled');
 
 		function spin(dir) {
 			direction = dir;
 			index += direction;
 
-			const { color, background, path } = shapes[index];
+			const path = paths[index];
+			const { color, background } = colors[index % colors.length];
 
 			const side = startAngle === 0 ? back : front;
 			side.children[0].color = background;
@@ -160,9 +182,9 @@
 		}
 		function spinForward() {
 			if (state !== 'wait') return;
-			if (index >= shapes.length - 1) return;
+			if (index >= paths.length - 1) return;
 			if (previous.hasAttribute('disabled')) previous.removeAttribute('disabled');
-			if (index >= shapes.length - 2) next.setAttribute('disabled', 'true');
+			if (index >= paths.length - 2) next.setAttribute('disabled', 'true');
 
 			spin(1);
 		}
