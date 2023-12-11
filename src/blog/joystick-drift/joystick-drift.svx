@@ -1,7 +1,7 @@
 ---
 title: Joystick drift
 description: Update a pseudo-3D graphic with complete control. At least momentarily.
-date: 2023-12-11T11:11:11
+date: 2023-12-11T11:35:42
 ---
 
 <script>
