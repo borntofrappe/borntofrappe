@@ -4,4 +4,10 @@ description: Celebrate St. Lucy's Day.
 date: 2023-12-13T14:35:37
 ---
 
+<script>	
+	import Candlelight from './Candlelight.svelte';
+</script>
+
 After [St. Nicolas](/leftover-batter), St. Lucy's Day.
+
+<Candlelight />
