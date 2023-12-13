@@ -158,6 +158,50 @@
 
 		root.updateGraph();
 		render();
+
+		let frame = null;
+
+		const animate = () => {
+			earth.rotate.y = (earth.rotate.y + 0.001) % TAU;
+
+			root.updateGraph();
+			render();
+
+			frame = requestAnimationFrame(animate);
+		};
+
+		const observation = (entries) => {
+			if (entries[0].isIntersecting) {
+				frame = requestAnimationFrame(animate);
+			} else {
+				cancelAnimationFrame(frame);
+			}
+		};
+
+		const observer = new IntersectionObserver(observation);
+
+		const listener = (e) => {
+			if (e.matches) {
+				cancelAnimationFrame(frame);
+				observer.unobserve(element);
+			} else {
+				observer.observe(element);
+			}
+		};
+
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (!reducedMotion.matches) {
+			observer.observe(element);
+		}
+
+		reducedMotion.addEventListener('change', listener);
+
+		return () => {
+			reducedMotion.removeEventListener('change', listener);
+			cancelAnimationFrame(frame);
+			observer.unobserve(element);
+		};
 	});
 </script>
 
