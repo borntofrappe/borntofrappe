@@ -1,14 +1,14 @@
 ---
 title: SVG stack
-description: Include multiple images with SVG, an object and some style.
+description: Include multiple icons with SVG, an object and some style.
 date: 2023-12-15T11:34:58
 ---
 
-When you save a vector graphic with the `.svg` extension there are several elements which help you add the file on a page. You might have explored [`img`](vector-url-images) already, and also, [`object`](/vector-objects). An object is particularly intriguing as it allows to include the vector close to an independent component. A document you can customize with `<style>` tags or enhance with a pair of `<script>` brackets, without affecting the rest of the markup. This leads to [interesting applications](/views-within), and another way to include multiple assets from a single source.
+When you save a vector graphic with the `.svg` extension there are several elements which help you add the file on a page. You might have explored [`img`](vector-url-images) already, and also, [`object`](/vector-objects). An object is particularly intriguing as it allows to include the vector close to an independent component. A document you can customize with `<style>` tags or enhance with a pair of `<script>` brackets, without affecting the rest of the markup. This leads to [interesting applications](/views-within), and another way to include multiple assets from a single source. A perfect use-case for an icon system.
 
 ## In theory
 
-Start by drawing a series of vectors in a stack, one after the other.
+Start by drawing the icons in a stack, one after the other.
 
 ```html
 <svg>
@@ -52,7 +52,7 @@ We can take advantage of this feature with our object. Remember the structure of
 ></object>
 ```
 
-With this in mind you can update the string with the addition of a fragment.
+With this in mind you can update the string including a fragment.
 
 ```diff
 -data="stack.svg"
@@ -114,7 +114,7 @@ There is one little issue you might have spotted already. Consider the initial m
 ></object>
 ```
 
-What happens in this instance? There is no fragment, and there is no target to match. You end up with a blank canvas as the nested shapes share the same `display` property, `none`. You may not think of it twice — you will certainly remember to add the fragment and properly update the `title` attribute, without a doubt.
+What happens in this instance? There is no fragment, and there is no target to match. You end up with a blank canvas as the nested shapes share the same `display` property, `none`. You may not think of it twice — you will certainly remember to add the fragment and properly change the `title` attribute, without a doubt.
 
 <!-- prettier-ignore -->
 ```html
