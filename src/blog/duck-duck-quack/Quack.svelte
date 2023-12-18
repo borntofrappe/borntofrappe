@@ -12,8 +12,8 @@
 		const zoom = 8;
 
 		const colors = {
-			backdrop: 'hsl(0 0% 90%)',
-			duck: 'hsl(0 0% 99%)',
+			backdrop: 'hsl(210 14% 89%)',
+			body: 'hsl(0 0% 100%)',
 			eyes: 'hsl(306 83% 26%)',
 			wing: 'hsl(313 100% 50%)',
 			beak: 'hsl(12 96% 55%)',
