@@ -1,0 +1,23 @@
+---
+title: Lights on Earth
+description: Celebrate a day without sweets, but a similar warm feeling.
+date: 2023-12-13T14:35:37
+---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Candlelight from './Candlelight.svelte';
+</script>
+
+As the end of the year approaches, it seems that you can find an excuse to celebrate every other week. And in the past I've decided to cater a most gluttonous instinct with [home-baked cookies](/leftover-batter). Perhaps even [more than once](/tuesday-treats).
+
+Today you may want to enjoy another heap of calories — _lussekatt_ might do more than tip the scale in this direction —, and you will find a motive looking at the calendar. But in truth, you need as many reasons to enjoy a small treat as I need to tinker with JavaScript. I'll leave you the cooking, however, and offer a different manner to evoke a warm feeling.
+
+In several parts of Europe, in nations as distant as Italy and Sweden, as close as Croatia and Hungary, people gather to celebrate light.
+
+Days get progressively shorter, continuously colder, and it is all the more comforting to delight in the glow. From the rare appearance of the sun, or a burning string lodged in a chunk of wax.
+
+<Center element="figure" maxInlineSize="400px">
+	<Candlelight />
+</Center>
