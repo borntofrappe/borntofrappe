@@ -519,7 +519,11 @@
 	<label>
 		<input disabled type="checkbox" />
 		<span>Quack</span>
-		<svg width="1em" height="1em" viewBox="-15.318018913269043 -21.68198013305664  37 37">
+		<svg
+			width="1em"
+			height="1em"
+			viewBox="-15.142135620117188 -21.50609588623047 36.648231506347656 36.648231506347656"
+		>
 			<g transform="rotate(-45)">
 				<path
 					fill="currentColor"
@@ -530,17 +534,14 @@
 					d="M -13 0.5 -13 -0.5 -6.5 -0.5 -6.5 -3 -6 -3 -6 -0.5 -2.5 -0.5 -2.5 -3 -2 -3 -2 -0.5 1.5 -0.5 1.5 -3 2 -3 2 -0.5 4 -0.5 C 8 -0.5 11 -3 13 -6 12 -1 12 1 13 6 11 3 8 0.5 4 0.5 L 2 0.5 2 2 A 3 3 0 0 1 -1 5 L -4 5 A 3 3 0 0 1 -7 2 L -7 0.5 Z"
 				/>
 				<g
-					transform="translate(13 0)"
+					transform="translate(14 0)"
 					fill="none"
 					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
 				>
-					<path d="M 5 0 8 0Z" />
-					<path transform="translate(5 0)" d="M 0 0 4 0Z" />
-					<path transform="translate(-3 0) rotate(35) translate(8 0)" d="M 0 0 4 0Z" />
-					<path transform="translate(-3 0) rotate(-35) translate(8 0)" d="M 0 0 4 0Z" />
+					<path id="sound" d="M 4 0 8 0 M 2.5 -4.5 6 -7 M 2.5 4.5 6 7 Z" />
 				</g>
 			</g>
 		</svg>
@@ -584,6 +585,15 @@
 
 	input:focus {
 		outline-offset: 3px;
+	}
+
+	input ~ svg #sound {
+		scale: 0;
+		transition: scale 0.2s cubic-bezier(0.83, 0, 0.17, 1);
+	}
+
+	input:checked ~ svg #sound {
+		scale: 1;
 	}
 
 	span {
