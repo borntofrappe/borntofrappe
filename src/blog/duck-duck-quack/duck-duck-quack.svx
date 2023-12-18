@@ -4,4 +4,14 @@ description: A pseudo-3D duck inspired by a gorgeous 2D work.
 date: 2023-12-18T09:17:14
 ---
 
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+	
+    import Duck from './Duck.svelte';
+</script>
+
 A mallard.
+
+<Center element="figure" maxInlineSize="20rem">
+    <Duck />
+</Center>
