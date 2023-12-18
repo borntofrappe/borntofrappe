@@ -1,22 +1,24 @@
 ---
-title: duck-duck-quack
-description: A pseudo-3D duck inspired by a gorgeous 2D work.
+title: Duck duck quack
+description: Repurpose an inspiring 2D work with pseudo-3D shapes.
 date: 2023-12-18T09:17:14
 ---
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
-	
-    import Duck from './Duck.svelte';
-    import Quack from './Quack.svelte';
+
+	import Duck from './Duck.svelte';
+	import Quack from './Quack.svelte';
 </script>
 
-A mallard.
-
-<Center element="figure" maxInlineSize="20rem">
-    <Duck />
-</Center>
+If you actively follow the CSS circuit you will have enjoyed [**CSS wrapped: 2023**](https://developer.chrome.com/blog/css-wrapped-2023), a gorgeous website devoted to the exciting features expanding the language in the current year. There's a treasure trove of topics if you ever need one, and a nice way to spend an afternoon on the edge of web standards. But this article is not about cascading stylesheets. After all, it is [a pseudo-3D Monday](/beauty-sleep). However, there is more than CSS in the page. There is a collection of eye-catching illustrations, and in this collection, the inspiring drawing of a duck. Actually, more than a single duck. You can count at least three of them before the section devoted to _Responsive Design_, with a bold look. So bold and popping that it led me to wonder: what would it take to recreate the specimen with Zdog? Well, it took me a while, and a few custom shapes, but I might have an answer with a cute little toggle. An `input` element of type `checkbox` which helps to animate the shapes to and fro — you might not believe the graphic goes beyond two dimensions with only a still frame.
 
 <Center maxInlineSize="30rem">
-    <Quack />
+	<Quack />
+</Center>
+
+I wasn't able to repeat the fancy, highly saturated outline around the chick, but the result continues to grab your attention. And if you ever need a stroke around the shapes, you can always fall back to 2D and SVG. No need for an external library to steal focus.
+
+<Center element="figure" maxInlineSize="20rem">
+	<Duck />
 </Center>
