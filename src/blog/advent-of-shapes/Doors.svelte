@@ -5,7 +5,7 @@
 	import paths from './paths.js';
 
 	let widget = null;
-	let index = 3;
+	let index = Math.min(paths.length - 1, new Date().getDate() - 1);
 
 	onMount(() => {
 		const colors = [
