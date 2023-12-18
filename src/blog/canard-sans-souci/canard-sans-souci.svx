@@ -1,5 +1,5 @@
 ---
-title: Duck duck quack
+title: Canard sans souci
 description: Repurpose an inspiring 2D work with pseudo-3D shapes.
 date: 2023-12-18T09:17:14
 ---

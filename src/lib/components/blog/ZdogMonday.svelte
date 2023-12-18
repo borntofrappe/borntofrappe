@@ -47,8 +47,8 @@
 			slug: '/joystick-drift'
 		},
 		{
-			title: 'Duck duck quack',
-			slug: '/duck-duck-quack'
+			title: 'Canard sans souci',
+			slug: '/canard-sans-souci'
 		}
 	];
 </script>
