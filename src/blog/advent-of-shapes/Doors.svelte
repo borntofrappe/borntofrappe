@@ -28,6 +28,7 @@
 		];
 
 		const stroke = 2;
+		const offset = 5;
 		const fill = true;
 
 		const root = new Anchor();
@@ -43,14 +44,17 @@
 		const front = new Anchor({
 			addTo: root,
 			translate: {
-				z: stroke + 1
+				z: offset
 			}
 		});
 
 		const back = new Anchor({
 			addTo: root,
 			translate: {
-				z: (stroke + 1) * -1
+				z: offset * -1
+			},
+			rotate: {
+				y: TAU / 2
 			}
 		});
 
@@ -61,7 +65,7 @@
 			addTo: front,
 			color: background,
 			translate: {
-				z: stroke * -1
+				z: (offset - stroke / 2) * -1
 			}
 		});
 
@@ -69,7 +73,7 @@
 			addTo: back,
 			color: background,
 			translate: {
-				z: stroke
+				z: (offset - stroke / 2) * -1
 			}
 		});
 
