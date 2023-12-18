@@ -104,7 +104,7 @@
 	</svg>
 	<div class="[ flow ]">
 		<p>
-			<em>"Zdog monday"</em>, a series of gorgeous pseudo-3D graphics built with
+			<em>"Zdog Monday"</em>, a series of gorgeous pseudo-3D graphics built with
 			<a href="https://zzz.dog/">Zdog</a> in one day of the week.
 		</p>
 		<p>

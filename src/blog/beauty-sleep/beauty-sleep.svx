@@ -15,7 +15,7 @@ Small, round, friendly. The keywords of the Zdog library listed [in the accompan
 
 Past articles relied on the module to put a visual to words, to introduce core elements such as [depth](/z-overlap), or again to illustrate higher concepts such as [rotations over three axes](/rotate-3d).
 
-This article does nothing of the sort. It is an excuse to begin a series, a journey to simply marvel at gorgeous pseudo-3D art. I decided to dub the initiative _"Zdog monday"_, to avoid sounding overly pretentious and hopefully remove any doubts about scheduling. And I've decided to ease in the series with a small, rounded piece. And a friendly reminder to appreciate the power of a good sleeping session.
+This article does nothing of the sort. It is an excuse to begin a series, a journey to simply marvel at gorgeous pseudo-3D art. I decided to dub the initiative [_"Zdog Monday"_](/beauty-sleep), to avoid sounding overly pretentious and hopefully remove any doubts about scheduling. And I've decided to ease in the series with a small, rounded piece. And a friendly reminder to appreciate the power of a good sleeping session.
 
 <Center element="figure" maxInlineSize="400px">
 	<ZouZou />
