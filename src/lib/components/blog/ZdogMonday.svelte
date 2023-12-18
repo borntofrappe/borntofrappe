@@ -45,6 +45,10 @@
 		{
 			title: 'Joystick drift',
 			slug: '/joystick-drift'
+		},
+		{
+			title: 'Duck duck quack',
+			slug: '/duck-duck-quack'
 		}
 	];
 </script>
