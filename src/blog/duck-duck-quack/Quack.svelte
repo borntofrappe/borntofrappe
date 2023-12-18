@@ -583,10 +583,6 @@
 		block-size: 1em;
 	}
 
-	input:focus {
-		outline-offset: 3px;
-	}
-
 	input ~ svg #sound {
 		scale: 0;
 		transition: scale 0.2s cubic-bezier(0.83, 0, 0.17, 1);
@@ -594,6 +590,8 @@
 
 	input:checked ~ svg #sound {
 		scale: 1;
+		transition-duration: 0.3s;
+		transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 
 	span {
