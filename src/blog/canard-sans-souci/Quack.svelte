@@ -13,7 +13,7 @@
 
 		const colors = {
 			backdrop: 'hsl(210 14% 90%)',
-			body: 'hsl(0 0% 99%)',
+			duck: 'hsl(0 0% 100%)',
 			eyes: 'hsl(306 83% 26%)',
 			wing: 'hsl(313 100% 50%)',
 			beak: 'hsl(12 96% 55%)',
