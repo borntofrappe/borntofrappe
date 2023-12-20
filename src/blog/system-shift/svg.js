@@ -26,5 +26,26 @@ export default {
             <path transform="translate(0.6 0)" d="M 0.05 0 0.3 0 0.3 0.1 0.2 0.1 0.2 0.2 0.15 0.3 0.1 0.3 0.1 0.1 0 0.1" />
         </g>
     </g>
+</svg>`,
+	points: `<svg style="display: block;" viewBox="-50 -50 100 100">
+    <title>A striped star</title>
+    <defs>
+        <linearGradient id="points-gradient-backdrop" x1="0" x2="0" y1="0" y2="2.5" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+            <stop stop-color="hsl(120 6% 15%)" offset="0.5" />
+            <stop stop-color="hsl(0 0% 13%)" offset="0.5" />
+        </linearGradient>
+        <linearGradient id="points-gradient-star" x1="0" x2="0" y1="0" y2="2.5" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+            <stop stop-color="hsl(31 100% 35%)" offset="0.5" />
+            <stop stop-color="hsl(31 100% 20%)" offset="0.5" />
+        </linearGradient>
+    </defs>
+    <circle fill="hsl(48 15% 65%)" r="50" />
+    <g transform="rotate(45)">
+        <path fill="hsl(47 8% 53%)" d="M 0 -46 0 -43 A 43 43 0 0 1 0 43 L 0 46 A 46 46 0 0 1 0 -46" />
+        <path fill="hsl(51 17% 71%)" d="M 0 -46 0 -43 A 43 43 0 0 0 0 43 L 0 46 A 46 46 0 0 0 0 -46" />
+    </g>
+    <circle fill="url(#points-gradient-backdrop) hsl(120 6% 15%)" r="43" />
+    <path fill="url(#points-gradient-star) hsl(31 100% 35%)" id="points-gradient-half" d="M 0 14-17 22 -14 4-27 -9 -9 -12-0 -28" />
+    <use transform="scale(-1 1)" href="#points-gradient-half" />
 </svg>`
 };
