@@ -65,25 +65,25 @@
 
 <style>
 	main:focus,
-	main :global(h2:focus),
-	main :global(h3:focus) {
+	main > :global(h2:focus),
+	main > :global(h3:focus) {
 		outline: none;
 	}
 
-	main :global(h2),
-	main :global(h3) {
+	main > :global(h2),
+	main > :global(h3) {
 		--space: var(--step-space-400);
 	}
 
-	main :global(h2 + *),
-	main :global(h3 + *) {
+	main > :global(h2 + *),
+	main > :global(h3 + *) {
 		--space: var(--step-space-200);
 	}
 
-	main :global(blockquote),
-	main :global(blockquote + *),
-	main :global(figure),
-	main :global(figure + *) {
+	main > :global(blockquote),
+	main > :global(blockquote + *),
+	main > :global(figure),
+	main > :global(figure + *) {
 		--space: var(--step-space-400);
 	}
 
@@ -92,26 +92,22 @@
 		--space: var(--step-space-400);
 	}
 
-	main :global(pre),
-	main :global(pre + *) {
+	main > :global(pre),
+	main > :global(pre + *) {
 		--space: var(--step-space-400);
 	}
 
-	main :global(table),
-	main :global(table + *) {
+	main > :global(table),
+	main > :global(table + *) {
 		--space: var(--step-space-300);
 	}
 
-	main :global(ul > * + *),
-	main :global(ol > * + *) {
+	main > :global(ul > * + *),
+	main > :global(ol > * + *) {
 		margin-block-start: 0.75em;
 	}
 
-	main :global(code) {
-		font-weight: 700;
-	}
-
-	main :global(p > a) {
+	main > :global(p > a) {
 		text-decoration: none;
 		background: linear-gradient(transparent 80%, var(--accent) 80%),
 			linear-gradient(transparent 80%, var(--shadow) 90%);
@@ -120,11 +116,11 @@
 		transition: background-size 0.25s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
-	main :global(p > a:hover) {
+	main > :global(p > a:hover) {
 		background-size: 100% 100%, 100% 100%;
 	}
 
-	main :global(hr) {
+	main > :global(hr) {
 		font-size: 2rem;
 		--block-size: 1em;
 		color: var(--accent, currentColor);
@@ -132,8 +128,8 @@
 		border-bottom: 0.1em solid currentColor;
 	}
 
-	main :global(hr::before),
-	main :global(hr::after) {
+	main > :global(hr::before),
+	main > :global(hr::after) {
 		display: block;
 		content: '';
 		aspect-ratio: 1;
@@ -142,8 +138,8 @@
 		background: currentColor;
 	}
 
-	main :global(hr::before),
-	main :global(hr::after) {
+	main > :global(hr::before),
+	main > :global(hr::after) {
 		-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -10 13 13">\
 	<g fill="none" stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">\
 		<path transform="rotate(10)" d="M 0 -5 q -2 -1.5 0 -3 2 1.5 0 3" />\
@@ -166,42 +162,42 @@
 		mask-size: 100% 100%;
 	}
 
-	main :global(hr::before) {
+	main > :global(hr::before) {
 		float: left;
 	}
 
-	main :global(hr::after) {
+	main > :global(hr::after) {
 		transform: scale(-1, 1);
 		float: right;
 	}
 
-	main :global(hr:nth-of-type(odd)) {
+	main > :global(hr:nth-of-type(odd)) {
 		border: none;
 		border-top: 0.1em solid currentColor;
 	}
 
-	main :global(hr:nth-of-type(odd)::before) {
+	main > :global(hr:nth-of-type(odd)::before) {
 		transform: scale(1, -1);
 	}
 
-	main :global(hr:nth-of-type(odd)::after) {
+	main > :global(hr:nth-of-type(odd)::after) {
 		transform: scale(-1, -1);
 	}
 
-	main :global(figure figcaption) {
+	main > :global(figure figcaption) {
 		font-weight: 700;
 		text-align: center;
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
-		main :global(figure figcaption) {
+		main > :global(figure figcaption) {
 			display: flex;
 			align-items: flex-end;
 			--size: 2em;
 		}
 
-		main :global(figure figcaption::before),
-		main :global(figure figcaption::after) {
+		main > :global(figure figcaption::before),
+		main > :global(figure figcaption::after) {
 			box-sizing: border-box;
 			content: '';
 			inline-size: var(--size, 2em);
@@ -229,17 +225,17 @@
 			mask-size: 100%;
 		}
 
-		main :global(figure figcaption::before) {
+		main > :global(figure figcaption::before) {
 			margin-inline-end: auto;
 		}
 
-		main :global(figure figcaption::after) {
+		main > :global(figure figcaption::after) {
 			transform: scale(-1, 1);
 			margin-inline-start: auto;
 		}
 	}
 
-	main :global(table) {
+	main > :global(table) {
 		--padding: 1rem;
 		--border-radius: 0.5rem;
 		table-layout: fixed;
@@ -247,42 +243,42 @@
 		border-spacing: 0;
 	}
 
-	main :global(table th) {
+	main > :global(table th) {
 		text-align: start;
 	}
 
-	main :global(table th),
-	main :global(table td) {
+	main > :global(table th),
+	main > :global(table td) {
 		color: var(--code-color);
 		background: var(--code-background);
 		padding: var(--padding);
 	}
 
-	main :global(table tbody > tr:nth-of-type(even) td) {
+	main > :global(table tbody > tr:nth-of-type(even) td) {
 		background: var(--code-background--1);
 	}
 
-	main :global(table tbody > tr:nth-of-type(odd) td) {
+	main > :global(table tbody > tr:nth-of-type(odd) td) {
 		background: var(--code-background--2);
 	}
 
-	main :global(table thead > tr > th:first-of-type) {
+	main > :global(table thead > tr > th:first-of-type) {
 		border-start-start-radius: var(--border-radius);
 	}
 
-	main :global(table thead > tr > th:last-of-type) {
+	main > :global(table thead > tr > th:last-of-type) {
 		border-start-end-radius: var(--border-radius);
 	}
 
-	main :global(table tbody > tr:last-of-type > td:first-of-type) {
+	main > :global(table tbody > tr:last-of-type > td:first-of-type) {
 		border-end-start-radius: var(--border-radius);
 	}
 
-	main :global(tbody > tr:last-of-type > td:last-of-type) {
+	main > :global(tbody > tr:last-of-type > td:last-of-type) {
 		border-end-end-radius: var(--border-radius);
 	}
 
-	main :global(blockquote) {
+	main > :global(blockquote) {
 		max-inline-size: 50ch;
 		margin-inline: auto;
 		font-style: italic;
@@ -292,11 +288,11 @@
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
-		main :global(blockquote) {
+		main > :global(blockquote) {
 			padding-block: 1.5em;
 		}
 
-		main :global(blockquote::before) {
+		main > :global(blockquote::before) {
 			content: '';
 			inline-size: 3em;
 			block-size: 3em;
@@ -335,7 +331,7 @@
 		}
 
 		@supports (float: inline-start) {
-			main :global(blockquote::before) {
+			main > :global(blockquote::before) {
 				float: inline-start;
 			}
 		}
