@@ -92,6 +92,15 @@
 		margin: 0;
 		inline-size: 100%;
 		max-inline-size: 20rem;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	figure:last-of-type {
+		flex-direction: column-reverse;
 	}
 
 	figure > svg {
@@ -102,17 +111,5 @@
 	figcaption {
 		font-weight: 700;
 		font-size: 1.25rem;
-	}
-
-	figure {
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		align-items: center;
-	}
-
-	figure:last-of-type {
-		flex-direction: column-reverse;
 	}
 </style>
