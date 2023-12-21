@@ -155,4 +155,4 @@ The selector is fairly supported, but there is one more scenario. If the browser
 
 ---
 
-I have [a repository on GitHub](https://github.com/borntofrappe/utils/tree/main/svg-objects) showcasing SVG included as objects. You'll find an example page proving the markup, and yes, [a vector](https://github.com/borntofrappe/utils/blob/main/svg-objects/stack.svg) highlighting what happens without a fragment as well.
+I have [a repository on GitHub](https://github.com/borntofrappe/utils/tree/main/svg-objects) showcasing SVG included as objects. You'll find an example page proving the markup, and yes, [a vector](https://github.com/borntofrappe/utils/blob/main/svg-objects/svg/filter-icons.svg) highlighting what happens without a fragment as well.
