@@ -81,47 +81,47 @@ export default {
 </svg>`,
 	img: `<img
 	style="display: block"
-	src="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/icons.svg"
+	src="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/data-icons.svg"
 	alt="Data visualizations galore: bar chart, line chart, and a handful more."
 	width="600"
 	height="100"
 />`,
 	'view-element': `<img
 	style="display: block"
-	src="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/icons.svg#pie-chart"
+	src="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/data-icons.svg#pie-chart"
 	alt="A debatable pie chart."
 	width="200"
 	height="200"
 />`,
 	'img-aspect-ratio': `<img
 	style="display: block"
-	src="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/icons.svg#pie-chart"
+	src="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/data-icons.svg#pie-chart"
 	alt="A debatable pie chart, surrounded by two alternative visualizations."
 	width="600"
 	height="200"
 />`,
 	'view-fragment': `<img
 	style="display: block"
-	src="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/icons.svg#svgView(viewBox(200 0 100 100))"
+	src="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/data-icons.svg#svgView(viewBox(200 0 100 100))"
 	alt="An teaching candlestick chart."
 	width="200"
 	height="200"
 />`,
 	picture: `<picture style="display: block">
 	<source
-		srcset="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/picture.svg#window-corner"
+		srcset="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/picture.svg#window-corner"
 		media="(max-width: 500px)"
 		width="300"
 		height="300"
 	/>
 	<source
-		srcset="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/picture.svg#window"
+		srcset="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/picture.svg#window"
 		media="(max-width: 800px)"
 		width="500"
 		height="500"
 	/>
 	<img
-		src="https://raw.githubusercontent.com/borntofrappe/utils/c4a6306ed0dba7b5cb9e90d9de368490bee55c14/svg-images/picture.svg"
+		src="https://raw.githubusercontent.com/borntofrappe/utils/main/svg-images/svg/picture.svg"
 		alt="A vision of a quiet afternoon. How you interpret it depends on your preference, on your point of view."
 		width="800"
 		height="600"
