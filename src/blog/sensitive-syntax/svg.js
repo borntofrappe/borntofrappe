@@ -35,8 +35,8 @@ export default {
     <use fill="hsl(184 65% 59%)" stroke="hsl(184 65% 59%)" stroke-width="20" href="#callout-bubble" />
     <use fill="hsl(185 62% 45%)" stroke="hsl(185 62% 45%)" stroke-width="10" href="#callout-bubble" />
     <use fill="hsl(185 81% 29%)" stroke="hsl(185 81% 29%)" href="#callout-bubble" />
-    <text transform="rotate(-4)" fill="hsl(42 87% 55%)" stroke="hsl(0 0% 97%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="3" font-family="sans-serif" font-weight="700" font-size="28" text-anchor="middle" y="5.5">
-        xmlns
+    <text transform="rotate(-4)" fill="hsl(42 87% 55%)" stroke="hsl(0 0% 97%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="3" font-family="sans-serif" font-weight="700" font-size="24" text-anchor="middle" y="5.5">
+        xmlns!
     </text>
 </svg>`
 };
