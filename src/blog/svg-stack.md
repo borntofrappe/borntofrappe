@@ -4,7 +4,7 @@ description: Include multiple icons with SVG, an object and some style.
 date: 2023-12-15T11:34:58
 ---
 
-When you save a vector graphic with the `.svg` extension there are several elements which help you add the file on a page. You might have explored [`img`](vector-url-images) already, and also, [`object`](/vector-objects). An object is particularly intriguing as it allows to include the vector close to an independent component. A document you can customize with `<style>` tags or enhance with a pair of `<script>` brackets, without affecting the rest of the markup. This leads to [interesting applications](/views-within), and another way to include multiple assets from a single source. A perfect use-case for an icon system.
+When you save a vector graphic with the `.svg` extension there are several elements which help you add the file on a page. You might have explored [`img`](a-view-outside) already, and also, [`object`](/vector-objects). An object is particularly intriguing as it allows to include the vector close to an independent component. A document you can customize with `<style>` tags or enhance with a pair of `<script>` brackets, without affecting the rest of the markup. This leads to [interesting applications](/views-within), and another way to include multiple assets from a single source. A perfect use-case for an icon system.
 
 ## In theory
 

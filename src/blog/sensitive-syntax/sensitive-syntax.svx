@@ -22,7 +22,7 @@ Here you have a squared canvas, 100 units wide and tall. In this canvas, then, y
 
 Add the snippet in any REPL, any `.html` document and you see the round shape, with a default black color. You may want to consider `currentColor` for the `fill` attribute to match the tone of the page, but that is beside the point.
 
-The moment you save the graphic with an `.svg` extension, the moment you try to open this file directly in a web browser or include it with one of the possible HTML elements, [`img`](/vector-url-images), [`object` and the like](/vector-objects), you don't find the same result.
+The moment you save the graphic with an `.svg` extension, the moment you try to open this file directly in a web browser or include it with one of the possible HTML elements, [`img`](/a-view-outside), [`object` and the like](/vector-objects), you don't find the same result.
 
 ```html
 <img alt="HTML and XML" src="./svg-icons.svg" width="600" height="200" />
