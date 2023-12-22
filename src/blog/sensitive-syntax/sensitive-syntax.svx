@@ -1,0 +1,5 @@
+---
+title: Sensitive syntax
+description: Fix a small bug you may notice in some sensitive vectors.
+date: 2023-12-22
+---
