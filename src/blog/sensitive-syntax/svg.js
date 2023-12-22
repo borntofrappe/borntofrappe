@@ -23,5 +23,20 @@ export default {
             <path d="M -3.5 -3.5 A 7 7 0 0 1 3.5 3.5" />
         </g>
     </svg>
+</svg>`,
+	'xmlns-callout': `<svg style="display: block;" viewBox="-67.5 -55 135 110">
+    <defs>
+        <pattern id="callout-pattern" viewBox="-5 -5 10 10" width="5" height="5" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+            <circle fill="hsl(185 94% 87%)" r="1" />
+        </pattern>
+        <polygon id="callout-bubble" stroke-linecap="round" stroke-linejoin="round" points="-7 25 6 21 19 27 25 20 40 23 35 12 44 7 35 -1 45 -9 34 -15 39 -28 17 -21 9 -28 -2 -21 -17 -28 -26 -21 -42 -25 -37 -14 -48 -8 -37 1 -45 15 -31 16 -30 25 -16 19" />
+    </defs>
+    <ellipse fill="url(#callout-pattern)" rx="67.5" ry="55" />
+    <use fill="hsl(184 65% 59%)" stroke="hsl(184 65% 59%)" stroke-width="20" href="#callout-bubble" />
+    <use fill="hsl(185 62% 45%)" stroke="hsl(185 62% 45%)" stroke-width="10" href="#callout-bubble" />
+    <use fill="hsl(185 81% 29%)" stroke="hsl(185 81% 29%)" href="#callout-bubble" />
+    <text transform="rotate(-4)" fill="hsl(42 87% 55%)" stroke="hsl(0 0% 97%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="3" font-family="sans-serif" font-weight="700" font-size="28" text-anchor="middle" y="5.5">
+        xmlns
+    </text>
 </svg>`
 };
