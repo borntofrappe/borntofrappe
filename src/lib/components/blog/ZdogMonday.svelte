@@ -165,6 +165,10 @@
 		font-size: 2em;
 	}
 
+	ol li:nth-of-type(n + 10)::before {
+		content: counter(list);
+	}
+
 	li {
 		position: relative;
 	}
