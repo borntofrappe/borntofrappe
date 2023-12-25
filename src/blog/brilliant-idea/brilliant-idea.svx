@@ -9,8 +9,13 @@ date: 2023-12-25
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
 	import Tree from './Tree.svelte';
+	import Message from './Message.svelte';
 </script>
 
 <Center element="figure" maxInlineSize="20rem">
 	<Tree />
+</Center>
+
+<Center element="figure" maxInlineSize="40rem">
+	<Message />
 </Center>
