@@ -8,18 +8,24 @@ date: 2023-12-25
 	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
-	import Tree from './Tree.svelte';
-	import Message from './Message.svelte';
+	import Intro from './Intro.svelte';
 	import Present from './Present.svelte';
+	import Message from './Message.svelte';
 </script>
 
-<Center element="figure" maxInlineSize="20rem">
-	<Tree />
-</Center>
+<Intro />
+
+It may so happen you'll visit this page on a different day. It's up to you to then reach the proper, long awaited deadline and slowly unwrap the present. In all its dimensions.
 
 <Center maxInlineSize="400px">
 	<Present />
 </Center>
+
+It's a very small thought, mind you, but I hope you'll appreciate the gesture. Who knows, you might enjoy it even more going through the process yourself.
+
+I followed the guidance of someone I trust that you don't have to be extravagant to create something beautiful. There's a time for rapidly intermittent lights, strobing in red and orange, green and blue, but there's also a place for nuance, for delightful displays and small, delicate changes.
+
+The hope is that either will work when at the center there's a sincere feeling, a heartfelt token sending you off with the best wishes. And the merriest of greetings.
 
 <Center maxInlineSize="40rem">
 	<Message />
