@@ -151,8 +151,6 @@
 	}
 
 	ol li {
-		margin-block-start: 0;
-
 		display: flex;
 		align-items: baseline;
 		gap: 0.5rem;
