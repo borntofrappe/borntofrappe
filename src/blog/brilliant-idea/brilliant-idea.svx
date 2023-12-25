@@ -4,4 +4,13 @@ description: Celebrate a milestone with a little input and a lot of flair.
 date: 2023-12-25
 ---
 
-Zdog #13
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
+	import Tree from './Tree.svelte';
+</script>
+
+<Center element="figure" maxInlineSize="20rem">
+	<Tree />
+</Center>
