@@ -15,7 +15,7 @@ date: 2023-12-25
 
 <Intro />
 
-It may so happen you'll visit this page on a different day. It's up to you to then reach the proper, long awaited deadline and slowly unwrap the present. In all its dimensions.
+It may so happen you'll visit this page on a different day. It's up to you to then reach the proper, long awaited date and unwrap the present in all its dimensions.
 
 <Center maxInlineSize="400px">
 	<Present />
@@ -23,9 +23,9 @@ It may so happen you'll visit this page on a different day. It's up to you to th
 
 It's a very small thought, mind you, but I hope you'll appreciate the gesture. Who knows, you might enjoy it even more going through the process yourself.
 
-I followed the guidance of someone I trust that you don't have to be extravagant to create something beautiful. There's a time for rapidly intermittent lights, strobing in red and orange, green and blue, but there's also a place for nuance, for delightful displays and small, delicate changes.
+I followed the guidance of someone I trust that you don't have to be extravagant to create something beautiful. There's a time for rapidly intermittent lights, strobing in red and orange, green and blue, but there's also a place for nuance, for delightful displays and delicate changes.
 
-The hope is that either will work when at the center there's a sincere feeling, a heartfelt token sending you off with the best wishes. And the merriest of greetings.
+The hope is that these will work when at the center there's a sincere feeling, a heartfelt token sending you off with the best of wishes. And the merriest of greetings.
 
 <Center maxInlineSize="40rem">
 	<Message />
