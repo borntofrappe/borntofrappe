@@ -10,12 +10,17 @@ date: 2023-12-25
 	
 	import Tree from './Tree.svelte';
 	import Message from './Message.svelte';
+	import Present from './Present.svelte';
 </script>
 
 <Center element="figure" maxInlineSize="20rem">
 	<Tree />
 </Center>
 
-<Center element="figure" maxInlineSize="40rem">
+<Center maxInlineSize="400px">
+	<Present />
+</Center>
+
+<Center maxInlineSize="40rem">
 	<Message />
 </Center>
