@@ -30,3 +30,5 @@ The hope is that either will work when at the center there's a sincere feeling, 
 <Center maxInlineSize="40rem">
 	<Message />
 </Center>
+
+<ZdogMonday />

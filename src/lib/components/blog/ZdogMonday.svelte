@@ -49,6 +49,10 @@
 		{
 			title: 'Canard sans souci',
 			slug: '/canard-sans-souci'
+		},
+		{
+			title: 'Brilliant idea',
+			slug: '/brilliant-idea'
 		}
 	];
 </script>
