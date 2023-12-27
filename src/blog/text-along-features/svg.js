@@ -17,42 +17,44 @@ export default {
         </text>
     </g>
     <g fill="currentColor" font-size="10" font-family="monospace">
-        <text x="20" y="20">Hello</text>
+        <text x="20" y="20">
+            Hike
+        </text>
         <text>
             <textPath href="#text-textPath-path">
-                Howdy
+                Climb
             </textPath>
         </text>
     </g>
 </svg>`,
-	'textPath-shape': `<svg style="display: block;" viewBox="4.999999046325684 -2.7713139057159424 57.77131652832031 47.77131271362305">
-    <!-- <rect id="textPath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" x="10" y="10" width="40" height="30" /> -->
-    <path id="textPath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" d="M 10 10 l 40 0 0 30 -40 0 z" />
-    <text fill="currentColor" font-size="8.5" font-family="monospace">
+	'textPath-shape': `<svg style="display: block;" viewBox="7.5 -0.7789987325668335 43.27900314331055 43.27899932861328">
+    <!-- <rect id="textPath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" x="10" y="10" width="30" height="30" /> -->
+    <path id="textPath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" d="M 10 10 H 40 V 40 H 10 Z" />
+    <text fill="currentColor" font-size="9" font-family="monospace">
         <textPath href="#textPath-shape-path">
-            Walk the shape
+            Shape walker
         </textPath>
     </text>
 </svg>`,
 	'textPath-side': `<svg style="display: block;" viewBox="0 0 2 1">
     <svg width="1" height="1" viewBox="0 0 57.96246337890625 57.94722366333008">
         <path id="textPath-side-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.8 1.6" d="M 45 25 A 20 20 0 0 1 5 25 20 20 0 0 1 45 25" />
-        <text fill="currentColor" font-size="8.5" font-family="monospace">
+        <text fill="currentColor" font-size="9" font-family="monospace">
             <textPath href="#textPath-side-path">
-                Outside
+                Outside track
             </textPath>
         </text>
     </svg>
     <svg x="1" width="1" height="1" viewBox="0 0 57.96246337890625 57.94722366333008">
         <path id="textPath-side-right-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.8 1.6" d="M 45 25 A 20 20 0 0 0 5 25 20 20 0 0 0 45 25" />
-            <!-- <text fill="currentColor" font-size="8.5" font-family="monospace">
+            <!-- <text fill="currentColor" font-size="9" font-family="monospace">
                 <textPath side="right" href="#textPath-side-path">
-                    Inside
+                    Inside view
                 </textPath>
             </text> -->
-        <text fill="currentColor" font-size="8.5" font-family="monospace">
+        <text fill="currentColor" font-size="9" font-family="monospace">
             <textPath href="#textPath-side-right-path">
-                Inside
+                Inside view
             </textPath>
         </text>
     </svg>
@@ -78,9 +80,9 @@ export default {
         <use x="36" href="#textPath-showcase-pole" />
         <path d="M 0 27.5 60 27.5" />
     </g>
-    <text style="color: hsl(31 100% 35%);" fill="currentColor" stroke="currentColor" stroke-width="0.1" stroke-linecap="round" stroke-linejoin="round" dy="-1" font-size="3" font-family="monospace" font-weight="700">
+    <text style="color: hsl(31 100% 35%);" fill="currentColor" dy="-1" font-size="3" font-family="monospace" font-weight="700">
         <textPath startOffset="50%" text-anchor="middle" letter-spacing="1" href="#textPath-showcase-path">
-            Trail blazer 
+            Trailblazer 
         </textPath>
     </text>
 </svg>`
