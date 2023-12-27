@@ -14,6 +14,10 @@ date: 2023-12-27
 	{@html svg['text-textpath']}
 </Center>
 
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['textpath-shape']}
+</Center>
+
 <Center element="figure" maxInlineSize="40rem">
 	{@html svg['showcase']}
 </Center>

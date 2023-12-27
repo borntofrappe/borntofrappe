@@ -25,6 +25,15 @@ export default {
         </text>
     </g>
 </svg>`,
+	'textpath-shape': `<svg style="display: block;" viewBox="4.999999046325684 -2.7713139057159424 57.77131652832031 47.77131271362305">
+    <!-- <rect id="textpath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" x="10" y="10" width="40" height="30" /> -->
+    <path id="textpath-shape-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5" d="M 10 10 l 40 0 0 30 -40 0 z" />
+    <text fill="currentColor" font-size="8.5" font-family="monospace">
+        <textPath href="#textpath-shape-path">
+            Walk the shape
+        </textPath>
+    </text>
+</svg>`,
 	showcase: `<svg style="display: block;" viewBox="0 0 60 30">
     <defs>
         <path id="showcase-path" d="M 30 27.5 L -21 27.5 -21 15 A 15 10 0 0 0 9 15 L 15 15 A 15 10 0 0 0 45 15 L 51 15 A 15 10 0 0 0 81 15 L 81 27.5 30 27.5" />
