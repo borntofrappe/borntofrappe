@@ -1,0 +1,5 @@
+---
+title: Text along features
+description: text & textPath
+date: 2023-12-27
+---
