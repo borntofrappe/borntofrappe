@@ -1,4 +1,30 @@
 export default {
+	'text-textpath': `<svg style="display: block;" viewBox="8.401213645935059 5.7715654373168945 76.59878540039062 55.02155685424805">
+    <g fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.5 1.5">
+        <path d="M 8.401213645935059 20 20 20 M 20 5.7715654373168945 20 20" />
+        <path id="text-textpath-path" d="M 40 50 80 40" />
+    </g>
+    <g fill="currentColor">
+        <circle cx="20" cy="20" r="0.7" />
+        <circle cx="40" cy="50" r="0.7" />
+    </g>
+    <g fill="currentColor" font-size="3.5" font-family="monospace">
+        <text text-anchor="middle" x="20" y="25">(x, y)</text>
+        <text dy="5">
+            <textPath href="#text-textpath-path">
+                &lt;path /&gt;
+            </textPath>
+        </text>
+    </g>
+    <g fill="currentColor" font-size="10" font-family="monospace">
+        <text x="20" y="20">Hello</text>
+        <text>
+            <textPath href="#text-textpath-path">
+                Howdy
+            </textPath>
+        </text>
+    </g>
+</svg>`,
 	showcase: `<svg style="display: block;" viewBox="0 0 60 30">
     <defs>
         <path id="showcase-path" d="M 30 27.5 L -21 27.5 -21 15 A 15 10 0 0 0 9 15 L 15 15 A 15 10 0 0 0 45 15 L 51 15 A 15 10 0 0 0 81 15 L 81 27.5 30 27.5" />

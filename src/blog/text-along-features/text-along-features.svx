@@ -10,6 +10,10 @@ date: 2023-12-27
 	import svg from './svg.js';
 </script>
 
+<Center element="figure" maxInlineSize="26rem">
+	{@html svg['text-textpath']}
+</Center>
+
 <Center element="figure" maxInlineSize="40rem">
 	{@html svg['showcase']}
 </Center>
