@@ -3,3 +3,13 @@ title: Text along features
 description: text & textPath
 date: 2023-12-27
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="40rem">
+	{@html svg['showcase']}
+</Center>
