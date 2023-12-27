@@ -34,6 +34,29 @@ export default {
         </textPath>
     </text>
 </svg>`,
+	'textpath-side': `<svg style="display: block;" viewBox="0 0 2 1">
+    <svg width="1" height="1" viewBox="0 0 57.96246337890625 57.94722366333008">
+        <path id="textpath-side-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.8 1.6" d="M 45 25 A 20 20 0 0 1 5 25 20 20 0 0 1 45 25" />
+        <text fill="currentColor" font-size="8.5" font-family="monospace">
+            <textPath href="#textpath-side-path">
+                Outside
+            </textPath>
+        </text>
+    </svg>
+    <svg x="1" width="1" height="1" viewBox="0 0 57.96246337890625 57.94722366333008">
+        <path id="textpath-side-right-path" fill="none" stroke="currentColor" stroke-width="0.3" stroke-dasharray="0.8 1.6" d="M 45 25 A 20 20 0 0 0 5 25 20 20 0 0 0 45 25" />
+            <!-- <text fill="currentColor" font-size="8.5" font-family="monospace">
+                <textPath side="right" href="#textpath-side-path">
+                    Inside
+                </textPath>
+            </text> -->
+        <text fill="currentColor" font-size="8.5" font-family="monospace">
+            <textPath href="#textpath-side-right-path">
+                Inside
+            </textPath>
+        </text>
+    </svg>
+</svg>`,
 	showcase: `<svg style="display: block;" viewBox="0 0 60 30">
     <defs>
         <path id="showcase-path" d="M 30 27.5 L -21 27.5 -21 15 A 15 10 0 0 0 9 15 L 15 15 A 15 10 0 0 0 45 15 L 51 15 A 15 10 0 0 0 81 15 L 81 27.5 30 27.5" />
