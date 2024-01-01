@@ -1,11 +1,12 @@
 ---
 title: Lighten up
-description: Highly saturated colors in the sky.
+description: Illuminate the star-studded sky with highly saturated colors.
 date: 2024-01-01T11:12:27
 ---
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import svg from './svg.js';
 	import Fireworks from './Fireworks.svelte';
@@ -25,8 +26,10 @@ Small story aside: I have a distant relative known for her quirky nature. And at
 
 There is some sense in the practice, but evidently, there are also a few drawbacks. And no matter the fact that some cities choose to anticipate the festivities, it means that the joy of the night is gone and forgotten. Pyrotechnic displays, striking at midnight with questionable précisions, are one of the victims. So this small graphic goes out to her, and any person not able to enjoy the scene.
 
-Be it you're sleeping tight, be it cold, or cloudy outside, there's a host of reasons fireworks might fizzle into nothing. If JavaScript works on your page, and have scrolled this far, there's a remedy waiting to happen. Sparkling in time and dimensions.
+Be it you're sleeping tight, be it cold, or cloudy outside, there's a host of reasons fireworks might fizzle into nothing. If JavaScript works on your page, and have scrolled this far, here's a remedy waiting to happen. Sparkling in time and dimensions.
 
 <Center maxInlineSize="400px">
 	<Fireworks />
 </Center>
+
+<ZdogMonday />

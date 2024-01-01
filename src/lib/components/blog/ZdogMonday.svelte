@@ -53,6 +53,10 @@
 		{
 			title: 'Brilliant idea',
 			slug: '/brilliant-idea'
+		},
+		{
+			title: 'Lighten up',
+			slug: '/lighten-up'
 		}
 	];
 </script>
