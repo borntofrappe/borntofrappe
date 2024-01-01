@@ -218,6 +218,9 @@
 		const ry = (y - radius) * 0.5;
 		const rz = radius * 2;
 
+		let dx = 1;
+		let dy = 1;
+
 		background.translate.z = radius * -1;
 		particles.scale = 0;
 		trails.scale = 0;
@@ -235,6 +238,9 @@
 					child.color = color;
 				}
 
+				dx = Math.random() > 0.5 ? 1 : -1;
+				dy = Math.random() > 0.5 ? 1 : -1;
+
 				firework.translate.x = Math.floor(Math.random() * (rx * 2)) - rx;
 				firework.translate.y = Math.floor(Math.random() * (ry * 2)) - ry;
 
@@ -248,8 +254,8 @@
 
 			const ease = easeOutQuint(ticker / cycle);
 
-			firework.rotate.x = (firework.rotate.x + 0.001) % TAU;
-			firework.rotate.y = (firework.rotate.y + 0.001) % TAU;
+			firework.rotate.x = (firework.rotate.x + 0.001 * dx) % TAU;
+			firework.rotate.y = (firework.rotate.y + 0.001 * dy) % TAU;
 			particles.scale = ease;
 			trails.scale = ease;
 
