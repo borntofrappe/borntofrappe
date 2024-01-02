@@ -121,7 +121,7 @@
 	on:pointerup={handlePointerend}
 	on:pointerleave={handlePointerend}
 	on:touchmove|preventDefault
-	aria-label="Press the space bar to select the start or end coordinate. Use the arrow keys to update the points in the x, y coordinate."
+	aria-label="Press the space bar to toggle between the stop colors. Use the arrow keys to update the position of the matching control points."
 	role="menu"
 	tabindex="0"
 	on:keydown={handleKeydown}
