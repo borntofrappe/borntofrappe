@@ -3,3 +3,13 @@ title: Smooth elements
 description: Try out SVG gradients to paint with different colors.
 date: 2024-01-02T14:14:14
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import LinearGradient from './LinearGradient.svelte';
+</script>
+
+<Center maxInlineSize="40ch">
+	<LinearGradient />
+</Center>
