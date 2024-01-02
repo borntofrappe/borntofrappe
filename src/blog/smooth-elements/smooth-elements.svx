@@ -1,7 +1,7 @@
 ---
 title: Smooth elements
-description: Try out SVG gradients to paint with different colors.
-date: 2024-01-02T14:14:14
+description: Try out SVG gradients to paint with different geometries and colors.
+date: 2024-01-02T14:36:12
 ---
 
 <script>
@@ -11,10 +11,136 @@ date: 2024-01-02T14:14:14
 	import RadialGradient from './RadialGradient.svelte';
 </script>
 
+When you paint a shape in SVG you do so with one or two attributes: `fill` and `stroke`.
+
+```html
+<rect fill="aquamarine" stroke="cyan" width="1" height="1" />
+```
+
+The first helps to color the inner portions of the shape, while the second contributes with an outline. The outline might behave slightly unexpectedly, being drawn [halfway on top](/stroke-midway-through) of the fill, but both attributes are clear in how they function.
+
+The most challenging task is picking a value for the two. Any color which would work in CSS will work here as well. From named colors to hexadecimal combinations, to more modern syntaxes like `hsl` and even `oklch`, you have almost too many options. And if you ever forget the fact, you can remember that you can set both the fill and the stroke as properties, directly in a stylesheet.
+
+```css
+rect {
+	fill: oklch(91.5% 0.13 168.99);
+	stroke: oklch(90.5% 0.15 194.77);
+}
+```
+
+In terms of specificity, CSS rules triumph over the SVG presentational attributes, but sticking to the topic, you have plenty of choices when it comes to color. And remaining in SVG, you have more options to paint in the form of gradients, smoothly changing from one color to another. There are two elements in this sense, and both have roots in geometrical nodes.
+
+## Lining through
+
+In the context of vector graphics one of the most intuitive drawing elements is `line`. With it, you are able to create a line with two sets of coordinates, specified in a communion of four attributes: `x1` and `y1` for where the line should start, and `x2`, `y2` for where the same should end.
+
+```html
+<line x1="0" y1="0" x2="1" y2="0" />
+```
+
+To see the line you need to set a value for the `stroke` — the default being `none` —, but past this tweak, the element works to draw the line, connecting the points with a straight segment.
+
+Good news: you've learned how to draw a line, and also, not so secretly, how the first type of gradient works at its core.
+
+With the `linearGradient` element you define a linear change between two or more colors.
+
+```html
+<linearGradient>
+	<!-- ... -->
+</linearGradient>
+```
+
+Parts of the helper structure are repeated for the second type of gradient, but one thing at a time.
+
+When it comes to the definition, you preface the gradient with `linearGradient` tags. In the body between the two you add the colors with one element each: `stop`. In this pointed instruction you have the option of adding a color in the `stop-color` attribute. In the `offset` attribute, then, you instruct where the color should take its rightful place.
+
+Consider the following snippet.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="aquamarine" offset="0" />
+<stop stop-color="cyan" offset="1" />
+```
+
+Here you have two named colors, the subtle aquamarine and the more pronounced cyan. The gradient moves from the first to the second, from the beginning, 0, to the end, 1.
+
+---
+
+The offset works with decimal units, but percentages would have assumed the same role.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="aquamarine" offset="0%" />
+<stop stop-color="cyan" offset="100%" />
+```
+
+---
+
+You've defined a gradient, but similarly to how the line needed a color to see the stroke, you need to point to the gradient to see it through. To achieve this, you forge a connection between the gradient element and the attribute actually using it. On one end, add a unique identifier with the `id` attribute.
+
+```html
+<linearGradient id="vast-sea">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+On the other, point to the gradient in the `fill` or `stroke` attribute with the `url` function, describing the special string.
+
+```html
+<rect fill="url(#vast-sea)" width="1" height="1" />
+```
+
+What is the result of this long sequence? Justifiably, a linear gradient, interpolating between the two colors from left to right.
+
+One way to change this direction? With four familiar attributes, working in tandem in the opening `linearGradient` bracket: `x1` and `y1`, `x2` and `y2`.
+
+It's as if you were drawing a line, starting from one point, one color, to the other, end and hue.
+
 <Center maxInlineSize="40ch">
 	<LinearGradient />
 </Center>
 
+If you have the opportunity of running JavaScript you should be able to experiment with the gradient yourself, and discover the richness of the new color choices.
+
+You may also notice a couple of other features:
+
+1. the coordinates can be positive or negative numbers, and are relative to the overall size of the square
+
+2. when the gradient begins far from the origin, or ends before the opposite corner, the colors continue in their solid variant
+
+You can change both of these options, and garnish the gradient with several more attributes, but these are better left as the topic of another discussion. In a less technical manner, I'd rather introduce the second type of gradient, and the geometry working behind the scenes.
+
+## Circling around
+
+Another relatively straightforward drawing element comes in the shape and the name of `circle`. To draw the round figure you need only one attribute, but as a whole, three attributes help to elaborate the structure: `r` for the radius, `cx` and `cy` for the position of the center.
+
+```html
+<circle r="0.5" cx="0.5" cy="0.5" />
+```
+
+Here the circle is drawn right on top of the previous, unit rectangle, and stretches in radius to reach the sides of the polygon. And cheekily, describes the exact and default behavior of the second gradient element.
+
+Repeat the same `stop` elements in the body of a `radialGradient` element, equipped with its own ID.
+
+```html
+<radialGradient id="small-puddle">
+	<stop stop-color="aquamarine" offset="0" />
+	<stop stop-color="cyan" offset="1" />
+</radialGradient>
+```
+
+And refer to the gradient in the base rectangle.
+
+```html
+<rect fill="url(#small-puddle)" width="1" height="1" />
+```
+
+In this instance, you might have guessed it already, the gradient radiates from the center of the shape, to assume the second stop color on the edges of the hypothetical circle. By default, all attributes are set to 0.5, but understandably, you can change all these values with the same syntax: `r`, `cx`, `cy`.
+
 <Center maxInlineSize="40ch">
 	<RadialGradient />
 </Center>
+
+In truth, and unlike the linear alternative, there are a handful more attributes to tweak the geometry, the influence of the circle. But their inclusion is far less intuitive, and once again, worth its own focused piece.
+
+Even with the base snippet, standing on the shoulder of what is already available with so many color values, there's enough to style almost every shape.
