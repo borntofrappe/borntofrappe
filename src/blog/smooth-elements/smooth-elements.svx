@@ -8,8 +8,13 @@ date: 2024-01-02T14:14:14
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import LinearGradient from './LinearGradient.svelte';
+	import RadialGradient from './RadialGradient.svelte';
 </script>
 
 <Center maxInlineSize="40ch">
 	<LinearGradient />
+</Center>
+
+<Center maxInlineSize="40ch">
+	<RadialGradient />
 </Center>
