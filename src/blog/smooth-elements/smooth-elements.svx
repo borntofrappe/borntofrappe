@@ -1,0 +1,5 @@
+---
+title: Smooth elements
+description: Try out SVG gradients to paint with different colors.
+date: 2024-01-02T14:14:14
+---
