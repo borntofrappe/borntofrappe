@@ -154,9 +154,9 @@
 </svg>
 
 <!-- prettier-ignore -->
-<pre><code>&lt;radialGradient cx="<span>{formatCoordinate(cx)}</span>" cy="<span>{formatCoordinate(cy)}</span>" r="<span>{formatCoordinate(r)}</span>" id="pond-puddle"&gt;
-    &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-    &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+<pre><code>&lt;radialGradient cx="<span>{formatCoordinate(cx)}</span>" cy="<span>{formatCoordinate(cy)}</span>" r="<span>{formatCoordinate(r)}</span>" id="small-puddle"&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="aquamarine" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="cyan" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
 &lt;/radialGradient&gt;</code></pre>
 
 <style>
@@ -170,6 +170,11 @@
 
 	code > span {
 		font-weight: 700;
+	}
+
+	code > svg {
+		vertical-align: -0.1em;
+		vertical-align: -0.1lh;
 	}
 
 	pre {

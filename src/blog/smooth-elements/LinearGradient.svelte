@@ -164,9 +164,9 @@
 </svg>
 
 <!-- prettier-ignore -->
-<pre><code>&lt;linearGradient x1="<span>{formatCoordinate(x1)}</span>" y1="<span>{formatCoordinate(y1)}</span>" x2="<span>{formatCoordinate(x2)}</span>" y2="<span>{formatCoordinate(x2)}</span>" id="sea-wave"&gt;
-    &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-    &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+<pre><code>&lt;linearGradient x1="<span>{formatCoordinate(x1)}</span>" y1="<span>{formatCoordinate(y1)}</span>" x2="<span>{formatCoordinate(x2)}</span>" y2="<span>{formatCoordinate(x2)}</span>" id="vast-sea"&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="aquamarine" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="cyan" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
 &lt;/linearGradient&gt;</code></pre>
 
 <style>
@@ -180,6 +180,11 @@
 
 	code > span {
 		font-weight: 700;
+	}
+
+	code > svg {
+		vertical-align: -0.1em;
+		vertical-align: -0.1lh;
 	}
 
 	pre {
