@@ -1,8 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
 
+	const color = 'hsl(210 11% 15%)';
+	const background = 'hsl(210 14% 89%)';
 	const colors = ['aquamarine', 'cyan'];
-	$: id = `linear-gradient-${colors.join('-')}`;
+	const id = `linear-gradient-${colors.join('-')}`;
 
 	let x1 = 0;
 	let y1 = 0;
@@ -134,7 +136,7 @@
 		</linearGradient>
 	</defs>
 	<rect
-		fill="hsl(210 14% 89%)"
+		fill={background}
 		x={viewBox.x}
 		y={viewBox.y}
 		width={viewBox.width}
@@ -142,10 +144,10 @@
 	/>
 	<rect fill="url(#{id})" width="1" height="1" />
 
-	<g fill="none" stroke="hsl(210 11% 15%)" stroke-width="0.007">
+	<g fill="none" stroke={color} stroke-width="0.007">
 		<line {x1} {y1} {x2} {y2} />
 	</g>
-	<g stroke="hsl(210 11% 15%)">
+	<g stroke={color}>
 		<circle
 			fill={colors[0]}
 			stroke-width={state === 'start' ? 0.02 : 0.007}
@@ -165,8 +167,8 @@
 
 <!-- prettier-ignore -->
 <pre><code>&lt;linearGradient x1="<span>{formatCoordinate(x1)}</span>" y1="<span>{formatCoordinate(y1)}</span>" x2="<span>{formatCoordinate(x2)}</span>" y2="<span>{formatCoordinate(x2)}</span>" id="vast-sea"&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="aquamarine" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="cyan" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
 &lt;/linearGradient&gt;</code></pre>
 
 <style>

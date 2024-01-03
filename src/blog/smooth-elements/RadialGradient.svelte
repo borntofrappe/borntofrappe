@@ -1,8 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
 
+	const color = 'hsl(210 11% 15%)';
+	const background = 'hsl(210 14% 89%)';
 	const colors = ['aquamarine', 'cyan'];
-	$: id = `radial-gradient-${colors.join('-')}`;
+	const id = `radial-gradient-${colors.join('-')}`;
 
 	let cx = 0.5;
 	let cy = 0.5;
@@ -135,7 +137,7 @@
 		</radialGradient>
 	</defs>
 	<rect
-		fill="hsl(210 14% 89%)"
+		fill={background}
 		x={viewBox.x}
 		y={viewBox.y}
 		width={viewBox.width}
@@ -143,11 +145,11 @@
 	/>
 	<rect fill="url(#{id})" width="1" height="1" />
 
-	<g fill="none" stroke="hsl(210 11% 15%)" stroke-width="0.007">
+	<g fill="none" stroke={color} stroke-width="0.007">
 		<circle {cx} {cy} {r} />
 	</g>
 
-	<g stroke="hsl(210 11% 15%)">
+	<g stroke={color}>
 		<circle fill={colors[0]} stroke-width={state === 'start' ? 0.02 : 0.007} {cx} {cy} r="0.05" />
 		<circle fill={colors[1]} stroke-width={state === 'end' ? 0.02 : 0.007} cx={rx} {cy} r="0.05" />
 	</g>
@@ -155,8 +157,8 @@
 
 <!-- prettier-ignore -->
 <pre><code>&lt;radialGradient cx="<span>{formatCoordinate(cx)}</span>" cy="<span>{formatCoordinate(cy)}</span>" r="<span>{formatCoordinate(r)}</span>" id="small-puddle"&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="aquamarine" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill="cyan" r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
 &lt;/radialGradient&gt;</code></pre>
 
 <style>
