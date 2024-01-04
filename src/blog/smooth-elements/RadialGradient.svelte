@@ -156,9 +156,9 @@
 </svg>
 
 <!-- prettier-ignore -->
-<pre><code>&lt;radialGradient cx="<span>{formatCoordinate(cx)}</span>" cy="<span>{formatCoordinate(cy)}</span>" r="<span>{formatCoordinate(r)}</span>" id="small-puddle"&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+<pre><code>&lt;radialGradient r="<span>{formatCoordinate(r)}</span>" cx="<span>{formatCoordinate(cx)}</span>" cy="<span>{formatCoordinate(cy)}</span>" id="small-puddle"&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="{colors[0]}" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="{colors[1]}" offset="1" /&gt;
 &lt;/radialGradient&gt;</code></pre>
 
 <style>

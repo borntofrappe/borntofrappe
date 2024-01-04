@@ -167,8 +167,8 @@
 
 <!-- prettier-ignore -->
 <pre><code>&lt;linearGradient x1="<span>{formatCoordinate(x1)}</span>" y1="<span>{formatCoordinate(y1)}</span>" x2="<span>{formatCoordinate(x2)}</span>" y2="<span>{formatCoordinate(x2)}</span>" id="vast-sea"&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[0]}</span>" offset="0" /&gt;
-  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="<span>{colors[1]}</span>" offset="1" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[0]} r="0.5" /></svg> &lt;stop stop-color="{colors[0]}" offset="0" /&gt;
+  <svg viewBox="-0.5 -0.5 1 1" width="1em" height="1em"><circle fill={colors[1]} r="0.5" /></svg> &lt;stop stop-color="{colors[1]}" offset="1" /&gt;
 &lt;/linearGradient&gt;</code></pre>
 
 <style>
