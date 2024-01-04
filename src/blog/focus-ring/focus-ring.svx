@@ -3,3 +3,13 @@ title: Focus ring
 description: Explore the geometric attributes specific to SVG radial gradients.
 date: 2024-01-04
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import CircleLight from './CircleLight.svelte';
+</script>
+
+<Center maxInlineSize="40ch">
+	<CircleLight />
+</Center>
