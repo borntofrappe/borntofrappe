@@ -1,7 +1,7 @@
 ---
 title: Focus ring
-description: Explore the geometric attributes specific to SVG radial gradients.
-date: 2024-01-04
+description: Dip into the geometric attributes specific to SVG radial gradients.
+date: 2024-01-04T09:35:46
 ---
 
 <script>
@@ -11,10 +11,75 @@ date: 2024-01-04
 	import SpotLight from './SpotLight.svelte';
 </script>
 
+SVG gradients base their logic in geometrical elements, [`line` and `circle`](/smooth-elements). But while that statement holds true, at least for one type of gradient, it doesn't paint the entire picture. Indeed, radial gradients, introduced with the `radialGradient` tag, can be explained with the same attributes helping you to draw a circle: `r`, `cx`, and `cy`.
+
+```html
+<circle r="0.5" cx="0.5" cy="0.5" />
+```
+
+To be thorough, there is already a difference between the attributes in terms of default values. In a `circle` element, all three begin at 0; this means you need to set at least the radius to see the shape.
+
+In a `radialGradient` they start out at 0.5, or 50%, so that when you apply the structure to a different shape, the colors radiate from the center.
+
+```html
+<rect fill="url(#gradient-id)" width="1" height="1" />
+```
+
+But as prefaced, that's not the end of it. On top of the three attributes, and something you don't find in a `circle`, you can change the gradient with two more geometrical values: `fx` and `fy`.
+
+To understand the influence of the two, let me back up a moment and discuss an example in more detail. Consider a radial gradient, moving from gold, beginning with an offset of 0, to navy, ending at the offset of 1.
+
+```html
+<radialGradient id="lighthouse">
+	<stop stop-color="gold" offset="0" />
+	<stop stop-color="navy" offset="1" />
+</radialGradient>
+```
+
+The attributes matching the circle — `r`, `cx`, and `cy` — describe the size of a similar figure. In particular, the three detail the position of the color with the offset of 1, on the contours of the round figure.
+
+If that is true, where do you find the color with the offset of 0? At the _focal point_, described by the two attributes `fx` and `fy`. The convenient fact is that, when you forget the two, the attributes match the coordinates used to position the circle, `cx` and `cy`.
+
+```html
+<radialGradient r="0.5" cx="0.5" cy="0.5" id="lighthouse">
+	<!-- ...stops -->
+</radialGradient>
+```
+
+In this instance, the first color is indeed at the center of the circle, and slowly loses to the second as you approach the radius, in any direction. But with the focal point you can change this behavior, and have the color begin off center.
+
+```html
+<radialGradient fx="0.5" fy="0" r="0.5" cx="0.5" cy="0.5" id="lighthouse">
+	<!-- ...stops -->
+</radialGradient>
+```
+
+This time, the change between colors is far less uniform. The distance between the 0, the focal point, and 1, the points on the radius, is not the same all around, and helps to give a different look to the final shape.
+
 <Center maxInlineSize="40ch">
 	<CircleLight />
 </Center>
 
+There's almost a sense of depth, of three dimensions as you move the point around the center. But there's also a slightly compromising feature when picking the values for the now five attributes. And it happens when the focal point falls outside of the sizing circle.
+
 <Center maxInlineSize="40ch">
 	<SpotLight />
 </Center>
+
+What happens may look strange, but is far from a mistake. More of an unfortunate accident of how the gradient truly functions. Remember the purpose of the attributes:
+
+- `fx` and `fy` detail the focal point, and directly, the position of the stop color with the offset of 0
+
+- `r`, `cx`, and `cy` elaborate a circle so that, on the circumference of the shape, you spot the color with the offset of 1
+
+In this light, the gradient moves from the focal point toward the circle, and it reaches the figure from the outside. On the circle, the gradient already assumes the value of the final color stop.
+
+You may have a couple of wonders:
+
+1. why is the gradient painting only parts of the rectangle?
+
+2. why is the second color so dominant after crossing the circle?
+
+The first question is quite immediate in answer. A radial gradient works by painting the shape from the focal point in all directions to reach the circle. When the point sits outside, there are parts of the figure which escape this rule, and are not painted at all.
+
+The second question is slightly connected, but requires a bit more research. When the gradient reaches the end value, the offset of 1, it continues with the color for the remainder of the shape. This is the default behavior, and you may tweak it with a different attribute. But to avoid spreading the topic too thin, I'd rather give the concept its own article, its own spotlight.
