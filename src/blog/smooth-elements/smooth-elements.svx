@@ -79,7 +79,7 @@ The offset works with decimal units, but percentages would have assumed the same
 You've defined a gradient, but similarly to how the line needed a color to see the stroke, you need to point to the gradient to see it through. To achieve this, you forge a connection between the gradient element and the attribute actually using it. On one end, add a unique identifier with the `id` attribute.
 
 ```html
-<linearGradient id="vast-sea">
+<linearGradient id="water-wave">
 	<!-- ...stops -->
 </linearGradient>
 ```
@@ -87,7 +87,7 @@ You've defined a gradient, but similarly to how the line needed a color to see t
 On the other, point to the gradient in the `fill` or `stroke` attribute with the `url` function, describing the special string.
 
 ```html
-<rect fill="url(#vast-sea)" width="1" height="1" />
+<rect fill="url(#water-wave)" width="1" height="1" />
 ```
 
 What is the result of this long sequence? Justifiably, a linear gradient, interpolating between the two colors from left to right.
@@ -123,7 +123,7 @@ Here the circle is drawn right on top of the previous, unit rectangle, and stret
 Repeat the same `stop` elements in the body of a `radialGradient` element, equipped with its own ID.
 
 ```html
-<radialGradient id="small-puddle">
+<radialGradient id="water-dip">
 	<stop stop-color="aquamarine" offset="0" />
 	<stop stop-color="cyan" offset="1" />
 </radialGradient>
@@ -132,7 +132,7 @@ Repeat the same `stop` elements in the body of a `radialGradient` element, equip
 And refer to the gradient in the base rectangle.
 
 ```html
-<rect fill="url(#small-puddle)" width="1" height="1" />
+<rect fill="url(#water-dip)" width="1" height="1" />
 ```
 
 In this instance, you might have guessed it already, the gradient radiates from the center of the shape, to assume the second stop color on the edges of the hypothetical circle. By default, all attributes are set to 0.5, but understandably, you can change all these values with the same syntax: `r`, `cx`, `cy`.
