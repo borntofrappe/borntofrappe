@@ -8,8 +8,13 @@ date: 2024-01-04
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import CircleLight from './CircleLight.svelte';
+	import SpotLight from './SpotLight.svelte';
 </script>
 
 <Center maxInlineSize="40ch">
 	<CircleLight />
+</Center>
+
+<Center maxInlineSize="40ch">
+	<SpotLight />
 </Center>
