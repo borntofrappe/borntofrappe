@@ -1,0 +1,5 @@
+---
+title: Focus ring
+description: Explore the geometric attributes specific to SVG radial gradients.
+date: 2024-01-04
+---
