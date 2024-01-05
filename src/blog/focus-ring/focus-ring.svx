@@ -22,7 +22,7 @@ To be thorough, there is already a difference between the attributes in terms of
 In a `radialGradient` they start out at 0.5, or 50%, so that when you apply the structure to a different shape, the colors radiate from the center.
 
 ```html
-<rect fill="url(#gradient-id)" width="1" height="1" />
+<rect fill="url(#lighthouse)" width="1" height="1" />
 ```
 
 But as prefaced, that's not the end of it. On top of the three attributes, and something you don't find in a `circle`, you can change the gradient with two more geometrical values: `fx` and `fy`.
