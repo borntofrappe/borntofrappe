@@ -9,6 +9,7 @@ date: 2024-01-05
 
 	import svg from './svg.js';
 	import StopColor from './StopColor.svelte';
+	import StopOpacity from './StopOpacity.svelte';
 </script>
 
 <Center maxInlineSize="40rem">
@@ -16,3 +17,5 @@ date: 2024-01-05
 </Center>
 
 <StopColor />
+
+<StopOpacity />
