@@ -3,3 +3,13 @@ title: Stop mix
 description: Sample different features from the stop element.
 date: 2024-01-05
 ---
+
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center maxInlineSize="40rem">
+	{@html svg['offset']}
+</Center>
