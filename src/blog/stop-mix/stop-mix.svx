@@ -8,8 +8,11 @@ date: 2024-01-05
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import svg from './svg.js';
+	import StopColor from './StopColor.svelte';
 </script>
 
 <Center maxInlineSize="40rem">
 	{@html svg['offset']}
 </Center>
+
+<StopColor />
