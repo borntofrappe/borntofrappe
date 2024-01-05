@@ -17,7 +17,7 @@
 	>
 		<defs>
 			<linearGradient id="stop-color-gradient">
-				<stop style="stop-color: var(--color-start, yellow)" stop-color="yellow" offset="0.5" />
+				<stop style="stop-color: var(--color-start, yellow)" stop-color="yellow" offset="0.66" />
 				<stop style="stop-color: var(--color-end, orange)" stop-color="orange" offset="0" />
 			</linearGradient>
 		</defs>
@@ -26,7 +26,7 @@
 				fill="url(#stop-color-gradient)"
 				d="M 0 18 L 13 18 Q 12 10 13 -2 Q 15 -1 17 -1 Q 19 -4 19 -9 Q 14 -13 6 -14 Q 3 -11 0 -10 Q -3 -11 -6 -14 Q -14 -13 -19 -9 Q -19 -4 -17 -1 Q -15 -1 -13 -2 Q -12 10 -13 18 Z"
 			/>
-			<path fill="none" d="M 0 -10 0 18" />
+			<path fill="none" d="M 6 -14 6 18" />
 		</g>
 	</svg>
 

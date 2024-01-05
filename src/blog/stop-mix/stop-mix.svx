@@ -62,7 +62,7 @@ Set the first offset to where you'd like to switch. Set the second to 0. Behind 
 
 ```diff
 -<stop stop-color="yellow" offset="0.5" />
-+<stop stop-color="yellow" offset="0.7" />
++<stop stop-color="yellow" offset="0.66" />
 ```
 
 . But you'll have to wait one brief moment to appreciate the result.
