@@ -73,11 +73,11 @@ Alongside the offset the `stop-color` attribute defines a color value. But speak
 
 ```css
 stop:nth-of-type(1) {
-	stop-color: honeydew;
+	stop-color: ivory;
 }
 
 stop:nth-of-type(2) {
-	stop-color: palegreen;
+	stop-color: violet;
 }
 ```
 

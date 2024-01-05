@@ -1,11 +1,11 @@
 <script>
 	const stops = [
 		['yellow', 'orange'],
-		['honeydew', 'palegreen'],
-		['lightblue', 'azure'],
-		['linen', 'lightcoral']
+		['ivory', 'violet'],
+		['powderblue', 'steelblue'],
+		['chocolate', 'cornsilk']
 	];
-	let [stop] = stops;
+	let [, stop] = stops;
 </script>
 
 <div>
@@ -59,6 +59,7 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		border: none;
+		padding: 0;
 	}
 
 	legend {
