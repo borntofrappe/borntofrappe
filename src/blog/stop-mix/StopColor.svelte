@@ -51,7 +51,7 @@
 	}
 
 	div > svg {
-		max-inline-size: 24rem;
+		max-inline-size: 20rem;
 	}
 
 	fieldset {
