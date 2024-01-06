@@ -19,7 +19,7 @@
 	<figure class="[ center stack ]" style="--leading: 0;">
 		<figcaption class="[ flow ]" style="--space: 0.5em;">
 			<p>Crafted with considerably more than seven pieces, but always with care.</p>
-			<p><cite>Gabriele Corti</cite>, 2023</p>
+			<p><cite>Gabriele Corti</cite>, 2024</p>
 		</figcaption>
 
 		<div class="[ center ]" style="--measure: 8rem; --leading: 0;">
