@@ -60,7 +60,7 @@
 </script>
 
 <article>
-	<h2>Galette de rois</h2>
+	<h2 lang="fr">Galette de rois</h2>
 
 	<p>Build the cake in layers.</p>
 
@@ -181,7 +181,12 @@
 	}
 
 	button:focus {
+		outline: 2px solid hsl(31 100% 35%);
 		outline-offset: 4px;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
 	}
 
 	button > svg {
