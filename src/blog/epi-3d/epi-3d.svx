@@ -8,4 +8,10 @@ date: 2024-01-06T13:52:30
 	import KingCake from './KingCake.svelte';
 </script>
 
+One of the side effects of enjoying and writing about SVG is that there's always an opportunity to have something to show for the effort. And perhaps this is what draws me to libraries like [Zdog](https://zzz.dog/), which help to create a similar output with a different set of instructions. Similar, but certainly not the same, as you are able to explore what is possible beyond the constraints of the vector format, like its inherent 2D nature.
+
+Zdog itself doesn't lead to a 3D breakthrough, and instead works with pseudo-3D graphics. And I may try more elaborate libraries in the future, but for the time being, I will gladly continue to explore its layers. And delight in the depth of the not-so-3D dimensions.
+
 <KingCake />
+
+You don't have to know JavaScript to appreciate the demo, although you do need it to see the result. Similarly, you don't have to know French to appreciate the king's cake. That being said, just like you don't need mastery with the scripting language to create impressive graphics, you need to learn just a few words to understand the lyrics of a charming nursery rhyme, in its natural tongue. <em lang="fr">Savez-vous comment?</em>
