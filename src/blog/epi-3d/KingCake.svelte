@@ -155,7 +155,8 @@
 	}
 
 	div > span {
-		text-transform: uppercase;
+		text-transform: capitalize;
+		font-style: italic;
 	}
 
 	button {
