@@ -386,14 +386,8 @@
 			context.restore();
 		};
 
-		root.rotate.y = 0.5;
-		ground.translate.z = -100;
-		ground.translate.x = -50;
-		ground.translate.y += 20;
-		sun.rotate.x = -0.4;
-
 		const update = (t) => {
-			root.rotate.x = -0.1 - 0.05 * t;
+			root.rotate.x = -0.1 - 0.1 * t;
 			sun.translate.x = -200 + 400 * t;
 			sun.translate.y = -110 + 60 * (1 - Math.sin(t * Math.PI));
 			sun.rotate.y = -0.75 + 0.75 * t;
@@ -403,6 +397,11 @@
 			}
 		};
 
+		root.rotate.y = 0.5;
+		ground.translate.z = -100;
+		ground.translate.x = -50;
+		ground.translate.y += 20;
+		sun.rotate.x = -0.4;
 		update(1);
 
 		root.updateGraph();
