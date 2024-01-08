@@ -1,7 +1,16 @@
 ---
 title: Guiding light
-description: Bla.
+description: Remark on the influence of a bright source of energy.
 date: 2024-01-08T14:36:04
 ---
 
-zdog monday #15
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
+	import Lodestar from './Lodestar.svelte';
+</script>
+
+<Center maxInlineSize="700px">
+  <Lodestar />
+</Center>
