@@ -57,6 +57,10 @@
 		{
 			title: 'Lighten up',
 			slug: '/lighten-up'
+		},
+		{
+			title: 'Guiding light',
+			slug: '/guiding-light'
 		}
 	];
 </script>

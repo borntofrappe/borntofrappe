@@ -14,3 +14,5 @@ date: 2024-01-08T14:36:04
 <Center maxInlineSize="700px">
   <Lodestar />
 </Center>
+
+<ZdogMonday />
