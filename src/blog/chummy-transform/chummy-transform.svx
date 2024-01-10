@@ -3,3 +3,9 @@ title: Chummy transform
 description: A brief warning on transformations in SVG and CSS.
 date: 2024-01-10T09:25:23
 ---
+
+<script>
+	import Checkbox from './Checkbox.svelte';
+</script>
+
+<Checkbox />
