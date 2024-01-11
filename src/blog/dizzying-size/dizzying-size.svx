@@ -6,6 +6,9 @@ date: 2024-01-11T15:35:58
 
 <script>
 	import Checkbox from './Checkbox.svelte';
+	import TimeSize from './TimeSize.svelte';
 </script>
 
 <Checkbox />
+
+<TimeSize />
