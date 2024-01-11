@@ -3,3 +3,9 @@ title: Dizzying size
 description: Practice basic arithmetics with CSS transform properties.
 date: 2024-01-11T15:35:58
 ---
+
+<script>
+	import Checkbox from './Checkbox.svelte';
+</script>
+
+<Checkbox />
