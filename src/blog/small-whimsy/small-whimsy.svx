@@ -5,6 +5,8 @@ date: 2024-01-15T09:35:28
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import ToyCar from './ToyCar.svelte';
 </script>
 
@@ -13,3 +15,5 @@ With a bit of irony there's no much depth to the latest entry for _"Zdog Monday"
 <ToyCar />
 
 Currently, I can draw close to any little plaything with SVG. With enough patience, especially when it comes to the `d` attribute of `path` elements, I am able to recreate the shapes with the JavaScript library. Pseudo-3D graphics are certainly within grasp. Full-3D graphics are on the horizon, but as I explore the option, I cannot deny that the idea of making something out of nothing is exciting with code, and all the more precious with a bit of handiwork.
+
+<ZdogMonday />

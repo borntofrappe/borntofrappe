@@ -61,6 +61,10 @@
 		{
 			title: 'Guiding light',
 			slug: '/guiding-light'
+		},
+		{
+			title: 'Small whimsy',
+			slug: '/small-whimsy'
 		}
 	];
 </script>
