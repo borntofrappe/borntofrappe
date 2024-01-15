@@ -3,3 +3,9 @@ title: Small whimsy
 description: Fulfill a long-held desire for a little wind-up toy.
 date: 2024-01-15T09:35:28
 ---
+
+<script>
+	import ToyCar from './ToyCar.svelte';
+</script>
+
+<ToyCar />
