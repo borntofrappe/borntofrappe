@@ -59,8 +59,8 @@
 			slug: '/lighten-up'
 		},
 		{
-			title: 'Guiding light',
-			slug: '/guiding-light'
+			title: 'Guiding star',
+			slug: '/guiding-star'
 		},
 		{
 			title: 'Small whimsy',
