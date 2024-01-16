@@ -3,7 +3,7 @@ export default {
     <title>Linear increments</title>
     <g fill="none" stroke="currentColor">
         <path stroke-width="0.01" d="M 0 0 0 1 1 1" />
-        <path stroke-width="0.0025" opacity="0.3" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
+        <path stroke-width="0.001" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
     </g>
     <g fill="currentColor" font-size="0.05" font-family="monospace" style="text-transform: uppercase;">
         <text font-size="0.06" font-weight="700" x="0.5" y="-0.05" text-anchor="middle">Linear</text>
@@ -35,7 +35,7 @@ export default {
     <title>Easing increments</title>
     <g fill="none" stroke="currentColor">
         <path stroke-width="0.01" d="M 0 0 0 1 1 1" />
-        <path stroke-width="0.0025" opacity="0.3" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
+        <path stroke-width="0.001" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
     </g>
     <g fill="currentColor" font-size="0.05" font-family="monospace" style="text-transform: uppercase;">
         <text font-size="0.06" font-weight="700" x="0.5" y="-0.05" text-anchor="middle">Easing</text>
@@ -67,7 +67,7 @@ export default {
     <title>Looping increments</title>
     <g fill="none" stroke="currentColor">
         <path stroke-width="0.01" d="M 0 0 0 1 1 1" />
-        <path stroke-width="0.0025" opacity="0.3" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
+        <path stroke-width="0.001" d="M 0 0 1 0 M 0 0.25 1 0.25 M 0 0.5 1 0.5 M 0 0.75 1 0.75 M 0.25 0 0.25 1 M 0.5 0 0.5 1 M 0.75 0 0.75 1 M 1 0 1 1" />
     </g>
     <g fill="currentColor" font-size="0.05" font-family="monospace" style="text-transform: uppercase;">
         <text font-size="0.06" font-weight="700" x="0.5" y="-0.05" text-anchor="middle">Looping</text>
@@ -99,37 +99,35 @@ export default {
     <title>Sine function</title>
     <g fill="none" stroke="currentColor">
         <path stroke-width="0.01" d="M 0 0 0 2 M 0 1 4 1" />
-        <path stroke-width="0.005" opacity="0.3" d="M 0 0 4 0 M 0 0.5 4 0.5 M 0 1.5 4 1.5 M 0 2 4 2 M 0.5 0 0.5 2 M 1 0 1 2 M 1.5 0 1.5 2 M 2 0 2 2 M 2.5 0 2.5 2 M 3 0 3 2 M 3.5 0 3.5 2 M 4 0 4 2" />
+        <path stroke-width="0.002" d="M 0 0 4 0 M 0 0.5 4 0.5 M 0 1.5 4 1.5 M 0 2 4 2 M 0.5 0 0.5 2 M 1 0 1 2 M 1.5 0 1.5 2 M 2 0 2 2 M 2.5 0 2.5 2 M 3 0 3 2 M 3.5 0 3.5 2 M 4 0 4 2" />
     </g>
     <g fill="currentColor" font-size="0.2" font-family="monospace">
         <text font-weight="700" x="4" y="-0.1" text-anchor="middle" style="text-transform: uppercase;">TAU</text>
         <text x="4.125" y="1.05">x</text>
         <text x="0" y="-0.1" text-anchor="middle">y</text>
     </g>
-    <g transform="translate(0 1)">
-        <g transform="scale(1 -1)">
-            <circle cx="0" cy="0" r="0.04" />
-            <circle cx="0.2" cy="0.3090169943749474" r="0.04" />
-            <circle cx="0.4" cy="0.5877852522924731" r="0.04" />
-            <circle cx="0.6000000000000001" cy="0.8090169943749475" r="0.04" />
-            <circle cx="0.8" cy="0.9510565162951535" r="0.04" />
-            <circle cx="1" cy="1" r="0.04" />
-            <circle cx="1.2000000000000002" cy="0.9510565162951535" r="0.04" />
-            <circle cx="1.4000000000000001" cy="0.8090169943749475" r="0.04" />
-            <circle cx="1.6" cy="0.5877852522924732" r="0.04" />
-            <circle cx="1.8" cy="0.3090169943749475" r="0.04" />
-            <circle cx="2" cy="1.2246467991473532e-16" r="0.04" />
-            <circle cx="2.2" cy="-0.30901699437494773" r="0.04" />
-            <circle cx="2.4000000000000004" cy="-0.5877852522924734" r="0.04" />
-            <circle cx="2.6" cy="-0.8090169943749473" r="0.04" />
-            <circle cx="2.8000000000000003" cy="-0.9510565162951535" r="0.04" />
-            <circle cx="3" cy="-1" r="0.04" />
-            <circle cx="3.2" cy="-0.9510565162951536" r="0.04" />
-            <circle cx="3.4000000000000004" cy="-0.809016994374947" r="0.04" />
-            <circle cx="3.6" cy="-0.5877852522924734" r="0.04" />
-            <circle cx="3.8000000000000003" cy="-0.3090169943749477" r="0.04" />
-            <circle cx="4" cy="-2.4492935982947064e-16" r="0.04" />
-        </g>
+    <g transform="translate(0 1) scale(1 -1)" fill="currentColor">
+        <circle cx="0" cy="0" r="0.04" />
+        <circle cx="0.2" cy="0.3090169943749474" r="0.04" />
+        <circle cx="0.4" cy="0.5877852522924731" r="0.04" />
+        <circle cx="0.6000000000000001" cy="0.8090169943749475" r="0.04" />
+        <circle cx="0.8" cy="0.9510565162951535" r="0.04" />
+        <circle cx="1" cy="1" r="0.04" />
+        <circle cx="1.2000000000000002" cy="0.9510565162951535" r="0.04" />
+        <circle cx="1.4000000000000001" cy="0.8090169943749475" r="0.04" />
+        <circle cx="1.6" cy="0.5877852522924732" r="0.04" />
+        <circle cx="1.8" cy="0.3090169943749475" r="0.04" />
+        <circle cx="2" cy="1.2246467991473532e-16" r="0.04" />
+        <circle cx="2.2" cy="-0.30901699437494773" r="0.04" />
+        <circle cx="2.4000000000000004" cy="-0.5877852522924734" r="0.04" />
+        <circle cx="2.6" cy="-0.8090169943749473" r="0.04" />
+        <circle cx="2.8000000000000003" cy="-0.9510565162951535" r="0.04" />
+        <circle cx="3" cy="-1" r="0.04" />
+        <circle cx="3.2" cy="-0.9510565162951536" r="0.04" />
+        <circle cx="3.4000000000000004" cy="-0.809016994374947" r="0.04" />
+        <circle cx="3.6" cy="-0.5877852522924734" r="0.04" />
+        <circle cx="3.8000000000000003" cy="-0.3090169943749477" r="0.04" />
+        <circle cx="4" cy="-2.4492935982947064e-16" r="0.04" />
     </g>
 </svg>`
 };
