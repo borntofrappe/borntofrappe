@@ -85,8 +85,8 @@
 				/>
 			</g>
 		</symbol>
-		<rect fill="hsl(205 97% 85%)" x="-7.5" y="-7.5" width="85" height="75" rx="4" />
-		<g fill="hsl(205 90% 80%)">
+		<rect fill="hsl(205 87% 29%)" x="-7.5" y="-7.5" width="85" height="75" rx="4" />
+		<g fill="hsl(205 90% 27%)">
 			<circle transform="translate(0.21 0.11) scale(0.72)" r="1" />
 			<circle transform="translate(-0.05 7.11) scale(0.83)" r="1" />
 			<circle transform="translate(2.05 17.38) scale(0.86)" r="1" />
@@ -186,8 +186,8 @@
 		font-weight: 700;
 		display: flex;
 		align-items: center;
-		color: hsl(234 62% 26%);
-		background: hsl(205 97% 85%);
+		color: hsl(210 36% 96%);
+		background: hsl(205 87% 29%);
 		padding: 0.5rem 0.75rem;
 		border-radius: 0.5rem;
 		border-end-start-radius: 0;
