@@ -3,3 +3,9 @@ title: Current update
 description: Refresh how to smoothly animate shapes with JavaScript.
 date: 2024-01-16T10:35:41
 ---
+
+<script>
+	import Graphs from './Graphs.svelte';
+</script>
+
+<Graphs />
