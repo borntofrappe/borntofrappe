@@ -1,0 +1,5 @@
+---
+title: A most feeble Svelte 5 app
+description: Set up the flimsiest environment to work with Svelte 5.
+date: 2024-01-17T14:35:09
+---
