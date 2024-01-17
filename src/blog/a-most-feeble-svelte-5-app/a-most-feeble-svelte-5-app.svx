@@ -24,7 +24,7 @@ Let's review the options at your disposal. The most clear workflow is offered on
 pnpm create svelte@latest app
 ```
 
-As you go through the prompts you can update the project to fit your coding preferences, and an option notifies you of the upcoming version.
+As you go through the prompts you can tailor the app to fit your coding preferences, and an option notifies you of the upcoming version.
 
 ```text
 Select additional options:
@@ -36,7 +36,7 @@ Taking stock of the dangers — you certainly saw the exclamation mark after the
 
 The process is most clear and the preferred way to develop Svelte applications. But if your intent is to just toy with the latest release, you can trim down the structure considerably.
 
-Let's start from scratch, with a new folder and a solitary `package.json`. in this file add one instruction, describing the `type` of `module`.
+Let's start from scratch, with a new folder and a solitary `package.json`. In this file add one instruction, describing the `type` of `module`.
 
 ```json
 {
@@ -48,21 +48,19 @@ The line is essential to work with JavaScript `import` statements, and JavaScrip
 
 At this juncture you need to install three packages:
 
-1. `vite` , to run the application with a local server
+1. `vite`, to run the application with a local server
 
 2. `@sveltejs/vite-plugin-svelte`, so that Vite is able to process the code written in Svelte syntax and `.svelte` components
 
 3. `svelte`, but not any version of Svelte. The upcoming, fifth version, accessible through the `@next` suffix
 
-Install the three and everything you need is promptly installed.
-
 ```bash
 pnpm i -D svelte@next vite @sveltejs/vite-plugin-svelte
 ```
 
-You might get a warning with _peer dependencies_, but again, this is the risk with unreleased tech; you need to support the weight of a few warnings.
+You might get a warning with _peer dependencies_, but again, this is the risk with unreleased tech — you need to support the weight of a few warnings.
 
-You are ready to scaffold your project, and at least, need a few files. Immediately, `index.html`. The document works as the entry point of the application, so that you have a place to add the structure, style and scripts of the components.
+You are ready to scaffold the project, and at least, need a handful of files. Immediately, `index.html`. The document works as the entry point of the application, so that you have a place to add the structure, style and scripts of the components.
 
 Editors might populate the document with shortcuts, but to be as minimal as possible, you can get away with a `div` container.
 
@@ -70,7 +68,7 @@ Editors might populate the document with shortcuts, but to be as minimal as poss
 <div id="root"></div>
 ```
 
-In a script of type `module` you then target the root of the application and initialize a Svelte app.
+Past the markup, add a script of type `module`. Here we are going to target the node and initialize the application.
 
 ```html
 <script type="module">
@@ -86,17 +84,16 @@ Say that you write your components in a source folder, `src`.
 |- index.html
 |- src
   |- App.svelte
-
 ```
 
-In the script you import the component pointing to the file, and inject the code in the page with the `createRoot`function.
+In the script import the component pointing to the file, and inject the code in the page with the `createRoot` function.
 
 ```js
 import { createRoot } from 'svelte';
 import App from './src/App.svelte';
 ```
 
-In the past, you might have instantiated the app with the new keyword, relying on class syntax.
+[In the past](/a-most-feeble-svelte-app), you might have instantiated the app with the `new` keyword, relying on class syntax.
 
 ```js
 // Svelte 4
@@ -130,15 +127,15 @@ export default defineConfig({
 });
 ```
 
-There's not much to explain, this is just what you need to complete the set up.
+There's not much to explain, this is just what you need to have Vite process the syntax, through the plugin.
 
-You can finally run an instruction right in your terminal.
+You can finally launch the application right from the terminal.
 
 ```bash
-pnpm run vite dev
+pnpm vite dev
 ```
 
-Or, if you want to save a few keystrokes, add a script to `package.json`.
+But, to save a few keystrokes, you can also add the instruction as one of the scripts, in `package.json`.
 
 ```json
 {
@@ -151,7 +148,7 @@ Or, if you want to save a few keystrokes, add a script to `package.json`.
 
 Either way, you can then open up your favorite browser, reach the appropriate port number and enjoy the app.
 
-All that is left is to write the app, and enjoy Svelte 5 features.
+_"All"_ that is left is to write the application itself, and enjoy Svelte 5 features.
 
 ```svelte
 let count = $state(0);
@@ -159,7 +156,7 @@ let count = $state(0);
 
 ---
 
-Too long, don't want to bother? You might be in luck. I don't want to go through the process myself, or at least not more than once. I've created a repository [on GitHub](https://github.com/borntofrappe/vite-svelte-5), so that you can clone the logic and be ready at once.
+Too long, don't want to bother? You might be in luck. I don't want to go through the process myself, or at least not more than once. I've created a repository [on GitHub](https://github.com/borntofrappe/vite-svelte-5), so that you can clone the project and be ready at once.
 
 Set up.
 
