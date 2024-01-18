@@ -27,7 +27,7 @@
 	</symbol>
 </svg>
 <div>
-	<button disabled={stem === max} on:click={() => grow(2)}>
+	<button disabled={count === max} on:click={() => grow(2)}>
 		<span>Water</span>
 		<svg width="1em" height="1em" viewBox="0 0 1 1">
 			<use href="#icon-water" />
@@ -36,7 +36,7 @@
 			<use href="#icon-water" />
 		</svg>
 	</button>
-	<button disabled={stem === max} on:click={() => grow()}>
+	<button disabled={count === max} on:click={() => grow()}>
 		<span>Sprinkle</span>
 		<svg width="1em" height="1em" viewBox="0 0 1 1">
 			<use href="#icon-water" />
@@ -130,6 +130,7 @@
 	}
 
 	button:disabled {
+		scale: 0.95;
 		opacity: 0.7;
 	}
 
