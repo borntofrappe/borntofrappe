@@ -1,0 +1,5 @@
+---
+title: Growing up with Svelte
+description: Entertain Svelte reactivity to grow a vector with a couple of runes.
+date: 2024-01-18T17:35:41
+---
