@@ -8,7 +8,7 @@ date: 2024-01-18T17:35:41
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import svg from './svg.js';
-	import Plant from './Plant.svelte';
+	import Growth from './Growth.svelte';
 </script>
 
 Svelte makes it exceedingly easy to update a page per the value of a variable, and the best way to see this is by example. If you are keen to follow along, there is [a playground](https://svelte-5-preview.vercel.app/) to test the logic in a live environment. If not, I hope you'll enjoy the journey all the same.
@@ -262,4 +262,4 @@ Want to delight in Svelte transitions? As you go through the documentation, or t
 
 The best way to learn is to just try. And the best side effect is that you won't only learn Svelte, but JavaScript as well. And if you so choose, SVG.
 
-<Plant />
+<Growth />
