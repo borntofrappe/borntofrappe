@@ -105,7 +105,8 @@
 		padding: 0.7rem;
 		position: relative;
 		transition-property: scale, outline-offset;
-		transition-duration: 0.15s;
+		transition-duration: 0.2s;
+		transition-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	button:disabled {
