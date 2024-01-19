@@ -8,6 +8,7 @@ date: 2024-01-18T17:35:41
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import svg from './svg.js';
+	import Plant from './Plant.svelte';
 	import Growth from './Growth.svelte';
 </script>
 
@@ -15,9 +16,7 @@ Svelte makes it exceedingly easy to update a page per the value of a variable, a
 
 The goal is to update a vector, a picture of a nice potted plant. Here is the starting graphic.
 
-<Center element="figure" maxInlineSize="16rem">
-	{@html svg['plant']}
-</Center>
+<Plant />
 
 You can copy the markup for the `svg` element, but you are more than welcome to create your own version, with `path`s, `rect` and any drawing element available in the language. Personally, I resolved to use the two types. One rectangle for the lid, and two paths, to complete the vase and grow a nice, roundish leaf.
 
