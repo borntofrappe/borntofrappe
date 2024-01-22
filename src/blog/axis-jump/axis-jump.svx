@@ -4,4 +4,12 @@ description: Jump in an orthographic projection.
 date: 2024-01-22T11:35:17
 ---
 
-zdog monday #n+1
+<script>
+	import Center from '$lib/components/blog/Center.svelte';
+
+	import Ripples from './Ripples.svelte';
+</script>
+
+<Center maxInlineSize="500px">
+	<Ripples />
+</Center>
