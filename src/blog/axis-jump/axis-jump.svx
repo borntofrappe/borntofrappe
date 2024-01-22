@@ -1,6 +1,6 @@
 ---
 title: Axis jump
-description: Change perspective to jump on multiple axis.
+description: Take a sweet time to leap on multiple axis and complete a geometrical pattern.
 date: 2024-01-22T10:35:17
 ---
 
@@ -44,7 +44,7 @@ With Zdog, where you have the option of rotating the graphics on more than one a
 Assume you draw a box in the very center of an illustration.
 
 ```js
-new Box({
+new Zdog.Box({
 	addTo: illustration,
 	width: 5,
 	height: 5,
@@ -55,20 +55,20 @@ new Box({
 To change the perspective you rotate the illustration, on the x axis to tilt the shape forward, and on the y axis to show the two sides.
 
 ```js
-root.rotate.x = degreesToRadians(-35.264);
-root.rotate.y = degreesToRadians(-45);
+illustration.rotate.x = degreesToRadians(-35.264);
+illustration.rotate.y = degreesToRadians(-45);
 ```
 
-For an actual _isometric_ perspective you need to rotate the shapes by one specific number, 35.264, but at this point you are not limited to draw sides which are twice as long as they are tall. You can explore other projections.
+For an actual _isometric_ perspective you need to rotate the shapes by one specific number, 35.264 degrees, but at this point you are not limited to draw sides which are twice as long as they are tall. You can explore other projections.
 
 ```js
-root.rotate.x = degreesToRadians(-30);
+illustration.rotate.x = degreesToRadians(-30);
 ```
 
 If you want more than one cube, then, you don't need to fiddle with multiple offsets, carefully positioning the shapes next to, and behind, previous copies. Just draw another box right to the side.
 
 ```js
-new Box({
+new Zdog.Box({
 	addTo: illustration,
 	width: 5,
 	height: 5,
