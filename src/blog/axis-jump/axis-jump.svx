@@ -8,8 +8,13 @@ date: 2024-01-22T11:35:17
 	import Center from '$lib/components/blog/Center.svelte';
 
 	import Ripples from './Ripples.svelte';
+	import Jumps from './Jumps.svelte';
 </script>
 
 <Center maxInlineSize="500px">
 	<Ripples />
+</Center>
+
+<Center maxInlineSize="500px">
+	<Jumps />
 </Center>
