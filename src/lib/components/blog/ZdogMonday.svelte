@@ -67,8 +67,8 @@
 			slug: '/small-whimsy'
 		},
 		{
-			title: 'Axis jump',
-			slug: '/axis-jump'
+			title: 'Double axis',
+			slug: '/double-axis'
 		}
 	];
 </script>
