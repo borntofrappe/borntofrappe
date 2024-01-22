@@ -1,0 +1,7 @@
+---
+title: Axis jump
+description: Jump in an orthographic projection.
+date: 2024-01-22T11:35:17
+---
+
+zdog monday #n+1
