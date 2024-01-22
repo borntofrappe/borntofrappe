@@ -6,6 +6,7 @@ date: 2024-01-22T10:35:17
 
 <script>
 	import Center from '$lib/components/blog/Center.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Ripples from './Ripples.svelte';
 	import Jumps from './Jumps.svelte';
@@ -85,3 +86,5 @@ What if you animated a shape to move left and right? With the shift in perspecti
 <Center maxInlineSize="500px">
 	<Jumps />
 </Center>
+
+<ZdogMonday />
