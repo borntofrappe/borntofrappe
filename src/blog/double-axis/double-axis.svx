@@ -1,5 +1,5 @@
 ---
-title: Axis jump
+title: Double axis
 description: Take a sweet time to leap on multiple axis and complete a geometrical pattern.
 date: 2024-01-22T10:35:17
 ---
