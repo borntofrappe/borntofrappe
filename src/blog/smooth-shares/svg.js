@@ -1,4 +1,24 @@
 export default {
+	'spread-method': `<svg style="display: block;" viewBox="-0.5 -0.45 2 1.4">
+    <defs>
+        <linearGradient id="spread-method" x1="0.25" x2="0.75">
+            <stop stop-color="hsl(58 100% 61%)" offset="0" />
+            <stop stop-color="hsl(303 56% 53%)" offset="1" />
+        </linearGradient>
+    </defs>
+    <rect fill="hsl(0 0% 90%)" x="-0.5" y="-0.45" width="2" height="1.4" />
+    <rect fill="url(#spread-method)" width="1" height="0.7" />
+    <g fill="none" stroke="hsl(215 40% 7%)" stroke-width="0.01">
+        <path d="M 0.25 0 V -0.05" />
+        <path d="M 0.75 0 V -0.05" />
+    </g>
+    <g fill="hsl(215 40% 7%)" font-size="0.1" font-weight="700" font-family="monospace" text-anchor="middle">
+        <text x="0.25" y="-0.075">0.25</text>
+        <text x="0.75" y="-0.075">0.75</text>
+    </g>
+    <rect fill="hsl(58 100% 61%)" y="-0.145" width="0.075" height="0.075" />
+    <rect fill="hsl(303 56% 53%)" x="0.925" y="-0.145" width="0.075" height="0.075" />
+</svg>`,
 	'spread-methods': `<svg style="display: block;" viewBox="-0.2 -0.2 2.6 1.9">
     <rect fill="hsl(0 0% 90%)" x="-0.2" y="-0.2" width="2.6" height="1.9" />
     <svg width="1" height="1" viewBox="-50 -50 100 100">

@@ -18,6 +18,10 @@ date: 2024-01-23T15:35:21
 
 <UserSpaceOnUse />
 
+<Center element="figure" maxInlineSize="22rem">
+	{@html svg['spread-method']}
+</Center>
+
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['spread-methods']}
 </Center>
