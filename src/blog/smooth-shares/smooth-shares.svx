@@ -11,6 +11,7 @@ date: 2024-01-23T15:35:21
 	
     import ObjectBoundingBox from './ObjectBoundingBox.svelte';
 	import UserSpaceOnUse from './UserSpaceOnUse.svelte';
+	import Gradients from './Gradients.svelte';
 </script>
 
 <ObjectBoundingBox />
@@ -20,3 +21,5 @@ date: 2024-01-23T15:35:21
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['spread-methods']}
 </Center>
+
+<Gradients />
