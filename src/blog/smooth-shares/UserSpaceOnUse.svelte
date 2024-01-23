@@ -102,7 +102,7 @@
 	input {
 		inline-size: 1em;
 		block-size: 1em;
-		accent-color: hsl(24.5 100% 61%);
+		accent-color: hsl(0 93% 65%);
 	}
 
 	label > svg {

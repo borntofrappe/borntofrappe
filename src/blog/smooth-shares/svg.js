@@ -11,7 +11,7 @@ export default {
         </defs>
         <circle fill="url(#spread-methods-repeat-gradient)" r="50" />
         <circle fill="hsl(149 32% 15%)" r="20" />
-        <text fill="hsl(150, 23%, 97%)" stroke="hsl(150 26% 7%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="2" font-family="serif" font-size="20" text-anchor="middle">
+        <text fill="hsl(150 23% 97%)" stroke="hsl(150 26% 7%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="2" font-family="serif" font-size="20" text-anchor="middle">
             <textPath startOffset="50%" href="#spread-methods-repeat-path">
                 repeat
             </textPath>
@@ -30,7 +30,7 @@ export default {
             </filter>
         </defs>
         <circle fill="url(#spread-methods-reflect-gradient)" r="50" />
-        <text filter="url(#spread-methods-reflect-filter)" fill="hsl(215, 33%, 97%)" stroke="hsl(215, 40%, 7%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="2" font-family="serif" font-size="20" text-anchor="middle" y="20">
+        <text filter="url(#spread-methods-reflect-filter)" fill="hsl(215 33% 97%)" stroke="hsl(215 40% 7%)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" paint-order="stroke" letter-spacing="2" font-family="serif" font-size="20" text-anchor="middle" y="20">
             reflect
         </text>
     </svg>

@@ -72,7 +72,7 @@
 	input {
 		inline-size: 1em;
 		block-size: 1em;
-		accent-color: hsl(320 90% 44%);
+		accent-color: hsl(0 93% 65%);
 	}
 
 	div > svg .fade {
