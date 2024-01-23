@@ -3,3 +3,9 @@ title: Smooth shares
 description: Attributes shared by SVG gradients.
 date: 2024-01-23T15:35:21
 ---
+
+<script>
+	import ObjectBoundingBox from './ObjectBoundingBox.svelte';
+</script>
+
+<ObjectBoundingBox />
