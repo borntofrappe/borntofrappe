@@ -6,6 +6,9 @@ date: 2024-01-23T15:35:21
 
 <script>
 	import ObjectBoundingBox from './ObjectBoundingBox.svelte';
+	import UserSpaceOnUse from './UserSpaceOnUse.svelte';
 </script>
 
 <ObjectBoundingBox />
+
+<UserSpaceOnUse />
