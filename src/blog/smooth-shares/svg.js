@@ -1,6 +1,6 @@
 export default {
 	'spread-methods': `<svg style="display: block;" viewBox="-0.2 -0.2 2.6 1.9">
-    <rect x="-0.2" y="-0.2" width="2.6" height="1.9" fill="hsl(0 0% 90%)" />
+    <rect fill="hsl(0 0% 90%)" x="-0.2" y="-0.2" width="2.6" height="1.9" />
     <svg width="1" height="1" viewBox="-50 -50 100 100">
         <defs>
             <path id="spread-methods-repeat-path" d="M -50 20 C -25 0 25 0 50 20" />

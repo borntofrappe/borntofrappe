@@ -61,7 +61,7 @@
 				<stop stop-color="hsl(303 56% 53%)" offset="1" />
 			</linearGradient>
 		</defs>
-		<rect x="-10" y="-10" width="120" height="90" fill="hsl(0 0% 90%)" />
+		<rect fill="hsl(0 0% 90%)" x="-10" y="-10" width="120" height="90" />
 		<rect
 			class="fade"
 			opacity="0"

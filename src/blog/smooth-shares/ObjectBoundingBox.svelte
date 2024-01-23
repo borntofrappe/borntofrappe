@@ -15,7 +15,7 @@
 				<stop stop-color="hsl(44 99% 59%)" offset="1" />
 			</linearGradient>
 		</defs>
-		<rect x="-10" y="-10" width="120" height="90" fill="hsl(0 0% 90%)" />
+		<rect fill="hsl(0 0% 90%)" x="-10" y="-10" width="120" height="90" />
 		<g class="fade" opacity="0" fill="url(#object-bounding-box-gradient)">
 			<rect x="5" y="5" width="34" height="34" />
 			<rect
