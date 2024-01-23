@@ -1,7 +1,7 @@
 ---
 title: Smooth shares
-description: Attributes shared by SVG gradients.
-date: 2024-01-23T15:35:21
+description: Partake in the many attributes shared by SVG gradients.
+date: 2024-01-23T18:35:21
 ---
 
 <script>
@@ -14,16 +14,172 @@ date: 2024-01-23T15:35:21
 	import Gradients from './Gradients.svelte';
 </script>
 
+SVG gradients come in two flavors, with roots in [geometrical elements and attributes](/smooth-elements). The two have distinct features, but fundamentally, they paint shapes or text in the same way:
+
+1. define the gradient with `linearGradient` or `radialGradient` tags
+
+   ```html
+   <linearGradient id="soft-change">
+   	<!-- ... -->
+   </linearGradient>
+   ```
+
+2. populate the element with two or more `stop` elements, with the colors picked up by the underlying line or circle
+
+   <!-- prettier-ignore -->
+   ```html
+   <stop stop-color="hsl(58 100% 61%)" offset="0" />
+   <stop stop-color="hsl(44 99% 59%)" offset="1" />
+   ```
+
+3. reference the gradient in the `fill` or `stroke` attribute, spelling the unique `id` in the body of the `url` function
+
+   ```html
+   <circle fill="url(#soft-change)" cx="22" cy="22" r="17" />
+   ```
+
+The geometry of the two elements is inherently different, but the sequence is valid for both. And there are more features shared by the elements in the form of attributes in the opening tag. These help to change the implementation of the gradient, with often intriguing results.
+
+## Measure twice
+
+In a linear gradient you may update the flow of the colors with the attributes used to draw a line: `x1` and `y1`, `x2` and `y2`.
+
+With a radial gradient the markup follows the instructions for circles: `r`, `cx` and `cy`.
+
+There are [a couple more attributes](/focus-ring) for the rounder type, but regardless, every attribute looks for a number between 0 and 1, or a percentage between 0% and 100%.
+
+```html
+<linearGradient id="soft-change" x1="0" y1="0" x2="1" y2="0">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+The decimals, or percentages, are relative to the dimensions of the shape on which you apply the gradient, and to be technical, relative to what is known as the _bounding box_. Think of this structure as a box, a rectangle tightly wrapped around a shape. The units refer to this surface.
+
+The detail might not be glaringly obvious when you add the gradient to a regular quadrilateral. In this instance you experience the full spectrum of the gradient. With a different, less square figure, however, the notion becomes much more important.
+
 <ObjectBoundingBox />
 
+The gradient is relative to the bounding box from start to finish. From the top left corner, it spans in width and height to cover the area of the shapes.
+
+Numbers are relative to the bounding box and this default value of the `gradientUnits` attribute: `objectBoundingBox`.
+
+```html
+<linearGradient id="soft-change" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+The alternative: `userSpaceOnUse`. This time the measures no longer refer to the imaginary rectangle, but to an area positioned and sized in the same manner as the benefiting shapes. In the same coordinate system of the objects taking advantage of the gradient.
+
+Assume that you draw a circle in a larger canvas, 100 units wide and 70 units tall.
+
+```html
+<svg viewBox="0 0 100 70">
+	<circle fill="url(#soft-change)" cx="22" cy="22" r="17" />
+</svg>
+```
+
+In a gradient set to follow the rule the numbers for the scope of the gradient fall in the same range. You can structure the gradient to cover a portion, or even the entirety of the overall canvas.
+
+```html
+<linearGradient id="smooth-change" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="70">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+A pointless exercise? Far from it. The moment you have a multitude of shapes, as parts of a larger illustration, you may want them to adhere to the same color space. With `userSpaceOnUse` and the proposed numbers you can make sure that the gradient flows naturally from end to end.
+
 <UserSpaceOnUse />
+
+You can even transition between more varied colors. Applied to the individual objects, this change might be jarring, but in the context of a large surface area, you have more space to showcase the hues.
+
+## Cut short
+
+Be it relative to the bounding box or the parent coordinate system the units of the gradient may describe an area which is smaller than the available space.
+
+```html
+<linearGradient id="stop-change" x1="0.25" x2="0.75">
+	<stop stop-color="hsl(58 100% 61%)" offset="0" />
+	<stop stop-color="hsl(303 56% 53%)" offset="1" />
+</linearGradient>
+```
+
+In this instance you see that the gradient continues with solid colors outside of the specified range.
 
 <Center element="figure" maxInlineSize="22rem">
 	{@html svg['spread-method']}
 </Center>
 
+This is the default behavior, to pad the area with the color of the nearest `stop` element, and as a default you can appreciate the sensible choice to continue using the shades. That being said, you can change the option with the `spreadMethod` attribute, normally set to the normal value of `pad`.
+
+To enjoy something different, consider a radial gradient, with a radius so small that the transition is complete before the edge of the shapes.
+
+```html
+<radialGradient id="short-change" spreadMethod="pad" r="0.2">
+	<stop stop-color="hsl(160 80% 68%)" offset="0" />
+	<stop stop-color="hsl(152 57% 53%)" offset="1" />
+</radialGradient>
+```
+
+Instead of continuing with the color of the second stop you can set the `spreadMethod` attribute to one of two alternatives.
+
+1. with `repeat` the gradient resets, and repeats the transition from start to end
+
+2. with `reflect` the gradient repeats, but the colors are flipped with each iteration. From start to end, from end to start, until the very end
+
+You can take advantage of these values to create repeating gradients, be it for evident stripes or more nuanced waves.
+
 <Center element="figure" maxInlineSize="30rem">
 	{@html svg['spread-methods']}
 </Center>
+
+## Save for later
+
+The geometric attributes for linear and radial gradients allow to update the gradients in their own unique way. But there is one more attribute, shared by both elements, with a similar purpose: `gradientTransform`.
+
+```html
+<linearGradient id="small-change" gradientTransform="rotate(-5)">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+Here you can update the transition with the same syntax, the same functions of the `transform` attribute. `translate`, `rotate`, `scale`. With these operations you change the coordinate system of the gradient itself. But before you try your luck with the possible twists, you may want to keep a reference to the original gradient, and benefit greatly from one last common attribute: `href`.
+
+To get started, build a gradient with your favorite colors.
+
+```html
+<linearGradient id="root-change">
+	<stop stop-color="hsl(58 100% 61%)" offset="0" />
+	<stop stop-color="hsl(44 99% 59%)" offset="1" />
+</linearGradient>
+```
+
+Then, add another gradient, with its own `id` and a reference to the previous change.
+
+```html
+<linearGradient id="new-change" href="#root-change"> </linearGradient>
+```
+
+The second node picks up the attributes **and** the `stop` elements from the first, so that you don't have to build the gradient anew — think of the savings. And at this point, you can add the attributes specific to the element. Rotate the gradients by 90 degrees, for instance, and the west-to-east gradient moves vertically, north-to-south.
+
+```html
+<linearGradient gradientTransform="rotate(90)" id="new-change" href="#root-change">
+</linearGradient>
+```
+
+Delighted by the markup? You'll be even more ecstatic knowing that yes, it is possible to reference a gradient of a different type. You are very well allowed to define a radial element which points to a linear node.
+
+```html
+<radialGradient id="radical-change" href="#root-change"> </radialGradient>
+```
+
+The element uses only the attributes relevant to the type, and ignores the rest, so that you can focus on the values specific to the new structure.
+
+```html
+<radialGradient id="radical-change" href="#root-change" cx="0.3" cy="0.3" r="0.7"> </radialGradient>
+```
+
+And in so doing, you might have discovered a neat way to showcase a gradient. A shared transition from different points of view.
 
 <Gradients />
