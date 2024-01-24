@@ -13,3 +13,7 @@ date: 2024-01-24
 <Center element="figure" maxInlineSize="20rem">
 	{@html svg['stroke']}
 </Center>
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['stroke-fixes']}
+</Center>
