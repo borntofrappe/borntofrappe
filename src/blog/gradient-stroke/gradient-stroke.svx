@@ -1,0 +1,5 @@
+---
+title: Gradient stroke
+description: Take care of a side effect with a safety net and a solid fix.
+date: 2024-01-24
+---
