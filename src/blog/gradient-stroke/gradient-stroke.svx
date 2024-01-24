@@ -1,7 +1,7 @@
 ---
 title: Gradient stroke
 description: Take care of a side effect with a safety net and a solid fix.
-date: 2024-01-24
+date: 2024-01-24T21:35:03
 ---
 
 <script>
@@ -10,10 +10,67 @@ date: 2024-01-24
 	import svg from './svg.js';
 </script>
 
-<Center element="figure" maxInlineSize="20rem">
+Something peculiar might happen when you explore the option of [SVG gradients](/smooth-elements), specifically when you apply the color change to the `stroke` attribute. A small misunderstanding more than a true issue, but to get to the point, let's start with a gradient.
+
+```html
+<linearGradient id="gradient">
+	<stop stop-color="hsl(188 100% 50%)" offset="0" />
+	<stop stop-color="hsl(276 100% 46%)" offset="1" />
+</linearGradient>
+```
+
+Here you have a linear gradient, set to transition between two colors from left to right. Now, consider a line, drawn with a `path` element as a simple, horizontal rule.
+
+```html
+<path d="M 0 0 H 20" />
+```
+
+To see the line you add the `stroke` attribute, and being sure to match the string of the `id` attribute, you reference the gradient with the `url` function.
+
+```html
+<path stroke="url(#gradient)" d="M 0 0 H 20" />
+```
+
+You test the code, and with a bit of a shock, find nothing at all.
+
+<Center element="figure" maxInlineSize="24rem">
 	{@html svg['stroke']}
 </Center>
 
-<Center element="figure" maxInlineSize="20rem">
+I haven't cheated you with the visual. I've gone through the process diligently, and you would stumble on the same result if you were to copy the code. The line is not painted, and from the perspective of the SVG standard, for a solid reason.
+
+Among [the attributes](/smooth-shares) of SVG gradients, you find `gradientUnits`. The attribute describes the scope of the gradient, and by default, is set to `objectBoundingBox`. Per this value, the gradient is relative to a box, a rectangle tightly wrapped around the shape.
+
+The problem? Consider the box for the horizontal segment. This time the rectangle has a width, 20 units wide to be precise, but in terms of height, the value is 0. The line does not stretch vertically, and neither does the surrounding box.
+
+When either dimension is equal to 0, that is considered an error. The logic of the gradient fails, and the line is not shown.
+
+How to cope with this corner case? You have at least two solutions. The first, rather ironically, leans in on the fact that there is a mistake in the definition of the gradient. And on [the convenient markup](/color-filled-fallbacks#svg) which allows you to add a fallback value past the `url` function.
+
+```html
+<path stroke="url(#gradient) hsl(215 40% 7%)" d="M 0 0 H 20" />
+```
+
+The element picks up the solid color if a gradient with the proper `id` does not exist. Or, when the gradient exists with a mistake — sounds familiar? You might not see the gradient, but at least you will be sure to see something.
+
+The second approach tries to satisfy the need for a smooth transition, and goes back to the `gradientUnits` attribute, to the root cause.
+
+```html
+<linearGradient id="gradient" gradientUnits="objectBoundingBox">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+Outside of the default value, outside of `objectBoundingBox`, you can set the attribute to `userSpaceOnUse`. This time you build the gradient in the same coordinate system of the `path` element. Meaning, you can have the line of the gradient match the construction of the line which follows.
+
+```html
+<linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="20" y2="0">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+Set the gradient to cover the same space, and the gradient appears. For good, so that you can't appreciate the previous fallback — I guess you'll just have to pick and choose between the two.
+
+<Center element="figure" maxInlineSize="24rem">
 	{@html svg['stroke-fixes']}
 </Center>
