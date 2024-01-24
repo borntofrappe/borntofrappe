@@ -3,3 +3,13 @@ title: Gradient stroke
 description: Take care of a side effect with a safety net and a solid fix.
 date: 2024-01-24
 ---
+
+<script>
+    import Center from '$lib/components/blog/Center.svelte';
+
+	import svg from './svg.js';
+</script>
+
+<Center element="figure" maxInlineSize="20rem">
+	{@html svg['stroke']}
+</Center>
