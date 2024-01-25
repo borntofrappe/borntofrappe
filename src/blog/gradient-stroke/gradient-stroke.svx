@@ -19,16 +19,16 @@ Something peculiar might happen when you explore the option of [SVG gradients](/
 </linearGradient>
 ```
 
-Here you have a linear gradient, set to transition between two colors from left to right. Now, consider a line, drawn with a `path` element as a simple, horizontal rule.
+Here you have a linear gradient, set to transition between two colors from left to right. Now, consider a line, drawn with a `line` element as a simple, horizontal rule.
 
 ```html
-<path d="M 0 0 H 20" />
+<line x1="0" x2="20" />
 ```
 
 To see the line you add the `stroke` attribute, and being sure to match the string of the `id` attribute, you reference the gradient with the `url` function.
 
 ```html
-<path stroke="url(#gradient)" d="M 0 0 H 20" />
+<line stroke="url(#gradient)" x1="0" x2="20" />
 ```
 
 You test the code, and with a bit of a shock, find nothing at all.
@@ -41,14 +41,14 @@ I haven't cheated you with the visual. I've gone through the process diligently,
 
 Among [the attributes](/smooth-shares) of SVG gradients, you find `gradientUnits`. The attribute describes the scope of the gradient, and by default, is set to `objectBoundingBox`. Per this value, the gradient is relative to a box, a rectangle tightly wrapped around the shape.
 
-The problem? Consider the box for the horizontal segment. This time the rectangle has a width, 20 units wide to be precise, but in terms of height, the value is 0. The line does not stretch vertically, and neither does the surrounding box.
+The problem? Consider the box for the horizontal strip. This time the rectangle has a width, 20 units wide to be precise, but in terms of height, the value is 0. The line does not stretch vertically, and neither does the surrounding box.
 
 When either dimension is equal to 0, that is considered an error. The logic of the gradient fails, and the line is not shown.
 
 How to cope with this corner case? You have at least two solutions. The first, rather ironically, leans in on the fact that there is a mistake in the definition of the gradient. And on [the convenient markup](/color-filled-fallbacks#svg) which allows you to add a fallback value past the `url` function.
 
 ```html
-<path stroke="url(#gradient) hsl(215 40% 7%)" d="M 0 0 H 20" />
+<line stroke="url(#gradient) hsl(215 40% 7%)" x1="0" x2="20" />
 ```
 
 The element picks up the solid color if a gradient with the proper `id` does not exist. Or, when the gradient exists with a mistake — sounds familiar? You might not see the gradient, but at least you will be sure to see something.
@@ -61,10 +61,10 @@ The second approach tries to satisfy the need for a smooth transition, and goes 
 </linearGradient>
 ```
 
-Outside of the default value, outside of `objectBoundingBox`, you can set the attribute to `userSpaceOnUse`. This time you build the gradient in the same coordinate system of the `path` element. Meaning, you can have the line of the gradient match the construction of the line which follows.
+Outside of the default value, outside of `objectBoundingBox`, you can set the attribute to `userSpaceOnUse`. This time you build the gradient in the same coordinate system of the `line` element. Meaning, you can have the line of the gradient match the construction of the segment which follows.
 
 ```html
-<linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="20" y2="0">
+<linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" x2="20">
 	<!-- ...stops -->
 </linearGradient>
 ```
