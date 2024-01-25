@@ -159,3 +159,23 @@
 .region {
 	padding-block: var(--region-space, var(--space-300));
 }
+
+.center-frame {
+	display: block;
+	max-inline-size: var(--frame-size, 40rem);
+	margin-inline: auto;
+}
+
+.side-frames {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap, 1rem);
+	justify-content: var(--justify, center);
+	align-items: var(--align, center);
+}
+
+.side-frames > * {
+	display: block;
+	max-inline-size: var(--frame-size, 20rem);
+	inline-size: 100%;
+}
