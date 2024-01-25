@@ -5,8 +5,6 @@ date: 2024-01-24T21:35:03
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -33,9 +31,9 @@ To see the line you add the `stroke` attribute, and being sure to match the stri
 
 You test the code, and with a bit of a shock, find nothing at all.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]" style="--frame-size: 22rem;">
 	{@html svg['stroke']}
-</Center>
+</figure>
 
 I haven't cheated you with the visual. I've gone through the process diligently, and you would stumble on the same result if you were to copy the snippet. The line is not painted, and from the perspective of the SVG standard, for a solid reason.
 
@@ -71,6 +69,7 @@ Outside of the default value, outside of `objectBoundingBox`, you can set the at
 
 Set the gradient to cover the same space, and the gradient appears. For good, so that you can't appreciate the previous fallback — I guess you'll just have to pick and choose between the two.
 
-<Center element="figure" maxInlineSize="24rem">
-	{@html svg['stroke-fixes']}
-</Center>
+<div class="side-frames" style="--frame-size: 22rem;">
+	<figure>{@html svg['fallback']}</figure>
+	<figure>{@html svg['user-space-on-use']}</figure>
+</div>
