@@ -37,11 +37,11 @@ You test the code, and with a bit of a shock, find nothing at all.
 	{@html svg['stroke']}
 </Center>
 
-I haven't cheated you with the visual. I've gone through the process diligently, and you would stumble on the same result if you were to copy the code. The line is not painted, and from the perspective of the SVG standard, for a solid reason.
+I haven't cheated you with the visual. I've gone through the process diligently, and you would stumble on the same result if you were to copy the snippet. The line is not painted, and from the perspective of the SVG standard, for a solid reason.
 
 Among [the attributes](/smooth-shares) of SVG gradients, you find `gradientUnits`. The attribute describes the scope of the gradient, and by default, is set to `objectBoundingBox`. Per this value, the gradient is relative to a box, a rectangle tightly wrapped around the shape.
 
-The problem? Consider the box for the horizontal strip. This time the rectangle has a width, 20 units wide to be precise, but in terms of height, the value is 0. The line does not stretch vertically, and neither does the surrounding box.
+The problem? Consider the box for the horizontal strip. This time the rectangle has a width, to be precise it is 20 units wide, but in terms of height, that value is 0. The line does not stretch vertically, and neither does the surrounding box.
 
 When either dimension is equal to 0, that is considered an error. The logic of the gradient fails, and the line is not shown.
 
@@ -51,7 +51,7 @@ How to cope with this corner case? You have at least two solutions. The first, r
 <line stroke="url(#gradient) hsl(215 40% 7%)" x1="0" x2="20" />
 ```
 
-The element picks up the solid color if a gradient with the proper `id` does not exist. Or, when the gradient exists with a mistake — sounds familiar? You might not see the gradient, but at least you will be sure to see something.
+The element picks up the solid color if a gradient with the proper `id` does not exist. Or, when the gradient exists with an error — sounds familiar? You might not see the gradient, but at least you will be sure to see _something_.
 
 The second approach tries to satisfy the need for a smooth transition, and goes back to the `gradientUnits` attribute, to the root cause.
 
