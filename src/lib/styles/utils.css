@@ -162,8 +162,20 @@
 
 .center-frame {
 	display: block;
-	max-inline-size: var(--frame-size, 40rem);
+	max-inline-size: var(--frame-size, 22rem);
 	margin-inline: auto;
+}
+
+.center-frame[data-size='small'] {
+	--frame-size: 16rem;
+}
+
+.center-frame[data-size='medium'] {
+	--frame-size: 36rem;
+}
+
+.center-frame[data-size='large'] {
+	--frame-size: 44rem;
 }
 
 .side-frames {
@@ -176,6 +188,6 @@
 
 .side-frames > * {
 	display: block;
-	max-inline-size: var(--frame-size, 20rem);
+	max-inline-size: var(--frame-size, 22rem);
 	inline-size: 100%;
 }
