@@ -5,8 +5,6 @@ date: 2023-07-24T10:06:59
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Intro from './Intro.svelte';
 	import ZOverlap from './ZOverlap.svelte';
@@ -23,9 +21,9 @@ A most evident problem appears the moment different shapes occupy the same spot.
 
 Consider the treats warming up in the microwave introducing this article. Behind the semi-transparent screen, these pile up in a promising bowl. If you were to replicate the visual with Zdog classes, if you were to then rotate the food around an imaginary center point, you'd immediately glare at the issue.
 
-<Center maxInlineSize="420px">
+<div class="[ center-frame ]" style="--frame-size: 420px">
 	<ZOverlap />
-</Center>
+</div>
 
 Zdog rotates the shapes around the y axis, but these pop in and out of sight without a moment's notice. Abruptly.
 
@@ -43,9 +41,9 @@ While troubling, an overlap is evident. It is clear how the problem rises and qu
 
 Consider this top-down look as a reference and as a starting point.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
 	{@html svg['roundabout']}
-</Center>
+</div>
 
 Again, here you have nothing but a change in rotation. Rotate the circles from the center to complete the circular motion. In Zdog, the problem appears as you structure the illustration with a specific set of classes.
 
@@ -72,9 +70,9 @@ const loop = () => {
 
 Complete, but inaccurate when you tilt the scene on the x axis to add some depth.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<ZAnchor />
-</Center>
+</div>
 
 Immediately, you have a sphere. Only one however. As the animation continues, the shape disappears, while the other sphere appears out of nowhere, in its rightful, presumed place.
 

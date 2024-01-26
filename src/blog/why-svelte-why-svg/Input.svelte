@@ -28,20 +28,26 @@
 	$: dispatch('change', { size });
 </script>
 
-<label>
-	Drag the handle to resize grid.
-	<input type="range" min={2} max={15} bind:value={size} />
-</label>
+<div>
+	<label>
+		Drag the handle to resize grid.
+		<input type="range" min={2} max={15} bind:value={size} />
+	</label>
 
-<svg viewBox="0 0 {size} {size}">
-	{#each grid as { row, column, color }}
-		<g transform="translate({column} {row})">
-			<rect fill={color} width="1" height="1" />
-		</g>
-	{/each}
-</svg>
+	<svg viewBox="0 0 {size} {size}">
+		{#each grid as { row, column, color }}
+			<g transform="translate({column} {row})">
+				<rect fill={color} width="1" height="1" />
+			</g>
+		{/each}
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}

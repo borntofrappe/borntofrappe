@@ -5,8 +5,6 @@ date: 2023-01-26 21:29:06
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import Rects from './Rects.svelte'
     import Hue from './Hue.svelte'
     import Grid from './Grid.svelte'
@@ -117,9 +115,9 @@ Where? In the cell designated by the column and row.
 
 The shapes are placed at increments of 1, filling the tightly-knit canvas.
 
-<Center maxInlineSize="26rem">
+<figure class="[ center-frame ]">
     <Rects />
-</Center>
+</figure>
 
 Not impressed? I would be a little, but the best has yet to come.
 
@@ -135,9 +133,9 @@ To have the rainbow go from the top left corner to the bottom right section, the
 
 If you sum the two values you realize how.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Grid />
-</Center>
+</figure>
 
 The sum goes from 0 up to, and including, twice the maximum number of dimensions. Remember JavaScript starts to count from zero.
 
@@ -176,9 +174,9 @@ Add the color alongside the coordinates and inject the value through the `fill` 
 {/each}
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Colors />
-</Center>
+</figure>
 
 You might have noticed the last square matches the first one. This is because the hue in the HSL color space goes from red to green, to blue, back to red. `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
 
@@ -189,9 +187,9 @@ If you prefer a touch more variety, increment the maximum value.
 +const max = (size - 1) * 2 + 1
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Colors offset={1} />
-</Center>
+</figure>
 
 I'm quite partial to that shade of pink, so the rest of the article will keep the updated value.
 
@@ -223,9 +221,9 @@ Associate the size through the `bind:value` directive.
 
 And, enjoy your grid of **{colors}** colors.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
     <Input {size} on:change={handleChange} />
-</Center>
+</div>
 
 ## A grid of circles
 
@@ -248,9 +246,9 @@ In terms of SVG you need just one attribute to draw a circle, one attribute for 
 {/each}
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Circles />
-</Center>
+</figure>
 
 Ugh, something's definitely off with the picture. Unlike rectangles, drawn from the top left corner, circles are drawn from their center.
 
@@ -280,9 +278,9 @@ You have several ways to fix this:
 
 Take your pick.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Circles offset={0.5} />
-</Center>
+</figure>
 
 ## Animated circles
 
@@ -362,9 +360,9 @@ You can toggle the class with a ternary operator.
 
 Or go for the directive instead. Either way, off to the races!
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
     <Animation />
-</Center>
+</div>
 
 The animation pauses and resumes instead of picking up from the very beginning. Another perk from using the `animation-play-state` property.
 
@@ -412,9 +410,9 @@ Need to remove the duration in the `<style>` tags? Not really. Svelte adds the v
 
 One cheer for CSS specificity! Feel free to follow the wave and raise your arms in celebration.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Delays />
-</Center>
+</div>
 
 ## Wrapping up
 

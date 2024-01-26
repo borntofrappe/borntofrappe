@@ -5,8 +5,6 @@ date: 2023-01-17 22:31:00
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import Defs from './Defs.svelte';
     import DefsAlt from './DefsAlt.svelte';
@@ -98,9 +96,9 @@ Four, separated, vertical lines. Add the missing horizontal mark to close the gr
 <path d="M 0.5 3.4 l 4 -1.8" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['tally-marks']}
-</Center>
+</figure>
 
 ## Repeat lines
 
@@ -132,9 +130,9 @@ In Svelte, you can achieve this step with a `each` block, iterating with an empt
 {/each}
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	<Defs />
-</Center>
+</figure>
 
 If the syntax looks a bit alien, it might be helpful to illustrate an alternative.
 
@@ -160,9 +158,9 @@ At this point Svelte repeats the markup for each number, and you inject the inte
 
 Similar logic, same result.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	<DefsAlt />
-</Center>
+</figure>
 
 ## Repeat clusters
 
@@ -202,9 +200,9 @@ Moving the group 5 to the right means moving the marks outside of the canvas. Re
 
 From 5 to 10. Growing by 5.
 
-<Center maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	<ClustersAddon />
-</Center>
+</figure>
 
 ## Nested repeats
 
@@ -245,9 +243,9 @@ The last missing piece relates to the size of the canvas. How wide? 5 times as n
 <svg viewBox="0 0 {5 * marks.length} 5" />
 ```
 
-<Center maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	<Clusters />
-</Center>
+</figure>
 
 Looks the same? Perfect.
 
@@ -303,9 +301,9 @@ Eventually, `reduce` would find the next 0 and add another array, leading to the
 
 Need proof? Let's try with the current day. Mine, however. 17 is a high enough number to show off.
 
-<Center maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	<Marks n={17} />
-</Center>
+</figure>
 
 Need _your_ proof? You can try with [today](/today). There might be a surprise there, as I decided to explore additional features.
 

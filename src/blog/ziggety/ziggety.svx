@@ -5,8 +5,6 @@ date: 2023-07-28T14:40:55
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import CSS from './CSS.svelte';
 	import JavaScript from './JavaScript.svelte';
@@ -18,9 +16,9 @@ You can't run away from the language, but if you don't mind being cheeky, you ca
 
 Lock on the following 2D figure.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['target']}
-</Center>
+</figure>
 
 CSS is more than able to update the elements in a larger `<svg>`. You can even set up two distinct animations, working in tandem to affect the shapes in different manners.
 
@@ -94,9 +92,9 @@ There are several keyframes, several stopping points which make the default moti
 
 The approach is similar in both animations, and the result is already appealing.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	<CSS />
-</Center>
+</div>
 
 The motion feels almost natural as the sprite levitates in smooth stops. And above all, impressive in lines of code. Which begs the question: why can't you do the same with Zdog shapes?
 

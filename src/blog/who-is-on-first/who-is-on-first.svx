@@ -5,8 +5,6 @@ date: 2023-05-30T09:10:43
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import SMILRace from './SMILRace.svelte';
 	import CSSRace from './CSSRace.svelte';
@@ -28,9 +26,9 @@ If you apply the marker to a `<path>` with the `marker-end` attribute, but instr
 
 Chrome displays the dot where the line would be — _"there is a line after all..."_. Firefox, however, does not — _"there is no end to mark!"_.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['marker']} 
-</Center>
+</figure>
 
 These are highly specific quirks, and you almost have to go look for trouble to find them. Most of the time, you can trust SVG to draw what you mean.
 
@@ -121,9 +119,9 @@ Trivial? Only if we stop here. Sure you can shrug the notion off, a pointless fa
 
 For the sake of humor, you can set up a race. A race between two logos echoing the two familiar browsers. One of them moves with the default pacing. The other starts slowly before catching up at the very end. Supposedly.
 
-<Center maxInlineSize="38rem">
+<div class="[ center-frame ]" data-size="medium">
     <SMILRace />
-</Center>
+</div>
 
 Who's going to win? You might not have anticipated it at the beginning, but the answer is the reply to a completely different question: which browser are you using right now?
 
@@ -207,8 +205,8 @@ With this in mind, you need to be specific in your styles.
 
 Now, I could offer you the same example, revamped to delight Firefox readers as well. But if you were on Chrome, you would find nothing new. And at this point, it is no longer worth it to focus on the difference. So let me resurface the track, add a couple more turns and two new competitors to bridge the gap. It's only fair.
 
-<Center maxInlineSize="38rem">
+<div class="[ center-frame ]" data-size="medium">
     <CSSRace />
-</Center>
+</div>
 
 Who's going to win? I tinkered with the duration, but in the end, it makes little difference. What is more important is that the SMIL issue was not for naught. It may have started as a quirk, but eventually led to an exploration of SVG attributes and CSS properties well worth the trip. I guess it truly doesn't matter where you end up, as much as how you get there.
