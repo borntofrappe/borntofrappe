@@ -27,7 +27,7 @@ There are a few things worth noting about this last possibility. The string migh
 In terms of values then, these can be set with a number, but also a unit of measure such as `px` — any CSS length would work in this instance. Lastly, you can use a percentage.
 
 ```html
-<line stroke-dasharray="2%" stroke="currentColor" stroke-width="1" x1="0" x2="20" />
+<line stroke-dasharray="2%" stroke="currentColor" x1="0" x2="20" />
 ```
 
 But this option may raise a few questions. A percentage of what?
@@ -132,7 +132,7 @@ And at this point you can set `stroke-dasharray` to a fraction of the total. The
 Without a script, there's an alternative in the markup, thanks to the `pathLength` attribute. With the instruction you are free to set a length, a reference, so that you can pick `stroke-dasharray` as a fraction.
 
 ```html
-<line pathLength="1" stroke-dasharray="0.1 0.2" fill="none" stroke="currentColor" x1="0" x2="10" />
+<line pathLength="1" stroke-dasharray="0.1 0.2" stroke="currentColor" x1="0" x2="10" />
 ```
 
 Remember the sequence for `stroke-dasharray`, describing the dashes and gaps one after the other. With the snippet you find four dashes, between 0 and 0.1, 0.3 and 0.4, 0.6 and 0.7 and finally, 0.9 and 1 — the chosen threshold for the path's length.
