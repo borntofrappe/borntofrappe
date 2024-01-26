@@ -239,7 +239,7 @@
 		--padding: 1rem;
 		--border-radius: 0.5rem;
 		table-layout: fixed;
-		block-size: 100%;
+		inline-size: 100%;
 		border-spacing: 0;
 	}
 
