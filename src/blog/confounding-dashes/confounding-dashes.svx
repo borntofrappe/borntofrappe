@@ -1,0 +1,9 @@
+---
+title: Confounding dashes
+description: Attempt variable dashes with SVG strokes.
+date: 2024-01-26
+---
+
+```html
+<line stroke-dasharray="2%" stroke="currentColor" x1="0" y2="20" />
+```
