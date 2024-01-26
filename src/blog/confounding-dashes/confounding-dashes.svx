@@ -4,6 +4,14 @@ description: Attempt variable dashes with SVG strokes.
 date: 2024-01-26
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 ```html
-<line stroke-dasharray="2%" stroke="currentColor" x1="0" y2="20" />
+<line stroke-dasharray="2%" stroke="currentColor" x1="0" x2="20" />
 ```
+
+<figure class="[ center-frame ]" style="--frame-size: 22rem;">
+	{@html svg['percentage']}
+</figure>
