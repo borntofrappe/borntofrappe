@@ -42,3 +42,12 @@ date: 2024-01-26
         {@html svg["relative-width-2"]}
     </figure>
 </div>
+
+<div class="side-frames" style="--frame-size: 22rem;">
+    <figure>
+        {@html svg["relative-length-1"]}
+    </figure>
+    <figure>
+        {@html svg["relative-length-2"]}
+    </figure>
+</div>
