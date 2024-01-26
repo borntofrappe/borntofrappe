@@ -51,3 +51,7 @@ date: 2024-01-26
         {@html svg["relative-length-2"]}
     </figure>
 </div>
+
+<figure class="[ center-frame ]" style="--frame-size: 36rem;">
+	{@html svg['normalized-diagonal']}
+</figure>
