@@ -15,3 +15,12 @@ date: 2024-01-26
 <figure class="[ center-frame ]" style="--frame-size: 22rem;">
 	{@html svg['percentage']}
 </figure>
+
+<div class="side-frames" style="--frame-size: 22rem;">
+    <figure>
+        {@html svg["percentage-width-1"]}
+    </figure>
+    <figure>
+        {@html svg["percentage-width-2"]}
+    </figure>
+</div>
