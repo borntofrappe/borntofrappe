@@ -5,8 +5,6 @@ date: 2023-05-09T21:37:31
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import LineChart from './LineChart.svelte';
 	import Range from './Range.svelte';
@@ -28,9 +26,9 @@ The first two set the position of the canvas origin, the top left corner. x and 
 
 The second pair completes the box with the actual dimensions. Width and height.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['view-box']}
-</Center>
+</figure>
 
 Draw something between these boundaries and the shapes will be shown on screen, clearly visible. Draw something outside of the area, however, and you won't see the result.
 
@@ -40,9 +38,9 @@ Just by knowing this, the attribute helps to cover practical applications. And p
 
 Consider a line chart, studying a mysteriously noisy phenomenon over a long period of time and in excruciating detail.
 
-<Center element="figure" maxInlineSize="52rem">
+<figure class="[ center-frame ]" data-size="large">
     <LineChart />
-</Center>
+</figure>
 
 There are five hundred and one observations, five hundred and one points shown side by side. And to accommodate them all, the `viewBox` stretches the canvas to a rectangle 530 units wide, 130 units tall.
 
@@ -75,9 +73,9 @@ The points and the accompanying line are drawn to the right of the thinner canva
 
 This is one place where you can flex your JavaScript muscles — you can set out to track the position of the cursor, perhaps exploring [pointer events](/get-to-the-point), and implement a dragging feature — but immediately, a handle is more than enough to show the remarkable shift.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Range />
-</Center>
+</div>
 
 ## For laughs
 
@@ -141,12 +139,10 @@ Then again, you can replace the `to` attribute with `values`, and specify multip
 
 And in this manner you can delight in the animation without jumps, perhaps even more than once.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Animate />
-</Center>
+</div>
 
 Of course animations are not that practical. In the context of the line chart, it is far preferable to have a handle, or again that desired dragging functionality. But within the `<svg>` element, you can draw something far more exotic than a line. And delight in a one-time animation, from start to a slow, approaching end.
 
-<Center maxInlineSize="30rem">
-    <PuttPutt />
-</Center>
+<PuttPutt />

@@ -34,33 +34,45 @@
 	};
 </script>
 
-<svg bind:this={svg} viewBox="0 0 100 60">
-	<set />
-	<g fill="currentColor">
-		{#each explosions as { x, y, begin, circles }}
-			<g transform="translate({x} {y})">
-				{#each circles as { x, y, id }}
-					<circle r="1">
-						<animateTransform
-							{id}
-							{begin}
-							attributeName="transform"
-							type="translate"
-							dur="1s"
-							to="{x} {y}"
-							fill="freeze"
-						/>
-						<animate begin="{id}.begin + 0.3s" attributeName="r" dur="0.7s" to="0" fill="freeze" />
-					</circle>
-				{/each}
-			</g>
-		{/each}
-	</g>
-</svg>
+<div>
+	<svg bind:this={svg} viewBox="0 0 100 60">
+		<set />
+		<g fill="currentColor">
+			{#each explosions as { x, y, begin, circles }}
+				<g transform="translate({x} {y})">
+					{#each circles as { x, y, id }}
+						<circle r="1">
+							<animateTransform
+								{id}
+								{begin}
+								attributeName="transform"
+								type="translate"
+								dur="1s"
+								to="{x} {y}"
+								fill="freeze"
+							/>
+							<animate
+								begin="{id}.begin + 0.3s"
+								attributeName="r"
+								dur="0.7s"
+								to="0"
+								fill="freeze"
+							/>
+						</circle>
+					{/each}
+				</g>
+			{/each}
+		</g>
+	</svg>
 
-<button on:click={handleClick}>Animate</button>
+	<button on:click={handleClick}>Animate</button>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	svg {
 		display: block;
 		color: hsl(210, 20%, 16%);

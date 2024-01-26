@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['microscope']}
-	</div>
+	</figure>
 
 	<p>
 		In <a href="/viewbox-origin">a previous article</a> we considered the <code>viewBox</code> attribute
@@ -17,34 +17,34 @@
 		It is however possible to explore the string further and consider the entire set of numbers,
 		again with practical use cases. And assuredly for silly experiments.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 12rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: left;
 		inline-size: 100%;
 		margin: 0 1rem 0.5rem 0;
 	}
 
 	@media screen and (max-width: 32rem) {
-		section > div {
+		div > figure {
 			margin: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-start: 1rem;
 			order: 1;
 			align-self: center;

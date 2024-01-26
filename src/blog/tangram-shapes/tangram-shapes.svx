@@ -6,7 +6,6 @@ date: 2023-02-08T21:45:29
 
 <script>
     import svg from './svg.js';
-    import Center from '$lib/components/blog/Center.svelte';
     import Commands from './Commands.svelte';
     import Paths from './Paths.svelte';
     import Angle from './Angle.svelte';
@@ -29,9 +28,9 @@ I would argue in terms of commands:
 
 - `l 2 -2`: line to (4, 0)
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Commands viewBox="-1 -1 6 4" commands="M 0 0 l 2 2 2 -2z" strokeWidth={0.2} />
-</Center>
+</div>
 
 Conveniently, you don't need to repeat the `l` character after the first instance. The browser assumes the same instruction until told otherwise.
 
@@ -66,9 +65,9 @@ As a matter of fact, there's another triangle as big. Let's start from the origi
 <path d="M 0 0 l 2 2 -2 2" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2"]} />
-</Center>
+</figure>
 
 Moving on to smaller pieces, there are two miniscule triangles we can paint in increments.
 
@@ -78,9 +77,9 @@ Moving on to smaller pieces, there are two miniscule triangles we can paint in i
 <path d="M 1 3 l 1 -1 1 1" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1"]} />
-</Center>
+</figure>
 
 One beefier triangle ties up the bottom right corner.
 
@@ -88,9 +87,9 @@ One beefier triangle ties up the bottom right corner.
 <path d="M 2 4 l 2 -2 0 2" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2"]} />
-</Center>
+</figure>
 
 A solitary square tipped on its side glues the section together.
 
@@ -98,9 +97,9 @@ A solitary square tipped on its side glues the section together.
 <path d="M 2 2 l 1 -1 1 1 -1 1" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1"]} />
-</Center>
+</figure>
 
 One oblong trapezoid completes the set.
 
@@ -108,17 +107,17 @@ One oblong trapezoid completes the set.
 <path d="M 0 4 l 1 -1 2 0 -1 1" />
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1", "M 0 4 l 1 -1 2 0 -1 1"]} />
-</Center>
+</figure>
 
 Turns out, 4 by 4 was more than enough.
 
 We can color the pieces through the `fill` attribute to make the shapes more appealing, but the puzzle is set.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['tangram-set']}
-</Center>
+</figure>
 
 ## SVG transform
 
@@ -134,9 +133,9 @@ I like to delegate the transformation to group elements, so to have the `<path>`
 
 Little hiccup, however. Rotate the triangle in the snippet and the operation takes place as expected.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['rotate-large-triangle']}
-</Center>
+</figure>
 
 Rotate one of the other shapes, one which is not drawn from the origin like the square, and well, the result is certainly not the same.
 
@@ -146,15 +145,15 @@ Rotate one of the other shapes, one which is not drawn from the origin like the 
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['rotate-tilted-square']}
-</Center>
+</figure>
 
 Your eyes do not deceive you. The square is drawn in its entirety, but parts of it are just outside of the visible area. Increase the angle and you'll see the square slowly moving out of position.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Angle />
-</Center>
+</div>
 
 In the mesmerizing realm of the SVG coordinate system, transformations are applied from an origin point, beginning with the value described by the `viewBox` attribute — in our example (0, 0).
 
@@ -183,9 +182,9 @@ The moment you then apply the rotation, this one works to rotate the element fro
 </g>
 ```
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Angle translate={true} />
-</Center>
+</div>
 
 There's nothing inherently wrong with the first transformation. There might come a day you'll want to move elements from a different advantage point. In this tangram puzzle, however, we want to scatter the pieces from their initial (x, y) value.
 
@@ -203,9 +202,9 @@ The order matters, but we'll see how later with a more practical example.
 
 Draw every shape from (0, 0).
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['draw-from-origin']}
-</Center>
+</figure>
 
 The pieces stack one above the other, with later elements drawn on top of the previous shapes.
 
@@ -221,9 +220,9 @@ In order to return to the compact configuration, wrap the elements in a group, a
 | `M 0 0 l 1 -1 1 1 -1 1` | `translate(2 2)` |
 | `M 0 0 l 1 -1 2 0 -1 1` | `translate(0 4)` |
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['draw-from-translated-origin']}
-</Center>
+</figure>
 
 If you feel cheated you've already seen the set, do not fret. We are going to move the pieces around in a brand new visual. This one is going to exceed the visible area, so we need to first adjust the `viewBox`.
 
@@ -234,9 +233,9 @@ If you feel cheated you've already seen the set, do not fret. We are going to mo
 
 The update is fairly technical, but in essence, you inset the canvas by 2 units and expand its size by twice the amount, 4. In this manner you have some space around the centered `<path>`s.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['expand-viewbox']}
-</Center>
+</figure>
 
 On to the sliding practice. The shape of a heart makes for a perfect milestone. Simple, yet striking.
 
@@ -248,9 +247,9 @@ Slide the first piece slightly to the right, slightly to the bottom.
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['heart-set-1']}
-</Center>
+</figure>
 
 The second, large triangle should sit right above, and we can achieve this in two steps:
 
@@ -264,21 +263,21 @@ The second, large triangle should sit right above, and we can achieve this in tw
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['heart-set-2']}
-</Center>
+</figure>
 
 As mentioned in the previous section, the order of the operations matters. Consider the steps in increments.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Transformations />
-</Center>
+</div>
 
 If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in a completely different spot.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Transformations reverse={true} />
-</Center>
+</div>
 
 When you apply the rotation, you rotate the coordinate system. Every instruction which follows will be tilted accordingly. Once more, you may want to, just not today.
 
@@ -290,9 +289,9 @@ The first small triangle fits nicely at the top of the left side.
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['heart-set-3']}
-</Center>
+</figure>
 
 The second smaller unit could go pretty much anywhere, but the oblong piece surely fits nicely in the empty space.
 
@@ -302,9 +301,9 @@ The second smaller unit could go pretty much anywhere, but the oblong piece sure
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['heart-set-4']}
-</Center>
+</figure>
 
 The remaining triangles mirror the image on the left side.
 
@@ -318,9 +317,9 @@ The remaining triangles mirror the image on the left side.
 </g>
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['heart-set-5']}
-</Center>
+</figure>
 
 Finally, the square tucks the visual at the very bottom. No rotation required.
 
@@ -330,9 +329,9 @@ Finally, the square tucks the visual at the very bottom. No rotation required.
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['heart-set-complete']}
-</Center>
+</figure>
 
 ## CSS transform
 
@@ -364,9 +363,9 @@ svg > g:nth-of-type(6) {
 
 Do not forget the compulsory comma between the two offsets as well.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['translate-with-css-one']}
-</Center>
+</figure>
 
 Ultimately, the element is translated in the context of the `viewBox` attribute — the piece slides 1 unit to the right, 1 unit to the bottom. That being said, the `px` suffix requires a small mental adjustment compared to the SVG, unitless version.
 
@@ -396,9 +395,9 @@ svg > g:nth-of-type(7) {
 }
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['translate-with-css-all']}
-</Center>
+</figure>
 
 ## CSS transition
 
@@ -415,9 +414,9 @@ svg.tangram > g:nth-of-type(7) {
 
 Toggle the class and immediately you go from the compact set to the heart-warming visual.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Toggle />
-</Center>
+</div>
 
 Apply a transition on the direct children.
 
@@ -429,9 +428,9 @@ svg > g {
 
 And enjoy the smooth update.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Toggle transition={true} />
-</Center>
+</div>
 
 Job done? Not really. I tested the code on FireFox and, at the time of writing, the browser doesn't seem to process the change between SVG attributes and CSS properties that well.
 
@@ -469,6 +468,6 @@ svg.tangram > g:nth-of-type(7) {
 
 And then you are really, finally done. Free to experiment with different timing functions and enjoy the end result.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Transition />
-</Center>
+</div>

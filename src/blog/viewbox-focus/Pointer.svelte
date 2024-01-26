@@ -108,6 +108,7 @@
 	on:touchmove|preventDefault
 	role="presentation"
 	style:cursor={isPointerDown ? 'grabbing' : 'grab'}
+	style="display: block;"
 	viewBox="{x} 0 {v + p * 2} {m + p * 2}"
 >
 	<defs>

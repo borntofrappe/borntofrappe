@@ -5,8 +5,6 @@ date: 2023-10-31T11:35:24
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Treats from './Treats.svelte';
 </script>
@@ -17,8 +15,8 @@ Today, some wrap a ribbon on a small, well chosen present. Some dress up to try 
 
 There may be nothing extravagant about the feat, nothing grandiose about a few weighted ingredients coming together into bakery goodness, but as they say, it's the thought that counts.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Treats />
-</Center>
+</div>
 
 Be careful, however. Even if simple, sweet goods come with an extra dose of sugar. Consider them a treat, a delightful surprise. And above all, don't expect them consistently — not for a few more weeks.

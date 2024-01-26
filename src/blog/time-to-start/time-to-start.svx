@@ -5,8 +5,6 @@ date: 2023-04-19T09:40:36
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Explosions from './Explosions.svelte';
 	import Fireworks from './Fireworks.svelte';
 </script>
@@ -223,9 +221,9 @@ Loop through the nested level to add the SVG syntax and SMIL instructions.
 
 Finally, press the button as you eagerly picture what is going to happen.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Explosions offsetTime={false} />
-</Center>
+</div>
 
 Dismay, the elements do not animate. What is more, what you see might differ depending on your environment. On Chrome, you might see the circles, stuck in their final state. On Firefox, you won't see anything at all. Beyond these inconsistencies, if you inspect the document the elements are there — as many as the number of times you tried to press the button with curiosity and then a hint of frustration.
 
@@ -274,17 +272,17 @@ I'm happy to report this is the very last step. Use the value in the `animateTra
 
 And brimming with excitement, press the button for a momentous change.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Explosions />
-</Center>
+</div>
 
 You no longer need to picture the result, but it helps to sketch out the sequence. You add the circles. These are animated in position with a time delay. Slightly afterwards and this time by reference, the same shapes are animated in radius.
 
 Neat. Embellish the visual with a touch of color and a pyrotechnic display is just a few steps away.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Fireworks />
-</Center>
+</div>
 
 A proper recompense for a long and arduous journey.
 

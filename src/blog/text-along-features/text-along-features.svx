@@ -5,8 +5,6 @@ date: 2023-12-27T18:35:07
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -54,9 +52,9 @@ With `textPath` you can place the text on this very signature. You need to add a
 
 `textPath` is nested in the `text` element, wraps around the content and points to the line through the `href` attribute.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['text-textPath']}
-</Center>
+</figure>
 
 If the possibility excites you, there are very good reasons. `path` is possibly _the_ most flexible of the elements in SVG. With it, you can draw virtually any shape, with straight segments, curves, and arcs. The `d` attribute introduces a microcosm of instructions and a world of options. `textPath`, on its own, comes with several options, but while these are specified in the more recent [SVG 2 standard](https://svgwg.org/svg2-draft/text.html#TextPathElement), they are not supported wide and through.
 
@@ -95,9 +93,9 @@ M 10 10 H 40 V 40 H 10 Z
 
 But ultimately, you can be sure that the text will follow the rule.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['textPath-shape']}
-</Center>
+</figure>
 
 ## Pick a side
 
@@ -138,9 +136,9 @@ But alas, the browser might falter once more. And once more, you can be sure tha
 
 Drawing the shape inside-out the text starts out on the same side — right — only to continue as reversed and desired.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['textPath-side']}
-</Center>
+</figure>
 
 ## Forge ahead
 
@@ -182,6 +180,6 @@ You might have noticed there are a few issues, but also more than one way to sol
 
 The moment the code doesn't behave as intended, look for answers in the standard, whether it is the SVG 2 or the previous, more widespread specification. You have some work to do, but it's well worth the price to create impressive graphics, and showcase what is possible with a few more lines, a few more `path`s. Whether or not you choose to paint them, then, it's up to you.
 
-<Center element="figure" maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['textPath-showcase']}
-</Center>
+</figure>

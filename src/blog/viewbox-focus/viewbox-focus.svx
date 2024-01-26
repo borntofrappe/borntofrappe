@@ -5,8 +5,6 @@ date: 2023-05-12T10:59:22
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Intro from './Intro.svelte';
 	import svg from './svg.js';
 	import Pointer from './Pointer.svelte';
@@ -19,9 +17,9 @@ date: 2023-05-12T10:59:22
 
 To reintroduce the topic, let me start by updating the past effort. To update the origin of the canvas I asked you to drag a handle, and longed for a true dragging feature. Revisiting [pointer events](/get-to-the-point), I tried to accomplish the feat with JavaScript and Svelte, so you won't have to wish for the experience much longer — feel free to grab and drag the chart to explore the data to your heart's content.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Pointer />
-</Center>
+</div>
 
 ## Focus
 
@@ -44,7 +42,9 @@ Ultimately we picked an arbitrary value, but if you allow to change the width si
 
 To prove the concept, let's forget the line chart and consider a different plot, a scatter plot.
 
-<ScatterPlot />
+<figure class="[ center-frame ]" data-size="medium">
+	<ScatterPlot />
+</figure>
 
 Here we have plenty of points, scattered over two axes, sometimes too close to each other. In terms of `viewBox`, the attribute sets up a perfectly square canvas 100 units wide and tall.
 
@@ -77,9 +77,9 @@ Update the vertical component, and you get to move downwards as well.
 
 Finding the four quadrants is then a matter of adjusting the x and y origin. A visual might help.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['view-boxes']}
-</Center>
+</figure>
 
 And with JavaScript and Svelte, an interactive demo is sure to convince you of the usefulness of it all.
 
@@ -89,6 +89,6 @@ Whether you ask readers to pinch the screen and zoom in the visual themselves, a
 
 And with enough ingenuity and a touch of SMIL animation, the same concept might just delight you with a neat little trick.
 
-<Center element="figure" maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<PetriDish />
-</Center>
+</div>

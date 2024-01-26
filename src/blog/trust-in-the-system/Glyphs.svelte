@@ -30,7 +30,7 @@
 
 <style>
 	div > * + * {
-		margin-block-start: 0.25rem;
+		margin-block-start: 0.5rem;
 	}
 
 	div > svg {

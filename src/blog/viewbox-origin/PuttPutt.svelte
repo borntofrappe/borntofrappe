@@ -247,6 +247,7 @@
 	div {
 		position: relative;
 		max-inline-size: 28rem;
+		margin-inline: auto;
 	}
 
 	div > button {
