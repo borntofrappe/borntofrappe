@@ -1,57 +1,147 @@
 ---
 title: Confounding dashes
 description: Attempt variable dashes with SVG strokes.
-date: 2024-01-26
+date: 2024-01-26T13:35:35
 ---
 
 <script>
 	import svg from './svg.js';
 </script>
 
+When you draw a line in SVG, with an element such as `line`, you need to set a value for the `stroke` attribute to see something.
+
 ```html
-<line stroke-dasharray="2%" stroke="currentColor" x1="0" x2="20" />
+<line stroke="currentColor" x1="0" x2="20" />
 ```
+
+You have the option to alter the thickness of the line with the `stroke-width` attribute and detail the segment adjusting the two ends with properties such as `x1` and `y1`, `x2` and `y2`.
+
+Among the enticing array of attributes, you are also allowed to draw the segment with dashes through `stroke-dasharray`.
+
+```html
+<line stroke-dasharray="2" stroke="currentColor" x1="0" x2="20" />
+```
+
+There are a few things worth noting about this last possibility. The string might include a variable number of arguments, describing the length of a dash and the gap which follows. The sequence is repeated until the end of the line, so that the length, or lengths are repeated to elaborate the two types. Dash, gap, dash, gap and so forth.
+
+In terms of values then, these can be set with a number, but also a unit of measure such as `px` — any CSS length would work in this instance. Lastly, you can use a percentage.
+
+```html
+<line stroke-dasharray="2%" stroke="currentColor" stroke-width="1" x1="0" x2="20" />
+```
+
+But this option may raise a few questions. A percentage of what?
 
 <figure class="[ center-frame ]" style="--frame-size: 22rem;">
 	{@html svg['percentage']}
 </figure>
 
-<div class="side-frames" style="--frame-size: 22rem;">
-    <figure>
-        {@html svg["percentage-width-1"]}
-    </figure>
-    <figure>
-        {@html svg["percentage-width-2"]}
-    </figure>
-</div>
+The value is not relative to the thickness of the stroke. If you change the `stroke-width` attribute the dashes keep the same length, to the point where you get a very different picture.
 
 <div class="side-frames" style="--frame-size: 22rem;">
-    <figure>
-        {@html svg["percentage-length-1"]}
-    </figure>
-    <figure>
-        {@html svg["percentage-length-2"]}
-    </figure>
+	<figure>
+		{@html svg['percentage-width-1']}
+	</figure>
+	<figure>
+		{@html svg['percentage-width-2']}
+	</figure>
 </div>
 
-<div class="side-frames" style="--frame-size: 22rem;">
-    <figure>
-        {@html svg["relative-width-1"]}
-    </figure>
-    <figure>
-        {@html svg["relative-width-2"]}
-    </figure>
-</div>
+For a thin line, the dashes create almost a series of dots. For a thick line, on the other hand, the result resembles a grate.
+
+`stroke-dasharray` is not proportional to the length of the line either.
 
 <div class="side-frames" style="--frame-size: 22rem;">
-    <figure>
-        {@html svg["relative-length-1"]}
-    </figure>
-    <figure>
-        {@html svg["relative-length-2"]}
-    </figure>
+	<figure>
+		{@html svg['percentage-length-1']}
+	</figure>
+	<figure>
+		{@html svg['percentage-length-2']}
+	</figure>
 </div>
+
+A shorter line repeats the dashes in the same manner, just for a shorter period.
+
+What does the percentage refer to? [Per the specification](https://svgwg.org/svg2-draft/coords.html#Units), it refers to the _normalized diagonal_ of the `viewBox`, a mildly obfuscating concept which is perhaps better explained with an example.
+
+Consider a convenient `viewBox` 4 units wide and 3 units tall.
+
+```html
+<svg viewBox="0 0 4 3">
+	<!-- ... -->
+</svg>
+```
+
+The attribute describes the dimensions of the canvas with the third and fourth argument. Based on the two, you can calculate the length of the diagonal with the Pythagorean theorem. In this instance, you will reach the notable value of 5.
+
+It is not enough to find the diagonal, however. You need to normalize the result, and you do this by dividing the measure by the diagonal of a canvas 1 unit wide and tall, a unit square.
+
+Divide 5 by approximately 1.414 and you reach 3.536.
 
 <figure class="[ center-frame ]" style="--frame-size: 36rem;">
 	{@html svg['normalized-diagonal']}
 </figure>
+
+You are more than forgiven if you forgot the purpose of the number. Remember the percentage in the `stroke-dasharray` attribute? That is a percentage of this result.
+
+The process is quite technical, but intuitively, you can see how the value grows with the dimensions of the canvas. That being said, since I mentioned two different features you might want to have the dashes change with the width of the line, or again its length. Rest assured, it is possible to consider both.
+
+## Stroke width
+
+You can't change `stroke-dasharray` to follow the value of the `stroke-width` attribute, at least not directly. That being said, you can set the width with the same units: unitless numbers, CSS lengths and once more, percentages.
+
+The moment you set `stroke-width` with a percentage, the two attributes grow in accord. Both refer to the normalized diagonal, so that when the canvas grows, both are updated to reflect the change.
+
+Working by reference, there's even one more option available through CSS lengths. Here you find the `em` unit, a measure relative to the font size.
+
+```html
+<line stroke-width="0.02em" stroke-dasharray="0.02em" stroke="currentColor" x1="0" x2="20" />
+```
+
+Set the width and the dashes to the unit and you now have a lever, irrespective of the size of the canvas.
+
+<div class="side-frames" style="--frame-size: 22rem;">
+	<figure>
+		{@html svg['relative-width-1']}
+	</figure>
+	<figure>
+		{@html svg['relative-width-2']}
+	</figure>
+</div>
+
+The solution is feasible with shapes only — updating the size with `text` elements is bound to change the vectors in more direct manners —, but works nonetheless.
+
+## Line length
+
+Once again, `stroke-dasharray` is not relative to the length of the segment. But if you want to, especially to keep the same number of dashes, you can cover this need in at least two ways.
+
+If you don't mind using JavaScript and writing a small script, the first option is to access the node directly.
+
+```js
+const line = document.querySelector('line');
+```
+
+The `getTotalLength` method aptly leads you to the length of the segment.
+
+```js
+const length = line.getTotalLength();
+```
+
+And at this point you can set `stroke-dasharray` to a fraction of the total. The solution is ludicrous in this instance — you can very well figure out the length of the straight segment with basic arithmetic —, but will work with more complex lines as well. Even `path` elements.
+
+Without a script, there's an alternative in the markup, thanks to the `pathLength` attribute. With the instruction you are free to set a length, a reference, so that you can pick `stroke-dasharray` as a fraction.
+
+```html
+<line pathLength="1" stroke-dasharray="0.1 0.2" fill="none" stroke="currentColor" x1="0" x2="10" />
+```
+
+Remember the sequence for `stroke-dasharray`, describing the dashes and gaps one after the other. With the snippet you find four dashes, between 0 and 0.1, 0.3 and 0.4, 0.6 and 0.7 and finally, 0.9 and 1 — the chosen threshold for the path's length.
+
+<div class="side-frames" style="--frame-size: 22rem;">
+	<figure>
+		{@html svg['relative-length-1']}
+	</figure>
+	<figure>
+		{@html svg['relative-length-2']}
+	</figure>
+</div>
