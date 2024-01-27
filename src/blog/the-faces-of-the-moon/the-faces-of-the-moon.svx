@@ -321,7 +321,7 @@ Allow to change the position of the clipped face.
 
 And there you have it, a momentous reveal.
 
-<div class="[ center-frame ]" data-size="medium">
+<div class="[ center-frame ]">
 	<ClipPath x={20} y={-20} transformClip={false} />
 </div>
 
@@ -335,7 +335,7 @@ The faces describe the sides of the same body and, barring a minor interaction, 
 </clipPath>
 ```
 
-<div class="[ center-frame ]" data-size="medium">
+<div class="[ center-frame ]">
 	<ClipPath x={20} y={-20} transformClip={true} />
 </div>
 
