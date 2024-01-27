@@ -25,74 +25,86 @@
 	$: luminance = color.reduce((acc, { value, weight }) => acc + (value / 255) * weight, 0);
 </script>
 
-<p>Drag the handles to update the luminance with the tree color channels.</p>
-
 <div>
-	{#each color as { name, label, value }}
-		<label>
-			<span style:--name={name}>{label}</span>
-			<output>{value}</output>
-			<input type="range" min="0" max="255" bind:value />
-		</label>
-	{/each}
-</div>
+	<p>Drag the handles to update the luminance with the tree color channels.</p>
 
-<svg style="display: block;" viewBox="-35 -36 70 72.5">
-	<defs>
-		<circle id="luminance-body" r="30" />
-		<ellipse id="luminance-top" cy="-25" rx="26" ry="8" />
-		<rect id="luminance-overlay" fill="hsl(0 0% 100%)" x="-30" y="-30" width="60" height="60" />
-		<clipPath id="luminance-clip">
-			<use href="#luminance-body" />
-			<use href="#luminance-top" />
-		</clipPath>
-	</defs>
+	<fieldset>
+		{#each color as { name, label, value }}
+			<label>
+				<span style:--name={name}>{label}</span>
+				<output>{value}</output>
+				<input type="range" min="0" max="255" bind:value />
+			</label>
+		{/each}
+	</fieldset>
 
-	<ellipse fill="hsl(0 0% 70%)" cy="35" rx="26" ry="1.5" />
-	<g fill="none" stroke="hsl(0 0% 10%)" stroke-width="8" stroke-linecap="round">
-		<path transform="rotate(25) translate(0 30)" d="M -5 0 v 8" />
-		<path transform="scale(-1 1) rotate(25) translate(0 30)" d="M -5 0 v 8" />
-	</g>
+	<svg style="display: block;" viewBox="-35 -36 70 72.5">
+		<defs>
+			<circle id="luminance-body" r="30" />
+			<ellipse id="luminance-top" cy="-25" rx="26" ry="8" />
+			<rect id="luminance-overlay" fill="hsl(0 0% 100%)" x="-30" y="-30" width="60" height="60" />
+			<clipPath id="luminance-clip">
+				<use href="#luminance-body" />
+				<use href="#luminance-top" />
+			</clipPath>
+		</defs>
 
-	<use
-		fill="hsl(0 0% 10%)"
-		stroke="hsl(0 0% 17%)"
-		stroke-width="10"
-		paint-order="stroke"
-		href="#luminance-body"
-	/>
-	<use fill="hsl(0 0% 100% / 0.15)" href="#luminance-body" />
-	<use fill="hsl(0 0% 10%)" href="#luminance-top" />
-
-	<g clip-path="url(#luminance-clip)">
-		<g transform="translate(0 {60 * (1 - luminance)})">
-			<use href="#luminance-overlay" />
+		<ellipse fill="hsl(0 0% 70%)" cy="35" rx="26" ry="1.5" />
+		<g fill="none" stroke="hsl(0 0% 10%)" stroke-width="8" stroke-linecap="round">
+			<path transform="rotate(25) translate(0 30)" d="M -5 0 v 8" />
+			<path transform="scale(-1 1) rotate(25) translate(0 30)" d="M -5 0 v 8" />
 		</g>
-	</g>
 
-	<use fill="hsl(0 0% 0% / 0.03)" href="#luminance-top" />
-	<use fill="none" stroke="hsl(0 0% 17%)" stroke-width="6" href="#luminance-top" />
+		<use
+			fill="hsl(0 0% 10%)"
+			stroke="hsl(0 0% 17%)"
+			stroke-width="10"
+			paint-order="stroke"
+			href="#luminance-body"
+		/>
+		<use fill="hsl(0 0% 100% / 0.15)" href="#luminance-body" />
+		<use fill="hsl(0 0% 10%)" href="#luminance-top" />
 
-	<text
-		transform="translate(0 3.5)"
-		fill="hsl(0 0% 99%)"
-		stroke="hsl(0 0% 10%)"
-		stroke-width="3"
-		stroke-linejoin="round"
-		paint-order="stroke"
-		font-family="monospace"
-		font-size="11"
-		font-weight="700"
-		text-anchor="middle"
-		y="4"
-	>
-		{format(luminance)}
-	</text>
-</svg>
+		<g clip-path="url(#luminance-clip)">
+			<g transform="translate(0 {60 * (1 - luminance)})">
+				<use href="#luminance-overlay" />
+			</g>
+		</g>
+
+		<use fill="hsl(0 0% 0% / 0.03)" href="#luminance-top" />
+		<use fill="none" stroke="hsl(0 0% 17%)" stroke-width="6" href="#luminance-top" />
+
+		<text
+			transform="translate(0 3.5)"
+			fill="hsl(0 0% 99%)"
+			stroke="hsl(0 0% 10%)"
+			stroke-width="3"
+			stroke-linejoin="round"
+			paint-order="stroke"
+			font-family="monospace"
+			font-size="11"
+			font-weight="700"
+			text-anchor="middle"
+			y="4"
+		>
+			{format(luminance)}
+		</text>
+	</svg>
+</div>
 
 <style>
 	div > * + * {
 		margin-block-start: 0.75rem;
+	}
+
+	fieldset {
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+
+	fieldset > * + * {
+		margin-block-start: 0.5rem;
 	}
 
 	label {

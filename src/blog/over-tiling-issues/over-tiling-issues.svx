@@ -5,9 +5,7 @@ date: 2023-09-20T16:34:26
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import svg from './svg.js';
-
 	import Patterns from './Patterns.svelte';
 </script>
 
@@ -102,9 +100,9 @@ But if we now update the dimensions of the tiling primitive, the image is bound 
 
 A pattern is bound to appear.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['fe-tile']}
-</Center>
+</figure>
 
 Unfortunately, not always. The snippet works on a few browsers, like Chrome, Edge and Opera, but in other environments the result is quite different. On FireFox and the only instance of Safari I was able to test you find the group. Alone. Four rectangles, only smaller as the `viewBox` has grown in measure.
 

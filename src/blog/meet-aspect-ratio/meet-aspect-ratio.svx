@@ -5,8 +5,6 @@ date: 2023-06-20T11:10:43
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import MeetX from './MeetX.svelte';
 	import MeetY from './MeetY.svelte';
@@ -123,6 +121,6 @@ There might be a use for these values, but most often, you want to keep your dra
 
 If you do find a use for shapes larger than life, if you are able to get by disrespecting aspect ratio, savor the syntax and remember to share. Perhaps with a piece or two.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['bento-box']}
-</Center>
+</figure>

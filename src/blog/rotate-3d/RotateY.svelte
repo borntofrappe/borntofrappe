@@ -238,75 +238,86 @@
 	$: handleAngle(angle);
 </script>
 
-<label>
-	<span>Let the wind blow</span>
-	<input type="range" min="0" max="360" bind:value={angle} />
-</label>
+<div>
+	<label>
+		<span>Let the wind blow</span>
+		<input type="range" min="0" max="360" bind:value={angle} />
+	</label>
 
-<svg
-	bind:this={svg}
-	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 360px;"
-	width="360"
-	height="320"
-	viewBox="-25 -35 45 40"
->
-	<g style="color: hsl(0 0% 75%)">
-		<path
-			fill="currentColor"
-			stroke="currentColor"
+	<svg
+		bind:this={svg}
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 360px;"
+		width="360"
+		height="320"
+		viewBox="-25 -35 45 40"
+	>
+		<g style="color: hsl(0 0% 75%)">
+			<path
+				fill="currentColor"
+				stroke="currentColor"
+				stroke-width="1"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M -14 0 L 19.5 0 L 16.5 -2 16.5 2 19.5 0 Z M -14 0 L -16 -2 L -20 -2 L -18 0 L -20 2 L -16 2 Z"
+			/>
+			<path
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1"
+				stroke-linecap="round"
+				d="M 0 4.5 L 0 -5"
+			/>
+		</g>
+		<circle fill="hsl(0 0% 75%)" r="2.5" />
+		<g
+			transform="translate(0 -4.5)"
 			stroke-width="1"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			d="M -14 0 L 19.5 0 L 16.5 -2 16.5 2 19.5 0 Z M -14 0 L -16 -2 L -20 -2 L -18 0 L -20 2 L -16 2 Z"
-		/>
-		<path
-			fill="none"
-			stroke="currentColor"
-			stroke-width="1"
-			stroke-linecap="round"
-			d="M 0 4.5 L 0 -5"
-		/>
-	</g>
-	<circle fill="hsl(0 0% 75%)" r="2.5" />
-	<g transform="translate(0 -4.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-		<path
-			style="color: hsl(338 100% 84%);"
-			fill="currentColor"
-			stroke="currentColor"
-			d="M 0 -25 L 17.5 -27.5 L 10 -15 L 0 -15 Z"
-		/>
-		<path
-			style="color: hsl(44 77% 67%);"
-			fill="currentColor"
-			stroke="currentColor"
-			d="M 0 0 A 15 15 0 0 0 0 -30 L 0 -15 L -15 -15 A 15 15 0 0 0 0 0 Z"
-		/>
-		<path
-			style="color: hsl(44 77% 67%);"
-			fill="currentColor"
-			stroke="currentColor"
-			transform="translate(0.5 -1)"
-			d="M -5 -15 A 10 10 0 0 0 -25 -15 Z"
-		/>
-		<path
-			style="color: hsl(0 0% 30%);"
-			fill="currentColor"
-			stroke="currentColor"
-			transform="translate(0.5 0.5)"
-			d="M 0 -15 L 7.5 -15 A 7.5 7.5 0 0 1 0 -7.5 Z"
-		/>
-		<path
-			style="color: hsl(338 100% 84%);"
-			fill="currentColor"
-			stroke="currentColor"
-			transform="translate(-1 0)"
-			d="M 0 -19 A 2 2 0 0 1 0 -23 A 3.5 3.5 0 0 1 0 -30 Z"
-		/>
-		<circle fill="hsl(0 0% 30%)" r="1.75" cx="8" cy="-21" />
-	</g>
-</svg>
+		>
+			<path
+				style="color: hsl(338 100% 84%);"
+				fill="currentColor"
+				stroke="currentColor"
+				d="M 0 -25 L 17.5 -27.5 L 10 -15 L 0 -15 Z"
+			/>
+			<path
+				style="color: hsl(44 77% 67%);"
+				fill="currentColor"
+				stroke="currentColor"
+				d="M 0 0 A 15 15 0 0 0 0 -30 L 0 -15 L -15 -15 A 15 15 0 0 0 0 0 Z"
+			/>
+			<path
+				style="color: hsl(44 77% 67%);"
+				fill="currentColor"
+				stroke="currentColor"
+				transform="translate(0.5 -1)"
+				d="M -5 -15 A 10 10 0 0 0 -25 -15 Z"
+			/>
+			<path
+				style="color: hsl(0 0% 30%);"
+				fill="currentColor"
+				stroke="currentColor"
+				transform="translate(0.5 0.5)"
+				d="M 0 -15 L 7.5 -15 A 7.5 7.5 0 0 1 0 -7.5 Z"
+			/>
+			<path
+				style="color: hsl(338 100% 84%);"
+				fill="currentColor"
+				stroke="currentColor"
+				transform="translate(-1 0)"
+				d="M 0 -19 A 2 2 0 0 1 0 -23 A 3.5 3.5 0 0 1 0 -30 Z"
+			/>
+			<circle fill="hsl(0 0% 30%)" r="1.75" cx="8" cy="-21" />
+		</g>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}

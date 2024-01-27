@@ -5,8 +5,6 @@ date: 2023-07-04T09:58:45
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import html from './html.js';
 	import Luminance from './Luminance.svelte';
 </script>
@@ -23,9 +21,9 @@ Leave it to white and black and you are able to carve out portions of the SVG, [
 
 Tap between the two extremes, however, and the SVG becomes translucent. How much? That is decided by the color itself, and specifically the _relative luminance_ of three color channels, red, green and blue.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html html['flasks-color-channels']}
-</Center>
+</figure>
 
 There is technically a fourth channel, alpha, but to get started, let us consider the colored ones only. You can still pretend there is a fourth flask with the saturated trio, invisible to the naked eye.
 
@@ -37,9 +35,9 @@ To compute the luminance, the value is weighed and measured with an arbitrary sc
 
 The numbers jump to the eye, but are much more evident as you try and test the values for yourself.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Luminance />
-</Center>
+</div>
 
 Boil down the color and green bubbles up with the biggest influence. Try as you might to sum up the other two and they will always fall short of the channel.
 
@@ -49,9 +47,9 @@ The alpha value? Once you know how the three colors add up, the influence of the
 
 Back to the mask element. Between the tags, you can now add the shapes in whichever color you want. White, black, anything in between, knowing all the while how much you'll be able to show, to have the benefiting visual become apparent, invisible, or refreshingly translucent.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html html['fish-bowl']}
-</Center>
+</figure>
 
 You have plenty of options, but if the discussion is too esoteric, if the resplendent, evanescent fishes aren't enough to treat you, let me leave you with something as remarkable as it is practical.
 

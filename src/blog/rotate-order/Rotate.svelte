@@ -309,7 +309,7 @@
 	}
 
 	div > * + * {
-		margin-block-start: 0.7rem;
+		margin-block-start: 0.75rem;
 	}
 
 	form > * + * {

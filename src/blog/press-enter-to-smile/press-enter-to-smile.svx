@@ -5,8 +5,6 @@ date: 2023-03-27 15:15:28
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import PressEnter from './PressEnter.svelte';
 </script>
@@ -47,9 +45,9 @@ Let's say you have a stylish, soft keyboard with a jolly enter key.
 
 {@html svg['keycap']}
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['keyboard']}
-</Center>
+</figure>
 
 Be it the color or the shape, but the key just begs to be pressed. And with a cursor you can animate the visual with the precious `click` event.
 
@@ -67,9 +65,9 @@ Be it the color or the shape, but the key just begs to be pressed. And with a cu
 
 Press the element and the shape moves briefly down, on top of the shadow. A small change with lots of depth.
 
-<Center maxInlineSize="26rem">
+<div class="[ center-frame ]">
 	{@html svg['click']}
-</Center>
+</div>
 
 If you are so inclined you might change the cursor and have the element stand out.
 
@@ -118,9 +116,9 @@ The `role` of `button` and the label do help to complete the feat, but the probl
 
 _"Press a key to animate"_. Any key will do.
 
-<Center maxInlineSize="26rem">
+<div class="[ center-frame ]">
 	{@html svg['keydown']}
-</Center>
+</div>
 
 What we want, on the other hand, is to react to a specific key, the enter key if possible.
 
@@ -189,6 +187,6 @@ And since we have access to JavaScript, since we have a function reacting to the
 
 On click and a bright enter key.
 
-<Center maxInlineSize="48rem">
+<div class="[ center-frame ]" data-size="medium">
 	<PressEnter />
-</Center>
+</div>

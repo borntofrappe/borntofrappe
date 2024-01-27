@@ -2,7 +2,7 @@
 	export let offset = 0;
 </script>
 
-<svg viewBox="-50 -50 100 100">
+<svg style="display: block;" viewBox="-50 -50 100 100">
 	<circle r="28" fill="#ffdb47" />
 	<g fill="#ff877a">
 		<g transform="translate(0 5)">
@@ -23,9 +23,3 @@
 		</g>
 	</g>
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>

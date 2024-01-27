@@ -5,8 +5,6 @@ date: 2023-02-23T10:47:49
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte'
-
 	import svg from './svg.js'
 	import Coordinates from './Coordinates.svelte'
 	import Level from './Level.svelte'
@@ -29,9 +27,9 @@ The key to add perspective is a `<path>` element tracing the contours of a cube.
 
 We create the element to fit in a rectangle 1 unit wide, 1 unit tall. Conceptually, this matches the size of a single cell in the previous 2D grid.
 
-<Center maxInlineSize="14rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['cube']}
-</Center>
+</figure>
 
 To further the sense of depth, add shadows in the form of black, translucent faces.
 
@@ -44,9 +42,9 @@ To further the sense of depth, add shadows in the form of black, translucent fac
 
 On top of the first shape, the two `<path>`s emulate a light source from north-east. Something which becomes the more evident the lighter the color.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['shadow']}
-</Center>
+</figure>
 
 And surprise surprise, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
 
@@ -113,7 +111,9 @@ Let's try and replace the `<rect>` element with our custom cube.
 +<use {x} {y} href="#cube" />
 ```
 
-<Coordinates />
+<figure class="[ center-frame ]">
+	<Coordinates />
+</figure>
 
 And let's call this a solid starting point.
 
@@ -123,9 +123,9 @@ We need to position the elements in the perspective afforded by the cube, into t
 
 To understand how, consider the following grid as a reference, beyond a stylish pattern for a modern living room.
 
-<Center maxInlineSize="34rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['isometric-grid']}
-</Center>
+</figure>
 
 The moment you have a row of neighboring cubes.
 
@@ -135,9 +135,9 @@ The moment you have a row of neighboring cubes.
 <use x="2" y="0" href="#cube" />
 ```
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['cubes']}
-</Center>
+</figure>
 
 You want to position the objects at increments of half the width: 0.5, 1, 1.5 and so forth.
 
@@ -147,9 +147,9 @@ You want to position the objects at increments of half the width: 0.5, 1, 1.5 an
 <use x="1" y="0" href="#cube" />
 ```
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['offset-x']}
-</Center>
+</figure>
 
 In terms of SVG, later shapes are drawn above previous ones, meaning you need to reverse the order of the elements.
 
@@ -161,9 +161,9 @@ In terms of SVG, later shapes are drawn above previous ones, meaning you need to
 
 But halving the offset is enough to realize the tight fit.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['reverse']}
-</Center>
+</figure>
 
 Vertically, we want to lift up each successive cube to create a consistent ascension.
 
@@ -175,9 +175,9 @@ Vertically, we want to lift up each successive cube to create a consistent ascen
 
 Each column is raised by half the horizontal offset: 0.25, 0.5 and so on.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['offsets-y']}
-</Center>
+</figure>
 
 Enough to complete a row. Say you have additional rows, however.
 
@@ -189,9 +189,9 @@ Enough to complete a row. Say you have additional rows, however.
 
 And once again the unitary increment proves to be excessive.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['rows']}
-</Center>
+</figure>
 
 Once again, you need to place the elements per the projection, at increments of half the height.
 
@@ -203,9 +203,9 @@ Once again, you need to place the elements per the projection, at increments of 
 
 Completing the graphical projection.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     {@html svg['offsets']}
-</Center>
+</figure>
 
 Notice again the arrangement in the snippet. You start from the bottom-most element to draw the preceding rows effectively on top.
 
@@ -240,9 +240,9 @@ const y = i / 2 - x / 2;
 coordinates.push({ x, y });
 ```
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Coordinates offset={true} />
-</Center>
+</figure>
 
 Impressed, but not completely? You certainly remember the note about the source order. Reverse the final array.
 
@@ -252,9 +252,9 @@ coordinates.reverse();
 
 And the puzzle assumes its rightful, three dimensional shape.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Coordinates offset={true} reverse={true} />
-</Center>
+</figure>
 
 The `reverse` method technically modifies the original data structure, and if you don't fancy the feature, you might prefer creating a separate collection.
 
@@ -278,9 +278,9 @@ Most assuredly, it did not escape your eyes that the visual is off center, and a
 
 I expanded the canvas to avoid one annoying mishap: use the width and height from the 2D grid and, perhaps expectedly, the values do not fit the composition.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Coordinates offset={true} reverse={true} padding={0} />
-</Center>
+</figure>
 
 There must be a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
 
@@ -330,9 +330,9 @@ Finally, translate the picture per the initial, smallest coordinate.
 
 The horizontal coordinate begins at 0, so the instruction is superfluous, but the vertical values do become smaller — consider how the cells are projected upwards. This last instruction moves the visual down, perfectly encapsulating the multi-dimensional level.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     <Level />
-</Center>
+</figure>
 
 If you want to rely only on the `viewBox` attribute you might translate the origin of the entire SVG at the very top.
 

@@ -5,8 +5,6 @@ date: 2023-05-16T09:43:30
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import DrawPlant from './DrawPlant.svelte';
     import ShowLeaves from './ShowLeaves.svelte';
@@ -19,17 +17,17 @@ It is an innocent feature which accompanies the reader, almost in support. It's 
 
 We start with a potted plant.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html svg['plant']}
-</Center>
+</figure>
 
 A nice, rounded base. A bit of greenery protruding with a few, symmetrical leaves.
 
 You can draw everything with a single `<path>` element, but conceptually, it makes sense to divvy up the visual in pieces. It's also much easier to draw the whole with a few elements.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['elements']}
-</Center>
+</figure>
 
 The vase, a rounded rectangle for the rim, a `<path>` for the base. The natural growth, an additional `<path>` drawing a vertical segment, two leaves and repeating the sequence three more times. Line, leaves, and repeat.
 
@@ -64,9 +62,9 @@ With the `stroke-dasharray` attribute create dashes and gaps of the same length,
 
 You might have seen the syntax in [another organic project](/self-reference-in-nature#animation), but the effect is always worth another look. Move the offset back to 0 and you find the line, and the plant, anew.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
     <DrawPlant />
-</Center>
+</div>
 
 Behind the scenes, Svelte makes it exceedingly easy to update the SVG.
 
@@ -117,9 +115,9 @@ Update our line-drawn `<path>` to draw a single, straight line. A segment from t
 
 You might be questioning the repetition of the `v` character. Why bother drawing the line 6 units up, then 12, again and again? Can't you just add up the values in a single, concise instruction? Absolutely. Following the more elaborate `<path>` element, however, it is convenient to mark the spots where you had the leaves. Consider these markers, pegs for the upcoming, uplifting pairs.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['segments']}
-</Center>
+</figure>
 
 Translate a group to the height of the first peg.
 
@@ -172,9 +170,9 @@ As you change `offset`, `leaves` will follow suit to produce the appropriate int
 
 From bottom, to top.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
     <ShowLeaves />
-</Center>
+</div>
 
 We have the leaves appear, but immediately. Thankfully, Svelte helps us once more with a handy module filled with useful transitions: `svelte/transition`. Import the `scale` function, for instance.
 
@@ -202,6 +200,6 @@ It is truly amazing what you can achieve with a few drawing instructions and a c
 
 And I hope it doesn't sound too presumptuous, but it is also remarkable what you can find scrolling to the very end of this page. And perhaps a tad further.
 
-<Center maxInlineSize="48rem">
+<div class="[ center-frame ]" data-size="large">
     <ScrollUI />
-</Center>
+</div>

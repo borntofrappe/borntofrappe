@@ -5,8 +5,6 @@ date: 2023-08-21T17:35:14
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -26,9 +24,9 @@ Consider `feTurbulence`. [The element](/filter-art#in-practice) promises to crea
 
 But what do these attributes actually mean? One way to answer this question is plainly by trial. Different filters with different values.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['feTurbulence']}
-</Center>
+</figure>
 
 Increase `numOctaves` and the texture becomes more complex. You can still see the pattern of the first picture, but the result is more varied.
 
@@ -40,15 +38,15 @@ That being said, there's certainly more behind the scenes. And once you research
 
 To understand how a noise function operates consider a 2D plane. Pick random values over time, with a certain frequency and a purely random measure, a random _amplitude_.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['amplitude-frequency']}
-</Center>
+</figure>
 
 Connect the points and you find an _octave_. You can link the values any which way, even with straight lines, but to find smoother changes a curve works best.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['octave']}
-</Center>
+</figure>
 
 As you traverse the function the amplitude changes at random, per the random points, but smoothly, per the connecting shape. You move in softer inclines rather than janky, immediate jumps.
 
@@ -58,14 +56,14 @@ Already you understand more about the filter primitive. `baseFrequency` changes 
 
 You have a series of curves which are more and more variable, with smaller and smaller values. Add these values on the first octave and the effect is complete.
 
-<Center element="figure" maxInlineSize="44rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['noise']}
-</Center>
+</figure>
 
 As the first function absorbs the changes the soft curve is augmented with small bumps, minor wrinkles. The overall shape, however, is mostly preserved.
 
 `feTurbulence` works in one more dimension, on the x and y axis, but in much the same way. You proved this by changing the values, and you understand it by plotting a few points. More than enough to take the element and reveal a new image. Attributes and all.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['card-v']}
-</Center>
+</figure>

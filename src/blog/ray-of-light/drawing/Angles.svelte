@@ -6,7 +6,7 @@
 		.map((_, i, { length }) => (360 / length) * i);
 </script>
 
-<svg viewBox="-50 -50 100 100">
+<svg style="display: block;" viewBox="-50 -50 100 100">
 	<g fill="none" stroke="#ffdb47" stroke-width="3" stroke-linecap="round">
 		{#each angles as angle}
 			<path transform="rotate({angle})" d="M 35 0 h 7" />
@@ -31,9 +31,3 @@
 		<circle r="2" cx="5" />
 	</g>
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>

@@ -20,11 +20,12 @@
 </script>
 
 <svg
-	viewBox="-50 -50 100 100"
 	on:mousedown={handleStart}
 	on:mouseup={handleEnd}
 	on:mouseleave={handleEnd}
 	role="presentation"
+	style="display: block;"
+	viewBox="-50 -50 100 100"
 >
 	<g transform="scale({$scale})">
 		<g fill="none" stroke="#ffdb47" stroke-width="3" stroke-linecap="round">
@@ -52,9 +53,3 @@
 		</g>
 	</g>
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>
