@@ -5,8 +5,6 @@ date: 2023-03-14 9:21:32
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Dashoffset from './Dashoffset.svelte';
 	import Canvas from './Canvas.svelte';
 	import Tree from './Tree.svelte';
@@ -166,10 +164,10 @@ And this is where Svelte truly shines. Not only you are able to handle the logic
 
 Just be sure to update the variable to mercifully end the loop.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	<Canvas animate={false} />
 	<figcaption>A beautiful, fractal tree.</figcaption>
-</Center>
+</figure>
 
 ## Animation
 
@@ -210,9 +208,9 @@ But the two snippets are ultimately equivalent. You draw dashes separated by a s
 
 The dash disappears in favor of the void space. It's actually quite the nifty operation.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Dashoffset offset={0.2} />
-</Center>
+</div>
 
 Enough theory, however. Instead of applying the offset one time, we want to animate the value.
 
@@ -280,9 +278,9 @@ Since the animation lasts exactly 1 second you can get by using the counter as-i
 
 At the end of the day, what matters the most is that the warm season is almost upon us.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Canvas />
-</Center>
+</div>
 
 Small note: to give you the opportunity of playing the animation at your leisure I had to recreate the effect with JavaScript and the Web animation API. If you code along, however, CSS is able to complete the effect all on its own.
 
@@ -316,8 +314,8 @@ If the width of the stroke allows it, we are more than glad to repeat ourselves.
 
 At this juncture we can draw something else, like a fitting, blooming flower. I'll let you design your own blossom, but for my version, I took inspiration from a [previous article](/a-star-is-born) dedicated to a cherished celestial body.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Tree />
-</Center>
+</div>
 
 Hope you don't mind the inclusion of one more branch as well. A star was born, and is now time for spring to shine.

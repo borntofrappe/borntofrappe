@@ -40,31 +40,45 @@
 	};
 </script>
 
-<button on:click={handleAnimation}> Animate </button>
+<div>
+	<button on:click={handleAnimation}> Animate </button>
 
-<svg bind:this={svg} viewBox="0 0 70 55">
-	<title>Spring has sprung</title>
-	<defs>
-		<symbol
-			id="symbol-blossom"
-			viewBox="-25.44444465637207 -26 49.88888931274414 48.133331298828125"
-		>
-			<path
-				fill="#e798a1"
-				d="M 0 20 Q -21 28 -20 6 Q -34 -11 -12 -17 Q -1 -35 11 -17 Q 33 -11 19 6 Q 20 28 0 20"
+	<svg bind:this={svg} viewBox="0 0 70 55">
+		<title>Spring has sprung</title>
+		<defs>
+			<symbol
+				id="symbol-blossom"
+				viewBox="-25.44444465637207 -26 49.88888931274414 48.133331298828125"
+			>
+				<path
+					fill="#e798a1"
+					d="M 0 20 Q -21 28 -20 6 Q -34 -11 -12 -17 Q -1 -35 11 -17 Q 33 -11 19 6 Q 20 28 0 20"
+				/>
+				<circle fill="#fbf4f6" r="8" />
+			</symbol>
+			<use
+				id="blossom"
+				href="#symbol-blossom"
+				x="-1.5"
+				y="-1.5"
+				width="3"
+				height="3"
+				stroke="none"
 			/>
-			<circle fill="#fbf4f6" r="8" />
-		</symbol>
-		<use id="blossom" href="#symbol-blossom" x="-1.5" y="-1.5" width="3" height="3" stroke="none" />
-	</defs>
-	<g transform="translate(35 54)">
-		<g fill="none" stroke="#8a6f68" stroke-linecap="square">
-			<Branch />
+		</defs>
+		<g transform="translate(35 54)">
+			<g fill="none" stroke="#8a6f68" stroke-linecap="square">
+				<Branch />
+			</g>
 		</g>
-	</g>
-</svg>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	button {
 		display: block;
 		margin-inline: auto;

@@ -5,8 +5,6 @@ date: 2023-09-14T10:34:40
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import html from './html.js';
 	import Squiggle from './Squiggle.svelte';
 </script>
@@ -41,9 +39,9 @@ Each primitive has a function, a way to modify the input graphic. To create an o
 
 The `radius` attribute argues for the size of the expansion. But without diving into the often puzzling world of [filter units](/units-in-conflict), know that the value is not relative to the size of the text. In this manner, the growth is uniform, across the entirety of the wider-than-taller figure.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html html['fe-morphology']}
-</Center>
+</figure>
 
 We care solely of the excess, the portions stretching past the input string and for this, we have access to `feComposition`. The primitive takes two inputs with the `in` and `in2` attributes. On top of these values, it considers an `operator`, which details the type of composition. The value of `out`, in this instance, suits our needs best.
 
@@ -53,9 +51,9 @@ We care solely of the excess, the portions stretching past the input string and 
 
 In goes the result of the previous primitive, the implicit value assumed by the `in` attribute. In goes the source graphic, explicitly mentioned through the value of `SourceGraphic`. With the chosen operator, the function takes the parts of the first image which do **not** overlap with the second. You end up carving a stroke, and you are almost done.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html html['fe-composite-out']}
-</Center>
+</figure>
 
 Not quite done however. You do have a stroke, but a stroke only, with the color of the input graphic as well.
 
@@ -69,9 +67,9 @@ And you can trust another primitive to set the base.
 
 `feFlood`, with a given `flood-color`, looks deceptively simple. In its effect, then, it is equally straightforward.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html html['fe-flood']}
-</Center>
+</figure>
 
 The primitive works to paint with the color over the entirety of the rectangular area containing the input text. On its own, the element does little but obscure your view, but as part another element, the function is exactly what you need.
 
@@ -94,9 +92,9 @@ Name the result of the carving operation as `stroke`. For good measure, mark the
 
 In goes the color-flooded rectangle, in goes the stroke. The result, a preciously tinted outline.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html html['fe-composite-in']}
-</Center>
+</figure>
 
 There's just one thing missing, the input text. Indeed, the sequence of primitives builds a colored outline, but it also replaces the text with the output image. To bring the letters back, in their unfiltered version, you need the contribution of one last element, `feMerge`.
 
@@ -109,9 +107,9 @@ There's just one thing missing, the input text. Indeed, the sequence of primitiv
 
 In the body of the element, and with instances of `<feMergeNode>`, you point to individual layers. Here the result of the last primitive, the colored stroke, and then `SourceGraphic` itself. `feMerge` adds the two in sequence, finalizing the effect.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html html['outline-filter']}
-</Center>
+</figure>
 
 There is a slight problem with the visual. If you pay close attention to the letters, especially the more rotund characters, you might notice that the outline is irregular, at times choppy. Unfortunately, this is a side effect of `feMorphology`, of the very first primitive. The reason is quite technical, but in a few words, the expansion works on pixel values. The filter considers the individual squares to decide whether or not to color the surrounding pixels. Painting with squares, the stroke cannot help but be rough around the edges.
 
@@ -149,12 +147,12 @@ There's only one hiccup with the code, due to the stroke's own nature. As the st
 
 With its value you dictate the order of operations. Add `stroke` and the stroke is painted _before_ the solid fill which follows. Add `stroke` and the effect is complete.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html html['outline-stroke']}
-</Center>
+</figure>
 
 Use a filter and you find a first, reasonable solution. Stick to SVG elements and the `stroke` attribute might be all that you need. You can still have a filter pitch in though. Once you understand the sequence, you can set up many more features. Delicate or exaggerated as they might be.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Squiggle />
-</Center>
+</div>

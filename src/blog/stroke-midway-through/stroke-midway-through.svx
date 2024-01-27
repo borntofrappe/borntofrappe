@@ -5,8 +5,6 @@ date: 2023-04-07 10:05:17
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -35,17 +33,17 @@ Add a sizable stroke.
 
 Immediately, there's nothing wrong with the resulting picture. You find a regular polygon with a clear outline.
 
-<Center element="figure" maxInlineSize="14rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['rect']}
-</Center>
+</figure>
 
 And yet, especially if you are fond of proportions, something is off. There is a square 100 units wide and tall. There is a stroke 10 units thick. But is the outline really 10% of the complete visual?
 
 The answer is glaringly obvious as you round the corners of the rectangle, or again as you draw an entirely different shape, like a perfect circle.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['stroke-issue']}
-</Center>
+</figure>
 
 In SVG, for better and this time for worse, the stroke is drawn on top of the area highlighted by the `fill` attribute, and it grows symmetrically on one side and the other.
 
@@ -81,9 +79,9 @@ Both options grant enough space for the grown elements. Both options, however, n
 
 Translate the shapes by exactly half the stroke's width and the outline is shown in full.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['stroke-fix']}
-</Center>
+</figure>
 
 I personally lean on the second option, so that the elements responsible for the drawing keep the same defining attributes.
 
@@ -93,9 +91,9 @@ Now, you may dread the moment you introduce a `stroke` on vector graphics, but a
 
 Consider the following needlepoint.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['needlepoint']}
-</Center>
+</figure>
 
 You don't need to create the elements for every layer, and through the `stroke` attribute, you can fabricate the entire piece repeating just two shapes.
 
@@ -135,9 +133,9 @@ And the pattern doesn't stop with the circle. The vibrant heart in the center, d
 
 Is repeated twice, again with a thicker and thinner stroke. No need to figure out the correct numbers for the control points of the smaller version.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['breakdown']}
-</Center>
+</figure>
 
 ## For text
 
@@ -158,9 +156,9 @@ Add a stroke to contrast the color picked for the characters.
 
 And the stroke does appear, at the expense of fill attribute.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['text-issue']}
-</Center>
+</figure>
 
 This goes back to the issue at hand: the stroke is drawn symmetrically, and also _on top_.
 
@@ -178,9 +176,9 @@ But this time, SVG has a solution in the form of the `paint-order` attribute. In
 
 And the fill is shown in full; the outline works as a smooth base.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['text-fix']}
-</Center>
+</figure>
 
 You need to double the width of the stroke if you want to keep a consistent size, and as the letters get cozier, this is one occasion where a bit of a breathing room is more than welcome. The perfect use-case for the `letter-spacing` attribute.
 
@@ -199,6 +197,6 @@ You need to double the width of the stroke if you want to keep a consistent size
 
 Whether you fancy embroidery, or just want to have text pop on the page, the `stroke` attribute is your best bet. Consider a few quirks, explore the SVG spec, and you are ready to celebrate the fruits of your labor.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['patchwork']}
-</Center>
+</figure>

@@ -5,10 +5,7 @@ date: 2024-01-23T18:35:21
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-	
     import svg from './svg.js';
-	
     import ObjectBoundingBox from './ObjectBoundingBox.svelte';
 	import UserSpaceOnUse from './UserSpaceOnUse.svelte';
 	import Gradients from './Gradients.svelte';
@@ -107,9 +104,9 @@ Be it relative to the bounding box or the parent coordinate system the units of 
 
 In this instance you see that the gradient continues with solid colors outside of the specified range.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['spread-method']}
-</Center>
+</figure>
 
 This is the default behavior, to pad the area with the color of the nearest `stop` element, and as a default you can appreciate the sensible choice to continue using the shades. That being said, you can change the option with the `spreadMethod` attribute, normally set to the normal value of `pad`.
 
@@ -130,9 +127,9 @@ Instead of continuing with the color of the second stop you can set the `spreadM
 
 You can take advantage of these values to create repeating gradients, be it for evident stripes or more nuanced waves.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['spread-methods']}
-</Center>
+</figure>
 
 ## Save for later
 

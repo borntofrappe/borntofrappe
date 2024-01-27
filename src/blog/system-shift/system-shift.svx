@@ -5,10 +5,7 @@ date: 2023-12-20T18:18:14
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
-
 	import Coordinates from './Coordinates.svelte';
 	import Origins from './Origins.svelte';
 	import Ruler from './Ruler.svelte';
@@ -32,9 +29,9 @@ In SVG, the logic is turned upside down, almost literally. Greater x values move
 
 Why is that? I can tell you this is not a far-fetched idea. Most graphical systems, canvas and SVG included, follow the same scheme, ingrained by CRT displays. In this founding technology images are realized intermittently, with laser guns projecting lights line after line, left to right, top to bottom.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['crt']}
-</Center>
+</figure>
 
 Back to the `viewBox` attribute. Consider the following sequence.
 
@@ -52,9 +49,9 @@ viewBox="min-x min-y width height"
 
 Here you find where the canvas begins, horizontally and vertically. But if a change of words is not much, consider a small thought experiment with a JavaScript-powered demo. With the support of a simple, but essential school supply: a ruler. If you place such a tool down you can see the ruler measures a fixed size from a given origin — 0. The moment you update the position you move horizontally.
 
-<Center maxInlineSize="40rem">
+<div class="[ center-frame ]" data-size="large">
 	<Ruler />
-</Center>
+</div>
 
 The size does not change, but where the canvas starts does. The markers shift accordingly. With a positive offset you move to the right, to greater digits. A negative measure works in the opposite direction, toward smaller coordinates.
 
@@ -110,6 +107,6 @@ The half is drawn from the center. The copy is flipped from the same advantage p
 
 There is more than one way to explain `viewBox`, more than one a motive for doing so. And many, many shapes in sight.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]">
 	{@html svg['points']}
-</Center>
+</figure>

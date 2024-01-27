@@ -63,7 +63,7 @@
 	}
 
 	article > * + * {
-		margin-block-start: 0.5rem;
+		margin-block-start: 0.75rem;
 	}
 
 	div {

@@ -5,8 +5,6 @@ date: 2024-01-02T14:36:12
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import LinearGradient from './LinearGradient.svelte';
 	import RadialGradient from './RadialGradient.svelte';
 </script>
@@ -96,9 +94,9 @@ One way to change this direction? With four familiar attributes, working in tand
 
 It's as if you were drawing a line, starting from one point, one color, to the other, end and hue.
 
-<Center maxInlineSize="40ch">
+<div class="[ center-frame ]" style="--frame-size: 40ch">
 	<LinearGradient />
-</Center>
+</div>
 
 If you have the opportunity of running JavaScript you should be able to experiment with the gradient yourself, and discover the richness of the new color choices.
 
@@ -137,9 +135,9 @@ And refer to the gradient in the base rectangle.
 
 In this instance, you might have guessed it already, the gradient radiates from the center of the shape, to assume the second stop color on the edges of the hypothetical circle. By default, all attributes are set to 0.5, but understandably, you can change all these values with the same syntax: `r`, `cx`, `cy`.
 
-<Center maxInlineSize="40ch">
+<div class="[ center-frame ]" style="--frame-size: 40ch">
 	<RadialGradient />
-</Center>
+</div>
 
 In truth, and unlike the linear alternative, there are a handful more attributes to tweak the geometry, the influence of the circle. But their inclusion is far less intuitive, and once again, worth its own focused piece.
 

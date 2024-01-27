@@ -5,8 +5,6 @@ date: 2023-03-13 9:21:28
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import Scene from './Scene.svelte';
     import TransformRotate from './TransformRotate.svelte';
@@ -50,9 +48,9 @@ Finally, two rounded lines extending from the sides to support the piece.
 
 With the same color in the `fill` and `stroke` attributes the elements coalesce in the solid recipient.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['cauldron']}
-</Center>
+</figure>
 
 ### Flames
 
@@ -85,9 +83,9 @@ Add a soft stroke around both shapes.
 
 And making sure to use the same color as the `fill` attribute, you eventually breathe life into the fire.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['flame']}
-</Center>
+</figure>
 
 No matter how beautiful, a solitary flame is not enough for our cooking needs, though. You can actually give an `id` attribute to the shape and repeat it right afterwards, but for the sake of clarity, define a group in a <defs> element.
 
@@ -128,17 +126,17 @@ And with the now-familiar scale keyword you can even reduce the size as you move
 
 How much to angle, how much to scale down each additional pair is a matter of taste, and one of the most entertaining parts of writing SVG in a code editor. Experiment with different values until you find a heart-warming sight.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['flames']}
-</Center>
+</figure>
 
 ### Goo
 
 Even with a limited number of SVG elements, it doesn't take much to embellish the visual. Consider the stylized cauldron. Add a few colorful lines on the right end — perhaps through `<path>` elements with a noticeable, yellow-ish stroke — and the concoction becomes much more believable.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['goo']}
-</Center>
+</figure>
 
 You can't see inside, but there is no doubt that something is warming up, and the exquisite elixir is going to reach the surface and escape the frame. Especially with such kindling.
 
@@ -178,17 +176,17 @@ Multiple use elements.
 
 Positioned and scaled to your heart's content.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['bubbles']}
-</Center>
+</figure>
 
 ### Spoon
 
 One last instruction before we dive in the entertaining realm of cascading stylesheets. Add a line just behind the cauldron.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
     {@html svg['scene']}
-</Center>
+</figure>
 
 And the scene is set. After all, it would be irresponsible to leave the preparation unattended.
 
@@ -261,9 +259,9 @@ Easing functions, durations. Even the structure of the keyframes is ground for e
 
 A subtle effect with hopefully grander consequences.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Scene animations={['flicker']} transition={false} />
-</Center>
+</div>
 
 ### Float
 
@@ -315,9 +313,9 @@ Here you can continue the exploration of CSS properties. Again different duratio
 
 Little tweaks which add variety and are bound to delight the eye.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Scene animations={['flicker', 'float']} transition={false} />
-</Center>
+</div>
 
 As the elements reach the top the animation starts immediately and from the bottom. It's only natural, however, to see the bubbles pop out of existence.
 
@@ -333,9 +331,9 @@ A horizontal translation would be enough, but another function offers a differen
 
 If you then rotate the element, the line turns around the specific hinge. Much similarly to a windshield wiper.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
 	<TransformRotate />
-</Center>
+</div>
 
 You do need to position the path first, so that it is visible behind the cauldron, but the result promises to be worth the effort.
 
@@ -361,9 +359,9 @@ Target the element with your dearest selector and apply the rotation with a most
 
 Translate, rotate. I mentioned the functions one at a time, but as a final playground you can try and mix them up. You could translate the spoon _and_ tip it at the same time, perhaps with a smaller angle. Enough to stir character in the animation.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Scene animations={['flicker', 'float', 'stir']} transition={false} />
-</Center>
+</div>
 
 ## Wrapping up
 
@@ -373,8 +371,8 @@ You now have a sweet loading animation, and unlike most recipes, a considerable 
 
 Starting with the gooey lines. I almost forgot to have them grow in size, so let me add the feature without much explanation. A one time change as the animation begins.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Scene />
-</Center>
+</div>
 
 Once again a small update with a disproportionate result, completing a loader which oozes in flair.

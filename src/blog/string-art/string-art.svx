@@ -5,8 +5,6 @@ date: 2023-08-29T09:34:52
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Intro from './Intro.svelte';
 	import PointsAndPaths from './PointsAndPaths.svelte';
@@ -124,12 +122,12 @@ lines += `M ${x1} ${y1} ${x2} ${y2}`;
 
 With `<line>`s, with `<path>`s, with one single `<path>`, you have ways to mark the document and fill the circle. You can entertain the idea with a small playground.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<PointsAndPaths />
-</Center>
+</div>
 
 And you can definitely put the concept to good use and craft the quaint vector graphic of your dreams.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['dream-catcher']}
-</Center>
+</figure>

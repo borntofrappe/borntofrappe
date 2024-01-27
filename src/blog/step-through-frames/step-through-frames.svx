@@ -5,7 +5,6 @@ date: 2023-10-16T11:34:38
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
 	import svg from './svg.js';
@@ -16,9 +15,9 @@ In pixel art I find a source of great inspiration. You would think that the styl
 
 With SVG you are able to draw a sprite down to the smallest pixel. Leaning on the different elements, you can also draw a more realistic figure, with veritable vector shapes.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['bob-ombs']}
-</Center>
+</figure>
 
 Zdog is well equipped to recreate the shapes, but behind the library there is no 3D engine. At the end of the day, whether [in a canvas or an svg node](/pseudo-3d-element), the graphic is rendered in two dimensions, and the result is that the picture is often a small step from the vector drawing. How to improve the illustration?
 
@@ -46,8 +45,8 @@ new Box({
 
 I tend to indulge in a touch of animation, which puts a nice ribbon on the entire package, but even without smooth transitions, these changes are often enough. You might be surprised just how much you can achieve toying the two concepts alone.
 
-<Center element="figure" maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<BobOmb />
-</Center>
+</div>
 
 <ZdogMonday />

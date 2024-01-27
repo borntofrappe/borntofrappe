@@ -5,8 +5,6 @@ date: 2023-06-07T09:12:43
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Intro from './Intro.svelte';
 </script>
@@ -52,9 +50,9 @@ With the numbers you can build the `viewBox` attribute with pinpoint precision. 
 
 Feel free to remove the `id` if it troubles you to have unnecessary attributes. Even the group element if you want to save a few more bytes. Eventually you find the subject, alone in its rightful aspect ratio.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['butterfly']}
-</Center>
+</figure>
 
 But something isn't quite right. Do not worry, there is no problem with the aperture of your system. And I certainly did not place my fingers around the lens to mess up the shot. The "issue": `getBBox` does not account for the `stroke`.
 
@@ -87,8 +85,8 @@ And nudge the graphic to the right, and then down, by half the same amount.
 
 Free at last, to enjoy the adorable critter. Or again the cute squirrel hiding in the corner.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html svg['squirrel']}
-</Center>
+</figure>
 
 A pretty nice way to get in the weeds of SVG. {@html svg['smile']}

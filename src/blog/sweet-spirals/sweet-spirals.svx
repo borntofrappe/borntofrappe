@@ -5,8 +5,6 @@ date: 2023-08-15T15:33:31
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import JavaScript from './JavaScript.svelte';
 	import Zdog from './Zdog.svelte';
@@ -21,9 +19,9 @@ To draw a spiral in SVG the `<path>` element opens a way with the [often mysteri
 
 Starting from a specific point, draw a semicircle in one direction, reverse the trend while doubling the length of the arc. Repeat the exercise and as you connect the points with the ever expanding shape, you compose a first, convincing sketch.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	{@html svg['spiral']}
-</Center>
+</figure>
 
 The result is solid, but with the assistance of JavaScript we can go further. The logic relies on _polar coordinates_, a concept you might have put already to use to draw a circle as a series of connected points. In a few words, you have an angle and a radius.
 
@@ -65,9 +63,9 @@ for (let i = 0; i < length; i++) {
 
 Starting from 0, the first point sits in the very center. Every successive dot is pushed further and further away. Away and around the shared origin. Connect the values and gradually you have it, a new spiral.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<JavaScript />
-</Center>
+</div>
 
 The feature is quite notable, but as the spiral keeps growing, as the distance between the points increases, you do notice an issue. You don't really have a series of curves, but a sequence of straight segments, linked to one another.
 
@@ -91,12 +89,12 @@ Increase the angle to rotate around the center. Increase the radius to expand in
 
 Rotate the graphic around [the available axes](/rotate-3d) and the spiral is realized anew with a remarkable swirl.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Zdog />
-</Center>
+</div>
 
 Be it with SVG, JavaScript, JavaScript and friends you have the ingredients to craft more shapes. You have a way to whip up more complex, sweet figures.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Treats />
-</Center>
+</div>

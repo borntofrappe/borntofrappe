@@ -5,17 +5,15 @@ date: 2023-07-26T15:11:27
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Entries from './Entries.svelte';
 </script>
 
 I have a tendency, a preference for writing SVG "by hand", in a code editor rather than a graphics program. The process might seem tedious and laborious, but I often can't help myself. There's so much to appreciate in the syntax, even from the combination of a few elements and attributes. Case in point, consider the following entries modeled after a block-sized mobile video game.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['entries-081-082']}
-</Center>
+</figure>
 
 By the end of this article, you'll have drawn both sprites yourself and you'll be free to experiment with other entries as well. There are bound to be more in the collection.
 
@@ -80,9 +78,9 @@ Again, the numbers are a mix of logic and your better judgment. You want the kno
 
 And that's it. The rectangles stack up to create the first entry.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['magnemite']}
-</Center>
+</figure>
 
 It is remarkable how little it takes to complete the drawing. And it is even more impressive how the syntax evolves for the second sprite.
 
@@ -134,9 +132,9 @@ Use and re-use in different spots with the `x` and `y` attributes. Use and re-us
 
 And that's _close_ to it. The code works to place the copies — you do find the trio in a short pyramid — but with one visual bug.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['corner-issue-fix']}
-</Center>
+</figure>
 
 At fault, the precious `rx` attribute we used for the base. We don't want a gap between the copies, so that the most immediate solution is to just remove the value.
 
@@ -193,9 +191,9 @@ And on the larger composition, repeating the sharp shapes, you get the final pic
 
 This time, the entry is truly complete.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['magneton']}
-</Center>
+</figure>
 
 And I do hope the `<clipPath>` element didn't discourage you from the overarching plot.
 
