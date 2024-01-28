@@ -187,6 +187,7 @@
 	main > :global(figure figcaption) {
 		font-weight: 700;
 		text-align: center;
+		margin-block-start: var(--step-space-100);
 	}
 
 	@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
