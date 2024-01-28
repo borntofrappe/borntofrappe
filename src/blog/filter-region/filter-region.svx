@@ -5,8 +5,6 @@ date: 2023-09-08T15:34:47
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Windowpane from './Windowpane.svelte';
 </script>
@@ -29,9 +27,9 @@ It is through the node, with a unique `id` and nested primitives that you build 
 
 Once you apply the filter to a different piece, say a `<circle>`, the change takes place. In the specific instance, the shape is replaced with a blurred picture.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-blur']}
-</Center>
+</figure>
 
 The code works swimmingly, but in the opening `filter` tag you have access to additional attributes, which help you describe the _filter region_, the area in which the filter operates.
 
@@ -55,9 +53,9 @@ Indeed, what happens the moment the area is not sufficient, what happens the mom
 
 In the snippet the blurring filter is updated with an horizontal inset. The filter region starts at 35%, or 0.35, of the width of the final area. And you would think this would result in the circle being partially blurred. Or at least, you'd aspire this to be the case. Alas, this is not what happens.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-region']}
-</Center>
+</figure>
 
 Even if you bemoan the result, there is no mistake in the output. The filter is working as it is supposed to work. The element is effectively replaced by the output of `<filter>`, and in particular, the output of the `feGaussianBlur` function. Logically, you find only the blurred region. Not the entire graphic.
 
@@ -87,8 +85,8 @@ With the unique label you are then able to repeat the very same structure with o
 
 After the shapes, you find the blurred version on top. With the limited view you preserve the image, unaffected by the filter region.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="large">
 	<Windowpane />
-</Center>
+</div>
 
 Overall, a refreshing manner to see the world outside. Through and past SVG filters.

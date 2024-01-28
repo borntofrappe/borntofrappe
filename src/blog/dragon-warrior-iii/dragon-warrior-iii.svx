@@ -5,8 +5,6 @@ date: 2023-04-09 11:18:50
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import ChangeStaff from './ChangeStaff.svelte';
     import Party from './Party.svelte';
@@ -26,9 +24,9 @@ Did he survive?
 
 Your only hint, the helmet.
 
-<Center element="figure" maxInlineSize="12rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['helmet']}
-</Center>
+</figure>
 
 The armor piece finds its way to a small village, suggesting a probable, cruel outcome.
 
@@ -48,15 +46,13 @@ Not alone.
 
 The local tavern affords a party of four, letting you recruit between highly skilled allies. Fighters, mages, clerics. There's no need to stress excessively on the team though. You'll have the opportunity to try different jobs, to wear different clothes. And even without a jester, there will be time for levity.
 
-<Center maxInlineSize="20rem">
-    <ChangeStaff />
-</Center>
+<ChangeStaff />
 
 For posterity and a small suggestion, however, let me immortalize a specific, elite squad. Supporting the hero you find here Edo, a fighter of unwavering faith. Ripa, a magic-infused sage fond of dancing. Icin, a feisty warrior with healing powers.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
     <Party />
-</Center>
+</figure>
 
 There is also Eon, an enterprising town setter, but her participation is as essential as short-lived — she'll have her own story to tell.
 
@@ -74,9 +70,9 @@ Monster battles offering the thrill of cheap gains. A full-blown, life-size boar
 
 A game you can try in an extremely slimmed down version, without trap doors or the risk of electrocution. One roll at a time.
 
-<Center maxInlineSize="42rem">
+<div class="[ center-frame ]" data-size="large">
     <Pachisi />
-</Center>
+</div>
 
 ## Celebration
 
@@ -88,10 +84,10 @@ A grand design across generations. An interconnected web of events past and yet 
 
 Held aloft in celebration, the mark shimmers solemnly before your eyes. A promise of hope and peace.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     <LotoSeal />
     <figcaption>The adventure continues</figcaption>
-</Center>
+</figure>
 
 The final sight brings an emotional closure to a glorious saga, and might just be enough to tempt you and revisit that wretched swamp.
 

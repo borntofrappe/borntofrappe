@@ -16,6 +16,6 @@
 	}
 
 	figure :global(> svg) {
-		max-inline-size: 18rem;
+		max-inline-size: 22rem;
 	}
 </style>

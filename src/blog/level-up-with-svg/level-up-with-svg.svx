@@ -5,8 +5,6 @@ date: 2023-10-11T14:34:56
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -36,9 +34,9 @@ There are many ways to style the shape, but if you need more than one copy, you 
 
 You can separate the copies with the `x` and `y` attributes and paint the squares with a different `fill`. The color ripples through the definition, so that you are able to create different types at a moment's notice.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['squares']}
-</Center>
+</figure>
 
 And you don't have to stop here. Say you want to repeat the squares in the colored version. Add an `id` to the `<use>` elements and repeat the process. Unique string on one side.
 
@@ -58,9 +56,9 @@ Copies with additional `<use>` elements
 
 Four squares, interspersed in a checkered pattern are appealing already.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['checks']}
-</Center>
+</figure>
 
 But if you care about repeating the sequence more often, the `<pattern>` element is a more fitting option. And the beauty is that you can keep the same code.
 
@@ -84,17 +82,17 @@ Use then a square — the shape might be familiar to you —, and point to the p
 
 0.5 in both dimensions means the pattern is repeated twice. The squares appear in four columns and rows. Halve the value and the repetition is reinforced, doubled.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['tiles']}
-</Center>
+</figure>
 
 You may have started with the one square, but by now you have at least five uses. Five variants. And this is one place where rigid logic benefits from an artistic touch. A perfect showcase of how SVG is both math, _vector_, and art, _graphic_.
 
 You can position the shapes in any which manner. With experimentation, and enough patience, you can build even the most impressive grid.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['grid']}
-</Center>
+</figure>
 
 And if you are so satisfied with the result that you want to make the grid into a pattern itself, you know how. Another `<pattern>` element.
 
@@ -118,6 +116,6 @@ How to draw shapes, how to repeat instances and how to repeat several more copie
 
 The specification has certainly more elements, more attributes, and to master them, you just need to practice. And perhaps a good use.
 
-<Center maxInlineSize="40rem">
+<div class="[ center-frame ]" data-size="large">
 	{@html svg['banner']}
-</Center>
+</div>

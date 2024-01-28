@@ -5,8 +5,6 @@ date: 2024-01-18T17:35:41
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Plant from './Plant.svelte';
 	import Growth from './Growth.svelte';
@@ -20,9 +18,9 @@ The goal is to update a vector, a picture of a nice potted plant. Here is the st
 
 You can copy the markup for the `svg` element, but you are more than welcome to create your own version, with `path`s, `rect` and any drawing element available in the language. Personally, I resolved to use the two types. One rectangle for the lid, and two paths, to complete the vase and grow a nice, roundish leaf.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['elements']}
-</Center>
+</figure>
 
 How are we going to update the vector? I'm open to suggestions, but I have at least two:
 

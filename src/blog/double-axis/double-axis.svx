@@ -5,7 +5,6 @@ date: 2024-01-22T10:35:17
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Ripples from './Ripples.svelte';
@@ -35,9 +34,9 @@ The illusion is complete as soon as you connect the two, 2D panels.
 
 Paying attention to the construction of a `path` element you can propose the figure with even more succinct syntax. And with enough munging, you can certainly take care to draw the faces of the cube separately, to entertain a few applications.
 
-<Center maxInlineSize="500px">
+<div class="[ center-frame ]" style="--frame-size: 500px">
 	<Ripples />
-</Center>
+</div>
 
 With Zdog, where you have the option of rotating the graphics on more than one axis and the possibility of drawing boxes, the effect is much easier to achieve.
 
@@ -83,8 +82,8 @@ As you rotate the entire illustration, the library takes care of crafting the 3D
 
 What if you animated a shape to move left and right? With the shift in perspective, the movement gains a new level of depth, almost literally. It's as if the shape were to leap on more than one axis. You just need to figure out which.
 
-<Center maxInlineSize="500px">
+<div class="[ center-frame ]" style="--frame-size: 500px">
 	<Jumps />
-</Center>
+</div>
 
 <ZdogMonday />

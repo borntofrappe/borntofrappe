@@ -5,8 +5,6 @@ date: 2023-09-04T10:34:17
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import PointLight from './PointLight.svelte';
 	import DistantLight from './DistantLight.svelte';
@@ -14,9 +12,9 @@ date: 2023-09-04T10:34:17
 
 When it comes to images and illustration, SVG shines for many reasons.
 
-<Center element="figure" maxInlineSize="42rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['flat-design']}
-</Center>
+</figure>
 
 Shapes are drawn with precise instructions, but while the result is exemplary, it is also flat. It is possible to add depth in the form of a light source, but to understand how, you need to dive into the complex world of SVG filters.
 
@@ -68,9 +66,9 @@ But based on the default behavior, you can save a few keystrokes and the hassle 
 
 By default, the first primitive receives the source graphic. This is exactly what happens with the blur filter without the `in` attribute.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-blur']}
-</Center>
+</figure>
 
 Every primitive which follows, another blur for instance, receives the output of the previous function.
 
@@ -105,17 +103,17 @@ Indeed, it is not enough to rely on a lighting function like `feDiffuseLighting`
 
 As other primitives, the element returns one output, and in this instance the output is a layer consisting of nothing but light.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-light']}
-</Center>
+</figure>
 
 You want the light to alter the appearance of the elements, and not replace them entirely. Therefore, you need the help of at least two more primitives.
 
 First: `feComposite`. With the `operator` attribute set to `in` the function takes two inputs to consider only the parts of the second which overlap on the first.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-composite']}
-</Center>
+</figure>
 
 Applied to the bright layer, this means the light can be constrained, kept only in the relevant area — the original picture.
 
@@ -133,9 +131,9 @@ Second and last: `feBlend`. Once you have a light, and this light occupies the a
 
 Set to `screen`, the primitive takes the colors from the input images, adds their values together before subtracting their product. In less mathematical terms, the function gives more importance to brighter hues, a fitting choice for the matter at hand.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['filter-blend']}
-</Center>
+</figure>
 
 You create a bright layer, cut out the portions of the layer which are not pertinent and then combine the result with the shapes. The sequence is involved, but works to illustrate the point. Of course, you do need to create a bright layer first.
 
@@ -173,15 +171,15 @@ You set three coordinates for the position of the light as a point in the x-y-z 
 
 Think of the z axis as an arrow, escaping the picture in your general direction. A higher value has the light source higher and higher, closer and closer to your point of view. You can imagine it, for sure, but you can also picture the change from a top-down perspective.
 
-<Center maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="large">
 	<PointLight />
-</Center>
+</figure>
 
 Pick a color for the light and tinker with the strength of the wrapping filter. Experiment with the position of the source and the light is cast.
 
-<Center element="figure" maxInlineSize="14rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['filter-diffuse']}
-</Center>
+</figure>
 
 ### Specular
 
@@ -209,15 +207,15 @@ With `azimuth` you update the position of the light as an angle in the x-y plane
 
 With `elevation`, on the other hand, you update the position as an angle above the surface, extruding the 2D picture. It is a tad more challenging to visualize the result, but again think of the dome in a 3D space. Think of the light as positioned to the very right, with `azimuth` set to 0. When you elevate the source, the point moves upwards, but also closer to the center, tracing the outline of the imaginary shape. Of course, it helps to have more than one perspective.
 
-<Center maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="large">
 	<DistantLight />
-</Center>
+</figure>
 
 The primitive is hard to explain, but has its own perks. It works as a camera, pointing to the shapes from different angles to highlight the elements from a specific direction.
 
-<Center element="figure" maxInlineSize="14rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['filter-specular']}
-</Center>
+</figure>
 
 ## Unfiltered
 

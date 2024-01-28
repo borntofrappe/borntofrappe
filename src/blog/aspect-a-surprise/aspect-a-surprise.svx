@@ -5,8 +5,6 @@ date: 2023-06-22T16:15:01
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Intro from './Intro.svelte';
 	import svg from './svg.js';
 </script>
@@ -23,15 +21,15 @@ Consider an unassuming, 1 by 1 canvas with a rough sketch.
 
 Left to its own devices, or again sized with the same width and height, the element and the canvas share the same aspect ratio. The element and the canvas remain a square, and you get to appreciate whatever you drew in the `viewBox` constraints.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['square']}
-</Center>
+</figure>
 
 Set the width and height in a 3 to 1 ratio, however, and something close to peculiar happens. The element grows to the fixed measures and the canvas adapts to preserve the original proportions. The artwork? The piece is left untouched and moves in the very center.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['rectangle']}
-</Center>
+</figure>
 
 This is the default behavior of `preserveAspectRatio`. [The article](/meet-aspect-ratio) tries to examine the attribute in details, but already, it's important to stress an important trait: the element grows into a rectangle, and the canvas follows. The field-of-view set with the `viewBox` effectively changes.
 
@@ -61,6 +59,6 @@ You may tweak `preserveAspectRatio` to show different portions, but you need to 
 
 You can look for a `<clipPath>` element to decide what to show once and for all, but while you are at it, you can lean in the feature and show a few more colors.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['surprise']}
-</Center>
+</figure>

@@ -2,8 +2,8 @@
 	import Tree from './Tree.svelte';
 </script>
 
-<section>
-	<div>
+<div class="layout">
+	<div class="content">
 		<p>
 			It would be slightly presumptuous of me to argue that <em>"it is the thought that counts"</em>
 			before gifting you an impressive graphic, but not every day happens to be Monday. On top of that,
@@ -17,17 +17,17 @@
 	<figure>
 		<Tree />
 	</figure>
-</section>
+</div>
 
 <style>
-	section {
+	.layout {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
 		justify-content: center;
 	}
 
-	section > * {
+	.layout > * {
 		flex-grow: 1;
 		flex-basis: calc((var(--threshold, 30rem) - 100%) * 999);
 	}
@@ -37,7 +37,7 @@
 		max-inline-size: 20rem;
 	}
 
-	div > * + * {
+	.content > * + * {
 		margin-block-start: 0.5rem;
 	}
 </style>

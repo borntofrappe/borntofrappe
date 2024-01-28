@@ -5,8 +5,6 @@ date: 2023-04-28T21:37:21
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
 	import FloatingKites from './FloatingKites.svelte'
     import svg from './svg.js'
 	import LineChart from './LineChart.svelte'
@@ -39,9 +37,9 @@ date: 2023-04-28T21:37:21
 
 {@html svg['defs']}
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['line-chart']}
-</Center>
+</figure>
 
 Whether you choose to draw the line with a `<path>` element and a sequence of points.
 
@@ -127,15 +125,15 @@ That you can show its influence in specific attributes such as `marker-mid`.
 
 There are a total of three marker-related attributes, and we'll get a chance to highlight them all, but to get started, `marker-mid` brings us a step from completing the task.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['marker-issue']}
-</Center>
+</figure>
 
 There's only one issue with the current setup, and to understand the problem, focus on a single joint.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
     {@html svg['marker-canvas']}
-</Center>
+</figure>
 
 The marker starts in the right spot, precisely on the point between the segments. As with most vector graphics, however, the point describes the top left corner of the canvas, and the circle is drawn off center.
 
@@ -155,9 +153,9 @@ To rectify this situation you have two attributes: `refX` and `refY`.
 
 The pair describes an offset relative to the `viewBox`, so that a value half the width, half the height is enough to shift the origin and produce the respectable graphic.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['marker']}
-</Center>
+</figure>
 
 ## Markers
 
@@ -190,9 +188,9 @@ On top of the circle, we can continue with an arrow, clearly pointing to the rig
 
 Working with a separate SVG you can test the visual as you code along. Tweak the numbers for the `d` attribute until the arrow looks centered; add a stroke to possibly round the edges. The possibilities at this juncture are close to endless, but for the sake of the line chart, it pays to be cautious.
 
-<Center element="figure" maxInlineSize="10rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['marker-start']}
-</Center>
+</figure>
 
 Ultimately, the vector is useful as a marker, as part of a greater whole, and should not overwhelm the larger visualization. You may change the size of the graphic, and we'll see how, but the element is also supposed to be quite small.
 
@@ -244,17 +242,17 @@ Quite reasonably, the attributes are relative to the width of the stroke, and st
 
 And it doesn't take much to stand out with these small touches. Repeat the process for the end of the line and the `marker-end` attribute — I went ahead and attempted a stylish pattern, and the chart is not only effective, but ready for prime time and the next big cycling competition. Or a more personal hiking trip.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['markers']}
-</Center>
+</figure>
 
 And this speaks further to the usefulness of the element, to the flexibility afforded by the syntax.
 
 Here you find a practical use case, a respectable, functional line chart. And to prove the concept even more, I welcome you to update the line with a new set of points. The markers will be sure to follow.
 
-<Center element="figure" maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
     <LineChart />
-</Center>
+</div>
 
 And of course there are unusual applications, like the radiant creature in [the cited article](/get-to-the-point). And if you need more proof, at the risk of spoiling too much, you need to look no further than the top of this very page. Behind the set of floating kites, you find only three `<path>` elements. Three elements with a colorful ribbon marking the points and ornate visuals marking the end.
 

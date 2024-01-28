@@ -5,8 +5,6 @@ date: 2023-05-25T16:04:37
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Flieth from './Flieth.svelte';
 	import Pulleth from './Pulleth.svelte';
 	import KeySplines from './KeySplines.svelte';
@@ -17,9 +15,9 @@ Be it through the `<animate>`, `<animateTransform>`, or the promising `<animateM
 
 To appreciate how, let's set up an arrow to fly through the air, slightly off course.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
 	<Flieth />
-</Center>
+</div>
 
 For the animaton I decided to move the scenery, move the clouds surrounding the focal piece with the `<animateTransform>` element.
 
@@ -59,9 +57,9 @@ Assuming two points for the start and end state, (0,0) and (1,1), in between par
 
 The horizontal coordinate describes the time relative to the complete change. The vertical measure, the progression achieved in the exact instant. A picture might help.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html svg['control-points']} 
-</Center>
+</figure>
 
 But [an excellent tool](https://cubic-bezier.com/#.78,.31,.22,.74) from [Lea Verou](https://lea.verou.me/2011/09/a-better-tool-for-cubic-bezier-easing/) will do much better to illustrate the concept. There's nothing like an interactive playground to solidify one's understanding.
 
@@ -126,6 +124,6 @@ Seeing is believing, and the tool could certainly help to improve our flying ani
 
 Though many tried, none could move, nor stir it. Here's a chance to have your turn.
 
-<Center maxInlineSize="26rem">
+<div class="[ center-frame ]">
     <Pulleth />
-</Center>
+</div>

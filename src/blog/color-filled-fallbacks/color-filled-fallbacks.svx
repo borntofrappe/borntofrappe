@@ -5,8 +5,6 @@ date: 2023-11-29T14:38:14
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -102,6 +100,6 @@ Forget the key, or manage to misspell the reference, and the second value assume
 
 CSS is flexible and forgiving, but so are HTML and SVG. And with a few precautions, you can trust the code to always paint something. Be it a gradient or a solid fill.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['fallback-values']}
-</Center>
+</figure>

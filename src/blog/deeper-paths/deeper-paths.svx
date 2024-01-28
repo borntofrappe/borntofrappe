@@ -5,8 +5,6 @@ date: 2023-10-18T15:34:54
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Path from './Path.svelte';
 	import Shape from './Shape.svelte';
@@ -47,9 +45,9 @@ new Zdog.Shape({
 
 Consider the triangle you've just seen in the two snippets. In the body of an `<svg>` node the shape is drawn point by point, marking the position of the vertices.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['path']}
-</Center>
+</figure>
 
 Behind the scenes I've styled the polygon with a `fill`, but also a `stroke`, making sure to round the edges. Not only to please your eyesight with a softer visual, but also to match another Zdog feature you're about to appreciate.
 
@@ -72,9 +70,9 @@ new Zdog.Shape({
 
 But why is that? Consider the result, tilted on the x axis and then the y axis.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	<Path />
-</Center>
+</figure>
 
 Zdog uses the stroke, a rounded stroke, to emulate depth. As you rotate the shape the library projects the points so that, even in 2D, your eyes are convinced. The triangle lives and breathes in three dimensions.
 
@@ -144,14 +142,14 @@ new Zdog.Shape({
 
 You are taking a detour, the long way round on the additional axis. And eventually, realize the shape.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	<Shape />
-</Center>
+</figure>
 
 I've used a distinct color for the copy and the sides, a darker version of the same hue, but that is up to your preference, how you choose to further stress the presence of the deeper picture.
 
 Zdog and the `path` property support more types of instructions, to draw arcs and bezier curves, but even with straight lines, the code helps you achieve a lot. Especially with more elaborate shapes.
 
-<Center element="figure" maxInlineSize="300px">
+<figure class="[ center-frame ]" style="--frame-size: 300px">
 	<CuckooClock />
-</Center>
+</figure>

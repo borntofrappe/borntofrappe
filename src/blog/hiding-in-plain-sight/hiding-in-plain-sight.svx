@@ -5,8 +5,6 @@ date: 2023-04-29T17:50:12
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
     import html from './html.js'
 </script>
 
@@ -47,9 +45,9 @@ Each stop needs but two attributes: `stop-color` and `offset`. The color is rath
 
 The code is solid and quite understandable. Applied on the rectangle, you end up with a gradient from white to goldenrod.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html html['gradient']}
-</Center>
+</figure>
 
 But what if you wanted to cast a proper light? You can add a bright layer.
 
@@ -69,9 +67,9 @@ And if you have the gradient go from white to transparent, you brighten up the s
 
 This is where you stumble on an interesting SVG quirk. The gradient starts as white, but disappears with a rather dark undertone.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html html['transparent']}
-</Center>
+</figure>
 
 And if you are not convinced, let me try to replicate the feat with regular CSS.
 
@@ -84,9 +82,9 @@ div {
 
 Set the background and the gradient on a sizable `<div>` element and the result is undeniably different.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html html['transparent-css']}
-</Center>
+</figure>
 
 Aside from the direction of the gradient — CSS works top to bottom, SVG left to right — the empty container ends up much brighter.
 
@@ -144,9 +142,9 @@ This is likely the biggest leap of logic in the entire sequence, so it might hel
 
 Twisted, but ultimately effective.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html html['mask']}
-</Center>
+</figure>
 
 ## Opacity
 
@@ -181,12 +179,12 @@ On top of these two, SVG offers a third attribute, and with luck it is named `st
 
 Leave it to CSS, lean on SVG, either solution works. Either solution shines a proper light.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html html['stop-opacity']}
-</Center>
+</figure>
 
 And at this point you can skip the twisted logic and the `<mask>` element. Or, rely on the element for its intended use, to hide and show parts of the vector. Elaborate and illuminating how it might be.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html html['picture']}
-</Center>
+</figure>

@@ -5,8 +5,6 @@ date: 2023-03-24 17:54:56
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js'
 	import Chroma from './Chroma.svelte'
 	import Translate from './Translate.svelte'
@@ -15,17 +13,17 @@ date: 2023-03-24 17:54:56
 
 Ask me to paint you a color-changing lizard and I would sketch you something like the following SVG.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['chameleon']}
-</Center>
+</figure>
 
 Circles for the evident, glaring eye. `<path>` elements for the round-ish head, body and the limbs. The setup is simple, but enough to convince you: before you sits a adorable chameleon.
 
 It isn't doing a very good job in hiding, but this particular reptile is a bit of a show-off. It doesn't mind being seen, and as a matter of fact, it delights in showing its full range of colors.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	<Chroma />
-</Center>
+</figure>
 
 How? Always with SVG. Let me set up a canvas with one conspicuous rectangle and explain in detail.
 
@@ -75,9 +73,9 @@ Small detail aside, to paint with the colors of the rainbow the <abbr title="Hue
 
 And you eventually find the finest rectangle.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['linear-gradient']}
-</Center>
+</figure>
 
 ## Rainbows
 
@@ -99,9 +97,9 @@ Going back to the linear gradient, past the `id` attribute we can specify the co
 
 From 0 to 1 the values instruct the gradient to go from left to right. Have the second point end earlier, at 0.5, and the gradient stops midway through.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['x-coordinates']}
-</Center>
+</figure>
 
 Set the `spreadMethod` attribute to `reflect`.
 
@@ -120,9 +118,9 @@ Set the `spreadMethod` attribute to `reflect`.
 
 And instead of completing the rectangle with the final value the second half mirrors the first. Purple, back to blue, green and eventually the original red.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['spread-method']}
-</Center>
+</figure>
 
 The result is charming, but you might anticipate how essential the change is for our animation. Repeat a rectangle to the left — essentially a copy just outside of the visible area.
 
@@ -141,15 +139,15 @@ Add a group around both shapes.
 
 The moment you translate the element you are re-introduced to the colors. From left to right.
 
-<Center maxInlineSize="22rem">
+<div class="[ center-frame ]">
 	<Translate />
-</Center>
+</div>
 
 Animate the change with CSS and voilà, the effect is complete.
 
-<Center maxInlineSize="22rem">
+<div class="[ center-frame ]">
 	<Animate />
-</Center>
+</div>
 
 The animation itself is endless, moving the two rectangles to the right before resuming the original offset.
 
@@ -203,9 +201,9 @@ And refer to the same with the `clip-path` attribute.
 
 The shapes you add in the clip describe the visible area. Consider for instance a path element, fittingly drawing an arc.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['path']}
-</Center>
+</figure>
 
 Include the shape not in the SVG, but in the boundaries of the clip.
 
@@ -217,10 +215,10 @@ Include the shape not in the SVG, but in the boundaries of the clip.
 
 And the rectangles are clipped accordingly.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['clip-path']}
 	<figcaption>A multicolored <span lang="fr">arc-en-ciel</span>.</figcaption>
-</Center>
+</figure>
 
 This is exactly what happens with the lizard. Instead of one arc, however, the clip includes the `<path>`s for the head, body and limbs.
 

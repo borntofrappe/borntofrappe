@@ -5,8 +5,6 @@ date: 2023-09-06T09:34:35
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -36,9 +34,9 @@ With lowercase letters the instructions are _relative_. Relative from the curren
 
 From where you are, draw a line 10 units to the right. Further, starting from that point draw a line an additional 10 units to the right and 8 units down. You certainly obtain a triangle, but twice as wide.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['absolute-relative-art']}
-</Center>
+</figure>
 
 Capital, lowercase. You can mix and match both versions in the same string, but if you are particular and like to keep things consistent, feel free to share in the preference of using one version only.
 
@@ -46,8 +44,8 @@ Only one question remains. Is it possible to draw a shape in one manner, change 
 
 Most of the time you end up with a completely different, disastrous picture. A predictably jumbled mess. But there are instances where it is indeed possible to analyze a different, but appreciated, result.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['abstract-art']}
-</Center>
+</figure>
 
 You _really_ have to look for it though.

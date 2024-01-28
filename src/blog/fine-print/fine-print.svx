@@ -5,8 +5,6 @@ date: 2023-06-05T09:32:10
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Intro from './Intro.svelte';
 	import BBox from './BBox.svelte';
@@ -31,9 +29,9 @@ Alas, this is not enough to find the characters on screen. If you were to test t
 
 The reason? Text is drawn from the baseline. Given a size of 16 pixels, the default font size, this means the string is actually 16 units off center.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['text-baseline']}
-</Center>
+</figure>
 
 There are many ways around the issue. You can position the element with the `x` and `y` attributes.
 

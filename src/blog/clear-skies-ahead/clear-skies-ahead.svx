@@ -5,8 +5,6 @@ date: 2023-01-30 21:57:22
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import Shadow from './Shadow.svelte';
     import Colors from './Colors.svelte';
@@ -17,9 +15,9 @@ date: 2023-01-30 21:57:22
 
 Luck is relative. Take this website for instance. If you have never stumbled on an error page, you might have never enjoyed the comforting presence of a shy, but helpful character. You don't have to look for trouble to find it, however.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Serena />
-</Center>
+</div>
 
 What fortune then. You don't even have to wonder too much how to create a similar mascot, nor how to reveal its true colors.
 
@@ -76,9 +74,9 @@ That being said, _where_ to place the circles is up to interpretation, and part 
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['circles']}
-</Center>
+</figure>
 
 There's a cloud. A bit _flat_, but convincing.
 
@@ -111,9 +109,9 @@ Once you then apply the mask to the actual drawing, you show the portions descri
 <use href="#c" mask="url(#mask)" />
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['mask']}
-</Center>
+</figure>
 
 I promise you, there is a veritable `<svg>` element in the page, not just an empty box. You only see the outline because of the mask. Trust me, there's also a point to the discussion.
 
@@ -138,9 +136,9 @@ Update the mask to:
 
 You offset the black circle to create a rather familiar sliver. Our shadow! Feel free to experiment with the handles and create your custom eclipse.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Shadow />
-</Center>
+</div>
 
 The best thing about this sliver is that it will never exceed the boundaries of the circle.
 
@@ -181,9 +179,9 @@ Use the new shape in place of the previous circle and there you have it. Perspec
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['masked']}
-</Center>
+</figure>
 
 Too much effort for an exceedingly small change? You'll be the judge. In the end you have a working shadow. What is more, the syntax is versatile enough to work with lots of bright colors — you need to update just the `fill` attribute the moment you use the shape.
 
@@ -192,17 +190,17 @@ Too much effort for an exceedingly small change? You'll be the judge. In the end
 +<g fill="#eb6a6a">
 ```
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Colors />
-</Center>
+</div>
 
 ## Cloud
 
 We now have two shapes, `c` and `cc`.
 
-<Center maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['shapes']}
-</Center>
+</figure>
 
 For the newly and improved cloud, it is helpful to actually use both: the flat version above, the elaborate circle below.
 
@@ -221,9 +219,9 @@ For the newly and improved cloud, it is helpful to actually use both: the flat v
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['cloud']}
-</Center>
+</figure>
 
 ## Faces
 
@@ -272,9 +270,9 @@ One horizontal line smack in the center is enough to introduce the mouth, and co
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<Face />
-</Center>
+</figure>
 
 Now, let's try to cheer things up with a few shapes. Add two ellipses below the eyes, two colorful cheeks.
 
@@ -299,9 +297,9 @@ Immediately after the horizontal line add a cheerful mug with a slightly more co
 
 Why drawing on top of the previous path? It'll make sense soon enough. Right now, let's enjoy the remarkable change brought by these small tweaks.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<Face trueColors={true} />
-</Center>
+</figure>
 
 ## Changes
 
@@ -366,17 +364,17 @@ Call the functions following the `mouseenter` and `mouseleave` events respective
 
 And, reap the rewards.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Serene />
-</Center>
+</div>
 
 ## Finishing touches
 
 [As with Ray](/ray-of-light), I hope you won't mind a couple of extra features, baked in the first version blessing this article.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Serena />
-</Center>
+</div>
 
 ### Bounce more
 

@@ -5,8 +5,6 @@ date: 2024-01-04T09:35:46
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import CircleLight from './CircleLight.svelte';
 	import SpotLight from './SpotLight.svelte';
 </script>
@@ -56,15 +54,15 @@ In this instance, the first color is indeed at the center of the circle, and slo
 
 This time, the change between colors is far less uniform. The distance between the 0, the focal point, and 1, the points on the radius, is not the same all around, and helps to give a different look to the final shape.
 
-<Center maxInlineSize="40ch">
+<div class="[ center-frame ]" style="--frame-size: 40ch">
 	<CircleLight />
-</Center>
+</div>
 
 There's almost a sense of depth, of three dimensions as you move the point around the center. But there's also a slightly compromising feature when picking the values for the now five attributes. And it happens when the focal point falls outside of the sizing circle.
 
-<Center maxInlineSize="40ch">
+<div class="[ center-frame ]" style="--frame-size: 40ch">
 	<SpotLight />
-</Center>
+</div>
 
 What happens may look strange, but is far from a mistake. More of an unfortunate accident of how the gradient truly functions. Remember the purpose of the attributes:
 

@@ -13,36 +13,42 @@
 </script>
 
 <div>
-	<p>Anything else for you today?</p>
+	<fieldset>
+		<p>Anything else for you today?</p>
 
-	{#each inventory as { name, price }}
-		<label>
-			<input bind:group={value} type="radio" value={name} />
-			<span>{name}</span>
-			<span>{price}</span>
-			<svg viewBox="-0.4 -0.4 3.8 4.8" width="15" height="20">
-				<path
-					stroke="currentColor"
-					stroke-width="0.8"
-					fill="none"
-					d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z"
-				/>
-			</svg>
-			<svg viewBox="0 0 3 4" width="15" height="20">
-				<path fill="currentColor" d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z" />
-			</svg>
-		</label>
-	{/each}
+		{#each inventory as { name, price }}
+			<label>
+				<input bind:group={value} type="radio" value={name} />
+				<span>{name}</span>
+				<span>{price}</span>
+				<svg viewBox="-0.4 -0.4 3.8 4.8" width="15" height="20">
+					<path
+						stroke="currentColor"
+						stroke-width="0.8"
+						fill="none"
+						d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z"
+					/>
+				</svg>
+				<svg viewBox="0 0 3 4" width="15" height="20">
+					<path fill="currentColor" d="M 0 0 l 1.25 0 1.75 2 -1.75 2 -1.25 0z" />
+				</svg>
+			</label>
+		{/each}
+	</fieldset>
+
+	<p>
+		<span aria-hidden="true" style:opacity="0" style:visibility="none">{secret}</span>
+		{#if reveal}
+			<span in:typewriter>{secret}</span>
+		{/if}
+	</p>
 </div>
 
-<p>
-	<span aria-hidden="true" style:opacity="0" style:visibility="none">{secret}</span>
-	{#if reveal}
-		<span in:typewriter>{secret}</span>
-	{/if}
-</p>
-
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	p {
 		position: relative;
 	}
@@ -63,13 +69,14 @@
 		block-size: 100%;
 	}
 
-	div {
+	fieldset {
+		margin: 0;
 		border-radius: 0.25rem;
 		border: 0.2rem solid currentColor;
 		padding: 0.75rem 1rem;
 	}
 
-	div > * + * {
+	fieldset > * + * {
 		margin-block-start: 0.5rem;
 	}
 

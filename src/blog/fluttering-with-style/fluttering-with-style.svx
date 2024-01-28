@@ -5,10 +5,7 @@ date: 2023-03-01T21:17:03
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js'
-	
 	import Commands from './Commands.svelte'
 	import ControlPoint from './ControlPoint.svelte'
 	import ControlPoints from './ControlPoints.svelte'
@@ -49,9 +46,9 @@ To get started, however, draw a round-ish shape with an `<ellipse>`.
 
 Realizing a wider-than taller base.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['mayo-1']}
-</Center>
+</figure>
 
 ### Legs
 
@@ -73,14 +70,14 @@ Don't be deterred by the long sequence of characters. Break down the steps and t
 
 - continue drawing lines per the pair of coordinates; first 7 to the right and 7 down, then 5.5 left and 3 up...
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Commands
 		x={-8}
 		y={-1}
 		width={16}
 		height={16}
 		commands="M 0 0 l 0 7 l 7 7 l -5.5 -3 l -1.5 3 l -1.5 -3 l -5.5 3 l 7 -7" />
-</Center>
+</div>
 
 Conveniently, you need to specify just the first `l` character. The browser assumes the same directive until told otherwise.
 
@@ -94,9 +91,9 @@ Conveniently, you need to specify just the first `l` character. The browser assu
 
 With a highly saturated fill and the stand is close to complete.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['leg']}
-</Center>
+</figure>
 
 We can't see the first line, however. Also, the sharp edges are at odds with the overall theme, they clash with the softer base.
 
@@ -115,9 +112,9 @@ By default `<path>` elements don't have a stroke. Beef up the shape with a solid
 
 A perfect way to match the ellipse.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['leg-stroke']}
-</Center>
+</figure>
 
 Of course you need two legs, and you want them below the ellipse. To solve the first issue, define the shape in a `<defs>` element.
 
@@ -158,9 +155,9 @@ Indeed, the `<g>` element is a fitting place for common attributes — `fill`, `
 
 Add the group _before_ the body, drawing the legs effectively behind, and half of the picture is already done.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['mayo-2']}
-</Center>
+</figure>
 
 ### Head
 
@@ -174,15 +171,15 @@ The moment you want to level up from straight lines to draw curves you have acce
 
 Use `q` and you draw a _quadratic bezier_ curve, connecting the start and end coordinates with the help of a control point.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<ControlPoint />
-</Center>
+</div>
 
 Prefer `c` and you realize a _cubic bezier_ curve, linking the positions with the guidance of _two_ control points.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<ControlPoints />
-</Center>
+</div>
 
 Both strings outline the bone structure for the mouth, but the more complex syntax emulates a couple of round cheeks as well.
 
@@ -210,9 +207,9 @@ Have the radii exactly half as the distance covered and the connection is comple
 
 In between the numbers you have three boolean values to toggle a few options. For the sake of a semicircle, you might need to change only the very last one, drawing the semicircle in a clockwise, or counter-clockwise, manner.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
 	<ClockwiseFlag />
-</Center>
+</div>
 
 Enough logic, however. Add a noticeable, rounded outline as with the legs.
 
@@ -238,9 +235,9 @@ Move the `<path>` up in a more fitting position.
 
 And the composition assumes a new identity.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['mayo-3']}
-</Center>
+</figure>
 
 ### Face
 
@@ -306,9 +303,9 @@ Place both elements slightly below the eyes.
 
 And the face of the ever more adorable chicklet is complete.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['mayo-4']}
-</Center>
+</figure>
 
 ### Wings
 
@@ -326,9 +323,9 @@ Create a single wing protruding to the right with a couple of tentative curves.
 
 Leading to a rather rugged visual.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['wing']}
-</Center>
+</figure>
 
 Add the now familiar and even more important stroke.
 
@@ -345,9 +342,9 @@ Add the now familiar and even more important stroke.
 
 And with the rounded joints, with the smooth edges the shape looks right at home.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['wing-stroke']}
-</Center>
+</figure>
 
 What is more, the numbers no longer seem arbitrary, but the result of a careful design. The realization of a full-fledged artist.
 
@@ -394,9 +391,9 @@ And the coordinate system _for the wing_ is essentially flipped. The instruction
 
 Similarly, the offset moves the instance westward, away from the center.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<Transform  />
-</Center>
+</div>
 
 There's an added benefit to the setup. As you translate the shapes — refer to the black dot in the visual — any transformation applied on the wings takes place from the new spot.
 
@@ -418,9 +415,9 @@ Rotate the mirror image on the left and the effect is one and the same.
 
 With the negative scale and the flipped coordinate system, you don't even need to consider a rotation in the opposite direction.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<Transform transformRotate={true} />
-</Center>
+</div>
 
 Transformations are likely one of the most puzzling sections when learning SVG, and certainly one of the most difficult sections to convey. Understanding the topic, however, opens a world of possibilities.
 
@@ -436,9 +433,9 @@ Back to the composition. Include the wings before the body, slightly above the c
 
 Rotate the elements 90 degrees to hide them for a brief moment and the mascot is ready to spring into action.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['mayo-5']}
-</Center>
+</figure>
 
 ### Crest
 
@@ -465,9 +462,9 @@ Add the staple stroke to mask imperfections.
 
 Hide the shape behind the head, slightly off center, and the result is striking. A small touch to add flavor and a twist to the character.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['mayo-6']}
-</Center>
+</figure>
 
 ## CSS animations
 
@@ -545,9 +542,9 @@ Through the class selector, then, point to the animation with your favorite easi
 
 The rapid succession means the choice is less than impactful, but there's always a place for a sine function.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Mayo animations={[]} />
-</Center>
+</div>
 
 ### Jump
 
@@ -600,9 +597,9 @@ Finally, pair the animation through the dedicated class.
 
 You are free to explore different durations and easing curves, but the same values chosen for the eyes work to create the incrementally impressive effect.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Mayo animations={["jump"]} />
-</Center>
+</div>
 
 ### Flap
 
@@ -659,9 +656,9 @@ And then have fun detailing as many flaps as you can possibly tolerate.
 
 Ready to be delighted?
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Mayo animations={["jump", "flap"]} />
-</Center>
+</div>
 
 ## Finishing touches
 
@@ -671,6 +668,6 @@ What is left is reaping the rewards of such a long, laborious journey. What is l
 
 Personally, I decided to indulge in one additional animation. This one traces the jump to have the entire mascot, legs included, move a smidge upwards and then down as the chicklet hits the ground. You'll be the judge if the extra bounce is worth the effort.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Mayo />
-</Center>
+</div>

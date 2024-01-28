@@ -5,8 +5,6 @@ date: 2023-06-13T11:10:09
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import html from './html.js';
 </script>
 
@@ -33,9 +31,9 @@ The solution works wonders to style paragraphs, buttons, or any content you migh
 
 Let's start with the design of a few icons. And do not worry, this time I will spare you the details of the syntax itself. There is a time for everything, and in this instance it is better to keep our focus on the task at hand.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html html['icons']}
-</Center>
+</figure>
 
 Suffice it to say, behind the icons you find a few `<path>` elements nested in one, large `<svg>`.
 
@@ -47,9 +45,9 @@ Suffice it to say, behind the icons you find a few `<path>` elements nested in o
 
 The icons sit side by side and you see each and every one of them. Conveniently, and by design, they share one more trait: they occupy the same space, the same square figure.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html html['icons-layout']}
-</Center>
+</figure>
 
 You may argue the visuals don't stretch to fill the boxes, but they are not meant to. And I challenge you to create a consistent rhythm, a cohesive set where the different icons share the same space.
 
@@ -81,9 +79,9 @@ Two more attributes complete the tag: `width` and `height`. The values are liabl
 
 And that's it, point to the resource and the icons appear in full, almost as in the beginning of this article.
 
-<Center element="figure" maxInlineSize="600px">
+<figure class="[ center-frame ]" style="--frame-size: 600px">
 	{@html html["img"]}
-</Center>
+</figure>
 
 `xmlns`? This is where the attribute proves its worth. Forget to specify [the namespace](https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course) and the image fails. The good news is you'll see the alt text in its place. And you have a jumbled sequence of characters to express your surprise.
 
@@ -128,9 +126,9 @@ And you now have a choice, a few options. To show the icons, the full set, refer
 
 You zoom in on the graphic, and you find the desired sprite.
 
-<Center element="figure" maxInlineSize="200px">
+<figure class="[ center-frame ]" style="--frame-size: 200px">
 	{@html html['view-element']}
-</Center>
+</figure>
 
 Hold your suspicions a tad longer. There are a few issues worth noting. Before we get there, however, it is useful to illustrate the second way to view the sprites.
 
@@ -157,9 +155,9 @@ Instead of accepting the default `viewBox`, the idea is to specify the attribute
 
 A view without a `<view>` element.
 
-<Center element="figure" maxInlineSize="200px">
+<figure class="[ center-frame ]" style="--frame-size: 200px">
 	{@html html['view-fragment']}
-</Center>
+</figure>
 
 ## A few hiccups
 
@@ -202,9 +200,9 @@ In this instance the width and the height are fixed to 200 pixels, and the image
 
 Mess up the aspect ratio though, try an image thrice as wide as it is tall, and something will definitely not escape your eyes.
 
-<Center element="figure" maxInlineSize="600px">
+<figure class="[ center-frame ]" style="--frame-size: 600px">
 	{@html html['img-aspect-ratio']}
-</Center>
+</figure>
 
 Yes, you see the icon, but surrounded by its two neighbors. A view acts as a zoom, a point of view for the larger graphic. It does not work to clip the area for the icon itself. As you scale the visual to the improper measure, the SVG grows as wide and tall as it possibly can, and the sibling icons come back in the spotlight.
 
@@ -243,8 +241,8 @@ _"And there, different images for different screen sizes"_.
 
 Well, I'm thrilled not to be the only one with often far-fetched thoughts. And I am left wondering, whether you are currently appreciating the decor or dreaming about the world outside.
 
-<Center element="figure" maxInlineSize="800px">
+<figure class="[ center-frame ]" style="--frame-size: 800px">
 	{@html html['picture']}
-</Center>
+</figure>
 
 You certainly wouldn't dare to resize the page to have it all.

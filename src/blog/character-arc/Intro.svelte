@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['rainbow']}
-	</div>
+	</figure>
 
 	<p>
 		SVG has a few elements to draw shapes. <code>&lt;rect&gt;</code> to draw rectangles,
@@ -24,18 +24,18 @@
 		intuitive. And as it often happens with vector graphics, the issue is best solved with practice,
 		testing the values first-hand.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 16rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: left;
 		inline-size: 100%;
 		margin: 0 1rem 0.5rem 0;
@@ -43,16 +43,16 @@
 	}
 
 	@media screen and (max-width: 30rem) {
-		section > div {
+		div > figure {
 			margin: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-end: 1rem;
 			align-self: center;
 			inline-size: 100%;

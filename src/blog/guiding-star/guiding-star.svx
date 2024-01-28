@@ -5,7 +5,6 @@ date: 2024-01-08T14:36:04
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Lodestar from './Lodestar.svelte';
@@ -15,8 +14,8 @@ If you were to research "_common sunflowers_" you would soon discover that their
 
 I was a bit shocked by the fact. Luckily, not enough to scrap a pseudo-3D graphic to highlight the powers of the radiant center of our galaxy, and the influence of its shining presence on a collection of now young, yellow buds.
 
-<Center maxInlineSize="700px">
+<div class="[ center-frame ]" style="--frame-size: 700px">
   <Lodestar />
-</Center>
+</div>
 
 <ZdogMonday />

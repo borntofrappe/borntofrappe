@@ -38,7 +38,7 @@ But this option may raise a few questions. A percentage of what?
 
 The value is not relative to the thickness of the stroke. If you change the `stroke-width` attribute the dashes keep the same length, to the point where you get a very different picture.
 
-<div class="side-frames" style="--frame-size: 22rem;">
+<div class="[ side-frames ]" style="--frame-size: 22rem;">
 	<figure>
 		{@html svg['percentage-width-1']}
 	</figure>
@@ -51,7 +51,7 @@ For a thin line, the dashes create almost a series of dots. For a thick line, on
 
 `stroke-dasharray` is not proportional to the length of the line either.
 
-<div class="side-frames" style="--frame-size: 22rem;">
+<div class="[ side-frames ]" style="--frame-size: 22rem;">
 	<figure>
 		{@html svg['percentage-length-1']}
 	</figure>
@@ -78,7 +78,7 @@ It is not enough to find the diagonal, however. You need to normalize the result
 
 Divide 5 by approximately 1.414 and you reach 3.536.
 
-<figure class="[ center-frame ]" style="--frame-size: 36rem;">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['normalized-diagonal']}
 </figure>
 
@@ -100,7 +100,7 @@ Working by reference, there's even one more option available through CSS lengths
 
 Set the width and the dashes to the unit and you now have a lever, irrespective of the size of the canvas.
 
-<div class="side-frames" style="--frame-size: 22rem;">
+<div class="[ side-frames ]" style="--frame-size: 22rem;">
 	<figure>
 		{@html svg['relative-width-1']}
 	</figure>
@@ -137,7 +137,7 @@ Without a script, there's an alternative in the markup, thanks to the `pathLengt
 
 Remember the sequence for `stroke-dasharray`, describing the dashes and gaps one after the other. With the snippet you find four dashes, between 0 and 0.1, 0.3 and 0.4, 0.6 and 0.7 and finally, 0.9 and 1 — the chosen threshold for the path's length.
 
-<div class="side-frames" style="--frame-size: 22rem;">
+<div class="[ side-frames ]" style="--frame-size: 22rem;">
 	<figure>
 		{@html svg['relative-length-1']}
 	</figure>

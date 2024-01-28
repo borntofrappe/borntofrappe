@@ -5,8 +5,6 @@ date: 2023-09-18T11:44:53
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Torus from './Torus.svelte';
 	import Lissajous from './Lissajous.svelte';
@@ -70,9 +68,9 @@ for (let i = 0; i < 10; i++) {
 
 You need to make sure the lines are shorter than the offset, but with enough tweaking, you can replicate the effect quite convincingly.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['stroke-dashes']}
-</Center>
+</figure>
 
 ## Dots
 
@@ -101,17 +99,17 @@ for (let i = 0; i < 20; i++) {
 
 Update the hue and you tap in the color wheel for a different color. The effect tends to work better with small increments, but again with enough tweaking, you are sure to complete the effect. Even in pseudo-3D.
 
-<Center element="figure" maxInlineSize="350px">
+<figure class="[ center-frame ]" style="--frame-size: 350px">
 	<Torus />
-</Center>
+</figure>
 
 And the hue is not the only part of the `hsl` function. Hue, saturation and lightness coalesce into one solid choice. And while the hue is bound to improve the pseudo-3D figure, the remaining channels have their own reason.
 
 There are several ways to add depth. Thinking back at the library, you create depth with elaborate projections and with judicious overlaps. On top of these you can add color temperature. Light colors tend to appear closer, while darker shades tend to recede further away.
 
-<Center element="figure" maxInlineSize="380px">
+<div class="[ center-frame ]" style="--frame-size: 380px">
 	<Lissajous />
-</Center>
+</div>
 
 No wonder the shape is 3D. Not only the shape is drawn with a set of three coordinates. Not only the illustration spins around the y axis. The figure is painted with a variable color, changing in increments and in lightness as you go along.
 
@@ -119,6 +117,6 @@ I've made sure the colors match at the beginning and end, closing the perfect lo
 
 If there is one thing I cherish about the library is the whimsy that comes from just trying things out. You may not have the options of CSS, nor SVG, but plenty of freedom to find a new friend.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	<Bracelet />
-</Center>
+</figure>

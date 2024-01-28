@@ -5,8 +5,6 @@ date: 2023-04-17T10:25:53
 ---
 
 <script>
-  import Center from '$lib/components/blog/Center.svelte';
-
   import svg from './svg.js';
 </script>
 
@@ -28,9 +26,9 @@ You have to be weary, however, and try not to be too smart with labels. And for 
 
 Say you draw a stylish analog clock. You spend a lot of time positioning the marks for the hours, and even rotate the hands to test the visual.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
   {@html svg['clock']}
-</Center>
+</figure>
 
 You create the graphic with an `<svg>` element and then decide to include it as part of a larger decoration — the perfect use case for a `<symbol>`. And by now you've seen how: add an `id` and you are able to repeat the visual in the position and dimensions of your choosing with the `<use>` element.
 
@@ -46,9 +44,9 @@ You slap a quick label on the asset and reference it.
 
 Except that this time, no matter your feelings toward the latest creation, the clock is not there. In its place, a familiar face.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
   {@html svg['clock-conflict']}
-</Center>
+</figure>
 
 The highly anticipated issue: there's already a `#clock` in the same page. You might have forgotten about it, but you are now reminded with a most visual feedback.
 
@@ -61,9 +59,9 @@ The fix: update the labels. And remind yourself to be less quippy the next time.
 
 The example is pedantic, and the solution is immediate, but only in context. Only if you know where to look.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
   {@html svg['clock-digital']}
-</Center>
+</figure>
 
 ## HTML
 

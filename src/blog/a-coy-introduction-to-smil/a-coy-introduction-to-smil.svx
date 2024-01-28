@@ -5,18 +5,16 @@ date: 2023-02-27T22:11:47
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
 	import svg from './svg.js'
 	import Koinobori from './Koinobori.svelte'
 </script>
 
 In the process of learning the syntax for the `<path>` element I created little vector graphics like the following.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['koinobori']}
     <figcaption>A stylized koinobori.</figcaption>
-</Center>
+</figure>
 
 If you inspect the source code for the streamer the _many_ instructions in the `d` attribute may appear to be intentional, the fruit of thoughtful consideration.
 
@@ -98,9 +96,9 @@ Then replace the directive with the more permissive `values`. Here you separate 
 
 The path starts with the familiar look, moves to the alternative and then back to the default version. Care to pick a favorite?
 
-<Center maxInlineSize="26rem">
+<div class="[ center-frame ]">
     <Koinobori />
-</Center>
+</div>
 
 Being the particular developer that I am, I went ahead and added a couple of tweaks to the syntax, and not just to allow you to take a break from the otherwise relentless loop. The core of the animation remains, however. And the three to four attributes are all that's required for smooth change.
 

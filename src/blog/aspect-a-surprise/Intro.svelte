@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['painting']}
-	</div>
+	</figure>
 
 	<p>
 		When you size an <code>&lt;svg&gt;</code> element with an existing <code>viewBox</code> you must
@@ -18,34 +18,34 @@
 		And starting with the default behavior, you will soon discover you often get more than you
 		expect.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 20rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: right;
 		inline-size: 100%;
 		margin: 0 0 0.5rem 1rem;
 	}
 
 	@media screen and (max-width: 32rem) {
-		section > div {
+		div > figure {
 			margin: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-start: 1rem;
 			order: 1;
 			align-self: center;

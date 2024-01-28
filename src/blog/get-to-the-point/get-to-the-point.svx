@@ -5,10 +5,7 @@ date: 2023-04-24T17:45:32
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
     import svg from './svg.js'
-
 	import PointerMove from './PointerMove.svelte'
 	import GraphPaper from './GraphPaper.svelte'
 	import Poxy from './Poxy.svelte'
@@ -135,9 +132,9 @@ And that's it. Move a cursor over the SVG, be it a mouse, a stylus or the tip of
 
 There is a note to make in terms of ranges, but feel free to navigate the canvas for a little bit.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]" data-size="medium">
 	<PointerMove />
-</Center>
+</div>
 
 Speaking of ranges, we compute the coordinates by dividing the offsets with the width and height. This means x and y fall in the 0 to 1 range, mapping perfectly to the size of the canvas — remember the `viewBox` attribute?
 
@@ -153,9 +150,9 @@ With different values you'd have to map the coordinates to the larger intervals,
 
 You are not limited to circles, and exploring the SVG syntax, the x, y values help to draw more creative visuals. Consider for instance this sheet of graph paper.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]" data-size="medium">
 	<GraphPaper />
-</Center>
+</div>
 
 Past the pattern decorating the background, past the dashed lines framing the origin of a 2D plane, you find a circle. But this circle is fixed in the origin.
 
@@ -203,9 +200,9 @@ The line is happy to point at the precise spot. And as you move the pointer, the
 
 I seem to remember a [past project](/charming-good-luck) which ended with a small failure and a quick workaround. We had a ladybug. Similar to this one.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['poxy']}
-</Center>
+</figure>
 
 And the task was to have the creature follow the cursor. We resolved to find the x, y values — with mouse and touch events — to compute the angle and then rotate the shape.
 
@@ -258,6 +255,6 @@ And feel free to even remove the stroke of the line.
 
 Whether you see it or not, the segment will reach out toward the pointer. And the faithful critter will be happy to follow.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Poxy />
-</Center>
+</div>

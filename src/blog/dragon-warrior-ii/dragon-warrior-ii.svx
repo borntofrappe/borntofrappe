@@ -5,8 +5,6 @@ date: 2023-02-12 21:57:28
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Heroes from './Heroes.svelte'
 	import JailKey from './JailKey.svelte'
 	import SailingShip from './SailingShip.svelte'
@@ -63,9 +61,9 @@ On the positive side, you'll cross great distances without meddling forks on the
 
 On the negative side, you might get lost adrift, enjoying the intermittent motion on the hunt for a precious sparkle.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
 	<SailingShip />
-</Center>
+</div>
 
 ## Lady luck
 

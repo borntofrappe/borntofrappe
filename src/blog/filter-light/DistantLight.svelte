@@ -15,34 +15,40 @@
 	}
 </script>
 
-<fieldset>
-	<legend>feDiffuseLight</legend>
-	<p>Update the position of the light source</p>
-	<label>
-		<span>azimuth: <output>{azimuth}</output></span>
-		<input type="range" min="0" max="360" bind:value={azimuth} />
-	</label>
-	<label>
-		<span>elevation: <output>{elevation}</output></span>
-		<input type="range" min="0" max="180" bind:value={elevation} />
-	</label>
-</fieldset>
+<div>
+	<fieldset>
+		<legend>feDiffuseLight</legend>
+		<p>Update the position of the light source</p>
+		<label>
+			<span>azimuth: <output>{azimuth}</output></span>
+			<input type="range" min="0" max="360" bind:value={azimuth} />
+		</label>
+		<label>
+			<span>elevation: <output>{elevation}</output></span>
+			<input type="range" min="0" max="180" bind:value={elevation} />
+		</label>
+	</fieldset>
 
-<svg style="display: block;" viewBox="-7 -7 204 94">
-	<title>Light source based on azimuth and elevation</title>
-	<rect fill="hsl(279 34% 63%)" width="80" height="80" rx="10" />
-	<g transform="translate(40 40)">
-		<circle fill="hsl(48 96% 66%)" transform="translate({x} {y})" r="7" />
-	</g>
-	<g transform="translate(110 80)">
-		<rect fill="hsl(279 34% 63%)" width="80" y="-1" height="2" />
-		<g transform="translate(40 0)">
-			<circle fill="hsl(48 96% 66%)" transform="scale(1 -1) translate({x} {z})" r="7" />
+	<svg style="display: block;" viewBox="-7 -7 204 94">
+		<title>Light source based on azimuth and elevation</title>
+		<rect fill="hsl(279 34% 63%)" width="80" height="80" rx="10" />
+		<g transform="translate(40 40)">
+			<circle fill="hsl(48 96% 66%)" transform="translate({x} {y})" r="7" />
 		</g>
-	</g>
-</svg>
+		<g transform="translate(110 80)">
+			<rect fill="hsl(279 34% 63%)" width="80" y="-1" height="2" />
+			<g transform="translate(40 0)">
+				<circle fill="hsl(48 96% 66%)" transform="scale(1 -1) translate({x} {z})" r="7" />
+			</g>
+		</g>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	svg {
 		display: block;
 		max-inline-size: 26rem;
