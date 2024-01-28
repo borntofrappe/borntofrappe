@@ -5,17 +5,13 @@ date: 2023-01-11 09:39:37
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
+	import svg from './drawing/svg.js';
     import Intro from './Intro.svelte';
 	import Ray from './Ray.svelte';
-
-	import svg from './drawing/svg.js';
     import Commands from './drawing/Commands.svelte';
 	import Eyes from './drawing/Eyes.svelte';
 	import Angle from './drawing/Angle.svelte';
     import Angles from './drawing/Angles.svelte';
-	
     import Bounce from './interacting/Bounce.svelte';
     import Offset from './interacting/Offset.svelte';
     import Offsets from './interacting/Offsets.svelte';
@@ -66,17 +62,17 @@ A `<circle>` element with a nice shade of yellow seems like a good fit.
 
 Enough to get started with the body, at least.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['body']}
-</Center>
+</figure>
 
 ### Cheeks
 
 Smaller circles with a stronger red hue help to refine the picture.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['cheeks']}
-</Center>
+</figure>
 
 Group elements prove to be helpful once more, so to avoid repeating attributes on multiple visuals:
 
@@ -126,14 +122,14 @@ The `d` attribute might look complex, but it becomes clearer once you break down
 
 Perhaps an interactive picture is worth more than a few words, however.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
     <Commands
         x={-4}
         y={-3}
         width={8}
         height={8}
         commands="M -1.5 0 v 1.5 a 1.5 1.5 0 0 0 3 0 v -1.5z"/>
-</Center>
+</div>
 
 Add a stroke with rounded edges.
 
@@ -145,9 +141,9 @@ Add a stroke with rounded edges.
 
 And there you have it, a welcoming, soft mug.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['mouth']}
-</Center>
+</figure>
 
 ### Eyes
 
@@ -170,15 +166,15 @@ Ultimately, I decided to add a small stroke matching the yellow shade of the bod
 
 You may not notice the outline — immediately.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
     <Eyes />
-</Center>
+</figure>
 
 As later elements are drawn _on top_ of previous ones, however, the stroke works to have the eyes pop above the cheeks.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
     <Eyes offset={2} />
-</Center>
+</figure>
 
 ### Rays
 
@@ -204,9 +200,9 @@ Since we moved the origin of the canvas, you can actually rotate the visual and 
 
 It's almost magical when you try a different value.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
     <Angle value={15} />
-</Center>
+</div>
 
 Repeat the line with different rotations.
 
@@ -219,9 +215,9 @@ Repeat the line with different rotations.
 
 And the drawing is complete.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['rays']}
-</Center>
+</figure>
 
 ## Drawing with Svelte
 
@@ -250,9 +246,9 @@ If 24 rays are too many, you then change one line. One number.
 +const angles = Array(16)
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
     <Angles n={16} />
-</Center>
+</figure>
 
 What's 360 / 16? You don't really need to know now. And you can skip rotating lines at increments of {360 / 16} degrees. Oopsie.
 
@@ -325,9 +321,9 @@ const handleEnd = () => {
 
 Quite entertaining already.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Bounce />
-</Center>
+</div>
 
 ### Offsets
 
@@ -347,9 +343,9 @@ It would be possible to wrap the entire mascot in a group element, and have the 
 
 The effect is however far from ideal.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Offset />
-</Center>
+</div>
 
 The mascot follows the cursor — we'll get to how in a second — but in its entirety. We're almost spoiling all the work done so far.
 
@@ -371,9 +367,9 @@ The eyes, the cheeks and mouth should move, and certainly more than the body and
 
 You could move only the face, but I prefer animating the entire lot, just with different offset values.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
     <Offsets />
-</Center>
+</div>
 
 ### Tracking
 
@@ -458,9 +454,9 @@ const y = (offsetY / h - 0.5) * m;
 
 A lot of work, admittedly. But I'll go ahead and presume you appreciate the end result — just once more.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]" data-size="medium">
     <Ray y={-10} />
-</Center>
+</div>
 
 ## Finishing touches
 

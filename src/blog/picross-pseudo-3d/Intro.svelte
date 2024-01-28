@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['eagle']}
-	</div>
+	</figure>
 
 	<p>
 		This website shares an affection for scalable vector graphics, but also nonograms, intriguing
@@ -25,34 +25,34 @@
 		Zdog you can go further, and really explore deeper shapes. Better yet, you are able to visualize
 		more complex pieces. Not only squares, not only cubes.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 20rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: right;
 		inline-size: 100%;
 		margin: 0 0 0.5rem 1rem;
 	}
 
 	@media screen and (max-width: 32rem) {
-		section > div {
+		div > figure {
 			margin: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-end: 1rem;
 			align-self: center;
 			inline-size: 100%;

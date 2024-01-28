@@ -140,32 +140,38 @@
 	</defs>
 </svg>
 
-<fieldset>
-	<legend> Peer into a vase </legend>
+<div>
+	<fieldset>
+		<legend> Peer into a vase </legend>
 
-	{#each options as { i }}
-		<label>
-			<span class="visually-hidden">Vase number {i}</span>
-			<input type="radio" bind:group={index} value={i} />
-			<svg viewBox="0 0 16 16">
-				<use href="#dragon-warrior-vase" />
-			</svg>
-		</label>
-	{/each}
-</fieldset>
+		{#each options as { i }}
+			<label>
+				<span class="visually-hidden">Vase number {i}</span>
+				<input type="radio" bind:group={index} value={i} />
+				<svg viewBox="0 0 16 16">
+					<use href="#dragon-warrior-vase" />
+				</svg>
+			</label>
+		{/each}
+	</fieldset>
 
-<p>
-	<span aria-hidden="true" style:opacity="0" style:visibility="none"
-		>{index === null ? options[0].value : options[index].value}</span
-	>
-	{#if index !== null}
-		{#key index}
-			<span in:typewriter>{options[index].value}</span>
-		{/key}
-	{/if}
-</p>
+	<p>
+		<span aria-hidden="true" style:opacity="0" style:visibility="none"
+			>{index === null ? options[0].value : options[index].value}</span
+		>
+		{#if index !== null}
+			{#key index}
+				<span in:typewriter>{options[index].value}</span>
+			{/key}
+		{/if}
+	</p>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	fieldset {
 		display: flex;
 		justify-content: space-evenly;

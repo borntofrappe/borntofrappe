@@ -37,7 +37,10 @@ oxxox`;
 		  }, []);
 </script>
 
-<svg viewBox="{(padding / 2) * -1} {(padding / 2) * -1} {width + padding} {height + padding}">
+<svg
+	style="display: block;"
+	viewBox="{(padding / 2) * -1} {(padding / 2) * -1} {width + padding} {height + padding}"
+>
 	<defs>
 		<g id="coordinates-cube">
 			<path d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
@@ -53,9 +56,3 @@ oxxox`;
 		{/each}
 	</g>
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>

@@ -5,8 +5,6 @@ date: 2023-04-10 17:35:24
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import SetToAttribute from './SetToAttribute.svelte';
 	import SetToTalk from './SetToTalk.svelte';
@@ -142,8 +140,8 @@ For each additional element I increment the offset, always in the script, but yo
 
 With SVG syntax you can draw crisp visuals to honor a beloved title from long ago.
 
-<Center maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     <SetToTalk />
-</Center>
+</figure>
 
 With SMIL you can take the `<set>` element and experiment a bit more with the animation. After all, there is no particular reason _that_ pixelated phone is sitting in an empty room, is there?

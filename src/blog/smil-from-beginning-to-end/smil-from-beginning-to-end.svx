@@ -5,8 +5,6 @@ date: 2023-03-29T21:59:53
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Rope from './Rope.svelte';
 	import Jump from './Jump.svelte';
@@ -39,15 +37,15 @@ With the `<animate>` element you can update the `d` attribute to twist the curve
 
 Almost looks like a jumping rope, doesn't it? Especially on top of a stylish background.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
 	<Rope />
-</Center>
+</div>
 
 Let's frame the visual with an horizon line and a charismatic figure looking for some exercise.
 
-<Center element="figure" maxInlineSize="28rem">
+<figure class="[ center-frame ]">
 	{@html svg['jump-hero']}
-</Center>
+</figure>
 
 To take flight we rely on the `<animateTransform>` element, changing the y coordinate for the entire sprite.
 
@@ -91,9 +89,9 @@ And with the `begin` attribute you can actually run the animation in sync with t
 
 Undeniably cute.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
 	<Jump />
-</Center>
+</div>
 
 ## Repeat
 
@@ -111,9 +109,9 @@ Say the character is really energized and wants to keep moving. With the `repeat
 
 Primed and ready to jump together?
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
 	<Jump repeatCount="3" />
-</Center>
+</div>
 
 The rope loops, but the character stops after the first lift. Don't take it personally, however. Our hero is following the instructions to the letter — and is not mad you didn't follow suit.
 
@@ -237,6 +235,6 @@ The trick is therefore devious and elementary: have the first animation begin, o
 
 There's only one question left: ready for some exercise? The animation might be compelling enough to really push you this time.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
 	<JumpTheRope />
-</Center>
+</div>

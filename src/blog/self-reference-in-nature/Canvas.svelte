@@ -23,19 +23,25 @@
 	};
 </script>
 
-{#if animate}
-	<button on:click={handleAnimation}> Animate </button>
-{/if}
+<div>
+	{#if animate}
+		<button on:click={handleAnimation}> Animate </button>
+	{/if}
 
-<svg bind:this={svg} viewBox="0 0 80 50">
-	<g transform="translate(40 49)">
-		<g stroke="#8a6f68" stroke-width="1" stroke-linecap="square">
-			<Piece />
+	<svg bind:this={svg} viewBox="0 0 80 50">
+		<g transform="translate(40 49)">
+			<g stroke="#8a6f68" stroke-width="1" stroke-linecap="square">
+				<Piece />
+			</g>
 		</g>
-	</g>
-</svg>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	button {
 		display: block;
 		margin-inline: auto;

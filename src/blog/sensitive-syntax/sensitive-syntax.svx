@@ -5,8 +5,6 @@ date: 2023-12-22T15:34:57
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
@@ -32,9 +30,9 @@ The browser might prompt a warning, but in the larger context of an `.html` docu
 
 The reason: SVG is an XML namespaced language.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['svg-icons']}
-</Center>
+</figure>
 
 Scalable vector graphics work wonders in HTML, where they are processed by the HTML parser, but ultimately are an extension of the _Extensible Markup Language_. And on their own, they are processed by the XML parser. If you were to check the _Network_ panel in the developer console you will indeed find the following line in the HTTP header.
 
@@ -58,9 +56,9 @@ But that doesn't happen with the snippet, problematic for two other mishaps.
 
 Immediately, you have the XML namespace. I've cited the `xmlns` attribute more than once, to the point where I often joke about the feeling I have skipping the value.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['xmlns-callout']}
-</Center>
+</figure>
 
 When you process the file, when you do not add the vector inline, you cannot escape the namespace, and a specific string after the cryptic argument.
 

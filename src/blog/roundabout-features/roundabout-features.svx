@@ -5,8 +5,6 @@ date: 2023-07-06T14:48:17
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Dashes from './Dashes.svelte';
 	import Roundabout2D from './Roundabout2D.svelte';
@@ -17,9 +15,9 @@ Libraries like [Zdog](https://zzz.dog/) make it a breeze to explore higher dimen
 
 Say you want to animate two cars, chasing each other in an endless loop. The promise of catching the motion over three axes is enticing, but not as much as a 2D sketch, plotting the scene with a bird's-eye view. You can even animate the small vehicles around the center. Always with SVG and an assist from CSS.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" style="--frame-size: 520px">
 	<Roundabout2D />
-</Center>
+</div>
 
 How can you go deeper and recreate the piece with Zdog?
 
@@ -122,9 +120,9 @@ How do you draw a circle in SVG? With a `<circle>`, a `<path>` with two arcs, or
 
 Gather up [the circle points](a-star-is-born#circle-points), and with the x, y coordinates connect the dots. The goal is to produce gaps, and to this end you can just skip points. Skip every other point and the dashes match the gap in length. Skip more than a single pair and the gap increases. You have a bit of leeway here.
 
-<Center maxInlineSize="24rem">
+<div class="[ center-frame ]">
 	<Dashes />
-</Center>
+</div>
 
 The effect is quite believable — there is close to a circle there —, but the result is going to be even more effective in Zdog for at least two reasons. Number one: stroke. While Zdog might not have dashes, it relies heavily on rounded strokes. As you sand off the edges of the lines, the illusion is improved. Number two: depth. But you might have to wait a while to realize the change.
 
@@ -192,9 +190,9 @@ new Zdog.Shape({
 
 Rounded rectangles, ellipses and now lines set the stage. Thanks to the brief, mathematical detour we are able to update the illustration to impress the scene in glorious pseudo-3D.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['zdog']}
-</Center>
+</figure>
 
 The result might not seem remarkable, but believe me, there are reasons to be ecstatic about the still frame. We've successfully reproduced the scene with Zdog. With the library, we now have the ability to change the perspective and have the graphic adapt over the three promised axes.
 
@@ -326,9 +324,9 @@ In Zdog, you need an animation library or, as hinted in [the documentation](http
 
 Repeat the logic with `requestAnimationFrame` and the browser updates the illustration whenever possible. As smoothly as possible. Making sure to impress you in the sworn dimensions.
 
-<Center maxInlineSize="520px">
+<div class="[ center-frame ]" style="--frame-size: 520px">
 	<Roundabout3D />
-</Center>
+</div>
 
 The top-down view shines through with a new perspective. The straight lines, tilted on the two axes, resemble the natural dashes or a perfect circle even more while the spheres, rotating around the center, complete the multi-dimensional, dynamic picture. With one precaution, that is. Every shape has the same depth, but the actors need to move above the, separate from the road below. You can update the position individually and with a translation, or thank again the group element to achieve this once and for all.
 

@@ -5,8 +5,6 @@ date: 2024-01-05T10:06:51
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import StopColor from './StopColor.svelte';
 	import StopOpacity from './StopOpacity.svelte';
@@ -34,9 +32,9 @@ In the `offset` attribute you specify a number between 0 and 1, or a percentage 
 
 What happens when the order is reversed, and in particular the stop color with the offset of 1 precedes the one offset with a value of 0?
 
-<Center maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['offset']}
-</Center>
+</figure>
 
 Seemingly, the gradient breaks down, and you find the first color throughout the entire surface. In the specification, however, [a note](https://svgwg.org/svg2-draft/pservers.html#StopNotes) describes what really happens.
 

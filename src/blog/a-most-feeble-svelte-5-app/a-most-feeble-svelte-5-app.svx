@@ -5,16 +5,14 @@ date: 2024-01-17T14:35:09
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
 Svelte is on the verge of a momentous release, a brand new version growing the library to a major number five.
 
-<Center element="figure" maxInlineSize="10rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['svelte-5']}
-</Center>
+</figure>
 
 This version comes with several features, but also breaking changes and warning messages. And while it is presumptuous, you can try the version, [with online playgrounds](https://svelte-5-preview.vercel.app/) and locally, setting up full-blown applications or a most brittle folder structure.
 

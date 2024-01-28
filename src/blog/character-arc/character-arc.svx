@@ -5,8 +5,6 @@ date: 2023-08-04T10:34:19
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import Intro from './Intro.svelte';
 	import svg from './svg.js';
 </script>
@@ -21,9 +19,9 @@ In the body of an `<svg>` element, set up a `<path>` with the mentioned attribut
 
 The first instruction describes the origin, the x, y coordinate where our journey begins. Following the _"M"_ character and this short preamble you elaborate the shape with a veritable language. Additional letters, each with its own use. You may struggle picking the numbers, but in most cases, it is possible to understand their meaning at a glance.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['three-path-commands']}
-</Center>
+</figure>
 
 To draw a line you need the _"L"_ character and just two values, for where the line should end. For a quadratic bezier curve and the letter _"Q"_, the pair follows another set of x, y coordinates, this time for a control point, pinching the line out of the narrow and straight path. For a cubic bezier curve marked by _"C"_, the logic is the same, but with two control points instead of one.
 
@@ -31,9 +29,9 @@ You may need up to six values, but the influence, the purpose of each number is 
 
 It is difficult to argue the same when you want to draw an arc.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['arc-syntax']}
-</Center>
+</figure>
 
 Following the _"A"_ character you need seven arguments, with often inscrutable implications.
 
@@ -41,29 +39,29 @@ To understand the lot, break out the formula in a few pieces.
 
 `rx` and `ry` describe the radius, or rather radii, of a makeshift ellipse. Think of a figure stretching horizontally and vertically to connect two points: where the arc starts and where the same ends. The origin precedes the arc, while the destination, that is dictated by the last pair, `x` and `y`.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['arc-radii-coordinates']}
-</Center>
+</figure>
 
 On to more cryptic values. `large-arc-flag` is a flag, a number set to either 0 or 1 to toggle a specific feature. And together with `sweep-flag`, it lets you pick which arc to draw. Indeed, the moment you build the figure based on two radii, it is possible to connect the dots in more than one way. There are two ellipses, each with a fork in the road.
 
 Which path to follow?
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['arc-ellipses']}
-</Center>
+</figure>
 
 Per `large-arc-flag`, the smaller or the larger segment.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['arc-large-arc-flag']}
-</Center>
+</figure>
 
 Per `sweep-flag`, the path moving in a counter-clockwise or a clockwise manner.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['arc-sweep-flag']}
-</Center>
+</figure>
 
 Two ellipses, four possible paths. You have quite a bit of freedom to compose the shape. And there is one more number still: `angle`. This last one number rotates the ellipses on the x axis, and its influence is even less clear. Say that you update the value from the default 0. Why, in this instance the ellipse would never be able to connect the points in the same, clear-cut manner.
 
@@ -86,6 +84,6 @@ Even with just six values, you have plenty of freedom. You have options, some cl
 
 By the end of a possibly emotional journey, you have to admit there's a lot you can draw with a `<path>` element. There's a lot you can draw with a single character. Even with one less number.
 
-<Center element="figure" maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['emotions']}
-</Center>
+</figure>

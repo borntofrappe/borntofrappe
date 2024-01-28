@@ -5,8 +5,6 @@ date: 2023-02-13T09:23:05
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
 	import svg from './svg.js'
 	import CirclePoints from './CirclePoints.svelte'
 	import LinePoints from './LinePoints.svelte'
@@ -56,9 +54,9 @@ To draw a round shape with SVG you have a few options. Among which:
 
 Either approach leads you to a perfectly crisp circle.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['circle']}
-</Center>
+</figure>
 
 The second option, however, opens a world of possibilities. The arc syntax conveniently creates the swooping curves, but with multiple points you can draw the shape connecting the dots, literally.
 
@@ -109,9 +107,9 @@ In the `<svg>` element draw a small dot for every single point.
 {/each}
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<CirclePoints />
-</Center>
+</figure>
 
 You can crank up the number of points to find a more believable outline, but let's explore a different route linking the points together.
 
@@ -150,9 +148,9 @@ Continue with the sequence of points.
 <!-- <path d="M {points}" /> -->
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<LinePoints />
-</Center>
+</figure>
 
 Both lines lead to a filled, rugged visual, tracing the outline of the first circle. That being said, you now have access to the individual points.
 
@@ -168,9 +166,9 @@ const y = Math.floor(Math.sin(radians) * offset);
 
 At once, the title of this article starts to make sense.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
   <OffsetValues />
-</Center>
+</figure>
 
 The shape is tilted on its side, and not by accident. Navigating the [0, 360] range you start from the right, from the positive x axis, and walk around the circle in a clockwise manner. To have the leftmost edge at the very top offset the angle to move a quarter forward.
 
@@ -181,9 +179,9 @@ The shape is tilted on its side, and not by accident. Navigating the [0, 360] ra
 
 Effectively, the angle falls in the [90, 450] range, producing the more orthodox shape.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<OffsetValues rotate={true} />
-</Center>
+</figure>
 
 ## Bezier curves
 
@@ -202,9 +200,9 @@ When you specify two points after the `M` command SVG assumes the `L` character.
 </svg>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['line']}
-</Center>
+</figure>
 
 With the `Q` character you rely on four numbers instead, two for the position of the control point, two for the final position. The path connects the start and end values influenced by the intermediate step.
 
@@ -213,9 +211,9 @@ With the `Q` character you rely on four numbers instead, two for the position of
 <path d="M 5 25 Q 25 5 45 25" />
 ```
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<ControlPoint />
-</Center>
+</div>
 
 Back to the almost-illuminated object. Let's build the more complex `d` attribute in the `<script>`, one step at a time.
 
@@ -265,9 +263,9 @@ Inject the string in the `<path>` element.
 
 And enjoy a satisfying success.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	<Star />
-</Center>
+</figure>
 
 ## Canvas size
 
@@ -311,6 +309,6 @@ Now, for the final set of options. You could explore the clipboard API and fabri
 
 I won't judge. The final sight is too delightful to wait further.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['star']}
-</Center>
+</figure>

@@ -5,8 +5,6 @@ date: 2023-04-01T14:33:07
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
 	import svg from './svg.js';
 	import Fall from './Fall.svelte';
 	import KeepDry from './KeepDry.svelte';
@@ -46,9 +44,9 @@ In the `d` attribute for the `<path>` element the `l` character helps to draw st
 
 The command is quite helpful to pick the edges of our drawing.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['edges']}
-</Center>
+</figure>
 
 Leveling up from the instruction, the `c` character adds the curvature with two additional control points.
 
@@ -80,9 +78,9 @@ Feel free to experiment with the actual numbers — think of the control points 
 
 That's one good looking raindrop.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['drop']}
-</Center>
+</figure>
 
 The `viewBox` is larger than what we actually need, but hold the dimensions for a moment and just place the path roughly in the center.
 
@@ -148,9 +146,9 @@ How the pattern is applied depends then on two more attributes: `width` and `hei
 
 In this instance the pattern is repeated ten times, horizontally and vertically.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['dots']}
-</Center>
+</figure>
 
 Enough of a detour, however. The circle helps to explain the `<pattern>` element, but we want to repeat our raindrop instead.
 
@@ -164,9 +162,9 @@ Luckily, we already took the time to draw the curves in a specific canvas, and w
 
 Keeping the same width and height, the visual is repeated as many times as the dots. And wouldn't you know it, the fact that the raindrop is smaller than the canvas comes back to help us, adding some much needed separation in the resulting grid.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['drops']}
-</Center>
+</figure>
 
 Just remember to update the reference from the dotted pattern.
 
@@ -205,9 +203,9 @@ The idea is to move the element down over and over. The result is jarring in tha
 
 The addition of one row almost completes the animation.
 
-<Center maxInlineSize="22rem">
+<div class="[ center-frame ]">
 	<Fall patternId="pattern-drop" />
-</Center>
+</div>
 
 It may not be immediately apparent, but there is a stutter. There is a small jump every time the animation loops, spoiling the illusion.
 
@@ -265,9 +263,9 @@ To fix the issue you have at least two ways:
 
 Be it in a roundabout manner, or an SVG-savvy way, the result is one and the same. And the downpour is ensured.
 
-<Center maxInlineSize="22rem">
+<div class="[ center-frame ]">
 	<Fall patternId="pattern-drop-10" />
-</Center>
+</div>
 
 ## Cover
 
@@ -285,9 +283,9 @@ The most immediate way you have to hide the rainfall is through SVG source order
 
 And the shapes are drawn effectively on top.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['source-order']}
-</Center>
+</figure>
 
 The change is small, but also works to mask the infinite animation. The raindrops don't appear from the top of an invisible border, but rather escape the clouds, realizing a true gift from the sky.
 
@@ -328,14 +326,14 @@ Point to the mask through a fitting `mask` attribute.
 
 And the result is that only half of the canvas is blessed with water.
 
-<Center element="figure" maxInlineSize="22rem">
+<figure class="[ center-frame ]">
 	{@html svg['mask']}
-</Center>
+</figure>
 
 Of course you're not restricted to rectangles. You can add any shape in the mask. Circles, lines. Perhaps even a path tracing the contours of an umbrella.
 
 The rest is up to your imagination and whimsy. Just remember to thank the sky and keep yourself dry.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]" data-size="medium">
 	<KeepDry />
-</Center>
+</div>

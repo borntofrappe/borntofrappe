@@ -5,8 +5,6 @@ date: 2023-03-15 17:24:14
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
 </script>
 
@@ -35,9 +33,9 @@ In the `<svg>` element, the most immediate way to draw pixelated pictures goes t
 
 The moment you have neighboring cells you can save a few keystrokes and stretch the shape horizontally, but that's it.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['sun']}
-</Center>
+</figure>
 
 ## Pixels
 
@@ -60,9 +58,9 @@ One pixel you can then repeat with the `<use>` element.
 
 Admittedly, the gains are marginal. You may save a handful of characters here and there, but also lose the flexibility of wider rectangles. That being said, there is something conceptually nice with the format. You feel as an artist dotting the canvas into an intentional work of art.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['star']}
-</Center>
+</figure>
 
 ## Lines
 
@@ -110,9 +108,9 @@ With or without the change, however, the solution puts the previous sections to 
 
 There is one, outstanding issue, evident as you sketch out the rows.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['offset']}
-</Center>
+</figure>
 
 As the stroke of `<path>` elements is drawn from the center, the line is drawn at the precise y offset, but half above, half below.
 
@@ -136,9 +134,9 @@ If you fancy the `viewBox` attribute you can change the origin of the entire vis
 
 But once you apply the translation, you are then free to complete the picture bit by bit.
 
-<Center element="figure" maxInlineSize="16rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['moon']}
-</Center>
+</figure>
 
 ## Layers
 
@@ -186,9 +184,9 @@ svg {
 
 Care to guess the drawing I've conjured up this time with the three colored layers?
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html svg['boy']}
-</Center>
+</figure>
 
 ## Sprites
 
@@ -249,9 +247,9 @@ And show multiple sprites with `<use>` elements 1 unit wide and tall.
 
 Enough to prove you did take the time to draw a slightly different version to create the illusion of movement.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['boys']}
-</Center>
+</figure>
 
 ## Animation
 
@@ -314,16 +312,16 @@ All you need is to admire the result. And if you really wanted to show off, add 
 
 Do you have enough energy left for a few steps?
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html svg['step']}
-</Center>
+</figure>
 
 There are different ways to animate sprites, and you could achieve a similar effect just with CSS. You could keep the two sprites side by side, only show one and rapidly move between the images. As if flipping through barely different pages.
 
 That being said, SMIL animation has plenty more to offer, including synchronized animations. The hope is that this final demo will convince you of that.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['walk']}
-</Center>
+</figure>
 
 Care to guess why our boy is finally off center, seemingly lost in whitespace? Once again, the answer might be a tap, and a few steps, away.

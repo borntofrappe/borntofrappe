@@ -5,8 +5,6 @@ date: 2023-04-13 15:50:08
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import LapRace from './LapRace.svelte';
 	import ControlPoint from './ControlPoint.svelte';
 	import TrackLayout from './TrackLayout.svelte';
@@ -58,9 +56,9 @@ Conveniently, it is possible to avoid repeating the instruction.
 
 In this manner you can draw the track and use the same element to animate the driver. And over one lap, the race is set.
 
-<Center maxInlineSize="38rem">
+<div class="[ center-frame ]" data-size="medium">
 	<LapRace />
-</Center>
+</div>
 
 For more laps, we can repeat the instruction with the `repeatCount` attribute, but after a while, the motion is bound to get tedious.
 
@@ -91,9 +89,9 @@ I'll refer you to the inspiring article for the in-depth math, but past the cons
 
 In this moment, you have a series of points mimicking the round shape.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
     <TrackLayout showPath={false} />
-</Center>
+</figure>
 
 The challenge then is to connect the dots.
 
@@ -121,9 +119,9 @@ d += `L ${x0} ${y0}`;
 
 This would work to recreate the circle, but in a rather unimpressive manner.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
     <TrackLayout useCurves={false} />
-</Center>
+</figure>
 
 What is more, the animation along the path becomes rather janky.
 
@@ -139,9 +137,9 @@ Add the string in the `<animateMotion>` element — this time, without the assis
 
 And with each point the car turns with an immediate, evident jump. Always in the same direction as the vehicle updates the trajectory.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
     <CircleRace useCurves={false} />
-</Center>
+</div>
 
 A better solution falls back to the humble quadratic bezier curve and a brand new character. Consider a basic instruction, formulating a curve with the letter `Q` and a single control point.
 
@@ -170,9 +168,9 @@ If you were to follow the syntax with the letter `T` you would complete the path
 
 You only need the values for where the curve ends, and the browser mirrors the control point for the second part. The effect is rather intriguing, and much clearer if you toy with the syntax.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
     <ControlPoint />
-</Center>
+</div>
 
 Back to the array of coordinates, let's try to include the new character in the path. Once more, start with the first point.
 
@@ -205,9 +203,9 @@ Small hiccup: the point sits right in the center of the line connecting the two 
 
 The good news is that you do not need to ponder the complex math for perpendicular and bisecting lines. At least you don't have to. Since the remaining points are offset in both dimensions, they are connected with nice, gentle curves.
 
-<Center maxInlineSize="28rem">
+<figure class="[ center-frame ]" data-size="small">
     <TrackLayout  />
-</Center>
+</figure>
 
 If you are looking for a quick fix, however, you can take advantage of the current situation. The `Q` character connects the top-most point with the one right next to it. This means the second point is always down and to the right.
 
@@ -243,9 +241,9 @@ d += `T ${x0} ${y0}`;
 
 If not realistic, the animation becomes incredibly more entertaining than the previous, regular version.
 
-<Center maxInlineSize="28rem">
+<div class="[ center-frame ]">
     <CircleRace  />
-</Center>
+</div>
 
 With a hint of randomness you are bound to be drawn into the race. You can even repeat the exercise for more laps. For this you need to create as many paths as necessary and chain the animations one after the other.
 
@@ -267,6 +265,6 @@ And why not, you could even extend the concept to more drivers. Wouldn't that be
 
 Of course you can still wonder whether cars would ever spin around a circle, following the design of a pretty dumb architect. But instead of considering more elaborate designs, take a moment to reflect on the visual. You are not restricted to solid ground. And that cherished celestial body might inspire more than a layout. Even a scenario where the circular motion just makes sense.
 
-<Center maxInlineSize="38rem">
+<div class="[ center-frame ]" data-size="medium">
 	<SpaceRace />
-</Center>
+</div>

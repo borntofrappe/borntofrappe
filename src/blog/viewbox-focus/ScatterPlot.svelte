@@ -19,7 +19,7 @@
 	points[0].cy = points[1].cy + r > s / 2 ? points[1].cy - r : points[1].cy + r;
 </script>
 
-<svg viewBox="0 0 {s} {s}">
+<svg style="display: block;" viewBox="0 0 {s} {s}">
 	<defs>
 		<pattern id="scatter-plot-pattern-grid" viewBox="0 0 1 1" width="0.05" height="0.05">
 			<g fill="none" stroke="currentColor" stroke-width="0.0025">
@@ -62,8 +62,6 @@
 <style>
 	svg {
 		display: block;
-		max-inline-size: 30rem;
-		margin-inline: auto;
 		--accent: hsl(42 87% 55%);
 	}
 </style>

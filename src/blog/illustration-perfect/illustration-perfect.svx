@@ -5,8 +5,6 @@ date: 2023-07-31T10:47:50
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Centered from './Centered.svelte';
 	import Zoom from './Zoom.svelte';
 </script>
@@ -57,9 +55,9 @@ const illustration = new Zdog.Illustration({
 
 Every shape which follows, every object added to the illustration will sit relative to the new origin. And you might discover that some illustrations are richer than it may seem.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Centered />
-</Center>
+</div>
 
 To position the shapes you have options. You can translate individual objects with the matching `translate` property.
 
@@ -110,9 +108,9 @@ const illustration = new Zdog.Illustration({
 
 Again the instruction works for every shape which follows. You don't need to adjust the objects as everything is resized as a whole. You might discover that some illustrations are more animated than expected. And how a hot air balloon can be stitched up together with colorful stripes.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	<Zoom />
-</Center>
+</div>
 
 Once more you have options. Next to the `translate` property, `scale` helps to to resize individual shapes.
 

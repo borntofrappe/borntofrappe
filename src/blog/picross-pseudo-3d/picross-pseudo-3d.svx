@@ -5,8 +5,6 @@ date: 2023-07-14T11:37:59
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Intro from './Intro.svelte';
 	import svg from './svg.js';
 	import SVG from './SVG.svelte';
@@ -55,9 +53,9 @@ DAB-A-EAC
 
 Starting with the letter _"A"_ for the square, I decided to navigate the alphabet with each successive shape. First the round-ish wedges, then the triangles. The decision is not as important as picking a convention and sticking to it. In the end, you have a vocabulary, matching letters to specific shapes.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['vocabulary']}
-</Center>
+</figure>
 
 How do you draw the level? Again and in the simpler instance, we only had squares. Once we managed to build a grid of columns and rows, we needed to only add `<rect>` elements at precise x, y coordinates.
 
@@ -217,9 +215,9 @@ Add the object to the list and you obtain the precious collection. An array of o
 
 And marvel at the result.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
 	<SVG />
-</Center>
+</div>
 
 Majestic as the eagle might be, I can see how the logic might raise a few questions. Among which: "_why?_". Indubitably, you find the same picture you first saw with one `<path>` element. This time, however, you have a vocabulary of shapes. You have a recipe to draw more than one figure.
 
@@ -241,9 +239,9 @@ The shape matches the first definition, the square, but what about the other, mo
 
 A box is but a collection of faces, a collection of rectangles positioned with care and forethought. Think of six rectangles, glued together in a tight fit.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['box']}
-</Center>
+</figure>
 
 This means that in Zdog you can draw the cube with a `Box`, but also a series of `Shape`s.
 
@@ -293,9 +291,9 @@ You navigate the axis so that all together, the rectangles pack up to make a box
 
 How do you draw more complex shapes? In precisely the same manner. Think of a wedge as a combination of shapes, of faces with a more varied design.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['shape']}
-</Center>
+</figure>
 
 Some faces are easy to sketch out — think of the bottom and left sides repeating the parts of the box. Some faces require a bit more tinkering. Consider the front and the back, for instance. On top of three vertices.
 
@@ -362,9 +360,9 @@ path: [
 
 The sequence is far more intuitive, we are more used drawing in a 2D plane far more than are in 3D. That being said, it is almost beautiful as you appreciate the instructions.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['3d-arc']}
-</Center>
+</figure>
 
 You can draw a box and the faces for one of the round wedges. And this is one instance where I'm more than glad to repeat myself: you don't need to run the code with a series of conditionals. You don't even need to create as many definitions as you may think. In SVG, you were able to define the shapes with `<rect>` and `<path>` elements. In Zdog, you can achieve something similar with plain variables.
 
@@ -401,9 +399,9 @@ You might anticipate how the instruction completes our pseudo-3d picture, but in
 
 That being said, there is just one of each shape, rotated at different angles.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['shapes']}
-</Center>
+</figure>
 
 Instead of drawing the faces around the clock, you can repeat the same anchor, turning the shape on the z axis.
 
@@ -499,6 +497,6 @@ DAGEDCBHAC
 
 After all, you can [draw an eagle](https://codepen.io/borntofrappe/full/VwVQNXB), and any other puzzling figure. Again, there's a lot of work in terms of setup, in terms of vocabulary and shapes. But if you go through the effort, with a bit of trial and error, you can appreciate the result. And you might even see the figure through letters. Even upside-down.
 
-<Center maxInlineSize="420px">
+<div class="[ center-frame ]" style="--frame-size: 420px">
 	<Zdog />
-</Center>
+</div>

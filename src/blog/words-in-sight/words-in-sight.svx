@@ -5,8 +5,6 @@ date: 2023-05-05T14:21:17
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-	
     import svg from './svg.js';
     import PerfectShot from './PerfectShot.svelte';
 </script>
@@ -15,14 +13,14 @@ At the risk of being obsessive, I often stumble on the difference between accura
 
 First off, precision. The word describes the state of being exact, and technically being exact over and over. Think of multiple measurements marking the same value. Think of a shower of arrows, gathered around the same spot.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
     {@html svg['precision']}
-</Center>
+</figure>
 
 What is accuracy, then? Why, accuracy is just one arrow. One arrow leaving a slim bow, flying through the air and hitting the target with forceful grace. Exact. Once.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
     <PerfectShot />
-</Center>
+</div>
 
 Accurate? It certainly is.

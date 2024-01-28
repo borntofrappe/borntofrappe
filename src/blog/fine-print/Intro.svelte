@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['fine-print']}
-	</div>
+	</figure>
 
 	<p>
 		In SVG, text is treated like a regular shape. A rectangle, a circle, or again a contorted path.
@@ -16,34 +16,34 @@
 		You might add text in an editing software, or try your luck writing the syntax by hand. And in
 		this last instance, you can lean on JavaScript to iron out the details. And on Svelte to shine.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 18rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: right;
 		inline-size: 100%;
 		margin: 0 0 0.5rem 1rem;
 	}
 
 	@media screen and (max-width: 32rem) {
-		section > div {
+		div > figure {
 			margin: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-start: 1rem;
 			order: 1;
 			align-self: center;

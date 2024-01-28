@@ -5,8 +5,6 @@ date: 2023-02-16 9:08:27
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Windmill from './Windmill.svelte';
 	import Origin from './Origin.svelte';
@@ -16,9 +14,9 @@ date: 2023-02-16 9:08:27
 
 With a basic understanding of SVG syntax you are able to create quite the impressive visuals. CSS animations, then, are just a step away.
 
-<Center maxInlineSize="26rem">
+<div class="[ center-frame ]">
 	<Windmill />
-</Center>
+</div>
 
 Do not worry. The article won't over-extend into the land of cascading style sheets. It will, however, show you the potential of SVG transformations in neat little increments. Better yet, it will do so with a brand new vector as a treat.
 
@@ -60,9 +58,9 @@ Place a `<circle>` at the top of the perch, a hinge of sorts.
 
 And the structure is complete.
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['pedestal']}
-</Center>
+</figure>
 
 ## Transform origin
 
@@ -78,9 +76,9 @@ Something has to sit on top of this small altar. Start with a line, right above 
 />
 ```
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['overlap']}
-</Center>
+</figure>
 
 We'll improve the appearance soon enough, but focus on the hinge first. You want to rotate the segment using the circle as a reference point. Rotate the shape around (50, 50).
 
@@ -92,15 +90,15 @@ Perhaps expectedly, applying the rotation directly won't work.
 </g>
 ```
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['transform-rotate']}
-</Center>
+</figure>
 
 This is because the rotation is relative to (0, 0), to the origin of the SVG.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Origin />
-</Center>
+</div>
 
 Enter the `transform-origin` attribute. Here you specify the new origin similarly to the equally-named CSS property.
 
@@ -112,9 +110,9 @@ Enter the `transform-origin` attribute. Here you specify the new origin similarl
 
 Only one question remains: does it actually work?
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['transform-origin']}
-</Center>
+</figure>
 
 It seems the feature [is not widespread](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), but as the attribute becomes ubiquitous, as you see the sharp stick properly tilted around the center of the canvas, you won't have to look for alternatives. You won't have to read the next section either.
 
@@ -139,17 +137,17 @@ The rotation is then relative to the offset coordinate. Update the `<path>` to d
 
 And voilà. Even in this roundabout manner, the rotation takes place as expected.
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['transform-translate']}
-</Center>
+</figure>
 
 ## Getting fancier
 
 Be it through the `transform-origin` attribute or the custom translation, you are able to rotate the line from the desired reference point.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Origin offset={true} />
-</Center>
+</div>
 
 Let's continue with the drawing. The beauty of updating the origin on the group element is that every nested shape will be subject to the same transformation, the same rotation. Be it the centered segment, or a sizable circle right below it.
 
@@ -168,9 +166,9 @@ Perhaps even a brighter ellipse to emulate a light source.
 
 You get the gist. These are drawn below the segment, without changing the horizontal offset. They are however tilted with the line.
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['composition-1']}
-</Center>
+</figure>
 
 On the opposite end, add a brighter round shape with a noticeable stroke.
 
@@ -199,9 +197,9 @@ Why the `stroke` attribute? It helps in the moment you want to add a custom shap
 
 Care to guess what kind of polygon is trying to escape the circle east?
 
-<Center maxInlineSize="20rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['composition-2']}
-</Center>
+</figure>
 
 That's right, a beautiful trapezoid. Since the elements have the same fill, the same stroke, you might want to wrap the two in a common group.
 
@@ -219,9 +217,9 @@ That's right, a beautiful trapezoid. Since the elements have the same fill, the 
 
 But the result is one and the same. The interactive version? Equally entertaining.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<Composition />
-</Center>
+</div>
 
 ## Wrapping up
 
@@ -229,6 +227,6 @@ In the end, we limited ourselves to elementary shapes, mostly lines and circles.
 
 With enough patience, with enough care you can spoil yourself drawing a more convincing picture. Perhaps even consider CSS animations once more. I might have mentioned it, but these are well within reach. Let me grab a coaster and prove it with a refreshing beverage.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]">
 	<DrinkingBird />
-</Center>
+</div>

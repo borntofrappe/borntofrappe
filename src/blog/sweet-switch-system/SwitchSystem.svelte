@@ -2,7 +2,7 @@
 	import data from './data.js';
 </script>
 
-<svg viewBox="-2.5 -19.04204750061035 146.1881103515625 24.337772369384766">
+<svg style="display: block;" viewBox="-2.5 -19.04204750061035 146.1881103515625 24.337772369384766">
 	<title>What's on the menu?</title>
 	<switch>
 		{#each data as { systemLanguage, flag, dessert }}

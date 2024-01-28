@@ -2,10 +2,10 @@
 	import svg from './svg.js';
 </script>
 
-<section>
-	<div>
+<div>
+	<figure>
 		{@html svg['snapshot']}
-	</div>
+	</figure>
 
 	<p>
 		In HTML, <code>getBoundingClientRect()</code> gives the position and dimension of elements relative
@@ -16,34 +16,34 @@
 		In SVG, <code>getBBox()</code> achieves a similar feat for elements relative to the parent
 		<code>&lt;svg&gt;</code>.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	figure {
 		max-inline-size: 20rem;
 	}
 
-	section > p + p {
+	div > p + p {
 		margin-block-start: 1rem;
 	}
 
-	section > div {
+	div > figure {
 		float: left;
 		inline-size: 100%;
 		margin-right: 1rem;
 	}
 
 	@media screen and (max-width: 40rem) {
-		section > div {
+		div > figure {
 			margin-right: initial;
 		}
 
-		section {
+		div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		div > figure {
 			margin-block-start: 1rem;
 			order: 1;
 			align-self: center;

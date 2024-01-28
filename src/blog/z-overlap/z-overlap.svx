@@ -5,8 +5,6 @@ date: 2023-06-27T10:50:33
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import SourceOrder from './SourceOrder.svelte';
 </script>
@@ -15,9 +13,9 @@ SVG is rich in possibilities. You can implement exotic features with the many el
 
 Consider the following graphic.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['mail']}
-</Center>
+</figure>
 
 In and of itself, the vector makes for a fitting illustration for any comforting newsletter or helpful mailing service. There are a few elements, but focusing on the center-piece you have a series of `<path>`s.
 
@@ -32,9 +30,9 @@ In and of itself, the vector makes for a fitting illustration for any comforting
 
 First the envelope, then the letter and the legible lines. But really, there's only a portion to the piece of paper. With the goal of having the letter pop out of the rounded container, you draw only the top half, a squished rhombus.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['rhombus']}
-</Center>
+</figure>
 
 The trick is simple, but effective. You believe there is a letter, where there is none.
 
@@ -42,9 +40,9 @@ But what if you wanted the letter actually escaping the envelope? Well, there's 
 
 But the mentioned libraries do provide a solution. How would you go about drawing the full letter, but show only the top half? You would position multiple shapes at different depths.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['3d-shapes']}
-</Center>
+</figure>
 
 First the envelope, then the letter, then an additional shape, tracing the letter below.
 
@@ -67,6 +65,6 @@ All you need is one more shape and the right source order.
 
 And there you have it. Even in 2D, the illusion is restored. You decide if it's entertaining as well.
 
-<Center element="figure" maxInlineSize="26rem">
+<div class="[ center-frame ]" data-size="medium">
     <SourceOrder />
-</Center>
+</div>

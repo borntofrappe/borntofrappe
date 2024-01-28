@@ -28,7 +28,7 @@
 	const height = y1 - y0 + 1;
 </script>
 
-<svg style:color viewBox="{x0} {y0} {width} {height}">
+<svg style:color style="display: block;" viewBox="{x0} {y0} {width} {height}">
 	<defs>
 		<g id="level-cube">
 			<path d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
@@ -46,10 +46,6 @@
 </svg>
 
 <style>
-	svg {
-		display: block;
-	}
-
 	svg use:hover {
 		filter: brightness(2);
 	}

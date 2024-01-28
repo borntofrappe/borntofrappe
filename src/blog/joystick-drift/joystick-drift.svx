@@ -5,7 +5,6 @@ date: 2023-12-11T11:35:42
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Controller from './Controller.svelte';
@@ -27,9 +26,9 @@ illustration.updateRenderGraph();
 
 Pick a hard-coded value and call the method to see the result. But if you want more control on the change, nothing beats the interaction baked in battle-tested HTML elements, like an `input` of type `range`. Once you set up the element you just need to extract the value — refer to the `input` event to continuously track the measure — and repeat the two step process.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Controller />
-</Center>
+</div>
 
 Of course nothing stops me from doing the same after the fact. Hopefully, this makes for a less than frustrating twist.
 

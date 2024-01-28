@@ -5,15 +5,13 @@ date: 2023-11-22T14:37:24
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import SwitchSystem from './SwitchSystem.svelte';
 </script>
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<SwitchSystem />
-</Center>
+</div>
 
 Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The syntax is fairly technical, rich in issues, but there is a use case as well.
 

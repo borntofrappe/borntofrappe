@@ -5,8 +5,6 @@ date: 2023-06-09T16:07:53
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Glyphs from './Glyphs.svelte';
 </script>
@@ -17,9 +15,9 @@ The Wikipedia entry for [the Phoenician alphabet](https://en.wikipedia.org/wiki/
 
 You first need to draw the characters. All thirty of them.
 
-<Center element="figure" maxInlineSize="46rem">
+<figure class="[ center-frame ]" data-size="large">
     {@html svg['glyphs']}
-</Center>
+</figure>
 
 There's a lot that goes in the design of the glyphs, possibly more than you can tolerate in one sitting, but there's enough SVG goodness to pause and appreciate the syntax. What is more, once you know how to draw a couple of characters, you'll be able to complete the set yourself.
 
@@ -72,9 +70,9 @@ From the spot, `v` and `h` complete the glyph, with a slightly shorter segment f
 
 There's only one more tweak to reach the end result. Something between a preference and a veritable need. Set the `stroke-linecap` attribute to `square`. Once you do, the segments stretch a tad further than the given points.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['glyph-square']}
-</Center>
+</figure>
 
 How is this helpful? The moment you have a `<path>` take a turn, the line stretches a tad further before changing direction. It happens with the character when you move to the right and then down. It happens with more evidence in the alphabet, with the character two places to the right.
 
@@ -84,9 +82,9 @@ How is this helpful? The moment you have a `<path>` take a turn, the line stretc
 
 Here you have a sequence of turns to draw the rectangular shape. The addition of `stroke-linecap` means the lean figure and the more box-like shape are neatly aligned.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['glyph-square-align']}
-</Center>
+</figure>
 
 Continuing in the alphabet, in between the two letters you have a circle around a cross tipped on its side. And the piece deserves a mention as well.
 
@@ -122,9 +120,9 @@ And, rotate the piece. 45 degrees clockwise, or counterclockwise if you are so i
 
 You rotate the cross and you find the "x". You rotate the arcs as well, but keep it a secret. No one will notice it.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['glyph-rotate']}
-</Center>
+</figure>
 
 The three to four letters are already enough to fill your daily requirements of SVG syntax, but allow me one last musing for the character in the last row, consisting of nothing but a dot. I promise you, it won't take much, and it is worth the detour.
 
@@ -138,9 +136,9 @@ The `z` command sits on the opposite end of the `M` character, to close the line
 
 Bring back the `stroke-linecap` attribute, however, and you discover one of the reasons I am often giddy writing SVG by hand. The moment you set the value to `round` you smooth the edges, at the start and the end. As the two overlap, voilà, there pops a perfect circle.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['glyph-round']}
-</Center>
+</figure>
 
 ## One vector
 
@@ -214,9 +212,9 @@ Want a different icon? Repeat the snippet and update the reference.
 
 Want to re-discover the alphabet? You get the gist.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Glyphs />
-</Center>
+</div>
 
 You need a leap of faith. You have to trust the presence of the `<symbol>`s in the page, but with the stipulation, you have a full-blown icon set.
 
@@ -224,6 +222,6 @@ Icons or characters, though? While the example is sweet, we are dangerously clos
 
 The good news? Even text is made of vectors, of the same instructions you've seen in the `<path>` elements. Something which might inspire you to explore the topic further and who knows, design your own typeface beyond precious eye candy.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg["letters"]}
-</Center>
+</figure>

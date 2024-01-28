@@ -5,8 +5,6 @@ date: 2023-10-26T10:35:04
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Arc from './Arc.svelte';
 	import Bezier from './Bezier.svelte';
@@ -69,9 +67,9 @@ Beside straight segments alone, you can draw arcs with a specific syntax.
 
 Instead of an object describing the coordinates, add curly braces with a single `arc` property. In this key, then, include an array with two objects. The first describes the position of the corner. The second, where the arc should end.
 
-<Center element="figure" maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['arc-zdog']}
-</Center>
+</figure>
 
 If you are familiar with the arcs of `<path>` elements, the structure is quite different from the one of the `d` attribute. But [some might argue](/another-arc), even better. The behavior is predictable when you draw the path based on a single corner point.
 
@@ -155,9 +153,9 @@ The same corner point, back to the origin.
 
 Conceptually, the code is not that different from having only straight lines. But visually, the result is quite more impressive.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	<Arc />
-</Center>
+</figure>
 
 ## Bezier
 
@@ -165,9 +163,9 @@ While the `<path>` element lets you draw two types of bezier curves, quadratic a
 
 The syntax is similar to the one introducing an arc: introduce the function with the `bezier` key. In the array which follows add three objects.
 
-<Center element="figure" maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['bezier-zdog']}
-</Center>
+</figure>
 
 The final object always points to where the shape should end. The remaining argue for the control points in the precise order.
 
@@ -229,14 +227,14 @@ new Shape({
 
 As you draw from the end to the beginning, the influence of the control points is reversed. And with this precaution, even for the most complex of the Zdog paths, the effect is complete.
 
-<Center element="figure" maxInlineSize="400px">
+<figure class="[ center-frame ]" style="--frame-size: 400px">
 	<Bezier />
-</Center>
+</figure>
 
 It is likely there is a better way to structure the shape over three dimensions. Coming from an SVG element, from the instructions of the `d` attribute of `<path>` elements, I find the approach to be straightforward.
 
 In the context of a complex illustration, populated with flimsy shapes, you can target a few instances and enhance the picture with solid, pseudo-3D shadows. And extend a graphic to reach new heights, unexplored depths.
 
-<Center element="figure" maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<NightSky />
-</Center>
+</div>

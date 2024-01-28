@@ -14,15 +14,6 @@ const config = {
 		alias: {
 			$blog: 'src/blog'
 		}
-	},
-	onwarn: (warning, handler) => {
-		if (
-			warning.message === 'A11y: <figcaption> must be an immediate child of <figure>' &&
-			/element="figure"/.test(warning.frame)
-		) {
-			return;
-		}
-		handler(warning);
 	}
 };
 

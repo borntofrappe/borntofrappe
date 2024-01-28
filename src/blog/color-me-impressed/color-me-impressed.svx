@@ -5,10 +5,7 @@ date: 2023-08-24T15:34:56
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
 	import html from './html.js';
-	
 	import Intro from './Intro.svelte';
 	import Tint from './Tint.svelte';
 </script>
@@ -50,9 +47,9 @@ A value of 1 leaves the shapes untouched, while greater numbers increase the sat
 
 Your precious picture goes back in time, essentially grayscale.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
     {@html html['saturate']}
-</Center>
+</figure>
 
 With a type of `hueRotate` spin the colors around the color wheel.
 
@@ -68,9 +65,9 @@ The number rotates the hues in the 0 to 360 range, through red, green and blue.
 
 Your red-infused sprite moves between versions, exploring the luminous spectrum.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html html['hueRotate']}
-</Center>
+</figure>
 
 The two operations are immediate, and already allow for intriguing changes. For a more refined touch, however, the primitive supports yet another type: `matrix`.
 

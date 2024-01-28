@@ -5,8 +5,6 @@ date: 2023-05-18T21:48:56
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import ClipPaths from './ClipPaths.svelte';
     import Puzzle from './Puzzle.svelte';
@@ -18,9 +16,9 @@ In the context of scalable vector graphics, the `<use>` element helps to repeat 
 
 Say you've drawn a flower.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['flower']}
-</Center>
+</figure>
 
 An `<ellipse>`, a handful of `<path>`s. There's not much to the composition, but the code adds up to a few lines already.
 
@@ -42,9 +40,9 @@ Repeat the youngling with the `<use>` element.
 
 Once you offset the instances with the `x` attribute you find the stylish flower now on the right, now on the left. A veritable copy, without actually copying the underlying code. Quite convenient.
 
-<Center element="figure" maxInlineSize="30rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['flowers']}
-</Center>
+</figure>
 
 ## Puzzles
 
@@ -86,9 +84,9 @@ It is only as you refer to the symbol, through the now-infamous `<use>` element,
 
 A word on said canvas: why 2 units wide and tall? Just a preference to work with small integers. The instructions in the `<symbol>` element are still relative to the symbol's own canvas, but the visual is scaled to the new boundaries. And as an appetizer, let me offer an example with a secretive placeholder image.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['placeholder']}
-</Center>
+</figure>
 
 You can very well repeat the painting, as many times as you want puzzle pieces.
 
@@ -129,9 +127,9 @@ When you apply the clip to the image with the `clip-path` attribute.
 
 You no longer see the entire picture. Just a quarter.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['clip-path']}
-</Center>
+</figure>
 
 Expand the concept to the remaining quadrants — add `<clipPath>` elements with the square in a different position.
 
@@ -162,9 +160,9 @@ At this point you can repeat the use elements, and on each copy, apply a differe
 
 And with that, the puzzle is complete.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['puzzle-pieces']}
-</Center>
+</figure>
 
 If the result is anticlimactic, I share your sentiment. It may seem as little has changed, after all you find the same, promising placeholder. But there are indeed four pieces. You can inspect the page, or even notice a thin border separating the `<use>` elements.
 
@@ -184,9 +182,9 @@ You can move this last piece in the otherwise empty spot.
 
 And there you have it. An improper puzzle, just waiting to be put back into place.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
     {@html svg['puzzle-swap']}
-</Center>
+</figure>
 
 Before I show you the highly anticipated work of art, expanded to consider a few more pieces and a touch of interaction, let me share a final update. One final excuse to repeat the `<use>` element.
 
@@ -229,6 +227,6 @@ And there you have it, a puzzle piece with a descriptive label. You can position
 
 Personally, I find the change simplifies the task immensely. If you find the update way too technical, once again I understand your position. And as promised, I offer a last example to make it worth your day.
 
-<Center maxInlineSize="32rem">
+<div class="[ center-frame ]">
 	<Puzzle />
-</Center>
+</div>

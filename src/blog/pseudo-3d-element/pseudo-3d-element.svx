@@ -5,8 +5,6 @@ date: 2023-07-18T17:42:34
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import SVG from './SVG.svelte';
 	import Canvas from './Canvas.svelte';
@@ -26,15 +24,15 @@ In an unsurprising twist, given the scope of this website, the first answer is `
 
 The JavaScript library replaces the contents of the `<svg>` when called to action, but until it is, you can safely rely on a fallback visual.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	{@html svg['astro']}
-</Center>
+</div>
 
 When the library works, you still have the `<svg>` on the page, just with a new host of elements marking the shapes in higher dimensions.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	<SVG />
-</Center>
+</div>
 
 A new set of elements and attributes, leading to another perk. You can inspect the page, you can look through the syntax. Chances are, you are not going to author pseudo-3D graphics by hand any time soon, but you can learn a lot from the source code. How the library leans on the `stroke` attribute to add a sense of depth. How the library manages the order of elements to emulate the z-axis with judicious overlaps. Even a few tricks which might save you a few keystrokes the moment you are going to write SVG yourself.
 
@@ -56,9 +54,9 @@ Limit yourself to a few classes and SVG works as a solid option. You get to appr
 
 With SVG the animation is choppy, staggers as the browser tries to update the page. Do not worry, I won't subject neither you nor your browser to the painful test. Suffice it to say, this is the place where a `<canvas>` works best.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	<Canvas />
-</Center>
+</div>
 
 ---
 

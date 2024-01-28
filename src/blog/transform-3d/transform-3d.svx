@@ -5,8 +5,6 @@ date: 2023-07-20T14:49:20
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import TransformSVG from './TransformSVG.svelte';
 	import Circles from './Circles.svelte';
 	import TransformZdog from './TransformZdog.svelte';
@@ -43,9 +41,9 @@ Rotate the parent scope, for instance a wrapping group element.
 
 In the scope of the group you rotate the entire coordinate system. The offset shape, and any other nested element, will follow at an angle.
 
-<Center maxInlineSize="350px">
+<div class="[ center-frame ]" style="--frame-size: 350px">
 	<TransformSVG />
-</Center>
+</div>
 
 Again, this is made possible through transformations, but you must be cautious with the order. First rotate, then translate.
 
@@ -69,9 +67,9 @@ In the `transform` attribute, you can layer the changes one after the other, in 
 
 With or without nested groups, you know how to operate. And you can achieve a lot with the single concept already.
 
-<Center maxInlineSize="500px">
+<figure class="[ center-frame ]" style="--frame-size: 500px">
 	<Circles />
-</Center>
+</figure>
 
 ## Zdog
 
@@ -148,9 +146,9 @@ new Zdog.Shape({
 
 A visual might help.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<TransformZdog />
-</Center>
+</div>
 
 But if your head is spinning, you are justified in being slightly befuddled. It is certainly not easy to digest the process as the shift requires a literal change in perspective.
 
@@ -158,6 +156,6 @@ If you need a better handle on rotations, you might want to try and [update the 
 
 And if you ever decide to pick up the concept to try and chart a few stars, let me offer one final piece of advice. As you research the _celestial sphere_ and get to know fancy words such as _right ascension_ and _declination_, you might stumble on similar rotations around the y and x axes. In this light, know that a positive declination moves a point up, above the equator, while a positive rotation in Zdog on the x axis moves in the opposite direction. The entire discussion might go over your head, and at the end of the day, it's close to trivial. What matters is having a clear view of transformations. And possibly an impressive sight.
 
-<Center maxInlineSize="500px">
+<figure class="[ center-frame ]" style="--frame-size: 500px">
 	<Stars />
-</Center>
+</figure>

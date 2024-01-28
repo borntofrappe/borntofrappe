@@ -5,17 +5,15 @@ date: 2023-08-07T09:34:44
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import TreasureChest from './TreasureChest.svelte';
 </script>
 
 When you draw arcs in SVG, in the `d` attribute of a `<path>` element, you have one formula.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['arc-svg']}
-</Center>
+</figure>
 
 There's a lot of information past the _"A"_ character, and there are a total of four ways you have to connect the start and end coordinates. At the price of these options, however, you lose in clarity. Just what arc will be drawn on screen?
 
@@ -29,9 +27,9 @@ You don't need to go through [an entire article](/character-arc) to understand t
 
 And in SVG, that's all there is to it. You have to accept the verbose, convoluted syntax. The syntax might lead you to a precious visual, but you might long for a better way.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['treasure-chest']}
-</Center>
+</figure>
 
 Outside of SVG, there are indeed alternatives. Consider [Zdog](https://zzz.dog/) for instance. The JavaScript library lets you draw shapes with a `Shape` class.
 
@@ -44,9 +42,9 @@ new Zdog.Shape({
 
 In the `path` property you elaborate the shape similarly to the `d` attribute, with a series of instructions. These are nested in meaningful objects, and allow to draw arcs with a much clearer logic.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="large">
 	{@html svg['arc-zdog']}
-</Center>
+</figure>
 
 You need just three points. Three sets of coordinates for where the arc begins, a corner point and where the line should end.
 
@@ -56,9 +54,9 @@ One corner point for one arc. One _predictable_ arc. Even with the additional `z
 
 You lose the flexibility of the flags, but you can very well replicate the features. To change the direction of the smaller arc, adjust the position of the guiding point. To realize the larger shape — alas you can't do that with one directive —, set up multiple arcs. Three arcs, three corner points tracing the outline of the larger figure.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['arcs-zdog']}
-</Center>
+</figure>
 
 The path is possibly longer, but still explicit. You don't need to toggle the value of a flag, you don't need to even consider ellipses. If you need an ellipse, by chance, Zdog offers a fitting class.
 
@@ -82,6 +80,6 @@ new Zdog.Ellipse({
 
 You have options. And another way to draw, to appreciate arcs.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<TreasureChest />
-</Center>
+</div>

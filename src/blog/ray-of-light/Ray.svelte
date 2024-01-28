@@ -60,7 +60,6 @@
 <svelte:window on:resize={handleSize} />
 
 <svg
-	viewBox="-55 -55 110 110"
 	bind:this={svg}
 	on:mousedown={handleStart}
 	on:mouseup={handleEnd}
@@ -68,6 +67,8 @@
 	on:mouseleave={handleReset}
 	on:click={handleMove}
 	role="presentation"
+	style="display: block;"
+	viewBox="-55 -55 110 110"
 >
 	<g transform="scale({$scale})">
 		<g transform="translate({$offset.x * 0.2} {$offset.y * 0.2})">
@@ -106,9 +107,3 @@
 		</g>
 	</g>
 </svg>
-
-<style>
-	svg {
-		display: block;
-	}
-</style>

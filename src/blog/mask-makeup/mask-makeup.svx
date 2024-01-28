@@ -5,18 +5,16 @@ date: 2023-06-30T10:50:16
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
-	import SourceOrder from './SourceOrder.svelte';
 	import svg from './svg.js';
+	import SourceOrder from './SourceOrder.svelte';
 	import Stamp from './Stamp.svelte';
 </script>
 
 Even without a third axis you are able to layer SVG shapes based on source order. This simple fact opens the way for remarkable visuals, where you are able to conceal parts of the graphic by [overlaying different elements](/z-overlap).
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<SourceOrder />
-</Center>
+</div>
 
 I like to think of the effect as _"hiding in plain sight"_.
 
@@ -24,9 +22,9 @@ You have a letter and a mailbox. Actually, you have the dark portion of a mailbo
 
 There is no hiding at play, but in SVG, if you go beyond the basics and explore the syntax, you do have a way to truly pick and choose what to show. No overlays required. And to discover how, tear open that letter. Past a couple of cryptic lines, you find a seal at the very bottom of the page.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['letter']}
-</Center>
+</figure>
 
 You see through the red mark. You see the bright background through a thin outline and a chunky five-pointed star. And you do not need to draw these shapes with the same color as the background to achieve the feat. You need a mask.
 
@@ -77,9 +75,9 @@ Black shapes decide what to hide, absolutely.
 
 In this light you can get creative as much as you want. It's almost charming in its simplicity; something similar to a collage where you cut out parts of the regular polygon. To see right through and find whatever you drew below.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
 	<Stamp />
-</Center>
+</div>
 
 And the feature might rely on a `<mask>` element, but depends once again on SVG founding traits. As the source order helps to overlay shapes, it illustrates what to show, what to hide, in sequence.
 

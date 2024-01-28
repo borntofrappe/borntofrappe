@@ -5,8 +5,6 @@ date: 2024-01-16T14:35:41
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Graphs from './Graphs.svelte';
 	import Motion from './Motion.svelte';
@@ -119,9 +117,9 @@ if (counter > cycle) {
 
 But the concept of rotations, and the concept of radians in particular, offers a different way. This time, with the contribution of the sine function. This is a function which conveniently repeats every time you cross the value of twice the constant PI, also known as TAU.
 
-<Center element="figure" maxInlineSize="36rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['sine-function']}
-</Center>
+</figure>
 
 Even more conveniently, it reaches the same value with which you start as soon as you reach half the measure. Or, put it simply, PI.
 
@@ -133,9 +131,9 @@ const loop = Math.sin(t * Math.PI);
 
 But you have found it, a third, different way to animate shapes. From one value to another and back.
 
-<Center element="figure" maxInlineSize="18rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['looping-increments']}
-</Center>
+</figure>
 
 Ultimately, you pick the approach which works best for what you need. In some settings, a constant, linear change is more than enough. But you have certainly options to soften the pace, and even ways to create looping animations. Nothing stops you from even mixing an easing with the sine function, and dip your toe into a new animations.
 

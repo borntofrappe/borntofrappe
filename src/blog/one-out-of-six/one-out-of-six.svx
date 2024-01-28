@@ -5,7 +5,6 @@ date: 2023-10-30T09:40:07
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 
 	import Dice from './Dice.svelte';
@@ -19,8 +18,8 @@ illustration.rotate.y = TAU / 8;
 
 Of course you are not limited to one axis. There are three dimensions, [three types of rotations](/rotate-3d). Assuming you have enough patience to line up different shapes, you can continue trying your luck with the library, and promptly answer [an outstanding question](/what-are-the-odds) without amusing, pixelated tricks.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Dice />
-</Center>
+</div>
 
 <ZdogMonday />

@@ -5,8 +5,6 @@ date: 2023-11-09T11:35:03
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import RequestAnimation from './RequestAnimation.svelte';
 </script>
 
@@ -134,8 +132,8 @@ const ease = backInOut(counter / threshold);
 
 Linear, eased. There are several ways to animate to the graphic, to add character to the shapes.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<RequestAnimation />
-</Center>
+</div>
 
 Be warned, however, that some functions tend to be excessively responsive — I'll let you test `bounceInOut` on your own.

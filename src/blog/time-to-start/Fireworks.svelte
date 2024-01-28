@@ -66,79 +66,85 @@
 	};
 </script>
 
-<svg bind:this={svg} viewBox="0 0 100 60">
-	<set />
-	<rect fill="hsl(210, 20%, 16%)" rx="5" width="100" height="60" />
+<div>
+	<svg bind:this={svg} viewBox="0 0 100 60">
+		<set />
+		<rect fill="hsl(210, 20%, 16%)" rx="5" width="100" height="60" />
 
-	<g transform="translate(50 61.1)">
-		{#each fireworks as { x, dy, dur, id, begin, follow, fill, particles } (id)}
-			<g class="firework">
-				<g transform="translate({x} 0)">
-					<g>
-						<animateTransform
-							{id}
-							{begin}
-							attributeName="transform"
-							type="translate"
-							to="0 {dy}"
-							{dur}
-							fill="freeze"
-						/>
-						<g {fill}>
-							{#each particles as { x, y }}
-								<g>
-									<animateTransform
-										attributeName="transform"
-										type="translate"
-										to="{x} {y}"
-										begin={follow}
-										dur="1s"
-										fill="freeze"
-									/>
-									<circle r="1">
-										<animate
-											attributeName="r"
-											to="0"
-											begin="{follow} + 0.3s"
-											dur="0.7s"
+		<g transform="translate(50 61.1)">
+			{#each fireworks as { x, dy, dur, id, begin, follow, fill, particles } (id)}
+				<g class="firework">
+					<g transform="translate({x} 0)">
+						<g>
+							<animateTransform
+								{id}
+								{begin}
+								attributeName="transform"
+								type="translate"
+								to="0 {dy}"
+								{dur}
+								fill="freeze"
+							/>
+							<g {fill}>
+								{#each particles as { x, y }}
+									<g>
+										<animateTransform
+											attributeName="transform"
+											type="translate"
+											to="{x} {y}"
+											begin={follow}
+											dur="1s"
 											fill="freeze"
 										/>
-									</circle>
-								</g>
-								<g>
-									<animateTransform
-										attributeName="transform"
-										type="translate"
-										to="{x * 2} {y * 2}"
-										begin={follow}
-										dur="1s"
-										fill="freeze"
-									/>
-									<circle r="1">
-										<animate
-											attributeName="r"
-											to="0"
-											begin="{follow} + 0.3s"
-											dur="0.7s"
+										<circle r="1">
+											<animate
+												attributeName="r"
+												to="0"
+												begin="{follow} + 0.3s"
+												dur="0.7s"
+												fill="freeze"
+											/>
+										</circle>
+									</g>
+									<g>
+										<animateTransform
+											attributeName="transform"
+											type="translate"
+											to="{x * 2} {y * 2}"
+											begin={follow}
+											dur="1s"
 											fill="freeze"
 										/>
-									</circle>
-								</g>
-							{/each}
+										<circle r="1">
+											<animate
+												attributeName="r"
+												to="0"
+												begin="{follow} + 0.3s"
+												dur="0.7s"
+												fill="freeze"
+											/>
+										</circle>
+									</g>
+								{/each}
+							</g>
+							<circle fill="hsl(210, 15%, 90%)" r="1.1">
+								<set attributeName="display" to="none" {begin} />
+							</circle>
 						</g>
-						<circle fill="hsl(210, 15%, 90%)" r="1.1">
-							<set attributeName="display" to="none" {begin} />
-						</circle>
 					</g>
 				</g>
-			</g>
-		{/each}
-	</g>
-</svg>
+			{/each}
+		</g>
+	</svg>
 
-<button on:click={handleClick}>Fire away</button>
+	<button on:click={handleClick}>Fire away</button>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	svg {
 		display: block;
 	}

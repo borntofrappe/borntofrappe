@@ -2,37 +2,43 @@
 	let tangram = false;
 </script>
 
-<label>
-	<input type="checkbox" bind:checked={tangram} />
-	<span>{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class</span>
-</label>
+<div>
+	<label>
+		<input type="checkbox" bind:checked={tangram} />
+		<span>{tangram ? 'Remove' : 'Add'} the <code>.tangram</code> class</span>
+	</label>
 
-<svg class:tangram viewBox="-2 -2 8 8">
-	<g style="transform: translate(1px, 1px)">
-		<path d="M 0 0 l 2 2 2 -2" fill="hsl(0, 78%, 68%)" />
-	</g>
-	<g style="transform: translate(1px, 1px) rotate(-90deg)">
-		<path d="M 0 0 l 2 2 -2 2" fill="hsl(51, 78%, 68%)" />
-	</g>
-	<g style="transform: translate(1px, -1px) rotate(90deg)">
-		<path d="M 0 0 l 1 -1 0 2" fill="hsl(102, 78%, 68%)" />
-	</g>
-	<g style="transform: translate(1px, 1px) rotate(90deg)">
-		<path d="M 0 0 l 1 -1 1 1" fill="hsl(152, 78%, 68%)" />
-	</g>
+	<svg class:tangram viewBox="-2 -2 8 8">
+		<g style="transform: translate(1px, 1px)">
+			<path d="M 0 0 l 2 2 2 -2" fill="hsl(0, 78%, 68%)" />
+		</g>
+		<g style="transform: translate(1px, 1px) rotate(-90deg)">
+			<path d="M 0 0 l 2 2 -2 2" fill="hsl(51, 78%, 68%)" />
+		</g>
+		<g style="transform: translate(1px, -1px) rotate(90deg)">
+			<path d="M 0 0 l 1 -1 0 2" fill="hsl(102, 78%, 68%)" />
+		</g>
+		<g style="transform: translate(1px, 1px) rotate(90deg)">
+			<path d="M 0 0 l 1 -1 1 1" fill="hsl(152, 78%, 68%)" />
+		</g>
 
-	<g style="transform: translate(1px, 3px) rotate(-90deg)">
-		<path d="M 0 0 l 2 -2 0 2" fill="hsl(202, 78%, 68%)" />
-	</g>
-	<g style="transform: translate(1px, 3px)">
-		<path d="M 0 0 l 1 -1 1 1 -1 1" fill="hsl(254, 78%, 68%)" />
-	</g>
-	<g style="transform: translate(-1px, 1px)">
-		<path d="M 0 0 l 1 -1 2 0 -1 1" fill="hsl(308, 78%, 68%)" />
-	</g>
-</svg>
+		<g style="transform: translate(1px, 3px) rotate(-90deg)">
+			<path d="M 0 0 l 2 -2 0 2" fill="hsl(202, 78%, 68%)" />
+		</g>
+		<g style="transform: translate(1px, 3px)">
+			<path d="M 0 0 l 1 -1 1 1 -1 1" fill="hsl(254, 78%, 68%)" />
+		</g>
+		<g style="transform: translate(-1px, 1px)">
+			<path d="M 0 0 l 1 -1 2 0 -1 1" fill="hsl(308, 78%, 68%)" />
+		</g>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}

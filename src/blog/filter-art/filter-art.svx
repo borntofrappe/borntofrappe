@@ -5,16 +5,14 @@ date: 2023-08-18T13:33:03
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 </script>
 
 In SVG shapes are drawn with geometric precision.
 
-<Center element="figure" maxInlineSize="20rem">
+<figure class="[ center-frame ]">
 	{@html svg['abstract-art']}
-</Center>
+</figure>
 
 A `<circle>` element with a given radius. `<path>` elements detailing a series of lines point by point. The browser follows the instructions you add in the elements' attributes to the letter and to the number. And the result is remarkable — you get to draw close to anything with only code —, but often time, precise to a fault.
 
@@ -54,9 +52,9 @@ The first function produces a texture with _Perlin noise_.
 
 There's plenty to learn about noise functions — fancy words such as octaves, frequency and amplitude —, but with the values you find an image.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['noise-filter']}
-</Center>
+</figure>
 
 You might wonder what happens to the filtered rectangle. Every primitive has one or two input images you can detail with the `in` and `in2` attributes. What is more, each function has one output you name with `result`. `feTurbulence`, for instance, takes the input graphic, almost without telling you, and returns the texture in its place.
 
@@ -92,14 +90,14 @@ Following `feTurbulence`, `in2` would refer to the earlier output, to the very s
 
 Either way, the filter works to produce a texture, and then use the noise to "mess up" the shape.
 
-<Center element="figure" maxInlineSize="32rem">
+<figure class="[ center-frame ]" data-size="medium">
 	{@html svg['displacement-filter']}
-</Center>
+</figure>
 
 Gone are the rigid segments. Gone is the perfect polygon. Instead you find an irregular sketch, one you could almost draw yourself on a fleeting scrap of paper. The close to perfect manner to take the painting and produce a proud work of art. One you could almost showcase in a gallery provided with the right frame.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['filter-art']}
-</Center>
+</figure>
 
 As mentioned, there's a lot to SVG filters, a laundry list of elements, attributes and combinations. Understanding the basics, however, is more than enough to crack open the topic. Once you grasp how a filter works, how primitives operate on a specific set of inputs and return one output, you can dive in the syntax and eagerly sample the rest.

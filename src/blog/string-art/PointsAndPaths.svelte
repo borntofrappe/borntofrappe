@@ -54,36 +54,42 @@
 		);
 </script>
 
-<label>
-	<span>Draw and connect <code>{value}</code> points</span>
-	<input type="range" bind:value min="2" max="10" />
-</label>
+<div>
+	<label>
+		<span>Draw and connect <code>{value}</code> points</span>
+		<input type="range" bind:value min="2" max="10" />
+	</label>
 
-<svg style="display: block;" viewBox="-44 -44 88 88">
-	<g
-		fill="none"
-		stroke="currentColor"
-		stroke-width="1"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	>
-		<circle bind:this={element} r="40" />
+	<svg style="display: block;" viewBox="-44 -44 88 88">
+		<g
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<circle bind:this={element} r="40" />
 
-		<g stroke-width="0.75">
-			{#each paths as d}
-				<path {d} />
+			<g stroke-width="0.75">
+				{#each paths as d}
+					<path {d} />
+				{/each}
+			</g>
+		</g>
+
+		<g fill="currentColor">
+			{#each points as { cx, cy }}
+				<circle {cx} {cy} r="4" />
 			{/each}
 		</g>
-	</g>
-
-	<g fill="currentColor">
-		{#each points as { cx, cy }}
-			<circle {cx} {cy} r="4" />
-		{/each}
-	</g>
-</svg>
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}

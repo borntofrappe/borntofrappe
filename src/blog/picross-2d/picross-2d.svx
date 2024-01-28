@@ -5,8 +5,6 @@ date: 2023-02-21T11:39:22
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Level from './Level.svelte'
 	import Grid from './Grid.svelte'
 	import Coordinates from './Coordinates.svelte'
@@ -135,9 +133,9 @@ Finally, draw a rectangle, but only if the cell includes the arbitrary `o` chara
 
 A definite improvement, wouldn't you agree?
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     <Grid />
-</Center>
+</figure>
 
 It may all look like magic, but take the attributes in sequence and it makes a world of sense. The first `o` character is tucked in the first row, `y` equal to 0, and fourth cell, `x` equal to 3. This means you draw the unitary rectangle in the matching coordinates.
 
@@ -213,9 +211,9 @@ xooxoox`;
 
 And here's the most ready result.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     <Coordinates />
-</Center>
+</figure>
 
 Care to test your luck with a `reduce` method or two? Here's a version I created in a few steps.
 
@@ -234,6 +232,6 @@ Consider it a homework of sorts to understand it all. Perhaps remove the `return
 
 And consider this final level as your eventual reward.
 
-<Center maxInlineSize="24rem">
+<figure class="[ center-frame ]">
     <Reduce />
-</Center>
+</figure>

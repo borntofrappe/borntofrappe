@@ -5,8 +5,6 @@ date: 2023-03-17 20:39:21
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import Roll from './Roll.svelte';
     import DiceRoll from './DiceRoll.svelte';
@@ -20,10 +18,10 @@ In the context of a pixelated game I stumbled on a rather interesting challenge:
 
 The first step is innocently time-consuming: designing the faces of a single die.
 
-<Center element="figure" maxInlineSize="38rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['faces']}
     <figcaption>The faces of a 16-bit die</figcaption>
-</Center>
+</figure>
 
 If you are interested in the code I'll refer you to [a previous article](/pixel-walker) exploring different ways to draw pixel art with SVG syntax. Briefly, each face is drawn with three `<path>` elements, filling the canvas in rows and columns. First a dark base, then the bright white face, finally the noticeable dots.
 
@@ -35,10 +33,10 @@ There are no shortcuts about it, however, and this time the effort is really dem
 
 How many? As many as you can tolerate, times the number of rolls you actually want to show.
 
-<Center element="figure" maxInlineSize="38rem">
+<figure class="[ center-frame ]" data-size="medium">
     {@html svg['sprites']}
     <figcaption>The sprites of a rolling 16-bit die</figcaption>
-</Center>
+</figure>
 
 I ended up with 28, but you can spot a pattern in the shape, in the angle of the pretend cube. The biggest difference is marked by the number of points you see for a brief moment, zooming toward you before falling down, out of sight.
 
@@ -48,17 +46,17 @@ You have six faces. You have plenty more sprites. Show these last rapidly, one a
 
 Thanks to [SMIL animation](/bee-is-in-motion), you just need a tap.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
     {@html svg['roll']}
-</Center>
+</div>
 
 One, six, five, almost four? Do not worry, I haven't cheated you by skipping the last sprite. At least not yet. The die is about to show you the result, and it is at this instant where you play a trick.
 
 Past the last sprite, pick a face from the original six-pack. At random.
 
-<Center maxInlineSize="20rem">
+<div class="[ center-frame ]">
     <Roll />
-</Center>
+</div>
 
 You may notice the sudden jump. You may notice the four dots suddenly swapped out of place, but only if you try not to blink too much. And the result is certainly less convincing the more you try.
 

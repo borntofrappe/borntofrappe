@@ -2,8 +2,8 @@
 	import Ray from './Ray.svelte';
 </script>
 
-<section>
-	<div>
+<div class="layout">
+	<div class="float">
 		<Ray x={-5} y={-5} />
 	</div>
 
@@ -12,26 +12,26 @@
 		website. Charming in its simplicity, it hides a whimsical interaction and, what's more, it works
 		to showcase the fitting union of SVG and Svelte.
 	</p>
-</section>
+</div>
 
 <style>
-	div {
+	.float {
 		max-inline-size: 20rem;
 	}
 
-	section > div {
+	.layout > .float {
 		float: right;
 		inline-size: 100%;
 		shape-outside: circle();
 	}
 
 	@media screen and (max-width: 32rem) {
-		section {
+		.layout {
 			display: flex;
 			flex-direction: column;
 		}
 
-		section > div {
+		.layout > .float {
 			margin-block-start: 1rem;
 			order: 1;
 			align-self: center;

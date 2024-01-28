@@ -5,8 +5,6 @@ date: 2023-02-03T15:50:21
 ---
 
 <script>
-    import Center from '$lib/components/blog/Center.svelte';
-
     import svg from './svg.js';
     import Transform from './Transform.svelte';
     import Degrees from './Degrees.svelte';
@@ -43,9 +41,9 @@ Add two lines, protruding from the center and outside of the round shape.
 
 SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an indistinguishable mass.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['head']}
-</Center>
+</figure>
 
 You could smooth the ends of the segments with the `stroke-linecap` property, but we can treat ourselves with a `<marker>`. There's plenty to know about the element, but let me focus on the essential parts for our most practical use case.
 
@@ -83,9 +81,9 @@ The shapes are then measured relative to the specific `viewBox`. The curious set
 </marker>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['marker']}
-</Center>
+</figure>
 
 Impressive as the effect is, there is one inconvenience. You do need to set the color for the circle in the marker itself.
 
@@ -102,9 +100,9 @@ On the positive side, you can add the attribute on the group element to have the
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['markers']}
-</Center>
+</figure>
 
 ## Body
 
@@ -136,9 +134,9 @@ For the polka dot pattern, follow up with smaller, darker circles. The color pic
 </g>
 ```
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['half']}
-</Center>
+</figure>
 
 Something's quite off with the picture, however.
 
@@ -194,15 +192,15 @@ In essence you flip the entire coordinate system. With the transformation applie
 
 If you need to wrap your head around the feat, here's a small playground. I've omitted the `id` to save space, but the `<use>` element refers to the circle you move with the handle.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<Transform />
-</Center>
+</div>
 
 If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
 
-<Center maxInlineSize="30rem">
+<figure class="[ center-frame ]">
 	{@html svg['body']}
-</Center>
+</figure>
 
 ## Spring
 
@@ -268,9 +266,9 @@ const degrees = (theta * 180) / Math.PI;
 
 Second hiccup, the number falls in the `[-180, 180]` range, starting with 0 on the right axis.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="large">
 	<Degrees />
-</Center>
+</div>
 
 Since the creature looks straight up, we'd rather explore the `[-90, 270]` range instead.
 
@@ -287,9 +285,9 @@ angle.set(degrees);
 
 And enjoy the inquisitive insect.
 
-<Center maxInlineSize="30rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Spring />
-</Center>
+</div>
 
 ## Finishing touches
 
@@ -432,6 +430,6 @@ If you then place the creature at the very end of the page, then, you may call t
 
 Cheeky little critter.
 
-<Center maxInlineSize="36rem">
+<div class="[ center-frame ]" data-size="medium">
 	<Brianna />
-</Center>
+</div>

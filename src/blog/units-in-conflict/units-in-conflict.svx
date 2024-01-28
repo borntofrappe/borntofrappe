@@ -5,8 +5,6 @@ date: 2023-09-11T09:34:44
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import svg from './svg.js';
 	import Festoon from './Festoon.svelte';
 </script>
@@ -100,9 +98,9 @@ Is passed implicitly as the input of the first instance of `feMergeNode`.
 
 Offset the figure, pair the copy to the original and marvel at the result. Not quite, however.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['user-space-on-use']}
-</Center>
+</figure>
 
 Not by a long margin. What you find with the code is the circle, and seemingly the single, round shape.
 
@@ -153,12 +151,12 @@ It is unfortunate that the two attributes don't match, but it is fortunate that 
 
 Set `primitiveUnits` on the single `<filter>` element and the change ripples through the entire sequence. Enough to fix our overlap.
 
-<Center element="figure" maxInlineSize="26rem">
+<figure class="[ center-frame ]">
 	{@html svg['object-bounding-box']}
-</Center>
+</figure>
 
 And enough to celebrate with a festive decoration. Provided with enough material and space.
 
-<Center maxInlineSize="40rem">
+<figure class="[ center-frame ]" data-frame="medium">
 	<Festoon />
-</Center>
+</figure>

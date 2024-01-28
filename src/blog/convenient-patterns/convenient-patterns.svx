@@ -5,7 +5,6 @@ date: 2023-10-04T15:34:13
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import svg from './svg.js';
 </script>
 
@@ -32,9 +31,9 @@ As a sample, consider two shapes, a rectangle and a diamond right in the center.
 
 There's nothing inherently complicated in the syntax. The `<rect>` element covers the canvas to add a background. The `<path>` element marks the rhombus point by point.
 
-<Center element="figure" maxInlineSize="12rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['diamond-tile']}
-</Center>
+</figure>
 
 ## Columns and rows
 
@@ -76,9 +75,9 @@ There are just two more attributes standing between you and a complete set. Inde
 
 By default, both attributes are relative to the benefiting shape. Setting the value to a decimal number means the tile occupies a fraction of the graphic, and grows in a fitting number of columns and rows.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['diamond-pattern']}
-</Center>
+</figure>
 
 It is possible to set the dimensions of the pattern irrespective of the size of the drawing with the `patternUnits` attribute. It is also possible to tailor the pattern when the shapes have a different aspect ratio. But both topics are beyond the scope of this article. Here focus on the result, and the fact that the pattern works, repeating the tile with very little effort, but in a perfect grid.
 
@@ -101,9 +100,9 @@ To simplify the task you can even add an `id` to the element and rely on `<use>`
 
 The `viewBox` acts as a hard-clip. Nothing drawn outside of the canvas will be visible. In this manner, copying the entire diamond creates the tile without excess.
 
-<Center element="figure" maxInlineSize="12rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['repeated-tile']}
-</Center>
+</figure>
 
 You _can_ design the tile in this way, and may even picture how the squares, laid side by side or one above the other, lead to the more ornate pattern. But there is another way. A solution which relies on just the one diamond and a change in perspective.
 
@@ -117,9 +116,9 @@ Among the attributes available in the `<pattern>` element you find `patternTrans
 
 Rotate the pattern 45 degrees and you find a very different picture.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['transform-pattern']}
-</Center>
+</figure>
 
 Instead of diamonds, you have squares. But these squares are laid in the desired structure.
 
@@ -127,9 +126,9 @@ To understand the change, think of the pattern as wallpaper. When you rotate the
 
 It is no wonder that you then see squares. The diamond is rotated as part of the larger scheme.
 
-<Center element="figure" maxInlineSize="12rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['transform-tile']}
-</Center>
+</figure>
 
 The good news is that a pattern is like wallpaper, but even more customizable than wallpaper. You can update the sheet _and_ modify the composing tile at the same time.
 
@@ -141,9 +140,9 @@ In other words, just like you can rotate the pattern, you can rotate the nested 
 
 Rotate the diamond with an opposite angle, from the center of the canvas, and the diamond is restored. You retain the arrangement, and you rediscover the shimmering shapes.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['diagonal-pattern']}
-</Center>
+</figure>
 
 Personally, I find the solution incredibly neat. The attribute solves the issue with clear instructions. You don't need to repeat shapes, not even in the `<pattern>` element, and you can tilt and rotate in a more express manner.
 
@@ -159,12 +158,12 @@ What happens if you rotate both shapes? Remember, the `viewBox` acts as a clip, 
 
 For the individual tile, the rectangle is rotated and doesn't cover the entire surface. In the four corners, you appreciate evident gaps.
 
-<Center element="figure" maxInlineSize="12rem">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['gaps-tile']}
-</Center>
+</figure>
 
 And for the pattern, you can almost appreciate how the change is going to look right side up.
 
-<Center element="figure" maxInlineSize="24rem">
+<figure class="[ center-frame ]">
 	{@html svg['gaps-pattern']}
-</Center>
+</figure>

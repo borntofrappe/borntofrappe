@@ -34,47 +34,59 @@
 </script>
 
 <div>
-	<label>
-		<span> Skip a different number of points. </span>
-		<input type="range" min="2" max="6" bind:value={gap} />
-	</label>
+	<fieldset>
+		<label>
+			<span> Skip a different number of points. </span>
+			<input type="range" min="2" max="6" bind:value={gap} />
+		</label>
 
-	<label>
-		<input type="checkbox" bind:checked={showCircles} />
-		<span> Show dots </span>
-	</label>
-</div>
+		<label>
+			<input type="checkbox" bind:checked={showCircles} />
+			<span> Show dots </span>
+		</label>
+	</fieldset>
 
-<svg style="display: block;" viewBox="-50 -50 100 100">
-	<g
-		fill="currentColor"
-		font-family="monospace"
-		font-size="8"
-		font-weight="700"
-		text-anchor="middle"
-	>
-		<g transform="translate(0 -2)">
-			<text>Line 1</text>
-			<text y="10">Gap {gap}</text>
+	<svg style="display: block;" viewBox="-50 -50 100 100">
+		<g
+			fill="currentColor"
+			font-family="monospace"
+			font-size="8"
+			font-weight="700"
+			text-anchor="middle"
+		>
+			<g transform="translate(0 -2)">
+				<text>Line 1</text>
+				<text y="10">Gap {gap}</text>
+			</g>
 		</g>
-	</g>
-	{#if showCircles}
-		<g fill="currentColor">
-			{#each points as { x: cx, y: cy }}
-				<circle r="1" {cx} {cy} />
+		{#if showCircles}
+			<g fill="currentColor">
+				{#each points as { x: cx, y: cy }}
+					<circle r="1" {cx} {cy} />
+				{/each}
+			</g>
+		{/if}
+		<g fill="none" stroke="currentColor" stroke-width="0.5">
+			{#each lines as { x1, y1, x2, y2 }}
+				<line {x1} {y1} {x2} {y2} />
 			{/each}
 		</g>
-	{/if}
-	<g fill="none" stroke="currentColor" stroke-width="0.5">
-		{#each lines as { x1, y1, x2, y2 }}
-			<line {x1} {y1} {x2} {y2} />
-		{/each}
-	</g>
-</svg>
+	</svg>
+</div>
 
 <style>
 	div > * + * {
-		margin-block-start: 0.5rem;
+		margin-block-start: 0.75rem;
+	}
+
+	fieldset {
+		padding: 0;
+		margin: 0;
+		border: none;
+	}
+
+	fieldset > * + * {
+		margin-block-start: 0.75rem;
 	}
 
 	label {

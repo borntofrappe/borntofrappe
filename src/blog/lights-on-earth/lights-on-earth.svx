@@ -5,8 +5,6 @@ date: 2023-12-13T14:35:37
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
-
 	import Candlelight from './Candlelight.svelte';
 </script>
 
@@ -18,6 +16,6 @@ In several parts of Europe, in nations as distant as Italy and Sweden, as close 
 
 Days get progressively shorter, continuously colder, and it is all the more comforting to delight in the glow. From the rare appearance of the sun, or a burning string lodged in a chunk of wax.
 
-<Center element="figure" maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Candlelight />
-</Center>
+</div>

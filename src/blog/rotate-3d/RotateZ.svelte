@@ -146,55 +146,67 @@
 	$: handleAngle(angle);
 </script>
 
-<label>
-	<span>Give it a whirl</span>
-	<input type="range" min="0" max="360" bind:value={angle} />
-</label>
+<div>
+	<label>
+		<span>Give it a whirl</span>
+		<input type="range" min="0" max="360" bind:value={angle} />
+	</label>
 
-<svg
-	bind:this={svg}
-	style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 360px;"
-	width="360"
-	height="480"
-	viewBox="-30 -30 60 80"
->
-	<defs>
-		<g id="rotate-z-leaf">
-			<path
-				fill="currentColor"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linejoin="round"
-				stroke-linecap="round"
-				d="M 0 0 L 0 -28 A 14 14 0 0 1 14 -14 L 14 0Z"
-			/>
-			<path
-				fill="hsl(0 0% 0% / 0.1)"
-				d="M -1 0 L 0 0 A 15 15 0 0 0 15 -15 L 15 0 A 1 1 0 0 1 14 1 L 0 1 A 1 1 0 0 1 -1 0"
-			/>
-		</g>
-	</defs>
-	<path fill="none" stroke="hsl(0 0% 75%)" stroke-width="2" stroke-linecap="round" d="M 0 0 V 49" />
-	<use style="color: hsl(338 100% 84%);" transform="translate(1 -1)" href="#rotate-z-leaf" />
-	<use
-		style="color: hsl(44 77% 67%);"
-		transform="translate(1 1) rotate(90)"
-		href="#rotate-z-leaf"
-	/>
-	<use
-		style="color: hsl(170 73% 65%);"
-		transform="translate(-1 1) rotate(180)"
-		href="#rotate-z-leaf"
-	/>
-	<use
-		style="color: hsl(220 100% 84%);"
-		transform="translate(-1 -1) rotate(270)"
-		href="#rotate-z-leaf"
-	/>
-	<circle fill="hsl(0 0% 30%)" r="4" />
-</svg>
+	<svg
+		bind:this={svg}
+		style="display: block; inline-size: 100%; block-size: auto; max-inline-size: 360px;"
+		width="360"
+		height="480"
+		viewBox="-30 -30 60 80"
+	>
+		<defs>
+			<g id="rotate-z-leaf">
+				<path
+					fill="currentColor"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linejoin="round"
+					stroke-linecap="round"
+					d="M 0 0 L 0 -28 A 14 14 0 0 1 14 -14 L 14 0Z"
+				/>
+				<path
+					fill="hsl(0 0% 0% / 0.1)"
+					d="M -1 0 L 0 0 A 15 15 0 0 0 15 -15 L 15 0 A 1 1 0 0 1 14 1 L 0 1 A 1 1 0 0 1 -1 0"
+				/>
+			</g>
+		</defs>
+		<path
+			fill="none"
+			stroke="hsl(0 0% 75%)"
+			stroke-width="2"
+			stroke-linecap="round"
+			d="M 0 0 V 49"
+		/>
+		<use style="color: hsl(338 100% 84%);" transform="translate(1 -1)" href="#rotate-z-leaf" />
+		<use
+			style="color: hsl(44 77% 67%);"
+			transform="translate(1 1) rotate(90)"
+			href="#rotate-z-leaf"
+		/>
+		<use
+			style="color: hsl(170 73% 65%);"
+			transform="translate(-1 1) rotate(180)"
+			href="#rotate-z-leaf"
+		/>
+		<use
+			style="color: hsl(220 100% 84%);"
+			transform="translate(-1 -1) rotate(270)"
+			href="#rotate-z-leaf"
+		/>
+		<circle fill="hsl(0 0% 30%)" r="4" />
+	</svg>
+</div>
 
 <style>
+	div > * + * {
+		margin-block-start: 0.5rem;
+	}
+
 	label {
 		display: block;
 	}

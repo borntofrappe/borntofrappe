@@ -5,7 +5,6 @@ date: 2023-10-23T14:35:13
 ---
 
 <script>
-	import Center from '$lib/components/blog/Center.svelte';
 	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
 	import Coin from './Coin.svelte';
@@ -46,8 +45,8 @@ illustration.rotate.y = TAU / 8;
 
 The concept is so close, so down to earth that you cannot help to try out your luck, with [a soft twist](/counting-shapes) or of a full blown spin.
 
-<Center maxInlineSize="400px">
+<div class="[ center-frame ]" style="--frame-size: 400px">
 	<Coin />
-</Center>
+</div>
 
 <ZdogMonday />
