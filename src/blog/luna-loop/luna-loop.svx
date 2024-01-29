@@ -8,8 +8,13 @@ date: 2024-01-29
 	// import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
 	
 	import TicketBooth from './TicketBooth.svelte';
+	import Carousel from './Carousel.svelte';
 </script>
 
 <figure class="[ center-frame ]" data-size="small">
     <TicketBooth />
 </figure>
+
+<div class="[ center-frame ]" style="--frame-size: 400px;">
+    <Carousel />
+</div>
