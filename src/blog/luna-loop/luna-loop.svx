@@ -4,4 +4,12 @@ description: Consider a luna park attraction.
 date: 2024-01-29
 ---
 
-zdog monday #n+1
+<script>
+	// import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
+	import TicketBooth from './TicketBooth.svelte';
+</script>
+
+<figure class="[ center-frame ]" data-size="small">
+    <TicketBooth />
+</figure>
