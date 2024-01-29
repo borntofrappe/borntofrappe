@@ -1,6 +1,6 @@
 ---
 title: Luna loop
-description: Take courage to try a ride on a pastel animated graphic.
+description: Entertain a preference for daringly animated pseudo-3D graphics.
 date: 2024-01-29T15:28:04
 ---
 
@@ -23,7 +23,7 @@ The idea is to test the preference for _reduced motion_.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 ```
 
-You can set the option even at system level to disable animations, and in this instance, the media query matches.
+You can set the option even at system level to disable animation effects, and in this instance, the media query matches.
 
 ```js
 if (reducedMotion.matches) {
@@ -31,12 +31,12 @@ if (reducedMotion.matches) {
 }
 ```
 
-In this manner you have a boolean, a flag to decide. Is the preference turned on? If so you might want to stick with a static picture — but on Monday in pseudo-3D. Is the animation acceptable? Step right up and entertain the option.
+In this manner you have a boolean, a flag to decide. Is the preference turned on? If so you might want to stick with a static picture — but on Monday in pseudo-3D. Is the sudden animation acceptable? Step right up and entertain the option.
 
 <div class="[ center-frame ]" style="--frame-size: 400px;">
 	<Carousel />
 </div>
 
-Only one question remains if you accept the change: do you actually like it? A matter of taste, a whole different preference, you might argue. And one preference for which there's no code to find the same quick answer.
+Only one question remains when you accept the change: do you actually like it? A matter of taste, a whole different preference, you might argue. And one preference for which there's no code to find the same quick answer.
 
 <ZdogMonday />
