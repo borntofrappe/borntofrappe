@@ -7,7 +7,7 @@
 	onMount(() => {
 		const colors = {
 			center: 'hsl(13 79% 75%)',
-			base: ['hsl(3 76% 74%)', 'hsl(4 78% 73%)'],
+			base: ['hsl(3 76% 79%)', 'hsl(4 78% 73%)'],
 			top: 'hsl(14 84% 85%)',
 			tent: ['hsl(18 38% 95%)', 'hsl(14 84% 85%)'],
 			horses: [
