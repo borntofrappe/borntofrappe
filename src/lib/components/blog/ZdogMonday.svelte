@@ -69,6 +69,10 @@
 		{
 			title: 'Double axis',
 			slug: '/double-axis'
+		},
+		{
+			title: 'Luna loop',
+			slug: '/luna-loop'
 		}
 	];
 </script>
