@@ -1,0 +1,7 @@
+---
+title: SVG pointer
+description: Two ways to find pointer coordinates in SVG.
+date: 2024-01-31
+---
+
+`pointerdown`
