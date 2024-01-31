@@ -18,7 +18,6 @@
 		{#each points as { cx, cy }}
 			<circle r="2" {cx} {cy} />
 		{/each}
-		<!--  -->
 	</g>
 </svg>
 
