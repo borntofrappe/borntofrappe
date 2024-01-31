@@ -6,8 +6,18 @@ date: 2024-01-31
 
 <script>
 	import BoundingClientRect from './BoundingClientRect.svelte';
+	import PointMatrix from './PointMatrix.svelte';
+	import ColorfulLines from './ColorfulLines.svelte';
 </script>
 
 <div class="[ center-frame ]">
 	<BoundingClientRect />
+</div>
+
+<div class="[ center-frame ]">
+	<PointMatrix />
+</div>
+
+<div class="[ center-frame ]" data-size="medium">
+	<ColorfulLines />
 </div>
