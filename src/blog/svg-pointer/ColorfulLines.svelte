@@ -31,9 +31,7 @@
 		if (state !== 'draw') return;
 		const element = e.target;
 		const { clientX, clientY } = e;
-		const point = element.createSVGPoint();
-		point.x = clientX;
-		point.y = clientY;
+		const point = new DOMPoint(clientX, clientY);
 		const { x, y } = point.matrixTransform(element.getScreenCTM().inverse());
 		points = [...points, x, y];
 	};
