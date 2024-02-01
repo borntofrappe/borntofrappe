@@ -1,0 +1,5 @@
+---
+title: Infinite loop
+description: Safely animate shapes over a certain amount of time.
+date: 2024-02-01
+---
