@@ -6,8 +6,11 @@ date: 2024-02-01
 
 <script>
 	import Loop from './Loop.svelte';
+	import Time from './Time.svelte';
 </script>
 
 <figure class="[ center-frame ]">
 	<Loop />
 </figure>
+
+<Time />
