@@ -1,6 +1,6 @@
 ---
 title: Infinite loop
-description: Safely animate shapes over a certain amount of time.
+description: Request animations over a certain amount of time.
 date: 2024-02-01T21:13:08
 ---
 
@@ -44,7 +44,7 @@ const animate = () => {
 };
 ```
 
-Divide the two and you have a number in the 0 to 1 range, which you can then adapt to your animating needs.
+Divide the two and you have a number in the 0 to 1 range, which you can then map to your animating needs.
 
 ```js
 const t = counter / threshold;
@@ -55,8 +55,8 @@ But again, how much time does it take for a complete iteration?
 Considering that `requestAnimationFrame` is run as frequently as possible — let's assume a refresh rate of 60 frames per second —, you can approximate an answer, but the truth is that the threshold is arbitrary, picked out of chance. The moment the animation takes too long, or too little, you can always update the upper limit.
 
 ```diff
--const threshold = 1000;
-+const threshold = 700;
+-const threshold = 500;
++const threshold = 300;
 ```
 
 But as boldly prefaced, there is an alternative, leading to a more certain answer. Remember the animating function, passed as argument to `requestAnimationFrame`? Well, this callback function receives an argument itself, for the number of milliseconds elapsed since the beginning of the sequence.

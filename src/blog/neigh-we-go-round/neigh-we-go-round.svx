@@ -1,5 +1,5 @@
 ---
-title: Luna loop
+title: Neigh we go round
 description: Entertain a preference for daringly animated pseudo-3D graphics.
 date: 2024-01-29T15:28:04
 ---
