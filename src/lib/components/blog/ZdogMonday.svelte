@@ -71,8 +71,8 @@
 			slug: '/double-axis'
 		},
 		{
-			title: 'Luna loop',
-			slug: '/luna-loop'
+			title: 'Neigh we go round',
+			slug: '/neigh-we-go-round'
 		}
 	];
 </script>
