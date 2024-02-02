@@ -7,20 +7,20 @@
 	onMount(() => {
 		const colors = {
 			sun: {
-				body: 'hsl(49, 96%, 54%)',
-				rays: 'hsl(49, 100%, 56%)',
-				eyes: 'hsl(39, 74%, 15%)',
-				mouth: 'hsl(39, 74%, 15%)'
+				body: 'hsl(49 96% 54%)',
+				rays: 'hsl(49 100% 56%)',
+				eyes: 'hsl(41 70% 9%)',
+				mouth: 'hsl(41 70% 9%)'
 			},
 			sunflower: {
-				body: 'hsl(36, 78%, 19%)',
-				crown: 'hsl(49, 83%, 48%)',
-				stem: 'hsl(69, 87%, 18%)',
-				leafs: ['hsl(69, 87%, 18%)', 'hsl(91, 35%, 49%)'],
-				seeds: 'hsl(41, 70%, 9%)',
-				soil: 'hsl(61, 98%, 16%)'
+				body: 'hsl(36 78% 19%)',
+				crown: 'hsl(49 83% 48%)',
+				stem: 'hsl(69 87% 18%)',
+				leafs: ['hsl(69 87% 18%)', 'hsl(91 35% 49%)'],
+				seeds: 'hsl(41 70% 9%)',
+				soil: 'hsl(61 98% 16%)'
 			},
-			ground: 'hsl(66, 66%, 35%)'
+			ground: 'hsl(66 66% 35%)'
 		};
 
 		const strokes = [2, 5, 10];
