@@ -147,7 +147,6 @@ The difference between the two is our precious metric. A number we can store in 
 const data = [];
 for (let i = 0; i < tests; i++) {
 	// ...iterations
-
 	data.push(t1 - t0);
 }
 ```
