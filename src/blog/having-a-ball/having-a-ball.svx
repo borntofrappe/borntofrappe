@@ -10,7 +10,7 @@ date: 2024-02-05T10:14:56
 	import VolleyBall from './VolleyBall.svelte';
 </script>
 
-One of the most ingenious aspects of Zdog is that, on [the supporting website](<](https://zzz.dog/)>), you are immediately greeted with a volley of demos. What is more, you are able to open each project on CodePen and inspect the code. You can toy with the JavaScript panel to see the changes take place without delay, and if you have some time, even learn something new.
+One of the most ingenious aspects of Zdog is that, on [the supporting website](https://zzz.dog/), you are immediately greeted with a volley of demos. What is more, you are able to open each project on CodePen and inspect the code. You can toy with the JavaScript panel to see the changes take place without delay, and if you have some time, even learn something new.
 
 Case in point, consider the inspiring depiction of a [floating pink blob](https://codepen.io/desandro/pen/aqYXoa), and something which in hindsight is close to obvious.
 
