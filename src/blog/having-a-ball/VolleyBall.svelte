@@ -1,8 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { backOut, backInOut } from 'svelte/easing';
-	import Zdog from 'zdog';
-	const { Anchor, Shape, easeInOut } = Zdog;
+	import { Anchor, Shape, easeInOut } from 'zdog';
 
 	let widget = null;
 
