@@ -73,6 +73,10 @@
 		{
 			title: 'Neigh we go round',
 			slug: '/neigh-we-go-round'
+		},
+		{
+			title: 'Having a ball',
+			slug: '/having-a-ball'
 		}
 	];
 </script>

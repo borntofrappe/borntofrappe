@@ -5,6 +5,8 @@ date: 2024-02-05T10:14:56
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import VolleyBall from './VolleyBall.svelte';
 </script>
 
@@ -65,3 +67,5 @@ new Zdog.Shape({
 Point taken. There's plenty to learn from reading somebody else's code. And there are plenty of graphics to entertain your day.
 
 <VolleyBall />
+
+<ZdogMonday />
