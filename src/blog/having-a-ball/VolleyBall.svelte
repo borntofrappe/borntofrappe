@@ -428,11 +428,12 @@
 
 		const receive = () => {
 			const t = ticker++ / cycle;
+			const e = easeInOut(t);
 
 			stars.scale = backOut(t);
 			for (const star of stars.children) {
-				star.scale = 1 - easeInOut(t);
-				star.stroke = easeInOut(t) * strokes.star;
+				star.scale = 1 - e;
+				star.stroke = e * strokes.star;
 			}
 
 			root.updateGraph();
@@ -460,12 +461,15 @@
 
 		const lob = () => {
 			const t = ticker++ / cycle;
+			const l = Math.sin(t * PI);
 
 			ball.rotate.y = easeInOut(t, 2) * TAU;
-			ball.translate.y = backInOut(Math.sin(t * PI)) * distance * -1;
+
+			ball.translate.y = backInOut(l) * distance * -1;
 			origin.translate.y = Math.min(0, ball.translate.y * -1) * -1;
-			neck.rotate.x = backInOut(Math.sin(t * PI)) * 0.5;
-			face.rotate.z = Math.sin(t * PI) * 0.2 * -1;
+
+			neck.rotate.x = backInOut(l) * 0.5;
+			face.rotate.z = l * 0.2 * -1;
 
 			root.updateGraph();
 			render();
