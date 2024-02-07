@@ -8,6 +8,7 @@ date: 2024-02-07
 	import svg from './svg.js';
 	import CanvasClient from './CanvasClient.svelte';
 	import CanvasOffset from './CanvasOffset.svelte';
+	import Canvas from './Canvas.svelte';
 </script>
 
 Without using SVG {@html svg['palette']}.
@@ -15,3 +16,5 @@ Without using SVG {@html svg['palette']}.
 <CanvasClient />
 
 <CanvasOffset />
+
+<Canvas />
