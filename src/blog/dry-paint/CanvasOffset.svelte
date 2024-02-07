@@ -88,9 +88,19 @@
 		font-size: 1rem;
 		font-style: italic;
 		padding: 0.1rem 1rem;
+		border: 1px solid transparent;
+		background-clip: padding-box;
 	}
 
 	canvas {
 		outline: 3px solid var(--_color-dark, hsl(0 0% 20%));
+	}
+
+	canvas:active {
+		outline-width: 4px;
+	}
+
+	div:has(canvas:active)::after {
+		border-color: var(--_color-dark, hsl(0 0% 20%));
 	}
 </style>
