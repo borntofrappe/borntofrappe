@@ -3,3 +3,9 @@ title: Dry paint
 description: Finally make due on a promise to use the Canvas API.
 date: 2024-02-07
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+Without using SVG {@html svg['palette']}.
