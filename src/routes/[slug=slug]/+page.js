@@ -6,7 +6,7 @@ export async function load({ fetch, params }) {
 
 	const post = blog.find(({ slug }) => slug === params.slug);
 
-	if (!post) throw error(404, `'/${params.slug}' page does not exist.`);
+	if (!post) error(404, `'/${params.slug}' page does not exist.`);
 
 	const modules = import.meta.glob('$blog/**/*.{md,svx}');
 	const { default: Component } = await modules[post.path]();
