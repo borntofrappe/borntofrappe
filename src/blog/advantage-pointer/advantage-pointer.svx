@@ -108,7 +108,7 @@ But of course if not painted, the stroke will not matter for pointer events. In 
 <circle stroke="hsl(0 0% 0% / 0)" stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
 ```
 
-In SVG, matching the `fill` and `stroke` attribute, you the find `fill-opacity` and `stroke-opacity`. The rules only change the respective region, and you can make the area transparent once more.
+In SVG, matching the `fill` and `stroke` attribute, you find `fill-opacity` and `stroke-opacity`. The rules only change the respective region, and you can make the area transparent once more.
 
 ```html
 <circle stroke-opacity="0" stroke="hsl(0 0% 0%)" stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
@@ -154,7 +154,7 @@ The element is sensitive to pointer events. When visible and in the fill region.
 	{@html svg['pointer-events-fill']}
 </figure>
 
-These values are niche, but have a reason for being. But your counting skills are not failing you, the values also amount to half of the catalog. On top of the visible options, you find `painted`.
+These values are niche, but have a reason for being. But your counting skills are not failing you, the values also amount to half of the catalog. On top of the visible options, you then have `painted`.
 
 ```css
 circle {
@@ -190,4 +190,4 @@ The option refers to the _object bounding box_, a rectangle which covers the sha
 	{@html svg['pointer-events-threshold']}
 </figure>
 
-Hopefully, one point in clear: when it comes to the property, `pointer-events` finds favor in vectors. Choices about, and the best way to discover them is trying them `all`.
+Hopefully, one point is clear: when it comes to the property, `pointer-events` is fond of SVG elements. Choices about, and the best way to discover them is trying them `all`.
