@@ -11,3 +11,7 @@ date: 2024-02-09
 <figure class="[ center-frame ]">
 	{@html svg['vitrail']}
 </figure>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['pointer-events-stroke']}
+</figure>
