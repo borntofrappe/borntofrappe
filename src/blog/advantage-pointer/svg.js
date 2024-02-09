@@ -350,5 +350,28 @@ export default {
         </g>
         <text fill="hsl(0 0% 95%)" font-family="monospace" font-weight="700" font-size="12" text-anchor="middle" y="68">visible</text>
     </svg>
+</svg>`,
+	'pointer-events-fill': `<svg style="display: block;" viewBox="-0.2 -0.2 2.5 1.4">
+    <style>
+        .pointer-events-fill {
+            stroke-dashoffset: 0.025;
+            transition: stroke-dashoffset 2s cubic-bezier(0.37, 0, 0.63, 1);
+        }
+        .pointer-events-fill:hover {
+            stroke-dashoffset: -0.975;
+        }
+    </style>
+    <path fill="hsl(0 0% 14%)" d="M -0.2 0.3 C -0.2 -0.2 -0.2 -0.2 0.3 -0.2 L 1.8 -0.2 C 2.3 -0.2 2.3 -0.2 2.3 0.3 L 2.3 0.7 C 2.3 1.2 2.3 1.2 1.8 1.2 L 0.3 1.2 C -0.2 1.2 -0.2 1.2 -0.2 0.7" />
+    <svg style="color: hsl(0 0% 75%)" x="-0.1" y="-0.1" width="0.225" height="0.225" style="color: hsl(0 0% 75%)" viewBox="-21.832719802856445 -25.32887840270996 46.746585845947266 46.746585845947266">
+        <path transform="rotate(110)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M -10 10 -10 11 C -10 17.5 10 17.5 10 11 L 10 10 C 5 12.5 -5 12.5 -10 10 -16 5 -14 -7.5 -7.5 -7.5 -2.5 -7.5 -5 0 -7.5 0 -5 0 -2.5 2.5 -2.5 5 -2.5 2.5 -3 0 -7.5 0 -7.5 0 -5 0 -5 -2.5 -5 0.75 -1 0.75 0 -2.5 -1 0.5 4.3 0.5 5 -2.5 6 -0.5 8 -0.5 10 -2.5 14 -1 14 7.5 10 10 M 10 -2.5 C 11 -3.5 12 -9 10 -11.5 9 -13 6 -14 5 -11.5 4 -13 1 -14 0 -11.5 -1 -13 -4 -14 -5 -11.5 -5 -15 -5 -17 -5.5 -19 -6.5 -21.5 -8 -21 -9 -20 -11 -17 -11.5 -10 -11 -6.5 M -5.5 -7 C -5 -8 -5 -11 -5 -11.5 M 0 -2.5 C 1 -3.5 1 -10 0 -11.5 M 5 -2.5 C 6 -3.5 6 -10 5 -11.5" />
+    </svg> 
+    <svg width="1" height="1" viewBox="-70 -70 140 140">
+        <path class="pointer-events-fill" fill="hsl(0 0% 45%)" stroke="hsl(0 0% 95%)" stroke-width="20" stroke-dasharray="0.05 0.075" stroke-dashoffset="0.025" pathLength="1" d="M 0 -40 A 40 40 0 0 1 0 40 40 40 0 0 1 0 -40" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-weight="700" font-size="12" text-anchor="middle" y="68">visiblePainted</text>
+    </svg>
+    <svg x="1.1" width="1" height="1" viewBox="-70 -70 140 140">
+        <path class="pointer-events-fill" style="pointer-events: visibleFill" fill="hsl(0 0% 45%)" stroke="hsl(0 0% 95%)" stroke-width="20" stroke-dasharray="0.05 0.075" stroke-dashoffset="0.025" pathLength="1" d="M 0 -40 A 40 40 0 0 1 0 40 40 40 0 0 1 0 -40" />
+        <text fill="hsl(0 0% 95%)" font-family="monospace" font-weight="700" font-size="12" text-anchor="middle" y="68">visibleFill</text>
+    </svg>
 </svg>`
 };
