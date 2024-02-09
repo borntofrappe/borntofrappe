@@ -1,7 +1,7 @@
 ---
 title: Advantage pointer
 description: Shed some light on a CSS property with an affection for SVG.
-date: 2024-02-09
+date: 2024-02-09T15:20:15
 ---
 
 <script>
@@ -18,4 +18,8 @@ date: 2024-02-09
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['pointer-events-fill']}
+</figure>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['pointer-events-threshold']}
 </figure>
