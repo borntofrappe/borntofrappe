@@ -160,7 +160,7 @@
 
 <canvas
 	bind:this={element}
-	style="display: block; inline-size: 100%; max-inline-size: 350px; margin-inline: auto;"
+	style="display: block; inline-size: 100%; max-inline-size: 300px; margin-inline: auto;"
 	width="300"
 	height="500"
 />
