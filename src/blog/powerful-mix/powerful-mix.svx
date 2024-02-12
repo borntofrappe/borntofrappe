@@ -5,6 +5,8 @@ date: 2024-02-12T10:38:05
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import DNA from './DNA.svelte';
 	import LovePotion from './LovePotion.svelte';
 </script>
@@ -23,4 +25,4 @@ You have the contribution of HTML in the form of a button, to galvanize the star
 
 For the time being, you'll have to trust that there is a `path`, bubbling up to the surface to complete the mixture as you press the button. However many times you may fancy.
 
-<!-- <ZdogMonday /> -->
+<ZdogMonday />

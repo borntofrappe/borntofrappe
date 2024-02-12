@@ -77,6 +77,10 @@
 		{
 			title: 'Having a ball',
 			slug: '/having-a-ball'
+		},
+		{
+			title: 'Powerful mix',
+			slug: '/powerful-mix'
 		}
 	];
 </script>
