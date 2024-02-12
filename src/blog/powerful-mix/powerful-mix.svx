@@ -1,6 +1,6 @@
 ---
 title: Powerful mix
-description: Mix multiple ingredients to brew an intoxicating potion.
+description: Combine key ingredients to brew an intoxicating potion.
 date: 2024-02-12T10:38:05
 ---
 
@@ -15,14 +15,14 @@ What lies behind an interesting pseudo-3D graphic? Even after twenty installment
 
 <DNA />
 
-More often than not, the illustration is the natural evolution of something I draw with SVG, or something that would be impossible or impractical to render with vectors line after line.
+Frequently, the illustration is the natural evolution of what I draw with SVG, something that would be impossible, or at least practical, to conjure up line after line.
 
-Sometimes, however, the illustration is the result of multiple factors, coalescing together in a remarkable showcase. Today is a manifestation of this particular case, mixing a series of web technologies to create something quite entertaining.
+There are instances, however, where the illustration is the result of multiple ingredients, coalescing together into something mildly intriguing.
 
 <LovePotion />
 
-You have the contribution of HTML in the form of a button, to galvanize the starting, tranquil animation. CSS pitches in with semi-transparent colors, so that some of the shapes are partly see-through. Without a doubt, there's a heap of JavaScript, to set up the scene and manage the interaction. And you can't forget SVG. _"Where? All I see is a `canvas` element on screen"_. In more than one place, actually. As a precursor of the final graphic — of course I drew a 2D version to back up the Zdog classes —, and as an essential component for the intoxicating animation — but I will keep how as a secret.
+You have the contribution of HTML in the form of a button, to galvanize the starting, tranquil animation. CSS pitches in with semi-transparent colors, to have some of the shapes partly see-through. JavaScript brings everything together, setting up the scene and managing the interaction. And you can't forget SVG. _"Where? All I see is a `canvas` element on screen"_. In more than one place, actually. As a precursor of the final graphic — of course I drew a 2D version to back up the Zdog classes —, and as an essential component for the more drastic changes — but I will keep this last recipe secret.
 
-For the time being, you'll have to trust that there is a `path`, bubbling up to the surface to complete the mixture as you press the button. However many times you may fancy.
+For the time being, you'll have to trust that there is a `path`, bubbling up to the surface to complete the mixture as you press the button. However many times you may want to stir things up.
 
 <ZdogMonday />
