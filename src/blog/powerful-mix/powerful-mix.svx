@@ -1,11 +1,26 @@
 ---
 title: Powerful mix
-description: zdog monday n+1.
-date: 2024-02-12
+description: Mix multiple ingredients to brew an intoxicating potion.
+date: 2024-02-12T10:38:05
 ---
 
 <script>
 	import DNA from './DNA.svelte';
+	import LovePotion from './LovePotion.svelte';
 </script>
 
+What lies behind an interesting pseudo-3D graphic? Even after twenty installments, it is challenging to come up with something impressive on a weekly basis, so I've yet to crack the formula.
+
 <DNA />
+
+More often than not, the illustration is the natural evolution of something I draw with SVG, or something that would be impossible or impractical to render with vectors line after line.
+
+Sometimes, however, the illustration is the result of multiple factors, coalescing together in a remarkable showcase. Today is a manifestation of this particular case, mixing a series of web technologies to create something quite entertaining.
+
+<LovePotion />
+
+You have the contribution of HTML in the form of a button, to galvanize the starting, tranquil animation. CSS pitches in with semi-transparent colors, so that some of the shapes are partly see-through. Without a doubt, there's a heap of JavaScript, to set up the scene and manage the interaction. And you can't forget SVG. _"Where? All I see is a `canvas` element on screen"_. In more than one place, actually. As a precursor of the final graphic — of course I drew a 2D version to back up the Zdog classes —, and as an essential component for the intoxicating animation — but I will keep how as a secret.
+
+For the time being, you'll have to trust that there is a `path`, bubbling up to the surface to complete the mixture as you press the button. However many times you may fancy.
+
+<!-- <ZdogMonday /> -->
