@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { circIn as easing } from 'svelte/easing';
-	import { Anchor, Group, Shape, Hemisphere, Ellipse, easeInOut } from 'zdog';
+	import { Anchor, Group, Shape, Hemisphere, Ellipse } from 'zdog';
 
 	let widget = null;
 
