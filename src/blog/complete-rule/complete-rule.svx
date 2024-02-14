@@ -4,4 +4,14 @@ description: fill-rule.
 date: 2024-02-14
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 Explain the `fill-rule` attribute.
+
+{@html svg['line-markers']}
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['fill-rule-nonzero']}
+</figure>
