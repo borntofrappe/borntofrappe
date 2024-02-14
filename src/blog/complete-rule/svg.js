@@ -33,5 +33,17 @@ export default {
     <svg x="1.1" width="1" height="1" viewBox="-2 -2 24 24">
         <path fill="currentColor" d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
     </svg>
+</svg>`,
+	'fill-rules': `<svg role="img" style="display: block;" viewBox="0 0 2.1 1.2">
+    <svg width="1" height="1" viewBox="0 0 20 20">
+        <path fill="currentColor" d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
+    </svg>
+    <svg x="1.1" width="1" height="1" viewBox="0 0 20 20">
+        <path fill="currentColor" fill-rule="evenodd" d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
+    </svg>
+    <g transform="translate(0 1)" fill="currentColor" font-family="monospace" font-size="0.1" text-anchor="middle">
+        <text x="0.5" y="0.15">nonzero</text>
+        <text transform="translate(1.1 0)" x="0.5" y="0.15">evenodd</text>
+    </g>
 </svg>`
 };

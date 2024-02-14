@@ -15,3 +15,7 @@ Explain the `fill-rule` attribute.
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['fill-rule-nonzero']}
 </figure>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['fill-rules']}
+</figure>
