@@ -16,10 +16,18 @@ Explain the `fill-rule` attribute.
 	{@html svg['winding-clockwise']}
 </figure>
 
+<figure class="[ center-frame ]">
+	{@html svg['algorithm-clockwise']}
+</figure>
+
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['fill-rules']}
 </figure>
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['winding-counter-clockwise']}
+</figure>
+
+<figure class="[ center-frame ]">
+	{@html svg['algorithm-counter-clockwise']}
 </figure>

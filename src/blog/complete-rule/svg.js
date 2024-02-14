@@ -34,6 +34,31 @@ export default {
         <path fill="currentColor" d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
     </svg>
 </svg>`,
+	'algorithm-clockwise': `<svg role="img" style="display: block;" viewBox="-2 -2 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="0.1">
+        <rect width="20" height="20" />
+        <path d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
+    </g>
+    <g fill="currentColor" font-family="monospace" font-size="1.5" text-anchor="middle">
+        <text transform="translate(3 4)">0</text>
+        <text transform="translate(3 17)">0</text>
+        <text transform="translate(17 4)">0</text>
+        <text transform="translate(17 17)">0</text>
+        <text transform="translate(6 7)">1</text>
+        <text transform="translate(10 10.5)">2</text>
+        <g font-weight="700" font-size="2">
+            <text transform="translate(10 -0.75)">+</text>
+            <text transform="translate(10 4.25)">+</text>
+        </g>
+    </g>
+    <g fill="currentColor">
+        <circle transform="translate(10 0)" r="0.3" />
+        <g marker-start="url(#line-marker-start)" marker-end="url(#line-marker-end)" fill="none" stroke="currentColor" stroke-width="0.15" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 10 0 15 5" />
+            <path d="M 10 5 12.5 7.5" />
+        </g>
+    </g>
+</svg>`,
 	'fill-rules': `<svg role="img" style="display: block;" viewBox="0 0 2.1 1.2">
     <svg width="1" height="1" viewBox="0 0 20 20">
         <path fill="currentColor" d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
@@ -70,5 +95,30 @@ export default {
     <svg x="1.1" width="1" height="1" viewBox="-2 -2 24 24">
         <path fill="currentColor" d="M 10 0 20 10 10 20 0 10 Z M 10 5 5 10 10 15 15 10 Z" />
     </svg>
+</svg>`,
+	'algorithm-counter-clockwise': `<svg role="img" style="display: block;" viewBox="-2 -2 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="0.1">
+        <rect width="20" height="20" />
+        <path d="M 10 0 20 10 10 20 0 10 Z M 10 5 15 10 10 15 5 10 Z" />
+    </g>
+    <g fill="currentColor" font-family="monospace" font-size="1.5" text-anchor="middle">
+        <text transform="translate(3 4)">0</text>
+        <text transform="translate(3 17)">0</text>
+        <text transform="translate(17 4)">0</text>
+        <text transform="translate(17 17)">0</text>
+        <text transform="translate(6 7)">1</text>
+        <text transform="translate(10 10.5)">0</text>
+        <g font-weight="700" font-size="2">
+            <text transform="translate(10 -0.75)">+</text>
+            <text transform="translate(10 4.25)">-</text>
+        </g>
+    </g>
+    <g fill="currentColor">
+        <circle transform="translate(10 0)" r="0.3" />
+        <g marker-start="url(#line-marker-start)" marker-end="url(#line-marker-end)" fill="none" stroke="currentColor" stroke-width="0.15" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 10 0 15 5" />
+            <path d="M 10 5 7.5 7.5" />
+        </g>
+    </g>
 </svg>`
 };
