@@ -31,3 +31,7 @@ Explain the `fill-rule` attribute.
 <figure class="[ center-frame ]">
 	{@html svg['algorithm-counter-clockwise']}
 </figure>
+
+<figure class="[ center-frame ]">
+	{@html svg['css-rule']}
+</figure>

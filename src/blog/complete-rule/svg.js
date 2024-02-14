@@ -120,5 +120,26 @@ export default {
             <path d="M 10 5 7.5 7.5" />
         </g>
     </g>
+</svg>`,
+	'css-rule': `<svg role="img" style="display: block;" viewBox="-5 -5 26 26">
+    <style>
+        #css-rule-path {
+            fill-rule: evenodd;
+        }
+        #css-rule-highlight {
+            stroke-dashoffset: 0;
+            animation: offset 10s infinite linear;
+        }
+        @keyframes offset {
+            to {
+                stroke-dashoffset: -1;
+            }
+        }
+    </style>
+    <rect fill="hsl(210 10% 23%)" x="-5" y="-5" width="26" height="24" rx="3" />
+    <g stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+        <path id="css-rule-path" fill="hsl(210 9% 31%)" stroke="hsl(210 9% 31%)" d="M 3 14 11 0 16 10 0 10 6 0 13 14 Z" />
+        <path id="css-rule-highlight" fill="none" stroke="hsl(210 17% 95%)" pathLength="1" stroke-dasharray="0.01 0.99" stroke-dashoffset="0" d="M 3 14 11 0 16 10 0 10 6 0 13 14 Z" />
+    </g>
 </svg>`
 };
