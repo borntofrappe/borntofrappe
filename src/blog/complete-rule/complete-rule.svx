@@ -1,0 +1,7 @@
+---
+title: Complete rule
+description: fill-rule.
+date: 2024-02-14
+---
+
+Explain the `fill-rule` attribute.
