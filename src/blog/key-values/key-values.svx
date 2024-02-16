@@ -7,3 +7,9 @@ date: 2024-02-16
 ```js
 element.attributeName;
 ```
+
+<script>
+	import VectorInspector from './VectorInspector.svelte';
+</script>
+
+<VectorInspector />
