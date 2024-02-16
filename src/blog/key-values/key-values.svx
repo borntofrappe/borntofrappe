@@ -1,0 +1,9 @@
+---
+title: Key values
+description: Scripting SVG elements.
+date: 2024-02-16
+---
+
+```js
+element.attributeName;
+```
