@@ -3,3 +3,9 @@ title: Assembly code
 description: zdog monday n+1.
 date: 2024-02-19
 ---
+
+<script>
+	import Assembly from './Assembly.svelte';
+</script>
+
+<Assembly />
