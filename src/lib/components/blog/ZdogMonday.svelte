@@ -81,6 +81,10 @@
 		{
 			title: 'Powerful mix',
 			slug: '/powerful-mix'
+		},
+		{
+			title: 'Assembly code',
+			slug: '/assembly-code'
 		}
 	];
 </script>

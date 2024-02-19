@@ -5,6 +5,8 @@ date: 2024-02-19T13:34:18
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import Assembly from './Assembly.svelte';
 </script>
 
@@ -23,3 +25,5 @@ new Zdog.Shape({
 You can exploit this option for specific reasons, to solve issues with overlapping objects, but evidently, with more transparent motives as well. See?
 
 <Assembly />
+
+<ZdogMonday />
