@@ -655,11 +655,6 @@
 </div>
 
 <style>
-	:global(*) {
-		margin: 0;
-		padding: 0;
-	}
-
 	.layout {
 		--_color-000: hsl(210 12% 10%);
 		--_color-100: hsl(220 9% 19%);
