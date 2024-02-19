@@ -564,7 +564,7 @@
 
 			offset.translate.y = translateY.offset - l;
 			face.translate.y = translateY.face - l;
-			face.scale = 1 + l * 0.05;
+			offset.scale = 1 + l * 0.05;
 
 			root.updateGraph();
 			render();
