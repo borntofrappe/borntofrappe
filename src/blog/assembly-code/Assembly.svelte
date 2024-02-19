@@ -423,11 +423,11 @@
 		const steps = [
 			{
 				anchor: screen,
-				label: 'Crisp screen'
+				label: 'High-def display'
 			},
 			{
 				anchor: handles,
-				label: 'Comfy grip'
+				label: 'Comfy handles'
 			},
 			{
 				anchor: antenna,
@@ -435,7 +435,7 @@
 			},
 			{
 				anchor: face,
-				label: 'Winning personality'
+				label: 'Revved up engine'
 			}
 		];
 

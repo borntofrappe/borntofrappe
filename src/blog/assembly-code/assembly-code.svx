@@ -10,7 +10,7 @@ date: 2024-02-19T13:34:18
 	import Assembly from './Assembly.svelte';
 </script>
 
-Contrary to what the title might imply, there is no assembly language in the pseudo-3D graphic put together for this Monday. In the script you won't find a trace of the particular syntax, not even a line hidden between the innumerable ones used to complete the illustration. There is an assembly line, though. And when you sample the animation, a way to hide the shapes drawn on screen.
+Contrary to what the title might imply, there is no assembly language in the pseudo-3D graphic put together for this Monday. In the script you won't find a trace of the particular syntax, not even a line hidden between the numerous ones used to complete the illustration. There is an assembly line, though. And when you sample the animation, a way to hide the shapes drawn on screen.
 
 Without turning this into a technical article, every Zdog class which lets you draw something, be it an ellipse with a fixed diameter, or a shape with a clear path, can be customized with one additional property: `visible`.
 
