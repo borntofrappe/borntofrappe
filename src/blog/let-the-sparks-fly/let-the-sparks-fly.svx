@@ -6,8 +6,11 @@ date: 2024-02-21
 
 <script>
 	import svg from './svg.js';
+	import Translate from './Translate.svelte';
 </script>
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['sprites']}
 </figure>
+
+<Translate />
