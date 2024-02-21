@@ -4,6 +4,10 @@ description: Animate SVG sprites with CSS and JavaScript.
 date: 2024-02-21
 ---
 
-- SVG sprites
-- CSS steps() timing function
-- JS web animation API
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['sprites']}
+</figure>
