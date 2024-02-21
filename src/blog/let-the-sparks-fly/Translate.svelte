@@ -11,7 +11,7 @@
 <div>
 	<svg style="display: block;" viewBox="0 0 5.25 2.575">
 		<pattern
-			id="p1"
+			id="translate-pattern"
 			patternUnits="userSpaceOnUse"
 			width="100"
 			height="100"
@@ -23,12 +23,12 @@
 				stroke-width="5"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				d="M 0 -15 A 15 15 0 0 0 15 0 15 15 0 0 0 0 15 15 15 0 0 0 -15 0 15 15 0 0 0 0 -15"
+				d="M 0 -12 A 12 12 0 0 0 12 0 12 12 0 0 0 0 12 12 12 0 0 0 -12 0 12 12 0 0 0 0 -12"
 			/>
 		</pattern>
 		<svg width="5.25" height="1.25" viewBox="-12.5 -24.5 525 125">
 			<g transform="translate({linear} 0)">
-				<rect fill="url(#p1)" stroke="currentColor" width="500" height="100" />
+				<rect fill="url(#translate-pattern)" stroke="currentColor" width="500" height="100" />
 				<rect fill="currentColor" fill-opacity="0.1" width="500" height="100" />
 				<g fill="currentColor" font-size="16" font-family="monospace" text-anchor="end">
 					<text x="95" y="95">#0</text>
@@ -43,7 +43,7 @@
 		</svg>
 		<svg y="1.325" width="5.25" height="1.25" viewBox="-12.5 -24.5 525 125">
 			<g transform="translate({step} 0)">
-				<rect fill="url(#p1)" stroke="currentColor" width="500" height="100" />
+				<rect fill="url(#translate-pattern)" stroke="currentColor" width="500" height="100" />
 				<rect fill="currentColor" fill-opacity="0.1" width="500" height="100" />
 				<g fill="currentColor" font-size="16" font-family="monospace" text-anchor="end">
 					<text x="95" y="95">#0</text>
