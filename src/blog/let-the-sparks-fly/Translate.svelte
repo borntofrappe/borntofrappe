@@ -79,13 +79,20 @@
 		margin-block-start: 0.5rem;
 	}
 
-	label,
-	input {
+	label {
 		display: block;
 	}
 
-	input {
+	label > * + * {
 		margin-block-start: 0.5rem;
+	}
+
+	span {
+		font-weight: 700;
+	}
+
+	input {
+		display: block;
 		accent-color: currentcolor;
 		inline-size: 100%;
 	}

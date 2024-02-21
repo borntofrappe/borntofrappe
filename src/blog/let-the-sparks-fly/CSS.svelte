@@ -87,6 +87,10 @@
 		position: relative;
 	}
 
+	span {
+		font-weight: 700;
+	}
+
 	input,
 	label > svg {
 		inline-size: 1rem;
@@ -95,7 +99,7 @@
 		border: 0.1rem solid currentColor;
 	}
 
-	input {
+	label > input {
 		position: absolute;
 		opacity: 0;
 	}
