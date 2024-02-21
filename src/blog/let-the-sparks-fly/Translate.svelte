@@ -60,7 +60,12 @@
 
 	<label>
 		<span>Translate</span>
-		<input type="range" min="0" max="1" step="0.01" bind:value />
+		<input type="range" list="translate-steps" min="0" max="1" step="0.01" bind:value />
+		<datalist id="translate-steps">
+			{#each { length: steps + 1 } as _, i}
+				<option value={(1 / steps) * i} />
+			{/each}
+		</datalist>
 	</label>
 </div>
 
