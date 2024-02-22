@@ -11,8 +11,8 @@ date: 2024-02-21
 	import JavaScript from './JavaScript.svelte';
 </script>
 
-<figure class="[ center-frame ]" data-size="medium">
-	{@html svg['sprites']}
+<figure class="[ center-frame ]">
+	{@html svg['viewBox']}
 </figure>
 
 <Translate />
