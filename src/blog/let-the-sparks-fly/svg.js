@@ -9,7 +9,7 @@ export default {
     <text fill="currentColor" font-size="12" font-family="monospace" y="-6">viewBox</text>
     <rect fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="5" width="100" height="100" />
     <g filter="url(#viewBox-filter)" opacity="0.5">
-        <path transform="translate(150 50)" fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M 0 -12 A 12 12 0 0 0 12 0 12 12 0 0 0 0 12 12 12 0 0 0 -12 0 12 12 0 0 0 0 -12 Z" />
+        <circle fill="currentColor" cx="150" cy="50" r="10" />
     </g>
 </svg>`,
 	'step-end': `<svg style="display: block;" viewBox="-15 -5 120 117.5">

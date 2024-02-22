@@ -18,14 +18,7 @@
 				height="100"
 				viewBox="-50 -50 100 100"
 			>
-				<path
-					fill="currentColor"
-					stroke="currentColor"
-					stroke-width="5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M 0 -12 A 12 12 0 0 0 12 0 12 12 0 0 0 0 12 12 12 0 0 0 -12 0 12 12 0 0 0 0 -12"
-				/>
+				<circle fill="currentColor" r="10" />
 			</pattern>
 			<filter
 				id="translate-filter"
@@ -61,7 +54,7 @@
 				width="100"
 				height="100"
 			/>
-			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">linear</text>
+			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">continuous</text>
 		</svg>
 		<svg y="1.35" width="5.03" height="1.285" viewBox="-2.5 -26 503 128.5">
 			<svg width="100" height="100" viewBox="0 0 100 100">
@@ -85,12 +78,12 @@
 				width="100"
 				height="100"
 			/>
-			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">steps</text>
+			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">discrete</text>
 		</svg>
 	</svg>
 
 	<label>
-		<span>Translate</span>
+		<span>Translate shapes</span>
 		<input type="range" list="translate-steps" min="0" max="1" step="0.01" bind:value />
 		<datalist id="translate-steps">
 			{#each { length: steps + 1 } as _, i}
