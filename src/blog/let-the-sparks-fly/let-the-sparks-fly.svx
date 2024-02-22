@@ -6,7 +6,7 @@ date: 2024-02-21
 
 <script>
 	import svg from './svg.js';
-	import Translate from './Translate.svelte';
+	import Timing from './Timing.svelte';
 	import CSS from './CSS.svelte';
 	import JavaScript from './JavaScript.svelte';
 </script>
@@ -15,7 +15,7 @@ date: 2024-02-21
 	{@html svg['viewBox']}
 </figure>
 
-<Translate />
+<Timing />
 
 <CSS />
 
