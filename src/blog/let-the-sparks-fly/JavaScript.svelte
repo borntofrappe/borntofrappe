@@ -103,7 +103,7 @@
 		font-weight: 700;
 		color: inherit;
 		background: none;
-		border: 0.1rem solid currentColor;
+		border: 0.15rem solid currentColor;
 		display: flex;
 		align-items: center;
 		gap: 1ch;

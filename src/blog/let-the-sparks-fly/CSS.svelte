@@ -93,10 +93,10 @@
 
 	input,
 	label > svg {
-		inline-size: 1rem;
-		block-size: 1rem;
+		inline-size: 1.8rem;
+		block-size: 1.8rem;
 		padding: 0.2rem;
-		border: 0.1rem solid currentColor;
+		border: 0.15rem solid currentColor;
 	}
 
 	label > input {
