@@ -9,52 +9,83 @@
 </script>
 
 <div>
-	<svg style="display: block;" viewBox="0 0 5.25 2.575">
-		<pattern
-			id="translate-pattern"
-			patternUnits="userSpaceOnUse"
-			width="100"
-			height="100"
-			viewBox="-50 -50 100 100"
-		>
-			<path
+	<svg style="display: block;" viewBox="0 0 5.03 2.635">
+		<defs>
+			<pattern
+				id="translate-pattern"
+				patternUnits="userSpaceOnUse"
+				width="100"
+				height="100"
+				viewBox="-50 -50 100 100"
+			>
+				<path
+					fill="currentColor"
+					stroke="currentColor"
+					stroke-width="5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M 0 -12 A 12 12 0 0 0 12 0 12 12 0 0 0 0 12 12 12 0 0 0 -12 0 12 12 0 0 0 0 -12"
+				/>
+			</pattern>
+			<filter
+				id="translate-filter"
+				filterUnits="userSpaceOnUse"
+				x="100"
+				y="0"
+				width="400"
+				height="100"
+			>
+				<feTurbulence baseFrequency="0.2 0.4" numOctaves="3" />
+				<feDisplacementMap in="SourceGraphic" scale="10" />
+			</filter>
+		</defs>
+		<svg width="5.03" height="1.285" viewBox="-2.5 -26 503 128.5">
+			<svg width="100" height="100" viewBox="0 0 100 100">
+				<g id="translate-region-linear" transform="translate({linear} 0)">
+					<rect fill="url(#translate-pattern)" x="100" width="400" height="100" />
+					<g fill="currentColor" font-size="14" font-family="monospace" text-anchor="end">
+						<text x="92.5" y="92.5">#0</text>
+						<text x="192.5" y="92.5">#1</text>
+						<text x="292.5" y="92.5">#2</text>
+						<text x="392.5" y="92.5">#3</text>
+						<text x="492.5" y="92.5">#4</text>
+					</g>
+				</g>
+			</svg>
+			<use filter="url(#translate-filter)" opacity="0.5" href="#translate-region-linear" />
+			<rect
 				fill="currentColor"
+				fill-opacity="0.1"
 				stroke="currentColor"
 				stroke-width="5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M 0 -12 A 12 12 0 0 0 12 0 12 12 0 0 0 0 12 12 12 0 0 0 -12 0 12 12 0 0 0 0 -12"
+				width="100"
+				height="100"
 			/>
-		</pattern>
-		<svg width="5.25" height="1.25" viewBox="-12.5 -24.5 525 125">
-			<g transform="translate({linear} 0)">
-				<rect fill="url(#translate-pattern)" stroke="currentColor" width="500" height="100" />
-				<rect fill="currentColor" fill-opacity="0.1" width="500" height="100" />
-				<g fill="currentColor" font-size="16" font-family="monospace" text-anchor="end">
-					<text x="95" y="95">#0</text>
-					<text x="195" y="95">#1</text>
-					<text x="295" y="95">#2</text>
-					<text x="395" y="95">#3</text>
-					<text x="495" y="95">#4</text>
-				</g>
-			</g>
-			<rect fill="none" stroke="currentColor" stroke-width="5" width="100" height="100" />
-			<text fill="currentColor" font-size="18" font-family="monospace" y="-7">linear</text>
+			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">linear</text>
 		</svg>
-		<svg y="1.325" width="5.25" height="1.25" viewBox="-12.5 -24.5 525 125">
-			<g transform="translate({step} 0)">
-				<rect fill="url(#translate-pattern)" stroke="currentColor" width="500" height="100" />
-				<rect fill="currentColor" fill-opacity="0.1" width="500" height="100" />
-				<g fill="currentColor" font-size="16" font-family="monospace" text-anchor="end">
-					<text x="95" y="95">#0</text>
-					<text x="195" y="95">#1</text>
-					<text x="295" y="95">#2</text>
-					<text x="395" y="95">#3</text>
-					<text x="495" y="95">#4</text>
+		<svg y="1.35" width="5.03" height="1.285" viewBox="-2.5 -26 503 128.5">
+			<svg width="100" height="100" viewBox="0 0 100 100">
+				<g id="translate-region-steps" transform="translate({step} 0)">
+					<rect fill="url(#translate-pattern)" x="100" width="400" height="100" />
+					<g fill="currentColor" font-size="14" font-family="monospace" text-anchor="end">
+						<text x="92.5" y="92.5">#0</text>
+						<text x="192.5" y="92.5">#1</text>
+						<text x="292.5" y="92.5">#2</text>
+						<text x="392.5" y="92.5">#3</text>
+						<text x="492.5" y="92.5">#4</text>
+					</g>
 				</g>
-			</g>
-			<rect fill="none" stroke="currentColor" stroke-width="5" width="100" height="100" />
-			<text fill="currentColor" font-size="18" font-family="monospace" y="-7">steps</text>
+			</svg>
+			<use filter="url(#translate-filter)" opacity="0.5" href="#translate-region-steps" />
+			<rect
+				fill="currentColor"
+				fill-opacity="0.1"
+				stroke="currentColor"
+				stroke-width="5"
+				width="100"
+				height="100"
+			/>
+			<text fill="currentColor" font-size="18" font-family="monospace" y="-8">steps</text>
 		</svg>
 	</svg>
 
