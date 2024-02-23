@@ -1,7 +1,7 @@
 ---
 title: Spirited sparkles
 description: Animate an assortment of SVG sprites with CSS and JavaScript.
-date: 2024-02-22
+date: 2024-02-23T08:59:25
 ---
 
 <script>
@@ -11,7 +11,7 @@ date: 2024-02-22
 	import JavaScript from './JavaScript.svelte';
 </script>
 
-I tend to shy away from frame-by-frame animation. It tends to be time consuming as you need to draw a subject over and over, changing appearances ever so slightly to create the illusion of movement. But the result can be quite exciting.
+I tend to shy away from frame-by-frame animation. It tends to be time consuming as you need to draw a subject over and over, changing appearances ever so slightly to create the illusion of movement. But the result can be quite intoxicating.
 
 Perhaps you are working on a redesign for a website that in hindsight is exceedingly static; perhaps you want to spruce up a landing page with a spark of life.
 
@@ -31,7 +31,7 @@ First, the `viewBox`. In the opening tag of any `svg` element you have the optio
 </svg>
 ```
 
-These describe the visible area in the form of a rectangle, with precise x, y coordinates and the chosen width and height. You see, the SVG canvas is virtually infinite. You can draw with additional elements virtually anywhere.
+These describe the visible area with a rectangle, in position — x and y — and dimensions — width and height. You see, the SVG canvas is virtually infinite. You can draw with additional elements virtually anywhere.
 
 ```html
 <svg viewBox="0 0 100 100">
@@ -75,13 +75,13 @@ With more than a single frame, you need to draw the sprites at increasing offset
 <g transform="translate(100 0)">
 	<!-- frame #1 -->
 </g>
-<!-- ... -->
+<!-- ...frames 2, 3 -->
 <g transform="translate(400 0)">
 	<!-- frame #4 -->
 </g>
 ```
 
-And translate them back into relevance, one after the other.
+And translate them into relevance, one after the other.
 
 ```html
 <g transform="translate(-200 0)">
@@ -101,12 +101,12 @@ steps(4)
 
 In the first argument you argue for the number of steps, dividing the larger update in equal intervals. If you were to select four steps, for instance, these would break the progress in four equivalent stretches, from 0 to 25%, 25% to 50% and so forth, until you reach completion at 100%.
 
-With each interval the change is regular, and happens in jumps. But which value is assumed when is up to debate.
+With each interval the change is regular and happens in jumps. But which value is assumed when is up to debate.
 
 Continuing with the example of four steps, if you were to translate an object by 100 pixels, the distance would map out to a predictable array of lengths: 0, 25, 50, 75, and finally 100.
 
 <figure class="[ center-frame ]">
-	{@html svg['step-end']}
+	{@html svg['step-end-4-100']}
 </figure>
 
 By default, the steps function implies that the values change at the end of each interval. You would therefore maintain the original offset, 0, in the first stretch, from 0 to 25%. The second offset, 25, will become relevant only with the second interval, and end at 50%.
@@ -132,7 +132,7 @@ Enough fuzzy theory, however. You took the time to draw five whole frames, each 
 
 Proof that you can animate frame-by-frame with the described tech, you need only to target the common group element and set up the animation. In a stylesheet, this is achieved in two equally important steps.
 
-On one side, the `@keframes` declaration, detailing what should happen and when.
+On one side, a `@keframes` declaration, detailing what should happen and when.
 
 ```css
 @keyframes sparkle {
@@ -148,13 +148,19 @@ On one side, the `@keframes` declaration, detailing what should happen and when.
 
 With the five sprites, we want to translate the group in the direction opposite to that of the offset, until you move the element to completely negate the distance. And then some.
 
-It will not have escaped your keen sense of observation, but the final keyframe has indeed an x offset larger than that of the final frame, to account for an additional, unaccounted picture. But the reason should become apparent looking back at the chart mapping the progress of the `steps` function and the default step position
+It will not have escaped your keen sense of observation, but the final keyframe has indeed a larger offset than that of the final frame, moving to a nonexistent picture. But the reason should become apparent looking back at the chart mapping the progress of the `steps` function and the default step position.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['step-end-5-500']}
+</figure>
 
 When the last step describes the last frame, you don't see this sprite until the very end. If the animation were to repeat, or revert to the original state, this means the sprite would disappear without a moment's notice, and without a chance to make an impression.
 
 Translating the group by an additional step guarantees that even this frame will be displayed in full.
 
-On one end you elaborate the animation with the keyframes. Pay attention that in CSS, you do need to set the unit to describe pixels, and can't get away with unitless numbers. On the opposing end, you then trigger the change with the `animation` property.
+On one end you elaborate the animation with the keyframes. Pay attention that in CSS, you do need to suffix the unit of pixels, and can't get away with unitless numbers.
+
+On the opposing end, you then trigger the change with the `animation` property.
 
 ```css
 svg > g {
@@ -162,11 +168,11 @@ svg > g {
 }
 ```
 
-Pointing to the animation by name, you can describe the duration in seconds, or any number of milliseconds large enough to suffice. And it is finally here that the `steps` function completes the effect, with the number of frames plus one — can't very well forget that last extra step.
+Pointing to the animation by name, you can set the duration in seconds, or any number of milliseconds large enough to suffice. And it is finally here that the `steps` function completes the effect, with the number of frames plus one — can't very well forget that last extra step.
 
 <CSS />
 
-In the end, I did use JavaScript for the widget, but only to have the animation follow your input. The entire change happens with CSS.
+In the end, I did use JavaScript for the widget, but only to have the animation follow your input. The refreshing change happens with CSS.
 
 Of course if you are using JavaScript, it is possible to lean in on the language to have the animation run after a small interaction. And with the Web Animation API, the transition is close to seamless. Once you isolate the element you want to animate, the parent group.
 
@@ -174,40 +180,38 @@ Of course if you are using JavaScript, it is possible to lean in on the language
 const group = document.querySelector('svg g');
 ```
 
-As with any HTML element you gain access to the `animate` method. This one accepts two arguments, which may sound familiar:
-
-1. an array detailing the keyframes
-
-   ```js
-   const keyframes = [
-   	{
-   		transform: 'translate(0px, 0px)'
-   	},
-   	{
-   		transform: 'translate(-600px, 0px)'
-   	}
-   ];
-   ```
-
-   Each keyframe describes the CSS property in an object, repeating the change of the `@keyframes` declaration.
-
-2. an object setting the animation
-
-   ```js
-   const options = {
-   	duration: 500,
-   	easing: 'steps(6)'
-   };
-   ```
-
-   The properties mirror those of the `animation` property, so that you can set the duration and the custom step function.
-
-That's it. You can trigger the animation following whichever event you may want.
+As with any HTML element you gain access to the `animate` method. This one accepts two arguments, which may sound familiar.
 
 ```js
 group.animate(keyframes, options);
 ```
 
-Perhaps the click of a button?
+Immediately, you have an array detailing the keyframes.
+
+```js
+const keyframes = [
+	{
+		transform: 'translate(0px, 0px)'
+	},
+	{
+		transform: 'translate(-600px, 0px)'
+	}
+];
+```
+
+The objects reflect the changes in CSS properties, repeating the structure of the `@keyframes` declaration.
+
+Past the collection, you then have an object setting a few options.
+
+```js
+const options = {
+	duration: 500,
+	easing: 'steps(6)'
+};
+```
+
+The properties mirror those of the `animation` property, so that you can match the duration and the custom step function.
+
+That's it. You can trigger the animation following whichever event you may want. Perhaps the click of a button?
 
 <JavaScript />
