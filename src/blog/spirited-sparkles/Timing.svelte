@@ -117,6 +117,7 @@
 
 	input {
 		display: block;
+		color: inherit;
 		accent-color: currentcolor;
 		inline-size: 100%;
 	}
