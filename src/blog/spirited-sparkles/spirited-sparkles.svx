@@ -150,7 +150,7 @@ With the five sprites, we want to translate the group in the direction opposite 
 
 It will not have escaped your keen sense of observation, but the final keyframe has indeed a larger offset than that of the final frame, moving to a nonexistent picture. But the reason should become apparent looking back at the chart mapping the progress of the `steps` function and the default step position.
 
-<figure class="[ center-frame ]" data-size="medium">
+<figure class="[ center-frame ]">
 	{@html svg['step-end-5-500']}
 </figure>
 
@@ -212,6 +212,6 @@ const options = {
 
 The properties mirror those of the `animation` property, so that you can match the duration and the custom step function.
 
-That's it. You can trigger the animation following whichever event you may want. Perhaps the click of a button?
+That's it. You can trigger the animation following whichever event you may want. Perhaps the click of an enticing button?
 
 <JavaScript />
