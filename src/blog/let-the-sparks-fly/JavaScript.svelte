@@ -1,24 +1,30 @@
 <script>
 	import { onMount } from 'svelte';
+
 	let widget = null;
 
 	onMount(() => {
+		const button = widget.querySelector('button');
+		const group = widget.querySelector('svg g');
+
+		const frames = group.children.length + 1;
+		const transform = `translate(${100 * frames * -1}px, 0px)`;
+		const duration = 83 * frames;
+		const easing = `steps(${frames})`;
+
 		const keyframes = [
 			{
 				transform: 'translate(0px, 0px)'
 			},
 			{
-				transform: 'translate(-600px, 0px)'
+				transform
 			}
 		];
 
 		const options = {
-			duration: 500,
-			easing: 'steps(6)'
+			duration,
+			easing
 		};
-
-		const button = widget.querySelector('button');
-		const group = widget.querySelector('svg g');
 
 		const handleClick = () => {
 			group.animate(keyframes, options);
