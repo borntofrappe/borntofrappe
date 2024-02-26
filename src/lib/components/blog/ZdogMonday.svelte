@@ -85,6 +85,10 @@
 		{
 			title: 'Assembly code',
 			slug: '/assembly-code'
+		},
+		{
+			title: 'When lightning strikes',
+			slug: '/when-lightning-strikes'
 		}
 	];
 </script>

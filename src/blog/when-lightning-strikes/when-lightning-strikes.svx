@@ -1,11 +1,15 @@
 ---
-title: when-lightning-strikes
+title: When lightning strikes
 description: Shocking, a pseudo-3D graphic on Monday.
 date: 2024-02-26
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
     import LightningSphere from './LightningSphere.svelte';
 </script>
 
 <LightningSphere />
+
+<ZdogMonday />
