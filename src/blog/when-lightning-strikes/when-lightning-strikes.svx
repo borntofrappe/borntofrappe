@@ -1,7 +1,7 @@
 ---
 title: When lightning strikes
-description: Shocking, a pseudo-3D graphic on Monday.
-date: 2024-02-26
+description: Out of the blue, a pseudo-3D graphic on Monday.
+date: 2024-02-26T22:25:54
 ---
 
 <script>
@@ -9,6 +9,8 @@ date: 2024-02-26
 
     import LightningSphere from './LightningSphere.svelte';
 </script>
+
+It is often shocking, but there are times where ideas spawn with little friction, almost on their own. The best thing you can do is take charge and make sure you don't lose contact with these little sparks. There might be nothing, mind you, but with the right attitude, and a propensity to go with the flow, they may lead you somewhere unexpected, somewhere suprisingly great.
 
 <LightningSphere />
 
