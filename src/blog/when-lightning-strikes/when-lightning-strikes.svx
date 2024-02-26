@@ -4,4 +4,8 @@ description: Shocking, a pseudo-3D graphic on Monday.
 date: 2024-02-26
 ---
 
-zdog monday 22
+<script>
+    import LightningSphere from './LightningSphere.svelte';
+</script>
+
+<LightningSphere />
