@@ -29,8 +29,8 @@
 
 		const strokes = {
 			core: 10,
-			lightning: [3, 0.05],
-			particle: 1.6
+			particle: 1.6,
+			lightning: [3, 0.05]
 		};
 
 		const { h, s, l } = colors[0];
@@ -420,7 +420,6 @@
 
 	button {
 		display: block;
-		margin: 0;
 		inline-size: 3rem;
 		block-size: 3rem;
 		padding: 0.4rem;
