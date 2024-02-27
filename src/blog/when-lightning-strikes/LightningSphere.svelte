@@ -11,19 +11,19 @@
 
 		const colors = [
 			{
+				h: 238,
+				s: 92,
+				l: 69
+			},
+			{
 				h: 232,
 				s: 90,
 				l: 68
 			},
 			{
-				h: 220,
-				s: 89,
-				l: 64
-			},
-			{
-				h: 180,
-				s: 100,
-				l: 54
+				h: 178,
+				s: 98,
+				l: 49
 			}
 		];
 
@@ -374,8 +374,8 @@
 					x2="0"
 					y2="92.6413803100586"
 				>
-					<stop stop-color="hsl(180 100% 54%)" offset="0" />
-					<stop stop-color="hsl(220 89% 64%)" offset="1" />
+					<stop stop-color="hsl(178 98% 49%)" offset="0" />
+					<stop stop-color="hsl(232 90% 68%)" offset="1" />
 				</linearGradient>
 			</defs>
 			<g
@@ -408,7 +408,7 @@
 	div {
 		max-inline-size: max-content;
 		margin-inline: auto;
-		color: hsl(180 100% 54%);
+		color: hsl(178 98% 49%);
 		background: hsl(240 13% 9%);
 		border-radius: 1rem;
 		padding: 2rem;
@@ -425,7 +425,7 @@
 		padding: 0.4rem;
 		border-radius: 1e5px;
 		border: none;
-		color: hsl(180 100% 54%);
+		color: hsl(178 98% 49%);
 		background: hsl(240 13% 16%);
 	}
 
