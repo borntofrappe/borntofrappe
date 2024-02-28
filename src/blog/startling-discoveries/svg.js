@@ -5,13 +5,11 @@ export default {
 	animation: `<svg style="display: block;" viewBox="0 0 100 100">
     <style>
     g#fingerprint > path {
-        animation: fade 2s ease-in-out both infinite;
+        opacity: 0;
+        animation: fade-in 2s infinite;
     }
 
-    @keyframes fade {
-        from {
-            opacity: 0;
-        }
+    @keyframes fade-in {
         to {
             opacity: 1;
         }
