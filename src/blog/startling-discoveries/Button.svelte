@@ -27,8 +27,8 @@
 		font-weight: 700;
 		letter-spacing: 1px;
 		padding: 0.5rem 1.2rem;
-		color: hsl(214 15% 91%);
-		background: hsl(210 24% 16%);
+		color: hsl(210 16% 93%);
+		background: hsl(210 10% 23%);
 		border: none;
 		border-radius: 1e5px;
 		transition: scale 0.1s cubic-bezier(0.37, 0, 0.63, 1);
@@ -46,7 +46,7 @@
 		outline-offset: 2px;
 	}
 
-	g > path {
+	button g > path {
 		opacity: 0;
 		transition: opacity 0.3s cubic-bezier(0.37, 0, 0.63, 1);
 		will-change: opacity;
