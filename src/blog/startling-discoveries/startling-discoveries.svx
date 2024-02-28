@@ -6,12 +6,15 @@ date: 2024-02-28
 
 <script>
 	import svg from './svg.js';
+	import Button from './Button.svelte';
 </script>
 
-<div class="center-frame" data-size="small">
+<figure class="center-frame" data-size="small">
 	{@html svg['path']}
-</div>
+</figure>
 
-<div class="center-frame" data-size="small">
+<figure class="center-frame" data-size="small">
 	{@html svg['animation']}
-</div>
+</figure>
+
+<Button />
