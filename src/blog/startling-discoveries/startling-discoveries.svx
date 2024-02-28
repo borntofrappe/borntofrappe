@@ -3,3 +3,11 @@ title: Startling discoveries
 description: SVG and CSS supporting a small sensitive button.
 date: 2024-02-28
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<div class="center-frame" data-size="small">
+	{@html svg['path']}
+</div>
