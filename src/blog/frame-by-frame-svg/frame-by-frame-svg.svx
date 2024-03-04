@@ -1,7 +1,7 @@
 ---
 title: Frame-by-frame SVG
 description: I made a web component to animate SVG sprites in steps.
-date: 2024-03-04
+date: 2024-03-04T09:38:59
 ---
 
 <script>
@@ -9,3 +9,65 @@ date: 2024-03-04
 </script>
 
 <Sparkles />
+
+From the tinders of [a spirited animation](/spirited-sparkles), I took initiative and wrote a web component: [`frame-by-frame-svg`](https://github.com/borntofrappe/frame-by-frame-svg).
+
+I've just tipped my finger toes into the topic, but while I don't feel comfortable explaining the code, I am confident in the current result. It took me a couple of tries, after all, to reach the current release.
+
+So what can you do with the component? You can add it to an `.html` document.
+
+```html
+<frame-by-frame-svg></frame-by-frame-svg>
+```
+
+And that's it, tap the page to your heart's desire. The inspiring sparkling animation will play out in the precise spot, fast and delayed enough to be noticeable. But you can alter both features.
+
+```html
+<frame-by-frame-svg speed="40" delay="0"></frame-by-frame-svg>
+```
+
+The `speed` attribute sets the duration, with the number of milliseconds you'll see a single frame. The `delay` attribute, quite daftly, regulates the small, initial, delay. If needed at all.
+
+And of course you can very well go further, and bring your own sprites. _"All"_ you need is an SVG spritesheet, in the form of an `svg` element with an arbitrary width and height.
+
+```html
+<frame-by-frame-svg>
+	<svg width="40" height="40" viewBox="0 0 100 100">
+		<!-- ... -->
+	</svg>
+</frame-by-frame-svg>
+```
+
+Nested in the element, then, as direct children, you need the individual frames.
+
+<!-- prettier-ignore -->
+```html
+<svg width="40" height="40" viewBox="0 0 100 100">
+  <path d="M 43 49 Q 45 40 49 48 58 47 52 53 56 61 48 57 42 64 42 56 35 50 43 49" />
+  <path d="M 38 45 Q 39 32 45 32 Q 51 33 52 43 64 41 64 46 64 50 58 54 64 61 59 66 52 69 48 63 45 72 37 70 33 68 36 57 28 56 28 49 30 44 38 45 M 46 48 47 50 50 50 49 52 50 55 46 54 44 56 44 53 42 52 45 50 46 48" />
+  <!-- ... -->
+</svg>
+```
+
+You can draw them all in the same exact canvas, one on top of the other. The script will take care of the markup and prep the animation.
+
+And once again, you can go on with your day tapping along.
+
+---
+
+I may support other attributes in the future, perhaps to style the sprites in size, or even in color, but if you care about either, there are ways to customize both. The size with the `width` and `height` attribute of your own made-up sheet. The color, why with how you author the drawing elements, with the `fill` and `stroke` attribute.
+
+```html
+<path
+	stroke="currentColor"
+	d="M 43 49 Q 45 40 49 48 58 47 52 53 56 61 48 57 42 64 42 56 35 50 43 49"
+/>
+```
+
+I suggest `currentColor`, so that the shapes pick up the value of the `color` property. By chance, that is what happens with the default component.
+
+```html
+<frame-by-frame-svg style="color: hsl(39 100% 48%);"></frame-by-frame-svg>
+```
+
+And what might be happening right on this page. Even without the help of a big, bold button.
