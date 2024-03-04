@@ -3,3 +3,9 @@ title: Frame-by-frame SVG
 description: I made a web component to animate SVG sprites in steps.
 date: 2024-03-04
 ---
+
+<script>
+	import './main.js';
+</script>
+
+<frame-by-frame-svg></frame-by-frame-svg>
