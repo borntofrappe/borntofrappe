@@ -5,7 +5,11 @@ date: 2024-03-04
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import SpaceLoops from './SpaceLoops.svelte';
 </script>
 
 <SpaceLoops />
+
+<ZdogMonday />

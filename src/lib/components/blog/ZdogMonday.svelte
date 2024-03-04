@@ -89,6 +89,10 @@
 		{
 			title: 'When lightning strikes',
 			slug: '/when-lightning-strikes'
+		},
+		{
+			title: 'Looptie loops',
+			slug: '/looptie-loops'
 		}
 	];
 </script>
