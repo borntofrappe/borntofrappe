@@ -1,5 +1,5 @@
 ---
-title: Looptie loops
+title: Loopty loops
 description: Lean on too many iterations to navigate an infinite, pixelated space.
 date: 2024-03-04T22:35:41
 ---

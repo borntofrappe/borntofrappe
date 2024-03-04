@@ -91,8 +91,8 @@
 			slug: '/when-lightning-strikes'
 		},
 		{
-			title: 'Looptie loops',
-			slug: '/looptie-loops'
+			title: 'Loopty loops',
+			slug: '/loopty-loops'
 		}
 	];
 </script>
