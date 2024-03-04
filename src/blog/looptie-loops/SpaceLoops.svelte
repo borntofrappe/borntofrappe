@@ -110,6 +110,19 @@
 
 		const root = new Anchor();
 
+		const box = new Box({
+			stroke: 0,
+			width: 1,
+			height: 1,
+			depth: 1
+		});
+
+		const boxRing = box.copy({
+			color: ring.colors[0],
+			rightFace: ring.colors[1],
+			bottomFace: ring.colors[2]
+		});
+
 		const rootRing = new Anchor({
 			addTo: root
 		});
@@ -124,15 +137,8 @@
 		});
 
 		for (const { x, y } of ring.boxes) {
-			new Box({
+			boxRing.copy({
 				addTo: offsetRing,
-				color: ring.colors[0],
-				rightFace: ring.colors[1],
-				bottomFace: ring.colors[2],
-				stroke: 0,
-				width: 1,
-				height: 1,
-				depth: 1,
 				translate: {
 					x: x - 5,
 					y: y - 5
@@ -150,13 +156,9 @@
 
 		for (const { color, boxes } of plane) {
 			for (const { x, y } of boxes) {
-				new Box({
+				box.copy({
 					addTo: centerPlane,
 					color,
-					stroke: 0,
-					width: 1,
-					height: 1,
-					depth: 1,
 					translate: {
 						x: x - 5,
 						y: y - 4
