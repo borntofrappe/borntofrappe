@@ -121,4 +121,39 @@
 	});
 </script>
 
-<frame-by-frame-svg></frame-by-frame-svg>
+<frame-by-frame-svg style="color: hsl(39 100% 48%);">
+	<svg width="50" height="50" viewBox="0 0 100 100">
+		<path
+			fill="currentColor"
+			stroke="currentColor"
+			stroke-width="5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M 43 49 Q 45 40 49 48 58 47 52 53 56 61 48 57 42 64 42 56 35 50 43 49"
+		/>
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M 38 45 Q 39 32 45 32 Q 51 33 52 43 64 41 64 46 64 50 58 54 64 61 59 66 52 69 48 63 45 72 37 70 33 68 36 57 28 56 28 49 30 44 38 45 M 46 48 47 50 50 50 49 52 50 55 46 54 44 56 44 53 42 52 45 50 46 48"
+		/>
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M 40 27 Q 45 18 49 27 M 69 36 Q 79 36 72 42 M 68 65 Q 70 72 63 71 M 38 78 Q 33 82 32 76 M 19 50 Q 16 45 22 45"
+		/>
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-width="5"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M 45 15 44 6 M 81 35 89 32 M 73 74 79 80 M 33 85 30 92 M 17 45 9 44"
+		/>
+	</svg>
+</frame-by-frame-svg>
