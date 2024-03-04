@@ -4,4 +4,8 @@ description: Lean on too many iterations to navigate an infinite, pixelated spac
 date: 2024-03-04
 ---
 
-zdog monday n+1
+<script>
+	import SpaceLoops from './SpaceLoops.svelte';
+</script>
+
+<SpaceLoops />
