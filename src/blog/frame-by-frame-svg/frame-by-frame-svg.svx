@@ -5,7 +5,7 @@ date: 2024-03-04
 ---
 
 <script>
-	import './main.js';
+	import Sparkles from './Sparkles.svelte';
 </script>
 
-<frame-by-frame-svg></frame-by-frame-svg>
+<Sparkles />
