@@ -10,9 +10,9 @@ date: 2024-03-04T22:35:41
 	import SpaceLoops from './SpaceLoops.svelte';
 </script>
 
-It is fair to admit that I share an affection for pixel art. I tend to favor crisp vector graphics, but when possible, I like to indulge in the style. There is also a strange affinity in the way I approach both, drawing SVG shapes line by line, and drawing sprites pixel by pixel.
+It is fair to admit that I share an affection for pixel art. I tend to favor vector graphics, but when possible, I like to indulge in the style. There is also a strange affinity in the way I approach both, drawing SVG shapes with elements, line by line, and drawing sprites with squares, pixel by pixel.
 
-_"Zdog Monday"_ is also no stranger to pixels in the form of [boxes](/counting-shapes).
+_"Zdog Monday"_ is also no stranger to pixels, and specifically, elevating the concept with [boxes](/counting-shapes).
 
 ```js
 new Zdog.Box({
@@ -35,7 +35,7 @@ new Zdog.Box({
 });
 ```
 
-With different shades you are able to add depth, with an almost-3D object.
+With different shades you are able to add depth, and fabricate a convincingly 3D object.
 
 But as it is with pixelated graphics, more objects work to refine the picture. You may have to repeat yourself, but there is code you can write to save a few keystrokes.
 
@@ -59,7 +59,7 @@ const boxes = [
 ];
 ```
 
-With the collection, a `for` loop is all that is left.
+With the collection, a `for` loop is next.
 
 ```js
 for (const { x, y } of boxes) {
