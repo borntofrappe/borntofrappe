@@ -20,7 +20,7 @@ So what can you do with the component? You can add it to an `.html` document.
 <frame-by-frame-svg></frame-by-frame-svg>
 ```
 
-And that's it, tap the page to your heart's desire. The inspiring sparkling animation will play out in the precise spot, fast and delayed enough to be noticeable. But you can alter both features.
+And that's it, tap the page to your heart's desire. A few sparkles will appear in the precise spot, fast and delayed enough to be noticeable. But you can alter both features.
 
 ```html
 <frame-by-frame-svg speed="40" delay="0"></frame-by-frame-svg>
@@ -28,7 +28,7 @@ And that's it, tap the page to your heart's desire. The inspiring sparkling anim
 
 The `speed` attribute sets the duration, with the number of milliseconds you'll see a single frame. The `delay` attribute, quite daftly, regulates the small, initial, delay. If needed at all.
 
-And of course you can very well go further, and bring your own sprites. _"All"_ you need is an SVG spritesheet, in the form of an `svg` element with an arbitrary width and height.
+And of course you can very well go further, and bring your own sprites. _"All"_ you need is an SVG spritesheet, an `svg` element with an arbitrary width and height.
 
 ```html
 <frame-by-frame-svg>
@@ -38,7 +38,7 @@ And of course you can very well go further, and bring your own sprites. _"All"_ 
 </frame-by-frame-svg>
 ```
 
-Nested in the element, then, as direct children, you need the individual frames.
+Nested in the element as direct children, then, you need the individual frames.
 
 <!-- prettier-ignore -->
 ```html
@@ -55,7 +55,7 @@ And once again, you can go on with your day tapping along.
 
 ---
 
-I may support other attributes in the future, perhaps to style the sprites in size, or even in color, but if you care about either, there are ways to customize both. The size with the `width` and `height` attribute of your own made-up sheet. The color, why with how you author the drawing elements, with the `fill` and `stroke` attribute.
+I may support other attributes in the future, perhaps to style the sprites in size, or even in color, but if you care about either, there are ways to customize both. The size with the `width` and `height` attribute of your own made-up sheet. The color in how you author the drawing elements, with the `fill` and `stroke` attribute.
 
 ```html
 <path
