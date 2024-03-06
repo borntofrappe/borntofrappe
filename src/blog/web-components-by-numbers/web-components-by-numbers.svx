@@ -9,8 +9,6 @@ date: 2024-03-06T17:51:46
 	import CustomCounter from './CustomCounter.svelte';
 </script>
 
-<CustomCounter />
-
 When you approach web components the sheer volume of material can be overwhelming. Behind the one term there are two specifications and three core technologies, coming together to forge any widget a web developer may need. To ease in the topic, however, it is possible to focus on the three key ingredients one at a time.
 
 <figure class="center-frame">
@@ -61,7 +59,7 @@ In the first argument point to the custom element, by name, and in the second re
 Have the script run, and you are sure to find the paragraph on the page. Inspect the document, and sure enough, you'll be happy to find evidence of the element's custom nature.
 
 <figure class="center-frame" data-size="medium">
-	{@html svg['snippet-element']}
+	{@html svg['inspector-element']}
 </figure>
 
 ## Shadow DOM
@@ -92,7 +90,7 @@ shadowRoot.innerHTML = `<p>From the darkness</p>`;
 The text will be displayed still, but inspect the page, and you'll see that the content is nested in an additional level, in the promised shadow DOM.
 
 <figure class="center-frame" data-size="medium">
-	{@html svg['snippet-shadow']}
+	{@html svg['inspector-shadow']}
 </figure>
 
 The markup is encapsulated. Should you style the elements in the root, even with more general CSS selectors.
@@ -130,7 +128,7 @@ Consider a card, highlighting holidays in title and date with a heading and prec
 Add the code between the opening and closing `template` tags and you've built your first template. On screen you won't see a trace of the markup, but inspecting the source you will find the template and a nested `#document-fragment`.
 
 <figure class="center-frame" data-size="medium">
-	{@html svg['snippet-template']}
+	{@html svg['inspector-template']}
 </figure>
 
 The content will be rendered, but only as required, only with JavaScript. And while the process is slightly involved, it quickly solves the templating function.
@@ -171,7 +169,7 @@ This last fact helps to justify the rather cryptic line cloning the content. Wha
 In the specific example the result is the same. The holiday is displayed in name and instant. The template, however, has lost its reusable function. If you analyze the DOM tree, one last time, you can attest yourself that the element is ineed spoiled of the nested markup.
 
 <figure class="center-frame" data-size="medium">
-	{@html svg['snippet-template-content']}
+	{@html svg['inspector-template-empty']}
 </figure>
 
 If you want to use and reuse a template, you have to clone the content for good. But, if you are so opposed to `cloneNode`, you have an alternative in the `document`, and the `importNode` function instead.
@@ -203,3 +201,5 @@ This time, however, the key-value pairs affect other elements, bringing the topi
 ```
 
 Just waiting to be of use.
+
+<CustomCounter />
