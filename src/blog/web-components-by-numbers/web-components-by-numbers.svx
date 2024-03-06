@@ -12,6 +12,10 @@ date: 2024-03-06
 	{@html svg['pan']}
 </figure>
 
-<figure class="center-frame">
+<figure class="center-frame" data-size="medium">
 	{@html svg['snippet-template']}
+</figure>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['snippet-template-clone']}
 </figure>
