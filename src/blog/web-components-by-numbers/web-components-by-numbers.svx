@@ -6,6 +6,7 @@ date: 2024-03-06
 
 <script>
 	import svg from './svg.js';
+	import CustomCounter from './CustomCounter.svelte';
 </script>
 
 <figure class="center-frame">
@@ -19,3 +20,5 @@ date: 2024-03-06
 <figure class="center-frame" data-size="medium">
 	{@html svg['snippet-template-clone']}
 </figure>
+
+<CustomCounter />
