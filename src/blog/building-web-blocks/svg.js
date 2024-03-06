@@ -114,9 +114,9 @@ export default {
     <g font-family="monospace" font-weight="700">
         <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
         <g fill="hsl(0 0% 94%)" font-size="4">
-            <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">secret-message</tspan>&gt;</text>
+            <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
             <text x="15" y="28">&lt;p&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/p&gt;</tspan></text>
-            <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">secret-message</tspan>&gt;</text>
+            <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
         </g>
     </g>
     <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
