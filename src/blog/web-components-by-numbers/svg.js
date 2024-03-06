@@ -87,5 +87,37 @@ export default {
         <use transform="rotate(-4) translate(0 -47.5) rotate(10)" href="#pan-block-2" x="-12" y="-12" width="24" height="24" />
         <use transform="rotate(35) translate(0 -65) rotate(-40)" href="#pan-block-3" x="-12" y="-12" width="24" height="24" />
     </g>
+</svg>`,
+	'snippet-template': `<svg style="display: block;" viewBox="0 0 100 60">
+    <defs>
+        <rect id="snippet-console" width="100" height="60" rx="5" />
+        <path id="snippet-arrow" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="M -1 -0.5 1 -0.5 0 0.5 Z" />
+        <linearGradient id="snippet-gradient" x1="0" y1="0" x2="1" y2="0.2">
+            <stop stop-color="black" stop-opacity="0" offset="0.55" />
+            <stop stop-color="black" stop-opacity="0.1" offset="0.55" />
+        </linearGradient>
+    </defs>
+    <use fill="hsl(249 11% 12%)" href="#snippet-console" />
+    <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
+    <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
+    <g transform="translate(6 6)">
+        <circle fill="hsl(3 100% 68%)" r="2" />
+        <circle fill="hsl(41 99% 60%)" cx="6" r="2" />
+        <circle fill="hsl(129 62% 49%)" cx="12" r="2" />
+    </g>
+    <g transform="translate(30 8)" fill="none" stroke="hsl(0 0% 94%)">
+        <rect stroke-width="0.75" x="-2" y="-2" width="4" height="4" rx="0.5" />
+        <path stroke-width="0.5" d="M 0 -2 0 -3.25 M 2 0 3.25 0 M 0 2 0 3.25 M -2 0 -3.25 0" />
+    </g>
+    <use fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)" transform="translate(6.5 20)" href="#snippet-arrow" />
+    <g font-family="monospace" font-weight="700">
+        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
+        <g fill="hsl(0 0% 94%)" font-size="4">
+            <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
+            <text fill="hsl(258 97% 74%)" x="15" y="28">#document-fragment</text>
+            <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
+        </g>
+    </g>
+    <use fill="url(#snippet-gradient)" href="#snippet-console" />
 </svg>`
 };

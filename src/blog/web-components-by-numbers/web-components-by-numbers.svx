@@ -11,3 +11,7 @@ date: 2024-03-06
 <figure class="center-frame">
 	{@html svg['pan']}
 </figure>
+
+<figure class="center-frame">
+	{@html svg['snippet-template']}
+</figure>
