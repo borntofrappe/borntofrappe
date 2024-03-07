@@ -11,3 +11,7 @@ date: 2024-03-07
 <figure class="center-frame" data-size="small">
 	{@html svg['smiley']}
 </figure>
+
+<figure class="center-frame" data-size="small">
+	{@html svg['smiley-ne']}
+</figure>
