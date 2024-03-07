@@ -1,0 +1,12 @@
+---
+title: Has spunk
+description: Recreate an SVG trick with CSS properties.
+date:2024-03-07
+---
+
+```css
+form:has(label:nth-of-type(3) input:checked) g {
+	rotate: 45deg;
+	transform: translate(0px, -8px) rotate(-45deg);
+}
+```
