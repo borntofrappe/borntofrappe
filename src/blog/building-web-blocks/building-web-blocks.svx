@@ -21,7 +21,7 @@ Indeed, while the technologies are often bundled together in more complex compon
 
 ## Custom elements
 
-Explained in the [HTML Living standard](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements), custom elements are elements you create yourself, with tags and a name made of multiple, hyphenated words.
+Explained in the [HTML Living Standard](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements), custom elements are elements you create yourself, with tags and a name made of multiple, hyphenated words.
 
 ```html
 <hopeful-message></hopeful-message>
@@ -64,7 +64,7 @@ Have the script run, and you are sure to find the paragraph on the page. Inspect
 
 ## Shadow DOM
 
-Moving into the [DOM living standard](https://dom.spec.whatwg.org/#interface-shadowroot), the shadow DOM describes a way to encapsulate code. The term shadow is set to oppose the regular DOM, which you may label as _light DOM_, and you can witness its influence with another small script. The effort is rather self-serving, but works to illustrate the point.
+Moving into the [DOM Living Standard](https://dom.spec.whatwg.org/#interface-shadowroot), the shadow DOM describes a way to encapsulate code. The term shadow is set to oppose the regular DOM, which you may dub as _light DOM_, and you can witness its influence with another small script. The effort is rather self-serving, but works to illustrate the point.
 
 Add a `div` container on the page.
 
@@ -125,7 +125,7 @@ Consider a card, highlighting holidays in title and date.
 </article>
 ```
 
-Add the code between the opening and closing `template` tags and you've built your first template. On screen you won't see a trace of the markup, but inspecting the source you will find the template and a nested `#document-fragment`.
+Add the code between the opening and closing `template` tags and you've built your first template. On screen you won't find a trace of the article, but inspecting the source you will find the `template` element and a nested `#document-fragment`.
 
 <figure class="center-frame" data-size="medium">
 	{@html svg['inspector-template']}
@@ -159,7 +159,7 @@ document.body.appendChild(content);
 
 On the page you'll finally see the result. And should you inspect the DOM, you'll still see the template and the nested content, waiting to be used once more.
 
-This last fact helps to justify the rather cryptic line cloning the content. What happens if instead of resorting to the `cloneNode` function you refer to the content as is?
+This last fact helps to justify the rather cryptic line cloning the content. What happens if instead of resorting to the `cloneNode` function you refer to the content directly?
 
 ```diff
 -const content = template.content.cloneNode(true);
@@ -172,7 +172,7 @@ In the specific example the result is the same. The holiday is displayed in name
 	{@html svg['inspector-template-empty']}
 </figure>
 
-In short, if you want to use and reuse a template, remember to clone the content for good. And, if for some strange reason you are still opposed to `cloneNode`, you'll be glad to discover that there is alternative through the `document` object, and the `importNode` function.
+In short, if you want to use and reuse a template, remember to clone the content for good. And, if for some strange reason you are still opposed to `cloneNode`, you'll be glad to discover that there is an alternative through the `document` object, and the `importNode` function.
 
 ```diff
 -const content = template.content.cloneNode(true);
