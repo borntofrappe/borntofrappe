@@ -6,6 +6,7 @@ date: 2024-03-07
 
 <script>
 	import svg from './svg.js';
+	import DinnerMenu from './DinnerMenu.svelte';
 </script>
 
 <figure class="center-frame" data-size="small">
@@ -15,3 +16,5 @@ date: 2024-03-07
 <figure class="center-frame" data-size="small">
 	{@html svg['smiley-ne']}
 </figure>
+
+<DinnerMenu />
