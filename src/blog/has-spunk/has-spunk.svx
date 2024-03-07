@@ -1,7 +1,7 @@
 ---
 title: Has spunk
 description: Recreate an SVG trick with CSS properties.
-date: 2024-03-07
+date: 2024-03-07T15:32:55
 ---
 
 <script>
@@ -9,12 +9,131 @@ date: 2024-03-07
 	import DinnerMenu from './DinnerMenu.svelte';
 </script>
 
+In SVG the `transform` property simplifies a few feats. Consider the vector drawing of a plain, smiling figure.
+
 <figure class="center-frame" style="--frame-size: 10rem;">
 	{@html svg['smiley']}
 </figure>
 
+If you wrap the code responsible for the face's details in a common group element.
+
+```html
+<g>
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+You are able to reposition the eyes and the mouth with the touted attribute. With the `translate` function and a negative y offset you can, for instance, have the face look up.
+
+```html
+<g transform="translate(0 -10)">
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+And you can be even more refined with the change. Say that you want the face to point in a different direction. You may try to find a suitable offset in both dimensions, but another option is to lean on the `rotate` function.
+
+```html
+<g transform="rotate(45)">
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+The idea here is to tilt the entire coordinate system, to point the shapes in one direction. Apply the translation _after_ the rotation and the elements move accordingly.
+
+```html
+<g transform="rotate(45) translate(0 -10)">
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+At this point, you can apply another rotation, opposite in value to the first, to restore the angle.
+
+```html
+<g transform="rotate(45) translate(0 -10) rotate(-45)">
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+And in so doing, the eyes and the mouth are back right side up.
+
 <figure class="center-frame" style="--frame-size: 10rem;">
 	{@html svg['smiley-ne']}
 </figure>
+
+The face aims north-east, but if you want a slightly different point of view, you just need to update the angles.
+
+```html
+<g transform="rotate(30) translate(0 -10) rotate(-30)">
+	<!-- ...eyes & mouth -->
+</g>
+```
+
+Rotate, translate, rotate. The sequence is quite convenient and a welcome substitute to basic trigonometric functions. But is it possible to repeat the sequence with CSS?
+
+If you target the group element the `transform` property offers a similar `translate` function.
+
+```css
+g {
+	transform: translate(0px, -10px);
+}
+```
+
+There are already a few differences here. Immediately, you have to specify a unit for non-zero offsets, a number of pixels. The values need to be also separated with a comma, something unnecessary in SVG.
+
+Even with these differences, the first effect is the same, and the face will look once again up. The same can't be said for the other examples, though.
+
+Even with the `rotate` function and a necessary unit of measure, you can't change the angle of the shapes before you translate the objects, not even if you curate the order of the two operations.
+
+```css
+g {
+	transform: rotate(45deg) translate(0, -10px);
+}
+```
+
+In CSS, transformations follow a specific schedule, and the given order can't be escaped. In the specific example, the translation will always precede the rotation.
+
+Not everything is lost, however. Also in CSS, the specification reveals individual transform properties, devoted to the separate functions. And these are set to operate _before_ a possible change in the more general `transform` property.
+
+For the face, this means it is possible to change the angle before we reposition the details, with the `rotate` function.
+
+```css
+g {
+	rotate: 45deg;
+	transform: translate(0, -10px);
+}
+```
+
+Once again the objects move in the chosen direction. The angle persists after the shift, but this time, we can benefit from the transforming order.
+
+```css
+g {
+	rotate: 45deg;
+	transform: translate(0, -10px) rotate(-45deg);
+}
+```
+
+Indeed, the `rotate` property may come first, but the `rotate` function will be last. And this is for all possible angles, similarly to the `transform` attribute.
+
+Of little use? Not if you consider that in CSS you have a host of more features. A change in position may be amusing, but even more so if animated, or interpolated with `transition` properties.
+
+```css
+g {
+	/* ... */
+	transition-property: rotate, transform;
+	transition-duration: 0.25s;
+}
+```
+
+A possibility which might be enticing enough to make you want to explore the potential of cascading stylesheet, and even understand this most complex snippet.
+
+```css
+form:has(label:nth-of-type(3) input:checked) g {
+	rotate: 45deg;
+	transform: translate(0px, -8px) rotate(-45deg);
+}
+```
+
+To pick from a dinner menu with a few solid options and a completely gratuitous decoration.
 
 <DinnerMenu />
