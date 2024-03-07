@@ -19,7 +19,7 @@ export default {
         </g>
     </defs>
     <circle fill="hsl(47 94% 57%)" r="50" />
-    <g transform="rotate(45) translate(0 -12) rotate(-45)">
+    <g transform="rotate(45) translate(0 -10) rotate(-45)">
         <use transform="translate(-17 -11)" href="#smiley-eye" />
         <use transform="translate(17 -11)" href="#smiley-eye" />
         <path transform="translate(0 14)" fill="none" stroke="hsl(34 69% 15%)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="M -20 0 A 40 40 0 0 0 20 0 28 28 0 0 1 -20 0" />
