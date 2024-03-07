@@ -9,11 +9,11 @@ date: 2024-03-07
 	import DinnerMenu from './DinnerMenu.svelte';
 </script>
 
-<figure class="center-frame" data-size="small">
+<figure class="center-frame" style="--frame-size: 10rem;">
 	{@html svg['smiley']}
 </figure>
 
-<figure class="center-frame" data-size="small">
+<figure class="center-frame" style="--frame-size: 10rem;">
 	{@html svg['smiley-ne']}
 </figure>
 
