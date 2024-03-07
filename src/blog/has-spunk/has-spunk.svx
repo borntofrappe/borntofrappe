@@ -69,7 +69,7 @@ The face aims north-east, but if you want a slightly different point of view, yo
 </g>
 ```
 
-Rotate, translate, rotate. The sequence is quite convenient and a welcome substitute to basic trigonometric functions. But is it possible to repeat the sequence with CSS?
+Rotate, translate, rotate. The sequence is quite convenient and a welcome substitute to basic trigonometric functions. But is it possible to repeat the same sequence with CSS?
 
 If you target the group element the `transform` property offers a similar `translate` function.
 
@@ -79,11 +79,11 @@ g {
 }
 ```
 
-There are already a few differences here. Immediately, you have to specify a unit for non-zero offsets, a number of pixels. The values need to be also separated with a comma, something unnecessary in SVG.
+There are already a few differences here. Immediately, you have to specify a unit for non-zero offsets, a number in pixels. The values need to be also separated with a comma, something unnecessary in SVG.
 
 Even with these differences, the first effect is the same, and the face will look once again up. The same can't be said for the other examples, though.
 
-Even with the `rotate` function and a necessary unit of measure, you can't change the angle of the shapes before you translate the objects, not even if you curate the order of the two operations.
+Even with the `rotate` function and the necessary unit of measure you can't change the angle of the shapes before you translate the objects. Not even if you curate the order of the two operations.
 
 ```css
 g {
@@ -95,7 +95,7 @@ In CSS, transformations follow a specific schedule, and the given order can't be
 
 Not everything is lost, however. Also in CSS, the specification reveals individual transform properties, devoted to the separate functions. And these are set to operate _before_ a possible change in the more general `transform` property.
 
-For the face, this means it is possible to change the angle before we reposition the details, with the `rotate` function.
+For the face, this means it is possible to change the angle before we position the details, with the `rotate` function.
 
 ```css
 g {
@@ -125,7 +125,7 @@ g {
 }
 ```
 
-A possibility which might be enticing enough to make you want to explore the potential of cascading stylesheet, and even understand this most complex snippet.
+A possibility which might be enticing enough to make you want to explore the potential of cascading stylesheet, and even understand this most complex selector.
 
 ```css
 form:has(label:nth-of-type(3) input:checked) g {
