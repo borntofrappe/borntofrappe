@@ -4,6 +4,8 @@ description: A basic web component built with the three core APIs.
 date: 2024-03-08
 ---
 
-```html
-<custom-counter></custom-counter>
-```
+<script>
+	import CustomMarkup from './CustomMarkup.svelte';
+</script>
+
+<CustomMarkup />
