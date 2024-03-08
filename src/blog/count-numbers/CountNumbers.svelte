@@ -22,11 +22,11 @@
 				const buttonIncrement = shadowRoot.querySelector('button:nth-of-type(2)');
 
 				buttonDecrement.addEventListener('click', () => {
-					count.innerHTML = +count.innerHTML - 1;
+					count.textContent = +count.textContent - 1;
 				});
 
 				buttonIncrement.addEventListener('click', () => {
-					count.innerHTML = +count.innerHTML + 1;
+					count.textContent = +count.textContent + 1;
 				});
 			}
 		}
