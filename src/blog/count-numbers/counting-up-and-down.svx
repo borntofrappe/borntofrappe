@@ -1,6 +1,6 @@
 ---
-title: Counting up and down
-description: A basic web component built with the three core APIs.
+title: Count numbers
+description: Build a basic web component with the three core APIs.
 date: 2024-03-08
 ---
 
