@@ -9,7 +9,7 @@ date: 2024-03-08T14:39:53
 	import CountNumbers from './CountNumbers.svelte';
 </script>
 
-For the sake of being exhaustive, and fair, I figured I could write how a small web component came to be. [In the introduction to the topic](/building-web-blocks), I tried to focus on the technologies behind the larger ecosystem, but failed to describe how the three mixed together in a custom counter.
+For the sake of being exhaustive, and fair, I figured I could write how a small web component was made. [In the introduction to the topic](/building-web-blocks) I tried to focus on the technologies behind the larger ecosystem, but failed to describe how the three came together in a custom counter.
 
 Be warned: even in the realm of web components, the following is but one way to count up and down, and likely one of the flakiest as well.
 
@@ -23,7 +23,7 @@ Everything starts with a template, providing the structure for the would-be widg
 </template>
 ```
 
-The aim is to frame the component in markup: two buttons, to decrease and increase the starting value, and the value itself. I decided to sandwich the number between the buttons and mark the content in a `span`, but you could argue for a different element, even a `h1` heading for that matter.
+The aim is to frame the component in markup: two buttons to change the starting value, and the value itself. I decided to sandwich the number between the buttons and mark the content in a `span`, but you could argue for a different element, even a `h1` heading for that matter.
 
 ```html
 <button>Decrement</button>
@@ -31,7 +31,7 @@ The aim is to frame the component in markup: two buttons, to decrease and increa
 <button>Increment</button>
 ```
 
-If you consider the counter as an independent application, almost like an article, it would be reasonable to frame the number as the center point of the component.
+If you consider the counter as an independent application, almost like an article, it would be reasonable to frame the number as the center piece.
 
 As mentioned in the previous article, the markup is not shown, it is safely hidden through the template, and the content is waiting to be cloned and used.
 
@@ -82,13 +82,13 @@ At this point you may want to attest that yourself, before diving in the few lin
 <count-numbers></count-numbers>
 ```
 
-In the script, outside of the scope of the class, you can define said element and create a connection with the class itself.
+In the script, outside of the scope of the class, you can define said element and create a connection with the class.
 
 ```js
 customElements.define('count-numbers', CountNumbers);
 ```
 
-This is enough to see the buttons and the starting round figure, unstyled as they might be.
+This is enough to see the buttons and the starting round figure, unstyled and ineffective as they might be.
 
 <div>
 	<CountMarkup />
@@ -108,7 +108,7 @@ On to the function. We can actually be rather cheeky in implementing the feature
 const count = shadowRoot.querySelector('span');
 ```
 
-To distinguish the buttons you could augment the template with an identifier, or even a class or a data attribute. Alternatively, you have the option of being creative with the `nth-of-type` selector.
+To distinguish the buttons you could augment the template with an identifier, a class or a data attribute. Alternatively, you have the option of being creative with the `:nth-of-type` selector.
 
 ```js
 const buttonDecrement = shadowRoot.querySelector('button:nth-of-type(1)');
@@ -128,7 +128,7 @@ As a button is pressed you can update the value through the `textContent` proper
 count.textContent = +count.textContent - 1;
 ```
 
-Whether you choose to parse the string with parseInt, or prefix the round figure with the plus operator, you finally reach the integer. And with the two buttons, update the number with the appropriate direction.
+Whether you choose to parse the string with `parseInt`, or prefix the figure with the plus operator, you finally reach the integer. And with the two buttons, update the number with the appropriate direction.
 
 That's it.
 
@@ -136,7 +136,7 @@ That's it.
 	<CountNumbers />
 </div>
 
-There is an argument to be made in favor of keeping track of the count in a separate variable, through some sort of state. But this should provide enough exercise to get started with web components, and a base for you to experiment with the core tech. You may really want to style the elements, for instance, to be more presentable.
+There is an argument to be made in favor of keeping track of the count in a separate variable, through some sort of state. But this should provide enough exercise to get started with web components, and a base for you to experiment with the core tech. You may want to style the elements, for instance, to look more presentable.
 
 ```html
 <template>
