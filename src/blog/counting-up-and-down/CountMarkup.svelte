@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		if (customElements.get('custom-markup')) return;
+		if (customElements.get('count-markup')) return;
 
 		const template = document.createElement('template');
 
@@ -10,7 +10,7 @@
         <span>0</span>
         <button>Increment</button>`;
 
-		class CustomMarkup extends HTMLElement {
+		class CountMarkup extends HTMLElement {
 			constructor() {
 				super();
 
@@ -19,8 +19,8 @@
 			}
 		}
 
-		customElements.define('custom-markup', CustomMarkup);
+		customElements.define('count-markup', CountMarkup);
 	});
 </script>
 
-<custom-markup></custom-markup>
+<count-markup></count-markup>

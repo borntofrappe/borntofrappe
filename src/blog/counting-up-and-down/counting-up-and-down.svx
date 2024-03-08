@@ -5,10 +5,10 @@ date: 2024-03-08
 ---
 
 <script>
-	import CustomMarkup from './CustomMarkup.svelte';
-	import CustomCounter from './CustomCounter.svelte';
+	import CountMarkup from './CountMarkup.svelte';
+	import CountNumbers from './CountNumbers.svelte';
 </script>
 
-<CustomMarkup />
+<CountMarkup />
 
-<CustomCounter />
+<CountNumbers />

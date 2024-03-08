@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		if (customElements.get('custom-counter')) return;
+		if (customElements.get('count-numbers')) return;
 
 		const template = document.createElement('template');
 
@@ -10,7 +10,7 @@
         <span>0</span>
         <button>Increment</button>`;
 
-		class CustomCounter extends HTMLElement {
+		class CountNumbers extends HTMLElement {
 			constructor() {
 				super();
 
@@ -31,8 +31,8 @@
 			}
 		}
 
-		customElements.define('custom-counter', CustomCounter);
+		customElements.define('count-numbers', CountNumbers);
 	});
 </script>
 
-<custom-counter></custom-counter>
+<count-numbers></count-numbers>
