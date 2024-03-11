@@ -6,8 +6,11 @@ date: 2024-03-11
 
 <script>
 	import svg from './svg.js';
+	import SpringRose from './SpringRose.svelte';
 </script>
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['ice']}
 </figure>
+
+<SpringRose />
