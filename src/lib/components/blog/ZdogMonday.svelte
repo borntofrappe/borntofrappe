@@ -93,6 +93,10 @@
 		{
 			title: 'Loopty loops',
 			slug: '/loopty-loops'
+		},
+		{
+			title: "Season's call",
+			slug: '/season-s-call'
 		}
 	];
 </script>
