@@ -95,8 +95,8 @@
 			slug: '/loopty-loops'
 		},
 		{
-			title: "Season's call",
-			slug: '/season-s-call'
+			title: "Season's rewards",
+			slug: '/season-s-rewards'
 		}
 	];
 </script>

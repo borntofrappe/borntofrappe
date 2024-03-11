@@ -1,5 +1,5 @@
 ---
-title: Season's call
+title: Season's rewards
 description: Look forward a new season filled with the promise of new colors.
 date: 2024-03-11T21:35:03
 ---
