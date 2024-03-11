@@ -1,7 +1,7 @@
 ---
 title: Season's call
-description: zdog monday
-date: 2024-03-11
+description: Look forward a new season filled with the promise of new colors.
+date: 2024-03-11T21:35:03
 ---
 
 <script>
@@ -11,9 +11,13 @@ date: 2024-03-11
 	import SpringRose from './SpringRose.svelte';
 </script>
 
+The chill winter season is not over, and up in a mountain cabin, one can still delight in the occasional snowfall — and risk a humorous fall on icy terrain.
+
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['ice']}
 </figure>
+
+But warmer times are approaching, and with it, an explosion of life and bright, vivid colors. You need only patience, to wait a little further, but be sure, time rewards all.
 
 <SpringRose />
 
