@@ -28,7 +28,7 @@ export default {
             <text fill="hsl(195 74% 71%)" font-size="4" x="10" y="21">arrayIterator.next()</text>
             <g transform="translate(5 2)">
                 <text font-size="3" x="10" y="28">Object &#123;</text>
-                <text font-size="3" x="20" y="35">value: [<tspan fill="hsl(258 97% 74%)">0</tspan>, <tspan fill="hsl(258 97% 74%)">firstItem</tspan>]</text>
+                <text font-size="3" x="20" y="35">value: [<tspan fill="hsl(258 97% 74%)">0</tspan>, <tspan fill="hsl(258 97% 74%)">firstShape</tspan>]</text>
                 <text font-size="3" x="20" y="42">done: <tspan fill="hsl(258 97% 74%)">false</tspan></text>
                 <text font-size="3" x="10" y="49">&#125;</text>
             </g>
