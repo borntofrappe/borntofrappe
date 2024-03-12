@@ -8,7 +8,7 @@ date: 2024-03-12T14:41:55
 	import svg from './svg.js';
 </script>
 
-In a recent project a stumbled on a very specific issue, and was reminded of a JavaScript feature I rarely see.
+In a recent project I stumbled on a very specific issue, and was reminded of a JavaScript feature I rarely see.
 
 For context, I managed to fill an array with objects depicting different shapes, and started to go through the list with a favorite mechanism, a `for...of` loop.
 
@@ -18,9 +18,9 @@ for (const shape of shapes) {
 }
 ```
 
-Soon, however, I realized I could benefit from knowing the index, to offset the shapes one after the other. In hindsight, it might have been better to remodel the data, to incorporate the index in the collection, but le me continue to close the argument.
+Soon, however, I realized I could benefit from knowing the index, to offset the shapes one after the other. In hindsight, it might have been better to remodel the data, to incorporate the index in the collection, but let me continue to close the argument.
 
-The `for...of` loop is extremely handy to consider the items, but unfortunately, the incrementing number is not as readily available. That being said, you don't have to fall back a faithful, regular loop, updating a counter variable and extracting the items through the round figure.
+The `for...of` loop is extremely handy to consider the items, but unfortunately, the incrementing number is not as readily available. That being said, you don't have to fall back to a faithful, regular loop, updating a counter variable and extracting the items through the round figure.
 
 ```js
 for (let index = 0; index < shapes.length; index++) {
@@ -54,7 +54,7 @@ An object with two most useful keys: `value` and `done`.
 	{@html svg['console-iterator-next']}
 </figure>
 
-`value` refers to an array, including the index of the current item and the item itself. `done`, on the other hand, describes a boolean, and whether or not the iteration has reached the end of the list.
+`value` refers to an array, including the index of the current item and the item itself. `done`, on the other hand, describes a boolean, and whether or not the iterator has fulfilled its task, it is complete.
 
 You can repeat the `next` function again and again, and manually find the second, third, fourth value, in index and accompanying item. Until you reach the end and finally, one last object.
 
@@ -64,7 +64,7 @@ You can repeat the `next` function again and again, and manually find the second
 
 As the iterator comes to a close, `value` is `undefined`, while `done`, fittingly `true`.
 
-Most fittingly, `for...of` loop is able to iterate through more than arrays, like `NodeList`s returned as you inspect the DOM.
+Most fittingly, `for...of` loop is able to iterate through more than arrays, like `NodeList`s returned as you study the DOM.
 
 ```js
 const listItems = document.querySelectorAll('ul li');
@@ -73,7 +73,7 @@ for (const listItem of listItems) {
 }
 ```
 
-And, conveniently, array iterators.
+And topically, through array iterators.
 
 ```js
 for (const value of shapes.entries()) {
@@ -81,7 +81,7 @@ for (const value of shapes.entries()) {
 }
 ```
 
-Rather conveniently, the loop continues as much as necessary, until the first object object with the positive boolean. In the meantime, it refers to the data contained in the `value` property, to the array of index and item. Destructure the two and, once more, you've reached the solution.
+Rather conveniently, the loop continues as much as necessary, until the first object with the positive boolean. In the meantime, it refers to the data contained in the `value` property, to the array of index and item. Destructure the two and, once more, you've reached the solution.
 
 ```js
 for (const value of shapes.entries()) {
@@ -89,4 +89,4 @@ for (const value of shapes.entries()) {
 }
 ```
 
-Of course nothing stops you from extracting the values directly in the loop. At this point you repeat the code from above, but instead of scrolling back up feel free to explore another route, and find a much better way.
+Of course nothing stops you from extracting the values directly in the loop. At this point you repeat the code from above, but instead of scrolling back up feel free to explore another route, and find a much better way. Be it a different function, or a radically different architecture.
