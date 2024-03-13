@@ -13,3 +13,13 @@ One of the three key ingredients of web components, the shadow DOM provides an A
 <figure class="center-frame">
 	{@html svg['shadow-root']}
 </figure>
+
+{@html svg['defs']}
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-type-error']}
+</figure>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-dom-exception']}
+</figure>
