@@ -1,0 +1,7 @@
+---
+title: Shadows attached
+description: Avoid a few issues approaching the shadow DOM with the right mode.
+date: 2024-03-13
+---
+
+One of the three key ingredients of web components, the shadow DOM provides an API to encapsulate code, in structure, style and functionality.
