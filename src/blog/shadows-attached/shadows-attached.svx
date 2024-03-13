@@ -8,7 +8,7 @@ date: 2024-03-13T16:11:05
 	import svg from './svg.js';
 </script>
 
-One of [the three key ingredients](/building-web-blocks) of web components, the shadow DOM provides an API to encapsulate code, in structure, style and functionality.
+One of [the three key ingredients](/building-web-blocks) of web components, the shadow DOM provides an way to encapsulate code, in structure, style and functionality.
 
 <figure class="center-frame">
 	{@html svg['shadow-root']}
@@ -18,11 +18,11 @@ The concept sits right at home with web components, but it is possible to experi
 
 ```html
 <video controls width="400">
-	<source src="/media/hi-ho-the-merry-o.webm" type="video/webm" />
+	<source src="/hi-ho-the-merry-o.webm" type="video/webm" />
 </video>
 ```
 
-When you add the element in an `.html` document the resource is presented in a complex UI, with additional buttons and controls. These live in the shadow DOM, a separate structure from the rest of the page.
+When you add the element in an `.html` document the resource is presented as part of a complex UI, with additional buttons and controls. These live in the shadow DOM, a separate structure from the rest of the page.
 
 With this in mind, you have the option of entering the shadow DOM yourself with `attachShadow`, calling the function on a node like a generic `div`.
 
@@ -35,16 +35,18 @@ document.body.appendChild(div);
 
 The function requires an argument, a `mode`, and introduces the promised, darker DOM.
 
-Similarly to the regular DOM, you are able to customize the structure in markup. You can, for instance, append an additional element with `appendChild`, or directly alter the structure through properties like `innerHTML` and `textContent`. These operations, however, work on the shadow root, which you are able to access through the `shadowRoot` property.
+Similarly to the regular DOM, you are able to customize the structure in markup. You can, for instance, append an additional element with `appendChild`, or directly alter the structure through properties like `textContent` and `innerHTML` . These operations, however, work on the shadow root, which you are able to access through the `shadowRoot` property.
 
 ```js
 div.attachShadow({ mode: 'open' });
 div.shadowRoot.innerHTML = `<p>I've got no strings</p>`;
 ```
 
-The markup is separate, encapsulated in a subtree, giving you a new scope and close to a reset. Styles you include in the shadows, logic you add to the elements remains relevant to the scope, and don't cross through the shadow boundary.
+The markup is separate, encapsulated in a subtree, giving you a new scope and close to a reset. Styles you include in the shadows, logic you add to the elements remain relevant to the scope, and don't cross through the shadow boundary.
 
-There are a few things worth considering, however, starting with the element on which you attach the shadow. Indeed, it is not possible to call the function on every HTML element. The specification has [a list of options](https://dom.spec.whatwg.org/#valid-shadow-host-name), of available nodes, and if you consider the number of HTML tags — 123 and counting —, you'll notice that the collection makes for a restricted club. You don't have, for instance, the option of attaching a shadow on a video element, and can understand why.
+There are a few things worth considering, however, starting with the element on which you attach the shadow. Indeed, it is not possible to invoke the function on every HTML element.
+
+The specification has [a list of options](https://dom.spec.whatwg.org/#valid-shadow-host-name), of available nodes, and if you consider the number of HTML tags — more than a hundred —, you'll notice that the collection makes for a restricted club. You don't have, for instance, the option of attaching a shadow on a `video` element, and can understand why.
 
 ```js
 const video = document.querySelector('video');
@@ -59,27 +61,27 @@ As the element already has a shadow root, you'll encounter an error, an uncaught
 	{@html svg['console-dom-exception']}
 </figure>
 
-Another issue which deserves more light is `mode`, the option required in the `attachShadow` function. You need to set the property to one of two values, a string which can be either `"open"` or `"closed"`, and while you'll likely pick the first, it is good to explore the second as well. Going back to the previous snippet, attaching a closed shadow to the generic `div` prompts an error.
+Another issue which deserves more light is `mode`, the option required in the `attachShadow` function. You must set a mode to one of two values, a string which can be either `"open"` or `"closed"`, and while you'll likely pick the first, it is good to explore the second as well. Going back to the previous snippet, attaching a closed shadow to the generic `div` prompts an error.
 
 ```js
 div.attachShadow({ mode: 'closed' });
 div.shadowRoot.innerHTML = `<p>I had strings</p>`;
 ```
 
-When you update the markup through the `shadowRoot` property and the code breaks with a `TypeError`.
+When you update the markup through the `shadowRoot` property the code breaks with a `TypeError`.
 
 <figure class="center-frame" data-size="medium">
 	{@html svg['console-type-error']}
 </figure>
 
-And again for a good reason. When you choose a closed mode, you remove access to the `shadowRoot` property. Try as you might, the key will resolve to `null`, and excuse the impossible operation of updating the inexistent markup. By chance, this is what happens with the `video` element.
+And again for a good reason. When you choose a closed mode, you remove access to the property. Try as you might, the key will resolve to `null`, and excuse the impossible operation of updating the inexistent markup. By chance, this is what happens with the `video` element.
 
 ```js
 div.shadowRoot; // null
 video.shadowRoot; // null
 ```
 
-Now, there might be a time when you'll want to restrict access to the shadow DOM. You can with the mode.
+Now, there might be a time when you'll want to restrict access to the shadow DOM, to hide how the element is implemented. You can with the mode.
 
 To update the document on your end, you can exploit the fact that `attachShadow` returns a reference to the root. Store the reference in a variable, and you can once again operate as normal.
 
@@ -88,4 +90,4 @@ const shadowRoot = div.attachShadow({ mode: 'closed' });
 shadowRoot.innerHTML = `<p>But now I'm free</p>`;
 ```
 
-But as you weigh your options, and use the shadow DOM with web components, be aware of the imposed restriction. To open the root and grant the flexibility to affect the document, you always know now how.
+But as you weigh your options, and use the shadow DOM with web components, be aware of the imposed restriction. To open the root to end users, and grant the flexibility to affect the document, you always know now how.
