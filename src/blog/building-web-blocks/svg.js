@@ -97,8 +97,8 @@ export default {
         </linearGradient>
     </defs>
 </svg>`,
-	'inspector-element': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'inspector-element': `<svg style="display: block;" viewBox="0 0 100 46">
+    <rect fill="hsl(249 11% 12%)" width="100" height="46" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -112,17 +112,17 @@ export default {
     </g>
     <use transform="translate(6.5 20)" fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)" href="#console-arrow" />
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
-        <g fill="hsl(0 0% 94%)" font-size="4">
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Inspector</text>
+        <g fill="hsl(0 0% 94%)" font-size="3.75">
             <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
-            <text x="15" y="28">&lt;p&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/p&gt;</tspan></text>
-            <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
+            <text x="16" y="29">&lt;p&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/p&gt;</tspan></text>
+            <text x="10" y="37">&lt;/<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="46" rx="5" />
 </svg>`,
-	'inspector-shadow': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'inspector-shadow': `<svg style="display: block;" viewBox="0 0 100 54">
+    <rect fill="hsl(249 11% 12%)" width="100" height="54" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -136,21 +136,21 @@ export default {
     </g>
     <g fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)">
         <use transform="translate(6.5 20)" href="#console-arrow" />
-        <use transform="translate(11 27)" href="#console-arrow" />
+        <use transform="translate(11 28)" href="#console-arrow" />
     </g>
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
-        <g fill="hsl(0 0% 94%)" font-size="4">
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Inspector</text>
+        <g fill="hsl(0 0% 94%)" font-size="3.75">
             <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">div</tspan>&gt;</text>
-            <text x="15" y="28"><tspan fill="hsl(258 97% 74%)">#shadow-root</tspan> <tspan font-size="3.5">(open)</tspan></text>
-            <text x="20" y="35">&lt;p&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/p&gt;</tspan></text>
-            <text x="10" y="42">&lt;/<tspan fill="hsl(195 74% 71%)">div</tspan>&gt;</text>
+            <text x="15" y="29"><tspan fill="hsl(258 97% 74%)">#shadow-root</tspan> <tspan font-size="3.5">(open)</tspan></text>
+            <text x="20" y="37">&lt;p&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/p&gt;</tspan></text>
+            <text x="10" y="45">&lt;/<tspan fill="hsl(195 74% 71%)">div</tspan>&gt;</text>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="54" rx="5" />
 </svg>`,
-	'inspector-template': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'inspector-template': `<svg style="display: block;" viewBox="0 0 100 54">
+    <rect fill="hsl(249 11% 12%)" width="100" height="54" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -164,22 +164,22 @@ export default {
     </g>
     <g fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)">
         <use transform="translate(6.5 20)" href="#console-arrow" />
-        <use transform="translate(11 27)" href="#console-arrow" />
-        <use transform="translate(17 34) rotate(-90)" href="#console-arrow" />
+        <use transform="translate(11 28)" href="#console-arrow" />
+        <use transform="translate(16 36) rotate(-90)" href="#console-arrow" />
     </g>
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
-        <g fill="hsl(0 0% 94%)" font-size="4">
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Inspector</text>
+        <g fill="hsl(0 0% 94%)" font-size="3.75">
             <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
-            <text fill="hsl(258 97% 74%)" x="15" y="28">#document-fragment</text>
-            <text x="20" y="35">&lt;article&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/article&gt;</tspan></text>
-            <text x="10" y="42">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
+            <text fill="hsl(258 97% 74%)" x="15" y="29">#document-fragment</text>
+            <text x="20" y="37">&lt;article&gt;<tspan dx="1" dy="-0.8">...</tspan><tspan dx="1" dy="0.8">&lt;/article&gt;</tspan></text>
+            <text x="10" y="45">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="54" rx="5" />
 </svg>`,
-	'inspector-template-empty': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'inspector-template-empty': `<svg style="display: block;" viewBox="0 0 100 46">
+    <rect fill="hsl(249 11% 12%)" width="100" height="46" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -193,13 +193,13 @@ export default {
     </g>
     <use fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)" transform="translate(6.5 20)" href="#console-arrow" />
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Inspector</text>
-        <g fill="hsl(0 0% 94%)" font-size="4">
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Inspector</text>
+        <g fill="hsl(0 0% 94%)" font-size="3.75">
             <text x="10" y="21">&lt;<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
-            <text fill="hsl(258 97% 74%)" x="15" y="28">#document-fragment</text>
-            <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
+            <text fill="hsl(258 97% 74%)" x="15" y="29">#document-fragment</text>
+            <text x="10" y="37">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="46" rx="5" />
 </svg>`
 };

@@ -8,8 +8,8 @@ export default {
         </linearGradient>
     </defs>
 </svg>`,
-	'console-iterator-next': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'console-iterator-next': `<svg style="display: block;" viewBox="0 0 100 62">
+    <rect fill="hsl(249 11% 12%)" width="100" height="62" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -23,21 +23,21 @@ export default {
     </g>
     <use stroke="hsl(195 74% 71%)" transform="translate(6 20)" href="#console-chevron" />
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Console</text>
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Console</text>
         <g fill="hsl(0 0% 94%)">
-            <text fill="hsl(195 74% 71%)" font-size="4" x="10" y="21">arrayIterator.next()</text>
-            <g transform="translate(5 2)">
-                <text font-size="3" x="10" y="28">Object &#123;</text>
-                <text font-size="3" x="20" y="35">value: [<tspan fill="hsl(258 97% 74%)">0</tspan>, <tspan fill="hsl(258 97% 74%)">firstShape</tspan>]</text>
-                <text font-size="3" x="20" y="42">done: <tspan fill="hsl(258 97% 74%)">false</tspan></text>
-                <text font-size="3" x="10" y="49">&#125;</text>
+            <text fill="hsl(195 74% 71%)" font-size="3.75" x="10" y="21">arrayIterator.next()</text>
+            <g transform="translate(5 2)" font-size="3.5">
+                <text x="10" y="29">Object &#123;</text>
+                <text x="20" y="37">value: [<tspan fill="hsl(258 97% 74%)">0</tspan>, <tspan fill="hsl(258 97% 74%)">firstShape</tspan>]</text>
+                <text x="20" y="45">done: <tspan fill="hsl(258 97% 74%)">false</tspan></text>
+                <text x="10" y="53">&#125;</text>
             </g>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="62" rx="5" />
 </svg>`,
-	'console-iterator-done': `<svg style="display: block;" viewBox="0 0 100 60">
-    <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
+	'console-iterator-done': `<svg style="display: block;" viewBox="0 0 100 62">
+    <rect fill="hsl(249 11% 12%)" width="100" height="62" rx="5" />
     <path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
     <path fill="hsl(249 11% 12%)" d="M 22 12 A 2 2 0 0 0 24 10 L 24 5 A 2 2 0 0 1 26 3 L 62 3 A 2 2 0 0 1 64 5 L 64 10 A 2 2 0 0 0 66 12" />
     <g transform="translate(6 6)">
@@ -51,17 +51,17 @@ export default {
     </g>
     <use stroke="hsl(195 74% 71%)" transform="translate(6 20)" href="#console-chevron" />
     <g font-family="monospace" font-weight="700">
-        <text fill="hsl(258 97% 74%)" font-size="3.5" x="35" y="10">Console</text>
+        <text fill="hsl(258 97% 74%)" font-size="3.25" x="35" y="9">Console</text>
         <g fill="hsl(0 0% 94%)">
-            <text fill="hsl(195 74% 71%)" font-size="4" x="10" y="21">arrayIterator.next()</text>
-            <g transform="translate(5 2)">
-                <text font-size="3" x="10" y="28">Object &#123;</text>
-                <text font-size="3" x="20" y="35">value: <tspan fill="hsl(258 97% 74%)">undefined</tspan></text>
-                <text font-size="3" x="20" y="42">done: <tspan fill="hsl(258 97% 74%)">true</tspan></text>
-                <text font-size="3" x="10" y="49">&#125;</text>
+            <text fill="hsl(195 74% 71%)" font-size="3.75" x="10" y="21">arrayIterator.next()</text>
+            <g transform="translate(5 2)" font-size="3.5">
+                <text x="10" y="29">Object &#123;</text>
+                <text x="20" y="37">value: <tspan fill="hsl(258 97% 74%)">undefined</tspan></text>
+                <text x="20" y="45">done: <tspan fill="hsl(258 97% 74%)">true</tspan></text>
+                <text x="10" y="53">&#125;</text>
             </g>
         </g>
     </g>
-    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="62" rx="5" />
 </svg>`
 };
