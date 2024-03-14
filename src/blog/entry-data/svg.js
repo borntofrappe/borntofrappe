@@ -34,7 +34,7 @@ export default {
             </g>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`,
 	'console-iterator-done': `<svg style="display: block;" viewBox="0 0 100 60">
     <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
@@ -62,6 +62,6 @@ export default {
             </g>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`
 };

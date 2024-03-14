@@ -119,7 +119,7 @@ export default {
             <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">hopeful-message</tspan>&gt;</text>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`,
 	'inspector-shadow': `<svg style="display: block;" viewBox="0 0 100 60">
     <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
@@ -147,7 +147,7 @@ export default {
             <text x="10" y="42">&lt;/<tspan fill="hsl(195 74% 71%)">div</tspan>&gt;</text>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`,
 	'inspector-template': `<svg style="display: block;" viewBox="0 0 100 60">
     <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
@@ -176,7 +176,7 @@ export default {
             <text x="10" y="42">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`,
 	'inspector-template-empty': `<svg style="display: block;" viewBox="0 0 100 60">
     <rect fill="hsl(249 11% 12%)" width="100" height="60" rx="5" />
@@ -200,6 +200,6 @@ export default {
             <text x="10" y="35">&lt;/<tspan fill="hsl(195 74% 71%)">template</tspan>&gt;</text>
         </g>
     </g>
-    <rect fill="url(#console-gradient)" width="100" height="60" rx="5" />
+    <rect style="pointer-events: none;" fill="url(#console-gradient)" width="100" height="60" rx="5" />
 </svg>`
 };
