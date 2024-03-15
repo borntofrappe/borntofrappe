@@ -5,7 +5,10 @@ date: 2024-03-15
 ---
 
 <script>
+    import OutOfSync from './OutOfSync.svelte';
 	import RandomNumberGenerator from './RandomNumberGenerator.svelte';
 </script>
+
+<OutOfSync />
 
 <RandomNumberGenerator />
