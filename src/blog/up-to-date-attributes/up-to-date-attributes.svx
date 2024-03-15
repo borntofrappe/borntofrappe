@@ -5,10 +5,13 @@ date: 2024-03-15
 ---
 
 <script>
+	import svg from './svg.js';
 	import OutOfSync from './OutOfSync.svelte';
 	import UpToDate from './UpToDate.svelte';
 	import RandomNumberGenerator from './RandomNumberGenerator.svelte';
 </script>
+
+{@html svg['defs']}
 
 <OutOfSync />
 
