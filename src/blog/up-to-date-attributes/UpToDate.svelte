@@ -20,7 +20,7 @@
 					button.textContent = 'Generate';
 
 					button.addEventListener('click', () => {
-						this.number = Math.floor(Math.random() * 10);
+						this.number = Math.floor(Math.random() * 100);
 					});
 
 					shadowRoot.appendChild(title);

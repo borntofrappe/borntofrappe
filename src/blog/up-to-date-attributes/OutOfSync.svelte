@@ -8,14 +8,12 @@
 				constructor() {
 					super();
 
-					const number = this.getAttribute('number');
-
 					const shadowRoot = this.attachShadow({ mode: 'open' });
 
 					const title = document.createElement('h1');
 					title.setAttribute('role', 'status');
 					title.setAttribute('aria-live', 'polite');
-					title.textContent = number;
+					title.textContent = this.getAttribute('number');
 
 					const button = document.createElement('button');
 					button.textContent = 'Generate';

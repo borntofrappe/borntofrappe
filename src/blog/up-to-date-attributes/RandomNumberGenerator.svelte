@@ -72,8 +72,8 @@ button > svg {
 </svg>`;
 
 				button.addEventListener('click', () => {
-					const min = this.getAttribute('min') || 0;
-					const max = this.getAttribute('max') || 43;
+					const min = this.hasAttribute('min') ? +this.getAttribute('min') : 0;
+					const max = this.hasAttribute('max') ? +this.getAttribute('max') : 100;
 					this.number = Math.floor(Math.random() * (max - min) + min);
 				});
 
