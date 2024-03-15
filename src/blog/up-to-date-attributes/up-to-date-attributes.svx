@@ -3,3 +3,9 @@ title: Up to date attributes
 description: Synchronize web components in element and class.
 date: 2024-03-15
 ---
+
+<script>
+	import RandomNumberGenerator from './RandomNumberGenerator.svelte';
+</script>
+
+<RandomNumberGenerator />
