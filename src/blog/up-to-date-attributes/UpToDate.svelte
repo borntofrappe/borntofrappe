@@ -11,10 +11,10 @@
 
 					const shadowRoot = this.attachShadow({ mode: 'open' });
 
-					const title = document.createElement('h1');
-					title.setAttribute('role', 'status');
-					title.setAttribute('aria-live', 'polite');
-					title.textContent = this.number;
+					const display = document.createElement('h1');
+					display.setAttribute('role', 'status');
+					display.setAttribute('aria-live', 'polite');
+					display.textContent = this.number;
 
 					const button = document.createElement('button');
 					button.textContent = 'Generate';
@@ -23,7 +23,7 @@
 						this.number = Math.floor(Math.random() * 100);
 					});
 
-					shadowRoot.appendChild(title);
+					shadowRoot.appendChild(display);
 					shadowRoot.appendChild(button);
 				}
 
@@ -40,7 +40,8 @@
 				}
 
 				attributeChangedCallback(name, oldValue, newValue) {
-					this.shadowRoot.querySelector('h1').textContent = newValue;
+					const display = this.shadowRoot.querySelector('h1');
+					display.textContent = newValue;
 				}
 			}
 
@@ -66,7 +67,7 @@
 </script>
 
 <div bind:this={widget}>
-	<up-to-date number="5"></up-to-date>
+	<up-to-date number="10"></up-to-date>
 	<svg style="display: block;" viewBox="0 0 100 46">
 		<rect fill="hsl(249 11% 12%)" width="100" height="46" rx="5" />
 		<path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />

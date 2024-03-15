@@ -10,19 +10,19 @@
 
 					const shadowRoot = this.attachShadow({ mode: 'open' });
 
-					const title = document.createElement('h1');
-					title.setAttribute('role', 'status');
-					title.setAttribute('aria-live', 'polite');
-					title.textContent = this.getAttribute('number');
+					const display = document.createElement('h1');
+					display.setAttribute('role', 'status');
+					display.setAttribute('aria-live', 'polite');
+					display.textContent = this.getAttribute('number');
 
 					const button = document.createElement('button');
 					button.textContent = 'Generate';
 
 					button.addEventListener('click', () => {
-						title.textContent = Math.floor(Math.random() * 100);
+						display.textContent = Math.floor(Math.random() * 100);
 					});
 
-					shadowRoot.appendChild(title);
+					shadowRoot.appendChild(display);
 					shadowRoot.appendChild(button);
 				}
 			}
@@ -31,10 +31,12 @@
 		}
 
 		const customElement = widget.querySelector('out-of-sync');
-		customElement.shadowRoot.querySelector('[role="status"]').textContent =
-			customElement.getAttribute('number');
 
 		const number = widget.querySelector('[data-key="number"]');
+
+		customElement.shadowRoot.querySelector('[role="status"]').textContent =
+			customElement.getAttribute('number');
+		number.textContent = customElement.getAttribute('number');
 
 		const observer = new MutationObserver(() => {
 			number.textContent = customElement.getAttribute('number');
@@ -52,7 +54,7 @@
 </script>
 
 <div bind:this={widget}>
-	<out-of-sync number="5"></out-of-sync>
+	<out-of-sync number="10"></out-of-sync>
 	<svg style="display: block;" viewBox="0 0 100 46">
 		<rect fill="hsl(249 11% 12%)" width="100" height="46" rx="5" />
 		<path fill="hsl(249 8% 17%)" d="M 0 12 0 5 A 5 5 0 0 1 5 0 L 95 0 A 5 5 0 0 1 100 5 L 100 12" />
@@ -85,7 +87,7 @@
 			<g fill="hsl(0 0% 94%)" font-size="3.75">
 				<text x="10" y="21">&lt;random-number-generator</text>
 				<text x="16" y="29"
-					>number="<tspan data-key="number" fill="hsl(195 74% 71%)">5</tspan>"</text
+					>number="<tspan data-key="number" fill="hsl(195 74% 71%)">10</tspan>"</text
 				>
 				<text x="10" y="37">&gt;&lt;/random-number-generator&gt;</text>
 			</g>
