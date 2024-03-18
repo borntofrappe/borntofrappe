@@ -5,7 +5,23 @@ date: 2024-03-18
 ---
 
 <script>
+	import { sineInOut, quartInOut, backOut, bounceOut } from 'svelte/easing';
 	import Ease from './Ease.svelte';
 </script>
 
-<Ease />
+<div class="side-frames">
+	<figure>
+		<Ease ease={sineInOut} />
+	</figure>
+	<figure>
+		<Ease ease={quartInOut} />
+	</figure>
+</div>
+
+<figure class="center-frame">
+	<Ease ease={backOut} />
+</figure>
+
+<figure class="center-frame">
+	<Ease ease={bounceOut} />
+</figure>
