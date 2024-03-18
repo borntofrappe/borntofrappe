@@ -6,11 +6,9 @@
 	let widget = null;
 
 	onMount(() => {
-		const root = new Anchor();
-
 		const colors = {
 			tree: 'hsl(25 47% 57%)',
-			log: ['hsl(159 85% 33%)', 'hsl(157 99% 26%)'],
+			leaf: ['hsl(159 85% 33%)', 'hsl(157 99% 26%)'],
 			perch: 'hsl(25 47% 57%)',
 			claw: 'hsl(25 87% 52%)',
 			leg: 'hsl(25 87% 52%)',
@@ -28,6 +26,8 @@
 		const depth = 10;
 		const z = depth * -1;
 
+		const root = new Anchor();
+
 		new Cylinder({
 			addTo: root,
 			color: colors.tree,
@@ -44,17 +44,17 @@
 			}
 		});
 
-		const branch = new Box({
-			color: colors.log[0],
-			rightFace: colors.log[1],
-			bottomFace: colors.log[1],
+		const leaf = new Box({
+			color: colors.leaf[0],
+			rightFace: colors.leaf[1],
+			bottomFace: colors.leaf[1],
 			stroke: 2,
 			width: 8,
 			height: 8,
 			depth: 8
 		});
 
-		branch.copy({
+		leaf.copy({
 			addTo: root,
 			translate: {
 				x: -10,
@@ -63,7 +63,7 @@
 			}
 		});
 
-		branch.copy({
+		leaf.copy({
 			addTo: root,
 			translate: {
 				x: -21,
@@ -510,7 +510,6 @@
 	label {
 		display: block;
 		font-weight: 700;
-		font-size: 1.2rem;
 	}
 
 	label > input {
