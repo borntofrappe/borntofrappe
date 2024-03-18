@@ -5,6 +5,8 @@ date: 2024-03-18
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import { sineInOut, quartInOut, backOut, bounceOut } from 'svelte/easing';
 	import Ease from './Ease.svelte';
 	import Cherry from './Cherry.svelte';
@@ -28,3 +30,5 @@ date: 2024-03-18
 </figure>
 
 <Cherry />
+
+<ZdogMonday />

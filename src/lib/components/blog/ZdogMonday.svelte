@@ -97,6 +97,10 @@
 		{
 			title: "Season's rewards",
 			slug: '/season-s-rewards'
+		},
+		{
+			title: 'Cherry-pick',
+			slug: '/cherry-pick'
 		}
 	];
 </script>
