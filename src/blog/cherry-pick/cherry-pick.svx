@@ -7,6 +7,7 @@ date: 2024-03-18
 <script>
 	import { sineInOut, quartInOut, backOut, bounceOut } from 'svelte/easing';
 	import Ease from './Ease.svelte';
+	import Cherry from './Cherry.svelte';
 </script>
 
 <div class="side-frames">
@@ -25,3 +26,5 @@ date: 2024-03-18
 <figure class="center-frame">
 	<Ease ease={bounceOut} />
 </figure>
+
+<Cherry />
