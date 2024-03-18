@@ -1,7 +1,7 @@
 ---
 title: Cherry-pick
-description: Let's bounce.
-date: 2024-03-18
+description: Find a use case for an overly excited easing function.
+date: 2024-03-18T21:04:47
 ---
 
 <script>
@@ -12,6 +12,14 @@ date: 2024-03-18
 	import Cherry from './Cherry.svelte';
 </script>
 
+Animating shapes left and right I have a chance to add character with easing functions. The idea is to deviate from linear motion processing time, and map the input value to a less predictable figure.
+
+```js
+const sineInOut = (t) => -0.5 * (Math.cos(Math.PI * t) - 1);
+```
+
+Inspired by CSS and cubic bezier functions, I tend to rely on a few, safe options like `sineOut`, but for something more daring, more responsive, I've certainly toyed with more variable curves.
+
 <div class="side-frames">
 	<figure>
 		<Ease ease={sineInOut} />
@@ -21,13 +29,21 @@ date: 2024-03-18
 	</figure>
 </div>
 
+In some instances, I even tried more outrageous functions, exceeding the possible values before settling on the final result.
+
 <figure class="center-frame">
 	<Ease ease={backOut} />
 </figure>
 
+But there is one function I had yet to use, that for a bouncing change.
+
 <figure class="center-frame">
 	<Ease ease={bounceOut} />
 </figure>
+
+The curve may look nice, but the effect is quite drastic, almost obnoxious. Values move rapidly toward the end and then recede back, again and again, with ever so smaller gaps and a hiccuping tone.
+
+Would there ever be a good reason for the excessive change? Turns out, there is, but you might have to look at the picture from a different angle. And two types of input: time and, similarly to [previous projects](/joycon-drift), patience to lose control.
 
 <Cherry />
 
