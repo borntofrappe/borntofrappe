@@ -1,7 +1,7 @@
 ---
 title: Literal text
 description: A short reminder to trust your senses up to a point.
-date: 2024-03-19
+date: 2024-03-19T09:51:28
 ---
 
 <script>
@@ -28,7 +28,7 @@ const characters = document.createElement('span');
 
 From this point we can inject the content. Ideally, and for the `time` element, we could enhance the structure with more relevant, up-to-date information — perhaps with the current instant —, giving careful consideration for the `datetime` attribute as well, but let us start by repeating the same exact text as the opening snippet.
 
-Add the text through the `textContent` property and repeat the effort for the `span` element detailing the starting number of characters.
+Add the text through the `textContent` property and repeat the effort for the `span` element detailing the initial number of characters.
 
 ```js
 time.textContent = 'March 16 9.27 AM';
@@ -67,13 +67,9 @@ Technically, yes, but you should resist the temptation of copying the code.
 	{@html svg['js-markup']}
 </figure>
 
-The date and number of characters are indeed separated, but studying the DOM an additional element pops up — `text`.
+The date and number of characters are indeed separated, but studying the DOM an additional element pops up: `text`. Unfortunately, and outside of SVG, the HTML reference makes no mention of the tag name. There is no such thing. And even if the result does work, you should not rely on the forgiving nature of modern browsers.
 
-Unfortunately, and outside of SVG, the HTML reference makes no mention of the tag name. There is no such thing.
-
-And even if the result does work, you should not rely on the forgiving nature of modern browsers.
-
-As with custom elements, the node is treated as a generic container. But even as a custom element, there is something inherently wrong, in the form of an invalid name. Valid custom elements are defined with at least two words, separated with a hyphen, to distinguish your creations from standard nodes.
+As with custom elements, the node is treated as a generic container. But even as a custom element, there is something inherently wrong, an invalid name. Valid custom elements are defined with at least two words separated with a hyphen, to distinguish your creations from standard nodes.
 
 Back to the pertinent snippet. To resolve the structure at hand, there is a proper way in JavaScript through the `Text` class. The idea is to create an instance with the `new` keyword.
 
@@ -88,7 +84,7 @@ On the instance you do have the opportunity to add the text, once again with `te
 const separator = new Text(' | ');
 ```
 
-This time, you have a reference to proper text, you can then locate between the two other nodes.
+This time, you have a reference to proper text, which you can then locate between the two other nodes.
 
 ```js
 details.appendChild(time);
