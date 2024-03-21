@@ -3,3 +3,9 @@ title: It's dis-connected
 description: Partial coverage of web components lifecycle functions.
 date: 2024-03-21
 ---
+
+<script>
+    import './online-status.js'
+</script>
+
+<online-status></online-status>
