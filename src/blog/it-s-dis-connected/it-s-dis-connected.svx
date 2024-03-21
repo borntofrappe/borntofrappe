@@ -1,0 +1,5 @@
+---
+title: It's dis-connected
+description: Partial coverage of web components lifecycle functions.
+date: 2024-03-21
+---
