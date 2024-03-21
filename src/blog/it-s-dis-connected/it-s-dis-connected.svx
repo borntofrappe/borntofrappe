@@ -5,7 +5,18 @@ date: 2024-03-21
 ---
 
 <script>
-    import './online-status.js'
+	import './online-status';
+	import svg from './svg.js';
 </script>
 
 <online-status></online-status>
+
+{@html svg['defs']}
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-this-window']}
+</figure>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-this-element']}
+</figure>
