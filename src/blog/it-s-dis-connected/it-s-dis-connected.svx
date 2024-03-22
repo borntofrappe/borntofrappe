@@ -15,13 +15,13 @@ When you add a custom element in a document the web component is able to listen 
 
 ## Online status
 
-With the available browser APIs, you can check if the current page is connected, online, through the `navigator` object and the `onLine` property, paying particular attention to the camel case notation of the key.
+Between the available browser APIs, you can check if the current page is connected, online, through the `navigator` object and the `onLine` property, paying particular attention to the camel case notation of the key.
 
 ```js
 navigator.onLine; // true
 ```
 
-What is more, and through the `window` object, you are able to consider a change, whether the page gains or loses the signal. This with the `online` and `offline` events.
+What is more, and through the `window` object, you are able to consider whether the page gains or loses the signal, with the `online` and `offline` events.
 
 ```js
 window.addEventListener('offline', () => {
@@ -57,7 +57,7 @@ Past the unfinished class, you create a connection to the custom element through
 customElements.define('online-status', OnlineStatus);
 ```
 
-You could argue that the constructor is itself a lifecycle method. The function runs once, as the element is first created, and is useful to initialize the structure of the handcrafted component.
+You could argue that the constructor is itself a lifecycle method. The function is called as the element is first created, and is useful to initialize the structure of the handcrafted component.
 
 Here you can author the node directly, through the `this` keyword.
 
@@ -66,7 +66,7 @@ const status = document.createElement('p');
 this.appendChild(status);
 ```
 
-In this instance the markup is appended to the custom element, to `online-status` directly. Alternatively, you can encapsulate the code [with the shadow DOM](/shadows-attached).
+In this instance the markup is appended to the custom element, to `online-status`. Alternatively, you can encapsulate the code [in the shadow DOM](/shadows-attached).
 
 ```js
 const shadowRoot = this.attachShadow({ mode: 'open' });
@@ -75,13 +75,7 @@ shadowRoot.appendChild(status);
 
 It is up to your preference, but if you enjoy the separation, and appreciate the possibility of styling the element in a distinct subtree, you'll gladly accept the additional step.
 
-A word on the structure, however. To describe the online status I choose a paragraph element.
-
-```js
-const status = document.createElement('p');
-```
-
-And considering the purpose of the node — to provide up-to-date information —, we can complete the markup with two attributes: a `role` of `status` and the unobtrusive pair of `aria-live` and `polite`.
+A word on the structure, however. To describe the online status I picked a paragraph element. Considering the purpose of the node — to provide up-to-date information —, we can complete the markup with two attributes: a `role` of `status` and the unobtrusive pair of `aria-live` and `polite`.
 
 ```js
 status.setAttribute('role', 'status');
@@ -105,7 +99,7 @@ class OnlineStatus extends HTMLElement {
 }
 ```
 
-Immediately, the callback is useful to describe the online status with the mentioned `navigator` object. Through the `this` keyword, and the available shadow root, you are able to access the paragraph with the same helper functions you'd use to inspect a document.
+Immediately, the callback is useful to describe the online status with the mentioned `navigator` object. Through the `this` keyword, and the available shadow root, you are able to access the paragraph with the same helper functions you'd use to inspect a regular DOM.
 
 ```js
 const status = this.shadowRoot.querySelector('p');
@@ -114,10 +108,10 @@ const status = this.shadowRoot.querySelector('p');
 Consider the `onLine` property, then, and you can relate the first static status with a fitting label.
 
 ```js
-status.textContent = navigator.onLine ? 'Online' : 'Offline';
+status.textContent = navigator.onLine ? 'You are online' : 'You might be offline';
 ```
 
-Once again, `connectedCallback` runs as soon as the element appears in the document, providing the value as soon as required. The callback is also the best equipped function to consider changes, and listen to changes through the available `window` with one small precaution.
+Once again, `connectedCallback` runs as soon as the element appears in the document, providing the value as soon as required. The callback is also the best equipped function to consider changes through the available `window` object, with one small precaution.
 
 ```js
 window.addEventListener('online', this.handleOnline);
@@ -136,7 +130,7 @@ For a reason that will become soon apparent.
 
 Following the `online` event the goal is to update the contents of the element, but there's one concept obscuring the view: `this`. Or rather, the reference held by the `this` keyword.
 
-In the constructor, in the callback functions, `this` refers to the custom element. In our example, it refers to `online-status`. In the function we invoke through the window object, however, `this` refers to the window itself.
+In the constructor, in the callback functions, `this` refers to the custom element. In our example, it refers to `online-status`. In the function we invoke through the `window` object, however, `this` refers to the window itself.
 
 {@html svg['defs']}
 
@@ -157,30 +151,30 @@ The syntax is admittedly head-scratching, but through the `bind` function leads 
 	{@html svg['console-this-element']}
 </figure>
 
-In the body of `handleOnline` `this` refers once again to the custom element, so that we are finally able to update the status.
+In the custom function `this` refers once again to the custom element, so that we are finally able to update the status.
 
 ```js
 handleOnline() {
-  this.shadowRoot.querySelector("p").textContent = "Online";
+  this.shadowRoot.querySelector("p").textContent = "You are back online";
 }
 ```
 
-The same goes for the `offline` event, and for welcome practice. Listening to the event invoke a separate function, remembering to bind the reference to `this`.
+The same goes for the `offline` event, and for welcome practice. Listening to the event, invoke a separate function, remembering to bind the reference to `this`.
 
 ```js
 this.handleOffline = this.handleOffline.bind(this);
 window.addEventListener('offline', this.handleOffline);
 ```
 
-In the function, then, update the string.
+In the function, update the string.
 
 ```js
 handleOffline() {
-  this.shadowRoot.querySelector("p").textContent = "Offline";
+  this.shadowRoot.querySelector("p").textContent = "The connection was lost";
 }
 ```
 
-You are close to being done, and might appreciate a refresher. `constructor` runs as the element is created, setting up the element in markup. `connectedCallback` runs as the element is added to the DOM, resolving the task with the current status and two separate functions. This instead of reacting to the events directly in the `addEventListener` function.
+You are close to being done, and might tolerate a refresher: `constructor` runs as the element is created, setting up the element in markup. `connectedCallback` runs as the element is added to the DOM, resolving the task with the current status and two separate functions. This instead of reacting to the events directly in the `addEventListener` method.
 
 ```js
 window.addEventListener('online', () => (status.textContent = 'Online'));
@@ -195,11 +189,15 @@ class OnlineStatus extends HTMLElement {
 }
 ```
 
-The callback runs as the element is removed from the DOM, and is an apt place to clean up after ourselves. As the custom element no longer exists, it is indeed wasteful to keep listening to the events, and we can remove the functionality with `removeEventListener`.
+The callback runs as the element is removed from the DOM, and is an apt place to clean up after ourselves. As the custom element no longer exists, it is indeed wasteful to keep listening to the events, and we can remove the features with `removeEventListener`.
 
 ```js
 window.removeEventListener('online', this.handleOnline);
 window.removeEventListener('offline', this.handleOffline);
 ```
 
-Excusing the need for a reference to the two functions.
+Excusing the need for the two different functions.
+
+That's it.
+
+Provided with JavaScript, the custom element becomes a fully functional widget. From this you can focus on the style, making the component look pretty, and an almost natural part of a larger design. As if it was there all along.
