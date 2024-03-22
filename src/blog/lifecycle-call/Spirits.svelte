@@ -19,6 +19,10 @@
 </div>
 
 <style>
+	div:has(hey-listen:not(:defined)) {
+		display: none;
+	}
+
 	div {
 		display: flex;
 		flex-direction: column;
