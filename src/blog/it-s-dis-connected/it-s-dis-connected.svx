@@ -1,7 +1,7 @@
 ---
 title: It's dis-connected
-description: Partial coverage of web components lifecycle functions.
-date: 2024-03-21
+description: Practical, and partial, coverage of web components lifecycle functions.
+date: 2024-03-22T11:13:44
 ---
 
 <script>
@@ -11,12 +11,195 @@ date: 2024-03-21
 
 <online-status></online-status>
 
+When you add a custom element in a document the web component is able to listen and react to specific events. These are known as _lifecycle_ events, and mark a momentous occasion in the element's existence. Two in particular deserve a mention, as well as a practical example.
+
+## Online status
+
+With the available browser APIs, you can check if the current page is connected, online, through the `navigator` object and the `onLine` property, paying particular attention to the camel case notation of the key.
+
+```js
+navigator.onLine; // true
+```
+
+What is more, and through the `window` object, you are able to consider a change, whether the page gains or loses the signal. This with the `online` and `offline` events.
+
+```js
+window.addEventListener('offline', () => {
+	/* not everything's lost */
+});
+```
+
+With this in mind, you can appreciate the idea of a web component to describe the status, and notify of possible changes.
+
+## Online element
+
+As with most web components, the journey begins in markup, and an element with a made-up name.
+
+```html
+<online-status></online-status>
+```
+
+In a script and with JavaScript, the idea is to enhance the node with the custom elements API, and for this there is some necessary setup code. You might have seen [the concept](/building-web-blocks#custom-elements) already, but the logic is worth rehearsing.
+
+First, you need a class, extending a generic `HTMLElement` and calling `super` in the constructor function, to inherit the basic element's features.
+
+```js
+class OnlineStatus extends HTMLElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+Past the unfinished class, you create a connection to the custom element through the `customElements` interface and the `define` function.
+
+```js
+customElements.define('online-status', OnlineStatus);
+```
+
+You could argue that the constructor is itself a lifecycle method. The function runs once, as the element is first created, and is useful to initialize the structure of the handcrafted component.
+
+Here you can author the node directly, through the `this` keyword.
+
+```js
+const status = document.createElement('p');
+this.appendChild(status);
+```
+
+In this instance the markup is appended to the custom element, to `online-status` directly. Alternatively, you can encapsulate the code [with the shadow DOM](/shadows-attached).
+
+```js
+const shadowRoot = this.attachShadow({ mode: 'open' });
+shadowRoot.appendChild(status);
+```
+
+It is up to your preference, but if you enjoy the separation, and appreciate the possibility of styling the element in a distinct subtree, you'll gladly accept the additional step.
+
+A word on the structure, however. To describe the online status I choose a paragraph element.
+
+```js
+const status = document.createElement('p');
+```
+
+And considering the purpose of the node — to provide up-to-date information —, we can complete the markup with two attributes: a `role` of `status` and the unobtrusive pair of `aria-live` and `polite`.
+
+```js
+status.setAttribute('role', 'status');
+status.setAttribute('aria-polite', 'polite');
+```
+
+In this manner the browser will describe the change in the nested content, at the first possible moment. Of course whether a page is online or not might be less than a trivial factoid, and a more stressful role might fit the application best.
+
+```js
+status.setAttribute('role', 'alert');
+```
+
+Be it with a role or `status` or `alert`, the custom element is created with the additional markup, with the well designed paragraph.
+
+And as the custom element is inserted in the DOM, you find the first proper lifecycle function: `connectedCallback`.
+
+```js
+class OnlineStatus extends HTMLElement {
+	// ...constructor
+	connectedCallback() {}
+}
+```
+
+Immediately, the callback is useful to describe the online status with the mentioned `navigator` object. Through the `this` keyword, and the available shadow root, you are able to access the paragraph with the same helper functions you'd use to inspect a document.
+
+```js
+const status = this.shadowRoot.querySelector('p');
+```
+
+Consider the `onLine` property, then, and you can relate the first static status with a fitting label.
+
+```js
+status.textContent = navigator.onLine ? 'Online' : 'Offline';
+```
+
+Once again, `connectedCallback` runs as soon as the element appears in the document, providing the value as soon as required. The callback is also the best equipped function to consider changes, and listen to changes through the available `window` with one small precaution.
+
+```js
+window.addEventListener('online', this.handleOnline);
+```
+
+Instead of reacting to specific events immediately we refer to a separate function, defined in the class.
+
+```js
+class OnlineStatus extends HTMLElement {
+	// ...constructor & connectedCallback
+	handleOnline() {}
+}
+```
+
+For a reason that will become soon apparent.
+
+Following the `online` event the goal is to update the contents of the element, but there's one concept obscuring the view: `this`. Or rather, the reference held by the `this` keyword.
+
+In the constructor, in the callback functions, `this` refers to the custom element. In our example, it refers to `online-status`. In the function we invoke through the window object, however, `this` refers to the window itself.
+
 {@html svg['defs']}
 
 <figure class="center-frame" data-size="medium">
 	{@html svg['console-this-window']}
 </figure>
 
+To work around this, we need to bind the reference for the separate function.
+
+```js
+this.handleOffline = this.handleOffline.bind(this);
+window.addEventListener('offline', this.handleOffline);
+```
+
+The syntax is admittedly head-scratching, but through the `bind` function leads to the desired sight.
+
 <figure class="center-frame" data-size="medium">
 	{@html svg['console-this-element']}
 </figure>
+
+In the body of `handleOnline` `this` refers once again to the custom element, so that we are finally able to update the status.
+
+```js
+handleOnline() {
+  this.shadowRoot.querySelector("p").textContent = "Online";
+}
+```
+
+The same goes for the `offline` event, and for welcome practice. Listening to the event invoke a separate function, remembering to bind the reference to `this`.
+
+```js
+this.handleOffline = this.handleOffline.bind(this);
+window.addEventListener('offline', this.handleOffline);
+```
+
+In the function, then, update the string.
+
+```js
+handleOffline() {
+  this.shadowRoot.querySelector("p").textContent = "Offline";
+}
+```
+
+You are close to being done, and might appreciate a refresher. `constructor` runs as the element is created, setting up the element in markup. `connectedCallback` runs as the element is added to the DOM, resolving the task with the current status and two separate functions. This instead of reacting to the events directly in the `addEventListener` function.
+
+```js
+window.addEventListener('online', () => (status.textContent = 'Online'));
+```
+
+We do this for another lifecycle function: `disconnectedCallback`.
+
+```js
+class OnlineStatus extends HTMLElement {
+	// ...constructor & connectedCallback & handleOnline & handleOffline
+	disconnectedCallback() {}
+}
+```
+
+The callback runs as the element is removed from the DOM, and is an apt place to clean up after ourselves. As the custom element no longer exists, it is indeed wasteful to keep listening to the events, and we can remove the functionality with `removeEventListener`.
+
+```js
+window.removeEventListener('online', this.handleOnline);
+window.removeEventListener('offline', this.handleOffline);
+```
+
+Excusing the need for a reference to the two functions.
