@@ -1,0 +1,5 @@
+---
+title: Lifecycle call
+description: Single out the lifecycle functions coexisting in a custom element.
+date: 2024-03-22T21:14:14
+---
