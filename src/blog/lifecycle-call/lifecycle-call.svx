@@ -12,7 +12,7 @@ The specification for [custom elements](https://html.spec.whatwg.org/multipage/c
 
 ## `constructor`
 
-> The element is created.
+_The element is created._
 
 While technically not a callback, the function is your first stop to initialize the node.
 
@@ -41,7 +41,7 @@ shadowRoot.innerHTML = ``;
 
 ## `connectedCallback`
 
-> The element is inserted in the DOM.
+_The element is inserted in the DOM._
 
 As the element finds its place in the larger document, the function is the best place to complete the component in terms of functionality. Here you tend to listen to particular events, and perhaps interact with the APIs available on the web.
 
@@ -55,7 +55,7 @@ connectedCallback() {
 
 ## `disconnectedCallback`
 
-> The element is removed from the DOM.
+_The element is removed from the DOM._
 
 On the opposite end of `connectedCallback`, the function is a good place to clean up the code, removing event listeners and those pesky operations persisting in the DOM.
 
@@ -67,7 +67,7 @@ disconnectedCallback() {
 
 ## `attributeChangedCallback`
 
-> An attribute changes. Or, to be precise, an _observed_ attribute changes.
+_An attribute changes._ Or, to be precise, _an observed attribute changes._
 
 Just like regular HTML nodes, custom elements benefit from key-value pairs in the opening tag.
 
@@ -102,7 +102,7 @@ static get observedAttributes() {
 
 ## `adtoptedCallback`
 
-> The element is moved to a new document.
+_The element is moved to a new document._
 
 Through the `document` global, the `adoptNode` function lets you move an element between documents. The operation is fairly confounding, might involve an `iframe`, and for the life of me, still lacks a use-case.
 
