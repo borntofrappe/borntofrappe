@@ -107,17 +107,26 @@
 		margin-block-start: 0.75em;
 	}
 
+	main > :global(h2),
+	main > :global(h3) {
+		word-break: break-word;
+	}
+
 	main > :global(p > a) {
 		text-decoration: none;
 		background: linear-gradient(transparent 80%, var(--accent) 80%),
 			linear-gradient(transparent 80%, var(--shadow) 90%);
-		background-size: 0% 100%, 100% 100%;
+		background-size:
+			0% 100%,
+			100% 100%;
 		background-repeat: no-repeat;
 		transition: background-size 0.25s cubic-bezier(0.37, 0, 0.63, 1);
 	}
 
 	main > :global(p > a:hover) {
-		background-size: 100% 100%, 100% 100%;
+		background-size:
+			100% 100%,
+			100% 100%;
 	}
 
 	main > :global(hr) {
