@@ -54,10 +54,10 @@
 			const button = widget.querySelector('button');
 
 			const handleAdoption = () => {
-				const node = widget.querySelector('chubby-cucco');
+				const chubbyCucco = widget.querySelector('chubby-cucco');
 				const iframe = widget.querySelector('iframe');
 
-				iframe.contentDocument.body.appendChild(document.adoptNode(node));
+				iframe.contentDocument.body.appendChild(document.adoptNode(chubbyCucco));
 				button.remove();
 			};
 
