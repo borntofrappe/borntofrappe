@@ -155,7 +155,7 @@
 
 <style>
 	div {
-		--color-light: hsl(0 0% 97%);
+		--_color-light: hsl(0 0% 97%);
 		--_color-dark: hsl(240 25% 12%);
 		max-inline-size: max-content;
 		margin-inline: auto;
