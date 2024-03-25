@@ -101,6 +101,10 @@
 		{
 			title: 'Cherry-pick',
 			slug: '/cherry-pick'
+		},
+		{
+			title: 'Sparks of life',
+			slug: '/sparks-of-life'
 		}
 	];
 </script>
