@@ -1,6 +1,6 @@
 ---
 title: Sparks of life
-description: Zdog monday n+1.
+description: Find inspiration in line drawing SVG.
 date: 2024-03-25T22:10:27
 ---
 
@@ -9,6 +9,8 @@ date: 2024-03-25T22:10:27
 
 	import Sparks from './Sparks.svelte';
 </script>
+
+In SVG you are able to "draw", so to speak, with attributes connected to the stroke of a shape, `stroke-dasharray` and `stroke-dashoffset`. In Zdog there is no such concept, but you can certainly try and approximate the effect. And who knows, vectors might just inspire how to achieve the trick.
 
 <Sparks />
 
