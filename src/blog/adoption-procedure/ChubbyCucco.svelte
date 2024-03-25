@@ -79,12 +79,6 @@
 </div>
 
 <style>
-	* {
-		box-sizing: border-box;
-		padding: 0;
-		margin: 0;
-	}
-
 	div:has(chubby-cucco:not(:defined)) {
 		display: none;
 	}
@@ -127,6 +121,8 @@
 	}
 
 	figure {
+		padding: 0;
+		margin: 0;
 		position: relative;
 	}
 
