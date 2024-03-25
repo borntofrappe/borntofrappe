@@ -3,3 +3,9 @@ title: adoption-procedure
 description: adoptedCallback
 date: 2024-03-25
 ---
+
+<script>
+	import ChubbyCucco from './ChubbyCucco.svelte';
+</script>
+
+<ChubbyCucco />
