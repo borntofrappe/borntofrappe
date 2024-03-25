@@ -73,7 +73,7 @@
 <div bind:this={widget}>
 	<chubby-cucco></chubby-cucco>
 	<figure>
-		<iframe title="Chicken coop" width="300" height="300"></iframe>
+		<iframe title="Chicken coop" width="200" height="200"></iframe>
 		<button>"Adopt"</button>
 	</figure>
 </div>
@@ -91,13 +91,13 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 1rem;
-		padding: 2rem;
+		padding: 1rem;
 		max-inline-size: max-content;
 		margin-inline: auto;
 		border-radius: 1rem;
 	}
 
-	@media (min-width: 650px) {
+	@media (min-width: 450px) {
 		div {
 			display: grid;
 			justify-items: center;
@@ -112,7 +112,7 @@
 	chubby-cucco,
 	figure {
 		aspect-ratio: 1;
-		max-inline-size: 300px;
+		max-inline-size: 200px;
 		inline-size: 100%;
 	}
 
@@ -144,7 +144,7 @@
 		font-weight: 700;
 		font-style: italic;
 		letter-spacing: 1px;
-		padding: 0.5rem 0.6rem;
+		padding: 0.25rem 0.5rem;
 		color: var(--_color-light, hsl(0 0% 95%));
 		background: var(--_color-dark, hsl(0 0% 20%));
 		border-radius: 0.2rem;
