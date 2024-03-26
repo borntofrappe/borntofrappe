@@ -8,18 +8,18 @@ date: 2024-03-25T15:17:53
 	import ChubbyCucco from './ChubbyCucco.svelte';
 </script>
 
-Custom elements benefit from _lifecycle callbacks_, functions executed during the element's lifetime, and [in a short exploration](/lifecycle-call) I tried to entertain the available options. I also failed to find an application for one in particular, `adoptedCallback`, and to be thorough, decided to revisit the topic with an example. A self-serving example, but if nothing, amusing as well.
+Custom elements benefit from _lifecycle callbacks_, functions executed during the element's lifetime, and [in a short exploration](/lifecycle-call) I tried to entertain the available options. I also failed to find an application for one in particular, `adoptedCallback`, and to be thorough, decided to revisit the concept with an example. A self-serving example, but if nothing, amusing as well.
 
 `adoptedCallback` lives as a method on the class defined for your own made-up element.
 
 ```js
 class ChubbyCucco extends HTMLElement {
-	// ... constructor
+	// ...constructor
 	adoptedCallback(oldDocument, newDocument) {}
 }
 ```
 
-[Per the specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-reactions), the function runs when the element moves between documents, receiving the old and the new context as arguments.
+[Per the specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-reactions), the function runs when the element _moves_ between documents, receiving the old and the new context as arguments.
 
 You are acquainted with one document already, the page where the custom element lives.
 
@@ -27,14 +27,14 @@ You are acquainted with one document already, the page where the custom element 
 <chubby-cucco></chubby-cucco>
 ```
 
-For a separate document _in the same scope_ you can lean on the `iframe` element.
+For a separate document in the same scope you can lean on the `iframe` element.
 
 ```html
 <!-- ...chubby-cucco -->
 <iframe title="Chicken coop" width="300" height="300"></iframe>
 ```
 
-An `iframe` works as a window to a separate resource, one you would reference [with the `src` attribute](https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src), but it is possible to omit the reference altogether, and add content programmatically. This means we can leave off the attribute and satisfy the browser with a title and the measure for the width and height.
+An `iframe` works as a window to a separate resource, one you would reference [with the `src` attribute](https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src), but it is possible to omit the reference altogether, and add content programmatically. This means we can leave off the attribute and satisfy the browser with a title and the measure for the width and the height.
 
 From this setup, the idea is to use JavaScript to move the element to the `iframe`, adopting the node in the new document.
 
@@ -45,7 +45,7 @@ const chubbyCucco = document.querySelector('chubby-cucco');
 const orphanCucco = document.adtopNode(chubbyCucco);
 ```
 
-To complete the operation, you can access the iframe's document with [`contentDocument`](https://html.spec.whatwg.org/multipage/document-sequences.html#concept-bcc-content-document). Think of this entity as a veritable document, a new `index.html` file with its own information in terms of metadata and elements. These elements live in the document's body, so that similarly to the existing content, you can add the orphan child through the `appendChild` function.
+To complete the operation, you can access the iframe's document with [`contentDocument`](https://html.spec.whatwg.org/multipage/document-sequences.html#concept-bcc-content-document). Think of this entity as a veritable document, a new `index.html` file with its own information in terms of metadata and content. The content resides in the document's body, so that similarly to the existing page, you can add the orphan child through the `appendChild` function.
 
 ```js
 const iframe = document.querySelector('iframe');
