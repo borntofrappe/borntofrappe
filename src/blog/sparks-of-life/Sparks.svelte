@@ -9,7 +9,7 @@
 
 		const context = canvas.getContext('2d');
 		const { width, height } = canvas;
-		const zoom = 4.5;
+		const zoom = 3.2;
 
 		const colors = {
 			background: 'hsl(218 61% 7%)',
@@ -17,7 +17,7 @@
 		};
 
 		const [c0, c1, c2] = colors.sparkles;
-		const [s0, s1, s2] = [1, 2, 3];
+		const [s0, s1, s2] = [1.5, 2.5, 3.5];
 
 		const w = width / zoom - 1;
 		const h = height / zoom - 1;
@@ -26,11 +26,11 @@
 		const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 		path.setAttribute(
 			'd',
-			'M -27 -4 C -19 -4 -11 -8 -11 -14 -12 -19 -18 -19 -19 -14 -20 -6 -16 -1 -17 8 -18 16 -25 16 -25 10 -25 5 -18 5 -16 10 -12 15 -7 15 -6 11 -6 7 -10 7 -10 10 M -4 -3 C -1 -7 -8 -7 -4 -3 M -3.5 0 C -3.5 0 -1.5 5 -3 13 C -3 15 0 15 0 12 M 3 18 C 3 16 -1 15 -1 19 -1 23 8 23 7 15 7 12 2 3 3 -8 4 -12 10 -12 10 -6 10 -4 8 -3 6 -2 M 1 0 C -1 0 -2 3 0 4 C 2 5 6 3 8 4 M 12 5 C 15 6 19 6 19 3 18 0 13 2 12 5 12 10 16 12 19 10 M 24 6 29 1 28 9 25 2 31 5 24 6 Z'
+			'M -27 5 C -25 6 -23 2 -27 2 -31 1 -32 8 -26 9 -15 11 -6 -11 -23 -18 -39 -24 -51 -8 -44 3 -41 8 -35 5 -35 0 M -30 15 C -29 12 -36 11 -36 17 -36 22 -24 24 -26 6 -27 -3 -31 -14 -24 -16 M -1 6 C -3 1 -12 2 -12 11 -12 19 -3 19 0 14 3 11 4 3 1 4 -3 6 -3 19 5 17 M 13 -6 C 9 12 9 22 16 19 M 5 2 C 10 1 13 1 17 1 M 20 1 C 29 1 38 -10 33 -13 24 -14 19 3 25 19 24 4 34 2 33 10 31 17 33 21 36 18 M 41 13 45 8 44 15 41 9 47 12 41 13 Z'
 		);
 
 		const totalLength = path.getTotalLength();
-		const n = 301;
+		const n = 401;
 		const g = totalLength / n;
 
 		const points = Array(n)
@@ -92,7 +92,7 @@
 		let ticker = 0;
 		const cycle = 500;
 		const { length } = sparkles.children;
-		const y = -2;
+		const y = -4;
 
 		const loop = () => {
 			ticker = (ticker + 1) % cycle;
