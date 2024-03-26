@@ -103,8 +103,8 @@
 			slug: '/cherry-pick'
 		},
 		{
-			title: 'Sparks of life',
-			slug: '/sparks-of-life'
+			title: 'Trail blazer',
+			slug: '/trail-blazer'
 		}
 	];
 </script>
