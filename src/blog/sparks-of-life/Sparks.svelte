@@ -13,10 +13,10 @@
 
 		const colors = {
 			background: 'hsl(218 61% 7%)',
-			sparkles: ['hsl(229 47% 9%)', 'hsl(48 100% 97%)', 'hsl(60 100% 63%)']
+			sparks: ['hsl(229 47% 9%)', 'hsl(48 100% 97%)', 'hsl(60 100% 63%)']
 		};
 
-		const [c0, c1, c2] = colors.sparkles;
+		const [c0, c1, c2] = colors.sparks;
 		const [s0, s1, s2] = [1.5, 2.5, 3.5];
 
 		const w = width / zoom - 1;
@@ -54,18 +54,18 @@
 			}
 		});
 
-		const sparkles = new Anchor({
+		const sparks = new Anchor({
 			addTo: root
 		});
 
-		const sparkle = new Shape({
+		const spark = new Shape({
 			color: c0,
 			stroke: s0
 		});
 
 		for (const { x, y } of points) {
-			sparkle.copy({
-				addTo: sparkles,
+			spark.copy({
+				addTo: sparks,
 				translate: {
 					x,
 					y
@@ -91,14 +91,14 @@
 		let frame = null;
 		let ticker = 0;
 		const cycle = 500;
-		const { length } = sparkles.children;
+		const { length } = sparks.children;
 		const y = -4;
 
 		const loop = () => {
 			ticker = (ticker + 1) % cycle;
 			const t = ticker / cycle;
-			sparkles.rotate.y = easeInOut(t, 3) * TAU * -1;
-			sparkles.translate.y = Math.sin(t * TAU) * y;
+			sparks.rotate.y = easeInOut(t, 3) * TAU * -1;
+			sparks.translate.y = Math.sin(t * TAU) * y;
 
 			root.updateGraph();
 			render();
@@ -109,18 +109,18 @@
 		const animate = () => {
 			ticker++;
 			if (ticker >= cycle) {
-				sparkles.children[length - 1].color = c1;
-				sparkles.children[length - 1].stroke = s1;
+				sparks.children[length - 1].color = c1;
+				sparks.children[length - 1].stroke = s1;
 				frame = requestAnimationFrame(loop);
 			} else {
 				frame = requestAnimationFrame(animate);
 
 				const i = Math.floor((ticker / cycle) * length);
 				const i1 = Math.max(0, i - 1);
-				sparkles.children[i1].color = c1;
-				sparkles.children[i1].stroke = s1;
-				sparkles.children[i].color = c2;
-				sparkles.children[i].stroke = s2;
+				sparks.children[i1].color = c1;
+				sparks.children[i1].stroke = s1;
+				sparks.children[i].color = c2;
+				sparks.children[i].stroke = s2;
 			}
 
 			root.updateGraph();
@@ -155,8 +155,8 @@
 
 <style>
 	div {
-		--_button_color: hsl(218 61% 7%);
-		--_button_background: hsl(48 100% 97%);
+		--_button-color: hsl(218 61% 7%);
+		--_button-background: hsl(48 100% 97%);
 		max-inline-size: max-content;
 		margin-inline: auto;
 		position: relative;
@@ -174,15 +174,15 @@
 		font-weight: 700;
 		font-size: 1rem;
 		letter-spacing: 1px;
-		color: var(--_button_color, hsl(0 0% 95%));
-		background: var(--_button_background, hsl(0 0% 20%));
+		color: var(--_button-color, hsl(0 0% 95%));
+		background: var(--_button-background, hsl(0 0% 20%));
 		padding: 0.4rem 0.6rem;
 		border-radius: 0.4rem;
 		border: none;
 	}
 
 	button:focus {
-		outline: 2px solid var(--_button_background, hsl(0 0% 20%));
+		outline: 2px solid var(--_button-background, hsl(0 0% 20%));
 		outline-offset: 2px;
 	}
 
