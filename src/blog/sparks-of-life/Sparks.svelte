@@ -12,8 +12,8 @@
 		const zoom = 4.5;
 
 		const colors = {
-			backdrop: 'hsl(240 23% 16%)',
-			sparkles: ['hsl(240 25% 15%)', 'hsl(264 88% 84%)', 'hsl(180 98% 80%)']
+			background: 'hsl(218 61% 7%)',
+			sparkles: ['hsl(229 47% 9%)', 'hsl(48 100% 97%)', 'hsl(60 100% 63%)']
 		};
 
 		const [c0, c1, c2] = colors.sparkles;
@@ -44,7 +44,7 @@
 
 		new RoundedRect({
 			addTo: root,
-			color: colors.backdrop,
+			color: colors.background,
 			fill: true,
 			width: w,
 			height: h,
@@ -155,8 +155,8 @@
 
 <style>
 	div {
-		--_color-light: hsl(0 0% 97%);
-		--_color-dark: hsl(240 25% 12%);
+		--_button_color: hsl(218 61% 7%);
+		--_button_background: hsl(48 100% 97%);
 		max-inline-size: max-content;
 		margin-inline: auto;
 		position: relative;
@@ -174,15 +174,15 @@
 		font-weight: 700;
 		font-size: 1rem;
 		letter-spacing: 1px;
-		color: var(--_color-light, hsl(0 0% 95%));
-		background: var(--_color-dark, hsl(0 0% 20%));
+		color: var(--_button_color, hsl(0 0% 95%));
+		background: var(--_button_background, hsl(0 0% 20%));
 		padding: 0.4rem 0.6rem;
 		border-radius: 0.4rem;
 		border: none;
 	}
 
 	button:focus {
-		outline: 2px solid currentColor;
+		outline: 2px solid var(--_button_background, hsl(0 0% 20%));
 		outline-offset: 2px;
 	}
 
