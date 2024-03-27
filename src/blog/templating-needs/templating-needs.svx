@@ -6,6 +6,17 @@ date: 2024-03-27
 
 <script>
 	import Template from './Template.svelte';
+	import './quick-review.js';
 </script>
 
 <Template />
+
+<quick-review>
+	<h2 slot="title">Dragon quest V</h2>
+	<p slot="description">A glorious journey waiting for a review.</p>
+</quick-review>
+
+<quick-review stars="3">
+	<h2 slot="title">quick-review</h2>
+	<p slot="description">A highly opinionated web component.</p>
+</quick-review>
