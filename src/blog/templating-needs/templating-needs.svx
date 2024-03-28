@@ -31,9 +31,9 @@ In an `.html` document you can set up a `template` element with additional conte
 </template>
 ```
 
-I couldn't help adding a small vector graphic between the heading and the paragraph, but you can see the structure of the template.
+I couldn't help adding a small vector graphic between the heading and the paragraph, but you can glimpse at the overall structure.
 
-As you might have appreciated [in the past](/building-web-blocks#html-templates), it is possible to benefit from the markup immediately, but only with JavaScript. Indeed, as you render the page the browser knows not to show the content until you clone the node's inner structure.
+As you might have appreciated [in the past](/building-web-blocks#html-templates), it is possible to benefit from the markup immediately, but only with JavaScript. Indeed, as you render the page the browser knows not to show the elements until you clone the node's inner content.
 
 ```js
 const template = document.querySelector('template');
@@ -41,17 +41,17 @@ const clone = template.content.cloneNode(true);
 document.body.appendChild(clone);
 ```
 
-Append the clone in the document and you have first-hand proof of the template and its framework-like purpose.
+Append the clone in the document and you have solid evidence of the template and its framework-like purpose.
 
 <Template />
 
-You see the elements nested in the template, the title, description, and hopefully, the picture of five rounded stars. Is that invitation enough for a custom element devoted to quick reviews?
+Hopefully, you see the elements nested in the template, the title, description, and the picture of five rounded stars. Is that invitation enough for a custom element devoted to quick reviews?
 
 ```html
 <quick-review></quick-review>
 ```
 
-The idea is to use the node as a container for rapid opinions, describing any topic with the suggested text and a numerical rating. With this in mind we can start authoring the element, with the goal of using the markup in the template.
+The idea is to use the node as a container for rapid opinions, describing any topic with the suggested text and a numerical rating. With this in mind we can start authoring the element with the goal of using the markup in the template.
 
 ```html
 <quick-review>
@@ -78,7 +78,7 @@ One `slot` helps to gather the entire markup, but it is possible to refine the c
 </template>
 ```
 
-Of course in the process you lose the original labels, but you have the option to preserve even the default text _within_ the `slot`s.
+Of course in the process you lose the original labels, but you have the option to preserve even the default text _within_ the slots.
 
 ```html
 <slot name="title"><h2>Title</h2></slot>
@@ -88,7 +88,7 @@ Of course in the process you lose the original labels, but you have the option t
 
 Should the custom element fail to specify either, you'll be sure to have something to show instead.
 
-On one side you have `slot` elements with unique `name`s. On the opposite end, from the perspective of the custom element, you have the content, and the opportunity to pinpoint the location with the `slot` attribute.
+On one side you have `slot` elements with unique names. On the opposite end, from the perspective of the custom element, you have the content, and the opportunity to pinpoint the location with the `slot` attribute.
 
 ```html
 <quick-review>
@@ -97,7 +97,7 @@ On one side you have `slot` elements with unique `name`s. On the opposite end, f
 </quick-review>
 ```
 
-The elegance of this setup is evident already in the existing markup. When the browser doesn't recognize the element, it will treat the node similarly to a generic wrapper, and continue to render the nested content. No fuss. Everyone will be able to appreciate your opinion. Of course, we would like to add the stars, and more generally take advantage of the template.
+The elegance of this setup is evident already. When the browser doesn't recognize the element, it will treat the node similarly to a generic wrapper, and continue to render the nested content. No fuss. Everyone will be able to appreciate your opinion. Of course, we would like to add the stars, and more generally take advantage of the template.
 
 In a script, we define the custom elements in two infamous steps: a class extending `HTMLElement`.
 
@@ -135,7 +135,7 @@ const shadowRoot = this.attachShadow({ mode: 'open' });
 shadowRoot.appendChild(clone);
 ```
 
-Append the clone and the class injects the structure described by the template. In the `slot` element, then the content is replaced by the input markup, and the quick summary celebrating a work of art with the whole set of five stars.
+Append the clone and the class injects the structure described by the template. In the `slot` element, then the content is replaced with the input markup, and the quick summary celebrating a work of art with the full set of stars.
 
 <div>
 	<quick-review>
@@ -144,9 +144,7 @@ Append the clone and the class injects the structure described by the template. 
 	</quick-review>
 </div>
 
-All that is left, in the unlikely scenario when you will need to talk about less than stellars titles, is to show a different number of icons.
-
-One approach is to add an attribute on the opening tag.
+All that is left, in the unlikely scenario when you will need to talk about less than stellars titles, is to show a different number of icons. One approach is to add an attribute on the opening tag.
 
 ```html
 <quick-review stars="3">
@@ -154,7 +152,7 @@ One approach is to add an attribute on the opening tag.
 </quick-review>
 ```
 
-In the class and in the lifecycle functions you can then extract the value with the `getAttribute` method.
+In the class you can then extract the value with the `getAttribute` method.
 
 ```js
 const stars = this.getAttribute('stars');
