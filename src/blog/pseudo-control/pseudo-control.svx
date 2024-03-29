@@ -1,0 +1,5 @@
+---
+title: Pseudo control
+description: Try a few custom hooks to style web components.
+date: 2023-03-29
+---
