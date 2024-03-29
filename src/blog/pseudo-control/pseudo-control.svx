@@ -6,6 +6,7 @@ date: 2024-03-29
 
 <script>
 	import svg from './svg.js';
+	import UpdateReview from './UpdateReview.svelte';
 </script>
 
 {@html svg['defs']}
@@ -17,3 +18,5 @@ date: 2024-03-29
 <figure class="center-frame" data-size="medium">
 	{@html svg['console-inspector-element']}
 </figure>
+
+<UpdateReview />
