@@ -3,3 +3,11 @@ title: Familiar selectors
 description: Focus on the difference between two neighboring CSS selectors.
 date: 2024-03-29
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['sibling-characters']}
+</figure>
