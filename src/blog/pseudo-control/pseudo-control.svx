@@ -1,5 +1,19 @@
 ---
 title: Pseudo control
 description: Try a few custom hooks to style web components.
-date: 2023-03-29
+date: 2024-03-29
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+{@html svg['defs']}
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-inspector-template']}
+</figure>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-inspector-element']}
+</figure>
