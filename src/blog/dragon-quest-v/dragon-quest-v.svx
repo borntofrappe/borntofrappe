@@ -6,6 +6,11 @@ date: 2024-03-31T5:53:22
 
 <script>
 	import Slime from './Slime.svelte';
+	import EvilTalk from './EvilTalk.svelte';
 </script>
 
 <Slime />
+
+<div class="center-frame" data-size="medium">
+	<EvilTalk />
+</div>
