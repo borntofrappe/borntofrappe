@@ -9,8 +9,22 @@ date: 2024-03-31T5:53:22
 	import EvilTalk from './EvilTalk.svelte';
 </script>
 
-<Slime />
+I know! I'll let you in on something gooseful: I played through Dragon Quest V. But how to put words to such an epic?
+
+Perhaps through the moments marking the journey as you step through the continent, as you develop through time. The journey of a young hero, pushing his luck as well as boulders to fully grow in a well rounded character. A young boy tasting the sweet rewards of victory and the cruel consequences of excruciating defeat.
+
+Perhaps through the words of the people directly, asking for help, leading you forward or simply commenting on the latest happening in an addictive party talk.
+
+Perhaps through the words of evil itself, recognizing the potential behind such humble beginnings.
 
 <div class="center-frame" data-size="medium">
 	<EvilTalk />
 </div>
+
+These words will help, especially if you are in the know, but words can barely do justice to the story.
+
+Lif...... but a<br />Dr...
+
+Words fail me. Words are but a small substitute for the gold contained in the title, but it's all that I can offer to titillate your senses and prompt you to experience an adventure that will satisfy you, and keep asking for more.
+
+<Slime />
