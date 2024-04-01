@@ -442,6 +442,15 @@
 		transition: scale 0.1s ease-in-out;
 	}
 
+	button:focus {
+		outline: 2px solid var(--_color-dark, hsl(0 0% 20%));
+		outline-offset: 2px;
+	}
+
+	button:focus:not(:focus-visible) {
+		outline: none;
+	}
+
 	button:active {
 		scale: 0.9;
 	}
