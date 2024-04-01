@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { circOut, circInOut as easing } from 'svelte/easing';
+	import { circOut, backInOut as easing } from 'svelte/easing';
 	import { Anchor, Shape, Hemisphere } from 'zdog';
 
 	let widget = null;
@@ -408,7 +408,11 @@
 </script>
 
 <div bind:this={widget}>
-	<canvas style="display: block; inline-size: 100%;" width="300" height="320" />
+	<canvas
+		style="display: block; inline-size: 100%; max-inline-size: 300px;"
+		width="300"
+		height="320"
+	/>
 	<button disabled>Shake</button>
 </div>
 
