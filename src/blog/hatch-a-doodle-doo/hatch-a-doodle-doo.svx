@@ -4,4 +4,10 @@ description: Zdog monday.
 date: 2024-04-01
 ---
 
+<script>
+	import Hatchling from './Hatchling.svelte';
+</script>
+
 Tentative particle system in pseudo-3D.
+
+<Hatchling />
