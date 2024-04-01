@@ -1,7 +1,7 @@
 ---
 title: Hatch-a-doodle-doo
-description: Zdog monday.
-date: 2024-04-01
+description: Surprisingly, a first crack at a particle system in pseudo-3D dimensions.
+date: 2024-04-01T22:30:32
 ---
 
 <script>
@@ -10,8 +10,24 @@ date: 2024-04-01
     import Hatchling from './Hatchling.svelte';
 </script>
 
-Tentative particle system in pseudo-3D.
+Here's something akin to an Easter egg.
 
 <Hatchling />
+
+And here's a few actual factoids about today's entry:
+
+- I was about to take a break from pseudo-3D graphics, but inspiration strikes, you better be sure to answer the call
+
+- there may have been some dark chocolate involved
+
+- there were a few alternative names for the project
+
+  - _"early fowl"_, but the idea was quickly red flagged
+
+  - _"shake-a-ling"_, echoing the hatchling hidden inside
+
+  - _"co-co-co-rico"_, with as many dashes as the times it takes to crack the egg
+
+  <span lang="fr">Au naturel</span>, there's a bit of them all in the final version. And even if this version is slightly belated, I thought you'd appreciate the care that went into it.
 
 <ZdogMonday />
