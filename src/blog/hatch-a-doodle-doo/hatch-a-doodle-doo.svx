@@ -1,13 +1,17 @@
 ---
-title: hatch-a-doodle-doo
+title: Hatch-a-doodle-doo
 description: Zdog monday.
 date: 2024-04-01
 ---
 
 <script>
-	import Hatchling from './Hatchling.svelte';
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
+    import Hatchling from './Hatchling.svelte';
 </script>
 
 Tentative particle system in pseudo-3D.
 
 <Hatchling />
+
+<ZdogMonday />

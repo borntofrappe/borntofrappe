@@ -105,6 +105,10 @@
 		{
 			title: 'Trail blazer',
 			slug: '/trail-blazer'
+		},
+		{
+			title: 'Hatch-a-doodle-doo',
+			slug: '/hatch-a-doodle-doo'
 		}
 	];
 </script>
