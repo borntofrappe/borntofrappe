@@ -13,7 +13,11 @@ export async function content() {
 
 			const { metadata } = await module();
 
-			const date = new Date(metadata.date);
+			const date = new Date(
+				...metadata.date
+					.split(/[ \-T:]/g)
+					.map((d, i) => (i === 1 ? parseInt(d, 10) - 1 : parseInt(d, 10)))
+			);
 
 			return {
 				...metadata,
