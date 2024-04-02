@@ -3,3 +3,11 @@ title: Weeping changes
 description: Fix a one-off mistake with long lasting changes.
 date: 2024-04-02T18:42:51
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['cest-time-zone']}
+</figure>
