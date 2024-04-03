@@ -64,7 +64,7 @@ With the `Date` constructor you are indeed able to produce a valid `Date` object
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['cest-time-zone']}
-    <figcaption>It's summer time.</figcaption>
+    <figcaption>It's summer time</figcaption>
 </figure>
 
 Past personal grumbling about daylight savings, how to get the real local value? In at least two manners:
