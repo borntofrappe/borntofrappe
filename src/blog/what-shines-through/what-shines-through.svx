@@ -5,3 +5,11 @@ date: 2024-04-04T10:10:53
 ---
 
 Properties traversing through the shadow DOM.
+
+<script>
+	import svg from './svg';
+</script>
+
+<figure class="[ center-frame ]" data-size="large">
+	{@html svg['inherited-properties']}
+</figure>
