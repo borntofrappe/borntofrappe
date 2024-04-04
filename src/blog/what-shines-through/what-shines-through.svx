@@ -47,17 +47,17 @@ And the values ripple through the shadow boundary.
 
 The reason for this is clearly stated [in the specification](https://www.w3.org/TR/css-scoping-1/#inheritance): elements in the shadow DOM inherit from the _host element_ — here the `div` wrapper. As some properties are inherited by default, these persist even in the shadows.
 
-Which properties? The CSS standard has [a table](https://www.w3.org/TR/CSS22/propidx.html) of properties, and tries to characterize them in several manners. Looking at the _"Inherited"_ column, you will count 41 of them.
+Which properties? The CSS standard curates [a table of properties](https://www.w3.org/TR/CSS22/propidx.html) entertaining the value for several fields. Looking into the _"Inherited"_ column you can find a first answer, and running a short script for the matching rows, you can filter the lot of 41 keys.
 
 <figure class="[ center-frame ]" data-size="large">
 	{@html svg['inherited-properties']}
 </figure>
 
-Some properties are quite obscure, and might not even exist anymore, but others are much more important. Properties connected to the font, for the family, or again the style. Additional properties connected to typography, to update the spacing between the letters or their notation. And indeed `color`.
+Some properties are quite obscure, and might not even exist anymore, but others are much more important. Properties connected to the font, for the family or the style. Additional properties connected to typography, to update the spacing between the letters or their notation. And indeed `color`.
 
 These properties are all inherited, and arguably for the better. They help to maintain a baseline of consistency, a nice starting point for essential features.
 
-You have the option to avoid the inheritance, by you need to be explicit, to intentionally deviate from the standard. For elements in the shadow DOM, or the host itself through the `:host` pseudo class, set a property to `initial`.
+You have the option to avoid the inheritance, but you need to be explicit, to intentionally deviate from the standard. For elements in the shadow DOM, or the host itself through the `:host` pseudo class, set a property to `initial`.
 
 ```html
 <style>
@@ -67,9 +67,9 @@ You have the option to avoid the inheritance, by you need to be explicit, to int
 </style>
 ```
 
-For the specific trait you will then break the chain. You can reset every property with `all`, setting the key to `initial` as well, but the option is as concise as drastic, and you might prefer a more fine-tuned approach.
+For the specific trait you will then break the chain. You can reset every property with `all`, setting the key to `initial` as well, but the code is as concise as drastic, and you might prefer a more fine-tuned approach.
 
-Regardless, you have a way to make your intention known. And being explicit, there's another host of properties able to pierce through the shadow DOM: custom properties. This is by design, and a way to extend the usefulness of the helpful tokens. And in practice, it means you can set custom properties outside, even at the root of the parent scope.
+Regardless, you have a way to make your intention known. Being explicit, you also have the option to pierce through the shadow DOM with another host of properties: custom properties. This is by design, and a way to extend the usefulness of the helpful tokens. And in practice, it means you can set custom properties outside, even at the root of the parent scope.
 
 ```css
 :root {
@@ -89,4 +89,4 @@ And pick up the values in the shadow tree.
 </style>
 ```
 
-Some forty-one properties are inherited immediately, almost by birth, and you need to relinquish them by choice. More properties are inherited by design, by own accord. And all of them help you to style more clearly even the darker nodes.
+Some forty-one properties are inherited immediately, almost by birth, and you need to relinquish them by choice. More properties are inherited by design, by own accord. And all of them help you to style more clearly even the darker nodes. For more control, be it inside or outside of a shadow root, you then have more options [with custom selectors](/pseudo-control).
