@@ -1,0 +1,7 @@
+---
+title: What shines through
+description: Bla bla.
+date: 2024-04-04T10:10:53
+---
+
+Properties traversing through the shadow DOM.
