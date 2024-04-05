@@ -3,3 +3,13 @@ title: Is something memorable
 description: Custom elements not extending HTMLElement.
 date: 2024-04-05
 ---
+
+<script>
+	import svg from './svg';
+</script>
+
+{@html svg['defs']}
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['console-type-error']}
+</figure>
