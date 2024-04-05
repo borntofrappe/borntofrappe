@@ -13,3 +13,7 @@ date: 2024-04-05
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-type-error']}
 </figure>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['console-date-null']}
+</figure>
