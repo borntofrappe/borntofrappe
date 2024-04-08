@@ -4,4 +4,8 @@ description: Bring to the surface more than silly emotions.
 date: 2024-04-08
 ---
 
-Zdog monday n+1
+<script>
+	import TapTheGlass from './TapTheGlass.svelte';
+</script>
+
+<TapTheGlass />
