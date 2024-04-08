@@ -109,6 +109,10 @@
 		{
 			title: 'Hatch-a-doodle-doo',
 			slug: '/hatch-a-doodle-doo'
+		},
+		{
+			title: 'Bubble up',
+			slug: '/bubble-up'
 		}
 	];
 </script>
