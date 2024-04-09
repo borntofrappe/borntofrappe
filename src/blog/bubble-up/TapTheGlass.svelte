@@ -76,7 +76,35 @@
 
 		const eye = new Shape({
 			color: colors.eye[0],
-			stroke: 1.75,
+			stroke: 1,
+			fill: true,
+			path: [
+				{ x: -0.5, y: 0 },
+				{
+					arc: [
+						{ x: -0.5, y: -0.5 },
+						{ x: 0, y: -0.5 }
+					]
+				},
+				{
+					arc: [
+						{ x: 0.5, y: -0.5 },
+						{ x: 0.5, y: 0 }
+					]
+				},
+				{
+					arc: [
+						{ x: 0.5, y: 0.5 },
+						{ x: 0, y: 0.5 }
+					]
+				},
+				{
+					arc: [
+						{ x: -0.5, y: 0.5 },
+						{ x: -0.5, y: 0 }
+					]
+				}
+			],
 			translate: {
 				x: -2,
 				y: -1.5,
@@ -87,7 +115,35 @@
 		new Shape({
 			addTo: eye,
 			color: colors.eye[1],
-			stroke: 1.1,
+			stroke: 0.5,
+			fill: true,
+			path: [
+				{ x: -0.35, y: 0 },
+				{
+					arc: [
+						{ x: -0.35, y: -0.35 },
+						{ x: 0, y: -0.35 }
+					]
+				},
+				{
+					arc: [
+						{ x: 0.35, y: -0.35 },
+						{ x: 0.35, y: 0 }
+					]
+				},
+				{
+					arc: [
+						{ x: 0.35, y: 0.35 },
+						{ x: 0, y: 0.35 }
+					]
+				},
+				{
+					arc: [
+						{ x: -0.35, y: 0.35 },
+						{ x: -0.35, y: 0 }
+					]
+				}
+			],
 			translate: {
 				y: -0.4,
 				z: 1
@@ -123,8 +179,8 @@
 			stroke: 0,
 			fill: true,
 			width: 1.8,
-			height: 1.2,
-			cornerRadius: 0.6,
+			height: 1.4,
+			cornerRadius: 0.9,
 			translate: {
 				z: 5
 			}
@@ -415,7 +471,7 @@
 			root.scale = s;
 			mouth.scale.y = s;
 			fishes.scale = s;
-			for (const child of spikes.children) {
+			for (const child of [...spikes.children, ...eyes.children]) {
 				child.scale = s;
 			}
 
