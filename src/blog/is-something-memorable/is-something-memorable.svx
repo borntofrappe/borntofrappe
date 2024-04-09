@@ -9,7 +9,7 @@ date: 2024-04-09T14:28:50
 	import './something-memorable.js';
 </script>
 
-[The custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) lets you create your own made-up elements uniting a tag name to a JavaScript class. You might have discovered how already, perhaps as part of [a wider introduction to web components](/building-web-blocks), but it is possible to rehearse the steps quite rapidly.
+[The custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) lets you create your own elements uniting a tag name to a JavaScript class. You might have discovered how already, perhaps as part of [a wider introduction to web components](/building-web-blocks), but it is possible to rehearse the steps quite rapidly.
 
 ## Define
 
@@ -61,7 +61,7 @@ class SomethingMemorable extends HTMLQuoteElement {
 }
 ```
 
-But if you are befuddled, so is the browser, although for a slightly different reason. You might argue that `blockquote` is not the only semantic element to mark up a quote, so is `q` for inline citations — how to you tell the difference? The browser, as you run the snippet, argues differently, prompting an error with a stern message and a teaching opportunity to clear any doubt.
+But if you are befuddled, so is the browser, although for a slightly different reason. You might argue that `blockquote` is not the only semantic choice to mark up a quote, so is `q` for inline citations — how to you tell the difference? The browser, as you run the snippet, argues differently, prompting an error with a stern message and a teaching opportunity to clear any doubt.
 
 {@html svg['defs']}
 
@@ -105,9 +105,9 @@ We can use the element for its intended purpose, to mark up a quote.
 </blockquote>
 ```
 
-And since the words are going to be particularly memorable, we can use the custom element to add a date, to remember the message for good. For this we can continue in the constructor function, right after the call to the `super` function.
+And since the words are going to be particularly memorable, we can use the custom element to add a date. For this we can continue in the constructor function, right after the call to the `super` function.
 
-In this context, `this` refers to the custom elements. `this.innerHTML` relates the markup, so we can add the date after the existing nodes.
+In this context, `this` refers to the custom element — the leveled up `blockquote`. `this.innerHTML` relates the markup, so we can add the date after the existing nodes.
 
 ```js
 this.innerHTML += `<time>...</time>`;
@@ -129,19 +129,19 @@ time.setAttribute('datetime', date.toISOString());
 
 The value is understood by browsers, which delight in the given standard.
 
-For the content between the tags, then , we pay more attention, more care to a nicer version, mixing the ingredients in a more readable fashion.
+For the content between the tags we pay more attention, more care to a nicer version, mixing the ingredients in a more readable fashion.
 
 ```js
 time.textContent = format(date);
 ```
 
-You can elaborate a format function yourself, receiving a date object as input and returning a nice label. But on the web you also have the option to rely on the `Intl` library. Through the `DateTimeFormat` module, you are able to structure the label with nary a string, pointing to a locale, to a country's own standard.
+You can elaborate a format function yourself, receiving a date object as input and returning a nice label. But on the web you also have the option to rely on the `Intl` library. Through the `DateTimeFormat` module you are able to structure the label with nary a string, pointing to a locale, to a country's own flair.
 
 ```js
 new Intl.DateTimeFormat('en-US');
 ```
 
-And if you are particular, refine the function with additional options.
+And if you are particular, refine the function with additional fields.
 
 ```js
 new Intl.DateTimeFormat('en-US', {
@@ -152,7 +152,7 @@ new Intl.DateTimeFormat('en-US', {
 });
 ```
 
-The API offers a formatting function, saving you the hassle of creating one yourself.
+The module returns a formatting function, saving you the hassle of creating one yourself.
 
 ```js
 const { format } = new Intl.DateTimeFormat('en-US', {
@@ -160,7 +160,7 @@ const { format } = new Intl.DateTimeFormat('en-US', {
 });
 ```
 
-Of course, the code works, but we can't very well use the same date, or the current instant, for every quote. One solution is to expect a date through an attribute.
+Of course, the code works, but we can't very well use the same date, or the current instant, for every quote. One solution is to expect a date with an attribute.
 
 ```html
 <blockquote is="something-memorable" date="2024-04-05T09:37:00">
@@ -168,7 +168,7 @@ Of course, the code works, but we can't very well use the same date, or the curr
 </blockquote>
 ```
 
-In the attribute you add a valid input for the `Date` constructor. And in the constructor function for the custom element, you then extract the value with the `getAttribute` function.
+In the attribute you add a valid input for the `Date` constructor. And in the constructor function for the custom element, you finally extract the value with the `getAttribute` function.
 
 ```js
 const date = new Date(this.getAttribute('date'));
@@ -179,7 +179,7 @@ A minor enhancement, granted, but one which unlocks a lot more. With the only dr
 <div>
 	<blockquote
 		is="something-memorable"
-		date="2024-04-05T09:37:00"
+		date="2024-04-05T20:52:00"
 		style="
             font-weight: 700;
             --_font-size: 1rem;
