@@ -6,6 +6,7 @@ date: 2024-04-05
 
 <script>
 	import svg from './svg';
+	import './something-memorable.js';
 </script>
 
 {@html svg['defs']}
@@ -17,3 +18,21 @@ date: 2024-04-05
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-date-null']}
 </figure>
+
+<div>
+	<blockquote
+		is="something-memorable"
+		date="2024-04-05T09:37:00"
+		style="
+            font-weight: 700;
+            --_font-size: 1rem;
+            --_font-size-s: 0.9rem;
+            --_color-text: hsl(0 0% 94%);
+            --_color-background: hsl(249 11% 12%);
+            --_border-radius: 1rem;
+            --_padding: 1rem 1.2rem;
+        "
+	>
+		<p>There's a road for the taking,<br />if you end our world's aching</p>
+	</blockquote>
+</div>
