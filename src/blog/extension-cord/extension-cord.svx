@@ -6,8 +6,11 @@ date: 2024-04-11
 
 <script>
 	import svg from './svg.js';
+	import Buttons from './Buttons.svelte';
 </script>
 
-<figure class="center-frame">
+<figure class="center-frame" data-size="medium">
 	{@html svg['extends-puzzle']}
 </figure>
+
+<Buttons />
