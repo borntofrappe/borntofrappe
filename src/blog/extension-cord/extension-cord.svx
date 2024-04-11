@@ -1,5 +1,5 @@
 ---
-title: Extension cord
+title: Extension number
 description: Extend the reach of custom elements with multiple classes.
 date: 2024-04-11T14:01:18
 ---
@@ -21,7 +21,7 @@ It is possible to extend and inherit from a generic `HTMLElement` interface, as 
 <button>Click me</button>
 ```
 
-Included in the page, the code frames the content in the familiar control. You are able to style the widget with CSS, and respond with JavaScript to a wide array of interactions, baked-in by default.
+Included in the page, the element frames the content in the familiar control. You are able to style the widget with CSS, and respond with JavaScript to a wide array of interactions, baked-in by default.
 
 With custom elements, we can continue on top of this trusted base. The key is the `is` attribute, where you specify the tag name of a would-be element.
 
@@ -80,16 +80,16 @@ class ExtraPesteringButton extends PesteringButton {
 }
 ```
 
-The `super` function in the constructor method has the same effect as the first snippet, to recreate the inspiring class, exclamation point included.
+The `super` function in the constructor method has the same purpose as in the first snippet, to recreate the inspiring class, and this means the exclamation point is indeed included.
 
-On top of this we add two more expletives.
+On top of the mark we add two more expletives.
 
 ```js
 super();
 this.textContent += '!!';
 ```
 
-After the fact, finally, we define the custom element with the formula. Once again you need to refer to the hyphenated name and the class. And once again, the exact object explaining the original node.
+After the fact, finally, we define the custom element with the same formula. Once again you need to refer to the hyphenated name and the class. And once again, the exact object explaining the original node.
 
 ```js
 customElements.define('extra-pestering-button', ExtraPesteringButton, {
@@ -99,6 +99,6 @@ customElements.define('extra-pestering-button', ExtraPesteringButton, {
 
 The `extends` property requires a reference to the antique element, and the code works, once again, as you might expect.
 
-A pointless showcase, perhaps, but in the larger scope of custom elements, in the all-encompassing domain of web components, the proof of concept for a more complex pattern. You can build a collection of components in increments, in modular fashion. And similar to a UI library, can focus next on the styling of the smaller pieces.
+A pointless showcase, perhaps, but in the larger scope of custom elements, in the all-encompassing domain of web components, the proof of concept for a more complex system. You can build a collection of components in increments, in modular fashion. And similar to a UI library, can focus next on the styling of the smaller pieces.
 
 <Buttons />
