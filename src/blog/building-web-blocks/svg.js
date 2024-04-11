@@ -64,7 +64,7 @@ export default {
         <path fill="none" d="M -44 26.5 -44 -23.5 A 5 5 0 0 1 -39 -28.5 L 39 -28.5 A 5 5 0 0 1 44 -23.5 L 44 26.5" />
         <path filter="url(#pan-filter)" fill="hsl(35 74% 83%)" stroke="none" d="M -39 26.5 -39 -23.5 39 -23.5 39 26.5" />
         <path fill="none" d="M -39 26.5 -39 -23.5 39 -23.5 39 26.5" />
-        <path opacity="0.2" fill="white" stroke="none" d="M -38 22.5 -38 26.5 -19.5 26.5 5 -22.5 -15.5 -22.5 M -10 26.5 14.5 -22.5 10.5 -22.5 -14 26.5" />
+        <path opacity="0.2" fill="hsl(0 0% 100%)" stroke="none" d="M -38 22.5 -38 26.5 -19.5 26.5 5 -22.5 -15.5 -22.5 M -10 26.5 14.5 -22.5 10.5 -22.5 -14 26.5" />
         <g id="pan-face">
             <g transform="translate(0 -2)" fill="none">
                 <path transform="translate(-15 0)" d="M -2.5 0 A 2.5 2.5 0 0 1 2.5 0" />
@@ -72,13 +72,13 @@ export default {
             </g>
             <g transform="translate(0 16)" stroke-width="4">
                 <path transform="translate(0 -2) scale(1 0.95) translate(0 2)" fill="hsl(352 60% 20%)" stroke="hsl(352 60% 20%)" d="M 0 0 A 8 8 0 0 0 8 -8 L -8 -8 A 8 8 0 0 0 0 0 Z" />
-                <path transform="translate(0 -2) scale(0.5 0.45) translate(0 2)" fill="#fc494b" stroke="#fc494b" d="M 0 0 A 8 8 0 0 0 8 -8 L -8 -8 A 8 8 0 0 0 0 0 Z" />
+                <path transform="translate(0 -2) scale(0.5 0.45) translate(0 2)" fill="hsl(359 97% 64%)" stroke="hsl(359 97% 64%)" d="M 0 0 A 8 8 0 0 0 8 -8 L -8 -8 A 8 8 0 0 0 0 0 Z" />
             </g>
         </g>
         <g transform="translate(0 26.5)">
             <rect filter="url(#pan-filter)" fill="hsl(37 35% 66%)" stroke="none" x="-48" width="96" height="6" rx="3" />
             <rect fill="none" x="-48" width="96" height="6" rx="3" />
-            <path opacity="0.3" fill="white" stroke="none" d="M 37 1 45 1 A 2 2 0 0 1 45 5 L 37 5 A 2 2 0 0 0 37 1" />
+            <path opacity="0.3" fill="hsl(0 0% 100%)" stroke="none" d="M 37 1 45 1 A 2 2 0 0 1 45 5 L 37 5 A 2 2 0 0 0 37 1" />
             <path fill="none" d="M -9 0 A 3 3 0 0 0 -6 3 L 6 3 A 3 3 0 0 0 9 0 Z" />
         </g>
     </g>
