@@ -8,14 +8,14 @@
 			class PesteringButton extends HTMLButtonElement {
 				constructor() {
 					super();
-					this.innerHTML += '!';
+					this.textContent += '!';
 				}
 			}
 
 			class ExtraPesteringButton extends PesteringButton {
 				constructor() {
 					super();
-					this.innerHTML += '!!';
+					this.textContent += '!!';
 				}
 			}
 
