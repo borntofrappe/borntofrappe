@@ -3,3 +3,11 @@ title: Extension cord
 description: Extend custom elements.
 date: 2024-04-11
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame">
+	{@html svg['extends-puzzle']}
+</figure>
