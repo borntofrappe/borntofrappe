@@ -1,0 +1,5 @@
+---
+title: Extension cord
+description: Extend custom elements.
+date: 2024-04-11
+---
