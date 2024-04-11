@@ -1,7 +1,7 @@
 ---
 title: Extension cord
-description: Extend custom elements.
-date: 2024-04-11
+description: Extend the reach of custom elements with multiple classes.
+date: 2024-04-11T14:01:18
 ---
 
 <script>
@@ -9,8 +9,96 @@ date: 2024-04-11
 	import Buttons from './Buttons.svelte';
 </script>
 
-<figure class="center-frame" data-size="medium">
+For web components custom elements are [a piece of a larger puzzle](/building-web-blocks). Continuing in the analogy, the elements you create with the API are small pieces themselves; finer chunks of features you can amass with a class and a most helpful keyword: `extends`.
+
+<figure class="center-frame">
 	{@html svg['extends-puzzle']}
 </figure>
+
+It is possible to extend and inherit from a generic `HTMLElement` interface, as well as [more specific structures](/is-something-memorable), so that you are able to enhance solid markup. And quite interestingly, it is possible to go even further than that. To see how, consider the staple of every UI library, a soulless button.
+
+```html
+<button>Click me</button>
+```
+
+Included in the page, the code frames the content in the familiar control. You are able to style the widget with CSS, and respond with JavaScript to a wide array of interactions, baked-in by default.
+
+With custom elements, we can continue on top of this trusted base. The key is the `is` attribute, where you specify the tag name of a would-be element.
+
+```html
+<button is="pestering-button">Click me</button>
+```
+
+The connection to the custom element is then in a script, parallel to the document. Here you can define a class extending the appropriate interface, `HTMLButton`, and a `constructor` function to replicate the button's core features.
+
+```js
+class PesteringButton extends HTMLButtonElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+To showcase the effect of the custom element, and add some questionable character, we add an exclamation point right after the text.
+
+```js
+super();
+this.textContent += '!';
+```
+
+Past the class, then, we associate the class to the markup with `customElements.define`.
+
+```js
+customElements.define('pestering-button', PesteringButton, {
+	extends: 'button'
+});
+```
+
+The function requires three whole arguments:
+
+1. the string for the imaginative tag name
+
+2. the authored class
+
+3. an object pointing to the extended node, `button`
+
+And the result is likely expected, a button with a more stressful tone.
+
+This is how you can extend an interface, but as mentioned, there's a way to continue. Not only to build on top of standard HTML elements, but on top of _other_ custom elements. For this, think of yet another button, even more spirited than the first one.
+
+```html
+<button is="extra-pestering-button">Click me</button>
+```
+
+In the script you can define a class which extends that of the previous custom element.
+
+```js
+class ExtraPesteringButton extends PesteringButton {
+	constructor() {
+		super();
+	}
+}
+```
+
+The `super` function in the constructor method has the same effect as the first snippet, to recreate the inspiring class, exclamation point included.
+
+On top of this we add two more expletives.
+
+```js
+super();
+this.textContent += '!!';
+```
+
+After the fact, finally, we define the custom element with the formula. Once again you need to refer to the hyphenated name and the class. And once again, the exact object explaining the original node.
+
+```js
+customElements.define('extra-pestering-button', ExtraPesteringButton, {
+	extends: 'button'
+});
+```
+
+The `extends` property requires a reference to the antique element, and the code works, once again, as you might expect.
+
+A pointless showcase, perhaps, but in the larger scope of custom elements, in the all-encompassing domain of web components, the proof of concept for a more complex pattern. You can build a collection of components in increments, in modular fashion. And similar to a UI library, can focus next on the styling of the smaller pieces.
 
 <Buttons />
