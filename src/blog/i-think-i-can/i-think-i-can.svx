@@ -1,6 +1,6 @@
 ---
 title: I think I can
-description: Zdog monday
+description: Come back for a pseudo-3D graphic waiting a small nudge.
 date: 2024-04-15
 ---
 
@@ -9,6 +9,16 @@ date: 2024-04-15
 
 	import Locomotive from './Locomotive.svelte';
 </script>
+
+Ever since the first entry, I try my best to come up with a pseudo-3D graphic on a weekly basis. It is not an easy feat, mind you. I have to strike a good balance between something achievable and intriguing. Something that makes you want to come back and see what's new on the program.
+
+On more than one occasion I struggled to have an idea.
+
+Not today though.
+
+Inspiration came fast, and the concept took shape almost immediately.
+
+The challenge? Having the strength and character to tackle the project, draw actual shapes and see it through. Far from simple, but I am satisfied with the result. And even more, with the belief that simply, I thought I could.
 
 <Locomotive />
 
