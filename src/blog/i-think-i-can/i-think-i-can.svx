@@ -3,3 +3,9 @@ title: I think I can
 description: Zdog monday
 date: 2024-04-15
 ---
+
+<script>
+	import Locomotive from './Locomotive.svelte';
+</script>
+
+<Locomotive />
