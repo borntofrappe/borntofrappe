@@ -113,6 +113,10 @@
 		{
 			title: 'Bubble up',
 			slug: '/bubble-up'
+		},
+		{
+			title: 'I think I can',
+			slug: '/i-think-i-can'
 		}
 	];
 </script>

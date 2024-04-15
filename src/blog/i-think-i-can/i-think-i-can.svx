@@ -5,7 +5,11 @@ date: 2024-04-15
 ---
 
 <script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
 	import Locomotive from './Locomotive.svelte';
 </script>
 
 <Locomotive />
+
+<ZdogMonday />
