@@ -27,7 +27,6 @@
 		new Rect({
 			addTo: root,
 			color: 'hsl(196 78% 77%)',
-			stroke: 0,
 			fill: true,
 			width: w,
 			height: h,
@@ -43,13 +42,12 @@
 		new Ellipse({
 			addTo: horizon,
 			color: 'hsl(60 93% 75%)',
-			stroke: 0,
 			fill: true,
 			diameter: 20,
 			translate: {
-				x: -30,
-				y: -20,
-				z: -30
+				x: -29,
+				y: -19,
+				z: -35
 			}
 		});
 
@@ -71,7 +69,6 @@
 			new Shape({
 				addTo: horizon,
 				color,
-				stroke: 0,
 				fill: true,
 				path: [
 					{ x: w * -1, y: 0 },
@@ -92,7 +89,7 @@
 		const track = new Anchor({
 			addTo: horizon,
 			translate: {
-				y: 4.5 + stroke * 2
+				y: 10 / 2 + stroke * 2
 			}
 		});
 
@@ -120,15 +117,26 @@
 			});
 		}
 
+		new Cylinder({
+			addTo: horizon,
+			color: colors[2],
+			stroke,
+			diameter: 10,
+			length: 17,
+			rotate: {
+				y: TAU / 4
+			}
+		});
+
 		const back = new Cylinder({
 			addTo: horizon,
 			color: colors[2],
 			stroke,
 			diameter: 10,
-			length: 12,
+			length: 9,
 			translate: {
-				x: 1.5 + stroke,
-				y: (6 + stroke) * -1
+				x: 17 / 2 - 10 / 2,
+				y: (10 / 2 + 9 / 2 + stroke / 2) * -1
 			},
 			rotate: {
 				x: TAU / 4
@@ -142,7 +150,7 @@
 			fill: true,
 			diameter: 10,
 			translate: {
-				z: 6 + stroke
+				z: 8 / 2 + stroke
 			}
 		});
 
@@ -151,10 +159,10 @@
 			color: colors[2],
 			stroke,
 			diameter: 3,
-			length: 10,
+			length: 11,
 			translate: {
-				x: (5 + stroke) * -1,
-				y: (9 + stroke) * -1
+				x: (17 / 2 - 3 / 2) * -1,
+				y: (10 / 2 + 11 / 2 + stroke / 2) * -1
 			},
 			rotate: {
 				x: TAU / 4
@@ -167,21 +175,10 @@
 			stroke,
 			diameter: 5,
 			translate: {
-				z: 5 + stroke
+				z: 11 / 2 + stroke
 			},
 			scale: {
 				z: 0.8
-			}
-		});
-
-		new Cylinder({
-			addTo: horizon,
-			color: colors[2],
-			stroke,
-			diameter: 10,
-			length: 15 + stroke,
-			rotate: {
-				y: TAU / 4
 			}
 		});
 
@@ -192,7 +189,7 @@
 			diameter: 10,
 			length: 2,
 			translate: {
-				x: (8 + stroke * 1.5) * -1
+				x: (17 / 2 + 2 / 2 + stroke) * -1
 			},
 			rotate: {
 				y: TAU / 4
@@ -206,7 +203,7 @@
 			diameter: 3,
 			length: 1,
 			translate: {
-				x: (10 + stroke * 2) * -1
+				x: (17 / 2 + 2 + 1 / 2 + stroke * 2) * -1
 			},
 			rotate: {
 				y: TAU / 4
@@ -220,9 +217,9 @@
 			fill: true,
 			diameter: 6,
 			translate: {
-				x: 4 + stroke,
-				y: 2 + stroke,
-				z: 5
+				x: 17 / 2 - 6 / 2 + stroke,
+				y: 10 / 2 - 6 / 2 + stroke,
+				z: 5 + stroke
 			}
 		});
 
@@ -243,9 +240,9 @@
 			fill: true,
 			diameter: 5,
 			translate: {
-				x: (5 + stroke) * -1,
-				y: 2 + stroke + 0.5,
-				z: 5
+				x: (17 / 2 - 5 / 2 + stroke) * -1,
+				y: 10 / 2 - 5 / 2 + stroke,
+				z: 5 + stroke
 			}
 		});
 
@@ -253,24 +250,30 @@
 			addTo: frontWheel,
 			color: colors[2],
 			stroke,
-			diameter: 1.5,
+			diameter: 2,
 			translate: {
 				z: 1
 			}
 		});
 
-		const anchor = new Anchor({
+		const side = new Anchor({
 			addTo: frontWheel,
 			translate: {
 				z: 4
 			}
 		});
 
-		const shape = new Shape({
-			addTo: anchor,
+		const connection = new Shape({
+			addTo: side,
 			color: colors[0],
 			stroke,
-			path: [{ x: 0 }, { x: 5 + stroke + 4 + stroke }]
+			path: [
+				{ x: 0, y: 0 },
+				{
+					x: Math.abs(frontWheel.translate.x) + backWheel.translate.x,
+					y: backWheel.translate.y - frontWheel.translate.y
+				}
+			]
 		});
 
 		context.lineCap = 'round';
@@ -287,8 +290,8 @@
 
 		horizon.translate.y = 6;
 
-		const radius = 2 + stroke / 2;
-		shape.translate.x = radius;
+		const radius = frontWheel.diameter / 2;
+		connection.translate.x = radius;
 
 		root.updateGraph();
 		render();
@@ -303,8 +306,8 @@
 			const x = Math.cos(angle) * radius;
 			const y = Math.sin(angle) * radius;
 
-			shape.translate.x = x;
-			shape.translate.y = y;
+			connection.translate.x = x;
+			connection.translate.y = y;
 
 			track.translate.x = (t * trackGap * loops) % trackGap;
 		};
@@ -327,8 +330,9 @@
 
 			update(e);
 
-			anchor.translate.y = e * (stroke / 2) * -1;
+			side.translate.y = e * (stroke / 2) * -1;
 			horizon.translate.x = (e * trackGap) / 2;
+			horizon.translate.z = e * trackGap;
 			horizon.rotate.x = e * 0.3 * -1;
 			horizon.rotate.y = e * 0.5 * -1;
 
