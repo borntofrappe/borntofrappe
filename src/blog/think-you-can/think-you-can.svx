@@ -1,6 +1,6 @@
 ---
-title: I think I can
-description: Come back for a pseudo-3D graphic waiting a small nudge.
+title: Think you can?
+description: Muster the courage to see a pseudo-3D graphic in all its dimensions.
 date: 2024-04-15
 ---
 

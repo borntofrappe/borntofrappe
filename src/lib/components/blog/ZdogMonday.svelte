@@ -115,8 +115,8 @@
 			slug: '/bubble-up'
 		},
 		{
-			title: 'I think I can',
-			slug: '/i-think-i-can'
+			title: 'Think you can',
+			slug: '/think-you-can'
 		}
 	];
 </script>
