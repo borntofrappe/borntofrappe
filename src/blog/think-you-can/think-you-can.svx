@@ -1,7 +1,7 @@
 ---
 title: Think you can?
 description: Muster the courage to see a pseudo-3D graphic in all its dimensions.
-date: 2024-04-15
+date: 2024-04-15T21:37:59
 ---
 
 <script>
