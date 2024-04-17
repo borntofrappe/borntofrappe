@@ -3,3 +3,13 @@ title: Create expectations
 description: Creating custom elements.
 date: 2024-04-17
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+{@html svg['defs']}
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['console-dom-exception']}
+</figure>
