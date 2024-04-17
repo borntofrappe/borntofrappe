@@ -9,7 +9,7 @@ date: 2024-04-17T10:53:22
 	import './particle-push.js';
 </script>
 
-When it comes to custom elements, once you define a helper structure and connect the piece to a valid tag name, there are different ways to see the content take shape. Some which demand more attention than others.
+When it comes to custom elements, once you create a class and connect the piece to a valid tag name, there are different ways to see the content take shape. Some which demand more attention than others.
 
 As a small example, consider a component promising a particle system: `particle-push`. Following the mentioned steps, you define the custom structure with a class.
 
@@ -72,7 +72,7 @@ connectedCallback() {
 }
 ```
 
-The code will work, but you need to be careful still. The constructor function runs once, for the entire lifecycle of the element, but the different callback may run more often. For this reason you need to refine the logic, for example adding a safeguard to test for child nodes.
+The code will work, but you need to be careful still. The constructor function runs once, for the entire existence of the element, but the different callback may run more often. For this reason you need to refine the logic, for example adding a safeguard to test for child nodes.
 
 ```js
 if (this.children.length === 0) {
@@ -80,7 +80,7 @@ if (this.children.length === 0) {
 }
 ```
 
-Past the two methods, in markup or through the `document` object, there are even more ways to complete the task, to delight in the particles. And these do not suffer from the same expectation of the creating function.
+Past the two methods, in markup or through the `document` object, there are even more ways to complete the task and delight in the particles. And these do not suffer from the same expectations of the creating function.
 
 Rather cheekily, you can add the element through the `innerHTML` property, in a supporting container.
 
@@ -106,9 +106,9 @@ And rest assured that, JavaScript being available, you will see the component in
 
 ---
 
-Without entering in a discussion of a much broader topic, there is one more way to satisfy everybody's expectations, for a custom element and the `document.createElement` function, and that is with the shadow DOM. Here you create a separate document tree, which manages its own child elements.
+Without entering in a discussion of a much broader topic, there is one more way to satisfy everybody's expectations, for a custom element and the `document.createElement` function, and that is with the Shadow DOM. With it you create a separate document tree, which manages its own child elements.
 
-Even in the constructor, you can therefore create a reference to the document, and complete the markup immediately.
+Even in the constructor, you can therefore store a reference to the new document, and complete the markup immediately.
 
 ```js
 const shadowRoot = this.attachShadow({ mode: 'open' });
