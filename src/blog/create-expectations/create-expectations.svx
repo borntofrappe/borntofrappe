@@ -13,3 +13,7 @@ date: 2024-04-17
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-dom-exception']}
 </figure>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['shadow-dom-fix']}
+</figure>
