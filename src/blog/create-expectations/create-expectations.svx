@@ -6,6 +6,7 @@ date: 2024-04-17
 
 <script>
 	import svg from './svg.js';
+	import './particle-push.js';
 </script>
 
 {@html svg['defs']}
@@ -13,6 +14,8 @@ date: 2024-04-17
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-dom-exception']}
 </figure>
+
+<particle-push></particle-push>
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['shadow-dom-fix']}
