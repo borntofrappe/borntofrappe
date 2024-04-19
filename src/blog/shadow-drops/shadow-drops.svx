@@ -4,4 +4,21 @@ description: Painting the roses red.
 date: 2024-04-19
 ---
 
+<script>
+	import './roses.js';
+</script>
+
 Not pink, not green, not aquamarine.
+
+<white-rose></white-rose>
+
+<shadow-rose></shadow-rose>
+
+<shadow-bouquet></shadow-bouquet>
+
+<style>
+	::part(rose) {
+		fill: hsl(1 93% 58%);
+		stroke: hsl(1 93% 58%);
+	}
+</style>
