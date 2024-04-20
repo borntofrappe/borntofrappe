@@ -90,7 +90,7 @@ shadowRoot.innerHTML = `
 `;
 ```
 
-But this time, you would also lose the red color. This is because the combination of `part` attribute and `::part` pseudo element is not enough to surface the markup with _nested_ shadows.
+But this time, you would also lose the red color. This you may dread, but the combination of `part` attribute and `::part` pseudo element is not enough to surface the markup with _nested_ shadows.
 
 If you want to expose the node, you have to be explicit, to formally declare your intention with the `exportparts` attribute.
 
@@ -135,7 +135,7 @@ The second manner is with _custom properties_. These are designed to pierce thro
 And even provide a fallback, which will take its place should somebody forget to set the property.
 
 ```html
-<g fill="var(--color-rose, hsl(0 0% 98%))" stroke="var(--color-rose, hsl(0 0% 98%))">
+<g fill="var(--color-rose, hsl(1 93% 58%))" stroke="var(--color-rose, hsl(1 93% 58%))">
 	<!-- ... -->
 </g>
 ```
