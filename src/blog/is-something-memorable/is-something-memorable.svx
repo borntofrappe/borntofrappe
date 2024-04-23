@@ -176,6 +176,7 @@ const date = new Date(this.getAttribute('date'));
 
 A minor enhancement, granted, but one which unlocks a lot more. With the only drawback of showing its age with the passing of time.
 
+<!-- svelte-ignore avoid-is -->
 <div>
 	<blockquote
 		is="something-memorable"
