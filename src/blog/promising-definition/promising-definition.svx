@@ -6,6 +6,17 @@ date: 2024-04-25
 
 <script>
 	import svg from './svg.js';
+	import './time-stamp.js';
+
+	import { onMount } from 'svelte';
+	let element = null;
+
+	onMount(() => {
+		customElements.whenDefined('time-stamp').then((constructor) => {
+			const node = document.createElement(customElements.getName(constructor));
+			element.appendChild(node);
+		});
+	});
 </script>
 
 ```js
@@ -16,6 +27,16 @@ customElements.whenDefined('time-stamp').then((constructor) => {
 });
 ```
 
+{@html svg['defs']}
+
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-dom-exception']}
 </figure>
+
+<div bind:this={element} />
+
+<style>
+	div:empty {
+		display: none;
+	}
+</style>
