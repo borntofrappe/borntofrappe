@@ -4,6 +4,10 @@ description: A JavaScript alternative to prevent pointless custom elements.
 date: 2024-04-25
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 ```js
 customElements.whenDefined('time-stamp').then((constructor) => {
 	const name = customElements.getName(constructor);
@@ -11,3 +15,7 @@ customElements.whenDefined('time-stamp').then((constructor) => {
 	element.appendChild(node);
 });
 ```
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['console-dom-exception']}
+</figure>
