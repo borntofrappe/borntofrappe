@@ -1,0 +1,13 @@
+---
+title: Promising definition
+description: A JavaScript alternative to prevent pointless custom elements.
+date: 2024-04-25
+---
+
+```js
+customElements.whenDefined('time-stamp').then((constructor) => {
+	const name = customElements.getName(constructor);
+	const node = document.createElement(name);
+	element.appendChild(node);
+});
+```
