@@ -100,7 +100,7 @@ static get observedAttributes() {
 
 [Keeping attributes up-to-date](/up-to-date-attributes) is slightly more complicated, but when you want to synchronize the values between element and class, it is more than worth learning.
 
-## `adtoptedCallback`
+## `adoptedCallback`
 
 _The element is moved to a new document._
 
