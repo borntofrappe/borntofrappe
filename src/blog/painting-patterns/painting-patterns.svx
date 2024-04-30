@@ -56,7 +56,7 @@ With the adjustments.
 You point to the pattern in a different element, one you actually draw on the page. In the `fill` attribute of a rectangle, for instance.
 
 ```html
-<rect fill="url(#dots)" width="20" height="16" />
+<rect fill="url(#dots)" width="20" height="14" />
 ```
 
 And in this manner, instead of a solid polygon, you'll find the repeated shape. In which color?
@@ -95,7 +95,7 @@ rect {
 }
 ```
 
-The one definition means the pattern is locked. And in hindsight, perhaps it would be presumptuous for it to change. The browser would need to look up the value of the element using the pattern, wherever it may be, instead of climbing up the ladder of parent nodes. Understandable, but slightly annoying. What does it take to paint a new set?
+The one definition means the pattern is locked. And in hindsight, perhaps it would be presumptuous for it to change. A browser would need to look up the value of the element using the pattern, wherever it may be, instead of climbing up the ladder of parent nodes. Understandable, but slightly annoying. What does it take to paint a new set?
 
 ## More than one fix
 
@@ -106,13 +106,13 @@ The first solution is perhaps the dumbest, but worth spelling out all the same. 
 <circle fill="hsl(240 100% 50%)" r="0.2" cx="0.5" cy="0.5" />
 ```
 
-It may not be scalable, but referencing the different element will work.
+It may not be scalable, but referencing the new element will work.
 
 ```html
-<rect fill="url(#dots-blue)" width="20" height="16" />
+<rect fill="url(#dots-blue)" width="20" height="14" />
 ```
 
-And inspire a second solution, a filter. The topic is vast, there's an entire new vocabulary in the SVG spec and it deserves much more attention than a fleeting mention, but you can think of a filter as styling directives, operating pixel by pixel to tweak the shapes. Similar to an effect you apply in a picture with your high-end device. One of those effects is to colorize the shapes in two rapid steps, two succinct functions.
+And inspire a second solution, a filter. The topic is vast, there's an entire new vocabulary in the SVG spec and it deserves much more attention than a fleeting mention, but you can think of a filter as styling directives, operating pixel by pixel in a `filter` element.
 
 ```html
 <filter id="colorize">
@@ -120,20 +120,20 @@ And inspire a second solution, a filter. The topic is vast, there's an entire ne
 </filter>
 ```
 
-First, `feFlood`. The element paints over the surface with the color used in the stop-color attribute.
+Similar to an effect you apply in a picture with your high-end device. One of those effects is to colorize the shapes in two rapid steps, two succinct functions.
+
+First, `feFlood`. The element paints over the surface with the color used in the `stop-color` attribute.
 
 ```html
-<filter id="colorize">
-	<feFlood flood-color="hsl(240 100% 50%)" />
-	<!-- ... -->
-</filter>
+<!-- #colorize -->
+<feFlood flood-color="hsl(240 100% 50%)" />
 ```
 
 On its own the instruction paints over _the entire_ surface, the complete rectangular area, but you want to paint only the dots. For this `feComposite` limits the scope.
 
-<!-- prettier-ignore -->
 ```html
-<feFlood flood-color="hsl(240 100% 50%)" /> 
+<!-- #colorize -->
+<feFlood flood-color="hsl(240 100% 50%)" />
 <feComposite in2="SourceGraphic" operator="in" />
 ```
 
@@ -142,7 +142,7 @@ The syntax is quite technical, a tad distressing, but with the `operator` attrib
 Point to the filter with the matching attribute and the code works.
 
 ```html
-<rect filter="colorize" fill="url(#dots)" width="20" height="16" />
+<rect filter="colorize" fill="url(#dots)" width="20" height="14" />
 ```
 
 Once again, however, for just the one color.
@@ -157,11 +157,11 @@ The idea is to use a different SVG element, a `mask`, to hide and show parts of 
 </mask>
 ```
 
-In the body of a mask black shapes work to completely hide the element, while white shapes will work to reveal the masked content. Which means, you can paint the dots created with the pattern.
+In the body of a mask black shapes work to completely hide the masked content, while white shapes will work to reveal the drawing. Which means, you can paint the dots created with the pattern.
 
 ```html
 <mask id="cutout">
-	<rect fill="url(#dots)" width="20" height="16" />
+	<rect fill="url(#dots)" width="20" height="14" />
 </mask>
 ```
 
@@ -175,13 +175,13 @@ In which color? Well, in white.
 Update the pattern with the brightest hue and you have a mask to display the dots. You only need to apply the change to a solid rectangle with the `mask` attribute.
 
 ```html
-<rect mask="url(#cutout)" width="20" height="16" />
+<rect mask="url(#cutout)" width="20" height="14" />
 ```
 
 Not the `fill`, mind you, which will be once more available to paint the circles any way you may so choose.
 
 ```html
-<rect mask="url(#cutout)" fill="hsl(240 100% 50%)" width="20" height="16" />
+<rect mask="url(#cutout)" fill="hsl(240 100% 50%)" width="20" height="14" />
 ```
 
 For dots, and with time, for the most mesmerizing pattern you will imagine.

@@ -21,9 +21,9 @@
 </script>
 
 <div>
-	<svg style="display: block;" viewBox="-10 -7 20 14">
+	<svg style="display: block;" viewBox="0 0 20 14">
 		<defs>
-			<rect id="pattern-background" x="-10" y="-7" width="20" height="14" rx="1" />
+			<rect id="pattern-background" width="20" height="14" rx="1" />
 			<pattern
 				id="pattern-pattern"
 				viewBox="-16 0 16 16"
