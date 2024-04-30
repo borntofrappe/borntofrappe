@@ -1,0 +1,9 @@
+---
+title: Painting patterns
+description: The scalable, rambling quest to paint a pattern red.
+date: 2024-04-30
+---
+
+```html
+<rect mask="url(#pattern-mask)" fill="red" width="20" height="14" />
+```
