@@ -68,7 +68,7 @@
 
 <style>
 	div {
-		max-inline-size: 22rem;
+		max-inline-size: 36rem;
 		margin-inline: auto;
 	}
 
@@ -76,7 +76,14 @@
 		margin-block-start: 0.75rem;
 	}
 
+	div > svg {
+		display: block;
+		max-inline-size: 22rem;
+		margin-inline: auto;
+	}
+
 	fieldset {
+		text-align: center;
 		padding: 0;
 		border: none;
 	}
