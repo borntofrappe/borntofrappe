@@ -8,10 +8,84 @@ date: 2024-05-01
 	import svg from './svg.js';
 </script>
 
-<figure class="center-frame">
-	{@html svg['upgrade']}
-</figure>
+Something close to magical happens when a browser renders a document and finds an HTML element it doesn't recognize.
+
+```html
+<h2>Forced introduction</h2>
+<virtual-element></virtual-element>
+```
+
+Nothing. If you keep the element as an empty container nothing shows up, but, most importantly, nothing breaks down. The parser continues with the rest of the page, doing what possible with what it can. But of course this is one way you can introduce a custom element, a node of your own. You can even garnish the piece with an attribute for that matter.
+
+```html
+<virtual-element entry="137"></virtual-element>
+```
+
+For something to happen you need a script and a few lines of JavaScript.
+
+First, create a class extending `HTMLElement`. Then, lean on the `customElements` interface and the `define` function, so that the name of the element is associated with the class instance.
+
+```js
+class VirtualElement extends HTMLElement {}
+
+customElements.define('virtual-element', VirtualElement);
+```
+
+As soon as the element is registered the browser levels up, promotes the node into valid markup. And at this juncture, the custom element goes through a series of lifecycle functions. You might be familiar with the lot from [a previous exploration](/lifecycle-call), but for the specific example, you are re-acquainted with three methods, marking the growth in sequence:
+
+- `constructor`, the element is initialized, created
+
+- `attributesChangedCallback`, one of the attributes _which you decide to observe_ changes
+
+- `connectedCallback`, the element is inserted in the DOM
+
+It is important to note that, assuming you set up the class to track the value of an attribute, [a somewhat cumbersome operation](/up-to-date-attributes) that goes through a getter function, `attributesChangedCallback` predates the connection. This means you'll be up-to-date from the get-go.
+
+Adding to the charm and convenience offered by HTML, the upgrade takes place with the element's definition. Whenever that may be. Even if the node is included immediately and the script is delayed, for real or for some self-serving code.
+
+```js
+const timeout = setTimeout(() => {
+	customElements.define('virtual-element', VirtualElement);
+	clearTimeout(timeout);
+}, 1000);
+```
+
+In JavaScript, the story is quite different. Errors are often breaking, and for custom elements the order matters.
+
+You can create the element with functions such as `document.createElement`, using the string naming the element.
+
+```js
+// ...define
+const virtualElement = document.createElement('virtual-element');
+```
+
+After the class, after the definition, this will lead to two of the lifecycle functions: `constructor` and `attributesChangedCallback`. Not `connectedCallback`, and for a clear reason: the element is not inserted in the DOM.
+
+If the code runs _before_ the definition, however.
+
+```js
+const virtualElement = document.createElement('virtual-element');
+// ...define
+```
+
+The same won't be true. The element is not upgraded, and the logic contained in the two functions won't be executed. For this to happen, as probably spoiled, you can add the instance in the document.
+
+```js
+document.body.appendChild(virtualElement);
+```
+
+This will lead to the same output detailed in markup, and means the node will be connected as well.
+
+But if you care only about the first two functions, if you want to programmatically promote the node without updating the DOM, you can force your hand. For this the `customElements` global provides a fitting method: `upgrade`.
 
 ```js
 customElements.upgrade(virtualElement);
 ```
+
+Refer to the specific element and the custom structure will be upgraded in full. The `constructor` and `attributesChangedCallback` functions run, priming the element for later use.
+
+<figure class="center-frame">
+	{@html svg['upgrade']}
+</figure>
+
+Whether you decide to append the element and continue the evolution process, it'll be up to you.
