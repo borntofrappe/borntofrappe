@@ -4,6 +4,14 @@ description: Rehearse lifecycle functions to frame custom elements upgrades.
 date: 2024-05-01
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame">
+	{@html svg['upgrade']}
+</figure>
+
 ```js
 customElements.upgrade(virtualElement);
 ```
