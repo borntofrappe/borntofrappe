@@ -1,0 +1,9 @@
+---
+title: Scheduled upgrade
+description: Rehearse lifecycle functions to frame custom elements upgrades.
+date: 2024-05-01
+---
+
+```js
+customElements.upgrade(virtualElement);
+```
