@@ -1,7 +1,7 @@
 ---
 title: Scheduled upgrade
 description: Rehearse lifecycle functions to frame custom elements upgrades.
-date: 2024-05-01
+date: 2024-05-01T15:19:04
 ---
 
 <script>
@@ -76,13 +76,13 @@ document.body.appendChild(virtualElement);
 
 This will lead to the same output detailed in markup, and means the node will be connected as well.
 
-But if you care only about the first two functions, if you want to programmatically promote the node without updating the DOM, you can force your hand. For this the `customElements` global provides a fitting method: `upgrade`.
+But if you care only about the first two functions, if you want to programmatically promote the node without updating the DOM, you can force your hand. For this `customElements` provides a fitting method: `upgrade`.
 
 ```js
 customElements.upgrade(virtualElement);
 ```
 
-Refer to the specific element and the custom structure will be upgraded in full. The `constructor` and `attributesChangedCallback` functions run, priming the element for later use.
+Refer to the specific element and the one node will be upgraded in full. The `constructor` and `attributesChangedCallback` functions run, priming the element for later use.
 
 <figure class="center-frame">
 	{@html svg['upgrade']}
