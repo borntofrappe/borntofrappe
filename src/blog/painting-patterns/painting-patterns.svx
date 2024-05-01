@@ -9,7 +9,7 @@ date: 2024-04-30T20:18:05
 	import Pattern from './Pattern.svelte';
 </script>
 
-For scalable vector graphics, the `pattern` element allows to repeat a drawing over a given surface. It is a rather convenient feature, limited only by imagination, willingness to explore the _many_ possible attributes and one pesky behavior. But at least for this last one, there are a couple of workarounds.
+For scalable vector graphics, the `pattern` element allows to repeat a drawing over a given surface. It is a rather convenient feature, limited only by imagination, your willingness to explore the _many_ possible attributes and one pesky behavior. But at least for this last one, there are a couple of workarounds.
 
 ## A pattern
 
@@ -39,9 +39,9 @@ The `viewBox` attribute is valid for both, and in this instance, argues the canv
 
 From this point, and for the pattern, only few attributes are strictly necessary:
 
-- `id`, as a reference, for later use
+- `id`, a reference for later use
 
-- `width` and `height`, to illustrate how often the pattern should repeat, horizontally and vertically
+- `width` and `height`, two measures to dictate how often the pattern should repeat, horizontally and vertically
 
   With a percentage or decimal value the numbers describe a fraction of the benefiting shape
 
@@ -59,7 +59,7 @@ You point to the pattern in a different element, one you actually draw on the pa
 <rect fill="url(#dots)" width="20" height="14" />
 ```
 
-And in this manner, instead of a solid polygon, you'll find the repeated shape. In which color?
+And in this manner, instead of a solid polygon, you'll find the repeated shape. In which color though?
 
 <figure class="center-frame" data-size="small">
 	{@html svg['dots']}
@@ -67,7 +67,7 @@ And in this manner, instead of a solid polygon, you'll find the repeated shape. 
 
 ## An issue
 
-By default, SVG shapes start with a `fill` of `#000`, completely black. You can change the value with every possible syntax supported in CSS, from named colors to `hsl`.
+By default, SVG shapes start with a `fill` of `#000`, completely black. You can change the attribute with every possible value supported in CSS, from named colors to `hsl`.
 
 ```html
 <circle fill="hsl(0 100% 50%)" r="0.2" cx="0.5" cy="0.5" />
@@ -87,7 +87,7 @@ svg {
 }
 ```
 
-There's no way to change in the following shapes.
+There's no way to tweak the design for the following shapes.
 
 ```css
 rect {
@@ -97,9 +97,9 @@ rect {
 
 The one definition means the pattern is locked. And in hindsight, perhaps it would be presumptuous for it to change. A browser would need to look up the value of the element using the pattern, wherever it may be, instead of climbing up the ladder of parent nodes. Understandable, but slightly annoying. What does it take to paint a new set?
 
-## More than one fix
+## More than a fix
 
-The first solution is perhaps the dumbest, but worth spelling out all the same. Create a different pattern, one where the circle has a different tint.
+The first solution is perhaps the dumbest, but worth spelling out all the same. Create a different pattern, one where the circle has a different fill.
 
 ```html
 <!-- #dots-blue -->
@@ -112,7 +112,7 @@ It may not be scalable, but referencing the new element will work.
 <rect fill="url(#dots-blue)" width="20" height="14" />
 ```
 
-And inspire a second solution, a filter. The topic is vast, there's an entire new vocabulary in the SVG spec and it deserves much more attention than a fleeting mention, but you can think of a filter as styling directives, operating pixel by pixel in a `filter` element.
+And inspire a second solution, a filter. The topic is vast, there's an entire vocabulary in the SVG spec and it deserves much more attention than a fleeting mention, but you can think of a filter as styling directives, operating pixel by pixel in a `filter` element. Similar to an effect you apply in a picture with your high-end device.
 
 ```html
 <filter id="colorize">
@@ -120,16 +120,16 @@ And inspire a second solution, a filter. The topic is vast, there's an entire ne
 </filter>
 ```
 
-Similar to an effect you apply in a picture with your high-end device. One of those effects is to colorize the shapes in two rapid steps, two succinct functions.
+One of those effects is to colorize the shapes in two rapid steps, two succinct functions.
 
-First, `feFlood`. The element paints over the surface with the color used in the `stop-color` attribute.
+First, `feFlood`. The element paints over the surface with the color used in the `flood-color` attribute.
 
 ```html
 <!-- #colorize -->
 <feFlood flood-color="hsl(240 100% 50%)" />
 ```
 
-On its own the instruction paints over _the entire_ surface, the complete rectangular area, but you want to paint only the dots. For this `feComposite` limits the scope.
+On its own the instruction paints over the _entire_ surface, the complete rectangular area, but you want to paint only the dots. For this `feComposite` limits the scope.
 
 ```html
 <!-- #colorize -->
@@ -157,7 +157,7 @@ The idea is to use a different SVG element, a `mask`, to hide and show parts of 
 </mask>
 ```
 
-In the body of a mask black shapes work to completely hide the masked content, while white shapes will work to reveal the drawing. Which means, you can paint the dots created with the pattern.
+In the body of a mask black shapes work to completely hide the drawing, while white shapes will work to reveal the masked content. Which means, you can repeat the dots created with the pattern.
 
 ```html
 <mask id="cutout">
@@ -165,7 +165,7 @@ In the body of a mask black shapes work to completely hide the masked content, w
 </mask>
 ```
 
-In which color? Well, in white.
+In which color? Well, in pure white.
 
 ```html
 <!-- #dots  -->
@@ -174,16 +174,12 @@ In which color? Well, in white.
 
 Update the pattern with the brightest hue and you have a mask to display the dots. You only need to apply the change to a solid rectangle with the `mask` attribute.
 
-```html
-<rect mask="url(#cutout)" width="20" height="14" />
-```
-
 Not the `fill`, mind you, which will be once more available to paint the circles any way you may so choose.
 
 ```html
 <rect mask="url(#cutout)" fill="hsl(240 100% 50%)" width="20" height="14" />
 ```
 
-For dots, and with time, for the most mesmerizing pattern you will imagine.
+For dots, and with time, for the most mesmerizing pattern you will be sure to imagine.
 
 <Pattern />
