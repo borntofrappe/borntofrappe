@@ -3,3 +3,11 @@ title: Open void
 description: Thank web components to get re-aquainted with HTML features.
 date: 2024-05-03
 ---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame">
+	{@html svg['open-sign']}
+</figure>
