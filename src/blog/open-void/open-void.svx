@@ -11,3 +11,7 @@ date: 2024-05-03
 <figure class="center-frame">
 	{@html svg['open-sign']}
 </figure>
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['inspector-slot']}
+</figure>
