@@ -1,0 +1,5 @@
+---
+title: Open void
+description: Thank web components to get re-aquainted with HTML features.
+date: 2024-05-03
+---
