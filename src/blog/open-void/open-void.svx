@@ -12,7 +12,7 @@ One of the biggest advantages of web components is that they extend existing web
 
 Let me feed you an example.
 
-In a web component I explored the option of adding some markup in a shadow root, in the shadow DOM.
+In a curious project I explored the option of adding some markup in a shadow root, in the shadow DOM.
 
 ```js
 shadowRoot.innerHTML = `
@@ -21,13 +21,11 @@ shadowRoot.innerHTML = `
 `;
 ```
 
-Without turning this discussion in a deep dive into the topic, the shadow DOM gives you the option to author the markup in a separate document tree. In the context of custom elements, then, the `slot` element helps you to take the content from the light DOM, the HTML you include between brackets.
+Without turning this discussion into a deep dive of the topic, the shadow DOM gives you the option to author the markup in a separate document tree. In the context of custom elements, then, the `slot` element offers one way to take content from the light DOM and place it to the dark tree.
 
 ```html
 <tool-tip>Hi there</tool-tip>
 ```
-
-And place the content in the dark tree.
 
 With the code, I decided to continue the markup with a `span` element, with the goal of pairing the input with the additional label.
 
@@ -37,9 +35,9 @@ With the code, I decided to continue the markup with a `span` element, with the 
 	{@html svg['inspector-markup']}
 </figure>
 
-But unfortunately, I stumbled on the consequences of bad-mannered code. The browser did show the text from outside, but not the label, which was simply lost. The reason: a not-so-self closing tag.
+But unfortunately, I stumbled on the consequences of bad-mannered code. The browser did show the text from outside, but not the label, which was simply lost. The reason: a not-so self-closing tag.
 
-[The HTML specification](https://html.spec.whatwg.org/multipage/syntax.html#elements-2) explains six categories of elements. A handful of these are known as _void_ elements, they don't expect children nodes and can be written with just an opening tag. An editor might try the courtesy of adding a slash character, to signal the end of the node, but this is ultimately unnecessary.
+As detailed [the HTML specification](https://html.spec.whatwg.org/multipage/syntax.html#elements-2), you can categorize elements in six groups. A handful of these are known as _void_ elements, they don't expect children nodes and can be written with just an opening tag. An editor might courteously try to add a slash character and signal the end of the node, but this is ultimately unnecessary.
 
 <!-- prettier-ignore -->
 ```html
@@ -48,7 +46,7 @@ Hi
 there
 ```
 
-There are also _normal_ elements, a catch-all category with a very different behavior. These elements can wrap around additional nodes. To avoid any doubt, you need to therefore express both tags; the opening one and right after, a closing one. You can try this even without web components, with a trivial `div` element and a paragraph, following a solitary opening tag.
+There are also _normal_ elements, a catch-all category with a very different behavior. These elements can wrap around additional nodes, and to avoid any doubt you need to express both tags; the opening tag and right after, a matching, closing one. You can attest this even without web components, for that matter, with a trivial `div` and a paragraph, following a solitary opening tag.
 
 <!-- prettier-ignore -->
 ```html
@@ -65,7 +63,7 @@ div {
 }
 ```
 
-And you'll see that the changes affect the paragraph as well. For now a good reason: the paragraph is rendered _inside_ the container. This explains the change in style and also the hiccup with the custom element. `slot` is also a normal element, and in the snippet, gobbles up the markup which follows — it swallows the label.
+And you'll see that the changes affect the paragraph as well. For now a good reason: the paragraph is marked up _in_ the container. This explains the change in style and also the hiccup with the custom element. `slot` is also a normal element, and in the snippet, it gobbles up the markup which follows — it swallows the label in one byte.
 
 <figure class="center-frame" data-size="medium">
 	{@html svg['inspector-slot']}
@@ -86,11 +84,11 @@ And delight in knowing something more about something widespread.
 
 ---
 
-If you are familiar with SVG and writing vector graphics in a code editor, you might have enjoyed drawing elements with self-closing tags, and relished in the more succinct syntax without side effects.
+If you are familiar with SVG and writing vector graphics in a code editor, you might have drawn elements with self-closing tags, and enjoyed the more succinct syntax without side effects.
 
 ```html
 <rect fill="hsl(35 74% 83%)" x="-77" y="-33" width="154" height="110" rx="10" />
 <circle fill="hsl(352 60% 20%)" r="3" cx="-67" cy="-23" />
 ```
 
-Well, perhaps even without knowing, you are able to do so because SVG elements, as coming from a separate specification, fall in a different category altogether; they are _foreign_ nodes. You can therefore close circles and rectangles without fail. The browser will take care of the scope, and you'll appreciate the result of the joint effort.
+Well, perhaps without knowing, you are able to do so because SVG elements fall in a different category altogether; coming from a separate specification, they are _foreign_ nodes. You can therefore close circles and rectangles without fail. The browser will take care of closing the tag, and everybody will be able to feast on the impressive result.
