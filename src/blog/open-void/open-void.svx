@@ -29,13 +29,13 @@ Without turning this discussion in a deep dive into the topic, the shadow DOM gi
 
 And place the content in the dark tree.
 
-With the code, I decided to continue the markup with a `span` element, with the goal of pairing the input with the additional label. The idea was to therefore produce the following structure.
+With the code, I decided to continue the markup with a `span` element, with the goal of pairing the input with the additional label.
 
-<!-- prettier-ignore -->
-```html
-Hi there
-<span>...</span>
-```
+{@html svg['defs']}
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['inspector-markup']}
+</figure>
 
 But unfortunately, I stumbled on the consequences of bad-mannered code. The browser did show the text from outside, but not the label, which was simply lost. The reason: a not-so-self closing tag.
 
@@ -53,7 +53,7 @@ There are also _normal_ elements, a catch-all category with a very different beh
 <!-- prettier-ignore -->
 ```html
 <div>
-<p>Life line</p>
+<p>Hi there</p>
 ```
 
 Style the generic element with CSS.
