@@ -1,17 +1,96 @@
 ---
 title: Open void
-description: Thank web components to get re-aquainted with HTML features.
-date: 2024-05-03
+description: Thank web components to get your fill of core web features.
+date: 2024-05-03T10:42:16
 ---
 
 <script>
 	import svg from './svg.js';
 </script>
 
-<figure class="center-frame">
-	{@html svg['open-sign']}
-</figure>
+One of the biggest advantages of web components is that they extend existing web standards, they build on top of core technologies. As an added benefit, they help you improve what you know about the underlying tech, HTML, CSS and JS, even without sampling the entire buffet.
+
+Let me feed you an example.
+
+In a web component I explored the option of adding some markup in a shadow root, in the shadow DOM.
+
+```js
+shadowRoot.innerHTML = `
+<slot />
+<span>...</span>
+`;
+```
+
+Without turning this discussion in a deep dive into the topic, the shadow DOM gives you the option to author the markup in a separate document tree. In the context of custom elements, then, the `slot` element helps you to take the content from the light DOM, the HTML you include between brackets.
+
+```html
+<tool-tip>Hi there</tool-tip>
+```
+
+And place the content in the dark tree.
+
+With the code, I decided to continue the markup with a `span` element, with the goal of pairing the input with the additional label. The idea was to therefore produce the following structure.
+
+<!-- prettier-ignore -->
+```html
+Hi there
+<span>...</span>
+```
+
+But unfortunately, I stumbled on the consequences of bad-mannered code. The browser did show the text from outside, but not the label, which was simply lost. The reason: a not-so-self closing tag.
+
+[The HTML specification](https://html.spec.whatwg.org/multipage/syntax.html#elements-2) explains six categories of elements. A handful of these are known as _void_ elements, they don't expect children nodes and can be written with just an opening tag. An editor might try the courtesy of adding a slash character, to signal the end of the node, but this is ultimately unnecessary.
+
+<!-- prettier-ignore -->
+```html
+Hi
+<br>
+there
+```
+
+There are also _normal_ elements, a catch-all category with a very different behavior. These elements can wrap around additional nodes. To avoid any doubt, you need to therefore express both tags; the opening one and right after, a closing one. You can try this even without web components, with a trivial `div` element and a paragraph, following a solitary opening tag.
+
+<!-- prettier-ignore -->
+```html
+<div>
+<p>Life line</p>
+```
+
+Style the generic element with CSS.
+
+```css
+div {
+	color: white;
+	background-color: black;
+}
+```
+
+And you'll see that the changes affect the paragraph as well. For now a good reason: the paragraph is rendered _inside_ the container. This explains the change in style and also the hiccup with the custom element. `slot` is also a normal element, and in the snippet, gobbles up the markup which follows — it swallows the label.
 
 <figure class="center-frame" data-size="medium">
 	{@html svg['inspector-slot']}
 </figure>
+
+As soon as you replace the slot from outside, the `span` element is also removed in favor of the light text. The fix, now obvious, is to just close the node.
+
+```diff
+-<slot />
++<slot></slot>
+```
+
+And delight in knowing something more about something widespread.
+
+<figure class="center-frame">
+	{@html svg['open-sign']}
+</figure>
+
+---
+
+If you are familiar with SVG and writing vector graphics in a code editor, you might have enjoyed drawing elements with self-closing tags, and relished in the more succinct syntax without side effects.
+
+```html
+<rect fill="hsl(35 74% 83%)" x="-77" y="-33" width="154" height="110" rx="10" />
+<circle fill="hsl(352 60% 20%)" r="3" cx="-67" cy="-23" />
+```
+
+Well, perhaps even without knowing, you are able to do so because SVG elements, as coming from a separate specification, fall in a different category altogether; they are _foreign_ nodes. You can therefore close circles and rectangles without fail. The browser will take care of the scope, and you'll appreciate the result of the joint effort.
