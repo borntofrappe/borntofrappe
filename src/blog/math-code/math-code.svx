@@ -6,8 +6,11 @@ date: 2024-05-08
 
 <script>
 	import svg from './svg.js';
+	import REPL from './REPL.svelte';
 </script>
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['mathml-calculator']}
 </figure>
+
+<REPL />
