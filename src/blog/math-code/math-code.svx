@@ -4,3 +4,10 @@ description: Intro to MathML.
 date: 2024-05-08
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['mathml-calculator']}
+</figure>
