@@ -13,4 +13,16 @@ date: 2024-05-08
 	{@html html['mathml-calculator']}
 </figure>
 
-<REPL />
+<REPL code={html['mathml-tokens']} />
+
+<REPL code={html['mathml-fence']} />
+
+<REPL code={html['mathml-sqrt']} />
+
+<REPL code={html['mathml-root']} />
+
+<REPL code={html['mathml-sup']} />
+
+<REPL code={html['mathml-underover']} />
+
+<REPL code={html['mathml-table']} />

@@ -50,5 +50,80 @@ export default {
             <set attributeType="CSS" attributeName="cursor" to="pointer" />
         </g>
     </g>
-</svg>`
+</svg>`,
+	'mathml-tokens': `<math>
+	<mi>C</mi>
+	<mo>=</mo>
+	<mn>2</mn>
+	<mi>&pi;</mi>
+	<mi>r</mi>
+</math>`,
+	'mathml-fence': `<math>
+	<mo>[</mo>
+	<mn>0</mn>
+	<mo>,</mo>
+	<mn>1</mn>
+	<mo>)</mo>
+</math>`,
+	'mathml-sqrt': `<math>
+	<mi>d</mi>
+	<mo>=</mo>
+    <mn>l</mn>
+    <msqrt>
+        <mn>2</mn>
+    </msqrt>
+</math>`,
+	'mathml-root': `<math>
+	<mi>c</mi>
+	<mo>=</mo>
+	<mroot>
+		<mrow>
+			<mi>a</mi>
+			<mo>+</mo>
+			<mi>b</mi>
+		</mrow>
+		<mn>2</mn>
+	</mroot>
+</math>`,
+	'mathml-sup': `<math>
+	<msup>
+		<mi>c</mi>
+		<mn>2</mn>
+	</msup>
+	<mo>=</mo>
+	<msup>
+		<mi>a</mi>
+		<mn>2</mn>
+	</msup>
+	<mo>+</mo>
+	<msup>
+		<mi>b</mi>
+		<mn>2</mn>
+	</msup>
+</math>`,
+	'mathml-underover': `<math>
+	<munderover>
+		<mn>&sum;</mn>
+		<mrow>
+			<mi>x</mi>
+			<mo>=</mo>
+			<mn>0</mn>
+		</mrow>
+		<mi>n</mi>
+	</munderover>
+</math>`,
+	'mathml-table': `<math>
+	<mtable>
+		<mtr>
+			<mtd>1</mtd>
+			<mtd>0</mtd>
+			<mtd>1</mtd>
+		</mtr>
+		<mtr>
+			<mtd>0</mtd>
+			<mtd>1</mtd>
+			<mtd>0</mtd>
+		</mtr>
+	</mtable>
+</math>`
 };
