@@ -1,5 +1,7 @@
 export default {
-	'grid-top-down': `<svg style="display: block;" viewBox="0 0 31 5">
+	'grid-top-down': `<svg aria-labelledby="td-title" aria-describedby="td-desc" style="display: block;" viewBox="0 0 31 5">
+    <title id="td-title">Top-down grid</title>
+    <description id="td-desc">Drawing of the word 'element' in a grid with a top-down perspective.</description>
     <defs>
         <rect id="g-td" width="1" height="1" />
     </defs>
@@ -80,7 +82,9 @@ export default {
         <use x="30" y="4" href="#g-td" />
     </g>
 </svg>`,
-	'grid-isometric': `<svg svg style="display: block;" viewBox="0 -5.75 14.5 7.25">
+	'grid-isometric': `<svg aria-labelledby="iso-title" aria-describedby="iso-desc" style="display: block;" viewBox="0 -5.75 14.5 7.25">
+    <title id="iso-title">Isometric grid</title>
+    <description id="iso-desc">Drawing of the word 'nodose' in a grid with an isometric perspective.</description>
     <defs>
         <path id="g-iso" d="M 0 0.25 0.5 0 1 0.25 0.5 0.5" />
     </defs>
