@@ -1,6 +1,6 @@
 ---
 title: Words fail
-description: Reflect on the struggle of waxing lyrical while avoid repeating yourself.
+description: Reflect on the struggle of waxing lyrical while avoiding repeating yourself.
 date: 2024-05-08T14:34:48
 ---
 
@@ -8,12 +8,22 @@ date: 2024-05-08T14:34:48
 	import svg from './svg.js';
 </script>
 
+Consider a grid with 31 columns and 4 rows. Assuming each cell is a square with a width and a height of 1, just how much space is the grid going to cover?
+
+That's easy, a matter of a quick multiplication. The grid is going to be 31 units wide and 4 units tall.
+
 <figure class="[ center-frame ]">
 	{@html svg['grid-top-down']}
 </figure>
+
+Now turn your attention to an [_isometric projection_](https://en.wikipedia.org/wiki/Isometric_projection). In this instance you look at the grid from a very specific angle and the square is almost squashed. The shape is now half as tall as it is wide. What is more, you don't position multiple shapes in the same arrangement, in neat columns and rows. Each successive shape is slightly elevated, and to make up for the vertical shift, it is also moved back to touch the preceding rhomboid.
+
+With multiple rows the position is also offset, to avoid overlap and maintain the coordinated structure.
+
+What then, is the width of the projected grid? What is the height? That requires some thought, but it is something you can estimate with a bit of logic and experimentation.
 
 <figure class="[ center-frame ]">
 	{@html svg['grid-isometric']}
 </figure>
 
-Custom element, made-up nodes.
+Difficult? A little, but ultimately a matter of grade school arithmetic. And certainly not as difficult as writing an article about custom elements and describing the structure of the new nodes without repeating their label, again and again.
