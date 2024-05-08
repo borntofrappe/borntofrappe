@@ -4,4 +4,16 @@ description: Reflect on the struggle of waxing lyrical while avoid repeating you
 date: 2024-05-08T14:34:48
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="[ center-frame ]">
+	{@html svg['grid-top-down']}
+</figure>
+
+<figure class="[ center-frame ]">
+	{@html svg['grid-isometric']}
+</figure>
+
 Custom element, made-up nodes.
