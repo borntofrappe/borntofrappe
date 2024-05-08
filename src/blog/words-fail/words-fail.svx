@@ -1,0 +1,7 @@
+---
+title: Words fail
+description: Reflect on the struggle of waxing lyrical while avoid repeating yourself.
+date: 2024-05-08T14:34:48
+---
+
+Custom element, made-up nodes.
