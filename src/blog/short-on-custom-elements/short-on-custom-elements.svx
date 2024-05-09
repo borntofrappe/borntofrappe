@@ -4,8 +4,14 @@ description: Lament the lack of ubiquitous custom elements.
 date: 2024-05-10
 ---
 
+<script>
+	import CustomFigure from './CustomFigure.svelte';
+</script>
+
 ```html
 <text-background>
-	<text>Sad trombone</text>
+	<text>Trumpet blast</text>
 </text-background>
 ```
+
+<CustomFigure />
