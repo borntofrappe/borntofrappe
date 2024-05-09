@@ -1,0 +1,11 @@
+---
+title: Short on custom elements
+description: Lament the lack of ubiquitous custom elements.
+date: 2024-05-10
+---
+
+```html
+<text-background>
+	<text>Sad trombone</text>
+</text-background>
+```
