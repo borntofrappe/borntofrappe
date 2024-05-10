@@ -36,7 +36,7 @@ We can work around the issue with JavaScript. You measure the text element, and 
 <text fill="white" x="5" y="20"><!-- ... --></text>
 ```
 
-For the position and the dimensions you rely on the `getBBox` method. But without stressing the implementation details, the important fact is that you indeed can.
+For the position and the dimensions you rely on the `getBBox` method, but without stressing the implementation details, the important fact is that you indeed can.
 
 With this in mind, why a custom element would be just perfect to pull off the task. Delegate the job to a class and you would only need to augment the markup.
 
@@ -60,15 +60,15 @@ customElements.define(
 );
 ```
 
-Extending an `SVGGElement`, the interface for a generic group prompts an error, stressing the point mentioned earlier.
+Extending an `SVGGElement`, the interface for a generic group, prompts an error, stressing the point mentioned earlier.
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['console-dom-exception']}
 </figure>
 
-Once again, custom elements are defined and managed by the DOM standard, and the HTML spec.
+Once again, custom elements are defined and managed by the DOM standard, and live in the HTML spec.
 
-It is therefore not possible to complete the operation for single text elements. But once you understand why, the good news is that you can lift your spirit by lifting the logic up a few levels. Instead of adding a custom element around a `text` node, include it as a true HTML element, around the entire `svg`.
+It is therefore not possible to complete the operation for single text elements. But once you understand the reason, the good news is that you can lift your spirit by lifting the logic up a few levels. Instead of adding a custom element around a `text` node, include it as a true HTML element, around the entire `svg`.
 
 ```html
 <text-background>
@@ -78,6 +78,6 @@ It is therefore not possible to complete the operation for single text elements.
 </text-background>
 ```
 
-Do this and you gain the option to inspect the markup. You can even extend the feature to consider all text elements, however many there might be. The biggest challenge is to then insert the rectangles for the made-up background in the right place.
+Do this and you gain the option to inspect the markup. You can even extend the feature to consider all text elements, however many there might be. The biggest challenge is to then insert the rectangles for the made-up background in the right place. But I'm more than positive you can figure out how by yourself.
 
 <CustomFigure />
