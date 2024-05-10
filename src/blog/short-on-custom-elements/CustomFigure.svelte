@@ -79,10 +79,6 @@
             </g>
             <path fill="none" stroke="hsl(183 100% 30%)" d="M -60 -55 A 130 130 0 0 0 60 -55" />
         </g>
-        <g stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round" font-family="serif" style="text-transform:uppercase;" letter-spacing="1" font-size="10" text-anchor="middle">
-            <text y="-11" fill="hsl(35 100% 87%)" stroke="hsl(35 100% 87%)">Joyeux</text>
-            <text y="11" fill="hsl(35 100% 87%)" stroke="hsl(35 100% 87%)">anniversaire</text>
-        </g>
         <g transform="translate(0 42)" >
             <g fill="hsl(36 83% 53%)">
                 <rect x="-11" width="11" height="11" />
@@ -98,6 +94,10 @@
             </g>
         </g>
         <use filter="url(#card-filter)" fill="transparent" href="#card-background" />
+		<g stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round" font-family="serif" style="text-transform:uppercase;" letter-spacing="1" font-size="10" text-anchor="middle">
+            <text y="-11" fill="hsl(35 100% 87%)" stroke="hsl(35 100% 87%)">Joyeux</text>
+            <text y="11" fill="hsl(35 100% 87%)" stroke="hsl(35 100% 87%)">anniversaire</text>
+        </g>
     </svg>
 </figure>`;
 	});
