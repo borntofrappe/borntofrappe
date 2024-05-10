@@ -5,6 +5,7 @@ date: 2024-05-10:08:53:23
 ---
 
 <script>
+	import svg from './svg.js';
 	import CustomFigure from './CustomFigure.svelte';
 </script>
 
@@ -60,6 +61,10 @@ customElements.define(
 ```
 
 Extending an `SVGGElement`, the interface for a generic group prompts an error, stressing the point mentioned earlier.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['console-dom-exception']}
+</figure>
 
 Once again, custom elements are defined and managed by the DOM standard, and the HTML spec.
 
