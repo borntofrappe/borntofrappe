@@ -5,11 +5,9 @@ date: 2024-05-13
 ---
 
 <script>
-	import svg from './svg.js';
+	import TextHighlight from './TextHighlight.svelte';
 </script>
 
-<figure style="--flood-color: pink">
-    {@html svg['filter-background']}
-</figure>
+<TextHighlight />
 
 Background for `text` elements.
