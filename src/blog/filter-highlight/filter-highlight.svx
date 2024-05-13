@@ -4,4 +4,12 @@ description: Pull off a fairly flexible feature with fairly advanced SVG syntax.
 date: 2024-05-13
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure style="--flood-color: pink">
+    {@html svg['filter-background']}
+</figure>
+
 Background for `text` elements.
