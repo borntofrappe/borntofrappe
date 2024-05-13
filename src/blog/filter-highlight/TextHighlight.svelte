@@ -27,7 +27,7 @@
 	<fieldset aria-label="Pick highlight color">
 		{#each highlights as value}
 			<label style:accent-color={value.color}>
-				<input type="radio" bind:group={highlight} {value} />
+				<input name="highlight-color" type="radio" bind:group={highlight} {value} />
 				<span>{value.label}</span>
 			</label>
 		{/each}
