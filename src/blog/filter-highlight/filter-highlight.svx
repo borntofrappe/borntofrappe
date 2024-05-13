@@ -1,0 +1,7 @@
+---
+title: Filter highlight
+description: Pull off a fairly flexible feature with fairly advanced SVG syntax.
+date: 2024-05-13
+---
+
+Background for `text` elements.
