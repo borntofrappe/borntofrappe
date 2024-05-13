@@ -1,13 +1,103 @@
 ---
 title: Filter highlight
 description: Pull off a fairly flexible feature with fairly advanced SVG syntax.
-date: 2024-05-13
+date: 2024-05-13T15:44:51
 ---
 
 <script>
 	import TextHighlight from './TextHighlight.svelte';
 </script>
 
-<TextHighlight />
+Adding a background to `text` element. In SVG this is one feature which is not at all easy.
 
-Background for `text` elements.
+You can color shapes and letters with the `fill` attribute. And for text the option is similar to the `color` property for HTML nodes. But there is no counterpart to the `background` property. No immediate way to paint behind words.
+
+One way to achieve this is to draw a rectangle before the text, so that the characters sit on top of the solid base. But, rather dauntingly, in the same exact spot.
+
+```html
+<rect x="?" y="?" width="?" height="?" fill="black" />
+<text x="25" y="17" font-size="10" fill="white">Highlight text</text>
+```
+
+Knowing a bit about fonts and how text is rendered you can approximate the measures. The `x` and `y` attribute detail the origin of the text, and specifically the baseline for the chosen typeface. The font size dictates the height.
+
+With these assumptions the problem for the y axis is almost solved, perhaps with a bit of padding to make space for those pesky descenders, those daring ascenders.
+
+For the x axis, however, the problems are only beginning. Knowing the length of the string offers a first hint, but the width of a character is extremely variable, even if you just consider the monolithic families of sans serif, serif and monospace. Inevitably you end up being too short, or way too generous.
+
+Are you destined to use JavaScript? To pinpoint the element with a script and the `getBBox` method? Not if you believe the premise of this article. There is indeed a solution in SVG that goes through the complex topic of _filters_. Don't be afraid, however, for you need to know just the basics to understand the code.
+
+A filter is built in two steps. First, a `filter` element with a unique `id`.
+
+```html
+<filter id="filter-background">
+	<!-- ... -->
+</filter>
+```
+
+Then, the `filter` attribute, pointing to the element through the `url` function.
+
+<!-- prettier-ignore -->
+```html
+<text filter="url(#filter-background)" x="25" y="17" font-size="10" fill="white">Highlight text</text>
+```
+
+What the filter achieves, how the drawing changes , then, depends on the content of the `filter` element, on so-called _primitives_. These are additional elements prefixed with the letters `"fe"` and responsible for specific operations. They alter the area of the filtered shapes, or in this instance, text, in sequence, to create varied, special effects.
+
+Among the simplest primitives, you have `feFlood`. With this element you add a color through the `flood-color` attribute.
+
+```html
+<feFlood flood-color="black" />
+```
+
+And with the instruction you paint the entire area with the one color. You completely erase the filtered text, but wouldn't you know it, you've just drawn a rectangle, precisely where you want to add the background.
+
+And as you might have guessed, there is more, there is a way to bring the text back.
+
+Another primitive goes by the name of `feComposite`. This one works on the basis of two layers, which are mixed together per the `operator` attribute. The layers themselves are spelled out in the `in` and `in2` attributes.
+
+```html
+<!-- ...feFlood -->
+<feComposite in="?" in2="?" operator="?" />
+```
+
+But following the `feFlood` directive, we can leave either attribute off: the output of one primitive primitive is indeed an implicit input for the one which follows. In the `in` attribute we can point to the original, unfiltered text with the value of `SourceGraphic`.
+
+Only one instruction is missing, the touted `operator`. As mentioned this one describes how the two layers are joined together. And by default, it starts off with a value of `over`. This means the first layer is superimposed, literally drawn over the second. A feat that is inherently simple, and yet, the solution to our problem.
+
+```html
+<!-- ...feFlood -->
+<feComposite in="SourceGraphic" operator="over" />
+```
+
+In two short steps, we've done it. We've drawn text with a color and a background.
+
+You may lament that the code is quite rigid, working for a fixed combination of color and background. Moreover, you have little control over the area behind the text. But we can alleviate both issues quite rapidly, so that the code not only works, but sets out the basis for a flexible structure.
+
+In terms of colors, you'll be more glad to discover that you can change the color of the text, not only with the `fill` attribute, but the `fill` property, in CSS.
+
+```css
+text {
+	fill: hsl(0 0% 15%);
+}
+```
+
+This one takes precedence over the attribute. And is only improved by the fact that in CSS still, you can change the color of the background as well. This time target the primitive and update the value of `flood-color`.
+
+```css
+feFlood {
+	flood-color: hsl(54 99% 70%);
+}
+```
+
+For the area, a filter works in the context of a region which slightly extends the surface of the benefiting shapes. You can alter this region with geometric precision and the same attributes used to draw a rectangle. You have therefore the freedom of expanding the background, or restrict the area to the tightest possible space.
+
+```html
+<filter id="filter-background" x="0" y="0" width="1" height="1">
+	<!-- ... -->
+</filter>
+```
+
+You still have sharp corners, but who knows, researching the topic you might find a way in a more complex filter. After all, there are 15 more primitives waiting to be highlighted in more than just text.
+
+<TextHighlight />
