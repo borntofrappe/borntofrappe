@@ -1,0 +1,13 @@
+---
+title: Light custom elements
+description: Extend regular HTML nodes.
+date: 2024-05-14
+---
+
+```txt
+xxx  xx  xx x x
+x x x   x
+xxx xxx x   x x
+x x   x x   x x
+x x xx   xx x x
+```
