@@ -4,10 +4,25 @@ description: Extend regular HTML nodes.
 date: 2024-05-14
 ---
 
+<script>
+	import text from './text.js';
+</script>
+
 ```txt
-xxx  xx  xx x x
-x x x   x
-xxx xxx x   x x
-x x   x x   x x
-x x xx   xx x x
+  x   x
+ xxx xxx
+xxxxxxxxx
+xxxxxxxxx
+ xxxxxxx
+  xxxxx
+   xxx
+    x
 ```
+
+<figure class="[ center-frame ]">
+	<pre>{text.heart}</pre>
+</figure>
+
+<figure class="[ center-frame ]">
+	<pre>{text.rocket}</pre>
+</figure>
