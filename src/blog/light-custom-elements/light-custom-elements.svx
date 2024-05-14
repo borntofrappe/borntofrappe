@@ -6,6 +6,7 @@ date: 2024-05-14
 
 <script>
 	import text from './text.js';
+	import './grids.js';
 </script>
 
 ```txt
@@ -20,9 +21,30 @@ xxxxxxxxx
 ```
 
 <figure class="[ center-frame ]">
-	<pre>{text.heart}</pre>
+	<!-- svelte-ignore avoid-is -->
+	<pre is="top-down-grid">
+  x   x
+ xxx xxx
+xxxxxxxxx
+xxxxxxxxx
+ xxxxxxx
+  xxxxx
+   xxx
+    x</pre>
 </figure>
 
 <figure class="[ center-frame ]">
-	<pre>{text.rocket}</pre>
+	<!-- svelte-ignore avoid-is -->
+	<pre is="isometric-grid">
+  xxx          x x
+ xxxxx     x x  x
+  xx           x x
+ xxxx
+ xxxxxxx
+xxxxxxxxxx
+ xxxxxxx
+ xxxx
+  xx          x x
+ xxxxx    x x  x
+  xxx         x x</pre>
 </figure>
