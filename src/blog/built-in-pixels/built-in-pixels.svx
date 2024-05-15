@@ -1,6 +1,6 @@
 ---
-title: Light custom elements
-description: Extend regular HTML nodes.
+title: Built-in pixels
+description: Draw pixelated pictures with customized built-in elements.
 date: 2024-05-15T15:11:42
 ---
 
@@ -8,7 +8,7 @@ date: 2024-05-15T15:11:42
 	import './grids.js';
 </script>
 
-Just a few days ago I had a lark with custom elements and a repetitive writing style. [In the article](/words-fail) I leaned on a couple of pixelated graphics to give a welcomed break in the text, but in hindsight, the pictures are a perfect excuse to showcase custom elements, and their ability to extend the content already available in HTML.
+Just a few days ago I had a lark with custom elements and a repetitive writing style. [In the article](/words-fail) I leaned on a couple of pixelated graphics to give a welcomed break in the text, but in hindsight, the pictures are a perfect excuse to showcase custom elements, and their ability to extend HTML nodes with customized built-in elements.
 
 ## HTML elements
 
