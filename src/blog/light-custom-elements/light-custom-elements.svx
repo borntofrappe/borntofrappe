@@ -1,12 +1,18 @@
 ---
 title: Light custom elements
 description: Extend regular HTML nodes.
-date: 2024-05-14
+date: 2024-05-15T15:11:42
 ---
 
 <script>
 	import './grids.js';
 </script>
+
+Just a few days ago I had a lark with custom elements and a repetitive writing style. [In the article](/words-fail) I leaned on a couple of pixelated graphics to give a welcomed break in the text, but in hindsight, the pictures are a perfect excuse to showcase custom elements, and their ability to extend the content already available in HTML.
+
+## HTML elements
+
+The goal is to render a grid of cells in a specific configuration. In plain text we can create such a structure line by line, assigning the value of a cell to a specific character like `"x"`.
 
 ```txt
   x   x
@@ -18,6 +24,182 @@ xxxxxxxxx
    xxx
     x
 ```
+
+Add the text in an `.html` document, however, and the string is processed in a single line. The `pre` element is the solution, and the one way to preserve the space between the cells.
+
+<!-- prettier-ignore -->
+```html
+<pre>
+  x   x  
+ xxx xxx 
+xxxxxxxxx
+xxxxxxxxx
+ xxxxxxx 
+  xxxxx  
+   xxx   
+    x    </pre>
+```
+
+And truth being told, leads to a perfectly respectable result. With the element you have a rough idea of the figure, and you only need to change a few characters to create an entirely different picture. A solid base, in summation, which we can extend with the promised API.
+
+## Custom elements
+
+With the blessing of a script you have the option of defining your own made-up elements. Here you can literally extend the `pre` element with [the `is` attribute](/is-something-memorable).
+
+On one side, update the markup so that the attribute is set to a hyphenated word, a [valid name](/valid-entry) for a custom element.
+
+```diff
+-<pre>
++<pre is="svg-grid">
+```
+
+On the other side, in the script, let's begin the short but dense journey through the custom element process. Here again you have two key ingredients:
+
+1. a class, which in this instance extends the interface for the `pre` element and immediately calls a `super` function in the `constructor`
+
+   ```js
+   class SVGGrid extends HTMLPreElement {
+   	constructor() {
+   		super();
+   	}
+   }
+   ```
+
+   The setup is necessary to inherit the features and semantics of the standard node.
+
+2. a call to the `customElements` global and the `define` method
+
+   Here you want to link the name of the custom element to the class of your own creation. Since we are extending the `pre` element then, you need to add a third argument, highlighting the extended node.
+
+   ```js
+   customElements.define('svg-grid', SVGGrid, {
+   	extends: 'pre'
+   });
+   ```
+
+The result might not impress you: load the page and nothing changes. This is quite a good news — it means nothing breaks — and is only improved by the fact that the grid is marked-up in a `pre` element, _your_ `pre` element. With its own tag name and unfinished class. The only thing left is to remedy this last disappointment.
+
+## SVG elements
+
+The challenge is to now draw the pixelated grid with SVG. Specifically, in an `svg` element with a canvas described by the `viewBox` attribute.
+
+```html
+<svg viewBox="0 0 ? ?">
+	<!-- ... -->
+</svg>
+```
+
+And in the parent node, with rectangles 1 unit wide and tall.
+
+```html
+<g fill="currentColor">
+	<rect x="?" y="?" width="1" height="1" />
+	<rect x="?" y="?" width="1" height="1" />
+</g>
+```
+
+The task is to now fill in the gaps, to figure out the dimensions of the canvas and just where the rectangles should move. For this we need JavaScript, and we need a way to process the contents of the `pre` element, of the formatted string.
+
+In the constructor function `this` refers to the custom element, to the defined `pre`. `this.textContent` is therefore the key to access the string.
+
+```js
+const text = this.textContent;
+```
+
+Based on this value we can break down the text into a multi-dimensional array, a 2D array to describe the grid in rows and columns. For this we resort to the `split` function, twice.
+
+One time to separate the lines per the new line `"\n"` character.
+
+```js
+const grid = text.split('\n'); // ["  x   x  ", ...]
+```
+
+One time for each row to isolate the individual cells.
+
+<!-- prettier-ignore -->
+```js
+const grid = text
+  .split('\n')
+  .map((row) => row.split('')); // [[" ", " ", "x", ...], ...]
+```
+
+With this data structure we can already realize the dimensions of the canvas. For the width refer to the number of columns, the length of a line. For the height look at the number of rows, the length of the grid itself.
+
+```js
+const width = grid[0].length;
+const height = grid.length;
+```
+
+If you mark up the grid so that every line has the same length, you can pick the width with the length of any row, but with a bit of work you can even refine the approach, and look to the length of the longest segment instead.
+
+```js
+const width = Math.max(...grid.map((row) => row.length));
+```
+
+The first problem is therefore solved. We can set up the canvas by updating the contents of the custom element.
+
+```js
+this.innerHTML = `<svg viewBox="0 0 ${width} ${height}">
+  <g fill="currentColor">
+    <!-- ... -->
+  </g>
+</svg>`;
+```
+
+The second problem is within reach. You can add the rectangles looping through the large data structure directly, checking the value of the nested characters, but I find it convenient to create a different variable. An array storing only the coordinates for the necessary `"x"` values. In this way you loop through the simpler collection and add the shapes in the precise x, y coordinates.
+
+<!-- prettier-ignore -->
+```js
+// ... cells
+const rectangles = cells
+  .map(({ x, y }) => `<rect x="${x}" y="${y}" width="1" height="1" />`)
+  .join('')
+```
+
+For the coordinates, our large data structure comes back to help with indexes. Indeed, loop through the grid and the index for the rows gives growing y coordinate. Loop through the rows, then, and the index for the cells props the increment in the horizontal axis.
+
+```js
+const cells = grid.map((row, y) => {
+	return row.map((character, x) => {
+		// ...
+	});
+});
+```
+
+In this manner you can restructure the grid with an object and three keys: the two coordinates and the value of the single character.
+
+```js
+return {
+	x,
+	y,
+	character
+};
+```
+
+You still have a 2D array, but at this point, you can simplify the structure with the `flat` function. And, finally, filter the items to keep only the relevant keys.
+
+```js
+const cells = grid
+	.map((row, y) => {
+		// ...
+	})
+	.flat()
+	.filter((cell) => cell.character === 'x');
+```
+
+I am positive there are other ways to achieve the same goal, perhaps concise snippets with fancy `reduce` functions, but the code remains valid. And once you author the markup you can inject the rectangles to realize the shapes.
+
+```js
+this.innerHTML = `<svg viewBox="0 0 ${width} ${height}">
+  <g fill="currentColor">
+    ${rectangles}
+  </g>
+</svg>`;
+```
+
+Potentially.
+
+When JavaScript runs, if at all, and when the script registers the custom element. At this juncture, the string is effectively replaced by the crisp vector graphic.
 
 <figure class="[ center-frame ]">
 	<!-- svelte-ignore avoid-is -->
@@ -31,6 +213,8 @@ xxxxxxxxx
    xxx
     x</pre>
 </figure>
+
+A feat that is this time remarkable, so much so to demand more experimentation. A different string. Or, looking back at the pixelated pictures, a different point of view.
 
 <figure class="[ center-frame ]">
 	<!-- svelte-ignore avoid-is -->
