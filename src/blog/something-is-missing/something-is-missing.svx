@@ -4,6 +4,14 @@ description: Work around an unfortunate happenstance.
 date: 2024-05-16
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame">
+	{@html svg['custom-element-versions']}
+</figure>
+
 ```html
 <pre is="svg-grid"><!-- ... --></pre>
 ```
