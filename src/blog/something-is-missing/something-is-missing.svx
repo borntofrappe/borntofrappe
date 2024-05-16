@@ -6,11 +6,14 @@ date: 2024-05-16
 
 <script>
 	import svg from './svg.js';
+	import CustomElement from './CustomElement.svelte';
 </script>
 
 <figure class="center-frame">
 	{@html svg['custom-element-versions']}
 </figure>
+
+<CustomElement />
 
 ```html
 <pre is="svg-grid"><!-- ... --></pre>
