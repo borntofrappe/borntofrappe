@@ -1,0 +1,15 @@
+---
+title: Something is missing
+description: Work around an unfortunate happenstance.
+date: 2024-05-16
+---
+
+```html
+<pre is="svg-grid"><!-- ... --></pre>
+```
+
+```html
+<svg-grid>
+	<pre><!-- ... --></pre>
+</svg-grid>
+```
