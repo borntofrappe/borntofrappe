@@ -8,9 +8,9 @@ date: 2024-05-20T15:24:54
 	import PrivateCall from './PrivateCall.svelte';
 </script>
 
-When authoring custom elements [the specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance) suggests you should defer the practice to the `connectedCallback` lifecycle. This means you should complete the markup when the custom element is inserted in the DOM.
+When authoring custom elements [the specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance) suggests you should defer the practice to the `connectedCallback`. This means you should complete the markup when the custom element is inserted in the DOM.
 
-Do this and you avoid pesky issues when creating the node [with specific functions](/create-expectations). Do this, but be warned that the function may run more than once. When does this happen? How to cope with the unlikely scenario?
+Do this and you avoid pesky issues when creating the node [with particular functions](/create-expectations). Do this, but be warned that the function may run more than once. When does this happen? How to cope with the unlikely scenario?
 
 ## Repeat call
 
@@ -25,7 +25,7 @@ With the snippet the element is created and then added to the DOM. In the proces
 - `constructor`, where your first reflex should be to invoke the `super` function
 
   ```js
-  class PhoneCall extends HTMLElement() {
+  class PhoneCall extends HTMLElement {
   	constructor() {
   		super();
   	}
@@ -36,7 +36,7 @@ With the snippet the element is created and then added to the DOM. In the proces
 
 - `connectedCallback`, where you are advised to update the structure
 
-  You can, trivially, add an exclamation point after the existing text.
+  You can, rather trivially, include an exclamation point after the available text.
 
   ```js
   connectedCallback() {
@@ -53,7 +53,7 @@ Remove the custom element from the current document, and with a tinge of curiosi
 ```js
 const phoneCall = document.querySelector('phone-call');
 phoneCall.remove();
-// ...tut-tut
+// ...ring-ring
 document.body.appendChild(phoneCall);
 ```
 
@@ -61,7 +61,7 @@ In this instance the node is not created, but it is indeed inserted in the DOM f
 
 ## Render once
 
-To avoid updating the DOM more than once you ought to consider a safeguard, a test of some sort.
+To avoid updating the DOM more than once you ought to put up a safeguard, a test of some sort.
 
 You can study the existing DOM structure through the `this` keyword. The option is quite convenient for empty custom elements, where you can proceed once you are positive that the element doesn't have any children.
 
@@ -73,7 +73,7 @@ if (this.children.length === 0) {
 
 Populate the parent node and the callback function won't be triggered twice.
 
-The solution is however contingent on the specific structure. More intentionally, you can initialize a controlling variable in the `constructor` function.
+The solution is however contingent on the specific markup structure. More intentionally, you can initialize a controlling variable in the `constructor` function.
 
 ```js
 super();
@@ -97,7 +97,7 @@ phoneCall._render = false;
 
 Thankfully, there is a way to improve the logic with a more recent JavaScript feature: _private properties_. These are variables which are not exposed outside of the class, or at least unless you expose them yourself.
 
-You prefix the variable with a hash character in the class signature.
+Prefix the variable with a hash character in the class signature.
 
 ```js
 class PhoneCall extends HTMLElement {
@@ -106,7 +106,7 @@ class PhoneCall extends HTMLElement {
 }
 ```
 
-And use the value in the same toggle-like fashion.
+Use the value in the same toggle-like fashion.
 
 ```diff
 -if (this._render === false) {
@@ -116,6 +116,6 @@ And use the value in the same toggle-like fashion.
 +this.#render = true;
 ```
 
-And this time, be certain that the rendering logic and the text will receive their due emphasis.
+And this time, you can be certain that the rendering logic will receive the proper, one-time attention. The text which follows, the desired emphasis.
 
 <PrivateCall />
