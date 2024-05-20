@@ -1,0 +1,7 @@
+---
+title: Private call
+description: Try private properties to avoid repeat connections.
+date: 2024-05-20
+---
+
+Be warned of `connectedCallback` firing more than once.
