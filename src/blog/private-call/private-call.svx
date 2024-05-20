@@ -1,13 +1,121 @@
 ---
 title: Private call
 description: Try private properties to avoid repeat connections.
-date: 2024-05-20
+date: 2024-05-20T15:24:54
 ---
 
 <script>
 	import PrivateCall from './PrivateCall.svelte';
 </script>
 
-<PrivateCall />
+When authoring custom elements [the specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-element-conformance) suggests you should defer the practice to the `connectedCallback` lifecycle. This means you should complete the markup when the custom element is inserted in the DOM.
 
-Be warned of `connectedCallback` firing more than once.
+Do this and you avoid pesky issues when creating the node [with specific functions](/create-expectations). Do this, but be warned that the function may run more than once. When does this happen? How to cope with the unlikely scenario?
+
+## Repeat call
+
+Add a custom element in a document and the node goes through a series of milestones.
+
+```html
+<phone-call>Hello</phone-call>
+```
+
+With the snippet the element is created and then added to the DOM. In the process, the class associated with the custom element is able to interject, to consider the two events with [well-defined lifecycle methods](/lifecycle-call):
+
+- `constructor`, where your first reflex should be to invoke the `super` function
+
+  ```js
+  class PhoneCall extends HTMLElement() {
+  	constructor() {
+  		super();
+  	}
+  }
+  ```
+
+  In this manner the custom element starts off as an HTML element.
+
+- `connectedCallback`, where you are advised to update the structure
+
+  You can, trivially, add an exclamation point after the existing text.
+
+  ```js
+  connectedCallback() {
+  	this.innerHTML += "!";
+  }
+  ```
+
+Following this basic sequence the element is upgraded as soon as the browser ponders the script, and the text is completed with the expletive.
+
+There is nothing inherently wrong with the code, aside from being slightly forced. However, the few lines are brittle for a more practical reason.
+
+Remove the custom element from the current document, and with a tinge of curiosity, perhaps with a small delay, add the node back.
+
+```js
+const phoneCall = document.querySelector('phone-call');
+phoneCall.remove();
+// ...tut-tut
+document.body.appendChild(phoneCall);
+```
+
+In this instance the node is not created, but it is indeed inserted in the DOM for a second time. `connectedCallback` runs again, giving the content a superfluous character.
+
+## Render once
+
+To avoid updating the DOM more than once you ought to consider a safeguard, a test of some sort.
+
+You can study the existing DOM structure through the `this` keyword. The option is quite convenient for empty custom elements, where you can proceed once you are positive that the element doesn't have any children.
+
+```js
+if (this.children.length === 0) {
+	// ...
+}
+```
+
+Populate the parent node and the callback function won't be triggered twice.
+
+The solution is however contingent on the specific structure. More intentionally, you can initialize a controlling variable in the `constructor` function.
+
+```js
+super();
+this._render = false;
+```
+
+And use the boolean as a toggle, switching its value after the first successful connection.
+
+```js
+if (this._render === false) {
+	// ...
+	this._render = true;
+}
+```
+
+I prefixed the variable with an underscore character on purpose, to remark the field as something internal. That being said, the variable exists on every instance of the class. Nothing stops you from messing with the value from outside.
+
+```js
+phoneCall._render = false;
+```
+
+Thankfully, there is a way to improve the logic with a more recent JavaScript feature: _private properties_. These are variables which are not exposed outside of the class, or at least unless you expose them yourself.
+
+You prefix the variable with a hash character in the class signature.
+
+```js
+class PhoneCall extends HTMLElement {
+	#render = false;
+	// ...
+}
+```
+
+And use the value in the same toggle-like fashion.
+
+```diff
+-if (this._render === false) {
++if (this.#render === false) {
+
+-this._render = true;
++this.#render = true;
+```
+
+And this time, be certain that the rendering logic and the text will receive their due emphasis.
+
+<PrivateCall />
