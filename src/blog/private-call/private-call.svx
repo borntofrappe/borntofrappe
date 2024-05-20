@@ -4,4 +4,10 @@ description: Try private properties to avoid repeat connections.
 date: 2024-05-20
 ---
 
+<script>
+	import PrivateCall from './PrivateCall.svelte';
+</script>
+
+<PrivateCall />
+
 Be warned of `connectedCallback` firing more than once.
