@@ -1,7 +1,7 @@
 ---
-title: Math code
-description: Intro to MathML.
-date: 2024-05-08
+title: Math mark up
+description: An outside look into MathML syntax.
+date: 2024-05-22
 ---
 
 <script>
