@@ -1,11 +1,9 @@
 <script>
-	export let code = `<math>
-    <mi>C</mi>
-    <mo>=</mo>
-    <mn>2</mn>
-    <mi>&pi;</mi>
-    <mi>r</mi>
-</math>`;
+	export let code = `<mi>C</mi>
+<mo>=</mo>
+<mn>2</mn>
+<mi>&pi;</mi>
+<mi>r</mi>`;
 
 	let panels = ['output', 'input'];
 	let [panel] = panels;
@@ -15,15 +13,33 @@
 	};
 </script>
 
-<div class="repl">
-	<svg viewBox="-1.75 -1.75 15.5 3.5" preserveAspectRatio="xMinYMid">
-		<circle fill="hsl(3 100% 68%)" r="1.75" />
-		<circle fill="hsl(41 99% 60%)" cx="5.75" r="1.75" />
-		<circle fill="hsl(129 62% 49%)" cx="11.5" r="1.75" />
-	</svg>
+<article>
+	<header>
+		<svg width="3.1em" heigth="0.7em" viewBox="-1.75 -1.75 15.5 3.5">
+			<circle fill="hsl(3 100% 68%)" r="1.75" />
+			<circle fill="hsl(41 99% 60%)" cx="5.75" r="1.75" />
+			<circle fill="hsl(129 62% 49%)" cx="11.5" r="1.75" />
+		</svg>
+		<span>
+			<svg width="1em" height="1em" viewBox="-2.375 -2.375 4.75 4.75">
+				<g fill="none" stroke="currentColor">
+					<rect stroke-width="0.75" x="-2" y="-2" width="4" height="4" rx="0.5" />
+					<path
+						stroke-width="0.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M 0 -0.75 0 0.75 M -0.75 0 0.75 0"
+					/>
+				</g>
+			</svg>
+			MathML
+		</span>
+	</header>
 	<div data-panel={panel}>
 		<pre><code>{code}</code></pre>
-		<div>{@html code}</div>
+		<div>
+			<math xmlns="http://www.w3.org/1998/Math/MathML">{@html code}</math>
+		</div>
 	</div>
 	<button on:click={togglePanel} aria-pressed={panel === panels[1]}>
 		<svg width="1em" height="1em" viewBox="-2.5 -2.5 5 5">
@@ -39,7 +55,7 @@
 		</svg>
 		<span>Show code</span>
 	</button>
-</div>
+</article>
 
 <style>
 	[data-panel] {
@@ -56,8 +72,6 @@
 	[data-panel='input'] > pre {
 		visibility: visible;
 		opacity: 1;
-		overflow-x: auto;
-		transition: opacity 0.25s;
 	}
 
 	[data-panel='input'] > div {
@@ -73,41 +87,68 @@
 	[data-panel='output'] > div {
 		visibility: visible;
 		opacity: 1;
+	}
+
+	[data-panel='input'] > pre,
+	[data-panel='output'] > div {
 		transition: opacity 0.25s;
 	}
 
-	.repl {
-		color: hsl(0 0% 90%);
+	article {
+		color: hsl(0 0% 94%);
 		background: hsl(249 11% 12%);
 		max-inline-size: 50ch;
 		margin-inline: auto;
 		border-radius: 1rem;
 	}
 
-	.repl > svg {
-		box-sizing: border-box;
-		display: block;
-		block-size: 2.4rem;
-		inline-size: 100%;
+	header {
+		color: hsl(0 0% 94%);
 		background: hsl(249 8% 17%);
-		padding: 0.75rem;
+		padding: 0.75rem 1rem;
 		border-radius: inherit;
 		border-end-end-radius: 0;
 		border-end-start-radius: 0;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	header > svg {
+		display: block;
+		block-size: 1rem;
+		inline-size: auto;
+	}
+
+	header > span {
+		color: hsl(258 97% 74%);
+		font-family: monospace;
+		font-size: 1.1rem;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	header > span > svg {
+		color: hsl(0 0% 94%);
 	}
 
 	[data-panel] {
-		font-size: 1.1rem;
+		font-size: 1rem;
 		font-weight: 700;
 		padding: 0.5rem 1rem;
 	}
 
 	pre {
+		overflow-x: auto;
 		margin: 0;
 	}
 
 	code {
+		padding: 0;
 		font-family: monospace;
+		font-weight: 700;
 		color: inherit;
 		background: none;
 	}
@@ -126,7 +167,8 @@
 		border-start-end-radius: 0;
 		display: block;
 		margin-inline-start: auto;
-		transition: all 0.25s;
+		transition-property: color, background;
+		transition-duration: 0.25s;
 	}
 
 	button > svg {
