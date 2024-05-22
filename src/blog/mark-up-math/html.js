@@ -56,41 +56,31 @@ export default {
 <mn>2</mn>
 <mi>&pi;</mi>
 <mi>r</mi>`,
-	'mathml-fence': `<mo>[</mo>
-<mn>0</mn>
-<mo>,</mo>
-<mn>1</mn>
-<mo>)</mo>`,
-	'mathml-sqrt': `<mi>d</mi>
+	'mathml-sqrt': `<mi>c</mi>
 <mo>=</mo>
-<mn>l</mn>
 <msqrt>
-  <mn>2</mn>
+  <mi>a</mi>
+  <mo>+</mo>
+  <mi>b</mi>
 </msqrt>`,
-	'mathml-root': `<mi>c</mi>
+	'mathml-root': `<mi>x</mi>
 <mo>=</mo>
 <mroot>
   <mrow>
-    <mi>a</mi>
+    <mi>y</mi>
     <mo>+</mo>
-    <mi>b</mi>
+    <mn>3</mn>
   </mrow>
-  <mn>2</mn>
+  <mn>3</mn>
 </mroot>`,
 	'mathml-sup': `<msup>
-  <mi>c</mi>
-  <mn>2</mn>
+  <mi>x</mi>
+  <mn>3</mn>
 </msup>
 <mo>=</mo>
-<msup>
-  <mi>a</mi>
-  <mn>2</mn>
-</msup>
+<mi>y</mi>
 <mo>+</mo>
-<msup>
-  <mi>b</mi>
-  <mn>2</mn>
-</msup>`,
+<mi>3</mi>`,
 	'mathml-underover': `<munderover>
   <mn>&sum;</mn>
   <mrow>
@@ -111,5 +101,10 @@ export default {
     <mtd>1</mtd>
     <mtd>0</mtd>
   </mtr>
-</mtable>`
+</mtable>`,
+	'mathml-text': `<math display="block">
+  <mtext>
+    Q.E.D.
+  </mtext>
+</math>`
 };
