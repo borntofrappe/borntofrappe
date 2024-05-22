@@ -9,13 +9,7 @@ date: 2024-05-22T09:18:49
 	import REPL from './REPL.svelte';
 </script>
 
-Like SVG, MathML describes an XML language with a specific function. And just like SVG, it is possible to include the syntax in an HTML document to have an immediate result.
-
-<figure class="[ center-frame ]" data-size="small">
-	{@html html['mathml-calculator']}
-</figure>
-
-Not a crisp vector graphic, but an academic representation of mathematical concepts.
+Like SVG, MathML describes an XML language with a specific function. And just like SVG, it is possible to include the syntax in an HTML document to have an immediate result. Not a crisp vector graphic, but an academic representation of mathematical concepts.
 
 There is [a specification](https://www.w3.org/TR/MathML3/) devoted to the topic, and more than one element to learn, but the whole is quite understandable once you look at the syntax. And perhaps practice with a few examples.
 
@@ -105,5 +99,5 @@ One last example to close the discussion and loop back to the very beginning: _m
 Another reminder that the language lives in communion with HTML. And shares an affection with SVG to make something look pretty. Be it math or text.
 
 <figure class="[ center-frame ]" data-size="small">
-  {@html html["mathml-text"]}
+	{@html html['mathml-calculator']}
 </figure>

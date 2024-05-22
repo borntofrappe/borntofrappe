@@ -10,10 +10,10 @@ export default {
     <g transform="translate(4 5)">
         <g clip-path="url(#calculator-clip)">
             <use fill="hsl(249 11% 12%)" href="#calculator-display" />
-            <g fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)" stroke-width="0.1" stroke-linejoin="round" stroke-linecap="round" font-family="monospace" font-size="4" transform="translate(13 4.5)" text-anchor="middle" letter-spacing="0.1">
+            <g fill="hsl(0 0% 94%)" stroke="hsl(0 0% 94%)" stroke-width="0.2" stroke-linejoin="round" stroke-linecap="round" font-family="monospace" font-size="3.75" transform="translate(13 4.25)" text-anchor="middle">
                 <g>  
-                    <text>mathml</text>  
-                    <text x="-39">mathml</text>  
+                    <text>Q.E.D.</text>  
+                    <text x="-39">Q.E.D.</text>  
                     <animateTransform begin="calculatorKeys.begin" restart="whenNotActive" attributeName="transform" type="translate" to="39 0" dur="2s" />
                 </g>
             </g>
@@ -27,12 +27,12 @@ export default {
                 <rect fill="" x="18" width="8" height="17" rx="0.5" />
             </g>
             <g fill="hsl(0 0% 94%)">
-                <rect transform="translate(4 4.1)" x="-1.2" y="-0.4" width="2.4" height="0.8" rx="0.2" />
-                <g transform="translate(13 4.1)">
+                <rect transform="translate(13 4.1)" x="-1.2" y="-0.4" width="2.4" height="0.8" rx="0.2" />
+                <g transform="translate(4 13.1)">
                     <rect transform="rotate(45)" x="-1.9" y="-0.4" width="3.8" height="0.8" rx="0.2" />
                     <rect transform="rotate(-45)" x="-1.9" y="-0.4" width="3.8" height="0.8" rx="0.2" />
                 </g>
-                <g transform="translate(4 13.1)">
+                <g transform="translate(4 4.1)">
                     <rect x="-1.9" y="-0.4" width="3.8" height="0.8" rx="0.2" />
                     <rect transform="rotate(90)" x="-1.9" y="-0.4" width="3.8" height="0.8" rx="0.2" />
                 </g>
@@ -101,10 +101,5 @@ export default {
     <mtd>1</mtd>
     <mtd>0</mtd>
   </mtr>
-</mtable>`,
-	'mathml-text': `<math display="block">
-  <mtext>
-    Q.E.D.
-  </mtext>
-</math>`
+</mtable>`
 };
