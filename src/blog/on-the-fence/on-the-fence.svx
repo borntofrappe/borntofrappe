@@ -6,11 +6,14 @@ date: 2024-05-24
 
 <script>
 	import html from './html.js';
+	import MFenced from './MFenced.svelte';
 </script>
 
 <figure>
 	{@html html['mathml-operators']}
 </figure>
+
+<MFenced />
 
 ```html
 <math>
