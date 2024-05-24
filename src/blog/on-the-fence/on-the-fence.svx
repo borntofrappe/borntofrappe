@@ -1,0 +1,25 @@
+---
+title: On the fence
+description: MathML and JS assist.
+date: 2024-05-24
+---
+
+```html
+<math>
+	<mfenced>
+		<mn>3</mn>
+		<mn>0</mn>
+		<mn>1</mn>
+	</mfenced>
+</math>
+```
+
+```html
+<m-fenced>
+	<math>
+		<mn>3</mn>
+		<mn>0</mn>
+		<mn>1</mn>
+	</math>
+</m-fenced>
+```
