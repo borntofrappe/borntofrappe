@@ -4,6 +4,14 @@ description: MathML and JS assist.
 date: 2024-05-24
 ---
 
+<script>
+	import html from './html.js';
+</script>
+
+<figure>
+	{@html html['mathml-operators']}
+</figure>
+
 ```html
 <math>
 	<mfenced>
