@@ -31,7 +31,7 @@ This means that the numbers in the snippet mingle together in an undistinguishab
 
 Acknowledging the shortcomings of the syntax, it is possible to cope with the issue with a rather lengthy and cumbersome process. But ultimately, you can try to automate the sequence with a bit of logic.
 
-The idea is to get rid of the parent `mfenced` node and add the parenthesis, add the commas yourself.
+The idea is to get rid of the parent `mfenced` and add the parenthesis, add the commas yourself.
 
 The `mo` element, marking up operators, is the most fit for the job. One for the opening bracket, at the very beginning, and one for the closing match, at the very end. Plus, as many elements as the commas necessary to space out the values.
 
@@ -67,7 +67,7 @@ With the assistance of JavaScript you can replicate the feat inspecting the DOM.
 
 2. you can't just wrap the values in the `math` element
 
-   Just like SVG, MathML elements are not HTML elements, they are foreign nodes. And [as attested already](/short-on-custom-elements), custom elements don't reach the alien specs.
+   Like SVG, MathML elements are not HTML elements, they are foreign nodes. And [as attested already](/short-on-custom-elements), custom elements don't reach the alien specs.
 
    If you want to study the nodes, you'll therefore need to wrap the entire math block in the new container.
 
@@ -99,6 +99,6 @@ Once again, in theory. In practice you can try with `m-fenced`.
 </m-fenced>
 ```
 
-There's only one problem you may soon realize and that is that the solution relies on JavaScript. Without the script you will fall back to the same unpolished output. Well, there's no easy fix for this hiccup, but waiting for an alternative, and perhaps custom elements working on the server , I hope you'll appreciate the result still. And if JavaScript is already required, perhaps to inject the MathML syntax, you may have found a way to save a few keystrokes and spare a few nodes.
+There's only one problem you may soon realize and that is that the solution relies on JavaScript. Without the script you will fall back to the same unpolished output. Well, there's no easy fix for this hiccup, but waiting for an alternative, perhaps custom elements working on the server, I hope you'll appreciate the result still. And if JavaScript is already required, perhaps to inject the MathML syntax, you may have found a way to save a few keystrokes and spare a few nodes.
 
 <MFenced />
