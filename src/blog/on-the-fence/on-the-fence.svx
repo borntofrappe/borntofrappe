@@ -1,7 +1,7 @@
 ---
 title: On the fence
-description: MathML and JS assist.
-date: 2024-05-24
+description: Attempt a forlorn feature with MathML syntax and a small script.
+date: 2024-05-24T14:25:07
 ---
 
 <script>
@@ -9,28 +9,96 @@ date: 2024-05-24
 	import MFenced from './MFenced.svelte';
 </script>
 
+MathML refers to a markup language designed to present mathematical expressions with an academic look. The specification offers several elements, and if these are included in HTML they work to structure values into complex formulas [following a few rules](/mark-up-math). And, unfortunately, working around a few issues.
+
+## The promise
+
+Among the theoretical math-related elements you find `mfenced`. The node is set to wrap around two or more children and promises a simple, but useful feature: separate the nested values in a common container.
+
+```html
+<mfenced>
+	<mn>3</mn>
+	<mn>0</mn>
+	<mn>1</mn>
+</mfenced>
+```
+
+By default the children are fenced, delimited by round parenthesis. Furthermore, and always by default, they are separated with a comma. Or at least, they should be. [As MDN sadly reports](https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfenced) the element is deprecated and, aside from Safari, the compatibility table confirms the grim picture.
+
+This means that the numbers in the snippet mingle together in an undistinguishable mess. And more generally, you just can't trust the node.
+
+## The feature
+
+Acknowledging the shortcomings of the syntax, it is possible to cope with the issue with a rather lengthy and cumbersome process. But ultimately, you can try to automate the sequence with a bit of logic.
+
+The idea is to get rid of the parent `mfenced` node and add the parenthesis, add the commas yourself.
+
+The `mo` element, marking up operators, is the most fit for the job. One for the opening bracket, at the very beginning, and one for the closing match, at the very end. Plus, as many elements as the commas necessary to space out the values.
+
+```html
+<mo>(</mo>
+<mn>3</mn>
+<mo>,</mo>
+<mn>0</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo>)</mo>
+```
+
+The sequence is involved, but necessary to achieve the task.
+
 <figure>
 	{@html html['mathml-operators']}
 </figure>
 
-<MFenced />
+## The custom support
+
+With the assistance of JavaScript you can replicate the feat inspecting the DOM. And this is a perfect scenario for a custom element, to enhance the existing markup. Once you figure out how to insert the `mo` elements in the right place, "all" you need is to wrap the MathML syntax in the helper node. With a couple of things worth remembering:
+
+1. the custom element needs a hyphenated name to be valid
+
+   Rather cheekily, you can mock the inspiring `mfenced` tag name
+
+   ```html
+   <m-fenced>
+   	<!-- ... -->
+   </m-fenced>
+   ```
+
+2. you can't just wrap the values in the `math` element
+
+   Just like SVG, MathML elements are not HTML elements, they are foreign nodes. And [as attested already](/short-on-custom-elements), custom elements don't reach the alien specs.
+
+   If you want to study the nodes, you'll therefore need to wrap the entire math block in the new container.
+
+   ```html
+   <m-fenced>
+   	<math display="block">
+   		<mn>3</mn>
+   		<mn>0</mn>
+   		<mn>1</mn>
+   	</math>
+   </m-fenced>
+   ```
+
+I tried to create such an element, and I offer you the gist [with a quick link](https://gist.github.com/borntofrappe/45151a1385d4cc02ad980a32eed07168#file-m-fenced-js). I was so inspired by the possibility that I went even further, and attempted to replicate `mfenced` in all of its promising, promised features.
+
+Indeed with `mfenced` you can ask for different characters with the `open`, `close`, and `separators` attributes. This last one is particularly exciting as it gives the option of one or more characters, which are repeated in sequence.
 
 ```html
-<math>
-	<mfenced>
-		<mn>3</mn>
-		<mn>0</mn>
-		<mn>1</mn>
-	</mfenced>
-</math>
+<mfenced open="[" close="]" separators="-|">
+	<!-- ...math elements -->
+</mfenced>
 ```
 
+Once again, in theory. In practice you can try with `m-fenced`.
+
 ```html
-<m-fenced>
-	<math>
-		<mn>3</mn>
-		<mn>0</mn>
-		<mn>1</mn>
-	</math>
+<m-fenced open="[" close="]" separators="-|">
+	<!-- ...math -->
 </m-fenced>
 ```
+
+There's only one problem you may soon realize and that is that the solution relies on JavaScript. Without the script you will fall back to the same unpolished output. Well, there's no easy fix for this hiccup, but waiting for an alternative, and perhaps custom elements working on the server , I hope you'll appreciate the result still. And if JavaScript is already required, perhaps to inject the MathML syntax, you may have found a way to save a few keystrokes and spare a few nodes.
+
+<MFenced />
