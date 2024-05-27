@@ -4,8 +4,14 @@ description: MathML and CSS.
 date: 2024-05-27
 ---
 
+<script>
+	import Calculator from './Calculator.svelte';
+</script>
+
 ```css
 math {
-    math-style: compact;
+	math-style: compact;
 }
 ```
+
+<Calculator />
