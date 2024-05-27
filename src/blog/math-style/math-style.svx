@@ -1,0 +1,11 @@
+---
+title: Math style
+description: MathML and CSS.
+date: 2024-05-27
+---
+
+```css
+math {
+    math-style: compact;
+}
+```
