@@ -54,8 +54,8 @@ You can target the elements individually.
 
 ```css
 mi {
-	color: white;
-	background-color: black;
+	color: hsl(0 0% 99%);
+	background-color: hsl(20 90% 50%);
 }
 ```
 
@@ -63,8 +63,8 @@ Or walk up the document tree, considering `mstyle` elements and even the parent 
 
 ```css
 math {
-	color: white;
-	background-color: black;
+	color: hsl(0 0% 20%);
+	background-color: hsl(0 0% 99%);
 }
 ```
 
@@ -73,7 +73,7 @@ Extending the logic further, you can set the colors, and even more properties in
 ```css
 body {
 	font-size: 1.2rem;
-	font-family: monospace;
+	font-family: monospace; /* ✘ not safe for math */
 }
 ```
 
@@ -92,7 +92,7 @@ If you want a different style, you therefore need the specific instruction in yo
 
 ```css
 math {
-	font-family: monospace;
+	font-family: monospace; /* ✔ math proofed */
 }
 ```
 
