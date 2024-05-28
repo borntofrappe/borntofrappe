@@ -11,7 +11,7 @@ date: 2024-05-28T11:45:22
 What SVG is for vectors MathML is for math: an XML language which receives as input a series of known brackets and produces a clear output.
 
 ```html
-<math>
+<math display="block">
 	<mi>x</mi>
 	<mo>=</mo>
 	<mn>2</mn>
@@ -68,7 +68,7 @@ math {
 }
 ```
 
-Extending the logic further, you can set the colors, and even more properties in the larger scope. The instructions ripple in a similar manner, but be warned: properties such as `font-size` change the dimensions of the text, but others like `font-family` won't have the same success.
+Extending the logic further, you can set the colors and even more properties higher and higher. The instructions ripple in a similar manner, but be warned: properties such as `font-size` are effective, but others like `font-family` won't have the same success.
 
 ```css
 body {
@@ -77,18 +77,17 @@ body {
 }
 ```
 
-The reason? The same reason the output looks different, almost professional, right out of the box. Web browsers set a few properties on the [top-level `math` element](https://w3c.github.io/mathml-core/#the-top-level-math-element). In the specific instance of the family, the assumption is that the expressions require a different font face, one suited for the particular task.
+The reason? The same reason the output looks different, almost professional, right out of the box. Web browsers set a few properties on the [top-level `math` element](https://w3c.github.io/mathml-core/#the-top-level-math-element). For the font family, the assumption is that the expressions require a custom type, one suited for the particular task.
 
 ```css
 /* user-agent styles */
 math {
 	/* ... */
 	font-family: math;
-	font-size: inherit;
 }
 ```
 
-If you want a different style, you therefore need the specific instruction in your stylesheet.
+If you want a different font, you therefore need the specific instruction in your stylesheet.
 
 ```css
 math {
@@ -96,6 +95,14 @@ math {
 }
 ```
 
-Accepting this tidbit, you have free reign over the style, trusting in the supported tech. You can rely on any CSS property designed for HTML and even a few meant just for math, like `math-style`. With the property you have a way to alternate between a normal and compact picture. This last one minimizes the logical height and is perhaps safer for simpler formulas, with just a few values. When the math grows in complexity, just like you benefit from the more powerful styling option, you will benefit from a larger detailed display.
+Accepting this tidbit, you have free reign over the style. You can rely on CSS for every property designed for HTML and even a few meant for the foreign language, like `math-style`. Rather fittingly, you can lean on the property to render the overall math in a normal or compact figure. This last one minimizes the logical height, so is perhaps safer for simple formulas, with only a handful of values.
+
+```css
+math {
+	math-style: compact;
+}
+```
+
+When the math grows in complexity, just like you benefit from the more powerful styling option, you will benefit from a larger, detailed display.
 
 <Calculator />
