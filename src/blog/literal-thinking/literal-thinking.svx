@@ -3,3 +3,11 @@ title: Literal thinking
 description: Hint hint.
 date: 2024-05-30
 ---
+
+<script>
+	import LiteralText from './LiteralText.svelte';
+</script>
+
+<figure>
+	<LiteralText />
+</figure>
