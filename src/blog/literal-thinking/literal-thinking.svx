@@ -1,11 +1,116 @@
 ---
 title: Literal thinking
-description: Hint hint.
-date: 2024-05-30
+description: Ease into higher functions and a small abstraction layer.
+date: 2024-05-30T21:36:37
 ---
 
 <script>
 	import LitLibs from './LitLibs.svelte';
 </script>
+
+In JavaScript, _template literals_ offer a few interesting features. With just a pair of backtick `` ` `` characters you can type text on multiple lines.
+
+```js
+`
+xxxoo
+xxxox
+xxoox
+oooox
+oooox
+oxxox
+`;
+```
+
+With a specific sequence including a question mark and curly braces you can mix words and logic, words and expressions.
+
+```js
+`this code is ${adjective}`; // this code is self-serving
+```
+
+And there is one more formula with powerful implications in the form of custom functions. These preface a backtick-limited string and let you consider the content directly. The output, then, is of your making.
+
+```js
+markup`this code is ${adjective}`; // ???
+```
+
+The functions themselves have a few inputs. Immediately, an array for the hard-coded text, the letters outside of the JavaScript code. An array to consider the fact that the text might be interrupted by one or more expressions. The expressions, then, are available as additional arguments; the second, the third, and as many as there are curly braces.
+
+```js
+function markup(strings, expression) {
+	// strings: [ "this code is ", "" ]
+	// expression: "curious"
+}
+```
+
+So what is the output? That depends on the value returned by the function.
+
+```js
+markup`this code is ${adjective}`; // undefined
+```
+
+As a proof of concept you can return something completely unrelated, replacing the entire string. Or, toy around with word order.
+
+```js
+function markup(strings, expression) {
+	return `${expression} ${strings.join('')}`;
+}
+```
+
+But, more intentionally, you can structure the string to give the JavaScript code a particular meaning. The biggest challenge is to concatenate the text and expressions, since on one side you have an array and on the other a series of one-off variables. But another feature comes to the rescue: the _rest operator_. Three dots which let you collect all the variables in the same container.
+
+```js
+function markup(strings, ...expressions) {
+	// strings: [ "This code is ", "" ]
+	// expressions: ["promising"]
+}
+```
+
+With the two similar data structures the process is quite simpler: loop through the first collection and use the index to include an item from the second. What luck, you can rely on backticks once more to concatenate the two values.
+
+<!-- prettier-ignore -->
+```js
+function markup(strings, ...expressions) {
+	const parts = strings
+		.map((string, i) => `${string}${expressions[i]}`);
+}
+```
+
+Just be careful that you will always have one less expression than you have strings, and stretching past the end of the array, you will close the line with a compromising `undefined`. As it's often the case you can deal with the issue in a number of ways:
+
+- you can compare the index with the length of the array, so to exclude the very last item
+
+- you can check the existence of the item in the second list
+
+You can even keep the additional item and discard the value before moving on.
+
+<!-- prettier-ignore -->
+```js
+const parts = strings
+	.map((string, i) => `${string}${expressions[i]}`)
+	.slice(0, -1);
+```
+
+Without the superfluous value you can finally join the result and return the string in one single line.
+
+```js
+return parts.join('');
+```
+
+At this point you have done little but re-creating the original string, but you've gained in knowledge and one powerful setup. 
+
+```js
+markup`this code is ${adjective}`; // this code is quite elaborate
+```
+
+Should you want to elevate the input expression, perhaps to mark the injected values in some special element, you now know one way.
+
+<!-- prettier-ignore -->
+```js
+const parts = strings
+	.map((string, i) => `${string}<mark>${expressions[i]}</mark>`)
+	.slice(0, -1);
+```
+
+You may not want to push yourself further to develop a full-blown templating engine, but maybe the effort will be enough to make you appreciate the tagging feature. For the next time you manage strings or encounter the syntax in a useful library.
 
 <LitLibs />
