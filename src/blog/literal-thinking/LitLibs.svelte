@@ -8,7 +8,7 @@
 	};
 
 	let tool = 'lit';
-	let action = 'simplify';
+	let action = 'develop';
 	let project = 'web components';
 </script>
 
@@ -36,7 +36,7 @@
 	<p>
 		Thinly-veiled hint:
 		<output>
-			{@html markup`I'm considering ${tool} to ${action} ${project}.`}
+			{@html markup`I'm considering using ${tool}. It's not the only option to ${action} something, but for ${project} I think it's a great choice.`}
 		</output>
 	</p>
 </div>
