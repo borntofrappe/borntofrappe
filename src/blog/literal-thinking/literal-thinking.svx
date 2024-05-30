@@ -5,9 +5,7 @@ date: 2024-05-30
 ---
 
 <script>
-	import LiteralText from './LiteralText.svelte';
+	import LitLibs from './LitLibs.svelte';
 </script>
 
-<figure>
-	<LiteralText />
-</figure>
+<LitLibs />
