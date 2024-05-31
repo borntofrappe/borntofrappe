@@ -1,0 +1,32 @@
+---
+title: Presentational mixup
+description: A short story about SVG attributes and CSS properties, be them custom or specific in nature.
+date: 2024-05-31T21:20:36
+---
+
+This is a relatively sad story. The tale of a `path` element who dared to color itself with the `fill` attribute, but to be courteous, gave space to a custom property.
+
+```html
+<path
+	fill="var(--custom-fill, currentColor)"
+	d="M 1 7 0 7 A 7 7 0 0 1 0 -7 A 7 7 0 0 1 7 0 C 7 5 3 8 1 8.5 Z"
+/>
+```
+
+At any point in the parent scope, any element can set the value to have the color navigate and flow to the relevant node.
+
+```css
+svg {
+	--custom-fill: hsl(206 96% 72%);
+}
+```
+
+Enter a sneaky figure, a malinformed character who decides that the vector needs styling, and a stylesheet is the proper way to update its features. _"Just point to the node and update the `fill`, there is certainly a property in the CSS spec."_
+
+```css
+path {
+	fill: hsl(187 74% 65%);
+}
+```
+
+The code works, but alas the chain is now broken. So let this be a lesson, for SVG attributes are presentational in nature. and CSS properties will always come first. And for this time specificity comes before the cascade.
