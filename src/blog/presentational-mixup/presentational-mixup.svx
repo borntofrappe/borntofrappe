@@ -4,6 +4,10 @@ description: A short story about SVG attributes and CSS properties, be them cust
 date: 2024-05-31T21:20:36
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 This is a relatively sad story. The tale of a `path` element who dared to color itself with the `fill` attribute, but to be courteous, gave space to a custom property.
 
 ```html
@@ -30,3 +34,7 @@ path {
 ```
 
 The code works, but alas the chain is now broken. So let this be a lesson, for SVG attributes are presentational in nature. and CSS properties will always come first. And for this time specificity comes before the cascade.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['scss-cubes']}
+</figure>
