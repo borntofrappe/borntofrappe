@@ -8,14 +8,14 @@
 	};
 
 	let tool = 'lit';
-	let action = 'develop';
+	let action = 'build';
 	let project = 'web components';
 </script>
 
 <div>
-	<figure>
+	<h2>
 		<LiteralText validName="lit-libs" />
-	</figure>
+	</h2>
 
 	<fieldset>
 		<legend class="visually-hidden">Choose a...</legend>
@@ -61,7 +61,7 @@
 		--outline-color: hsl(210 50% 70%);
 	}
 
-	figure {
+	h2 {
 		--text-color: var(--highlight-color);
 		--text-background: var(--highlight-background);
 		--mark-color: var(--outline-color);
@@ -70,7 +70,7 @@
 
 	div {
 		box-sizing: border-box;
-		max-inline-size: 60ch;
+		max-inline-size: 50ch;
 		margin-inline: auto;
 		padding: 1rem;
 		color: var(--main-color);
@@ -85,7 +85,7 @@
 		margin-block-start: 1.5rem;
 	}
 
-	figure {
+	h2 {
 		margin: 0;
 		max-inline-size: 16rem;
 		margin-inline: auto;
