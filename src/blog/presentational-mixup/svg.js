@@ -9,7 +9,7 @@ export default {
             </g>
         </g>
         <pattern id="c-pattern" viewBox="-0.4 -0.4 1.8 1.8" patternUnits="userSpaceOnUse" width="1" height="1">
-            <g fill="none" stroke="hsl(185 84% 88%)" stroke-width="0.1">
+            <g fill="none" stroke="hsl(187 69% 55%)" stroke-width="0.1">
             <path>
                 <animate attributeName="d" dur="9s" begin="6s" repeatCount="indefinite" values="M 0.5 0.875 L 0.5 0.875; M 0.5 0.875 L 0.5 0.875; M 0.5 0.875 L 0.5 0.875; M 0.5 0.875 L 0.5 0.975; M 0.5 0.975 L 0.5 0.975; M 0.5 0.975 L 0.5 0.975" />
             </path>
@@ -22,7 +22,7 @@ export default {
             </g>
         </pattern>
         <pattern id="c-pattern-1" viewBox="-0.4 -0.4 1.8 1.8" patternUnits="userSpaceOnUse" width="1" height="1">
-            <g fill="none" stroke="hsl(185 84% 88%)" stroke-width="0.1">
+            <g fill="none" stroke="hsl(187 69% 55%)" stroke-width="0.1">
                 <path>
                     <animate attributeName="d" dur="9s" begin="6s" repeatCount="indefinite" values="M 0.4 0.875 L 0.4 0.875; M 0.4 0.875 L 0.4 0.875; M 0.4 0.875 L 0.6 0.975; M 0.6 0.975 L 0.6 0.975; M 0.6 0.975 L 0.6 0.975; M 0.6 0.975 L 0.6 0.975" />
                 </path>
@@ -71,7 +71,7 @@ export default {
             <path d="M 3 1.25 12 -3.25 12 0.75 3 5.25 Z" />
             <path d="M 0 -0.25 3 1.25 3 5.25 0 3.75 Z" />
         </g>
-        <g fill="none" stroke="hsl(185 84% 88%)" stroke-width="0.05" stroke-linecap="round" stroke-linejoin="round">
+        <g fill="none" stroke="hsl(187 69% 55%)" stroke-width="0.05" stroke-linecap="round" stroke-linejoin="round">
             <path d="M 0 -0.25 3 1.25 12 -3.25 9 -4.75 Z" />
             <path d="M 3 1.25 12 -3.25 12 0.75 3 5.25 Z" />
             <path d="M 0 -0.25 3 1.25 3 5.25 0 3.75 Z" />
