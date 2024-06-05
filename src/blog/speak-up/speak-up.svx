@@ -1,5 +1,5 @@
 ---
-title: text-to-speech
+title: Speak up
 description: Voice a few words and a custom element with potential.
 date: 2024-06-05T13:33:06
 ---
