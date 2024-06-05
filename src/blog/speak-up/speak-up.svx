@@ -1,6 +1,6 @@
 ---
 title: Speak up
-description: Voice a few words and a custom element with potential.
+description: Voice a few words and a custom element with some potential.
 date: 2024-06-05T13:33:06
 ---
 
@@ -25,13 +25,13 @@ In an `.html` document you may not see a difference, but this is quite welcome; 
 
 Next to the word up pops a button with a succinct label and a hopefully clear call-to-action. Press the button and the feat is complete: the text is read out loud.
 
-An intriguing and delightful experience. And in truth, an experience which was easier to prototype than drawing a picture to go with the release.
+An intriguing and delightful experience. And in truth, an experience which was easier to prototype than the picture to go with the release.
 
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['chirp-scribble']}
 </figure>
 
-Behind the scenes, the script adds the trigger and the hand-crafted icon. Following a click event it leans on the [speech synthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis), an interface available in modern browsers to utter the text.
+Behind the scenes, the script adds the trigger and the hand-crafted icon. Following a click event it leans on the [speech synthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis), an interface available in modern browsers to expressly utter the text.
 
 ## What can you do
 
@@ -55,7 +55,7 @@ text-to-speech {
 }
 ```
 
-There is a button encapsulated in the often dreaded shadow DOM but the element is exposed with the `part` attribute, and thus available with [the proper selector](/pseudo-control).
+There is a button encapsulated in the oft dreaded shadow DOM but the element is exposed with the `part` attribute, and thus available with [the proper selector](/pseudo-control).
 
 ```css
 ::part(tts-button) {
