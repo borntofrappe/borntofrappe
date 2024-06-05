@@ -1,7 +1,7 @@
 ---
 title: text-to-speech
-description: Voice a few words and a precious custom element.
-date: 2024-06-05
+description: Voice a few words and a custom element with potential.
+date: 2024-06-05T13:33:06
 ---
 
 <script>
@@ -9,14 +9,82 @@ date: 2024-06-05
 	import svg from './svg.js';
 </script>
 
+Custom elements may need [an introduction](/building-web-blocks#custom-elements), but perhaps even more they need a showcase, a demonstration of the great potential. You don't have to look hard, however, there is more than one instance in which the syntax shines through. And if you give me some time you won't even need to trust your eyes only. With an example, a custom element named [`text-to-speech`](https://github.com/borntofrappe/text-to-speech).
+
+## What it does
+
+The promise of the custom element is quite easy to grasp: add text between the tags framing the node.
+
+```html
+<text-to-speech>Chirp</text-to-speech>
+```
+
+That's it.
+
+In an `.html` document you may not see a difference, but this is quite welcome; the content is still available and served as plain text. That being said, if [a script](https://github.com/borntofrappe/text-to-speech/blob/main/text-to-speech.js) runs and defines the custom structure with a class, the node is upgraded.
+
+Next to the word up pops a button with a succinct label and a hopefully clear call-to-action. Press the button and the feat is complete: the text is read out loud.
+
+An intriguing and delightful experience. And in truth, an experience which was easier to prototype than drawing a picture to go with the release.
+
 <figure class="[ center-frame ]" data-size="medium">
 	{@html svg['chirp-scribble']}
 </figure>
 
-A modern <text-to-speech speech="Application programming interface">API</text-to-speech> and the key technologies empowering the world wide web:
+Behind the scenes, the script adds the trigger and the hand-crafted icon. Following a click event it leans on the [speech synthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis), an interface available in modern browsers to utter the text.
 
-- <text-to-speech speech="Hyper Text Markup Language">HTML</text-to-speech>
+## What can you do
 
-- <text-to-speech speech="Cascading Style Sheets">CSS</text-to-speech>
+As shown already, you can add text in the set of tags, to enhance the prose.
 
-- <text-to-speech speech="JavaScript">JS</text-to-speech>
+```html
+<p>A charming bird greeted my day: <text-to-speech>chirp chirp</text-to-speech></p>
+```
+
+You can also detail a string in the `speech` attribute. This one supersedes the nested text and is quite useful to spell something different, perhaps an expansion to an abbreviation.
+
+```html
+<text-to-speech speech="Application Programming Interface">API</text-to-speech>
+```
+
+In terms of style you can target the element directly. The script makes no assumption for the input text.
+
+```css
+text-to-speech {
+	font-weight: 700;
+}
+```
+
+There is a button encapsulated in the often dreaded shadow DOM but the element is exposed with the `part` attribute, and thus available with [the proper selector](/pseudo-control).
+
+```css
+::part(tts-button) {
+	color: var(--color-accent);
+}
+```
+
+Once again, you have control.
+
+## What could you do
+
+Being a proof-of-concept, the custom element is primed for additional features. Exploring the speech synthesis interface you could improve the result by pondering the available options, such as `rate` and `pitch` to regulate the speed and the tone of the voice. You could modify the class to receive either value with an attribute set on the node.
+
+```html
+<text-to-speech rate="1.25" pitch="1.1" speech="...">
+	<!-- ... -->
+</text-to-speech>
+```
+
+The same specification offers a method to consider more voices in place of the default one, so you could consider that option as well.
+
+Moving on to the style, you could replace the icon with that of a microphone or a lyrical bird. You could add some sort of feedback for when the button is pressed.
+
+With regards to the button and the interaction you may want to react to the click event on the entire custom element, expanding the button to cover the letters. But be warned that this will make it more challenging to select and copy the text.
+
+There are trade-offs and important design decisions you will need to consider. The same decisions you would need to make building the component with a framework, but with the advantage of using standard technologies built-in the world wide web:
+
+- <text-to-speech speech="Hyper Text Markup Language" rate="1.25" pitch="1.1">HTML</text-to-speech>
+
+- <text-to-speech speech="Cascading Style Sheets" rate="1.25" pitch="1.1">CSS</text-to-speech>
+
+- <text-to-speech speech="JavaScript" rate="1.25" pitch="1.1">JS</text-to-speech>
