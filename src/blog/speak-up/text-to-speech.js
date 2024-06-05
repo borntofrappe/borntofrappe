@@ -47,8 +47,13 @@ if (browser && customElements && !customElements.get('text-to-speech') && speech
 		connectedCallback() {
 			this.shadowRoot.querySelector('button').addEventListener('click', () => {
 				const text = this.getAttribute('speech') || this.innerText;
+				const rate = +this.getAttribute('rate') || 1;
+				const pitch = +this.getAttribute('pitch') || 1;
+				const utterance = new SpeechSynthesisUtterance(text);
+				utterance.rate = rate;
+				utterance.pitch = pitch;
 				speechSynthesis.cancel();
-				speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+				speechSynthesis.speak(utterance);
 			});
 		}
 	}
