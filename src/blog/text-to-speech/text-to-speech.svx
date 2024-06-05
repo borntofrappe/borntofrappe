@@ -1,12 +1,17 @@
 ---
 title: text-to-speech
-description: Voice a few words and another reason to appreciate custom elements.
-date: 2024-06-04
+description: Voice a few words and a precious custom element.
+date: 2024-06-05
 ---
 
 <script>
 	import './text-to-speech.js';
+	import svg from './svg.js';
 </script>
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['chirp-scribble']}
+</figure>
 
 A modern <text-to-speech speech="Application programming interface">API</text-to-speech> and the key technologies empowering the world wide web:
 
