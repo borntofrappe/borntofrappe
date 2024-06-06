@@ -9,7 +9,7 @@ date: 2024-06-05T13:33:06
 	import svg from './svg.js';
 </script>
 
-Custom elements may need [an introduction](/building-web-blocks#custom-elements), but perhaps even more they need a showcase, a demonstration of the great potential. You don't have to look hard, however, there is more than one instance in which the syntax shines through. And if you give me some time you won't even need to trust your eyes only. With an example, a custom element named [`text-to-speech`](https://github.com/borntofrappe/text-to-speech).
+Custom elements may need [an introduction](/building-web-blocks#custom-elements), but perhaps even more they need a showcase, a demonstration of the great potential. You don't have to look hard, however, there is more than one instance in which the syntax shines through. And if you give me some time you won't even need to trust your eyes only. With an example, a custom element named [`text-to-speech`](https://github.com/borntofrappe/web-components/tree/main?tab=readme-ov-file#text-to-speech).
 
 ## What it does
 
@@ -21,7 +21,7 @@ The promise of the custom element is quite easy to grasp: add text between the t
 
 That's it.
 
-In an `.html` document you may not see a difference, but this is quite welcome; the content is still available and served as plain text. That being said, if [a script](https://github.com/borntofrappe/text-to-speech/blob/main/text-to-speech.js) runs and defines the custom structure with a class, the node is upgraded.
+In an `.html` document you may not see a difference, but this is quite welcome; the content is still available and served as plain text. That being said, if [the script](https://github.com/borntofrappe/web-components/blob/main/text-to-speech/text-to-speech.js) runs and defines the custom structure with a class, the node is upgraded.
 
 Next to the word up pops a button with a succinct label and a hopefully clear call-to-action. Press the button and the feat is complete: the text is read out loud.
 
