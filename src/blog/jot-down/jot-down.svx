@@ -1,0 +1,9 @@
+---
+title: Jot down
+description: Type letters caring little how.
+date: 2024-06-07
+---
+
+```html
+<typewriter-effect>is production ready</typewriter-effect>
+```
