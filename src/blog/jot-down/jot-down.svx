@@ -4,6 +4,12 @@ description: Type letters caring little how.
 date: 2024-06-07
 ---
 
+<script>
+  import "./typewriter-effect.js";
+</script>
+
 ```html
 <typewriter-effect>is production ready</typewriter-effect>
 ```
+
+<typewriter-effect>is production ready</typewriter-effect>
