@@ -6,13 +6,13 @@
 	<code>
 		sqlite&gt;
 		<!-- prettier-ignore -->
-		<typewriter-effect 
-            separator="|"
-            rate="120"
-            pause="3500"
-            lines='SELECT "title" FROM "books" ORDER BY "pages" LIMIT 5;|SELECT "name" FROM "students" WHERE "grade" >= 4.0;|SELECT ROUND(AVG("rating"), 2) FROM "movies";'>
-            SELECT "title", "genre" FROM "games";
-        </typewriter-effect>
+		<typewriter-effect
+			lines='SELECT "title" FROM "books" ORDER BY "pages" LIMIT 5;|SELECT "name" FROM "students" WHERE "grade" >= 4.0;|SELECT ROUND(AVG("rating"), 2) FROM "movies";'
+			separator="|" 
+			rate="3" 
+			pause="3500">
+			SELECT "title", "genre" FROM "games";
+		</typewriter-effect>
 	</code>
 </div>
 
