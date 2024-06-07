@@ -11,29 +11,32 @@ if (browser && customElements && !customElements.get('typewriter-effect')) {
 			this.timeoutID = null;
 
 			const separator = this.getAttribute('separator') || '.';
+			const rate = +this.getAttribute('rate') || 5;
+			const delay = +this.getAttribute('delay') || 3000;
+
 			let text = this.textContent.trim();
 			if (this.hasAttribute('lines')) {
 				text += `${separator}${this.getAttribute('lines')}`;
 			}
+
 			const textContents = text.split(separator);
-
-			const rate = +this.getAttribute('rate') || 100;
-			const delay = +this.getAttribute('pause') || 3000;
-
-			let direction = -1;
-			let counter = direction === 1 ? 0 : rate;
 			let index = 0;
 			let textContent = textContents[index];
+			let threshold = textContent.length * rate;
+
+			let direction = -1;
+			let counter = direction === 1 ? 0 : threshold;
 
 			const animate = () => {
 				counter += direction;
-				const i = Math.floor((counter / rate) * textContent.length);
+				const i = Math.floor((counter / threshold) * textContent.length);
 				this.textContent = textContent.slice(0, i);
-				if (counter === rate || counter === 0) {
+				if (counter === 0 || counter === threshold) {
 					direction *= -1;
 					if (direction === 1) {
 						index = (index + 1) % textContents.length;
 						textContent = textContents[index];
+						threshold = textContent.length * rate;
 						this.requestID = requestAnimationFrame(animate);
 					} else {
 						cancelAnimationFrame(this.requestID);
