@@ -5,11 +5,11 @@ date: 2024-06-07
 ---
 
 <script>
-  import "./typewriter-effect.js";
+  import SQLPrompt from "./SQLPrompt.svelte";
 </script>
 
 ```html
 <typewriter-effect>is production ready</typewriter-effect>
 ```
 
-<typewriter-effect>is production ready</typewriter-effect>
+<SQLPrompt />
