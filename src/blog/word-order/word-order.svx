@@ -4,10 +4,10 @@ description: Musings on pet-peeves and SQLite concerns.
 date: 2024-06-11
 ---
 
-```js
-import { LitElement, html } from 'lit';
-```
+<script>
+	import ChildSwap from './ChildSwap.svelte';
+</script>
 
-```sql
-DELETE FROM "users" WHERE "name" = 'deleted';
-```
+<ChildSwap childrenText={['import { LitElement, html }', "from 'lit'"]} />
+
+<ChildSwap childrenText={['DELETE FROM "users"', ' WHERE "name" = "deleted"', ';']} />
