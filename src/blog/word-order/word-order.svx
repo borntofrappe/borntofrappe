@@ -1,0 +1,13 @@
+---
+title: Word order
+description: Musings on pet-peeves and SQLite concerns.
+date: 2024-06-11
+---
+
+```js
+import { LitElement, html } from 'lit';
+```
+
+```sql
+DELETE FROM "users" WHERE "name" = 'deleted';
+```
