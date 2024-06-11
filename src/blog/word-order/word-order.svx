@@ -5,8 +5,13 @@ date: 2024-06-11
 ---
 
 <script>
+	import svg from './svg.js';
 	import ChildSwap from './ChildSwap.svelte';
 </script>
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['road-sign']}
+</figure>
 
 <ChildSwap childrenText={['import { LitElement, html }', "from 'lit'"]} />
 
