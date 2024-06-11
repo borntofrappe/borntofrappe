@@ -25,4 +25,4 @@ The second line has wild implications and relates to SQL commands. Among the pos
 
 <ChildSwap childrenText={['DELETE FROM "users"', 'WHERE "name" = \'deleted\'', ';']} />
 
-Most assuredly, there is a reason for both lines of code, the vestige of a long and thoughtful process, but it might be conducive to ponder the order, the syntax for code to come. And perhaps suggest a more active participation in shaping new standards, so that when the time comes, people won't have to complain about amusing sequences and complex CSS selectors. At least not too much.
+Most assuredly, there is a reason for both lines, the vestige of a long and thoughtful process, but it might be conducive to ponder the order, the syntax for code to come. And perhaps suggest a more active participation in shaping new standards, so that when the time comes, people won't need to complain about amusing sequences and `view-transition` selectors. At least not too much.
