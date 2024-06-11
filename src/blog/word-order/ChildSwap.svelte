@@ -81,7 +81,7 @@
 		border: 0.1rem solid currentColor;
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.5rem;
-        transition: scale 0.1s;
+        transition: scale 0.1s ease-out;
 	}
 
 	button:disabled {
@@ -90,6 +90,7 @@
 
     button:active {
         scale: 0.975;
+		transition-timing-function: ease-in;
     }
 
 	button:focus-visible {
