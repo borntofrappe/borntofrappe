@@ -84,7 +84,10 @@
 				</g>
 			</svg>
 		</button>
-		<output>{defaultKey}</output>
+		<code>
+			.mode
+			<output>{defaultKey}</output>
+		</code>
 		<button disabled>
 			<span class="visually-hidden">Next mode</span>
 			<svg width="1em" height="1em" viewBox="-2.2 -2.2 4.4 4.4">
@@ -105,7 +108,7 @@
 
 <style>
 	figure {
-		margin: 0;
+		margin-inline: 0;
 	}
 
 	div {
@@ -114,9 +117,11 @@
 		align-items: center;
 	}
 
-	output {
+	code {
 		font-family: monospace;
 		font-weight: 700;
+		font-size: inherit;
+		background: none;
 	}
 
 	button:disabled {
