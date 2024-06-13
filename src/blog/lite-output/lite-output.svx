@@ -4,6 +4,14 @@ description: SQLite modes.
 date: 2024-06-13
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 ```sql
 .mode table
 ```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['help-mode']}
+</figure>
