@@ -1,7 +1,7 @@
 ---
 title: Lite output
 description: Sample the numerous modes found past an SQLite prompt.
-date: 2024-06-13T15:59:26
+date: 2024-06-13T21:43:26
 ---
 
 <script>
@@ -17,17 +17,11 @@ WHERE "developer" = 'Squaresoft'
 ORDER BY "year", "title";
 ```
 
-The output of the statement is immediate, text formatted with a specific _mode_, but you have several options to change the appearance. To do this you type in the `.mode` directive and complete the line with one of the options and without semicolons. This instruction is for SQLite only, not a regular query.
-
-```sql
-.mode insert_mode_here
-```
-
-SQLite really showers you with choices so that, even for niche needs, you should be insured.
+The output of the statement is immediate and formatted with a specific _mode_, but you can change the appearance. To do this type in `.mode` and complete the line with one of the supported alternatives, without semicolons. The instruction is for SQLite only, not a regular query.
 
 <LiteModes />
 
-But here a few notes to help you navigate the topic:
+There are fifteen options — almost too many —, but should you feel stuck, or fancy a change, here's a few notes:
 
 - the default mode is `"list"`
 
@@ -45,11 +39,11 @@ But here a few notes to help you navigate the topic:
 
   Some systems lean on the syntax to preview the values with a much greater appeal.
 
-- `"table"` works as a spruced up version of the markdown text, with fancy plus characters for the corners of the cells.
+- `"table"` works as a spruced-up version of markdown, with fancy plus characters `+` for the corners of the cells
 
-  Despite the name, the mode doesn't create a HTML `table`, but you have the choice with another mode, `"html"`.
+  Despite the name, the string won't create an HTML `table`, but for that you have another mode, `"html"`.
 
-  The output is quite more elaborate, it might need a parent `table` container, but it certainly saves you the time to write out the tags yourself.
+  The output is quite more elaborate, it might also need a parent `table` container, but it certainly saves you the time to write out the tags yourself.
 
 - `"column"` resembles an increasingly outdated paper bill, one you could receive at a checkout register on top of small change
 
@@ -59,13 +53,13 @@ But here a few notes to help you navigate the topic:
 
   You refine the mode with one extra argument, the name of the table, but the effort is worth it and convenient as with HTML
 
-There are more modes with their own reason and form, but should you have questions, SQLite has the answer in the `.help` command.
+There are more modes, each with its own reason and form, but should you have questions, SQLite has the answer in the `.help` command.
 
 ```sql
 .help .mode
 ```
 
-Preface the `.mode` directive with the instruction and you find all the options, summarized and detailed to solve all problems and save the day.
+Input the code and you find all the options, summarized and detailed to solve all problems and save the day.
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['help-mode']}
