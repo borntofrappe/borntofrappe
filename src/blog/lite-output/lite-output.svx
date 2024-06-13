@@ -6,11 +6,10 @@ date: 2024-06-13
 
 <script>
 	import svg from './svg.js';
+	import LiteModes from './LiteModes.svelte';
 </script>
 
-```sql
-.mode table
-```
+<LiteModes />
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['help-mode']}
