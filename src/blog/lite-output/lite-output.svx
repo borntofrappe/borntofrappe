@@ -1,0 +1,9 @@
+---
+title: Lite output
+description: SQLite modes.
+date: 2024-06-13
+---
+
+```sql
+.mode table
+```
