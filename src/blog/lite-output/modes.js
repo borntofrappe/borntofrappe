@@ -87,19 +87,19 @@ Seiken Densetsu: Legend of Mana   PS1   `,
 <TR><TD>Seiken Densetsu: Legend of Mana</TD>
 <TD>PS1</TD>
 </TR>`,
-	insert: `INSERT INTO "table"(title,system) VALUES('Makai Toushi Sa-Ga','GB');
-INSERT INTO "table"(title,system) VALUES('Seiken Densetsu 2','SNES');
-INSERT INTO "table"(title,system) VALUES('Front Mission','SNES');
-INSERT INTO "table"(title,system) VALUES('Seiken Densetsu 3','SFC');
-INSERT INTO "table"(title,system) VALUES('Bahamut Lagoon','SNES');
-INSERT INTO "table"(title,system) VALUES('Front Mission Series: Gun Hazard','SNES');
-INSERT INTO "table"(title,system) VALUES('Chocobo no Fushigi na Dungeon','PS1');
-INSERT INTO "table"(title,system) VALUES('Einhander','PS1');
-INSERT INTO "table"(title,system) VALUES('Chocobo Racing: Genkai e no Road','PS1');
-INSERT INTO "table"(title,system) VALUES('Chrono Cross','PS1');
-INSERT INTO "table"(title,system) VALUES('DewPrism','PS1');
-INSERT INTO "table"(title,system) VALUES('Racing Lagoon','PS1');
-INSERT INTO "table"(title,system) VALUES('Seiken Densetsu: Legend of Mana','PS1');`,
+	insert: `INSERT INTO "games"(title,system) VALUES('Makai Toushi Sa-Ga','GB');
+INSERT INTO "games"(title,system) VALUES('Seiken Densetsu 2','SNES');
+INSERT INTO "games"(title,system) VALUES('Front Mission','SNES');
+INSERT INTO "games"(title,system) VALUES('Seiken Densetsu 3','SFC');
+INSERT INTO "games"(title,system) VALUES('Bahamut Lagoon','SNES');
+INSERT INTO "games"(title,system) VALUES('Front Mission Series: Gun Hazard','SNES');
+INSERT INTO "games"(title,system) VALUES('Chocobo no Fushigi na Dungeon','PS1');
+INSERT INTO "games"(title,system) VALUES('Einhander','PS1');
+INSERT INTO "games"(title,system) VALUES('Chocobo Racing: Genkai e no Road','PS1');
+INSERT INTO "games"(title,system) VALUES('Chrono Cross','PS1');
+INSERT INTO "games"(title,system) VALUES('DewPrism','PS1');
+INSERT INTO "games"(title,system) VALUES('Racing Lagoon','PS1');
+INSERT INTO "games"(title,system) VALUES('Seiken Densetsu: Legend of Mana','PS1');`,
 	json: `[{"title":"Makai Toushi Sa-Ga","system":"GB"},
 {"title":"Seiken Densetsu 2","system":"SNES"},
 {"title":"Front Mission","system":"SNES"},
