@@ -1,7 +1,7 @@
 ---
 title: Lite output
-description: SQLite modes.
-date: 2024-06-13
+description: Sample the numerous modes found past an SQLite prompt.
+date: 2024-06-13T15:59:26
 ---
 
 <script>
@@ -9,7 +9,63 @@ date: 2024-06-13
 	import LiteModes from './LiteModes.svelte';
 </script>
 
+When you interact with SQLite in a shell-like environment you are able to query a database directly from the terminal. With the `SELECT` keyword, for instance, you can study a table and inspect the values of the rows stored in a well-designed schema.
+
+```sql
+SELECT "title", "system" FROM "public.games"
+WHERE "developer" = 'Squaresoft'
+ORDER BY "year", "title";
+```
+
+The output of the statement is immediate, text formatted with a specific _mode_, but you have several options to change the appearance. To do this you type in the `.mode` directive and complete the line with one of the options and without semicolons. This instruction is for SQLite only, not a regular query.
+
+```sql
+.mode insert_mode_here
+```
+
+SQLite really showers you with choices so that, even for niche needs, you should be insured.
+
 <LiteModes />
+
+But here a few notes to help you navigate the topic:
+
+- the default mode is `"list"`
+
+  Columns are divided with the pipe character `|` and rows break on multiple lines.
+
+- `"ascii"` is a good way to stress test the size of the window
+
+  Snarky comment aside, the output is processed in a single line, while columns and rows are separated with obscure ASCII marks.
+
+- `"quote"` surrounds the values in quotes, while `"box"` presents the data in a good-looking frame
+
+  The two are so precious to spawn a third option, `"qbox"`, which combines the features and even wraps long lines of text to ease the reading
+
+- `"markdown"` structures the data similarly to a box, but with the same characters and sequences expected [by the extension](https://www.markdownguide.org/extended-syntax/#tables) of the markdown language
+
+  Some systems lean on the syntax to preview the values with a much greater appeal.
+
+- `"table"` works as a spruced up version of the markdown text, with fancy plus characters for the corners of the cells.
+
+  Despite the name, the mode doesn't create a HTML `table`, but you have the choice with another mode, `"html"`.
+
+  The output is quite more elaborate, it might need a parent `table` container, but it certainly saves you the time to write out the tags yourself.
+
+- `"column"` resembles an increasingly outdated paper bill, one you could receive at a checkout register on top of small change
+
+- `"csv"` and `"json"` let you structure the data in the matching standards, with comma separated values and a giant array
+
+- `"insert"` engineers the SQL queries you would need to insert the values in a new dataset
+
+  You refine the mode with one extra argument, the name of the table, but the effort is worth it and convenient as with HTML
+
+There are more modes with their own reason and form, but should you have questions, SQLite has the answer in the `.help` command.
+
+```sql
+.help .mode
+```
+
+Preface the `.mode` directive with the instruction and you find all the options, summarized and detailed to solve all problems and save the day.
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['help-mode']}
