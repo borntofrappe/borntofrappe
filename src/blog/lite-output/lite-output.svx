@@ -1,6 +1,6 @@
 ---
 title: Lite output
-description: Sample the numerous modes found past an SQLite prompt.
+description: Refresh the look of what you see past an SQLite prompt.
 date: 2024-06-13T21:43:26
 ---
 
@@ -19,9 +19,11 @@ ORDER BY "year", "title";
 
 The output of the statement is immediate and formatted with a specific _mode_, but you can change the appearance. To do this type in `.mode` and complete the line with one of the supported alternatives, without semicolons. The instruction is for SQLite only, not a regular query.
 
+There are fifteen options — almost too many —, but here's an example.
+
 <LiteModes />
 
-There are fifteen options — almost too many —, but should you feel stuck, or fancy a change, here's a few notes:
+And should you be stuck, or just fancy a new point of view, here a few notes:
 
 - the default mode is `"list"`
 
@@ -45,7 +47,7 @@ There are fifteen options — almost too many —, but should you feel stuck, or
 
   The output is quite more elaborate, it might also need a parent `table` container, but it certainly saves you the time to write out the tags yourself.
 
-- `"column"` resembles an increasingly outdated paper bill, one you could receive at a checkout register on top of small change
+- `"column"` resembles an increasingly outdated paper bill, one you could receive at a checkout register to double-check the twenty cents discount
 
 - `"csv"` and `"json"` let you structure the data in the matching standards, with comma separated values and a giant array
 
@@ -53,7 +55,7 @@ There are fifteen options — almost too many —, but should you feel stuck, or
 
   You refine the mode with one extra argument, the name of the table, but the effort is worth it and convenient as with HTML
 
-There are more modes, each with its own reason and form, but should you have questions, SQLite has the answer in the `.help` command.
+There are more modes, each with its own form and niche use, but for any and all remaining worries, SQLite has the answer in the `.help` command.
 
 ```sql
 .help .mode
