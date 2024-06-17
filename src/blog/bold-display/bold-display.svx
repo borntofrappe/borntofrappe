@@ -1,0 +1,9 @@
+---
+title: Bold display
+description: Excuse another web component.
+date: 2024-06-17
+---
+
+```html
+<dot-matrix-display><pre></pre></dot-matrix-display>
+```
