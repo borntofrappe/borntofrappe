@@ -5,17 +5,12 @@ date: 2024-06-17
 ---
 
 <script>
-  import text from './text.js'
+	import text from './text.js';
+	import Display from './Display.svelte';
 </script>
 
-<pre>
-  {text['hieroglyphs']}
-</pre>
+<Display text={text['hieroglyphs']} />
 
-<pre>
-  {text['spaceship']}
-</pre>
+<Display text={text['spaceship']} />
 
-<pre>
-  {text['world']}
-</pre>
+<Display text={text['world']} />
