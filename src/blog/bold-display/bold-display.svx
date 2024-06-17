@@ -4,6 +4,18 @@ description: Excuse another web component.
 date: 2024-06-17
 ---
 
-```html
-<dot-matrix-display><pre></pre></dot-matrix-display>
-```
+<script>
+  import text from './text.js'
+</script>
+
+<pre>
+  {text['hieroglyphs']}
+</pre>
+
+<pre>
+  {text['spaceship']}
+</pre>
+
+<pre>
+  {text['world']}
+</pre>
