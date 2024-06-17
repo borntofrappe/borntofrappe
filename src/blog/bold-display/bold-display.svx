@@ -9,8 +9,14 @@ date: 2024-06-17
 	import Display from './Display.svelte';
 </script>
 
-<Display text={text['hieroglyphs']} />
+<figure style="max-inline-size: 22rem; margin-inline: auto; color: hsl(29 100% 58%); background: hsl(25 66% 21%); --color-matrix: hsl(25 75% 42%); padding: 1.5rem 2rem;">
+	<Display text={text['hieroglyphs']}  inset="0.15" rounding="0.1" />
+</figure>
 
-<Display text={text['spaceship']} />
+<figure style="max-inline-size: 22rem; margin-inline: auto; color: hsl(210 14% 89%); background: hsl(214 14% 10%); --color-matrix: hsl(210 7% 56%); padding: 2rem; border-radius: 1rem;">
+	<Display text={text['spaceship']} />
+</figure>
 
-<Display text={text['world']} />
+<figure style="max-inline-size: 46rem; margin-inline: auto;">
+	<Display inset="0.3" text={text['world']} />
+</figure>
