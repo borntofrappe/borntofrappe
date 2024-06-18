@@ -1,7 +1,7 @@
 ---
 title: Bold display
-description: Excuse another web component.
-date: 2024-06-17
+description: A web component to pardon somebody who needs validating.
+date: 2024-06-18T15:23:55
 ---
 
 <script>
@@ -9,14 +9,118 @@ date: 2024-06-17
 	import Display from './Display.svelte';
 </script>
 
+Some people begin their weekend on the veranda of a mountain cabin, savoring a crumpet smothered in marmalade and creamery butter. Some people opt for a SPA with the hope of renewal, refreshed from the rapid exchange of hot and cold water. Some people lean toward a hyperventilating PC knowing full well this will cause back pain a few years down the line, [updating a repository](https://github.com/borntofrappe/web-components?tab=readme-ov-file#dot-matrix-display) with another excuse for web components.
+
+Feeling pity for one of the not-so fictional figures? Well, it might not help the situation, but here's just what you can do with the new code, with a custom element named `dot-matrix-display`.
+
+Building on top [of past efforts](/built-in-pixels), in an HTML document you can showcase ASCII art in the body of a `pre` element, so that whitespace is fully preserved.
+
+```html
+<pre>
+oo oo
+ooooo
+ooooo
+ ooo
+  o</pre>
+```
+
+From this starting point import [the component](https://github.com/borntofrappe/web-components/blob/main/dot-matrix-display/dot-matrix-display.js) and surround the `pre` tags with the helper structure.
+
+```html
+<dot-matrix-display>
+	<pre><!-- ... --></pre>
+</dot-matrix-display>
+```
+
+That's it. On your end, there's nothing else left to do but fill the multi-line string with the `"o"` character and delight in the crisp SVG. The letters are picked up and quickly re-used to draw circles with vector graphics.
+
+But wait, there is more!
+
+Past circles for dots you can add circles for a pixelated matrix as well. This time you will need the period character `"."`, or as many characters as you want to detail the picture.
+
+```html
+<pre>
+.......
+.oo.oo.
+.ooooo.
+.ooooo.
+..ooo..
+...o...</pre>
+```
+
+Not yet impressed? Well, I've put more thought into the web component — the adventure continued past the morning fling —, so that you have access to an almost respectable API. A base interface which allows for some configuration while providing sensible defaults.
+
+Consider the characters. These start off with the letter "o" and full stops, but you can swap either with the `dot` and `matrix` attributes.
+
+```html
+<dot-matrix-display dot="o" matrix="x">
+	<!-- ... -->
+</dot-matrix-display>
+```
+
+These options are structural and affect the way the grid is built. To update the design as well there are two more attributes, which work even as properties: `inset` and `rounding`. The first one will dictate how much the circle is inset, padded in each little cell. In a cell 1 unit wide and tall, you can understand how the maximum value is precisely half of the measure. The second attribute means you can draw a circle, or sand off the corners a little less to draw soft rectangles.
+
+```html
+<dot-matrix-display inset="0.15" rounding="0.1">
+	<!-- ... -->
+</dot-matrix-display>
+```
+
+To close the styles we move to CSS, where you are spoiled with regular and custom properties. With standard key-value pairs you can paint with `color` and `background` through the custom element.
+
+```css
+dot-matrix-display {
+	color: hsl(29 100% 58%);
+	background: hsl(25 66% 21%);
+}
+```
+
+The color cascades to change the circles, while the background paints over the area of the node itself, SVG included.
+
+But you have even more control in the form of three defined properties:
+
+1. `--color-dot`, to draw the circles for the dot character
+
+2. `--color-matrix`, expectedly achieving the same end for the matrix
+
+3. `--color-display`, for the otherwise hidden backdrop of the vector graphic
+
+```css
+dot-matrix-display {
+	--color-dot: hsl(210 14% 89%);
+	--color-matrix: hsl(210 7% 56%);
+	--color-display: hsl(214 14% 10%);
+}
+```
+
+It may seem redundant to have multiple ways to set color and background, but the idea is to give you the ability to choose. You may want to use regular properties for what they are designed, to style the selected element instead of the content within.
+
+```css
+dot-matrix-display {
+	color: hsl(210 14% 89%);
+	background: hsl(214 14% 10%);
+	padding: 2rem;
+}
+```
+
+And that should be more than enough. You are set to open a notepad and space out your creations one character at a time. 
+
+To revisit distant lands.
+
 <figure style="max-inline-size: 22rem; margin-inline: auto; color: hsl(29 100% 58%); background: hsl(25 66% 21%); --color-matrix: hsl(25 75% 42%); padding: 1.5rem 2rem;">
 	<Display text={text['hieroglyphs']}  inset="0.15" rounding="0.1" />
 </figure>
+
+To entertain a small space adventure.
 
 <figure style="max-inline-size: 22rem; margin-inline: auto; color: hsl(210 14% 89%); background: hsl(214 14% 10%); --color-matrix: hsl(210 7% 56%); padding: 2rem; border-radius: 1rem;">
 	<Display text={text['spaceship']} />
 </figure>
 
+Or to draw a down-to-earth map which took as much time as you'd expect to complete.
+
 <figure style="max-inline-size: 46rem; margin-inline: auto;">
-	<Display inset="0.3" text={text['world']} />
+	<Display inset="0.25" text={text['world']} />
 </figure>
+
+Time somebody might finally deem to be well spent indeed.
