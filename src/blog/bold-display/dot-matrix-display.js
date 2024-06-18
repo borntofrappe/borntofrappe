@@ -60,7 +60,7 @@ if (browser && customElements && !customElements.get('dot-matrix-display')) {
         <defs>
             <rect id="d" x="${i}" y="${i}" width="${size}" height="${size}" rx="${rx}" />
             <use id="${ids[dot]}" href="#d" fill="var(--color-dot, currentColor)" />
-            <use id="${ids[matrix]}" href="#d" fill="var(--color-matrix, transparent)" />
+            <use id="${ids[matrix]}" href="#d" fill="var(--color-matrix, var(--color-dot))" />
         </defs>
         <rect fill="var(--color-display, none)" width="${width}" height="${height}" />
         ${cells.map(({ x, y, href }) => `<use x="${x}" y="${y}" href="${href}" />`).join()}
