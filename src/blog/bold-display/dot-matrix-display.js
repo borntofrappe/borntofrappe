@@ -8,13 +8,12 @@ if (browser && customElements && !customElements.get('dot-matrix-display')) {
 			const pre = this.querySelector('pre');
 			if (pre === null) return;
 
-			const separator = this.getAttribute('separator') || '\n';
 			const dot = this.getAttribute('dot') || 'o';
 			const matrix = this.getAttribute('matrix') || '.';
 			const inset = this.inset;
 			const rounding = this.rounding;
 
-			const grid = pre.innerText.split(separator).map((row) => row.split(''));
+			const grid = pre.innerText.split('\n').map((row) => row.split(''));
 
 			const width = Math.max(...grid.map((row) => row.length));
 			const { length: height } = grid;
