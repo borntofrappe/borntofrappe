@@ -5,6 +5,7 @@ date: 2024-06-20
 ---
 
 <script>
+	import svg from './svg.js';
 	import Stars from './Stars.svelte';
 	import Split from './Split.svelte';
 </script>
@@ -13,6 +14,26 @@ date: 2024-06-20
 	<Stars />
 </div>
 
-<div class="[ center-frame ]">
-	<Split />
+{@html svg['defs']}
+
+<div class="[ center-frame ]" data-size="medium">
+	<Split>
+		<figure slot="before">
+			{@html svg['inspector-shadow-defs']}
+		</figure>
+		<figure slot="after">
+			{@html svg['inspector-shadow-href']}
+		</figure>
+	</Split>
+</div>
+
+<div class="[ center-frame ]" data-size="medium">
+	<Split>
+		<figure slot="before">
+			{@html svg['inspector-light-href']}
+		</figure>
+		<figure slot="after">
+			{@html svg['inspector-light-defs']}
+		</figure>
+	</Split>
 </div>
