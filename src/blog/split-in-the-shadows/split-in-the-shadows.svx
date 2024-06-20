@@ -4,4 +4,10 @@ description: Put words and pictures to a well defined divide.
 date: 2024-06-20
 ---
 
-SVG definitions in the shadow DOM.
+<script>
+	import Stars from './Stars.svelte';
+</script>
+
+<div class="[ center-frame ]">
+	<Stars />
+</div>
