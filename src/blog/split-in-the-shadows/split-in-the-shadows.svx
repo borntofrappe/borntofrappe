@@ -6,8 +6,13 @@ date: 2024-06-20
 
 <script>
 	import Stars from './Stars.svelte';
+	import Split from './Split.svelte';
 </script>
 
 <div class="[ center-frame ]">
 	<Stars />
+</div>
+
+<div class="[ center-frame ]">
+	<Split />
 </div>
