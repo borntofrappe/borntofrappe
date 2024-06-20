@@ -1,0 +1,7 @@
+---
+title: Split in the shadows
+description: Put words and pictures to a well defined divide.
+date: 2024-06-20
+---
+
+SVG definitions in the shadow DOM.
