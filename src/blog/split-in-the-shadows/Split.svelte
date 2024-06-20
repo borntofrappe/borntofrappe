@@ -147,7 +147,16 @@
 		block-size: calc(100% + var(--split-padding) * 2);
 	}
 
-	input[type='range']::-webkit-slider-thumb,
+	input[type='range']::-webkit-slider-thumb {
+		border-radius: 1e5px;
+		appearance: none;
+		inline-size: 0.4rem;
+		block-size: 100%;
+		background: hsl(0 0% 100%);
+		border: none;
+		box-shadow: 0 0 4px -1px hsl(0 0% 0% / 0.2);
+	}
+
 	input[type='range']::-moz-range-thumb {
 		border-radius: 1e5px;
 		appearance: none;
