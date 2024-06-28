@@ -12,6 +12,7 @@
 	import PickASide from './PickASide.svelte';
 	import MatchInPairs from './MatchInPairs.svelte';
 	import PickUpProduce from './PickUpProduce.svelte';
+	import KeepTheSecret from './KeepTheSecret.svelte';
 
 	const { title } = site;
 
@@ -70,6 +71,11 @@
 			component: PickUpProduce,
 			backgroundColor: 'hsl(38 100% 79%)',
 			borderColor: 'hsl(176 67% 53%)'
+		},
+		{
+			component: KeepTheSecret,
+			backgroundColor: 'hsl(180 21% 85%)',
+			borderColor: 'hsl(160 20% 77%)'
 		}
 	];
 </script>
