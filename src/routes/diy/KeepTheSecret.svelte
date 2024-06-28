@@ -4,6 +4,8 @@
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
+	<title>Keep the secret!</title>
+
 	<defs>
 		<pattern
 			id="keep-the-secret-pattern-brick-1"
@@ -41,6 +43,7 @@
 				d="M 2 0 3 0 M 4 0 5 0 M 6 0 7 0 M 1 1 2 1 M 3 1 4 1 M 5 1 6 1 M 7 1 8 1 M 2 2 3 2 M 4 2 5 2 M 6 2 7 2"
 			/>
 		</pattern>
+
 		<pattern
 			id="keep-the-secret-pattern-confetti"
 			viewBox="0 0 40 40"
@@ -49,10 +52,10 @@
 			patternUnits="userSpaceOnUse"
 		>
 			<g transform="translate(10 10) rotate(30)">
-				<rect transform="scale(0 0)" fill="#f80000" x="-2" y="-3" width="4" height="6">
+				<rect fill="#f80000" x="-2" y="-3" width="4" height="6">
 					<animateTransform
-						begin="keepSecretDots.end"
-						end="keepSecretNo.begin"
+						begin="keepTheSecretDots.end"
+						end="keepTheSecretNo.begin"
 						attributeName="transform"
 						type="scale"
 						dur="1s"
@@ -61,24 +64,11 @@
 					/>
 				</rect>
 			</g>
-			<g transform="translate(30 30) scale(0.95) rotate(25)">
-				<rect transform="scale(0 0)" fill="#f80000" x="-2" y="-3" width="4" height="6">
-					<animateTransform
-						begin="keepSecretDots.end"
-						end="keepSecretNo.begin"
-						attributeName="transform"
-						type="scale"
-						dur="0.75s"
-						values="1 1; 0 1; 1 1"
-						repeatCount="8"
-					/>
-				</rect>
-			</g>
 			<g transform="translate(30 10) scale(0.9) rotate(35)">
-				<rect transform="scale(0 0)" fill="#f8a830" x="-2" y="-3" width="4" height="6">
+				<rect fill="#f8a830" x="-2" y="-3" width="4" height="6">
 					<animateTransform
-						begin="keepSecretDots.end"
-						end="keepSecretNo.begin"
+						begin="keepTheSecretDots.end"
+						end="keepTheSecretNo.begin"
 						attributeName="transform"
 						type="scale"
 						dur="1.2s"
@@ -88,15 +78,28 @@
 				</rect>
 			</g>
 			<g transform="translate(10 30) scale(0.95) rotate(30)">
-				<rect transform="scale(0 0)" fill="#f8a830" x="-2" y="-3" width="4" height="6">
+				<rect fill="#f8a830" x="-2" y="-3" width="4" height="6">
 					<animateTransform
-						begin="keepSecretDots.end"
-						end="keepSecretNo.begin"
+						begin="keepTheSecretDots.end"
+						end="keepTheSecretNo.begin"
 						attributeName="transform"
 						type="scale"
 						dur="0.85s"
 						values="1 1; 0 1; 1 1"
 						repeatCount="7"
+					/>
+				</rect>
+			</g>
+			<g transform="translate(30 30) scale(0.95) rotate(25)">
+				<rect fill="#f80000" x="-2" y="-3" width="4" height="6">
+					<animateTransform
+						begin="keepTheSecretDots.end"
+						end="keepTheSecretNo.begin"
+						attributeName="transform"
+						type="scale"
+						dur="0.75s"
+						values="1 1; 0 1; 1 1"
+						repeatCount="8"
 					/>
 				</rect>
 			</g>
@@ -131,19 +134,25 @@
 	</g>
 
 	<g display="none">
+		<set begin="keepTheSecretQuestion.end" attributeName="display" to="initial" />
+		
 		<g transform="translate(20 10)">
+			<set id="keepTheSecretOk" begin="click" attributeName="display" to="none" />
+			<set id="keepTheSecretPressOk" begin="pointerdown" />
+			<set id="keepTheSecretReleaseOk" begin="pointerup; pointerout" />
+			<set begin="keepTheSecretNo.begin" attributeName="display" to="none" />
 			<rect fill="#ffffff" width="16" height="8">
-				<set begin="keepSecretDownOk.begin" attributeName="fill" to="#c0c0c0" />
-				<set begin="keepSecretUpOk.begin" attributeName="fill" to="#ffffff" />
+				<set begin="keepTheSecretPressOk.begin" attributeName="fill" to="#c0c0c0" />
+				<set begin="keepTheSecretReleaseOk.begin" attributeName="fill" to="#ffffff" />
 			</rect>
 			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
 				<path stroke="#787878" d="M 0 8 16 8 16 0">
-					<set begin="keepSecretDownOk.begin" attributeName="stroke" to="#ffffff" />
-					<set begin="keepSecretUpOk.begin" attributeName="stroke" to="#787878" />
+					<set begin="keepTheSecretPressOk.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepTheSecretReleaseOk.begin" attributeName="stroke" to="#787878" />
 				</path>
 				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0">
-					<set begin="keepSecretDownOk.begin" attributeName="stroke" to="#ffffff" />
-					<set begin="keepSecretUpOk.begin" attributeName="stroke" to="#c0c0c0" />
+					<set begin="keepTheSecretPressOk.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepTheSecretReleaseOk.begin" attributeName="stroke" to="#c0c0c0" />
 				</path>
 			</g>
 			<text
@@ -157,8 +166,8 @@
 				text-anchor="middle"
 			>
 				Ok
-				<set begin="keepSecretDownOk.begin" attributeName="fill" to="#ffffff" />
-				<set begin="keepSecretUpOk.begin" attributeName="fill" to="#000000" />
+				<set begin="keepTheSecretPressOk.begin" attributeName="fill" to="#ffffff" />
+				<set begin="keepTheSecretReleaseOk.begin" attributeName="fill" to="#000000" />
 			</text>
 			<rect
 				style="cursor: pointer;"
@@ -167,24 +176,25 @@
 				width="16"
 				height="8"
 			/>
-			<set id="keepSecretOk" begin="click" attributeName="display" to="none" />
-			<set id="keepSecretDownOk" begin="pointerdown" />
-			<set id="keepSecretUpOk" begin="pointerup; pointerout" />
-			<set begin="keepSecretNo.begin" attributeName="display" to="none" />
 		</g>
+
 		<g transform="translate(20 22.5)">
+			<set id="keepTheSecretNo" begin="click" attributeName="display" to="none" />
+			<set id="keepTheSecretPressNo" begin="pointerdown" />
+			<set id="keepTheSecretReleaseNo" begin="pointerup; pointerout" />
+			<set begin="keepTheSecretOk.begin" attributeName="display" to="none" />
 			<rect fill="#ffffff" width="16" height="8">
-				<set begin="keepSecretDownNo.begin" attributeName="fill" to="#c0c0c0" />
-				<set begin="keepSecretUpNo.begin" attributeName="fill" to="#ffffff" />
+				<set begin="keepTheSecretPressNo.begin" attributeName="fill" to="#c0c0c0" />
+				<set begin="keepTheSecretReleaseNo.begin" attributeName="fill" to="#ffffff" />
 			</rect>
 			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
 				<path stroke="#787878" d="M 0 8 16 8 16 0">
-					<set begin="keepSecretDownNo.begin" attributeName="stroke" to="#ffffff" />
-					<set begin="keepSecretUpNo.begin" attributeName="stroke" to="#787878" />
+					<set begin="keepTheSecretPressNo.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepTheSecretReleaseNo.begin" attributeName="stroke" to="#787878" />
 				</path>
 				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0">
-					<set begin="keepSecretDownNo.begin" attributeName="stroke" to="#ffffff" />
-					<set begin="keepSecretUpNo.begin" attributeName="stroke" to="#c0c0c0" />
+					<set begin="keepTheSecretPressNo.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepTheSecretReleaseNo.begin" attributeName="stroke" to="#c0c0c0" />
 				</path>
 			</g>
 			<text
@@ -206,16 +216,12 @@
 				width="16"
 				height="8"
 			/>
-			<set id="keepSecretNo" begin="click" attributeName="display" to="none" />
-			<set id="keepSecretDownNo" begin="pointerdown" />
-			<set id="keepSecretUpNo" begin="pointerup; pointerout" />
-			<set begin="keepSecretOk.begin" attributeName="display" to="none" />
 		</g>
-
-		<set begin="keepSecretMessage.end" attributeName="display" to="initial" />
 	</g>
 
 	<g display="none" transform="translate(60 15)">
+		<set begin="keepTheSecretStart.begin" attributeName="display" to="initial" />
+
 		<path
 			fill="#ffffff"
 			stroke="#000000"
@@ -223,6 +229,7 @@
 			d="M -16 -10 -16 24.5 9 24.5 14 28 14 24.5 16 24.5 16 -10 Z"
 		/>
 		<g>
+			<set begin="keepTheSecretOk.begin; keepTheSecretNo.begin" attributeName="display" to="none" />
 			<text
 				fill="#000000"
 				font-size="5.2"
@@ -234,21 +241,19 @@
 				<tspan x="0" y="9">keep a</tspan>
 				<tspan x="0" y="18">secret?</tspan>
 			</text>
-
 			<g transform="translate(0 24.25)">
-				<rect fill="#ffffff" x="-15.75" y="-34" width="31.5" height="34">
+				<rect transform="scale(1 0)" fill="#ffffff" x="-15.75" y="-34" width="31.5" height="34">
 					<animateTransform
-						id="keepSecretMessage"
-						begin="keepSecretStart.begin"
+						id="keepTheSecretQuestion"
+						begin="keepTheSecretStart.begin"
 						attributeName="transform"
 						type="scale"
-						dur="2.5s"
+						dur="3.5s"
 						values="1 1; 1 0"
 						fill="freeze"
 					/>
 				</rect>
 			</g>
-			<set begin="keepSecretOk.begin; keepSecretNo.begin" attributeName="display" to="none" />
 		</g>
 
 		<text
@@ -261,8 +266,8 @@
 			<tspan y="9" dy="100 0 0" letter-spacing="1"
 				>...
 				<animate
-					id="keepSecretDots"
-					begin="keepSecretOk.begin; keepSecretNo.begin"
+					id="keepTheSecretDots"
+					begin="keepTheSecretOk.begin; keepTheSecretNo.begin"
 					attributeName="dy"
 					calcMode="discrete"
 					dur="4s"
@@ -272,7 +277,10 @@
 		</text>
 
 		<g display="none">
+			<set begin="keepTheSecretDots.end" attributeName="display" to="initial" />
+
 			<g display="none">
+				<set begin="keepTheSecretOk.begin" attributeName="display" to="initial" />
 				<text
 					fill="#000000"
 					font-size="5.2"
@@ -290,8 +298,8 @@
 						d="M 0 10 10 10 10 0 20 0 20 10 30 10 30 0 40 0 40 10 50 10 50 0 60 0 60 10 70 10 70 0 80 0 80 20 70 20 70 30 80 30 80 40 70 40 70 50 60 50 60 40 50 40 50 50 40 50 40 40 30 40 30 50 20 50 20 40 10 40 10 50 0 50 0 30 10 30 10 20 0 20"
 					>
 						<animateTransform
-							id="keepSecretConfetti"
-							begin="keepSecretDots.end"
+							id="keepTheSecretConfetti"
+							begin="keepTheSecretDots.end"
 							attributeName="transform"
 							type="translate"
 							dur="6s"
@@ -299,8 +307,7 @@
 							fill="freeze"
 						/>
 						<animateTransform
-							begin="keepSecretDots.end"
-							end="keepSecretNo.begin"
+							begin="keepTheSecretConfetti.begin"
 							attributeName="transform"
 							type="translate"
 							additive="sum"
@@ -313,7 +320,6 @@
 						/>
 					</path>
 				</g>
-				<set begin="keepSecretOk.begin" attributeName="display" to="initial" />
 			</g>
 
 			<text
@@ -326,21 +332,18 @@
 			>
 				<tspan x="0" y="4">Fine, be</tspan>
 				<tspan x="0" y="14">that way!</tspan>
-				<set begin="keepSecretNo.begin" attributeName="display" to="initial" />
+				<set begin="keepTheSecretNo.begin" attributeName="display" to="initial" />
 			</text>
-			<set begin="keepSecretDots.end" attributeName="display" to="initial" />
 		</g>
-
-		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
 	</g>
 
 	<g display="none">
-		<set begin="keepSecretConfetti.end" attributeName="display" to="initial" fill="freeze" />
+		<set begin="keepTheSecretConfetti.end" attributeName="display" to="initial" fill="freeze" />
 
 		<g display="none" transform="translate(0 20.5)">
 			<set
-				begin="keepSecretOk.begin"
-				end="keepSecretNo.begin"
+				begin="keepTheSecretOk.begin"
+				end="keepTheSecretNo.begin"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
@@ -348,16 +351,16 @@
 			<AnimatedTitle
 				text="Worth the wait!"
 				fill="url(#linear-gradient-text)"
-				begin="keepSecretConfetti.end"
-				end="keepSecretEnd.begin; keepSecretNo.begin"
+				begin="keepTheSecretConfetti.end"
+				end="keepTheSecretEnd.begin; keepTheSecretNo.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
 
 		<g display="none" transform="translate(0 20.5)">
 			<set
-				begin="keepSecretNo.begin"
-				end="keepSecretOk.begin"
+				begin="keepTheSecretNo.begin"
+				end="keepTheSecretOk.begin"
 				attributeName="display"
 				to="initial"
 				fill="freeze"
@@ -365,19 +368,19 @@
 			<AnimatedTitle
 				text="Just a game..."
 				fill="url(#linear-gradient-text)"
-				begin="keepSecretConfetti.end"
-				end="keepSecretEnd.begin; keepSecretOk.begin"
+				begin="keepTheSecretConfetti.end"
+				end="keepTheSecretEnd.begin; keepTheSecretOk.begin"
 				repeatCount="indefinite"
 			/>
 		</g>
 
 		<rect style:cursor="pointer" width="80" height="50" opacity="0">
-			<set id="keepSecretEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+			<set id="keepTheSecretEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 		</rect>
 	</g>
 
 	<g style:cursor="pointer">
-		<set id="keepSecretStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<set id="keepTheSecretStart" begin="click" attributeName="display" to="none" fill="freeze" />
 
 		<Title fill="url(#linear-gradient-text)">Keep secret!</Title>
 
