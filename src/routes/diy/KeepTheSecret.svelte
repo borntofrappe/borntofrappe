@@ -72,13 +72,22 @@
 
 	<g display="none">
 		<g transform="translate(20 10)">
-			<rect fill="#ffffff" width="16" height="8" />
+			<rect fill="#ffffff" width="16" height="8">
+				<set begin="keepSecretDownOk.begin" attributeName="fill" to="#c0c0c0" />
+				<set begin="keepSecretUpOk.begin" attributeName="fill" to="#ffffff" />
+			</rect>
 			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-				<path stroke="#787878" d="M 0 8 16 8 16 0" />
-				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0" />
+				<path stroke="#787878" d="M 0 8 16 8 16 0">
+					<set begin="keepSecretDownOk.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepSecretUpOk.begin" attributeName="stroke" to="#787878" />
+				</path>
+				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0">
+					<set begin="keepSecretDownOk.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepSecretUpOk.begin" attributeName="stroke" to="#c0c0c0" />
+				</path>
 			</g>
 			<text
-				style="text-transform: uppercase"
+				style="user-select: none; text-transform: uppercase;"
 				x="8"
 				y="6"
 				fill="#000000"
@@ -88,6 +97,8 @@
 				text-anchor="middle"
 			>
 				Ok
+				<set begin="keepSecretDownOk.begin" attributeName="fill" to="#ffffff" />
+				<set begin="keepSecretUpOk.begin" attributeName="fill" to="#000000" />
 			</text>
 			<rect
 				style="cursor: pointer;"
@@ -96,15 +107,28 @@
 				width="16"
 				height="8"
 			/>
+			<set id="keepSecretOk" begin="click" attributeName="display" to="none" />
+			<set id="keepSecretDownOk" begin="pointerdown" />
+			<set id="keepSecretUpOk" begin="pointerup; pointerout" />
+			<set begin="keepSecretNo.begin" attributeName="display" to="none" />
 		</g>
 		<g transform="translate(20 22.5)">
-			<rect fill="#ffffff" width="16" height="8" />
+			<rect fill="#ffffff" width="16" height="8">
+				<set begin="keepSecretDownNo.begin" attributeName="fill" to="#c0c0c0" />
+				<set begin="keepSecretUpNo.begin" attributeName="fill" to="#ffffff" />
+			</rect>
 			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-				<path stroke="#787878" d="M 0 8 16 8 16 0" />
-				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0" />
+				<path stroke="#787878" d="M 0 8 16 8 16 0">
+					<set begin="keepSecretDownNo.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepSecretUpNo.begin" attributeName="stroke" to="#787878" />
+				</path>
+				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0">
+					<set begin="keepSecretDownNo.begin" attributeName="stroke" to="#ffffff" />
+					<set begin="keepSecretUpNo.begin" attributeName="stroke" to="#c0c0c0" />
+				</path>
 			</g>
 			<text
-				style="text-transform: uppercase"
+				style="user-select: none; text-transform: uppercase"
 				x="8"
 				y="6"
 				fill="#000000"
@@ -122,6 +146,10 @@
 				width="16"
 				height="8"
 			/>
+			<set id="keepSecretNo" begin="click" attributeName="display" to="none" />
+			<set id="keepSecretDownNo" begin="pointerdown" />
+			<set id="keepSecretUpNo" begin="pointerup; pointerout" />
+			<set begin="keepSecretOk.begin" attributeName="display" to="none" />
 		</g>
 
 		<set begin="keepSecretMessage.end" attributeName="display" to="initial" />
@@ -134,30 +162,33 @@
 			stroke-width="0.5"
 			d="M -16 -10 -16 24.5 9 24.5 14 28 14 24.5 16 24.5 16 -10 Z"
 		/>
-		<text
-			fill="#000000"
-			font-size="5.2"
-			font-family="sans-serif"
-			font-weight="700"
-			text-anchor="middle"
-		>
-			<tspan x="0">Can you</tspan>
-			<tspan x="0" y="9">keep a</tspan>
-			<tspan x="0" y="18">secret?</tspan>
-		</text>
+		<g>
+			<text
+				fill="#000000"
+				font-size="5.2"
+				font-family="sans-serif"
+				font-weight="700"
+				text-anchor="middle"
+			>
+				<tspan x="0">Can you</tspan>
+				<tspan x="0" y="9">keep a</tspan>
+				<tspan x="0" y="18">secret?</tspan>
+			</text>
 
-		<g transform="translate(0 24.25)">
-			<rect fill="#ffffff" x="-15.75" y="-34" width="31.5" height="34">
-				<animateTransform
-					id="keepSecretMessage"
-					begin="keepSecretStart.begin"
-					attributeName="transform"
-					type="scale"
-					dur="2.5s"
-					values="1 1; 1 0"
-					fill="freeze"
-				/>
-			</rect>
+			<g transform="translate(0 24.25)">
+				<rect fill="#ffffff" x="-15.75" y="-34" width="31.5" height="34">
+					<animateTransform
+						id="keepSecretMessage"
+						begin="keepSecretStart.begin"
+						attributeName="transform"
+						type="scale"
+						dur="2.5s"
+						values="1 1; 1 0"
+						fill="freeze"
+					/>
+				</rect>
+			</g>
+			<set begin="keepSecretOk.begin; keepSecretNo.begin" attributeName="display" to="none" />
 		</g>
 
 		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
