@@ -1,3 +1,8 @@
+<script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<defs>
 		<pattern
@@ -37,7 +42,7 @@
 			/>
 		</pattern>
 	</defs>
-  <rect fill="#000000" width="80" height="50" />
+	<rect fill="#000000" width="80" height="50" />
 	<path
 		transform="translate(0 5)"
 		fill="url(#keep-the-secret-pattern-brick-1)"
@@ -53,7 +58,7 @@
 		fill="url(#keep-the-secret-pattern-brick-3)"
 		d="M 20 0 15 0 15 2.5 10 2.5 10 5 5 5 5 7.5 0 7.5 0 10 5 10 5 12.5 0 12.5 0 15 5 15 5 17.5 0 17.5 0 20 5 20 5 22.5 0 22.5 0 25 5 25 5 27.5 10 27.5 10 30 25 30 25 27.5 30 27.5 30 25 25 25 25 22.5 30 22.5 30 20 35 20 35 17.5 30 17.5 30 15 35 15 35 12.5 30 12.5 30 10 35 10 35 7.5 30 7.5 30 5 25 5 25 2.5 20 2.5 20 0"
 	/>
-  <g transform="translate(10 50)">
+	<g transform="translate(10 50)">
 		<rect fill="#f8a830" x="-2.9" y="-40" width="5.8" height="6" />
 		<rect fill="#f8f8f8" x="-2.3" y="-39.2" width="4.6" height="4.4" />
 		<g stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
@@ -63,5 +68,35 @@
 			<path fill="#000000" stroke="#2868c0" d="M -4 -40 -0.5 -44 -0.5 -48 0.5 -48 0.5 -44 4 -40" />
 			<path fill="none" stroke="#f8a830" d="M -4 -40 4 -40" />
 		</g>
+	</g>
+
+	<g display="none" transform="translate(60 15)">
+		<path
+			fill="#ffffff"
+			stroke="#000000"
+			stroke-width="0.5"
+			d="M -16 -10 -16 24.5 9 24.5 14 28 14 24.5 16 24.5 16 -10 Z"
+		/>
+		<text
+			fill="#000000"
+			font-size="5.2"
+			font-family="sans-serif"
+			font-weight="700"
+			text-anchor="middle"
+		>
+			<tspan x="0">Can you</tspan>
+			<tspan x="0" y="9">keep a</tspan>
+			<tspan x="0" y="18">secret?</tspan>
+		</text>
+
+		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="keepSecretStart" begin="click" attributeName="display" to="none" fill="freeze" />
+
+		<Title fill="url(#linear-gradient-text)">Keep secret!</Title>
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
