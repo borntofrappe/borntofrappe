@@ -191,6 +191,56 @@
 			<set begin="keepSecretOk.begin; keepSecretNo.begin" attributeName="display" to="none" />
 		</g>
 
+		<text
+			fill="#000000"
+			font-size="5.5"
+			font-family="sans-serif"
+			font-weight="700"
+			text-anchor="middle"
+		>
+			<tspan y="9" dy="100 0 0" letter-spacing="1"
+				>...
+				<animate
+					id="keepSecretDots"
+					begin="keepSecretOk.begin; keepSecretNo.begin"
+					attributeName="dy"
+					calcMode="discrete"
+					dur="4s"
+					values="100 0 0; 0 100 0; 0 0 100; 0 0 0;"
+				/>
+			</tspan>
+		</text>
+
+		<g display="none">
+			<text
+				display="none"
+				fill="#000000"
+				font-size="5.2"
+				font-family="sans-serif"
+				font-weight="700"
+				text-anchor="middle"
+			>
+				<tspan x="0" y="0">I like</tspan>
+				<tspan x="0" y="9">sour</tspan>
+				<tspan x="0" y="18">grapes</tspan>
+				<set begin="keepSecretOk.begin" attributeName="display" to="initial" />
+			</text>
+
+			<text
+				display="none"
+				fill="#000000"
+				font-size="5.5"
+				font-family="sans-serif"
+				font-weight="700"
+				text-anchor="middle"
+			>
+				<tspan x="0" y="4">Fine, be</tspan>
+				<tspan x="0" y="14">that way!</tspan>
+				<set begin="keepSecretNo.begin" attributeName="display" to="initial" />
+			</text>
+			<set begin="keepSecretDots.end" attributeName="display" to="initial" />
+		</g>
+
 		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
 	</g>
 
