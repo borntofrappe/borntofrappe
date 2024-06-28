@@ -62,7 +62,7 @@ if (browser && customElements && !customElements.get('dot-matrix-display')) {
             <use id="${ids[matrix]}" href="#d" fill="var(--color-matrix, var(--color-dot))" />
         </defs>
         <rect fill="var(--color-display, none)" width="${width}" height="${height}" />
-        ${cells.map(({ x, y, href }) => `<use x="${x}" y="${y}" href="${href}" />`).join()}
+        ${cells.map(({ x, y, href }) => `<use x="${x}" y="${y}" href="${href}" />`).join('')}
     </svg>`;
 		}
 
