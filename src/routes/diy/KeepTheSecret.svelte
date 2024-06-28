@@ -70,6 +70,63 @@
 		</g>
 	</g>
 
+	<g display="none">
+		<g transform="translate(20 10)">
+			<rect fill="#ffffff" width="16" height="8" />
+			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+				<path stroke="#787878" d="M 0 8 16 8 16 0" />
+				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0" />
+			</g>
+			<text
+				style="text-transform: uppercase"
+				x="8"
+				y="6"
+				fill="#000000"
+				font-size="5.6"
+				font-family="sans-serif"
+				font-weight="700"
+				text-anchor="middle"
+			>
+				Ok
+			</text>
+			<rect
+				style="cursor: pointer;"
+				fill="transparent"
+				stroke="transparent"
+				width="16"
+				height="8"
+			/>
+		</g>
+		<g transform="translate(20 22.5)">
+			<rect fill="#ffffff" width="16" height="8" />
+			<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+				<path stroke="#787878" d="M 0 8 16 8 16 0" />
+				<path stroke="#c0c0c0" d="M 0 8 0 0 16 0" />
+			</g>
+			<text
+				style="text-transform: uppercase"
+				x="8"
+				y="6"
+				fill="#000000"
+				font-size="5.6"
+				font-family="sans-serif"
+				font-weight="700"
+				text-anchor="middle"
+			>
+				No!
+			</text>
+			<rect
+				style="cursor: pointer;"
+				fill="transparent"
+				stroke="transparent"
+				width="16"
+				height="8"
+			/>
+		</g>
+
+		<set begin="keepSecretMessage.end" attributeName="display" to="initial" />
+	</g>
+
 	<g display="none" transform="translate(60 15)">
 		<path
 			fill="#ffffff"
@@ -88,6 +145,20 @@
 			<tspan x="0" y="9">keep a</tspan>
 			<tspan x="0" y="18">secret?</tspan>
 		</text>
+
+		<g transform="translate(0 24.25)">
+			<rect fill="#ffffff" x="-15.75" y="-34" width="31.5" height="34">
+				<animateTransform
+					id="keepSecretMessage"
+					begin="keepSecretStart.begin"
+					attributeName="transform"
+					type="scale"
+					dur="2.5s"
+					values="1 1; 1 0"
+					fill="freeze"
+				/>
+			</rect>
+		</g>
 
 		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
 	</g>
