@@ -41,6 +41,66 @@
 				d="M 2 0 3 0 M 4 0 5 0 M 6 0 7 0 M 1 1 2 1 M 3 1 4 1 M 5 1 6 1 M 7 1 8 1 M 2 2 3 2 M 4 2 5 2 M 6 2 7 2"
 			/>
 		</pattern>
+		<pattern
+			id="keep-the-secret-pattern-confetti"
+			viewBox="0 0 40 40"
+			width="20"
+			height="20"
+			patternUnits="userSpaceOnUse"
+		>
+			<g transform="translate(10 10) rotate(30)">
+				<rect transform="scale(0 0)" fill="#f80000" x="-2" y="-3" width="4" height="6">
+					<animateTransform
+						begin="keepSecretDots.end"
+						end="keepSecretNo.begin"
+						attributeName="transform"
+						type="scale"
+						dur="1s"
+						values="1 1; 0 1; 1 1"
+						repeatCount="6"
+					/>
+				</rect>
+			</g>
+			<g transform="translate(30 30) scale(0.95) rotate(25)">
+				<rect transform="scale(0 0)" fill="#f80000" x="-2" y="-3" width="4" height="6">
+					<animateTransform
+						begin="keepSecretDots.end"
+						end="keepSecretNo.begin"
+						attributeName="transform"
+						type="scale"
+						dur="0.75s"
+						values="1 1; 0 1; 1 1"
+						repeatCount="8"
+					/>
+				</rect>
+			</g>
+			<g transform="translate(30 10) scale(0.9) rotate(35)">
+				<rect transform="scale(0 0)" fill="#f8a830" x="-2" y="-3" width="4" height="6">
+					<animateTransform
+						begin="keepSecretDots.end"
+						end="keepSecretNo.begin"
+						attributeName="transform"
+						type="scale"
+						dur="1.2s"
+						values="1 1; 0 1; 1 1"
+						repeatCount="5"
+					/>
+				</rect>
+			</g>
+			<g transform="translate(10 30) scale(0.95) rotate(30)">
+				<rect transform="scale(0 0)" fill="#f8a830" x="-2" y="-3" width="4" height="6">
+					<animateTransform
+						begin="keepSecretDots.end"
+						end="keepSecretNo.begin"
+						attributeName="transform"
+						type="scale"
+						dur="0.85s"
+						values="1 1; 0 1; 1 1"
+						repeatCount="7"
+					/>
+				</rect>
+			</g>
+		</pattern>
 	</defs>
 	<rect fill="#000000" width="80" height="50" />
 	<path
@@ -212,19 +272,49 @@
 		</text>
 
 		<g display="none">
-			<text
-				display="none"
-				fill="#000000"
-				font-size="5.2"
-				font-family="sans-serif"
-				font-weight="700"
-				text-anchor="middle"
-			>
-				<tspan x="0" y="0">I like</tspan>
-				<tspan x="0" y="9">sour</tspan>
-				<tspan x="0" y="18">grapes</tspan>
+			<g display="none">
+				<text
+					fill="#000000"
+					font-size="5.2"
+					font-family="sans-serif"
+					font-weight="700"
+					text-anchor="middle"
+				>
+					<tspan x="0" y="0">I like</tspan>
+					<tspan x="0" y="9">sour</tspan>
+					<tspan x="0" y="18">grapes</tspan>
+				</text>
+				<g transform="translate(-60 -15)">
+					<path
+						fill="url(#keep-the-secret-pattern-confetti)"
+						d="M 0 10 10 10 10 0 20 0 20 10 30 10 30 0 40 0 40 10 50 10 50 0 60 0 60 10 70 10 70 0 80 0 80 20 70 20 70 30 80 30 80 40 70 40 70 50 60 50 60 40 50 40 50 50 40 50 40 40 30 40 30 50 20 50 20 40 10 40 10 50 0 50 0 30 10 30 10 20 0 20"
+					>
+						<animateTransform
+							begin="keepSecretDots.end"
+							end="keepSecretNo.begin"
+							attributeName="transform"
+							type="translate"
+							dur="6s"
+							values="0 -50; 0 50;"
+							fill="freeze"
+						/>
+						<animateTransform
+							begin="keepSecretDots.end"
+							end="keepSecretNo.begin"
+							attributeName="transform"
+							type="translate"
+							additive="sum"
+							dur="2s"
+							repeatCount="3"
+							values="-2 0; 2 0; -2 0;"
+							calcMode="spline"
+							keyTimes="0; 0.5; 1"
+							keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+						/>
+					</path>
+				</g>
 				<set begin="keepSecretOk.begin" attributeName="display" to="initial" />
-			</text>
+			</g>
 
 			<text
 				display="none"
