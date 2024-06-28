@@ -290,8 +290,8 @@
 						d="M 0 10 10 10 10 0 20 0 20 10 30 10 30 0 40 0 40 10 50 10 50 0 60 0 60 10 70 10 70 0 80 0 80 20 70 20 70 30 80 30 80 40 70 40 70 50 60 50 60 40 50 40 50 50 40 50 40 40 30 40 30 50 20 50 20 40 10 40 10 50 0 50 0 30 10 30 10 20 0 20"
 					>
 						<animateTransform
+							id="keepSecretConfetti"
 							begin="keepSecretDots.end"
-							end="keepSecretNo.begin"
 							attributeName="transform"
 							type="translate"
 							dur="6s"
@@ -332,6 +332,48 @@
 		</g>
 
 		<set begin="keepSecretStart.begin" attributeName="display" to="initial" />
+	</g>
+
+	<g display="none">
+		<set begin="keepSecretConfetti.end" attributeName="display" to="initial" fill="freeze" />
+
+		<g display="none" transform="translate(0 20.5)">
+			<set
+				begin="keepSecretOk.begin"
+				end="keepSecretNo.begin"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
+			<AnimatedTitle
+				text="Worth the wait!"
+				fill="url(#linear-gradient-text)"
+				begin="keepSecretConfetti.end"
+				end="keepSecretEnd.begin; keepSecretNo.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<g display="none" transform="translate(0 20.5)">
+			<set
+				begin="keepSecretNo.begin"
+				end="keepSecretOk.begin"
+				attributeName="display"
+				to="initial"
+				fill="freeze"
+			/>
+			<AnimatedTitle
+				text="Just a game..."
+				fill="url(#linear-gradient-text)"
+				begin="keepSecretConfetti.end"
+				end="keepSecretEnd.begin; keepSecretOk.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="keepSecretEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		</rect>
 	</g>
 
 	<g style:cursor="pointer">
