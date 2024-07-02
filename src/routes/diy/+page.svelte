@@ -13,6 +13,7 @@
 	import MatchInPairs from './MatchInPairs.svelte';
 	import PickUpProduce from './PickUpProduce.svelte';
 	import KeepTheSecret from './KeepTheSecret.svelte';
+	import GrabTheMug from './GrabTheMug.svelte';
 
 	const { title } = site;
 
@@ -76,6 +77,11 @@
 			component: KeepTheSecret,
 			backgroundColor: 'hsl(180 21% 85%)',
 			borderColor: 'hsl(160 20% 77%)'
+		},
+		{
+			component: GrabTheMug,
+			backgroundColor: 'hsl(173 26% 87%)',
+			borderColor: 'hsl(151 88% 28%)'
 		}
 	];
 </script>
