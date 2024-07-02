@@ -1,3 +1,7 @@
+<script>
+	const begin = Math.floor(Math.random() * 40) / 10 + 1;
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<defs>
 		<symbol id="mug-shot-glass" viewBox="0 0 30 42">
@@ -23,5 +27,16 @@
 		/>
 		<path fill="none" stroke="#000000" stroke-width="0.6" d="M 0 0 80 0" />
 	</g>
-	<use href="#mug-shot-glass" x="10" y="25" width="15" height="21" />
+	<use href="#mug-shot-glass" width="15" height="21">
+		<set attributeName="x" to="-15" />
+		<set attributeName="y" to="25" />
+		<animateTransform
+			{begin}
+			attributeName="transform"
+			type="translate"
+			to="95 0"
+			dur="2s"
+			fill="freeze"
+		/>
+	</use>
 </svg>
