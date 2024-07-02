@@ -1,5 +1,7 @@
 <script>
-	const begin = Math.floor(Math.random() * 40) / 10 + 1;
+	import Title from './Title.svelte';
+	const id = 'grabTheMugStart';
+	const begin = `${id}.begin + ${Math.floor(Math.random() * 35) / 10 + 1}s`;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -39,4 +41,12 @@
 			fill="freeze"
 		/>
 	</use>
+
+	<g style:cursor="pointer">
+		<set {id} begin="click" attributeName="display" to="none" />
+
+		<Title fill="url(#linear-gradient-text)">Grab!</Title>
+
+		<rect width="80" height="50" opacity="0" />
+	</g>
 </svg>
