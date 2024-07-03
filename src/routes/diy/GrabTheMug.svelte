@@ -34,13 +34,31 @@
 		<set attributeName="y" to="25" />
 		<animateTransform
 			{begin}
+			id="grabTheMugIn"
+			end="grabTheMugGrab.begin"
 			attributeName="transform"
 			type="translate"
-			to="95 0"
+			to="80 0"
 			dur="2s"
 			fill="freeze"
 		/>
+		<animateTransform
+			id="grabTheMugOut"
+			begin="grabTheMugIn.end"
+			end="grabTheMugGrab.begin"
+			attributeName="transform"
+			type="translate"
+			values="80 0; 100 0"
+			dur="0.5s"
+		/>
+		<set begin="grabTheMugOut.end" end="grabTheMugGrab.begin" attributeName="display" to="none" />
 	</use>
+
+	<rect style:cursor="pointer" display="none" width="80" height="50" opacity="0.2">
+		<set begin="grabTheMugIn.begin" attributeName="display" to="initial" />
+		<set id="grabTheMugGrab" begin="click" attributeName="display" to="none" />
+		<set begin="grabTheMugIn.end" attributeName="display" to="none" />
+	</rect>
 
 	<g style:cursor="pointer">
 		<set {id} begin="click" attributeName="display" to="none" />
