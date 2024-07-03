@@ -1,5 +1,7 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const id = 'grabTheMugSnap';
 	const begin = `${id}.begin + ${Math.floor(Math.random() * 30) / 10 + 1}s`;
 </script>
@@ -140,7 +142,7 @@
 		</g>
 	</g>
 
-	<rect style:cursor="pointer" display="none" width="80" height="50" opacity="0.2">
+	<rect style:cursor="pointer" display="none" width="80" height="50" opacity="0">
 		<set begin="grabTheMugIn.begin" attributeName="display" to="initial" />
 		<set id="grabTheMugGrab" begin="click" attributeName="display" to="none" />
 		<set begin="grabTheMugIn.end" attributeName="display" to="none" />
@@ -156,6 +158,33 @@
 			values="#grab-the-mug-hand-snap-1; #grab-the-mug-hand-snap-1; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-3; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-2"
 		/>
 	</use>
+
+	<g display="none">
+		<set begin="grabTheMugIn.end" end="grabTheMugGrab.begin" attributeName="display" to="initial" />
+		<AnimatedTitle
+			text="Not thirsty?"
+			fill="url(#linear-gradient-text)"
+			begin="grabTheMugIn.end"
+			end="grabTheMugGrab.begin; grabTheMugEnd.begin"
+			repeatCount="indefinite"
+		/>
+	</g>
+
+	<g display="none">
+		<set begin="grabTheMugGrab.begin" attributeName="display" to="initial" />
+		<AnimatedTitle
+			text="Nice catch!"
+			fill="url(#linear-gradient-text)"
+			begin="grabTheMugGrab.begin"
+			end="grabTheMugEnd.begin"
+			repeatCount="indefinite"
+		/>
+	</g>
+
+	<rect display="none" style:cursor="pointer" width="80" height="50" opacity="0">
+		<set begin="grabTheMugIn.end" attributeName="display" to="initial" />
+		<set id="grabTheMugEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+	</rect>
 
 	<g style:cursor="pointer">
 		<set id="grabTheMugStart" begin="click" attributeName="display" to="none" />
