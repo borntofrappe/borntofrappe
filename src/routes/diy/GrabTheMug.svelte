@@ -1,7 +1,7 @@
 <script>
 	import Title from './Title.svelte';
-	const id = 'grabTheMugStart';
-	const begin = `${id}.begin + ${Math.floor(Math.random() * 35) / 10 + 1}s`;
+	const id = 'grabTheMugSnap';
+	const begin = `${id}.begin + ${Math.floor(Math.random() * 30) / 10 + 1}s`;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -136,8 +136,19 @@
 		<set begin="grabTheMugIn.end" attributeName="display" to="none" />
 	</rect>
 
+	<use x="18" y="8" width="24" height="24">
+		<animate
+			{id}
+			begin="grabTheMugStart.begin + 0.5s"
+			attributeName="href"
+			calcMode="discrete"
+			dur="0.4s"
+			values="#grab-the-mug-hand-snap-1; #grab-the-mug-hand-snap-1; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-3; #grab-the-mug-hand-snap-2; #grab-the-mug-hand-snap-2"
+		/>
+	</use>
+
 	<g style:cursor="pointer">
-		<set {id} begin="click" attributeName="display" to="none" />
+		<set id="grabTheMugStart" begin="click" attributeName="display" to="none" />
 
 		<Title fill="url(#linear-gradient-text)">Grab!</Title>
 
