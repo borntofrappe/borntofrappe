@@ -10,12 +10,12 @@
 			<path
 				fill="#ffffff"
 				stroke="#000000"
-				stroke-width="1.5"
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				d="M 29 5 A 29 29 0 0 1 1 5 A 29 29 0 0 1 29 5 Q 28 25 25 39.5 Q 15 41.5 5 39.5 Q 2 25 1 5"
 			/>
 		</symbol>
+
 		<symbol id="grab-the-mug-hand-snap-1" viewBox="-40 -40 80 80">
 			<g stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
 				<path
@@ -70,13 +70,17 @@
 			/>
 		</symbol>
 
-		<symbol id="grab-the-mug-hand-grab" viewBox="-24.882217407226562 -32.5 60.38221740722656 66.75">
-			<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+		<symbol
+			id="grab-the-mug-hand-grab"
+			viewBox="-25.132217407226562 -32.75 60.88221740722656 67.25"
+			preserveAspectRatio="xMinYMax"
+		>
+			<g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 				<path
 					fill="#fddea5"
 					d="M 20 33 C 34 28 35 20 35 8 35 -8 30 -12 21 -17 19.5 -18 18 -19 17 -22 14 -31 11 -32 7 -32 3 -32 1 -26 1 -22 1 -15 6 -12 6 -12 7 -11 7 -11 9 -10 -1 -8 -8 -5 -19 -4 -23 -3 -23 3 -19 4 -26 4 -26 13 -20 15 -26 17 -22 25 -16 25 -17 31 -11 33 -6 33 2 34 11 34 20 33"
 				/>
-				<g stroke-width="0.7">
+				<g stroke-width="1">
 					<path
 						fill="#f9fb4c"
 						d=" M 17 -22 C 17 -16 18 -10 6 -12 7 -11 7 -11 9 -10 21 -10 20 -2 17 0 23 4 23 10 18 13 22 16 22 22 18 24 21 27 21 29 20 33 34 28 35 20 35 8 35 -8 30 -12 21 -17 19.5 -18 18 -19 17 -22"
@@ -105,30 +109,36 @@
 		/>
 		<path fill="none" stroke="#000000" stroke-width="0.6" d="M 0 0 80 0" />
 	</g>
-	<use href="#grab-the-mug-glass" width="15" height="21">
-		<set attributeName="x" to="-15" />
-		<set attributeName="y" to="25" />
-		<animateTransform
-			{begin}
-			id="grabTheMugIn"
-			end="grabTheMugGrab.begin"
-			attributeName="transform"
-			type="translate"
-			to="80 0"
-			dur="2s"
-			fill="freeze"
-		/>
-		<animateTransform
-			id="grabTheMugOut"
-			begin="grabTheMugIn.end"
-			end="grabTheMugGrab.begin"
-			attributeName="transform"
-			type="translate"
-			values="80 0; 100 0"
-			dur="0.5s"
-		/>
-		<set begin="grabTheMugOut.end" end="grabTheMugGrab.begin" attributeName="display" to="none" />
-	</use>
+
+	<g transform="translate(-15 25)">
+		<g>
+			<use href="#grab-the-mug-glass" width="15" height="21" />
+			<use display="none" href="#grab-the-mug-hand-grab" x="4" y="1" width="19" height="19">
+				<set begin="grabTheMugGrab.begin" attributeName="display" to="initial" />
+			</use>
+
+			<animateTransform
+				{begin}
+				id="grabTheMugIn"
+				end="grabTheMugGrab.begin"
+				attributeName="transform"
+				type="translate"
+				to="80 0"
+				dur="2s"
+				fill="freeze"
+			/>
+			<animateTransform
+				id="grabTheMugOut"
+				begin="grabTheMugIn.end"
+				end="grabTheMugGrab.begin"
+				attributeName="transform"
+				type="translate"
+				values="80 0; 100 0"
+				dur="0.5s"
+			/>
+			<set begin="grabTheMugOut.end" end="grabTheMugGrab.begin" attributeName="display" to="none" />
+		</g>
+	</g>
 
 	<rect style:cursor="pointer" display="none" width="80" height="50" opacity="0.2">
 		<set begin="grabTheMugIn.begin" attributeName="display" to="initial" />
