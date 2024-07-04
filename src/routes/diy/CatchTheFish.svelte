@@ -1,5 +1,6 @@
 <script>
 	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -223,6 +224,7 @@
 				/>
 				<animate
 					begin="catchTheFishCatch.begin"
+					end="catchTheFishEnd.begin"
 					attributeName="opacity"
 					values="1; 0"
 					dur="0.2s"
@@ -233,11 +235,17 @@
 			<path stroke="#000000" stroke-width="0.3" d="M 19 -18 19 0">
 				<animate
 					begin="catchTheFishBite.end"
-					end="catchTheFishEscape.begin"
 					attributeName="d"
 					to="M 17 -18 18 0"
 					fill="freeze"
 					dur="0.1s"
+				/>
+				<set
+					begin="catchTheFishEscape.begin"
+					end="catchTheFishCatch.begin"
+					attributeName="d"
+					to="M 19 -18 19 0"
+					fill="freeze"
 				/>
 			</path>
 			<path
@@ -253,6 +261,13 @@
 					to="M 0.5 -0.5 A 30 30 0 0 1 17 -18 A 30 30 0 0 0 1.2 -0.1 Z"
 					fill="freeze"
 					dur="0.1s"
+				/>
+				<set
+					begin="catchTheFishEscape.begin"
+					end="catchTheFishCatch.begin"
+					attributeName="d"
+					to="M 0.5 -0.5 A 200 200 0 0 1 19 -18 A 200 200 0 0 0 1 0 Z"
+					fill="freeze"
 				/>
 			</path>
 			<path
@@ -347,6 +362,7 @@
 		/>
 		<animateTransform
 			begin="catchTheFishShow.end"
+			end="catchTheFishEnd.begin"
 			attributeName="transform"
 			type="translate"
 			values="39.75 18.25; 39.25 18.25; 39.75 17.75; 39.25 17.75"
@@ -360,6 +376,55 @@
 		<set begin="catchTheFishBite.end" attributeName="display" to="initial" />
 		<set begin="catchTheFishEscape.begin" attributeName="display" to="none" />
 		<set id="catchTheFishCatch" begin="click" attributeName="display" to="none" />
+	</rect>
+
+	<g display="none">
+		<set
+			id="catchTheFishLose"
+			begin="catchTheFishEscape.end + 1.5s"
+			end="catchTheFishCatch.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<g transform="translate(0 18)">
+			<AnimatedTitle
+				text="Sinker..."
+				fill="url(#linear-gradient-text)"
+				begin="catchTheFishLose.begin"
+				end="catchTheFishEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+	</g>
+
+	<g display="none">
+		<set
+			id="catchTheFishWin"
+			begin="catchTheFishShow.end + 1.5s"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<g transform="translate(0 18)">
+			<AnimatedTitle
+				text="Hooked!"
+				fill="url(#linear-gradient-text)"
+				begin="catchTheFishWin.begin"
+				end="catchTheFishEnd.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+	</g>
+
+	<rect style:cursor="pointer" display="none" width="80" height="50" opacity="0">
+		<set
+			begin="catchTheFishLose.begin; catchTheFishWin.begin"
+			attributeName="display"
+			to="initial"
+			fill="freeze"
+		/>
+		<set id="catchTheFishEnd" begin="click" attributeName="display" to="none" fill="freeze" />
 	</rect>
 
 	<g style:cursor="pointer">
