@@ -1,3 +1,7 @@
+<script>
+	import Title from './Title.svelte';
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Fish!</title>
 
@@ -147,6 +151,88 @@
 		<ellipse transform="translate(19 0)" rx="2.5" ry="1.5" />
 	</g>
 
-	<use width="15" height="9" href="#catch-the-fish-target" />
-	<use y="9" width="15" height="9" href="#catch-the-fish-catch" />
+	<use transform="translate(80 50)" href="#catch-the-fish-target" width="15" height="9">
+		<animateTransform
+			id="catchTheFishEnter"
+			begin="catchTheFishStart.begin + 0.5s"
+			attributeName="transform"
+			type="translate"
+			values="80 50; 30 37; 50 37"
+			dur="4.5s"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+			keyTimes="0; 0.7; 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			id="catchTheFishSwim"
+			begin="catchTheFishEnter.end"
+			attributeName="transform"
+			type="translate"
+			values="50 37; 46 35; 51 36"
+			dur="3s"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			id="catchTheFishBite"
+			begin="catchTheFishSwim.end"
+			attributeName="transform"
+			type="translate"
+			values="51 36; 43 32"
+			dur="0.5s"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			id="catchTheFishEscape"
+			begin="catchTheFishBite.end + 1s"
+			end="catchTheFishCatch.begin"
+			attributeName="transform"
+			type="translate"
+			to="-20 50"
+			dur="0.5s"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			id="catchTheFishShow"
+			begin="catchTheFishCatch.begin"
+			attributeName="transform"
+			type="translate"
+			to="39.5 18"
+			dur="0.1s"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			begin="catchTheFishShow.end"
+			attributeName="transform"
+			type="translate"
+			values="39.75 18.25; 39.25 18.25; 39.75 17.75; 39.25 17.75"
+			dur="0.3s"
+			repeatCount="3"
+			fill="freeze"
+		/>
+	</use>
+
+	<rect style="cursor: pointer;" display="none" width="80" height="50" opacity="0.2">
+		<set begin="catchTheFishBite.end" attributeName="display" to="initial" />
+		<set begin="catchTheFishEscape.begin" attributeName="display" to="none" />
+		<set id="catchTheFishCatch" begin="click" attributeName="display" to="none" />
+	</rect>
+
+	<g style:cursor="pointer">
+		<set id="catchTheFishStart" begin="click" attributeName="display" to="none" fill="freeze" />
+
+		<g transform="translate(0 18)">
+			<Title fill="url(#linear-gradient-text)">Catch!</Title>
+		</g>
+
+		<rect width="80" height="50" opacity="0" />
+	</g>
 </svg>
