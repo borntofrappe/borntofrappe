@@ -50,6 +50,7 @@
 				<circle r="0.3" cx="-1.5" cy="-1" />
 			</g>
 		</pattern>
+
 		<pattern
 			id="catch-the-fish-pattern-mountain"
 			viewBox="-3 -3 6 6"
@@ -60,6 +61,7 @@
 		>
 			<circle fill="#f8f8f8" r="0.9" />
 		</pattern>
+
 		<pattern
 			id="catch-the-fish-pattern-side"
 			viewBox="-3 -3 6 6"
@@ -70,6 +72,74 @@
 		>
 			<circle fill="#f8f8f8" r="1.5" />
 		</pattern>
+
+		<g id="catch-the-fish-ice-hole">
+			<path
+				fill="#c0c0c0"
+				stroke="#c0c0c0"
+				stroke-width="0.2"
+				d="M -2 -1 -1 -3 0 -4.2 2 -3 5 -1 6 -2 8 -2 7 0 8 3 6 4 6 5 5 4.5 4 3.5 2 2 0 2 -2 4 -3 4 -4 5 -6 3 -7 2 -6 1 -7 -2 -4 -1 Z"
+			/>
+			<path
+				fill="#7d7d7d"
+				stroke="#7d7d7d"
+				stroke-width="0.2"
+				d="M -1 -3 -1 3 -2 4 -2 -1 Z M 5 -1 5 4.5 6 5 6 4 8 3 7 0 8 -2 6 -2 5 -1 Z"
+			/>
+			<path stroke="#f8f8f8" stroke-width="0.1" d="M -5 -1 -5 2 M 3 -2 3 1" />
+			<path
+				stroke="#f8f8f8"
+				stroke-width="0.2"
+				d="M -4.1 -0.5 -4.1 3.5 M 2 -2 2 1 M 5.2 -1 5.2 4 Z"
+			/>
+		</g>
+
+		<g id="catch-the-fish-ice-shard-1">
+			<g stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="#f8f8f8" stroke="#f8f8f8" d="M -1 -4 0 -4 2 -1 0 3 -2 2 -2 -1 -1 -4 Z" />
+				<path
+					fill="#c0c0c0"
+					stroke="#c0c0c0"
+					d="M 0 -4 2 -1 0 3 2 1 3 -2 Z M 0 -2 -1.2 0 Z M 0.6 -1.8 -1.4 1.5 Z"
+				/>
+				<path
+					fill="none"
+					stroke="#7d7d7d"
+					stroke-width="0.2"
+					d="M 0 -4 3 -2 2 1 0 3 -2 2 -2 -1 -1 -4 0 -4 Z M 0 -4 2 -1 0 3 M 2 -1 3 -2"
+				/>
+			</g>
+		</g>
+
+		<g id="catch-the-fish-ice-shard-2">
+			<g stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="#f8f8f8" stroke="#f8f8f8" d="M -1 -2 0 -2 1 -1 1 2 0 3 -1 2 -2 0 -1 -2 Z" />
+				<path
+					fill="#c0c0c0"
+					stroke="#c0c0c0"
+					d="M 0 -2 1 -1 1 2 2 1 2 -1 1 -2 Z M -0.1 -1.3 -1.2 0.4 M 0.5 -0.7 -0.6 1 Z"
+				/>
+				<path
+					fill="none"
+					stroke="#7d7d7d"
+					stroke-width="0.2"
+					d="M 1 -2 2 -1 2 1 0 3 -1 2 -2 0 -1 -2 Z M -1 -2 0 -2 1 -1 1 2"
+				/>
+			</g>
+		</g>
+
+		<g id="catch-the-fish-ice-shard-3">
+			<g stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+				<path fill="#f8f8f8" stroke="#f8f8f8" d="M -2 -1 -1 -1 1 1 2 1 1 2 0 2 -2 0 Z" />
+				<path fill="#c0c0c0" stroke="#c0c0c0" d="M -1 -1 1 1 2 1 0 -1 Z M -1 0 0 1" />
+				<path
+					fill="none"
+					stroke="#7d7d7d"
+					stroke-width="0.2"
+					d="M -2 -1 -1 -1 0 -1 2 1 1 2 0 2 -2 0 Z M 0 2 1 1 -1 -1 M 1 1 2 1"
+				/>
+			</g>
+		</g>
 	</defs>
 
 	<rect fill="#f8f8f8" width="80" height="50" />
@@ -146,7 +216,7 @@
 							d="M 15.6 15.6 C 16.2 15 16.8 15 17.2 15"
 						>
 							<set
-								begin="catchTheFishEscape.begin"
+								begin="catchTheFishEscape.begin + 0.1s"
 								end="catchTheFishCatch.begin"
 								attributeName="display"
 								to="initial"
@@ -294,9 +364,38 @@
 				/>
 			</path>
 		</g>
-		<ellipse transform="translate(19 0)" rx="2.5" ry="1.5">
-			<set begin="catchTheFishCatch.begin" attributeName="display" to="none" fill="freeze" />
-		</ellipse>
+		<g transform="translate(19 0)">
+			<ellipse rx="2.5" ry="1.5">
+				<set begin="catchTheFishCatch.begin" attributeName="display" to="none" fill="freeze" />
+			</ellipse>
+			<g transform="translate(0 2)">
+				<animateTransform
+					begin="catchTheFishCatch.begin"
+					attributeName="transform"
+					type="translate"
+					values="-80 0; -160 0; -240 0"
+					dur="0.2s"
+					calcMode="discrete"
+					fill="freeze"
+				/>
+				<g transform="translate(80 0)">
+					<use href="#catch-the-fish-ice-hole" />
+				</g>
+
+				<g transform="translate(160 0)">
+					<use href="#catch-the-fish-ice-hole" />
+					<use transform="translate(-4 -3) scale(0.8)" href="#catch-the-fish-ice-shard-1" />
+					<use transform="translate(6 -5) scale(0.8)" href="#catch-the-fish-ice-shard-2" />
+				</g>
+
+				<g transform="translate(240 0)">
+					<use href="#catch-the-fish-ice-hole" />
+					<use transform="translate(-6 6.5) scale(0.8)" href="#catch-the-fish-ice-shard-1" />
+					<use transform="translate(4.5 4) scale(0.8)" href="#catch-the-fish-ice-shard-2" />
+					<use transform="translate(4.5 -4.5) scale(0.7)" href="#catch-the-fish-ice-shard-3" />
+				</g>
+			</g>
+		</g>
 	</g>
 
 	<use
@@ -381,7 +480,7 @@
 		/>
 	</use>
 
-	<rect style="cursor: pointer;" display="none" width="80" height="50" opacity="0.2">
+	<rect style="cursor: pointer;" display="none" width="80" height="50" opacity="0">
 		<set begin="catchTheFishBite.end" attributeName="display" to="initial" />
 		<set begin="catchTheFishEscape.begin" attributeName="display" to="none" />
 		<set id="catchTheFishCatch" begin="click" attributeName="display" to="none" />
@@ -396,7 +495,7 @@
 			to="initial"
 			fill="freeze"
 		/>
-		<g transform="translate(0 18)">
+		<g transform="translate(0 20)">
 			<AnimatedTitle
 				text="Sinker..."
 				fill="url(#linear-gradient-text)"
@@ -415,7 +514,7 @@
 			to="initial"
 			fill="freeze"
 		/>
-		<g transform="translate(0 18)">
+		<g transform="translate(0 20)">
 			<AnimatedTitle
 				text="Hooked!"
 				fill="url(#linear-gradient-text)"
@@ -439,7 +538,7 @@
 	<g style:cursor="pointer">
 		<set id="catchTheFishStart" begin="click" attributeName="display" to="none" fill="freeze" />
 
-		<g transform="translate(0 18)">
+		<g transform="translate(0 20)">
 			<Title fill="url(#linear-gradient-text)">Catch!</Title>
 		</g>
 
