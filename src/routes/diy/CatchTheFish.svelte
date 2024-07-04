@@ -1,6 +1,15 @@
 <script>
 	import Title from './Title.svelte';
 	import AnimatedTitle from './AnimatedTitle.svelte';
+
+	const swims = ['50 37; 46 35; 51 36', '50 37; 52 36; 51 38', '50 37; 52 36', '50 37; 49 36'];
+
+	const values = swims[Math.floor(Math.random() * swims.length)];
+	const turns = values.match(/[\d-]+ [\d-]+/g).length;
+	const dur = `${turns * 0.7}s`;
+	const keySplines = Array(turns - 1)
+		.fill('0.5 0 0.5 1')
+		.join('; ');
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -320,10 +329,10 @@
 			begin="catchTheFishEnter.end"
 			attributeName="transform"
 			type="translate"
-			values="50 37; 46 35; 51 36"
-			dur="3s"
+			{values}
+			{dur}
 			calcMode="spline"
-			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+			{keySplines}
 			fill="freeze"
 		/>
 		<animateTransform
@@ -331,15 +340,15 @@
 			begin="catchTheFishSwim.end"
 			attributeName="transform"
 			type="translate"
-			values="51 36; 43 32"
-			dur="0.5s"
+			to="43 32"
+			dur="0.3s"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
 			fill="freeze"
 		/>
 		<animateTransform
 			id="catchTheFishEscape"
-			begin="catchTheFishBite.end + 1s"
+			begin="catchTheFishBite.end + 0.9s"
 			end="catchTheFishCatch.begin"
 			attributeName="transform"
 			type="translate"
