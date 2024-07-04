@@ -141,7 +141,6 @@
 			</g>
 		</g>
 	</defs>
-
 	<rect fill="#f8f8f8" width="80" height="50" />
 	<rect fill="#10c0c8" width="80" height="16" />
 	<rect fill="url(#catch-the-fish-pattern-sky)" width="80" height="16" />
@@ -199,7 +198,7 @@
 					<g transform="translate(-10 -19.6)">
 						<path
 							fill="#c868e8"
-							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
+							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 7 7 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
 						/>
 						<path
 							fill="#f8f8f8"
@@ -234,7 +233,7 @@
 						<path
 							fill="none"
 							stroke="#000000"
-							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
+							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 7 7 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
 						/>
 						<path
 							fill="#000000"
@@ -261,7 +260,7 @@
 			<path
 				fill="#c868e8"
 				stroke="#000000"
-				d="M 11.4 24 C 11.4 22.4 13.6 21.6 14.8 21.6 16 21.6 18.2 22.2 18.2 24 Z"
+				d="M 11.4 24 C 11.4 22.2 13.6 21.6 14.8 21.6 16 21.6 18.2 22.2 18.2 24 Z"
 			/>
 		</g>
 	</g>
@@ -273,8 +272,8 @@
 				end="catchTheFishCatch.begin; catchTheFishEscape.begin"
 				attributeName="transform"
 				type="translate"
-				values="0 0; 0.25 0; -0.25 0;"
 				dur="0.2s"
+				values="0 0; 0.25 0; -0.25 0;"
 				repeatCount="indefinite"
 				fill="freeze"
 			/>
@@ -282,8 +281,8 @@
 				begin="catchTheFishCatch.begin"
 				attributeName="transform"
 				type="translate"
-				to="0 -13"
 				dur="0.2s"
+				to="0 -13"
 				fill="freeze"
 			/>
 			<path
@@ -305,8 +304,8 @@
 					begin="catchTheFishCatch.begin"
 					end="catchTheFishEnd.begin"
 					attributeName="opacity"
-					values="1; 0"
 					dur="0.2s"
+					values="1; 0"
 					calcMode="discrete"
 					repeatCount="indefinite"
 				/>
@@ -316,15 +315,14 @@
 					begin="catchTheFishBite.end"
 					attributeName="d"
 					to="M 17 -18 18 0"
-					fill="freeze"
 					dur="0.1s"
+					fill="freeze"
 				/>
 				<set
 					begin="catchTheFishEscape.begin"
 					end="catchTheFishCatch.begin"
 					attributeName="d"
 					to="M 19 -18 19 0"
-					fill="freeze"
 				/>
 			</path>
 			<path
@@ -338,15 +336,14 @@
 					end="catchTheFishEscape.begin"
 					attributeName="d"
 					to="M 0.5 -0.5 A 30 30 0 0 1 17 -18 A 30 30 0 0 0 1.2 -0.1 Z"
-					fill="freeze"
 					dur="0.1s"
+					fill="freeze"
 				/>
 				<set
 					begin="catchTheFishEscape.begin"
 					end="catchTheFishCatch.begin"
 					attributeName="d"
 					to="M 0.5 -0.5 A 200 200 0 0 1 19 -18 A 200 200 0 0 0 1 0 Z"
-					fill="freeze"
 				/>
 			</path>
 			<path
@@ -360,21 +357,20 @@
 					begin="catchTheFishCatch.begin; catchTheFishEscape.begin"
 					attributeName="display"
 					to="none"
-					fill="freeze"
 				/>
 			</path>
 		</g>
 		<g transform="translate(19 0)">
 			<ellipse rx="2.5" ry="1.5">
-				<set begin="catchTheFishCatch.begin" attributeName="display" to="none" fill="freeze" />
+				<set begin="catchTheFishCatch.begin" attributeName="display" to="none" />
 			</ellipse>
 			<g transform="translate(0 2)">
 				<animateTransform
 					begin="catchTheFishCatch.begin"
 					attributeName="transform"
 					type="translate"
-					values="-80 0; -160 0; -240 0"
 					dur="0.2s"
+					values="-80 0; -160 0; -240 0"
 					calcMode="discrete"
 					fill="freeze"
 				/>
@@ -405,19 +401,14 @@
 		height="9"
 		href="#catch-the-fish-target"
 	>
-		<set
-			begin="catchTheFishCatch.begin"
-			attributeName="href"
-			to="#catch-the-fish-catch"
-			fill="freeze"
-		/>
+		<set begin="catchTheFishCatch.begin" attributeName="href" to="#catch-the-fish-catch" />
 		<animateTransform
 			id="catchTheFishEnter"
 			begin="catchTheFishStart.begin + 0.5s"
 			attributeName="transform"
 			type="translate"
-			values="80 50; 30 37; 50 37"
 			dur="4.5s"
+			values="80 50; 30 37; 50 37"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
 			keyTimes="0; 0.7; 1"
@@ -428,8 +419,8 @@
 			begin="catchTheFishEnter.end"
 			attributeName="transform"
 			type="translate"
-			{values}
 			{dur}
+			{values}
 			calcMode="spline"
 			{keySplines}
 			fill="freeze"
@@ -439,8 +430,8 @@
 			begin="catchTheFishSwim.end"
 			attributeName="transform"
 			type="translate"
-			to="43 32"
 			dur="0.3s"
+			to="43 32"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
 			fill="freeze"
@@ -451,8 +442,8 @@
 			end="catchTheFishCatch.begin"
 			attributeName="transform"
 			type="translate"
-			to="-20 50"
 			dur="0.5s"
+			to="-20 50"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
 			fill="freeze"
@@ -462,8 +453,8 @@
 			begin="catchTheFishCatch.begin"
 			attributeName="transform"
 			type="translate"
-			to="39.5 18"
 			dur="0.1s"
+			to="39.5 18"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
 			fill="freeze"
@@ -473,8 +464,8 @@
 			end="catchTheFishEnd.begin"
 			attributeName="transform"
 			type="translate"
-			values="39.75 18.25; 39.25 18.25; 39.75 17.75; 39.25 17.75"
 			dur="0.3s"
+			values="39.75 18.25; 39.25 18.25; 39.75 17.75; 39.25 17.75"
 			repeatCount="indefinite"
 			fill="freeze"
 		/>
@@ -493,7 +484,6 @@
 			end="catchTheFishCatch.begin"
 			attributeName="display"
 			to="initial"
-			fill="freeze"
 		/>
 		<g transform="translate(0 20)">
 			<AnimatedTitle
@@ -512,7 +502,6 @@
 			begin="catchTheFishShow.end + 1.5s"
 			attributeName="display"
 			to="initial"
-			fill="freeze"
 		/>
 		<g transform="translate(0 20)">
 			<AnimatedTitle
@@ -530,13 +519,12 @@
 			begin="catchTheFishLose.begin; catchTheFishWin.begin"
 			attributeName="display"
 			to="initial"
-			fill="freeze"
 		/>
-		<set id="catchTheFishEnd" begin="click" attributeName="display" to="none" fill="freeze" />
+		<set id="catchTheFishEnd" begin="click" attributeName="display" to="none" />
 	</rect>
 
 	<g style:cursor="pointer">
-		<set id="catchTheFishStart" begin="click" attributeName="display" to="none" fill="freeze" />
+		<set id="catchTheFishStart" begin="click" attributeName="display" to="none" />
 
 		<g transform="translate(0 20)">
 			<Title fill="url(#linear-gradient-text)">Catch!</Title>
