@@ -84,74 +84,210 @@
 	</g>
 
 	<g transform="translate(7 15)" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5">
-		<path
-			fill="#c868e8"
-			d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
-		/>
-		<path
-			fill="#f8f8f8"
-			d="M 13.6 5.2 C 12.8 5.8 12.6 7.2 13.2 7.8 11.6 8 10.2 9.6 11.2 11.2 9.4 11.8 8.6 12.6 8.6 13.6 8.6 15 10.2 15.6 11.4 15.6 10.2 16.4 11 18 11.2 18 11.8 19 13.6 19 15 17.6 C 15.6 16.2 14.8 14.8 13.2 14.6 14.2 13.8 14.6 12.8 14.4 11.8 15.6 11.8 16.2 10.6 15.8 9.6 16.8 10 17.8 9.6 17.6 8.6 19.2 7.6 19 5.4 17.2 4.8 16 4.6 14.6 4.6 13.6 5.2"
-		/>
-		<path
-			fill="#f8d898"
-			d="M 17.6 8.6 C 19.8 11.2 18 16.6 15 17.6 15.6 16.2 14.8 14.8 13.2 14.6 14.2 13.8 14.6 12.8 14.4 11.8 15.6 11.8 16.2 10.6 15.8 9.6 16.8 10 17.8 9.6 17.6 8.6"
-		/>
-		<path
-			display="none"
-			stroke="#f80000"
-			stroke-width="1"
-			d="M 15.6 15.6 C 16.2 15 16.8 15 17.2 15"
-		/>
-		<path
-			display="none"
-			fill="#f80000"
-			stroke="#f80000"
-			stroke-width="0.5"
-			d="M 15.4 14.2 C 15.6 15 15.8 15.4 16.2 15.6 16.6 15.4 16.8 15 17 14.2 L 16.4 13.6 Z"
-		/>
-		<path
-			fill="none"
-			stroke="#000000"
-			d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
-		/>
-		<path
-			fill="#000000"
-			stroke="#000000"
-			stroke-width="0.5"
-			d="M 14 12.6 15.4 14.2 16.4 13.6 17 14.2 18.2 12.8 17.2 13.2 16.4 12.8 15.4 13.4 14 12.6"
-		/>
-		<ellipse fill="#000000" cx="17" cy="11.4" rx="0.5" />
-		<path
-			fill="#c868e8"
-			stroke="#000000"
-			d="M 11.4 24 C 11.4 22.4 13.6 21.6 14.8 21.6 16 21.6 18.2 22.2 18.2 24 Z"
-		/>
-		<path
-			fill="#c868e8"
-			stroke="#000000"
-			d="M 17.4 13 C 17.4 14 18.2 14.8 19.2 14.8 20.6 14.8 21 13.6 21 13.2 21.2 11.8 20.2 11.6 19 11.6 18 11.8 17.4 12.2 17.4 13"
-		/>
+		<g>
+			<animateTransform
+				begin="catchTheFishBite.end"
+				end="catchTheFishCatch.begin; catchTheFishEscape.begin"
+				attributeName="transform"
+				type="translate"
+				dur="0.2s"
+				values="0 0; 0.5 0; -0.5 0"
+				repeatCount="indefinite"
+				fill="freeze"
+			/>
+			<g transform="translate(10 19.6)">
+				<g>
+					<animateTransform
+						begin="catchTheFishBite.end"
+						attributeName="transform"
+						type="rotate"
+						dur="0.1s"
+						to="-17"
+						calcMode="discrete"
+						fill="freeze"
+					/>
+					<animateTransform
+						begin="catchTheFishEscape.begin"
+						end="catchTheFishCatch.begin"
+						attributeName="transform"
+						type="rotate"
+						dur="0.1s"
+						to="0"
+						calcMode="discrete"
+						fill="freeze"
+					/>
+					<g transform="translate(-10 -19.6)">
+						<path
+							fill="#c868e8"
+							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
+						/>
+						<path
+							fill="#f8f8f8"
+							d="M 13.6 5.2 C 12.8 5.8 12.6 7.2 13.2 7.8 11.6 8 10.2 9.6 11.2 11.2 9.4 11.8 8.6 12.6 8.6 13.6 8.6 15 10.2 15.6 11.4 15.6 10.2 16.4 11 18 11.2 18 11.8 19 13.6 19 15 17.6 C 15.6 16.2 14.8 14.8 13.2 14.6 14.2 13.8 14.6 12.8 14.4 11.8 15.6 11.8 16.2 10.6 15.8 9.6 16.8 10 17.8 9.6 17.6 8.6 19.2 7.6 19 5.4 17.2 4.8 16 4.6 14.6 4.6 13.6 5.2"
+						/>
+						<path
+							fill="#f8d898"
+							d="M 17.6 8.6 C 19.8 11.2 18 16.6 15 17.6 15.6 16.2 14.8 14.8 13.2 14.6 14.2 13.8 14.6 12.8 14.4 11.8 15.6 11.8 16.2 10.6 15.8 9.6 16.8 10 17.8 9.6 17.6 8.6"
+						/>
+						<path
+							display="none"
+							stroke="#f80000"
+							stroke-width="1"
+							d="M 15.6 15.6 C 16.2 15 16.8 15 17.2 15"
+						>
+							<set
+								begin="catchTheFishEscape.begin"
+								end="catchTheFishCatch.begin"
+								attributeName="display"
+								to="initial"
+							/>
+						</path>
+						<path
+							display="none"
+							fill="#f80000"
+							stroke="#f80000"
+							stroke-width="0.5"
+							d="M 15.4 14.2 C 15.6 15 15.8 15.4 16.2 15.6 16.6 15.4 16.8 15 17 14.2 L 16.4 13.6 Z"
+						>
+							<set begin="catchTheFishCatch.begin" attributeName="display" to="initial" />
+						</path>
+						<path
+							fill="none"
+							stroke="#000000"
+							d="M 15 17.6 C 16.4 18.4 16.4 19.4 16.4 20 16.4 22 13.2 23.4 11 23.4 8.2 23.4 6 21.6 6 19.8 6 18 7.2 17.6 7.6 17.2 5 16.8 3 14 3 11.4 3 6.8 6 4.4 9.6 4.2 11.4 4.2 13 4.6 13.6 5.2 14.6 4.6 16 4.6 17.2 4.8 19 5.4 19.2 7.6 17.6 8.6 19.8 11.2 18 16.6 15 17.6 15.6 16.2"
+						/>
+						<path
+							fill="#000000"
+							stroke="#000000"
+							stroke-width="0.5"
+							d="M 14 12.6 15.4 14.2 16.4 13.6 17 14.2 18.2 12.8 17.2 13.2 16.4 12.8 15.4 13.4 14 12.6"
+						/>
+						<ellipse fill="#000000" cx="17" cy="11.4" rx="0.5">
+							<set
+								begin="catchTheFishBite.end"
+								end="catchTheFishEscape.begin; catchTheFishCatch.begin"
+								attributeName="ry"
+								to="0.3"
+							/>
+						</ellipse>
+						<path
+							fill="#c868e8"
+							stroke="#000000"
+							d="M 17.4 13 C 17.4 14 18.2 14.8 19.2 14.8 20.6 14.8 21 13.6 21 13.2 21.2 11.8 20.2 11.6 19 11.6 18 11.8 17.4 12.2 17.4 13"
+						/>
+					</g>
+				</g>
+			</g>
+			<path
+				fill="#c868e8"
+				stroke="#000000"
+				d="M 11.4 24 C 11.4 22.4 13.6 21.6 14.8 21.6 16 21.6 18.2 22.2 18.2 24 Z"
+			/>
+		</g>
 	</g>
 
 	<g transform="translate(28 32)" stroke-linecap="round" stroke-linejoin="round">
-		<path stroke="currentColor" stroke-width="0.3" d="M 19 -18 19 0" />
-		<path
-			fill="#c04800"
-			stroke="#c04800"
-			stroke-width="0.5"
-			d="M 0.5 -0.5 A 200 200 0 0 1 19 -18 A 200 200 0 0 0 1 0 Z"
-		/>
-		<path
-			transform="translate(19 2.4)"
-			fill="none"
-			stroke="#c04800"
-			stroke-width="0.5"
-			d="M -0.6 0.6 0 0 M 0 1.2 Z M 0.6 0.6 Z"
-		/>
-		<ellipse transform="translate(19 0)" rx="2.5" ry="1.5" />
+		<g>
+			<animateTransform
+				begin="catchTheFishBite.end"
+				end="catchTheFishCatch.begin; catchTheFishEscape.begin"
+				attributeName="transform"
+				type="translate"
+				values="0 0; 0.25 0; -0.25 0;"
+				dur="0.2s"
+				repeatCount="indefinite"
+				fill="freeze"
+			/>
+			<animateTransform
+				begin="catchTheFishCatch.begin"
+				attributeName="transform"
+				type="translate"
+				to="0 -13"
+				dur="0.2s"
+				fill="freeze"
+			/>
+			<path
+				display="none"
+				fill="none"
+				stroke="#000000"
+				stroke-linecap="round"
+				stroke-width="0.3"
+				d="M 6 -13.5 Q 6.25 -15 7.25 -16 M 8 -14.25 Q 8.5 -15.5 10 -16.5"
+			>
+				<set begin="catchTheFishBite.end" attributeName="display" to="initial" />
+				<set
+					begin="catchTheFishEscape.begin"
+					end="catchTheFishCatch.begin"
+					attributeName="display"
+					to="none"
+				/>
+				<animate
+					begin="catchTheFishCatch.begin"
+					attributeName="opacity"
+					values="1; 0"
+					dur="0.2s"
+					calcMode="discrete"
+					repeatCount="indefinite"
+				/>
+			</path>
+			<path stroke="#000000" stroke-width="0.3" d="M 19 -18 19 0">
+				<animate
+					begin="catchTheFishBite.end"
+					end="catchTheFishEscape.begin"
+					attributeName="d"
+					to="M 17 -18 18 0"
+					fill="freeze"
+					dur="0.1s"
+				/>
+			</path>
+			<path
+				fill="#c04800"
+				stroke="#c04800"
+				stroke-width="0.5"
+				d="M 0.5 -0.5 A 200 200 0 0 1 19 -18 A 200 200 0 0 0 1 0 Z"
+			>
+				<animate
+					begin="catchTheFishBite.end"
+					end="catchTheFishEscape.begin"
+					attributeName="d"
+					to="M 0.5 -0.5 A 30 30 0 0 1 17 -18 A 30 30 0 0 0 1.2 -0.1 Z"
+					fill="freeze"
+					dur="0.1s"
+				/>
+			</path>
+			<path
+				transform="translate(19 2.4)"
+				fill="none"
+				stroke="#c04800"
+				stroke-width="0.5"
+				d="M -0.6 0.6 0 0 M 0 1.2 Z M 0.6 0.6 Z"
+			>
+				<set
+					begin="catchTheFishCatch.begin; catchTheFishEscape.begin"
+					attributeName="display"
+					to="none"
+					fill="freeze"
+				/>
+			</path>
+		</g>
+		<ellipse transform="translate(19 0)" rx="2.5" ry="1.5">
+			<set begin="catchTheFishCatch.begin" attributeName="display" to="none" fill="freeze" />
+		</ellipse>
 	</g>
 
-	<use transform="translate(80 50)" href="#catch-the-fish-target" width="15" height="9">
+	<use
+		transform="translate(80 50)"
+		style="color: #000000;"
+		width="15"
+		height="9"
+		href="#catch-the-fish-target"
+	>
+		<set
+			begin="catchTheFishCatch.begin"
+			attributeName="href"
+			to="#catch-the-fish-catch"
+			fill="freeze"
+		/>
 		<animateTransform
 			id="catchTheFishEnter"
 			begin="catchTheFishStart.begin + 0.5s"
@@ -215,7 +351,7 @@
 			type="translate"
 			values="39.75 18.25; 39.25 18.25; 39.75 17.75; 39.25 17.75"
 			dur="0.3s"
-			repeatCount="3"
+			repeatCount="indefinite"
 			fill="freeze"
 		/>
 	</use>
