@@ -5,3 +5,11 @@ date: 2024-07-08
 ---
 
 Yay pokemon pinball.
+
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="[ center-frame ]">
+	{@html svg['pix-graphic']}
+</figure>
