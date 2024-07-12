@@ -1,0 +1,7 @@
+---
+title: Explain view transition
+description: Put a few words to a small yet impressive demo.
+date: 2024-07-13
+---
+
+[small, yet impressive demo](https://codepen.io/borntofrappe/pen/xxobXxJ)
