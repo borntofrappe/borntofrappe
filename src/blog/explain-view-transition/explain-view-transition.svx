@@ -64,7 +64,7 @@ if (document.startViewTransition) {
 }
 ```
 
-By default supporting browsers will transition between the start and end state, between one value and the next — or the previous one —, with a sensible cross-fade. But we can go further and customize the manner in which the old and new numbers swap in their place.
+By default supporting browsers will transition between the start and end state, between one value and the next — or the previous one — with a sensible cross-fade. But we can go further and customize the manner in which the old and new numbers swap in their place.
 
 The key here is the `view-transition-name` property. To get started, you can actually remove the fading animation setting the property on the global `html` selector to a value of `none`.
 
@@ -92,7 +92,7 @@ What is more, it offers a pseudo-selector to the changing value. Two selectors t
   ```css
   ::view-transition-new(value-increment),
   ::view-transition-old(value-increment) {
-  	animation-duration: 0.1s;
+  	animation-duration: 0.2s;
   }
   ```
 
@@ -102,13 +102,12 @@ What is more, it offers a pseudo-selector to the changing value. Two selectors t
   ::view-transition-new(value-increment) {
   	animation: slide-in 0.25s;
   }
-
   ::view-transition-old(value-increment) {
   	animation: slide-out 0.25s;
   }
   ```
 
-In the final demo I resolved to create two animations, two keyframe structures. But while the structure is slightly verbose it is quite easy to digest. For the new value, for instance, this one is made to move down and increase in scale.
+In the final demo I resolved to create two animations, two keyframe sequences. But while the structure is slightly verbose it is also easy to digest. For the new value, for instance, this one is made to move down to its rightful scale.
 
 ```css
 @keyframes slide-in {
@@ -123,7 +122,7 @@ In the final demo I resolved to create two animations, two keyframe structures. 
 }
 ```
 
-The old one translates in the same direction, further down, and shrinks.
+The old one translates in the same direction, further down, and shrinks to mirror the first change.
 
 ```css
 @keyframes slide-out {
@@ -143,7 +142,7 @@ At either end the browser takes care of inserting and removing the values. In be
 The clever bit? By using JavaScript to set the `transition-name` property you can differentiate the animation when the counter decreases — use a different transition name.
 
 ```js
-counter.style.setProperty('view-transition-name', 'value-increment');
+counter.style.setProperty('view-transition-name', 'value-decrement');
 decrement();
 ```
 
@@ -159,6 +158,6 @@ if (document.startViewTransition && matchMedia('(prefers-reduced-motion: no-pref
 
 While the change is small, it is still sudden, and might not be to everyone's taste.
 
-The sharpest piece of the puzzle is still the platform, the supporting browser, but the code promises a sweet user experience. One you may have seen if you support all features, and one I can attempt to showcase if you excuse JavaScript and SVG.
+The sharpest piece of the puzzle is still the platform, the supporting browser, but the code promises a sweet user experience. One you may have seen if you check all the boxes, and one I can attempt to showcase if you excuse JavaScript and SVG.
 
 <AnimationTab />
