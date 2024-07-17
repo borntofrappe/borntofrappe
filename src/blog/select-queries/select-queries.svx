@@ -4,6 +4,14 @@ description: SQLite queries to answer your questions.
 date: 2024-07-17
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
+<figure class="center-frame" data-size="large">
+	{@html svg['er-diagram']}
+</figure>
+
 ```bash
 sqlite3 pokemon-pinball.sqlite3
 ```
