@@ -12,6 +12,10 @@ date: 2024-07-17
 	{@html svg['er-diagram']}
 </figure>
 
+<figure class="center-frame">
+	{@html svg['up-grade']}
+</figure>
+
 ```bash
 sqlite3 pokemon-pinball.sqlite3
 ```
