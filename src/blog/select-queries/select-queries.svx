@@ -1,0 +1,9 @@
+---
+title: Select queries
+description: SQLite queries to answer your questions.
+date: 2024-07-17
+---
+
+```bash
+sqlite3 pokemon-pinball.sqlite3
+```
