@@ -1,21 +1,224 @@
 ---
 title: Select queries
-description: SQLite queries to answer your questions.
-date: 2024-07-17
+description: Upgrade SQLite statements to answer your natural queries.
+date: 2024-07-17T18:58:55
 ---
 
 <script>
 	import svg from './svg.js';
 </script>
 
+You get your hands on [an interesting SQLite database](https://github.com/borntofrappe/sqlite-practice?tab=readme-ov-file#pokemon-pinball) designed with care and a handful of tables.
+
+```bash
+sqlite3 pokemon-pinball.sqlite3
+```
+
+There is care in that the data is stored with some thought. You won't find the same row twice, but instead a key, a _foreign key_, pointing to the unique value of another table, the _primary key_.
+
+But you as a consumer don't care how the data is stored. You care about the data itself and this time you want to know: _"in just how many places will I be stuck with that blood-sucking bat?"_ There are at least two techniques worth remembering, but first, a brief introduction to the single file.
+
 <figure class="center-frame" data-size="large">
 	{@html svg['er-diagram']}
 </figure>
+
+Among the five tables `pokemon`, `area` and `version` provide rich, detailed information on the game's creatures, locations and different modes. The three make use of a primary key to single out the entries and, most notably, their names.
+
+The remaining tables connect the dots:
+
+- `location` has three foreign keys to describe a combination of the three tables. Rather inscrutably, it holds the answer to the starting question with nothing but integers
+
+- `evolution` has two foreign keys, but this time, they point to the primary key of the same table. Most assuredly, they don't connect the same values, but different rows from the reference to describe an evolution and the respective base
+
+## Nested queries
+
+You can appreciate the first approach in one or two steps. In the location table you are able to identify pokemon with the `id` column, so to get started you need the key for the chosen monster. You need to select the `id` from the pertinent table.
+
+```sql
+SELECT "id" FROM "pokemon" WHERE "name" = 'Zubat';
+```
+
+41. Remembering the number, dive back in the location table and look for the rows, specifically the area's ID which matches the round value.
+
+```sql
+SELECT "area_id" FROM "location" WHERE "pokemon_id" = 41;
+```
+
+9 and 18 are repeated twice — it seems the creature appears in the same area in different versions —, so you might want to use the `DISTINCT` keyword to remove duplicates. But you can do even better and remove from memory the hard-coded value. Instead of the rows where the foreign key matches the number you can look for a match with the result of the first query.
+
+You can nest selections: open a set of parentheses to ease the input and type in the query.
+
+```sql
+SELECT DISTINCT "area_id" FROM "location" WHERE "pokemon_id" = (
+  SELECT "id" FROM "pokemon" WHERE "name" = 'Zubat'
+);
+```
+
+The result is much the same — only different per the `DISTINCT` add-on. You find the IDs for the areas and at this point you know you can forget the result. Instead, repeat the process one more time: look for the name of the areas where the primary key appears in the set of values returned by the longer selection.
+
+```sql
+SELECT "name" FROM "area" WHERE "id" IN (
+	SELECT DISTINCT "area_id" FROM "location" WHERE "pokemon_id" = (
+		SELECT "id" FROM "pokemon" WHERE "name" = 'Zubat'
+  )
+);
+```
+
+In essence: search the name of the areas of which the ID is: look for the ID of the areas where you find the pokemon's ID which is: select the ID of the pokemon whose name is 'Zubat'. A roundabout process, but one which leads you to the answer for the winged beast.
+
+| name            |
+| --------------- |
+| Mt. Moon        |
+| Rock Mountain   |
+| Seafoam Islands |
+| Indigo Plateau  |
+
+## Joins
+
+The second approach aims to unite different tables with the `JOIN` keyword, on the basis of a common field.
+
+This means you can merge multiple tables, say `pokemon` and `location`, pondering the shared ID.
+
+```sql
+SELECT *
+FROM "pokemon" JOIN "location"
+	ON "pokemon"."id" = "location"."pokemon_id";
+```
+
+In doing so you obtain every column from the two tables when SQLite is able to pair the separate rows. You now have the value of the foreign key right next to the names of the respective creatures.
+
+And at this point you repeat the endeavor. Join the result with the area's table.
+
+```sql
+SELECT *
+FROM "pokemon" JOIN "location"
+	ON "pokemon"."id" = "location"."pokemon_id"
+JOIN "area"
+	ON "location"."area_id" = "area"."id";
+```
+
+The common column changes, you marry the tables with the ID of the area from `area` and `location`, but the expansion is the same. You retrieve a table with the name of the creatures and zones, aligned per the rows of the hard-to-digest, number-filled sheet.
+
+The setup is quite convenient. You can extract the information you need from the merged table, such as the values of the named columns.
+
+```sql
+SELECT "pokemon"."name", "area"."name"
+FROM ...
+```
+
+Once more there are duplicates, due to the fact that the same combination might appear in different versions. You can refine with `DISTINCT`, or, for good measure, include the name of the version with an additional join.
+
+```sql
+SELECT "pokemon"."name", "area"."name", "version"."name"
+FROM "pokemon" JOIN "location"
+	ON "pokemon"."id" = "location"."pokemon_id"
+JOIN "area"
+	ON "location"."area_id" = "area"."id"
+JOIN "version"
+	ON "location"."version_id" = "version"."id";
+```
+
+You can query the information on the basis of the name only, but there are at least two improvements within rapid reach:
+
+1.  rename the columns
+
+    Following the sequence of table and column add a different label past the `AS` keyword
+
+    ```sql
+    SELECT
+    	"pokemon"."name" AS "pokemon",
+    	"area"."name" AS "area",
+    	"version"."name" AS "version"
+    FROM ...
+    ```
+
+    The result is the same but it helps to avoid the longer instruction should you need the reference to the same field.
+
+2.  create a view
+
+    Before the complex selection type `CREATE VIEW` and a fitting moniker.
+
+    ```sql
+    CREATE VIEW "dex_location" AS
+    SELECT...
+    ```
+
+    It is a small line, but quite a timesaver. Need to query the pretty-named columns? Query the view, a window into the real data which couldn't be bothered with the underlying keys.
+
+    Behind the scenes SQLite still works by reference, repeating the selection to find the up-to-date values, but the access to the data greatly improves.
+
+Where to find the winged beast? There's even the version should you want all the details.
+
+```sql
+SELECT "area", "version"
+FROM "dex_location"
+	WHERE "pokemon" = 'Zubat';
+```
+
+You could argue I could have started this erring adventure proposing the view, but hopefully, developing the solution was a good practice with SQL and the lite syntax. And if not, well, there's another table to reinforce what was learned.
 
 <figure class="center-frame">
 	{@html svg['up-grade']}
 </figure>
 
-```bash
-sqlite3 pokemon-pinball.sqlite3
+## Joint practice
+
+The approach of joints is once more helpful to explore the evolution table, where you might just want two columns with the name of the pokemon in the different stages. The process is similar, but there is a hiccup: you need the name of the monsters _twice_. The solution is fast, however, as you can rename tables as well.
+
+First join `pokemon` and `evolution` per the evolution's ID.
+
+```sql
+SELECT *
+FROM "pokemon"
+JOIN "evolution"
+	ON "pokemon"."id" = "evolution"."evolution_id";
+```
+
+But here, rename the tables right after the tables' mention. In the rest of the query the label replaces the original string, so you can describe the table without second guessing.
+
+```sql
+SELECT *
+FROM "pokemon" "to"
+JOIN "evolution"
+	ON "to"."id" = "evolution"."evolution_id";
+```
+
+We don't stop here, certainly, for we care about an additional column, an additional table describing the base creature. We need another joint with `pokemon`, renamed to your preference.
+
+```sql
+SELECT *
+FROM "pokemon" "to"
+JOIN "evolution"
+	ON "to"."id" = "evolution"."evolution_id"
+JOIN "pokemon" "from"
+	ON "evolution"."base_id" = "from"."id";
+```
+
+Once again extract what you need from the renamed tables. You can also come up with a formula for the new columns since they carry the same name.
+
+```sql
+SELECT
+  "to"."name" AS "evolution",
+  "from"."name" AS "base"
+FROM ...
+```
+
+Once again, create a view for the selection.
+
+```sql
+CREATE VIEW "dex_evolution" AS
+SELECT ...
+```
+
+Just like with the dex locations you can finally query the evolutions by name. Even chain the two views should you feel inspired and look for the answer to more puzzling questions. You know how withviews, data joins _and_ nested queries.
+
+```sql
+SELECT "evolution"
+FROM "dex_evolution"
+	WHERE "base" IN (
+    SELECT "pokemon"
+    FROM "dex_location"
+    	WHERE "area" = 'Viridian Forest'
+      	AND "version" = 'Red'
+  );
 ```
