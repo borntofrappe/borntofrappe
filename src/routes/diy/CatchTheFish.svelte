@@ -13,7 +13,7 @@
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
-	<title>Fish!</title>
+	<title>Catch the fish!</title>
 
 	<defs>
 		<symbol id="catch-the-fish-target" viewBox="-0.25 -0.25 58.5 35.5">

@@ -269,7 +269,7 @@
 	<g style:cursor="pointer">
 		<set id={start} begin="click" attributeName="display" to="none" />
 
-		<Title fill="#f7f7f7" stroke="currentColor">Frame!</Title>
+		<Title fill="#f7f7f7" stroke="currentColor">Photograph!</Title>
 
 		<rect width="80" height="50" opacity="0" />
 	</g>

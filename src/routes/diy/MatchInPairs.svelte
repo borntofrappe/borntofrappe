@@ -313,7 +313,7 @@
 	<g style:cursor="pointer">
 		<set begin="click" attributeName="display" to="none" />
 
-		<Title fill="url(#linear-gradient-text)">Pair up!</Title>
+		<Title fill="url(#linear-gradient-text)">Match cards!</Title>
 
 		<rect width="80" height="50" opacity="0" />
 	</g>
