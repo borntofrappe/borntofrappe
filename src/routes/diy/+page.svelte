@@ -65,22 +65,22 @@
 		},
 		{
 			component: MatchInPairs,
-			backgroundColor: 'hsl(27 79% 47%)',
+			backgroundColor: 'hsl(19 83% 47%)',
 			borderColor: 'hsl(142 100% 31%)'
 		},
 		{
 			component: PickUpProduce,
-			backgroundColor: 'hsl(38 100% 79%)',
+			backgroundColor: 'hsl(30 95% 72%)',
 			borderColor: 'hsl(176 67% 53%)'
 		},
 		{
 			component: KeepTheSecret,
-			backgroundColor: 'hsl(180 21% 85%)',
-			borderColor: 'hsl(160 20% 77%)'
+			backgroundColor: 'hsl(0 0% 0%)',
+			borderColor: 'hsl(0 0% 0%)'
 		},
 		{
 			component: CatchTheFish,
-			backgroundColor: 'hsl(180 21% 85%)',
+			backgroundColor: 'hsl(0 0% 97%)',
 			borderColor: 'hsl(210 100% 35%)'
 		}
 	];
