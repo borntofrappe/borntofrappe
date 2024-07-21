@@ -39,6 +39,90 @@
 				<use stroke="url(#time-the-shots-pattern-overlay)" href="#time-the-shots-cloud-shape" />
 			</g>
 		</symbol>
+
+		<symbol id="time-the-shots-spaceship" viewBox="-19 -11 38 25">
+			<g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+				<g fill="currentColor">
+					<path d="M -18 9 a 25 25 0 0 1 16 -10 a 10 10 0 0 0 -16 10" />
+					<path transform="scale(-1 1)" d="M -18 9 a 25 25 0 0 1 16 -10 a 10 10 0 0 0 -16 10" />
+				</g>
+				<g fill="#fec749">
+					<ellipse cx="-6" cy="5.5" rx="4" ry="4" />
+					<ellipse cx="6" cy="5.5" rx="4" ry="4" />
+					<ellipse cy="7" rx="4.5" ry="4" />
+				</g>
+				<g fill="#cf6bef">
+					<ellipse transform="translate(-7.5 1)" rx="7" ry="6" />
+					<ellipse transform="translate(7.5 1)" rx="7" ry="6" />
+					<ellipse rx="9" ry="8" stroke-dasharray="14.5 6 35" stroke-dashoffset="-6" />
+				</g>
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-bullets" viewBox="-19 -11 38 25">
+			<g fill="#fc5157" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+				<circle r="2.75" cx="7" cy="-4.5" />
+				<circle r="2.75" cx="-7" cy="-4.5" />
+				<circle r="2.75" cy="-7" />
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-target-0" viewBox="-18 -18 36 25">
+			<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+				<g fill="#fec749">
+					<ellipse transform="translate(-7 -1)" rx="6.5" ry="5.5" />
+					<ellipse transform="translate(7 -1)" rx="6.5" ry="5.5" />
+					<ellipse transform="translate(0 0.5)" rx="6.5" ry="5.5" />
+				</g>
+				<path fill="#5589a3" d="M -9 -9.5 a 17 6.25 0 1 0 18 0 30 30 0 0 1 -18 0" />
+				<path fill="#3dbfb3" d="M -9 -9.5 a 9.1 9.1 0 0 1 18 0 30 30 0 0 1 -18 0" />
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-target-1" viewBox="0 0 36 25">
+			<g
+				transform="translate(18 12)"
+				fill="#fc5157"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<circle r="5" cx="3" cy="-3" />
+				<circle r="5" cx="3" cy="3" />
+				<circle r="5" cx="-3" cy="3" />
+				<circle r="5" cx="-3" cy="-3" />
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-target-2" viewBox="-18 -18 36 25">
+			<g
+				transform="translate(0 -6)"
+				fill="#fc5157"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<circle r="4" cx="5" cy="-5" />
+				<circle r="4" cx="5" cy="5" />
+				<circle r="4" cx="-5" cy="5" />
+				<circle r="4" cx="-5" cy="-5" />
+			</g>
+		</symbol>
+
+		<symbol id="time-the-shots-target-3" viewBox="-18 -18 36 25">
+			<g
+				transform="translate(0 -6)"
+				fill="#fc5157"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<circle r="3" cx="7" cy="-7" />
+				<circle r="3" cx="7" cy="7" />
+				<circle r="3" cx="-7" cy="7" />
+				<circle r="3" cx="-7" cy="-7" />
+			</g>
+		</symbol>
 	</defs>
 
 	<rect width="80" height="50" fill="url(#time-the-shots-pattern-sea)" />
