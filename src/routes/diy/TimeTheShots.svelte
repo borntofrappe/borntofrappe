@@ -1,3 +1,45 @@
+<script>
+	const width = 80;
+	const height = 50;
+
+	const whiteSpace = 3;
+	const parallax = height * 4;
+	const dur = Math.floor(parallax / 13);
+	const [cw, ch] = [54, 33];
+	let cy = Math.floor(Math.random() * whiteSpace);
+	const clouds = [
+		{
+			fill: '#f2f2f2',
+			stroke: '#c5c9cc',
+			copies: []
+		},
+		{
+			fill: '#c2c2c2',
+			stroke: '#808281',
+			copies: []
+		}
+	];
+	while (true) {
+		const cloudWidth = 10 + Math.floor(Math.random() * 6);
+		const cloudHeight = (cloudWidth / cw) * ch;
+		cy += cloudHeight;
+		const cx = Math.floor(Math.random() * (width - cloudWidth - whiteSpace * 2)) + whiteSpace;
+
+		if (cy >= parallax) break;
+
+		const i = clouds.reduce((a, c) => a + c.copies.length, 0) % clouds.length;
+
+		clouds[i].copies.push({
+			x: cx,
+			y: cy - cloudHeight,
+			width: cloudWidth,
+			height: cloudHeight
+		});
+
+		cy += Math.ceil(Math.random() * whiteSpace);
+	}
+</script>
+
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Time the shots!</title>
 
@@ -127,13 +169,23 @@
 
 	<rect width="80" height="50" fill="url(#time-the-shots-pattern-sea)" />
 
-	<use fill="#f2f2f2" stroke="#c5c9cc" href="#time-the-shots-cloud" width="14" height="8.6" />
-	<use
-		fill="#c2c2c2"
-		stroke="#808281"
-		href="#time-the-shots-cloud"
-		y="8.6"
-		width="14"
-		height="8.6"
-	/>
+	<g>
+		<animateTransform
+			attributeName="transform"
+			type="translate"
+			to="0 {parallax}"
+			{dur}
+			repeatCount="indefinite"
+		/>
+		<g id="time-the-shots-clouds">
+			{#each clouds as { fill, stroke, copies }}
+				<g {fill} {stroke}>
+					{#each copies as { x, y, width, height }}
+						<use {x} {y} {width} {height} href="#time-the-shots-cloud" />
+					{/each}
+				</g>
+			{/each}
+		</g>
+		<use y={parallax * -1} href="#time-the-shots-clouds" />
+	</g>
 </svg>
