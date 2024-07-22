@@ -8,7 +8,7 @@
 	const [cw, ch] = [54, 33];
 	const ty = height * 3;
 	const gy = ty + height;
-	const dur = Math.floor(Math.abs(ty) / 14);
+
 	const miny = ty * -1;
 	let cy = height - randomUpTo(whiteSpace);
 	const clouds = [
@@ -48,14 +48,32 @@
 	}
 
 	const [sw, sh] = [38, 25];
-	const spaceshipWidth = 16;
+	const spaceshipWidth = 15;
 	const spaceshipHeight = (spaceshipWidth / sw) * sh;
+
+	const [tw, th] = [36, 25];
+	const targetWidth = 14;
+	const targetHeight = (spaceshipWidth / tw) * th;
+	const tx = width - targetWidth;
+
+	const durations = {
+		clouds: Math.floor(ty / 14),
+		target: Math.floor(tx / 10)
+	};
+
+	const overlayWidth = targetWidth * 1.5;
+
+	const clipWidth = spaceshipWidth * 1.5;
+	const clipX = width / 2 - clipWidth / 2;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
 	<title>Time the shots!</title>
 
 	<defs>
+		<clipPath id="time-the-shots-clip">
+			<rect x={clipX} width={clipWidth} {height} />
+		</clipPath>
 		<pattern id="time-the-shots-pattern-sea" viewBox="0 0 8 5" width="0.1" height="0.1">
 			<rect width="8" height="5" fill="#286bc6" />
 			<g fill="none" stroke="#43b5f1" stroke-width="0.5" transform="translate(0 0.25)">
@@ -187,7 +205,7 @@
 			attributeName="transform"
 			type="translate"
 			to="0 {gy}"
-			{dur}
+			dur={durations.clouds}
 			repeatCount="indefinite"
 		/>
 		<g id="time-the-shots-clouds">
@@ -217,6 +235,112 @@
 				<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets" />
 				<g>
 					<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-spaceship" />
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g>
+		<animateTransform
+			id="timeTheShotsTargetRight"
+			begin="timeTheShotsStart.begin; timeTheShotsTargetLeft.end"
+			attributeName="transform"
+			type="translate"
+			to="{tx} 0"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			dur={durations.target}
+			fill="freeze"
+		/>
+		<animateTransform
+			id="timeTheShotsTargetLeft"
+			begin="timeTheShotsTargetRight.end"
+			attributeName="transform"
+			type="translate"
+			to="0 0"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			dur={durations.target}
+			fill="freeze"
+		/>
+		<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
+			<animate
+				begin="timeTheShotsTargetShoot.begin"
+				attributeName="href"
+				values="#time-the-shots-target-0; #time-the-shots-target-1; #time-the-shots-target-2; #time-the-shots-target-3; #time-the-shots-target-4"
+				fill="freeze"
+				dur="0.3s"
+				calcMode="discrete"
+			/>
+		</use>
+	</g>
+
+	<g clip-path="url(#time-the-shots-clip)">
+		<g>
+			<animateTransform
+				begin="timeTheShotsTargetRight.begin"
+				end="timeTheShotsTargetShoot.begin"
+				attributeName="transform"
+				type="translate"
+				to="{tx} 0"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1"
+				dur={durations.target}
+				fill="freeze"
+			/>
+			<animateTransform
+				begin="timeTheShotsTargetLeft.begin"
+				end="timeTheShotsTargetShoot.begin"
+				attributeName="transform"
+				type="translate"
+				to="0 0"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1"
+				dur={durations.target}
+				fill="freeze"
+			/>
+			<g>
+				<animateTransform
+					begin="timeTheShotsTargetRight.end"
+					attributeName="transform"
+					type="translate"
+					to="{targetWidth} 0"
+					calcMode="discrete"
+					fill="freeze"
+					dur="0.1"
+				/>
+				<animateTransform
+					begin="timeTheShotsTargetLeft.end"
+					attributeName="transform"
+					type="translate"
+					to="0 0"
+					calcMode="discrete"
+					fill="freeze"
+					dur="0.1"
+				/>
+
+				<g>
+					<animateTransform
+						begin="timeTheShotsTargetRight.end"
+						attributeName="transform"
+						type="scale"
+						to="-1 1"
+						calcMode="discrete"
+						fill="freeze"
+						dur="0.1"
+					/>
+					<animateTransform
+						begin="timeTheShotsTargetLeft.end"
+						attributeName="transform"
+						type="scale"
+						to="1 1"
+						calcMode="discrete"
+						fill="freeze"
+						dur="0.1"
+					/>
+					<rect style="cursor: pointer;" width={overlayWidth} {height} opacity="0.2">
+						<set id="timeTheShotsTargetShoot" begin="click" attributeName="display" to="none" />
+					</rect>
 				</g>
 			</g>
 		</g>
