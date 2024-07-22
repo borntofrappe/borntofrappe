@@ -58,13 +58,33 @@
 
 	const durations = {
 		clouds: Math.floor(ty / 14),
-		target: Math.floor(tx / 10)
+		targets: [Math.floor(tx / 12) + randomUpTo(4), Math.floor(tx / 12) + randomUpTo(4)]
 	};
 
 	const overlayWidth = targetWidth * 1.5;
 
 	const clipWidth = spaceshipWidth * 1.5;
 	const clipX = width / 2 - clipWidth / 2;
+
+	const { targets } = durations.targets.reduce(
+		(acc, curr, i) => {
+			const y = 1 + (targetHeight + 1) * i;
+			const dur = curr;
+			const delay = acc.delay;
+			acc.targets.push({
+				i,
+				y,
+				dur,
+				delay
+			});
+			acc.delay += dur / 2;
+			return acc;
+		},
+		{
+			targets: [],
+			delay: 0
+		}
+	);
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -242,106 +262,111 @@
 		</g>
 	</g>
 
-	<g>
-		<animateTransform
-			id="timeTheShotsTargetMove"
-			begin="timeTheShotsStart.begin"
-			end="timeTheShotsTargetShoot.begin"
-			attributeName="transform"
-			type="translate"
-			values="0 0; {tx} 0; 0 0"
-			calcMode="spline"
-			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
-			dur={durations.target}
-			fill="freeze"
-			repeatCount="indefinite"
-		/>
-		<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
-			<animate
-				begin="timeTheShotsTargetShoot.begin"
-				attributeName="href"
-				values="#time-the-shots-target-0; #time-the-shots-target-1; #time-the-shots-target-2; #time-the-shots-target-3; #time-the-shots-target-4"
-				fill="freeze"
-				dur="0.3s"
-				calcMode="discrete"
-			/>
-		</use>
-	</g>
+	{#each targets as { i, y, dur, delay }}
+		<g transform="translate(0 {y})">
+			<g>
+				<animateTransform
+					id="timeTheShotsTarget{i}Move"
+					begin="timeTheShotsStart.begin + {delay}s"
+					end="timeTheShotsTarget{i}Shoot.begin"
+					attributeName="transform"
+					type="translate"
+					values="0 0; {tx} 0; 0 0"
+					{dur}
+					fill="freeze"
+					repeatCount="indefinite"
+				/>
+				<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
+					<!-- <animate
+        begin="timeTheShotsTarget{i}Shoot.begin"
+        attributeName="href"
+        values="#time-the-shots-target-0; #time-the-shots-target-1; #time-the-shots-target-2; #time-the-shots-target-3; #time-the-shots-target-4"
+        fill="freeze"
+        dur="0.3s"
+        calcMode="discrete"
+      /> -->
+				</use>
+			</g>
+		</g>
+	{/each}
 
 	<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0.2">
 		<set id="timeTheShotsTargetMiss" begin="click" attributeName="display" to="none" />
 	</rect>
 
 	<g clip-path="url(#time-the-shots-clip)">
-		<g>
-			<animateTransform
-				id="timeTheShotsTargetRight"
-				begin="timeTheShotsTargetMove.begin; timeTheShotsTargetLeft.end"
-				end="timeTheShotsTargetShoot.begin"
-				attributeName="transform"
-				type="translate"
-				to="{tx} 0"
-				calcMode="spline"
-				keySplines="0.5 0 0.5 1"
-				dur={durations.target / 2}
-				fill="freeze"
-			/>
-			<animateTransform
-				id="timeTheShotsTargetLeft"
-				begin="timeTheShotsTargetRight.end"
-				end="timeTheShotsTargetShoot.begin"
-				attributeName="transform"
-				type="translate"
-				to="0 0"
-				calcMode="spline"
-				keySplines="0.5 0 0.5 1"
-				dur={durations.target / 2}
-				fill="freeze"
-			/>
+		{#each targets as { i, dur }}
 			<g>
 				<animateTransform
-					begin="timeTheShotsTargetLeft.begin"
+					id="timeTheShotsTarget{i}Forwards"
+					begin="timeTheShotsTarget{i}Move.begin; timeTheShotsTarget{i}Backwards.end"
+					end="timeTheShotsTarget{i}Shoot.begin"
 					attributeName="transform"
 					type="translate"
-					to="{targetWidth} 0"
-					calcMode="discrete"
+					to="{tx} 0"
+					dur={dur / 2}
 					fill="freeze"
-					dur="0.1"
 				/>
 				<animateTransform
-					begin="timeTheShotsTargetRight.begin"
+					id="timeTheShotsTarget{i}Backwards"
+					begin="timeTheShotsTarget{i}Forwards.end"
+					end="timeTheShotsTarget{i}Shoot.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 0"
-					calcMode="discrete"
+					dur={dur / 2}
 					fill="freeze"
-					dur="0.1"
 				/>
 				<g>
 					<animateTransform
-						begin="timeTheShotsTargetLeft.begin"
+						begin="timeTheShotsTarget{i}Backwards.begin"
 						attributeName="transform"
-						type="scale"
-						to="-1 1"
+						type="translate"
+						to="{targetWidth} 0"
 						calcMode="discrete"
 						fill="freeze"
 						dur="0.1"
 					/>
 					<animateTransform
-						begin="timeTheShotsTargetRight.begin"
+						begin="timeTheShotsTarget{i}Forwards.begin"
 						attributeName="transform"
-						type="scale"
-						to="1 1"
+						type="translate"
+						to="0 0"
 						calcMode="discrete"
 						fill="freeze"
 						dur="0.1"
 					/>
-					<rect style="cursor: pointer;" width={overlayWidth} {height} opacity="0.2">
-						<set id="timeTheShotsTargetShoot" begin="click" attributeName="display" to="none" />
-					</rect>
+					<g>
+						<animateTransform
+							begin="timeTheShotsTarget{i}Backwards.begin"
+							attributeName="transform"
+							type="scale"
+							to="-1 1"
+							calcMode="discrete"
+							fill="freeze"
+							dur="0.1"
+						/>
+						<animateTransform
+							begin="timeTheShotsTarget{i}Forwards.begin"
+							attributeName="transform"
+							type="scale"
+							to="1 1"
+							calcMode="discrete"
+							fill="freeze"
+							dur="0.1"
+						/>
+						<rect style="cursor: pointer;" width={overlayWidth} {height} opacity="0.2">
+							<set
+								id="timeTheShotsTarget{i}Shoot"
+								begin="click"
+								attributeName="display"
+								to="none"
+							/>
+						</rect>
+					</g>
 				</g>
 			</g>
-		</g>
+		{/each}
 	</g>
 
 	<g style:cursor="pointer">
