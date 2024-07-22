@@ -24,7 +24,7 @@
 		}
 	];
 	while (true) {
-		const cloudWidth = 10 + randomUpTo(6);
+		const cloudWidth = 8 + randomUpTo(6);
 		const cloudHeight = (cloudWidth / cw) * ch;
 		cy -= cloudHeight;
 
@@ -46,6 +46,10 @@
 
 		cy -= 1 + randomUpTo(whiteSpace);
 	}
+
+	const [sw, sh] = [38, 25];
+	const spaceshipWidth = 16;
+	const spaceshipHeight = (spaceshipWidth / sw) * sh;
 </script>
 
 <svg style="display: block;" viewBox="0 0 80 50">
@@ -179,6 +183,7 @@
 
 	<g>
 		<animateTransform
+			begin="timeTheShotsStart.begin"
 			attributeName="transform"
 			type="translate"
 			to="0 {gy}"
@@ -195,5 +200,33 @@
 			{/each}
 		</g>
 		<use y={gy * -1} href="#time-the-shots-clouds" />
+	</g>
+
+	<g transform="translate(40 {height - spaceshipHeight - 1})">
+		<g>
+			<animateTransform
+				begin="timeTheShotsStart.begin"
+				attributeName="transform"
+				type="translate"
+				to="0 -0.5"
+				dur="0.35s"
+				calcMode="discrete"
+				repeatCount="indefinite"
+			/>
+			<g transform="translate({(spaceshipWidth / 2) * -1} 0)">
+				<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets" />
+				<g>
+					<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-spaceship" />
+				</g>
+			</g>
+		</g>
+	</g>
+
+	<g style:cursor="pointer">
+		<set id="timeTheShotsStart" begin="click" attributeName="display" to="none" />
+
+		<!-- ADD TITLE -->
+
+		<rect width="80" height="50" opacity="0" />
 	</g>
 </svg>
