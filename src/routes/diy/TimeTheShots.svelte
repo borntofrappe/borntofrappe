@@ -232,7 +232,9 @@
 				repeatCount="indefinite"
 			/>
 			<g transform="translate({(spaceshipWidth / 2) * -1} 0)">
-				<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets" />
+				<g>
+					<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets" />
+				</g>
 				<g>
 					<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-spaceship" />
 				</g>
@@ -242,26 +244,17 @@
 
 	<g>
 		<animateTransform
-			id="timeTheShotsTargetRight"
-			begin="timeTheShotsStart.begin; timeTheShotsTargetLeft.end"
+			id="timeTheShotsTargetMove"
+			begin="timeTheShotsStart.begin"
+			end="timeTheShotsTargetShoot.begin"
 			attributeName="transform"
 			type="translate"
-			to="{tx} 0"
+			values="0 0; {tx} 0; 0 0"
 			calcMode="spline"
-			keySplines="0.5 0 0.5 1"
+			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
 			dur={durations.target}
 			fill="freeze"
-		/>
-		<animateTransform
-			id="timeTheShotsTargetLeft"
-			begin="timeTheShotsTargetRight.end"
-			attributeName="transform"
-			type="translate"
-			to="0 0"
-			calcMode="spline"
-			keySplines="0.5 0 0.5 1"
-			dur={durations.target}
-			fill="freeze"
+			repeatCount="indefinite"
 		/>
 		<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
 			<animate
@@ -275,33 +268,39 @@
 		</use>
 	</g>
 
+	<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0.2">
+		<set id="timeTheShotsTargetMiss" begin="click" attributeName="display" to="none" />
+	</rect>
+
 	<g clip-path="url(#time-the-shots-clip)">
 		<g>
 			<animateTransform
-				begin="timeTheShotsTargetRight.begin"
+				id="timeTheShotsTargetRight"
+				begin="timeTheShotsTargetMove.begin; timeTheShotsTargetLeft.end"
 				end="timeTheShotsTargetShoot.begin"
 				attributeName="transform"
 				type="translate"
 				to="{tx} 0"
 				calcMode="spline"
 				keySplines="0.5 0 0.5 1"
-				dur={durations.target}
+				dur={durations.target / 2}
 				fill="freeze"
 			/>
 			<animateTransform
-				begin="timeTheShotsTargetLeft.begin"
+				id="timeTheShotsTargetLeft"
+				begin="timeTheShotsTargetRight.end"
 				end="timeTheShotsTargetShoot.begin"
 				attributeName="transform"
 				type="translate"
 				to="0 0"
 				calcMode="spline"
 				keySplines="0.5 0 0.5 1"
-				dur={durations.target}
+				dur={durations.target / 2}
 				fill="freeze"
 			/>
 			<g>
 				<animateTransform
-					begin="timeTheShotsTargetRight.end"
+					begin="timeTheShotsTargetLeft.begin"
 					attributeName="transform"
 					type="translate"
 					to="{targetWidth} 0"
@@ -310,7 +309,7 @@
 					dur="0.1"
 				/>
 				<animateTransform
-					begin="timeTheShotsTargetLeft.end"
+					begin="timeTheShotsTargetRight.begin"
 					attributeName="transform"
 					type="translate"
 					to="0 0"
@@ -318,10 +317,9 @@
 					fill="freeze"
 					dur="0.1"
 				/>
-
 				<g>
 					<animateTransform
-						begin="timeTheShotsTargetRight.end"
+						begin="timeTheShotsTargetLeft.begin"
 						attributeName="transform"
 						type="scale"
 						to="-1 1"
@@ -330,7 +328,7 @@
 						dur="0.1"
 					/>
 					<animateTransform
-						begin="timeTheShotsTargetLeft.end"
+						begin="timeTheShotsTargetRight.begin"
 						attributeName="transform"
 						type="scale"
 						to="1 1"
