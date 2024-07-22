@@ -1,12 +1,16 @@
 <script>
+	const randomUpTo = (max) => Math.floor(Math.random() * max);
+
 	const width = 80;
 	const height = 50;
 
 	const whiteSpace = 3;
-	const parallax = height * 4;
-	const dur = Math.floor(parallax / 13);
 	const [cw, ch] = [54, 33];
-	let cy = Math.floor(Math.random() * whiteSpace);
+	const ty = height * 3;
+	const gy = ty + height;
+	const dur = Math.floor(Math.abs(ty) / 14);
+	const miny = ty * -1;
+	let cy = height - randomUpTo(whiteSpace);
 	const clouds = [
 		{
 			fill: '#f2f2f2',
@@ -20,23 +24,27 @@
 		}
 	];
 	while (true) {
-		const cloudWidth = 10 + Math.floor(Math.random() * 6);
+		const cloudWidth = 10 + randomUpTo(6);
 		const cloudHeight = (cloudWidth / cw) * ch;
-		cy += cloudHeight;
-		const cx = Math.floor(Math.random() * (width - cloudWidth - whiteSpace * 2)) + whiteSpace;
+		cy -= cloudHeight;
 
-		if (cy >= parallax) break;
+		if (cy < miny) break;
 
-		const i = clouds.reduce((a, c) => a + c.copies.length, 0) % clouds.length;
+		const n = clouds.reduce((a, c) => a + c.copies.length, 0);
+		const cx =
+			n % 2 === 0
+				? whiteSpace + randomUpTo(width / 2 - cloudWidth)
+				: width / 2 + randomUpTo(width / 2 - cloudWidth - whiteSpace);
+		const i = n % clouds.length;
 
 		clouds[i].copies.push({
 			x: cx,
-			y: cy - cloudHeight,
+			y: cy,
 			width: cloudWidth,
 			height: cloudHeight
 		});
 
-		cy += Math.ceil(Math.random() * whiteSpace);
+		cy -= 1 + randomUpTo(whiteSpace);
 	}
 </script>
 
@@ -173,7 +181,7 @@
 		<animateTransform
 			attributeName="transform"
 			type="translate"
-			to="0 {parallax}"
+			to="0 {gy}"
 			{dur}
 			repeatCount="indefinite"
 		/>
@@ -186,6 +194,6 @@
 				</g>
 			{/each}
 		</g>
-		<use y={parallax * -1} href="#time-the-shots-clouds" />
+		<use y={gy * -1} href="#time-the-shots-clouds" />
 	</g>
 </svg>
