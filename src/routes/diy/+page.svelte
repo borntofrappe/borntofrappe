@@ -42,7 +42,7 @@
 		{
 			component: BattleTheEnemy,
 			backgroundColor: 'hsl(119 30% 49%)',
-			borderColor: 'hsl(177 65% 52%)'
+			borderColor: 'hsl(164 16% 32%)'
 		},
 		{
 			component: SmashTheRabbits,
@@ -51,8 +51,8 @@
 		},
 		{
 			component: FightTheEnemy,
-			backgroundColor: 'hsl(164 16% 32%)',
-			borderColor: 'hsl(158 15% 14%)'
+			backgroundColor: 'hsl(152 23% 13%)',
+			borderColor: 'hsl(40 25% 42%)'
 		},
 		{
 			component: TakeAPicture,
@@ -86,8 +86,8 @@
 		},
 		{
 			component: TimeTheShots,
-			backgroundColor: 'hsl(180 21% 85%)',
-			borderColor: 'hsl(210 100% 35%)'
+			backgroundColor: 'hsl(209 61% 16%)',
+			borderColor: 'hsl(285 80% 68%)'
 		}
 	];
 </script>
@@ -146,7 +146,10 @@
 		max-inline-size: 36rem;
 		block-size: auto;
 		border-radius: 0.25rem;
-		box-shadow: 0 -1rem 1rem hsla(209, 61%, 16%, 0.15), 0 0 0 0.1rem currentColor,
-			0 0 0 0.9rem var(--_border-color), 0 0 0 1.1rem currentColor;
+		box-shadow:
+			0 -1rem 1rem hsla(209, 61%, 16%, 0.15),
+			0 0 0 0.1rem currentColor,
+			0 0 0 0.9rem var(--_border-color),
+			0 0 0 1.1rem currentColor;
 	}
 </style>
