@@ -14,6 +14,7 @@
 	import PickUpProduce from './PickUpProduce.svelte';
 	import KeepTheSecret from './KeepTheSecret.svelte';
 	import CatchTheFish from './CatchTheFish.svelte';
+	import TimeTheShots from './TimeTheShots.svelte';
 
 	const { title } = site;
 
@@ -81,6 +82,11 @@
 		{
 			component: CatchTheFish,
 			backgroundColor: 'hsl(0 0% 97%)',
+			borderColor: 'hsl(210 100% 35%)'
+		},
+		{
+			component: TimeTheShots,
+			backgroundColor: 'hsl(180 21% 85%)',
 			borderColor: 'hsl(210 100% 35%)'
 		}
 	];
