@@ -4,13 +4,14 @@
 	const width = 80;
 	const height = 50;
 
-	const whiteSpace = 3;
-	const [cw, ch] = [54, 33];
-	const ty = height * 3;
-	const gy = ty + height;
+	const [cloudWidthMin, cloudWidthMax] = [8, 14];
+	const [cloudWide, cloudTall] = [54, 33];
+	const cloudsWhiteSpace = 3;
+	const cloudsTranslateY = height * 3;
+	const clousdMinY = cloudsTranslateY * -1;
+	const screenTranslateY = cloudsTranslateY + height;
 
-	const miny = ty * -1;
-	let cy = height - randomUpTo(whiteSpace);
+	let cloudY = height - randomUpTo(cloudsWhiteSpace);
 	const clouds = [
 		{
 			fill: '#f2f2f2',
@@ -24,43 +25,47 @@
 		}
 	];
 	while (true) {
-		const cloudWidth = 8 + randomUpTo(6);
-		const cloudHeight = (cloudWidth / cw) * ch;
-		cy -= cloudHeight;
+		const cloudWidth = cloudWidthMin + randomUpTo(cloudWidthMax - cloudWidthMin);
+		const cloudHeight = (cloudWidth / cloudWide) * cloudTall;
+		cloudY -= cloudHeight;
 
-		if (cy < miny) break;
+		if (cloudY < clousdMinY) break;
 
-		const n = clouds.reduce((a, c) => a + c.copies.length, 0);
-		const cx =
-			n % 2 === 0
-				? whiteSpace + randomUpTo(width / 2 - cloudWidth)
-				: width / 2 + randomUpTo(width / 2 - cloudWidth - whiteSpace);
-		const i = n % clouds.length;
+		const numberCopies = clouds.reduce((a, c) => a + c.copies.length, 0);
+		const cloudX =
+			numberCopies % 2 === 0
+				? cloudsWhiteSpace + randomUpTo(width / 2 - cloudWidth)
+				: width / 2 + randomUpTo(width / 2 - cloudWidth - cloudsWhiteSpace);
 
-		clouds[i].copies.push({
-			x: cx,
-			y: cy,
+		const index = numberCopies % clouds.length;
+
+		clouds[index].copies.push({
+			x: cloudX,
+			y: cloudY,
 			width: cloudWidth,
 			height: cloudHeight
 		});
 
-		cy -= 1 + randomUpTo(whiteSpace);
+		cloudY -= 1 + randomUpTo(cloudsWhiteSpace);
 	}
 
-	const [sw, sh] = [38, 25];
+	const [spaceshipWide, spaceshipTall] = [38, 25];
 	const spaceshipWidth = 15;
-	const spaceshipHeight = (spaceshipWidth / sw) * sh;
-	const sy = height - spaceshipHeight - 1;
+	const spaceshipHeight = (spaceshipWidth / spaceshipWide) * spaceshipTall;
+	const spaceshipX = width / 2 - spaceshipWidth / 2;
+	const spaceshipY = height - spaceshipHeight - 1;
 
-	const [tw, th] = [36, 25];
+	const [targetWide, targetTall] = [36, 25];
 	const targetWidth = 14;
-	const targetHeight = (spaceshipWidth / tw) * th;
-	const tx = width - targetWidth;
+	const targetHeight = (targetWidth / targetWide) * targetTall;
+	const targetTranslateX = width - targetWidth;
 
 	const durations = {
-		clouds: Math.floor(ty / 14),
-		targets: [Math.floor(tx / 13) + randomUpTo(4), Math.floor(tx / 13) + randomUpTo(4)],
-		bullets: 0.55
+		clouds: Math.floor(screenTranslateY / 14),
+		targets: [
+			Math.floor(targetTranslateX / 13) + randomUpTo(4),
+			Math.floor(targetTranslateX / 13) + randomUpTo(4)
+		]
 	};
 
 	const overlayX = targetWidth / 3;
@@ -72,15 +77,15 @@
 	const { targets } = durations.targets.reduce(
 		(acc, curr, i) => {
 			const y = 1 + (targetHeight + 1) * i;
-			const dur = curr;
+			const duration = curr;
 			const delay = acc.delay;
 			acc.targets.push({
 				i,
 				y,
-				dur,
+				duration,
 				delay
 			});
-			acc.delay += dur / 2;
+			acc.delay += duration / 2;
 			return acc;
 		},
 		{
@@ -90,10 +95,31 @@
 	);
 
 	const introY = targets[targets.length - 1].y + targetHeight;
+	const introDuration = 0.5;
 	const intro = {
 		y: introY * -1,
-		dur: 0.5,
-		delay: targets[targets.length - 1].delay - 0.5
+		duration: introDuration,
+		delay: targets[targets.length - 1].delay - introDuration
+	};
+
+	const outro = {
+		y: intro.y,
+		duration: 0.5
+	};
+
+	const bullets = {
+		miss: {
+			translate: `0 ${height * -1}`,
+			duration: height / 95
+		},
+		targets: targets.map(({ i, y }) => {
+			const translateY = spaceshipY - y;
+			return {
+				i,
+				translate: `0 ${translateY * -1}`,
+				duration: translateY / 95
+			};
+		})
 	};
 </script>
 
@@ -104,6 +130,7 @@
 		<clipPath id="time-the-shots-clip">
 			<rect x={clipX} width={clipWidth} {height} />
 		</clipPath>
+
 		<pattern id="time-the-shots-pattern-sea" viewBox="0 0 8 5" width="0.1" height="0.1">
 			<rect width="8" height="5" fill="#286bc6" />
 			<g fill="none" stroke="#43b5f1" stroke-width="0.5" transform="translate(0 0.25)">
@@ -234,7 +261,7 @@
 			begin="timeTheShotsStart.begin"
 			attributeName="transform"
 			type="translate"
-			to="0 {gy}"
+			to="0 {screenTranslateY}"
 			dur={durations.clouds}
 			repeatCount="indefinite"
 		/>
@@ -247,10 +274,10 @@
 				</g>
 			{/each}
 		</g>
-		<use y={gy * -1} href="#time-the-shots-clouds" />
+		<use y={screenTranslateY * -1} href="#time-the-shots-clouds" />
 	</g>
 
-	<g transform="translate(40 {sy})">
+	<g transform="translate({spaceshipX} {spaceshipY})">
 		<g>
 			<animateTransform
 				begin="timeTheShotsStart.begin"
@@ -261,37 +288,35 @@
 				calcMode="discrete"
 				repeatCount="indefinite"
 			/>
-			<g transform="translate({(spaceshipWidth / 2) * -1} 0)">
-				<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets">
+			<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-bullets">
+				<animateTransform
+					id="timeTheShotsMissed"
+					begin="timeTheShotsMiss.begin"
+					attributeName="transform"
+					type="translate"
+					to={bullets.miss.translate}
+					dur={bullets.miss.duration}
+					fill="freeze"
+				/>
+				<animateTransform
+					begin="timeTheShotsMercy.begin"
+					attributeName="transform"
+					type="translate"
+					to={bullets.miss.translate}
+					dur={bullets.miss.duration}
+				/>
+				{#each bullets.targets as { i, translate, duration }}
 					<animateTransform
-						id="timeTheShotsMissed"
-						begin="timeTheShotsMiss.begin"
+						id="timeTheShotsTarget{i}Shot"
+						begin="timeTheShotsTarget{i}Shoot.begin"
 						attributeName="transform"
 						type="translate"
-						to="0 {height * -1}"
-						dur={height / 90}
-						fill="freeze"
+						to={translate}
+						dur={duration}
 					/>
-					<animateTransform
-						begin="timeTheShotsMercy.begin"
-						attributeName="transform"
-						type="translate"
-						to="0 {height * -1}"
-						dur={height / 90}
-					/>
-					{#each targets as { i, y }}
-						<animateTransform
-							id="timeTheShotsTarget{i}Shot"
-							begin="timeTheShotsTarget{i}Shoot.begin"
-							attributeName="transform"
-							type="translate"
-							to="0 {(sy - y) * -1}"
-							dur={(sy - y) / 90}
-						/>
-					{/each}
-				</use>
-				<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-spaceship" />
-			</g>
+				{/each}
+			</use>
+			<use width={spaceshipWidth} height={spaceshipHeight} href="#time-the-shots-spaceship" />
 		</g>
 	</g>
 
@@ -304,7 +329,7 @@
 			to="0 0"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
-			dur={intro.dur}
+			dur={intro.duration}
 			fill="freeze"
 		/>
 		<animateTransform
@@ -312,13 +337,13 @@
 			begin="timeTheShotsMissed.end + 1s"
 			attributeName="transform"
 			type="translate"
-			to="0 {intro.y}"
+			to="0 {outro.y}"
 			calcMode="spline"
 			keySplines="0.5 0 0.5 1"
-			dur={intro.dur}
+			dur={outro.duration}
 			fill="freeze"
 		/>
-		{#each targets as { i, y, dur, delay }}
+		{#each targets as { i, y, duration, delay }}
 			<g transform="translate(0 {y})">
 				<g>
 					<animateTransform
@@ -327,8 +352,8 @@
 						end="timeTheShotsTarget{i}Shot.end; timeTheShotsMiss.begin"
 						attributeName="transform"
 						type="translate"
-						values="0 0; {tx} 0; 0 0"
-						{dur}
+						values="0 0; {targetTranslateX} 0; 0 0"
+						dur={duration}
 						fill="freeze"
 						repeatCount="indefinite"
 					/>
@@ -361,7 +386,7 @@
 		</rect>
 
 		<g clip-path="url(#time-the-shots-clip)">
-			{#each targets as { i, dur }}
+			{#each targets as { i, duration }}
 				<g>
 					<animateTransform
 						id="timeTheShotsTarget{i}Forwards"
@@ -369,8 +394,8 @@
 						end="timeTheShotsTarget{i}Shoot.begin"
 						attributeName="transform"
 						type="translate"
-						to="{tx} 0"
-						dur={dur / 2}
+						to="{targetTranslateX} 0"
+						dur={duration / 2}
 						fill="freeze"
 					/>
 					<animateTransform
@@ -380,7 +405,7 @@
 						attributeName="transform"
 						type="translate"
 						to="0 0"
-						dur={dur / 2}
+						dur={duration / 2}
 						fill="freeze"
 					/>
 					<g>
