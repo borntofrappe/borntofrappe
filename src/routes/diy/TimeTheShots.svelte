@@ -1,4 +1,7 @@
 <script>
+	import Title from './Title.svelte';
+	import AnimatedTitle from './AnimatedTitle.svelte';
+
 	const randomUpTo = (max) => Math.floor(Math.random() * max);
 
 	const width = 80;
@@ -63,12 +66,12 @@
 	const durations = {
 		clouds: Math.floor(screenTranslateY / 14),
 		targets: [
-			Math.floor(targetTranslateX / 13) + randomUpTo(4),
-			Math.floor(targetTranslateX / 13) + randomUpTo(4)
+			Math.floor(targetTranslateX / 12) + randomUpTo(4),
+			Math.floor(targetTranslateX / 12) + randomUpTo(4)
 		]
 	};
 
-	const overlayX = targetWidth / 3;
+	const overlayX = targetWidth / 2.5;
 	const overlayWidth = targetWidth;
 
 	const clipWidth = spaceshipWidth * 1.5;
@@ -259,10 +262,12 @@
 	<g>
 		<animateTransform
 			begin="timeTheShotsStart.begin"
+			end="timeTheShotsFinish.begin"
 			attributeName="transform"
 			type="translate"
 			to="0 {screenTranslateY}"
 			dur={durations.clouds}
+			fill="freeze"
 			repeatCount="indefinite"
 		/>
 		<g id="time-the-shots-clouds">
@@ -277,10 +282,64 @@
 		<use y={screenTranslateY * -1} href="#time-the-shots-clouds" />
 	</g>
 
+	<g transform="translate(0 {intro.y})">
+		<animateTransform
+			id="timeTheShotsIntro"
+			begin="timeTheShotsStart.begin + {intro.delay}s"
+			attributeName="transform"
+			type="translate"
+			to="0 0"
+			dur={intro.duration}
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		<animateTransform
+			id="timeTheShotsOutro"
+			begin="timeTheShotsMissed.end + 1s"
+			attributeName="transform"
+			type="translate"
+			to="0 {outro.y}"
+			dur={outro.duration}
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1"
+			fill="freeze"
+		/>
+		{#each targets as { i, y, duration, delay }}
+			<g transform="translate(0 {y})">
+				<g>
+					<animateTransform
+						id="timeTheShotsTarget{i}Move"
+						begin="timeTheShotsStart.begin + {delay}s"
+						end="timeTheShotsTarget{i}Shot.end; timeTheShotsMiss.begin"
+						attributeName="transform"
+						type="translate"
+						values="0 0; {targetTranslateX} 0; 0 0"
+						dur={duration}
+						fill="freeze"
+						repeatCount="indefinite"
+					/>
+					<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
+						<animate
+							id="timeTheShotsTarget{i}Outro"
+							begin="timeTheShotsTarget{i}Shot.end"
+							attributeName="href"
+							values="#time-the-shots-target-0; #time-the-shots-target-1; #time-the-shots-target-2; #time-the-shots-target-3; #time-the-shots-target-4"
+							dur="0.3s"
+							calcMode="discrete"
+							fill="freeze"
+						/>
+					</use>
+				</g>
+			</g>
+		{/each}
+	</g>
+
 	<g transform="translate({spaceshipX} {spaceshipY})">
 		<g>
 			<animateTransform
 				begin="timeTheShotsStart.begin"
+				end="timeTheShotsFinish.begin"
 				attributeName="transform"
 				type="translate"
 				to="0 -0.5"
@@ -320,68 +379,17 @@
 		</g>
 	</g>
 
-	<g transform="translate(0 {intro.y})">
-		<animateTransform
-			id="timeTheShotsIntro"
-			begin="timeTheShotsStart.begin + {intro.delay}s"
-			attributeName="transform"
-			type="translate"
-			to="0 0"
-			calcMode="spline"
-			keySplines="0.5 0 0.5 1"
-			dur={intro.duration}
-			fill="freeze"
-		/>
-		<animateTransform
-			id="timeTheShotsOutro"
-			begin="timeTheShotsMissed.end + 1s"
-			attributeName="transform"
-			type="translate"
-			to="0 {outro.y}"
-			calcMode="spline"
-			keySplines="0.5 0 0.5 1"
-			dur={outro.duration}
-			fill="freeze"
-		/>
-		{#each targets as { i, y, duration, delay }}
-			<g transform="translate(0 {y})">
-				<g>
-					<animateTransform
-						id="timeTheShotsTarget{i}Move"
-						begin="timeTheShotsStart.begin + {delay}s"
-						end="timeTheShotsTarget{i}Shot.end; timeTheShotsMiss.begin"
-						attributeName="transform"
-						type="translate"
-						values="0 0; {targetTranslateX} 0; 0 0"
-						dur={duration}
-						fill="freeze"
-						repeatCount="indefinite"
-					/>
-					<use width={targetWidth} height={targetHeight} href="#time-the-shots-target-0">
-						<animate
-							begin="timeTheShotsTarget{i}Shot.end"
-							attributeName="href"
-							values="#time-the-shots-target-0; #time-the-shots-target-1; #time-the-shots-target-2; #time-the-shots-target-3; #time-the-shots-target-4"
-							fill="freeze"
-							dur="0.3s"
-							calcMode="discrete"
-						/>
-					</use>
-				</g>
-			</g>
-		{/each}
-	</g>
-
 	<g>
 		<set attributeName="display" to="none" />
 		<set begin="timeTheShotsIntro.end" attributeName="display" to="initial" />
 		<set begin="timeTheShotsMiss.begin" attributeName="display" to="none" />
+		<set begin="timeTheShotsFinish.begin" attributeName="display" to="none" />
 
-		<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0.2">
+		<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0">
 			<set id="timeTheShotsMiss" begin="click" attributeName="display" to="none" />
 		</rect>
 
-		<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0.2">
+		<rect style="cursor: pointer;" x={clipX} width={clipWidth} {height} opacity="0">
 			<set id="timeTheShotsMercy" begin="click" attributeName="display" to="none" />
 		</rect>
 
@@ -414,18 +422,18 @@
 							attributeName="transform"
 							type="translate"
 							to="{targetWidth} 0"
+							dur="0.1"
 							calcMode="discrete"
 							fill="freeze"
-							dur="0.1"
 						/>
 						<animateTransform
 							begin="timeTheShotsTarget{i}Forwards.begin"
 							attributeName="transform"
 							type="translate"
 							to="0 0"
+							dur="0.1"
 							calcMode="discrete"
 							fill="freeze"
-							dur="0.1"
 						/>
 						<g>
 							<animateTransform
@@ -433,26 +441,20 @@
 								attributeName="transform"
 								type="scale"
 								to="-1 1"
+								dur="0.1"
 								calcMode="discrete"
 								fill="freeze"
-								dur="0.1"
 							/>
 							<animateTransform
 								begin="timeTheShotsTarget{i}Forwards.begin"
 								attributeName="transform"
 								type="scale"
 								to="1 1"
+								dur="0.1"
 								calcMode="discrete"
 								fill="freeze"
-								dur="0.1"
 							/>
-							<rect
-								style="cursor: pointer;"
-								x={overlayX}
-								width={overlayWidth}
-								{height}
-								opacity="0.2"
-							>
+							<rect style="cursor: pointer;" x={overlayX} width={overlayWidth} {height} opacity="0">
 								<set
 									id="timeTheShotsTarget{i}Shoot"
 									begin="click"
@@ -467,10 +469,58 @@
 		</g>
 	</g>
 
+	<g transform="translate({targets.length * 80 * -1} 0)">
+		<animateTransform
+			begin="timeTheShotsOutro.end"
+			attributeName="transform"
+			type="translate"
+			to="0 0"
+			dur="0.1"
+			calcMode="discrete"
+			fill="freeze"
+		/>
+		{#each targets as { i }}
+			<animateTransform
+				begin="timeTheShotsTarget{i}Outro.end"
+				attributeName="transform"
+				type="translate"
+				by="80 0"
+				dur="0.1"
+				calcMode="discrete"
+				fill="freeze"
+			/>
+		{/each}
+
+		<g>
+			<set begin="timeTheShotsMiss.begin" attributeName="display" to="none" />
+			<AnimatedTitle
+				text="Nice timing!"
+				fill="url(#linear-gradient-text)"
+				begin="timeTheShotsTarget0Outro.end"
+				end="timeTheShotsFinish.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+
+		<g display="none">
+			<set begin="timeTheShotsMiss.begin" attributeName="display" to="initial" />
+			<AnimatedTitle
+				text="Out of luck..."
+				fill="url(#linear-gradient-text)"
+				begin="timeTheShotsOutro.end"
+				end="timeTheShotsFinish.begin"
+				repeatCount="indefinite"
+			/>
+		</g>
+		<rect style:cursor="pointer" width="80" height="50" opacity="0">
+			<set id="timeTheShotsFinish" begin="click" attributeName="display" to="none" />
+		</rect>
+	</g>
+
 	<g style:cursor="pointer">
 		<set id="timeTheShotsStart" begin="click" attributeName="display" to="none" />
 
-		<!-- ADD TITLE -->
+		<Title fill="url(#linear-gradient-text)">Shoot down!</Title>
 
 		<rect width="80" height="50" opacity="0" />
 	</g>
