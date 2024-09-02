@@ -92,7 +92,7 @@ export default {
 		<symbol id="roll-3" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -134,7 +134,7 @@ export default {
 		<symbol id="roll-7" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 4 4 h 2 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 14 5 h 1 M 0 6 h 1 M 3 6 h 2 M 11 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 10 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 5 13 h 2 M 9 13 h 2 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 4 4 h 2 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 14 5 h 1 M 0 6 h 1 M 3 6 h 2 M 11 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 10 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 5 13 h 2 M 9 13 h 2 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -174,7 +174,7 @@ export default {
 		<symbol id="roll-11" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 5 1 h 2 M 12 1 h 1 M 2 2 h 1 M 7 2 h 2 M 13 2 h 1 M 2 3 h 1 M 7 3 h 2 M 13 3 h 1 M 1 4 h 1 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 3 10 h 2 M 11 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 4 12 h 2 M 10 12 h 2 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 5 14 h 2 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 5 1 h 2 M 12 1 h 1 M 2 2 h 1 M 7 2 h 2 M 13 2 h 1 M 2 3 h 1 M 7 3 h 2 M 13 3 h 1 M 1 4 h 1 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 3 10 h 2 M 11 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 4 12 h 2 M 10 12 h 2 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 5 14 h 2 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -214,7 +214,7 @@ export default {
 		<symbol id="roll-15" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 5 1 h 2 M 9 1 h 2 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 7 3 h 2 M 13 3 h 1 M 1 4 h 1 M 7 4 h 2 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 14 10 h 1 M 1 11 h 1 M 4 11 h 2 M 14 11 h 1 M 2 12 h 1 M 7 12 h 2 M 13 12 h 1 M 2 13 h 1 M 7 13 h 2 M 13 13 h 1 M 3 14 h 1 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 5 1 h 2 M 9 1 h 2 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 7 3 h 2 M 13 3 h 1 M 1 4 h 1 M 7 4 h 2 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 14 10 h 1 M 1 11 h 1 M 4 11 h 2 M 14 11 h 1 M 2 12 h 1 M 7 12 h 2 M 13 12 h 1 M 2 13 h 1 M 7 13 h 2 M 13 13 h 1 M 3 14 h 1 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -254,7 +254,7 @@ export default {
 		<symbol id="roll-19" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 5 1 h 2 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 10 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 7 12 h 2 M 13 12 h 1 M 2 13 h 1 M 5 13 h 2 M 9 13 h 2 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 5 1 h 2 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 10 4 h 2 M 14 4 h 1 M 1 5 h 1 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 10 10 h 2 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 7 12 h 2 M 13 12 h 1 M 2 13 h 1 M 5 13 h 2 M 9 13 h 2 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -295,7 +295,7 @@ export default {
 		<symbol id="roll-23" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 14 10 h 1 M 1 11 h 1 M 4 11 h 2 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 14 5 h 1 M 0 6 h 1 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 4 10 h 2 M 14 10 h 1 M 1 11 h 1 M 4 11 h 2 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 9 14 h 2 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
@@ -339,7 +339,7 @@ export default {
 		<symbol id="roll-27" viewBox="0 -0.5 16 16" shape-rendering="crispEdges">
 			<path
 				stroke="#222034"
-				d="M 4 0 h 9 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
+				d="M 4 0 h 8 M 3 1 h 1 M 12 1 h 1 M 2 2 h 1 M 5 2 h 2 M 9 2 h 2 M 13 2 h 1 M 2 3 h 1 M 13 3 h 1 M 1 4 h 1 M 14 4 h 1 M 1 5 h 1 M 4 5 h 2 M 10 5 h 2 M 14 5 h 1 M 0 6 h 1 M 4 6 h 2 M 10 6 h 2 M 15 6 h 1 M 0 7 h 1 M 15 7 h 1 M 0 8 h 1 M 2 8 h 12 M 15 8 h 1 M 0 9 h 2 M 14 9 h 2 M 1 10 h 1 M 14 10 h 1 M 1 11 h 1 M 14 11 h 1 M 2 12 h 1 M 13 12 h 1 M 2 13 h 1 M 13 13 h 1 M 3 14 h 1 M 12 14 h 1 M 4 15 h 8 "
 			/>
 			<path
 				stroke="#ffffff"
