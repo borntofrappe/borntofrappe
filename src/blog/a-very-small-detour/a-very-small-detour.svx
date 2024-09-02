@@ -1,0 +1,5 @@
+---
+title: A very small detour
+description: game development with pico-8
+date: 2024-08
+---
