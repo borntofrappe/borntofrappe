@@ -3,3 +3,11 @@ title: A very small detour
 description: game development with pico-8
 date: 2024-08
 ---
+
+<script>
+	import svg from './svg.js'
+</script>
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['pico-adventure']}
+</figure>
