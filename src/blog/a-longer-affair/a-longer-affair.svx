@@ -1,0 +1,9 @@
+---
+title: A longer affair
+description: Prolonging the summer fling with game development. With love.
+date: 2024-09-04
+---
+
+Port of pico adventure for the Love2D open source engine.
+
+https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip
