@@ -10,7 +10,7 @@ date: 2024-09-03T18:12:35
 
 There comes a time when a developer likes to branch out, sample different technologies and experiment with new fields. A good way to practice finding a solution, no matter the context, and creating something out of nothing, out of nothing but a few hundreds lines of code.
 
-I like to try my luck creating small games and in this sense, it would be difficult to argue for an easier experience than that offered by the console that is, or may not be, [PICO-8](https://www.lexaloffle.com/pico-8.php). The best way to immerse yourself in the topic might be a very insightful playlist creating [a full-fledged shoot 'em up](https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd). And if you go through the entire series you may just create something shy of grandiose. But to get started, you need an inkling of inspiration and a concept, no matter how simple. Like [_Pico adventure_](https://github.com/borntofrappe/gg/blob/main/pico-adventure/pico-adventure.p8).
+I like to try my luck creating small games and in this sense, it would be difficult to argue for an easier experience than that offered by the console that is, or may not be, [PICO-8](https://www.lexaloffle.com/pico-8.php). The best way to immerse yourself in the topic might be a very insightful playlist creating [a full-fledged shoot 'em up](https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd). And if you go through the entire series you may just create something shy of grandiose. But to get started, you need an inkling of inspiration and a concept, no matter how simple. Like [_Pico adventure_](https://github.com/borntofrappe/gg/blob/main/pico-adventure.p8).
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['pico-adventure']}
@@ -24,7 +24,7 @@ In the console you also gain the option to review everything which makes up the 
 
 You can improve the set just clicking around the packed interface, and if you want to tweak the code, here a few tips to ease your first of many updates:
 
-- the programming language is [lua](https://www.lua.org/start.html). Look past the fact that tables start at index 1 and you will find one of the most approachable syntaxes you ever experienced
+- the programming language is [Lua](https://www.lua.org/). Look past the fact that tables start at index 1 and you will find one of the most approachable syntaxes you ever experienced
 
 - every PICO-8 title is governed by three essential functions:
 
