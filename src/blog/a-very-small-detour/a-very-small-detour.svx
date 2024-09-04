@@ -1,7 +1,7 @@
 ---
 title: A very small detour
 description: Taking a few steps away from the wonders of web development.
-date: 2024-09-03T18:12:35
+date: 2024-09-02T18:12:35
 ---
 
 <script>
