@@ -1,6 +1,6 @@
 ---
 title: A very small detour
-description: Taking a few steps away from the wonders of web development.
+description: Take a few steps away from the wonders of web development.
 date: 2024-09-02T18:12:35
 ---
 
