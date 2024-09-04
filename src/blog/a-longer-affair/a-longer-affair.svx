@@ -4,6 +4,12 @@ description: Prolonging the summer fling with game development. With love.
 date: 2024-09-04
 ---
 
-Port of pico adventure for the Love2D open source engine.
+<script>
+	import svg from './svg.js'
+</script>
 
-https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip
+[Port](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) of pico adventure for the Love2D open source engine.
+
+<figure class="[ center-frame ]">
+	{@html svg['fleeting-love']}
+</figure>
