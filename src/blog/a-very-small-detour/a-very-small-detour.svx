@@ -8,9 +8,9 @@ date: 2024-09-02T18:12:35
 	import svg from './svg.js'
 </script>
 
-There comes a time when a developer likes to branch out, sample different technologies and experiment with new fields. A good way to practice finding a solution, no matter the context, and creating something out of nothing, out of nothing but a few hundreds lines of code.
+There comes a time when a developer likes to branch out, sample different technologies and experiment with new fields. A welcomed change to practice finding a solution no matter the context and creating something out of nothing, out of nothing but a few hundreds lines of code.
 
-I like to try my luck creating small games and in this sense, it would be difficult to argue for an easier experience than that offered by the console that is, or may not be, [PICO-8](https://www.lexaloffle.com/pico-8.php). The best way to immerse yourself in the topic might be a very insightful playlist creating [a full-fledged shoot 'em up](https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd). And if you go through the entire series you may just create something shy of grandiose. But to get started, you need an inkling of inspiration and a concept, no matter how simple. Like [_Pico adventure_](https://github.com/borntofrappe/gg/blob/main/pico-adventure.p8).
+Personally, especially in the summer months, I like to tinker with little games instead of web pages and for this, it would be difficult to argue for an easier experience than that offered by the console that is, or may not be, [PICO-8](https://www.lexaloffle.com/pico-8.php). The best way to immerse yourself in the topic might be a very insightful playlist creating [a full-fledged shoot 'em up](https://www.youtube.com/playlist?list=PLea8cjCua_P3Sfq4XJqNVbd1vsWnh7LZd). And if you go through the entire series you may just create something shy of grandiose. But to get started, you need an inkling of inspiration and a concept, no matter how simple. Like [_Pico adventure_](https://github.com/borntofrappe/gg/blob/main/pico-adventure.p8).
 
 <figure class="[ center-frame ]" data-size="small">
 	{@html svg['pico-adventure']}
@@ -18,9 +18,9 @@ I like to try my luck creating small games and in this sense, it would be diffic
 
 Riffing off the title for the Atari 2600, the game asks you to pick up a sword and fight the enemy, or enemies, jittering in the room. Hold the weapon long enough and you only need to then cross the gates to enter a new level. There are barely three floors and a poor excuse of a trophy, but ultimately a cute adventure implemented rather clearly, with basic data structures and a multitude of `if` statements.
 
-In the realm of PICO-8 you run the game by loading the cart directly in the console. Even [the education edition](https://www.pico-8-edu.com/) available for free and for all will do. Type `load` and execute to locate the file ending with the `.p8` extension. Enter `run` and play around with the handful of available buttons.
+In the realm of PICO-8 you run the game by loading the cart directly in the console. You can try [the education edition](https://www.pico-8-edu.com/) for a free, web-based alternative. Type `load` and execute to pick the file ending with the `.p8` extension. Enter `run` and play around with the handful of available buttons.
 
-In the console you also gain the option to review everything which makes up the game: the code, the sprites, the level editor. Even the tentative sound effects and repetitive music pattern.
+In the console you also gain the option to review everything which makes up the game: the code, the sprites, the map of the closed dungeon. Even the tentative sound effects and repetitive music pattern.
 
 You can improve the set just clicking around the packed interface, and if you want to tweak the code, here a few tips to ease your first of many updates:
 

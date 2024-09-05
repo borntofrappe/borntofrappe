@@ -14,7 +14,7 @@ For all the goodness baked in [PICO-8](https://www.lexaloffle.com/pico-8.php) yo
 
 - there are three essential functions to set up a game loop, and these roughly correspond to those described in [the previous excursion](/a-very-small-detour): `love.load`, which runs at startup similarly to `_init`, `love.update` and `love.draw`, which essentially replace the `_update` and `_draw` methods to change the game's state and look.
 
-There are plenty of differences, however, undeniable obstacles which might lead you to wonder, does it take _that_ long to port a game to the new engine? Let me take the title created in the earlier adventure as a small example.
+There are plenty of differences, however, undeniable obstacles which might make you wonder, does it take _that_ long to port a game to the new engine? Let me take [the little plaything](https://github.com/borntofrappe/gg/blob/main/pico-adventure.p8) created in the earlier adventure as a small example.
 
 _Please note_: some of the code assumes a lot of knowledge of Lua, PICO-8 and LÖVE, but I'll try to make the snippets clear and a tad entertaining.
 
@@ -60,28 +60,28 @@ love.graphics.setColor(1, 1, 1)
 Hitting a new low, there is no level editor to draw the room, forcing you to get creative drawing tiles in a specific configuration.
 
 ```lua
-local map =
-       	"            	"
-.. "\n" .. "0118111111119112"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
-.. "\n" .. "3          	4"
+local room =
+           "                "
+.. "\n" .. "0181111111111912"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
 .. "\n" .. "5666666666666667"
 ```
 
-Not to mention develop your own way to detect when the player collides with a specific cell. Alas, there is no built-in concept of "flags".
+Not to mention develop your own way to detect when the player collides with a specific cell. Alas, there is no ready-made notion of "flags".
 
-With regards to the interaction the updating function poses another huge challenge. The frame rate is at least doubled as the PICO-8 `_update` function runs 30 frames per second (there exists `_update60` to double the number, but it wasn't used in the small project). This means you either update the game loop to skip every other frame or use `dt`, the variable passed to `love.update` to keep track of delta time and maintain a consistent gameplay.
+With regards to the interaction the updating function poses another huge challenge. The frame rate is at least doubled as the PICO-8 `_update` function runs 30 frames per second (there exists `_update60` to double the number, but it wasn't used in the small project). This means you either rewrite the game loop to skip every other frame or use `dt`, the variable passed to `love.update` to describe delta time and maintain consistent motion regardless of power.
 
 ```lua
 local update_speed = 30
@@ -90,7 +90,7 @@ function love.update(dt)
 end
 ```
 
-And the differences do not end there. Extracting a character from a string.
+Unfortunately. the differences do not end there. Extracting a character from a string.
 
 ```diff
 -char = enter.text[i],
@@ -104,14 +104,14 @@ Looping through tables.
 +for _, letter in pairs(enter.letters) do
 ```
 
-Even drawing special characters, which materialize with emojis. In the small console you include these with uppercase letters, but alas you may want to let go of the feature. Too bad _nobody_ designed the `.ttf` document to support all the glyphs.
+Even drawing special characters, which in PICO-8 materialize with emojis. In the small console you include these with uppercase letters, but alas you may want to let go of the feature. Too bad _nobody_ designed [the `.ttf` document](https://github.com/borntofrappe/gg/blob/main/src/fleeting-love/res/font.ttf) to support all the glyphs.
 
 ```diff
 -"press ❎ to continue"
 +"press X to play"
 ```
 
-One last of the many differences is with music. And this is where despite the time and resources I poured in the project I need to drop every pretense and admit that [the end result](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) falls short of creating a complete copy. Sound effects play, music begins and ends, but without fading.
+One last of the many differences is with music. And this is where despite the time and effort poured in the project I need to drop every pretense and admit that [the end result](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) might fall short of creating a complete copy. Sound effects play, music begins and ends, but without fading.
 
 ```diff
 -music(1, -200)
@@ -121,7 +121,7 @@ One last of the many differences is with music. And this is where despite the ti
 
 I'm just glad to have the audio play through the title, blips and hypnotic pattern alike.
 
-Is all of this worth it? Not really if you want to whip up a game, to show off a concept and are stressed for time — the features you lose moving away from the fantasy console add up. But to learn the ins and outs of the two frameworks, to discover more about the base language, the answer might differ and push you to go through the little adventure once again. You only need to download [the zipped folder](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) to find an executable this time. Or review [the source files](https://github.com/borntofrappe/gg/tree/main/src/fleeting-love) to appreciate the endeavor.
+Is all of this worth it? Not really if you want to prototype something, to show off a concept and are stressed for time — the features you lose moving away from the fantasy console add up. But to learn the ins and outs of the two frameworks, to discover more about the base language, the answer might differ and push you to go through the effort. It certainly makes you appreciate even the smallest adventure, to the point where you won't even mind to replay the three levels. This time you only need to download [the zipped folder](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) to find the executable. Or review [the source files](https://github.com/borntofrappe/gg/tree/main/src/fleeting-love) to appreciate the endeavor.
 
 <figure class="[ center-frame ]">
 	{@html svg['fleeting-love']}
