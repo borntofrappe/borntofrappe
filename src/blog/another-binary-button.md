@@ -4,7 +4,7 @@ description: Try another way to mark up and showcase a pretty sweet switch.
 date: 2024-09-06T18:16:23
 ---
 
-In the design of a modern web app a toggle allows to pick between one of two options; a different set of colors for a dark theme, a larger display to highlight the main content. The ever stylable `button` is the most pertinent HTML element: you can listen to a click event to collect mouse, touch and keyboard input, all in one swoop, and with a series of tweaks create up a solid component in just a few steps.
+In the design of a modern web app a toggle allows to pick between one of two options; a different set of colors for a dark theme, a larger display to highlight the main content. To implement the widget the ever stylable `button` is the most pertinent HTML element: you can listen to a click event to collect mouse, touch and keyboard input, all in one swoop, and with a series of tweaks create up a solid component in just a few steps.
 
 The idea is to enhance the regular element, from a simple button with a static label.
 
@@ -27,13 +27,13 @@ button.addEventListener('click', () => {
 });
 ```
 
-And in terms of function, you're done. The browser updates the _accessibility tree_ and screen readers are already able to know the new value. You don't want to change the label, as the information in the element makes the change obvious.
+And in terms of function, you need only to focus on developing the actual feature. For the toggle the browser updates the _accessibility tree_ and screen readers are already able to know the new value. You don't want to change the label, as the information in the element makes the change obvious.
 
-_"Toggle dark mode, toggle button, not pressed"_
+_"Toggle dark mode, toggle button, not pressed."_
 
-What you do want is to change the appearance so that the way the button looks answers the same, most pertinent question for sighted users as well — is this button pressed?
+What you do want is to change the appearance so that the way the button looks answers the same, slightly unnerving question for sighted users as well — is this button pressed?
 
-With CSS you are able to target the element, and even refine the search for the relevant nodes: buttons with the specific attribute and with the even more specific value.
+With CSS you are able to target the element and even refine the search for the relevant nodes: buttons with the specific attribute and with the even more specific value.
 
 <!-- prettier-ignore -->
 ```css
@@ -71,13 +71,13 @@ But in a recent project, I resolved to add a bit of complexity for a neat altern
 </button>
 ```
 
-To show only one picture hide the other with the `display` attribute and, to make the purpose of the images more clear, add a custom `data` attribute, like `data-pressed`. This is meant to mirror the two values of the `aria-pressed` attribute.
+To show only one picture hide the other with the `display` attribute and, to make the purpose of the images more clear, add a custom `data` attribute, like `data-pressed`. This is meant to mirror the two values of `aria-pressed`.
 
 ```html
 <button aria-pressed="false">
 	<!-- ...text -->
 	<svg data-pressed="false"><!-- ... --></svg>
-	<svg data-pressed="true"><!-- ... --></svg>
+	<svg data-pressed="true" display="none"><!-- ... --></svg>
 </button>
 ```
 
@@ -101,7 +101,7 @@ button[aria-pressed='true'] [data-pressed='true'] {
 }
 ```
 
-The `display` property takes precedence over the same attribute and completes the effect.
+The `display` property takes precedence over the attribute with the same name and completes the effect.
 
 You can certainly use a different set of nodes to draw shapes, or toy with the idea of using fancy CSS declarations and key-value pairs.
 
@@ -116,7 +116,7 @@ button[aria-pressed='true']::after {
 
 Ultimately the essence remains the same. You have a good-looking toggle which is able to describe the change regardless of how you interact with the button and regardless of how you perceive the call to action.
 
-With solid foundations you can move on to develop the actual functionality. And if for some reason you decide to show just the icons — I certainly won't blame you if [your bright app](https://garde-temps.netlify.app/) is pressed for time and space —, don't just remove the text. To describe the state you always have the option adding the `aria-label` attribute or stick with the label, hidden with a utility class which probably lives in your global stylesheet — and should probably be supported by modern browsers as well.
+If for some reason you decide to show just the icons — I certainly won't blame you if you're pressed for space —, don't just remove the text. To illustrate the purpose of the toggle you always have the option of adding the `aria-label` attribute or stick with the label, hidden with a utility class which probably lives in your global stylesheet — and should probably be supported by modern browsers as well.
 
 ```html
 <button aria-pressed="false">
@@ -124,3 +124,5 @@ With solid foundations you can move on to develop the actual functionality. And 
 	<!-- ...icons -->
 </button>
 ```
+
+And if you're also pressed for time, or long for a stopwatch resembling the one built-in Windows OS, here's [a live and bright app](https://garde-temps.netlify.app/) to show off the result.
