@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@700&display=swap");
+
+body {
+  font-family: system-ui;
+  color: oklch(33% 0.05 0);
+  background: oklch(99% none none);
+}
+
+.font-display {
+  font-family: "Shantell Sans", cursive;
+  font-weight: 700;
+}

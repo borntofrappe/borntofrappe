@@ -1,36 +1,48 @@
 <script>
-	import site from '$lib/utils/site.js';
-	const { title, description } = site;
-
-	import Main from './Main.svelte';
-	import Showcase from './Showcase.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+  import "../app.css";
+  import TimePiece from "./TimePiece.svelte";
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
+  <title>borntofrappe</title>
 </svelte:head>
 
-<div
-	class="[ box ]"
-	style="
-		--box-color: var(--color);
-		--box-background: var(--background);
-		min-block-size: 100vb;
-		z-index: 1;
-		position: relative;
-	"
->
-	<Main />
-	<Showcase />
-</div>
+<main>
+  <h1 class="font-display">Hi there</h1>
 
-<div
-	style="
-		position: sticky;
-		inset-block-end: 0;
-	"
->
-	<Footer illustration="heart" />
-</div>
+  <p>this website is under re-construction</p>
+  <p>stay tuned for exciting new changes</p>
+
+  <figure>
+    <TimePiece />
+  </figure>
+</main>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  main {
+    max-inline-size: 46ch;
+    padding: 1rem;
+  }
+
+  main > * + * {
+    margin-block-start: 0.5rem;
+  }
+
+  main > figure {
+    margin-block-start: 2rem;
+  }
+
+  h1 {
+    font-size: 2.75rem;
+    line-height: 1;
+  }
+
+  figure {
+    max-inline-size: 33ch;
+  }
+</style>
