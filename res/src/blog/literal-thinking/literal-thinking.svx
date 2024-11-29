@@ -1,0 +1,103 @@
+---
+title: Literal thinking
+description: Ease into higher functions and a small abstraction layer.
+date: 2024-05-30T21:36:37
+---
+
+<script>
+	import LitLibs from './LitLibs.svelte';
+</script>
+
+In JavaScript, _template literals_ offer a few interesting features. With just a pair of backtick `` ` `` characters you can break a string on multiple lines.
+
+```js
+`
+xxxoo
+xxxox
+xxoox
+oooox
+oooox
+oxxox
+`;
+```
+
+With a specific sequence including a question mark and curly braces you can mix words and logic, words and expressions.
+
+```js
+`this code is ${adjective}`; // this code is self-serving
+```
+
+And there is one more formula with powerful implications in the form of custom functions. These preface a backtick-limited string and let you consider the content directly. The output, then, is of your making.
+
+```js
+markup`this code is ${adjective}`; // ?
+```
+
+The functions themselves receive a few inputs. Immediately, an array for the hard-coded text, the parts outside of the JavaScript code. An array to consider the fact that the words might be interrupted by one or more expressions. The expressions, then, are available as additional arguments; the second, the third, and as many as there are curly braces.
+
+```js
+function markup(strings, expression) {
+	// strings		|	[ "this code is ", "" ]
+	// expression	|	"curious"
+}
+```
+
+So what is the output? That depends on the value you return in the function. As a proof of concept you can return something completely unrelated, replacing the entire string. Or, toy around with word order.
+
+```js
+function markup(strings, expression) {
+	return `${expression} ${strings.join('')}`;
+}
+```
+
+But, more intentionally, you can structure the string to give the JavaScript code a particular meaning. The biggest challenge here is to streamline the inputs into one single string, since on one side you have an array and on the other a series of one-off variables. You can proceed in a number of ways, but to simplify the comparison, the _rest operator_ is a good start. Three dots which let you collect all the variables in the same container.
+
+```js
+function markup(strings, ...expressions) {
+	// strings: [ "This code is ", "" ]
+	// expressions: ["promising"]
+}
+```
+
+With the two similar data structures the process is quite simpler: loop through the arrays and alternate between plain text and unknown values. You can rely on backticks once more to concatenate the two values, but of course nothing stops you from relying on battle-tested solutions and joining strings with the plus operator.
+
+```js
+function markup(strings, ...expressions) {
+	let output = '';
+	for (let i = 0; i < strings.length; i++) {
+		output += `${strings[i]}${expressions[i]}`;
+	}
+}
+```
+
+Be careful that you will always have one less expression than you have strings, and stretching past the end of the second array, you will close the line with a compromising `undefined`. How you deal with the issue is up to your flair, and you may find a better approach then a ternary statement to test the index.
+
+```js
+for (let i = 0; i < strings.length; i++) {
+	output += i < strings.length - 1 ? `${strings[i]}${expressions[i]}` : strings[i];
+}
+```
+
+Just be sure to return the result of the curious sequence.
+
+```js
+return output;
+```
+
+At this point you have done little but re-creating the original string, but you've gained in knowledge and one powerful setup.
+
+```js
+markup`this code is ${adjective}`; // this code is ongoing
+```
+
+Should you want to elevate the input expressions, perhaps to mark the injected values in some special element, you now know one way.
+
+```diff
+-`${strings[i]}${expressions[i]}`;
++`${strings[i]}<mark>${expressions[i]}</mark>`;
+
+```
+
+You may not want to push yourself to the point of building a templating engine, but maybe the effort will be enough to make you appreciate the tagging feature for the next time you play with strings. Or find the syntax in a promising lib.
+
+<LitLibs />

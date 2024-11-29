@@ -1,0 +1,202 @@
+---
+title: Stroke midway through
+description: Get to know the `stroke` attribute and craft quant little graphics.
+date: 2023-04-07 10:05:17
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+Draw a rectangle over the entirety of an `<svg>` canvas.
+
+```html
+<svg viewBox="0 0 100 100">
+	<g fill="hsl(210, 36%, 96%)">
+		<rect fill="hsl(0)" width="100" height="100" />
+	</g>
+</svg>
+```
+
+Add a sizable stroke.
+
+<!-- prettier-ignore -->
+```html
+<g
+	stroke="hsl(211, 39%, 23%)"
+	stroke-width="10"
+	fill="hsl(210, 36%, 96%)"
+>
+	<!-- ...rect -->
+</g>
+```
+
+Immediately, there's nothing wrong with the resulting picture. You find a regular polygon with a clear outline.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['rect']}
+</figure>
+
+And yet, especially if you are fond of proportions, something is off. There is a square 100 units wide and tall. There is a stroke 10 units thick. But is the outline really 10% of the complete visual?
+
+The answer is glaringly obvious as you round the corners of the rectangle, or again as you draw an entirely different shape, like a perfect circle.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['stroke-issue']}
+</figure>
+
+In SVG, for better and this time for worse, the stroke is drawn on top of the area highlighted by the `fill` attribute, and it grows symmetrically on one side and the other.
+
+In light of this, the rectangle is actually 110 units tall. 100 for the fill. 10 for the stroke protruding from every edge. 5 atop and below. 5 to the left and right.
+
+The radius of the circle has grown as well, from 50 to 55.
+
+You have a few ways to solve the issue:
+
+- resize the shapes to fit in the space
+
+  <!-- prettier-ignore -->
+  ```html
+  <rect width="90" height="90" /> 
+  <circle r="45" cx="50" cy="50" />
+  ```
+
+- expand the canvas, expand the surface described by the `viewBox` attribute
+
+  ```html
+  <svg viewBox="0 0 110 110">
+  	<!-- ... -->
+  </svg>
+  ```
+
+Both options grant enough space for the grown elements. Both options, however, need a nudge to the bottom right.
+
+```html
+<g transform="translate(5 5)">
+	<!-- ... -->
+</g>
+```
+
+Translate the shapes by exactly half the stroke's width and the outline is shown in full.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['stroke-fix']}
+</figure>
+
+I personally lean on the second option, so that the elements responsible for the drawing keep the same defining attributes.
+
+Now, you may dread the moment you introduce a `stroke` on vector graphics, but accepting the feature, you can realize cute little visuals.
+
+## For better
+
+Consider the following needlepoint.
+
+<figure class="[ center-frame ]">
+	{@html svg['needlepoint']}
+</figure>
+
+You don't need to create the elements for every layer, and through the `stroke` attribute, you can fabricate the entire piece repeating just two shapes.
+
+Take the circles, for instance. For the larger, bottom-most section you find a `<circle>` with a thick stroke. The outline has the same color as the fill, blending seamlessly with the solid surface.
+
+<!-- prettier-ignore -->
+```html
+<g 
+    fill="hsl(210, 36%, 96%)" 
+    stroke="hsl(210, 36%, 96%)" 
+    stroke-width="10"
+>
+	<circle r="50" cx="50" cy="50" />
+</g>
+```
+
+The smaller, round shape is actually the very same circle, without a fill and a remarkably thinner stroke.
+
+<!-- prettier-ignore -->
+```html
+<g 
+    fill="none" 
+    stroke="hsl(211, 39%, 23%)" 
+    stroke-width="1.25"
+>
+	<circle r="50" cx="50" cy="50" />
+</g>
+```
+
+Indubitably, there are dashes, but the addition is a matter of flavor and being inspired by local fairs. The heavy lifting in terms of layout is a matter of strokes.
+
+And the pattern doesn't stop with the circle. The vibrant heart in the center, drawn with a `<path>` element, a couple of arcs and tentative bezier curves.
+
+```html
+<path d="M 25 42 a 12.5 12.5 0 0 1 25 0 12.5 12.5 0 0 1 25 0 q 0 17.5 -25 30 -25 -12.5 -25 -30" />
+```
+
+Is repeated twice, again with a thicker and thinner stroke. No need to figure out the correct numbers for the control points of the smaller version.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['breakdown']}
+</figure>
+
+## For text
+
+Another instance where the `stroke` attribute comes to the rescue relates to text, adding an outline around the most disparate letter forms. And this time the problem is clear from the very beginning.
+
+Add a stroke to contrast the color picked for the characters.
+
+<!-- prettier-ignore -->
+```html
+<g 
+	stroke="hsl(211, 39%, 23%)" 
+	stroke-width="1" 
+	fill="hsl(210, 36%, 96%)"
+>
+	<text>outline</text>
+</g>
+```
+
+And the stroke does appear, at the expense of fill attribute.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['text-issue']}
+</figure>
+
+This goes back to the issue at hand: the stroke is drawn symmetrically, and also _on top_.
+
+But this time, SVG has a solution in the form of the `paint-order` attribute. Instruct the element to draw the stroke first.
+
+<!-- prettier-ignore -->
+```html
+<g 
+	... 
+	paint-order="stroke"
+>
+	<text>outline</text>
+</g>
+```
+
+And the fill is shown in full; the outline works as a smooth base.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['text-fix']}
+</figure>
+
+You need to double the width of the stroke if you want to keep a consistent size, and as the letters get cozier, this is one occasion where a bit of a breathing room is more than welcome. The perfect use-case for the `letter-spacing` attribute.
+
+<!-- prettier-ignore -->
+```html
+<g 
+	... 
+	stroke-width="2" 
+	letter-spacing="0.5"
+>
+	<text>outline</text>
+</g>
+```
+
+---
+
+Whether you fancy embroidery, or just want to have text pop on the page, the `stroke` attribute is your best bet. Consider a few quirks, explore the SVG spec, and you are ready to celebrate the fruits of your labor.
+
+<figure class="[ center-frame ]">
+	{@html svg['patchwork']}
+</figure>

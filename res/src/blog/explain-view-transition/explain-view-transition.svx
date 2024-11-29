@@ -1,0 +1,163 @@
+---
+title: Explain view transition
+description: Show the path towards a small yet impressive transition.
+date: 2024-07-16T11:35:10
+---
+
+<script>
+	import AnimationTab from './AnimationTab.svelte';
+</script>
+
+In a recent excursion into the features some platforms provide for a developer's delight I linked to
+[a small, yet impressive demo](https://codepen.io/borntofrappe/pen/xxobXxJ) of a basic counter animating the values with modern web technologies. In the heat of the moment, ecstatic by the working code, I feel short of explaining the API, but the logic is worth discussing. To avoid forgetting and reiterate the one fact: while there is ingenuity in the implementation, there is a most powerful platform, a supporting browser sewing the seams.
+
+## HTML
+
+Starting with the structure of the document you need only three founding elements: two buttons, to update the counter in either direction, and an element to mark up the number. For this value I chose an instance of the `output` element, I figured a reasonable choice to describe the result, the outcome of the application.
+
+```html
+<button aria-label="Decrement"><!-- ... --></button>
+<output>0</output>
+<button aria-label="Increment"><!-- ... --></button>
+```
+
+The buttons might or might not have a label and an SVG icon. The set of nodes might or might not be wrapped in a `div` container to help with positioning, but that's it. With the solid structure you can move on to the incrementing and decrementing action.
+
+## JavaScript
+
+For the interaction the idea is to update the count following a click event on the two buttons.
+
+```js
+buttonIncrement.addEventListener('click', increment);
+buttonDecrement.addEventListener('click', decrement);
+```
+
+You can keep track of the number with a respectable variable, but as a quick alternative the contents of the `output` element, converted to a proper integer, will do the trick. With this in mind the functions have only to increase or decrease the measure to complete the feat.
+
+```js
+const increment = () => {
+	counter.textContent = +counter.textContent + 1;
+};
+```
+
+Double the effort to decrement the value and you are functionally done.
+
+## Everything else
+
+On your end you care about counting. The good news is that the animation proposed by the `document` interface for same-page transitions builds on top of the existing logic, or rather around it.
+
+Instead of updating the DOM directly, inject the function in the callback of `document.startViewTransition`.
+
+```js
+document.startViewTransition(() => {
+	increment();
+});
+```
+
+Not everything glitters, however. To be pedantic, not every browser is able to process the code and you benefit from a quick `if` statement. If the method exists, call the changing function in the given callback. If not, no fuss, update the DOM without pause.
+
+```js
+if (document.startViewTransition) {
+	// ...document.startViewTransition
+} else {
+	increment();
+}
+```
+
+By default supporting browsers will transition between the start and end state, between one value and the next — or the previous one — with a sensible cross-fade. But we can go further and customize the manner in which the old and new numbers swap in their place.
+
+The key here is the `view-transition-name` property. To get started, you can actually remove the fading animation setting the property on the global `html` selector to a value of `none`.
+
+```css
+html {
+	view-transition-name: none;
+}
+```
+
+Transitions are removed from the entirety of the page so you can isolate the effect to the nodes you select, again by name.
+
+Adding a unique transition name to the `output` element, either in markup or in the script as you detect support for the feature, the browser establishes a relation for the selected node.
+
+```js
+if (document.startViewTransition) {
+	// ...document.startViewTransition
+	counter.style.setProperty('view-transition-name', 'value-increment');
+}
+```
+
+What is more, it offers a pseudo-selector to the changing value. Two selectors to be thorough: `::view-transition-new` and `::view-transition-old`. Expectedly the pair describe the state of things for the named node, and here you can change the animation:
+
+- the options of the default cross-fade, perhaps the duration with the `animation-duration` property
+
+  ```css
+  ::view-transition-new(value-increment),
+  ::view-transition-old(value-increment) {
+  	animation-duration: 0.2s;
+  }
+  ```
+
+- the entire animation, with one of your making through custom keyframes
+
+  ```css
+  ::view-transition-new(value-increment) {
+  	animation: slide-in 0.25s;
+  }
+  ::view-transition-old(value-increment) {
+  	animation: slide-out 0.25s;
+  }
+  ```
+
+In the final demo I resolved to create two animations, two keyframe sequences. But while the structure is slightly verbose it is also easy to digest. For the new value, for instance, this one is made to move down to its rightful scale.
+
+```css
+@keyframes slide-in {
+	from {
+		translate: 0% -100%;
+		scale: 0.2;
+	}
+	to {
+		translate: 0% 0%;
+		scale: 1;
+	}
+}
+```
+
+The old one translates in the same direction, further down, and shrinks to mirror the first change.
+
+```css
+@keyframes slide-out {
+	from {
+		translate: 0% 0%;
+		scale: 1;
+	}
+	to {
+		translate: 0% 100%;
+		scale: 0.2;
+	}
+}
+```
+
+At either end the browser takes care of inserting and removing the values. In between the two move and follow the scheme.
+
+The clever bit? By using JavaScript to set the `transition-name` property you can differentiate the animation when the counter decreases — use a different transition name.
+
+```js
+counter.style.setProperty('view-transition-name', 'value-decrement');
+decrement();
+```
+
+You need to care about the pseudo-selectors, but it's well worth the effort to improve the feedback.
+
+On top of this, always through JavaScript, you can be courteous and condition the update. Not only to the support of the feature, but also the preference for reduced motion.
+
+```js
+if (document.startViewTransition && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+	// ...document.startViewTransition
+}
+```
+
+While the change is small, it is still sudden, and might not be to everyone's taste.
+
+The sharpest piece of the puzzle is still the platform, the supporting browser, but the code promises a sweet user experience. One you may have seen if you check all the boxes, and one I can attempt to showcase if you excuse JavaScript and SVG.
+
+<AnimationTab />

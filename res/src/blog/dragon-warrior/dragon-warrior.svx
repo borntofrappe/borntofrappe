@@ -1,0 +1,73 @@
+---
+title: Dragon Warrior
+description: Celebrating the first step in a promising, long journey in all its colorful glory.
+date: 2023-01-29 8:19:30
+---
+
+<script>
+  import Talk from "./Talk.svelte"
+  import Vases from "./Vases.svelte"
+  import LotoSeal from "./LotoSeal.svelte"
+</script>
+
+I consider myself quite partial to Dragon Quest. And yet, the only title I had completed before this journey started was the ninth in the series.
+
+Sure I might have poured hundreds of hours in that single game, collecting every weapon and armor piece which piqued my interest, scavenging for treasure in treacherous, tantalizing, addictively randomized dungeons.
+
+The point stands, however. How can I label myself a fan with such an episodic experience?
+
+And so it was that I took the plunge and decided to rectify the situation starting from the very beginning.
+
+## The beginning
+
+Known to western audiences as _Dragon Warrior_, the first title in the Dragon Quest series is beautifully straightforward and wastes no time to thrust you into adventure.
+
+Facing the king, you are introduced as the glorious descendant of Loto. The terrifying DracoLord brought ruin to the land and you are presented with your quest: defeat the fiend and bring peace to the, admittedly small, continent.
+
+If in the process you manage to save the kidnapped princess, the court would be much obliged. But you'll have to talk to the prime minister to know that; the pain is too much for the king to bring back such fresh, cruel memories.
+
+The minister works to actually introduce a key to your successful journey: _talk to everybody_. If you have the memory of a house sparrow, I might also add: _take notes_. The conversation you have with one random character might prove useful, if not essential to your progress.
+
+Of course some conversations are worth more than others, but that's part of the charm of your quest. Your quite literal dragon quest.
+
+<Talk />
+
+I won't spoil much of the adventure. No matter how rough and interspersed with curious encounters, I hope you'll find your way through the game, from Tantegel castle to the quite immediate Tantegel city, to a dark cave leading to more practical instructions.
+
+What I would like to do is take a moment and celebrate a few moments which defined my gaming session — for better or worse.
+
+## What's this?
+
+In Tantegel castle the game prompts you to talk to everybody. On the first floor, the title introduces you to another useful tip: _peer into vases_ — you never know what useful things you might find.
+
+The handful of pots you find mere steps away from the king's room is enough to get addicted to the practice. Those pots and the nagging, evil suspicion that they might not hold anything useful, but maybe just this time.
+
+<Vases />
+
+The series actually doubles down on the feature. Beside opening treasure chests and the obligatory door, you'll soon look into everything, be it a drawer, a closet, and yes, sometimes even seemingly unimportant, empty tiles.
+
+## Loto Seal
+
+Speaking of seemingly empty tiles: **Loto Seal**.
+
+If you have completed the game you know what's behind this ever important object. If you've managed to collect the item without somebody's guidance, I salute your effort. If you have no clue what this means, I cherish your ignorance, and thank you for actually continuing this article.
+
+Without revealing too much, following a perilous journey, past a rather secluded set of stairs, Loto Seal is described as being somewhere 70 north and 40 west to the castle.
+
+70 north.
+
+40 west.
+
+In my first playthrough I actually did the unthinkable and started counting.
+
+One, two, three steps west. Random encounter. Four, five. Mountains ahead.
+
+Eventually you start counting backwards as you find an obstacle and walk your way around it. You begin wondering if you started in the right spot and at the price of sounding like a commercial, if there is a better way.
+
+Short answer, there is. And I hope you'll find it in less time than it took me.
+
+If you want a less grueling, but similar experience, however, I introduce you to a small patch of land. A small playground where I've hidden a replica of Loto Seal.
+
+I'm quite positive it is there. And I'm sure you'll have no trouble finding it in a fraction of the time I did.
+
+<LotoSeal />

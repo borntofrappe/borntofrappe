@@ -1,0 +1,17 @@
+---
+title: Bubble up
+description: Bring to the surface more than silly emotions.
+date: 2024-04-08T21:50:01
+---
+
+<script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
+	import TapTheGlass from './TapTheGlass.svelte';
+</script>
+
+It doesn't happen often, but sometimes emotions get the better of you. In such trying times it is easy to blow things out of proportions, and even scare people away. What matters of course is what comes after these outbursts. Making amends, patching things up. It is certainly more difficult, but essential in the long run. And maybe even easier than coming up with an idea for an animated graphic, trying to be as entertaining as tangentially helpful.
+
+<TapTheGlass />
+
+<ZdogMonday />

@@ -1,0 +1,224 @@
+---
+title: Filter light
+description: Shed light on some elements and on SVG filters.
+date: 2023-09-04T10:34:17
+---
+
+<script>
+	import svg from './svg.js';
+	import PointLight from './PointLight.svelte';
+	import DistantLight from './DistantLight.svelte';
+</script>
+
+When it comes to images and illustration, SVG shines for many reasons.
+
+<figure class="[ center-frame ]" data-size="large">
+	{@html svg['flat-design']}
+</figure>
+
+Shapes are drawn with precise instructions, but while the result is exemplary, it is also flat. It is possible to add depth in the form of a light source, but to understand how, you need to dive into the complex world of SVG filters.
+
+You might have gone through [an cutesy introduction](/filter-art) to the topic already, but truthfully, filters are a matter of art as a matter of science. There is room for exploration, but you benefit greatly from understanding their logic and function. In light of this, it is helpful to describe a basic workflow.
+
+## Filters and primitives
+
+SVG filters work with a `<filter>` element with a unique `id`.
+
+```html
+<filter id="spiffy-effect">
+	<!-- ... -->
+</filter>
+```
+
+You apply the changes through the `filter` attribute, pointing to the chosen label.
+
+```html
+<g filter="url(#spiffy-effect)">
+	<!-- ... -->
+</g>
+```
+
+How the shapes change, then, depends on the contents of the filter itself, on _primitives_. These are additional elements responsible for particular operations. `feGaussianBlur`, for instance, helps to blur a picture.
+
+```html
+<feGaussianBlur stdDeviation="2" />
+```
+
+There are 17 primitives, but in essence, they work in the same manner.
+
+Primitives start with an input, some of them even with two, and such input can be one of few values:
+
+- `SourceGraphic`, the shapes to-be-filtered
+
+- `SourceAlpha`, the same shapes, but considering only the alpha channel, the opacity of the elements
+
+- the result of another primitive
+
+The last of these options is particularly relevant for a final fact: primitives start with an input, or inputs, and end with an output. This solitary output is the graphic as modified per the primitive.
+
+You can very well express the values with three attributes: `in`, `in2` for the inputs, and `result` for the output.
+
+```html
+<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="2" />
+```
+
+But based on the default behavior, you can save a few keystrokes and the hassle of naming results.
+
+By default, the first primitive receives the source graphic. This is exactly what happens with the blur filter without the `in` attribute.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['filter-blur']}
+</figure>
+
+Every primitive which follows, another blur for instance, receives the output of the previous function.
+
+<!-- prettier-ignore -->
+```html
+<feGaussianBlur stdDeviation="2" />
+<feGaussianBlur stdDeviation="2" />
+```
+
+In the snippet the second blur is applied to the blurred picture, increasing the effect. No need to spell out the inputs and outputs.
+
+```html
+<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="2" />
+<feGaussianBlur in="blur" stdDeviation="2" />
+```
+
+Understanding this flow is essential to understand SVG filters. And most practically, essential to add a light.
+
+## Composition
+
+There are two primitives to shed lights on the elements. There are then three additional elements to set up a light source. Before we explore these options, however, it is necessary to frame the primitives as part of a larger system.
+
+Indeed, it is not enough to rely on a lighting function like `feDiffuseLighting`.
+
+```html
+<filter id="light">
+	<feDiffuseLighting>
+		<!-- ... -->
+	</feDiffuseLighting>
+</filter>
+```
+
+As other primitives, the element returns one output, and in this instance the output is a layer consisting of nothing but light.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['filter-light']}
+</figure>
+
+You want the light to alter the appearance of the elements, and not replace them entirely. Therefore, you need the help of at least two more primitives.
+
+First: `feComposite`. With the `operator` attribute set to `in` the function takes two inputs to consider only the parts of the second which overlap on the first.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['filter-composite']}
+</figure>
+
+Applied to the bright layer, this means the light can be constrained, kept only in the relevant area — the original picture.
+
+```html
+<!-- ...feDiffuseLighting -->
+<feComposite in2="SourceGraphic" operator="in" />
+```
+
+Second and last: `feBlend`. Once you have a light, and this light occupies the area of the benefiting shapes, you need to alter the shapes themselves. The function takes two inputs, with now familiar ingredients, and returns an output with a chosen `mode`.
+
+```html
+<!-- ...feDiffuseLighting & feComposite -->
+<feBlend in2="SourceGraphic" mode="screen" />
+```
+
+Set to `screen`, the primitive takes the colors from the input images, adds their values together before subtracting their product. In less mathematical terms, the function gives more importance to brighter hues, a fitting choice for the matter at hand.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['filter-blend']}
+</figure>
+
+You create a bright layer, cut out the portions of the layer which are not pertinent and then combine the result with the shapes. The sequence is involved, but works to illustrate the point. Of course, you do need to create a bright layer first.
+
+## Lights
+
+As mentioned, there are two primitives for lighting effect, and these are `feDiffuseLighting` and `feSpecularLighting`. The two elements have their own attributes, but share a few common traits. Immediately, the functions rely on a color, set through the `lighting-color` attribute.
+
+On top of these, both primitives depend on additional, nested elements, responsible for the light source itself.
+
+```html
+<feDiffuseLighting lighting-color="hsl(48 96% 66%)">
+	<!-- ...light source -->
+</feDiffuseLighting>
+```
+
+But perhaps it is better to show their influence in practice.
+
+### Diffuse
+
+`feDiffuseLighting` creates _ambient light_, spanning in every direction.
+
+```html
+<feDiffuseLighting diffuseConstant="1" lighting-color="hsl(48 96% 66%)">
+	<!-- ... -->
+</feDiffuseLighting>
+```
+
+Past the color you may tweak the primitive with additional attributes. `diffuseConstant`, for instance, works to update the strength of the light. But as mentioned, the primitive is not enough on its own. In between the opening and closing tag you need a source, an element such as `<fePointLight>`.
+
+```html
+<fePointLight x="0" y="0" z="20" />
+```
+
+You set three coordinates for the position of the light as a point in the x-y-z space. The horizontal and vertical measures are close to obvious, but the z-value, especially in the 2D world of the SVG document, might be a tad more alien.
+
+Think of the z axis as an arrow, escaping the picture in your general direction. A higher value has the light source higher and higher, closer and closer to your point of view. You can imagine it, for sure, but you can also picture the change from a top-down perspective.
+
+<figure class="[ center-frame ]" data-size="large">
+	<PointLight />
+</figure>
+
+Pick a color for the light and tinker with the strength of the wrapping filter. Experiment with the position of the source and the light is cast.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['filter-diffuse']}
+</figure>
+
+### Specular
+
+`feSpecularLighting` illuminates the shapes with a reflection, as if the light were to bounce on the shapes. The effect is quite different from the first primitive, but you have to see it to believe it.
+
+```html
+<feSpecularLighting specularConstant="1" specularExponent="20" lighting-color="hsl(48 96% 66%)">
+	<!-- ... -->
+</feSpecularLighting>
+```
+
+Similarly to the sibling primitive, `specularConstant` and `specularExponent` help to tune the strength of the light.
+
+Exactly like the diffusing element, then, the function depends on the lighting color and a nested light source.
+
+Here you can rehearse the logic of `fePointLight`, and note the subtle differences, but the reflecting nature of the filter is a perfect excuse to introduce another element: `<feDistantLight>`.
+
+```html
+<feDistantLight azimuth="0" elevation="20" />
+```
+
+Unlike the first light source, specifying a point with up to three points, the function works with two values: `azimuth` and `elevation`. And to understand their meaning, it helps to think of the canvas as the basis of a dome.
+
+With `azimuth` you update the position of the light as an angle in the x-y plane. From the right, greater values rotate the source in a counter-clockwise manner, first to the bottom, then to the left and to the top.
+
+With `elevation`, on the other hand, you update the position as an angle above the surface, extruding the 2D picture. It is a tad more challenging to visualize the result, but again think of the dome in a 3D space. Think of the light as positioned to the very right, with `azimuth` set to 0. When you elevate the source, the point moves upwards, but also closer to the center, tracing the outline of the imaginary shape. Of course, it helps to have more than one perspective.
+
+<figure class="[ center-frame ]" data-size="large">
+	<DistantLight />
+</figure>
+
+The primitive is hard to explain, but has its own perks. It works as a camera, pointing to the shapes from different angles to highlight the elements from a specific direction.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['filter-specular']}
+</figure>
+
+## Unfiltered
+
+In terms of sources there is a third function: `feSpotLight`. The element comes with its own set of attributes and leads to a different picture, but it's also the perfect excuse to end the discussion in broader strokes.
+
+SVG filters help to change the default appearance. The discussed primitives, and the somewhat elaborate sequence, help to cast a light and embolden previously flat drawings. There is plenty of room for exploration and bright ideas. But in the world of SVG, you have options. You can rely on filters, but also on other attributes as well. Opacity, linear gradients, masks. You might find a use combining them all.

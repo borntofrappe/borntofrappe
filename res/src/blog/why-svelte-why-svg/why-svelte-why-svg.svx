@@ -1,0 +1,425 @@
+---
+title: Why Svelte? Why SVG?
+description: Let me answer the self-proposed question with a few words, a crisp visual and interactive demos to boot.
+date: 2023-01-26 21:29:06
+---
+
+<script>
+    import Rects from './Rects.svelte'
+    import Hue from './Hue.svelte'
+    import Grid from './Grid.svelte'
+    import Colors from './Colors.svelte'
+    import Input from './Input.svelte'
+    import Circles from './Circles.svelte'
+    import Animation from './Animation.svelte'
+    import Delays from './Delays.svelte'
+
+	let size = 5
+    const handleChange = (e) => {
+        size = e.detail.size
+    }
+
+    $: colors = size ** 2
+</script>
+
+In its first iteration the landing page of this website tries to answer a couple of questions, among which "_Why Svelte? Why SVG?_".
+
+I stand by the brief tagline which follows — for _applications worth exploring_ — but it is perhaps useful to support the statement with first-hand experience.
+
+As a matter of fact, you are more than welcome to open [a Svelte <abbr title="Read-eval-print loop">REPL</abbr>](https://svelte.dev/repl/) and code along. You'll be thoroughly entertained by the journey.
+
+## A grid of squares
+
+Let's draw a series of squares, arranging the shapes in a grid.
+
+We are going to use the `<rect />` element, but first, initialize a grid in between `<script>` tags.
+
+```svelte
+<script>
+	const grid = [];
+</script>
+```
+
+With an arbitrary size create a 2D array, so that each nested item has a distinct column and row.
+
+```js
+const size = 5;
+const grid = Array(size)
+	.fill()
+	.map((_, row) =>
+		Array(size)
+			.fill()
+			.map((_, column) => {
+				return {
+					row,
+					column
+				};
+			})
+	);
+```
+
+We no longer need the nested structure, so you can very well flatten the array to have the objects side by side.
+
+<!-- prettier-ignore -->
+```js
+const grid = Array(size)
+    .fill()
+    .map(/*..*/)
+    .flat()
+```
+
+Enough logic, however. Create an `<svg>` element and include the size of the array directly in the `viewBox` attribute.
+
+```svelte
+<svg viewBox="0 0 {size} {size}">
+	<!-- -->
+</svg>
+```
+
+In the specific instance this means the SVG canvas is 5 unit wide, 5 unit talls — you'll soon realize how convenient this is.
+
+Loop through the one dimensional array with an `{#each}` block.
+
+```svelte
+<svg viewBox="0 0 {size} {size}">
+	{#each grid as cell}
+		<!-- -->
+	{/each}
+</svg>
+```
+
+You can even destructure the object to access the row and column directly.
+
+```diff
+-{#each grid as cell }
++{#each grid as { row, column } }
+```
+
+In the body of the loop, add a `<rect />` element with a width and height value of... 1.
+
+```svelte
+{#each grid as { row, column }}
+	<rect width="1" height="1" />
+{/each}
+```
+
+Where? In the cell designated by the column and row.
+
+```svelte
+{#each grid as { row, column }}
+	<g transform="translate({column} {row})">
+		<rect width="1" height="1" />
+	</g>
+{/each}
+```
+
+The shapes are placed at increments of 1, filling the tightly-knit canvas.
+
+<figure class="[ center-frame ]">
+    <Rects />
+</figure>
+
+Not impressed? I would be a little, but the best has yet to come.
+
+## Colorful squares
+
+We are going to paint with the colors of the rainbow leaning on the HSL color format.
+
+With a fixed value for the saturation and lightness, all you need is to update the hue in the `[0-360]` range. A visual might explain the concept better, however.
+
+<Hue />
+
+To have the rainbow go from the top left corner to the bottom right section, then, calculate the hue as a function of the column and row.
+
+If you sum the two values you realize how.
+
+<figure class="[ center-frame ]">
+    <Grid />
+</figure>
+
+The sum goes from 0 up to, and including, twice the maximum number of dimensions. Remember JavaScript starts to count from zero.
+
+With this in mind, compute the maximum value.
+
+```js
+const size = 5;
+const max = (size - 1) * 2;
+```
+
+For each item in the array, then, sum up the coordinates.
+
+```js
+const sum = row + column;
+```
+
+If you divide this value by the maximum, you get a number between 0 and 1. Multiply by 360 to explore the entire color space.
+
+```js
+const hue = (sum / max) * 360;
+```
+
+I'll pick a saturation and lightness value, but experiment at will.
+
+```js
+const color = hsl(${hue}, 78%, 68%);
+```
+
+Add the color alongside the coordinates and inject the value through the `fill` attribute.
+
+```svelte
+{#each grid as { row, column, color }}
+	<g transform="translate({column} {row})">
+		<rect fill={color} width="1" height="1" />
+	</g>
+{/each}
+```
+
+<figure class="[ center-frame ]">
+    <Colors />
+</figure>
+
+You might have noticed the last square matches the first one. This is because the hue in the HSL color space goes from red to green, to blue, back to red. `hsl(0, 78%, 68%)` and `hsl(360, 78%, 68%)` are one and the same.
+
+If you prefer a touch more variety, increment the maximum value.
+
+```diff
+-const max = (size - 1) * 2
++const max = (size - 1) * 2 + 1
+```
+
+<figure class="[ center-frame ]">
+    <Colors offset={1} />
+</figure>
+
+I'm quite partial to that shade of pink, so the rest of the article will keep the updated value.
+
+## Multiple squares
+
+Tired of 25 squares? You can start changing the size in the script, but Svelte makes it exceedingly easy to set up a playground.
+
+Make `size` into a variable you can change.
+
+```diff
+-const size = 5
++let size = 5
+```
+
+Add an `<input>` element to change the number.
+
+```html
+<label>
+	Resize grid
+	<input type="range" min="2" max="15" />
+</label>
+```
+
+Associate the size through the `bind:value` directive.
+
+```svelte
+<input type="range" min="2" max="15" bind:value={size} />
+```
+
+And, enjoy your grid of **{colors}** colors.
+
+<div class="[ center-frame ]">
+    <Input {size} on:change={handleChange} />
+</div>
+
+## A grid of circles
+
+Let's go back one step and try a different direction.
+
+Replace the rectangles with `<circle>` elements.
+
+```diff
+-<rect fill={color} width="1" height="1" />
++<circle />
+```
+
+In terms of SVG you need just one attribute to draw a circle, one attribute for the radius.
+
+```svelte
+{#each grid as { row, column, color }}
+	<g transform="translate({column} {row})">
+		<circle r="0.45" />
+	</g>
+{/each}
+```
+
+<figure class="[ center-frame ]">
+    <Circles />
+</figure>
+
+Ugh, something's definitely off with the picture. Unlike rectangles, drawn from the top left corner, circles are drawn from their center.
+
+You have several ways to fix this:
+
+1. nudge the circles half a cell to the right, half a cell to the bottom
+
+   ```diff
+   -<g transform="translate({column} {row})">
+   +<g transform="translate({column + 0.5} {row + 0.5})">
+   ```
+
+2. wrap the circles in a group element and translate the entire lot
+
+   ```html
+   <g transform="translate(0.5 0.5)">
+   	<!-- circles -->
+   </g>
+   ```
+
+3. bravely tinker with the `viewBox` attribute and the first two values
+
+   ```diff
+   -<svg viewBox="0 0 {size} {size}" />
+   +<svg viewBox="-0.5 -0.5 {size} {size}" />
+   ```
+
+Take your pick.
+
+<figure class="[ center-frame ]">
+    <Circles offset={0.5} />
+</figure>
+
+## Animated circles
+
+Circles are certainly more welcoming than the previous, sharp shapes, but the visual is starting to feel rather dull.
+
+Let's explore CSS between `<style>` tags.
+
+```svelte
+<style>
+	/* */
+</style>
+```
+
+Define an animation to change the scale of the circles.
+
+```css
+@keyframes pulse {
+	50% {
+		transform: scale(0.5);
+	}
+}
+```
+
+You'd then set the animation property on the circles, but let's pause the iterations for a moment.
+
+```css
+circle {
+	animation: pulse 1s ease-in-out infinite;
+	animation-play-state: paused;
+}
+```
+
+We don't want to be obnoxious and run the animation without end. To test out change, let's animate the circles only when the elements have a specific class.
+
+```css
+circle.animate {
+	animation-play-state: running;
+}
+```
+
+Svelte has a few tricks up its sleeve to toggle the class on and off.
+
+Initialize a variable to keep track of the boolean state, right in the script.
+
+```js
+let animate = false;
+```
+
+Add an `<input>` element, this time a checkbox.
+
+```html
+<label>
+	Toggle animation
+	<input type="checkbox" />
+</label>
+```
+
+Associate the variable, this time through the `bind:checked` directive.
+
+```svelte
+<input type="checkbox" bind:checked={animate} />
+```
+
+Finally, toggle the class through the `class:` directive.
+
+```svelte
+<circle class:animate />
+```
+
+Too simple? Indeed. If you need to wrap your head around the syntax, consider that between curly braces you can add variables, but JavaScript expressions as well.
+
+You can toggle the class with a ternary operator.
+
+```svelte
+<circle class={animate ? 'animate' : ''} />
+```
+
+Or go for the directive instead. Either way, off to the races!
+
+<div class="[ center-frame ]">
+    <Animation />
+</div>
+
+The animation pauses and resumes instead of picking up from the very beginning. Another perk from using the `animation-play-state` property.
+
+## Staggered circles
+
+Smooth as it may be, the change in scale is certainly uniform. Too uniform.
+
+Initialize a variable for the duration.
+
+```js
+const duration = 2;
+```
+
+We want to delay the circles in the same direction of the rainbow. Just as you found the hue.
+
+```js
+const hue = (sum / max) * 360;
+```
+
+Calculate the delay dividing the sum by the maximum. Instead of mapping the value to the `[0, 360]` range, however, consider the duration as the upper threshold.
+
+```js
+const delay = (sum / max) * duration;
+```
+
+In the loop, lean on a `style:` directive to set the two properties, `animation-duration` and `animation-delay`.
+
+```svelte
+{#each grid as { row, column, color, delay }}
+	<circle
+		style:animation-duration="{duration}s"
+		style:animation-delay="{delay}s"
+		class:scale
+		fill={color}
+		r="0.45"
+	/>
+{/each}
+```
+
+Need to remove the duration in the `<style>` tags? Not really. Svelte adds the values with inline styles.
+
+```html
+<circle style="animation-duration: 2s"></circle>
+```
+
+One cheer for CSS specificity! Feel free to follow the wave and raise your arms in celebration.
+
+<div class="[ center-frame ]">
+    <Delays />
+</div>
+
+## Wrapping up
+
+The entire article was concocted in the Svelte <abbr title="Read-eval-print loop">REPL</abbr>. Every instruction ran in `.svelte` components. That being said, you might have spotted the code snippets reported different extensions.
+
+This brings me back to the title of the post, and one of the traits which lead me to adopt Svelte wholeheartedly.
+
+HTML elements, CSS animations, JavaScript arrays. Starting from what you already know about the core ingredients of the web, Svelte just works as an extremely convenient utility.
+
+SVG? That's just my personal preference to paint a pretty picture.

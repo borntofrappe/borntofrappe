@@ -1,0 +1,152 @@
+---
+title: Counting numbers
+description: Build a basic web component with the three core APIs.
+date: 2024-03-08T14:39:53
+---
+
+<script>
+	import CountMarkup from './CountMarkup.svelte';
+	import CountNumbers from './CountNumbers.svelte';
+</script>
+
+For the sake of being exhaustive, and fair, I figured I could write how a small web component was made. [In the introduction to the topic](/building-web-blocks) I tried to focus on the technologies behind the larger ecosystem, but failed to describe how the three came together in a custom counter.
+
+Be warned: even in the realm of web components, the following is but one way to count up and down, and likely one of the flakiest as well.
+
+Everything starts with a template, providing the structure for the would-be widget.
+
+```html
+<template>
+	<button>Decrement</button>
+	<span>0</span>
+	<button>Increment</button>
+</template>
+```
+
+The aim is to frame the component in markup: two buttons to change the starting value, and the value itself. I decided to sandwich the number between the buttons and mark the content in a `span`, but you could argue for a different element, even a `h1` heading for that matter.
+
+```html
+<button>Decrement</button>
+<h1>0</h1>
+<button>Increment</button>
+```
+
+If you consider the counter as an independent application, almost like an article, it would be reasonable to frame the number as the center piece.
+
+As mentioned in the previous article, the markup is not shown, it is safely hidden through the template, and the content is waiting to be cloned and used.
+
+With JavaScript, we can target the node.
+
+```js
+const template = document.querySelector('template');
+```
+
+But the content is not useful until we start working on the custom element, on a class extending the `HTMLElement` interface.
+
+```js
+class CountNumbers extends HTMLElement {
+	// ...
+}
+```
+
+The `constructor` function opens the way. This is technically a _lifecycle_ function, and runs once as the custom element is created.
+
+```js
+class CountNumbers extends HTMLElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+Within the scope of the function, calling `super` sets the basis of the element, which extends and grows from an HTML element.
+
+And it is here we can add the contents of the template. We can inject the markup directly through the `this` keyword, referring to the upcoming node, but the `attachShadow` function grants us a way to encapsulate the code in the shadow DOM.
+
+```js
+const shadowRoot = this.attachShadow({ mode: 'open' });
+```
+
+You may want to style the elements at a later stage, and through the shadow root, you can do so knowing that the key value pairs will only impact the relevant nodes.
+
+`attachShadow` returns a reference to the shadow root, the DOM in which we can append the copy of the markup.
+
+```js
+const content = template.content.cloneNode(true);
+shadowRoot.appendChild(content);
+```
+
+At this point you may want to attest that yourself, before diving in the few lines meant to make the component actually work. In the DOM, aside from the template, you ultimately add the widget with a custom element, through HTML tags and a well chosen, hyphenated name.
+
+```html
+<count-numbers></count-numbers>
+```
+
+In the script, outside of the scope of the class, you can define said element and create a connection with the class.
+
+```js
+customElements.define('count-numbers', CountNumbers);
+```
+
+This is enough to see the buttons and the starting round figure, unstyled and ineffective as they might be.
+
+<div>
+	<CountMarkup />
+</div>
+
+But there's a lot of work behind the scenes:
+
+- we define a custom element, which references a class
+
+- the instance of `HTMLElement` creates a shadow root to encapsulate the code
+
+- in the shadow DOM we append the contents, a copy of the contents, from a helpful template
+
+On to the function. We can actually be rather cheeky in implementing the feature. Within the constructor function, once we append the contents in the shadow root, we can retrieve a reference to the elements from the very same root. You can, for example, query the counter directly through the node.
+
+```js
+const count = shadowRoot.querySelector('span');
+```
+
+To distinguish the buttons you could augment the template with an identifier, a class or a data attribute. Alternatively, you have the option of being creative with the `:nth-of-type` selector.
+
+```js
+const buttonDecrement = shadowRoot.querySelector('button:nth-of-type(1)');
+const buttonIncrement = shadowRoot.querySelector('button:nth-of-type(2)');
+```
+
+The purpose of the counter is to change the text, through the buttons. To this end, we can listen to a click event on the two triggers.
+
+```js
+buttonDecrement.addEventListener('click', () => {});
+```
+
+As a button is pressed you can update the value through the `textContent` property, starting with the value of the property itself. Of course, in `textContent` you retrieve a string, not a number, but there are ways to overcome the small hiccup.
+
+```js
+// count.textContent = parseInt(count.textContent, 10) - 1;
+count.textContent = +count.textContent - 1;
+```
+
+Whether you choose to parse the string with `parseInt`, or prefix the figure with the plus operator, you finally reach the integer. And with the two buttons, update the number with the appropriate direction.
+
+That's it.
+
+<div>
+	<CountNumbers />
+</div>
+
+There is an argument to be made in favor of keeping track of the count in a separate variable, through some sort of state. But this should provide enough exercise to get started with web components, and a base for you to experiment with the core tech. You may want to style the elements, for instance, to look more presentable.
+
+```html
+<template>
+	<style>
+		span {
+			font-weight: 700;
+		}
+	</style>
+	<!-- ... -->
+</template>
+```
+
+And experience how the `style` tag, nested in the template element, affects only the elements cloned in the dark root.

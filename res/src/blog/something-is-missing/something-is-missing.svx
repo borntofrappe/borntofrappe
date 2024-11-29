@@ -1,0 +1,108 @@
+---
+title: Something is missing
+description: Work around the loss of some custom elements.
+date: 2024-05-17T10:13:00
+---
+
+<script>
+	import svg from './svg.js';
+	import CustomElement from './CustomElement.svelte';
+</script>
+
+For custom elements [the HTML Living Standard](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts) offers two versions: autonomous custom elements and customized built-in elements.
+
+<figure class="center-frame">
+	{@html svg['custom-element-versions']}
+</figure>
+
+The two are different in how they are introduced, both in markup and in the way the custom structure is defined in JavaScript. Unfortunately, they differ in support as well. Indeed, as you may discover exploring the API, try your luck in the neighborhood of Safari and the code for the customized version simply does not work. The browser [never picked up the type](https://bugs.webkit.org/show_bug.cgi?id=182671). You can definitely cope with the depressing news, but fundamentally, it means you need to update your code. Or, accept the loss of [past little projects](/built-in-pixels).
+
+## Customized pain
+
+A customized built-in element is one that extends a regular HTML element. You add a valid name in the opening tag and through the `is` attribute.
+
+```html
+<pre is="svg-grid"><!-- ... --></pre>
+```
+
+In the script, you create the element with a class extending the interface for the specific node.
+
+```js
+class SVGGrid extends HTMLPreElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+The `customElements` global is the final ingredient. And with the `define` function it allows you to link the two snippets. The signature of the function is tailored to the type and requires three arguments:
+
+1. the name of the custom element
+
+2. the extending class
+
+3. an object illustrating just which element you are extending
+
+```js
+customElements.define('svg-grid', SVGGrid, {
+	extends: 'pre'
+});
+```
+
+With this process you are able to expand, to build on top of the features and semantics of the chosen node. A possibility which is quite intriguing, but as mentioned, inherently limiting.
+
+## Autonomous code
+
+An autonomous custom element is one of your making, one that simply would not exist. You introduce the element in markup using the name in the opening and closing tag.
+
+```html
+<svg-grid><!-- ... --></svg-grid>
+```
+
+In the script, you instantiate the class inheriting the features of a generic `HTMLElement`.
+
+```js
+class SVGGrid extends HTMLElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+With the define function, finally, you connect the two pieces:
+
+1. the name of the element
+
+2. the authored class
+
+```js
+customElements.define('svg-grid', SVGGrid);
+```
+
+What the custom element achieves, from the contents to the features of the ad-hoc component, is then up to you.
+
+## Coping mechanism
+
+With the customized version you lose Safari. With the autonomous kind you let go of the neat capabilities baked in standard HTML elements. There is a third path to try and have all, however. The idea is to wrap the made-up structure around the existing node.
+
+```html
+<svg-grid>
+	<pre><!-- ... --></pre>
+</svg-grid>
+```
+
+The custom element is then a generic container and the gateway to the promised features. You can process the contents of the nested markup by examining the document tree.
+
+```js
+const text = this.querySelector('pre').textContent;
+```
+
+And from this point you can replace the markup or even preserve the contents, to compare the old with the new.
+
+```js
+this.innerHTML += `<svg><!-- ... --></svg>`;
+```
+
+There might be still something missing: JavaScript. But if the script runs, even Safari will pick up the code to complete the picture.
+
+<CustomElement />

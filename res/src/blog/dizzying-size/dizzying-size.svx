@@ -1,0 +1,51 @@
+---
+title: Dizzying size
+description: Practice basic arithmetics with CSS transform properties.
+date: 2024-01-11T15:35:58
+---
+
+<script>
+	import Checkbox from './Checkbox.svelte';
+	import TimeSize from './TimeSize.svelte';
+</script>
+
+In [a recent experiment](/chummy-transform) I toyed with transformations, with the `transform` attribute and the different CSS properties up to the task. And by the end of the mildly entertaining journey I noted the following:
+
+> As a matter of fact, you can also have the `scale` and the `transform` properties in the same declaration.
+
+The point bears repeating, if only to design cute interactions: individual transform properties — like `scale` — are allowed to exist alongside the `transform` property itself. In this last one, it is possible to change elements with functions with the same name, like `scale()`.
+
+You could, for instance, scale an element to twice its size, and at the same time, transform the node to half the measure.
+
+```css
+svg {
+	scale: 2;
+	transform: scale(0.5);
+}
+```
+
+The result is the same, as the element retains the starting size. But what if you were to transition the properties over time?
+
+```css
+svg {
+	transition-property: scale, transform;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+}
+```
+
+Here we set up a few key-value pairs to transition the `scale` and `transform` properties in perfect unison. The two share the duration and easing function, `linear`. Pair the change with a toggle, however, and the result is no longer linear.
+
+<Checkbox />
+
+The element grows, certainly less than twice the original size, and then recedes back. If you are mathematically inclined, this will not come as a surprise. And you won't even have to go looking for answers in the specification, in how the properties affect the node.
+
+The `scale` property precedes the `transform` property, it is true. But you can't blame the difference on the order.
+
+The transformation matrix is applied afterwards, with the value multiplied by that of the previous scale. And it is here that lies the answer.
+
+Consider the transition as halfway through. In this moment, following the values of the snippet, the `scale` property is halfway between 1 and 2, meaning 1.5. The `scale()` function has reached the same middle point, but between 1 and 0.5. Simply put, 0.75. Multiply the two and you don't get 1, but, evidently, 1.125.
+
+<TimeSize />
+
+If you map the change you can see the reason the element bubbles up in size. You can also appreciate how, despite the linear change in time, the change in size follows a more sinuous pattern. You don't even need to try a different easing function to delight in the softer, temporary growth. Although you might wonder how a different easing will compound the values, just a tad more.

@@ -1,0 +1,324 @@
+pre[class*='language-'] {
+	font-size: var(--step-size-200);
+	padding: var(--step-space-300);
+	border-radius: 1rem;
+	tab-size: 2;
+}
+
+pre[class*='language-'] code {
+	display: block;
+	overflow-x: auto;
+}
+
+pre[class*='language-'] code::-webkit-scrollbar {
+	block-size: 0.2rem;
+}
+
+pre[class*='language-'] code::-webkit-scrollbar-thumb {
+	border-radius: 0.2rem;
+	background: currentColor;
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	pre[class*='language-'] {
+		display: block;
+		padding-block-start: 2em;
+		position: relative;
+	}
+
+	pre[class*='language-']::before {
+		content: '';
+		position: absolute;
+		inset-inline-end: 0.4em;
+		inset-block-start: 0.4em;
+		block-size: 1.2em;
+		inline-size: 1.2em;
+		background: currentColor;
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-code"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(-0.3 0) rotate(45)" d="M 0 0 h 0.2 v -0.05 h -0.15 v -0.15 h -0.05z" /><path transform="scale(-1 1) translate(-0.3 0) rotate(45)" d="M 0 0 h 0.2 v -0.05 h -0.15 v -0.15 h -0.05z" /><path transform="rotate(15)" d="M -0.025 -0.2 h 0.05 v 0.4 h -0.05z" /></g></mask><path mask="url(%23mask-code)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-code"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(-0.3 0) rotate(45)" d="M 0 0 h 0.2 v -0.05 h -0.15 v -0.15 h -0.05z" /><path transform="scale(-1 1) translate(-0.3 0) rotate(45)" d="M 0 0 h 0.2 v -0.05 h -0.15 v -0.15 h -0.05z" /><path transform="rotate(15)" d="M -0.025 -0.2 h 0.05 v 0.4 h -0.05z" /></g></mask><path mask="url(%23mask-code)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		-webkit-mask-size: 100%;
+		mask-size: 100%;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		transform-origin: 50% 50%;
+	}
+
+	pre[class*='language-bash']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-bash"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(-0.025 0) rotate(-45)" d="M 0 0 h -0.2 v -0.05 h 0.15 v -0.15 h 0.05z" /><path d="M 0.025 0.0725 v 0.05 h 0.2 v -0.05z" /></g></mask><path mask="url(%23mask-bash)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-bash"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(-0.025 0) rotate(-45)" d="M 0 0 h -0.2 v -0.05 h 0.15 v -0.15 h 0.05z" /><path d="M 0.025 0.0725 v 0.05 h 0.2 v -0.05z" /></g></mask><path mask="url(%23mask-bash)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-css']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-css"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.25 0.25 h 0.5 l -0.05 0.45 l -0.2 0.05 -0.2 -0.05 z" /><path fill="white" stroke="white" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.35 0.325 h 0.3 l -0.03333333333333333 0.3 -0.11666666666666667 0.029166666666666667 -0.11666666666666667 -0.029166666666666667 -0.008333333333333333 -0.075 h 0.05 l 0.005555555555555557 0.05 0.06944444444444445 0.017361111111111112 0.06944444444444445 -0.017361111111111112 0.011111111111111113 -0.1 h -0.2111111111111111 l -0.005555555555555557 -0.05 h 0.2222222222222222 l 0.005555555555555557 -0.075 h -0.23333333333333334 z" /></mask><path mask="url(%23mask-css)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-css"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.25 0.25 h 0.5 l -0.05 0.45 l -0.2 0.05 -0.2 -0.05 z" /><path fill="white" stroke="white" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.35 0.325 h 0.3 l -0.03333333333333333 0.3 -0.11666666666666667 0.029166666666666667 -0.11666666666666667 -0.029166666666666667 -0.008333333333333333 -0.075 h 0.05 l 0.005555555555555557 0.05 0.06944444444444445 0.017361111111111112 0.06944444444444445 -0.017361111111111112 0.011111111111111113 -0.1 h -0.2111111111111111 l -0.005555555555555557 -0.05 h 0.2222222222222222 l 0.005555555555555557 -0.075 h -0.23333333333333334 z" /></mask><path mask="url(%23mask-css)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-diff']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-diff"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.015 0.0625 )" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0.3125 0.3125) rotate(0)" d="M -0.1125 0 a 0.1125 0.1125 0 0 0 0.225 0 a 0.1125 0.1125 0 0 0 -0.225 0 h 0.05 a 0.0625 0.0625 0 0 1 0.125 0 a 0.0625 0.0625 0 0 1 -0.125 0 M -0.025 0.125 h 0.05 a 0.1 0.1 0 0 0 0.1 0.1 v -0.0325 l 0.0575 0.0575 -0.0575 0.0575 v -0.0325 a 0.15 0.15 0 0 1 -0.15 -0.15" /><path transform="translate(0.3125 0.3125) translate(0.345 0.25) rotate(180)" d="M -0.1125 0 a 0.1125 0.1125 0 0 0 0.225 0 a 0.1125 0.1125 0 0 0 -0.225 0 h 0.05 a 0.0625 0.0625 0 0 1 0.125 0 a 0.0625 0.0625 0 0 1 -0.125 0 M -0.025 0.125 h 0.05 a 0.1 0.1 0 0 0 0.1 0.1 v -0.0325 l 0.0575 0.0575 -0.0575 0.0575 v -0.0325 a 0.15 0.15 0 0 1 -0.15 -0.15" /></g></mask><path mask="url(%23mask-diff)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-diff"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.015 0.0625 )" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0.3125 0.3125) rotate(0)" d="M -0.1125 0 a 0.1125 0.1125 0 0 0 0.225 0 a 0.1125 0.1125 0 0 0 -0.225 0 h 0.05 a 0.0625 0.0625 0 0 1 0.125 0 a 0.0625 0.0625 0 0 1 -0.125 0 M -0.025 0.125 h 0.05 a 0.1 0.1 0 0 0 0.1 0.1 v -0.0325 l 0.0575 0.0575 -0.0575 0.0575 v -0.0325 a 0.15 0.15 0 0 1 -0.15 -0.15" /><path transform="translate(0.3125 0.3125) translate(0.345 0.25) rotate(180)" d="M -0.1125 0 a 0.1125 0.1125 0 0 0 0.225 0 a 0.1125 0.1125 0 0 0 -0.225 0 h 0.05 a 0.0625 0.0625 0 0 1 0.125 0 a 0.0625 0.0625 0 0 1 -0.125 0 M -0.025 0.125 h 0.05 a 0.1 0.1 0 0 0 0.1 0.1 v -0.0325 l 0.0575 0.0575 -0.0575 0.0575 v -0.0325 a 0.15 0.15 0 0 1 -0.15 -0.15" /></g></mask><path mask="url(%23mask-diff)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-html']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-html"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.25 0.25 h 0.5 l -0.05 0.45 l -0.2 0.05 -0.2 -0.05 z" /><path fill="white" stroke="white" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.65 0.325 h -0.3 l 0.019444444444444445 0.175 h 0.2111111111111111 l -0.011111111111111113 0.1 -0.06944444444444445 0.017361111111111112 -0.06944444444444445 -0.017361111111111112 -0.005555555555555557 -0.05 h -0.05 l 0.008333333333333333 0.075 0.11666666666666667 0.029166666666666667 0.11666666666666667 -0.029166666666666667 0.019444444444444445 -0.175 h -0.2222222222222222 l -0.005555555555555557 -0.075 h 0.23333333333333334 z" /></mask><path mask="url(%23mask-html)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-html"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.25 0.25 h 0.5 l -0.05 0.45 l -0.2 0.05 -0.2 -0.05 z" /><path fill="white" stroke="white" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.65 0.325 h -0.3 l 0.019444444444444445 0.175 h 0.2111111111111111 l -0.011111111111111113 0.1 -0.06944444444444445 0.017361111111111112 -0.06944444444444445 -0.017361111111111112 -0.005555555555555557 -0.05 h -0.05 l 0.008333333333333333 0.075 0.11666666666666667 0.029166666666666667 0.11666666666666667 -0.029166666666666667 0.019444444444444445 -0.175 h -0.2222222222222222 l -0.005555555555555557 -0.075 h 0.23333333333333334 z" /></mask><path mask="url(%23mask-html)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-js']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-js"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.5366666666666667 0.5 h 0.05 v 0.2 a 0.1 0.1 0 0 1 -0.2 0 h 0.05 a 0.05 0.05 0 0 0 0.1 0 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-js)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-js"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.5366666666666667 0.5 h 0.05 v 0.2 a 0.1 0.1 0 0 1 -0.2 0 h 0.05 a 0.05 0.05 0 0 0 0.1 0 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-js)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-json']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-json"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)"><g fill="black" stroke="black" stroke-width="0.025"><circle r="0.025" /><circle r="0.025" cx="0.1" /><circle r="0.025" cx="-0.1" /></g><g fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path d="M 0.3 0 v 0.025 a 0.075 0.075 0 0 0 -0.075 0.075 v 0.025 a 0.1 0.1 0 0 1 -0.1 0.1 h -0.025 v -0.05 a 0.075 0.075 0 0 0 0.075 -0.075 v -0.025 a 0.075 0.075 0 0 1 0.075 -0.075 a 0.075 0.075 0 0 1 -0.075 -0.075 v -0.025 a 0.075 0.075 0 0 0 -0.075 -0.075 v -0.05 h 0.025 a 0.1 0.1 0 0 1 0.1 0.1 v 0.025 a 0.1 0.1 0 0 0 0.075 0.075 z" /><path transform="scale(-1 1)" d="M 0.3 0 v 0.025 a 0.075 0.075 0 0 0 -0.075 0.075 v 0.025 a 0.1 0.1 0 0 1 -0.1 0.1 h -0.025 v -0.05 a 0.075 0.075 0 0 0 0.075 -0.075 v -0.025 a 0.075 0.075 0 0 1 0.075 -0.075 a 0.075 0.075 0 0 1 -0.075 -0.075 v -0.025 a 0.075 0.075 0 0 0 -0.075 -0.075 v -0.05 h 0.025 a 0.1 0.1 0 0 1 0.1 0.1 v 0.025 a 0.1 0.1 0 0 0 0.075 0.075 z" /></g></g></mask><path mask="url(%23mask-json)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-json"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><g transform="translate(0.5 0.5)"><g fill="black" stroke="black" stroke-width="0.025"><circle r="0.025" /><circle r="0.025" cx="0.1" /><circle r="0.025" cx="-0.1" /></g><g fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round"><path d="M 0.3 0 v 0.025 a 0.075 0.075 0 0 0 -0.075 0.075 v 0.025 a 0.1 0.1 0 0 1 -0.1 0.1 h -0.025 v -0.05 a 0.075 0.075 0 0 0 0.075 -0.075 v -0.025 a 0.075 0.075 0 0 1 0.075 -0.075 a 0.075 0.075 0 0 1 -0.075 -0.075 v -0.025 a 0.075 0.075 0 0 0 -0.075 -0.075 v -0.05 h 0.025 a 0.1 0.1 0 0 1 0.1 0.1 v 0.025 a 0.1 0.1 0 0 0 0.075 0.075 z" /><path transform="scale(-1 1)" d="M 0.3 0 v 0.025 a 0.075 0.075 0 0 0 -0.075 0.075 v 0.025 a 0.1 0.1 0 0 1 -0.1 0.1 h -0.025 v -0.05 a 0.075 0.075 0 0 0 0.075 -0.075 v -0.025 a 0.075 0.075 0 0 1 0.075 -0.075 a 0.075 0.075 0 0 1 -0.075 -0.075 v -0.025 a 0.075 0.075 0 0 0 -0.075 -0.075 v -0.05 h 0.025 a 0.1 0.1 0 0 1 0.1 0.1 v 0.025 a 0.1 0.1 0 0 0 0.075 0.075 z" /></g></g></mask><path mask="url(%23mask-json)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-md']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-md"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.2 0.5 h 0.05 l 0.1 0.125 0.1 -0.125 0.05 0 0 0.3 h -0.05 v -0.2 l -0.1 0.125 -0.1 -0.125 v 0.2 h -0.05 z M 0.725 0.5 v 0.15 h 0.075 l -0.125 0.15 l -0.125 -0.15 h 0.075 v -0.15 z" /></mask><path mask="url(%23mask-md)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-md"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.2 0.5 h 0.05 l 0.1 0.125 0.1 -0.125 0.05 0 0 0.3 h -0.05 v -0.2 l -0.1 0.125 -0.1 -0.125 v 0.2 h -0.05 z M 0.725 0.5 v 0.15 h 0.075 l -0.125 0.15 l -0.125 -0.15 h 0.075 v -0.15 z" /></mask><path mask="url(%23mask-md)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-svelte']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-svelte"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path transform="translate(0.5 0.5) rotate(-30)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.175 -0.175 a 0.1 0.1 0 0 1 0 0.2 v -0.05 a 0.05 0.05 0 0 0 0 -0.1 h -0.1 h -0.1 a 0.05 0.05 0 0 0 0 0.1 h 0.05 a 0.1 0.1 0 0 1 0 0.2 h -0.2 a 0.1 0.1 0 0 1 0 -0.2 v 0.05 a 0.05 0.05 0 0 0 0 0.1 h 0.2 a 0.05 0.05 0 0 0 0 -0.1 h -0.05 a 0.1 0.1 0 0 1 0 -0.2 h 0.2" /></mask><path mask="url(%23mask-svelte)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-svelte"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path transform="translate(0.5 0.5) rotate(-30)" fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.175 -0.175 a 0.1 0.1 0 0 1 0 0.2 v -0.05 a 0.05 0.05 0 0 0 0 -0.1 h -0.1 h -0.1 a 0.05 0.05 0 0 0 0 0.1 h 0.05 a 0.1 0.1 0 0 1 0 0.2 h -0.2 a 0.1 0.1 0 0 1 0 -0.2 v 0.05 a 0.05 0.05 0 0 0 0 0.1 h 0.2 a 0.05 0.05 0 0 0 0 -0.1 h -0.05 a 0.1 0.1 0 0 1 0 -0.2 h 0.2" /></mask><path mask="url(%23mask-svelte)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+
+	pre[class*='language-ts']::before {
+		-webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-ts"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.38666666666666666 0.5 h 0.2 v 0.05 h -0.075 v 0.25 h -0.05 v -0.25 h -0.075 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-ts)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+		mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1 1"><mask id="mask-ts"><path fill="white" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /><path fill="black" stroke="black" stroke-width="0.025" stroke-linecap="round" stroke-linejoin="round" d="M 0.38666666666666666 0.5 h 0.2 v 0.05 h -0.075 v 0.25 h -0.05 v -0.25 h -0.075 z M 0.8 0.5 v 0.05 h -0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 0.16666666666666666 h -0.08333333333333333 v -0.05 h 0.08333333333333333 a 0.041666666666666664 0.041666666666666664 0 0 0 0 -0.08333333333333333 a 0.08333333333333333 0.08333333333333333 0 0 1 0 -0.16666666666666666 h 0.08333333333333333" /></mask><path mask="url(%23mask-ts)" fill="currentColor" d="M 0 0.5 C 0 0 0 0 0.5 0 S 1 0 1 0.5 1 1 0.5 1 0 1 0 0.5" /></svg>');
+	}
+}
+
+pre[class*='language-'] {
+	color: #e0def4;
+	background: #232136;
+}
+
+.token.comment {
+	color: #6e6a86;
+	font-style: italic;
+}
+
+.token.prolog,
+.token.doctype,
+.token.class-name,
+.token.property,
+.token.tag,
+.token.selector,
+.token.builtin,
+.token.inserted {
+	color: #9ccfd8;
+}
+
+.token.cdata,
+.token.string,
+.token.char,
+.token.regex,
+.token.attr-value {
+	color: #f6c177;
+}
+
+.token.punctuation {
+	color: #908caa;
+}
+
+.token.entity,
+.token.atrule,
+.token.keyword,
+.token.symbol,
+.token.important,
+.token.operator {
+	color: #3e8fb0;
+}
+
+.token.attr-name {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+	color: #ea9a97;
+}
+
+.token.constant,
+.token.variable {
+	color: #e0def4;
+	font-style: italic;
+}
+
+.token.url {
+	color: #e0def4;
+}
+
+.token.deleted,
+.token.namespace {
+	color: #eb6f92;
+}
+
+.language-css .token.url {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+.language-md .token.important {
+	color: #9ccfd8;
+	font-weight: bold;
+}
+
+html[data-time-of-day='morning'] pre[class*='language-'] {
+	color: #575279;
+	background: #faf4ed;
+}
+
+html[data-time-of-day='morning'] .token.comment {
+	color: #9893a5;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.prolog,
+html[data-time-of-day='morning'] .token.doctype,
+html[data-time-of-day='morning'] .token.class-name,
+html[data-time-of-day='morning'] .token.property,
+html[data-time-of-day='morning'] .token.tag,
+html[data-time-of-day='morning'] .token.selector,
+html[data-time-of-day='morning'] .token.builtin,
+html[data-time-of-day='morning'] .token.inserted {
+	color: #56949f;
+}
+
+html[data-time-of-day='morning'] .token.cdata,
+html[data-time-of-day='morning'] .token.string,
+html[data-time-of-day='morning'] .token.char,
+html[data-time-of-day='morning'] .token.regex,
+html[data-time-of-day='morning'] .token.attr-value {
+	color: #ea9d34;
+}
+
+html[data-time-of-day='morning'] .token.punctuation {
+	color: #797593;
+}
+
+html[data-time-of-day='morning'] .token.entity,
+html[data-time-of-day='morning'] .token.atrule,
+html[data-time-of-day='morning'] .token.keyword,
+html[data-time-of-day='morning'] .token.symbol,
+html[data-time-of-day='morning'] .token.important,
+html[data-time-of-day='morning'] .token.operator {
+	color: #286983;
+}
+
+html[data-time-of-day='morning'] .token.attr-name {
+	color: #907aa9;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.boolean,
+html[data-time-of-day='morning'] .token.number,
+html[data-time-of-day='morning'] .token.function {
+	color: #d7827e;
+}
+
+html[data-time-of-day='morning'] .token.constant,
+html[data-time-of-day='morning'] .token.variable {
+	color: #575279;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .token.url {
+	color: #575279;
+}
+
+html[data-time-of-day='morning'] .token.deleted,
+html[data-time-of-day='morning'] .token.namespace {
+	color: #b4637a;
+}
+
+html[data-time-of-day='morning'] .language-css .token.url {
+	color: #907aa9;
+	font-style: italic;
+}
+
+html[data-time-of-day='morning'] .language-md .token.important {
+	color: #56949f;
+	font-weight: bold;
+}
+
+html[data-time-of-day='night'] pre[class*='language-'] {
+	color: #e0def4;
+	background: #1f1d2e;
+}
+
+html[data-time-of-day='night'] .token.comment {
+	color: #6e6a86;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.prolog,
+html[data-time-of-day='night'] .token.doctype,
+html[data-time-of-day='night'] .token.class-name,
+html[data-time-of-day='night'] .token.property,
+html[data-time-of-day='night'] .token.tag,
+html[data-time-of-day='night'] .token.selector,
+html[data-time-of-day='night'] .token.builtin,
+html[data-time-of-day='night'] .token.inserted {
+	color: #9ccfd8;
+}
+
+html[data-time-of-day='night'] .token.cdata,
+html[data-time-of-day='night'] .token.string,
+html[data-time-of-day='night'] .token.char,
+html[data-time-of-day='night'] .token.regex,
+html[data-time-of-day='night'] .token.attr-value {
+	color: #f6c177;
+}
+
+html[data-time-of-day='night'] .token.punctuation {
+	color: #908caa;
+}
+
+html[data-time-of-day='night'] .token.entity,
+html[data-time-of-day='night'] .token.atrule,
+html[data-time-of-day='night'] .token.keyword,
+html[data-time-of-day='night'] .token.symbol,
+html[data-time-of-day='night'] .token.important,
+html[data-time-of-day='night'] .token.operator {
+	color: #31748f;
+}
+
+html[data-time-of-day='night'] .token.attr-name {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.boolean,
+html[data-time-of-day='night'] .token.number,
+html[data-time-of-day='night'] .token.function {
+	color: #ebbcba;
+}
+
+html[data-time-of-day='night'] .token.constant,
+html[data-time-of-day='night'] .token.variable {
+	color: #e0def4;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .token.url {
+	color: #e0def4;
+}
+
+html[data-time-of-day='night'] .token.deleted,
+html[data-time-of-day='night'] .token.namespace {
+	color: #eb6f92;
+}
+
+html[data-time-of-day='night'] .language-css .token.url {
+	color: #c4a7e7;
+	font-style: italic;
+}
+
+html[data-time-of-day='night'] .language-md .token.important {
+	color: #9ccfd8;
+	font-weight: bold;
+}

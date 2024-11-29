@@ -1,0 +1,112 @@
+---
+title: System shift
+description: Go back to elementary school to simplify a powerful combination.
+date: 2023-12-20T18:18:14
+---
+
+<script>
+	import svg from './svg.js';
+	import Coordinates from './Coordinates.svelte';
+	import Origins from './Origins.svelte';
+	import Ruler from './Ruler.svelte';
+</script>
+
+In SVG there are very few attributes as challenging as `viewBox`. And in this regard there is one code snippet I often struggle to explain in full.
+
+```html
+<svg viewBox="-4 -4 8 8">
+	<!-- ... -->
+</svg>
+```
+
+Why the use of negative numbers, exactly half in amount as the values which follow? To understand this, let's go back to the basics, to the coordinate system governing the vector.
+
+From the first lessons in geometry you are introduced to the _Cartesian_ coordinate system. And if you restrict yourself to non-negative numbers the picture is clear: place the origin in the bottom left corner, increase the x coordinate to move right, the y offset to move up.
+
+In SVG, the logic is turned upside down, almost literally. Greater x values move the shapes right, while greater y coordinates push the elements down.
+
+<Coordinates />
+
+Why is that? I can tell you this is not a far-fetched idea. Most graphical systems, canvas and SVG included, follow the same scheme, ingrained by CRT displays. In this founding technology images are realized intermittently, with laser guns projecting lights line after line, left to right, top to bottom.
+
+<figure class="[ center-frame ]">
+	{@html svg['crt']}
+</figure>
+
+Back to the `viewBox` attribute. Consider the following sequence.
+
+```text
+viewBox="0 0 8 8"
+```
+
+In the string you have four numbers for the visible area. In the past I've often argued about them as follows: the first two describe the position of the origin, in x and y coordinates, while the latter pair details the size of the canvas, in width and height. With this in mind, you can think of a square where the origin is the point (0, 0), of size 8.
+
+But if you go through [the specification](https://svgwg.org/svg2-draft/coords.html#ViewBoxAttribute), there is a better way to understand the values, at least the first two: `min-x` and `min-y`. The change is quite apt, and not just a matter of nomenclature.
+
+```text
+viewBox="min-x min-y width height"
+```
+
+Here you find where the canvas begins, horizontally and vertically. But if a change of words is not much, consider a small thought experiment with a JavaScript-powered demo. With the support of a simple, but essential school supply: a ruler. If you place such a tool down you can see the ruler measures a fixed size from a given origin — 0. The moment you update the position you move horizontally.
+
+<div class="[ center-frame ]" data-size="large">
+	<Ruler />
+</div>
+
+The size does not change, but where the canvas starts does. The markers shift accordingly. With a positive offset you move to the right, to greater digits. A negative measure works in the opposite direction, toward smaller coordinates.
+
+Pay attention to the small circle signaling the number 0. The shape is fixed in place, so that when you update the origin, the element moves left and right. And you can choose whether to hide the round shape or feature it prominently in the visible area. And if you pick a negative number, half the value of the width, the shape will sit in the center.
+
+Once you understand the movement, the change in the underlying coordinate system, you are ready to elevate the concept to two dimensions and appreciate the meaning of the first snippet.
+
+```html
+<svg viewBox="-4 -4 8 8">
+	<!-- ... -->
+</svg>
+```
+
+The canvas keeps the same size, 8. The negative offsets imply that the square begins at the point (-4, -4). The point (0, 0), what you previously thought as the origin, is now smack in the center, in both dimensions.
+
+<Origins />
+
+I've tried to explain the snippet, but there is one question that might have popped in your head: why? There are very good reasons, actually.
+
+With the chosen `viewBox` you can draw from the center of the canvas. Some shapes, like circles, become easier to draw.
+
+```html
+<circle r="50" />
+```
+
+You need only to specify the radius to occupy a portion of the area. No need to reposition the shape with the `cx` and `cy` attributes. What is more, some shapes are easier to elaborate. Symmetric visuals, for instance, need to be drawn only halfway through.
+
+```html
+<path d="M 0 17 -20 26 -17 5 -32 -11 -10 -14 0 -33" />
+```
+
+Once you settle on the code for one half, you can mirror the coordinates with opposite offsets.
+
+```html
+<path d="M 0 17 -20 26 -17 5 -32 -11 -10 -14 0 -33 10 -14 32 -11 17 5 20 26 0 17" />
+```
+
+That being said, if you are cheeky with transformations, there's even a faster way to debug the result:
+
+1. add an `id` to the first half
+
+   ```html
+   <path id="half" d="M 0 17 -20 26 -17 5 -32 -11 -10 -14 0 -33" />
+   ```
+
+2. repeat the shape with the `use` element and a negative scale
+
+   ```html
+   <use transform="scale(-1 1)" href="#half" />
+   ```
+
+The half is drawn from the center. The copy is flipped from the same advantage point.
+
+There is more than one way to explain `viewBox`, more than one a motive for doing so. And many, many shapes in sight.
+
+<figure class="[ center-frame ]">
+	{@html svg['points']}
+</figure>

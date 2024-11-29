@@ -1,0 +1,126 @@
+---
+title: Meet aspect ratio
+description: Reconcile SVG attributes to keep a harmonious size.
+date: 2023-06-20T11:10:43
+---
+
+<script>
+	import svg from './svg.js';
+	import MeetX from './MeetX.svelte';
+	import MeetY from './MeetY.svelte';
+</script>
+
+It is often challenging to explain sizes in SVG.
+
+{@html svg['defs']}
+
+With the `viewBox` attribute you set the origin and the dimensions of the SVG canvas.
+
+```html
+<svg viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+In between the tags, shapes are relative to these measures. A rectangle 1 unit wide and tall, for instance, will occupy the entire canvas.
+
+```html
+<rect width="1" height="1" />
+```
+
+On the page, however, a question remains: how big will the element actually be? By default, as big as it possibly can. Without specific instructions the element holds true to its scalable nature and grows in the available space.
+
+That being said, you can set the width and the height yourself.
+
+With HTML and the `width` and `height` attributes.
+
+```html
+<svg width="300" height="100" viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+With CSS and similar key-value pairs.
+
+```css
+svg {
+	width: 30rem;
+	height: 10rem;
+}
+```
+
+These would triumph over the attributes, but alone, they achieve the same feat, sizing the element to fixed dimensions.
+
+A question is answered: the element will be as big as possible, or as wide and tall as decided by you.
+
+A new question is begged: canvas, element. Each has its own width, its own height. The moment we fix the element, what happens to the canvas? What happens to our perfectly squared shape?
+
+If you keep the same ratio, nothing unexpected. The `<svg>` grows, the `<svg>` shrinks, the canvas and the square follow.
+
+If not, again it's a matter of defaults. And again it's up to you to deviate from the standard.
+
+By default, SVG resizes the canvas to grow as much as possible in the smallest dimension. Then, it proceeds to center the shapes in the available space.
+
+This is `preserveAspectRatio` at work, and specifically, the base value of `xMidYMid`. It may look gibberish, but as you break down its components, as you sample the values, the string becomes close to obvious.
+
+Back to our `<svg>`. Back to our canvas 1 unit wide and tall and the all-encompassing rectangle. Back to the element sized three times wider as it is tall.
+
+```html
+<svg width="300" height="100" viewBox="0 0 1 1">
+	<rect width="1" height="1" />
+</svg>
+```
+
+The square keeps its rightful dimensions and moves smack in the center. `xMid`. Change the portion and you are able to reposition the shape.
+
+```diff
+-<svg width="300" height="100" viewBox="0 0 1 1">
++<svg preserveAspectRatio="xMinYMid" width="300" height="100" viewBox="0 0 1 1">
+```
+
+Left, `xMin`, or right, `xMax`.
+
+<MeetX />
+
+What happens if you change the instruction for the opposite axis? `xMidYMax`? Exactly nothing. There is no space above, no space below where the square can move.
+
+The missive becomes relevant only in the opposite scenario. Only when the size favors the height. Set the height to three times the width, and the roles are indeed reversed.
+
+```diff
+-<svg width="100" height="300" viewBox="0 0 1 1">
++<svg preserveAspectRatio="xMidYMin" width="100" height="300" viewBox="0 0 1 1">
+```
+
+By default, once more, the shape is centered. Just vertically. Change `YMid` and the element moves up or down. `YMin`, `YMax`.
+
+<MeetY />
+
+`xMidYMid`. By now, the string should be quite clear. And `preserveAspectRatio` should make more sense.
+
+And yet, this is only part of the story. `xMidYMid` is part of the default, but `xMidYMid meet` is the true value. With `meet` the canvas grows in the smallest dimension, preserving the aspect ratio and keeping the element in full.
+
+On the opposite end of `meet` you have `slice`.
+
+```diff
+-<svg width="100" height="300" viewBox="0 0 1 1">
++<svg preserveAspectRatio="xMidYMin slice" width="100" height="300" viewBox="0 0 1 1">
+```
+
+The canvas grows in the largest dimension, and our square would spill all over the place.
+
+There is also one final value replacing them all: `none`.
+
+```diff
+-<svg width="100" height="300" viewBox="0 0 1 1">
++<svg preserveAspectRatio="none" width="100" height="300" viewBox="0 0 1 1">
+```
+
+The canvas grows to the width and the height, regardless of the proportions you cared to include in the original graphic.
+
+There might be a use for these values, but most often, you want to keep your drawings in sight, in their rightful, compact design.
+
+If you do find a use for shapes larger than life, if you are able to get by disrespecting aspect ratio, savor the syntax and remember to share. Perhaps with a piece or two.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['bento-box']}
+</figure>

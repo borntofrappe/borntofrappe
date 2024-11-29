@@ -1,0 +1,114 @@
+---
+title: Chummy transform
+description: A friendly reminder to double-check transformations in SVG and CSS.
+date: 2024-01-10T09:25:23
+---
+
+<script>
+	import Checkbox from './Checkbox.svelte';
+</script>
+
+I recently stuck myself in a corner, an issue of my own making worth documenting.
+
+To little surprise, looking at the source code and musings of this website, I work frequently with SVG. And in SVG, I often rely on the `transform` attribute to modify the coordinate system. The attribute allows to achieve what would be impossible, or at least impractical, writing vectors in a code editor.
+
+If you wanted to position shapes on the outline of a circle, for instance, you don't need a script to find the coordinates, conjuring up angles in radians and trigonometric functions. You can pull this off in two to three steps:
+
+1. rotate the coordinate system with the `rotate` function
+
+   ```html
+   <g transform="rotate(45)">
+   	<!-- ...shapes -->
+   </g>
+   ```
+
+2. offset the shapes with an arbitrary amount and the `translate` function
+
+   ```html
+   <g transform="rotate(45)">
+   	<g transform="translate(20 0)">
+   		<!-- ...shapes -->
+   	</g>
+   </g>
+   ```
+
+   You can move the elements in any direction and either dimension, as long as you are consistent. Update the angle and there you have it, a way to position the elements around the center.
+
+What would be the third step? Well, if you draw only circles you can stop with the translation.
+
+```html
+<g transform="rotate(60)">
+	<g transform="translate(20 0)">
+		<circle r="2" />
+	</g>
+</g>
+```
+
+But with more complex shapes, you will definitely notice that the rotation has the figures tilted around the clock. The third step would be to revert the rotation, rotate the shapes in the opposite direction and the new spot.
+
+```html
+<g transform="rotate(60)">
+	<g transform="translate(20 0)">
+		<g transform="rotate(-60)">
+			<!-- ...shapes -->
+		</g>
+	</g>
+</g>
+```
+
+Even with the additional step, the process is quite convenient — you even get to work with degrees and numbers in the 0 to 360 range. Not to mention, you can chain the functions one after the other, in the same `transform`attribute.
+
+```html
+<g transform="rotate(60) translate(20 0) rotate(-60)">
+	<!-- ...shapes -->
+</g>
+```
+
+Just pay attention to the order, as the functions are applied in sequence: rotate to aim, translate to position, and, optionally, rotate the to reset.
+
+So what is the issue mentioned above? In a small vector graphic I resolved to use the `transform` attribute and the `scale` function to hide a portion of the image.
+
+```html
+<g class="scale" transform="scale(0)">
+	<!-- ...shapes -->
+</g>
+```
+
+The idea was to then scale the element back with CSS, to transition the value from 0 to 1. Except that in the stylesheet I decided to be fancy and try out individual transform properties. Meaning, I tried to resize the element with the `scale` property alone.
+
+```css
+.scale {
+	scale: 1;
+}
+```
+
+Only to find that the shapes would not appear.
+
+In hindsight, the problem is obvious, but works as a strong reminder to be cautious with your assumptions. And for once, not to blame everything on specificity.
+
+Yes, CSS properties triumph over SVG presentational attributes.
+
+Yes, the `scale` function in the `transform` attribute and the `scale` property achieve a similar task, to resize elements.
+
+However, the two do not compete with each other, and instead work together to affect the shapes. Even if you scale the node with CSS, the transformation is still active.
+
+In SVG, you only have access to transformations — there is no `scale` attribute. And this means that if you want to override the value, you need to set the `transform` property, employing the `scale` function anew.
+
+```css
+.scale {
+	transform: scale(1);
+}
+```
+
+You can still use individual properties to change SVG elements, like regular DOM nodes. As a matter of fact, you can also have the `scale` and the `transform` properties in the same declaration.
+
+```css
+.scale {
+	scale: 1.5;
+	transform: scale(1);
+}
+```
+
+But once more, be wary of order. This time, it doesn't matter which instruction comes first. There's always a sequence so that the properties follow [a strict schedule](https://drafts.csswg.org/css-transforms-2/#ctm): `translate`, `rotate`, `scale`. And only finally, `transform` — it's just happy to tag along for the ride.
+
+<Checkbox />

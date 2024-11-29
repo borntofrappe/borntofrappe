@@ -1,0 +1,94 @@
+---
+title: Dragon Warrior III
+description: A monumental, fitting conclusion to a proper trilogy.
+date: 2023-04-09 11:18:50
+---
+
+<script>
+    import svg from './svg.js';
+    import ChangeStaff from './ChangeStaff.svelte';
+    import Party from './Party.svelte';
+    import Pachisi from './Pachisi.svelte';
+    import LotoSeal from './LotoSeal.svelte';
+</script>
+
+Following [simple beginnings](/dragon-warrior) and [often frustrating departures](/dragon-warrior-ii), the third installment in the Dragon Quest series ties up a proper trilogy.
+
+## Adventure
+
+The epic, animated introduction sets the premise and lays down most of the story.
+
+The hero Ortega, helmet donned, fights against the forces of evil. He travels, he struggles. Wounded, he soldiers on. Restored, he climbs the steep walls of a smoldering mountain. Dramatically, he jumps, ax in hand, against a flying foe.
+
+Did he survive?
+
+Your only hint, the helmet.
+
+<figure class="[ center-frame ]" data-size="small">
+    {@html svg['helmet']}
+</figure>
+
+The armor piece finds its way to a small village, suggesting a probable, cruel outcome.
+
+But you'll have to experience the adventure till the very end to find the answer.
+
+Back in Aliahan, where the great hero began his long journey, you start your own quest as the most immediate heir.
+
+Sixteen years on.
+
+A fairy from a distant land begs for your assistance on behalf of the elemental Rubiss, while offering a few, character-defining questions to reveal your true colors.
+
+A brief and polite conversation with the king sends you off, on the footsteps of your proud ancestry.
+
+## Characters
+
+Not alone.
+
+The local tavern affords a party of four, letting you recruit between highly skilled allies. Fighters, mages, clerics. There's no need to stress excessively on the team though. You'll have the opportunity to try different jobs, to wear different clothes. And even without a jester, there will be time for levity.
+
+<ChangeStaff />
+
+For posterity and a small suggestion, however, let me immortalize a specific, elite squad. Supporting the hero you find here Edo, a fighter of unwavering faith. Ripa, a magic-infused sage fond of dancing. Icin, a feisty warrior with healing powers.
+
+<figure class="[ center-frame ]">
+    <Party />
+</figure>
+
+There is also Eon, an enterprising town setter, but her participation is as essential as short-lived — she'll have her own story to tell.
+
+## Features
+
+Following an explosive start and a crevice-filled dungeon, the world opens up to you.
+
+You'll tread on familiar ground as you experience features from past titles, returning with a new level of polish and charm.
+
+Glittering medals of bronze, silver and gold. Vases with often surprising findings. Shopkeepers prone to haggle. Colorful, bountiful orbs. Ironic encounters with puzzling characters, whinnying animals and perfectly reasonable cats. Over land, beyond the sea.
+
+But there will be plenty more to enjoy, and possibly distract from your higher call.
+
+Monster battles offering the thrill of cheap gains. A full-blown, life-size board game testing your skill and luck. A game where you'll be able to step your way onward and backwards, on the hunt of precious rewards.
+
+A game you can try in an extremely slimmed down version, without trap doors or the risk of electrocution. One roll at a time.
+
+<div class="[ center-frame ]" data-size="large">
+    <Pachisi />
+</div>
+
+## Celebration
+
+Sooner or later, however, you'll think yourself ready to continue and take down the Lord Demon Baramos.
+
+And as you eventually discover the fate befallen to your father, as you eventually defeat the fiend of the story, your quest ends as part of a much larger scheme.
+
+A grand design across generations. An interconnected web of events past and yet to come, culminating in the ever more notorious Loto Seal.
+
+Held aloft in celebration, the mark shimmers solemnly before your eyes. A promise of hope and peace.
+
+<figure class="[ center-frame ]">
+    <LotoSeal />
+    <figcaption>The adventure continues</figcaption>
+</figure>
+
+The final sight brings an emotional closure to a glorious saga, and might just be enough to tempt you and revisit that wretched swamp.
+
+With the love of Lady Lora and the blessing of Rubiss.

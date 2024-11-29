@@ -1,0 +1,52 @@
+---
+title: Spinning change
+description: 'Two cents on Zdog: a library primed for impressive twists.'
+date: 2023-10-23T14:35:13
+---
+
+<script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+	
+	import Coin from './Coin.svelte';
+</script>
+
+The goal with [_"Zdog Monday"_](/beauty-sleep) is to appreciate pseudo-3d graphics for simply what they are, impressive visuals. But in the process I often indulge in specific art, art which is not possible in the body of `<svg>` elements of the context of `<canvas>` nodes. At least not without the help of JavaScript. A rotation on the y axis, for instance. With SVG you can angle a shape in only one sense.
+
+```html
+<g transform="rotate(30)">
+	<!-- ... -->
+</g>
+```
+
+The `transform` attribute has a neat syntax where you can specify the origin of the rotation after the number of degrees.
+
+```diff
+-<g transform="rotate(30)">
++<g transform="rotate(30 10 20)">
+```
+
+But again the operation is the same; the rotation is either clockwise or counter-clockwise.
+
+You could emulate a spin changing the horizontal scale instead of the angle
+
+```html
+<g transform="scale(0.5 1)">
+	<!-- ... -->
+</g>
+```
+
+Scaling the shapes from the center, you would have the elements shrink, and effectively rotate in place with negative values. The effect is far from a rotation, however, as you directly change the size. There is no solid answer, only [humorous workarounds](/how-many-paths).
+
+With Zdog, the solution is within grasp. The rotation requires an angle in radians and the mention of the desired axis.
+
+```js
+illustration.rotate.y = TAU / 8;
+```
+
+The concept is so close, so down to earth that you cannot help to try out your luck, with [a soft twist](/counting-shapes) or of a full blown spin.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	<Coin />
+</div>
+
+<ZdogMonday />

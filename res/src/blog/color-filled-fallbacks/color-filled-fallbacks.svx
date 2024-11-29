@@ -1,0 +1,105 @@
+---
+title: Color-filled fallbacks
+description: Trust fallback values to paint with CSS or SVG.
+date: 2023-11-29T14:38:14
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+With the presence of a dozen color functions and support for multiple color spaces you could almost be justified in explaining CSS as _Colorful Style Sheets_. The language gives you plenty of options and more than one way to add fallback values, so you can try advanced features with a safety net. In SVG you also have a way to try complex features and, by chance, there is a way to preserve the graphics should these options fail.
+
+## CSS
+
+Consider the following snippet.
+
+```css
+h1 {
+	color: hsl(45 97% 54%);
+	color: oklch(84.39% 0.169 86.66);
+}
+```
+
+Here you have two sets of key-value pairs for the same `color` property, with two different functions. Most rendering engines understand both instructions, and they will realize the color with the modern `oklch` syntax. If a browser can't understand the function it will retain the first option, and show the `hsl` triplet instead.
+
+There's another scenario in which fallbacks become relevant, with custom properties. You include the value of such properties with the `var` function and, following a comma, an optional fallback.
+
+```css
+h1 {
+	color: var(--sky, hsl(210 14% 83%));
+}
+```
+
+The color becomes relevant the moment there is no property defined in the document. Or at least, defined in the relevant scope. Define the property and the value is used.
+
+```css
+:root {
+	--sky: hsl(228 100% 86%);
+}
+```
+
+Forget the code and the fallback kicks in. The language is flexible, and more than willing to cope with different scenarios.
+
+## SVG
+
+In the body of an `<svg>` node you paint the shapes with two attributes, `fill` and `stroke`. For both attributes you can very well use a color in one of the functions supported by CSS.
+
+```html
+<rect fill="hsl(210 14% 83%)" width="20" height="20" rx="2" />
+```
+
+On top of these values you can point to particular effects such as gradients, by reference.
+
+Let's set up one such gradient as an example. You have two options in SVG, for a linear and a radial gradient. Respectively, the two are introduced with a `linearGradient` and a `radialGradient` element.
+
+```html
+<linearGradient>
+	<!-- ... -->
+</linearGradient>
+```
+
+In the body of the element add the colors with `stop` elements and two attributes: `stop-color` and `offset`. In one attribute you detail the color. In the other a value in the 0 to 1 range, or a percentage, to illustrate when to use the matching pick.
+
+```html
+<stop stop-color="hsl(225 100% 93%)" offset="0" />
+<stop stop-color="hsl(228 100% 86%)" offset="1" />
+```
+
+You create the gradient and then reference the value with the `url` function.
+
+```html
+<rect fill="url(#gradient)" width="20" height="20" rx="2" />
+```
+
+Except that, in the frenzy of it all, we forgot to mark the gradient with a proper `id` attribute. What happens next? Unfortunately, absolutely nothing. Nothing is painted on screen. The rectangle in our snippet, no matter how sized and positioned, won't be visible, in any sort of color.
+
+You can add a fallback, but not by repeating the attribute with another value.
+
+```html
+<rect fill="url(#gradient)" fill="hsl(210 14% 83%)" width="20" height="20" rx="2" />
+```
+
+This is [a parsing error](https://html.spec.whatwg.org/#parse-errors): there cannot be more than one attribute for the same element. In practice you might not be alerted of the mistake. Browsers work around the issue by keeping the first instance and ignore the duplicate. But this also means that the code will not work as intended, and what you see depends on the order of the attributes. Add the gradient first, and when you fail to match the `id` you won't see the result. Place the gradient last and the "fallback" will always take precedence.
+
+To have a true fallback you can be reminded of the pattern for custom properties. In the one attribute reference the gradient. In the same attribute, after the `url` function and separated by whitespace, add the second option.
+
+```html
+<rect fill="url(#gradient) hsl(210 14% 83%)" width="20" height="20" />
+```
+
+You don't separate the values with a comma, but the code works in much the same way. Define the gradient with the proper `id` attribute and the element benefits from the smooth color change.
+
+```html
+<linearGradient id="gradient">
+	<!-- ... -->
+</linearGradient>
+```
+
+Forget the key, or manage to misspell the reference, and the second value assumes its welcomed role.
+
+CSS is flexible and forgiving, but so are HTML and SVG. And with a few precautions, you can trust the code to always paint something. Be it a gradient or a solid fill.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['fallback-values']}
+</figure>

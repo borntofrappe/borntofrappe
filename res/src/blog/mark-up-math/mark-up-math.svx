@@ -1,0 +1,103 @@
+---
+title: Mark up math
+description: A pretty good look into MathML syntax.
+date: 2024-05-22T09:18:49
+---
+
+<script>
+	import html from './html.js';
+	import REPL from './REPL.svelte';
+</script>
+
+Like SVG, MathML describes an XML language with a specific function. And just like SVG, it is possible to include the code in an HTML document to have an immediate result. Not a crisp vector graphic, mind you, but an academic representation of mathematical concepts.
+
+There is [a specification](https://www.w3.org/TR/MathML3/) devoted to the topic and more than one element to learn, but the whole is quite understandable once you look at the syntax. And perhaps look through a snippet or two.
+
+## Math
+
+Every expression begins with an all-encompassing `math` element.
+
+```html
+<math>
+	<!-- ... -->
+</math>
+```
+
+Continuing with the similarities with SVG there is a namespace, a string you can add in the `xmlns` attribute.
+
+```html
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+	<!-- ... -->
+</math>
+```
+
+However, and once again like with vectors, the instruction is necessary to parse the code only when the resource is loaded as an XML resource. HTML is equipped to make due without the hard-coded line.
+
+In terms of style, the `math` element is an inline element, meaning the content will be displayed in the flow of the document. This is convenient to add an expression in prose, in a paragraph.
+
+```html
+<p>
+	The circumference of a circle:
+	<math>
+		<!-- ... -->
+	</math>
+</p>
+```
+
+But to show the graphic as a block, it means you need the explicit mention of the `display` attribute.
+
+```html
+<math display="block">
+	<!-- ... -->
+</math>
+```
+
+## Math elements
+
+In the body of a `math` element you find numerous elements, designed to wrap around values and explain the nested text. Three of them are close to essential, and you'll rely on them in most examples:
+
+- `mn`, to mark up numbers
+
+- `mi`, for identifiers
+
+- `mo`, for operators
+
+Consider the formula for the circumference of a circle, twice the value of PI multiplied by the circle's radius. The variables for the circumference and the radius, `C` and `r`, are identifiers. This means the `mi` element provides the best fit.
+
+The equal sign, surely an operator, is meant for the `mo` element. But while the number two is equally evident, the same is not true for the constant PI; this one is indeed a number, but first and foremost an identifier. You'll therefore prefer the same tag used for the variables.
+
+<REPL code={html['mathml-tokens']} />
+
+The code is verbose, but it's far from complex.
+
+Leveling up to more complex expressions, MathML complements the three nodes with additional tags. The biggest challenge is to remember their names and the fact that some of them require a fixed number of children.
+
+For square roots, for instance, the specification offers `msqrt`. In the element every child node will be contained under the power of two.
+
+<REPL code={html['mathml-sqrt']} />
+
+For more general roots there is a different element in `mroot`, and this one demands two children only. In order, these describe what goes under the root and the given level. Does this mean you are constrained to root single numbers, to individual identifiers? Of course not. The language works around the number limit with a grouping element: `mrow`.
+
+Through the one element you have the option to collect multiple values and craft the desired formula.
+
+<REPL code={html['mathml-root']} />
+
+A similar pattern exists for subscripts and superscripts, the small descenders and ascenders refining a few rules. These are marked with the `msub` and `msup` elements and ask for two values, for the base and the associated index.
+
+<REPL code={html['mathml-sup']} />
+
+Should you want both sub and super scripts, you have the choice of `msubsup` and the requirement of three nested items. In sequence: the base, the lower and the upper index.
+
+But the element is a perfect excuse to reinforce the point with a different set. For some expressions you'd like to show something below or above an argument. In this instance you can rely on `munder` and `mover`, exactly like the pair of scripts. To mark up in both directions you have `munderover`, and as `msubsup`, this one looks for three values: the base, what lies down low and shines up high.
+
+<REPL code={html['mathml-underover']} />
+
+One last example to close the discussion and loop back to the very beginning: matrices. To structure items in rows and columns the language solves the problem with three elements and a familiar pattern. First, `mtable`, which creates a first level of depth. Then `mtr` for the nested rows and `mtd` for the even more nested data.
+
+<REPL code={html['mathml-table']} />
+
+Another reminder that the language has a strong connection with HTML. And shares an affection with SVG to make something look pretty. Be it math or just plain text.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html html['mathml-calculator']}
+</figure>

@@ -1,0 +1,92 @@
+---
+title: What shines through
+description: Focus on the styles traversing the shadow DOM.
+date: 2024-04-04T10:10:53
+---
+
+<script>
+	import svg from './svg';
+</script>
+
+In terms of styling, the promise of encapsulation through the shadow DOM is particularly refreshing. Here you have a separate document tree: properties you set in the shadow DOM won't leak out to change the elements in the light DOM, and properties set in the page will not sneak in. With some exceptions you can entertain yourself.
+
+Add an empty `div` element in plain HTML.
+
+```html
+<div></div>
+```
+
+In all likelihood, you will create a shadow DOM in a web component, but [as you might have seen already](/building-web-blocks#shadow-dom), it is possible to operate on the generic container.
+
+In a script, with a handle on the specific node, you can enter the shadow DOM with the `attachShadow` method.
+
+```js
+const element = document.querySelector('div');
+const shadowRoot = element.attachShadow({ mode: 'open' });
+```
+
+The method itself requires an argument with a very specific purpose, but focusing on the returned value, you find a reference to the shadow root, to the beginning of the separate tree. This means we can author the DOM with familiar techniques, appending child nodes or even injecting markup with `innerHTML`, on the root.
+
+```js
+shadowRoot.innerHTML = `
+<style></style>
+<p>A brand new, scoped DOM</p>
+`;
+```
+
+The elements are encapsulated in the new scope, but as you execute the script you might realize that even without additional styles, the nodes share a few traits with those living outside. The font family, or again the color are exactly the same. Change either in the parent scope, perhaps for the entire page.
+
+```css
+body {
+	font-family: system-ui;
+	color: hsl(210 14% 89%);
+}
+```
+
+And the values ripple through the shadow boundary.
+
+The reason for this is clearly stated [in the specification](https://www.w3.org/TR/css-scoping-1/#inheritance): elements in the shadow DOM inherit from the _host element_ — here the `div` wrapper. As some properties are inherited by default, these persist even in the shadows.
+
+Which properties? The CSS standard curates [a table of properties](https://www.w3.org/TR/CSS22/propidx.html) entertaining the value for several fields. Looking into the _"Inherited"_ column you can find a first answer, and running a short script for the matching rows, you can filter the lot of 41 keys.
+
+<figure class="[ center-frame ]" data-size="large">
+	{@html svg['inherited-properties']}
+</figure>
+
+Some properties are quite obscure, and might not even exist anymore, but others are much more important. Properties connected to the font, for the family or the style. Additional properties connected to typography, to update the spacing between the letters or their notation. And indeed `color`.
+
+These properties are all inherited, and arguably for the better. They help to maintain a baseline of consistency, a nice starting point for essential features.
+
+You have the option to avoid the inheritance, but you need to be explicit, to intentionally deviate from the standard. For elements in the shadow DOM, or the host itself through the `:host` pseudo class, set a property to `initial`.
+
+```html
+<style>
+	:host {
+		color: initial;
+	}
+</style>
+```
+
+For the specific trait you will then break the chain. You can reset every property with `all`, setting the key to `initial` as well, but the code is as concise as drastic, and you might prefer a more fine-tuned approach.
+
+Regardless, you have a way to make your intention known. Being explicit, you also have the option to pierce through the shadow DOM with another host of properties: custom properties. This is by design, and a way to extend the usefulness of the helpful tokens. And in practice, it means you can set custom properties outside, even at the root of the parent scope.
+
+```css
+:root {
+	--color-light: hsl(210 14% 89%);
+	--color-dark: hsl(214 14% 10%);
+}
+```
+
+And pick up the values in the shadow tree.
+
+```html
+<style>
+	:host {
+		color: var(--color-light);
+		background: var(--color-dark);
+	}
+</style>
+```
+
+Some forty-one properties are inherited immediately, almost by birth, and you need to relinquish them by choice. More properties are inherited by design, by own accord. And all of them help you to style more clearly even the darker nodes. For more control, be it inside or outside of a shadow root, you then have more options [with custom selectors](/pseudo-control).

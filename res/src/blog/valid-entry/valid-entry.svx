@@ -1,0 +1,41 @@
+---
+title: Valid entry
+description: Approximate the sheer number of possible custom elements.
+date: 2024-04-26T11:11:09
+---
+
+<script>
+	import svg from './svg';
+</script>
+
+One of the first steps for a custom element, after finding a solid use-case, is to come up with a name that is not only fitting, but pre-eminently valid. Which may beg the question: what lies behind a valid custom element name?
+
+<figure
+	class="[ center-frame ]"
+	data-size="medium"
+	style="--_color-0: hsl(204 14% 58%); --_color-1: hsl(0 0% 20%);"
+>
+	{@html svg['pcenchar']}
+</figure>
+
+[The specification](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) details the answer in a comprehensive bulleted list, explaining a label which:
+
+- begins with a character in the `[a-z]` range
+
+- includes at least a hyphen character `-`
+
+These two precautions are set in place to separate your own made-up elements from standard nodes, but past the two measures, you have close to free reign.
+
+To be fair, and slightly pedantic, there are more provisions, but don't let them deter you from using the tech.
+
+Looking at unicode ranges the document excludes a handful of special characters, but these are few and far between, almost an exception.
+
+Similarly to eight more exceptions for HTML elements which break convention and dare to include a hyphen. These are a relic of two different standards, MathML and SVG, and in the case of vector graphics, they even refer to outdated features. For future endeavors spec authors pledge not to repeat the format, so that you are more than set.
+
+For your custom elements you can use multiple alphabets and any of the 971.606 possible characters. Even more cryptic ones, as long as you remember to start with a lowercase letter and follow up with a hyphen or two.
+
+```html
+<svelte-ᛋ-ᛕ-ᚷ-ᚠ></svelte-ᛋ-ᛕ-ᚷ-ᚠ>
+```
+
+Avoid grandiose uppercase letters and you won't mind the remaining restrictions. Only the purpose of the custom element matching the valid tag name.

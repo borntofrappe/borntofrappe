@@ -1,0 +1,435 @@
+---
+title: Charming good luck
+description: In times of distress, count on Svelte and SVG to cheer you up.
+date: 2023-02-03T15:50:21
+---
+
+<script>
+    import svg from './svg.js';
+    import Transform from './Transform.svelte';
+    import Degrees from './Degrees.svelte';
+    import Spring from './Spring.svelte';
+    import Brianna from './Brianna.svelte';
+</script>
+
+Think of a ladybird. A sweet little critter with curious antennas and a polka dot pattern.
+
+Now set up an SVG canvas and see how to make that vision into reality.
+
+```html
+<svg viewBox="-50 -50 100 100">
+	<!-- -->
+</svg>
+```
+
+## Head
+
+Draw a circle. A nice, dark gray circle.
+
+```html
+<circle fill="#38311e" r="14" />
+```
+
+Add two lines, protruding from the center and outside of the round shape.
+
+```html
+<g fill="none" stroke="#38311e" stroke-width="1.5">
+	<path d="M 0 0 l 12 -14" />
+	<path d="M 0 0 l -12 -14" />
+</g>
+```
+
+SVG elements are drawn in sequence, with later shapes on top of previous ones, but in this instance the order is up to your better judgment. Since the elements have the same color, they create an indistinguishable mass.
+
+<figure class="[ center-frame ]">
+	{@html svg['head']}
+</figure>
+
+You could smooth the ends of the segments with the `stroke-linecap` property, but we can treat ourselves with a `<marker>`. There's plenty to know about the element, but let me focus on the essential parts for our most practical use case.
+
+Define the marker with a specific `id` — we'll get to its structure in a couple of paragraphs.
+
+```html
+<defs>
+	<marker id="marker">
+		<!-- -->
+	</marker>
+</defs>
+```
+
+Reference the visual through the `marker-end` attribute.
+
+```html
+<path d="M 0 0 l 12 -14" marker-end="url(#marker)" />
+```
+
+The result is that the marker is added at the very end of the line, at the end of the antenna.
+
+Back to the marker, the element works similarly to the parent `<svg>`. Past the `id` set up the canvas devoted to the marker.
+
+```html
+<marker id="marker" viewBox="-1 -1 2 2">
+	<!-- -->
+</marker>
+```
+
+The shapes are then measured relative to the specific `viewBox`. The curious set of values? Enough to center a circle with a radius of 1, and have it occupy the entirety of the frame.
+
+```html
+<marker id="marker" viewBox="-1 -1 2 2">
+	<circle r="1" />
+</marker>
+```
+
+<figure class="[ center-frame ]">
+	{@html svg['marker']}
+</figure>
+
+Impressive as the effect is, there is one inconvenience. You do need to set the color for the circle in the marker itself.
+
+```diff
+-<circle r="1" />
++<circle r="1" fill="#38311e" />
+```
+
+On the positive side, you can add the attribute on the group element to have the visual appear on both segments.
+
+```html
+<g fill="none" stroke="#38311e" stroke-width="1.5" marker-end="url(#marker)">
+	<!-- paths -->
+</g>
+```
+
+<figure class="[ center-frame ]">
+	{@html svg['markers']}
+</figure>
+
+## Body
+
+One last note on the head. We are going to draw the body right after the previous section, effectively _on top_. In light of this, wrap the elements in a common group element.
+
+```html
+<g>
+	<!-- head -->
+</g>
+```
+
+In the moment you need to update its position, you can then move the entire head with a shared translation.
+
+On to the body. Start with a larger, scarlet circle.
+
+```html
+<circle fill="#ff6c6c" r="25" />
+```
+
+For the polka dot pattern, follow up with smaller, darker circles. The color picked for the head is a safe choice.
+
+```html
+<g fill="#38311e">
+	<circle cx="4" cy="-18" r="2" />
+	<circle cx="8" cy="-8" r="4" />
+	<circle cx="17" cy="-1" r="3" />
+	<circle cx="9" cy="4" r="3" />
+	<circle cx="14" cy="12" r="2" />
+</g>
+```
+
+<figure class="[ center-frame ]">
+	{@html svg['half']}
+</figure>
+
+Something's quite off with the picture, however.
+
+For starters, the head has disappeared. We already discussed the point, but it's always better to have the first-hand experience. Move the shapes up to have them pop behind the larger corpus.
+
+```html
+<g transform="translate(0 -20)">
+	<!-- head -->
+</g>
+```
+
+Then again, there are dots only on one side. Notice how we position the circles through the `cx` and `cy` attributes, and the horizontal coordinate is always positive.
+
+To complete the symmetry you have a couple of options:
+
+1. repeat the circles on the left side, repeat the elements with the opposite `cx` value
+
+2. prepared to be befuddled by the section which follows. Be warned, we are diving into more advanced SVG syntax
+
+SVG offers the `<use>` element to repeat visuals. Generally, you define the visuals in `<defs>` tags, to avoid drawing them immediately, and include them by reference.
+
+```html
+<defs>
+	<circle id="c" r="1" />
+</defs>
+
+<use href="#c" />
+```
+
+Here's the nice part, however. You can repeat visuals which have already been drawn, always through the `id` attribute.
+
+Wrap the smaller circles in a common group element.
+
+```html
+<g id="dots">
+	<!-- circles -->
+</g>
+```
+
+And, you can repeat them afterwards.
+
+```html
+<use href="#dots" />
+```
+
+Pointless? It rarely is. As we draw the dots _from the center_ of the canvas, to the right, you can repeat them to the left by changing the horizontal scale.
+
+```html
+<use transform="scale(-1 1)" href="#dots" />
+```
+
+In essence you flip the entire coordinate system. With the transformation applied, positive offsets no longer move you to the right, but to the left instead.
+
+If you need to wrap your head around the feat, here's a small playground. I've omitted the `id` to save space, but the `<use>` element refers to the circle you move with the handle.
+
+<div class="[ center-frame ]" data-size="large">
+	<Transform />
+</div>
+
+If the discussion made little sense, again, there's always the first option. Whichever you choose, the drawing is complete; we can take a moment and appreciate the final visual.
+
+<figure class="[ center-frame ]">
+	{@html svg['body']}
+</figure>
+
+## Spring
+
+Let's dive in the enchanting possibilities offered by spring animations and the `svelte/motion` module.
+
+```svelte
+<script>
+	import { spring } from 'svelte/motion';
+</script>
+```
+
+The goal is to have a value for the angle.
+
+```js
+const angle = spring(0);
+```
+
+Map this value to follow the cursor and use the number to rotate our beloved beetle.
+
+```svelte
+<g transform="rotate({$angle})">
+	<!-- ladybird -->
+</g>
+```
+
+Now for the nitty-gritty. To follow the cursor, listen to the `mousemove` event on the larger SVG.
+
+```svelte
+<svg viewBox="-50 -50 100 100" on:mousemove={handleMove}>
+	<!--  -->
+</svg>
+```
+
+Among the _many_ values you find in the event, extract the offset from the top left corner.
+
+```js
+const handleMove = (e) => {
+	const { offsetX, offsetY } = e;
+	console.log(offsetX, offsetY);
+};
+```
+
+Unfortunately, the values are relative to the size of the `<svg>` element as it is rendered on your screen. We already encountered the problem [in a previous article](/ray-of-light#tracking), where we resolved to find the width and height and store the values in two variables, `w` and `h`. If you don't mind then, I'll proceed assuming we know the numbers.
+
+With the width and height, consider the coordinates in the `[-0.5, 0.5]` range.
+
+```js
+const x = offsetX / w - 0.5;
+const y = offsetY / h - 0.5;
+```
+
+You now have two segments describing the distance from the center. To find the angle, I'll save you the detour into the often challenging world of trigonometry, and introduce `Math.atan2`.
+
+```js
+const theta = Math.atan2(y, x);
+```
+
+The value is in radians, meaning you need to convert the measure in the degrees the `transform` attribute expects.
+
+```js
+const degrees = (theta * 180) / Math.PI;
+```
+
+Second hiccup, the number falls in the `[-180, 180]` range, starting with 0 on the right axis.
+
+<div class="[ center-frame ]" data-size="large">
+	<Degrees />
+</div>
+
+Since the creature looks straight up, we'd rather explore the `[-90, 270]` range instead.
+
+```diff
+-const degrees = theta * 180 / Math.PI
++const degrees = theta * 180 / Math.PI + 90
+```
+
+Update the spring.
+
+```js
+angle.set(degrees);
+```
+
+And enjoy the inquisitive insect.
+
+<div class="[ center-frame ]" data-size="medium">
+	<Spring />
+</div>
+
+## Finishing touches
+
+Truth be told, I wish I were more proud of the resulting animation. As you rotate the shapes toward the left, the angle jumps between -90 and 270, meaning the bug jumps in the opposite direction to assume the positive value. Retrace your steps counter-clockwise and the same issue takes place in reverse.
+
+At the time of writing, I do not have a solution, only a cheeky workaround. To avoid ending on a sour note, however, let me embellish the article with a couple extra features.
+
+### Spring options
+
+The angle is updated with a string, but the movement is far too precise to be entertaining. Luckily, the `spring` function accepts an optional object to further tweak the animation.
+
+```js
+const angle = spring(0, {
+	stiffness: 0.1,
+	damping: 0.25
+});
+```
+
+How to pick the values? As per Svelte [tutorial](https://svelte.dev/tutorial/spring), the best way is to just try.
+
+### Touch event
+
+The interaction is limited to mouse events, but the `touchmove` event promises to expand the feature to mobile devices.
+
+```svelte
+<svg on:mousemove={handleMove} on:touchmove={handleMove}>
+	<!-- drawing -->
+</svg>
+```
+
+Unfortunately, calling the same function does not work. Touch events do not have the same properties as the mouse counterpart, and you can attest yourself looking through the event object.
+
+```svelte
+<svg
+	on:touchmove={(e) => {
+		console.log(e);
+	}}
+>
+	<!-- drawing -->
+</svg>
+```
+
+You do find coordinates in the `touches` array, where the first point will suffice.
+
+```js
+const touch = e.touches[0];
+```
+
+Among the values, extract `clientX` and `clientY`.
+
+```js
+const touch = e.touches[0];
+const { clientX, clientY } = touch;
+```
+
+On their own, the coordinates are _close_ to being right, but you need to compensate for the position of the `<svg>` element in the page.
+
+I skimmed through the logic necessary to store the width and height in `w` and `h`, but the values are updated with the `getBoundingClientRect()` method on the bound SVG.
+
+```js
+const { width, height } = svg.getBoundingClientRect();
+
+w = width;
+h = height;
+```
+
+In a similar manner, create two variables to study the top left corner of the element.
+
+```js
+let l, t;
+```
+
+Update the values alongside the width and height.
+
+```js
+const { width, height, left, top } = svg.getBoundingClientRect();
+
+l = left;
+t = top;
+```
+
+With the numbers, you are finally able to compute the offset.
+
+```js
+const touch = e.touches[0];
+const { clientX: x, clientY: y } = touch;
+const offsetX = x - l;
+const offsetY = y - t;
+```
+
+Since `handleMove` extracts the value from the input object, then, you are able to tie everything together calling the same function.
+
+```js
+handleMove({
+	offsetX,
+	offsetY
+});
+```
+
+You may want to refactor `handleMove`, perhaps you are not too keen to have it work both with a mouse event and an object with just two properties. In the end, all that's needed is the offset.
+
+```js
+const handleMove = (offset) => {
+	const { offsetX, offsetY } = offset;
+};
+```
+
+If you are really finicky, then you can explicit the logic for the mouse event. Then again, this is up to your coding preference.
+
+```svelte
+<svg
+	on:mousemove={(e) => {
+		const { offsetX, offsetY } = e;
+		handleMove({ offsetX, offsetY });
+	}}
+>
+	<!--  -->
+</svg>
+```
+
+### Cheeky workaround
+
+I might have mentioned a temporary solution to the jump between angles, between -90 and 270 and vice-versa.
+
+If you argue that this particular ladybird is always optimist, always looking up, you can constrain the rotation to the `[-90, 90]` range.
+
+```js
+const handleMove = (e) => {
+	const { offsetX, offsetY } = e;
+	const x = offsetX / w - 0.5;
+	const y = offsetY / h - 0.5;
+
+	if (y > 0) return;
+
+	// update angle
+};
+```
+
+If you then place the creature at the very end of the page, then, you may call this a feature.
+
+Cheeky little critter.
+
+<div class="[ center-frame ]" data-size="medium">
+	<Brianna />
+</div>

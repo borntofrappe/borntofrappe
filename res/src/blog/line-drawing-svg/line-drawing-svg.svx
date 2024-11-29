@@ -1,0 +1,419 @@
+---
+title: Line drawing SVG
+description: Build a line-drawing app. With an expected canvas, and then an intriguing SVG.
+date: 2023-04-05 17:45:21
+---
+
+<script>
+	import Frame from './Frame.svelte';
+	import Canvas from './Canvas.svelte';
+	import SVG from './SVG.svelte';
+</script>
+
+On the web the `<canvas>` element might be the most obvious choice to create a drawing app. That being said, the `<svg>` element offers a few amusing possibilities.
+
+One thing at a time, though. Let's set up a small easel where you can just draw lines. With canvas for practice and SVG for proof.
+
+---
+
+I lean on Svelte out of familiarity, but you should be able to recreate the application with your tool of choice. There's only one Svelte-specific feature, but there might be an alternative by the time we get there.
+
+If you are interested in the library feel free to code along in [a REPL](https://svelte.dev/repl), or work locally, perhaps through [a most feeble Svelte app](/a-most-feeble-svelte-app).
+
+```bash
+npx degit borntofrappe/vite-svelte app
+```
+
+## Canvas
+
+In the context of the Canvas API we first need a `<canvas>` element with a specific width and height.
+
+```svelte
+<script>
+	const width = 350;
+	const height = 300;
+</script>
+
+<canvas {width} {height} />
+```
+
+Add a solid background, an appealing frame and the element appears on the page, not only in the DOM.
+
+<Frame />
+
+To draw something we need a reference to the element. And with Svelte, we achieve this feat binding the node to a variable.
+
+```svelte
+<script>
+	// ...
+	let canvas = null;
+</script>
+
+<canvas bind:this={canvas} {width} {height} />
+```
+
+As the component is mounted, we eventually gain access to `<canvas>`.
+
+```svelte
+<script>
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		const context = canvas.getContext('2d');
+	});
+</script>
+```
+
+We are going to interact with the element and the 2D context following specific events, but immediately, we can set up a few options for the rest of the experience. For instance, an arbitrary thickness and color for the upcoming lines.
+
+```js
+context.lineWidth = 4;
+context.strokeStyle = 'hsl(0, 0%, 28%)';
+```
+
+Now for the entertaining, reactive section. The idea is to consider three to four events, among which `mousedown`, `mouseup` and `mousemove`.
+
+Keep a boolean variable to decide whether or not to draw.
+
+```js
+let isDrawing = false;
+```
+
+And switch the value with two helper functions.
+
+```js
+const handleStart = (e) => {
+	isDrawing = true;
+};
+const handleEnd = (e) => {
+	isDrawing = false;
+};
+```
+
+Invoke the functions with the appropriate Svelte directives and you are close to ready to consider the intensive `mousemove` event.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousedown={handleStart} 
+	on:mouseup={handleEnd} />
+```
+
+A small precaution, however. I hinted at an event past the mentioned three: `mouseleave`. The goal is to ensure the drawing stops as the cursor is released, but also when the pointer escapes the boundaries of the element.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousedown={handleStart} 
+	on:mouseup={handleEnd} 
+	on:mouseleave={handleEnd} />
+```
+
+With this setup, `isDrawing` works as a gate, a necessary condition for the function linked to the `mousemove` event.
+
+<!-- prettier-ignore -->
+```svelte
+<canvas 
+	... 
+	on:mousemove={handleMove} />
+```
+
+It is only as the cursor is down and relevant that we should consider the position and draw something.
+
+```js
+const handleMove = (e) => {
+	if (!isDrawing) return;
+
+	const context = canvas.getContext('2d');
+};
+```
+
+In the canvas's context we draw a line with different methods, but we first need a set of coordinates. Two sets to be precise. Immediately, we need two values for where the line should start.
+
+```js
+let x, y;
+```
+
+We can set the x and y coordinates in the `handleStart` function, as the cursor is pressed. And in my exploration of the `mousedown` event I found the appropriate metrics in `offsetX` and `offsetY`.
+
+```js
+const handleStart = (e) => {
+	isDrawing = true;
+	const { offsetX, offsetY } = e;
+	x = offsetX;
+	y = offsetY;
+};
+```
+
+To start the line, move the context with the `moveTo()` function.
+
+```js
+context.beginPath();
+context.moveTo(x, y);
+```
+
+From this origin, draw a segment to a new set of x, y values, this time extracted from the `mousemove` event.
+
+```js
+const handleMove = (e) => {
+	if (!isDrawing) return;
+
+	const { offsetX, offsetY } = e;
+	// ...
+};
+```
+
+The relevant method is here `lineTo()`, after which we finally highlight the line with a solid stroke.
+
+```js
+context.beginPath();
+context.moveTo(x, y);
+context.lineTo(offsetX, offsetY);
+context.closePath();
+context.stroke();
+```
+
+If you were to test the logic right now you would see a line. Or actually, multiple lines, all starting from the x, y origin and trying to reach the mouse cursor. It actually makes for an intriguing piece.
+
+<Canvas handleOrigin={false} handleClear={false} />
+
+For our purposes, however, we want to continue the line, imperceptibly and from the last point. Update the `x` and `y` variables with the new offset.
+
+```js
+// ...
+context.stroke();
+x = offsetX;
+y = offsetY;
+```
+
+And you have a line made of very small, connected segments.
+
+<Canvas handleClear={false} />
+
+You can add a button to clear the canvas, so to extend the life of the easel a little bit.
+
+<Canvas />
+
+And behind the button, all you need is a call to the `clearRect` function, erasing the drawing for the entire canvas.
+
+```js
+const handleReset = () => {
+	const context = canvas.getContext('2d');
+	context.clearRect(0, 0, width, height);
+};
+```
+
+I'll let you call the function with the most appropriate event for the stylish button.
+
+Celebrate, however, the line-drawing app is complete. What is more, the logic remains relevant for the next section as well. No need to reinvent the wheel for once.
+
+## SVG
+
+Moving on to SVG, we are going to try and modify the application as little as possible, but delight in the possibilities promised by vector graphics.
+
+In the markup, start by replacing the `<canvas>` element with the fitting `<svg>`.
+
+```svelte
+<svg
+	{width}
+	{height}
+	on:mousedown={handleStart}
+	on:mouseup={handleEnd}
+	on:mouseleave={handleEnd}
+	on:mousemove={handleMove}
+>
+	<!-- ... -->
+</svg>
+```
+
+You might have noticed there's no variable bound to the element, and for a good reason. We don't draw with a context, 2D or otherwise, but with additional elements, nested between the opening and closing tags.
+
+In most practical terms, this means we need the coordinates, but to populate the `<svg>` element.
+
+Consider the values retrieved as the cursor is pressed, or again when the pointer is dragged, the offsets.
+
+```js
+const handleStart = (e) => {
+	const { offsetX, offsetY } = e;
+	isDrawing = true;
+};
+```
+
+The idea is to keep track of the points in an array.
+
+```js
+let points = [];
+const handleStart = (e) => {
+	const { offsetX, offsetY } = e;
+	points = [...points, offsetX, offsetY];
+	isDrawing = true;
+};
+
+// repeat for handleMove
+```
+
+We modify the array in place — notice the use of the `let` keyword — to comply with Svelte reactive logic. As the array is modified, and we use the data structure in the markup, the page is updated to show the points.
+
+In the markup, add a `<polyline>` element without a solid fill, but with an evident stroke.
+
+<!-- prettier-ignore -->
+```svelte
+<g
+	fill="none"
+	fill="none"
+	stroke="hsl(0, 0%, 28%)"
+	stroke-width="4">
+	<polyline />
+</g>
+```
+
+The element is equipped to connect a series of x, y coordinates in pairs through the `points` attribute, perfectly matching our data structure.
+
+```svelte
+<polyline {points} />
+```
+
+And that's essentially it. Once.
+
+<SVG handleLines={false} />
+
+As you draw the first line the app works as expected, and the points are connected one after the other. As you continue, however, there's no distinction between successive lines. A small tap has the `<polyline>` element jump, from one end to the next.
+
+Naively, we have one element. One long sequence of points.
+
+```js
+points = [...points, offsetX, offsetY];
+```
+
+For multiple lines we need additional `<polyline>`s. Accordingly, we need a larger data structure saving the points for the different segments.
+
+```js
+let points = [];
+let lines = [];
+```
+
+As a line ends, the `handleEnd` function is invoked. In this propitious moment pour the coordinates in the larger 2D array.
+
+```js
+const handleEnd = () => {
+	isDrawing = false;
+
+	lines = [...lines, points];
+};
+```
+
+And to start anew, empty the original structure.
+
+```js
+lines = [...lines, points];
+points = [];
+```
+
+In the markup, loop through the 2D array to repeat the `<polyline>` element. This time, however, for every set of saved coordinates.
+
+```svelte
+{#each lines as line}
+	<polyline points={line} />
+{/each}
+```
+
+As you empty the single array the line disappears, and is immediately replaced in the new block.
+
+But I realize the result might be less than intriguing by now. Even with vector graphics, you have the same, trivial application. Not even the inclusion of rounded corners I've hidden midway through is enough to justify the transition from the `<canvas>` element.
+
+```html
+<g stroke-linecap="round" stroke-linejoin="round">
+	<!-- ...polylines -->
+</g>
+```
+
+But we have full fledged HTML elements at our disposal, with the flexibility allowed by SVG attributes and CSS properties.
+
+Speaking of which, did you know Svelte has a spiffy transition in the `svelte/transition` module? It goes by the name of `draw` and its effect is as clear as it is impressive.
+
+```svelte
+<script>
+	import { draw } from 'svelte/transition';
+</script>
+```
+
+Add the instruction to the `<polyline>` elements as they are introduced in the `each` block and remarkably, the lines are shown in increments, almost drawn by hand.
+
+```svelte
+{#each lines as line}
+	<polyline in:draw points={line} />
+{/each}
+```
+
+If you'd rather keep the original line to avoid drawing the same from scratch you can add the transition on a second line, perhaps thicker. A highlight of sorts.
+
+<!-- prettier-ignore -->
+```svelte
+<polyline points={line} />
+<polyline 
+	in:draw 
+	stroke-width="8"
+	points={line} 
+/>
+```
+
+You may even change the color of the stroke exploring the HSL color space.
+
+<!-- prettier-ignore -->
+```svelte
+<polyline points={line} />
+<polyline
+	in:draw
+	stroke="hsl({Math.floor(Math.random() * 360)}, 80%, 70%)"
+	stroke-width="8"
+	points={line}
+/>
+```
+
+We are just scratching the surface, but finally, SVG proves its worth.
+
+<SVG />
+
+Not convinced? Perhaps you're thrown off by the `draw` function, but believe me, there's no magic behind the convenient instruction. There is definitely a way around the transition module, and you might have seen how [already in nature](/self-reference-in-nature#animation).
+
+Add a `pathLength` attribute on the desired element.
+
+<!-- prettier-ignore -->
+```svelte
+<polyline 
+	class="draw" 
+	pathLength="1" 
+	{line} />
+```
+
+And in CSS create dashes of the same length.
+
+```css
+.draw {
+	stroke-dasharray: 1;
+}
+```
+
+With a CSS animation, then, animate the stroke's offset, showing the solid stroke in place of the empty segment.
+
+```css
+.draw {
+	stroke-dasharray: 1;
+	animation: draw 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes draw {
+	0% {
+		stroke-dashoffset: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+```
+
+The specific duration and timing function? Those match the default values used by Svelte in the `draw` function. The result is essentially the same, and behind the scenes, I wouldn't be surprised to discover the transition works in a very similar way.
+
+At the end of the day, you find the building blocks of the web: HTML, CSS. With the help of JavaScript, the convenience of Svelte and the tantalizing possibilities of SVG.

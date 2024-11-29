@@ -1,0 +1,225 @@
+---
+title: Chroma chameleon
+description: Add life and the colors of the rainbow to an adorable lizard.
+date: 2023-03-24 17:54:56
+---
+
+<script>
+	import svg from './svg.js'
+	import Chroma from './Chroma.svelte'
+	import Translate from './Translate.svelte'
+	import Animate from './Animate.svelte'
+</script>
+
+Ask me to paint you a color-changing lizard and I would sketch you something like the following SVG.
+
+<figure class="[ center-frame ]">
+	{@html svg['chameleon']}
+</figure>
+
+Circles for the evident, glaring eye. `<path>` elements for the round-ish head, body and the limbs. The setup is simple, but enough to convince you: before you sits a adorable chameleon.
+
+It isn't doing a very good job in hiding, but this particular reptile is a bit of a show-off. It doesn't mind being seen, and as a matter of fact, it delights in showing its full range of colors.
+
+<figure class="[ center-frame ]">
+	<Chroma />
+</figure>
+
+How? Always with SVG. Let me set up a canvas with one conspicuous rectangle and explain in detail.
+
+```html
+<svg viewBox="0 0 100 100">
+	<rect width="100" height="100" />
+</svg>
+```
+
+## Colors
+
+With the `fill` attribute you are able to color the rectangle. Any CSS-valid value will do.
+
+```html
+<rect fill="hsl(0, 0%, 30%)" width="100" height="100" />
+```
+
+We are not interested in a solid fill, however, and for the occasion, SVG offers the `<linearGradient>` element. Add an instance with a specific `id` and point to the gradient through the `fill` attribute.
+
+```html
+<linearGradient id="gradient">
+	<!-- ... -->
+</linearGradient>
+<rect fill="url(#gradient)" width="100" height="100" />
+```
+
+Of course you need to build the gradient first to color the shape. In between the opening and closing tags add a `<stop>` element.
+
+```html
+<linearGradient id="gradient">
+	<stop stop-color="hsl(0, 85%, 72%)" offset="0" />
+</linearGradient>
+```
+
+The name of the attributes makes the syntax rather clear: `stop-color` introduces the color, `offset` the point where the color should start. This last attribute falls in the 0 to 1 range, but you could use a percentage as well — "0.2" or "20%". Whichever version suits you best.
+
+Small detail aside, to paint with the colors of the rainbow the <abbr title="Hue Saturation Lightness">HSL</abbr> format helps tremendously. Change the hue across the [0-360] spectrum and you eventually build a most colorful gradient. Red, yellow, green. You get the gist.
+
+```html
+<stop offset="0" stop-color="hsl(0, 85%, 72%)" />
+<stop offset="0.2" stop-color="hsl(60, 85%, 72%)" />
+<stop offset="0.4" stop-color="hsl(120, 85%, 72%)" />
+<stop offset="0.6" stop-color="hsl(180, 85%, 72%)" />
+<stop offset="0.8" stop-color="hsl(240, 85%, 72%)" />
+<stop offset="1" stop-color="hsl(300, 85%, 72%)" />
+```
+
+And you eventually find the finest rectangle.
+
+<figure class="[ center-frame ]">
+	{@html svg['linear-gradient']}
+</figure>
+
+## Rainbows
+
+Ultimately, we want to animate the rainbow to move horizontally, in a seemingly endless stream of colors. And to this end, SVG has a few tricks, or better yet attributes, up its sleeve.
+
+Going back to the linear gradient, past the `id` attribute we can specify the coordinates for the gradient itself.
+
+<!-- prettier-ignore -->
+```html
+<linearGradient 
+	id="gradient" 
+	x1="0" 
+	x2="1" 
+	y1="0" 
+	y2="0">
+	<!-- ...stops -->
+</linearGradient>
+```
+
+From 0 to 1 the values instruct the gradient to go from left to right. Have the second point end earlier, at 0.5, and the gradient stops midway through.
+
+<figure class="[ center-frame ]">
+	{@html svg['x-coordinates']}
+</figure>
+
+Set the `spreadMethod` attribute to `reflect`.
+
+<!-- prettier-ignore -->
+```html
+<linearGradient 
+	id="gradient" 
+	spreadMethod="reflect"
+	x1="0" 
+	x2="0.5" 
+	y1="0" 
+	y2="0" >
+	<!-- ...stops -->
+</linearGradient>
+```
+
+And instead of completing the rectangle with the final value the second half mirrors the first. Purple, back to blue, green and eventually the original red.
+
+<figure class="[ center-frame ]">
+	{@html svg['spread-method']}
+</figure>
+
+The result is charming, but you might anticipate how essential the change is for our animation. Repeat a rectangle to the left — essentially a copy just outside of the visible area.
+
+```html
+<rect fill="url(#gradient)" width="100" height="100" />
+<rect fill="url(#gradient)" x="-100" width="100" height="100" />
+```
+
+Add a group around both shapes.
+
+```html
+<g>
+	<!-- ...rects -->
+</g>
+```
+
+The moment you translate the element you are re-introduced to the colors. From left to right.
+
+<div class="[ center-frame ]">
+	<Translate />
+</div>
+
+Animate the change with CSS and voilà, the effect is complete.
+
+<div class="[ center-frame ]">
+	<Animate />
+</div>
+
+The animation itself is endless, moving the two rectangles to the right before resuming the original offset.
+
+```css
+g {
+	animation: translate 5s infinite;
+}
+
+@keyframes translate {
+	to {
+		transform: translate(100px, 0);
+	}
+}
+```
+
+Since the gradient begins exactly as it ends, however, the jump is imperceptible.
+
+One more detail works to sell the illusion: the timing function. By default animations slow down to reach the final value, but in our project, there is no such thing. You might know of the two rectangles, but to the untrained eye the rainbow continues indefinitely. In light of this, update the position linearly.
+
+```css
+g {
+	animation: translate 5s linear infinite;
+}
+```
+
+The gradient begins as it ends, and so does the movement. From red to red, from 0 to 0.
+
+## Clip
+
+Colored, animated. The canvas resembles the chromatic lizard more and more. But there are no rectangles in the original picture, are there? Well, in fact, there are exactly two of them, with the same gradient and the same horizontal translation.
+
+I decided to animate the shapes only as the lizard appears on screen with JavaScript and the intersection observer API, but that's not the first thing you notice.
+
+You see the outline of the lizard, not regular polygons.
+
+SVG offers here the `<clipPath>` element. Define one similarly to the gradient.
+
+```html
+<clipPath id="clip">
+	<!-- ... -->
+</clipPath>
+```
+
+And refer to the same with the `clip-path` attribute.
+
+```html
+<g clip-path="url(#clip)">
+	<!-- ...rects -->
+</g>
+```
+
+The shapes you add in the clip describe the visible area. Consider for instance a path element, fittingly drawing an arc.
+
+<figure class="[ center-frame ]">
+	{@html svg['path']}
+</figure>
+
+Include the shape not in the SVG, but in the boundaries of the clip.
+
+```html
+<clipPath id="clip">
+	<path d="M 0 75 a 50 50 0 0 1 100 0 l -25 0 a 25 25 0 0 0 -50 0z" />
+</clipPath>
+```
+
+And the rectangles are clipped accordingly.
+
+<figure class="[ center-frame ]">
+	{@html svg['clip-path']}
+	<figcaption>A multicolored <span lang="fr">arc-en-ciel</span>.</figcaption>
+</figure>
+
+This is exactly what happens with the lizard. Instead of one arc, however, the clip includes the `<path>`s for the head, body and limbs.
+
+Shapes which are finally repeated with a solid stroke, perfectly framing the evident, and suddenly more cryptic creature.

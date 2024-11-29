@@ -1,0 +1,168 @@
+---
+title: Templating needs
+description: Build a web component on solid foundations.
+date: 2024-03-28T14:25:23
+---
+
+<script>
+	import Template from './Template.svelte';
+	import './quick-review.js';
+</script>
+
+Web components marry three technologies, which [can be studied](/building-web-blocks) independently of one another:
+
+- custom elements
+
+- the shadow DOM
+
+- HTML templates
+
+But it is when the three come together that it is possible to build modern applications, be it [trivial counters](/counting-numbers), [cutesy interactions](/frame-by-frame-svg) or [useful widgets](/it-s-dis-connected).
+
+Diving further in the `template` element, and the affordances of the connected `slot` element, it is also possible to expand what is possible and build on valid markup, on a perfectly respectable result using nothing but HTML.
+
+In an `.html` document you can set up a `template` element with additional content. Consider a trite card with a title and a brief description.
+
+```html
+<template>
+	<h2>Title</h2>
+	<!-- ...svg -->
+	<p>A short description</p>
+</template>
+```
+
+I couldn't help adding a small vector graphic between the heading and the paragraph, but you can glimpse at the overall structure.
+
+As you might have appreciated [in the past](/building-web-blocks#html-templates), it is possible to benefit from the markup immediately, but only with JavaScript. Indeed, as you render the page the browser knows not to show the elements until you clone the node's inner content.
+
+```js
+const template = document.querySelector('template');
+const clone = template.content.cloneNode(true);
+document.body.appendChild(clone);
+```
+
+Append the clone in the document and you have solid evidence of the template and its framework-like purpose.
+
+<Template />
+
+Hopefully, you see the elements nested in the template, the title, description, and the picture of five rounded stars. Is that invitation enough for a custom element devoted to quick reviews?
+
+```html
+<quick-review></quick-review>
+```
+
+The idea is to use the node as a container for rapid opinions, describing any topic with the suggested text and a numerical rating. With this in mind we can start authoring the element with the goal of using the markup in the template.
+
+```html
+<quick-review>
+	<h2>Dragon quest V</h2>
+	<p>A glorious journey deserving a proper celebration.</p>
+</quick-review>
+```
+
+For this the `template` element offers the `slot` element.
+
+```html
+<template>
+	<slot></slot>
+</template>
+```
+
+One `slot` helps to gather the entire markup, but it is possible to refine the code with multiple slots differentiated by name. With the `name` attribute you describe the exact location of the elements, and get to preserve the vector graphic between the two.
+
+```html
+<template>
+	<slot name="title"></slot>
+	<!-- ...svg -->
+	<slot name="description"></slot>
+</template>
+```
+
+Of course in the process you lose the original labels, but you have the option to preserve even the default text _within_ the slots.
+
+```html
+<slot name="title"><h2>Title</h2></slot>
+<!-- ...svg -->
+<slot name="description"><p>A short description</p></slot>
+```
+
+Should the custom element fail to specify either, you'll be sure to have something to show instead.
+
+On one side you have `slot` elements with unique names. On the opposite end, from the perspective of the custom element, you have the content, and the opportunity to pinpoint the location with the `slot` attribute.
+
+```html
+<quick-review>
+	<h2 slot="title">Dragon quest V</h2>
+	<p slot="description">A glorious journey deserving a proper celebration.</p>
+</quick-review>
+```
+
+The elegance of this setup is evident already. When the browser doesn't recognize the element, it will treat the node similarly to a generic wrapper, and continue to render the nested content. No fuss. Everyone will be able to appreciate your opinion. Of course, we would like to add the stars, and more generally take advantage of the template.
+
+In a script, we define the custom elements in two infamous steps: a class extending `HTMLElement`.
+
+```js
+class QuickReview extends HTMLElement {}
+```
+
+A call to the `customElements` interface linking the class to the hyphenated tag name.
+
+```js
+customElements.define('quick-review', QuickReview);
+```
+
+The bulk of the logic is in the class, however. Here the constructor function is executed as the element is created. Calling `super` we can initialize the element as an instance of `HTMLElement`.
+
+```js
+class QuickReview extends HTMLElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+To pick up the template we first need a reference to the node, and once again a deep clone.
+
+```js
+const template = document.querySelector('template');
+const clone = template.content.cloneNode(true);
+```
+
+Then, we need to add the clone to a shadow root, to the shadow DOM.
+
+```js
+const shadowRoot = this.attachShadow({ mode: 'open' });
+shadowRoot.appendChild(clone);
+```
+
+Append the clone and the class injects the structure described by the template. In the `slot` element, then the content is replaced with the input markup, and the quick summary celebrating a work of art with the full set of stars.
+
+<div>
+	<quick-review>
+		<h2 slot="title">Dragon quest V</h2>
+		<p slot="description">A glorious journey deserving a proper celebration.</p>
+	</quick-review>
+</div>
+
+All that is left, in the unlikely scenario when you will need to talk about less than stellars titles, is to show a different number of icons. One approach is to add an attribute on the opening tag.
+
+```html
+<quick-review stars="3">
+	<!-- ... -->
+</quick-review>
+```
+
+In the class you can then extract the value with the `getAttribute` method.
+
+```js
+const stars = this.getAttribute('stars');
+```
+
+How you update the graphic is beside the point, but in the specific example I chose to hide stars in opacity. You'll be the judge if the result deserves more consideration.
+
+<div>
+	<quick-review stars="3">
+		<h2 slot="title">quick-review</h2>
+		<p slot="description">A highly opinionated web component.</p>
+	</quick-review>
+</div>

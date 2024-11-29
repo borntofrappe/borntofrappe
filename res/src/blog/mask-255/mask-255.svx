@@ -1,0 +1,56 @@
+---
+title: Mask 255
+description: Distill the essence of the mask element down to three color channels.
+date: 2023-07-04T09:58:45
+---
+
+<script>
+	import html from './html.js';
+	import Luminance from './Luminance.svelte';
+</script>
+
+In the body of the `<mask>` element you decide how to mask, how to hide and show parts of the graphic with shapes and colors.
+
+```html
+<mask id="mask">
+	<!-- ... -->
+</mask>
+```
+
+Leave it to white and black and you are able to carve out portions of the SVG, [almost literally](/mask-makeup).
+
+Tap between the two extremes, however, and the SVG becomes translucent. How much? That is decided by the color itself, and specifically the _relative luminance_ of three color channels, red, green and blue.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html html['flasks-color-channels']}
+</figure>
+
+There is technically a fourth channel, alpha, but to get started, let us consider the colored ones only. You can still pretend there is a fourth flask with the saturated trio, invisible to the naked eye.
+
+In a more conventional manner, red green and blue form an RGB combination of 256 possibilities each — `rgb(247 201 74)`.
+
+To compute the luminance, the value is weighed and measured with an arbitrary score. A hard-coded number with clear connotations.
+
+{@html html['math-color-channels']}
+
+The numbers jump to the eye, but are much more evident as you try and test the values for yourself.
+
+<div class="[ center-frame ]" data-size="medium">
+	<Luminance />
+</div>
+
+Boil down the color and green bubbles up with the biggest influence. Try as you might to sum up the other two and they will always fall short of the channel.
+
+Boil down the color and you find the relative luminance in the 0 to 1 range, dictating how much you'll be able to see. From nothing, 0, to everything, 1.
+
+The alpha value? Once you know how the three colors add up, the influence of the fourth channel is quite easy to digest. If you have a semi-transparent color, `rgb(247 201 74 / 0.5)`, multiply the luminance by the single, last number.
+
+Back to the mask element. Between the tags, you can now add the shapes in whichever color you want. White, black, anything in between, knowing all the while how much you'll be able to show, to have the benefiting visual become apparent, invisible, or refreshingly translucent.
+
+<figure class="[ center-frame ]">
+	{@html html['fish-bowl']}
+</figure>
+
+You have plenty of options, but if the discussion is too esoteric, if the resplendent, evanescent fishes aren't enough to treat you, let me leave you with something as remarkable as it is practical.
+
+The three color channels are red, green and blue. Indubitably. CSS has three named colors to match: `red`, `green` and `blue`. Well, proof that you can't trust your senses, among the three, one is going to spoil the recipe. Red and blue indeed match their color channel in full — `red` is `rgb(255 0 0)` and `blue` `rgb(0 0 255)`. `green` on the other hand, is only half as intense, `rgb(0 128 0)`. If you want a named color to represent the second channel as well, you need to reach for [lime](https://drafts.csswg.org/css-color/#valdef-color-lime). Only at that point you find the sparkling, brilliant elixir. Perhaps too brilliant, more than justifying the choice to limit the value for the more popular name.

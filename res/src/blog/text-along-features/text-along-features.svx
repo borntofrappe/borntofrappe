@@ -1,0 +1,185 @@
+---
+title: Text along features
+description: Explore different ways to place text in SVG.
+date: 2023-12-27T18:35:07
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+One of the most pernicious aspects of using text in SVG is the fact that letters behave similarly to shapes. This means you need to use the `fill` attribute to paint text with a distinct color.
+
+```html
+<text fill="currentColor">Hike</text>
+```
+
+And, most importantly, place the text so that you can actually see it. This means you need to offset the `text` element with attributes such as `x` and `y`, to have the string fall within the hard constraints of the `viewBox`.
+
+```html
+<svg viewBox="0 0 100 60">
+	<text x="20" y="20" fill="currentColor">Hike</text>
+</svg>
+```
+
+The x, y coordinates describe the position of the text's baseline. From this point, the text follows in one single line, character after character.
+
+If you long to break words on a new line you don't have the same comfort of HTML. Despite the mention of [content areas](https://svgwg.org/svg2-draft/text.html#TextLayoutContentArea), SVG and line wrapping are two concepts which just don't mix. You have to be explicit and manually reposition the lines with a brand new element or, to maintain the flow of the existing text, with a nested `tspan`.
+
+```html
+<text x="20" y="20" fill="currentColor">
+	Hike
+	<tspan x="20" y="40">across</tspan>
+</text>
+```
+
+Before you curse the strict nature of SVG, however, consider the format in its full potential. Text is treated like shapes, and within the `svg` element, it can be positioned with extreme precision and fanciful twists. For these, you have access to the `textPath` element.
+
+The concept is quite easy to grasp with an example. Consider a line, connecting two points from start to end.
+
+```html
+<path d="M 40 50 80 40" fill="none" stroke="currentColor" />
+```
+
+With `textPath` you can place the text on this very signature. You need to add an `id` attribute to the `path`, to identify the piece, and then introduce the new element.
+
+```html
+<path id="mountain" d="M 40 50 80 40" fill="none" stroke="currentColor" />
+<text fill="currentColor">
+	<textPath href="#mountain">Climb</textPath>
+</text>
+```
+
+`textPath` is nested in the `text` element, wraps around the content and points to the line through the `href` attribute.
+
+<figure class="[ center-frame ]">
+	{@html svg['text-textPath']}
+</figure>
+
+If the possibility excites you, there are very good reasons. `path` is possibly _the_ most flexible of the elements in SVG. With it, you can draw virtually any shape, with straight segments, curves, and arcs. The `d` attribute introduces a microcosm of instructions and a world of options. `textPath`, on its own, comes with several options, but while these are specified in the more recent [SVG 2 standard](https://svgwg.org/svg2-draft/text.html#TextPathElement), they are not supported wide and through.
+
+Testing the code I found that Firefox is more than happy to comply with the new-fangled syntax, while Chrome ignores the instructions without much care. This means you can at least try the features in some settings. For all others, there's always an alternative in the existing tech.
+
+## Follow a shape
+
+With the `href` attribute you can reference a path and, theoretically, any other drawing element, such as `line`, `polyline` and `rect`. These offer a convenient formula for frequent figures.
+
+```html
+<rect id="shape" x="10" y="10" width="30" height="30" fill="none" stroke="currentColor" />
+```
+
+Add an `id` to the element and refer to the shape directly.
+
+```html
+<text fill="currentColor">
+	<textPath href="#shape">Shape walker</textPath>
+</text>
+```
+
+If you test the code and don't see any text, just the rectangle, it's not your fault. And after this article, not entirely. The browser might not be able to configure the letters on the outline of the rectangle. And in this instance you can fall back to the working `path`.
+
+In truth, any element in SVG is drawn as a `path`. Instead of using the shorthand `rect` syntax, you can recreate the shape with the `d` attribute.
+
+```html
+<path id="shape" d="M 10 10 40 10 40 40 10 40 Z" fill="none" stroke="currentColor" />
+```
+
+You have some freedom to frame the polygon, specifying the vertices the shape, or again horizontal and vertical segments.
+
+```text
+M 10 10 40 10 40 40 10 40 Z
+M 10 10 H 40 V 40 H 10 Z
+```
+
+But ultimately, you can be sure that the text will follow the rule.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['textPath-shape']}
+</figure>
+
+## Pick a side
+
+Another exciting option comes in the form of the `side` attribute. In every example so far, the letters are placed in only one way. Left to right, and out the outside of the more elaborate rectangle. With the attribute you gain the option to reverse the trend, and at least with the polygon, trace the innards of the shape. You can think of how this could be useful with a round shape, something you can draw with a `circle`.
+
+```html
+<circle r="20" />
+```
+
+But again, you can't trust the shape as-is. This time, the markup is quite more contorted, and relies on a rather [convolute string](/character-arc). To recreate the figure with the `path` element you need to draw two arcs, two semicircles crafting the shape in a clockwise manner.
+
+```html
+<path id="shape" d="M 20 0 A 20 20 0 0 1 -20 0 A 20 20 0 0 1 20 0" />
+```
+
+Again, link to the shape and the text is drawn on the outside.
+
+```html
+<text fill="currentColor">
+	<textPath href="#shape">Outside track</textPath>
+</text>
+```
+
+And to change this default, you'd need the cited `side`. The attribute can assume one of two values: `left` — what you've seen already —, and the opposite `right`.
+
+```html
+<text fill="currentColor">
+	<textPath side="right" href="#shape">Inside view</textPath>
+</text>
+```
+
+But alas, the browser might falter once more. And once more, you can be sure that there is an answer in the `path` element. To be precise, a _different_ `path` altogether, drawing the circle counter-clockwise.
+
+```diff
+-<path id="shape" d="M 20 0 A 20 20 0 0 1 -20 0 A 20 20 0 0 1 20 0" />
++<path id="shape" d="M 20 0 A 20 20 0 0 0 -20 0 A 20 20 0 0 0 20 0" />
+```
+
+Drawing the shape inside-out the text starts out on the same side — right — only to continue as reversed and desired.
+
+<figure class="[ center-frame ]">
+	{@html svg['textPath-side']}
+</figure>
+
+## Forge ahead
+
+There's another attribute worth a mention, at least in how you structure the vector as a whole. In the snippets I've taken good care to include the `path` element, and style it with `stroke-dasharray` to tweak the design. With the `path` attribute, however, you can go straight to the point, and include the instructions alongside the text.
+
+```html
+<text fill="currentColor">
+	<textPath
+		path="M 30 27.5 L -21 27.5 -21 15 A 15 10 0 0 0 9 15 L 15 15 A 15 10 0 0 0 45 15 L 51 15 A 15 10 0 0 0 81 15 L 81 27.5 30 27.5"
+	>
+		Trailblazer
+	</textPath>
+</text>
+```
+
+No need to draw the element. No need to connect the element with the `href` attribute. Unless you want to support all browsers. And this time, there's no alternative to speak of, you can't rely on the snippet. But if your intent is not to show the figure, there's a proper way to achieve the result. Far from hiding the element by messing with its `fill`, or again its `opacity`.
+
+```html
+<path fill="none" opacity="0" id="bridge" d="M 30 27.5 ..." />
+```
+
+In SVG you can move the helper graphic between `defs` tags.
+
+```html
+<defs>
+	<path id="bridge" d="M 30 27.5 ..." />
+</defs>
+```
+
+You define the shape and go back to the contract between `id` and `href`.
+
+```html
+<text fill="currentColor">
+	<textPath href="bridge">Trailblazer</textPath>
+</text>
+```
+
+You might have noticed there are a few issues, but also more than one way to solve these problems. This speaks to SVG as a whole, there often more than one way to achieve some effect.
+
+The moment the code doesn't behave as intended, look for answers in the standard, whether it is the SVG 2 or the previous, more widespread specification. You have some work to do, but it's well worth the price to create impressive graphics, and showcase what is possible with a few more lines, a few more `path`s. Whether or not you choose to paint them, then, it's up to you.
+
+<figure class="[ center-frame ]" data-size="large">
+	{@html svg['textPath-showcase']}
+</figure>

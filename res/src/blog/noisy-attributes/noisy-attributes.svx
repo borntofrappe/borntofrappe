@@ -1,0 +1,69 @@
+---
+title: Noisy attributes
+description: SVG makes it easy to entertain and understand even the more obscure syntax.
+date: 2023-08-21T17:35:14
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+SVG shines in being able to match code to immediate results.
+
+```html
+<rect width="100" height="100" />
+```
+
+You are able to decipher most attributes by name, but even when the labels are more cryptic, you can appreciate their purpose updating the values. In this regard there's no better example than SVG filters, and the many primitives baked in the framework.
+
+Consider `feTurbulence`. [The element](/filter-art#in-practice) promises to create a texture with a noise function and two essential arguments: `numOctaves` and `baseFrequency`.
+
+```html
+<feTurbulence numOctaves="1" baseFrequency="0.1" />
+```
+
+But what do these attributes actually mean? One way to answer this question is plainly by trial. Different filters with different values.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['feTurbulence']}
+</figure>
+
+Increase `numOctaves` and the texture becomes more complex. You can still see the pattern of the first picture, but the result is more varied.
+
+Increase `baseFrequency` and the effect is quite different. The image is fragmented in smaller and smaller pieces, to the point of being almost unrecognizable.
+
+With this, you understand the influence of the attributes. You can take values and put the primitive to good use.
+
+That being said, there's certainly more behind the scenes. And once you research the topic, SVG helps once more to put words into pictures.
+
+To understand how a noise function operates consider a 2D plane. Pick random values over time, with a certain frequency and a purely random measure, a random _amplitude_.
+
+<figure class="[ center-frame ]">
+	{@html svg['amplitude-frequency']}
+</figure>
+
+Connect the points and you find an _octave_. You can link the values any which way, even with straight lines, but to find smoother changes a curve works best.
+
+<figure class="[ center-frame ]">
+	{@html svg['octave']}
+</figure>
+
+As you traverse the function the amplitude changes at random, per the random points, but smoothly, per the connecting shape. You move in softer inclines rather than janky, immediate jumps.
+
+Already you understand more about the filter primitive. `baseFrequency` changes the number of points in the octave function. When you increase the value, you connect the points with ever smaller curves. The randomness becomes more evident and the texture less predictable.
+
+`numOctaves`? You are not limited to a single, interpolating curve. The moment you increase the number you repeat the exercise from the first function, with one precaution. With each iteration decrease the amplitude. With each iteration increase the frequency.
+
+You have a series of curves which are more and more variable, with smaller and smaller values. Add these values on the first octave and the effect is complete.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['noise']}
+</figure>
+
+As the first function absorbs the changes the soft curve is augmented with small bumps, minor wrinkles. The overall shape, however, is mostly preserved.
+
+`feTurbulence` works in one more dimension, on the x and y axis, but in much the same way. You proved this by changing the values, and you understand it by plotting a few points. More than enough to take the element and reveal a new image. Attributes and all.
+
+<figure class="[ center-frame ]">
+	{@html svg['card-v']}
+</figure>

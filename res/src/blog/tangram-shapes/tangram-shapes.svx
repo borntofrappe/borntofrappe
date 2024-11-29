@@ -1,0 +1,473 @@
+---
+title: Tangram shapes
+description: A playful exploration of the SVG coordinate system, spruced up with CSS transitions and specificity.
+date: 2023-02-08T21:45:29
+---
+
+<script>
+    import svg from './svg.js';
+    import Commands from './Commands.svelte';
+    import Paths from './Paths.svelte';
+    import Angle from './Angle.svelte';
+    import Transformations from './Transformations.svelte';
+    import Toggle from './Toggle.svelte';
+    import Transition from './Transition.svelte';
+</script>
+
+When drawing vector graphics I often struggle to describe measurements. Take the following `<path>` element:
+
+```html
+<path d="M 0 0 l 2 2 l 2 -2" />
+```
+
+I would argue in terms of commands:
+
+- `M 0 0`: move to (0, 0)
+
+- `l 2 2`: line to (2, 2)
+
+- `l 2 -2`: line to (4, 0)
+
+<div class="[ center-frame ]">
+	<Commands viewBox="-1 -1 6 4" commands="M 0 0 l 2 2 2 -2z" strokeWidth={0.2} />
+</div>
+
+Conveniently, you don't need to repeat the `l` character after the first instance. The browser assumes the same instruction until told otherwise.
+
+```diff
+-<path d="M 0 0 l 2 2 l 2 -2" />
++<path d="M 0 0 l 2 2 2 -2" />
+```
+
+Eventually, you draw a triangle. How much space will that triangle occupy on the page? How many pixels? Well, there's not a single answer, and that taps into the scalability of SVG.
+
+Set the width to 4 pixels and the element occupies an area 4 pixels wide. Change the value to 40 pixels and the triangle will grow to the new measure.
+
+With this in mind, when you move to the point (2, 2), you can't really say "move 2 pixels right, 2 pixels down". Just, "move 2 units right, 2 units down". Relative to what? Enters the SVG coordinate system, explored in the context of seven puzzle pieces.
+
+## SVG shapes
+
+With the `viewBox` attribute set up an `<svg>` element with a 4 by 4 canvas. The default is 300 by 100, but we don't need such outrageous values.
+
+```html
+<svg viewBox="0 0 4 4">
+	<!--  -->
+</svg>
+```
+
+The triangle introduced earlier is one of the largest pieces of the set, and we only need as much space as to fit the same `<path>` element.
+
+As a matter of fact, there's another triangle as big. Let's start from the origin, but end in the bottom left corner.
+
+<!-- prettier-ignore -->
+```html
+<path d="M 0 0 l 2 2 2 -2" />
+<path d="M 0 0 l 2 2 -2 2" />
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2"]} />
+</figure>
+
+Moving on to smaller pieces, there are two miniscule triangles we can paint in increments.
+
+<!-- prettier-ignore -->
+```html
+<path d="M 3 1 l 1 -1 0 2" />
+<path d="M 1 3 l 1 -1 1 1" />
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1"]} />
+</figure>
+
+One beefier triangle ties up the bottom right corner.
+
+```html
+<path d="M 2 4 l 2 -2 0 2" />
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2"]} />
+</figure>
+
+A solitary square tipped on its side glues the section together.
+
+```html
+<path d="M 2 2 l 1 -1 1 1 -1 1" />
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1"]} />
+</figure>
+
+One oblong trapezoid completes the set.
+
+```html
+<path d="M 0 4 l 1 -1 2 0 -1 1" />
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	<Paths viewBox="0 0 4 4" ds={["M 0 0 l 2 2 2 -2", "M 0 0 l 2 2 -2 2", "M 3 1 l 1 -1 0 2", "M 1 3 l 1 -1 1 1", "M 2 4 l 2 -2 0 2", "M 2 2 l 1 -1 1 1 -1 1", "M 0 4 l 1 -1 2 0 -1 1"]} />
+</figure>
+
+Turns out, 4 by 4 was more than enough.
+
+We can color the pieces through the `fill` attribute to make the shapes more appealing, but the puzzle is set.
+
+<figure class="[ center-frame ]">
+	{@html svg['tangram-set']}
+</figure>
+
+## SVG transform
+
+The most immediate way to shuffle the shapes around comes from the `transform` attribute, translating and rotating elements through dedicated functions.
+
+I like to delegate the transformation to group elements, so to have the `<path>` focused on the drawing logic.
+
+```html
+<g transform="rotate(45)">
+	<path d="M 0 0 l 2 2 2 -2" />
+</g>
+```
+
+Little hiccup, however. Rotate the triangle in the snippet and the operation takes place as expected.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['rotate-large-triangle']}
+</figure>
+
+Rotate one of the other shapes, one which is not drawn from the origin like the square, and well, the result is certainly not the same.
+
+```html
+<g transform="rotate(45)">
+	<path d="M 2 2 l 1 -1 1 1 -1 1" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['rotate-tilted-square']}
+</figure>
+
+Your eyes do not deceive you. The square is drawn in its entirety, but parts of it are just outside of the visible area. Increase the angle and you'll see the square slowly moving out of position.
+
+<div class="[ center-frame ]">
+	<Angle />
+</div>
+
+In the mesmerizing realm of the SVG coordinate system, transformations are applied from an origin point, beginning with the value described by the `viewBox` attribute — in our example (0, 0).
+
+To move this hinge, this frame of reference, you need to apply a translation ahead of time.
+
+```html
+<g transform="translate(2 2)">
+	<!-- rotated shape -->
+</g>
+```
+
+Since you moved the origin, draw the path from (0, 0).
+
+```diff
+-<path d="M 2 2 l 1 -1 1 1 -1 1" />
++<path d="M 0 0 l 1 -1 1 1 -1 1" />
+```
+
+The moment you then apply the rotation, this one works to rotate the element from the starting coordinate.
+
+```html
+<g transform="translate(2 2)">
+	<g transform="rotate(45)">
+		<path d="M 0 0 l 1 -1 1 1 -1 1" />
+	</g>
+</g>
+```
+
+<div class="[ center-frame ]">
+	<Angle translate={true} />
+</div>
+
+There's nothing inherently wrong with the first transformation. There might come a day you'll want to move elements from a different advantage point. In this tangram puzzle, however, we want to scatter the pieces from their initial (x, y) value.
+
+If you are a fan of brevity, you can even apply the transformations in sequence, with a single group.
+
+```html
+<g transform="translate(2 2) rotate(45)">
+	<path d="M 0 0 l 1 -1 1 1 -1 1" />
+</g>
+```
+
+The order matters, but we'll see how later with a more practical example.
+
+## Transform practice
+
+Draw every shape from (0, 0).
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['draw-from-origin']}
+</figure>
+
+The pieces stack one above the other, with later elements drawn on top of the previous shapes.
+
+In order to return to the compact configuration, wrap the elements in a group, and translate them by the now-unnecessary offset.
+
+| `d`                     | `transform`      |
+| ----------------------- | ---------------- |
+| `M 0 0 l 2 2 2 -2`      | `translate(0 0)` |
+| `M 0 0 l 2 2 -2 2`      | `translate(0 0)` |
+| `M 0 0 l 1 -1 0 2`      | `translate(3 1)` |
+| `M 0 0 l 1 -1 1 1`      | `translate(1 3)` |
+| `M 0 0 l 2 -2 0 2`      | `translate(2 4)` |
+| `M 0 0 l 1 -1 1 1 -1 1` | `translate(2 2)` |
+| `M 0 0 l 1 -1 2 0 -1 1` | `translate(0 4)` |
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['draw-from-translated-origin']}
+</figure>
+
+If you feel cheated you've already seen the set, do not fret. We are going to move the pieces around in a brand new visual. This one is going to exceed the visible area, so we need to first adjust the `viewBox`.
+
+```diff
+-<svg viewBox="0 0 4 4">
++<svg viewBox="-2 -2 8 8">
+```
+
+The update is fairly technical, but in essence, you inset the canvas by 2 units and expand its size by twice the amount, 4. In this manner you have some space around the centered `<path>`s.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['expand-viewbox']}
+</figure>
+
+On to the sliding practice. The shape of a heart makes for a perfect milestone. Simple, yet striking.
+
+Slide the first piece slightly to the right, slightly to the bottom.
+
+```html
+<g transform="translate(1 1)">
+	<path d="M 0 0 l 2 2 2 -2" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['heart-set-1']}
+</figure>
+
+The second, large triangle should sit right above, and we can achieve this in two steps:
+
+1. translate the group to the same point
+
+2. rotate the shape around the offset coordinate
+
+```html
+<g transform="translate(1 1) rotate(-90)">
+	<path d="M 0 0 l 2 2 -2 2" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['heart-set-2']}
+</figure>
+
+As mentioned in the previous section, the order of the operations matters. Consider the steps in increments.
+
+<div class="[ center-frame ]">
+	<Transformations />
+</div>
+
+If you were to reverse the instructions, if you were to rotate the group first, you would then move the triangle in a completely different spot.
+
+<div class="[ center-frame ]">
+	<Transformations reverse={true} />
+</div>
+
+When you apply the rotation, you rotate the coordinate system. Every instruction which follows will be tilted accordingly. Once more, you may want to, just not today.
+
+The first small triangle fits nicely at the top of the left side.
+
+```html
+<g transform="translate(1 -1) rotate(90)">
+	<path d="M 0 0 l 1 -1 0 2" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['heart-set-3']}
+</figure>
+
+The second smaller unit could go pretty much anywhere, but the oblong piece surely fits nicely in the empty space.
+
+```html
+<g transform="translate(-1 1)">
+	<path d="M 0 0 l 1 -1 2 0 -1 1" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['heart-set-4']}
+</figure>
+
+The remaining triangles mirror the image on the left side.
+
+```html
+<g transform="translate(1 1) rotate(90)">
+	<path d="M 0 0 l 1 -1 1 1" />
+</g>
+
+<g transform="translate(1 3) rotate(-90)">
+	<path d="M 0 0 l 2 -2 0 2" />
+</g>
+```
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['heart-set-5']}
+</figure>
+
+Finally, the square tucks the visual at the very bottom. No rotation required.
+
+```html
+<g transform="translate(1 3)">
+	<path d="M 0 0 l 1 -1 1 1 -1 1" />
+</g>
+```
+
+<figure class="[ center-frame ]">
+	{@html svg['heart-set-complete']}
+</figure>
+
+## CSS transform
+
+SVG has a `transform` attribute. On its side, CSS has a `transform` property. The two work rather similarly, but there are few notable differences.
+
+Once again, let's take the square as an example.
+
+```html
+<g transform="translate(1 3)">
+	<path d="M 0 0 l 1 -1 1 1 -1 1" />
+</g>
+```
+
+Target the group element with the `nth-of-type` selector. This is the penultimate shape.
+
+```css
+svg > g:nth-of-type(6) {
+	/*  */
+}
+```
+
+To move the group around, you need to specify a unit of measure, pixels to be precise.
+
+```css
+svg > g:nth-of-type(6) {
+	transform: translate(1px, 1px);
+}
+```
+
+Do not forget the compulsory comma between the two offsets as well.
+
+<figure class="[ center-frame ]">
+	{@html svg['translate-with-css-one']}
+</figure>
+
+Ultimately, the element is translated in the context of the `viewBox` attribute — the piece slides 1 unit to the right, 1 unit to the bottom. That being said, the `px` suffix requires a small mental adjustment compared to the SVG, unitless version.
+
+I did not mention anything about the `transform` attribute on the group. The SVG version is still there, but the `transform` property takes precedence — CSS specificity at work. This means we can recreate the compact set with the original translations in the stylesheet.
+
+```css
+svg > g:nth-of-type(1) {
+	transform: translate(0px, 0px);
+}
+svg > g:nth-of-type(2) {
+	transform: translate(0px, 0px);
+}
+svg > g:nth-of-type(3) {
+	transform: translate(3px, 1px);
+}
+svg > g:nth-of-type(4) {
+	transform: translate(1px, 3px);
+}
+svg > g:nth-of-type(5) {
+	transform: translate(2px, 4px);
+}
+svg > g:nth-of-type(6) {
+	transform: translate(2px, 2px);
+}
+svg > g:nth-of-type(7) {
+	transform: translate(0px, 4px);
+}
+```
+
+<figure class="[ center-frame ]">
+	{@html svg['translate-with-css-all']}
+</figure>
+
+## CSS transition
+
+There is a point in introducing CSS and the overriding syntax. In the world of cascading stylesheets you have access to the `transition` property, and the enticing possibility of moving the shapes smoothly over time.
+
+Condition the CSS properties to a class, right on the `<svg>` element.
+
+```css
+/* :nth-of-type 1 to 7 */
+svg.tangram > g:nth-of-type(7) {
+	transform: translate(0px, 4px);
+}
+```
+
+Toggle the class and immediately you go from the compact set to the heart-warming visual.
+
+<div class="[ center-frame ]">
+	<Toggle />
+</div>
+
+Apply a transition on the direct children.
+
+```css
+svg > g {
+	transition: transform 0.75s ease-in-out;
+}
+```
+
+And enjoy the smooth update.
+
+<div class="[ center-frame ]">
+	<Toggle transition={true} />
+</div>
+
+Job done? Not really. I tested the code on FireFox and, at the time of writing, the browser doesn't seem to process the change between SVG attributes and CSS properties that well.
+
+The discovery doesn't spoil the entire exercise, however, and is a perfect excuse to discuss CSS specificity one last time.
+
+The solution is to rely entirely only on CSS, for both configurations.
+
+Update the markup to replace the attributes with inline styles. From SVG to CSS.
+
+```diff
+-<g transform="translate(1 3)">
++<g style="transform: translate(1px, 3px)">
+```
+
+Thankfully, the change requires a minor tweak to the syntax.
+
+| `transform`      | `style="transform"`   |
+| ---------------- | --------------------- |
+| `translate(0 0)` | `translate(0px, 0px)` |
+| `translate(0 0)` | `translate(0px, 0px)` |
+| `translate(3 1)` | `translate(3px, 1px)` |
+| `translate(1 3)` | `translate(1px, 3px)` |
+| `translate(2 4)` | `translate(2px, 4px)` |
+| `translate(2 2)` | `translate(2px, 2px)` |
+| `translate(0 4)` | `translate(0px, 4px)` |
+
+In the stylesheet override the values with the `!important` flag. The only option to triumph over the highly specific inline styles.
+
+```css
+/* :nth-of-type 1 to 7 */
+svg.tangram > g:nth-of-type(7) {
+	transform: translate(0px, 4px) !important;
+}
+```
+
+And then you are really, finally done. Free to experiment with different timing functions and enjoy the end result.
+
+<div class="[ center-frame ]" data-size="medium">
+	<Transition />
+</div>

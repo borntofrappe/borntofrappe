@@ -1,0 +1,256 @@
+---
+title: Startling discoveries
+description: Curious findings behind a small, sensitive button.
+date: 2024-02-28T15:06:15
+---
+
+<script>
+	import svg from './svg.js';
+	import Button from './Button.svelte';
+</script>
+
+In [a recent project](/when-lightning-strikes) I had the time to create a little button with a rather appealing interaction. Despite the small size, a lot of consideration went into the widget, a wealth of SVG and CSS features worth a second look.
+
+## SVG
+
+Our journey begins with a vector graphic, the icon of a fingerprint drawn after the version from [Google own set](https://fonts.google.com/icons).
+
+I think it good practice to take the images and recreate them in a code editor, if nothing to flex what is possible in the `d` attribute of `path` elements.
+
+```html
+<path d="..." fill="none" stroke="currentColor" stroke-width="6" />
+```
+
+Of late, I also took a liking to draw as much as possible with a single `path`, adding multiple instructions in the same element.
+
+<!-- prettier-ignore -->
+```html
+<path d="M 77 84 C 60 87 47.5 78 47.5 63 M 62 94 C 46 94 35 80 35 63 A 12.5 12.5 0 0 1 60 63 M 37 93 C 18 81 20 39 47.5 38 A 25 25 0 0 1 72.5 63 L 72.5 64 M 17 81 C 4 52 25 27 50 27 C 79 28 85 51 85 65 M 10 36 C 25 10 75 10 90 36 M 21 12 C 36 2 66 2 79 12" fill="none" stroke="currentColor" stroke-width="6" />
+```
+
+Every segment begins with the `M` character, setting the position for the curves, arcs, and cheeky little line which follow.
+
+The result is not a perfect replica [of the original](https://fonts.google.com/icons?icon.query=fingerprint). Past the most miniscule differences in terms of curves, the position of the vertices and control points, there is also a more evident, structural difference. But for our purposes, the single `path` leads to a respectable print.
+
+<figure class="center-frame" data-size="small">
+	{@html svg['path']}
+</figure>
+
+The idea is to animate the shapes in opacity, perhaps adding a small delay to the different portions. In this sense, the more fragmented look works better to make sense of the pieces.
+
+But unfortunately, it also means that the short, concise syntax is no longer of use. Instead of one single `path`, we need multiple elements, each responsible for a single ridge.
+
+```html
+<path d="M 77 84 C 60 87 47.5 78 47.5 63" />
+<path d="M 62 94 C 46 94 35 80 35 63 A 12.5 12.5 0 0 1 60 63" />
+<!-- ...paths 3 to 6 -->
+```
+
+You can wrap the lot in a common group element, which helps to change the appearance of the entire set — no need to repeat attributes over and over.
+
+```html
+<g fill="none" stroke="currentColor" stroke-width="6">
+	<!-- ...paths -->
+</g>
+```
+
+In terms of image, the result is the same, but you can now change the different parts.
+
+## CSS
+
+In a stylesheet target the `path`s to set `opacity` to 0.
+
+```css
+g > path {
+	opacity: 0;
+}
+```
+
+From this starting point, the animation is a matter of keyframes and the `animation` property.
+
+With the keyframes you set the properties assumed by the elements, from start to end. You can get by with a single stop, the `to` keyframe, where the paths become fully opaque.
+
+```css
+@keyframes fade-in {
+	to {
+		opacity: 1;
+	}
+}
+```
+
+With the `animation` property you then trigger the animation.
+
+```css
+g > path {
+	opacity: 0;
+	animation: fade-in 2s;
+}
+```
+
+To stagger the change between successive elements, all you need is an adjustment with the `animation-delay` property. Luckily, in the markup I took care to add the ridges in order, starting with the innermost fragment. This means you can increase the delay with the `nth-child` selector, focusing the individual nodes one by one.
+
+```css
+g > path:nth-child(1) {
+	animation-delay: 0.1s;
+}
+
+g > path:nth-child(2) {
+	animation-delay: 0.2s;
+}
+/* ...child 3 to 6 */
+```
+
+This is enough to kickstart the change, and have the paths appear out of nowhere.
+
+<figure class="center-frame" data-size="small">
+	{@html svg['animation']}
+</figure>
+
+I set the animation to repeat indefinitely, an infinite amount of time, to showcase the fading.
+
+```css
+g > path {
+	opacity: 0;
+	animation: fade-in 2s infinite;
+}
+```
+
+Addition aside, done and dusted? Not exactly. In testing the feature I stumbled on a pesky issue, with a few browsers failing to show the icon. Firefox specifically struggled to render a single ridge, unless you first interacted with the page. I can only guess that the browser doesn't expect that the SVG elements are going to change in opacity, it doesn't consider the fading a priority.
+
+The solution? The seldom used property going by the name of `will-change`.
+
+```css
+g > path {
+	opacity: 0;
+	animation: fade-in 2s infinite;
+	will-change: opacity;
+}
+```
+
+With the property you can make your intentions explicit: _"these `path` elements are going to change in opacity"_. The browser is then primed and ready for the animation. Smooth and staggered.
+
+Of course, the animation works to demonstrate the effect, but is not as practical as it is impressive. Instead of animating the opacity, it might be preferable to change the property following a specific condition, a given state.
+
+You can wrap the icon in a `button` element.
+
+```html
+<button>
+	Unlock
+	<svg viewBox="0 0 100 100">
+		<!-- ...g & paths -->
+	</svg>
+</button>
+```
+
+In this role, it is often useful to set the dimensions of the decorative graphic with the `width` and `height` attribute, both in `em` units.
+
+```html
+<svg width="1em" height="1em" viewBox="0 0 100 100">
+	<!-- ...g & paths -->
+</svg>
+```
+
+In this manner the icon is sized relative to the `font-size` property of the button. Should you increase the size of the text.
+
+```css
+button {
+	font-size: 1.25rem;
+}
+```
+
+The icon will grow to follow.
+
+Don't worry about the specific values, either. In the stylesheet you always have the option to override both attributes with the `width` and `height` properties, or the more logical `inline-size` and `block-size`.
+
+```css
+button > svg {
+	inline-size: 1.5em;
+	block-size: 1.5em;
+}
+```
+
+Regardless, instead of animating the opacity you can set the initial value immediately, hiding the shapes.
+
+```css
+button g > path {
+	opacity: 0;
+}
+```
+
+And anticipate the change with the `transition` property.
+
+```css
+button g > path {
+	opacity: 0;
+	transition: opacity 0.3s;
+	will-change: opacity;
+}
+```
+
+Instead of spelling the name of the animation, here you declare the properties that are going to change — the only needed `opacity`.
+
+The `will-change` property remains useful, to accommodate the change, but the way you stagger this change has a new name, a new property in `transition-delay`.
+
+```css
+button g > path:nth-child(1) {
+	transition-delay: 0.1s;
+}
+
+button g > path:nth-child(2) {
+	transition-delay: 0.2s;
+}
+/* ...child 3 to 6 */
+```
+
+With this setup, you are missing only one more instruction, detailing the instant in which the `path`s should appear. At first I thought of the hover state, with the `:hover` pseudo class, but I think you'll agree that the active state, and the class bearing the same name, are a much better fit.
+
+```css
+button:active g > path {
+	opacity: 1;
+}
+```
+
+The perfect way to couple an impressive change with an icon waiting for your input, providing enough feedback to make you press even the most pointless button.
+
+<Button />
+
+And keep that button pressed.
+
+---
+
+Noticed something different with the final button? Testament that one can always improve, I've managed to sneak in a few tweaks in the demo. Not just in terms of a more soothing easing function.
+
+```css
+button g > path {
+	/* ... */
+	transition: opacity 0.3s cubic-bezier(0.37, 0, 0.63, 1);
+}
+```
+
+Not just with a slightly shorter delay for the ridges.
+
+```css
+button g > path:nth-child(1) {
+	transition-delay: 0.05s;
+}
+
+button g > path:nth-child(2) {
+	transition-delay: 0.1s;
+}
+/* ...child 3 to 6, 0.15s to 0.3s */
+```
+
+But, more prominently, in the way the delays take place. I've set the `transition-delay` property, but not for the `path` elements as-is. Only pending the `:active` state on the parent button.
+
+```css
+button:active g > path:nth-child(1) {
+	transition-delay: 0.05s;
+}
+
+button:active g > path:nth-child(2) {
+	transition-delay: 0.1s;
+}
+/* ...child 3 to 6, 0.15s to 0.3s */
+```
+
+As the button is pressed, the fading occurs as expected, in sequence. But as the change is reversed, the transition is shared. A matter of preference, ultimately, but a small little touch with a lot to say.

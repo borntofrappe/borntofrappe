@@ -1,0 +1,189 @@
+---
+title: Pseudo control
+description: Style web components with CSS and a few custom hooks.
+date: 2024-03-29T15:01:22
+---
+
+<script>
+	import svg from './svg.js';
+	import UpdateReview from './UpdateReview.svelte';
+</script>
+
+For the purpose of web components CSS offers a series of custom selectors; pseudo classes and pseudo elements to change the appearance of the elaborate markup. These ponder the shadow DOM, so that you are able to style the content inside and outside of a shadow root.
+
+To have a reference, and a convenient starting point, we are going to update an existing web component devoted to quick reviews. [The accompanying article](/templating-needs) develops the component in great detail, so that we can take much of the code for granted, and focus on the overall structure.
+
+On one side we have a `template` element, framing the content with two slots and one `svg` element.
+
+{@html svg['defs']}
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-inspector-template']}
+</figure>
+
+On the other side we have a custom element, taking advantage of the template with a heading and paragraph.
+
+<figure class="center-frame" data-size="medium">
+	{@html svg['console-inspector-element']}
+</figure>
+
+When the web component is built the contents of the template are cloned in a shadow root, and the two elements are literally slotted in place.
+
+Knowing this structure, it is possible to style the markup in several manners.
+
+## Style within
+
+In the `template` element you can add CSS with a `<style>` tag.
+
+```html
+<template>
+	<style></style>
+	<!-- ... -->
+</template>
+```
+
+As the code is encapsulated in the shadow DOM, the nested key-value pairs will only affect the elements in the same scope, in the template. This means we can already style the vector graphic.
+
+```html
+<style>
+	svg {
+		block-size: 1.5rem;
+		inline-size: auto;
+	}
+</style>
+```
+
+The properties change the single element, and will not escape the boundary of the shadow root.
+
+To style the remaining elements, however, we don't have the same direct connection. The heading and the paragraph live in the custom element, and far as the template is concerned, the two might as well not exist. Even if you were to identify the nodes with the correct tag, the properties will change only the elements inside of the template, not those slotted afterwards.
+
+```html
+<style>
+	h2 {
+		font-weight: 400;
+	}
+</style>
+```
+
+To solve this issue CSS offers the `::slotted` pseudo element. Within the parenthesis you point to the desired selector, and the changes will correctly apply.
+
+```css
+::slotted(h2) {
+	font-weight: 400;
+}
+```
+
+Always within the template, you have the option of styling the custom element, as a whole. You can certainly target the node in the larger document with the hyphenated name.
+
+```css
+quick-review {
+	color: hsl(210 17% 98%);
+	background: hsl(210 9% 31%);
+}
+```
+
+In the template, the same possibility goes through the `:host` pseudo class. And raises a concept worth learning. Say that you style the host in color and background.
+
+```css
+:host {
+	color: hsl(210 17% 98%);
+	background: hsl(210 9% 31%);
+}
+```
+
+The first will alter the color of the text, but the latter, seemingly, will not apply to the surface behind. The reason for this is that the custom element extends a generic `HTMLEelement`. While a browser may treat an element it doesn't recognize as a generic container, it will not treat the same exactly as a `div`. There is no equivalent value for the `display` property, explaining the mishap. The element has no width, nor height to paint with the color, so that you need to explicit the property to describe a block.
+
+```css
+:host {
+	color: hsl(210 17% 98%);
+	background: hsl(210 9% 31%);
+	display: block;
+}
+```
+
+And perhaps a few more to keep the dimensions in check.
+
+```css
+:host {
+	/* ... */
+	display: block;
+	inline-size: max-content;
+	max-inline-size: 30ch;
+}
+```
+
+Connected to the host pseudo selector, there exists the `host()` function. Between parenthesis you specify a parameter, for instance a class.
+
+```css
+:host(.update) {
+	background-image: url('...cool-background');
+}
+```
+
+The changes will then apply when the host, when the custom element bears the same trait.
+
+```html
+<quick-review class="update">
+	<!-- ... -->
+</quick-review>
+```
+
+There's one last pseudo class you might enjoy knowing, with a more specific name and niche function: `host-context`. This one goes above the custom element to consider the parent node.
+
+```css
+:host-context(main) {
+	box-shadow: 0 0.2rem 0.5rem -0.25rem hsl(210 11% 15%);
+}
+```
+
+Should the parent match the tag name, in the snippet should the parent be an all important `main` element, the properties will cascade to the host. It is quite a mind-bending function, similar to a reverse `:has`. And similarly to the `:has` selector, it is also the one with [the least support](https://caniuse.com/mdn-css_selectors_host-context), so you might want to keep it for small touches, for nuance.
+
+## Branch outside
+
+Escaping the template, in the context of the larger document you can once again style the custom element, directly targeting the node.
+
+```css
+quick-review {
+	/* ... */
+}
+```
+
+These changes will override those set in the template, to give you preference over the styles. And there are additional pseudo selectors to grant you even more flexibility.
+
+In terms of classes: `:defined`. Exclusively for custom elements, the selector will match an element that has been defined, registered through the `customElement.define` function. You may not think of much of it at first.
+
+```css
+quick-review:defined {
+	/* ... */
+}
+```
+
+But with the goal of enhancing the web, of extending what is possible with web components, you can welcome the selector turning the argument on its head. With the `:not` function you can indeed test the opposite, when the custom element has not been defined. In this instance one option is to remove the node entirely.
+
+```css
+quick-review:not(:defined) {
+	display: none;
+}
+```
+
+It may not make sense for the specific component. When JavaScript fails you may still want to show the markup between the opening and closing `quick-review` tags. But when the component relies heavily on the connected class, you'll know how to busy the page only when needed, only when the component is able to work.
+
+In terms of pseudo elements, finally: `::part`. This one is slightly more involved, but potentially even more helpful. In the larger document you include an identifier between parenthesis.
+
+```css
+::part(stars) {
+	color: hsl(45 97% 54%);
+}
+```
+
+And the key-value pairs will tweak the elements _in the template_ with the matching `part` attribute
+
+```html
+<svg part="stars">
+	<!-- ... -->
+</svg>
+```
+
+The formula offers a way to expose parts of the markup, from the shadow DOM, prompting more freedom, and with luck, one more reason to shine.
+
+<UpdateReview />

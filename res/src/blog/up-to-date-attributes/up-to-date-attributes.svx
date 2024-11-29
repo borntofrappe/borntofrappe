@@ -1,0 +1,216 @@
+---
+title: Up to date attributes
+description: Keep track of values within web components.
+date: 2024-03-15T15:12:06
+---
+
+<script>
+	import svg from './svg.js';
+	import OutOfSync from './OutOfSync.svelte';
+	import UpToDate from './UpToDate.svelte';
+	import RandomNumberGenerator from './RandomNumberGenerator.svelte';
+</script>
+
+To build web components you will likely work through the lens of custom elements, HTML tags with carefully hyphenated names. As with regular DOM nodes, you are able to garnish the opening tag of these elements with attributes, but to maintain the values, you may need a couple of extra steps.
+
+To see how, let's proceed by example, with hands-on practice and a close to pointless widget, a random number generator.
+
+On one end, in markup, we introduce the widget with the mentioned tags. We can add an attribute for a number, with the goal of picking up the value and boldly displaying the digit.
+
+```html
+<random-number-generator number="10"></random-number-generator>
+```
+
+On the opposite end, we start working on the component with JavaScript and a customary script. In terms of setup, you need a class extending `HTMLElement`, inheriting the base features in the constructor and through the `super` function.
+
+```js
+class RandomNumberGenerator extends HTMLElement {
+	constructor() {
+		super();
+	}
+}
+```
+
+Past the class, you can connect the element through the `customElements` interface and the `define` method.
+
+```js
+customElements.define('random-number-generator', RandomNumberGenerator);
+```
+
+With this framework we can focus on the structure of the widget and a most basic functionality.
+
+It would be be possible to author the element directly through the `this` keyword, but to encapsulate the code, the `attachShadow` function opens the door to [a separate subtree](/building-web-blocks#shadow-dom).
+
+```js
+const shadowRoot = this.attachShadow({ mode: 'open' });
+```
+
+We won't add any style, but should you choose to continue developing the widget, the distinct subtree will prove most helpful.
+
+In terms of logic, the only difference is that you add elements through the shadow root instead of the custom element.
+
+```diff
+-this.appendChild(childElement)
++shadowRoot.appendChild(childElement)
+```
+
+The widget itself can be structured rather plainly. A heading to present the number.
+
+```js
+const display = document.createElement('h1');
+```
+
+I chose an `h1` element, thinking of the widget as an independent application, but are welcome to consider a different, more semantic option.
+
+We can retrieve the number directly from the custom element, through the `getAttribute` function.
+
+```js
+display.textContent = this.getAttribute('number');
+```
+
+That concludes the most barebone display, but as the content is meant to change, it is good to consider a couple more attributes. We can add a `role` attribute with a value of `status`, and to relate the change, couple the role with `aria-live`.
+
+```js
+display.setAttribute('role', 'status');
+display.setAttribute('aria-live', 'polite');
+```
+
+In this manner, even screen readers will be able to signal a fresh random number.
+
+To produce a random number, of course, we need a trigger, like a button.
+
+```js
+const button = document.createElement('button');
+button.textContent = 'Generate';
+```
+
+Beside a label, we can listen to a `click` event.
+
+```js
+button.addEventListener('click', () => {
+	// ...
+});
+```
+
+And update the contents of the heading with a number in an arbitrary range.
+
+```js
+button.addEventListener('click', () => {
+	display.textContent = Math.floor(Math.random() * 100);
+});
+```
+
+Add both elements to the shadow root and technically, you are done.
+
+```js
+shadowRoot.appendChild(display);
+shadowRoot.appendChild(button);
+```
+
+When you press the button you will find a new value. But there is one considerable flaw with the design, a mismatch between the attribute and what is shown on page.
+
+{@html svg['defs']}
+
+<OutOfSync />
+
+Inspect the DOM and indeed, after the first button press, and 99 times out of 100, the attribute won't match. Furthermore, if you were to update the attribute, the display won't change either.
+
+Thankfully, the custom elements API provides a way to keep the two in sync. The process involves a few novel concepts, but is really worth learning.
+
+In the class, and to work with the attribute, we can first lean on getter and setter functions. With a getter and the `get` keyword, you need only to return the value with `getAttribute`.
+
+```js
+get number() {
+	return this.getAttribute("number");
+}
+```
+
+Refer to the function by name and you will find the number through the `this` keyword.
+
+```diff
+-display.textContent = this.getAttribute("number");
++display.textContent = this.number;
+```
+
+With a setter type and the `set` keyword, then, you can update the attribute with the sole input.
+
+```js
+set number(n) {
+	this.setAttribute("number", n);
+}
+```
+
+Making it possible to alter the attribute with a similar pattern, by name and always through the `this` keyword.
+
+```diff
+button.addEventListener('click', () => {
+-	display.textContent = Math.floor(Math.random() * 100);
++	this.number = Math.floor(Math.random() * 100);
+});
+```
+
+This takes care of the custom element, of the attribute, but is not enough for the web component. You also need to update the display, and for this, the API details a specific workflow. The idea is to _observe_ a change in attributes, and only those listed in a helper function.
+
+```js
+static get observedAttributes() {
+	return ["number"];
+}
+```
+
+With `static get observedAttributes` return an array naming the attributes, so that the component will pay attention to the matching values. And most prominently, feature the change in a lifecycle function, `attributeChangedCallback`.
+
+```js
+attributeChangedCallback(name, oldValue, newValue) {
+	// ...
+}
+```
+
+The function is packed with data, with three arguments detailing the change through the name of the attribute, the previous value and the new version. But while in a more complex component you can use this information to carry out different tasks, we can simplify the logic considerably. As we observe only one attribute, the new value will always describe a new number, and we can update the heading directly.
+
+```js
+const display = this.shadowRoot.querySelector('h1');
+```
+
+In the lifecycle function `this` refers once again to the custom element, so you can access the shadow root and target the specific node. And thank [the `"open"` mode](/shadows-attached) in `attachShadow` for the convenience.
+
+```js
+display.textContent = newVal;
+```
+
+Update the display and this time, you are really done. The component works exactly as earlier, but this time, there is a perfect match between the element and the class, between the attribute and the internal state. Change one and the other will follow suit.
+
+<UpToDate />
+
+Admittedly, the code is quite elaborate, but the steps are few enough to be memorable:
+
+- a `get` and `set` function to cope with the attributes
+
+- `observedAttributes`, or more accurately `static get observedAttributes`, to observe by name
+
+- `attributeChangedCallback` to consider the change
+
+The sequence is necessary to synchronize the values between the markup and the script. But you don't have to repeat the steps every time. Consider an attribute that is not meant to change. For the random number generator, for instance, think of two attributes setting a minimum and maximum value.
+
+```html
+<random-number-generator min="0" max="100" number="-8"></random-number-generator>
+```
+
+We can make use of the thresholds without getters and setters, without observing changes. To do this, we extract the numbers directly through the `getAttribute` function, as the button is pressed.
+
+```js
+button.addEventListener('click', () => {
+	const min = +this.getAttribute('min');
+	const max = +this.getAttribute('max');
+	// ...
+});
+```
+
+Making sure to convert the strings to actual numbers, and perhaps go a step further to provide a fallback value, we can be sure to use both their most recent versions.
+
+```js
+this.number = Math.floor(Math.random() * (max - min) + min);
+```
+
+In the end, you can focus on the attributes that do change. And perhaps a few lines of CSS, sorely needed to match the change in style.
+
+<RandomNumberGenerator />

@@ -1,0 +1,202 @@
+---
+title: Advantage pointer
+description: Highlight a CSS property with an affection for SVG.
+date: 2024-02-09T15:20:15
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+In CSS there is a property to help you decide if an element receives mouse and touch events: `pointer-events`.
+
+When there are overlapping elements, it is the topmost layer which collects such events, so that a frequent use case is to set the property to the value of `none`. In this manner the element is no longer sensitive, and the event passes to what lies behind.
+
+```css
+#no-longer-target {
+	pointer-events: none;
+}
+```
+
+In HTML the alternative, and default value, is `auto`, making the nodes receive both mouse and touch input.
+
+But in SVG, the property has many more facets.
+
+<figure class="[ center-frame ]">
+	{@html svg['vitrail']}
+</figure>
+
+You have the same values of `auto` and `none`, and plenty more options. Not to mention, a different starting point.
+
+The values are predicated on three concepts:
+
+1. fill region
+
+   Draw a shape with one of the available elements, like a circle with the required radius, and the shape appears as a black, round object.
+
+   ```html
+   <circle r="40" />
+   ```
+
+   You can thank the `fill` attribute for the result. Set to a default value of `#000000`, the fill describes the space occupied by the shape.
+
+   You can change the value with any color function, with the same syntax you'd use in a stylesheet.
+
+   ```html
+   <circle fill="hsl(0 0% 45%)" r="40" />
+   ```
+
+   And with complex, elaborate paths, decide how the shapes are _"filled-in"_ with the `fill-rule` attribute. The logic is worth its own chapter, but affects the colored region — the fill region.
+
+2. stroke region
+
+   To outline the shape you can add a stroke, and your first stop might be to increase the thickness with the `stroke-width` attribute.
+
+   ```html
+   <circle stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
+   ```
+
+   But SVG has a different opinion on the matter. You need to also set a color with the `stroke` attribute, which is otherwise set to a value of `none`.
+
+   ```html
+   <circle stroke="hsl(0 0% 95%)" stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
+   ```
+
+   In tandem, the code adds a line around the figure, [partly on top of the fill](/stroke-midway-through), and promptly leads you to the stroke region.
+
+   You can modify the area with additional code. Not only to update the width of the line, but also draw dashes, and even tailor the way the line ends.
+
+   `stroke-width`, `stroke-dasharray`, `stroke-dashoffset`, `stroke-linecap`, `stroke-linejoin` and the more cryptic `stroke-miterlimit` are all able to tweak the design, and alter the area realizing the region.
+
+3. visibility
+
+   With the `visibility` property you can have an element disappear, from the page and also assistive technologies.
+
+   ```css
+   #no-longer-visible {
+   	visibility: none;
+   }
+   ```
+
+   The values are partly similar to `pointer-events` — you can still set the property to a value of `none` —, but the default is `visible`, making the nodes appear in the document.
+
+Based on the three concepts you can decide if an SVG element should receive pointer events in the fill region, in the stroke region, even if neither is actually drawn. What is more, in a puzzling twist, you can dictate that an element receives the events when `visibility` is set to `none`.
+
+There are seven combinations, and among these there are good reasons to learn at least a couple of them, starting with the default value of `visiblePainted`.
+
+```css
+circle {
+	pointer-events: visiblePainted;
+}
+```
+
+What the value implies is that the shapes are sensitive in the fill and stroke region, only when both are actually drawn. And only when the `visibility` property is set to `visible`.
+
+This is a rather sensible choice looking at the big picture. You want to consider mouse and touch, when the shapes are visible and painted on screen.
+
+There are some instances however, where you might want to deviate from the standard. For example, you may want to expand the hit area. In the instance of our circle, we could use the stroke to increase the surface occupied by the shape.
+
+```html
+<circle stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
+```
+
+But of course if not painted, the stroke will not matter for pointer events. In truth, there is more than one way to tackle the issue: you can lean on CSS color, the `transparent` keyword and any functions which lets you update the alpha channel
+
+```html
+<circle stroke="hsl(0 0% 0% / 0)" stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
+```
+
+The stroke is drawn, but not to be seen.
+
+Remaining in SVG, matching the `fill` and `stroke` attribute, you find `fill-opacity` and `stroke-opacity`. The rules only change the respective region, and you can make the area transparent once more.
+
+```html
+<circle stroke-opacity="0" stroke="hsl(0 0% 0%)" stroke-width="20" fill="hsl(0 0% 45%)" r="40" />
+```
+
+But going back to the topic at hand, there is one more answer with the `pointer-events` property and the value of `visible`.
+
+```css
+circle {
+	pointer-events: visible;
+}
+```
+
+Visible means that the element receives the events if `visibility` is set to a value different than `none`. Where? In both the fill and stroke region, regardless if drawn.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['pointer-events-stroke']}
+</figure>
+
+The instruction is useful to increase the hit area, but also two more precise options. You can restrict the sensitivity to a particular region, with `visibleFill` and `visibleStroke`.
+
+And the fact is not trivial. Say that you want to update the design as you receive the event, say that on hover you change the thickness of the stroke with `stroke-width`, or the position of the dashes with `stroke-dashoffset`. The effect can be quite amusing if not overused.
+
+```css
+circle:hover {
+	stroke-dashoffset: 1;
+}
+```
+
+In both instances the stroke region changes with an immediate risk. The pointer, present in one frame, may no longer be relevant as the changes take place, leading to annoying back and forth. The event fires again and again with a flicker.
+
+In these situations, where you can't escape drawing the stroke, you can remove it from relevance with the precise value of `visibleFill`.
+
+```css
+circle {
+	pointer-events: visibleFill;
+}
+```
+
+The element is sensitive to pointer events. When visible and in the fill region. Not the stroked area.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['pointer-events-fill']}
+</figure>
+
+These values are niche, but have a reason for being. But your counting skills are not failing you, the values also amount to half of the catalog. On top of the visible options, you then have `painted`.
+
+```css
+circle {
+	pointer-events: painted;
+}
+```
+
+Set the property and the shapes become sensible to the familiar events, even if `visibility` is set to `none`.
+
+```css
+circle {
+	visibility: none;
+	pointer-events: painted;
+}
+```
+
+Confusing? The feeling is justifiable, and is also compounded by the attached, detailed versions, `fill` and `stroke`. These have the same purpose, and let you consider the invisible fill or stroke region.
+
+And honestly, at the time of writing, I struggle to find a use case myself. Considering only pointer interactions already limits the scope of the interaction — the content is not accessible to keyboard users without pondering focus events. Add on top of this elements which are intentionally hidden, and the values seem more of a novelty, something just good to know.
+
+Instead of looking for meaning where there might be none, let me leave you with something more sure.
+
+In HTML the default value for pointer events is `auto`, while in SVG, the same role is assumed up by `visiblePaint`. `auto` is still a possibility, and almost completes the long list of options.
+
+```css
+circle {
+	pointer-events: auto;
+}
+```
+
+In this instance browsers pick a value themselves, usually `visiblePainted`. And if you still long for something different, you might enjoy knowing about an additional string: `bounding-box`.
+
+```css
+circle {
+	pointer-events: bounding-box;
+}
+```
+
+The option refers to the _object bounding box_, a rectangle which covers the shapes in width and height. Instead of the fill, stroke, or visible area, you can so decide to register events in the more rectangular surface.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['pointer-events-threshold']}
+</figure>
+
+Hopefully, one point is clear: when it comes to the property, `pointer-events` is fond of vectors. Choices abound, and the best way to discover them is trying them `all`.

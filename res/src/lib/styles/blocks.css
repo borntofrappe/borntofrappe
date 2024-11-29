@@ -1,0 +1,51 @@
+.skip-to-content {
+	font-size: var(--size-200);
+	color: var(--background);
+	background: var(--color);
+	padding: var(--space-100) var(--space-300);
+	border-radius: 2rem;
+	text-decoration: none;
+	position: absolute;
+	inset-block-start: var(--step-space-100);
+	inset-inline-start: 50%;
+	transform: translate(-50%, 0%);
+	outline: none;
+	z-index: 5;
+}
+
+@supports ((-webkit-mask-image: url()) or (mask-image: url())) {
+	.skip-to-content {
+		display: inline-flex;
+		align-items: center;
+		gap: 0 var(--step-space-100);
+	}
+
+	.skip-to-content::after {
+		content: '';
+		inline-size: 1em;
+		block-size: 1em;
+		background: currentColor;
+		-webkit-mask-image: url('data:image/svg+xml,\
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+	  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+		<path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+		<path d="M -45 -20 h 28" />\
+		<path d="M -45 0 h 28" />\
+		<path d="M -45 20 h 28" />\
+	  </g>\
+	</svg>');
+		mask-image: url('data:image/svg+xml,\
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">\
+	  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">\
+		<path d="M 3 -20 h 22 a 20 20 0 0 1 0 40 h -22 l 10 -10 -10 10 10 10" />\
+		<path d="M -45 -20 h 28" />\
+		<path d="M -45 0 h 28" />\
+		<path d="M -45 20 h 28" />\
+	  </g>\
+	</svg>');
+		-webkit-mask-size: 100%;
+		mask-size: 100%;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+	}
+}

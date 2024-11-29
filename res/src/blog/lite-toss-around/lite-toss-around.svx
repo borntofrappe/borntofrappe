@@ -1,0 +1,163 @@
+---
+title: Lite toss-around
+description: INSERT INTO "sql-practice"("db") VALUES ('pokemon-pinball');
+date: 2024-07-08T11:40:06
+---
+
+<script>
+    import svg from './svg.js';
+</script>
+
+Here's two suggestions to practice with SQL, specifically SQLite, once you get past a brief introduction and you start to appreciate the advantages of the efficient storing system:
+
+1. run select queries on an existing, interesting database
+
+2. find a topic you find exciting and ponder the data all by yourself
+
+For the first point I have you covered, especially if you cherish the colored, rumble-supporting title of _Pokémon Pinball_. In the quest to fill in the pages of the digital encyclopedia you might wonder where to find some creature, or the name of the areas you can explore in the game. Well, I took care to build [a small database](https://github.com/borntofrappe/sqlite-practice) so that your answers, and the need for your next favorite data set, might be just met.
+
+<figure class="[ center-frame ]">
+    {@html svg['pix-graphic']}
+</figure>
+
+How can you build a similar database, how do you create the tables and insert the data? Here's one way so that, with luck, you might find it easier to tackle the second suggestion as well.
+
+## Getting started
+
+With a copy of SQLite within reach, open the terminal and enter the database engine with the `sqlite` prompt, spelling out a clear name for the single-file resource. The extension of the file doesn't matter, there is no prescribed suffix, but I find it convenient to repeat the label of the used tech.
+
+```bash
+sqlite3 pokemon-pinball.sqlite3
+```
+
+With the command SQLite opens the database, taking care to create a file if one does not exist, and your first stop is to add a table. The game in question has two versions, so it seems reasonable to start with this great divide and two columns, one to identify the rows and one to describe the versions by name. Nothing complicated, but an excellent way to ease in the SQL syntax.
+
+```sql
+CREATE TABLE "version"(
+  "id" INTEGER,
+  "name" TEXT,
+  PRIMARY KEY("id")
+);
+```
+
+The table is simple enough to also excuse the use of the `INSERT` command. Twice to include the 'Red' and 'Blue' labels.
+
+```sql
+INSERT INTO "version"("name") VALUES('Red');
+INSERT INTO "version"("name") VALUES('Blue');
+```
+
+Perhaps underwhelmingly, that's it. The two strings are added to the table one after the other and properly assigned a unique identifier per the `PRIMARY KEY` option. You can attest to this with the `SELECT` command.
+
+```sql
+SELECT * FROM "version";
+```
+
+But while the output is _fine_, you have the option to frame the result with a cleaner display. For this the relevant directive is `.mode`, an instruction for SQLite only to change the default expression with [one of seventeen](/lite-output) possible choices.
+
+```sql
+.mode table
+```
+
+## Getting further
+
+One table works as a prelude to SQL, but the benefits of the language become apparent as you build more structures, connected to each other. Tackling the most important piece of the puzzle, the game's creatures, the table could summarize the entries with a primary key and two additional fields: `no`, a string for the three-digit number in the imaginary catalog, and `name`, another text sequence with the English name.
+
+```sql
+CREATE TABLE "pokemon"(
+  "id" INTEGER,
+  "no" TEXT,
+  "name" TEXT,
+  PRIMARY KEY("id")
+);
+```
+
+Once again we could repeat the `INSERT` command, and instead of one instruction for each value we can actually add multiple values in the same directive, separating the rows with a comma.
+
+```sql
+INSERT INTO "pokemon"("no", "name")
+VALUES
+  ('#001', 'Bulbasaur'),
+  ('#002', 'Ivysaur'),
+  ('#003', 'Venusaur');
+```
+
+But the process is quite verbose once you consider the one hundred and fifty-one copies. One solution is to delegate the task to a separate file, like a `csv` document.
+
+```csv
+no,name
+#001,Bulbasaur
+#002,Ivysaur
+#003,Venusaur
+```
+
+You still need to add the relevant information, but with the complete list the code improves. Even if in a rather roundabout manner.
+
+In SQLite you first import the data from the spreadsheet with the `.import` statement. In one swoop the line includes the data in a temporary table, and uses the first row for the name of the columns to boot.
+
+```sql
+.import --csv pokemon.csv temp
+```
+
+Then, you can actually go back to the `INSERT` statement. Not to include hard-coded values, but the result of the `SELECT` keyword on the new structure.
+
+```sql
+INSERT INTO "pokemon"("no", "name")
+SELECT "no", "name" FROM "temp";
+```
+
+Job done. But since the temporary table has outlived its purpose, feel free to remove the pointless container as well.
+
+```sql
+DROP TABLE "temp";
+```
+
+## Getting over
+
+With a table devoted to the versions and a table devoted to the creatures, the next logical step is to follow with a table for the areas explored in the bouncing adventure. The process here is the same as that for the previous tables: columns to identify the rows in `id` and `name`.
+
+```sql
+CREATE TABLE "area"(
+  "id" INTEGER,
+  "name" TEXT,
+  PRIMARY KEY("id")
+);
+```
+
+The same `INSERT` sequence used for either structure.
+
+```sql
+INSERT INTO "area"("name")
+SELECT "name" FROM "temp";
+```
+
+There are _"only"_ eighteen areas, so if you feel daring you can even go back to adding the values without a spreadsheet. Since the sequence is the same, however, let me switch focus to a different and promising feat.
+
+On the basis of creatures, areas and versions, a table for the locations can unite the data to answer the most existential question: just where do I find that pocketable monster? For this table, think of three columns of integers, _foreign keys_ which work as a reference for the primary key of the three tables.
+
+And
+
+```sql
+CREATE TABLE "location"(
+  "pokemon_id" INTEGER,
+  "area_id" INTEGER,
+  "version_id" INTEGER,
+  FOREIGN KEY("pokemon_id") REFERENCES "pokemon"("id"),
+  FOREIGN KEY("area_id") REFERENCES "area"("id"),
+  FOREIGN KEY("version_id") REFERENCES "version"("id")
+);
+```
+
+The schema means you don't repeat the names accumulated so far. It also leaves a rather daunting task: describing the values to refer to the rows.
+
+```csv
+pokemon_id,area_id,version_id
+1,1,1
+4,1,1
+16,1,1
+19,1,1
+```
+
+To you the choice: repeat the logic of the temporary table, once you author the spreadsheet with the one hundred and eighty or so rows, or, just use [the database I committed on GitHub](https://github.com/borntofrappe/sqlite-practice/blob/main/pokemon-pinball.sqlite3).
+
+For your selecting delight you'll find all the values, not to mention a fancy new table to upgrade your queries and shed more light on the completed dex.

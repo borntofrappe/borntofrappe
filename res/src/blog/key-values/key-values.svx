@@ -1,0 +1,133 @@
+---
+title: Key values
+description: Extract just the right information from SVG elements.
+date: 2024-02-16T15:36:12
+---
+
+<script>
+	import VectorInspector from './VectorInspector.svelte';
+</script>
+
+One of the most convenient ways to add vector graphics in an `.html` document is inline, right next to regular HTML elements.
+
+```html
+<p>One of the most convenient...</p>
+<svg viewBox="-10 -10 20 20">
+	<circle fill="turquoise" r="10" />
+</svg>
+```
+
+You can style the svg element and individual nodes with CSS, down to the smallest atom, and target the lot with JavaScript.
+
+```js
+const svg = document.querySelector('svg');
+const circle = svg.querySelector('circle');
+```
+
+Scripting is particularly useful to understand the structure of the nested document, to retrieve the values of the attributes, and in this sense, you have the same options available with DOM nodes. But also, a few things worth considering.
+
+What is the radius of the circle drawn with the previous snippet? With access to the element the `getAttribute` method gives a first answer.
+
+```js
+circle.getAttribute('r'); // 10
+```
+
+The statement mirrors the one you'd use for HTML elements, with the name of the attribute between parentheses.
+
+But researching the topic you might discover an alternative in [`getAttributeNS`](https://dom.spec.whatwg.org/#ref-for-dom-element-getattributens%E2%91%A0).
+
+Without diving into the history of the vector format, SVG is an XML language. Even if this language behaves rather naturally in the larger page, it comes with its own rules and a dedicated namespace.
+
+```text
+http://www.w3.org/2000/svg
+```
+
+There are a few instances where this namespace comes into play. If you were to refer to an external graphic, perhaps with an image element, you would need the string in the opening tag.
+
+```html
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 20 20">
+	<!-- ...circle -->
+</svg>
+```
+
+The addition is essential to let the browser parse the syntax which follows.
+
+```html
+<img alt="A dot of turquoise " src="icon.svg" />
+```
+
+In a script, the string comes back into relevance with ad-hoc functions, like `createElementNS`.
+
+```js
+const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+```
+
+Once more, the namespace is vital to produce an element you can actually use.
+
+```js
+polygon.setAttribute('fill', 'teal');
+polygon.setAttribute('points', '0 40 12.5 22.5 25 40');
+svg.appendChild(polygon);
+```
+
+With `getAttributeNS` the intention is the same, but the consequences of forgetting the namespace here are less than remarkable. Yes you can use the more refined function, but following the documentation, you don't need to specify the string with an additional argument. As a matter of fact, the specification recommends the value of `null`.
+
+```js
+circle.getAttributeNS(null, 'r'); // 10
+```
+
+What is more, the result is the same — there was no issue when we first used `getAttribute`.
+
+Both methods work and answer the question. The radius of the circle is `10`. But is it? You can argue differently looking at the type of the returned value.
+
+```js
+typeof circle.getAttribute('r'); // string
+```
+
+A string, not a number. This is an unfortunate side effect of extracting the value with the two functions, both returning the attribute as a string. But you're in luck, there is a third option which gives more precise answers.
+
+```js
+circle.r; // SVGAnimatedLength
+```
+
+Follow up the element with the name of the attribute and you find a complex object, an `SVGAnimatedLength` for the circle's radius. The less approachable label has its reason for being, and relates to how SVG attributes can have a base and animated value, which can change over time. But if you care only about the first one, that of the attribute as displayed on screen, the base variant will suffice.
+
+```js
+circle.r.baseVal; // SVGLength
+circle.r.baseVal.value; // 10
+```
+
+In the base value you have another object, `SVGLength`, and with the `value` key the journey ends with the possibly anticlimactic answer. The radius of the circle? 10. The type? Number.
+
+```js
+typeof circle.r.baseVal.value; // number
+```
+
+The difference might seem trivial by now. You can always convert a string to a number with `parseInt`, or `parseFloat` if you care about decimal precision.
+
+But there are good reasons for appreciating the formula. Pedantically, it forces you to look deeper at the subject matter, at what lies behind the attributes and their units of measure — this time you got to know the `SVGAnimatedLength` and `SVGLength` objects. More practically, because there are more complex attributes in SVG. Consider the often cryptic `viewBox`, setting the position and the dimensions of the visible area.
+
+```html
+<svg viewBox="-10 -10 50 50">
+	<!-- ...shapes -->
+</svg>
+```
+
+The string compounds four attributes separated by space. You can very well write a regular expression, — we could all use the practice —, but repeating the process used for the radius prompts another solution.
+
+```js
+svg.viewBox; // SVGAnimatedRect
+svg.viewBox.baseVal; // SVGRect
+```
+
+Look into the attribute and you find an `SVGRect`. The structure is different from that of `SVGLength`, but is still precious. In the base value you have an object and four perfect properties.
+
+```js
+svg.viewBox.baseVal; // { x: -10, y: -10, width: 50, height: 50 }
+```
+
+`x`, `y`, `width`, `height`. Four separate arguments, and four numbers to boot.
+
+There are several helper functions to study SVG elements, each with its own worth. And with a bit of research, you can inspect the tree with the same detail available in HTML.
+
+<VectorInspector />

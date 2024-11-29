@@ -1,0 +1,262 @@
+---
+title: Growing up with Svelte
+description: Entertain Svelte reactivity to grow a vector with a couple of runes.
+date: 2024-01-18T17:35:41
+---
+
+<script>
+	import svg from './svg.js';
+	import Plant from './Plant.svelte';
+	import Growth from './Growth.svelte';
+</script>
+
+Svelte makes it exceedingly easy to update a page per the value of a variable, and the best way to see this is by example. If you are keen to follow along, there is [a playground](https://svelte-5-preview.vercel.app/) to test the logic in a live environment. If not, I hope you'll enjoy the journey all the same.
+
+The goal is to update a vector, a picture of a nice potted plant. Here is the starting graphic.
+
+<Plant />
+
+You can copy the markup for the `svg` element, but you are more than welcome to create your own version, with `path`s, `rect` and any drawing element available in the language. Personally, I resolved to use the two types. One rectangle for the lid, and two paths, to complete the vase and grow a nice, roundish leaf.
+
+<figure class="[ center-frame ]">
+	{@html svg['elements']}
+</figure>
+
+How are we going to update the vector? I'm open to suggestions, but I have at least two:
+
+1. have a stem grow from the center, from the vase and up to the sky
+
+2. mark the growth with additional leafs, drawn at increments in the same direction
+
+The entire process is less convoluted than the description would have you believe. But let's take a step back to discuss Svelte reactivity.
+
+## State
+
+In the context of a `.svelte` component you have the option of adding a script with the matching tags.
+
+```svelte
+<script>
+	// ...
+</script>
+```
+
+It is here that you can initialize a variable. And if you want the variable to change, you can relate your intention to the compiler with the _state rune_.
+
+```svelte
+<script>
+	let count = $state(0);
+</script>
+```
+
+To inject the value in the markup, you then include the variable by name, between curly braces.
+
+```svelte
+{count}
+```
+
+At this point, you just need to update the value. In a most direct way, you can add a button to increment the count by 1.
+
+```svelte
+<button>Add</button>
+```
+
+Svelte lets you listen to events in the opening tag, such as `onclick`. Following the directive, you are free to compose the logic of a JavaScript function.
+
+<!-- prettier-ignore -->
+```svelte
+<button
+	onclick={() => { count += 1; }}>
+	Add
+</button>
+```
+
+You can write out the function immediately, or refer to a helper method.
+
+```svelte
+<button onclick={grow}>Add</button>
+```
+
+One you took the time to elaborate in the existing script.
+
+```svelte
+<script>
+	// ...
+	const grow = () => {
+		count += 1;
+	};
+</script>
+```
+
+But enough theory. Do not worry, the code is still useful to continue growing the picture.
+
+To draw the stem we can add a `path` element, elaborating a line with the vertical command `V`.
+
+```html
+<path d="M 0 0 V 0" />
+```
+
+You won't see a line, not even the beginning of a line, and for more than one reason:
+
+1. the default value of `stroke`
+
+   Drawing elements in SVG have a default value for the `fill` attribute to draw the portions inside of a shape, `#000`.
+
+   There's also a default value for the `stroke` attribute, to outline the elements, but this time is set to `none`. With this in mind, you need to specify a color.
+
+   ```html
+   <path d="M 0 0 V 0" stroke="currentColor" />
+   ```
+
+2. the length of the stroke
+
+   As it stands, the line begins at the center of the graphic, which I expressly set above the vase. But from this point the line doesn't go anywhere. To have the path stretch vertically you need to update the vertical instruction. And what luck, the counter variable might have found a new purpose.
+
+   ```svelte
+   <path d="M 0 0 V {count}" stroke="currentColor" />
+   ```
+
+You are able to add the value of a variable in an HTML attribute as you would in the markup, between curly brackets. But in SVG, the positive number is bound to cause havoc, as the line is drawn upside down. In the body of `svg` elements, positive increments have the shapes move to the right and down. Meaning, to draw in the opposite direction you need a negative offset. You can negate the variable in the `d` attribute, always within the brackets.
+
+```svelte
+<path d="M 0 0 V {count * -1}" stroke="currentColor" />
+```
+
+Svelte injects the result of any JavaScript expression, so that you can update the value directly.
+
+But Svelte also offers another rune, should you want to be even more clear.
+
+## Derived
+
+While a state rune declares that a variable is going to change, the _derived rune_ ties a variable to the value of another, reactive variable. In simpler terms, we initialized `count` as reactive, with a state rune.
+
+```svelte
+<script>
+	let count = $state(0);
+</script>
+```
+
+You can create a separate variable, `stem`, which depends on the counter.
+
+```svelte
+<script>
+	let count = $state(0);
+	let stem = $derived(count * -1);
+</script>
+```
+
+In the rune `stem` is set to track the value of `count` and be the exact opposite. Exactly what's needed to draw the straight line.
+
+```svelte
+<path d="M 0 0 V {stem}" stroke="currentColor" />
+```
+
+Done. As you press the button you increase the counter variable. `stem` "grows" in the opposite direction and the segment is drawn, in increments. There's little magic, truthfully, only a different `d` attribute.
+
+```html
+<path d="M 0 0 V 0" stroke="currentColor" />
+<!-- click -->
+<path d="M 0 0 V -1" stroke="currentColor" />
+<!-- click clickity click -->
+<path d="M 0 0 V -4" stroke="currentColor" />
+```
+
+Too easy? This is a feeling you are going to enjoy with Svelte — almost as if it was designed to delight your coding sessions. But let's level up with the leaf. Or rather, leafs.
+
+The aim is to now draw multiple copies of the `path` element, at different vertical offsets.
+
+```html
+<path transform="translate(0 0)" d="M 0 0 C 0 -7 2 -9 9 -9 C 9 -3 8 0 0 0" />
+<path transform="translate(0 -8)" d="M 0 0 C 0 -7 2 -9 9 -9 C 9 -3 8 0 0 0" />
+<path transform="translate(0 -16)" d="M 0 0 C 0 -7 2 -9 9 -9 C 9 -3 8 0 0 0" />
+```
+
+It would be then fitting to have the `path` elements appear as the counter reaches the corresponding value — another use-case for the derived rune.
+
+One way to achieve the result is with an array. If you explicit the gap, the distance between copies.
+
+```svelte
+<script>
+	// ...
+	const gap = 8;
+</script>
+```
+
+You can create an array that grows in size as `count` grows in value. Specifically, when that value crosses the chosen threshold.
+
+```svelte
+<script>
+	// ...
+	const gap = 8;
+	let leaves = $derived(Array(Math.floor(count / gap)));
+</script>
+```
+
+Personally, I'd like to show one leaf from the very beginning, so that I increment the value by 1.
+
+```diff
+-Array(Math.floor(count / gap))
++Array(Math.floor(count / gap) + 1)
+```
+
+Past the preference, however, we can populate the data structure with the offset values themselves.
+
+```svelte
+<script>
+	// ...
+	const gap = 8;
+	let leaves = $derived(
+		Array(Math.floor(count / gap) + 1)
+			.fill()
+			.map((_, i) => i * gap)
+	);
+</script>
+```
+
+Hopefully, the syntax doesn't spook you from trying the code. Once you build the array the `map` function lets you loop through the items. In the callback function, you then have access to the index, so that you can calculate the offset multiplying the value with that of the gap. Be sure, there's no Svelte between parenthesis, only JavaScript.
+
+The code works to generate the offsets, but you might have spotted the issue already: the numbers are positive, just like `count`. Nothing that a quick multiplication cannot solve.
+
+```diff
+-.map((_, i) => i * gap)
++.map((_, i) => i * gap * -1)
+```
+
+You might have wondered _why_ the array works as a solution. In Svelte, you inject a variable with curly brackets. In the markup, and with a relatively convenient syntax, you can also loop through a collection with an _each block_.
+
+```svelte
+{#each leaves as y}
+	<!-- ... -->
+{/each}
+```
+
+The markup is repeated for every item of the block, so that you can include the offset in the different copies.
+
+```svelte
+{#each leaves as y}
+	<path transform="translate(0 {y})" />
+{/each}
+```
+
+Once again, done. The plant grows and the leafs follow.
+
+The rest is up to you and your imagination, and how much time you have at hand. Care to draw the blades flipping the direction horizontally? In the `each` block, after the item, you gain access to the current index.
+
+```svelte
+{#each leaves as y, i}
+	<!-- ... -->
+{/each}
+```
+
+As you have the option of executing JavaScript within curly brackets, you can use the index to scale the elements with a negative horizontal value, creating a mirrored version.
+
+```svelte
+{#each leaves as y, i}
+	<path transform="scale({i % 2 === 0 ? 1 : -1} 1) translate(0 {y})" />
+{/each}
+```
+
+Want to delight in Svelte transitions? As you go through the documentation, or the [enticing tutorial](https://learn.svelte.dev/tutorial), you might discover it will take less than expected.
+
+The best way to learn is to just try. And the best side effect is that you won't only learn Svelte, but JavaScript as well. And if you so choose, SVG.
+
+<Growth />

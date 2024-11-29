@@ -1,0 +1,89 @@
+---
+title: Sweet switch system
+description: Season vector graphics picking an option from a complete set.
+date: 2023-11-22T14:37:24
+---
+
+<script>
+	import svg from './svg.js';
+	import SwitchSystem from './SwitchSystem.svelte';
+</script>
+
+<div class="[ center-frame ]" data-size="medium">
+	<SwitchSystem />
+</div>
+
+Among the elements available in the SVG language, toward the bottom of the list, the `<switch>` element lets you decorate graphics by answering a simple question: _"should I draw this?"_ The syntax is fairly technical, rich in issues, but there is a use case as well.
+
+## The element
+
+In the body of an `<svg>` node the `<switch>` element introduces a nested level between the opening and closing tags.
+
+```html
+<switch>
+	<!-- ... -->
+</switch>
+```
+
+In the inner scope you then add more SVG elements, with the idea of showing them with a condition set with one of a few attributes. `requiredFeatures`, for instance, points to the URL of a standard in the specification.
+
+```html
+<g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+	<!-- ... -->
+</g>
+```
+
+If the feature is supported the element is drawn, so that the code could be used to introduce particular effects when such effects are actually possible.
+
+Unfortunately, _could be used_ is the right expression as the attribute [is deprecated](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/requiredFeatures) and fails to fulfill its contract.
+
+## The attribute
+
+Past `requiredFeatures` the element is supposed to comply with two more attributes: `requiredExtensions` and `systemLanguage`. But since `requiredExtensions` is even less supported, there is only one option left.
+
+With `systemLanguage` you detail a language, to show the elements when the system recognizes the value.
+
+<!-- prettier-ignore -->
+```html
+<text systemLanguage="fr">Madeleine</text>
+<text systemLanguage="de">Streuselkuchen</text>
+```
+
+Immediately, you can see the potential for internationalization and `<text>` elements. The logic is indeed fit to show text in different languages, be it English, French, or German.
+
+And you can even be more nuanced, more precise with the instructions. On top of the two-letter code for the language the attribute accepts a more complex sequence including a country.
+
+<!-- prettier-ignore -->
+```html
+<text systemLanguage="nl-be">Waffles</text>
+<text systemLanguage="nl">Tompouce</text>
+```
+
+In this manner you can detail the content further, differentiating between countries sharing the same dialect.
+
+## The issues
+
+The `<switch>` element, similarly to a JavaScript `switch` broken down in well-defined cases, ends with the very first match. This means you need to be careful in the order of instructions.
+
+But even in this instance, don't be too sure of the result. In testing the feature I found that some browsers plainly ignore the country. In some settings the system would even fail to find a match, showing nothing at all. How to cope with these pitfalls? Here are a few suggestions:
+
+- trust language codes
+
+  Short, concise codes are far more reliable than more elaborate values.
+
+- add a catch-all condition
+
+  Before the end of the `<switch>`, the option works similarly to the `default` case of a regular switch.
+
+  ```html
+  <!-- ...texts -->
+  <text>Sweet Europe</text>
+  ```
+
+  Should every test fail, the element without the `systemLanguage` attribute is shown instead.
+
+Even with these suggestions, use the element sparingly, as an extra.
+
+You can apply the `<switch>` logic to selectively render text, but also entire graphics wrapped in group elements. In doing so you are able to customize the document and serve the most relevant, the most local market.
+
+But just as you gain from the vocabulary of multiple languages, from the wealth of different countries, you gain a lot from sampling the options of [a complete menu](https://en.wikipedia.org/wiki/Caf%C3%A9_Europe). And try the recipe for yourself {@html svg['cookie']}.

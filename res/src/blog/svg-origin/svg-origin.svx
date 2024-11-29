@@ -1,0 +1,155 @@
+---
+title: SVG origin
+description: Practice with SVG transformation to better understand the concept of origin.
+date: 2023-03-10 19:08:12
+---
+
+<script>
+	import svg from './svg.js';
+	import Ray from './Ray.svelte';
+</script>
+
+As I find myself often pointing to [a previous article](/svg-transform) illustrating the topic of SVG transformations I decided to rehearse the concept of origin within the `<svg>` element. From the top. Left.
+
+## viewBox
+
+An `<svg>` element begins with a `viewBox` attribute. You may not set it explicitly, in which case the value assumes the default measure of `0 0 300 100`.
+
+```html
+<svg viewBox="0 0 100 100">
+	<!-- you are here -->
+</svg>
+```
+
+The first two numbers describe the origin of the SVG canvas, x and y. The latter pair details the dimensions, width and height. With this in mind, the origin starts out in the precise (x, y) coordinate.
+
+<figure class="[ center-frame ]">
+	{@html svg['viewBox']}
+</figure>
+
+SVG transformations are relative to the point, but you have options to change the value. SVG 2 offers the [`transform-origin`](https://drafts.csswg.org/css-transforms/#transform-origin-property) attribute, but [pending wider support](https://caniuse.com/mdn-svg_attributes_presentation_transform-origin), your safest best is manual, and relies on the `transform` attribute instead.
+
+## transform
+
+Add a group element to translate the nested visuals.
+
+```html
+<svg viewBox="0 0 100 100">
+	<g transform="translate(50 80)">
+		<!-- you are here -->
+	</g>
+</svg>
+```
+
+Within the set of `<g>` tags the origin moves to the new position. Every element is drawn from the updated coordinates. Every transformation is relative to the different (x, y) set.
+
+<figure class="[ center-frame ]">
+	{@html svg['translate']}
+</figure>
+
+As an example, draw a line 30 units up, always within the boundaries of the group element.
+
+```html
+<g transform="translate(50 80)">
+	<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+</g>
+```
+
+If you were to then rotate the shape, the line would rotate relative to the fresh origin.
+
+```html
+<g transform="translate(50 80)">
+	<g transform="rotate(40)">
+		<!-- ...path -->
+	</g>
+</g>
+```
+
+Care to guess how the line is going to be drawn? The question may be too easy — the straight segment is only angled 40 degrees clockwise — so let me pose a more challenging quandary. Care to guess the new origin?
+
+<figure class="[ center-frame ]">
+	{@html svg['rotate']}
+</figure>
+
+The position is the same. And without the surrounding visuals it would seem the origin was left untouched. However, the origin has changed, in angle instead of place. Every element nested within the group is rotated as the line.
+
+What if you wanted to draw a circle at the very end of the line? You don't need to revisit the Pythagorean theorem to find the answer. As the rotation is applied _to every element_, it is enough to position the circle 30 units up.
+
+```html
+<g transform="rotate(40)">
+	<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+	<circle r="2" cy="-30" fill="currentColor" />
+</g>
+```
+
+The markup requires a bit of a mental shift, but perhaps it helps to remove the surrounding group element and just focus on the drawing instructions.
+
+```html
+<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+<circle r="2" cy="-30" fill="currentColor" />
+```
+
+In this sense it is almost obvious to find the circle right above the line. No matter the angle.
+
+<figure class="[ center-frame ]">
+	{@html svg['circle']}
+</figure>
+
+Of course you can stretch the concept even further. What if you wanted to draw another segment from the end of the line _and_ have it rotate relative to its very origin? Add another group element to first translate the turning point.
+
+```html
+<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+<g transform="translate(0 -30)">
+	<!-- you are here -->
+</g>
+```
+
+Then draw the line.
+
+```html
+<g transform="translate(0 -30)">
+	<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+</g>
+```
+
+Rotate the innermost space.
+
+```html
+<g transform="translate(0 -30)">
+	<g transform="rotate(20)">
+		<path d="M 0 0 v -30" fill="none" stroke="currentColor" />
+	</g>
+</g>
+```
+
+And the line is angled further down.
+
+<figure class="[ center-frame ]">
+	{@html svg['rotate-further']}
+</figure>
+
+With a negative value you can even force the segment back to its most upright version — rotate the group by the opposite of the previous, inherited, angle.
+
+```html
+<g transform="rotate(40)">
+	<g transform="translate(0 -30)">
+		<g transform="rotate(-40)">
+			<!-- you are here -->
+		</g>
+	</g>
+</g>
+```
+
+Double the value and the line even moves in the opposite direction.
+
+<figure class="[ center-frame ]">
+	{@html svg['rotate-opposite']}
+</figure>
+
+Trivial? Perhaps. However, by repeating the exercise, by breaking down the steps in detail, it should be clearer as to how the concept of origin works in SVG.
+
+And on second thought, there might be more to the visual. Perhaps a way to celebrate the comeback of a remarkable video game after 12 long years?
+
+<figure class="[ center-frame ]">
+	<Ray />
+</figure>

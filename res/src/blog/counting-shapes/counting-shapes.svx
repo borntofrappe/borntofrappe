@@ -1,0 +1,38 @@
+---
+title: Counting shapes
+description: Continue a pseudo-3D series hopping through dimensions.
+date: 2023-10-09T09:34:46
+---
+
+<script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
+	import svg from './svg.js';
+	import Sheep from './Sheep.svelte';
+</script>
+
+Believe it or not, but [this week's Zdog graphic](/beauty-sleep) started out with the pixelated sprite for a promising mascot.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	{@html svg['paths']}
+</div>
+
+But just how can you paint a 2D picture in pseudo-3D? Well, in increments. And don't worry, you won't have to count too many copies before finding a satisfying answer.
+
+How can you draw the sprite with SVG? I explored a few options [in a past article](/pixel-walker), and ultimately found a solution with `<path>` elements. Paths with a stroke and a series of horizontal rules, marking the figure pixel by neighboring pixel. This is exactly how the first copy of the mascot is rendered.
+
+But what is a pixel if not a square? You need the coordinates, the dimensions for each adjacent segment, but once you wrangle the string for the `d` attribute and obtain the values, you find a second way to paint a pretty picture. With `<rect>` elements instead.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	{@html svg['rects']}
+</div>
+
+And you might already see the way forward. Why stop with a 2D square where you can have a pseudo-3D box? Since you went through the hassle of finding the values for the rectangles, you already have the coordinates and the dimensions. What you then need is to add depth.
+
+The result? Seemingly, the same exact mascot, only with the markup produced by Zdog. The benefit? With the library, it takes very little to explore the axes, and entertain different perspectives.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	<Sheep />
+</div>
+
+<ZdogMonday />

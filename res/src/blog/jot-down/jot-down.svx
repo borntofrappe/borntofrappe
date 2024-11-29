@@ -1,0 +1,81 @@
+---
+title: Jot down
+description: Take note of the benefits of a small front-end script.
+date: 2024-06-07T16:18:34
+---
+
+<script>
+  import SQLPrompt from "./SQLPrompt.svelte";
+</script>
+
+What do you do when learning about databases you discover an <text-to-speech speech="Object–relational mapping">ORM</text-to-speech> like [Drizzle](https://orm.drizzle.team/)? Do you try to understand just what lies behind the abbreviation, what the tool promises to improve over the back-ended, <text-to-speech speech="Structured Query Language">SQL</text-to-speech> process? For sure, but not before a front-end detour inspired by the landing page.
+
+When you reach the website the main heading tries to convince you that the tool is ready for production. Once you read the tag-line, however, the words are animated with a typewriter effect and replaced with a different, humorous quip. Then another, and another. You may need more convincing to opt in the tech, but one thing is clear: it'd be neat to apply the change to any plain text. For this you can write a script, setting up a time-sensitive loop, updating the contents in increments and with an array of values. Or, lean on the fact that I went through the hussle myself, and baked the feature in a comfy wrapper.
+
+## The premise
+
+Let's start from the very beginning. In an `.html` document you'd include the text in an element. In this instance, you add the line in `h1` tags.
+
+```html
+<h1>TypeScript ORM that is production ready</h1>
+```
+
+The formula is already remarkable, but I often forget to appreciate the implications. When a browser renders the page, it is able to interpret the markup language right out of the box. The content is then elevated with the due prominence — this is _the_ title text.
+
+## The promise
+
+Now you can wrap part of the text in [a custom element](/building-web-blocks#custom-elements).
+
+```html
+<h1>
+	TypeScript ORM that
+	<typewriter-effect>is production ready</typewriter-effect>
+</h1>
+```
+
+If you import [the script](https://github.com/borntofrappe/web-components/blob/main/typewriter-effect/typewriter-effect.js) I wrote to accompany the helper structure the effect is complete. You see the whole text, hopefully for enough time to get the gist. Then the text is erased in discrete little steps — still in the browser, without outside tech.
+
+## The rest
+
+You may retort that the letters are removed and then reappear in the same exact sequence. This is the default, and I thought sensible, behavior. Past the basic experience you have more options with a few attributes.
+
+```html
+<typewriter-effect
+	lines="dropped out of college.feels like SPA with SSR.is a library, like React.developers love.is not as good as Django.made friends with SQL.is familiar, but different.is a JavaScript ORM too.will be here for a while"
+	rate="4"
+>
+	is production ready
+</typewriter-effect>
+```
+
+For the whole list:
+
+- `lines`, the strings you want to display next
+
+  The text is added after the content tucked in the element, in order. You need only the courtesy of picking one special character to separate the values and this one is a full stop. Period. Or yet...
+
+- `separator`, the character delimiting the messages in the `lines` attribute
+
+  Who knows, you might want to type a few dots without breaking the text.
+
+- `rate`, a relatively small integer for the number of frames in which the custom machine types one single letter
+
+  I thought of naming the attribute `frame-rate`, to echo the fact that behind the scenes the script relies on `requestAnimationFrame`, but you don't need to fuss over details — that's the whole point of not writing the script yourself.
+
+- `delay`, the number of milliseconds the text should persist
+
+  Once again the name is picked with some care, but I'm not attached to the wording. `pause`, `stall`, `just-wait`, you are free to come up with something more clear to mark the time.
+
+## The style
+
+The custom element makes zero assumptions for the overall look, but once again you can thank standard web technologies to cover the feat. With CSS you can style the element as you would style any regular HTML node.
+
+```css
+typewriter-effect {
+	text-decoration: underline hsl(119 43% 50%);
+}
+```
+
+You can definitely go further, and inspired by the website you may want to start adding a blinking cursor with a custom element and keyframe animations. While you improve the experience, I'll go back studying and inspect very large data sets.
+
+<SQLPrompt />

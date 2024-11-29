@@ -1,0 +1,122 @@
+---
+title: Long way round
+description: Draw pseudo-3D shapes with an extra oomph.
+date: 2023-09-18T11:44:53
+---
+
+<script>
+	import svg from './svg.js';
+	import Torus from './Torus.svelte';
+	import Lissajous from './Lissajous.svelte';
+	import Bracelet from './Bracelet.svelte';
+</script>
+
+[Zdog](https://zzz.dog/) is an impressive library which helps you draw shapes in pseudo-3D. It does this with a combination of projections, overlapping figures and chunky, rounded strokes. But between the many possibilities granted by the library, there are instances in which the code falls short. Color for instance.
+
+You can change the color of the shapes as you initialize an object, and with a fitting `color` property.
+
+```js
+new Shape({
+	addTo: illustration,
+	color: 'tomato'
+});
+```
+
+Named colors, RGB combinations, hexadecimal sequences. All formats working in CSS would work here as well. Even the variable value of `currentColor`.
+
+Unfortunately, these options are not always enough. Especially if you are not satisfied with a solid fill and would rather have a gradient instead.
+
+In CSS you have a few dedicated functions. In SVG you have a couple of gradient-related elements. Zdog, presently, doesn't allow the same feature. You have a way to fill the gap, but it might take some time to get to it.
+
+## Dashes
+
+Let's take a step back and consider a line, drawn from point to point. In SVG, we could use a `<line>`, or again a `<path>` element with a given `stroke`.
+
+```html
+<path stroke="currentColor" d="M 0 0 80 0" />
+```
+
+With Zdog, we realize the same horizontal segment with an instance of `Shape` class and the `path` property.
+
+```js
+new Shape({
+	addTo: illustration,
+	color: 'currentColor',
+	path: [{ x: 0 }, { x: 80 }]
+});
+```
+
+What if you wanted to fragment the line, to complete the distance with a series of dashes? In SVG the feature is immediate, thanks to the `stroke-dasharray` attribute.
+
+```html
+<path stroke="currentColor" stroke-dasharray="4" d="M 0 0 80 0" />
+```
+
+Zdog? As with gradients, there's no such possibility, no `strokeDasharray` property within reach. How do you draw dashes? Literally, you draw dashes. Not one shape, but multiple shapes.
+
+With JavaScript you are very well able to set up a loop with a `for` statement. In this loop, you increase the horizontal offset. In the same loop, you draw the shapes from point to point.
+
+```js
+const dash = 4;
+for (let i = 0; i < 10; i++) {
+	const x1 = dash * i * 2;
+	const x2 = x1 + dash;
+
+	const path = [{ x: x1 }, { x: x2 }];
+}
+```
+
+You need to make sure the lines are shorter than the offset, but with enough tweaking, you can replicate the effect quite convincingly.
+
+<figure class="[ center-frame ]" data-size="small">
+    {@html svg['stroke-dashes']}
+</figure>
+
+## Dots
+
+The solution to our vexing issue should be apparent, even if slightly twisted. How can you paint with a variable color? Not with one shape, but multiple shapes. With each instance you change the position of the start and end coordinate. With each instance, you change the color as well.
+
+For the position, you are not limited to straight lines. Considering polar coordinates, you can realize more impressive figures, and for instance trace a perfect circle.
+
+```js
+const TAU = Math.PI * 2;
+for (let i = 0; i < 20; i++) {
+	const angle = (TAU / 20) * i;
+	const x = Math.cos(angle);
+	const y = Math.sin(angle);
+}
+```
+
+For the color, you can thank HSL and the flexible syntax which follows.
+
+```js
+for (let i = 0; i < 20; i++) {
+	// ...
+	const hue = i;
+	const color = `hsl(${hue} 90% 70%)`;
+}
+```
+
+Update the hue and you tap in the color wheel for a different color. The effect tends to work better with small increments, but again with enough tweaking, you are sure to complete the effect. Even in pseudo-3D.
+
+<figure class="[ center-frame ]" style="--frame-size: 350px">
+	<Torus />
+</figure>
+
+And the hue is not the only part of the `hsl` function. Hue, saturation and lightness coalesce into one solid choice. And while the hue is bound to improve the pseudo-3D figure, the remaining channels have their own reason.
+
+There are several ways to add depth. Thinking back at the library, you create depth with elaborate projections and with judicious overlaps. On top of these you can add color temperature. Light colors tend to appear closer, while darker shades tend to recede further away.
+
+<div class="[ center-frame ]" style="--frame-size: 380px">
+	<Lissajous />
+</div>
+
+No wonder the shape is 3D. Not only the shape is drawn with a set of three coordinates. Not only the illustration spins around the y axis. The figure is painted with a variable color, changing in increments and in lightness as you go along.
+
+I've made sure the colors match at the beginning and end, closing the perfect loop, but for the rest, you can thank Zdog. And a roundabout manner to draw more complex figures.
+
+If there is one thing I cherish about the library is the whimsy that comes from just trying things out. You may not have the options of CSS, nor SVG, but plenty of freedom to find a new friend.
+
+<figure class="[ center-frame ]" style="--frame-size: 400px">
+	<Bracelet />
+</figure>

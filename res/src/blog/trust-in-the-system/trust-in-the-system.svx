@@ -1,0 +1,227 @@
+---
+title: Trust in the system
+description: Geek out with SVG syntax to draw icons and build a practical set.
+date: 2023-06-09T16:07:53
+---
+
+<script>
+	import svg from './svg.js';
+	import Glyphs from './Glyphs.svelte';
+</script>
+
+The Wikipedia entry for [the Phoenician alphabet](https://en.wikipedia.org/wiki/Phoenician_alphabet) is a sweet candidate to illustrate one way you can set up an icon system with vector graphics.
+
+{@html svg['symbols']}
+
+You first need to draw the characters. All thirty of them.
+
+<figure class="[ center-frame ]" data-size="large">
+    {@html svg['glyphs']}
+</figure>
+
+There's a lot that goes in the design of the glyphs, possibly more than you can tolerate in one sitting, but there's enough SVG goodness to pause and appreciate the syntax. What is more, once you know how to draw a couple of characters, you'll be able to complete the set yourself.
+
+## Many paths
+
+When you need to draw a vector, there is little more freeing than a clear canvas, than an empty `<svg>`.
+
+```html
+<svg viewBox="-50 -50 100 100">
+	<!-- ... -->
+</svg>
+```
+
+I set the dimensions through the `viewBox` attribute to make justice to the scalable nature of the vector. You can then resize the element to grow or shrink while preserving the square aspect ratio. I also move the origin to draw from the center, but this is more a matter of preference, and something which helps a lot to draw symmetric shapes.
+
+The numbers? Again a matter of preference — it's nice to work with round figures.
+
+From this starting point, we're going to draw the actual shapes. And in this regard, consider the visual in the top left corner as a reference.
+
+You have a few options to paint the reversed, fancy "f", but nothing more versatile than a `<path>` element. A path with no fill and a thick, clear stroke.
+
+```html
+<g fill="none" stroke="currentColor" stroke-width="10">
+	<path d="" />
+</g>
+```
+
+In the `d` attribute you instruct how to draw, and while the syntax is often gnarly, you can go to great lengths with just the basics.
+
+```html
+<path d="M -25 -30 h 30 v 30 h -30" />
+```
+
+Move up and to the left, add a segment to the right, then down, then again left. At this juncture you draw yourself into a corner. You can fix the issue treading on the beaten path, with a horizontal segment back. But the point gives the perfect opportunity to re-introduce the `M` character, and illustrate an important concept at the same time.
+
+Uppercase letters point to numbers in absolute terms. `M -25 -30` means 25 units left, 30 up from the SVG origin.
+
+Lowercase letters describe relative measures. `m 30 0`? Yes, that will help us move 30 units to the right from where we currently are, from the left of the canvas and back to the vertical strait.
+
+```html
+<path
+	d="
+        M -25 -30 h 30 v 30 h -30 
+        m 30 0 v 30 h 15
+    "
+/>
+```
+
+From the spot, `v` and `h` complete the glyph, with a slightly shorter segment for the tail.
+
+There's only one more tweak to reach the end result. Something between a preference and a veritable need. Set the `stroke-linecap` attribute to `square`. Once you do, the segments stretch a tad further than the given points.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg['glyph-square']}
+</figure>
+
+How is this helpful? The moment you have a `<path>` take a turn, the line stretches a tad further before changing direction. It happens with the character when you move to the right and then down. It happens with more evidence in the alphabet, with the character two places to the right.
+
+```html
+<path d="M -25 -30 h 50 v 60 h -50 v -60 m 0 30 h 50" />
+```
+
+Here you have a sequence of turns to draw the rectangular shape. The addition of `stroke-linecap` means the lean figure and the more box-like shape are neatly aligned.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg['glyph-square-align']}
+</figure>
+
+Continuing in the alphabet, in between the two letters you have a circle around a cross tipped on its side. And the piece deserves a mention as well.
+
+In a brand new `<svg>`, draw a circle with two arcs.
+
+```html
+<path d="M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0" />
+```
+
+Conveniently, the path gives the character in the second row, but let's continue with the more complex shape. How would you draw the "x" right within the round edges? You can certainly try and guess the x, y values for the diagonals. You might even be aware of enough trigonometry to find the precise coordinates. But there is a way to get around the problem.
+
+Draw two segments. Left to right. Top to bottom. You know how to move around by now.
+
+```html
+<path
+	d="
+        M -25 0 a 25 25 0 0 1 50 0 25 25 0 0 1 -50 0
+        M -25 0 h 50
+        M 0 -25 v 50
+    "
+/>
+```
+
+And, rotate the piece. 45 degrees clockwise, or counterclockwise if you are so inclined.
+
+<!-- prettier-ignore -->
+```html
+<path
+	transform="rotate(45)"
+	d="M ..."
+/>
+```
+
+You rotate the cross and you find the "x". You rotate the arcs as well, but keep it a secret. No one will notice it.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg['glyph-rotate']}
+</figure>
+
+The three to four letters are already enough to fill your daily requirements of SVG syntax, but allow me one last musing for the character in the last row, consisting of nothing but a dot. I promise you, it won't take much, and it is worth the detour.
+
+Set up the canvas, pick up your measure-10 pencil, start and... immediately stop in your tracks.
+
+```html
+<path d="M 0 0 z" />
+```
+
+The `z` command sits on the opposite end of the `M` character, to close the line. And on its own, this instruction achieves very little — there is no stroke to show.
+
+Bring back the `stroke-linecap` attribute, however, and you discover one of the reasons I am often giddy writing SVG by hand. The moment you set the value to `round` you smooth the edges, at the start and the end. As the two overlap, voilà, there pops a perfect circle.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg['glyph-round']}
+</figure>
+
+## One vector
+
+Let's go back to the top: you design the thirty glyphs — believe me, with enough patience you are capable with the instructions you've seen so far.
+
+Thirty `<svg>` elements with thirty, carefully crafted paths.
+
+Take the syntax and you are able to set up the system with a few tweaks, with a few elements.
+
+Immediately, you have `<symbol>`. At first, the tag works similarly to `<svg>`: describe a canvas with the `viewBox` attribute and draw your shapes between the opening and closing bracket.
+
+```html
+<symbol id="glyph-0" viewBox="-50 -50 100 100">
+	<!-- ...g & path -->
+</symbol>
+```
+
+You essentially take the icons and rename the elements with the new label. A symbol is similar to `<svg>`, but you don't see anything until you point to the element through the unique `id` attribute.
+
+And it is here that you create the system. One `<svg>` — the `viewBox` doesn't matter this time — housing the syntax for the icons, housing one `<symbol>` for each glyph.
+
+```html
+<svg>
+	<!-- ...symbol#glyph-0 -->
+	<!-- ...symbol#glyph-1 -->
+	<!-- ... -->
+</svg>
+```
+
+The SVG is filled with symbols, and as prefaced, you don't see any trace of the nested shapes. Unfortunately, the browser does see the `<svg>` and does its job to position the invisible element.
+
+Setting `display` to `none` is a bit finicky — you don't want to know about quirky issues with never-rendered elements and cross-browser inconsistencies. Your safest option to remove the node from sight is to size it down to 0.
+
+You can set the width and the height through attributes, but personally, I prefer to rely on inline styles. Outside of the ominous `!important` flag, these are the most specific instructions at your disposal, and will triumph over more general declarations. Since you rely on CSS, then, you can also remove the element from the flow of the document changing its `position`.
+
+```html
+<svg style="position: absolute; width: 0; height: 0">
+	<!-- ...symbols -->
+</svg>
+```
+
+The system is set. You have your icons on the page. The `<svg>` doesn't mess up the layout. Good. It took quite some effort to get to this point, but you are about to reap the rewards.
+
+To draw an icon, add an `<svg>`.
+
+```html
+<svg viewBox="0 0 1 1">
+	<!-- ... -->
+</svg>
+```
+
+In this new element, refer to a symbol with a `<use>` element.
+
+```html
+<svg viewBox="0 0 1 1">
+	<use href="#glyph-0" />
+</svg>
+```
+
+And, that's it. You can change the size of the `<use>` element with the `width` and `height` attributes, or leave it as-is to grow and fill the available space.
+
+Need to repeat the icon? Re-use the syntax somewhere else.
+
+Want a different icon? Repeat the snippet and update the reference.
+
+```html
+<svg viewBox="0 0 1 1">
+	<use href="#glyph-1" />
+</svg>
+```
+
+Want to re-discover the alphabet? You get the gist.
+
+<div class="[ center-frame ]" data-size="medium">
+	<Glyphs />
+</div>
+
+You need a leap of faith. You have to trust the presence of the `<symbol>`s in the page, but with the stipulation, you have a full-blown icon set.
+
+Icons or characters, though? While the example is sweet, we are dangerously close to actual letters. And if your intent is to formulate words and sentences, there is no better way to render text than with text. In HTML, or even in SVG with the `<text>` element. You have to make sure [it remains visible](/fine-print), but once it is, you can select it, read it, or have somebody else read it in your place.
+
+The good news? Even text is made of vectors, of the same instructions you've seen in the `<path>` elements. Something which might inspire you to explore the topic further and who knows, design your own typeface beyond precious eye candy.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg["letters"]}
+</figure>

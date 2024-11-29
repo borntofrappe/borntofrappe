@@ -1,0 +1,110 @@
+---
+title: Stop mix
+description: Take a moment to sample a few features within SVG gradient.
+date: 2024-01-05T10:06:51
+---
+
+<script>
+	import svg from './svg.js';
+	import StopColor from './StopColor.svelte';
+	import StopOpacity from './StopOpacity.svelte';
+</script>
+
+At the core of SVG gradient , there lies the `stop` element. Be it in the scope of [linear or radial gradients](/smooth-elements) the node dictates the color assumed in the structure, and when, with two founding attributes: `stop-color` and `offset`.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="orange" offset="0" />
+<stop stop-color="yellow" offset="1" />
+```
+
+In the most direct example, with a color at the beginning and end, you find a predictable, welcomed result, with a smooth change from one color to the next. But tinkering with the formula you can exploit the element to unlock a few features.
+
+## Offset
+
+In the `offset` attribute you specify a number between 0 and 1, or a percentage between 0% and 100%. Numbers outside of the range are capped at either end, but there's one more scenario worth discussing. And it happens when, out of chance or volition, you list the `stop` elements in a different order.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="yellow" offset="1" />
+<stop stop-color="orange" offset="0" />
+```
+
+What happens when the order is reversed, and in particular the stop color with the offset of 1 precedes the one offset with a value of 0?
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['offset']}
+</figure>
+
+Seemingly, the gradient breaks down, and you find the first color throughout the entire surface. In the specification, however, [a note](https://svgwg.org/svg2-draft/pservers.html#StopNotes) describes what really happens.
+
+The smaller offset is updated to match the value of the earlier `stop`. In our basic example, this means that orange begins when yellow ends, and that is at the end of the gradient, when you no longer have a chance to see it through.
+
+This is an interesting factoid, but opens an equally interesting door. In a gradient, usually, you'd like to interpolate between colors smoothly and over time. But you may also want to switch between colors abruptly, with a hard stop. If you wanted to achieve this effect with two colors you could specify the same value for the `offset` attribute.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="yellow" offset="0.5" />
+<stop stop-color="orange" offset="0.5" />
+```
+
+But, knowing what happens with the upside-down order, you can replicate the feat with a single threshold.
+
+<!-- prettier-ignore -->
+```html
+<stop stop-color="yellow" offset="0.5" />
+<stop stop-color="orange" offset="0" />
+```
+
+Set the first offset to where you'd like to switch. Set the second to 0. Behind the scenes, the value is updated to match and you find the different color, in its complete version. You only need to change one offset, one number, to find a different split
+
+```diff
+-<stop stop-color="yellow" offset="0.5" />
++<stop stop-color="yellow" offset="0.66" />
+```
+
+. But you'll have to wait one brief moment to appreciate the result.
+
+## Color
+
+Alongside the offset the `stop-color` attribute defines a color value. But speaking of changing values, you have the option of updating the color with CSS, with the `stop-color` property.
+
+```css
+stop:nth-of-type(1) {
+	stop-color: ivory;
+}
+
+stop:nth-of-type(2) {
+	stop-color: violet;
+}
+```
+
+In terms of specificity, the key-value pairs override the presentational attributes, meaning you can update the gradient directly in the stylesheet. Combine this with the reversed offset, and you have a way to showcase a variety of styles.
+
+<StopColor />
+
+## Opacity
+
+`offset` and `stop-color` represent two of the three attributes designed to tweak the respective `stop` elements. Next to them, you have `stop-opacity`.
+
+```html
+<stop stop-opacity="0.5" stop-color="yellow" offset="0" />
+```
+
+The attribute accepts a value between 0 and 1, to describe the transparency of the color at the precise offset. Admittedly, you could achieve the same effect with many color functions. Hex values, `rgb`, `hsl` notations all offer a way to specify a value for the alpha channel for a given color.
+
+```html
+<stop stop-color="hsl(60 100% 50% / 0.5)" offset="0" />
+```
+
+So why would you bother with the syntax? It's not just a way to change the opacity of named colors. Here you have a separate value, a separate instruction from the color. An instruction you can set with an attribute, and promptly, with a CSS property as well.
+
+```css
+stop:nth-of-type(1) {
+	stop-opacity: 0;
+}
+```
+
+The moment you want to update the transparency, or even transition between different levels, you just need to touch the opacity. To have the gradient completely visible or partly disappear, and see what lies behind.
+
+<StopOpacity />

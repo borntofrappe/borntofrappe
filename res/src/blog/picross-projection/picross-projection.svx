@@ -1,0 +1,349 @@
+---
+title: Picross projection
+description: Continuing the exploration of solved nonogram puzzles. In higher dimensions. Always with SVG.
+date: 2023-02-23T10:47:49
+---
+
+<script>
+	import svg from './svg.js'
+	import Coordinates from './Coordinates.svelte'
+	import Level from './Level.svelte'
+	import Showcase from './Showcase.svelte'
+</script>
+
+With [Picross 2D](/picross-2d) we visualized solved nonogram puzzles in a grid. Columns and rows peppered with rectangles to create rudimentary, but rather believable, paintings in two dimensions. With a bit of ingenuity, experimentation and a good dose of patience, it is possible to extend the two-dimensional picture and create the illusion of depth. Only with SVG.
+
+{@html svg['defs']}
+
+## Cube
+
+The key to add perspective is a `<path>` element tracing the contours of a cube.
+
+```html
+<svg viewBox="0 0 1 1">
+	<path fill="currentColor" d="M 0 0.25 l 0.5 -0.25 0.5 0.25 0 0.5 -0.5 0.25 -0.5 -0.25" />
+</svg>
+```
+
+We create the element to fit in a rectangle 1 unit wide, 1 unit tall. Conceptually, this matches the size of a single cell in the previous 2D grid.
+
+<figure class="[ center-frame ]" data-size="small">
+    {@html svg['cube']}
+</figure>
+
+To further the sense of depth, add shadows in the form of black, translucent faces.
+
+```html
+<g fill="black">
+	<path opacity="0.5" d="M 0 0.25 l 0.5 0.25 0 0.5 -0.5 -0.25" />
+	<path opacity="0.25" d="M 0.5 0.5 l 0.5 -0.25 0 0.5 -0.5 0.25" />
+</g>
+```
+
+On top of the first shape, the two `<path>`s emulate a light source from north-east. Something which becomes the more evident the lighter the color.
+
+<figure class="[ center-frame ]">
+    {@html svg['shadow']}
+</figure>
+
+And surprise surprise, that's all you need in terms of drawing. Just the cube, repeated similarly to the rectangles in the previous effort.
+
+Define the shape in a helpful `<defs>` block.
+
+```html
+<defs>
+	<g id="cube">
+		<!-- <path>s -->
+	</g>
+</defs>
+```
+
+And you'll be able to add the fancy shape in the SVG document through the `<use>` element.
+
+```html
+<g fill="currentColor">
+	<use href="#cube" />
+</g>
+```
+
+## Coordinates
+
+A small recap for the two-dimensional project.
+
+Based on a string of characters, `x`s and `o`s.
+
+```js
+const level = `xxxoo
+xxxox
+xxxox
+xxoox
+oooox
+oooox
+oxxox
+oxxox`;
+```
+
+We created `grid` to isolate the letters in a 2D array.
+
+```js
+const grid = level.split('\n').map((row) => row.split(''));
+```
+
+The collection gave us the width and height of the canvas.
+
+```js
+const height = grid.length;
+const width = grid[0].length;
+```
+
+And ultimately the coordinates of the round character in a one-dimensional array — `coordinates`. I'll refer you [to the article](/picross-2d#coordinates) once more to find the logic for the (x, y) values, but based on the structure we finally drew the level with rectangles.
+
+```svelte
+{#each coordinates as { x, y }}
+	<rect {x} {y} width="1" height="1" />
+{/each}
+```
+
+Let's try and replace the `<rect>` element with our custom cube.
+
+```diff
+-<rect {x} {y} width="1" height="1" />
++<use {x} {y} href="#cube" />
+```
+
+<figure class="[ center-frame ]">
+	<Coordinates />
+</figure>
+
+And let's call this a solid starting point.
+
+## Projection
+
+We need to position the elements in the perspective afforded by the cube, into the context of an _isometric_ projection.
+
+To understand how, consider the following grid as a reference, beyond a stylish pattern for a modern living room.
+
+<figure class="[ center-frame ]" data-size="medium">
+    {@html svg['isometric-grid']}
+</figure>
+
+The moment you have a row of neighboring cubes.
+
+```html
+<use x="0" y="0" href="#cube" />
+<use x="1" y="0" href="#cube" />
+<use x="2" y="0" href="#cube" />
+```
+
+<figure class="[ center-frame ]">
+    {@html svg['cubes']}
+</figure>
+
+You want to position the objects at increments of half the width: 0.5, 1, 1.5 and so forth.
+
+```html
+<use x="0" y="0" href="#cube" />
+<use x="0.5" y="0" href="#cube" />
+<use x="1" y="0" href="#cube" />
+```
+
+<figure class="[ center-frame ]">
+    {@html svg['offset-x']}
+</figure>
+
+In terms of SVG, later shapes are drawn above previous ones, meaning you need to reverse the order of the elements.
+
+```html
+<use x="1" y="0" href="#cube" />
+<use x="0.5" y="0" href="#cube" />
+<use x="0" y="0" href="#cube" />
+```
+
+But halving the offset is enough to realize the tight fit.
+
+<figure class="[ center-frame ]">
+    {@html svg['reverse']}
+</figure>
+
+Vertically, we want to lift up each successive cube to create a consistent ascension.
+
+```html
+<use x="1" y="-0.5" href="#cube" />
+<use x="0.5" y="-0.25" href="#cube" />
+<use x="0" y="0" href="#cube" />
+```
+
+Each column is raised by half the horizontal offset: 0.25, 0.5 and so on.
+
+<figure class="[ center-frame ]">
+    {@html svg['offsets-y']}
+</figure>
+
+Enough to complete a row. Say you have additional rows, however.
+
+```html
+<use x="0" y="1" href="#cube" />
+<use x="0" y="2" href="#cube" />
+<!-- <use>s -->
+```
+
+And once again the unitary increment proves to be excessive.
+
+<figure class="[ center-frame ]">
+    {@html svg['rows']}
+</figure>
+
+Once again, you need to place the elements per the projection, at increments of half the height.
+
+```html
+<use x="0" y="1" href="#cube" />
+<use x="0" y="0.5" href="#cube" />
+<!-- <use>s -->
+```
+
+Completing the graphical projection.
+
+<figure class="[ center-frame ]">
+    {@html svg['offsets']}
+</figure>
+
+Notice again the arrangement in the snippet. You start from the bottom-most element to draw the preceding rows effectively on top.
+
+## Level
+
+Let's re-consider the elaborate grid of characters. Instead of using the index for the coordinates, as-is.
+
+```js
+for (let y = 0; y < grid.length; y++) {
+	for (let x = 0; x < grid[0].length; x++) {
+		coordinates.push({ x, y });
+	}
+}
+```
+
+Rename the variables to generic counter labels.
+
+```js
+for (let i = 0; i < grid.length; i++) {
+	for (let j = 0; j < grid[0].length; j++) {
+		// ...
+	}
+}
+```
+
+As per the smaller example, compute the two offset values: x equal to half the index, y equal to half its own index detracted by half the horizontal offset.
+
+```js
+const x = j / 2;
+const y = i / 2 - x / 2;
+
+coordinates.push({ x, y });
+```
+
+<figure class="[ center-frame ]">
+    <Coordinates offset={true} />
+</figure>
+
+Impressed, but not completely? You certainly remember the note about the source order. Reverse the final array.
+
+```js
+coordinates.reverse();
+```
+
+And the puzzle assumes its rightful, three dimensional shape.
+
+<figure class="[ center-frame ]">
+    <Coordinates offset={true} reverse={true} />
+</figure>
+
+The `reverse` method technically modifies the original data structure, and if you don't fancy the feature, you might prefer creating a separate collection.
+
+```js
+const drawCoordinates = [...coordinates].reverse();
+```
+
+Or again reverse the shallow copy as you draw the elements.
+
+```svelte
+{#each [...coordinates].reverse() as { x, y }}
+	<use {x} {y} href="#cube" />
+{/each}
+```
+
+Whichever way suits your coding style best.
+
+## Canvas
+
+Most assuredly, it did not escape your eyes that the visual is off center, and almost lost in a sea of white-space.
+
+I expanded the canvas to avoid one annoying mishap: use the width and height from the 2D grid and, perhaps expectedly, the values do not fit the composition.
+
+<figure class="[ center-frame ]">
+    <Coordinates offset={true} reverse={true} padding={0} />
+</figure>
+
+There must be a way to find the numbers in terms of the projection, but ultimately, I decided to find a workaround with JavaScript instead.
+
+`coordinates` describes the position of the cubes. Consider the x and y values in two sorted arrays.
+
+```js
+const xs = coordinates.map(({ x }) => x).sort((a, b) => a - b);
+const ys = coordinates.map(({ y }) => y).sort((a, b) => a - b);
+```
+
+What is the width, what is the height of the canvas? That would be the space between the first and last cube. The difference between the largest and smallest value in each dimension
+
+```js
+const x0 = xs[0];
+const x1 = xs[xs.length - 1];
+const width = x1 - x0;
+
+const y0 = ys[0];
+const y1 = ys[ys.length - 1];
+const height = y1 - y0;
+```
+
+Plus 1. Plus 1 to account for the size of the cube itself — you can't very well forget the last column, the last row.
+
+```js
+const width = x1 - x0 + 1;
+const height = y1 - y0 + 1;
+```
+
+Update the canvas with the new dimensions.
+
+```svelte
+<svg viewBox="0 0 {width} {height}">
+	<!-- ... -->
+</svg>
+```
+
+Finally, translate the picture per the initial, smallest coordinate.
+
+```svelte
+<svg viewBox="0 0 {width} {height}">
+	<g transform="translate({x0 * -1} {y0 * -1})">
+		<!-- ... -->
+	</g>
+</svg>
+```
+
+The horizontal coordinate begins at 0, so the instruction is superfluous, but the vertical values do become smaller — consider how the cells are projected upwards. This last instruction moves the visual down, perfectly encapsulating the multi-dimensional level.
+
+<figure class="[ center-frame ]">
+    <Level />
+</figure>
+
+If you want to rely only on the `viewBox` attribute you might translate the origin of the entire SVG at the very top.
+
+```svelte
+<svg viewBox="{x0} {y0} {width} {height}">
+	<!-- ... -->
+</svg>
+```
+
+But that's the last piece of SVG I will propose for the time being.
+
+It wouldn't be fair to end on this note, however. After all, the 2D article proposed a handful of levels more. Let me propose them in force, with a touch of color and a brand new perspective.
+
+<Showcase />

@@ -1,0 +1,128 @@
+---
+title: A longer affair
+description: Prolong the summer fling with game development. With love.
+date: 2024-09-04T21:50:19
+---
+
+<script>
+	import svg from './svg.js'
+</script>
+
+For all the goodness baked in [PICO-8](https://www.lexaloffle.com/pico-8.php) you develop small games with a proprietary engine. [The education edition](https://www.pico-8-edu.com/) offers a free option while removing only a few features, but if you are interested in an open-source alternative you have to look elsewhere. In this sense, [LÖVE](https://love2d.org/) seems like a reasonable, if not obvious, first stop. There are considerable similarities between the two:
+
+- the programming language is still Lua
+
+- there are three essential functions to set up a game loop, and these roughly correspond to those described in [the previous excursion](/a-very-small-detour): `love.load`, which runs at startup similarly to `_init`, `love.update` and `love.draw`, which essentially replace the `_update` and `_draw` methods to change the game's state and look.
+
+There are plenty of differences, however, undeniable obstacles which might make you wonder, does it take _that_ long to port a game to the new engine? Let me take [the little plaything](https://github.com/borntofrappe/gg/blob/main/pico-adventure.p8) created in the earlier adventure as a small example.
+
+_Please note_: some of the code assumes a lot of knowledge of Lua, PICO-8 and LÖVE, but I'll try to make the snippets clear and a tad entertaining.
+
+The most evident difference is in terms of screen size. In PICO-8 you position shapes in a display 128 pixels wide and tall. In LÖVE, at least if you want to see something, you'll have to reason with larger units. With this in mind you either scale every measure, from that of the text to that of the sprites. Or, scale the drawn output. It is a radical choice, but one which works as a quick work-around.
+
+```lua
+function love.draw()
+  love.graphics.scale(screen_scale, screen_scale)
+end
+```
+
+For the display there's no built-in pixelated font, so you can resolve to use a monospace variant. It is certainly too time-consuming to download an outline font editor and create your own version of the many, _many_ characters. Ninety-four if you don't count spaces.
+
+```lua
+local font = love.graphics.newFont("res/font.ttf", 6)
+font:setFilter("nearest", "nearest")
+love.graphics.setFont(font)
+```
+
+Always in terms of graphics, there is no `spr` function to quickly draw sprites. You need to use `love.graphics.draw` and reference an image first and then a "quad", a section of the larger spritesheet. Of course you can write a function to bridge the gap.
+
+```lua
+function spr(n, x, y)
+  love.graphics.draw(spritesheet, sprites[n], x, y)
+end
+```
+
+And go as far as you possibly can to replace all the conveniences provided by the fantasy console.
+
+```lua
+function print(text, x, y, color)
+  love.graphics.setColor(color)
+  love.graphics.print(text, x, y)
+end
+```
+
+You might be able to recreate every single feature, but there are obstacles which at least I found insurmountable. Take colors: you don't have just 16 values, but a bounty of RGB sequences.
+
+```lua
+love.graphics.setColor(1, 1, 1)
+```
+
+Hitting a new low, there is no level editor to draw the room, forcing you to get creative drawing tiles in a specific configuration.
+
+```lua
+local room =
+           "                "
+.. "\n" .. "0181111111111912"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "3              4"
+.. "\n" .. "5666666666666667"
+```
+
+Not to mention develop your own way to detect when the player collides with a specific cell. Alas, there is no ready-made notion of "flags".
+
+With regards to the interaction the updating function poses another huge challenge. The frame rate is at least doubled as the PICO-8 `_update` function runs 30 frames per second (there exists `_update60` to double the number, but it wasn't used in the small project). This means you either rewrite the game loop to skip every other frame or use `dt`, the variable passed to `love.update` to describe delta time and maintain consistent motion regardless of power.
+
+```lua
+local update_speed = 30
+function love.update(dt)
+  game_update(dt * update_speed)
+end
+```
+
+Unfortunately. the differences do not end there. Extracting a character from a string.
+
+```diff
+-char = enter.text[i],
++char = enter.text:sub(i, i),
+```
+
+Looping through tables.
+
+```diff
+-for letter in all(letters) do
++for _, letter in pairs(enter.letters) do
+```
+
+Even drawing special characters, which in PICO-8 materialize with emojis. In the small console you include these with uppercase letters, but alas you may want to let go of the feature. Too bad _nobody_ designed [the `.ttf` document](https://github.com/borntofrappe/gg/blob/main/src/fleeting-love/res/font.ttf) to support all the glyphs.
+
+```diff
+-"press ❎ to continue"
++"press X to play"
+```
+
+One last of the many differences is with music. And this is where despite the time and effort poured in the project I need to drop every pretense and admit that [the end result](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) might fall short of creating a complete copy. Sound effects play, music begins and ends, but without fading.
+
+```diff
+-music(1, -200)
++source:play()
++source:setLooping(true)
+```
+
+I'm just glad to have the audio play through the title, blips and hypnotic pattern alike.
+
+Is all of this worth it? Not really if you want to prototype something, to show off a concept and are stressed for time — the features you lose moving away from the fantasy console add up. But to learn the ins and outs of the two frameworks, to discover more about the base language, the answer might differ and push you to go through the effort. It certainly makes you appreciate even the smallest adventure, to the point where you won't even mind to replay the three levels. This time you only need to download [the zipped folder](https://github.com/borntofrappe/gg/blob/main/fleeting-love.zip) to find the executable. Or review [the source files](https://github.com/borntofrappe/gg/tree/main/src/fleeting-love) to appreciate the endeavor.
+
+<figure class="[ center-frame ]">
+	{@html svg['fleeting-love']}
+</figure>

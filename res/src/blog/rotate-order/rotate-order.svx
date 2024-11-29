@@ -1,0 +1,107 @@
+---
+title: Rotate order
+description: Lean on the often confounding order of pseudo-3D rotations.
+date: 2023-11-03T15:35:19
+---
+
+<script>
+	import Axes from './Axes.svelte';
+	import Rotate from './Rotate.svelte';
+	import Robots from './Robots.svelte';
+</script>
+
+One of the most intriguing parts of [Zdog](https://zzz.dog/) is the ability to rotate a graphic on [the three possible axes](/rotate-3d), but there are a few challenges with the possibility.
+
+Immediately, you need to understand how a rotation takes place, almost literally around the axis.
+
+<Axes />
+
+The direction of the rotation is also important. Positive values tip the shapes upwards, westwards or again clockwise. Negative numbers move the shapes in the opposite sense — downwards, to the east and against the hands of a clock.
+
+A few examples illustrate the concept, to the point where you can predict the final result even before the rotation appears on screen.
+
+```js
+illustration = new Zdog.Illustration({
+	element: 'canvas',
+	rotate: {
+		x: degreesToRadians(30)
+	}
+});
+```
+
+But what happens when you apply two or more rotations? The effect is often confounding, and it can be daunting to anticipate the result.
+
+```js
+illustration = new Zdog.Illustration({
+	element: 'canvas',
+	rotate: {
+		x: degreesToRadians(20),
+		y: degreesToRadians(30)
+		z: degreesToRadians(10)
+	}
+});
+```
+
+In this light, you must understand that rotation occurs in a precise sequence, an order prescribed by the library, and not by the structure of the `rotate` object.
+
+x, y, z. Thankfully, Zdog follows the alphabet to the letter to tilt the image. Think in these terms and the change becomes clear. Take the following snippet, for instance.
+
+```js
+const rotate = {
+	x: degreesToRadians(40),
+	y: degreesToRadians(20)
+};
+```
+
+Here you rotate the graphic on the x and y axis, by 40 and 20 degrees respectively. It might be easier to think of the values in degrees, but in the `rotate` object the numbers refer to radians, explaining the conversion with a helper function.
+
+```js
+const degreesToRadians = (degrees) => (degrees / 180) * Math.PI;
+```
+
+What happens, then? Once again, picture the changes one at a time. First, the shape is tilted upwards. If you think of the coordinate system of your drawing as a pane, think of the solid as moving, in its entirety, to look slightly up. Then, from this, tipped, position, the figure moves to the west. With this in mind, the shape aims longingly at the top left corner of the canvas.
+
+<Rotate {...{x: 40, y: 20}} />
+
+You have a lot of freedom in terms of values. And in terms of angles, you usually work with numbers with a constant proffered by Zdog itself: `TAU`. The variable refers to twice the value of `Math.PI`, so that you can reason in terms of fractions of full rotations.
+
+```js
+const rotate = {
+	z: Zdog.TAU / 4
+};
+```
+
+Even in the smaller range, there's ample space to experiment, but you are also locked in the given order. What if you wanted to spin the image around the clock first, and only then rotate the result on the x or y axis? You need an intermediate step, and in terms of code, you need an instance of an `Anchor` class.
+
+```js
+const anchor = new Zdog.Anchor({
+	addTo: illustration
+});
+```
+
+An anchor works as a container for other shapes. Instead of adding shapes to the base illustration, update the `addTo` field to point to the new object.
+
+```js
+new Zdog.Shape({
+	addTo: anchor
+	// color & path
+});
+```
+
+And with this two-step structure you are more than equipped to achieve the feat, in order. Rotate the illustration, updating the coordinate system for every object which follows.
+
+```js
+illustration.rotate.z = degreesToRadians(10);
+```
+
+Rotate the anchor, from the new point of view.
+
+```js
+anchor.rotate.y = degreesToRadians(-20);
+```
+
+And you are square. Every shape added to the anchor is rotated as intended.
+
+Once you elevate a drawing to a new dimension, the change can be often confusing, but there is no magic behind the scenes. Not as much as logical, rounded, pseudo-3D shapes.
+
+<Robots />

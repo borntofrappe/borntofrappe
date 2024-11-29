@@ -1,0 +1,17 @@
+---
+title: Leftover batter
+description: Try small, misshapen sweets to celebrate a day in theme.
+date: 2023-12-06T22:01:54
+---
+
+<script>
+	import Misshapes from './Misshapes.svelte';
+</script>
+
+Even before one of the most celebrated events of the year you have the opportunity to bake something sweet on a few special occasions. [Some](/tuesday-treats) are quite popular, while others more niche, local. And they may change in name between neighboring countries — is it _Mannele_, or perhaps _Stutenkerl_? —, but they share the same core, the same charming nature.
+
+<div class="[ center-frame ]" style="--frame-size: 380px">
+	<Misshapes />
+</div>
+
+They are misshapen beyond measure, the perfect excuse to avoid any waste once you're done with a more elaborate recipe, and you cannot help but appreciate the result. Of course sugar helps — it is almost a given —, but there's an authenticity that is all the more precious. That and a handful of chocolate nuggets.

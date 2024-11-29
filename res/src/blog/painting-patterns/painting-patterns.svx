@@ -1,0 +1,185 @@
+---
+title: Painting patterns
+description: The scalable, erring quest to paint a pattern more than just red.
+date: 2024-04-30T20:18:05
+---
+
+<script>
+	import svg from './svg.js';
+	import Pattern from './Pattern.svelte';
+</script>
+
+For scalable vector graphics, the `pattern` element allows to repeat a drawing over a given surface. It is a rather convenient feature, limited only by imagination, your willingness to explore the _many_ possible attributes and one pesky behavior. But at least for this last one, there are a couple of workarounds.
+
+## A pattern
+
+As mentioned, there are a lot of attributes when it comes to SVG and patterns, but for a basic example consider a humble circle. You can draw one small dot in a canvas 1 unit wide and tall with an element with the same name.
+
+```html
+<svg viewBox="0 0 1 1">
+	<circle r="0.2" cx="0.5" cy="0.5" />
+</svg>
+```
+
+The idea is to then include the shape not in the body of an `svg` element, but that of a `pattern`.
+
+```html
+<pattern viewBox="0 0 1 1">
+	<circle r="0.2" cx="0.5" cy="0.5" />
+</pattern>
+```
+
+The `viewBox` attribute is valid for both, and in this instance, argues the canvas of the pattern. The canvas of the `svg` can be different, and you might relish the freedom of having more space.
+
+```html
+<svg viewBox="0 0 20 16">
+	<!-- ...pattern  -->
+</svg>
+```
+
+From this point, and for the pattern, only few attributes are strictly necessary:
+
+- `id`, a reference for later use
+
+- `width` and `height`, two measures to dictate how often the pattern should repeat, horizontally and vertically
+
+  With a percentage or decimal value the numbers describe a fraction of the benefiting shape
+
+With the adjustments.
+
+```html
+<pattern id="dots" width="0.2" height="0.2" viewBox="0 0 1 1">
+	<circle r="0.2" cx="0.5" cy="0.5" />
+</pattern>
+```
+
+You point to the pattern in a different element, one you actually draw on the page. In the `fill` attribute of a rectangle, for instance.
+
+```html
+<rect fill="url(#dots)" width="20" height="14" />
+```
+
+And in this manner, instead of a solid polygon, you'll find the repeated shape. In which color though?
+
+<figure class="center-frame" data-size="small">
+	{@html svg['dots']}
+</figure>
+
+## An issue
+
+By default, SVG shapes start with a `fill` of `#000`, completely black. You can change the attribute with every possible value supported in CSS, from named colors to `hsl`.
+
+```html
+<circle fill="hsl(0 100% 50%)" r="0.2" cx="0.5" cy="0.5" />
+```
+
+But this is where you may stumble on something peculiar. The color for the pattern is set, and you can't change its value when repeating the shapes. Not even if you try more flexible options like custom properties or `currentColor`.
+
+```html
+<circle fill="currentColor" r="0.2" cx="0.5" cy="0.5" />
+```
+
+Once the pattern picks up a color from the closest parent container.
+
+```css
+svg {
+	color: hsl(120 100% 25%); /* ok... lch? */
+}
+```
+
+There's no way to tweak the design for the following shapes.
+
+```css
+rect {
+	color: hsl(240 100% 50%); /* nope */
+}
+```
+
+The one definition means the pattern is locked. And in hindsight, perhaps it would be presumptuous for it to change. A browser would need to look up the value of the element using the pattern, wherever it may be, instead of climbing up the ladder of parent nodes. Understandable, but slightly annoying. What does it take to paint a new set?
+
+## More than a fix
+
+The first solution is perhaps the dumbest, but worth spelling out all the same. Create a different pattern, one where the circle has a different fill.
+
+```html
+<!-- #dots-blue -->
+<circle fill="hsl(240 100% 50%)" r="0.2" cx="0.5" cy="0.5" />
+```
+
+It may not be scalable, but referencing the new element will work.
+
+```html
+<rect fill="url(#dots-blue)" width="20" height="14" />
+```
+
+And inspire a second solution, a filter. The topic is vast, there's an entire vocabulary in the SVG spec and it deserves much more attention than a fleeting mention, but you can think of a filter as styling directives, operating pixel by pixel in a `filter` element. Similar to an effect you apply in a picture with your high-end device.
+
+```html
+<filter id="colorize">
+	<!-- ... -->
+</filter>
+```
+
+One of those effects is to colorize the shapes in two rapid steps, two succinct functions.
+
+First, `feFlood`. The element paints over the surface with the color used in the `flood-color` attribute.
+
+```html
+<!-- #colorize -->
+<feFlood flood-color="hsl(240 100% 50%)" />
+```
+
+On its own the instruction paints over the _entire_ surface, the complete rectangular area, but you want to paint only the dots. For this `feComposite` limits the scope.
+
+```html
+<!-- #colorize -->
+<feFlood flood-color="hsl(240 100% 50%)" />
+<feComposite in2="SourceGraphic" operator="in" />
+```
+
+The syntax is quite technical, a tad distressing, but with the `operator` attribute set to `in` achieves the effect by essentially clipping the area, by considering only the space occupied by the source graphic, only the circles.
+
+Point to the filter with the matching attribute and the code works.
+
+```html
+<rect filter="colorize" fill="url(#dots)" width="20" height="14" />
+```
+
+Once again, however, for just the one color.
+
+You can argue that the solution is even less scalable, but it also leads to the final attempt. Ironically, however, we'll have to forget any color and think in black and white.
+
+The idea is to use a different SVG element, a `mask`, to hide and show parts of the rectangle.
+
+```html
+<mask id="cutout">
+	<!-- ... -->
+</mask>
+```
+
+In the body of a mask black shapes work to completely hide the drawing, while white shapes will work to reveal the masked content. Which means, you can repeat the dots created with the pattern.
+
+```html
+<mask id="cutout">
+	<rect fill="url(#dots)" width="20" height="14" />
+</mask>
+```
+
+In which color? Well, in pure white.
+
+```html
+<!-- #dots  -->
+<circle fill="white" r="0.2" cx="0.5" cy="0.5" />
+```
+
+Update the pattern with the brightest hue and you have a mask to display the dots. You only need to apply the change to a solid rectangle with the `mask` attribute.
+
+Not the `fill`, mind you, which will be once more available to paint the circles any way you may so choose.
+
+```html
+<rect mask="url(#cutout)" fill="hsl(240 100% 50%)" width="20" height="14" />
+```
+
+For dots, and with time, for the most mesmerizing pattern you will be sure to imagine.
+
+<Pattern />

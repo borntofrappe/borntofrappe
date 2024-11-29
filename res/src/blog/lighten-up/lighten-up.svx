@@ -1,0 +1,34 @@
+---
+title: Lighten up
+description: Illuminate the star-studded sky with highly saturated colors.
+date: 2024-01-01T11:12:27
+---
+
+<script>
+	import ZdogMonday from '$lib/components/blog/ZdogMonday.svelte';
+
+	import svg from './svg.js';
+	import Fireworks from './Fireworks.svelte';
+</script>
+
+I don't shy away from a wee bit o' celebration, and recently, I've been fond of using the occasion as the input for pseudo-3D graphics. Today is no different, and starts out with a fuse, ready to be lit and illuminate the sky with stunning colors.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['fuse']}
+</figure>
+
+Small story aside: I have a distant relative known for her quirky nature. And at the crossing between two years, you can always count on her for two things:
+
+1. sleeping early in, usually at around 9, but no later than 10, on the 31st of December
+
+2. waking up at dawn on the 1st of January, to enjoy the sky slopes while tourists are too worn out, too lazy "to swarm the place"
+
+There is some sense in the practice, but evidently, there are also a few drawbacks. And no matter the fact that some cities choose to anticipate the festivities, it means that the joy of the night is gone and forgotten. Pyrotechnic displays, striking at midnight with questionable précisions, are one of the victims. So this small graphic goes out to her, and any person not able to enjoy the scene.
+
+Be it you're sleeping tight, be it cold, or cloudy outside, there's a host of reasons fireworks might fizzle into nothing. If JavaScript works on your page, and have scrolled this far, here's a remedy waiting to happen. Sparkling in time and dimensions.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	<Fireworks />
+</div>
+
+<ZdogMonday />
