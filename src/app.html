@@ -1,12 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/icon.svg" type="image/svg+xml" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/icon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="preload"
+      href="/fonts/Mulish-Regular-kern-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <style>
+      @font-face {
+        font-family: Mulish;
+        src: url("/fonts/Mulish-Regular-kern-latin.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: Mulish;
+        src: url("/fonts/Mulish-Italic-kern-latin.woff2") format("woff2");
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: Mulish;
+        src: url("/fonts/Mulish-ExtraBold-kern-latin.woff2") format("woff2");
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: Mulish;
+        src: url("/fonts/Mulish-ExtraBoldItalic-kern-latin.woff2")
+          format("woff2");
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: Shantell Sans;
+        src: url("/fonts/ShantellSans-Bold-kern-latin.woff2") format("woff2");
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      :root {
+        --font-base: Mulish, system-ui;
+        --font-display: Shantell Sans, system-ui;
+        --font-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+          monospace;
+      }
+
+      body {
+        font-family: var(--font-base);
+      }
+
+      code {
+        font-family: var(--font-mono);
+      }
+
+      .font-display {
+        font-family: var(--font-display);
+        font-weight: 700;
+      }
+    </style>
+
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>

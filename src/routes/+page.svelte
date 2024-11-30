@@ -1,5 +1,4 @@
 <script>
-  import "../app.css";
   import TimePiece from "./TimePiece.svelte";
 </script>
 
