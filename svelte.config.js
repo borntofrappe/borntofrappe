@@ -1,8 +1,27 @@
 import adapter from "@sveltejs/adapter-netlify";
-import { mdsvex } from "mdsvex";
+import { escapeSvelte, mdsvex } from "mdsvex";
+import { createHighlighter } from "shiki";
+
+const theme = "catppuccin-mocha";
+const highlighter = await createHighlighter({
+  themes: [theme],
+  langs: ["html", "css", "javascript"],
+});
 
 const mdsvexConfig = {
   extensions: [".md", ".svx"],
+  highlight: {
+    highlighter: (code, lang) => {
+      const html = escapeSvelte(
+        highlighter.codeToHtml(code, {
+          lang,
+          theme,
+        })
+      );
+
+      return `{@html \`${html}\`}`;
+    },
+  },
 };
 
 /** @type {import('@sveltejs/kit').Config} */
