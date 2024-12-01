@@ -1,6 +1,6 @@
 import { parse } from "node:path";
 
-/** @type {import('./$types').PageServerLoad} */
+/** @type {import('./$types').LayoutServerLoad} */
 export async function load() {
   /** @type Array<import('$lib/types').Article> */
   const blog = [];
