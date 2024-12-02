@@ -1,21 +1,22 @@
 import { error } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageLoad} */
-export async function load({ parent, params }) {
-  const { blog } = await parent();
-  const article = blog.find((d) => d.slug === params.slug);
+export async function load({ params }) {
+  const modules = import.meta.glob("/src/blog/**/*.{md,svx}");
+  for (const path in modules) {
+    const slug = path.split("/").pop()?.split(".")[0];
+    if (slug === params.slug) {
+      const { metadata, default: content } =
+        /** @type {{ metadata: import('$lib/types').Frontmatter, default: Function}} */ (
+          await modules[path]()
+        );
 
-  if (article === undefined) {
-    throw error(404, "Article not found");
+      return {
+        ...metadata,
+        content,
+      };
+    }
   }
 
-  const { path } = article;
-  /** @type {{ metadata: import('$lib/types').Frontmatter, default: Function}} */
-  const module = await import(path);
-  const { metadata, default: content } = module;
-
-  return {
-    ...metadata,
-    content,
-  };
+  error(404, "Article not found");
 }

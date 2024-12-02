@@ -6,5 +6,4 @@ export type Frontmatter = {
 
 export type Article = Frontmatter & {
   slug: string;
-  path: string;
 };
