@@ -4,6 +4,10 @@ description: Improve a cherished feature plagued with rough edges.
 date: 2024-12-04
 ---
 
+<script>
+  import FilterText from "./FilterText.svelte";
+</script>
+
 There might come a time where you want to add a colored outline around plain old text. If you want to achieve the effect in CSS, here's the solution.
 
 ```css
@@ -13,3 +17,7 @@ There might come a time where you want to add a colored outline around plain old
   paint-order: stroke;
 }
 ```
+
+## SVG Filter
+
+<FilterText />
