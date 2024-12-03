@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export async function load({ url }) {
   /** @type Array<import('$lib/types').Article> */
   const blog = [];
 
@@ -25,9 +25,16 @@ export async function load() {
     }
   }
 
+  const page = Number(url.searchParams.get("page")) || 1;
+  const articlesPerPage = 8;
+  const pages = Math.ceil(blog.length / articlesPerPage);
+  const i = (page - 1) * articlesPerPage;
+
   return {
     blog: [...blog]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .filter((d) => d.title.startsWith("t".toUpperCase())),
+      .slice(i, i + articlesPerPage),
+    pages,
+    page,
   };
 }
