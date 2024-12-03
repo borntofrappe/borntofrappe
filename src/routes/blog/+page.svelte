@@ -1,4 +1,6 @@
 <script>
+  import { formatDate } from "$lib/utils";
+
   /** @type {{ data: import('./$types').PageData }} */
   let { data } = $props();
 </script>
@@ -9,6 +11,7 @@
   {#each data.blog as article}
     <article>
       <h2><a href={article.slug}>{article.title}</a></h2>
+      <p>{formatDate(article.date)}</p>
       <p>{article.description}</p>
     </article>
   {/each}
