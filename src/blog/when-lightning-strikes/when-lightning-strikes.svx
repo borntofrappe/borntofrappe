@@ -1,0 +1,31 @@
+---
+title: When lightning strikes
+description: In a shocking turn of events, there's a pseudo-3D graphic on a Monday.
+date: 2024-02-26T22:25:54
+---
+
+<script>
+    import ZdogMonday from '../ZdogMonday.svelte';
+
+    import LightningSphere from './LightningSphere.svelte';
+</script>
+
+Ideas may come from unlikely places, and if you are lucky, even out of the blue, with little friction and almost on their own. It happens rarely, but when it does, you cannot help but treasure the instant. Today's graphic is a perfect example, and might even have something to add to the argument.
+
+There is no elaborate drawing supporting the illustration, there aren't many Zdog classes in use in the script — just `Anchor`s and `Shape`s.
+
+Looking passingly at the result, you may not realize that there is something drawn on screen — small little dots scattered every which way and a slightly bulkier circle fixed in the very center.
+
+But there is a lot more behind the projected sphere.
+
+With your input, there is a deluge of graphics which radiates from the same center. A quick, unexpected display bursting into the scene.
+
+With your input, let me repeat.
+
+Ideas may come out of nowhere, but just like with those little bright dots, you can help them with the right environment, filled with energy and charged up particles. Lightning may strike, but you can help it by being the right conduit. Or perhaps conductor. Either way, by keeping pressing that button.
+
+Be ready, once again, for when ideas appear, when lightning strikes, you may not expect it. It may all come as a shocking surprise.
+
+<LightningSphere />
+
+<ZdogMonday />

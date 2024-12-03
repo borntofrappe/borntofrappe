@@ -26,6 +26,8 @@ export async function load() {
   }
 
   return {
-    blog,
+    blog: [...blog]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .filter((d) => d.title.startsWith("t".toUpperCase())),
   };
 }

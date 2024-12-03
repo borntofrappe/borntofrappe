@@ -1,0 +1,42 @@
+---
+title: Neigh we go round
+description: Entertain a preference for daringly animated pseudo-3D graphics.
+date: 2024-01-29T15:28:04
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+
+	import TicketBooth from './TicketBooth.svelte';
+	import Carousel from './Carousel.svelte';
+</script>
+
+When it comes to animated graphics I am often presumptuous in assuming that not only you want to see shapes move over time, but that you can tolerate the change as well. But with the benefit of JavaScript it is possible to alleviate the issue.
+
+<figure class="[ center-frame ]" data-size="small">
+	<TicketBooth />
+</figure>
+
+The idea is to test the preference for _reduced motion_.
+
+```js
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+```
+
+You can set the option even at system level to disable animation effects, and in this instance, the media query matches.
+
+```js
+if (reducedMotion.matches) {
+	// please reduce motion
+}
+```
+
+In this manner you have a boolean, a flag to decide. Is the preference turned on? If so you might want to stick with a static picture — but on Monday in pseudo-3D. Is the sudden animation acceptable? Step right up and entertain the option.
+
+<div class="[ center-frame ]" style="--frame-size: 400px;">
+	<Carousel />
+</div>
+
+Only one question remains when you accept the change: do you actually like it? A matter of taste, a whole different preference, you might argue. And one preference for which there's no code to find the same quick answer.
+
+<ZdogMonday />

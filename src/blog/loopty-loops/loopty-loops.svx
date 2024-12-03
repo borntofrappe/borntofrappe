@@ -1,0 +1,94 @@
+---
+title: Loopty loops
+description: Lean on too many iterations to navigate an infinite, pixelated space.
+date: 2024-03-04T22:35:41
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+
+	import SpaceLoops from './SpaceLoops.svelte';
+</script>
+
+It is fair to admit that I share an affection for pixel art. I tend to favor vector graphics, but when possible, I like to indulge in the style. There is also a strange affinity in the way I approach both, drawing SVG shapes with elements, line by line, and drawing sprites with squares, pixel by pixel.
+
+_"Zdog Monday"_ is also no stranger to pixels, and specifically, elevating the concept with [boxes](/counting-shapes).
+
+```js
+new Zdog.Box({
+	addTo: root,
+	width: 1,
+	height: 1,
+	depth: 1
+});
+```
+
+One instance of the `Box` class can be impressive already, especially if you choose to change the color of the different sides.
+
+```js
+new Zdog.Box({
+	addTo: root,
+	color: 'hsl(240 14% 84%)',
+	rightFace: 'hsl(240 3% 48%)',
+	bottomFace: 'hsl(230 4% 31%)'
+	// ...
+});
+```
+
+With different shades you are able to add depth, and fabricate a convincingly 3D object.
+
+But as it is with pixelated graphics, more objects work to refine the picture. You may have to repeat yourself, but there is code you can write to save a few keystrokes.
+
+Start with the box, saving the object in a variable.
+
+```js
+const box = new Zdog.Box({
+	addTo: root
+	// ...
+});
+```
+
+Then, and this is the grueling, perhaps tedious, portion, spend some time deciding the position of the numerous copies. An array works as a quick storage option.
+
+```js
+const boxes = [
+	{ x: 3, y: 0 },
+	{ x: 4, y: 0 },
+	{ x: 5, y: 0 }
+	// ...
+];
+```
+
+With the collection, a `for` loop is next.
+
+```js
+for (const { x, y } of boxes) {
+	//
+}
+```
+
+Go through the list and copy the box. Zdog helps you with the `.copy` method, available on the object.
+
+```js
+for (const { x, y } of boxes) {
+	box.copy();
+}
+```
+
+And you can help yourself placing the square figures with the `translate` property.
+
+```js
+for (const { x, y } of boxes) {
+	box.copy({
+		translate: { x, y }
+	});
+}
+```
+
+In the call of the function you can focus on the properties which need to change. Those set on the box will carry through.
+
+Impressive? As long as you have the patience to try the sequence, or the willingness to scroll a tad more.
+
+<SpaceLoops />
+
+<ZdogMonday />

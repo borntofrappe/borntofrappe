@@ -1,0 +1,21 @@
+---
+title: Just keep spinning
+description: Continue playing with pseudo-3D shapes and pseudo-random odds.
+date: 2023-11-27T11:38:12
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+	
+	import Dreidel from './Dreidel.svelte';
+</script>
+
+If you want to try your luck with pseudo-3D graphics the odds are in your favor. You can pick between [one of two options](/spinning-change), although that coin has a propensity to stop at the wrong angle. You can push your chances to [one in six](/one-out-of-six), and this time reach a more definitive answer. Today's entry falls right in the middle.
+
+There may not be any clay involved in the process, and the code may not even be dry, but it's certainly primed to make you spin and play.
+
+<Dreidel />
+
+There's one more thing you'll have to forgive, and that is the use of less-than orthodox letters. The chance was too sweet for the name of the library to make its impression, or rather extrusion, on the different faces, and it's up to you to decide the rules of the game. You are in luck one more time, however, for the plaything will last long enough to settle the score.
+
+<ZdogMonday />

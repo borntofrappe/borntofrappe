@@ -1,0 +1,35 @@
+---
+title: Joystick drift
+description: Update a pseudo-3D graphic with complete control. At least momentarily.
+date: 2023-12-11T11:35:42
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+
+	import Controller from './Controller.svelte';
+</script>
+
+Update and re-render. If you want to tweak a pseudo-3D graphic created with Zdog, be it in angle, position, or again scale, you cannot forget the two steps.
+
+It is not enough to change one of the aspects of the illustration.
+
+```js
+illustration.rotate.y = 0.2;
+```
+
+You always need one more instruction: `updateRenderGraph()`.
+
+```js
+illustration.updateRenderGraph();
+```
+
+Pick a hard-coded value and call the method to see the result. But if you want more control on the change, nothing beats the interaction baked in battle-tested HTML elements, like an `input` of type `range`. Once you set up the element you just need to extract the value — refer to the `input` event to continuously track the measure — and repeat the two step process.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	<Controller />
+</div>
+
+Of course nothing stops me from doing the same after the fact. Hopefully, this makes for a less than frustrating twist.
+
+<ZdogMonday />

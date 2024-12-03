@@ -1,0 +1,101 @@
+---
+title: Weeping changes
+description: Fix a one-off mistake with long lasting changes.
+date: 2024-04-02T18:42:51
+---
+
+<script>
+	import svg from './svg.js';
+</script>
+
+## April 1st
+
+You finally manage to write about your coding exploits, introducing the latest project with a brief, but thoughtful markdown post. You run the `date` command in the terminal because you just discovered the feat, and you can't just trust the analog display hung right next to you.
+
+```bash
+date # Mon, Apr 1, 2024 10:30:32 PM
+```
+
+There you have it, detailed data for the time of day. In the frontmatter you don't need to be that accurate, but you can't help it, the excitement of using the value calls for it.
+
+```md
+---
+date: 2024-04-01T22:30:32
+---
+```
+
+Year, month, day, hours, minutes and seconds. You work with a 24 hour clock, but you can handle basic arithmetic for the number of hours. Save and... the script you wrote to format the date in a more readable fashion has a different opinion.
+
+```text
+April 2nd, 2024
+```
+
+Excellent way to finish off the first day of the month.
+
+## April 2nd
+
+Just what happened last night? You toy with the date a bit, and moving the clock one hour back seems to solve the mistake.
+
+```md
+---
+date: 2024-04-01T21:30:32
+---
+```
+
+Isn't that nice. If only you could have typed faster. No reason to act fast now however, you can't turn back time and pretend nothing happened. The problem is certainly somewhere else.
+
+You open the script creating the date object from the frontmatter.
+
+```js
+const date = new Date(metadata.date);
+```
+
+The `Date` constructor receives a value from the frontmatter. And in this instance, the following string:
+
+```text
+2024-04-01T22:30:32Z
+```
+
+Sure enough, use the string and the answer is clear.
+
+```js
+new Date('2024-04-01T22:30:32Z'); // Tue Apr 02 2024
+```
+
+Welcome to the wonderful world of time zones, UTC offsets and annoying hiccups with dates in JavaScript.
+
+With the `Date` constructor you are indeed able to produce a valid `Date` object passing a string. And yes, the values are in the correct order, in descending order of magnitude. The year, month and day are also separated to the more unique values of hours, minutes and seconds with the proper character. But that last pesky `"Z"` spoils the pretty picture. It sets the time zone to UTC, to Greenwich time. Not a problem if you happen to align yourself to the same measure, but this time you are off. By two whole hours. It would be only one, after all you live in the CET time zone, but what luck, a quick search [on Wikipedia](https://en.wikipedia.org/wiki/Central_European_Summer_Time) reveals that you are now under CEST instead.
+
+<figure class="[ center-frame ]" data-size="small">
+	{@html svg['cest-time-zone']}
+    <figcaption>It's summer time</figcaption>
+</figure>
+
+Past personal grumbling about daylight savings, how to get the real local value? In at least two manners:
+
+1. set the timezone, by removing the timezone
+
+   The `Date` constructor considers the UTC format with the letter `"Z"`. If you were to omit the character, it will consider local time.
+
+   ```js
+   new Date('2024-04-01T22:30:32'); // Mon Apr 01
+   ```
+
+   A quick, almost magical fix.
+
+2. radically change how you compute the date, passing the arguments as a list of numbers instead of a single string
+
+   ```js
+   new Date(2024, 4, 1, 22, 30, 32); // Wed May 01
+   ```
+
+   And paying extra attention to the month value, in the 0 to 11 range.
+
+   ```diff
+   -new Date(2024, 4, 1, 22, 30, 32);
+   +new Date(2024, 3, 1, 22, 30, 32);
+   ```
+
+   One day might be trivial, but you can't just be off by _that_ much.
+
+There's also a third option, which is to move to the UK, or I hear good things about Portugal in this season. Be warned, however, that this change will be even more difficult to walk right back.

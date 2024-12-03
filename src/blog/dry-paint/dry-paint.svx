@@ -1,0 +1,248 @@
+---
+title: Dry paint
+description: Consider the Canvas API to draw on precise and continuous demand.
+date: 2024-02-07T15:27:07
+---
+
+<script>
+	import svg from './svg.js';
+	import CanvasClient from './CanvasClient.svelte';
+	import CanvasOffset from './CanvasOffset.svelte';
+	import Canvas from './Canvas.svelte';
+</script>
+
+SVG is an excellent choice to draw on the web {@html svg.palette}, but when you want to draw something on demand, following the input of a pointer, there are a few things worth remembering:
+
+1. you need to convert the coordinates to the system in use within the `svg` element
+
+   The process requires a couple of steps, and can be achieved in at least [two manners](/svg-pointer)
+
+2. the browser updates and manages HTML nodes
+
+   If you were to draw dots with `circle` elements, you would have one element for each set of coordinates
+
+The Canvas API offers an alternative, and promises to lessen both issues. There is no such thing as a `viewBox`, a different coordinate system, and graphics are drawn in a context, not in the DOM. And to remark on the feat, we go further than previous experiments, even consider more unnerving events like `pointermove`.
+
+## Draw something
+
+To get started, and in an `.html` document, add the only necessary element: `canvas`.
+
+```html
+<canvas width="350" height="350"></canvas>
+```
+
+In the snippet I have the canvas occupy a squared surface 350 pixels wide and tall, but feel free to experiment with either value. From the markup, the idea is to move on with JavaScript.
+
+```js
+const canvas = document.querySelector('canvas');
+const context = canvas.getContext('2d');
+```
+
+Once you target the element use the `getContext` method to find the context. The function is set to accept one of few possible strings, but for two-dimensional figures, you'll want to stick with `2d`.
+
+At this point we can draw any figure through the context. Consider for instance a rectangle, covering the entirety of the canvas to set up a bright background.
+
+Extract the width and the height directly from the element, instead of repeating the hard-coded numbers.
+
+```js
+const { width, height } = canvas;
+```
+
+And for the bright rectangular figure, lean on two functions available in the context, `fillStyle` and `fillRect`.
+
+```js
+context.fillStyle = 'hsl(0 0% 95%)';
+context.fillRect(0, 0, width, height);
+```
+
+`fillStyle` sets the color, while `fillRect` creates the rectangle with four arguments, detailing the shape in position and dimensions — x and y, width and height.
+
+You can run the snippet immediately and have the instructions fill the canvas, but as a small improvement, move the code in a dedicated function.
+
+```js
+const paint = () => {
+	// ...fillStyle & fillRect
+};
+paint();
+```
+
+As the painting becomes more elaborate, the advantage is that you can invoke the function to paint in the area, and repeat the call should you want to draw something anew.
+
+Not so coincidentally, say you want to draw a series of dots. We can initialize an array to store x, y coordinates in regular objects.
+
+```js
+let dots = [
+	{ x: 10, y: 10 },
+	{ x: 11, y: 11 }
+];
+```
+
+In the paint function, you just need to loop through the collection to materialize the round figures.
+
+```js
+const paint = () => {
+	// ...fillStyle & fillRect
+	for (const { x, y } of dots) {
+		// ...draw circle
+	}
+};
+```
+
+The API does not have a circle function as convenient as `fillRect`, but lets you draw arcs with a series of commands.
+
+First use `beginPath` to introduce a path.
+
+```js
+context.beginPath();
+```
+
+Then, build the circle with the `arc` function.
+
+```js
+context.arc(x, y, 5, 0, Math.PI * 2);
+```
+
+The expression is quite involved, asking for five arguments, but as you break down each component the logic starts to make much more sense. The first two numbers argue the position — a fitting place for the properties of the round objects. The third refers to the radius, another sensible value, but the remaining pair may be a bit puzzling. These detail the arc in start and end angle. For a circle you need to perform a full rotation, and since the angle is in radians, you need a difference of twice the value of PI. From 0 to `Math.PI` times two.
+
+Past the arc function you only need the `fill` method to fill in the area, but the instruction would be close to pointless right now.
+
+```js
+context.arc(x, y, 5, 0, Math.PI * 2);
+context.fill();
+```
+
+Going back to the rectangle and the `fillStyle` function, this one set the color for the square.
+
+```js
+context.fillStyle = 'hsl(0 0% 95%)';
+context.fillRect(0, 0, width, height);
+```
+
+But also, the color of any figure which followed, including the circles. You can change the color by repeating the action with a different fill, for individual circles or wholly, for the entire lot.
+
+```js
+context.fillStyle = 'hsl(0 0% 23%)';
+for (const { x, y } of dots) {
+	// ...draw arc
+}
+```
+
+## Draw there
+
+You know how to draw a static picture, but as prefaced, the canvas is primed to receive input. And thankfully, can make good use of the current `paint` function. What is left is populating the `dots` array with x, y coordinates, as the user drags the pointer on the selected node.
+
+The relevant event is here `pointermove`, but this one fits in a more complex sequence. Indeed, to draw as if with a pencil, only when the element is active, we evaluate a controlling variable and few more events.
+
+Initialize a variable to manage the state of the application.
+
+```js
+let state = 'wait';
+```
+
+Following the `pointerdown` event we can use the callback function to switch the value as the element gains focus.
+
+```js
+const start = () => {
+	state = 'draw';
+};
+canvas.addEventListener('pointerdown', start);
+```
+
+On the opposite end, following the on `pointerup` and `pointerleave` events, we can reset the variable when the node loses relevance.
+
+```js
+const end = () => {
+	state = 'wait';
+};
+canvas.addEventListener('pointerup', end);
+canvas.addEventListener('pointerleave', end);
+```
+
+With this sequence you can finally listen to the `pointermove` event.
+
+```js
+canvas.addEventListener('pointermove', draw);
+```
+
+And in the callback function, use the state to consider the input only when necessary. Only when the pointer is down to it.
+
+```js
+const draw = (e) => {
+	if (state !== 'draw') return;
+	// ...draw where?
+	paint();
+};
+```
+
+In SVG we first pondered the coordinates with `clientX` and `clientY`, two properties available from the event object.
+
+```js
+const { clientX, clientY } = e;
+```
+
+The values exist here as well, but unfortunately, will lead you astray.
+
+<CanvasClient />
+
+Even if you correctly create an object, add the item to the array and call the `paint` function.
+
+```js
+const dot = {
+	x: clientX,
+	y: clientY
+};
+dots = [...dots, dot];
+paint();
+```
+
+There's only one scenario where the code would work as intended, and that would be when the canvas is in the very top left corner of the page. Only in this instance do the client coordinates match that of the element. When the canvas is laid somewhere else, the values are off by where the node sits.
+
+Picking up from the SVG venture, you have a way to solve the issue with `getBoundingClientRect`. The function gives you an object describing the rectangle around the element, in position and size, meaning you could extract the position of the element, in the page.
+
+```js
+const { x, y } = canvas.getBoundingClientRect();
+```
+
+And offset the client coordinates by the specific amount.
+
+```js
+const dot = {
+	x: clientX - x,
+	y: clientY - y
+};
+```
+
+But this almost defeats the purpose of using the canvas element, and is just a workaround for more precise values.
+
+In the event object, perhaps confusingly, there are more properties to describe the coordinates. `clientX`, `clientY`, `pageX`, `pageY`, even the shortest `x` and `y`. But for what we need, you find the solution in another pair, `offsetX` and `offsetY`.
+
+```js
+const { offsetX, offsetY } = e;
+const dot = {
+	x: offsetX,
+	y: offsetY
+};
+```
+
+The two describe the position from the top left corner of the element, which finally means we can draw something. There!
+
+<CanvasOffset />
+
+Despite the long journey, and admittedly the long-winded prose, it doesn't take much to get started with the canvas API.
+
+From this point you can explore many options. Change the size of the circles. Update the color for every dot, or every so often to spice things up. The world in the 2D context is ready to be painted in full.
+
+Should you choose to clear the canvas, you don't even need to update the element. Empty the array for the dots. And call the `paint` function once more.
+
+```js
+dots = [];
+paint();
+```
+
+The new layer sits on top of the previous frame, and you can start from scratch.
+
+But at this point you might be tempted to go back to vectors, especially if the format is more familiar. _"Can I use the offset coordinates for SVG as well?"_. Technically, yes, but the improvement is marginal at best. You still need to adapt the values to fit in the `viewBox`, and convert the coordinates with a bit more math. If you rely on matrices, then, the answer is even gloomier. The [`getScreenCTM` method](https://svgwg.org/svg2-draft/types.html#__svg__SVGGraphicsElement__getScreenCTM) depends on client coordinates, so you are all out of luck.
+
+On top of these concerns, you still have to manage the DOM. And this is with individual dots, drawn on precise x, y coordinates with a fixed radius. Should you want to animate the painting, in some way, shape or form, you can only imagine how the browser will struggle with the innumerable changes. With a canvas, you just have to try it — by now you should be familiar with the tools. `requestAnimationFrame` is your next best friend, but I'll let you discover the code on your own.
+
+<Canvas />

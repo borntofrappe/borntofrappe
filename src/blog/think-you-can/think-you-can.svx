@@ -1,0 +1,25 @@
+---
+title: Think you can?
+description: Muster the courage to see a pseudo-3D graphic in all its dimensions.
+date: 2024-04-15T21:37:59
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+
+	import Locomotive from './Locomotive.svelte';
+</script>
+
+> Up on a Monday, out of the blue,
+>
+> here's a toy train for you to move
+
+Or.
+
+> Fresh of the presses, in pseudo-3D,
+>
+> a chill animation waiting to be
+
+<Locomotive />
+
+<ZdogMonday />

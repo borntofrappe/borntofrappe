@@ -1,0 +1,52 @@
+---
+title: Step through frames
+description: Walk through a series of graphics and step through deeper levels.
+date: 2023-10-16T11:34:38
+---
+
+<script>
+  import ZdogMonday from '../ZdogMonday.svelte';
+	
+	import svg from './svg.js';
+	import BobOmb from './BobOmb.svelte';
+</script>
+
+In pixel art I find a source of great inspiration. You would think that the style would not lend itself to pseudo-3D graphics, but [last week's entry](/counting-shapes) proved otherwise. Today's installment reiterates the point, and tries to solve a new challenge with a twist.
+
+With SVG you are able to draw a sprite down to the smallest pixel. Leaning on the different elements, you can also draw a more realistic figure, with veritable vector shapes.
+
+<figure class="[ center-frame ]" data-size="medium">
+	{@html svg['bob-ombs']}
+</figure>
+
+Zdog is well equipped to recreate the shapes, but behind the library there is no 3D engine. At the end of the day, whether [in a canvas or an svg node](/pseudo-3d-element), the graphic is rendered in two dimensions, and the result is that the picture is often a small step from the vector drawing. How to improve the illustration?
+
+Rotating the shapes [over the available axes](/rotate-3d) works to further the illusion of depth. Shapes will be drawn at an angle.
+
+```js
+new Shape({
+	//...,
+	rotate: {
+		y: -0.2
+	}
+});
+```
+
+Positioning the elements in the z axis also helps. Shapes will be drawn in order, and will appear before, behind other pieces.
+
+```js
+new Box({
+	//...,
+	translate: {
+		z: 5
+	}
+});
+```
+
+I tend to indulge in a touch of animation, which puts a nice ribbon on the entire package, but even without smooth transitions, these changes are often enough. You might be surprised just how much you can achieve toying the two concepts alone.
+
+<div class="[ center-frame ]" style="--frame-size: 400px">
+	<BobOmb />
+</div>
+
+<ZdogMonday />

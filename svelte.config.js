@@ -5,7 +5,7 @@ import { createHighlighter } from "shiki";
 const theme = "catppuccin-mocha";
 const highlighter = await createHighlighter({
   themes: [theme],
-  langs: ["html", "css", "javascript"],
+  langs: ["html", "css", "javascript", "diff", "lua", "bash", "json", "svelte", "sql", "csv", "md", "xml", "sh"],
 });
 
 const mdsvexConfig = {
