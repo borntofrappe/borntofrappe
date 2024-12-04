@@ -79,9 +79,6 @@
       frame = requestAnimationFrame(animate);
     };
 
-    draw();
-    frame = requestAnimationFrame(animate);
-
     const update = () => {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
@@ -90,11 +87,33 @@
       y1 = h + 1;
     };
 
-    window.addEventListener("resize", update);
+    draw();
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (!reducedMotion.matches) {
+      frame = requestAnimationFrame(animate);
+      window.addEventListener("resize", update);
+    }
+
+    /**
+     * @param {MediaQueryListEvent} event
+     */
+    const listener = (event) => {
+      if (event.matches) {
+        cancelAnimationFrame(frame);
+        window.removeEventListener("resize", update);
+      } else {
+        frame = requestAnimationFrame(animate);
+        window.addEventListener("resize", update);
+      }
+    };
+
+    reducedMotion.addEventListener("change", listener);
 
     return () => {
-      window.removeEventListener("resize", update);
       cancelAnimationFrame(frame);
+      window.removeEventListener("resize", update);
     };
   });
 </script>
