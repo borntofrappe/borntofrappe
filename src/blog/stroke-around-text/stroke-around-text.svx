@@ -1,0 +1,117 @@
+---
+title: Stroke around text
+description: Improve a cherished feature plagued with rough edges.
+date: 2024-12-04
+---
+
+<script>
+  import FilterText from "./FilterText.svelte";
+  import StrokeText from "./StrokeText.svelte";
+</script>
+
+There might come a time where you want to add a colored outline around plain-old text. If you want to achieve the effect, here's the solution in a quick snippet of CSS.
+
+```css
+.text-stroke {
+  color: white;
+  -webkit-text-stroke: 0.12em black;
+  paint-order: stroke;
+}
+```
+
+And here's a gratuitously long journey reaching the same point from a different take, attempting the effect with SVG syntax, too many lines of code and a flawed approach at best.
+
+## Rough edges
+
+In the body of an `<svg>` element you color shapes primarily with two attributes or the corresponding CSS properties: `fill` and `stroke`. It is therefore exceedingly simple to add an outline around text _as long as you type_ in a `<text>` element.
+
+```html
+<svg viewBox="-1 -18 62 20">
+  <text fill="white" stroke="black">Hi there</text>
+</svg>
+```
+
+The approach limits the text to one line unless you tap in the `tspan` element and adjust the coordinates of the multiple lines. You are also limited to the boundaries of the visible area; outside of the rectangle described by the `viewBox` the text is clipped, out of sight. That being said, within the constraints you are free to experiment with color pairs.
+
+By default the stroke is drawn [midway](stroke-midway-through), half on top of the fill, half not, but one additional attribute, as well as the matching property, saves the day changing the order of the operations. With `paint-order` you can indeed argue that the stroke should be drawn first.
+
+<!-- prettier-ignore -->
+```html
+<text paint-order="stroke" fill="white" stroke="black">
+  Hi there
+</text>
+```
+
+Completing the feature for the SVG shape that is drawn with vectors, with `<text>`.
+
+For regular text, marked up in HTML nodes like paragraphs or headings, there is a way to approximate the effect with _SVG filters_. Filters are likely one of the most complicated topics for vector graphics, to the point where somebody could write more than one article to showcase the possibilities. In a stroke of luck, one of these possibilities is exactly [adding an outline](/stroke-of-chance) around any element, be it SVG or HTML.
+
+In simplest terms, consider the filter as a layer of operations you implement with filter primitives:
+
+- dilate the graphic to draw more than the necessary pixels
+
+  ```html
+  <feMorphology in="SourceAlpha" operator="dilate" radius="2" />
+  ```
+
+  Considering the alpha channel with the `SourceAlpha` keyword you are able to create a dark, black stroke.
+
+- add the excess before the input graphic
+
+  ```html
+  <!-- ...feMorphology -->
+  <feMerge>
+    <feMergeNode />
+    <feMergeNode in="SourceGraphic" />
+  </feMerge>
+  ```
+
+There is a way to paint a true outline with a different color, but this one involves another set of primitives: `feFlood` to draw with a solid fill, `feComposite` to carve out the pixels around the graphic.
+
+I redirect you [to the article](/stroke-of-chance) for the details, but I present you the result to highlight the effect.
+
+<FilterText />
+
+And confirm a few limitations:
+
+- the stroke is choppy; around the edges the outline is drawn with very rough edges
+
+- the color and width of the stroke are fixed; you can certainly tweak both values in the declaration of the SVG filter, but the two are tied to the definition
+
+There is also the side effect that you add the outline with the `filter` property. This means the appearance, the styling is split. You may color the element and apply the colors in one place.
+
+```css
+.text-stroke {
+  color: white;
+  filter: url("#filter-black-stroke");
+}
+```
+
+But the look of the stroke is separate, nested away in the body of an `<svg>` element you need to include in the same page.
+
+```html
+<svg>
+  <filter id="filter-black-stroke">
+    <!-- ...fe fe fe fe -->
+  </filter>
+</svg>
+```
+
+There's much to appreciate, but the result is but an approximation. Enter CSS.
+
+## Smooth operators
+
+There is one CSS property which promises to solve all issues and even excuse the excursion in vector graphics: `-webkit-text-stroke`. Despite the presence of a vendor prefix, it is supported [far and wide](https://caniuse.com/mdn-css_properties_-webkit-text-stroke), to the point that it might not even be necessary to check if the feature is available with a `@supports` query.
+
+First pick a color for the text. In the same declaration then, add the outline with the touted property in size and color. You can even consider the unit relative to the size of the letters, `em`, or the one relative to the width of a character, `ch`. In this manner the outline grows with the accompanying text.
+
+```css
+.text-stroke {
+  color: white;
+  -webkit-text-stroke: 0.2em black;
+}
+```
+
+The only hiccup is that the outline is drawn above the text, and if the size is excessive the stroke overpowers the layer below. The risk is you won't see the text, at all. But, in a welcomed turn of events, you already have the key to solve the problem: `paint-order`. It may work on vectors, but cementing CSS as the go-to reference for your styling needs it works in this case as well. Leading back to the starting snippet and a quick showcase as well.
+
+<StrokeText />
