@@ -2,8 +2,8 @@
   let text = $state("Stroked text");
   const colorPairs = [
     ["black", "white"],
-    ["powderblue", "navy"],
-    ["deeppink", "pink"],
+    ["hsl(278 49% 13%)", "hsl(30 100% 72%)"],
+    ["hsl(328 100% 54%)", "hsl(350 100% 88%)"],
   ];
   let colorPair = $state(colorPairs[0]);
 

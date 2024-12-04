@@ -8,31 +8,23 @@
   });
 </script>
 
-<svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px">
-  <defs>
-    <filter id="filter-black-stroke">
-      <feFlood flood-color="black" result="fe-color" />
-      <feMorphology
-        in="SourceAlpha"
-        operator="dilate"
-        radius="2"
-        result="fe-outline"
-      />
-      <feComposite
-        in="fe-color"
-        in2="fe-outline"
-        operator="in"
-        result="fe-color-outline"
-      />
-      <feMerge>
-        <feMergeNode in="fe-color-outline" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
-</svg>
+<div>
+  <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px">
+    <defs>
+      <filter id="filter-black-stroke">
+        <feFlood flood-color="black" result="fe-color" />
+        <feMorphology in="SourceAlpha" operator="dilate" radius="2" />
+        <feComposite in="fe-color" operator="in" />
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
 
-<p contenteditable bind:textContent={text}></p>
+  <p contenteditable bind:textContent={text}></p>
+</div>
 
 <style>
   p {
