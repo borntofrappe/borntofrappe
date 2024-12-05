@@ -3,23 +3,22 @@ import { escapeSvelte, mdsvex } from "mdsvex";
 import { createHighlighter } from "shiki";
 
 const theme = "catppuccin-mocha";
-const highlighter = await createHighlighter({
+const { codeToHtml } = await createHighlighter({
   themes: [theme],
-  langs: ["html", "css", "javascript", "diff", "lua", "bash", "json", "svelte", "sql", "csv", "md", "xml", "sh"],
+  // prettier-ignore
+  langs: ["html","css","javascript","svelte","diff","bash","sh","json","md","xml","csv","sql","lua"],
 });
 
 const mdsvexConfig = {
   extensions: [".md", ".svx"],
   highlight: {
     highlighter: (code, lang) => {
-      const html = escapeSvelte(
-        highlighter.codeToHtml(code, {
+      return escapeSvelte(
+        codeToHtml(code, {
           lang,
           theme,
         })
       );
-
-      return `{@html \`${html}\`}`;
     },
   },
 };
@@ -33,6 +32,10 @@ const config = {
       edge: false,
       split: false,
     }),
+  },
+  compilerOptions: {
+    warningFilter: (warning) =>
+      !warning.filename.endsWith(".md") && !warning.filename.endsWith(".svx"),
   },
 };
 
