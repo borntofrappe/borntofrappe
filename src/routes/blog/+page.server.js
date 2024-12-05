@@ -3,7 +3,7 @@ export async function load({ url }) {
   /** @type Array<import('$lib/types').Article> */
   const blog = [];
 
-  const modules = import.meta.glob("/src/blog/**/*.{md,svx}", { eager: true });
+  const modules = import.meta.glob("$blog/**/*.{md,svx}", { eager: true });
   for (const path in modules) {
     const slug = path.split("/").pop()?.split(".")[0];
     const mod = modules[path];

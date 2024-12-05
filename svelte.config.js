@@ -33,6 +33,7 @@ const config = {
       split: false,
     }),
     alias: {
+      $blog: "src/blog",
       $styles: "src/styles",
     },
   },
