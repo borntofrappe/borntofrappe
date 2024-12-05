@@ -32,6 +32,9 @@ const config = {
       edge: false,
       split: false,
     }),
+    alias: {
+      $styles: "src/styles",
+    },
   },
   compilerOptions: {
     warningFilter: (warning) =>
