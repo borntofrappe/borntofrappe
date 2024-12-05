@@ -9,27 +9,25 @@
 <SnowFall color="oklch(55% 0.02 270)" background="oklch(21% 0.05 260)" />
 
 <main>
-  <h1 class="font-display">Hi there</h1>
-  <p>this website is under re-construction</p>
-  <p>stay tuned for exciting new changes</p>
+  <h1>Hi there</h1>
+  <p>'tis the season to be redesinin</p>
 </main>
 
 <style>
-  :global(*) {
-    box-sizing: border-box;
+  :global(body) {
+    margin: 0;
+    color: oklch(97% 0.012 280);
+    background: oklch(21% 0.05 260);
+  }
+
+  *::selection {
+    color: oklch(97% 0.012 280);
+    background: oklch(45% 0.03 250);
+  }
+
+  * {
     margin: 0;
     padding: 0;
-  }
-
-  :global(body) {
-    color: oklch(97% 0.012 280);
-    background: oklch(21% 0.05 260);
-  }
-
-  :global(::selection) {
-    color: oklch(97% 0.012 280);
-    background: oklch(21% 0.05 260);
-    background: oklch(45% 0.03 250);
   }
 
   main {
@@ -40,23 +38,42 @@
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
+    line-height: 1.5;
+    animation: fade-in-bloom 2s 1s both ease-out;
   }
 
   h1 {
     font-size: clamp(4.0311rem, 3.36rem + 3.3555vw, 5.9605rem);
-    line-height: 1;
+    line-height: 1.1;
+    font-family: var(--font-display);
     color: var(--fill, oklch(15% 0.05 260));
     -webkit-text-stroke: 0.2em var(--stroke, oklch(97% 0.012 280));
     paint-order: stroke;
   }
 
   h1::selection {
-    color: oklch(84% 0.172 90);
+    color: var(--highlight, oklch(84% 0.172 90));
     background: initial;
   }
 
   p {
     font-size: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
-    font-weight: bold;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  @keyframes fade-in-bloom {
+    0% {
+      opacity: 0;
+      filter: brightness(1) blur(20px);
+    }
+    10% {
+      opacity: 1;
+      filter: brightness(2) blur(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) blur(0);
+    }
   }
 </style>
