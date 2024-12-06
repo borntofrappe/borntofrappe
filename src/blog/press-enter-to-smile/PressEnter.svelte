@@ -4,7 +4,7 @@
 
   /** @type { SVGGElement }*/
   let keyboard;
-  let smile = false;
+  let smile = $state(false);
 
   const handlePress = () => {
     smile = true;
@@ -48,7 +48,7 @@
       <g
         in:fly={{ y: 3, duration: 250, delay: 150 }}
         out:fly={{ y: -1, delay: 800 }}
-        on:introend={handleClear}
+        onintroend={handleClear}
       >
         <g transform="translate(-30 0)">
           <rect fill="hsl(0, 0%, 23%)" width="60" height="18" rx="9" />
@@ -92,7 +92,7 @@
       tabindex="0"
       role="menubar"
       aria-label="Press enter to smile"
-      on:keydown={handleKeydown}
+      onkeydown={handleKeydown}
     >
       <g transform="translate(-20 0)">
         <g fill="currentColor" stroke="currentColor" stroke-linejoin="round">
@@ -122,7 +122,7 @@
               />
               <path
                 aria-hidden="true"
-                on:click={handlePress}
+                onclick={handlePress}
                 style="cursor: pointer;"
                 fill="hsl(42, 78%, 60%)"
                 stroke="hsl(42, 78%, 60%)"

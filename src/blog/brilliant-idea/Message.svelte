@@ -3,7 +3,7 @@
 
   /** @type { SVGSVGElement }*/
   let element;
-  let animate = false;
+  let animate = $state(false);
 
   onMount(() => {
     /**

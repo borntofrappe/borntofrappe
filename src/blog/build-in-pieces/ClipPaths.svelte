@@ -11,7 +11,7 @@
       };
     });
 
-  let [, , , clip] = grid;
+  let clip = $state(grid[3]);
 </script>
 
 <div>

@@ -40,7 +40,7 @@
   let height = 0;
   const zoom = 3;
 
-  let canAnimate = false;
+  let canAnimate = $state(false);
 
   const angle = tweened(0, {
     duration: 4200,
@@ -67,7 +67,9 @@
     render();
   };
 
-  $: handleRotate($angle);
+  $effect(() => {
+    handleRotate($angle);
+  });
 
   const handleClick = async () => {
     if (canAnimate === false) return;
@@ -122,7 +124,7 @@
       in:fly={{ y: 10, duration: 300, easing: backOut }}
       out:fly={{ y: 10, duration: 300, easing: backIn }}
       disabled={!canAnimate}
-      on:click={handleClick}
+      onclick={handleClick}
     >
       Give it a spin
     </button>

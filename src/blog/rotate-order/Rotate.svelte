@@ -5,9 +5,8 @@
 
   import { degreesToRadians } from "./utils.js";
 
-  export let x = 0;
-  export let y = 0;
-  export let z = 0;
+  /** @type {{ x: number, y: number, z: number }}*/
+  let { x = 0, y = 0, z = 0 } = $props();
 
   /** @type {HTMLCanvasElement} */
   let element;

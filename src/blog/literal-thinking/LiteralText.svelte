@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
-
-  export let validName = "lit-eral";
-  $: [t0, t1] = validName.split("-");
+  /** @type {{ validName: string }} */
+  let { validName = "lit-eral" } = $props();
+  let [t0, t1] = $derived(validName.split("-"));
   /** @type { SVGSVGElement } */
   let svg;
 

@@ -1,3 +1,8 @@
+<script>
+  /** @type {{ children: import('svelte').Snippet }} */
+  let { children } = $props();
+</script>
+
 <div>
   <svg role="img" style="display: block;" viewBox="0 -82.5 85 82.5">
     <title>Three floating kites</title>
@@ -132,7 +137,7 @@
     </g>
   </svg>
 
-  <slot />
+  {@render children()}
 </div>
 
 <style>

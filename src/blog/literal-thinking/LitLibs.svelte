@@ -13,9 +13,9 @@
       .join("");
   };
 
-  let tool = "lit";
-  let action = "build";
-  let project = "web components";
+  let tool = $state("lit");
+  let action = $state("build");
+  let project = $state("web components");
 </script>
 
 <div>

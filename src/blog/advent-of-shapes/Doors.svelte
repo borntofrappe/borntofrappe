@@ -7,7 +7,7 @@
 
   /** @type {HTMLDivElement} */
   let widget;
-  let index = Math.min(paths.length - 1, new Date().getDate() - 1);
+  let index = $state(Math.min(paths.length - 1, new Date().getDate() - 1));
 
   onMount(() => {
     const colors = [

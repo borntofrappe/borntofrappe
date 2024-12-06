@@ -13,10 +13,11 @@
   let svg;
   const tween = tweened(0);
 
-  let state = "painting";
+  /** @type { 'painting' | 'illustrating' | 'animating' | 'waiting' | 'done' }*/
+  let mode = $state("painting");
 
   const handleClick = async () => {
-    state = "illustrating";
+    mode = "illustrating";
 
     const zoom = 4;
 
@@ -135,7 +136,7 @@
 
     illustration.updateRenderGraph();
 
-    state = "animating";
+    mode = "animating";
 
     /**
      *
@@ -195,7 +196,7 @@
         },
       });
 
-      if (state === "animating") {
+      if (mode === "animating") {
         animate();
       }
     };
@@ -204,19 +205,19 @@
   };
 
   onMount(() => {
-    state = "waiting";
+    mode = "waiting";
 
     return () => {
-      state = "done";
+      mode = "done";
     };
   });
 </script>
 
 <div>
-  {#if state === "waiting"}
+  {#if mode === "waiting"}
     <button
       out:fly|once={{ x: 10, y: 10, easing: backIn, duration: 500 }}
-      on:click={handleClick}
+      onclick={handleClick}
     >
       Break through
     </button>

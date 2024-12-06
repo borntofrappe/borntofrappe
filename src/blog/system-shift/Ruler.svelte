@@ -1,5 +1,5 @@
 <script>
-  let value = 0;
+  let value = $state(0);
   const width = 8;
   const min = -4;
   const max = 4;

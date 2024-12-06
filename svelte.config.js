@@ -38,6 +38,7 @@ const config = {
     },
   },
   compilerOptions: {
+    runes: true,
     warningFilter: (warning) =>
       !warning.filename.endsWith(".md") && !warning.filename.endsWith(".svx"),
   },
