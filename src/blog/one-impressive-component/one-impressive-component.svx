@@ -57,7 +57,7 @@ This is just JavaScript. What is Svelte is the way you author one element for th
 ```svelte
 <dl>
   {#each values as value}
-	<!-- ... -->
+    <!-- ... -->
   {/each}
 </dl>
 ```
@@ -88,8 +88,8 @@ The syntax is already impressive in ease of use, but the result is still static 
 
 Immediately you have a `$state` rune, a function you can use to initialize a variable to-be-tracked by the compiler. Consider for instance a variable for the index of the current value in the array.
 
-```svelte
-let i = $state(0)
+```js
+let i = $state(0);
 ```
 
 In parenthesis you complete the contract with the initial value, and from that moment Svelte takes care of updating the UI in sync with the reference. Change the variable whenever it might be used, in between the tags of an element, in the confines of an attribute, and the HTML will change to follow suit.
@@ -100,15 +100,15 @@ We can add the input after the list of values, taking care to introduce the cont
 
 ```svelte
 <label>
-	<span>{name}</span>
-	<input type="range" min="0" max="{values.length - 1}" />
+  <span>{name}</span>
+  <input type="range" min="0" max={values.length - 1} />
 </label>
 ```
 
 Here Svelte shines to _bind_, to associate the stateful variable to the input with the `bind:value` directive.
 
 ```svelte
-<input type="range" bind:value={i} min="0" max="{values.length - 1}" />
+<input type="range" bind:value={i} min="0" max={values.length - 1} />
 ```
 
 As you play with the slider you update the state of the element. Thanks to Svelte, the same is true for the value of `i`. At this point we can use the value chosen in the array, by index. We can, for instance, change the appearance of the label introducing the input _with the same_ property we want to describe.
@@ -120,8 +120,8 @@ As you play with the slider you update the state of the element. Thanks to Svelt
 Once again it is a matter of injecting the values within curly braces, this time in the `style` attribute. But we might improve the scheme with another rune, cryptic only in name: `$derived`. The idea is to have a variable reactive to _another_ reactive variable, like the index defined with `$state`. It might seem excessive, but in this manner you create a separate reference for the one value.
 
 ```svelte
-let i = $state(0)
-let value = $derived(values[i])
+let i = $state(0);
+let value = $derived(values[i]);
 ```
 
 The one you use to style the `span`.
@@ -139,9 +139,10 @@ The excellent news is that to style the element you can add CSS in the same comp
 
 ```svelte
 <style>
-label span, label input {
-  display: block;
-}
+  label span,
+  label input {
+    display: block;
+  }
 </style>
 ```
 
@@ -149,7 +150,7 @@ This is a component after all. And being a component, we can readily create a se
 
 ```svelte
 <script>
-  import Component from './Component.svelte';
+  import Component from "./Component.svelte";
 </script>
 
 <Component />
@@ -168,7 +169,11 @@ let {
 To showcase a different token, in key and values, you just need to pass a new set of values to the component.
 
 ```svelte
-<Component name="Font Weights" property="font-weight" values={[300, 500, 700, 900]} />
+<Component
+  name="Font Weights"
+  property="font-weight"
+  values={[300, 500, 700, 900]}
+/>
 ```
 
 These are just a few of the niceties proffered by Svelte. And going through the tutorial you'll be delighted to discover just how much you can achieve:
@@ -208,9 +213,7 @@ let value = $derived(values[i] || "");
 
 ```svelte
 {#snippet content()}
-
   <span>Aa</span>
-
 {/snippet}
 ```
 
@@ -223,7 +226,6 @@ And render whenever needed with the `@render` declaration.
 You can pass the function as a property to the component
 
 ```svelte
-
 <Component
   name="Font Weights"
   property="font-weight"
@@ -235,10 +237,7 @@ You can pass the function as a property to the component
 And receive it with the other props.
 
 ```js
-let {
-  // ... other props
-  content,
-} = $props();
+let { content, /* ... */ } = $props();
 ```
 
 Calling the function then produces the markup, in the component.
@@ -257,9 +256,9 @@ The code works, but there is also a way to improve the experience. If you define
   property="font-weight"
   values={[300, 500, 700, 900]}
 >
-{#snippet content()}
-  <span>Aa</span>
-{/snippet}
+  {#snippet content()}
+    <span>Aa</span>
+  {/snippet}
 </Component>
 ```
 
@@ -272,15 +271,12 @@ And cherry on top, content passed in the body of the component can be received w
   property="font-weight"
   values={[300, 500, 700, 900]}
 >
-    <span>Aa</span>
+  <span>Aa</span>
 </Component>
 
 <!-- Component.svelte -->
 <script>
-  let {
-    // ... other props
-    children
-  } = $props();
+  let { children, /* ... */ } = $props();
 </script>
 ```
 
