@@ -12,6 +12,300 @@ If you are a web developer looking for _design tokens_, to style your next big p
 
 If you are tempted by [Svelte](https://svelte.dev/) to back up the effort, then, here's more than one reason to give the tool a genuine try.
 
+Looking at the documentation for open props [the section devoted to typography](https://open-props.style/#typography) is galvanized with a series of interactive widgets. Here you can sample the impact of CSS properties like `letter-spacing`, or again `font-weight`; an excellent way to explore the values, and the perfect inspiration for a new component.
+
+---
+
+There are many ways to get started with Svelte. Locally you can create a new folder with [Vite](https://vite.dev/guide/#scaffolding-your-first-vite-project) or enjoy the official command line interface.
+
+```sh
+npx sv create
+```
+
+But the fastest way might just be [Svelte playground](https://svelte.dev/playground), letting you try the new tech without any setup.
+
+## Data
+
+In `+page.svelte`, or `App.svelte` with the web-based alternative, we can start working on the component in full. Here you can write markup as you would in an `html` document. To inject the value of a variable, all you need is then a declaration up top in between `<script>` tags.
+
+```svelte
+<script>
+  let name = "Letter Spacing"
+</script>
+
+<h2>{name}</h2>
+```
+
+Aside from a variable to spell out the application we benefit from having another variable to detail the CSS property by name. For the values, then, we can conjure up an array.
+
+```js
+let property = "letter-spacing";
+
+let values = [
+  "-.05em",
+  ".025em;",
+  ".050em;",
+  ".075em",
+  ".150em",
+  ".500em",
+  "1em",
+];
+```
+
+This is just JavaScript. What is Svelte is the way you author one element for the property, in the same exact manner you did with the name, and the way we mark up multiple nodes, one for each item in the array. For this Svelte offers the `each` block. Looping through the collection you retrieve the value so you can show the corresponding measure.
+
+```svelte
+<dl>
+  {#each values as value}
+	<!-- ... -->
+  {/each}
+</dl>
+```
+
+I chose to list the values in a `dl`, a _description list_, with the idea of highlighting the the made-up custom property, prefaced with two dashes, and the corresponding value. The `dt` and `dl` child nodes seem perfect to mark up the key-value pairs, but you are free to use another solution in terms of semantics.
+
+```svelte
+<dl>
+  {#each values as value}
+    <dt>--{property}</dt>
+    <dd>{value}</dd>
+  {/each}
+</dl>
+```
+
+The important thing is that with each iteration you retrieve the value after the `as` keyword. Even better, you gain access to the index of the item in the array with a second argument, so you can differentiate the custom properties in regular increments.
+
+```svelte
+{#each values as value, index}
+  <dt>--{property}-{index}</dt>
+  <dd>{value}</dd>
+{/each}
+```
+
+The syntax is already impressive in ease of use, but the result is still static — Svelte only helps to save a few keystrokes. To change the value _in markup_ we need to turn to the Svelte concept of reactivity, to _runes_.
+
+## Reactivity
+
+Immediately you have a `$state` rune, a function you can use to initialize a variable to-be-tracked by the compiler. Consider for instance a variable for the index of the current value in the array.
+
+```svelte
+let i = $state(0)
+```
+
+In parenthesis you complete the contract with the initial value, and from that moment Svelte takes care of updating the UI in sync with the reference. Change the variable whenever it might be used, in between the tags of an element, in the confines of an attribute, and the HTML will change to follow suit.
+
+Why the index, and not directly a value in the array? Looking at the inspiring website, you find an `input` element of type `range`, letting you change the property with a numeric reference. You select one of the `n` options and you apply the style of the item from the one and only array.
+
+We can add the input after the list of values, taking care to introduce the control with a descriptive label. In the min and max attribute you can also limit the number, to avoid exceeding the great.
+
+```svelte
+<label>
+	<span>{name}</span>
+	<input type="range" min="0" max="{values.length - 1}" />
+</label>
+```
+
+Here Svelte shines to _bind_, to associate the stateful variable to the input with the `bind:value` directive.
+
+```svelte
+<input type="range" bind:value={i} min="0" max="{values.length - 1}" />
+```
+
+As you play with the slider you update the state of the element. Thanks to Svelte, the same is true for the value of `i`. At this point we can use the value chosen in the array, by index. We can, for instance, change the appearance of the label introducing the input _with the same_ property we want to describe.
+
+```svelte
+<span style="{property}: {values[i]}">{name}</span>
+```
+
+Once again it is a matter of injecting the values within curly braces, this time in the `style` attribute. But we might improve the scheme with another rune, cryptic only in name: `$derived`. The idea is to have a variable reactive to _another_ reactive variable, like the index defined with `$state`. It might seem excessive, but in this manner you create a separate reference for the one value.
+
+```svelte
+let i = $state(0)
+let value = $derived(values[i])
+```
+
+The one you use to style the `span`.
+
+```diff
+-<span style="{property}: {values[i]}">{name}</span>
++<span style="{property}: {value}">{name}</span>
+```
+
+Impressed? Fundamentally, we are also done, we have achieved our goal of recreating the widget in its most basic function. The rest is a matter of styling the markup to ensure the interface is more robust and more pleasing, but you have a great starting point for an interactive component.
+
+## All the rest
+
+The excellent news is that to style the element you can add CSS in the same component in between `<style>` tags. The properties apply only to the existing nodes, and you'll be even warned if you happen to add a few lines for elements which do not appear in the same scope.
+
+```svelte
+<style>
+label span, label input {
+  display: block;
+}
+</style>
+```
+
+This is a component after all. And being a component, we can readily create a separate file with the existing code, say `Component.svelte`. From the parent scope you then import and use the component as you would add a standard HTML node.
+
+```svelte
+<script>
+  import Component from './Component.svelte';
+</script>
+
+<Component />
+```
+
+The beauty of this separation? Dive back in the component, in the declaration of the variables for the name, for the property, for the values. These can be generalized, received as properties with the `$props` rune.
+
+```js
+let {
+  name = "Letter Spacing",
+  property = "letter-spacing",
+  values = ["-.05em", ".025em;" /* ... */],
+} = $props();
+```
+
+To showcase a different token, in key and values, you just need to pass a new set of values to the component.
+
+```svelte
+<Component name="Font Weights" property="font-weight" values={[300, 500, 700, 900]} />
+```
+
+These are just a few of the niceties proffered by Svelte. And going through the tutorial you'll be delighted to discover just how much you can achieve:
+
+- a conditional CSS class, to highlight when one of the values is selected, in use? Try the `class:` directive
+
+```svelte
+<dt class:active={index === i}>--{property}-{index}</dt>
+```
+
+- a way to know the value of a stateful variable as it changes? Consider the `$inspect` rune
+
+```js
+$inspect(value);
+```
+
+Here you might discover that `value` is immediately initialized to the first item in the array, after all the index `i` is first set to `0`. If you want to avoid the default option you can set the state to an invalid number, like `-1`.
+
+```js
+let i = $state(-1);
+```
+
+Of course in doing so the inspect rune will notify you that `value` is first `undefined`. This would work to avoid changing the property, CSS would just skip the improper value and change the style only updating the widget.
+
+```js
+// init undefined
+// update .025em
+```
+
+But through the derived rune you can refine the logic with a better fallback.
+
+```js
+let value = $derived(values[i] || "");
+```
+
+- want to change the input property for something more complex than just a `span`, than a label? Roll your sleeves, cause Svelte offers the slightly advanced concept of _snippets_. These are functions you define in one place with a `#snippet` block.
+
+```svelte
+{#snippet content()}
+
+  <span>Aa</span>
+
+{/snippet}
+```
+
+And render whenever needed with the `@render` declaration.
+
+```svelte
+{@render content()}
+```
+
+You can pass the function as a property to the component
+
+```svelte
+
+<Component
+  name="Font Weights"
+  property="font-weight"
+  values={[300, 500, 700, 900]}
+  {content}
+/>
+```
+
+And receive it with the other props.
+
+```js
+let {
+  // ... other props
+  content,
+} = $props();
+```
+
+Calling the function then produces the markup, in the component.
+
+```svelte
+<div style="{property}: {value}">
+  {@render content()}
+</div>
+```
+
+The code works, but there is also a way to improve the experience. If you define the snippet from the parent's scope _in the body_ of the component, it is passed automatically.
+
+```svelte
+<Component
+  name="Font Weights"
+  property="font-weight"
+  values={[300, 500, 700, 900]}
+>
+{#snippet content()}
+  <span>Aa</span>
+{/snippet}
+</Component>
+```
+
+And cherry on top, content passed in the body of the component can be received with the special `children` prop.
+
+```svelte
+<!-- +page.svelte || App.svelte -->
+<Component
+  name="Font Weights"
+  property="font-weight"
+  values={[300, 500, 700, 900]}
+>
+    <span>Aa</span>
+</Component>
+
+<!-- Component.svelte -->
+<script>
+  let {
+    // ... other props
+    children
+  } = $props();
+</script>
+```
+
+Another snippet you can call to reach the same goal.
+
+```svelte
+<div style="{property}: {value}">
+  {@render children()}
+</div>
+```
+
+That being said, there is a small, potential issue. The component works wonders even if you don't pass a value for the different properties, but the same is no longer true for the content. What if there are no children at all? Svelte has yet an answer with the `#if` block. You can refer to the snippet or else, the previous label is still of use a convenient default
+
+```svelte
+<div style="{property}: {value}">
+  {#if children}
+    {@render children()}
+  {:else}
+    <span>{name}</span>
+  {/if}
+</div>
+```
+
+There is plenty to enjoy about Svelte, but hopefully the component was enough to remark on the fact. Hopefully the laundry list of more advanced features didn't scare you as well, but worked to convince you to just try a few features. For impressive, stylish components.
+
 <Component
   name="Font Weights"
   property="font-weight"
@@ -19,3 +313,5 @@ If you are tempted by [Svelte](https://svelte.dev/) to back up the effort, then,
 >
   <span style="font-size: 2.75em">Aa</span>
 </Component>
+
+Or seriously, for much larger apps.
