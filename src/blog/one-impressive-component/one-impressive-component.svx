@@ -1,9 +1,21 @@
 ---
 title: One impressive component
-description:  Build an impressive widget to appreciate Svelte in more than five features.
+description: Build an impressive widget to appreciate Svelte in more than five features.
 date: 2024-12-10
 ---
+
+<script>
+  import Component from "./Component.svelte";
+</script>
 
 If you are a web developer looking for _design tokens_, to style your next big project with some consistency, you can scarcely do better than [open props](https://open-props.style), a curated list of custom properties from [Adam Argyle](https://nerdy.dev/).
 
 If you are tempted by [Svelte](https://svelte.dev/) to back up the effort, then, here's more than one reason to give the tool a genuine try.
+
+<Component
+  name="Font Weights"
+  property="font-weight"
+  values={[300, 500, 700, 900]}
+>
+  <span style="font-size: 2.75em">Aa</span>
+</Component>
