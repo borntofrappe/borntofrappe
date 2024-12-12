@@ -1,7 +1,14 @@
 <script>
+  import site from "$lib/site";
+
   /** @type {{ data: import('./$types').PageData }} */
   let { data } = $props();
 </script>
+
+<svelte:head>
+  <title>{data.title} | {site.title}</title>
+  <meta name="description" content={data.description} />
+</svelte:head>
 
 <main>
   <h1>{data.title}</h1>

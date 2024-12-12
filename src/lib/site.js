@@ -1,7 +1,7 @@
 import { dev } from "$app/environment";
 
 export default {
-  title: "borntofrappe",
+  title: "Borntofrappe",
   description: "The latest from Gabriele Corti.",
   origin: dev ? "" : "https://borntofrappe.netlify.app",
   author: {

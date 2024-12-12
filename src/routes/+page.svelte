@@ -1,9 +1,11 @@
 <script>
+  import site from "$lib/site";
   import SnowFall from "./SnowFall.svelte";
 </script>
 
 <svelte:head>
-  <title>borntofrappe</title>
+  <title>{site.title}</title>
+  <meta name="description" content={site.description} />
 </svelte:head>
 
 <SnowFall color="oklch(55% 0.02 270)" background="oklch(21% 0.05 260)" />

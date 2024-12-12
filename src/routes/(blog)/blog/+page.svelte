@@ -1,9 +1,15 @@
 <script>
+  import site from "$lib/site.js";
   import { formatDate } from "$lib/utils";
 
   /** @type {{ data: import('./$types').PageData }} */
   let { data } = $props();
 </script>
+
+<svelte:head>
+  <title>Blog | {site.title}</title>
+  <meta name="description" content={site.description} />
+</svelte:head>
 
 <main>
   <h1>Blog</h1>
