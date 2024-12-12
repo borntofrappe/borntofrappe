@@ -180,125 +180,125 @@ These are just a few of the niceties proffered by Svelte. And going through the 
 
 - a conditional CSS class, to highlight when one of the values is selected, in use? Try the `class:` directive
 
-```svelte
-<dt class:active={index === i}>--{property}-{index}</dt>
-```
+  ```svelte
+  <dt class:active={index === i}>--{property}-{index}</dt>
+  ```
 
 - a way to know the value of a stateful variable as it changes? Consider the `$inspect` rune
 
-```js
-$inspect(value);
-```
+  ```js
+  $inspect(value);
+  ```
 
-Here you might discover that `value` is immediately initialized to the first item in the array, after all the index `i` is first set to `0`. If you want to avoid the default option you can set the state to an invalid number, like `-1`.
+  Here you might discover that `value` is immediately initialized to the first item in the array, after all the index `i` is first set to `0`. If you want to avoid the default option you can set the state to an invalid number, like `-1`.
 
-```js
-let i = $state(-1);
-```
+  ```js
+  let i = $state(-1);
+  ```
 
-Of course in doing so the inspect rune will notify you that `value` is first `undefined`. This would work to avoid changing the property, CSS would just skip the improper value and change the style only updating the widget.
+  Of course in doing so the inspect rune will notify you that `value` is first `undefined`. This would work to avoid changing the property, CSS would just skip the improper value and change the style only updating the widget.
 
-```js
-// init undefined
-// update .025em
-```
+  ```js
+  // init undefined
+  // update .025em
+  ```
 
-But through the derived rune you can refine the logic with a better fallback.
+  But through the derived rune you can refine the logic with a better fallback.
 
-```js
-let value = $derived(values[i] || "");
-```
+  ```js
+  let value = $derived(values[i] || "");
+  ```
 
 - want to change the input property for something more complex than just a `span`, than a label? Roll your sleeves, cause Svelte offers the slightly advanced concept of _snippets_. These are functions you define in one place with a `#snippet` block.
 
-```svelte
-{#snippet content()}
-  <span>Aa</span>
-{/snippet}
-```
-
-And render whenever needed with the `@render` declaration.
-
-```svelte
-{@render content()}
-```
-
-You can pass the function as a property to the component
-
-```svelte
-<Component
-  name="Font Weights"
-  property="font-weight"
-  values={[300, 500, 700, 900]}
-  {content}
-/>
-```
-
-And receive it with the other props.
-
-```js
-let { content, /* ... */ } = $props();
-```
-
-Calling the function then produces the markup, in the component.
-
-```svelte
-<div style="{property}: {value}">
-  {@render content()}
-</div>
-```
-
-The code works, but there is also a way to improve the experience. If you define the snippet from the parent's scope _in the body_ of the component, it is passed automatically.
-
-```svelte
-<Component
-  name="Font Weights"
-  property="font-weight"
-  values={[300, 500, 700, 900]}
->
+  ```svelte
   {#snippet content()}
     <span>Aa</span>
   {/snippet}
-</Component>
-```
+  ```
 
-And cherry on top, content passed in the body of the component can be received with the special `children` prop.
+  And render whenever needed with the `@render` declaration.
 
-```svelte
-<!-- +page.svelte || App.svelte -->
-<Component
-  name="Font Weights"
-  property="font-weight"
-  values={[300, 500, 700, 900]}
->
-  <span>Aa</span>
-</Component>
+  ```svelte
+  {@render content()}
+  ```
 
-<!-- Component.svelte -->
-<script>
-  let { children, /* ... */ } = $props();
-</script>
-```
+  You can pass the function as a property to the component
 
-Another snippet you can call to reach the same goal.
+  ```svelte
+  <Component
+    name="Font Weights"
+    property="font-weight"
+    values={[300, 500, 700, 900]}
+    {content}
+  />
+  ```
 
-```svelte
-<div style="{property}: {value}">
-  {@render children()}
-</div>
-```
+  And receive it with the other props.
 
-That being said, there is a small, potential issue. The component works wonders even if you don't pass a value for the different properties, but the same is no longer true for the content. What if there are no children at all? Svelte has yet an answer with the `#if` block. You can refer to the snippet or else, the previous label is still of use a convenient default
+  ```js
+  let { content /* ... */ } = $props();
+  ```
 
-```svelte
-<div style="{property}: {value}">
-  {#if children}
+  Calling the function then produces the markup, in the component.
+
+  ```svelte
+  <div style="{property}: {value}">
+    {@render content()}
+  </div>
+  ```
+
+  The code works, but there is also a way to improve the experience. If you define the snippet from the parent's scope _in the body_ of the component, it is passed automatically.
+
+  ```svelte
+  <Component
+    name="Font Weights"
+    property="font-weight"
+    values={[300, 500, 700, 900]}
+  >
+    {#snippet content()}
+      <span>Aa</span>
+    {/snippet}
+  </Component>
+  ```
+
+  And cherry on top, content passed in the body of the component can be received with the special `children` prop.
+
+  ```svelte
+  <!-- +page.svelte || App.svelte -->
+  <Component
+    name="Font Weights"
+    property="font-weight"
+    values={[300, 500, 700, 900]}
+  >
+    <span>Aa</span>
+  </Component>
+
+  <!-- Component.svelte -->
+  <script>
+    let { children, /* ... */ } = $props();
+  </script>
+  ```
+
+  Another snippet you can call to reach the same goal.
+
+  ```svelte
+  <div style="{property}: {value}">
     {@render children()}
-  {:else}
-    <span>{name}</span>
-  {/if}
-</div>
-```
+  </div>
+  ```
+
+  That being said, there is a small, potential issue. The component works wonders even if you don't pass a value for the different properties, but the same is no longer true for the content. What if there are no children at all? Svelte has yet an answer with the `#if` block. You can refer to the snippet or else, the previous label is still of use a convenient default
+
+  ```svelte
+  <div style="{property}: {value}">
+    {#if children}
+      {@render children()}
+    {:else}
+      <span>{name}</span>
+    {/if}
+  </div>
+  ```
 
 There is plenty to enjoy about Svelte, but hopefully the component was enough to remark on the fact. Hopefully the laundry list of more advanced features didn't scare you as well, but worked to convince you to just try a few features. For impressive, stylish components.
 
