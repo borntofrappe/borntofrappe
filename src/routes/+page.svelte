@@ -14,23 +14,14 @@
 </main>
 
 <style>
-  :global(body) {
-    margin: 0;
-    color: oklch(97% 0.012 280);
-    background: oklch(21% 0.05 260);
-  }
-
-  *::selection {
+  ::selection {
     color: oklch(97% 0.012 280);
     background: oklch(45% 0.03 250);
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
   main {
+    color: oklch(97% 0.012 280);
+    /* background: oklch(21% 0.05 260); */
     padding: 1rem;
     min-block-size: 100svb;
     display: flex;
@@ -43,7 +34,7 @@
   }
 
   h1 {
-    font-size: clamp(4.0311rem, 3.36rem + 3.3555vw, 5.9605rem);
+    font-size: clamp(4.2915rem, 3.345rem + 4.7326vi, 7.0128rem);
     line-height: 1.1;
     font-family: var(--font-display);
     color: var(--fill, oklch(15% 0.05 260));
@@ -57,7 +48,7 @@
   }
 
   p {
-    font-size: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    font-size: clamp(1.4063rem, 1.3158rem + 0.4522vi, 1.6663rem);
     font-weight: 700;
     font-style: italic;
   }

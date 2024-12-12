@@ -7,7 +7,6 @@
   let canvas;
   onMount(() => {
     document.body.style.zIndex = "0";
-    canvas.style.zIndex = "-1";
     canvas.style.position = "fixed";
     canvas.style.inset = "0";
 
@@ -118,4 +117,8 @@
   });
 </script>
 
-<canvas bind:this={canvas}></canvas>
+<canvas
+  style:background
+  style="display: block; position: fixed; inset: 0; inline-size: 100svi; block-size: 100svb;"
+  bind:this={canvas}
+></canvas>
