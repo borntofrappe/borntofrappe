@@ -12,11 +12,11 @@
 </svelte:head>
 
 <main>
-  <h1>Blog</h1>
+  <h1 class="[ heading ]">Blog</h1>
 
   {#each data.blog as { slug, title, date, description }}
     <article>
-      <h2><a href={slug}>{title}</a></h2>
+      <h2><a class="[ link ]" href={slug}>{title}</a></h2>
       <time datetime={date}>{formatDate(date)}</time>
       <p>{description}</p>
     </article>
@@ -24,18 +24,18 @@
 
   <nav>
     {#if data.page > 1}
-      <a href="/blog?page={data.page - 1}">Newer articles</a>
+      <a class="[ link ]" href="/blog?page={data.page - 1}">Newer articles</a>
     {/if}
 
     {#if data.page < data.pages}
-      <a href="/blog?page={data.page + 1}">Older articles</a>
+      <a class="[ link ]" href="/blog?page={data.page + 1}">Older articles</a>
     {/if}
   </nav>
 </main>
 
 <style>
   main {
-    max-inline-size: var(--measure-0);
+    max-inline-size: 70ch;
     padding: var(--space-s);
   }
 
