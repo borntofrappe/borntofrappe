@@ -17,16 +17,10 @@ dd {
   margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html:focus-within {
-    scroll-behavior: smooth;
-  }
-}
-
 img,
 picture {
-  max-width: 100%;
   display: block;
+  max-inline-size: 100%;
 }
 
 input,
@@ -34,4 +28,10 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
 }

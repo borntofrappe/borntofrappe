@@ -31,11 +31,6 @@
   --space-xl: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
   --space-2xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
   --space-3xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
-
-  --measure--2: 30ch;
-  --measure--1: 50ch;
-  --measure-0: 70ch;
-  --measure-1: 80ch;
 }
 
 body {
@@ -43,8 +38,8 @@ body {
   --color-body: var(--gray-9);
   --color-background: var(--gray-0);
   --color-primary: oklch(84% 0.172 90);
-  --color-selection: var(--gray-9);
-  --background-selection: oklch(84% 0.172 90 / 0.4);
+  --selection-color: var(--gray-9);
+  --selection-background: oklch(84% 0.172 90 / 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,8 +48,8 @@ body {
     --color-body: var(--gray-4);
     --color-background: var(--gray-10);
     --color-primary: oklch(84% 0.172 90);
-    --color-selection: var(--gray-3);
-    --background-selection: oklch(84% 0.172 90 / 0.2);
+    --selection-color: var(--gray-3);
+    --selection-background: oklch(84% 0.172 90 / 0.2);
   }
 }
 
@@ -64,8 +59,12 @@ body {
   min-block-size: 100svb;
   color: var(--color-body);
   background: var(--color-background);
-  font-size: var(--step-0);
-  line-height: 1.5;
+  line-height: 1.7;
+}
+
+::selection {
+  color: var(--selection-color);
+  background: var(--selection-background);
 }
 
 :is(h1, h2, h3) {
@@ -74,13 +73,9 @@ body {
   text-wrap: balance;
 }
 
-::selection {
-  color: var(--color-selection);
-  background: var(--background-selection);
-}
-
 h1 {
   font-size: var(--step-4);
+  line-height: 1;
 }
 
 h2 {
