@@ -1,0 +1,5 @@
+---
+title: Hand of time
+description: A post mortem for an interactive display with a huge unanswered question.
+date: 2024-12-14
+---
