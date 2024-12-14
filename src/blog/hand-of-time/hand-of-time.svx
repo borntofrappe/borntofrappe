@@ -8,25 +8,26 @@ date: 2024-12-14
   import Hand from "./Hand.svelte";
 </script>
 
-Among the JavaScript libraries for drawing on the web [Raphaël](https://dmitrybaranovskiy.github.io/raphael/) offers an exciting, if surpassed, API. In the documentation website you find a sundry of demos promoting the library and one in particular impressed me: [hand](https://dmitrybaranovskiy.github.io/raphael/hand.html), a display plotting hours in a twelve hour clock with colorful circles and one hand with the qualities of a chameleon with quick reflexes. Click one of the circles and the color of the nimble marker changes to match, smoothly over time. In parallel, the hand bounces from its previous location to the one you just pointed. It is a cute interaction which I tried to re-build on my own.
+Among the JavaScript libraries to draw on the web [Raphaël](https://dmitrybaranovskiy.github.io/raphael/) offers an exciting, if surpassed, API. On the website you find a sundry of demos promoting the library and one in particular impressed me: [hand](https://dmitrybaranovskiy.github.io/raphael/hand.html), a display plotting hours in a twelve-hour clock with colorful circles and one hand with the qualities of a chameleon gifted with quick reflexes. Click one of the circles and the color of the nimble marker changes to match, smoothly over time. In parallel, the hand bounces from its previous location to the one you just pointed. It is a cute interaction which I tried to re-build on my own.
 
 Starting with a series of circles, I resolved to use `<circle>` elements changing the coordinate system and pushing the shapes around in a clockwise pattern.
 
 ```html
 <circle transform="rotate(0) translate(0 -18)" />
 <circle transform="rotate(30) translate(0 -18)" />
+<!-- ...60, 90, ...330 -->
 ```
 
-The idea of _perceived lightness_ pushed me to ditch `hsl` and explore the `oklch` color syntax.
+The idea of _perceived lightness_ pushed me to ditch `hsl` and explore the `oklch` syntax.
 
 ```html
 <circle style="color: oklch(0.8 0.17 200)" />
 <circle style="color: oklch(0.8 0.17 230)" />
 ```
 
-Changing the third parameter, that of the hue, you obtain the colors in the entire 360 degrees spectrum — you'll just have to agree that red, green and blue don't coincide with the HSL staples of 0, 120 and 240, they are slightly offset.
+By increasing the third parameter, for the hue, you obtain the colors in the entire 360 degrees spectrum — you'll just have to agree that red, green and blue don't coincide with the HSL staples of 0, 120 and 240; they are slightly offset.
 
-For the hand I attempted a `<path>` with a bezier curve reaching outside before tracing the outline of the round shapes.
+For the hand I attempted a `<path>` with a bezier curve reaching up before tracing the contours of the round shapes.
 
 ```html
 <path
@@ -34,7 +35,7 @@ For the hand I attempted a `<path>` with a bezier curve reaching outside before 
 />
 ```
 
-From this point the "easy" part is to modify two values for the central figure. Just change the angle to rotate the `<path>` while changing the color as well — `stroke` will pick up the hint thanks to `currentColor`.
+From this point the "easy" part is to modify two values for the central figure. Just change the angle to rotate the `<path>` while changing the color as well — `stroke` will pick up the hint through `currentColor`.
 
 ```html
 <path
@@ -52,7 +53,7 @@ To trigger the update I considered listening to a `click` event on the single ci
 </a>
 ```
 
-One anchor link around the set of the entire set with a prompt call to prevent the default re-routing whenever pressed.
+One anchor link around the entire set with a prompt call to prevent the default re-routing whenever pressed.
 
 ```js
 link.addEventListener("click", (event) => {
@@ -114,7 +115,7 @@ const delay = 200;
 let input = "";
 ```
 
-Process the input and if it turns out to be an hour in the well-reasoned range, say 1 to 12, update the display just like with the click event.
+Process the input and if it turns out to be an hour in the well-reasoned range, say 1 to 12, update the display just like you did for the click event.
 
 ```js
 input = `${input + key}`.slice(-2);
@@ -132,11 +133,11 @@ timeout = setTimeout(() => {
 
 It works!
 
-<figure class="[ center-frame ]" data-size="medium">
+<figure class="[ center-frame ]">
   <Hand />
 </figure>
 
-To wrap the result with a beautiful bow you can change the opacity, and even the opacity of the fill only, when you hover on the circles.
+To wrap the result with a beautiful bow you can change the opacity, and even the opacity of the `fill` only, when you hover on the circles.
 
 ```css
 a circle {
@@ -149,7 +150,7 @@ a circle:hover {
 }
 ```
 
-And if you forgo the default outline be sure not to forget a rule for the focus state.
+And if you forgo the default outline on the one link be sure not to forget a rule for the focus state.
 
 ```css
 a {
@@ -162,4 +163,4 @@ svg:has(:focus-visible) {
 }
 ```
 
-In summation, this is how you can create an interactive, gorgeous display with SVG syntax, highjacking built-in control nodes and delegating much of the hard work to the support of modern syntaxes and complex formulas. This is also one way you are able to collect more than a single number in quick succession, delaying what would otherwise happen without restrain. You can. With is only one question left: _should you?_
+In summation, this is how you can create an interactive, gorgeous display with SVG syntax, highjacking built-in control nodes and delegating much of the hard work to the support of modern syntaxes and complex formulas. This is also one way you are able to collect more than a single number in quick succession, delaying what would otherwise happen without restrain. You _can_. With only one question left: _should_ you?
