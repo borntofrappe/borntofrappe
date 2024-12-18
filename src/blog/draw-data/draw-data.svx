@@ -1,0 +1,7 @@
+---
+title: Draw data
+description: Ease into D3 and data visualizations drawing with SVG and Svelte.
+date: 2024-12-18
+---
+
+For data visualizations on the web [D3](https://d3js.org/) is the frame of reference, a massive JavaScript library which has been apodted by data practioners and is in use as an essential dependency for more abstract frameworks and charting libraries.
