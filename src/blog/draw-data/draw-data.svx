@@ -1,7 +1,160 @@
 ---
 title: Draw data
-description: Ease into D3 and data visualizations drawing with SVG and Svelte.
+description: Ease into data visualizations drawing with SVG and Svelte.
 date: 2024-12-18
 ---
 
-For data visualizations on the web [D3](https://d3js.org/) is the frame of reference, a massive JavaScript library which has been apodted by data practioners and is in use as an essential dependency for more abstract frameworks and charting libraries.
+<script>
+  import Table from "./Table.svelte";
+  import OffsetX from "./OffsetX.svelte";
+  import OffsetY from "./OffsetY.svelte";
+  import SVG from "./SVG.svelte";
+  const data = [2.2, 3.8, 3.6, 4.3, 4.4, 4.9, 5.1, 5.2, 6.1];
+</script>
+
+For data visualizations on the web [D3](https://d3js.org/) is the frame of reference, a massive JavaScript library which has been apodted by data practioners and is in use as an essential dependency for more abstract frameworks and charting libraries. Among its founding features the library highlights the adoption of web standards and the ability to _view source_, to analyze the output through the Document Object Model; something which promotes an environment ripe for experimentation, but also something which poses an evident challenge, a steep learning curve.
+
+Before understanding D3 you benefit from knowledge of its key ingredients: **HTML** for content, **CSS** for style, **JavaScript** for interactions and **SVG** for graphics. Conversely, exploring these parts independently simplifies access to D3. Svelte is here a logical extension, providing one of the most clear manners to create and manipulated DOM nodes.
+
+Consider an array of pseudo-random decimal numbers.
+
+```js
+const data = [2.2, 3.8, 3.6, 4.3, 4.4, 4.9, 5.1, 5.2, 6.1];
+```
+
+You can show the values in different ways, not in the least in a regular table sectioned in two columns to represent the floats and the respective indexes. In HTML you do this through the `table` element and dedicated child nodes:
+
+- `thead` and `tbody` as two general containers to introduce the table and present data itself
+
+- `tr` to describe rows
+
+- `th` and `td` for the real values, the headings and data points
+
+<!-- prettier-ignore -->
+```html
+<table>
+  <thead>
+    <tr>
+        <th>Index</th><th>Data</th>
+    </tr>
+  </thead>
+  <tbody><!-- ... --></tbody>
+</table>
+```
+
+Instead of composing the rows in the `tbody` element directly, Svelte introduces the concept of an `#each` block, a utility to iterate through the collection and consider the items. The syntax is quite understandable: following the declaration of the block between curly braces and a mention of the array you gain access to the items with the `as` keyword. Optionally, you also find the index with a second argument. In the block itself you write whichever markup sequence you want to produce every single time — here a table row with the desired cell pair.
+
+```svelte
+{#each data as value, i}
+  <tr>
+    <td>{i}</td><td>{value}</td>
+  </tr>
+{/each}
+```
+
+It may not seem much, but this is already one type of visualization, one could even argue a _data-driven document_. And if not remarkable, extremely expressive and straight to the point.
+
+<figure class="[ center-frame ]">
+  <Table {data} />
+</figure>
+
+Certainly, you may look to data visualizations for visuals, perhaps a graphic to study the overall trend, the magnitude of the different values. This can be achieved with scalable vector graphics and specifically the `svg` element, which sets up a true up a canvas. In this context the `viewBox` attribute helps to size the display with four values, two for the position origin, which you can set at zero for ease of mind, and two for the dimensions.
+
+```html
+<svg viewBox="0 0 ? ?">
+  <!-- ... -->
+</svg>
+```
+
+How wide and how tall should the rectangle be? Given the simple data structure, a short list of numbers in a relatively small range, we can get by with two references: the length of the array and the maximum value. The approach is far from perfect, but lets us focus on the drawing itself.
+
+```svelte
+<svg viewBox="0 0 {data.length} {Math.max(...data)}">
+  <!-- ... -->
+</svg>
+```
+
+<!-- don't like this sentence introducing the paragraph -->
+
+In the body of the `svg` element you repeat the logic used for the table's body, but this time to add something like a nice round shape. For this purpose SVG has a `circle` element and three custom attributes: `cx` and `cy` for the coordinates of the center, `r` for the radius. The radius can be a fixed number, enough to be noticeable and not occupy too much space. The position changes with each iteration, but the assumptions we made once again dumb down the sequence. Horizontally you can use the index while vertically, and preciously, the value itself.
+
+```svelte
+{#each data as value, i}
+  <circle r="0.1" cx={i} cy={value} />
+{/each}
+```
+
+Unfortunately, the code will produce a major issue and two two minor annoyances, an inevitable price to pay for all the simplifications. Some of the shapes are cropped, partially visible. Most troubling, the result is the opposite of what you would think, with greater numbers actually lower and closer to the bottom. At fault the `viewBox` attribute and the fundamental concept of the SVG coordinate system.
+
+`viewBox` describes the visible area, the rectangle in which you will see the SVG shapes; outside of this space the shapes are still drawn, but not there. Since the index in the array starts at `0`, the very first circle is therefore and naturally chopped. You can fix this by offsetting all shapes by half a unit, so that the dots are centered each in their imaginary column.
+
+<figure class="[ center-frame ]" data-size="medium">
+  <OffsetX />
+</figure>
+
+Something similar is at work for another circle, the one which represents the maximum value. Here the shape is cut off to show only the top half, since the element is position exactly on the vertical edge. But why at the bottom? In SVG the coordinate system set through the `viewBox` means you draw from the x, y origin toward the right and the bottom. If you want to achieve something closer to a cartesian coordinate system, you have to therefore flip the picture, you need to draw from the bottom up. In practical terms, you need to draw _subtracting_ the value of the data points from the total height.
+
+<figure class="[ center-frame ]" data-size="medium">
+  <OffsetY />
+</figure>
+
+At this point it might make sense to describe the width, the height of canvas next to the data array, to reference the values whenever needed.
+
+```js
+const width = data.length;
+const height = Math.max(...data);
+```
+
+In the `viewBox` attribute.
+
+```svelte
+<svg viewBox="0 0 {width} {height}">
+    <!-- ...circles -->
+</svg>
+```
+
+And in the shapes you can now draw correctly, with higher values resolving in smaller vertical offset and closer to the top.
+
+```svelte
+<circle r="0.1" cx={0.5 + i} cy={height - value} />
+```
+
+Having a separate reference for the width, for the height also helps to draw the maximum value in full — just increase the height to add breathing space.
+
+```js
+const height = Math.ceil(Math.max(...data)) + 1;
+```
+
+You have a first, rough visual, but more importantly, and hopefully, you know just how to plot data with something you can think as a marker. This marker can be a circle, but virtually anything else.
+
+You might want to have a label above to the shapes; you can with a `text` element. You'll have to discover a new set of attributes, to position, to size the text, but once you do, perhaps for a short string introducing the chart in the top left corner.
+
+<!-- prettier-ignore -->
+```html
+<text x="0.2" y="0.6" font-size="0.4">
+  Floaties
+</text>
+```
+
+You can tweak the syntax in the `each` block to show the real numbers in the right place.
+
+```svelte
+<text x={0.5 + i} y={height - value - 0.3} font-size="0.35" text-anchor="middle">
+  {value}
+</text>
+```
+
+To delimit the graph you might lament the two axis. You can draw these with `line` elements, or again a `path` element if you dare to discover the rich `d` attribute.
+
+```svelte
+<g stroke-width="0.06">
+  <line x1="0" x2={width} y1={height} y2={height} />
+  <line x1="0" x2="0" y1="0" y2={height} />
+</g>
+```
+
+Here the stroke is not drawn entirely — the `viewBox` continues to cut the lines halfway, but in this particular instance you won't mind too much. For this and all the issues popped up on the journey, for a more robust result you need more complex logic. And possibly the assistance of a utility like D3 with the firm assurance that the result is much of the same. Improved, but still HTML, still SVG — you'll figure it out.
+
+<figure class="[ center-frame ]" data-size="medium">
+  <SVG {data} />
+</figure>
