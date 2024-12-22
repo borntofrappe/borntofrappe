@@ -7,43 +7,43 @@
 
     <link
       rel="preload"
-      href="/fonts/Mulish-Regular-kern-latin.woff2"
+      href="/fonts/Figtree-Regular-kern-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
 
     <link
-    rel="preload"
-    href="/fonts/Coiny-Regular-kern-latin.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  />
+      rel="preload"
+      href="/fonts/Lora-SemiBold-kern-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <style>
       @font-face {
-        font-family: Mulish;
-        src: url("/fonts/Mulish-Regular-kern-latin.woff2") format("woff2");
+        font-family: Figtree;
+        src: url("/fonts/Figtree-Regular-kern-latin.woff2") format("woff2");
       }
 
       @font-face {
-        font-family: Mulish;
-        src: url("/fonts/Mulish-Italic-kern-latin.woff2") format("woff2");
+        font-family: Figtree;
+        src: url("/fonts/Figtree-Italic-kern-latin.woff2") format("woff2");
         font-style: italic;
         font-display: swap;
       }
 
       @font-face {
-        font-family: Mulish;
-        src: url("/fonts/Mulish-ExtraBold-kern-latin.woff2") format("woff2");
+        font-family: Figtree;
+        src: url("/fonts/Figtree-ExtraBold-kern-latin.woff2") format("woff2");
         font-weight: 700;
         font-display: swap;
       }
 
       @font-face {
-        font-family: Mulish;
-        src: url("/fonts/Mulish-ExtraBoldItalic-kern-latin.woff2")
+        font-family: Figtree;
+        src: url("/fonts/Figtree-ExtraBoldItalic-kern-latin.woff2")
           format("woff2");
         font-weight: 700;
         font-style: italic;
@@ -51,14 +51,37 @@
       }
 
       @font-face {
-        font-family: Coiny;
-        src: url("/fonts/Coiny-Regular-kern-latin.woff2") format("woff2");
+        font-family: Lora;
+        src: url("/fonts/Lora-SemiBold-kern-latin.woff2") format("woff2");
+        font-weight: 700;
+      }
+
+      @font-face {
+        font-family: Lora;
+        src: url("/fonts/Lora-SemiBoldItalic-kern-latin.woff2") format("woff2");
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: Lora;
+        src: url("/fonts/Lora-Regular-kern-latin.woff2") format("woff2");
         font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: Lora;
+        src: url("/fonts/Lora-Italic-kern-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
       }
 
       :root {
-        --font-base: Mulish, system-ui;
-        --font-display: Coiny, system-ui;
+        --font-base: Figtree, system-ui;
+        --font-display: Lora, system-ui;
         --font-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
           monospace;
       }
@@ -67,13 +90,14 @@
         font-family: var(--font-base);
       }
 
-      code {
-        font-family: var(--font-mono);
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
       }
 
-      .font-display {
-        font-family: var(--font-display);
-        font-weight: 400;
+      code {
+        font-family: var(--font-mono);
       }
     </style>
 
