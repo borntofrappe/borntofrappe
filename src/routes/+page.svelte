@@ -35,18 +35,14 @@
     animation: fade-in-bloom 2s 1s both ease-out;
   }
 
+  main > * {
+    color: inherit;
+  }
+
   h1 {
     font-size: clamp(4.2915rem, 3.345rem + 4.7326vi, 7.0128rem);
     line-height: 1.1;
     font-family: var(--font-display);
-    color: var(--fill, oklch(15% 0.05 260));
-    -webkit-text-stroke: 0.2em var(--stroke, oklch(97% 0.012 280));
-    paint-order: stroke;
-  }
-
-  h1::selection {
-    color: var(--highlight, oklch(84% 0.172 90));
-    background: initial;
   }
 
   p {

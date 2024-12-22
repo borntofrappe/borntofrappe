@@ -35,7 +35,7 @@
   }
 
   main > :global(:is(h1, h2, h3, blockquote)) {
-    --flow-space: 1.25em;
+    --flow-space: 1.1em;
   }
 
   main > :global(:is(h1, h2, h3) + *) {

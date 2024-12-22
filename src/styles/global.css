@@ -34,9 +34,9 @@
 }
 
 body {
-  --color-heading: var(--gray-10);
-  --color-body: var(--gray-9);
-  --color-background: var(--gray-0);
+  --color-heading: var(--gray-9);
+  --color-body: var(--gray-8);
+  --color-background: var(--gray-1);
   --color-primary: oklch(84% 0.172 90);
   --selection-color: var(--gray-9);
   --selection-background: oklch(84% 0.172 90 / 0.4);
@@ -68,6 +68,7 @@ body {
 }
 
 :is(h1, h2, h3) {
+  font-family: var(--font-display);
   color: var(--color-heading);
   line-height: 1.1;
   text-wrap: balance;
