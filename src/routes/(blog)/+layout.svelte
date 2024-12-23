@@ -134,6 +134,26 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    button:hover {
+      animation: fret 0.5s cubic-bezier(0.5, 0.75, 0.75, 1.25);
+    }
+
+    @keyframes fret {
+      20%,
+      60% {
+        rotate: 5deg;
+      }
+
+      50% {
+        scale: 1.15;
+      }
+
+      40%,
+      80% {
+        rotate: -5deg;
+      }
+    }
+
     svg {
       --duration: 0.5s;
       --base-delay: 0.1s;
