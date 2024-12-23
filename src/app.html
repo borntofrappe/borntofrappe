@@ -81,6 +81,15 @@
       }
     </style>
 
+    <script>
+      const preference =
+        localStorage.getItem("theme-preference") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.firstElementChild.setAttribute("data-theme", preference);
+    </script>
+
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">

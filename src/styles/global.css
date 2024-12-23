@@ -43,7 +43,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  :not([data-theme]) body {
     --color-heading: var(--gray-3);
     --color-body: var(--gray-4);
     --color-background: var(--gray-10);
@@ -51,6 +51,15 @@ body {
     --selection-color: var(--gray-3);
     --selection-background: oklch(84% 0.172 90 / 0.2);
   }
+}
+
+[data-theme="dark"] body {
+  --color-heading: var(--gray-3);
+  --color-body: var(--gray-4);
+  --color-background: var(--gray-10);
+  --color-primary: oklch(84% 0.172 90);
+  --selection-color: var(--gray-3);
+  --selection-background: oklch(84% 0.172 90 / 0.2);
 }
 
 body {
