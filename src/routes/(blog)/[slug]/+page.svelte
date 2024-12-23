@@ -17,8 +17,7 @@
 </main>
 
 <style>
-  main {
-    padding: var(--space-s);
+  main > :global(p) {
     max-inline-size: 70ch;
   }
 

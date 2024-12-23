@@ -34,11 +34,6 @@
 </main>
 
 <style>
-  main {
-    max-inline-size: 70ch;
-    padding: var(--space-s);
-  }
-
   main > * + * {
     margin-block-start: var(--space-m);
   }

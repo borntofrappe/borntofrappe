@@ -85,36 +85,18 @@
 </div>
 
 <style>
-  div :global(:is(.link, a:not([class]))) {
-    --_color-primary: var(--color-primary, hotpink);
-    color: inherit;
-    text-decoration: none;
-    background: linear-gradient(
-        to bottom,
-        var(--_color-primary),
-        var(--_color-primary)
-      ),
-      linear-gradient(to bottom, currentColor, currentColor);
-    background-size:
-      0% 0.2ex,
-      100% 0.2ex;
-    background-repeat: no-repeat;
-    background-position: 0% 100%;
-    transition: background-size 0.2s;
+  div {
+    max-inline-size: 70ch;
+    padding: var(--space-s);
+  }
 
-    &:hover {
-      background-size: 100% 0.2ex;
-    }
+  div > :global(* + *) {
+    margin-block-start: var(--space-s);
+  }
 
-    &:not(:hover) {
-      background-position:
-        100% 100%,
-        0% 100%;
-    }
-
-    &:focus {
-      background: none;
-    }
+  header {
+    display: flex;
+    justify-content: end;
   }
 
   button {
@@ -153,7 +135,7 @@
 
   @media (prefers-reduced-motion: no-preference) {
     svg {
-      --duration: 0.6s;
+      --duration: 0.5s;
       --base-delay: 0.1s;
       --stagger-delay: 0.05s;
       --ease-in-out: cubic-bezier(0.5, -0.1, 0.1, 1.5);
@@ -229,6 +211,38 @@
 
     :global([data-theme="dark"]) svg .sun-beams g circle {
       transition-delay: 0s;
+    }
+  }
+
+  div :global(:is(.link, a:not([class]))) {
+    --_color-primary: var(--color-primary, hotpink);
+    color: inherit;
+    text-decoration: none;
+    background: linear-gradient(
+        to bottom,
+        var(--_color-primary),
+        var(--_color-primary)
+      ),
+      linear-gradient(to bottom, currentColor, currentColor);
+    background-size:
+      0% 0.2ex,
+      100% 0.2ex;
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+    transition: background-size 0.2s;
+
+    &:hover {
+      background-size: 100% 0.2ex;
+    }
+
+    &:not(:hover) {
+      background-position:
+        100% 100%,
+        0% 100%;
+    }
+
+    &:focus {
+      background: none;
     }
   }
 </style>
