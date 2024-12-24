@@ -166,6 +166,7 @@
       transition: transform var(--duration) var(--ease-in-out);
       transform: scale(0.7);
     }
+
     svg .moon {
       transition: transform var(--duration) var(--ease-in-out);
       transform: translate(12px, -2px);
@@ -207,24 +208,31 @@
     svg .sun-beams g:nth-child(1) circle {
       transition-delay: calc(var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(2) circle {
       transition-delay: calc(2 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(3) circle {
       transition-delay: calc(3 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(4) circle {
       transition-delay: calc(4 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(5) circle {
       transition-delay: calc(5 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(6) circle {
       transition-delay: calc(6 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(7) circle {
       transition-delay: calc(7 * var(--stagger-delay) + var(--base-delay));
     }
+
     svg .sun-beams g:nth-child(8) circle {
       transition-delay: calc(8 * var(--stagger-delay) + var(--base-delay));
     }
@@ -232,53 +240,5 @@
     :global([data-theme="dark"]) svg .sun-beams g circle {
       transition-delay: 0s;
     }
-  }
-
-  div :global(:is(.link, a:not([class]))) {
-    --_primary-color: var(--primary-color, hotpink);
-    color: inherit;
-    text-decoration: none;
-    background: linear-gradient(
-        to bottom,
-        var(--_primary-color),
-        var(--_primary-color)
-      ),
-      linear-gradient(to bottom, currentColor, currentColor);
-    background-size:
-      0% 0.2ex,
-      100% 0.2ex;
-    background-repeat: no-repeat;
-    background-position: 0% 100%;
-    transition: background-size 0.2s;
-
-    &:hover {
-      background-size: 100% 0.2ex;
-    }
-
-    &:not(:hover) {
-      background-position:
-        100% 100%,
-        0% 100%;
-    }
-
-    &:focus-visible {
-      background: none;
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
-  }
-
-  div :global(hr:not([class])) {
-    color: inherit;
-    block-size: 2em;
-    border: none;
-    background: currentColor;
-    background: oklch(from currentColor l c h / 0.5);
-    -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-841.46 -35.72 1682.91 78.21"><path fill="black" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="M 0 19 C -21.17 29.12 -21.17 29.12 -18.08 5.87 C -34.24 -11.13 -34.24 -11.13 -11.17 -15.38 C -0.01 -36 -0.01 -36 11.16 -15.38 C 34.23 -11.13 34.23 -11.13 18.07 5.87 C 21.16 29.12 21.16 29.12 0 19" /><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M -839 0 -60 0 M 60 0 839 0" /></svg>');
-    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-841.46 -35.72 1682.91 78.21"><path fill="black" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="M 0 19 C -21.17 29.12 -21.17 29.12 -18.08 5.87 C -34.24 -11.13 -34.24 -11.13 -11.17 -15.38 C -0.01 -36 -0.01 -36 11.16 -15.38 C 34.23 -11.13 34.23 -11.13 18.07 5.87 C 21.16 29.12 21.16 29.12 0 19" /><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M -839 0 -60 0 M 60 0 839 0" /></svg>');
-    -webkit-mask-position: 50% 50%;
-    mask-position: 50% 50%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
   }
 </style>
