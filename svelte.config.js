@@ -16,7 +16,7 @@ const mdsvexConfig = {
       const html = codeToHtml(code, {
         lang,
         theme,
-      }).replace(/class="[\w -]+"/, `data-lang="${lang}"`);
+      }).replace(/class="[\w -]+"/, `data-language="${lang}"`);
       return escapeSvelte(html);
     },
   },

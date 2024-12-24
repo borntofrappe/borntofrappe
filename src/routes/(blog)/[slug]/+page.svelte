@@ -44,4 +44,34 @@
   main > :global(:is(ul, ol)) {
     padding-inline-start: 1em;
   }
+
+  main > :global(p > code) {
+    color: var(--text-1);
+    background: var(--surface-1);
+    display: inline-block;
+    padding: 1px var(--space-2xs);
+    border-radius: var(--space-2xs);
+  }
+
+  main > :global(pre) {
+    tab-size: 2;
+    line-height: 1.5;
+    border-radius: var(--space-xs);
+    padding: var(--space-s) var(--space-m);
+  }
+
+  main > :global(pre[data-language]) {
+    padding-block-start: calc(var(--space-s) + 1em);
+    position: relative;
+  }
+
+  main > :global(pre[data-language]::before) {
+    position: absolute;
+    inset-inline-end: var(--space-m);
+    inset-block-start: var(--space-2xs);
+    content: attr(data-language);
+    font-size: 0.95em;
+    color: currentColor;
+    color: oklch(from currentColor calc(l * 0.7) c h);
+  }
 </style>
