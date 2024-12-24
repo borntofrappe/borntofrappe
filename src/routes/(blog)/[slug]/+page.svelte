@@ -33,8 +33,12 @@
     margin-block-start: var(--flow-space, 1em);
   }
 
-  main > :global(:is(h1, h2, h3, blockquote)) {
+  main > :global(:is(h1, h2, h3, blockquote, pre)) {
     --flow-space: 1.1em;
+  }
+
+  main > :global(:is(div, figure, table)) {
+    --flow-space: 1.5em;
   }
 
   main > :global(:is(h1, h2, h3) + *) {
