@@ -265,4 +265,18 @@
       background: none;
     }
   }
+
+  div :global(hr:not([class])) {
+    color: inherit;
+    block-size: 2em;
+    border: none;
+    background: currentColor;
+    background: oklch(from currentColor l c h / 0.5);
+    -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-841.46 -35.72 1682.91 78.21"><path fill="black" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="M 0 19 C -21.17 29.12 -21.17 29.12 -18.08 5.87 C -34.24 -11.13 -34.24 -11.13 -11.17 -15.38 C -0.01 -36 -0.01 -36 11.16 -15.38 C 34.23 -11.13 34.23 -11.13 18.07 5.87 C 21.16 29.12 21.16 29.12 0 19" /><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M -839 0 -60 0 M 60 0 839 0" /></svg>');
+    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-841.46 -35.72 1682.91 78.21"><path fill="black" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="M 0 19 C -21.17 29.12 -21.17 29.12 -18.08 5.87 C -34.24 -11.13 -34.24 -11.13 -11.17 -15.38 C -0.01 -36 -0.01 -36 11.16 -15.38 C 34.23 -11.13 34.23 -11.13 18.07 5.87 C 21.16 29.12 21.16 29.12 0 19" /><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M -839 0 -60 0 M 60 0 839 0" /></svg>');
+    -webkit-mask-position: 50% 50%;
+    mask-position: 50% 50%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
 </style>
