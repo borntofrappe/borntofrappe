@@ -235,13 +235,13 @@
   }
 
   div :global(:is(.link, a:not([class]))) {
-    --_color-primary: var(--color-primary, hotpink);
+    --_primary-color: var(--primary-color, hotpink);
     color: inherit;
     text-decoration: none;
     background: linear-gradient(
         to bottom,
-        var(--_color-primary),
-        var(--_color-primary)
+        var(--_primary-color),
+        var(--_primary-color)
       ),
       linear-gradient(to bottom, currentColor, currentColor);
     background-size:

@@ -13,12 +13,11 @@ const mdsvexConfig = {
   extensions: [".md", ".svx"],
   highlight: {
     highlighter: (code, lang) => {
-      return escapeSvelte(
-        codeToHtml(code, {
-          lang,
-          theme,
-        })
-      );
+      const html = codeToHtml(code, {
+        lang,
+        theme,
+      }).replace(/class="[\w -]+"/, `data-lang="${lang}"`);
+      return escapeSvelte(html);
     },
   },
 };
