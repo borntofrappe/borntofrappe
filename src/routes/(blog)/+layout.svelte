@@ -261,8 +261,10 @@
         0% 100%;
     }
 
-    &:focus {
+    &:focus-visible {
       background: none;
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
     }
   }
 
