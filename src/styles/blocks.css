@@ -76,3 +76,67 @@ pre[data-language]::before {
   color: currentColor;
   color: oklch(from currentColor calc(l * 0.7) c h);
 }
+
+table [align="left"] {
+  text-align: start;
+}
+
+table [align="center"] {
+  text-align: center;
+}
+
+table [align="right"] {
+  text-align: end;
+}
+
+table:not([class]) {
+  color: var(--text-1);
+  background: var(--surface-1);
+  border: 3px solid var(--surface-3);
+  table-layout: fixed;
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+table:not([class]) thead th {
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: var(--space-2xs);
+}
+
+table:not([class]) tbody td {
+  padding: var(--space-2xs) var(--space-s);
+}
+
+table:not([class]) tbody tr:nth-of-type(odd) td {
+  background: var(--surface-2);
+}
+
+:is(div, figure):has(> table:not([class])) {
+  padding: 0;
+  color: var(--text-1);
+  background: var(--surface-1);
+  border: 3px solid var(--surface-3);
+  --border-radius: clamp(0px, calc(100vw - 100%) * 1e5, 1rem);
+  border-radius: var(--border-radius);
+}
+
+:is(div, figure):has(> table:not([class])) table {
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+:is(div, figure):has(> table:not([class]))
+  tbody
+  tr:last-of-type
+  td:first-of-type {
+  border-end-start-radius: var(--border-radius);
+}
+
+:is(div, figure):has(> table:not([class]))
+  tbody
+  tr:last-of-type
+  td:last-of-type {
+  border-end-end-radius: var(--border-radius);
+}
