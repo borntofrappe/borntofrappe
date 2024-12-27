@@ -17,6 +17,29 @@
 </main>
 
 <style>
+  main::before {
+    content: "";
+    position: fixed;
+    background: currentColor;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: var(--scroll-block-size, 1ex);
+    transform-origin: 0% 50%;
+    animation: progress auto;
+    animation-timeline: scroll();
+    z-index: 1;
+  }
+
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   main > :global(p) {
     max-inline-size: 70ch;
   }
