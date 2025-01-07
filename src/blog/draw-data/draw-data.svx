@@ -42,7 +42,7 @@ You can show the values in different ways, not in the least in a regular table s
 </table>
 ```
 
-Instead of composing the rows in the `tbody` element directly, Svelte introduces the concept of an `#each` block, a utility to iterate through the collection and consider the items. The syntax is quite understandable: following the declaration of the block between curly braces and a mention of the array you gain access to the items with the `as` keyword. Optionally, you also find the index with a second argument. In the block itself you write whichever markup sequence you want to produce every single time — here a table row with the desired cell pair.
+Instead of composing the rows in the `tbody` element directly, Svelte introduces the concept of an `#each` block, a utility to iterate through any collection and consider the items. The syntax is quite understandable: following the declaration of the block between curly braces and a mention of the array you gain access to the items with the `as` keyword. Optionally, you also find the index with a second argument. In the block itself you write whichever markup sequence you want to produce every single time — here a table row with the desired cell pair.
 
 ```svelte
 {#each data as value, i}
@@ -58,7 +58,7 @@ It may not seem much, but this is already one type of visualization, one could e
   <Table {data} />
 </figure>
 
-Certainly, you may look to data visualizations for visuals, perhaps a graphic to study the overall trend, the magnitude of the different values. This can be achieved with scalable vector graphics and specifically the `svg` element, which sets up a true up a canvas. In this context the `viewBox` attribute helps to size the display with four values, two for the position origin, which you can set at zero for ease of mind, and two for the dimensions.
+Certainly, you may look to data visualizations for _visuals_, perhaps a graphic to study the overall trend, the magnitude of the different values. This can be achieved with scalable vector graphics and specifically the `svg` element. Here the `viewBox` attribute helps to size the display with four values, two for the position of the origin, which you can set at zero for ease of mind, and two for the dimensions.
 
 ```html
 <svg viewBox="0 0 ? ?">
@@ -76,7 +76,7 @@ How wide and how tall should the rectangle be? Given the simple data structure, 
 
 <!-- don't like this sentence introducing the paragraph -->
 
-In the body of the `svg` element you repeat the logic used for the table's body, but this time to add something like a nice round shape. For this purpose SVG has a `circle` element and three custom attributes: `cx` and `cy` for the coordinates of the center, `r` for the radius. The radius can be a fixed number, enough to be noticeable and not occupy too much space. The position changes with each iteration, but the assumptions we made once again dumb down the sequence. Horizontally you can use the index while vertically, and preciously, the value itself.
+In the body of the `svg` element you repeat the logic used for the table's body, but this time to add a visual, a drawing, like a nice round shape. For this purpose SVG has a `circle` element and three custom attributes: `cx` and `cy` for the coordinates of the center, `r` for the radius. The radius can be a fixed number, enough to be noticeable. The position changes with each iteration, but the assumptions we made once again dumb down the sequence. Horizontally you can use the index while vertically, and preciously, the value itself.
 
 ```svelte
 {#each data as value, i}
@@ -84,7 +84,7 @@ In the body of the `svg` element you repeat the logic used for the table's body,
 {/each}
 ```
 
-Unfortunately, the code will produce a major issue and two two minor annoyances, an inevitable price to pay for all the simplifications. Some of the shapes are cropped, partially visible. Most troubling, the result is the opposite of what you would think, with greater numbers actually lower and closer to the bottom. At fault is the `viewBox` attribute and the fundamental concept of the SVG coordinate system.
+Unfortunately, the code leads to one major issue and two minor annoyances, an inevitable price to pay for all the simplifications. Some of the shapes are cropped, partially visible. Most troubling, the result is the opposite of what you would think, with greater numbers actually lower and closer to the bottom. At fault is the `viewBox` attribute and the fundamental concept of the SVG coordinate system.
 
 `viewBox` describes the visible area, the rectangle in which you will see the SVG shapes; outside of this space the shapes are still drawn, but not there. Since the index in the array starts at `0`, the very first circle is therefore and naturally chopped. You can fix this by offsetting all shapes by half a unit, so that the dots are centered each in their imaginary column.
 
@@ -92,7 +92,7 @@ Unfortunately, the code will produce a major issue and two two minor annoyances,
   <OffsetX />
 </figure>
 
-Something similar is at work for another circle, the one which represents the maximum value. Here the shape is cut off to show only the top half, since the element is positioned exactly on the vertical edge. But why at the bottom? In SVG the coordinate system set through the `viewBox` means you draw from the x, y origin toward the right and the bottom. If you want to achieve something closer to a cartesian coordinate system, you have to therefore flip the picture, you need to draw from the bottom up. In practical terms, you need to draw _subtracting_ the value of the data points from the total height.
+Something similar is at work for another circle, the one which represents the maximum value. Here the shape is cut off to show only the top half, since the element is positioned exactly on the vertical edge. But why at the bottom? In SVG the coordinate system set through the `viewBox` means you draw from the x, y origin toward the right and the bottom. If you want to achieve something closer to a _cartesian_ coordinate system, you have to therefore flip the picture, you need to draw from the bottom up. In practical terms, you need to draw _subtracting_ the value of the data points from the total height.
 
 <figure class="[ center-frame ]" data-size="medium">
   <OffsetY />
@@ -119,15 +119,15 @@ And in the shapes you can now draw correctly, with higher values resolving in sm
 <circle r="0.1" cx={0.5 + i} cy={height - value} />
 ```
 
-Having a separate reference for the width, for the height also helps to draw the maximum value in full — just increase the height to add breathing space.
+Having a separate reference for the width and the height also helps to draw the maximum value in full — just increase the height to add a bit of breathing space.
 
 ```js
 const height = Math.ceil(Math.max(...data)) + 1;
 ```
 
-You have a first, rough visual, but more importantly, and hopefully, you know just how to plot data with something you can think of as a marker. This marker can be a circle, but virtually anything else.
+You have a first, rough visual, but more importantly, and hopefully, you know just how to plot data with something you can think of as a _marker_. This marker can be a circle, but virtually anything else.
 
-You might want to have a label above the shapes; you can with a `text` element. You'll have to discover a new set of attributes, to position, to size the text, but once you do, perhaps for a short string introducing the chart in the top left corner.
+You might want to have a label above the shapes; in SVG you can with a `text` element. You'll have to discover a new set of attributes to position, to size the text, but once you do, perhaps for a short string introducing the chart in the top left corner.
 
 <!-- prettier-ignore -->
 ```html
