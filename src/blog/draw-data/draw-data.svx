@@ -47,7 +47,8 @@ Instead of composing the rows in the `tbody` element directly, Svelte introduces
 ```svelte
 {#each data as value, i}
   <tr>
-	<td>{i}</td><td>{value}</td>
+    <td>{i}</td>
+    <td>{value}</td>
   </tr>
 {/each}
 ```
@@ -109,7 +110,7 @@ In the `viewBox` attribute.
 
 ```svelte
 <svg viewBox="0 0 {width} {height}">
-	<!-- ...circles -->
+  <!-- ...circles -->
 </svg>
 ```
 
@@ -139,7 +140,12 @@ You might want to have a label above the shapes; in SVG you can with a `text` el
 You can tweak the syntax in the `each` block to show the real numbers in the right place.
 
 ```svelte
-<text x={0.5 + i} y={height - value - 0.3} font-size="0.35" text-anchor="middle">
+<text
+  x={0.5 + i}
+  y={height - value - 0.3}
+  font-size="0.35"
+  text-anchor="middle"
+>
   {value}
 </text>
 ```
