@@ -6,6 +6,7 @@ date: 2025-01-08
 
 <script>
 	import svg from './svg.js';
+	import Layers from './Layers.svelte';
 </script>
 
 In terms of scalable vector graphics there are some elements which are most clear in function and scope, like `circle` and `rect`. With the inclusion of a few attributes to position and size the elements you can draw the corresponding shapes without second-guessing.
@@ -17,7 +18,7 @@ In terms of scalable vector graphics there are some elements which are most clea
 
 There are then other elements which are more complex, and few other more than the flexible `path`. Through the `d` attribute you instruct the browser to draw a shape, any shape, with a series of commands. Letters and numbers follow each other to draw straight segments, arcs, bezier curves in an array of possible manners. You can try and draw something "by hand", but more often than not, you create these paths in an editor. Consider for instance [D3's icon](https://d3js.org/logo.svg), made of two well-defined pieces, a round, geometric letter "D" and the number "3", trimmed and placed to the side.
 
-<figure class="[ center-frame ]">
+<figure class="[ center-frame ]" data-size="small">
 	{@html svg['d3']}
 </figure>
 
@@ -52,6 +53,10 @@ The masked elements are then not shown entirely, but per the structure of the ma
 ```
 
 And that's essentially it. If you want precise coordinates you may need a some guidance, but it helps to have a vision of the succession in a pseudo-3D space.
+
+<div class="[ center-frame ]">
+  <Layers />
+</div>
 
 If you think of the elements in terms of layers, you'll be delighted to find the one icon, but equipped to achieve much more. In crisp black and white or for that matter any other color, applied on the masked, no longer rectangular shape.
 
