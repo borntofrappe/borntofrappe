@@ -1,0 +1,7 @@
+---
+title: Masked SVG
+description: Draw complex icons with simpler SVG shapes.
+date: 2025-01-08
+---
+
+Draw D3's icon without `path`.
