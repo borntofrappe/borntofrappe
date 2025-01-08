@@ -4,4 +4,57 @@ description: Draw complex icons with simpler SVG shapes.
 date: 2025-01-08
 ---
 
-Draw D3's icon without `path`.
+<script>
+	import svg from './svg.js';
+</script>
+
+In terms of scalable vector graphics there are some elements which are most clear in function and scope, like `circle` and `rect`. With the inclusion of a few attributes to position and size the elements you can draw the corresponding shapes without second-guessing.
+
+```html
+<circle cx="68.25" cy="27.75" r="27.75" />
+<circle cx="68.25" cy="27.75" r="7.75" />
+```
+
+There are then other elements which are more complex, and few other more than the flexible `path`. Through the `d` attribute you instruct the browser to draw a shape, any shape, with a series of commands. Letters and numbers follow each other to draw straight segments, arcs, bezier curves in an array of possible manners. You can try and draw something "by hand", but more often than not, you create these paths in an editor. Consider for instance [D3's icon](https://d3js.org/logo.svg), made of two well-defined pieces, a round, geometric letter "D" and the number "3", trimmed and placed to the side.
+
+<figure class="[ center-frame ]">
+	{@html svg['d3']}
+</figure>
+
+The `path` element is _the_ element most fit for the job, realizing the icon with pixel-precision and an impressive size — 326 characters which, adding the self-closing tag, increase the weight by a whopping 338 bytes.
+
+```html
+<!-- prettier-ignore -->
+<path d="M0,0h7.75a45.5,45.5 0 1 1 0,91h-7.75v-20h7.75a25.5,25.5 0 1 0 0,-51h-7.75zm36.2510,0h32a27.75,27.75 0 0 1 21.331,45.5a27.75,27.75 0 0 1 -21.331,45.5h-32a53.6895,53.6895 0 0 0 18.7464,-20h13.2526a7.75,7.75 0 1 0 0,-15.5h-7.75a53.6895,53.6895 0 0 0 0,-20h7.75a7.75,7.75 0 1 0 0,-15.5h-13.2526a53.6895,53.6895 0 0 0 -18.7464,-20z" />
+```
+
+But in truth, it is very well possible to draw the same shape with only circles and rectangles. The code is quite longer, less terse, but well worth exploring to appreciate the option. The idea is to use a third, well defined SVG elements: `mask`. In SVG a mask works in two steps, a `mask` element with a unique `id` attribute.
+
+```html
+<mask id="mask-id">
+  <!-- ... -->
+</mask>
+```
+
+The `mask` attribute on actual, visible shapes.
+
+```html
+<rect mask="url(#mask-id)" width="96" height="91" />
+```
+
+The masked elements are then not shown entirely, but per the structure of the mask, per the shapes you draw in the new container and specifically, their _color_. Sticking to black and white the logic is clear: black shapes hide completely, white shapes show all the way through. If you want to draw a donut, for instance, one eerely similar to the upper half of D3's own number, add a large, white circle and then, in the same exact spot, a smaller, black round shape.
+
+```html
+<mask>
+  <circle fill="white" cx="68.25" cy="27.75" r="27.75" />
+  <circle fill="black" cx="68.25" cy="27.75" r="7.75" />
+</mask>
+```
+
+And that's essentially it. If you want precise coordinates you may need a some guidance, but it helps to have a vision of the succession in a pseudo-3D space.
+
+If you think of the elements in terms of layers, you'll be delighted to find the one icon, but equipped to achieve much more. In crisp black and white or for that matter any other color, applied on the masked, no longer rectangular shape.
+
+```html
+<rect mask="url(#mask-id)" fill="url(#gradient-id)" width="96" height="91" />
+```
