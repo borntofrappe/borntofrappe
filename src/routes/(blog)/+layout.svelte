@@ -133,6 +133,34 @@
     }
   }
 
+  svg .sun {
+    transform: scale(0.7);
+  }
+
+  svg .moon {
+    transform: translate(12px, -2px);
+  }
+
+  svg .sun-beams {
+    opacity: 1;
+  }
+
+  svg .sun-beams circle {
+    transform: translate(0px, -10px);
+  }
+
+  :global([data-theme="dark"]) svg .sun {
+    transform: scale(1);
+  }
+
+  :global([data-theme="dark"]) svg .moon {
+    transform: translate(0px, 0px);
+  }
+
+  :global([data-theme="dark"]) svg .sun-beams {
+    opacity: 0;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     button:hover {
       animation: fret 0.5s cubic-bezier(0.5, 0.75, 0.75, 1.25);
@@ -158,51 +186,36 @@
       --duration: 0.5s;
       --base-delay: 0.1s;
       --stagger-delay: 0.05s;
-      --ease-in-out: cubic-bezier(0.5, -0.1, 0.1, 1.5);
-      --ease-out: cubic-bezier(0.5, 0.75, 0.75, 1.25);
+      --ease-elastic-in-out: cubic-bezier(0.5, -0.1, 0.1, 1.5);
+      --ease-elastic-out: cubic-bezier(0.5, 0.75, 0.75, 1.25);
     }
 
     svg .sun {
-      transition: transform var(--duration) var(--ease-in-out);
-      transform: scale(0.7);
+      transition: transform var(--duration) var(--ease-elastic-in-out);
     }
 
     svg .moon {
-      transition: transform var(--duration) var(--ease-in-out);
-      transform: translate(12px, -2px);
+      transition: transform var(--duration) var(--ease-elastic-in-out);
     }
 
     svg .sun-beams {
       transition: opacity 0s var(--base-delay) step-end;
-      opacity: 1;
     }
 
     svg .sun-beams circle {
-      transition: transform var(--duration) var(--ease-out);
-      transform: translate(0px, -10px);
-    }
-
-    :global([data-theme="dark"]) svg .sun {
-      transform: scale(1);
-    }
-
-    :global([data-theme="dark"]) svg .moon {
-      transform: translate(0px, 0px);
-      transition-delay: var(--base-delay);
-    }
-
-    :global([data-theme="dark"]) svg .sun-beams {
-      opacity: 0;
+      transition: transform var(--duration) var(--ease-elastic-out);
     }
 
     :global([data-theme="dark"]) svg .sun-beams circle {
-      transition-timing-function: var(--ease-in-out);
       transform: translate(0px, 0px);
     }
 
     :global([data-theme="dark"]) svg .sun-beams circle {
-      transition-timing-function: var(--ease-in-out);
-      transform: translate(0px, 0px);
+      transition-timing-function: var(--ease-elastic-in-out);
+    }
+
+    :global([data-theme="dark"]) svg .sun-beams circle {
+      transition-timing-function: var(--ease-elastic-in-out);
     }
 
     svg .sun-beams g:nth-child(1) circle {
