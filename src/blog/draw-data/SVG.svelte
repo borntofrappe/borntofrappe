@@ -23,7 +23,8 @@
         >{value}
       </text>
     {/each}
-    <text x="0.2" y="0.6" font-size="0.4" font-family="monospace">Floaties</text
-    >
+    <text x="0.2" y="0.6" font-size="0.4" font-family="monospace">
+      Floats
+    </text>
   </g>
 </svg>
