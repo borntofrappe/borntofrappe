@@ -349,10 +349,6 @@
   });
 </script>
 
-<svelte:head>
-  <title>Play</title>
-</svelte:head>
-
 <div bind:this={element}></div>
 
 <style>
