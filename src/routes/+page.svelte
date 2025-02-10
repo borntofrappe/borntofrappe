@@ -1,6 +1,6 @@
 <script>
   import site from "$lib/site";
-  import TimePiece from "./TimePiece.svelte";
+  import Ray from "./mignon/Ray.svelte";
 </script>
 
 <svelte:head>
@@ -9,28 +9,26 @@
 </svelte:head>
 
 <main>
-  <h1>Hi there</h1>
-  <p>time's pressing for a brand new look</p>
+  <h1>{site.title}</h1>
+  <p>— a bright day is coming</p>
   <figure>
-    <TimePiece />
+    <Ray />
   </figure>
 </main>
 
 <style>
   main {
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: hsl(38 13% 17%);
+    background: hsl(40 23% 97%);
+    min-block-size: 100svb;
+    justify-content: center;
+    align-items: center;
   }
-
-  main > * + * {
-    margin-block-start: 0.5rem;
-  }
-
   figure {
-    margin-block-start: 1.5rem;
-    max-inline-size: 20rem;
-  }
-
-  figure :global(svg) {
-    inline-size: 100%;
+    inline-size: 100vmin;
+    max-inline-size: 32rem;
   }
 </style>
