@@ -70,6 +70,8 @@
   };
 </script>
 
+<svelte:window on:resize={handleSize} />
+
 <svg
   bind:this={svg}
   onpointermove={handleMove}
