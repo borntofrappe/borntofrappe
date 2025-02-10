@@ -53,20 +53,20 @@
     const x = (offsetX / w - 0.5) * m;
     const y = (offsetY / h - 0.5) * m;
 
-    offset.set({ x, y });
+    offset.target = { x, y };
   };
 
   const handleStart = () => {
-    scale.set(1.1);
+    scale.target = 1.1;
   };
 
   const handleEnd = () => {
-    scale.set(1);
+    scale.target = 1;
   };
 
   const handleReset = () => {
-    scale.set(1);
-    offset.set({ x: 0, y: 0 });
+    scale.target = 1;
+    offset.target = { x: 0, y: 0 };
   };
 </script>
 
