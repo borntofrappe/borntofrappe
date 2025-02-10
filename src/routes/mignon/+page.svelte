@@ -1,6 +1,6 @@
 <script>
   import site from "$lib/site.js";
-  import Serena from "./Serena.svelte";
+  import Mayo from "./Mayo.svelte";
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 
 <main>
   <figure>
-    <Serena />
+    <Mayo />
   </figure>
 </main>
 
