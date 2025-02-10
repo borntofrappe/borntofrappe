@@ -1,6 +1,14 @@
 <script>
   import site from "$lib/site.js";
+  import Ray from "./Ray.svelte";
+  import Serena from "./Serena.svelte";
+  import Claire from "./Claire.svelte";
+  import Mayo from "./Mayo.svelte";
   import Brianna from "./Brianna.svelte";
+
+  const Mascots = [Ray, Serena, Claire, Mayo, Brianna];
+  const Mascot =
+    Mascots[Math.floor(((new Date().getDate() - 1) / 31) * Mascots.length)];
 </script>
 
 <svelte:head>
@@ -14,7 +22,7 @@
 
 <main>
   <figure>
-    <Brianna />
+    <Mascot />
   </figure>
 </main>
 
