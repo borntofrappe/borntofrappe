@@ -48,6 +48,11 @@
   const handleEnd = () => {
     bounce.target = 1;
   };
+
+  const handleReset = () => {
+    scale.target = 1;
+    angle.target = startAngle
+  };
 </script>
 
 <svelte:window on:resize={handleSize} />
@@ -57,6 +62,7 @@
   onpointermove={handleMove}
   onpointerdown={handleStart}
   onpointerup={handleEnd}
+  onpointerleave={handleReset}
   style="display: block;"
   viewBox="-60 -70 120 120"
   role="presentation"
