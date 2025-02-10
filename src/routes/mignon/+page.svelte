@@ -1,6 +1,6 @@
 <script>
   import site from "$lib/site.js";
-  import Claire from "./Claire.svelte";
+  import Brianna from "./Brianna.svelte";
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 
 <main>
   <figure>
-    <Claire />
+    <Brianna />
   </figure>
 </main>
 
