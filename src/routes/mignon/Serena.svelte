@@ -76,6 +76,7 @@
   onpointermove={handleMove}
   onpointerdown={handleStart}
   onpointerup={handleEnd}
+	style="display: block;"
   role="presentation"
 >
   <defs>
