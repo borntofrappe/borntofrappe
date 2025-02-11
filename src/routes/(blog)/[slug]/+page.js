@@ -18,5 +18,5 @@ export async function load({ params }) {
     }
   }
 
-  error(404, "Article not found");
+  error(404, `Page not found: /${params.slug}`);
 }
