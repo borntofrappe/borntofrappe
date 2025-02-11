@@ -51,6 +51,8 @@ p > code {
 }
 
 pre {
+  color: #cdd6f4;
+  background: #1e1e2e;
   tab-size: 2;
   line-height: 1.5;
   border-radius: var(--space-xs);

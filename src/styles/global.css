@@ -31,6 +31,10 @@
   --space-xl: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
   --space-2xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
   --space-3xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
+
+  --measure-s: 40ch;
+  --measure-m: 60ch;
+  --measure-l: 80ch;
 }
 
 body {
