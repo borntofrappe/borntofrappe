@@ -89,12 +89,19 @@
     </style>
 
     <script>
-      const preference =
-        localStorage.getItem("theme-preference") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      document.firstElementChild.setAttribute("data-theme", preference);
+      const timesOfDay = ["morning", "day", "night"];
+
+      const storageKey = "timeOfDay";
+      const dataKey = "data-time-of-day";
+
+      const value = localStorage.getItem(storageKey);
+
+      let [, timeOfDay] = timesOfDay;
+      if (value && timesOfDay.includes(value)) {
+        timeOfDay = value;
+      }
+
+      document.firstElementChild.setAttribute(dataKey, timeOfDay);
     </script>
 
     %sveltekit.head%
