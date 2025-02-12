@@ -1,9 +1,9 @@
 <script>
   import site from "$lib/site.js";
-  /** @typedef {import('./shapes.js').Key} Key */
+  /** @typedef {import('$lib/components/tangram/shapes.js').Key} Key */
 
-  import Tangram from "./Tangram.svelte";
-  import shapes from "./shapes.js";
+  import Tangram from "$lib/components/tangram/Tangram.svelte";
+  import shapes from "$lib/components/tangram/shapes.js";
 
   const keys = /** @type {Array<Key>}*/ (Object.keys(shapes));
 
