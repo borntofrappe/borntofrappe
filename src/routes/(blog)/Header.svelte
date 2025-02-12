@@ -12,12 +12,12 @@
 </header>
 
 <style>
-   header {
+  header {
     --theme-color: #f1f5f8;
     --theme-foreground: #838ac5;
     --theme-background: #9cb2ce;
-   }
-   
+  }
+
   :global([data-time-of-day="morning"]) header {
     --theme-foreground: #838ac5;
     --theme-background: #9cb2ce;
