@@ -1,6 +1,7 @@
 <script>
   import site from "$lib/site";
   import Ray from "./mignon/Ray.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 </script>
 
 <svelte:head>
@@ -10,25 +11,37 @@
 
 <main>
   <h1>{site.title}</h1>
-  <p>— a bright day is coming</p>
+  <p>— the sun will rise up, tomorrow</p>
   <figure>
     <Ray />
   </figure>
 </main>
 
+<div>
+  <Footer illustration="heart" />
+</div>
+
 <style>
   main {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-s);
     color: hsl(38 13% 17%);
     background: hsl(40 23% 97%);
     min-block-size: 100svb;
-    justify-content: center;
-    align-items: center;
+    z-index: 1;
+		position: relative;
   }
-  figure {
+
+  main figure {
     inline-size: 100vmin;
-    max-inline-size: 32rem;
+    max-inline-size: 24rem;
+  }
+
+  div {
+    position: sticky;
+    inset-block-end: 0;
   }
 </style>
