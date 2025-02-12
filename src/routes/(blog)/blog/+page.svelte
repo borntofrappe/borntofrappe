@@ -1,5 +1,6 @@
 <script>
   import site from "$lib/site.js";
+  import Header from "../Header.svelte";
   import { formatDate } from "$lib/utils";
 
   /** @type {{ data: import('./$types').PageData }} */
@@ -12,37 +13,41 @@
 </svelte:head>
 
 <main>
-  <h1 class="[ heading ]">Blog</h1>
+  <Header title="Blog" />
 
-  {#each data.blog as { slug, title, date, description }}
-    <article>
-      <h2><a class="[ link ]" href={slug}>{title}</a></h2>
-      <time datetime={date}>{formatDate(date)}</time>
-      <p>{description}</p>
-    </article>
-  {/each}
-
-  <nav>
-    {#if data.page > 1}
-      <a class="[ link ]" href="/blog?page={data.page - 1}">Newer articles</a>
-    {/if}
-
-    {#if data.page < data.pages}
-      <a class="[ link ]" href="/blog?page={data.page + 1}">Older articles</a>
-    {/if}
-  </nav>
+  <div>
+    {#each data.blog as { slug, title, date, description }}
+      <article>
+        <h2><a class="[ link ]" href={slug}>{title}</a></h2>
+        <time datetime={date}>{formatDate(date)}</time>
+        <p>{description}</p>
+      </article>
+    {/each}
+  
+    <nav>
+      {#if data.page > 1}
+        <a class="[ link ]" href="/blog?page={data.page - 1}">Newer articles</a>
+      {/if}
+  
+      {#if data.page < data.pages}
+        <a class="[ link ]" href="/blog?page={data.page + 1}">Older articles</a>
+      {/if}
+    </nav>
+  </div>
 </main>
 
 <style>
-  main > * + * {
+  div {
+    padding: var(--space-m) var(--space-s);
+    max-inline-size: var(--measure-l);
+    margin-inline: auto;
+  }
+
+  div > * + * {
     margin-block-start: var(--space-m);
   }
 
-  main > article:first-of-type {
-    margin-block-start: var(--space-l);
-  }
-
-  main > nav {
+  div > nav {
     margin-block-start: var(--space-xl);
   }
 
