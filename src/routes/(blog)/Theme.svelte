@@ -43,7 +43,10 @@
       timeOfDay = mediaQuery.matches ? dark : light;
 
       const { x, y } = positions[timeOfDay];
-      position.set({ x, y }, { instant: true });
+      const instant = !window.matchMedia(
+        "(prefers-reduced-motion: no-preference)"
+      ).matches;
+      position.set({ x, y }, { instant });
 
       document.documentElement.removeAttribute(dataKey);
       localStorage.removeItem(storageKey);
@@ -59,7 +62,10 @@
     }
 
     const { x, y } = positions[timeOfDay];
-    position.set({ x, y }, { instant: true });
+    const instant = !window.matchMedia(
+      "(prefers-reduced-motion: no-preference)"
+    ).matches;
+    position.set({ x, y }, { instant });
 
     showToggle = true;
 
@@ -152,7 +158,10 @@
 
     const value = timesOfDay[next];
     const { x, y } = positions[value];
-    position.target = { x, y };
+    const instant = !window.matchMedia(
+      "(prefers-reduced-motion: no-preference)"
+    ).matches;
+    position.set({ x, y }, { instant });
 
     handleTimeOfDay(value);
   };
