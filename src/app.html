@@ -96,12 +96,9 @@
 
       const value = localStorage.getItem(storageKey);
 
-      let [, timeOfDay] = timesOfDay;
       if (value && timesOfDay.includes(value)) {
-        timeOfDay = value;
+        document.firstElementChild.setAttribute(dataKey, value);
       }
-
-      document.firstElementChild.setAttribute(dataKey, timeOfDay);
     </script>
 
     %sveltekit.head%
