@@ -294,9 +294,21 @@
     />
   </defs>
 
-  <use href="#time-of-day-background-{timeOfDay}" />
+  <g data-theme="dark">
+    <use href="#time-of-day-background-night" />
+    <use href="#time-of-day-details-night" />
+    <use href="#time-of-day-foreground-night" />
+  </g>
 
-  <g class="time-of-day-toggle" data-show={showToggle}>
+  <g data-theme="light">
+    <use href="#time-of-day-background-day" />
+    <use href="#time-of-day-details-day" />
+    <use href="#time-of-day-foreground-day" />
+  </g>
+
+  <g data-show={showToggle}>
+    <use href="#time-of-day-background-{timeOfDay}" />
+
     <use href="#time-of-day-details-{timeOfDay}" />
 
     <g transform="translate({position.current.x} {position.current.y})">
@@ -331,25 +343,31 @@
         </g>
       </g>
     </g>
-  </g>
 
-  <use href="#time-of-day-foreground-{timeOfDay}" />
+    <use href="#time-of-day-foreground-{timeOfDay}" />
 
-  <g opacity="0">
-    <path d="M 0 60 h 7 a 53 53 0 0 1 106 0 h 7 v -60 h -120z" />
+    <g opacity="0">
+      <path d="M 0 60 h 7 a 53 53 0 0 1 106 0 h 7 v -60 h -120z" />
+    </g>
   </g>
 </svg>
 
 <style>
-  .time-of-day-toggle {
+  @media (prefers-color-scheme: dark) {
+    [data-theme="light"] {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  [data-show] {
     opacity: 0;
     visibility: hidden;
   }
 
-  .time-of-day-toggle[data-show="true"] {
+  [data-show="true"] {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.25s cubic-bezier(0.37, 0, 0.63, 1);
   }
 
   .focusable {
