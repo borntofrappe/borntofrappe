@@ -7,7 +7,7 @@
 
   const storageKey = "timeOfDay";
   const dataKey = "data-time-of-day";
-  let timeOfDay = $state(timesOfDay[0]);
+  let timeOfDay = $state(timesOfDay[1]);
   let showToggle = $state(false);
   let isDragging = $state(false);
 
@@ -37,18 +37,36 @@
   onMount(() => {
     handleSize();
 
-    const value = localStorage.getItem(storageKey);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handlePreference = () => {
+      const [, light, dark] = timesOfDay;
+      timeOfDay = mediaQuery.matches ? dark : light;
 
+      const { x, y } = positions[timeOfDay];
+      position.set({ x, y }, { instant: true });
+
+      document.documentElement.removeAttribute(dataKey);
+      localStorage.removeItem(storageKey);
+    };
+
+    const value = localStorage.getItem(storageKey);
     // @ts-ignore
     if (value && timesOfDay.includes(value)) {
       // @ts-ignore
       timeOfDay = value;
+    } else {
+      handlePreference();
     }
 
     const { x, y } = positions[timeOfDay];
     position.set({ x, y }, { instant: true });
 
     showToggle = true;
+
+    mediaQuery.addEventListener("change", handlePreference);
+    return () => {
+      mediaQuery.removeEventListener("change", handlePreference);
+    };
   });
 
   const handleSize = () => {
