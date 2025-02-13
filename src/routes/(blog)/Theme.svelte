@@ -294,13 +294,19 @@
     />
   </defs>
 
-  <g data-theme="dark">
+  <g data-time-of-day="morning">
+    <use href="#time-of-day-background-morning" />
+    <use href="#time-of-day-details-morning" />
+    <use href="#time-of-day-foreground-morning" />
+  </g>
+
+  <g data-time-of-day="night">
     <use href="#time-of-day-background-night" />
     <use href="#time-of-day-details-night" />
     <use href="#time-of-day-foreground-night" />
   </g>
 
-  <g data-theme="light">
+  <g data-time-of-day="day">
     <use href="#time-of-day-background-day" />
     <use href="#time-of-day-details-day" />
     <use href="#time-of-day-foreground-day" />
@@ -353,10 +359,29 @@
 </svg>
 
 <style>
+  [data-time-of-day] {
+    opacity: 0;
+  }
+
+  [data-time-of-day="day"] {
+    opacity: 1;
+  }
+
+  :global(html[data-time-of-day="morning"]) [data-time-of-day="morning"] {
+    opacity: 1;
+  }
+
+  :global(html[data-time-of-day="day"]) [data-time-of-day="day"] {
+    opacity: 1;
+  }
+
+  :global(html[data-time-of-day="night"]) [data-time-of-day="night"] {
+    opacity: 1;
+  }
+
   @media (prefers-color-scheme: dark) {
-    [data-theme="light"] {
-      opacity: 0;
-      visibility: hidden;
+    :global(html:not([data-time-of-day])) [data-time-of-day="night"] {
+      opacity: 1;
     }
   }
 
