@@ -390,10 +390,6 @@
     opacity: 0;
   }
 
-  [data-time-of-day="day"] {
-    opacity: 1;
-  }
-
   :global(html[data-time-of-day="morning"]) [data-time-of-day="morning"] {
     opacity: 1;
   }
@@ -403,6 +399,10 @@
   }
 
   :global(html[data-time-of-day="night"]) [data-time-of-day="night"] {
+    opacity: 1;
+  }
+
+  :global(html:not([data-time-of-day])) [data-time-of-day="day"] {
     opacity: 1;
   }
 
