@@ -14,23 +14,30 @@
 <style>
   header {
     --theme-color: #f1f5f8;
-    --theme-foreground: #838ac5;
-    --theme-background: #9cb2ce;
-  }
-
-  :global([data-time-of-day="morning"]) header {
-    --theme-foreground: #838ac5;
-    --theme-background: #9cb2ce;
-  }
-
-  :global([data-time-of-day="day"]) header {
     --theme-foreground: #639aef;
     --theme-background: #73d2e6;
   }
 
-  :global([data-time-of-day="night"]) header {
+  :global(html[data-time-of-day="morning"]) header {
+    --theme-foreground: #838ac5;
+    --theme-background: #9cb2ce;
+  }
+
+  :global(html[data-time-of-day="day"]) header {
+    --theme-foreground: #639aef;
+    --theme-background: #73d2e6;
+  }
+
+  :global(html[data-time-of-day="night"]) header {
     --theme-foreground: #7369b5;
     --theme-background: #838ace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-time-of-day])) header {
+      --theme-foreground: #7369b5;
+      --theme-background: #838ace;
+    }
   }
 
   header {
