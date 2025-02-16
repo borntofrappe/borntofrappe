@@ -42,11 +42,7 @@
       const [, light, dark] = timesOfDay;
       timeOfDay = mediaQuery.matches ? dark : light;
 
-      const { x, y } = positions[timeOfDay];
-      const instant = !window.matchMedia(
-        "(prefers-reduced-motion: no-preference)"
-      ).matches;
-      position.set({ x, y }, { instant });
+      updatePosition(positions[timeOfDay]);
 
       document.documentElement.removeAttribute(dataKey);
       localStorage.removeItem(storageKey);
@@ -61,11 +57,7 @@
       handlePreference();
     }
 
-    const { x, y } = positions[timeOfDay];
-    const instant = !window.matchMedia(
-      "(prefers-reduced-motion: no-preference)"
-    ).matches;
-    position.set({ x, y }, { instant });
+    updatePosition(positions[timeOfDay]);
 
     showToggle = true;
 
@@ -99,7 +91,7 @@
     const x = (offsetX / w) * 120;
     const y = (offsetY / h) * 60;
 
-    position.target = { x, y };
+    updatePosition({ x, y });
 
     const dx = 60 - x;
     const dy = 60 - y;
@@ -157,13 +149,18 @@
     }
 
     const value = timesOfDay[next];
-    const { x, y } = positions[value];
+    updatePosition(positions[value]);
+    handleTimeOfDay(value);
+  };
+
+  /**
+   * @param {{ x: number, y: number }} param
+   */
+  const updatePosition = ({ x, y }) => {
     const instant = !window.matchMedia(
       "(prefers-reduced-motion: no-preference)"
     ).matches;
     position.set({ x, y }, { instant });
-
-    handleTimeOfDay(value);
   };
 </script>
 
