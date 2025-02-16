@@ -23,12 +23,15 @@
     </p>
     <p>Here's a possibly helpful message for context:</p>
 
-    <pre data-language="sh"><code>{page?.error?.message}</code></pre>
+    <pre class="code-fence" data-language="sh"><code
+        >{page?.error?.message}</code
+      ></pre>
 
     <p>
       If you think this is a mistake and you feel up to it, please consider
       filing an issue
       <a
+        class="link-underline"
         href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{page.status}&body={page
           ?.error?.message}&labels=bug">on GitHub</a
       >.
@@ -37,7 +40,10 @@
       If you need some guidance, <em>home is always a good place to start.</em>
     </p>
 
-    <p>Cheer up and go home, <a href="/">the home page</a>.</p>
+    <p>
+      Cheer up and go home, <a class="link-underline" href="/">the home page</a
+      >.
+    </p>
   </main>
   <figure>
     <Serena />
