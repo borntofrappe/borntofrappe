@@ -18,7 +18,7 @@
   <div>
     {#each data.blog as { slug, title, date, description }}
       <article>
-        <h2><a class="[ link ]" href={slug}>{title}</a></h2>
+        <h2><a class="link-underline" href={slug}>{title}</a></h2>
         <time datetime={date}>{formatDate(date)}</time>
         <p>{description}</p>
       </article>
@@ -26,11 +26,11 @@
   
     <nav>
       {#if data.page > 1}
-        <a class="[ link ]" href="/blog?page={data.page - 1}">Newer articles</a>
+        <a class="link-underline" href="/blog?page={data.page - 1}">Newer articles</a>
       {/if}
   
       {#if data.page < data.pages}
-        <a class="[ link ]" href="/blog?page={data.page + 1}">Older articles</a>
+        <a class="link-underline" href="/blog?page={data.page + 1}">Older articles</a>
       {/if}
     </nav>
   </div>
