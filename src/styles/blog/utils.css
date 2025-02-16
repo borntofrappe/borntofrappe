@@ -29,9 +29,3 @@
     inline-size: 100%;
   }
 }
-
-.stroke-text {
-  color: var(--fill, #f1f5f8);
-  -webkit-text-stroke: var(--stroke-width, 0.2em) var(--stroke, #102a42);
-  paint-order: stroke;
-}
