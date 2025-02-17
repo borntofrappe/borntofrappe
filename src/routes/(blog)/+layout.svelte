@@ -1,7 +1,4 @@
 <script>
-  import "$styles/blog/utils.css";
-  import "$styles/blog/blocks.css";
-
   import Footer from "$lib/components/Footer.svelte";
 
   /** @type {{ children: import('svelte').Snippet }} */
