@@ -16,11 +16,11 @@
         viewBox="0 0 2 2"
       >
         <rect
-          fill="var(--color-surface-2, hsl(210 16% 93%))"
+          fill="var(--color-surface-2, hsl(0 0% 95%))"
           width="2"
           height="2"
         />
-        <g fill="var(--color-surface-3, hsl(210 14% 89%))">
+        <g fill="var(--color-surface-3, hsl(0 0% 93%))">
           <rect width="1" height="1" />
           <rect x="1" y="1" width="1" height="1" />
         </g>
@@ -30,12 +30,12 @@
     <g transform="translate(2.5 2.5)">
       <g clip-path="url(#offset-x-clip)">
         <use
-          fill="var(--color-surface-1, hsl(210 17% 98%))"
+          fill="var(--color-surface-1, hsl(0 0% 98%))"
           href="#offset-x-view-box"
         />
         <circle
           class="translate"
-          fill="var(--color-text-1, hsl(210 11% 15%))"
+          fill="var(--color-text-1, hsl(0 0% 24%))"
           cx="0"
           cy="2.2"
           r="0.15"
@@ -46,14 +46,14 @@
           <path
             stroke-dasharray="0.15 0.3"
             fill="none"
-            stroke="var(--color-text-2, hsl(210 10% 23%))"
+            stroke="var(--color-text-2, hsl(0 0% 31%))"
             stroke-width="0.04"
             stroke-linecap="round"
             stroke-linejoin="round"
             d="M 0 0 0 3.9"
           />
           <text
-            fill="var(--color-text-1, hsl(210 11% 15%))"
+            fill="var(--color-text-1, hsl(0 0% 24%))"
             text-anchor="middle"
             font-family="monospace"
             font-weight="700"
@@ -73,8 +73,8 @@
 
 <style>
   div {
-    --color-text: hsl(210 11% 15%);
-    --color-surface: hsl(210 17% 95%);
+    --color-text: light-dark(hsl(210 10% 23%), hsl(210 14% 89%));
+    --color-surface: light-dark(hsl(210 17% 95%), hsl(210 11% 15%));
 
     display: grid;
     grid-template-areas: "svg svg" "input label";
@@ -87,11 +87,11 @@
 
   div > svg {
     grid-area: svg;
-    --color-surface-1: hsl(210 17% 98%);
-    --color-surface-2: hsl(210 16% 93%);
-    --color-surface-3: hsl(210 14% 89%);
-    --color-text-1: hsl(210 11% 15%);
-    --color-text-2: hsl(210 10% 23%);
+    --color-surface-1: light-dark(hsl(210 17% 98%), hsl(210 10% 23%));
+    --color-surface-2: light-dark(hsl(210 17% 95%), hsl(210 11% 15%));
+    --color-surface-3: light-dark(hsl(210 16% 93%), hsl(214 14% 10%));
+    --color-text-1: light-dark(hsl(210 10% 23%), hsl(210 14% 89%));
+    --color-text-2: light-dark(hsl(210 9% 31%), hsl(210 11% 71%));
   }
 
   div > input {

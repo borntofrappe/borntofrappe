@@ -25,10 +25,10 @@
 <style>
   div {
     --border-radius: 1rem;
-    --color-text: hsl(210 11% 15%);
-    --color-surface-1: hsl(210 17% 98%);
-    --color-surface-2: hsl(210 17% 95%);
-    --color-border: hsl(210 14% 89%);
+    --color-text: light-dark(hsl(210 10% 23%), hsl(210 14% 89%));
+    --color-surface-1: light-dark(hsl(210 17% 98%), hsl(210 10% 23%));
+    --color-surface-2: light-dark(hsl(210 17% 95%), hsl(210 11% 15%));
+    --color-border: light-dark(hsl(210 14% 89%), hsl(210 9% 31%));
     border: 3px solid var(--color-border);
     color: var(--color-text);
     background: var(--color-surface-1);
