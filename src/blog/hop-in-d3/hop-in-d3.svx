@@ -1,0 +1,7 @@
+---
+title: Hop in D3
+description: Turn to the D3 library to improve a first basic data visualization.
+date: 2025-03-04
+---
+
+On the web you can draw [rudimentary data visualizations](/draw-data) with elementary JavaScript and SVG syntax. Tools like Svelte might ease the authoring of the markup, but ultimately, the process is most direct and clear. There are inevitable shortcomings, and for more robust logic, and ideally for more elaborate visualizations, it is beneficial to explore [D3](https://d3js.org/).
