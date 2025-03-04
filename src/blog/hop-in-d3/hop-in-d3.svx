@@ -17,6 +17,165 @@ D3 offers many utilities to work with data and with Svelte, works to lay the fou
   <Records />
 </figure>
 
+## SVG
+
+Before diving into D3 it is helpful to reframe the data visualization [from the previous effort](/draw-data), and specifically the `svg` element behind the drawing. Instead of deducing the dimensions of the `viewBox` attribute from the data.
+
+```js
+const data = [2, 3, 4, 5, 4, 6, 2];
+const width = data.length;
+const height = Math.ceil(Math.max(...data) + 1);
+```
+
+The idea is to set the width, set the height immediately, making a decision on the desired aspect ratio.
+
+```js
+const width = 100;
+const height = 60;
+```
+
+And also, include another set of values for what you can think of as margin.
+
+```js
+const [top, right, down, left] = [5, 5, 5, 5];
+```
+
+With these variables you are able to create a larger canvas, expanded by the numbers chosen on the different sides.
+
+```svelte
+<svg viewBox="0 0 {width + right + left} {height + top + down}">
+  <!-- ... -->
+</svg>
+```
+
+The result is a greater surface, but you need one more adjustment to complete the setup. The shapes are indeed drawn relative to the origin, relative to the top left corner. To avoid cropping the graphics on the respective sides you need to inset the elements with the help of an additional group element `g`.
+
+```svelte
+<g transform="translate({left} {top})">
+  <!-- ... -->
+</g>
+```
+
+With this sequence the visualization is already improved. The axis, for instance, are no longer cropped on the side of the parent container. Also, should you want to add more space on a specific side, perhaps to include a label, you just need to tweak the numbers up top.
+
+```diff
+-const [top, right, down, left] = [5, 5, 5, 5];
++const [top, right, down, left] = [12, 5, 5, 5];
+```
+
+---
+
+It technically possible to update the origin for _the entire_ SVG through the `viewBox` attribute. The operation is slightly advanced, but in this instance the group element has its own reason; having a separate container means you can draw inside and outside the chosen bounds.
+
 <figure class="[ center-frame ]" data-size="medium">
   {@html svg['svg-g']}
 </figure>
+
+## D3
+
+With the new dimensions we stumble on an obvious challenge: where to position the shapes.
+
+Using the data to set the width and the height the process was quite intuitive, but here you need to map the values to pixels. In terms of D3, you need a **scale**. The idea is to translate values from an interval to another, from a _domain_ to a _range_. Considering for instance a _linear scale_ for the vertical axis, the goal is to move between the domain, your set of values, and the range, the pixel space described by the height.
+
+In practice you instantiate a scale with one of D3's own functions.
+
+```js
+import * as d3 from "d3";
+
+const yScale = d3.scaleLinear();
+```
+
+At this juncture you specify the domain and range chaining two methods on the particular instance.
+
+```js
+const yScale = d3.scaleLinear()
+  .domain(???)
+  .range(???)
+```
+
+For the thresholds of the domain we can certainly fall back to the logic used in the first data visualization and find the maximum value with `Math.max`. D3, however, has another utility in `d3.max`.
+
+```js
+const max = d3.max(data);
+```
+
+`Math.max` certainly works, but the D3 alternative is designed specifically for data visualizations. The differences are often minute, but there are a notable advantages, starting with how the function treats `null` and `undefined` values, often present to describe missing entries. These might be edge cases, but remark on the ability of D3 to predict and solve the problems around complex data.
+
+With this in mind the scale for the vertical dimension is a linear scale which maps your values, between 0 to the maximum value, to the height used in the SVG.
+
+```js
+const yScale = d3.scaleLinear().domain([0, max]).range([0, height]);
+```
+
+And here you have the opportunity of introducing another upgrade. Knowing the SVG coordinate system, knowing that shapes are drawn from a given origin to the right and to the bottom, you can immediately flip the y axis to reason in cartesian coordinates. Instead of translating the values from 0 to height, you can immediately find the right value setting the opposite range, from height and back to 0.
+
+```diff
+-  .range([0, height])
++  .range([height, 0])
+```
+
+With a similar logic we can map the index values to explore the horizontal axis, but the discrete collection offers the option to explore a different scale and more D3 functions.
+
+To create an array of incrementing values you can very well practice JavaScript `for` loops or array methods such as `fill` and `map`.
+
+```js
+const indexes = Array(data.length)
+  .fill("")
+  .map((_, i) => i);
+```
+
+D3, however, offers a shorthand in `d3.range`, creating a list up to, but not including, the input argument.
+
+```js
+const indexes = d3.range(data.length);
+```
+
+This is just a convenience, but what is far more essential is a scale. Here you want to move from a _discrete_ domain to a _continuous_ range, from the array of indexes to an interval between 0 and the width of the inset frame. There is more than option, among which D3's own _point scale_.
+
+<!-- prettier-ignore -->
+```js
+const xScale = d3.scalePoint()
+  .domain(indexes)
+  .range([0, width]);
+```
+
+With the instance of the specific scale function the first item in the array matches the beginning of the second collection. The other numbers are slotted at increments, until the last value is placed at the very edge. The function works, but as mentioned, the first and last values are place on the edges of the frame. If you want to inset the points further, so that the two don't overlap with the axis, you can take advantage of how D3 allows to refine the scales chaning more functions. Past the functions to set the domain and the range, you have the option to tweak the position with `padding`, setting a value in the `[0-1]` range relative to the width of a step.
+
+```js
+const xScale = scalePoint()
+  // domain & range
+  .padding(0.5);
+```
+
+With the two scales you are set to replicate the first rudimentary visualization, positioning the circles in the right spot, scaling the input index and the input value.
+
+```svelte
+{#each data as value, i}
+  <circle cx={xScale(i)} cy={yScale(value)} r="1.5" />
+{/each}
+```
+
+This may seem a roundabout manner to reach the same end, but what you lost in simplicity you gain in wisdom and features. Consider drawing a line between the points. This is definitely a bigger challenge to tackle on your own as you need to understand how the `path` element draws lines with the `d` attributes. Good luck drawing something more than straight lines, like a sinuous curve with bezier functions. With the help of the D3 the task is far more manageable. Among the functions in the `d3-shape` module you have access to `d3.line`. The idea is to create an instance of this function,similar to how you instantiated the two scales.
+
+```js
+const line = d3.line();
+```
+
+The function receives an array of values and returns a string for the `d` attribute of a `path` element. For every item in the array, it elaborates the horizontal and vertical coordinate with two methods, `x` and `y`. You chain these methods on the instance of the line function, similar to the domain and the range. The two receive the items of the array so that you can plot the values with the defined scales.
+
+```js
+const line = d3
+  .line()
+  .x((_, i) => xScale(i))
+  .y((d) => yScale(d));
+```
+
+In this manner you find the sequence of characters for the `d` attribute and draw a line connecting the dots.
+
+```svelte
+<path d={line(data)} fill="none" stroke="currentColor" stroke-width="0.5" />
+```
+
+Should you want a different way draw the line, D3 has an entire section devoted to [curves and different interpolating functions](https://d3js.org/d3-shape/curve).
+
+Instead of stressing over implementation details you can fuss over which curve suits best your needs, an efficient monotone spline, or a less orthodox piecewise sequence of steps. Who knows, it might just inspire a bold and fresh new display.
