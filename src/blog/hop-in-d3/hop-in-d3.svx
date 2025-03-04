@@ -93,7 +93,7 @@ const yScale = d3.scaleLinear()
   .range(???)
 ```
 
-For the thresholds of the domain we can certainly fall back to the logic used in the first data visualization and find the maximum value with `Math.max`. D3, however, has another utility in `d3.max`.
+For the upper limit of the domain we can certainly fall back to the logic used in the first data visualization and find the maximum value with `Math.max`. D3, however, has another utility in `d3.max`.
 
 ```js
 const max = d3.max(data);
@@ -101,7 +101,7 @@ const max = d3.max(data);
 
 `Math.max` certainly works, but the D3 alternative is designed specifically for data visualizations. The differences are often minute, but there are notable advantages, starting with how the function treats `null` and `undefined` values often present to describe missing entries. These might be edge cases, but remark on the ability of D3 to predict and solve the problems around complex data.
 
-With this in mind the scale for the vertical dimension is a linear scale which maps your values, between 0 to the maximum value, to the height used in the SVG.
+With this in mind the scale for the vertical dimension is a linear scale which maps your values, from 0 to the maximum value, to 0 and up to the height used in the SVG.
 
 <!-- prettier-ignore -->
 ```js
@@ -117,9 +117,9 @@ And here you have the opportunity of introducing another upgrade. Knowing the SV
 +  .range([height, 0])
 ```
 
-With a similar logic we can map the index values to explore the horizontal axis, but the discrete collection helps to describe a different scale and more D3 functions.
+With a similar logic we can map the indexes to explore the horizontal axis, but the discrete collection helps to describe a different scale and more D3 functions.
 
-To create an array of incrementing values you can very well practice JavaScript `for` loops or array methods such as `fill` and `map`.
+To create an array of incrementing values you can very well practice JavaScript `for` loops or array functions such as `fill` and `map`.
 
 ```js
 const indexes = Array(data.length)
@@ -133,7 +133,7 @@ D3, however, offers a shorthand in `d3.range`, creating a list up to, but not in
 const indexes = d3.range(data.length);
 ```
 
-This is just a convenience, but what is far more essential is a scale. Here you want to move from a _discrete_ domain to a _continuous_ range, from the array of indexes to an interval between 0 and the width of the inset frame. There is more than one option, among which D3's _point scale_.
+This is just a convenience, but what is far more essential is a scale. Here you want to move from a _discrete_ domain to a _continuous_ range, from the array of indexes to an interval between 0 and the width of the inset frame. Among D3 functions, the problem is solved with a _point scale_.
 
 <!-- prettier-ignore -->
 ```js
@@ -142,7 +142,7 @@ const xScale = d3.scalePoint()
   .range([0, width]);
 ```
 
-With the instance of the specific scale function the first item in the array matches the beginning of the second collection. The other numbers are slotted at increments, until the last value is placed at the very edge. The function works, but as mentioned, the first and last values are place on the edges of the frame. If you want to inset the points further, so that the two don't overlap with the axis, you can take advantage of how D3 allows to refine the scales chaining more functions. Past the functions to set the domain and the range tweak the position with `padding`, setting a value in the `[0-1]` range relative to the width of a step.
+With the instance of the specific scale function the first item in the array matches the beginning of the second collection. The other numbers are slotted at increments, until the last value is placed at the very edge. Be careful, however: the first and last values are place on the edges of the frame. If you want to inset the points so that the circles two don't overlap with the axis, you can take advantage of how D3 allows to refine the scales chaining more functions. Past the functions to set the domain and the range tweak the position with `padding`, setting a value in the `[0-1]` range relative to the width of a step.
 
 ```js
 const xScale = scalePoint()
@@ -150,7 +150,7 @@ const xScale = scalePoint()
   .padding(0.5);
 ```
 
-With the two scales you are set to replicate the first basic visualization, positioning the circles in the right spot, scaling the input indexes and the input values.
+Thanks to the two instances you are set to replicate the first basic visualization, positioning the circles in the right spot.
 
 ```svelte
 {#each data as value, i}
@@ -176,7 +176,7 @@ const line = d3
 In this manner you find the sequence of characters for the `d` attribute and draw a line connecting the dots.
 
 ```svelte
-<path d={line(data)} fill="none" stroke="currentColor" stroke-width="0.5" />
+<path d={line(data)} fill="none" stroke="currentColor" />
 ```
 
-Should you fancy a different way to draw the line, D3 has an entire section devoted to [curves and interpolating functions](https://d3js.org/d3-shape/curve). Instead of stressing over implementation details you can fuss over which curve suits best your needs, an efficient monotone spline, or a less orthodox piecewise sequence of steps. Who knows, it might just inspire a bold and fresh redesign.
+Should you fancy a different way to draw the line, D3 has an entire section devoted to [curves and interpolating functions](https://d3js.org/d3-shape/curve). Instead of stressing over implementation details you can fuss over which curve suits best your needs, an efficient monotone spline, or a less orthodox piecewise sequence of steps. Who knows, it might just inspire a redesign creative enough to pop out of the page.
