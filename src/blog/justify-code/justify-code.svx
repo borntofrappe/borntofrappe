@@ -4,4 +4,165 @@ description: Excuse a run through SVG, Svelte and web components.
 date: 2025-03-16
 ---
 
-What follows is a perfectly fine manner to spend one's time.
+<script>
+	import svg from './svg.js';
+	import BrailleCipher from './BrailleCipher.svelte';
+</script>
+
+What follows is a perfectly fine manner to spend one's time. An evening which began rather innocently, looking at the picture of a chart detailing Braille.
+
+<figure class="center-frame">
+	{@html svg['braille-chart']}
+</figure>
+
+And wondering what it would take to draw the picture with SVG. It takes just two circles with a different color, or maybe slightly translucent.
+
+```html
+<circle r="0.35" fill="currentColor" />
+<circle r="0.35" fill="currentColor" fill-opacity="0.2" />
+```
+
+You need to place them with the `cx` and `cy` attribute in the proper configurations, but instead of repeating the element, you can save a few keystrokes with a definition. Two definitions so that you have a reference to either of the two dots.
+
+```html
+<defs>
+  <circle id="dot-o" r="0.35" fill="currentColor" />
+  <circle id="dot-x" r="0.35" fill="currentColor" fill-opacity="0.2" />
+</defs>
+```
+
+With this setup "all" that is left to place the dots with six copies. It's time-consuming, but if willing you can render the different letters. Even the period and comma.
+
+```html
+<use href="#dot-x" />
+<use href="#dot-x" x="1" />
+<use href="#dot-o" y="1" />
+<use href="#dot-x" x="1" y="1" />
+<use href="#dot-x" y="2" />
+<use href="#dot-x" x="1" y="2" />
+```
+
+Each character fits nicely in a rectangle two units wide and three tall. Nudged in to avoid the cropping on the left and above.
+
+```html
+<svg viewBox="-0.5 -0.5 2 3">
+  <!-- ..uses -->
+</svg>
+```
+
+You don't need to repeat the dots, and neither the letters. If you define them with a symbol or two — or twenty-eight.
+
+```html
+<symbol id="letter-," viewBox="-0.5 -0.5 2 3">
+  <!-- ..uses -->
+</symbol>
+```
+
+When you want a character use the symbol instead.
+
+```html
+<use href="#letter-," width="2" height="3" />
+```
+
+If you want to draw multiple characters you need to offset them, and a script might be useful to automate the process. Perhaps a Svelte component so that you can rapidly test the logic for different strings. You can even consider the value from a text input.
+
+```svelte
+<script>
+  let value = $state("Dig here.");
+</script>
+
+<textarea bind:value></textarea>
+```
+
+The difficult bit is to size the `svg` element, but you can figure it out if you decide on how to name whitespace.
+
+```svelte
+<svg viewBox="0 0 {value.length * (2 + gap) - gap} 3">
+  <!-- ..defs -->
+</svg>
+```
+
+Loop through the string character by character and point to the symbols in the right spot.
+
+```svelte
+{#each value.toLowerCase().split("") as key, i}
+  <use
+    href="#letter-{key}"
+    x="{i * (2 + gap)}"
+    width="2"
+    height="3" />
+{/each}
+```
+
+Pretty cool. Of course as the line changes in length the picture is destined to get excessively wide. How you cope with the issue is up to your preference, but you can break the text into multiple lines. In Svelte there is a rune for a reactive variable which changes following another variable value.
+
+```js
+let value = $state("Dig here.");
+let words = $derived(value.toLowerCase().split(" "));
+```
+
+And even a more complex formula to pull off complex computations.
+
+```js
+let lines = $derived.by(() => {
+  const words = value.toLowerCase().split(" ");
+  // ..
+  return [];
+});
+```
+
+What you need is to decide when to break the words into multiple lines, multiple strings. Enough to later have a 2D collection. With the new data the `svg` must change in size.
+
+```svelte
+<svg viewBox="0 0 {measure * (2 + gap) - gap} {lines.length * (3 + gap) - gap}">
+<!-- ..use everything -->
+</svg>
+```
+
+And there are then two loops instead of just one.
+
+```svelte
+{#each lines as line, j}
+  {#each line.toLowerCase().split("") as key, i}
+    <use
+      href="#letter-{key}"
+      x="{i * (2 + gap)}"
+      y="{j * (3 + gap)}"
+      width="2"
+      height="3" />
+  {/each}
+{/each}
+```
+
+It's a small experiment, but works to prove the concept.
+
+<BrailleCipher />
+
+Know what would be great at this point? [A web component](https://codepen.io/borntofrappe/pen/gbOoQvN) to display a static picture. The logic carries over quite nicely, and you can even refactor the code to be more lean. Indeed and in this instance two web components are better than one. The first to define the dots and the letters, no need to repeat the code for the characters every single time.
+
+```html
+<braille-characters></braille-characters>
+```
+
+The second to just draw.
+
+```html
+<braille-cipher text="Dig here."></braille-cipher>
+```
+
+How you collect the string, how you break up the text is a matter of implementation and preference. Perhaps you have an upper threshold for the lines' length. Perhaps an attribute to spawn a new line with a special key.
+
+```html
+<braille-cipher text="Dig here._Go there" separator="_"></braille-cipher>
+```
+
+The very first chart? You can now re-draw the picture, minus the text, testing the attributes. Just need the time to type out the alphabet.
+
+```html
+<braille-cipher
+  text="abcde|fghij|klmno|pqrst|uvwxy|z . ,"
+  separator="|"
+></braille-cipher>
+```
+
+Definitely, much less time it would take to draw the vector yourself.
