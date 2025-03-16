@@ -1,0 +1,7 @@
+---
+title: Justify code
+description: Excuse a run through SVG, Svelte and web components.
+date: 2025-03-16
+---
+
+What follows is a perfectly fine manner to spend one's time.
