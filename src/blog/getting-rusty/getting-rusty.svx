@@ -1,0 +1,7 @@
+---
+title: Getting rusty
+description: Try writing scripts in a spanking new language
+date: 2025-03-26
+---
+
+"The book" [The Rust Programming Language](https://doc.rust-lang.org/stable/book/index.html) ends the eighth chapter on common collections with [a prompt for three exercises](https://doc.rust-lang.org/stable/book/ch08-03-hash-maps.html#summary). There is also a suggestion to look at features available in the standard library, but if you read the hint only later, I wouldn't blame you for writing something as complex as what follows. A jumble of code improved by the wisdom of the book's chapters and the error messages of an active compiler.
