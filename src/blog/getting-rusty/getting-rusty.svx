@@ -18,7 +18,7 @@ date: 2025-03-26
 
 The first challenge is clear in scope, but helps to rehearse collections, values and references.
 
-> "_Given a list of integers, use a vector and return the median (when sorted, the value in the middle position) and mode (the value that occurs most often; a hash map will be helpful here) of the list._"
+> _Given a list of integers, use a vector and return the median (when sorted, the value in the middle position) and mode (the value that occurs most often; a hash map will be helpful here) of the list._
 
 In the single `main.rs` script and the fundamental `main` function I first decided to pick up the logic of the book's guessing game with the goal of creating a list of random integers. A frivolous detour, but one which allows to practice with Rust concept of crates, dependencies with helpful code. If you follow along this means you need to update the configuration file `Cargo.toml` with the mention of the library.
 
@@ -163,7 +163,7 @@ let mode_value: i64 = *mode.0;
 
 I tried the second problem in at least three manners, and each one is as convoluted as entertaining.
 
-> "_Convert strings to pig latin. The first consonant of each word is moved to the end of the word and ay is added, so first becomes irst-fay. Words that start with a vowel have hay added to the end instead (apple becomes apple-hay). Keep in mind the details about UTF-8 encoding!_"
+> _Convert strings to pig latin. The first consonant of each word is moved to the end of the word and ay is added, so first becomes irst-fay. Words that start with a vowel have hay added to the end instead (apple becomes apple-hay). Keep in mind the details about UTF-8 encoding!_
 
 In steps. Say you have an input string, like the entire text introducing the problem including periods, commands, parentheses and dash.
 
@@ -325,7 +325,7 @@ _applehay ecomesbay applehay-ayhay_.
 
 The third problem comes with the possibly most open prompt and the most assumptions.
 
-> "_Using a hash map and vectors, create a text interface to allow a user to add employee names to a department in a company; for example, “Add Sally to Engineering” or “Add Amir to Sales.” Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically_".
+> _Using a hash map and vectors, create a text interface to allow a user to add employee names to a department in a company; for example, “Add Sally to Engineering” or “Add Amir to Sales.” Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically_.
 
 Two lines are required to include the necessary modules: `io` to retrieve input from the command line and once again the standard collection for the hash map.
 
