@@ -6,7 +6,7 @@ const theme = "catppuccin-mocha";
 const { codeToHtml } = await createHighlighter({
   themes: [theme],
   // prettier-ignore
-  langs: ["html","css","javascript","svelte","diff","bash","sh","json","md","xml","csv","sql","lua"],
+  langs: ["html","css","javascript","svelte","diff","bash","sh","json","md","xml","csv","sql","lua", "toml", "rust"],
 });
 
 const mdsvexConfig = {
