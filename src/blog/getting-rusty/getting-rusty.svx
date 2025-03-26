@@ -4,4 +4,434 @@ description: Try writing scripts in a spanking new language
 date: 2025-03-26
 ---
 
+<script>
+  import svg from './svg.js'
+</script>
+
 "The book" [The Rust Programming Language](https://doc.rust-lang.org/stable/book/index.html) ends the eighth chapter on common collections with [a prompt for three exercises](https://doc.rust-lang.org/stable/book/ch08-03-hash-maps.html#summary). There is also a suggestion to look at features available in the standard library, but if you read the hint only later, I wouldn't blame you for writing something as complex as what follows. A jumble of code improved by the wisdom of the book's chapters and the error messages of an active compiler.
+
+<figure class="center-frame" data-size="small">
+  {@html svg['crust']}
+</figure>
+
+## Median and mode
+
+The first challenge is clear in scope, but helps to rehearse collections, values and references.
+
+> "_Given a list of integers, use a vector and return the median (when sorted, the value in the middle position) and mode (the value that occurs most often; a hash map will be helpful here) of the list._"
+
+In the single `main.rs` script and the fundamental `main` function I first decided to pick up the logic of the book's guessing game with the goal of creating a list of random integers. A frivolous detour, but one which allows to practice with Rust concept of crates, dependencies with helpful code. If you follow along this means you need to update the configuration file `Cargo.toml` with the mention of the library.
+
+```toml
+[dependencies]
+rand = "0.9.0"
+```
+
+Relying on cargo the `cargo run` prompt proceeds to pull the code from [crates.io](https://crates.io/) in the freshest version. Once you then pull the code in the scope of the script with the correct prelude you can generate a random integer in a given range. The example from the book works.
+
+```rs
+use rand::Rng;
+let mut integer: i64 = rand::thread_rng().gen_range(1..10);
+```
+
+But it turns out that the `rand` crate is updated to a version that deprecates the `thread_rng` function and `gen_range` method. You can thank the compiler for the notice and the right replacement.
+
+```diff
+-let integer: i64 = rand::thread_rng().gen_range(1..10);
++let integer: i64 = rand::rng().random_range(1..10);
+```
+
+And you can thank a vector and a basic for loop to create a vector of 10 values.
+
+```rs
+let mut integers: Vec<i64> = Vec::new();
+for _ in 1..10 {
+  integers.push(rand::rng().random_range(1..10));
+}
+```
+
+I decided to keep both the length of the list and the range small to test the code. In this manner the `println!` macro spells out the contents in a tight line.
+
+```rs
+println!("{integers:?}");
+```
+
+Turning to the problem at hand, for the median I decided to create a separate collection in which to sort the numbers. A mutable vector.
+
+```rs
+let mut sorted_integers: Vec<i64> = Vec::new();
+```
+
+With the goal of looping through the original list and evaluate the integers.
+
+```rs
+for integer in &integers {
+  // ...
+}
+```
+
+In the loop I initialize the index with a mutable number to add the integer in the new vector and at a specific place.
+
+```rs
+let mut index: usize = sorted_integers.len();
+
+sorted_integers.insert(index, *integer);
+```
+
+The index is initialized to the length of the at-first empty and then growing vector, 0, 1, 2. This means the integers would be pushed to the very end. If you weren't, by chance, to change the index before the insertion. Indeed if you loop through the sorted collection you can find an earlier spot comparing the values.
+
+```rs
+for i in 0..sorted_integers.len() {
+  if integer <= &sorted_integers[i] {
+    index = i;
+    break;
+  }
+}
+```
+
+I sometimes struggle to know when to use the ampersand character `&` for a reference, but this is the syntax you learn to pick up the value from a vector, aside from that which involves the `get` method. After the inner loop the index refers to the right position and the integer is in the right place. After the outer loop the vector is built and the numbers well sorted.
+
+The median then is then in the middle, which really makes you appreciate integer division.
+
+```rs
+let median = &sorted_integers[sorted_integers.len() / 2];
+```
+
+And as the compiler stresses if you mix up the type, this value is a reference to an signed number, not the signed number itself. `&i64` instead of `i64`.
+
+```rs
+let median: &i64 = &sorted_integers[sorted_integers.len() / 2];
+println!("{median}");
+```
+
+For the mode the text suggests a hash map, and the chapter devoted to the collection has actually much of the code to solve the issue. As well as a reminder to first import the feature from the standard library.
+
+```rs
+use std::collections::HashMap;
+```
+
+The idea is to build a map where the key represents the integers and the value the number of times each number appears.
+
+When you loop through the first vector the `.entry` method helps to pinpoint the value. The dereference operator `*` is necessary to refer to the value and the additional `or_insert` function adds a convenient default.
+
+```rs
+let mut counted_integers: HashMap<i64, i64> = HashMap::new();
+
+for integer in &integers {
+  let count: &i64 = counted_integers.entry(*integer).or_insert(0);
+}
+```
+
+As the book explained you can then update the value with the courtesy of making the reference mutable and dereferencing the number.
+
+```rs
+let count: &mut i64 = counted_integers.entry(*integer).or_insert(0);
+*count += 1;
+```
+
+After the loop you have built the enumerated collection and "all" that is left is extract the key with the greatest value, the integer numbered most often. It is likely there is a much better way to pull off this task, but I resolved with a tuple to store a reference to the key and the value.
+
+```rs
+let mut mode: (&i64, &i64) = (&0, &0);
+```
+
+It feels strange to initialize the tuple with a reference to zero, but it saves a few keystrokes when you then need to compare the value from the hash map. And it also, slightly, reinforces the difference between value and reference.
+
+Now loop through the map. Here you have references to the keys and values. To compare the values in the collection and tuple you need to therefore de-reference the variable. And if necessary update the tuple with the references to the more frequent combination.
+
+```rs
+for (key, value) in &counted_integers {
+  if *value > *mode.1 {
+    mode = (key, value);
+  }
+}
+```
+
+The mode is then the first item in the tuple.
+
+```rs
+println!("{}", mode.0);
+```
+
+The reference, mind you. If you ever need the value, don't forget the asterisk prefix `*`.
+
+```rs
+let mode_value: i64 = *mode.0;
+```
+
+## Pig latin
+
+I tried the second problem in at least three manners, and each one is as convoluted as entertaining.
+
+> "_Convert strings to pig latin. The first consonant of each word is moved to the end of the word and ay is added, so first becomes irst-fay. Words that start with a vowel have hay added to the end instead (apple becomes apple-hay). Keep in mind the details about UTF-8 encoding!_"
+
+In steps. Say you have an input string, like the entire text introducing the problem including periods, commands, parentheses and dash.
+
+```rs
+let input: String = String::from("Convert strings ...");
+```
+
+At first I created a separate variable to remove capital letters and tack on one more character, whitespace. Consider this a little helper which will save the day at the right time.
+
+```rs
+let input: String = input.to_lowercase() + " ";
+```
+
+Then I add a constant for the vowels.
+
+```rs
+const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
+```
+
+And a bunch of mutable variables:
+
+- `pig_sentence`, a string to fabricate the correct syntax
+
+- `pig_word`, a string to elaborate the words ending in "ay" or "hay"
+
+- `pig_consonant`, an `Option` enum to possibly hold a consonant character; also, a small excuse to practice with enums as well
+
+- `first_letter`, a boolean to know if a character is also the first letter in a word
+
+```rs
+let mut pig_sentence: String = String::new();
+let mut pig_word: String = String::new();
+let mut pig_consonant: Option<char> = None;
+let mut first_letter: bool = true;
+```
+
+With this setup prepare for a logic which might be better explained with a complex flow chart. Loop through the characters in the input string with the `chars` method.
+
+```rs
+for character: char in input.chars() {
+    // ..
+}
+```
+
+If the character is alphabetic you need to process the letter.
+
+```rs
+if character.is_alphabetic() {
+  // ..
+}
+```
+
+But first, is this also the first letter? This should happen just once for each word.
+
+```rs
+if first_letter {
+  first_letter = false;
+}
+```
+
+And in this instance you need one more deciding factor. Is this alphabetic, first letter also a vowel? For this you can initialize a boolean and loop through the constant array.
+
+```rs
+let mut first_vowel: bool = false;
+for vowel in &VOWELS {
+    if character == *vowel {
+        first_vowel = true;
+        break;
+    }
+}
+```
+
+After the loop, if you really have a vowel, just add it to the pig word. If you don't, set the enum to the discovered consonant.
+
+```rs
+if first_vowel {
+  pig_word.push(character);
+} else {
+  pig_consonant = Some(character);
+}
+```
+
+This happens if the character is the first, otherwise just add the letter to the pig word.
+
+```rs
+if first_letter {
+  // ..
+}
+else {
+  pig_word.push(character);
+}
+```
+
+In this manner `pig_word` is a word, and possibly without the first consonant. The idea is to then add the word to the sentence when the character is not alphabetic. Something which happens with every break in the string and yes, you guessed it, something which also happens with the last whitespace character.
+
+```rs
+if character.is_alphabetic() {
+  // irst & apple
+} else {
+  // ..
+}
+```
+
+In the `else` block you need to process the character and the word. Possibly the word. It may indeed happen that you have two non-consecutive non-alphabetic characters. If this happens, add the character to the sentence. No further logic required.
+
+```rs
+if first_letter {
+  pig_sentence.push(character);
+}
+```
+
+Else, evaluate the enum with a `match` expression.
+
+```rs
+match pig_consonant {
+  // ...
+}
+```
+
+Here you want to update the sentence, so you can even return a string from the `match` block and store the result in the pig sentence.
+
+```rs
+pig_sentence = match pig_consonant {
+  // ...
+}
+```
+
+If the enum holds a character, it is the fabled consonant. I tried different manners to formulate the string, but ultimately settled on the `format!` macro. Quite a useful function as you can just inject variables within curly brackets.
+
+Back to the problem, with the consonant you want to repeat the sentence, then add the pig word, then the consonant. Finally, the "ay" suffix and the non-alphabetic character.
+
+```rs
+Some(consonant) => format!("{pig_sentence}{pig_word}{consonant}ay{character}"),
+```
+
+Without the consonant, you want to append the word, then "hay" and the delimiting character.
+
+```rs
+None => format!("{pig_sentence}{pig_word}hay{character}"),
+```
+
+And there you have it. You processed the word, even the optional consonant. First and second and all. To kick-start the process you need to then reset the controlling variables. Clear the word, reset the consonant, and the first letter. At the next iteration you start anew.
+
+```rs
+pig_word.clear();
+pig_consonant = None;
+first_letter = true;
+```
+
+Reasonable? Barely, but you are almost finished. Out of the loop you have the fancy pig sentence, but you need one final adjustment. The last character, the sung hero that was the extra space, is now superfluous. Trim the string, the problem is solved, and you might delight in the fact of the day.
+
+```rs
+println!("{}", pig_sentence.trim());
+```
+
+_applehay ecomesbay applehay-ayhay_.
+
+## Text interface
+
+The third problem comes with the possibly most open prompt and the most assumptions.
+
+> "_Using a hash map and vectors, create a text interface to allow a user to add employee names to a department in a company; for example, “Add Sally to Engineering” or “Add Amir to Sales.” Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically_".
+
+Two lines are required to include the necessary modules: `io` to retrieve input from the command line and once again the standard collection for the hash map.
+
+```rs
+use std::io;
+use std::collections::HashMap;
+```
+
+For the interface I decided to build a register where the name of the employees are stored in a vector and linked to the string describing a department.
+
+```rs
+let mut register: HashMap<String, Vec<String>> = HashMap::new();
+```
+
+The interaction is then split in two phases.
+
+First, a welcome message and a series of line prompting for user input in a specific format. The goal is to explain a phase where you register employees and departments by separating the names with a comma. Also, introduce a character to stop the sequence.
+
+```rs
+println!("Enter the name of the employee and the department separated by comma.");
+println!("Enter 'q' to stop registering new entries.");
+```
+
+With this structure the code follows the example from one of the previous chapters. Instantiate a loop and continuously ask for input, storing the result in a mutable string.
+
+```rs
+loop {
+  let mut input: String = String::new();
+
+  io::stdin()
+      .read_line(&mut input)
+      .expect("");
+}
+```
+
+Shadowing helps to trim the extra space, and also to notice that the `.trim` method returns a string slice, not a string. For the string you need to chain the `.to_string` function.
+
+```rs
+let input: String = input.trim().to_string();
+```
+
+In the loop entering the chosen sequence, the character "q", allows to break free.
+
+```rs
+if input == String::from("q") {
+  break;
+}
+```
+
+Past the checkup, and unless you press the key, you proceed with the input. To process the names there is a `.split` function to separate the string on the basis of a delimiter. The function itself returns an iterator, but the documentation has an obvious solution with `.collect`.
+
+```rs
+let names: Vec<&str> = input.split(",").collect();
+```
+
+The result is a vector of string slices, possibly two. If there are exactly two, you can elaborate the name for the employee and department.
+
+```rs
+if names.len() == 2 {
+  let employee: String = names[0].trim().to_string();
+  let department: String = names[1].trim().to_string();
+}
+```
+
+The goal is to add the employee to a department in the register, if one already exists. Otherwise add a new empty vector. The logic follows that of the first exercise.
+
+```rs
+let entry: &mut Vec<String> = register.entry(department).or_insert(Vec::new());
+```
+
+In the certain-to-exist department then add the employee.
+
+```rs
+entry.push(employee);
+```
+
+If the input is in the format the operation should go swimmingly. Past elementary feedback to take notice of what happened it is possible to then move to the next phase, after the `loop`. Of course you can always pause to appreciate the progress and print out the map.
+
+```rs
+println!("{register:?}");
+```
+
+After the registration the idea is to instantiate a second loop asking for the name of a department and advising the same escape sequence.
+
+```rs
+println!("\nEnter the name of the department to see the registered employees.");
+println!("Enter 'q' to stop registering new entries.");
+```
+
+With the newfound string the goal is to retrieve the vector from the hash map to highlight the list of names. A `match` expression is the perfect candidate to check if the value exists.
+
+```rs
+match register.get(&input) {
+  Some(employees) => {
+      println!("Department found");
+  },
+  None => println!("Department not found")
+}
+```
+
+A reference to the list of names you can print out line by line in the neat set of curly braces.
+
+```rs
+for employee in employees {
+  println!("- {employee}");
+}
+```
+
+The script can be refined to consider capital letters, maybe evaluate duplicate entries and certainly improve error handling. But perhaps the topic of a different script and a dedicated article for something that would quickly resemble a much better Rust app.
