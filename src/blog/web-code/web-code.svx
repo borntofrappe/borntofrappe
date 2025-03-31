@@ -12,7 +12,7 @@ date: 2025-03-31
 
 In "Code: The Hidden Language of Computer Hardware and Software", Charles Petzold eases into the topic discussing previous technologies and methods of communications, among which, the telegraph and Morse code. On the web, this introduction inspires an exploration of the technologies built in the platform and supported by modern web browsers.
 
-Here <abbr title="Scalable Vector Graphics">SVG</abbr> helps to give a visual representation to the dots and dashes, while <abbr title="Cascading Style Sheets">CSS</abbr> is able to frame the markup with an effective and bold display. Without using tables, but still managing to draw a border around without overlaps.
+Here <abbr title="Scalable Vector Graphics">SVG</abbr> helps to give a visual representation to the dots and dashes, while <abbr title="Cascading Style Sheets">CSS</abbr> is able to frame the markup with an effective and bold display. Without using tables, but still managing to draw a border without overlaps.
 
 <article class="web-code">
   <Alphabet />
@@ -23,7 +23,7 @@ Here <abbr title="Scalable Vector Graphics">SVG</abbr> helps to give a visual re
   </div>
 </article>
 
-JavaScript can be used to restructure the data so that it is not only possible to visualize which code corresponds to which letter, but also trace a sequence down to the appropriate key.
+JavaScript can be used to restructure the data so that it is not only possible to visualize which code corresponds to which letter, but also trace a sequence down to the appropriate key — just follow the SVG `path`.
 
 <article class="web-code">
   <figure class="center-frame" data-size="medium">
@@ -36,7 +36,7 @@ JavaScript can be used to restructure the data so that it is not only possible t
   </div>
 </article>
 
-And ever more JavaScript, emboldened by web <abbr title="Application Programming Interface">API</abbr>s can attempt more than a static picture. An interactive widget to draw and almost make the code talk.
+And ever more JavaScript, emboldened by web <abbr title="Application Programming Interface">API</abbr>s can attempt more than a static picture. An interactive widget to draw and oscillate enough to make the code almost talk.
 
 <article class="web-code">
   <Telegraph />
@@ -53,7 +53,7 @@ All this without considering a single library, "only" what's available whenever 
   .web-code {
     max-inline-size: 60ch;
     margin-inline: auto;
-    --color-text: light-dark(hsl(210 9% 31%), hsl(210 14% 89%));
+    --color-text: light-dark(hsl(210 10% 23%), hsl(210 14% 89%));
     --color-background: light-dark(hsl(210 17% 98%), hsl(210 10% 23%));
     --color-border: light-dark(hsl(210 14% 83%), hsl(210 9% 31%));
     --border-size: 2px;
