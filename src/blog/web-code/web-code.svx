@@ -1,0 +1,8 @@
+---
+title: Web code
+description: When morse language inspires an exploration of web technologies.
+date: 2025-03-31
+---
+
+
+In "Code: The Hidden Language of Computer Hardware and Software", Charles Petzold eases into the topic discussing previous technologies and methods of communications, among which, the telegraph and Morse code. On the web, this introduction inspires an exploration of the technologies built in the platform and supported by modern web browsers.
