@@ -12,7 +12,7 @@
   <p>Gabriele Corti, 2025</p>
 
   <figure>
-    <Tangram key={illustration} />
+    <Tangram key={illustration} padding={3} />
   </figure>
 </footer>
 
@@ -34,7 +34,7 @@
   }
 
   footer > figure {
-    max-inline-size: 10rem;
+    max-inline-size: 12rem;
     margin-inline: auto;
   }
 
