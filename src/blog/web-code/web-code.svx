@@ -4,5 +4,79 @@ description: When morse language inspires an exploration of web technologies.
 date: 2025-03-31
 ---
 
+<script>
+  import Alphabet from "./Alphabet.svelte";
+  import Codes from "./Codes.svelte";
+  import Telegraph from "./Telegraph.svelte";
+</script>
 
 In "Code: The Hidden Language of Computer Hardware and Software", Charles Petzold eases into the topic discussing previous technologies and methods of communications, among which, the telegraph and Morse code. On the web, this introduction inspires an exploration of the technologies built in the platform and supported by modern web browsers.
+
+Here <abbr title="Scalable Vector Graphics">SVG</abbr> helps to give a visual representation to the dots and dashes, while <abbr title="Cascading Style Sheets">CSS</abbr> is able to frame the markup with an effective and bold display. Without using tables, but still managing to draw a border around without overlaps.
+
+<article class="web-code">
+  <Alphabet />
+  <div class="web-code--tags">
+    <span>defs</span> <span>symbol</span> <span>use</span>
+    <span>grid</span> <span>subgrid</span> <span>has</span>
+    <span>nth-child</span>
+  </div>
+</article>
+
+JavaScript can be used to restructure the data so that it is not only possible to visualize which code corresponds to which letter, but also trace a sequence down to the appropriate key.
+
+<article class="web-code">
+  <figure class="center-frame" data-size="medium">
+    <Codes />
+  </figure>
+
+  <div class="web-code--tags">
+    <span>data</span> <span>reduce</span> <span>map</span>
+    <span>tree</span> <span>marker</span>
+  </div>
+</article>
+
+And ever more JavaScript, emboldened by web <abbr title="Application Programming Interface">API</abbr>s can attempt more than a static picture. An interactive widget to draw and almost make the code talk.
+
+<article class="web-code">
+  <Telegraph />
+
+  <div class="web-code--tags">
+    <span>canvas</span> <span>context</span> <span>request animation</span>
+    <span>audio context</span> <span>oscillator</span> <span>gain</span>
+  </div>
+</article>
+
+All this without considering a single library, "only" what's available whenever you ping a server and get an `.html` document back.
+
+<style>
+  .web-code {
+    max-inline-size: 60ch;
+    margin-inline: auto;
+    --color-text: light-dark(hsl(210 9% 31%), hsl(210 14% 89%));
+    --color-background: light-dark(hsl(210 17% 98%), hsl(210 10% 23%));
+    --color-border: light-dark(hsl(210 14% 83%), hsl(210 9% 31%));
+    --border-size: 2px;
+
+    > :global(* + *) {
+      margin-block-start: 0.75rem;
+    }
+  }
+
+  .web-code--tags {
+    text-align: center;
+    text-wrap: balance;
+
+    span {
+      --_color: var(--color-text, hsl(0 0% 30%));
+      --_background: var(--color-background, hsl(0 0% 98%));
+      display: inline-block;
+      padding: 0.2em 0.75em;
+      color: var(--_color);
+      background: var(--_background);
+      box-shadow: 0 0px 5px -2px oklch(from currentColor l c h / 0.4);
+      border-radius: 1e5px;
+      margin: 0.2rem;
+    }
+  }
+</style>
