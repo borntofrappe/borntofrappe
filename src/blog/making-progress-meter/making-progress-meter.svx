@@ -5,7 +5,34 @@ date: 2025-04-18
 ---
 
 <script>
+  /**
+   * @typedef {import('./types').Task} Task
+   */
   import svg from "./svg.js";
+  import StopMeter from "./StopMeter.svelte";
+  import DivMeter from "./DivMeter.svelte";
+
+  /** @type [Task, Task, Task ] */
+  const tasks = $state([
+    {
+      state: "Complete",
+      number: 4,
+    },
+    {
+      state: "Paused",
+      number: 3,
+    },
+    {
+      state: "Left",
+      number: 3,
+    },
+  ]);
+
+  const onclick = () => {
+    tasks.forEach((task) => {
+      task.number = Math.floor(Math.random() * 10);
+    });
+  };
 </script>
 
 In the process of re-creating a nifty application to keep track of tasks I needed to visualize progress in something close to a meter, a horizontal stripe divvied up in smaller, colored rectangles. In this app you can add, complete and pause a task so that the meter needs to highlight the three kinds with three colors. Or two if you consider the color in the background and resolve to show the remaining tasks as empty space.
@@ -13,3 +40,95 @@ In the process of re-creating a nifty application to keep track of tasks I neede
 <figure class="center-frame" data-size="large">
   {@html svg["progress-meter"]}
 </figure>
+
+There are several manners to solve this challenge, not in the least drawing rectangles with specific coordinates and dimensions. Something quite simple with SVG.
+
+```html
+<svg viewBox="0 0 42 1">
+  <rect x="0" width="16.8" height="1" fill="lightgreen" />
+  <rect x="16.8" width="12.6" height="1" fill="khaki" />
+</svg>
+```
+
+Where the first rectangle ends the second begins, so you update the sizes and positions in the chosen aspect ratio — you may not even need a complex library like D3 to pull off the feat. That being said, I found at least two alternatives with their own reason, other than postponing an inevitable thing to do.
+
+The first one is perhaps too exotic, but goes back to SVG and just one rectangle, the one for the larger meter. The difference is that you color said rectangle with a gradient.
+
+```html
+<svg viewBox="0 0 42 1">
+  <rect fill="url(#meter-gradient)" width="42" height="1" />
+</svg>
+```
+
+A linear gradient where the colors follow each other in discrete, hard stops.
+
+```html
+<linearGradient id="meter-gradient">
+  <stop stop-color="lightgreen" offset="0.4" />
+  <stop stop-color="khaki" offset="0.4" />
+  <stop stop-color="khaki" offset="0.7" />
+  <stop stop-color="transparent" offset="0.7" />
+</linearGradient>
+```
+
+With colors instead of shapes the logic is similar: where one color ends, the one which follows immediately begins. Applied to the rectangle the result is the same, barring rounding approximations. And this time the math might even come easier as you need to adjust the `offset` attribute with values in a convenient `0` to `1` range.
+
+<StopMeter {tasks} {onclick} />
+
+Alas, not everything glitters. The code works to visualize the progress, but if you change the values the change is immediate. It is not possible to update the offset over time with something as simple as a CSS transition. In CSS there is an `offset` property, but reflects the position of an element along a predefined path, not the attribute of the `stop` nodes. Leaving the realm of SVG, however, there is certainly a way to have CSS fill the gap. The idea is to use regular HTML nodes like empty `div`, one for the larger meter and three for the different sections.
+
+```html
+<div class="meter">
+  <div data-value="complete"></div>
+  <div data-value="paused"></div>
+  <div data-value="left"></div>
+</div>
+```
+
+With CSS it is possible to resize the block to keep the same dimensions with the `aspect-ratio` property, and even have the precaution of setting a minimum height.
+
+```css
+.meter {
+  inline-size: 100%;
+  aspect-ratio: 42/1;
+  min-block-size: 1ex;
+}
+```
+
+Always with CSS, you then recreate the horizontal split making the parent container a flex container. The child nodes can occupy a fraction of the space with the `flex-grow` property; a property you can change over time with the simple declaration of a `transition`.
+
+```css
+.meter {
+  /* ... */
+
+  display: flex;
+
+  > div {
+    flex-grow: 1;
+    transition: flex-grow 0.2s;
+  }
+}
+```
+
+If the three nested `div`s share the same value they each occupy a third of the space, but the moment you update the values the effect is complete. The elements grow and shrink to reach the new state in a more pleasing manner. And you have gained something more than a soothing change: the value of the `flex-grow` doesn't need to fit in any given range. This means you can use the number of tasks, be them complete, paused, and the rest, and have CSS figure out the proportions. All that is left is adding the colors with the `background` property.
+
+```css
+.meter {
+  /* ... */
+
+  > div {
+    /* ... */
+    &[data-value="complete"] {
+      background: lightgreen;
+    }
+
+    &[data-value="paused"] {
+      background: khaki;
+    }
+  }
+}
+```
+
+<p>Sit back and focus on the full application and the actual tasks. {tasks.map(({ state, number }) => `${number} ${state.slice(0, 1).toLowerCase()}${state.slice(1)}`).join(', ')}.</p>
+
+<DivMeter {tasks} {onclick} />
