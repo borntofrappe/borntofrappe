@@ -4,4 +4,12 @@ description: Just two ways to markup and style a neat progress bar.
 date: 2025-04-18
 ---
 
-In the process of re-creating a nifty application to keep track of tasks I needed to visualize progress in something close to a meter, a horizontal stripe divvied up in smaller, colored rectangles.
+<script>
+  import svg from "./svg.js";
+</script>
+
+In the process of re-creating a nifty application to keep track of tasks I needed to visualize progress in something close to a meter, a horizontal stripe divvied up in smaller, colored rectangles. In this app you can add, complete and pause a task so that the meter needs to highlight the three kinds with three colors. Or two if you consider the color in the background and resolve to show the remaining tasks as empty space.
+
+<figure class="center-frame" data-size="large">
+  {@html svg["progress-meter"]}
+</figure>
