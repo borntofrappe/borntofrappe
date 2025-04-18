@@ -100,32 +100,25 @@ Always with CSS, you then recreate the horizontal split making the parent contai
 ```css
 .meter {
   /* ... */
-
   display: flex;
+}
 
-  > div {
-    flex-grow: 1;
-    transition: flex-grow 0.2s;
-  }
+.meter div {
+  flex-grow: 1;
+  transition: flex-grow 0.2s;
 }
 ```
 
 If the three nested `div`s share the same value they each occupy a third of the space, but the moment you update the values the effect is complete. The elements grow and shrink to reach the new state in a more pleasing manner. And you have gained something more than a soothing change: the value of the `flex-grow` doesn't need to fit in any given range. This means you can use the number of tasks, be them complete, paused, and the rest, and have CSS figure out the proportions. All that is left is adding the colors with the `background` property.
 
 ```css
-.meter {
-  /* ... */
+/* ... */
+[data-value="complete"] {
+  background: lightgreen;
+}
 
-  > div {
-    /* ... */
-    &[data-value="complete"] {
-      background: lightgreen;
-    }
-
-    &[data-value="paused"] {
-      background: khaki;
-    }
-  }
+[data-value="paused"] {
+  background: khaki;
 }
 ```
 
