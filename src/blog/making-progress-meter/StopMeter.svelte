@@ -79,5 +79,10 @@
     &:active {
       translate: 0 1px;
     }
+
+    &:focus {
+      outline: 2px solid hsl(249 11% 12%);
+      outline-offset: 2px;
+    }
   }
 </style>
