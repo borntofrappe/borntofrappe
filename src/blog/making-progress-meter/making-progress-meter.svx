@@ -41,7 +41,7 @@ In the process of re-creating a nifty application to keep track of tasks I neede
   {@html svg["progress-meter"]}
 </figure>
 
-There are several manners to solve this challenge, not in the least drawing rectangles with specific coordinates and dimensions. Something quite simple with SVG.
+There are several ways to solve this challenge, not in the least drawing rectangles with specific coordinates and dimensions. Something quite simple with SVG.
 
 ```html
 <svg viewBox="0 0 42 1">
@@ -50,7 +50,7 @@ There are several manners to solve this challenge, not in the least drawing rect
 </svg>
 ```
 
-Where the first rectangle ends the second begins, so you update the sizes and positions in the chosen aspect ratio — you may not even need a complex library like D3 to pull off the feat. That being said, I found at least two alternatives with their own reason, other than postponing an inevitable thing to do.
+Where the first rectangle ends the second begins, so you update the positions and the dimensions making a decision on the aspect ratio — you may not even need a complex library like D3 to pull off the feat. That being said, I found at least two alternatives with their own reason, other than postponing an inevitable thing to do.
 
 The first one is perhaps too exotic, but goes back to SVG and just one rectangle, the one for the larger meter. The difference is that you color said rectangle with a gradient.
 
@@ -60,7 +60,7 @@ The first one is perhaps too exotic, but goes back to SVG and just one rectangle
 </svg>
 ```
 
-A linear gradient where the colors follow each other in discrete, hard stops.
+A linear gradient where the colors follow each other with hard stops.
 
 ```html
 <linearGradient id="meter-gradient">
@@ -75,7 +75,7 @@ With colors instead of shapes the logic is similar: where one color ends, the on
 
 <StopMeter {tasks} {onclick} />
 
-Alas, not everything glitters. The code works to visualize the progress, but if you change the values the change is immediate. It is not possible to update the offset over time with something as simple as a CSS transition. In CSS there is an `offset` property, but reflects the position of an element along a predefined path, not the attribute of the `stop` nodes. Leaving the realm of SVG, however, there is certainly a way to have CSS fill the gap. The idea is to use regular HTML nodes like empty `div`, one for the larger meter and three for the different sections.
+Unfortunately, not everything glitters. The code works to visualize the progress, but if you change the values the shift is immediate. It is not possible to update the offset over time with something as simple as a CSS transition. In CSS there is an `offset` property, but reflects the position of an element along a predefined path, not the attribute of the multiple `stop`s. Leaving the realm of SVG, however, there is certainly a way to have CSS fill the gap. The idea is to use regular HTML elements like empty `div`s, one for the larger meter and three for the different sections.
 
 ```html
 <div class="meter">
@@ -85,7 +85,7 @@ Alas, not everything glitters. The code works to visualize the progress, but if 
 </div>
 ```
 
-With CSS it is possible to resize the block to keep the same dimensions with the `aspect-ratio` property, and even have the precaution of setting a minimum height.
+With CSS it is possible to resize the block to keep the same dimensions thanks to the `aspect-ratio` property, and even have the precaution of setting a minimum height.
 
 ```css
 .meter {
@@ -95,7 +95,7 @@ With CSS it is possible to resize the block to keep the same dimensions with the
 }
 ```
 
-Always with CSS, you then recreate the horizontal split making the parent container a flex container. The child nodes can occupy a fraction of the space with the `flex-grow` property; a property you can change over time with the simple declaration of a `transition`.
+Always with CSS, you then recreate the horizontal split making the parent container a flex container. The child nodes can occupy a fraction of the space with the `flex-grow` property, and you can soften the change in this property with the simple declaration of a `transition`.
 
 ```css
 .meter {
@@ -109,7 +109,7 @@ Always with CSS, you then recreate the horizontal split making the parent contai
 }
 ```
 
-If the three nested `div`s share the same value they each occupy a third of the space, but the moment you update the values the effect is complete. The elements grow and shrink to reach the new state in a more pleasing manner. And you have gained something more than a soothing change: the value of the `flex-grow` doesn't need to fit in any given range. This means you can use the number of tasks, be them complete, paused, and the rest, and have CSS figure out the proportions. All that is left is adding the colors with the `background` property.
+If the three nested `div`s share the same value they each occupy a third of the space, but the moment you tweak the property the effect is complete. The elements grow and shrink to reach the new state in a more pleasing manner. And you have gained something more than a soothing change: the value of `flex-grow` doesn't need to fit in any given range. This means you can use the number of tasks, be them complete, paused, and the rest, and have CSS figure out the proportions. All that is left is adding the colors with a solid `background`.
 
 ```css
 /* ... */
@@ -122,6 +122,6 @@ If the three nested `div`s share the same value they each occupy a third of the 
 }
 ```
 
-<p>Sit back and focus on the full application and the actual tasks. {tasks.map(({ state, number }) => `${number} ${state.slice(0, 1).toLowerCase()}${state.slice(1)}`).join(', ')}.</p>
+<p>Sit back and focus on developing the full application and ticking off a few more tasks. {tasks.map(({ state, number }) => `${number} ${state.slice(0, 1).toLowerCase()}${state.slice(1)}`).join(', ')}.</p>
 
 <DivMeter {tasks} {onclick} />
