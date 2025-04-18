@@ -1,0 +1,7 @@
+---
+title: Making progress meter
+description: Just two ways to markup and style a neat progress bar.
+date: 2025-04-18
+---
+
+In the process of re-creating a nifty application to keep track of tasks I needed to visualize progress in something close to a meter, a horizontal stripe divvied up in smaller, colored rectangles.
