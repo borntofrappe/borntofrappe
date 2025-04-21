@@ -68,7 +68,7 @@
       translate: 0 1px;
     }
 
-    &:focus {
+    &:focus-visible {
       outline: 2px solid hsl(249 11% 12%);
       outline-offset: 2px;
     }
