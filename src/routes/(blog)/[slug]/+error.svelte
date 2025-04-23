@@ -7,7 +7,6 @@
 <svelte:head>
   <title>Error {page.status} | {site.title}</title>
   <meta name="description" content={page?.error?.message} />
-  <link rel="icon" href="icons/error.svg" type="image/svg+xml" />
 </svelte:head>
 
 <div>
