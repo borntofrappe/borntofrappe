@@ -3,3 +3,11 @@ title: Three things to know more
 description: Excuse two short snippets with a brilliant 3D detour.
 date: 2025-04-24
 ---
+
+<script>
+	import Camera from './Camera.svelte';
+</script>
+
+<div class="[ center-frame ]" data-size="medium">
+  <Camera />
+</div>
