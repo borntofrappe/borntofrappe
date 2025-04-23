@@ -210,7 +210,7 @@ CREATE VIEW "dex_evolution" AS
 SELECT ...
 ```
 
-Just like with the dex locations you can finally query the evolutions by name. Even chain the two views should you feel inspired and look for the answer to more puzzling questions. You know how withviews, data joins _and_ nested queries.
+Just like with the dex locations you can finally query the evolutions by name. Even chain the two views should you feel inspired and look for the answer to more puzzling questions. You know how with views, data joins _and_ nested queries.
 
 ```sql
 SELECT "evolution"
