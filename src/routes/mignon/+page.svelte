@@ -1,10 +1,10 @@
 <script>
   import site from "$lib/site.js";
-  import Ray from "./Ray.svelte";
-  import Serena from "./Serena.svelte";
-  import Claire from "./Claire.svelte";
-  import Mayo from "./Mayo.svelte";
-  import Brianna from "./Brianna.svelte";
+  import Ray from "$lib/components/mignon/Ray.svelte";
+  import Serena from "$lib/components/mignon/Serena.svelte";
+  import Claire from "$lib/components/mignon/Claire.svelte";
+  import Mayo from "$lib/components/mignon/Mayo.svelte";
+  import Brianna from "$lib/components/mignon/Brianna.svelte";
 
   const Mascots = [Ray, Serena, Claire, Mayo, Brianna];
   const Mascot =
