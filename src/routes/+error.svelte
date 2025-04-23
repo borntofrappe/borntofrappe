@@ -16,20 +16,20 @@
       class="stroke-text"
       style="--stroke: hsl(209 61% 16%); --fill: hsl(212 33% 89%)"
     >
-      Oopsie
+      Ouch
     </h1>
     <p>
-      Something quite unexpected has happened, but let's try to be positive.
+      Something quite unexpected has happened. Here's a possibly helpful message
+      for context:
     </p>
-    <p>Here's a possibly helpful message for context:</p>
 
     <pre class="code-fence" data-language="sh"><code
         >{page?.error?.message}</code
       ></pre>
 
     <p>
-      If you think this is a mistake and you feel up to it, please consider
-      filing an issue
+      In all likelihood we have made a huge mistake on our end, but if you spot
+      something you think we can fix, feel free to file an issue
       <a
         class="link-underline"
         href="https://github.com/borntofrappe/borntofrappe/issues/new?title=Status%20code%20{page.status}&body={page
@@ -37,11 +37,10 @@
       >.
     </p>
     <p>
-      If you need some guidance, <em>home is always a good place to start.</em>
-    </p>
-
-    <p>
-      Cheer up and go home, <a class="link-underline" href="/">the home page</a
+      When all is lost we like to think that home is always a good place to
+      start. With that in mind you can try to go back to <a
+        class="link-underline"
+        href="/">the home page</a
       >.
     </p>
   </main>
