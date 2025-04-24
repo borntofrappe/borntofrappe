@@ -5,9 +5,245 @@ date: 2025-04-24
 ---
 
 <script>
-	import Camera from './Camera.svelte';
+  import svg from "./svg.js";
+
+  import Camera from "./Camera.svelte";
 </script>
+
+Among Web APIs I take the specification for the Document Object Model as granted, so ubiquitous to be almost obvious. In the standard, there are also very few methods I've come to rely more frequently than those used to target HTML elements in the rendered page. Methods like `querySelector`. You call the function on the `document` global passing as argument the name of an element or one of its identifying features.
+
+```js
+document.querySelector("h1");
+```
+
+What I discovered, however, is that you can search for more than a unit. Indeed, as [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) mention, the function accepts _selectors_ plural.
+
+```js
+document.querySelector("h1, h2");
+```
+
+Now, you may not find a use-case for the specific instruction any time soon — the purpose of `querySelector` is to isolate the one node — but the logic extends to another method, `querySelectorAll`. Here the code has the same usefulness of the elaborate sequences you formulate in CSS. Just as you are able to style multiple elements with a common declaration.
+
+```css
+button,
+input,
+select,
+textarea {
+}
+```
+
+You can thoretically target a growing number of nodes to implement, or even preclude, some feature.
+
+```js
+const nodes = document.querySelectorAll("button, input, select, textarea");
+```
+
+That's it.
+
+Admittedly, the snippets are not remotely enough to justify an entire new web page, so let me try to compensate with a bright visual.
+
+<figure class="[ center-frame ]" data-size="small">
+  {@html svg["star"]}
+</figure>
+
+And an introduction to the inspiring library which is [Three.js](https://threejs.org/). It is certainly less popular and depends on the DOM, but once you memorize a few steps and understand the basics, you will gain something deeper than a simple factoid.
+
+---
+
+To follow along you can set up a local environment with an extremely short `package.json`.
+
+```json
+{
+  "scripts": {
+    "dev": "vite"
+  }
+}
+```
+
+Install Vite and Three.js.
+
+```sh
+pnpm add -D vite three
+```
+
+In `index.html` you can then add a `script` or reference a separate file.
+
+```html
+<script src="script.js" type="module"></script>
+```
+
+Fire up the application and you find the page live on localhost.
+
+```sh
+pnpm dev
+```
+
+As a quick, web-based alternative you can include the library in a REPL like CodePen. I might have started [a collection](https://codepen.io/collection/ZQZGNJ) with a few examples and even [a pen](https://codepen.io/borntofrappe/pen/bNNgVoB) to fork in times of need.
+
+## One-two-three
+
+Every Three.js application requires three key ingredients: a renderer, a scene and a camera. You create an instance of these essential objects through the `THREE` object, in a manner which will soon be familiar.
+
+First the renderer, which you create with a function like `WebGLRenderer`. The instruction creates a `canvas` element you can resize with the `setSize` method and append to the document with one of several DOM-supported functions.
+
+```js
+const width = 600;
+const height = 600;
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(width, height);
+
+document.body.appendChild(renderer.domElement);
+```
+
+For the width and the height I picked two hard-coded numbers, but you can very expand the area and cover the entirety of the window referencing `window.innerWidth` and `window.innerHeight`.
+
+The snippet has an immediate effect, although you may not realize it as quickly: in the page there is a now a `<canvas>` — feel free to inspect the document and check for yourself.
+
+You need to paint on the canvas and, in the terms of Three.js, you need to call the `render` function on renderer, pointing to the touted scene and camera. The scene doesn't require much thought in terms of arguments, and begins as an instance of the the `Scene` class, but the camera needs a bit more care. There is even more than one type, but considering a perspective camera, the object depends on a bunch of values: field of view, aspect ratio, "near" and "far" \_clipping plane_s. Thankfully, the documentation has a teaching picture to elucidate each value [in the fundamentals section](https://threejs.org/manual/#en/fundamentals).
+
+```js
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 6);
+```
+
+And the following, possibly interactive, widget might do the trick to explain the numbers you may want to tweak, not to mention illustrate why you definitely want to update the `z` coordinate of the new camera. By default the value is set to 0, and you definitely want to move the camera closer to your point of view to see the upcoming figures.
 
 <div class="[ center-frame ]" data-size="medium">
   <Camera />
 </div>
+
+Update the position of the camera and you can then invoke the `render` function with the three objects.
+
+```js
+camera.position.z = 3;
+
+renderer.render(scene, camera);
+```
+
+Something now appears on the screen. You may think it a marginal improvement — you see the canvas as a black rectangle —, but the essence of any Three.js app is there, brimming with potential.
+
+## Three-on-three
+
+Beyond the renderer, scene and camera you will come to rely on three more concepts, coalescing together to form a visible shape. First a geometry, the "vertext data" which describes just which figure you want to draw. Three.js has primitives for several geometries, but you may want to start with a simple box with detailing the width, height and depth.
+
+```js
+const geometry = new THREE.BoxGeometry(2, 1, 1.5);
+```
+
+On top of the geometry the library relies on a material, like a coat of paint for the object. For an immediate result you can try an instance of `MeshBasicMaterial` and imbue the box with a bright color.
+
+```js
+const material = new THREE.MeshBasicMaterial({ color: "#f7cc03" });
+```
+
+With the pair of geometry and material you need to glue the two together in what Three.js calls a mesh.
+
+```js
+const box = new THREE.Mesh(geometry, material);
+```
+
+The result is the box you can add to the scene through the `add` method, and most importantly _before_ you remember to invoke the renderer.
+
+```js
+scene.add(box);
+renderer.render(scene, camera);
+```
+
+Finally, something of which you can be proud. Not just a solid background, but a three-dimensional box. For solid proof you can rotate the mesh and attest that the object tilts — in 3D!.
+
+```js
+box.rotation.x = 0.5;
+box.rotation.y = 0.2;
+```
+
+Renderer, camera, scene. Geometry, material and mesh. There is quite a lot of boilerplate code, several ad-hoc functions, but if you manage to get over this first climb, the road ahead is filled with exciting small wins.
+
+## Full 3D
+
+Aside from `MeshBasicMaterial` the library provides other types of material. If you try one of these you may lament that the box disappears, but for a good reason.
+
+```diff
+-const material = new THREE.MeshBasicMaterial({ color: "#f7cc03" });
++const material = new THREE.MeshStandardMaterial({ color: "#f7cc03" });
+```
+
+Unlike the basic variant, other types require a light source to be clearly visible. Just like with geometries and materials there are different lights, like a directional light you instantiate in color and intensity. Once the light is positioned in the x-y-z space you need only to add the object to the scene — similarly to the mesh —, and alight, the box re-appears.
+
+```js
+const light = new THREE.DirectionalLight("white", 3);
+light.position.set(0, 10, 10);
+scene.add(light);
+```
+
+You don't even need to fantasize about the 3D space as the shape is now blessed with a miriad of shades. To check every nook and cranny you can then rotate the box every which way, but even better, include a utility which allows to explore the scene with freedom galore. Indeed Three.js makes available a set of controls in the installed sub-folder — you might need to look for the right `import` statement if using CodePen.
+
+```js
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+```
+
+Once you initialize these controls with your camera and the canvas element available through the renderer, you are already able to drag the box around, zoom in and out to examine the figure from all the sides.
+
+```js
+new OrbitControls(camera, renderer.domElement);
+```
+
+But, to have the controls cause a visual change you need to re-render the scene. `requestAnimationFrame` is perhaps the most immediate manner to set up a render loop, so that whenever the browser can, it will call a function you can use to pull off the feat.
+
+```js
+function animate() {
+  requestAnimationFrame(animate);
+
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(animate);
+```
+
+As you examine the box you may notice that one of the sides is not shaded, but completely black. At fault my pick for a light source, a directional light which casts white rays from the top and slighly behind the camera. Another type, an ambient light, helps to fill the entire space with a default gleam. You can even add the new instance directly to the scene — no need to spawn a separate variable.
+
+```js
+scene.add(new THREE.AmbientLight("white", 1));
+```
+
+Impressed? You are bound to be ecstatic once you realize just much can be achieved with what you just learned. You might remember a suddenly not-so-impromptu star-shaped graphic. I drew the picture with SVG and a `path` element, specifying the vertices two by two in the `d` attribute.
+
+```html
+<path
+  fill="#f7cc03"
+  d="M 0 -1.4 0.35 -0.49 1.33 -0.44 0.57 0.18 0.82 1.13 0 0.6 -0.82 1.13 -0.57 0.18 -1.33 -0.44 -0.35 -0.49 0 -1.4"
+/>
+```
+
+If you look at [the reference for Three.js primitives](https://threejs.org/manual/#en/primitives) you will discover it takes very little to replace the box with a 3D copy. The key is an instance of `ExtrudeGeometry`. Copying the snippet the idea is to first generate a shape and progressively draw the star point by point.
+
+```js
+const shape = new THREE.Shape();
+shape.moveTo(0, 1.4);
+shape.lineTo(0.35, 0.49);
+shape.lineTo(1.33, 0.44);
+// ...
+shape.moveTo(0, 1.4);
+```
+
+After the possibly manual sequence all is left is deciding just how deep you want to extrude, to deepen the figure.
+
+```js
+const geometry = new THREE.ExtrudeGeometry(shape, {
+  steps: 2,
+  depth: 0.5,
+  bevelEnabled: true,
+  bevelThickness: 0.3,
+  bevelSize: 0.05,
+  bevelSegments: 2,
+});
+```
+
+You can keep the material for a brand new mesh and add the result to the scene.
+
+```js
+const star = new THREE.Mesh(geometry, material);
+scene.add(star);
+```
+
+This time however, it is far from "it" and completely up to your exploration. I might have toyed with a different geometry to fill the space with small particles, found a way to paint the background with another color and even tried to animate the scene and shapes with basic math, but you can very well take a different route. You know more. You know best. You know how.
