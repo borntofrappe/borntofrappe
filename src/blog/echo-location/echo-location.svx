@@ -1,7 +1,13 @@
 ---
-title: Echo
+title: Echo location
 description: Don't lose sight of what matters in your first Tauri app.
 date: 2025-05-20
 ---
 
+<script>
+  import EchoBat from "./EchoBat.svelte";
+</script>
+
 If you are intrigued by [Tauri](https://v2.tauri.app/), lured by the promise of building cross-platform applications which couple web technologies you already know with Rust, a language which doesn't scare you enough to run away in pure fright, [the documentation](https://v2.tauri.app/start/create-project/) holding your hand through creating a project is the best place to start. Just be sure to read the page in its entirety, not rush in the terminal, thrilled by the option of sending a message to a secure backend.
+
+<EchoBat />
