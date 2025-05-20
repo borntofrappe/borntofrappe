@@ -10,7 +10,7 @@ date: 2025-05-20
 
 If you are intrigued by [Tauri](https://v2.tauri.app/), lured by the promise of building cross-platform applications which couple web technologies you already know with Rust, a language which doesn't scare you enough to run away in pure fright, [the documentation](https://v2.tauri.app/start/create-project/) holding your hand through creating a project is the best place to start. Just be sure to read the page in its entirety, not rush in the terminal, thrilled by the option of sending a message to a secure backend.
 
-## dev
+## Develop
 
 Don't just run the first prompt you see, with the first answer for every question Tauri asks when selecting a frontend, a package manager, a UI template and flavor.
 
@@ -18,7 +18,7 @@ Don't just run the first prompt you see, with the first answer for every questio
 pnpm create tauri-app
 ```
 
-After installing the necessary packages and moving in the directory don't just type out the first script you see in `package.json` to run the application as [a Vite app](https://vite.dev/).
+After installing the necessary packages and moving in the directory don't just type out the first script you see in `package.json`, perhaps out of habit, to run the application as [a Vite app](https://vite.dev/).
 
 ```sh
 pnpm dev
@@ -30,7 +30,7 @@ The instruction might render a page on localhost, but in a browser the demo simp
 TypeError: window.__TAURI_INTERNALS__ is undefined
 ```
 
-Now, you are certainly astute and reading of the error message you will continue, calmly, through the rest of the guide. Surely, you won't try to franctically tweak configuration files or update the list of so-called capabilities on the suggestion of online discussions and unresolved queries. You will **not** dive in the source code of _working_ applications built with Tauri, making sure to filter out those built with the first version.
+Now, you are certainly astute and reading the error message you will continue, calmly, through the rest of the guide. Surely, you won't try to frantically tweak configuration files or update the list of so-called capabilities on the suggestion of online discussions and unresolved queries. You will **not** dive in the source code of working applications built with Tauri, making sure to filter out those built with the first version.
 
 Rather shortly, `window.__TAURI_INTERNALS__` refers to a Tauri API which is only available when developing the application with the appropriate command. A line which makes it possible to work through Tauri's own CLI.
 
@@ -38,9 +38,9 @@ Rather shortly, `window.__TAURI_INTERNALS__` refers to a Tauri API which is only
 pnpm tauri dev
 ```
 
-The missive takes longer to go through as Tauri needs to prepare the frontend, but also the backend, compiling the Rust crates and eventually realize a window, a Tauri window if you will. The page on localhost is still available, but only exposes the brittle frontend. In the new window the application works, and looking at the local directory you can start to appreciate how.
+The missive takes longer to go through as Tauri needs to prepare the frontend, but also the backend, compiling the Rust crates and eventually realize a window, a Tauri window if you will. The page on localhost is still available, but only exposes the brittle frontend. In the new window the application works as expected, and looking at the local directory you can start to appreciate how.
 
-## src
+## Source
 
 When scaffolding the project Tauri creates two sub-folders, `src` and `src-tauri`. These embody the split between frontend and backend, and illustrate how to communicate between the two with Tauri's _commands_.
 
@@ -54,7 +54,7 @@ greetMsgEl.textContent = await invoke("greet", {
 });
 ```
 
-`invoke` is a Tauri feature which receives the name of a another function and an object to possibly tack on some data. The function itself resides in the backend, in the slimmed down `lib.rs` which picks up the value and returns a specific string. And, most importantly, signals that Tauri should register the logic as a command.
+`invoke` is a feature which receives the name of another function and an object to possibly tack on some data. The function itself resides in the backend, in the slimmed down `lib.rs` which picks up the value to return a specific string. And, most importantly, signals that Tauri should register the logic as a command.
 
 ```rs
 #[tauri::command]
@@ -65,9 +65,9 @@ fn greet(name: &str) -> String {
 
 When you submit a value in the text input the frontend leans on the function to retrieve and display the formatted text.
 
-## create
+## Create
 
-One of the most exciting features of Tauri is that applications work with the Rust backend and a variety of frontend. With "vanilla" TypeScript, but also fancy frameworks. With this option and enough knowledge of Rust to yearn for more, the chances of building something useful skyrocket. Something useful or, something silly to rehash the basics and lift up a mood which has certainly not been soured by the rough debugging detour.
+One of the most exciting features of Tauri is that applications work with the Rust backend and a variety of frontends. With "vanilla" TypeScript, but also fancy frameworks. With this option and enough knowledge of Rust to yearn for more, the chances of building something useful are great. Something useful or, something silly to rehash the basics and lift up a mood which has certainly not been soured by the rough debugging detour.
 
 If you go through the effort, perhaps with Svelte, you can try invoking a function to retrieve and display a random number.
 
@@ -84,14 +84,14 @@ If you go through the effort, perhaps with Svelte, you can try invoking a functi
 <button {onclick}>Echo number</button>
 ```
 
-Even [a fool who just wrote three Rust examples](/getting-rusty) is able to find the `rand` crate, but be sure to add it in the right place, in the source folder devoted to the backend.
+Even [a fool who just wrote three Rust examples](/getting-rusty) is able to find the `rand` crate, and add the dependency in the backend sub-folder.
 
 ```sh
 cd src-tauri
 cargo add rand
 ```
 
-In the Rust file the command doesn't have to be complicated, but certainly needs to be marked as a command.
+In the Rust file the function is then able to use the crate. A function and a Tauri's command.
 
 ```rs
 use rand::Rng;
@@ -101,13 +101,19 @@ fn get_positive_int(max: i32) -> i32 {
 }
 ```
 
-You are essentially repeating the scheme of the base app, but there might be a point to go through the effort. This time you discover that you need one more step to register the function. For the command to be available in the frontend you need to update the `run` function Tauri calls as a form of setup. Here a line registers the commands, the default `greet` you were able to use in the demo app and your new function.
+The logic is eerily similar to that of the demo, you are repeating the communication between front and back end, but you gain the opportunity to grow in front of another mistake.
+
+```text
+Uncaught (in promise) Command greetMore not found
+```
+
+For the command to be available in the frontend you must mark the function with the proper attribute, but also have the precaution to update the `run` function Tauri calls as a form of setup. Here `invoke_handler` includes the commands in an array, the default `greet` you were able to use in the demo app and your new function.
 
 ```diff
 -.invoke_handler(tauri::generate_handler![greet])
 +.invoke_handler(tauri::generate_handler![greet, get_positive_int])
 ```
 
-The communication works once more and you're using Svelte, a framework open to whimsy as much as speed and ease-of-use. A framework which offers transitions and animations so that whenever the number changes, you can show off the result in a cutesy, pointless display.
+The scheme works once more and you're using Svelte, a framework open to whimsy as much as speed and ease-of-use. A framework which offers transitions and animations so that whenever the number changes, you can show off the result in a cutesy, pointless display.
 
 <EchoBat />
