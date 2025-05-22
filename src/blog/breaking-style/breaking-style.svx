@@ -1,0 +1,7 @@
+---
+title: Breaking style
+description: Weigh your options of syntax between Svelte magic and modern CSS feeatures.
+date: 2025-05-22
+---
+
+Svelte is a framework which builds almost naturally on top of web standards. There are a number of features exclusive to the compiler, but these do not try to revolutionise what you already know about HTML, CSS and JavaScript.
