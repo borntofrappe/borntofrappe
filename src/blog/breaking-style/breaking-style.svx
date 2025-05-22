@@ -1,7 +1,63 @@
 ---
 title: Breaking style
-description: Weigh your options of syntax between Svelte magic and modern CSS feeatures.
+description: Weigh your options of syntax between Svelte magic and modern CSS spells.
 date: 2025-05-22
 ---
 
-Svelte is a framework which builds almost naturally on top of web standards. There are a number of features exclusive to the compiler, but these do not try to revolutionise what you already know about HTML, CSS and JavaScript.
+<script>
+	import FadeInRunes from './FadeInRunes.svelte';
+</script>
+
+Svelte is a framework which builds almost naturally on top of web standards. There are a number of features exclusive to the compiler, but these do not try to revolutionise what you already know about HTML, CSS and JavaScript. Consider transitions, for instance. If you preface an element with `transition`, or one of the most selective pairs of `in` and `out` directives, you are able to choose how the node should behave when entering and or exiting the DOM.
+
+```svelte
+<script>
+  import { fade } from "svelte/transition";
+</script>
+
+<svg viewBox="0 0 1 1">
+  <use in:fade href="#rune" />
+</svg>
+```
+
+In Svelte you can condition the markup with an `if` block.
+
+```svelte
+{#if condition}
+  <use in:fade href="#rune" />
+{/if}
+```
+
+But when you want to apply the transition whenever a value changes, you can also lean on the `key` block. The syntax is quite handy when you want the appearance of the content to reflect and show the new value.
+
+```svelte
+{#key number}
+  <use in:fade href="#rune-{number}" />
+{/key}
+```
+
+Aside from the `if` and `key` couplet however, there is no magic at play. Yes, it is remarkable that you can animate the entrance, exit and change in such a concise manner, but behind the scenes, there is CSS. To the point where the documentation has [a fairly readable section](https://svelte.dev/docs/svelte/transition#Custom-transition-functions) to learn how to make a transition all on your own. A function which accepts a few arguments and returns a few, understandable keys.
+
+Going back to the transition, however, you may not even need the directive. The code is quite self-serving, but what if I told you it would be possible to keep the transition without the function, without the accompanying `import` statement?
+
+```diff
+-<use in:fade href="#rune-{number}" />
++<use href="#rune-{number}" />
+```
+
+Here's solid proof at the press of a button. On one side you have the Svelte `fade` transition, but the opposite, there is no such instruction.
+
+<FadeInRunes />
+
+Witchcraft! Or more aptly, CSS sorcery! In a stylesheet you have the opportunity to assign key-value pairs with the `@starting-style` rule. Even better, you can nest the declaration in the one which points to the node. The values apply to the current selection and describe how the matching elements should be styled _before_ they enter the scene. From this point you can add a regular CSS transition to have change the properties smoothly and over time.
+
+```css
+use {
+  transition: opacity 0.5s ease-out;
+  @starting-style {
+    opacity: 0;
+  }
+}
+```
+
+You still need to condition the existence of the element, a way to destroy and re-introduce the markup, but equipped with the option, you can export the syntax outside of Svelte. All frameworks apply.
