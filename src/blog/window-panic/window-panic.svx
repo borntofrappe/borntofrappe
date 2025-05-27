@@ -4,11 +4,15 @@ description: Beware of small changes when you configure the window of a Tauri ap
 date: 2025-05-27
 ---
 
+<script>
+	import svg from './svg.js';
+</script>
+
 Develop a Tauri application [with the right prompt](/echo-location) and eventually, on desktop, up pops a window.
 
-```sh
-pnpm tauri dev
-```
+<figure class="[ center-frame ]" data-size="medium">
+  {@html svg['tauri-window']}
+</figure>
 
 The result appears with fixed dimensions, always in the same spot, but you can change both traits in `tauri-config.json`.
 
