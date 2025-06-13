@@ -10,16 +10,19 @@
 </svelte:head>
 
 <main>
-  <h1>{site.title}</h1>
-  <p>— the sun will rise up, tomorrow</p>
-  <figure>
-    <Ray />
-  </figure>
+  <div>
+    <h1 class="stroke-text">{site.title}</h1>
+    <p>Name's Gabriele Corti, and I write you from northern Italy.</p>
+    <p>
+      I take an immensurable amount of pleasure out of materializing an idea
+      with code.
+    </p>
+    <p>
+      In this website, this is with Svelte and SVG. And I hope to be able to
+      prove it soon.
+    </p>
+  </div>
 </main>
-
-<div>
-  <Footer illustration="heart" />
-</div>
 
 <style>
   main {
@@ -27,21 +30,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--space-s);
     color: hsl(38 13% 17%);
     background: hsl(40 23% 97%);
     min-block-size: 100svb;
-    z-index: 1;
-		position: relative;
-  }
-
-  main figure {
-    inline-size: 100vmin;
-    max-inline-size: 24rem;
   }
 
   div {
-    position: sticky;
-    inset-block-end: 0;
+    max-inline-size: 60ch;
+
+    & > * + * {
+      margin-block-start: 1em;
+    }
   }
 </style>
