@@ -1,7 +1,5 @@
 <script>
   import site from "$lib/site";
-  import Ray from "$lib/components/mignon/Ray.svelte";
-  import Footer from "$lib/components/Footer.svelte";
 </script>
 
 <svelte:head>

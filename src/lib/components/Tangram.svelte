@@ -1,6 +1,6 @@
 <script>
-  import shapes from "./shapes.js";
-  /** @typedef {import('./shapes.js').Key} Key */
+  import shapes from "../shapes.js";
+  /** @typedef {import('../shapes.js').Key} Key */
 
   const keys = /** @type {Array<Key>}*/ (Object.keys(shapes));
   const i = Math.floor(Math.random() * keys.length);

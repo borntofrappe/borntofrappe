@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/state";
   import site from "$lib/site";
-  import Serena from "$lib/components/mignon/Serena.svelte";
+  import Serena from "$lib/components/Serena.svelte";
 </script>
 
 <svelte:head>

@@ -1,6 +1,6 @@
 <script>
-  import Tangram from "./tangram/Tangram.svelte";
-  import shapes from "./tangram/shapes.js";
+  import Tangram from "./Tangram.svelte";
+  import shapes from "../shapes.js";
   const keys = Object.keys(shapes);
 
   const { illustration = keys[Math.floor(Math.random() * keys.length)] } =
