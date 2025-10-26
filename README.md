@@ -1,3 +1,3 @@
 # borntofrappe
 
-Name's Gabriele Corti. Software developer from northern Italy. This is my personal website, and it doesn't have a landing page still. I can tell you it has SvelteKit to spawn the pages, a lot of care and plenty SVGs.
+T'was the happy playground for a software developer. One Gabriele Corti from northern Italy.
