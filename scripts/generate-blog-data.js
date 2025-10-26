@@ -26,7 +26,7 @@ const outputFilePath = path.resolve(__dirname, "../src/lib/blog.js");
 
     blogMetadata.push({
       slug,
-      path: `/src/blog/${file}`,
+      path: `/src/blog/${file.replace("\\", "/")}`,
       ...data,
     });
   }

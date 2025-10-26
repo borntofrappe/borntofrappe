@@ -8,7 +8,8 @@ export async function load({ params }) {
     error(404, `Page not found: /${params.slug}`);
   }
 
-  const { default: content } = await import(/* @vite-ignore */ metadata.path);
+  const modules = import.meta.glob("$blog/**/*.{md,svx}");
+  const { default: content } = await modules[metadata.path]();
 
   return {
     ...metadata,
