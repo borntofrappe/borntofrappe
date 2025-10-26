@@ -2,7 +2,7 @@ import { dev } from "$app/environment";
 
 export default {
   title: "Borntofrappe",
-  description: "Name's Gabriele Corti. Software developer with an inkling and a flair to write delightful code.",
+  description: "The happy playground for a software developer. One Gabriele Corti from northern Italy.",
   origin: dev ? "" : "https://borntofrappe.netlify.app",
   author: {
     name: "Gabriele Corti",
