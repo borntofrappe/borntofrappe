@@ -1,5 +1,10 @@
 <script>
   import site from "$lib/site";
+  import Header from "./Header.svelte";
+  import { formatDate } from "$lib/utils";
+
+  /** @type {{ data: import('./$types').PageData }} */
+  let { data } = $props();
 </script>
 
 <svelte:head>
@@ -8,36 +13,65 @@
 </svelte:head>
 
 <main>
+  <Header title="Blog" />
+
   <div>
-    <h1 class="stroke-text">{site.title}</h1>
-    <p>Name's Gabriele Corti, and I write you from northern Italy.</p>
-    <p>
-      I take an immensurable amount of pleasure out of materializing an idea
-      with code.
-    </p>
-    <p>
-      In this website, this is with Svelte and SVG. And I hope to be able to
-      prove it soon.
-    </p>
+    {#each data.blog as { slug, title, date, description }}
+      <article>
+        <h2><a class="link-underline" href={slug}>{title}</a></h2>
+        <time datetime={date}>{formatDate(date)}</time>
+        <p>{description}</p>
+      </article>
+    {/each}
+
+    <nav>
+      {#if data.page > 1}
+        <a class="link-underline" href="/blog?page={data.page - 1}"
+          >Newer articles</a
+        >
+      {/if}
+
+      {#if data.page < data.pages}
+        <a class="link-underline" href="/blog?page={data.page + 1}"
+          >Older articles</a
+        >
+      {/if}
+    </nav>
   </div>
 </main>
 
 <style>
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: hsl(38 13% 17%);
-    background: hsl(40 23% 97%);
-    min-block-size: 100svb;
+  div {
+    padding: var(--space-m) var(--space-s);
+    max-inline-size: var(--measure-l);
+    margin-inline: auto;
   }
 
-  div {
-    max-inline-size: 60ch;
+  div > * + * {
+    margin-block-start: var(--space-m);
+  }
 
-    & > * + * {
-      margin-block-start: 1em;
+  div > nav {
+    margin-block-start: var(--space-xl);
+  }
+
+  article > * + * {
+    margin-block-start: var(--space-2xs);
+  }
+
+  article > time {
+    display: inline-block;
+    font-size: var(--step--1);
+    font-style: italic;
+  }
+
+  nav {
+    display: flex;
+    gap: var(--space-s);
+    justify-content: space-between;
+
+    & > :only-child {
+      margin-inline-start: auto;
     }
   }
 </style>
