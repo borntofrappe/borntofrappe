@@ -1,22 +1,17 @@
+import { blog } from "$lib/blog";
 import { error } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-  const modules = import.meta.glob("$blog/**/*.{md,svx}");
-  for (const path in modules) {
-    const slug = path.split("/").pop()?.split(".")[0];
-    if (slug === params.slug) {
-      const { metadata, default: content } =
-        /** @type {{ metadata: import('$lib/types').Frontmatter, default: Function}} */ (
-          await modules[path]()
-        );
-
-      return {
-        ...metadata,
-        content,
-      };
-    }
+  const metadata = blog.find((d) => d.slug === params.slug);
+  if (metadata === undefined) {
+    error(404, `Page not found: /${params.slug}`);
   }
 
-  error(404, `Page not found: /${params.slug}`);
+  const { default: content } = await import(/* @vite-ignore */ metadata.path);
+
+  return {
+    ...metadata,
+    content,
+  };
 }
