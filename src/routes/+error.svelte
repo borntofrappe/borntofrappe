@@ -25,7 +25,7 @@
     <p>There was an error. A broken or missing link.</p>
     <p>
       If nothing works and you are still willing, you can try going back to
-      home, <a href="/">to the home page</a>.
+      home, <a class="link-underline" href="/">to the home page</a>.
     </p>
     <p>
       If you stick around, here's a small cloud with a sombre look A challenge
