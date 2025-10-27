@@ -130,6 +130,18 @@ h2 {
   }
 }
 
+:is(.link-underline, a:not([class]))[data-direction="start"] {
+  background-position: 100% 100%;
+
+  &:hover {
+    background-size: 100% 0.2ex;
+  }
+
+  &:not(:hover) {
+    background-position: 0% 100%, 100% 100%;
+  }
+}
+
 pre {
   color: var(--text-code-fence, #cdd6f4);
   background: var(--surface-code-fence, #1e1e2e);
